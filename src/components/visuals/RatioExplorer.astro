@@ -1,0 +1,117 @@
+---
+// Ratios two ways: a set of counters in two colours (part-part and part-whole ratios), and
+// a hundred grid that shows one part-whole relationship as a ratio, fraction, decimal and
+// percentage (MAT5 _tTreLA_0Ey9KlNK1XSxIA: K1.1-K1.3, U1.1, U1.2, S1.1, S1.2).
+interface Props {
+  start?: 'set' | 'grid';
+  a?: number;
+  b?: number;
+  shaded?: number;
+  labelA?: string;
+  labelB?: string;
+}
+const { start = 'set', a = 3, b = 5, shaded = 35, labelA = 'red', labelB = 'blue' } = Astro.props;
+---
+<ratio-explorer data-start={start} data-a={a} data-b={b} data-shaded={shaded} data-label-a={labelA} data-label-b={labelB}>
+  <div class="seg" role="group" aria-label="Choose a model">
+    <button type="button" data-mode="set" aria-pressed={String(start === 'set')}>Counters</button>
+    <button type="button" data-mode="grid" aria-pressed={String(start === 'grid')}>Hundred grid</button>
+  </div>
+
+  <div class="rx-pane" data-pane="set" hidden={start !== 'set'}>
+    <div class="rx-counters" data-rx="counters" aria-hidden="true"></div>
+    <div class="control-row">
+      <label class="control"><span class="rx-key rx-key--a"></span> {labelA} <input type="range" min="0" max="12" value={a} data-rx="a" /> <output data-rx="a-out">{a}</output></label>
+      <label class="control"><span class="rx-key rx-key--b"></span> {labelB} <input type="range" min="0" max="12" value={b} data-rx="b" /> <output data-rx="b-out">{b}</output></label>
+    </div>
+    <div class="rx-cards" data-rx="set-cards" aria-live="polite"></div>
+  </div>
+
+  <div class="rx-pane" data-pane="grid" hidden={start !== 'grid'}>
+    <div class="rx-hundred" data-rx="hundred" aria-hidden="true">
+      {Array.from({ length: 100 }, (_, i) => <span class={i < shaded ? 'is-on' : ''}></span>)}
+    </div>
+    <label class="control"><span>Shaded squares</span><input type="range" min="0" max="100" value={shaded} data-rx="shaded" /> <output data-rx="shaded-out">{shaded}</output></label>
+    <div class="rx-cards rx-cards--four" data-rx="grid-cards" aria-live="polite"></div>
+  </div>
+</ratio-explorer>
+
+<style is:global>
+  ratio-explorer { display: block; }
+  .rx-pane { margin-top: 0.9rem; }
+  .rx-counters { display: flex; flex-wrap: wrap; gap: 0.45rem; min-height: 3rem; padding: 0.75rem; border-radius: var(--radius); background: var(--surface-2); }
+  .rx-counters span { width: 2.1rem; height: 2.1rem; border-radius: 50%; box-shadow: inset 0 -3px 0 rgb(0 0 0 / 20%); animation: rx-in 0.3s ease; }
+  .rx-a, .rx-key--a { background: #e0452b; }
+  .rx-b, .rx-key--b { background: #2f6fd0; }
+  .rx-key { display: inline-block; width: 1rem; height: 1rem; border-radius: 50%; }
+  .rx-cards { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); margin-top: 0.8rem; }
+  .rx-card { padding: 0.75rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+  .rx-card small { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .rx-card strong { font-size: var(--step-2); font-variant-numeric: tabular-nums; color: var(--accent); }
+  .rx-card p { margin: 0.2rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .rx-hundred { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; max-width: 18rem; margin-bottom: 0.6rem; }
+  .rx-hundred span { aspect-ratio: 1; background: var(--surface-3); border-radius: 2px; transition: background 0.15s; }
+  .rx-hundred span.is-on { background: var(--accent); }
+  @keyframes rx-in { from { transform: scale(0); } }
+  @media (prefers-reduced-motion: reduce) { .rx-counters span { animation: none; } }
+</style>
+
+<script>
+  const gcdOf = (x: number, y: number): number => (y ? gcdOf(y, x % y) : x);
+
+  class RatioExplorer extends HTMLElement {
+    private la = 'red';
+    private lb = 'blue';
+
+    connectedCallback() {
+      this.la = this.dataset.labelA!;
+      this.lb = this.dataset.labelB!;
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.querySelectorAll('[data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.querySelectorAll<HTMLElement>('[data-pane]').forEach((p) => (p.hidden = p.dataset.pane !== btn.dataset.mode));
+        }),
+      );
+      for (const k of ['a', 'b', 'shaded']) this.q<HTMLInputElement>(`[data-rx="${k}"]`).addEventListener('input', () => this.render());
+      this.render();
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(sel: string) {
+      return this.querySelector(sel) as T;
+    }
+
+    private render() {
+      const a = Number(this.q<HTMLInputElement>('[data-rx="a"]').value);
+      const b = Number(this.q<HTMLInputElement>('[data-rx="b"]').value);
+      this.q('[data-rx="a-out"]').textContent = String(a);
+      this.q('[data-rx="b-out"]').textContent = String(b);
+      this.q('[data-rx="counters"]').innerHTML = '<span class="rx-a"></span>'.repeat(a) + '<span class="rx-b"></span>'.repeat(b);
+      const t = a + b;
+      const percent = t && 100 % t === 0 ? (a * 100) / t : null;
+      const cards = [
+        [`${this.la} to ${this.lb}`, `${a} : ${b}`, `Part-part. Also written  ${a}/${b}.`],
+        [`${this.lb} to ${this.la}`, `${b} : ${a}`, 'Part-part, the other way round.'],
+        [`${this.la} to all`, `${a} : ${t}`, `Part-whole. As a fraction: ${a}/${t}.`],
+      ];
+      if (percent !== null) cards.push([`${this.la} as a percentage`, `${percent}%`, `${a}/${t} = ${percent}/100 = ${(percent / 100).toString()}`]);
+      this.q('[data-rx="set-cards"]').innerHTML = t
+        ? cards.map(([k, v, p]) => `<div class="rx-card"><small>${k}</small><strong>${v}</strong><p>${p}</p></div>`).join('')
+        : '<p class="muted">Add some counters.</p>';
+
+      const s = Number(this.q<HTMLInputElement>('[data-rx="shaded"]').value);
+      this.q('[data-rx="shaded-out"]').textContent = String(s);
+      this.q('[data-rx="hundred"]').querySelectorAll('span').forEach((sq, i) => sq.classList.toggle('is-on', i < s));
+      const dec = s === 100 ? '1' : s === 0 ? '0' : `0.${String(s).padStart(2, '0').replace(/0$/, '')}`;
+      const g = gcdOf(s, 100) || 1;
+      this.q('[data-rx="grid-cards"]').innerHTML = [
+        ['Ratio', `${s} : 100`, `${s} shaded out of 100 squares`],
+        ['Fraction', `${s}/100`, g > 1 && s ? `which equals ${s / g}/${100 / g}` : 'hundredths'],
+        ['Decimal', dec, `${s} hundredth${s === 1 ? '' : 's'}`],
+        ['Percentage', `${s}%`, 'per cent means out of 100'],
+      ]
+        .map(([k, v, p]) => `<div class="rx-card"><small>${k}</small><strong>${v}</strong><p>${p}</p></div>`)
+        .join('');
+    }
+  }
+  customElements.define('ratio-explorer', RatioExplorer);
+</script>

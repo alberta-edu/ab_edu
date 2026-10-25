@@ -1,0 +1,325 @@
+id: add-subtract-fractions
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [h9k9LsDzCEGrqR92bPiBog]
+order: 6
+title: Adding and Subtracting Fractions
+shortTitle: Adding & subtracting fractions
+summary: >-
+  Add and subtract fractions with the same denominator by counting unit fractions, including improper
+  fractions and mixed numbers, and solve real problems.
+
+bigIdea: |-
+  Fractions with the **same denominator** are made of the **same unit fraction**. \(\frac{3}{8}\) is three
+  \(\frac{1}{8}\) pieces. To add or subtract, **count the pieces**. The pieces stay eighths, so the
+  **denominator doesn't change**.
+
+lesson:
+  - title: Count the pieces
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.2, U1.1]
+        component: fraction-add
+        props:
+          examples:
+            - { op: '+', a: '3/8', b: '2/8' }
+            - { op: '+', a: '5/6', b: '3/6' }
+            - { op: '+', a: '2 3/4', b: '1 2/4' }
+        caption: Press **Combine**. The yellow pieces slide into the next empty places, and you count the pieces.
+      - type: text
+        covers: [U1.1, S1.2]
+        body: '\(\frac{3}{8}\) is \(\frac{1}{8} + \frac{1}{8} + \frac{1}{8}\). Fractions with the same denominator are all **multiples of the same unit fraction**.'
+
+  - title: The denominator stays the same
+    blocks:
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: ✅ Count the eighths
+            body: |-
+              \[\frac{3}{8} + \frac{2}{8} = \frac{5}{8}\]
+              3 eighths + 2 eighths = 5 eighths.
+          - title: ❌ Don't add the denominators
+            body: |-
+              \[\frac{3}{8} + \frac{2}{8} \ne \frac{5}{16}\]
+              Sixteenths are **smaller** pieces. Adding can't make the pieces smaller!
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Say it in words
+        body: Reading **3 eighths + 2 eighths** out loud makes it clear that only the count changes.
+
+  - title: Taking away
+    blocks:
+      - type: visual
+        covers: [S1.2, S1.4, K1.1]
+        component: fraction-add
+        props:
+          examples:
+            - { op: '-', a: '7/8', b: '3/8' }
+            - { op: '-', a: '7/5', b: '4/5' }
+            - { op: '-', a: '2 1/3', b: '2/3' }
+        caption: Press **Take away**. The red pieces leave, and you count what's left.
+
+  - title: Mixed numbers or improper fractions?
+    blocks:
+      - type: compare
+        covers: [K1.3, S1.3]
+        columns:
+          - title: Strategy 1, improper fractions
+            body: |-
+              \[2\frac{3}{4} + 1\frac{2}{4}\]
+              \[= \frac{11}{4} + \frac{6}{4} = \frac{17}{4} = 4\frac{1}{4}\]
+              Change to improper fractions, then count fourths.
+          - title: Strategy 2, mixed numbers
+            body: |-
+              \[2\frac{3}{4} + 1\frac{2}{4}\]
+              \[= 3 + \frac{5}{4} = 3 + 1\frac{1}{4} = 4\frac{1}{4}\]
+              Add the wholes, add the fractions, then regroup.
+      - type: example
+        covers: [S1.3, S1.4]
+        title: Subtracting when you need to regroup
+        problem: '\(3\frac{1}{5} - 1\frac{3}{5}\)'
+        steps:
+          - '**Mixed numbers:** \(\frac{1}{5}\) is less than \(\frac{3}{5}\), so regroup 1 whole: \(3\frac{1}{5} = 2\frac{6}{5}\). Then \(2\frac{6}{5} - 1\frac{3}{5} = 1\frac{3}{5}\).'
+          - '**Improper fractions:** \(\frac{16}{5} - \frac{8}{5} = \frac{8}{5} = 1\frac{3}{5}\). No regrouping needed!'
+        answer: '\(3\frac{1}{5} - 1\frac{3}{5} = 1\frac{3}{5}\)'
+
+  - title: The same rules as whole numbers
+    blocks:
+      - type: table
+        covers: [U1.2]
+        headers: [Property, Whole numbers, Fractions]
+        rows:
+          - ['Order doesn''t matter when adding', '\(3 + 5 = 5 + 3\)', '\(\frac{3}{7} + \frac{5}{7} = \frac{5}{7} + \frac{3}{7}\)']
+          - ['Adding 0 changes nothing', '\(9 + 0 = 9\)', '\(\frac{4}{9} + 0 = \frac{4}{9}\)']
+          - ['Subtraction undoes addition', '\(8 - 5 = 3\) because \(3 + 5 = 8\)', '\(\frac{7}{8} - \frac{3}{8} = \frac{4}{8}\) because \(\frac{4}{8} + \frac{3}{8} = \frac{7}{8}\)']
+      - type: example
+        covers: [S1.5]
+        title: A walking problem
+        problem: 'Ava walked \(1\frac{2}{5}\) km on Monday and \(2\frac{4}{5}\) km on Tuesday. How far did she walk altogether?'
+        steps:
+          - 'Add the wholes: \(1 + 2 = 3\). Add the fifths: \(\frac{2}{5} + \frac{4}{5} = \frac{6}{5} = 1\frac{1}{5}\).'
+          - '\(3 + 1\frac{1}{5} = 4\frac{1}{5}\)'
+        answer: 'Ava walked \(4\frac{1}{5}\) km.'
+
+keyTerms:
+  - term: Unit fraction
+    covers: [K1.1]
+    definition: 'A fraction with a numerator of 1, like \(\frac{1}{8}\). It is one equal piece of a whole.'
+  - term: Common denominator
+    covers: [U1.1]
+    definition: When fractions have the same denominator, they are made of the same unit fraction.
+  - term: Compose
+    covers: [K1.1]
+    definition: 'Put parts together. \(\frac{1}{8} + \frac{1}{8} + \frac{1}{8}\) composes \(\frac{3}{8}\).'
+  - term: Decompose
+    covers: [K1.1]
+    definition: 'Break apart. \(\frac{5}{8}\) can be decomposed into \(\frac{3}{8} + \frac{2}{8}\).'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.4]
+    type: fraction
+    prompt: '\(\frac{3}{8} + \frac{4}{8}\) = ?'
+    answer: 7/8
+    verify: 3/8 + 4/8
+    hints:
+      - Count the eighths. The denominator stays 8.
+    solution:
+      - '3 eighths + 4 eighths = 7 eighths, so the answer is \(\frac{7}{8}\).'
+
+  - id: w2
+    level: 1
+    covers: [S1.4]
+    type: fraction
+    prompt: '\(\frac{9}{10} - \frac{4}{10}\) = ?'
+    answer: 5/10
+    verify: 9/10 - 4/10
+    hints:
+      - 9 tenths take away 4 tenths.
+    solution:
+      - '9 tenths − 4 tenths = 5 tenths: \(\frac{5}{10}\).'
+
+  - id: w3
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: '\(\frac{2}{5} + \frac{1}{5}\) = ?'
+    choices: ['\(\frac{3}{5}\)', '\(\frac{3}{10}\)', '\(\frac{2}{25}\)', '\(\frac{3}{0}\)']
+    answer: 0
+    feedback:
+      '1': 'That adds the denominators. The pieces are still **fifths**, so the denominator stays 5.'
+      '2': 'That multiplies. When you add fractions, you count the pieces.'
+      '3': 'A denominator can never be 0.'
+    hints:
+      - 2 fifths + 1 fifth = ? fifths
+    solution:
+      - '2 fifths + 1 fifth = 3 fifths: \(\frac{3}{5}\).'
+
+  - id: w4
+    level: 1
+    covers: [S1.1, S1.2, K1.1]
+    type: mc
+    prompt: 'Which sum is equal to \(\frac{4}{6}\)?'
+    choices:
+      - '\(\frac{1}{6} + \frac{1}{6} + \frac{2}{6}\)'
+      - '\(\frac{2}{3} + \frac{2}{3}\)'
+      - '\(\frac{1}{6} + \frac{4}{6}\)'
+      - '\(\frac{2}{6} + \frac{2}{3}\)'
+    answer: 0
+    feedback:
+      '1': 'Those are thirds, and they add to \(\frac{4}{3}\), which is more than 1.'
+      '2': '1 sixth + 4 sixths = 5 sixths, not 4.'
+      '3': 'The denominators are different, so the pieces aren''t the same size.'
+    hints:
+      - Count the sixths in each sum.
+    solution:
+      - '1 sixth + 1 sixth + 2 sixths = 4 sixths = \(\frac{4}{6}\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.4, K1.3]
+    type: fraction
+    prompt: '\(2\frac{3}{4} + 1\frac{2}{4}\) = ? Write a **mixed number**.'
+    answer: 4 1/4
+    form: mixed
+    verify: 2 + 3/4 + 1 + 2/4
+    hints:
+      - 'Add the wholes, then add the fourths.'
+      - '\(\frac{3}{4} + \frac{2}{4} = \frac{5}{4}\). How many wholes is that?'
+    solution:
+      - 'Wholes: \(2 + 1 = 3\). Fourths: \(\frac{3}{4} + \frac{2}{4} = \frac{5}{4} = 1\frac{1}{4}\).'
+      - '\(3 + 1\frac{1}{4} = 4\frac{1}{4}\)'
+
+  - id: b2
+    level: 2
+    covers: [S1.4, K1.3]
+    type: fraction
+    prompt: '\(\frac{7}{3} + \frac{5}{3}\) = ?'
+    answer: '4'
+    verify: 7/3 + 5/3
+    hints:
+      - Count the thirds. How many wholes is your answer?
+    solution:
+      - '7 thirds + 5 thirds = 12 thirds = \(\frac{12}{3}\).'
+      - 'Every 3 thirds make 1 whole, so \(\frac{12}{3} = 4\).'
+
+  - id: b3
+    level: 2
+    covers: [S1.4, S1.3]
+    type: fraction
+    prompt: '\(5\frac{1}{6} - 2\frac{4}{6}\) = ? Write a **mixed number**.'
+    answer: 2 3/6
+    form: mixed
+    verify: 5 + 1/6 - 2 - 4/6
+    hints:
+      - '\(\frac{1}{6}\) is less than \(\frac{4}{6}\). Regroup 1 whole as \(\frac{6}{6}\).'
+    solution:
+      - 'Regroup: \(5\frac{1}{6} = 4\frac{7}{6}\).'
+      - '\(4\frac{7}{6} - 2\frac{4}{6} = 2\frac{3}{6}\)'
+
+  - id: b4
+    level: 2
+    covers: [S1.5]
+    type: fraction
+    prompt: 'A recipe needs \(1\frac{3}{4}\) cups of flour for bread and \(\frac{3}{4}\) cup for cookies. How much flour is that altogether? Write a **mixed number**.'
+    answer: 2 2/4
+    form: mixed
+    verify: 1 + 3/4 + 3/4
+    hints:
+      - '\(\frac{3}{4} + \frac{3}{4} = \frac{6}{4}\)'
+    solution:
+      - '\(\frac{3}{4} + \frac{3}{4} = \frac{6}{4} = 1\frac{2}{4}\)'
+      - '\(1 + 1\frac{2}{4} = 2\frac{2}{4}\) cups (the same as \(2\frac{1}{2}\) cups).'
+
+  - id: b5
+    level: 2
+    covers: [S1.3]
+    type: mc
+    prompt: 'To find \(3\frac{1}{5} - 1\frac{3}{5}\) using **mixed numbers**, what should you do first?'
+    choices:
+      - 'Regroup 1 whole as \(\frac{5}{5}\), so \(3\frac{1}{5}\) becomes \(2\frac{6}{5}\).'
+      - 'Subtract \(\frac{1}{5} - \frac{3}{5}\) to get \(\frac{2}{5}\).'
+      - Subtract the denominators.
+      - Add the two numbers.
+    answer: 0
+    feedback:
+      '1': 'You can''t take 3 fifths from 1 fifth. Flipping it to 3 − 1 gives the wrong answer.'
+      '2': 'The denominators stay 5. Only the pieces are counted.'
+      '3': This is a subtraction problem.
+    hints:
+      - 'Can you take \(\frac{3}{5}\) away from \(\frac{1}{5}\)?'
+    solution:
+      - '\(\frac{1}{5} < \frac{3}{5}\), so regroup a whole: \(3\frac{1}{5} = 2\frac{6}{5}\).'
+      - 'Then \(2\frac{6}{5} - 1\frac{3}{5} = 1\frac{3}{5}\).'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [U1.2, S1.4]
+    type: fraction
+    prompt: 'Find the missing fraction: \(\boxed{\phantom{0}} + \frac{3}{8} = 1\frac{1}{8}\)'
+    answer: 6/8
+    verify: 1 + 1/8 - 3/8
+    hints:
+      - 'Subtraction undoes addition: \(1\frac{1}{8} - \frac{3}{8}\).'
+      - '\(1\frac{1}{8} = \frac{9}{8}\)'
+    solution:
+      - '\(1\frac{1}{8} = \frac{9}{8}\), and \(\frac{9}{8} - \frac{3}{8} = \frac{6}{8}\).'
+      - 'Check: \(\frac{6}{8} + \frac{3}{8} = \frac{9}{8} = 1\frac{1}{8}\) ✓'
+
+  - id: d2
+    level: 3
+    covers: [K1.2, U1.1]
+    type: mc
+    prompt: 'Kai says \(\frac{4}{9} + \frac{3}{9} = \frac{7}{18}\). What is the best explanation of the mistake?'
+    choices:
+      - 'Kai added the denominators. Both fractions are counted in ninths, so the answer is \(\frac{7}{9}\).'
+      - 'Kai should have multiplied the numerators.'
+      - Kai is correct.
+      - 'Kai should have subtracted to get \(\frac{1}{9}\).'
+    answer: 0
+    feedback:
+      '1': 'Multiplying the numerators doesn''t add fractions.'
+      '2': '\(\frac{7}{18}\) is less than \(\frac{4}{9}\) alone. Adding can''t make it smaller!'
+      '3': The question asks for a sum.
+    hints:
+      - 'Is \(\frac{7}{18}\) bigger or smaller than \(\frac{4}{9}\)?'
+    solution:
+      - '4 ninths + 3 ninths = 7 ninths. The unit fraction stays \(\frac{1}{9}\).'
+      - 'The answer is \(\frac{7}{9}\), not \(\frac{7}{18}\).'
+
+  - id: d3
+    level: 3
+    covers: [S1.5]
+    type: fraction
+    prompt: 'A ribbon is **10 m** long. Mo cuts off \(2\frac{3}{4}\) m, then \(3\frac{2}{4}\) m. How much ribbon is left? Write a **mixed number**.'
+    answer: 3 3/4
+    form: mixed
+    verify: 10 - (2 + 3/4) - (3 + 2/4)
+    hints:
+      - 'First find how much was cut off altogether.'
+      - '\(10 = 9\frac{4}{4}\)'
+    solution:
+      - 'Cut off: \(2\frac{3}{4} + 3\frac{2}{4} = 5\frac{5}{4} = 6\frac{1}{4}\) m.'
+      - 'Left: \(10 - 6\frac{1}{4} = 9\frac{4}{4} - 6\frac{1}{4} = 3\frac{3}{4}\) m.'
+
+  - id: d4
+    level: 3
+    covers: [S1.3, K1.3]
+    type: open
+    prompt: 'Show **two ways** to find \(2\frac{3}{4} + 1\frac{2}{4}\): one with improper fractions and one with mixed numbers. Which way do you prefer, and why?'
+    modelAnswer: |-
+      Improper fractions: \(\frac{11}{4} + \frac{6}{4} = \frac{17}{4} = 4\frac{1}{4}\). Mixed numbers: add the wholes,
+      \(2 + 1 = 3\), then the fourths, \(\frac{3}{4} + \frac{2}{4} = \frac{5}{4} = 1\frac{1}{4}\), so \(3 + 1\frac{1}{4} = 4\frac{1}{4}\).
+      I prefer mixed numbers here because the numbers stay small, but improper fractions avoid regrouping.
+    rubric:
+      - I showed the improper fraction way correctly.
+      - I showed the mixed number way correctly.
+      - Both ways gave the same answer.
+      - I gave a reason for my choice.
