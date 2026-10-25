@@ -1,0 +1,112 @@
+---
+// Hundred chart that lights up multiples (divisors 0-10), and a number tester that shows
+// remainders, the tests for 2, 3 and 5, and factor pairs (MAT5-OI1-GQ3-LO1).
+import { PATTERNS } from './divisibility.ts';
+
+interface Props {
+  start?: number;
+  number?: number;
+}
+const { start = 2, number = 60 } = Astro.props;
+const cells = Array.from({ length: 100 }, (_, i) => i + 1);
+---
+<divisibility-lab data-start={start} data-number={number}>
+  <div class="seg dl-modes" role="group" aria-label="Choose a tool">
+    <button type="button" data-mode="chart" aria-pressed="true">Hundred chart</button>
+    <button type="button" data-mode="test" aria-pressed="false">Test a number</button>
+  </div>
+
+  <div data-pane="chart">
+    <div class="dl-divisors" role="group" aria-label="Divide by">
+      <span class="dl-label">Divisible by</span>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((d) => <button type="button" class="dl-d" data-d={d} aria-pressed={String(d === start)}>{d}</button>)}
+    </div>
+    <div class="dl-chart" data-dl="chart">
+      {cells.map((n) => <span class={`dl-cell${start && n % start === 0 ? ' is-on' : ''}`} data-n={n}>{n}<small class="dl-sum">{[...String(n)].reduce((s, d) => s + Number(d), 0)}</small></span>)}
+    </div>
+    <p class="dl-pattern" data-dl="pattern" aria-live="polite">{PATTERNS[start]}</p>
+  </div>
+
+  <div data-pane="test" hidden>
+    <label class="pv-input"><span>Number</span><input type="number" min="1" max="100000" value={number} data-dl="n" /></label>
+    <div class="dl-results" data-dl="results"></div>
+  </div>
+</divisibility-lab>
+
+<style is:global>
+  divisibility-lab { display: block; }
+  .dl-modes { margin-bottom: 0.8rem; }
+  .dl-divisors { display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center; margin-bottom: 0.7rem; }
+  .dl-label { font-weight: 700; font-size: var(--step--1); margin-right: 0.3rem; }
+  .dl-d { width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 2px solid var(--line-strong); background: var(--surface); font: inherit; font-weight: 700; cursor: pointer; color: var(--ink); }
+  .dl-d[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+  .dl-chart { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; max-width: 34rem; }
+  .dl-cell { position: relative; aspect-ratio: 1; display: grid; place-items: center; border-radius: 6px; background: var(--surface-2); font-weight: 700; font-size: clamp(0.7rem, 0.55rem + 0.8vw, 1rem); font-variant-numeric: tabular-nums; color: var(--ink-2); transition: background 0.25s, color 0.25s, transform 0.25s; }
+  .dl-cell.is-on { background: var(--accent); color: var(--brand-ink); transform: scale(1.04); }
+  .dl-sum { display: none; position: absolute; right: 3px; bottom: 1px; font-size: 0.6em; opacity: 0.85; }
+  .dl-chart.show-sums .dl-sum { display: block; }
+  .dl-pattern { margin: 0.8rem 0 0; font-weight: 700; min-height: 3em; }
+  .dl-results { display: grid; gap: 0.8rem; }
+  .dl-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .dl-table td, .dl-table th { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--line); text-align: left; }
+  .dl-table tr.is-yes td:first-child { color: var(--ok); font-weight: 700; }
+  .dl-why { color: var(--ink-3); font-size: var(--step--1); }
+  .dl-pairs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .dl-pairs span { padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--accent-soft); font-weight: 700; }
+</style>
+
+<script>
+  import { PATTERNS, testNumber, factorPairs } from './divisibility.ts';
+
+  class DivisibilityLab extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelectorAll<HTMLElement>('[data-pane]').forEach((p) => (p.hidden = p.dataset.pane !== b.dataset.mode));
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('.dl-d').forEach((b) => b.addEventListener('click', () => this.chart(Number(b.dataset.d))));
+      const input = this.querySelector<HTMLInputElement>('[data-dl="n"]')!;
+      input.addEventListener('input', () => this.test(Number(input.value)));
+      this.chart(Number(this.dataset.start));
+      this.test(Number(input.value));
+    }
+
+    private chart(d: number) {
+      this.querySelectorAll('.dl-d').forEach((b) => b.setAttribute('aria-pressed', String(Number((b as HTMLElement).dataset.d) === d)));
+      const chart = this.querySelector('[data-dl="chart"]')!;
+      chart.classList.toggle('show-sums', d === 3 || d === 9 || d === 6);
+      chart.querySelectorAll<HTMLElement>('.dl-cell').forEach((c, i) => {
+        const n = Number(c.dataset.n);
+        const on = d !== 0 && n % d === 0;
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !on) c.classList.toggle('is-on', on);
+        else {
+          c.classList.remove('is-on');
+          setTimeout(() => c.classList.add('is-on'), i * 6);
+        }
+      });
+      this.querySelector('[data-dl="pattern"]')!.textContent = PATTERNS[d];
+    }
+
+    private test(n: number) {
+      const out = this.querySelector('[data-dl="results"]')!;
+      if (!Number.isInteger(n) || n < 1 || n > 100000) {
+        out.innerHTML = '<p class="muted">Type a whole number from 1 to 100 000.</p>';
+        return;
+      }
+      const rows = testNumber(n)
+        .map(
+          (l) =>
+            `<tr class="${l.divisible ? 'is-yes' : ''}"><td>${l.divisible ? '✓' : '✗'} ${l.d}</td><td>${n} ÷ ${l.d} = ${l.q}${l.r ? ` R ${l.r}` : ''}</td><td class="dl-why">${l.why ? `Test: ${l.why}.` : ''}</td></tr>`,
+        )
+        .join('');
+      const pairs = n <= 10000 ? factorPairs(n) : [];
+      out.innerHTML = `
+        <table class="dl-table"><thead><tr><th>Divide by</th><th>Result</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+        ${pairs.length ? `<div><strong>Factor pairs of ${n}:</strong><div class="dl-pairs">${pairs.map(([a, b]) => `<span>${a} × ${b}</span>`).join('')}</div></div>` : ''}`;
+    }
+  }
+  customElements.define('divisibility-lab', DivisibilityLab);
+</script>

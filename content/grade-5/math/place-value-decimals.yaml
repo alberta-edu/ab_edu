@@ -1,0 +1,323 @@
+id: place-value-decimals
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT5-OI1-GQ1-LO1]
+order: 1
+title: Place Value and Decimals to Thousandths
+shortTitle: Place value & decimals
+summary: >-
+  Explore place value from millions to thousandths: the mirror around the ones place, reading big numbers,
+  decimals on a number line, comparing, ordering and rounding.
+
+bigIdea: |-
+  Place value is **symmetric around the ones place**: tens and tenths, hundreds and hundredths, thousands and
+  thousandths are mirror images. More decimal places make a number **more precise**, and between any two
+  decimals there are always **more decimals**.
+
+lesson:
+  - title: The place value mirror
+    blocks:
+      - type: visual
+        covers: [U1.1, S1.1, S1.2]
+        component: place-value
+        props: { value: '3 456 078.125' }
+        caption: |-
+          Type a number, then tap a digit. The arcs join places that are the **same number of places** from the
+          ones: tens ↔ tenths, hundreds ↔ hundredths, thousands ↔ thousandths.
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI1-GQ1-LO1#K1.1, MAT4-OI1-GQ1-LO1#K1.6]
+        title: Remember from Grade 4
+        body: Each place has **one-tenth** the value of the place to its left. When you read a number, the word **and** marks the decimal point.
+
+  - title: Reading and writing numbers
+    blocks:
+      - type: table
+        covers: [S1.2]
+        headers: [Numeral, Words]
+        rows:
+          - ['7 080 400', 'seven million eighty thousand four hundred']
+          - ['46 023.5', 'forty-six thousand twenty-three and five tenths']
+          - ['0.304', 'three hundred four thousandths']
+          - ['9 999 999.999', 'nine million nine hundred ninety-nine thousand nine hundred ninety-nine and nine hundred ninety-nine thousandths']
+      - type: callout
+        variant: tip
+        covers: [S1.2]
+        title: Read the decimal part like a whole number
+        body: For **0.304**, read "three hundred four", then name the place of the **last** digit, **thousandths**.
+
+  - title: Decimals on the number line
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.3, S1.4, S1.7]
+        component: decimal-zoom
+        props: { target: '2.367', start: 0 }
+        caption: Zoom in around 2.367, or tap any gap. Each zoom splits one step into **10** smaller steps.
+      - type: table
+        covers: [K1.1]
+        caption: The same length, measured more and more precisely.
+        headers: [Measurement, Decimal places, How precise?]
+        rows:
+          - ['2 m', '0', 'to the nearest metre']
+          - ['2.4 m', '1', 'to the nearest tenth of a metre']
+          - ['2.37 m', '2', 'to the nearest hundredth of a metre']
+          - ['2.367 m', '3', '**most precise**: to the nearest thousandth']
+
+  - title: Comparing and ordering
+    blocks:
+      - type: example
+        covers: [S1.5, S1.6]
+        title: Which is greater, 4.07 or 4.7?
+        problem: Compare **4.07** and **4.7**.
+        steps:
+          - 'Line up the places. Ones: **4** and **4**, the same.'
+          - 'Tenths: **0** and **7**. 0 tenths is less than 7 tenths, so we can stop.'
+        answer: '\(4.07 < 4.7\)'
+      - type: compare
+        covers: [K1.2, S1.6]
+        columns:
+          - title: A zero on the right
+            body: |-
+              \[4.7 = 4.70 = 4.700\]
+              A zero in the **rightmost** place doesn't change the value.
+          - title: Longer isn't bigger
+            body: |-
+              \[4.125 < 4.2\]
+              Compare place by place, from the left: 1 tenth < 2 tenths.
+
+  - title: Rounding to fit the situation
+    blocks:
+      - type: table
+        covers: [S1.7]
+        headers: [Situation, Exact, Rounded to, Rounded]
+        rows:
+          - ['Money in dollars and cents', '$12.468', 'hundredths (cents)', '$12.47']
+          - ['A town''s population for a news story', '46 023', 'thousands', '46 000']
+          - ['A bag of apples on a label', '2.468 kg', 'tenths', '2.5 kg']
+          - ['Distance on a road sign', '87.6 km', 'ones', '88 km']
+      - type: callout
+        variant: tip
+        covers: [S1.7]
+        title: How to round
+        body: Look at the digit **just to the right** of the place you're rounding to. If it is **5 or more**, round up. If it is **4 or less**, keep the digit.
+
+keyTerms:
+  - term: Place value symmetry
+    covers: [U1.1]
+    definition: Places the same distance left and right of the ones have matching names, like tens and tenths.
+  - term: Thousandths
+    covers: [S1.2]
+    definition: 'The third place after the decimal point. 0.001 is one thousandth.'
+  - term: Precise
+    covers: [K1.1]
+    definition: Exact. A number with more decimal places is more precise.
+  - term: Round
+    covers: [S1.7]
+    definition: To replace a number with a nearby, simpler number, to a place that fits the situation.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.1, S1.2]
+    type: mc
+    prompt: In **4 307.25**, what is the value of the digit **5**?
+    choices: ['5 hundredths', '5 tenths', '5 ones', '5 thousandths']
+    answer: 0
+    feedback:
+      '1': 'The tenths place is the first place after the decimal point. In 4 307.25 that digit is 2.'
+      '2': 'The ones place holds 7, just left of the decimal point.'
+      '3': '4 307.25 has only two decimal places, so there is no thousandths digit.'
+    hints:
+      - Count the places after the decimal point. The first is tenths.
+    solution:
+      - 'After the decimal point: 2 is in the **tenths**, 5 is in the **hundredths**.'
+      - 'So the 5 is worth 5 hundredths, or 0.05.'
+
+  - id: w2
+    level: 1
+    covers: [S1.2]
+    type: number
+    prompt: Write **two million forty thousand six** as a numeral.
+    answer: 2040006
+    verify: 2000000 + 40000 + 6
+    hints:
+      - 'Two million is 2 000 000.'
+      - Every place that isn't named gets a 0.
+    solution:
+      - '2 000 000 + 40 000 + 6 = **2 040 006**'
+
+  - id: w3
+    level: 1
+    covers: [S1.1, U1.1]
+    type: mc
+    prompt: Which place is the **mirror** of the hundreds place?
+    choices: [Hundredths, Tenths, Thousandths, Ones]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Tenths mirrors the **tens**: both are 1 place from the ones.'
+      '2': 'Thousandths mirrors the **thousands**: both are 3 places from the ones.'
+      '3': The ones place is the centre of the mirror. It has no partner.
+    hints:
+      - Hundreds is 2 places left of the ones. What is 2 places right of the ones?
+    solution:
+      - 'Hundreds is **2 places** left of the ones; hundredths is **2 places** right. They are mirrors.'
+
+  - id: w4
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: Which number is **equal** to 3.4?
+    choices: ['3.40', '3.04', '30.4', '3.004']
+    answer: 0
+    feedback:
+      '1': '3.04 has 0 tenths and 4 hundredths. 3.4 has 4 tenths.'
+      '2': '30.4 has 3 tens, not 3 ones.'
+      '3': '3.004 has 4 thousandths, not 4 tenths.'
+    hints:
+      - A zero in the rightmost place doesn't change a decimal's value.
+    solution:
+      - 'Adding a zero at the right end: \(3.4 = 3.40\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.6]
+    type: mc
+    prompt: Which statement is **true**?
+    choices: ['6.08 < 6.8', '6.08 > 6.8', '6.08 = 6.8', '0.608 > 6.08']
+    answer: 0
+    feedback:
+      '1': 'Compare tenths: 6.08 has 0 tenths and 6.8 has 8 tenths.'
+      '2': 'They have different tenths digits, so they can''t be equal.'
+      '3': '0.608 has 0 ones, and 6.08 has 6 ones.'
+    hints:
+      - Line up the decimal points. Compare ones first, then tenths.
+    solution:
+      - 'Ones are both 6. Tenths: 0 < 8, so \(6.08 < 6.8\).'
+
+  - id: b2
+    level: 2
+    covers: [S1.5]
+    type: order
+    prompt: Put these numbers in order from **least** to **greatest**.
+    items: ['2.09', '2.405', '2.45', '2.5']
+    hints:
+      - All the ones digits are 2. Compare the tenths.
+      - 2.405 and 2.45 have the same tenths. Compare their hundredths.
+    solution:
+      - 'Tenths: 0, 4, 4, 5. So 2.09 is least and 2.5 is greatest.'
+      - '2.405 vs 2.45: hundredths 0 < 5, so 2.405 < 2.45.'
+      - '2.09 < 2.405 < 2.45 < 2.5'
+
+  - id: b3
+    level: 2
+    covers: [S1.4, K1.3]
+    type: number
+    prompt: Write **any** decimal number that is **between 0.7 and 0.8**.
+    answer: 0.75
+    tolerance: 0.0499
+    hints:
+      - 'Zoom in: 0.7 = 0.70 and 0.8 = 0.80. What is between 0.70 and 0.80?'
+    solution:
+      - 'Write them with two decimal places: 0.70 and 0.80.'
+      - '0.71, 0.72, … 0.79 are all between them. So is 0.755, and many more!'
+
+  - id: b4
+    level: 2
+    covers: [S1.7]
+    type: number
+    prompt: Round **3 456 078** to the nearest **ten thousand**.
+    answer: 3460000
+    hints:
+      - The ten thousands digit is 5. Look at the digit to its right.
+    solution:
+      - '3 4**5**6 078: the ten thousands digit is 5, and the digit to its right is 6.'
+      - '6 is 5 or more, so round up: **3 460 000**.'
+
+  - id: b5
+    level: 2
+    covers: [S1.7]
+    type: mc
+    prompt: A scale shows a bag of apples has a mass of **2.468 kg**. The label rounds to the nearest **tenth** of a kilogram. What does the label say?
+    choices: ['2.5 kg', '2.4 kg', '2.47 kg', '3 kg']
+    answer: 0
+    feedback:
+      '1': 'The hundredths digit is 6, which is 5 or more, so the tenths digit rounds **up**.'
+      '2': 'That is rounded to the nearest **hundredth**.'
+      '3': That is rounded to the nearest **one**.
+    hints:
+      - The tenths digit is 4. Look at the digit just to its right.
+    solution:
+      - '2.**4**68: the digit right of the tenths is 6, so round up: **2.5 kg**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.5, S1.6]
+    type: mc
+    prompt: Mila says **4.125 > 4.2** "because 4.125 has more digits." What is the best response?
+    choices:
+      - 'Compare place by place from the left: 1 tenth is less than 2 tenths, so 4.125 < 4.2.'
+      - Mila is right. More digits always means a greater number.
+      - 'Mila is right, because 125 > 2.'
+      - The numbers are equal because they have the same ones digit.
+    answer: 0
+    feedback:
+      '1': '4.2 = 4.200, and 200 thousandths is more than 125 thousandths.'
+      '2': 'Compare 4.125 with 4.200, not 125 with 2.'
+      '3': The ones match, but the tenths don't.
+    hints:
+      - 'Write 4.2 with three decimal places: 4.200.'
+    solution:
+      - '4.2 = 4.200. Compare tenths: 1 < 2.'
+      - 'So **4.125 < 4.2**. Counting digits doesn''t compare decimals.'
+
+  - id: d2
+    level: 3
+    covers: [S1.7, S1.4]
+    type: number
+    prompt: What is the **greatest** number with **three decimal places** that rounds to **6.4** when rounded to the nearest tenth?
+    answer: 6.449
+    hints:
+      - Which numbers round to 6.4? They go from 6.35 up to just below 6.45.
+      - With three decimal places, what is the last number before 6.450?
+    solution:
+      - '6.45 would round up to 6.5. So the number must be less than 6.450.'
+      - 'The greatest three-place decimal below 6.450 is **6.449**.'
+
+  - id: d3
+    level: 3
+    covers: [K1.1]
+    type: mc
+    prompt: Two students measured the same pencil. One wrote **14.2 cm** and the other wrote **14.18 cm**. Which measurement is **more precise**?
+    choices:
+      - '14.18 cm, because it has more decimal places.'
+      - '14.2 cm, because 2 tenths is more than 1 tenth.'
+      - 'They are equally precise, because they are about the same length.'
+      - '14.2 cm, because shorter numbers are more exact.'
+    answer: 0
+    feedback:
+      '1': 'Being **greater** is not the same as being **more precise**.'
+      '2': '14.18 gives the length to the nearest hundredth of a centimetre, which is finer than tenths.'
+      '3': Fewer decimal places means **less** precise.
+    hints:
+      - Precision is about how many decimal places, not about which number is bigger.
+    solution:
+      - '14.18 cm is measured to the nearest **hundredth**; 14.2 cm only to the nearest tenth.'
+      - 'More decimal places → **more precise**.'
+
+  - id: d4
+    level: 3
+    covers: [K1.3, S1.4]
+    type: multi
+    prompt: Select **all** the numbers that are **between 3.29 and 3.3**.
+    choices: ['3.295', '3.291', '3.299', '3.31', '3.30', '3.2']
+    answer: [0, 1, 2]
+    hints:
+      - 'Write both ends with three decimal places: 3.290 and 3.300.'
+    solution:
+      - '3.290 < 3.291, 3.295, 3.299 < 3.300 ✓'
+      - '3.30 is **equal** to 3.3, not between. 3.31 is greater, and 3.2 is less.'

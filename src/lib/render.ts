@@ -24,7 +24,9 @@ function withMath(src: string, render: (s: string) => string): string {
     parts.push(display !== undefined ? renderMath(display, true) : renderMath(inline!, false));
     return `KXMATH${parts.length - 1}XK`;
   });
-  return render(masked).replace(/KXMATH(\d+)XK/g, (_, i) => parts[Number(i)]);
+  // Canadian style groups digits with spaces (345 678). Keep a number on one line.
+  const grouped = masked.replace(/(\d) (?=\d{3}(?!\d))/g, '$1 ');
+  return render(grouped).replace(/KXMATH(\d+)XK/g, (_, i) => parts[Number(i)]);
 }
 
 /** Block Markdown (paragraphs, lists, tables). */

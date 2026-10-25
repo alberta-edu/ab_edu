@@ -20,6 +20,7 @@ export const figureSchema = z.union([
   z.string(),
   z.strictObject({ kind: z.literal('fraction-bars'), n: z.number().int(), d: z.number().int(), wholes: z.number().int() }),
   z.strictObject({ kind: z.literal('number-line'), n: z.number().int(), d: z.number().int(), wholes: z.number().int(), label: z.string() }),
+  z.strictObject({ kind: z.literal('area-model'), a: z.number().int().min(10).max(999), b: z.number().int().min(2).max(99) }),
   z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(1).max(4), labels: z.array(z.string()).optional() }),
 ]);
 
@@ -122,7 +123,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),

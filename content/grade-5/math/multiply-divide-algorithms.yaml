@@ -1,0 +1,289 @@
+id: multiply-divide-algorithms
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT5-OI1-GQ4-LO1]
+order: 4
+title: Multiplying and Dividing with Standard Algorithms
+shortTitle: Multiplying & dividing
+summary: >-
+  Multiply 3-digit by 2-digit numbers and divide 3-digit by 1-digit numbers with standard algorithms,
+  handle remainders, and estimate to check.
+
+bigIdea: |-
+  The **standard algorithms** break a big multiplication or division into small steps by **place value**.
+  \(347 \times 26\) is really \(347 \times 6 + 347 \times 20\). Long division shares out the hundreds,
+  then the tens, then the ones. **Estimate** to check, and let the **situation** decide what a remainder means.
+
+lesson:
+  - title: Why the multiplication algorithm works
+    blocks:
+      - type: figure
+        covers: [S1.1, U1.1]
+        figure: { kind: area-model, a: 347, b: 26 }
+        caption: '\(347 \times 26\) split by place value. The top row adds to \(347 \times 20 = 6\,940\), the bottom row to \(347 \times 6 = 2\,082\).'
+      - type: text
+        covers: [S1.1]
+        body: The algorithm finds the same two **partial products**, one row at a time, and adds them. \(2\,082 + 6\,940 = 9\,022\).
+
+  - title: Multiplying, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.2, K1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '×', a: '347', b: '26' }
+            - { op: '×', a: '250', b: '12' }
+            - { op: '×', a: '999', b: '99' }
+        caption: Watch the **0** placeholder in the second row. It's there because the 2 in 26 is worth **20**.
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI1-GQ4-LO1#S1.5]
+        title: Remember from Grade 4
+        body: You multiplied and divided 3-digit numbers by 1-digit numbers. Now the second factor can have **2 digits**.
+
+  - title: Dividing, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.3, K1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '÷', a: '745', b: '6' }
+            - { op: '÷', a: '612', b: '6' }
+            - { op: '÷', a: '245', b: '6' }
+        caption: 'Divide, multiply, subtract, bring down, and repeat for each place.'
+
+  - title: What does the remainder mean?
+    blocks:
+      - type: compare
+        covers: [S1.4]
+        columns:
+          - title: 🚐 Round up
+            body: |-
+              185 students, vans hold 8.
+              \[185 \div 8 = 23 \text{ R } 1\]
+              The last student still needs a ride: **24 vans**.
+          - title: 📦 Leave it out
+            body: |-
+              653 eggs, cartons hold 6.
+              \[653 \div 6 = 108 \text{ R } 5\]
+              Only full cartons count: **108 cartons**.
+          - title: 🍪 Report it
+            body: |-
+              100 stickers shared by 7 friends.
+              \[100 \div 7 = 14 \text{ R } 2\]
+              **14 each, with 2 left over.**
+
+  - title: Estimate to check
+    blocks:
+      - type: table
+        covers: [S1.5]
+        headers: [Calculation, Estimate, Exact, Reasonable?]
+        rows:
+          - ['347 × 26', '350 × 25 = 8 750', '9 022', '✅ close']
+          - ['745 ÷ 6', '720 ÷ 6 = 120', '124 R 1', '✅ close']
+          - ['489 × 31', '500 × 30 = 15 000', '1 659 ❌', '❌ far off, so check again']
+
+keyTerms:
+  - term: Partial product
+    covers: [S1.1]
+    definition: 'The product of one part of a number, like 347 × 20, in a multiplication.'
+  - term: Quotient
+    covers: [S1.4]
+    definition: The answer to a division.
+  - term: Remainder
+    covers: [S1.4]
+    definition: The amount left over when a number doesn't divide exactly.
+  - term: Standard algorithm
+    covers: [K1.1, U1.1]
+    definition: An efficient step-by-step method, done by place value.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.2]
+    type: number
+    prompt: '\(214 \times 13\) = ?'
+    answer: 2782
+    verify: 214 * 13
+    hints:
+      - 'First find 214 × 3, then 214 × 10.'
+    solution:
+      - '\(214 \times 3 = 642\) and \(214 \times 10 = 2\,140\).'
+      - '\(642 + 2\,140 = 2\,782\)'
+
+  - id: w2
+    level: 1
+    covers: [S1.3]
+    type: number
+    prompt: '\(856 \div 4\) = ?'
+    answer: 214
+    verify: 856 / 4
+    hints:
+      - 'Start with the hundreds: 8 ÷ 4.'
+    solution:
+      - '8 hundreds ÷ 4 = 2 hundreds. 5 tens ÷ 4 = 1 ten R 1 ten. 16 ones ÷ 4 = 4 ones.'
+      - '\(856 \div 4 = 214\)'
+
+  - id: w3
+    level: 1
+    covers: [S1.2]
+    type: number
+    prompt: '\(375 \times 24\) = ?'
+    answer: 9000
+    verify: 375 * 24
+    hints:
+      - '375 × 4, then 375 × 20.'
+    solution:
+      - '\(375 \times 4 = 1\,500\) and \(375 \times 20 = 7\,500\).'
+      - '\(1\,500 + 7\,500 = 9\,000\)'
+
+  - id: w4
+    level: 1
+    covers: [S1.1]
+    type: mc
+    prompt: In \(347 \times 26\), what is the **second** partial product, \(347 \times 20\)?
+    choices: ['6 940', '694', '2 082', '9 022']
+    answer: 0
+    feedback:
+      '1': '694 is 347 × 2. The 2 is worth 20, so you need 347 × 20.'
+      '2': '2 082 is the first partial product, 347 × 6.'
+      '3': '9 022 is the final product, after adding both partial products.'
+    hints:
+      - The 2 in 26 is in the tens place.
+    solution:
+      - '\(347 \times 20 = 347 \times 2 \times 10 = 694 \times 10 = 6\,940\)'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.3]
+    type: number
+    prompt: '\(917 \div 7\) = ?'
+    answer: 131
+    verify: 917 / 7
+    hints:
+      - '9 ÷ 7 = 1 R 2. Bring down the 1 to make 21.'
+    solution:
+      - '9 ÷ 7 = 1 R 2 → 21 ÷ 7 = 3 → 7 ÷ 7 = 1'
+      - '\(917 \div 7 = 131\)'
+
+  - id: b2
+    level: 2
+    covers: [S1.4, S1.6]
+    type: number
+    prompt: '**185** students are going on a trip. Each van holds **8** students. How many vans are needed?'
+    answer: 24
+    hints:
+      - '185 ÷ 8 = ? R ?'
+      - What happens to the students in the remainder?
+    solution:
+      - '\(185 \div 8 = 23 \text{ R } 1\)'
+      - '23 vans leave 1 student behind, so **24** vans are needed.'
+
+  - id: b3
+    level: 2
+    covers: [S1.4, S1.6]
+    type: number
+    prompt: A farmer packs **653** eggs into cartons of **6**. How many cartons can be **completely** filled?
+    answer: 108
+    verify: (653 - 5) / 6
+    hints:
+      - '653 ÷ 6 = ? R ?'
+    solution:
+      - '\(653 \div 6 = 108 \text{ R } 5\)'
+      - The 5 extra eggs don't fill a carton, so **108** full cartons.
+
+  - id: b4
+    level: 2
+    covers: [S1.5]
+    type: mc
+    prompt: Which is the **best** estimate for \(489 \times 31\)?
+    choices: ['500 × 30 = 15 000', '400 × 30 = 12 000', '500 × 3 = 1 500', '489 × 30 = 14 670']
+    answer: 0
+    feedback:
+      '1': 489 is much closer to 500 than to 400.
+      '2': The 3 in 31 is worth 30, not 3.
+      '3': That is close, but it's not a quick estimate with friendly numbers.
+    hints:
+      - Round each number to a friendly number you can multiply in your head.
+    solution:
+      - '489 ≈ 500 and 31 ≈ 30, so the answer is about **15 000** (exactly 15 159).'
+
+  - id: b5
+    level: 2
+    covers: [S1.2, S1.6]
+    type: number
+    prompt: A theatre has **28** rows with **135** seats in each row. How many seats are there?
+    answer: 3780
+    verify: 135 * 28
+    hints:
+      - '135 × 8, then 135 × 20.'
+    solution:
+      - '\(135 \times 8 = 1\,080\) and \(135 \times 20 = 2\,700\).'
+      - '\(1\,080 + 2\,700 = 3\,780\) seats.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.1]
+    type: mc
+    prompt: 'For \(347 \times 26\), Lee got **2 776**. Lee wrote 2 082 for the first row and **694** for the second row. What went wrong?'
+    choices:
+      - Lee forgot the 0 placeholder. The 2 is worth 20, so the second row should be 6 940.
+      - Lee should have multiplied 347 × 26 in one step.
+      - The first row is wrong. It should be 694.
+      - Nothing. 2 776 is correct.
+    answer: 0
+    feedback:
+      '1': The algorithm splits it into rows on purpose. The rows are fine; one is just missing a place value.
+      '2': '347 × 6 = 2 082 is correct.'
+      '3': 'Estimate: 350 × 25 = 8 750, so 2 776 is far too small.'
+    hints:
+      - What is the 2 in 26 really worth?
+    solution:
+      - 'The second row is 347 × **20** = 6 940, not 347 × 2.'
+      - '\(2\,082 + 6\,940 = 9\,022\)'
+
+  - id: d2
+    level: 3
+    covers: [S1.3, S1.4]
+    type: number
+    prompt: What is the **remainder** when **803** is divided by **9**?
+    answer: 2
+    verify: 803 - 89 * 9
+    hints:
+      - '80 ÷ 9 = 8 R 8. Bring down the 3.'
+    solution:
+      - '80 ÷ 9 = 8 R 8 → 83 ÷ 9 = 9 R 2'
+      - '\(803 \div 9 = 89 \text{ R } 2\): the remainder is **2**.'
+
+  - id: d3
+    level: 3
+    covers: [S1.1, S1.3]
+    type: number
+    prompt: A number divided by **7** gives **118 R 4**. What is the number?
+    answer: 830
+    verify: 118 * 7 + 4
+    hints:
+      - 'Undo the division: 118 groups of 7, plus the 4 left over.'
+    solution:
+      - '\(118 \times 7 = 826\), and \(826 + 4 = 830\).'
+      - 'Check: \(830 \div 7 = 118 \text{ R } 4\) ✓'
+
+  - id: d4
+    level: 3
+    covers: [S1.1, U1.1]
+    type: open
+    prompt: Explain why the second row of \(347 \times 26\) starts with a **0** in the ones place.
+    modelAnswer: |-
+      The 2 in 26 is in the tens place, so it is worth 20. The second row is 347 × 20, not 347 × 2. Multiplying by
+      20 makes tens, so there are no ones: the 0 holds the ones place, and the digits of 347 × 2 move one place
+      to the left. The row is 6 940.
+    rubric:
+      - I said the 2 in 26 is worth 20 (it is in the tens place).
+      - I explained that the 0 holds the ones place.
+      - I gave the correct value of the row, 6 940.
