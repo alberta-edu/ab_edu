@@ -4,7 +4,9 @@ A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 is
 edition. It covers the four subjects tested on the Provincial Achievement Tests: English
 Language Arts and Literature, Mathematics, Science and Social Studies.
 
-Nothing ships until the owner has reviewed and tested everything locally.
+Nothing ships until the owner has reviewed and tested everything locally. All work happens
+on feature branches. The owner verifies each one before it is merged into `main`, which is
+the branch that deploys.
 
 ## 1. Ground truth: the curriculum
 
@@ -18,9 +20,17 @@ Nothing ships until the owner has reviewed and tested everything locally.
   - **Social Studies (new K–6, mandatory for Grades 4–6 in Sept 2026)**. Grade 5 Social
     Studies is now *ancient civilizations*. It is no longer the old "Canada: The Land,
     Histories and Stories".
-- Every concept page lists the official outcome code(s) it teaches, and the page shows the
-  official outcome text read from the extract. `npm run coverage` reports which outcomes
-  have content and which do not.
+- **Only listed knowledge.** Every lesson block, problem and key term references the exact
+  curriculum statement it teaches (`covers: [K1.2, S1.3]`). The verifier rejects:
+  - missing or invalid references;
+  - references to later grades;
+  - blocks that teach nothing from the grade's outcome.
+
+  Earlier-grade ideas appear only as short, labelled "Remember from Grade N" recalls.
+  Grades K–6 are all extracted, so these rules can be checked automatically.
+- Each concept page has a box that lists exactly which statements it teaches.
+  `npm run audit` writes [curriculum-audit.md](curriculum-audit.md), which maps all 674
+  Grade 5 statements to the steps and problems that teach them.
 
 ## 2. Content model: how a concept is taught
 
@@ -29,20 +39,18 @@ knowledge/understanding/skills group when an outcome is large). Every page follo
 order:
 
 1. **Big idea**: the key knowledge in one or two kid-friendly sentences.
-2. **Lesson: visual first.** A student should *see* the idea before reading about it.
-   Animations and interactive visuals carry the explanation. Text is short and labels what
-   the student sees; it never replaces the visual. Lessons are built from typed blocks, and
-   each block type has its own layout:
-   - `visual`: an interactive visualization the student can manipulate
-   - `experiment`: a **virtual experiment**. The student taps a prediction, presses
-     **Run**, and watches an animation of what happens (for example, dye spreading in cold
-     vs. hot water). A short "what happened / why" appears, along with whether the
-     prediction matched. Nothing needs to be done at home.
-   - `example`: a worked example with numbered steps and math typeset with KaTeX
-   - `passage`: a reading passage, with numbered paragraphs and selectable sentences
-   - `section`: short explanation text
-   - `callout`: a tip, a common mistake, or a connection
-   - `table`
+2. **Lesson: visual first, in steps.** A lesson is 4–6 titled steps, shown one at a time.
+   A student should *see* the idea before reading about it. Interactive visuals,
+   animations and virtual experiments carry the explanation. Text is short and labels
+   what the student sees. Formatted blocks replace paragraphs:
+   - side-by-side `compare` cards
+   - tables
+   - figures
+   - worked-example step cards
+   - tip, mistake and remember callouts
+
+   A virtual experiment works like this: predict with one tap → Run → watch the animation
+   → read what happened and why.
 3. **Key terms**, which also become review flashcards.
 4. **Practice in three clearly marked levels**:
    - ★ **Warm-up** (easy): recall and direct application.
@@ -101,6 +109,17 @@ choice is a real misconception and comes with an explanation.
   from the concept, with harder ones for higher boxes. Getting at least 2 of 3 right moves
   the concept up a box; otherwise it goes back to box 1. Key terms are reviewed as
   flashcards alongside.
+- **Page structure (UX)**: each concept has three tabs, each with its own link:
+  - **Learn**: a stepper that shows one step at a time, with Back/Next and a resume point;
+  - **Practice**: level tabs, one problem at a time, numbered progress dots, and a
+    "Next problem" button that lights up after a correct answer;
+  - **Key terms**: flip cards.
+
+  This keeps a long topic from becoming one endless scroll. Without JavaScript, all the
+  content is still in the HTML in reading order, so it remains crawlable.
+- **Best representation**: for example a 3D globe (d3-geo orthographic projection, drag
+  to spin, animated latitude and longitude lines, fly-to places) and fraction pieces that
+  animate into wholes. Heavy visuals load only when scrolled into view.
 - **Responsive**: a fluid type scale with readable line lengths, and different layouts for
   reading passages (wide line spacing, numbered paragraphs) and math solutions (step cards,
   equations aligned).
@@ -153,7 +172,7 @@ research skills · grammar · spelling & punctuation
 | 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems) |
 | 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop |
-| 8 | Release | Only after owner sign-off: commit as `alberta-edu`, push, enable Pages |
+| 8 | Release | Only after owner sign-off: merge the feature branch into `main`, push, enable Pages |
 
 ## 6. Decisions for the owner
 

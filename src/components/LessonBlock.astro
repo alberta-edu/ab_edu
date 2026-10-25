@@ -1,11 +1,14 @@
 ---
-// One lesson block. Each block type has its own layout: reading passages read like a
-// book, worked examples are numbered step cards, experiments follow predict-observe-explain.
+// One lesson block. Each block type has its own layout so a lesson reads as a mix of
+// visuals, tables, side-by-side cards and short text, never a wall of words.
 import type { Concept, LessonBlock } from '../lib/schema.ts';
 import { md, mdInline } from '../lib/render.ts';
 import { passageSentences } from '../lib/problem-html.ts';
+import { renderFigure } from '../lib/figures.ts';
 import FractionExplorer from './visuals/FractionExplorer.astro';
+import FractionRegroup from './visuals/FractionRegroup.astro';
 import ParticleModel from './visuals/ParticleModel.astro';
+import Globe from './visuals/Globe.astro';
 import LatLongMap from './visuals/LatLongMap.astro';
 import InferenceEquation from './visuals/InferenceEquation.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
@@ -13,24 +16,26 @@ import VirtualExperiment from './experiments/VirtualExperiment.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
-  /** Anchor id for blocks that appear in the table of contents. */
-  anchor?: string;
+  /** Unique id prefix for anything that needs an id. */
+  uid: string;
 }
-const { block, anchor } = Astro.props;
+const { block, uid } = Astro.props;
 const visuals = {
   'fraction-explorer': FractionExplorer,
+  'fraction-regroup': FractionRegroup,
   'particle-model': ParticleModel,
+  globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
 };
-const calloutIcon = { tip: '💡', mistake: '⚠️', connection: '🔗', try: '🧪', remember: '📌' } as const;
+const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
 {
-  block.type === 'section' && (
-    <section class="lesson-block" aria-labelledby={anchor}>
-      <h2 id={anchor}>{block.heading}</h2>
+  block.type === 'text' && (
+    <div class="lb lb-text">
+      {block.heading && <h3 class="lb-heading">{block.heading}</h3>}
       <div class="prose" set:html={md(block.body)} />
-    </section>
+    </div>
   )
 }
 {
@@ -38,21 +43,39 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', connection: '🔗', try: '
     (() => {
       const Visual = visuals[block.component];
       return (
-        <section class="lesson-block" aria-labelledby={block.heading ? anchor : undefined}>
-          {block.heading && <h2 id={anchor}>{block.heading}</h2>}
-          <figure class="card visual" style="margin:0">
-            <Visual {...block.props} />
-            {block.caption && <figcaption class="visual__caption" set:html={md(block.caption)} />}
-          </figure>
-        </section>
+        <figure class="lb card visual">
+          <Visual {...block.props} />
+          {block.caption && <figcaption class="visual__caption" set:html={md(block.caption)} />}
+        </figure>
       );
     })()
 }
 {
+  block.type === 'figure' && (
+    <figure class="lb lb-figure">
+      <div class="lb-figure__art" set:html={renderFigure(block.figure)} />
+      <figcaption class="visual__caption" set:html={md(block.caption)} />
+    </figure>
+  )
+}
+{
+  block.type === 'compare' && (
+    <div class="lb compare" style={`--cols:${block.columns.length}`}>
+      {block.columns.map((col) => (
+        <section class="compare__col">
+          <h4 class="compare__title">{col.title}</h4>
+          {col.figure && <div class="compare__figure" set:html={renderFigure(col.figure)} />}
+          <div class="prose" set:html={md(col.body)} />
+        </section>
+      ))}
+    </div>
+  )
+}
+{
   block.type === 'example' && (
-    <section class="lesson-block card example">
+    <section class="lb card example">
       <div class="example__label">Worked example</div>
-      <h3 style="margin-top:0.25rem">{block.title}</h3>
+      <h4 class="example__title">{block.title}</h4>
       <div class="example__problem prose" set:html={md(block.problem)} />
       <ol class="steps">
         {block.steps.map((s) => (
@@ -65,7 +88,7 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', connection: '🔗', try: '
 }
 {
   block.type === 'callout' && (
-    <aside class={`lesson-block callout callout--${block.variant}`}>
+    <aside class={`lb callout callout--${block.variant}`}>
       <div class="callout__title">
         <span aria-hidden="true">{calloutIcon[block.variant]}</span>
         {block.title}
@@ -76,53 +99,46 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', connection: '🔗', try: '
 }
 {
   block.type === 'table' && (
-    <section class="lesson-block" aria-labelledby={block.heading ? anchor : undefined}>
-      {block.heading && <h2 id={anchor}>{block.heading}</h2>}
-      <div class="table-wrap">
-        <table class="data-table">
-          {block.caption && <caption>{block.caption}</caption>}
-          <thead>
-            <tr>
-              {block.headers.map((h) => (
-                <th scope="col">{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {block.rows.map((row) => (
-              <tr>
-                {row.map((cell, i) =>
-                  i === 0 ? <th scope="row" set:html={mdInline(cell)} /> : <td set:html={mdInline(cell)} />,
-                )}
-              </tr>
+    <div class="lb table-wrap">
+      <table class="data-table">
+        {block.caption && <caption>{block.caption}</caption>}
+        <thead>
+          <tr>
+            {block.headers.map((h) => (
+              <th scope="col">{h}</th>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+          </tr>
+        </thead>
+        <tbody>
+          {block.rows.map((row) => (
+            <tr>
+              {row.map((cell, i) => (i === 0 ? <th scope="row" set:html={mdInline(cell)} /> : <td set:html={mdInline(cell)} />))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 {
   block.type === 'passage' && (
-    <section class="lesson-block" aria-labelledby={anchor}>
-      <article class="card passage" id={`passage-${block.id}`}>
-        <div class="passage__form">{block.form}</div>
-        <h2 class="passage__title" id={anchor}>
-          {block.title}
-        </h2>
-        <div class="passage__body">
-          {passageSentences(block).map((sentences, i) => (
-            <p class="passage__para">
-              <span class="passage__num" aria-hidden="true">
-                {i + 1}
-              </span>
-              <span set:html={sentences.map((s) => mdInline(s.text)).join(' ')} />
-            </p>
-          ))}
-        </div>
-        {block.note && <div class="passage__note" set:html={md(block.note)} />}
-      </article>
-    </section>
+    <article class="lb card passage" id={`passage-${block.id}`} aria-labelledby={`${uid}-title`}>
+      <div class="passage__form">{block.form}</div>
+      <h3 class="passage__title" id={`${uid}-title`}>
+        {block.title}
+      </h3>
+      <div class="passage__body">
+        {passageSentences(block).map((sentences, i) => (
+          <p class="passage__para">
+            <span class="passage__num" aria-hidden="true">
+              {i + 1}
+            </span>
+            <span set:html={sentences.map((s) => mdInline(s.text)).join(' ')} />
+          </p>
+        ))}
+      </div>
+      {block.note && <div class="passage__note" set:html={md(block.note)} />}
+    </article>
   )
 }
-{block.type === 'experiment' && <VirtualExperiment block={block} anchor={anchor} />}
+{block.type === 'experiment' && <VirtualExperiment block={block} uid={uid} />}

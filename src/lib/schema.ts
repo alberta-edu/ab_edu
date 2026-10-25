@@ -8,7 +8,23 @@ const md = z.string().min(1);
 
 const level = z.union([z.literal(1), z.literal(2), z.literal(3)]);
 
+/**
+ * Curriculum statements a block or problem teaches (see resolveRef in content.ts):
+ * "K1.2" = the concept's outcome, KUSP group 1, knowledge line 2; "S1.3" skills; "U1.1"
+ * understanding; "SCI3-OI1-GQ1-LO1#K3.2" = a line from another (earlier-grade) outcome.
+ */
+export const REF_PATTERN = /^(?:([A-Za-z0-9_-]+)#)?([KUS])(\d+)\.(\d+)$/;
+const covers = z.array(z.string().regex(REF_PATTERN, 'curriculum reference like K1.2, S1.3 or CODE#K1.2')).min(1);
+
+export const figureSchema = z.union([
+  z.string(),
+  z.strictObject({ kind: z.literal('fraction-bars'), n: z.number().int(), d: z.number().int(), wholes: z.number().int() }),
+  z.strictObject({ kind: z.literal('number-line'), n: z.number().int(), d: z.number().int(), wholes: z.number().int(), label: z.string() }),
+  z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(1).max(4), labels: z.array(z.string()).optional() }),
+]);
+
 const problemBase = {
+  covers,
   /** Unique within the concept, e.g. "w1". The global id is `<concept id>/<id>`. */
   id: z.string().regex(/^[a-z0-9-]+$/),
   level,
@@ -17,14 +33,7 @@ const problemBase = {
   /** Worked solution, one step per entry. */
   solution: z.array(md).min(1),
   /** Optional figure above the prompt: a generated figure, or raw inline SVG. */
-  figure: z
-    .union([
-      z.string(),
-      z.strictObject({ kind: z.literal('fraction-bars'), n: z.number().int(), d: z.number().int(), wholes: z.number().int() }),
-      z.strictObject({ kind: z.literal('number-line'), n: z.number().int(), d: z.number().int(), wholes: z.number().int(), label: z.string() }),
-      z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(2).max(4) }),
-    ])
-    .optional(),
+  figure: figureSchema.optional(),
 };
 
 const mc = z.strictObject({
@@ -108,16 +117,29 @@ const open = z.strictObject({
 export const problemSchema = z.discriminatedUnion('type', [mc, multi, number, fraction, text, order, evidence, open]);
 
 const block = z.discriminatedUnion('type', [
-  z.strictObject({ type: z.literal('section'), heading: z.string(), body: md }),
+  /** Short explanation. Keep it brief: visuals and formatted blocks carry the lesson. */
+  z.strictObject({ type: z.literal('text'), covers, heading: z.string().optional(), body: md }),
   z.strictObject({
     type: z.literal('visual'),
-    component: z.enum(['fraction-explorer', 'particle-model', 'latlong-map', 'inference-equation']),
+    covers,
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation']),
     props: z.record(z.string(), z.unknown()).default({}),
-    heading: z.string().optional(),
     caption: md.optional(),
+  }),
+  /** A static picture (generated figure) with a caption. */
+  z.strictObject({ type: z.literal('figure'), covers, figure: figureSchema, caption: md }),
+  /** Side-by-side cards for contrasting ideas. */
+  z.strictObject({
+    type: z.literal('compare'),
+    covers,
+    columns: z
+      .array(z.strictObject({ title: z.string(), body: md, figure: figureSchema.optional() }))
+      .min(2)
+      .max(4),
   }),
   z.strictObject({
     type: z.literal('example'),
+    covers,
     title: z.string(),
     problem: md,
     steps: z.array(md).min(1),
@@ -125,13 +147,15 @@ const block = z.discriminatedUnion('type', [
   }),
   z.strictObject({
     type: z.literal('callout'),
-    variant: z.enum(['tip', 'mistake', 'connection', 'try', 'remember']),
+    covers,
+    /** "remember" recalls an earlier grade and may reference only earlier-grade statements. */
+    variant: z.enum(['tip', 'mistake', 'remember']),
     title: z.string(),
     body: md,
   }),
   z.strictObject({
     type: z.literal('table'),
-    heading: z.string().optional(),
+    covers,
     caption: z.string().optional(),
     headers: z.array(z.string()).min(2),
     rows: z.array(z.array(md)).min(1),
@@ -152,9 +176,10 @@ const block = z.discriminatedUnion('type', [
    */
   z.strictObject({
     type: z.literal('experiment'),
+    covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['diffusion-race']),
+    animation: z.enum(['container-swap']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),
@@ -165,6 +190,12 @@ const block = z.discriminatedUnion('type', [
     explain: md,
   }),
 ]);
+
+/** One step of the lesson: a titled chunk shown on its own in the Learn tab. */
+const step = z.strictObject({
+  title: z.string().min(3),
+  blocks: z.array(block).min(1).max(5),
+});
 
 export const conceptSchema = z.strictObject({
   /** URL slug. */
@@ -182,12 +213,13 @@ export const conceptSchema = z.strictObject({
   /** Meta description: what a student will learn, 110-160 characters. */
   summary: z.string().min(80).max(170),
   bigIdea: md,
-  lesson: z.array(block).min(1),
-  keyTerms: z.array(z.strictObject({ term: z.string(), definition: md })).min(1),
+  lesson: z.array(step).min(2).max(8),
+  keyTerms: z.array(z.strictObject({ term: z.string(), definition: md, covers })).min(1),
   problems: z.array(problemSchema).min(3),
 });
 
 export type Concept = z.infer<typeof conceptSchema>;
 export type Problem = z.infer<typeof problemSchema>;
-export type LessonBlock = Concept['lesson'][number];
+export type LessonStep = Concept['lesson'][number];
+export type LessonBlock = LessonStep['blocks'][number];
 export type Passage = Extract<LessonBlock, { type: 'passage' }>;

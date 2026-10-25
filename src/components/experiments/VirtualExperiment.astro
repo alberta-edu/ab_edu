@@ -2,21 +2,21 @@
 // Virtual experiment: predict with one tap, press Run, watch it happen, then read why.
 import type { LessonBlock } from '../../lib/schema.ts';
 import { md, mdInline } from '../../lib/render.ts';
-import DiffusionRace from './DiffusionRace.astro';
+import ContainerSwap from './ContainerSwap.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
-  anchor?: string;
+  uid: string;
 }
-const { block, anchor } = Astro.props;
-const animations = { 'diffusion-race': DiffusionRace };
+const { block, uid } = Astro.props;
+const animations = { 'container-swap': ContainerSwap };
 const Animation = animations[block.animation];
-const name = `predict-${anchor ?? block.animation}`;
+const name = `predict-${uid}`;
 ---
-<section class="lesson-block card vx" aria-labelledby={anchor}>
+<section class="lb card vx" aria-labelledby={`${uid}-title`}>
   <virtual-experiment data-answer={block.predict.answer}>
     <div class="example__label vx__label">🧪 Virtual experiment</div>
-    <h2 id={anchor} class="vx__title">{block.title}</h2>
+    <h3 id={`${uid}-title`} class="vx__title">{block.title}</h3>
     <div class="vx__question prose" set:html={md(block.question)} />
 
     <fieldset class="vx__predict">
@@ -44,11 +44,11 @@ const name = `predict-${anchor ?? block.animation}`;
     <div class="vx__result" data-vx="result" hidden>
       <p class="vx__verdict" data-vx="verdict" role="status"></p>
       <div class="vx__panel">
-        <h3><span class="vx__step">3</span> What happened</h3>
+        <h4><span class="vx__step">3</span> What happened</h4>
         <div class="prose" set:html={md(block.observe)} />
       </div>
       <div class="vx__panel vx__panel--why">
-        <h3>Why?</h3>
+        <h4>Why?</h4>
         <div class="prose" set:html={md(block.explain)} />
       </div>
     </div>
@@ -75,7 +75,7 @@ const name = `predict-${anchor ?? block.animation}`;
   .vx__verdict.is-right { background: var(--ok-soft); color: var(--ok); }
   .vx__verdict.is-wrong { background: var(--warn-soft); color: var(--ink); }
   .vx__panel { padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-  .vx__panel h3 { display: flex; align-items: center; font-size: var(--step-0); }
+  .vx__panel h4 { display: flex; align-items: center; font-size: var(--step-0); }
   .vx__panel--why { background: var(--accent-soft); }
   @media (prefers-reduced-motion: no-preference) {
     .vx__result:not([hidden]) { animation: rise 0.35s ease; }

@@ -5,7 +5,7 @@ export type Figure =
   | string
   | { kind: 'fraction-bars'; n: number; d: number; wholes: number }
   | { kind: 'number-line'; n: number; d: number; wholes: number; label: string }
-  | { kind: 'particle-boxes'; boxes: ('solid' | 'liquid' | 'gas')[] };
+  | { kind: 'particle-boxes'; boxes: ('solid' | 'liquid' | 'gas')[]; labels?: string[] };
 
 /** Small deterministic random generator so figures are identical on every build. */
 function rng(seed: number) {
@@ -50,8 +50,12 @@ export function renderFigure(f: Figure): string {
     case 'particle-boxes': {
       const gap = 30;
       const w = f.boxes.length * 150 + (f.boxes.length - 1) * gap;
-      const body = f.boxes.map((s, i) => particleBox(s, i * (150 + gap), String.fromCharCode(65 + i), i * 97 + 13)).join('');
-      return `<svg viewBox="-4 0 ${w + 8} 196" class="pb-svg" role="img" aria-label="Particle diagrams in boxes labelled ${f.boxes.map((_, i) => String.fromCharCode(65 + i)).join(', ')}.">${body}</svg>`;
+      // Several boxes are lettered A, B, C… for questions; a single box needs no label.
+      const label = (i: number) => f.labels?.[i] ?? (f.boxes.length > 1 ? String.fromCharCode(65 + i) : '');
+      const body = f.boxes.map((s, i) => particleBox(s, i * (150 + gap), label(i), i * 97 + 13)).join('');
+      const h = f.boxes.some((_, i) => label(i)) ? 196 : 168;
+      const desc = f.boxes.length > 1 ? `boxes labelled ${f.boxes.map((_, i) => label(i)).join(', ')}` : `a box showing a ${f.boxes[0]}`;
+      return `<svg viewBox="-4 0 ${w + 8} ${h}" class="pb-svg" role="img" aria-label="Particle diagram: ${desc}.">${body}</svg>`;
     }
   }
 }

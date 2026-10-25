@@ -33,13 +33,15 @@ npm run preview    # http://localhost:4321/ab_edu/
 |---|---|
 | `npm run verify` | Validates every content file: schema, answer indexes, machine-checked math (`verify:` expressions), LaTeX, passage references |
 | `npm run coverage` | Lists every Grade 5 learning outcome and whether it has content |
+| `npm run audit` | Writes `docs/curriculum-audit.md`: every Grade 5 curriculum statement and where it is taught |
+| `npm run statements -- <subject> <outcome>` | Lists an outcome's statements with the reference codes used in `covers:` |
 | `npm test` | Unit tests (answer checking, fraction math, review schedule, rendering) |
 | `npm run build` | Runs `verify`, then builds the static site into `dist/` |
 
 ## Where things live
 
 ```
-curriculum/grade-5/     Official outcomes, extracted from New LearnAlberta (scripts/extract-curriculum.ts)
+curriculum/grade-*/     Official K-6 outcomes, extracted from New LearnAlberta (scripts/extract-curriculum.ts)
 content/grade-5/        One YAML file per concept, plus roadmap.yaml (every planned concept)
 src/lib/                Build-time logic: schema, Markdown + KaTeX rendering, problem HTML, review schedule
 src/client/             Browser code: problem cards, practice levels, progress store, review session
@@ -48,6 +50,11 @@ src/pages/              Routes
 docs/PLAN.md            Plan and phases
 docs/CONTENT-GUIDE.md   How to write a concept
 ```
+
+## Workflow
+
+All work happens on feature branches. Each branch is reviewed and verified by the owner
+before it is merged into `main`, which is the branch that deploys.
 
 ## Deploying
 

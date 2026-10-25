@@ -113,9 +113,6 @@ const box = VIEWS[view].box.join(' ');
   .ll-cross line { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; pointer-events: none; }
   .ll-pin circle { fill: none; stroke: var(--ink); stroke-width: 3; vector-effect: non-scaling-stroke; }
   .ll-sites { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
-  .ll-chip { border: 1px solid var(--line-strong); cursor: pointer; font: inherit; font-size: var(--step--1); font-weight: 700; }
-  .ll-chip[aria-pressed='true'] { background: var(--accent); color: var(--brand-ink); border-color: var(--accent); }
-  .ll-chip--home { border-color: var(--ela); }
   .ll-card { margin-top: 0.75rem; padding: 0.9rem 1rem; }
   .ll-card h4 { margin: 0 0 0.25rem; }
   .ll-card p { margin: 0.3rem 0 0; }
@@ -261,7 +258,7 @@ const box = VIEWS[view].box.join(' ');
       card.innerHTML = `
         <h4>${s.name} <span class="muted">· ${s.place}</span></h4>
         <div class="ll-card__coord">${formatCoord(s.lat, s.lon)}</div>
-        <p><strong>Water and land:</strong> ${s.feature} · <span class="muted">${s.era}</span></p>
+        <p><strong>Water and land:</strong> ${s.feature}</p>
         <p>${s.note}</p>`;
       // Zoom in automatically if the place is outside the current view.
       const [px, py] = project(s.lon, s.lat);
@@ -285,7 +282,7 @@ const box = VIEWS[view].box.join(' ');
       task.hidden = false;
       if (!target) {
         this.quest = null;
-        task.innerHTML = `🎉 You found all ${this.found} civilizations! Notice: most are between about 25°N and 42°N, near rivers or coasts.`;
+        task.innerHTML = `🎉 You found all ${this.found} civilizations! Notice: every one is near a river or a coast.`;
         return;
       }
       this.quest = { target, tries: 0 };

@@ -1,6 +1,6 @@
 ---
-// Particle model simulator: the same particles as a solid, liquid or gas. Students add or
-// remove energy and watch arrangement, movement and attraction change.
+// Particle model simulator: the same particles as a solid, a liquid and a gas, showing
+// arrangement, movement and attraction (Grade 5 SCI5-OI1-GQ1-LO1, K1.1-K1.5).
 interface Props {
   start?: 'solid' | 'liquid' | 'gas';
 }
@@ -9,32 +9,31 @@ const STATES = {
   solid: {
     label: 'Solid',
     example: 'like ice',
-    arrangement: 'Packed close together in a fixed pattern',
-    movement: 'Vibrate (jiggle) in place',
+    arrangement: 'Close together',
+    movement: 'Vibrate in place',
     attraction: 'Strongest',
-    shape: 'Keeps its own shape',
+    shape: 'Definite shape (from Grade 3)',
     level: 3,
   },
   liquid: {
     label: 'Liquid',
     example: 'like water',
-    arrangement: 'Close together, with small spaces, no fixed places',
+    arrangement: 'Separated by spaces',
     movement: 'Slide past each other',
-    attraction: 'Medium',
-    shape: 'Takes the shape of its container',
+    attraction: 'In between',
+    shape: 'Takes the shape of its container (from Grade 3)',
     level: 2,
   },
   gas: {
     label: 'Gas',
     example: 'like water vapour',
-    arrangement: 'Far apart, with large spaces',
-    movement: 'Move fast in all directions',
+    arrangement: 'Separated by large spaces',
+    movement: 'Constantly moving in all directions',
     attraction: 'Weakest',
-    shape: 'Spreads out to fill its whole container',
+    shape: 'Expands to fill its container (from Grade 3)',
     level: 1,
   },
 };
-const temps = { solid: 15, liquid: 50, gas: 85 };
 ---
 <particle-model data-start={start} data-states={JSON.stringify(STATES)}>
   <div class="pm-layout">
@@ -63,11 +62,6 @@ const temps = { solid: 15, liquid: 50, gas: 85 };
     <div class="seg" role="group" aria-label="Choose a state">
       {Object.entries(STATES).map(([k, s]) => <button type="button" data-state={k} aria-pressed={String(k === start)}>{s.label}</button>)}
     </div>
-    <label class="control">
-      <span>Remove energy</span>
-      <input type="range" min="0" max="100" value={temps[start]} data-pm="temp" />
-      <span>Add energy</span>
-    </label>
     <label class="control"><input type="checkbox" data-pm="bonds" checked /> Show attractions</label>
     <button type="button" class="btn btn--ghost btn--small" data-pm="pause">Pause</button>
   </div>
@@ -97,6 +91,8 @@ const temps = { solid: 15, liquid: 50, gas: 85 };
   const R = 8.5;
   const COLS = 9;
   const ROWS = 6;
+  /** How lively each state's particles look (0-100). Not a temperature: heating is Grade 6. */
+  const MOTION: Record<State, number> = { solid: 15, liquid: 50, gas: 85 };
 
   class ParticleModel extends HTMLElement {
     private ps: P[] = [];
@@ -121,18 +117,13 @@ const temps = { solid: 15, liquid: 50, gas: 85 };
       new MutationObserver(() => this.readColors()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
       this.makeLattice();
-      const range = this.querySelector<HTMLInputElement>('[data-pm="temp"]')!;
-      this.temp = Number(range.value);
-      this.applyState(this.stateFor(this.temp), true);
-      range.addEventListener('input', () => {
-        this.temp = Number(range.value);
-        this.applyState(this.stateFor(this.temp));
-      });
+      const start = this.dataset.start as State;
+      this.temp = MOTION[start];
+      this.applyState(start, true);
       this.querySelectorAll<HTMLButtonElement>('[data-state]').forEach((b) =>
         b.addEventListener('click', () => {
           const s = b.dataset.state as State;
-          this.temp = { solid: 15, liquid: 50, gas: 85 }[s];
-          range.value = String(this.temp);
+          this.temp = MOTION[s];
           this.applyState(s);
         }),
       );
@@ -167,9 +158,6 @@ const temps = { solid: 15, liquid: 50, gas: 85 };
       else this.draw();
     }
 
-    private stateFor(t: number): State {
-      return t < 34 ? 'solid' : t < 67 ? 'liquid' : 'gas';
-    }
 
     /** Lattice "home" spots for the solid, centred on the container floor. */
     private latticeSpots() {

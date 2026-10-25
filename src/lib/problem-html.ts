@@ -132,7 +132,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
       break;
     }
     case 'evidence': {
-      const passage = concept.lesson.find((b): b is Passage => b.type === 'passage' && b.id === p.passage);
+      const passage = concept.lesson.flatMap((s) => s.blocks).find((b): b is Passage => b.type === 'passage' && b.id === p.passage);
       if (!passage) throw new Error(`${key}: passage "${p.passage}" not found`);
       const sentences = passageSentences(passage);
       const paras = p.paragraphs

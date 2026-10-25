@@ -1,6 +1,6 @@
 // Content quality gate, run before every build (npm run verify).
 // Fails on anything that would show a student a wrong answer or a broken page.
-import { loadConcepts, roadmap } from '../src/lib/content.ts';
+import { loadConcepts, roadmap, resolveRef, gradeRank } from '../src/lib/content.ts';
 import { renderProblem, passageSentences } from '../src/lib/problem-html.ts';
 import { md } from '../src/lib/render.ts';
 import { evaluate, eq, parseFractionAnswer, parseDecimal } from '../src/lib/rational.ts';
@@ -28,7 +28,9 @@ function verifyConcept(c: Concept) {
   if (order.some((l, i) => i > 0 && l < order[i - 1])) fail(undefined, 'problems must be listed in level order');
 
   const ids = new Set<string>();
-  const passages = new Map(c.lesson.filter((b): b is Passage => b.type === 'passage').map((p) => [p.id, p]));
+  const passages = new Map(
+    c.lesson.flatMap((s) => s.blocks).filter((b): b is Passage => b.type === 'passage').map((p) => [p.id, p]),
+  );
 
   for (const p of c.problems) {
     if (ids.has(p.id)) fail(p.id, 'duplicate problem id');
@@ -92,27 +94,55 @@ function verifyConcept(c: Concept) {
   }
 
   // Lesson blocks: render all Markdown and math, check block-specific rules.
+  // Curriculum references: only listed statements, never from a later grade.
+  const checkCovers = (label: string, refs: string[], mode: 'current' | 'earlier' | 'any') => {
+    let current = 0;
+    for (const ref of refs) {
+      try {
+        const st = resolveRef(c, ref);
+        const rank = gradeRank(st.grade);
+        if (rank > gradeRank(c.grade)) fail(undefined, `${label}: ${ref} is Grade ${st.grade} content, later than this grade`);
+        if (rank === gradeRank(c.grade)) {
+          if (!c.outcomes.includes(st.outcomeCode)) fail(undefined, `${label}: ${ref} is from outcome ${st.outcomeCode}, which this concept doesn't list`);
+          current++;
+          if (mode === 'earlier') fail(undefined, `${label}: a "remember" callout may only recall earlier grades (${ref})`);
+        }
+      } catch (e) {
+        fail(undefined, `${label}: ${(e as Error).message}`);
+      }
+    }
+    if (mode === 'current' && current === 0) fail(undefined, `${label}: must teach at least one Grade ${c.grade} statement`);
+  };
+  for (const p of c.problems) checkCovers(`problem ${p.id}`, p.covers, 'current');
+  for (const t of c.keyTerms) checkCovers(`key term "${t.term}"`, t.covers, 'any');
+
   const texts: string[] = [c.bigIdea, ...c.keyTerms.map((t) => t.definition)];
-  for (const b of c.lesson) {
-    if (b.type === 'section') texts.push(b.body);
-    if (b.type === 'example') texts.push(b.problem, ...b.steps, ...(b.answer ? [b.answer] : []));
-    if (b.type === 'callout') texts.push(b.body);
-    if (b.type === 'table') {
-      texts.push(...b.rows.flat());
-      if (b.rows.some((r) => r.length !== b.headers.length)) fail(undefined, `table "${b.heading ?? ''}" has rows of the wrong length`);
-    }
-    if (b.type === 'visual' && b.caption) texts.push(b.caption);
-    if (b.type === 'visual' && b.component === 'inference-equation') {
-      const ex = b.props.examples as unknown[];
-      if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');
-    }
-    if (b.type === 'experiment') {
-      texts.push(b.question, b.observe, b.explain, ...b.predict.choices);
-      if (b.predict.answer >= b.predict.choices.length) fail(undefined, `experiment "${b.title}" answer out of range`);
-    }
-    if (b.type === 'passage') {
-      const n = passageSentences(b).flat().length;
-      if (n < 5) warnings.push(`${where()}: passage "${b.title}" has only ${n} sentences`);
+  for (const [si, step] of c.lesson.entries()) {
+    for (const b of step.blocks) {
+      const label = `step ${si + 1} (${step.title}) ${b.type}`;
+      if ('covers' in b) checkCovers(label, b.covers, b.type === 'callout' && b.variant === 'remember' ? 'earlier' : 'current');
+      if (b.type === 'text') texts.push(b.body);
+      if (b.type === 'example') texts.push(b.problem, ...b.steps, ...(b.answer ? [b.answer] : []));
+      if (b.type === 'callout') texts.push(b.body);
+      if (b.type === 'figure') texts.push(b.caption);
+      if (b.type === 'compare') texts.push(...b.columns.map((col) => col.body));
+      if (b.type === 'table') {
+        texts.push(...b.rows.flat());
+        if (b.rows.some((r) => r.length !== b.headers.length)) fail(undefined, `${label}: table rows of the wrong length`);
+      }
+      if (b.type === 'visual' && b.caption) texts.push(b.caption);
+      if (b.type === 'visual' && b.component === 'inference-equation') {
+        const ex = b.props.examples as unknown[];
+        if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');
+      }
+      if (b.type === 'experiment') {
+        texts.push(b.question, b.observe, b.explain, ...b.predict.choices);
+        if (b.predict.answer >= b.predict.choices.length) fail(undefined, `experiment "${b.title}" answer out of range`);
+      }
+      if (b.type === 'passage') {
+        const n = passageSentences(b).flat().length;
+        if (n < 5) warnings.push(`${where()}: passage "${b.title}" has only ${n} sentences`);
+      }
     }
   }
   for (const t of texts) {

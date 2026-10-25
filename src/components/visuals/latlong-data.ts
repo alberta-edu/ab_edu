@@ -1,7 +1,8 @@
-// Places and rivers for the latitude/longitude map. Coordinates are in degrees
-// (north and east positive). Site coordinates are for well-known archaeological sites;
-// river courses are simplified to a few points each, which is accurate enough at
-// world-map scale.
+// Places and rivers for the globe and the flat map. Coordinates are in degrees (north and
+// east positive). The civilizations are the curriculum's own examples (Grade 5 Social
+// Studies: Egypt, Greece, Rome, China, India, Arab civilizations), located at well-known
+// archaeological sites. Notes use only ideas the outcome lists: water, fertile soil and
+// climate in river valleys; coastlines for trade and travel; infrastructure to meet needs.
 
 export interface Site {
   id: string;
@@ -10,7 +11,6 @@ export interface Site {
   lat: number;
   lon: number;
   feature: string;
-  era: string;
   note: string;
   home?: boolean;
 }
@@ -22,39 +22,26 @@ export const SITES: Site[] = [
     place: 'Memphis',
     lat: 29.85,
     lon: 31.25,
-    feature: 'Nile River',
-    era: 'from about 3100 BCE',
-    note: 'The Nile flooded every year and left rich, dark soil on its banks, so farmers could grow wheat and barley in the middle of a desert.',
+    feature: 'Nile River valley',
+    note: 'The Nile River gave water and fertile soil for farming.',
   },
   {
-    id: 'mesopotamia',
-    name: 'Mesopotamia',
-    place: 'Babylon',
-    lat: 32.54,
-    lon: 44.42,
-    feature: 'Tigris and Euphrates rivers',
-    era: 'cities from about 3500 BCE',
-    note: '“Mesopotamia” means “land between the rivers.” Farmers dug canals to bring river water to their fields (irrigation).',
-  },
-  {
-    id: 'indus',
-    name: 'Indus Valley (ancient India)',
+    id: 'india',
+    name: 'Ancient India (Indus Valley)',
     place: 'Mohenjo-daro',
     lat: 27.33,
     lon: 68.14,
-    feature: 'Indus River',
-    era: 'from about 2600 BCE',
-    note: 'Its cities had straight streets, brick houses and covered drains. The site is in present-day Pakistan.',
+    feature: 'Indus River valley',
+    note: 'The Indus River gave water and fertile soil for farming. This site is in present-day Pakistan.',
   },
   {
     id: 'china',
-    name: 'Ancient China (Shang)',
+    name: 'Ancient China',
     place: 'Anyang',
     lat: 36.1,
     lon: 114.35,
-    feature: 'Yellow River (Huang He)',
-    era: 'from about 1600 BCE',
-    note: 'The Yellow River carries yellow silt that makes fertile farmland, but its floods could also be dangerous.',
+    feature: 'Yellow River valley',
+    note: 'The Yellow River gave water and fertile soil for farming.',
   },
   {
     id: 'greece',
@@ -62,9 +49,8 @@ export const SITES: Site[] = [
     place: 'Athens',
     lat: 37.97,
     lon: 23.73,
-    feature: 'Aegean Sea coast',
-    era: 'city-states from about 800 BCE',
-    note: 'Greece is mountainous with little flat farmland, so Greeks used the sea for fishing, travel and trade.',
+    feature: 'Coastline on the Aegean Sea',
+    note: 'The sea and its bays supported travel and trade.',
   },
   {
     id: 'rome',
@@ -72,46 +58,35 @@ export const SITES: Site[] = [
     place: 'Rome',
     lat: 41.9,
     lon: 12.48,
-    feature: 'Tiber River, near the Mediterranean Sea',
-    era: 'from about 750 BCE',
-    note: 'Rome grew beside the Tiber River. Romans later built aqueducts to carry fresh water into the city.',
+    feature: 'Tiber River, near the Mediterranean coast',
+    note: 'Romans built aqueducts to carry fresh water into their city.',
   },
   {
-    id: 'petra',
-    name: 'Nabataean Arabs',
+    id: 'arab',
+    name: 'Arab civilization (Nabataeans)',
     place: 'Petra',
     lat: 30.33,
     lon: 35.44,
-    feature: 'desert trade routes',
-    era: 'from about 300 BCE',
-    note: 'Petra had no big river. The Nabataeans built channels and cisterns to catch rare rainwater, and grew rich from caravan trade.',
+    feature: 'Desert, on trade routes',
+    note: 'With no large river, people built channels and storage tanks to collect rainwater.',
   },
   {
-    id: 'edmonton',
+    id: 'home',
     name: 'You are here',
     place: 'Edmonton, Alberta',
     lat: 53.55,
     lon: -113.49,
-    feature: 'North Saskatchewan River',
-    era: 'today',
-    note: 'Edmonton is much farther north than any of these ancient civilizations, so it has a shorter growing season.',
+    feature: 'Alberta',
+    note: 'Use your own home to practise reading latitude and longitude.',
     home: true,
   },
 ];
 
-/** [lon, lat] points, source to mouth. */
+/** [lon, lat] points, source to mouth, simplified for world-map scale. */
 export const RIVERS: { name: string; points: [number, number][] }[] = [
   {
     name: 'Nile',
     points: [[33.2, 0.4], [32.5, 3.6], [31.6, 9.5], [32.5, 15.6], [33.9, 18.5], [32.2, 20.4], [31.4, 21.9], [32.9, 24.1], [32.6, 25.7], [31.2, 27.4], [31.2, 30.0], [30.4, 31.4]],
-  },
-  {
-    name: 'Tigris',
-    points: [[39.6, 38.4], [41.2, 37.4], [43.1, 36.3], [44.4, 33.3], [46.2, 31.9], [47.4, 30.9], [48.5, 29.9]],
-  },
-  {
-    name: 'Euphrates',
-    points: [[39.0, 39.5], [38.3, 37.8], [38.1, 36.0], [40.1, 35.3], [42.0, 34.4], [44.4, 32.5], [45.8, 31.3], [47.4, 30.9]],
   },
   {
     name: 'Indus',
@@ -121,6 +96,7 @@ export const RIVERS: { name: string; points: [number, number][] }[] = [
     name: 'Yellow River',
     points: [[96.0, 35.0], [101.5, 36.0], [103.8, 36.1], [106.3, 38.5], [109.5, 40.6], [111.0, 40.3], [110.5, 36.5], [110.3, 34.6], [113.7, 34.8], [116.0, 35.8], [118.8, 37.7]],
   },
+  { name: 'Tiber', points: [[11.9, 43.8], [12.4, 43.0], [12.5, 42.3], [12.48, 41.9], [12.25, 41.74]] },
 ];
 
 /** Equirectangular projection onto a 960 × 480 canvas: 1° = 8/3 units. */

@@ -16,8 +16,8 @@ const { whole, rest } = mixedParts(numerator, denominator);
 <fraction-explorer data-n={numerator} data-d={denominator} data-wholes={wholes}>
   <div class="fx-readout" aria-live="polite">
     <span class="frac" data-fx="improper"><span>{numerator}</span><span>{denominator}</span></span>
-    <span class="fx-eq">=</span>
-    <span class="fx-mixed" data-fx="mixed">
+    <span class="fx-eq" data-fx="eq" hidden={whole === 0}>=</span>
+    <span class="fx-mixed" data-fx="mixed" hidden={whole === 0}>
       {whole > 0 && <span class="fx-whole">{whole}</span>}
       {rest > 0 && <span class="frac"><span>{rest}</span><span>{denominator}</span></span>}
       {whole === 0 && rest === 0 && <span class="fx-whole">0</span>}
@@ -48,8 +48,6 @@ const { whole, rest } = mixedParts(numerator, denominator);
   .fx-mixed { display: inline-flex; align-items: center; gap: 0.25rem; }
   .fx-whole { font-size: 2.2rem; font-weight: 700; color: var(--accent); }
   .fx-say { flex-basis: 100%; margin: 0; color: var(--ink-2); font-weight: 700; }
-  .frac { display: inline-flex; flex-direction: column; align-items: center; font-weight: 700; font-size: 1.35rem; line-height: 1.15; vertical-align: middle; color: var(--accent); }
-  .frac > span:first-child { border-bottom: 3px solid currentColor; padding: 0 0.2em; }
 </style>
 
 <script>
@@ -95,6 +93,9 @@ const { whole, rest } = mixedParts(numerator, denominator);
         (whole > 0 ? `<span class="fx-whole">${whole}</span>` : '') +
         (rest > 0 ? `<span class="frac"><span>${rest}</span><span>${d}</span></span>` : '') +
         (whole === 0 && rest === 0 ? '<span class="fx-whole">0</span>' : '');
+      // Less than one whole: there is no mixed number to show.
+      this.part('mixed').hidden = whole === 0;
+      this.part('eq').hidden = whole === 0;
       this.part('say').textContent = describe(this.n, d);
     }
   }

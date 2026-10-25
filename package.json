@@ -13,6 +13,8 @@
     "preview": "astro preview",
     "verify": "node scripts/verify-content.ts",
     "coverage": "node scripts/curriculum-coverage.ts",
+    "audit": "node scripts/curriculum-audit.ts",
+    "statements": "node scripts/statements.ts",
     "test": "vitest run",
     "check": "npm run verify && npm test && astro build"
   },
@@ -20,18 +22,18 @@
     "@astrojs/sitemap": "3.7.4",
     "@fontsource/atkinson-hyperlegible-next": "5.3.0",
     "astro": "7.3.8",
+    "d3-geo": "3.1.1",
     "katex": "0.19.0",
     "marked": "18.1.0",
+    "topojson-client": "3.1.0",
+    "world-atlas": "2.0.2",
     "yaml": "2.9.1",
     "zod": "4.6.7"
   },
   "devDependencies": {
     "@types/d3-geo": "3.1.1",
     "@types/topojson-client": "3.1.5",
-    "d3-geo": "3.1.1",
-    "topojson-client": "3.1.0",
     "typescript": "6.0.3",
-    "vitest": "5.0.3",
-    "world-atlas": "2.0.2"
+    "vitest": "5.0.3"
   }
 }

@@ -1,0 +1,270 @@
+---
+// 3D globe for latitude and longitude. Drag to spin; slide a glowing line of latitude or
+// longitude; tap a civilization to fly to it. The first paint is a static globe drawn at
+// build time, so the picture is there even before (or without) JavaScript.
+import { feature } from 'topojson-client';
+import { geoOrthographic, geoPath, geoGraticule } from 'd3-geo';
+import land110 from 'world-atlas/land-110m.json';
+import { SITES } from './latlong-data.ts';
+import { href } from '../../lib/url.ts';
+
+interface Props {
+  /** Which tool is open first. */
+  start?: 'latitude' | 'longitude' | 'places';
+}
+const { start = 'latitude' } = Astro.props;
+
+const S = 400;
+const proj = geoOrthographic().scale(S / 2 - 6).translate([S / 2, S / 2]).rotate([-30, -25]).precision(0.5);
+const path = geoPath(proj).digits(1);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const landD = path(feature(land110 as any, (land110 as any).objects.land) as any) ?? '';
+const gratD = path(geoGraticule().step([15, 15])()) ?? '';
+const sphereD = path({ type: 'Sphere' }) ?? '';
+const sites = SITES;
+---
+<globe-view data-src={href('data/land-110m.json')} data-sites={JSON.stringify(sites)} data-start={start}>
+  <div class="gl-layout">
+    <div class="gl-stage">
+      <svg class="gl-static" viewBox={`0 0 ${S} ${S}`} role="img" aria-label="A globe showing lines of latitude and longitude every 15 degrees.">
+        <defs>
+          <radialGradient id="gl-ocean" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#9fd0f5"></stop><stop offset="1" stop-color="#2f6fb3"></stop></radialGradient>
+        </defs>
+        <path d={sphereD} fill="url(#gl-ocean)"></path>
+        <path d={landD} fill="#7cc47f" stroke="rgba(30,80,40,.6)" stroke-width="0.8"></path>
+        <path d={gratD} fill="none" stroke="rgba(255,255,255,.45)" stroke-width="0.8"></path>
+      </svg>
+      <canvas class="gl-canvas" aria-hidden="true" hidden></canvas>
+      <p class="gl-hint" data-gl="hint">Drag to spin the globe. Tap anywhere to read its coordinates.</p>
+    </div>
+
+    <div class="gl-panel">
+      <div class="seg gl-tools" role="group" aria-label="Globe tools">
+        <button type="button" data-tool="latitude" aria-pressed={String(start === 'latitude')}>Latitude</button>
+        <button type="button" data-tool="longitude" aria-pressed={String(start === 'longitude')}>Longitude</button>
+        <button type="button" data-tool="places" aria-pressed={String(start === 'places')}>Places</button>
+      </div>
+
+      <div class="gl-pane" data-pane="latitude" hidden={start !== 'latitude'}>
+        <p class="gl-big"><span data-gl="lat-value">30°N</span></p>
+        <p class="gl-def">Lines of <strong>latitude</strong> run east–west around the globe. They measure how far <strong>north or south</strong> of the equator a place is.</p>
+        <label class="gl-slider"><span>S</span><input type="range" min="-90" max="90" step="1" value="30" data-gl="lat" aria-label="Latitude" /><span>N</span></label>
+        <button type="button" class="btn btn--ghost btn--small" data-gl="sweep-lat">▶ Sweep from pole to pole</button>
+      </div>
+
+      <div class="gl-pane" data-pane="longitude" hidden={start !== 'longitude'}>
+        <p class="gl-big"><span data-gl="lon-value">30°E</span></p>
+        <p class="gl-def">Lines of <strong>longitude</strong> run from the North Pole to the South Pole. They measure how far <strong>east or west</strong> of the prime meridian a place is.</p>
+        <label class="gl-slider"><span>W</span><input type="range" min="-180" max="180" step="1" value="30" data-gl="lon" aria-label="Longitude" /><span>E</span></label>
+        <button type="button" class="btn btn--ghost btn--small" data-gl="sweep-lon">▶ Sweep around the world</button>
+      </div>
+
+      <div class="gl-pane" data-pane="places" hidden={start !== 'places'}>
+        <p class="gl-def">Tap a civilization. The globe turns to it, and its lines of latitude and longitude light up.</p>
+        <div class="gl-chips">
+          {sites.map((s) => <button type="button" class={`chip ll-chip${s.home ? ' ll-chip--home' : ''}`} data-site={s.id}>{s.name}</button>)}
+        </div>
+      </div>
+
+      <div class="gl-readout" data-gl="readout" aria-live="polite"></div>
+    </div>
+  </div>
+</globe-view>
+
+<style is:global>
+  globe-view { display: block; }
+  .gl-layout { display: grid; gap: 1.25rem; align-items: center; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 46rem) { .gl-layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .gl-stage { position: relative; max-width: 26rem; width: 100%; margin-inline: auto; }
+  .gl-static, .gl-canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; touch-action: none; }
+  .gl-canvas { cursor: grab; }
+  .gl-canvas:active { cursor: grabbing; }
+  .gl-hint { margin: 0.4rem 0 0; text-align: center; font-size: var(--step--1); color: var(--ink-3); }
+  .gl-panel { display: grid; gap: 0.8rem; align-content: start; }
+  .gl-tools { justify-self: start; }
+  .gl-pane { display: grid; gap: 0.6rem; }
+  .gl-big { margin: 0; font-size: var(--step-3); font-weight: 700; color: #b77900; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .gl-def { margin: 0; color: var(--ink-2); }
+  .gl-slider { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--ink-3); }
+  .gl-slider input { flex: 1; accent-color: #f2b01e; }
+  .gl-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .gl-readout:empty { display: none; }
+  .gl-readout { padding: 0.75rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .gl-readout strong { font-size: var(--step-1); color: var(--accent); font-variant-numeric: tabular-nums; }
+  .gl-readout p { margin: 0.25rem 0 0; }
+</style>
+
+<script>
+  import type { Site } from './latlong-data.ts';
+  import { formatCoord } from './latlong-data.ts';
+
+  type Tool = 'latitude' | 'longitude' | 'places';
+
+  class GlobeView extends HTMLElement {
+    private globe: Awaited<ReturnType<typeof import('./globe-render.ts')['createGlobe']>> | null = null;
+    private fmt!: typeof import('./globe-render.ts');
+    private sites: Site[] = [];
+    private tool: Tool = 'latitude';
+    private spinning = true;
+    private sweeping = 0;
+
+    connectedCallback() {
+      this.sites = JSON.parse(this.dataset.sites!);
+      this.tool = this.dataset.start as Tool;
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          io.disconnect();
+          this.init();
+        }
+      }, { rootMargin: '200px' });
+      io.observe(this);
+    }
+
+    private q<T extends HTMLElement>(sel: string) {
+      return this.querySelector(sel) as T;
+    }
+
+    private async init() {
+      const [mod, land] = await Promise.all([
+        import('./globe-render.ts'),
+        fetch(this.dataset.src!).then((r) => r.json()),
+      ]);
+      this.fmt = mod;
+      const canvas = this.q<HTMLCanvasElement>('.gl-canvas');
+      canvas.hidden = false;
+      this.q('.gl-static').remove();
+      this.globe = mod.createGlobe(canvas, land, this.sites);
+      this.globe.resize();
+      new ResizeObserver(() => this.globe!.resize()).observe(canvas);
+      new MutationObserver(() => this.globe!.draw()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      this.bind(canvas);
+      this.setTool(this.tool);
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) this.spin();
+    }
+
+    private bind(canvas: HTMLCanvasElement) {
+      const g = this.globe!;
+      let drag: { x: number; y: number; lon: number; lat: number; moved: boolean } | null = null;
+      canvas.addEventListener('pointerdown', (e) => {
+        this.spinning = false;
+        canvas.setPointerCapture(e.pointerId);
+        drag = { x: e.clientX, y: e.clientY, lon: g.state.lon, lat: g.state.lat, moved: false };
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!drag) return;
+        const k = 180 / canvas.getBoundingClientRect().width;
+        if (Math.abs(e.clientX - drag.x) + Math.abs(e.clientY - drag.y) > 4) drag.moved = true;
+        g.state.lon = drag.lon - (e.clientX - drag.x) * k;
+        g.state.lat = Math.max(-80, Math.min(80, drag.lat + (e.clientY - drag.y) * k));
+        g.draw();
+      });
+      canvas.addEventListener('pointerup', (e) => {
+        if (drag && !drag.moved) this.tap(e.clientX, e.clientY);
+        drag = null;
+      });
+
+      const lat = this.q<HTMLInputElement>('[data-gl="lat"]');
+      lat.addEventListener('input', () => this.showLat(Number(lat.value)));
+      const lon = this.q<HTMLInputElement>('[data-gl="lon"]');
+      lon.addEventListener('input', () => this.showLon(Number(lon.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-tool]').forEach((b) => b.addEventListener('click', () => this.setTool(b.dataset.tool as Tool)));
+      this.q('[data-gl="sweep-lat"]').addEventListener('click', () => this.sweep('lat'));
+      this.q('[data-gl="sweep-lon"]').addEventListener('click', () => this.sweep('lon'));
+      this.querySelectorAll<HTMLButtonElement>('[data-site]').forEach((b) => b.addEventListener('click', () => this.goTo(b.dataset.site!)));
+    }
+
+    private spin() {
+      let last = performance.now();
+      const tick = (now: number) => {
+        if (!this.spinning) return;
+        this.globe!.state.lon += (now - last) * 0.006;
+        last = now;
+        this.globe!.draw();
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }
+
+    private setTool(t: Tool) {
+      this.tool = t;
+      this.sweeping++;
+      this.querySelectorAll('[data-tool]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.tool === t)));
+      this.querySelectorAll<HTMLElement>('[data-pane]').forEach((p) => (p.hidden = p.dataset.pane !== t));
+      const s = this.globe!.state;
+      s.ringLat = t === 'latitude' ? Number(this.q<HTMLInputElement>('[data-gl="lat"]').value) : null;
+      s.meridianLon = t === 'longitude' ? Number(this.q<HTMLInputElement>('[data-gl="lon"]').value) : null;
+      s.activeSite = null;
+      s.pin = null;
+      this.q('[data-gl="readout"]').innerHTML = '';
+      this.querySelectorAll('[data-site]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      if (t === 'latitude') this.showLat(s.ringLat!);
+      if (t === 'longitude') this.showLon(s.meridianLon!);
+      this.globe!.draw();
+    }
+
+    private showLat(v: number) {
+      const s = this.globe!.state;
+      s.ringLat = v;
+      this.q('[data-gl="lat-value"]').textContent = this.fmt.fmtLat(v);
+      this.q<HTMLInputElement>('[data-gl="lat"]').value = String(v);
+      // Tilt so the line is in view.
+      if (!this.spinning) s.lat = Math.max(-60, Math.min(60, v * 0.6));
+      this.globe!.draw();
+    }
+
+    private showLon(v: number) {
+      const s = this.globe!.state;
+      s.meridianLon = v;
+      this.q('[data-gl="lon-value"]').textContent = this.fmt.fmtLon(v);
+      this.q<HTMLInputElement>('[data-gl="lon"]').value = String(v);
+      this.spinning = false;
+      s.lon = v + 25; // keep the line a little off-centre so it looks curved
+      this.globe!.draw();
+    }
+
+    private sweep(kind: 'lat' | 'lon') {
+      this.spinning = false;
+      const id = ++this.sweeping;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const t0 = performance.now();
+      const ms = kind === 'lat' ? 6000 : 7000;
+      const tick = (now: number) => {
+        if (id !== this.sweeping) return;
+        const t = Math.min(1, (now - t0) / ms);
+        if (kind === 'lat') this.showLat(Math.round(Math.sin(t * Math.PI * 2) * 90));
+        else this.showLon(Math.round(-180 + 360 * t));
+        if (t < 1 && !reduce) requestAnimationFrame(tick);
+      };
+      if (reduce) {
+        if (kind === 'lat') this.showLat(60);
+        else this.showLon(90);
+      } else requestAnimationFrame(tick);
+    }
+
+    private async goTo(id: string) {
+      this.spinning = false;
+      this.sweeping++;
+      const site = this.sites.find((s) => s.id === id)!;
+      this.querySelectorAll('[data-site]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.site === id)));
+      const s = this.globe!.state;
+      s.activeSite = id;
+      s.pin = null;
+      s.ringLat = site.lat;
+      s.meridianLon = site.lon;
+      this.q('[data-gl="readout"]').innerHTML = `<strong>${formatCoord(site.lat, site.lon)}</strong>
+        <p><b>${site.name}</b> · ${site.place}</p><p>${site.feature}. ${site.note}</p>`;
+      await this.globe!.flyTo(site.lon, site.lat);
+    }
+
+    private tap(x: number, y: number) {
+      const p = this.globe!.invert(x, y);
+      if (!p) return;
+      this.spinning = false;
+      const s = this.globe!.state;
+      s.pin = p;
+      this.globe!.draw();
+      this.q('[data-gl="readout"]').innerHTML = `You tapped <strong>${formatCoord(p[1], p[0])}</strong>`;
+    }
+  }
+  customElements.define('globe-view', GlobeView);
+</script>
