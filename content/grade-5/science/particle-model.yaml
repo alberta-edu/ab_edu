@@ -1,0 +1,327 @@
+id: particle-model
+grade: 5
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI5-OI1-GQ1-LO1]
+order: 1
+title: The Particle Model of Matter
+shortTitle: The particle model of matter
+summary: >-
+  Watch particles vibrate, slide and zoom as matter changes between solid, liquid and gas. Use the
+  particle model to explain everyday things, from melting ice to smells.
+
+bigIdea: |-
+  All matter is made of **tiny particles** that are **always moving** and have **spaces between them**.
+  How close the particles are, how they move, and how strongly they **attract** each other decide
+  whether something is a **solid**, a **liquid** or a **gas**.
+
+lesson:
+  - type: visual
+    component: particle-model
+    heading: Watch the particles
+    props: { start: solid }
+    caption: |-
+      Slide toward **Add energy** to heat the matter up, or toward **Remove energy** to cool it down.
+      The lines show the pull (attraction) between particles. Real particles are far too small to see,
+      even with a classroom microscope, so this model draws them much bigger.
+
+  - type: table
+    heading: Solid, liquid and gas, side by side
+    headers: ['', Solid, Liquid, Gas]
+    rows:
+      - ['**Arrangement**', 'Close together, in a fixed pattern', 'Close together, with spaces, no fixed places', 'Far apart, with large spaces']
+      - ['**Movement**', 'Vibrate in place', 'Slide past each other', 'Move fast in all directions']
+      - ['**Attractive forces**', 'Strongest', 'Medium', 'Weakest']
+      - ['**Example**', 'Ice', 'Water', 'Water vapour']
+
+  - type: experiment
+    title: Food colouring in cold and hot water
+    question: We drop food colouring into a beaker of **cold** water and a beaker of **hot** water at the same moment.
+    animation: diffusion-race
+    props: { seconds: 9 }
+    predict:
+      choices:
+        - It spreads faster in the cold water.
+        - It spreads faster in the hot water.
+        - It spreads at the same speed in both.
+      answer: 1
+    observe: |-
+      In the **hot** water, the colour spread out through most of the beaker within a few seconds.
+      In the **cold** water, it stayed in a small cloud for much longer. Look at the faint water particles
+      too: they move much faster in the hot beaker.
+    explain: |-
+      Water is made of particles that are **always moving**. In hot water, the particles move **faster**.
+      Fast water particles bump into the colouring particles more often and harder, pushing them into the
+      **spaces between** the water particles all through the beaker. This is evidence for the particle
+      model: particles move, and there are spaces between them.
+
+  - type: section
+    heading: The particle model explains everyday things
+    body: |-
+      - **You can smell cookies from another room.** Gas particles move fast in all directions and spread
+        out through the air until they reach your nose.
+      - **Juice takes the shape of any glass.** Liquid particles can slide past each other, so a liquid
+        flows to fill the bottom of its container.
+      - **An ice cube keeps its shape.** Strong attractive forces hold solid particles in their places,
+        so they can only vibrate.
+
+  - type: callout
+    variant: mistake
+    title: Common mix-ups
+    body: |-
+      - When ice melts, the **particles themselves don't melt** or change shape. They are the same water
+        particles. They just move more, and their arrangement changes.
+      - In a solid, particles **never stop moving**. They vibrate in place.
+      - The spaces between particles are **empty**. They are not filled with air.
+
+  - type: callout
+    variant: connection
+    title: Adding and removing energy
+    body: |-
+      Heating gives particles more energy, so they move faster and pull apart: a solid can **melt** into a
+      liquid, and a liquid can **evaporate** into a gas. Cooling does the opposite: a gas can **condense**
+      into a liquid, and a liquid can **freeze** into a solid. Try it in the simulator above.
+
+keyTerms:
+  - term: Matter
+    definition: Anything that has mass and takes up space. Solids, liquids and gases are all matter.
+  - term: Particle model of matter
+    definition: 'A model that says all matter is made of tiny particles that are always moving, with spaces between them.'
+  - term: Particle
+    definition: A tiny piece of matter, much too small to see.
+  - term: Attractive force
+    definition: The pull between particles. It is strongest in solids and weakest in gases.
+  - term: Vibrate
+    definition: To move quickly back and forth in place, like particles in a solid.
+  - term: State of matter
+    definition: The form matter is in, such as solid, liquid or gas.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    type: mc
+    prompt: In which state are particles packed close together in a fixed pattern, **vibrating in place**?
+    choices: [Solid, Liquid, Gas, All three states]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Liquid particles are close together, but they are **not** in fixed places. They slide past each other.
+      '2': Gas particles are far apart and move fast in all directions. They are not in a fixed pattern.
+      '3': Only one state has particles held in fixed places. In the other two, particles move around.
+    hints:
+      - Which state keeps its own shape, like an ice cube?
+    solution:
+      - In a **solid**, strong attractive forces hold particles in a fixed pattern.
+      - The particles can't move around, but they still **vibrate** in place.
+
+  - id: w2
+    level: 1
+    type: mc
+    prompt: Which statement is part of the **particle model of matter**?
+    choices:
+      - Particles of matter are always moving.
+      - Particles stop moving when matter gets very cold.
+      - Particles in a solid have no spaces between them.
+      - Only living things are made of particles.
+    answer: 0
+    feedback:
+      '1': In the particle model, particles **never** stop moving. In cold solids they still vibrate in place.
+      '2': The model says particles always have spaces between them, even in solids. The spaces are just small.
+      '3': '**All** matter is made of particles: rocks, water, air, and you too.'
+    hints:
+      - The particle model has three main ideas. One is about what matter is made of, one is about movement, and one is about spaces.
+    solution:
+      - 'The three ideas of the particle model: all matter is made of small particles; particles are **always moving**; particles have spaces between them.'
+      - So "Particles of matter are always moving" is part of the model.
+
+  - id: w3
+    level: 1
+    type: mc
+    prompt: Attractive forces between particles are **strongest** in which state?
+    choices: [Solid, Liquid, Gas]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Liquid particles attract each other, but not as strongly as in a solid. That is why liquids can flow.
+      '2': Gas particles have the **weakest** attraction. That is why they spread far apart.
+    hints:
+      - Which state holds its particles so tightly that it keeps its own shape?
+    solution:
+      - Attractive forces are strongest in **solids**, medium in liquids, and weakest in gases.
+
+  - id: w4
+    level: 1
+    type: order
+    prompt: Order the states from **strongest** attractive forces between particles to **weakest**.
+    items: [Solid, Liquid, Gas]
+    hints:
+      - The state that keeps its shape has the strongest pull between particles.
+    solution:
+      - Solid (strongest) → liquid (medium) → gas (weakest).
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    type: mc
+    figure: { kind: particle-boxes, boxes: [gas, solid, liquid] }
+    prompt: Each box shows the particles of a substance. Which box shows a **liquid**?
+    choices: [Box A, Box B, Box C]
+    fixedOrder: true
+    answer: 2
+    feedback:
+      '0': Box A's particles are far apart with large spaces. That is a **gas**.
+      '1': Box B's particles are in a neat, fixed pattern. That is a **solid**.
+    hints:
+      - Liquid particles are close together, but not lined up in a pattern.
+    solution:
+      - 'A: far apart, large spaces → gas.'
+      - 'B: close together in a fixed pattern → solid.'
+      - 'C: close together but jumbled, with no fixed places, and resting at the bottom → **liquid**.'
+
+  - id: b2
+    level: 2
+    type: mc
+    prompt: You can smell cookies baking from the other side of the house. Which idea **best** explains this?
+    choices:
+      - Gas particles move quickly in all directions and spread out.
+      - Gas particles have strong attractive forces that pull them toward you.
+      - Gas particles are much bigger than solid particles, so they are easy to smell.
+      - The smell particles stay inside the oven.
+    answer: 0
+    feedback:
+      '1': Gas particles have the **weakest** attractive forces. The smell reaches you because the particles move and spread, not because they are pulled.
+      '2': Particles don't grow when they become a gas. The **spaces** between them get bigger.
+      '3': If the smell particles stayed in the oven, you couldn't smell them in another room.
+    hints:
+      - How do gas particles move? Look back at the simulator in gas mode.
+    solution:
+      - Some of the cookie's particles escape into the air as a gas.
+      - Gas particles move fast in **all directions** and spread out through the whole house, until some reach your nose.
+
+  - id: b3
+    level: 2
+    type: multi
+    prompt: An ice cube melts into liquid water. Select **all** the true statements about its particles.
+    choices:
+      - The particles start to slide past each other.
+      - They are the same water particles as before.
+      - The particles themselves melt and become softer.
+      - The particles stop moving.
+      - The attractive forces between the particles are weaker than in the ice.
+    answer: [0, 1, 4]
+    hints:
+      - Melting changes how particles move and are arranged. Does it change the particles themselves?
+      - Attractive forces are strongest in solids. What about in liquids?
+    solution:
+      - '✓ The particles slide past each other: that is how liquid particles move.'
+      - '✓ They are still the same water particles.'
+      - '✓ Attractive forces are weaker in a liquid than in a solid.'
+      - '✗ Particles don''t melt or soften. Only their arrangement and movement change.'
+      - '✗ Particles never stop moving.'
+
+  - id: b4
+    level: 2
+    type: mc
+    prompt: Why does a liquid take the shape of its container, but a solid does not?
+    choices:
+      - Liquid particles can slide past each other, but solid particles are held in fixed places.
+      - Liquid particles are bigger than solid particles.
+      - Solids have no particles in them.
+      - Liquids are always hotter than solids.
+    answer: 0
+    feedback:
+      '1': Particles don't change size between states. What changes is how they move and how they are arranged.
+      '2': All matter, including solids, is made of particles.
+      '3': 'Many liquids are cold (think of ice water), and some solids are hot. It is how the particles move that matters.'
+    hints:
+      - Compare how particles move in a liquid and in a solid.
+    solution:
+      - 'In a liquid, particles can **slide past each other**, so the liquid flows and fills the bottom of its container.'
+      - In a solid, strong attractive forces hold particles in **fixed places**, so a solid keeps its own shape.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    type: mc
+    prompt: |-
+      In the virtual experiment, food colouring spread faster in hot water than in cold water.
+      Which conclusion is **best supported** by this evidence?
+    choices:
+      - Water particles move faster in hot water than in cold water.
+      - Hot water has more particles than cold water.
+      - Food colouring only moves in hot water.
+      - The particles in cold water do not move at all.
+    answer: 0
+    feedback:
+      '1': The experiment didn't count particles. It only showed **how fast** the colour spread. Stick to what the evidence shows.
+      '2': The colour spread in the cold water too, just more slowly. So it moves in both.
+      '3': If cold water particles didn't move, the colour wouldn't have spread at all in the cold beaker. It did, slowly.
+    hints:
+      - A good conclusion only claims what the evidence shows. What exactly was different between the beakers?
+    solution:
+      - The only thing that changed was the temperature of the water, and the colour spread faster in the hot water.
+      - The best explanation is that hot water particles move faster and push the colouring around more.
+      - The other choices claim things the experiment did not show, or go against what we saw.
+
+  - id: d2
+    level: 3
+    type: mc
+    prompt: |-
+      You block the end of a syringe full of **air** and push the plunger. It moves in a long way. You do the
+      same with a syringe full of **water**, and it barely moves. Which explanation fits the particle model?
+    choices:
+      - Air particles have large spaces between them, so they can be pushed closer together. Water particles are already close together.
+      - Water particles are bigger than air particles, so they fill the syringe.
+      - Air particles have no attractive forces at all, so they disappear when squeezed.
+      - Water particles are not moving, so they can't get out of the way.
+    answer: 0
+    feedback:
+      '1': Particles don't change size. The difference is the **spaces between** them.
+      '2': Particles never disappear. When air is squeezed, the same particles are just pushed closer together.
+      '3': Water particles are always moving. They slide past each other, but there is very little empty space to push them into.
+    hints:
+      - Think about how much empty space there is between particles in a gas compared to a liquid.
+    solution:
+      - In a gas, particles are far apart with **large spaces** between them, so pushing squeezes them closer together.
+      - In a liquid, particles are already **close together**, so there is very little space left to squeeze.
+      - This is why gases are much easier to compress than liquids.
+
+  - id: d3
+    level: 3
+    type: mc
+    prompt: |-
+      Mila draws particle models of ice and of water vapour. In her water vapour drawing, she makes the
+      particles **twice as big** as in her ice drawing. What should she change?
+    choices:
+      - Draw the particles the same size in both, but much farther apart in the water vapour.
+      - Nothing. Gas particles grow when they are heated.
+      - Draw the water vapour particles smaller, because gases are lighter.
+      - Draw the ice particles bigger, because solids are heavier.
+    answer: 0
+    feedback:
+      '1': Heating gives particles more energy so they move faster and spread apart. The particles themselves stay the same size.
+      '2': They are the same water particles in both drawings, so they should be the same size.
+      '3': They are the same water particles, so they should be the same size.
+    hints:
+      - Ice and water vapour are both made of water particles. Do the particles change, or does something else change?
+    solution:
+      - Ice and water vapour are made of the **same water particles**, so they should be drawn the same size.
+      - What changes is the **spaces** between particles (large in a gas) and how they move (fast, in all directions).
+
+  - id: d4
+    level: 3
+    type: open
+    prompt: |-
+      Spilled water spreads out into a puddle on the floor, but an ice cube on the floor stays the same shape.
+      Use the particle model to explain why. Mention **arrangement**, **movement** and **attractive forces**.
+    modelAnswer: |-
+      Water and ice are made of the same water particles. In ice, the particles are packed close together in a
+      fixed pattern (arrangement), and strong attractive forces hold them in place so they can only vibrate
+      (movement). That is why the ice cube keeps its shape. In liquid water, the attractive forces are weaker,
+      so the particles can slide past each other. The water flows and spreads out across the floor.
+    rubric:
+      - I described how the particles are **arranged** in ice and in water.
+      - I described how the particles **move** (vibrate in place vs. slide past each other).
+      - I compared the **attractive forces** (stronger in ice, weaker in water).
+      - I connected these ideas to why one keeps its shape and one spreads out.

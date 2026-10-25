@@ -1,0 +1,11 @@
+---
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/url.ts';
+---
+<Base title="Page not found" description="This page does not exist." path="404/" noindex>
+  <div class="container container--narrow center" style="padding-block:4rem">
+    <h1>Lost on the prairie?</h1>
+    <p class="page-hero__lede" style="margin-inline:auto">We couldn't find that page. It may have moved.</p>
+    <a class="btn btn--primary" href={href('grade-5/')}>Go to Grade 5</a>
+  </div>
+</Base>

@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { conceptsFor, roadmap } from '../../lib/content.ts';
+import { conceptKey } from '../../lib/problem-html.ts';
+import { SUBJECTS } from '../../site.ts';
+import { href } from '../../lib/url.ts';
+
+const plan = roadmap(5);
+const subjects = SUBJECTS.map((s) => {
+  const built = conceptsFor(s.slug);
+  return {
+    ...s,
+    built,
+    planned: plan[s.slug].length,
+    problems: built.reduce((n, c) => n + c.problems.length, 0),
+  };
+});
+---
+<Base
+  title="Grade 5: Alberta curriculum practice"
+  description="Free Grade 5 lessons and practice that follow Alberta's program of studies: English Language Arts, Math, Science and Social Studies."
+  path="grade-5/"
+>
+  <div class="container">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">Alberta curriculum</p>
+      <h1>Grade 5</h1>
+      <p class="page-hero__lede">
+        Pick a subject. Every topic starts with a visual explanation, then practice in three levels: Warm-up, Build and Deep Think.
+      </p>
+    </header>
+    <div class="grid grid--4">
+      {
+        subjects.map((s) => (
+          <a class="card subject-card" href={href(`grade-5/${s.slug}/`)} data-subject={s.slug}>
+            <span class="subject-card__icon">
+              <Icon name={s.icon as 'book'} size={26} />
+            </span>
+            <h2>{s.name}</h2>
+            <p>{s.blurb}</p>
+            <span class="subject-card__meta">
+              <span>
+                {s.built.length} of {s.planned} topics ready
+              </span>
+              <span class="ring" data-ring={s.built.map((c) => conceptKey(c)).join(' ')} data-total={s.problems}>
+                <span>0%</span>
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Base>
+
+<script>
+  import { initRings } from '../../client/rings.ts';
+  initRings();
+</script>

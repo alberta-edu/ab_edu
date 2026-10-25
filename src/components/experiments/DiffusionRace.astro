@@ -1,0 +1,205 @@
+---
+// Animated experiment: a drop of food colouring in cold water and in hot water at the
+// same moment. Dye particles are bumped around by water particles, which move faster
+// when the water is hotter, so the colour spreads faster in the hot beaker.
+interface Props {
+  coldLabel?: string;
+  hotLabel?: string;
+  seconds?: number;
+}
+const { coldLabel = 'Cold water (5 °C)', hotLabel = 'Hot water (60 °C)', seconds = 9 } = Astro.props;
+---
+<diffusion-race data-seconds={seconds} data-cold={coldLabel} data-hot={hotLabel}>
+  <canvas width="640" height="330" aria-hidden="true"></canvas>
+  <div class="dr-meters">
+    <div class="dr-meter"><span>{coldLabel}: mixed</span><strong data-dr="cold">0%</strong></div>
+    <div class="dr-meter dr-meter--hot"><span>{hotLabel}: mixed</span><strong data-dr="hot">0%</strong></div>
+    <div class="dr-time"><span>Time</span><strong data-dr="time">0.0 s</strong></div>
+  </div>
+  <p class="sr-only" aria-live="polite" data-dr="live"></p>
+</diffusion-race>
+
+<style is:global>
+  diffusion-race { display: block; }
+  diffusion-race canvas { display: block; width: 100%; height: auto; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .dr-meters { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 0.6rem; font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+  .dr-meter, .dr-time { display: flex; gap: 0.4rem; align-items: baseline; }
+  .dr-meter strong { color: #3b82f6; font-size: var(--step-1); }
+  .dr-meter--hot strong { color: #e0452b; }
+</style>
+
+<script>
+  interface Dot { x: number; y: number }
+  interface Beaker { x: number; label: string; hot: boolean; dye: Dot[]; water: (Dot & { vx: number; vy: number })[] }
+
+  const W = 640;
+  const H = 330;
+  const BW = 250; // beaker width
+  const BH = 230;
+  const TOP = 60;
+  const DYE = 300;
+  const GRID = 10;
+
+  class DiffusionRace extends HTMLElement {
+    private ctx!: CanvasRenderingContext2D;
+    private beakers: Beaker[] = [];
+    private t = 0;
+    private raf = 0;
+    private last = 0;
+    private seconds = 9;
+    private dropY = 0;
+
+    connectedCallback() {
+      this.seconds = Number(this.dataset.seconds);
+      const canvas = this.querySelector('canvas')!;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      this.ctx = canvas.getContext('2d')!;
+      this.ctx.scale(dpr, dpr);
+      this.reset();
+      this.draw();
+    }
+
+    private reset() {
+      cancelAnimationFrame(this.raf);
+      this.t = 0;
+      this.dropY = 20;
+      const mk = (x: number, label: string, hot: boolean): Beaker => ({
+        x,
+        label,
+        hot,
+        dye: [],
+        water: Array.from({ length: 26 }, () => {
+          const a = Math.random() * Math.PI * 2;
+          const sp = hot ? 2.6 : 0.8;
+          return { x: x + 10 + Math.random() * (BW - 20), y: TOP + 10 + Math.random() * (BH - 20), vx: Math.cos(a) * sp, vy: Math.sin(a) * sp };
+        }),
+      });
+      this.beakers = [mk(45, this.dataset.cold!, false), mk(W - 45 - BW, this.dataset.hot!, true)];
+      this.setMeters();
+    }
+
+    /** Starts the experiment. Resolves when the animation has finished. */
+    run(): Promise<void> {
+      this.reset();
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      return new Promise((resolve) => {
+        this.last = performance.now();
+        const frame = (now: number) => {
+          // Fixed-step simulation so the result doesn't depend on the screen's frame rate.
+          const dt = Math.min(now - this.last, 100);
+          this.last = now;
+          const steps = Math.round(dt / 16.67) || 1;
+          for (let i = 0; i < steps * (reduce ? 3 : 1); i++) this.step();
+          this.draw();
+          this.setMeters();
+          if (this.t < this.seconds) this.raf = requestAnimationFrame(frame);
+          else {
+            const [c, h] = this.beakers.map((b) => this.mixed(b));
+            this.querySelector('[data-dr="live"]')!.textContent = `After ${this.seconds} seconds the cold water is ${c}% mixed and the hot water is ${h}% mixed.`;
+            resolve();
+          }
+        };
+        this.raf = requestAnimationFrame(frame);
+      });
+    }
+
+    private step() {
+      this.t += 1 / 60;
+      const surface = TOP + 4;
+      if (this.dropY < surface) {
+        this.dropY += 4;
+        if (this.dropY >= surface) {
+          // The drop lands: release the dye particles in a small blob.
+          for (const b of this.beakers) {
+            for (let i = 0; i < DYE; i++) {
+              const a = Math.random() * Math.PI * 2;
+              const r = Math.random() * 9;
+              b.dye.push({ x: b.x + BW / 2 + Math.cos(a) * r, y: surface + 12 + Math.sin(a) * r });
+            }
+          }
+        }
+      }
+      for (const b of this.beakers) {
+        // Random bumps from water particles, plus slow currents (convection) that are much
+        // stronger in hot water. Tuned so after 9 s: hot ≈ 85-90% mixed, cold ≈ 10%.
+        const kick = b.hot ? 3.5 : 0.8;
+        const sink = b.hot ? 0.05 : 0.09;
+        const swirl = b.hot ? 1 : 0.05;
+        for (const d of b.dye) {
+          const u = (d.x - b.x) / BW;
+          const v = (d.y - TOP) / BH;
+          d.x += (Math.random() - 0.5) * 2 * kick - swirl * Math.sin(2 * Math.PI * u) * Math.cos(Math.PI * v);
+          d.y += (Math.random() - 0.5) * 2 * kick + sink + 2 * swirl * Math.cos(2 * Math.PI * u) * Math.sin(Math.PI * v);
+          d.x = Math.max(b.x + 4, Math.min(b.x + BW - 4, d.x));
+          d.y = Math.max(TOP + 6, Math.min(TOP + BH - 4, d.y));
+        }
+        for (const w of b.water) {
+          w.x += w.vx;
+          w.y += w.vy;
+          if (w.x < b.x + 8 || w.x > b.x + BW - 8) w.vx *= -1;
+          if (w.y < TOP + 8 || w.y > TOP + BH - 8) w.vy *= -1;
+        }
+      }
+    }
+
+    /** Share of the beaker (on a 10 × 10 grid) that has dye in it. */
+    private mixed(b: Beaker): number {
+      if (!b.dye.length) return 0;
+      const cells = new Set(b.dye.map((d) => `${Math.floor(((d.x - b.x) / BW) * GRID)},${Math.floor(((d.y - TOP) / BH) * GRID)}`));
+      return Math.round((cells.size / (GRID * GRID)) * 100);
+    }
+
+    private setMeters() {
+      const [c, h] = this.beakers.map((b) => this.mixed(b));
+      this.querySelector('[data-dr="cold"]')!.textContent = `${c}%`;
+      this.querySelector('[data-dr="hot"]')!.textContent = `${h}%`;
+      this.querySelector('[data-dr="time"]')!.textContent = `${Math.min(this.t, this.seconds).toFixed(1)} s`;
+    }
+
+    private draw() {
+      const c = this.ctx;
+      const cs = getComputedStyle(this);
+      const ink = cs.getPropertyValue('--ink-2').trim() || '#444';
+      c.clearRect(0, 0, W, H);
+      for (const b of this.beakers) {
+        // water
+        c.fillStyle = b.hot ? 'rgba(255, 140, 110, 0.16)' : 'rgba(110, 170, 255, 0.18)';
+        c.fillRect(b.x, TOP, BW, BH);
+        // water particles (faint), to show their speed
+        c.fillStyle = b.hot ? 'rgba(224, 69, 43, 0.35)' : 'rgba(59, 130, 246, 0.35)';
+        for (const w of b.water) {
+          c.beginPath();
+          c.arc(w.x, w.y, 4, 0, Math.PI * 2);
+          c.fill();
+        }
+        // dye
+        c.fillStyle = 'rgba(126, 34, 206, 0.55)';
+        for (const d of b.dye) c.fillRect(d.x - 1.8, d.y - 1.8, 3.6, 3.6);
+        // beaker outline
+        c.strokeStyle = ink;
+        c.lineWidth = 3;
+        c.beginPath();
+        c.moveTo(b.x - 4, TOP - 18);
+        c.lineTo(b.x - 4, TOP + BH + 3);
+        c.lineTo(b.x + BW + 4, TOP + BH + 3);
+        c.lineTo(b.x + BW + 4, TOP - 18);
+        c.stroke();
+        // falling drop
+        if (this.dropY < TOP + 4) {
+          c.fillStyle = 'rgb(126, 34, 206)';
+          c.beginPath();
+          c.arc(b.x + BW / 2, this.dropY, 6, 0, Math.PI * 2);
+          c.fill();
+        }
+        // label
+        c.fillStyle = b.hot ? '#e0452b' : '#3b82f6';
+        c.font = `700 16px ${cs.fontFamily}`;
+        c.textAlign = 'center';
+        c.fillText(`${b.hot ? '🔥 ' : '❄️ '}${b.label}`, b.x + BW / 2, H - 8);
+      }
+    }
+  }
+  customElements.define('diffusion-race', DiffusionRace);
+</script>

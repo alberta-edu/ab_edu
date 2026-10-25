@@ -1,0 +1,125 @@
+---
+// Virtual experiment: predict with one tap, press Run, watch it happen, then read why.
+import type { LessonBlock } from '../../lib/schema.ts';
+import { md, mdInline } from '../../lib/render.ts';
+import DiffusionRace from './DiffusionRace.astro';
+
+interface Props {
+  block: Extract<LessonBlock, { type: 'experiment' }>;
+  anchor?: string;
+}
+const { block, anchor } = Astro.props;
+const animations = { 'diffusion-race': DiffusionRace };
+const Animation = animations[block.animation];
+const name = `predict-${anchor ?? block.animation}`;
+---
+<section class="lesson-block card vx" aria-labelledby={anchor}>
+  <virtual-experiment data-answer={block.predict.answer}>
+    <div class="example__label vx__label">🧪 Virtual experiment</div>
+    <h2 id={anchor} class="vx__title">{block.title}</h2>
+    <div class="vx__question prose" set:html={md(block.question)} />
+
+    <fieldset class="vx__predict">
+      <legend><span class="vx__step">1</span> Predict: what will happen?</legend>
+      <div class="vx__choices">
+        {
+          block.predict.choices.map((c, i) => (
+            <label class="vx__choice">
+              <input type="radio" name={name} value={i} />
+              <span set:html={mdInline(c)} />
+            </label>
+          ))
+        }
+      </div>
+    </fieldset>
+
+    <div class="vx__run">
+      <span class="vx__step">2</span>
+      <button type="button" class="btn btn--primary" data-vx="run">▶ Run the experiment</button>
+      <span class="muted vx__hint" data-vx="hint">Make a prediction first, or just press Run.</span>
+    </div>
+
+    <div class="vx__stage"><Animation {...block.props} /></div>
+
+    <div class="vx__result" data-vx="result" hidden>
+      <p class="vx__verdict" data-vx="verdict" role="status"></p>
+      <div class="vx__panel">
+        <h3><span class="vx__step">3</span> What happened</h3>
+        <div class="prose" set:html={md(block.observe)} />
+      </div>
+      <div class="vx__panel vx__panel--why">
+        <h3>Why?</h3>
+        <div class="prose" set:html={md(block.explain)} />
+      </div>
+    </div>
+  </virtual-experiment>
+</section>
+
+<style is:global>
+  .vx { padding: clamp(1rem, 2.5vw, 1.5rem); border-top: 6px solid var(--accent); }
+  .vx__label { color: var(--accent); }
+  .vx__title { margin: 0.25rem 0 0.5rem; }
+  .vx__question { font-size: var(--step-1); }
+  .vx__step { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent); color: var(--brand-ink); font-size: 0.85rem; font-weight: 700; margin-right: 0.4rem; flex: none; }
+  .vx__predict { border: 0; padding: 0; margin: 1rem 0; }
+  .vx__predict legend { font-weight: 700; display: flex; align-items: center; margin-bottom: 0.5rem; }
+  .vx__choices { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); }
+  .vx__choice { display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 0.85rem; border: 2px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; background: var(--surface); font-weight: 700; }
+  .vx__choice input { accent-color: var(--accent); width: 1.1rem; height: 1.1rem; }
+  .vx__choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .vx__choice.is-answer { border-color: var(--ok); background: var(--ok-soft); }
+  .vx__run { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; margin-bottom: 0.9rem; }
+  .vx__hint { font-size: var(--step--1); }
+  .vx__result { display: grid; gap: 0.75rem; margin-top: 1rem; }
+  .vx__verdict { margin: 0; padding: 0.7rem 1rem; border-radius: var(--radius-sm); font-weight: 700; }
+  .vx__verdict.is-right { background: var(--ok-soft); color: var(--ok); }
+  .vx__verdict.is-wrong { background: var(--warn-soft); color: var(--ink); }
+  .vx__panel { padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .vx__panel h3 { display: flex; align-items: center; font-size: var(--step-0); }
+  .vx__panel--why { background: var(--accent-soft); }
+  @media (prefers-reduced-motion: no-preference) {
+    .vx__result:not([hidden]) { animation: rise 0.35s ease; }
+  }
+</style>
+
+<script>
+  class VirtualExperiment extends HTMLElement {
+    connectedCallback() {
+      const run = this.querySelector<HTMLButtonElement>('[data-vx="run"]')!;
+      run.addEventListener('click', () => this.run(run));
+      this.addEventListener('change', () => {
+        this.querySelector<HTMLElement>('[data-vx="hint"]')!.textContent = 'Great, now run it and see.';
+      });
+    }
+
+    private async run(btn: HTMLButtonElement) {
+      const stage = this.querySelector('.vx__stage > *') as HTMLElement & { run(): Promise<void> };
+      const result = this.querySelector<HTMLElement>('[data-vx="result"]')!;
+      result.hidden = true;
+      btn.disabled = true;
+      btn.textContent = 'Running…';
+      this.querySelectorAll<HTMLInputElement>('.vx__choice input').forEach((i) => (i.disabled = true));
+      await stage.run();
+
+      const answer = Number(this.dataset.answer);
+      const chosen = this.querySelector<HTMLInputElement>('.vx__choice input:checked');
+      const verdict = this.querySelector<HTMLElement>('[data-vx="verdict"]')!;
+      this.querySelectorAll('.vx__choice').forEach((c, i) => c.classList.toggle('is-answer', i === answer));
+      if (!chosen) {
+        verdict.className = 'vx__verdict';
+        verdict.textContent = 'Here is what happened. The correct prediction is highlighted.';
+      } else if (Number(chosen.value) === answer) {
+        verdict.className = 'vx__verdict is-right';
+        verdict.textContent = '✓ Your prediction was right!';
+      } else {
+        verdict.className = 'vx__verdict is-wrong';
+        verdict.textContent = 'Your prediction didn’t match. That’s how scientists learn: compare your idea with the evidence.';
+      }
+      result.hidden = false;
+      btn.disabled = false;
+      btn.textContent = '↺ Run it again';
+      this.querySelectorAll<HTMLInputElement>('.vx__choice input').forEach((i) => (i.disabled = false));
+    }
+  }
+  customElements.define('virtual-experiment', VirtualExperiment);
+</script>

@@ -1,0 +1,92 @@
+---
+// "Clue + What I know = Inference", built one card at a time so students see how an
+// inference is put together. Steps through several short examples.
+import { mdInline } from '../../lib/render.ts';
+
+interface Example {
+  clue: string;
+  know: string;
+  inference: string;
+}
+interface Props {
+  examples: Example[];
+}
+const { examples } = Astro.props;
+if (!examples?.length) throw new Error('InferenceEquation needs examples');
+---
+<inference-equation data-count={examples.length}>
+  {
+    examples.map((ex, i) => (
+      <div class="ie-example" data-i={i} hidden={i !== 0}>
+        <div class="ie-row">
+          <div class="ie-card ie-card--clue" data-part="0">
+            <span class="ie-tag">🔍 Clue in the text</span>
+            <p set:html={mdInline(ex.clue)} />
+          </div>
+          <span class="ie-op" data-part="1" aria-hidden="true">+</span>
+          <div class="ie-card ie-card--know" data-part="1">
+            <span class="ie-tag">🧠 What I already know</span>
+            <p set:html={mdInline(ex.know)} />
+          </div>
+          <span class="ie-op" data-part="2" aria-hidden="true">=</span>
+          <div class="ie-card ie-card--inf" data-part="2">
+            <span class="ie-tag">💡 My inference</span>
+            <p set:html={mdInline(ex.inference)} />
+          </div>
+        </div>
+      </div>
+    ))
+  }
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-ie="next">Show next part ▶</button>
+    <span class="muted" data-ie="count" style="font-size:var(--step--1)">Example 1 of {examples.length}</span>
+  </div>
+</inference-equation>
+
+<style is:global>
+  inference-equation { display: block; }
+  .ie-row { display: grid; gap: 0.6rem; align-items: stretch; grid-template-columns: 1fr auto 1fr auto 1fr; }
+  @media (max-width: 44rem) { .ie-row { grid-template-columns: 1fr; } .ie-op { justify-self: center; } }
+  .ie-card { border-radius: var(--radius-sm); padding: 0.8rem 0.9rem; border: 2px solid transparent; transition: opacity 0.4s, transform 0.4s; }
+  .ie-card p { margin: 0.35rem 0 0; font-size: var(--step-0); }
+  .ie-tag { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .ie-card--clue { background: color-mix(in srgb, var(--sun) 22%, var(--surface)); }
+  .ie-card--know { background: var(--brand-soft); }
+  .ie-card--inf { background: var(--accent-soft); border-color: var(--accent); }
+  .ie-op { align-self: center; font-size: 2rem; font-weight: 700; color: var(--ink-3); transition: opacity 0.4s; }
+  .ie-example.is-building [data-part].is-waiting { opacity: 0.12; transform: translateY(6px); }
+  @media (prefers-reduced-motion: reduce) { .ie-card, .ie-op { transition: none; } }
+</style>
+
+<script>
+  class InferenceEquation extends HTMLElement {
+    private i = 0;
+    private shown = 1; // parts visible in the current example (1..3)
+    private count = 1;
+
+    connectedCallback() {
+      this.count = Number(this.dataset.count);
+      this.render();
+      this.querySelector('[data-ie="next"]')!.addEventListener('click', () => {
+        if (this.shown < 3) this.shown++;
+        else {
+          this.i = (this.i + 1) % this.count;
+          this.shown = 1;
+        }
+        this.render();
+      });
+    }
+
+    private render() {
+      this.querySelectorAll<HTMLElement>('.ie-example').forEach((ex, idx) => {
+        ex.hidden = idx !== this.i;
+        ex.classList.add('is-building');
+        ex.querySelectorAll<HTMLElement>('[data-part]').forEach((p) => p.classList.toggle('is-waiting', Number(p.dataset.part) >= this.shown));
+      });
+      const next = this.querySelector('[data-ie="next"]')!;
+      next.textContent = this.shown < 3 ? 'Show next part ▶' : this.count > 1 ? 'Next example ▶' : 'Start again ↺';
+      this.querySelector('[data-ie="count"]')!.textContent = `Example ${this.i + 1} of ${this.count}`;
+    }
+  }
+  customElements.define('inference-equation', InferenceEquation);
+</script>

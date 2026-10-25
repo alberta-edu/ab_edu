@@ -1,0 +1,102 @@
+---
+// Interactive fraction bars + number line. Shows how an improper fraction and a mixed
+// number name the same amount and the same point on the number line.
+import { fractionSvg, describe, mixedParts, UNIT_NAMES } from './fraction-svg.ts';
+
+interface Props {
+  numerator?: number;
+  denominator?: number;
+  wholes?: number;
+  denominators?: number[];
+}
+const { numerator = 7, denominator = 4, wholes = 3, denominators = [2, 3, 4, 5, 6, 8] } = Astro.props;
+for (const d of denominators) if (!UNIT_NAMES[d]) throw new Error(`FractionExplorer: no unit name for ${d}`);
+const { whole, rest } = mixedParts(numerator, denominator);
+---
+<fraction-explorer data-n={numerator} data-d={denominator} data-wholes={wholes}>
+  <div class="fx-readout" aria-live="polite">
+    <span class="frac" data-fx="improper"><span>{numerator}</span><span>{denominator}</span></span>
+    <span class="fx-eq">=</span>
+    <span class="fx-mixed" data-fx="mixed">
+      {whole > 0 && <span class="fx-whole">{whole}</span>}
+      {rest > 0 && <span class="frac"><span>{rest}</span><span>{denominator}</span></span>}
+      {whole === 0 && rest === 0 && <span class="fx-whole">0</span>}
+    </span>
+    <p class="fx-say" data-fx="say">{describe(numerator, denominator)}</p>
+  </div>
+  <div class="fx-figure" data-fx="svg" set:html={fractionSvg(numerator, denominator, wholes)} />
+  <div class="control-row">
+    <div class="control">
+      <span id="fx-n-label">Numerator</span>
+      <button type="button" class="icon-btn" data-fx="minus" aria-label="Remove one part">−</button>
+      <input type="range" min="0" max={wholes * denominator} value={numerator} data-fx="range" aria-labelledby="fx-n-label" />
+      <button type="button" class="icon-btn" data-fx="plus" aria-label="Add one part">+</button>
+    </div>
+    <div class="control">
+      <span id="fx-d-label">Parts in a whole</span>
+      <div class="seg" role="group" aria-labelledby="fx-d-label">
+        {denominators.map((d) => <button type="button" data-d={d} aria-pressed={String(d === denominator)}>{d}</button>)}
+      </div>
+    </div>
+  </div>
+</fraction-explorer>
+
+<style is:global>
+  fraction-explorer { display: block; }
+  .fx-readout { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; margin-bottom: 0.5rem; }
+  .fx-eq { font-size: 1.8rem; color: var(--ink-3); }
+  .fx-mixed { display: inline-flex; align-items: center; gap: 0.25rem; }
+  .fx-whole { font-size: 2.2rem; font-weight: 700; color: var(--accent); }
+  .fx-say { flex-basis: 100%; margin: 0; color: var(--ink-2); font-weight: 700; }
+  .frac { display: inline-flex; flex-direction: column; align-items: center; font-weight: 700; font-size: 1.35rem; line-height: 1.15; vertical-align: middle; color: var(--accent); }
+  .frac > span:first-child { border-bottom: 3px solid currentColor; padding: 0 0.2em; }
+</style>
+
+<script>
+  import { fractionSvg, describe, mixedParts } from './fraction-svg.ts';
+
+  class FractionExplorer extends HTMLElement {
+    private n = 0;
+    private d = 4;
+    private wholes = 3;
+
+    connectedCallback() {
+      this.n = Number(this.dataset.n);
+      this.d = Number(this.dataset.d);
+      this.wholes = Number(this.dataset.wholes);
+      const range = this.part<HTMLInputElement>('range');
+      range.addEventListener('input', () => this.set(Number(range.value), this.d));
+      this.part('minus').addEventListener('click', () => this.set(this.n - 1, this.d));
+      this.part('plus').addEventListener('click', () => this.set(this.n + 1, this.d));
+      this.querySelectorAll<HTMLButtonElement>('[data-d]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const d = Number(b.dataset.d);
+          // Keep roughly the same amount when the unit changes.
+          this.set(Math.round((this.n / this.d) * d), d);
+        }),
+      );
+    }
+
+    private part<T extends HTMLElement>(name: string): T {
+      return this.querySelector(`[data-fx="${name}"]`) as T;
+    }
+
+    private set(n: number, d: number) {
+      this.d = d;
+      this.n = Math.max(0, Math.min(n, this.wholes * d));
+      const range = this.part<HTMLInputElement>('range');
+      range.max = String(this.wholes * d);
+      range.value = String(this.n);
+      this.querySelectorAll<HTMLButtonElement>('[data-d]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.d) === d)));
+      this.part('svg').innerHTML = fractionSvg(this.n, d, this.wholes);
+      this.part('improper').innerHTML = `<span>${this.n}</span><span>${d}</span>`;
+      const { whole, rest } = mixedParts(this.n, d);
+      this.part('mixed').innerHTML =
+        (whole > 0 ? `<span class="fx-whole">${whole}</span>` : '') +
+        (rest > 0 ? `<span class="frac"><span>${rest}</span><span>${d}</span></span>` : '') +
+        (whole === 0 && rest === 0 ? '<span class="fx-whole">0</span>' : '');
+      this.part('say').textContent = describe(this.n, d);
+    }
+  }
+  customElements.define('fraction-explorer', FractionExplorer);
+</script>

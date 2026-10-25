@@ -1,0 +1,323 @@
+id: improper-fractions
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT5-OI1-GQ5-LO1]
+order: 5
+title: Improper Fractions and Mixed Numbers
+shortTitle: Improper fractions & mixed numbers
+summary: >-
+  Learn how fractions can be more than one whole. Change improper fractions to mixed numbers and back,
+  place them on a number line, and compare them to 0, 1/2 and 1.
+
+bigIdea: |-
+  A fraction can be **more than one whole**. \(\frac{7}{4}\) means 7 fourths. Since 4 fourths make 1 whole,
+  7 fourths is 1 whole and 3 fourths more, so \(\frac{7}{4} = 1\frac{3}{4}\). Both names show the same amount
+  and sit at the **same point** on the number line.
+
+lesson:
+  - type: visual
+    component: fraction-explorer
+    heading: Counting past one whole
+    props: { numerator: 3, denominator: 4, wholes: 3 }
+    caption: |-
+      Press **+** to add one fourth at a time. Watch what happens when you go past 4 fourths: a new whole
+      starts filling. Try other numbers of parts too.
+
+  - type: table
+    heading: Two names for the same amount
+    headers: [Name, What it looks like, Example, Means]
+    rows:
+      - ['Proper fraction', 'Numerator is **less than** the denominator', '\(\frac{3}{4}\)', 'Less than 1 whole']
+      - ['Improper fraction', 'Numerator is **greater than** the denominator', '\(\frac{11}{4}\)', 'More than 1 whole']
+      - ['Mixed number', 'A whole number **and** a proper fraction', '\(2\frac{3}{4}\)', '\(2 + \frac{3}{4}\), the same as \(\frac{11}{4}\)']
+      - ['Whole number', 'A fraction with a denominator of 1', '\(3 = \frac{3}{1}\)', 'Exactly 3 wholes']
+
+  - type: example
+    title: Improper fraction → mixed number
+    problem: 'Write \(\frac{11}{4}\) as a mixed number.'
+    steps:
+      - 'Every **4 fourths** make **1 whole**. How many groups of 4 fit in 11? Divide: \[11 \div 4 = 2 \text{ R } 3\]'
+      - 'The quotient, **2**, is the number of wholes. The remainder, **3**, is the fourths left over.'
+      - 'Keep the same denominator: \[\frac{11}{4} = 2\frac{3}{4}\]'
+      - 'Check: 2 wholes is \(2 \times 4 = 8\) fourths, and \(8 + 3 = 11\) fourths. ✓'
+    answer: '\(\frac{11}{4} = 2\frac{3}{4}\)'
+
+  - type: example
+    title: Mixed number → improper fraction
+    problem: 'Write \(3\frac{2}{5}\) as an improper fraction.'
+    steps:
+      - 'Each whole is **5 fifths**, so 3 wholes are \[3 \times 5 = 15 \text{ fifths}\]'
+      - 'Add the 2 fifths that are left: \[15 + 2 = 17 \text{ fifths}\]'
+      - 'Keep the same denominator: \[3\frac{2}{5} = \frac{17}{5}\]'
+    answer: '\(3\frac{2}{5} = \frac{17}{5}\)'
+
+  - type: callout
+    variant: mistake
+    title: Watch out
+    body: |-
+      In \(2\frac{3}{4}\) there is **no multiplication**. It means \(2 + \frac{3}{4}\): two wholes **and** three
+      fourths. And when you change between the two forms, the **denominator stays the same**, because the
+      size of the parts doesn't change.
+
+  - type: section
+    heading: Whole numbers are fractions too
+    body: |-
+      Any whole number can be written as a fraction with a denominator of 1, because it counts **wholes**:
+      \[3 = \frac{3}{1}\]
+      You can also count it in smaller parts. 3 wholes cut into fourths is \(3 \times 4 = 12\) fourths, so
+      \(3 = \frac{12}{4}\).
+
+  - type: table
+    heading: Compare to 0, ½ and 1
+    headers: [Benchmark, Ask yourself, Example]
+    rows:
+      - ['\(0\)', 'Is the numerator 0?', '\(\frac{0}{6} = 0\)']
+      - ['\(\frac{1}{2}\)', 'Is the numerator more or less than **half** of the denominator?', 'Half of 8 is 4, and 5 is more than 4, so \(\frac{5}{8} > \frac{1}{2}\)']
+      - ['\(1\)', 'Is the numerator more than, equal to, or less than the denominator?', '9 is more than 8, so \(\frac{9}{8} > 1\)']
+
+keyTerms:
+  - term: Improper fraction
+    definition: 'A fraction whose numerator is greater than its denominator, like \(\frac{9}{5}\). It is more than 1 whole.'
+  - term: Mixed number
+    definition: 'A whole number and a fraction together, like \(1\frac{4}{5}\). It means \(1 + \frac{4}{5}\).'
+  - term: Numerator
+    definition: The top number of a fraction. It counts how many parts you have.
+  - term: Denominator
+    definition: The bottom number of a fraction. It tells how many equal parts make one whole.
+  - term: Benchmark
+    definition: 'A friendly number, like \(0\), \(\frac{1}{2}\) or \(1\), that helps you compare and estimate.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    type: mc
+    prompt: Which of these is an **improper fraction**?
+    choices:
+      - '\(\frac{9}{5}\)'
+      - '\(\frac{5}{9}\)'
+      - '\(\frac{1}{2}\)'
+      - '\(1\frac{4}{5}\)'
+    answer: 0
+    feedback:
+      '1': 'In \(\frac{5}{9}\) the numerator (5) is **less** than the denominator (9), so it is less than one whole. That makes it a proper fraction.'
+      '2': '\(\frac{1}{2}\) is less than one whole, so it is a proper fraction.'
+      '3': '\(1\frac{4}{5}\) is a **mixed number**: a whole number and a fraction. It is equal to \(\frac{9}{5}\), but it is not written as an improper fraction.'
+    hints:
+      - Compare the numerator (top) with the denominator (bottom).
+      - An improper fraction has a numerator that is **greater** than its denominator.
+    solution:
+      - 'An improper fraction has a numerator greater than its denominator.'
+      - 'In \(\frac{9}{5}\), 9 is greater than 5. ✓ It means 9 fifths, which is more than one whole.'
+
+  - id: w2
+    level: 1
+    type: fraction
+    figure: { kind: fraction-bars, n: 10, d: 4, wholes: 3 }
+    prompt: Each bar is **one whole**. Write the shaded amount as an **improper fraction**.
+    answer: 10/4
+    form: improper
+    verify: 4/4 + 4/4 + 2/4
+    hints:
+      - How many equal parts is each whole bar cut into? That is your denominator.
+      - Count every shaded part, in all the bars. That is your numerator.
+    solution:
+      - Each bar is cut into **4** equal parts, so the parts are **fourths**. The denominator is 4.
+      - 'Count the shaded fourths: 4 in the first bar, 4 in the second, and 2 in the third. \[4 + 4 + 2 = 10\]'
+      - 'So the shaded amount is \(\frac{10}{4}\) (which is also \(2\frac{2}{4}\)).'
+
+  - id: w3
+    level: 1
+    type: fraction
+    prompt: 'Write \(\frac{7}{4}\) as a **mixed number**.'
+    answer: 1 3/4
+    form: mixed
+    verify: 7/4
+    hints:
+      - 'How many fourths make one whole?'
+      - '\(7 \div 4\) = ? with a remainder of ?'
+    solution:
+      - '4 fourths make 1 whole. \[7 \div 4 = 1 \text{ R } 3\]'
+      - 'That is **1** whole with **3** fourths left over.'
+      - '\[\frac{7}{4} = 1\frac{3}{4}\]'
+
+  - id: w4
+    level: 1
+    type: fraction
+    prompt: 'Write \(2\frac{1}{3}\) as an **improper fraction**.'
+    answer: 7/3
+    form: improper
+    verify: 2 + 1/3
+    hints:
+      - How many thirds are in one whole?
+      - 'Two wholes are \(2 \times 3\) thirds. Then add the 1 extra third.'
+    solution:
+      - 'Each whole is 3 thirds, so 2 wholes are \(2 \times 3 = 6\) thirds.'
+      - 'Add the extra third: \(6 + 1 = 7\) thirds.'
+      - '\[2\frac{1}{3} = \frac{7}{3}\]'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    type: fraction
+    figure: { kind: number-line, n: 7, d: 3, wholes: 3, label: P }
+    prompt: What **mixed number** is at point **P**?
+    answer: 2 1/3
+    form: mixed
+    verify: 7/3
+    hints:
+      - Count the small spaces between 0 and 1. That tells you the size of each part.
+      - P is past which whole number? How many small parts past it?
+    solution:
+      - Each whole is cut into **3** equal spaces, so each space is one third.
+      - P is past **2**, and **1** more third along.
+      - 'So P is at \(2\frac{1}{3}\). (As an improper fraction, that is \(\frac{7}{3}\).)'
+
+  - id: b2
+    level: 2
+    type: fraction
+    prompt: 'A measuring scoop holds \(\frac{1}{4}\) cup. Mia uses **11 scoops** of flour. How many cups of flour is that? Write your answer as a **mixed number**.'
+    answer: 2 3/4
+    form: mixed
+    verify: 11/4
+    hints:
+      - '11 scoops of \(\frac{1}{4}\) cup is 11 fourths of a cup.'
+      - 'How many whole cups can you make from 11 fourths? What is left over?'
+    solution:
+      - 'Each scoop is \(\frac{1}{4}\) cup, so 11 scoops is \(\frac{11}{4}\) cups.'
+      - '4 fourths make 1 cup. \(11 \div 4 = 2 \text{ R } 3\)'
+      - 'Mia uses \(2\frac{3}{4}\) cups of flour.'
+
+  - id: b3
+    level: 2
+    type: mc
+    prompt: 'Which fraction is **greater than** \(\frac{1}{2}\) but **less than** 1?'
+    choices:
+      - '\(\frac{5}{8}\)'
+      - '\(\frac{3}{8}\)'
+      - '\(\frac{4}{8}\)'
+      - '\(\frac{9}{8}\)'
+    answer: 0
+    feedback:
+      '1': 'Half of 8 is 4. Since 3 is less than 4, \(\frac{3}{8}\) is **less** than \(\frac{1}{2}\).'
+      '2': 'Half of 8 is 4, so \(\frac{4}{8}\) is **exactly** \(\frac{1}{2}\), not greater.'
+      '3': 'The numerator 9 is greater than the denominator 8, so \(\frac{9}{8}\) is **more** than 1 whole.'
+    hints:
+      - 'Half of 8 is 4. So \(\frac{4}{8} = \frac{1}{2}\).'
+      - 'For a fraction to be less than 1, its numerator must be less than 8.'
+    solution:
+      - 'To be greater than \(\frac{1}{2}\), the numerator must be more than 4 (half of 8).'
+      - 'To be less than 1, the numerator must be less than 8.'
+      - 'Only 5 fits both: \(\frac{1}{2} < \frac{5}{8} < 1\).'
+
+  - id: b4
+    level: 2
+    type: order
+    prompt: Put these numbers in order from **least** to **greatest**.
+    items:
+      - '\(\frac{5}{6}\)'
+      - '\(\frac{7}{6}\)'
+      - '\(1\frac{5}{6}\)'
+      - '\(\frac{13}{6}\)'
+    hints:
+      - Which one is less than 1? Start with it.
+      - 'Change \(1\frac{5}{6}\) into sixths so every number is counted in sixths.'
+    solution:
+      - 'Write every number in sixths: \(1\frac{5}{6} = \frac{6}{6} + \frac{5}{6} = \frac{11}{6}\).'
+      - 'Now compare numerators: 5, 7, 11, 13.'
+      - '\[\frac{5}{6} < \frac{7}{6} < 1\frac{5}{6} < \frac{13}{6}\]'
+
+  - id: b5
+    level: 2
+    type: mc
+    prompt: Which of these is **not** equal to 3?
+    choices:
+      - '\(\frac{3}{1}\)'
+      - '\(\frac{12}{4}\)'
+      - '\(\frac{9}{3}\)'
+      - '\(\frac{6}{3}\)'
+    answer: 3
+    feedback:
+      '0': '\(\frac{3}{1}\) means 3 wholes, so it **does** equal 3.'
+      '1': '4 fourths make 1 whole, so 12 fourths make \(12 \div 4 = 3\) wholes. It **does** equal 3.'
+      '2': '3 thirds make 1 whole, so 9 thirds make \(9 \div 3 = 3\) wholes. It **does** equal 3.'
+    hints:
+      - Divide each numerator by its denominator to find the number of wholes.
+    solution:
+      - '\(\frac{3}{1} = 3\), \(\frac{12}{4} = 3\), \(\frac{9}{3} = 3\).'
+      - '\(\frac{6}{3} = 6 \div 3 = 2\), so it is **not** equal to 3.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    type: mc
+    prompt: 'Jordan wrote \(\frac{14}{4} = 3\frac{1}{4}\). What went wrong?'
+    choices:
+      - 'The remainder is 2, not 1. It should be \(3\frac{2}{4}\).'
+      - 'Nothing. Jordan is correct.'
+      - 'It should be \(4\frac{1}{4}\), because 14 is close to 16.'
+      - 'Improper fractions cannot be written as mixed numbers.'
+    answer: 0
+    feedback:
+      '1': 'Check it: \(3\frac{1}{4}\) is \(3 \times 4 + 1 = 13\) fourths, not 14.'
+      '2': '\(4\frac{1}{4}\) is \(4 \times 4 + 1 = 17\) fourths. That is too many.'
+      '3': 'Every improper fraction can be written as a whole number or a mixed number. That is the whole point of this topic!'
+    hints:
+      - 'Work it out yourself: \(14 \div 4\) = ? R ?'
+      - 'Then check Jordan''s answer by changing \(3\frac{1}{4}\) back into fourths.'
+    solution:
+      - '\(14 \div 4 = 3 \text{ R } 2\), so \(\frac{14}{4} = 3\frac{2}{4}\).'
+      - 'Check Jordan''s answer: \(3\frac{1}{4} = 3 \times 4 + 1 = 13\) fourths, which is not 14 fourths.'
+      - Jordan used the wrong remainder.
+
+  - id: d2
+    level: 3
+    type: number
+    prompt: |-
+      A fraction has a denominator of **6**. When you write it as a mixed number, the whole-number part is **4**.
+      What is the **greatest** numerator the fraction could have?
+    answer: 29
+    verify: 4 * 6 + 5
+    hints:
+      - 'The mixed number looks like \(4\frac{?}{6}\). What is the largest the "?" can be and still be a proper fraction?'
+      - 'If it were \(4\frac{6}{6}\), that would be 5 wholes, so the fraction part can be at most \(\frac{5}{6}\).'
+    solution:
+      - 'The mixed number is \(4\frac{?}{6}\), and the fraction part must be less than 1, so the largest it can be is \(\frac{5}{6}\).'
+      - '4 wholes are \(4 \times 6 = 24\) sixths. Add 5 sixths: \(24 + 5 = 29\).'
+      - 'The greatest numerator is **29**: \(4\frac{5}{6} = \frac{29}{6}\).'
+
+  - id: d3
+    level: 3
+    type: multi
+    prompt: Select **all** the numbers that are **between 2 and 3** on a number line.
+    choices:
+      - '\(\frac{9}{4}\)'
+      - '\(\frac{5}{2}\)'
+      - '\(\frac{12}{4}\)'
+      - '\(\frac{7}{3}\)'
+      - '\(\frac{11}{6}\)'
+      - '\(2\frac{4}{5}\)'
+    answer: [0, 1, 3, 5]
+    hints:
+      - 'Change each improper fraction to a mixed number. Which ones start with "2 and a bit"?'
+      - '\(\frac{12}{4}\) and \(\frac{11}{6}\) need a closer look. Are they exactly 3? Less than 2?'
+    solution:
+      - '\(\frac{9}{4} = 2\frac{1}{4}\) ✓, \(\frac{5}{2} = 2\frac{1}{2}\) ✓, \(\frac{7}{3} = 2\frac{1}{3}\) ✓, \(2\frac{4}{5}\) ✓'
+      - '\(\frac{12}{4} = 3\) exactly, so it is not **between** 2 and 3.'
+      - '\(\frac{11}{6} = 1\frac{5}{6}\), which is less than 2.'
+
+  - id: d4
+    level: 3
+    type: open
+    prompt: |-
+      Explain why \(2\frac{3}{4}\) and \(\frac{11}{4}\) are at the **same point** on a number line.
+      Use the words **fourths** and **whole** in your answer.
+    modelAnswer: |-
+      Each whole is 4 fourths. In \(2\frac{3}{4}\) there are 2 wholes, which is 8 fourths, plus 3 more fourths,
+      so that is 11 fourths altogether. \(\frac{11}{4}\) also means 11 fourths. They are the same amount,
+      just written two ways, so they land on the same point, three fourths of the way from 2 to 3.
+    rubric:
+      - I said that one whole is 4 fourths.
+      - 'I changed \(2\frac{3}{4}\) into fourths (8 + 3 = 11) **or** \(\frac{11}{4}\) into wholes and fourths.'
+      - I explained that they are the same amount, so they are at the same point.

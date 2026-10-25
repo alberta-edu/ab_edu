@@ -1,0 +1,65 @@
+---
+import 'katex/dist/katex.min.css';
+import Base from '../layouts/Base.astro';
+import { href } from '../lib/url.ts';
+import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs.ts';
+---
+<Base
+  title="Today's review"
+  description="Spaced review of the Grade 5 topics you have practised. Topics return just before you would forget them."
+  path="review/"
+  noindex
+>
+  <div class="container container--narrow">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">Spaced review</p>
+      <h1>Today's review</h1>
+      <p class="page-hero__lede">A few quick questions on topics you have already learned, timed so they stick.</p>
+    </header>
+
+    <div data-review-root data-src={href('data/grade-5/review.json')}>
+      <p class="muted">Loading your review…</p>
+    </div>
+
+    <details class="card outcome" style="margin-top:2.5rem">
+      <summary>How review works</summary>
+      <ul>
+        <li>A topic joins your review after you solve {ENTER_AFTER_SOLVED} of its practice problems.</li>
+        <li>Each review round has {ROUND_SIZE} questions. Get {PASS_MARK} right and the topic moves up a box.</li>
+        <li>
+          Boxes wait longer each time: {INTERVALS.map((d) => `${d} day${d === 1 ? '' : 's'}`).join(', ')}. A missed round sends the topic back to box 1 so you see it again tomorrow.
+        </li>
+        <li>This is the Leitner system, a classic way to use the forgetting curve: reviewing just before you forget makes memories last longer.</li>
+      </ul>
+    </details>
+  </div>
+</Base>
+
+<script>
+  import '../client/problem-card.ts';
+  import { initReview } from '../client/review.ts';
+  initReview();
+</script>
+
+<style is:global>
+  .rv-summary { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .rv-stat { padding: 0.8rem 1rem; min-width: 9rem; }
+  .rv-stat strong { display: block; font-size: var(--step-2); line-height: 1.1; }
+  .rv-stat span { color: var(--ink-3); font-size: var(--step--1); }
+  .rv-topic-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem; margin-bottom: 1rem; }
+  .rv-topic-head h2 { margin: 0; }
+  .rv-cards { display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 0.5rem; margin-bottom: 1.25rem; scroll-snap-type: x mandatory; }
+  .flash { flex: 0 0 min(16rem, 80%); min-height: 8rem; scroll-snap-align: start; padding: 0.9rem 1rem; text-align: left; font: inherit; color: var(--ink); cursor: pointer; display: grid; align-content: center; }
+  .flash__term { font-weight: 700; font-size: var(--step-1); color: var(--accent); }
+  .flash__def { display: none; color: var(--ink-2); font-size: var(--step--1); }
+  .flash__def p { margin: 0; }
+  .flash[aria-pressed='true'] .flash__term { font-size: var(--step--1); color: var(--ink-3); }
+  .flash[aria-pressed='true'] .flash__def { display: block; }
+  .rv-list { display: grid; gap: 0.5rem; padding: 0; list-style: none; }
+  .rv-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; align-items: center; padding: 0.7rem 1rem; }
+  .rv-result { padding: 1.25rem; margin-top: 1.25rem; text-align: center; }
+  .rv-result h3 { font-size: var(--step-2); }
+  .boxes { display: inline-flex; gap: 4px; margin-left: 0.4rem; vertical-align: middle; }
+  .boxes i { width: 10px; height: 10px; border-radius: 3px; background: var(--surface-3); }
+  .boxes i.on { background: var(--accent); }
+</style>

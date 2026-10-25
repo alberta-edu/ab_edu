@@ -1,0 +1,135 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { SITE_NAME, SITE_TAGLINE, REPO_URL, SUBJECTS } from '../site.ts';
+import { href, absolute } from '../lib/url.ts';
+
+interface Props {
+  /** Page title without the site name. */
+  title: string;
+  description: string;
+  /** Path relative to the base, e.g. "grade-5/math/". */
+  path: string;
+  subject?: string;
+  jsonLd?: object[];
+  noindex?: boolean;
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, path, subject, jsonLd = [], noindex = false, ogType = 'website' } = Astro.props;
+const fullTitle = path === '' ? `${SITE_NAME}: ${SITE_TAGLINE}` : `${title} | ${SITE_NAME}`;
+const canonical = absolute(path);
+const current = (p: string) => (path.startsWith(p) ? 'page' : undefined);
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" href={href('favicon.svg')} type="image/svg+xml" />
+    <link rel="sitemap" href={href('sitemap-index.xml')} />
+    <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#131219" media="(prefers-color-scheme: dark)" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={absolute('og-default.png')} />
+    <meta property="og:locale" content="en_CA" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+    <script is:inline>
+      // Apply a saved theme before first paint to avoid a flash.
+      try {
+        const t = localStorage.getItem('abedu.theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body data-subject={subject}>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container site-header__row">
+        <a class="brand" href={href()}>
+          <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"
+            ><rect width="64" height="64" rx="14" fill="#2550c4"></rect><circle cx="32" cy="38" r="13" fill="#f2b01e"
+            ></circle><path d="M0 44c10-6 20-8 32-5s22 2 32-4v29H0z" fill="#187a50"></path><path
+              d="M0 52c12-5 24-6 36-3s20 1 28-3v22H0z"
+              fill="#0f5c3b"></path></svg
+          >
+          <span class="brand__name">{SITE_NAME}</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <a href={href('grade-5/')} aria-current={current('grade-5')}>Grade 5</a>
+          <a href={href('review/')} aria-current={current('review')}>
+            <Icon name="review" size={18} />Review<span class="nav-badge" data-due-badge hidden></span>
+          </a>
+          <a href={href('progress/')} aria-current={current('progress')}><Icon name="chart" size={18} />Progress</a>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch colour theme">
+            <Icon name="moon" size={20} />
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__grid">
+        <div>
+          <h2>{SITE_NAME}</h2>
+          <p>
+            Free practice for Alberta students, written to match the official program of studies. Independent and not
+            affiliated with the Government of Alberta or Alberta Education.
+          </p>
+        </div>
+        <div>
+          <h2>Grade 5</h2>
+          <ul>
+            {SUBJECTS.map((s) => <li><a href={href(`grade-5/${s.slug}/`)}>{s.name}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>About</h2>
+          <ul>
+            <li><a href={href('about/')}>How this site follows the curriculum</a></li>
+            <li><a href={href('about/#privacy')}>Privacy: progress stays on your device</a></li>
+            <li><a href={REPO_URL} rel="noopener">Source code</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      import { load, onChange } from '../client/progress.ts';
+      import { isDue } from '../lib/srs.ts';
+
+      const badge = document.querySelector<HTMLElement>('[data-due-badge]');
+      const updateBadge = () => {
+        if (!badge) return;
+        const due = Object.values(load().review).filter((r) => isDue(r, Date.now())).length;
+        badge.hidden = due === 0;
+        badge.textContent = String(due);
+        badge.setAttribute('aria-label', `${due} due`);
+      };
+      updateBadge();
+      onChange(updateBadge);
+
+      document.querySelector('[data-theme-toggle]')?.addEventListener('click', () => {
+        const root = document.documentElement;
+        const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+        root.dataset.theme = dark ? 'light' : 'dark';
+        try {
+          localStorage.setItem('abedu.theme', root.dataset.theme);
+        } catch {}
+      });
+    </script>
+  </body>
+</html>

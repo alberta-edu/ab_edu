@@ -1,0 +1,371 @@
+id: latitude-longitude
+grade: 5
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [o2GVcXJJMUSbV-t0cuKi8A]
+order: 3
+title: Latitude, Longitude and Where Civilizations Grew
+shortTitle: Latitude, longitude & early civilizations
+summary: >-
+  Find any place on Earth with latitude and longitude, then discover why ancient civilizations
+  grew beside rivers and coasts, from Egypt to China.
+
+bigIdea: |-
+  Every place on Earth has an address made of two numbers: **latitude** (how far **north or south** of the
+  equator) and **longitude** (how far **east or west** of the prime meridian). Use these addresses on a map
+  and a pattern appears: the first great civilizations grew where there was **fresh water**, **fertile soil**
+  and a **moderate climate**, mostly in **river valleys** and along **coastlines**.
+
+lesson:
+  - type: visual
+    component: latlong-map
+    heading: Explore the map
+    props: { view: world, quest: true }
+    caption: |-
+      Move your finger or mouse over the map to read the coordinates. Tap a place name to learn about its river
+      or coast. Then press **Start** for the Coordinate Quest and find each civilization from its coordinates.
+
+  - type: section
+    heading: 'Latitude: how far north or south'
+    body: |-
+      Lines of **latitude** run **east–west** around the globe, like the rungs of a ladder. 🪜 Climb up the
+      ladder to go north, and down to go south.
+      - The **equator** is 0°. It circles the middle of Earth.
+      - Latitude goes up to **90°N** at the North Pole and **90°S** at the South Pole.
+      - Places north of the equator are in the **Northern Hemisphere**. Alberta is there.
+
+  - type: section
+    heading: 'Longitude: how far east or west'
+    body: |-
+      Lines of **longitude** run from the **North Pole to the South Pole**.
+      - The **prime meridian** is 0°. It passes through Greenwich, in London, England.
+      - Longitude goes up to **180°** east and **180°** west, which meet on the other side of the world.
+      - Places west of the prime meridian are in the **Western Hemisphere**. All of Canada is there.
+
+  - type: example
+    title: Reading coordinates
+    problem: Find the coordinates of Memphis, the ancient capital of Egypt.
+    steps:
+      - '**Latitude first.** Memphis is about 30° north of the equator → **30°N**.'
+      - '**Then longitude.** Memphis is about 31° east of the prime meridian → **31°E**.'
+      - 'Write latitude first, then longitude: **30°N, 31°E**. Always include N or S and E or W, or the address could point to four different places!'
+    answer: Memphis is at about **30°N, 31°E**.
+
+  - type: table
+    heading: Where ancient civilizations grew
+    caption: Coordinates are rounded to the nearest degree.
+    headers: [Civilization, City, Coordinates, Water and land]
+    rows:
+      - ['Ancient Egypt', 'Memphis', '30°N, 31°E', 'Nile River']
+      - ['Mesopotamia', 'Babylon', '33°N, 44°E', 'Tigris and Euphrates rivers']
+      - ['Indus Valley (ancient India)', 'Mohenjo-daro', '27°N, 68°E', 'Indus River']
+      - ['Ancient China', 'Anyang', '36°N, 114°E', 'Yellow River']
+      - ['Ancient Greece', 'Athens', '38°N, 24°E', 'Aegean Sea coast']
+      - ['Ancient Rome', 'Rome', '42°N, 12°E', 'Tiber River, near the Mediterranean Sea']
+      - ['Nabataean Arabs', 'Petra', '30°N, 35°E', 'Desert trade routes, with rainwater channels']
+
+  - type: section
+    heading: Why rivers and coasts?
+    body: |-
+      - **Fresh water** for drinking, cooking, animals and crops.
+      - **Fertile soil.** Rivers like the Nile flooded and left rich mud (silt) on their banks.
+      - **A moderate climate**, not too cold, so crops could grow for much of the year.
+      - **Plenty of food.** Farming made more food than families needed, so people could **settle** in one place,
+        and villages grew into cities.
+      - **Travel and trade.** Rivers, seas and bays were "highways" for boats carrying people and goods.
+
+  - type: callout
+    variant: connection
+    title: Spot the pattern
+    body: |-
+      Every civilization in the table is between about **27°N and 42°N**. Edmonton is at about **54°N**, much
+      farther north, with long, cold winters and a short growing season.
+
+  - type: section
+    heading: When the environment changes
+    body: |-
+      Changes in the environment can force people to **adapt or move**. In 79 CE, the volcano Mount Vesuvius
+      erupted and buried the Roman towns of Pompeii and Herculaneum, and survivors had to start over in other
+      towns.
+
+      People also **change the environment** to meet their needs. Mesopotamian farmers dug canals to carry river
+      water to their fields (**irrigation**). Romans built **aqueducts** to carry fresh water from the hills into
+      their cities. In dry Petra, the Nabataeans carved channels and storage tanks to catch rare rainwater.
+
+  - type: callout
+    variant: tip
+    title: A third way to describe location
+    body: |-
+      **Elevation** is how high a place is above sea level. Calgary is about 1 000 m above sea level, while the
+      land near the mouth of the Nile is only a few metres above it.
+
+keyTerms:
+  - term: Latitude
+    definition: How far north or south a place is from the equator, measured in degrees (0° to 90°).
+  - term: Longitude
+    definition: How far east or west a place is from the prime meridian, measured in degrees (0° to 180°).
+  - term: Equator
+    definition: The line of 0° latitude that circles the middle of Earth.
+  - term: Prime meridian
+    definition: The line of 0° longitude, running from pole to pole through Greenwich, England.
+  - term: Hemisphere
+    definition: Half of Earth. The equator splits it into Northern and Southern; the prime meridian and 180° split it into Eastern and Western.
+  - term: Fertile soil
+    definition: Rich soil that is good for growing crops.
+  - term: Irrigation
+    definition: Bringing water to fields through canals or ditches so crops can grow.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    type: mc
+    prompt: Lines of **latitude** tell you how far a place is…
+    choices:
+      - north or south of the equator.
+      - east or west of the prime meridian.
+      - above sea level.
+      - from the nearest river.
+    answer: 0
+    feedback:
+      '1': 'That describes **longitude**. Remember the ladder: latitude lines are the rungs you climb up (north) and down (south).'
+      '2': Height above sea level is **elevation**.
+      '3': Latitude is measured from the equator, not from rivers.
+    hints:
+      - Latitude lines are like the rungs of a ladder. Which way do you move when you climb a ladder?
+    solution:
+      - Latitude measures distance **north or south** of the equator (0°), up to 90° at each pole.
+
+  - id: w2
+    level: 1
+    type: mc
+    prompt: What is the latitude of the **equator**?
+    choices: ['0°', '45°', '90°', '180°']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 45° is halfway between the equator and a pole.
+      '2': 90° is the latitude of the North Pole (90°N) and the South Pole (90°S).
+      '3': Latitude never goes above 90°. 180° is a **longitude**.
+    hints:
+      - Latitude is measured starting **from** the equator.
+    solution:
+      - The equator is where latitude starts, so it is **0°**.
+
+  - id: w3
+    level: 1
+    type: mc
+    prompt: A city is at **30°N, 31°E**. Which hemispheres is it in?
+    choices:
+      - Northern and Eastern
+      - Northern and Western
+      - Southern and Eastern
+      - Southern and Western
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The E in 31°E means **east** of the prime meridian, so it is in the Eastern Hemisphere.
+      '2': The N in 30°N means **north** of the equator, so it is in the Northern Hemisphere.
+      '3': Both letters are wrong here. N means north and E means east.
+    hints:
+      - N means north of the equator. E means east of the prime meridian.
+    solution:
+      - '30°**N** → Northern Hemisphere. 31°**E** → Eastern Hemisphere.'
+      - This is Memphis, in ancient Egypt.
+
+  - id: w4
+    level: 1
+    type: mc
+    prompt: Why did many ancient civilizations grow in **river valleys**?
+    choices:
+      - Rivers gave fresh water and fertile soil for farming.
+      - Rivers protected them from every enemy.
+      - River valleys were the only places with no weather.
+      - River valleys were always cold, which kept food fresh.
+    answer: 0
+    feedback:
+      '1': Rivers sometimes helped with defence, but enemies could still attack. The main reason was farming.
+      '2': Every place has weather. River valleys often had a **moderate** climate that was good for crops.
+      '3': Many early river valleys were warm, like the Nile valley in Egypt. Warmth helped crops grow.
+    hints:
+      - What do farmers need most to grow crops?
+    solution:
+      - Farmers need **water** and **good soil**. River valleys had both, plus a moderate climate.
+      - Plenty of food let people settle in one place and build cities.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    type: mc
+    prompt: Use the table in the lesson. Which civilization grew closest to **36°N, 114°E**?
+    choices:
+      - Ancient China, on the Yellow River
+      - The Indus Valley, on the Indus River
+      - Ancient Greece, on the Aegean coast
+      - Ancient Egypt, on the Nile River
+    answer: 0
+    feedback:
+      '1': The Indus Valley is near 27°N, 68°E. Its longitude is much smaller than 114°E.
+      '2': Athens is near 38°N, 24°E. The latitude is close, but the longitude is far off.
+      '3': Memphis is near 30°N, 31°E, far to the west of 114°E.
+    hints:
+      - Match the **longitude** first. Which city is about 114° east?
+    solution:
+      - Anyang, a capital of ancient China, is at about **36°N, 114°E**, beside the Yellow River.
+
+  - id: b2
+    level: 2
+    type: mc
+    prompt: Which coordinates are closest to **Edmonton, Alberta**?
+    choices:
+      - '54°N, 113°W'
+      - '54°N, 113°E'
+      - '54°S, 113°W'
+      - '113°N, 54°W'
+    answer: 0
+    feedback:
+      '1': 113°**E** would be east of the prime meridian, in Asia. Canada is in the **Western** Hemisphere.
+      '2': 54°**S** would be far south of the equator, in the southern Pacific Ocean. Alberta is in the **Northern** Hemisphere.
+      '3': Latitude can never be more than 90°, because 90° is the pole. And latitude is written first.
+    hints:
+      - Is Alberta north or south of the equator? East or west of the prime meridian?
+    solution:
+      - Alberta is **north** of the equator and **west** of the prime meridian.
+      - So Edmonton is at about **54°N, 113°W** (latitude first).
+
+  - id: b3
+    level: 2
+    type: order
+    prompt: Put these ancient cities in order from **farthest south** to **farthest north**.
+    items:
+      - 'Mohenjo-daro (27°N)'
+      - 'Memphis (30°N)'
+      - 'Babylon (33°N)'
+      - 'Athens (38°N)'
+      - 'Rome (42°N)'
+    hints:
+      - In the Northern Hemisphere, a bigger latitude number means farther north.
+    solution:
+      - 'Smaller °N = closer to the equator = farther south.'
+      - 'Mohenjo-daro (27°) → Memphis (30°) → Babylon (33°) → Athens (38°) → Rome (42°)'
+
+  - id: b4
+    level: 2
+    type: mc
+    prompt: Ancient Greece had mountains and very little flat farmland. How did this geography shape the way Greeks lived?
+    choices:
+      - Many Greeks turned to the sea for fishing, travel and trade.
+      - Greeks stopped eating food from farms.
+      - Greeks moved to the Nile River valley.
+      - The mountains made it easy to grow lots of wheat.
+    answer: 0
+    feedback:
+      '1': Greeks still farmed, growing crops like olives and grapes on hillsides. But farmland was limited.
+      '2': Greek city-states stayed in Greece and around the Mediterranean. The Nile valley was Egypt.
+      '3': Mountains make farming **harder**, not easier. Flat river valleys are best for large wheat fields.
+    hints:
+      - Look at the map. What surrounds Greece on almost every side?
+    solution:
+      - Greece is surrounded by the sea, and its long coastline has many bays.
+      - With little flat farmland, many Greeks used the sea for **fishing**, **travel** and **trade** with other peoples.
+
+  - id: b5
+    level: 2
+    type: mc
+    prompt: The Romans built **aqueducts** to carry fresh water from the hills into their cities. This is an example of…
+    choices:
+      - people changing the environment to meet their needs.
+      - a natural disaster changing the environment.
+      - people moving away because the environment changed.
+      - a trade route between civilizations.
+    answer: 0
+    feedback:
+      '1': A natural disaster happens without people causing it, like a volcanic eruption. Aqueducts were built on purpose.
+      '2': The Romans didn't move. They brought the water to where they lived.
+      '3': Aqueducts carried water, not trade goods between civilizations.
+    hints:
+      - Who built the aqueducts, and why?
+    solution:
+      - People built aqueducts on purpose so cities could have fresh water.
+      - This is people **changing the environment to meet their needs**, like irrigation canals in Mesopotamia.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    type: mc
+    prompt: You start in Rome at **42°N, 12°E** and travel **10° due west**, staying on the same line of latitude. Where are you now?
+    choices: ['42°N, 2°E', '42°N, 22°E', '32°N, 12°E', '52°N, 12°E']
+    answer: 0
+    feedback:
+      '1': Rome is **east** of the prime meridian. Going west moves you **toward** 0°, so the east number gets smaller, not bigger.
+      '2': Going west changes your **longitude**, not your latitude. Latitude only changes when you go north or south.
+      '3': Going west changes your **longitude**, not your latitude.
+    hints:
+      - Which number changes when you move east or west?
+      - In the Eastern Hemisphere, moving west takes you closer to the prime meridian (0°).
+    solution:
+      - Moving west changes only the **longitude**. Latitude stays 42°N.
+      - 'Rome is 12° **east** of the prime meridian. Going 10° west brings you closer to 0°: \(12 - 10 = 2\).'
+      - You are at **42°N, 2°E**, in northeastern Spain.
+
+  - id: d2
+    level: 3
+    type: mc
+    prompt: |-
+      Petra had **no large river**, yet thousands of people lived there for hundreds of years.
+      Which is the **best** explanation?
+    choices:
+      - The Nabataeans built channels and tanks to save rainwater, and grew rich from trade caravans.
+      - Petra is near the equator, so it rained there every day.
+      - The people of Petra did not need water.
+      - Petra was built beside the Nile River.
+    answer: 0
+    feedback:
+      '1': Petra is at about 30°N, the same latitude as Egypt's desert, not near the equator. It gets very little rain.
+      '2': Every community needs water. The question is how Petra **got** it.
+      '3': Check the map. Petra is east of Egypt, far from the Nile.
+    hints:
+      - Look at Petra on the map, and reread "When the environment changes".
+    solution:
+      - Without a river, the Nabataeans **changed their environment**, carving channels and storage tanks to catch rare rainwater.
+      - Petra also sat on desert **trade routes**, so trade, not farming, made it rich.
+
+  - id: d3
+    level: 3
+    type: mc
+    prompt: |-
+      A classmate says: "Edmonton is farther north than Rome, so it must have a better climate for growing crops
+      all year long." What is the best response?
+    choices:
+      - Places farther north are usually colder, with a shorter growing season, so this reasoning doesn't work.
+      - It's true, because places farther north are closer to the Sun.
+      - It's true, because Edmonton is on a river.
+      - Latitude has nothing to do with climate.
+    answer: 0
+    feedback:
+      '1': Moving north doesn't bring you closer to the Sun in any way that warms you. Higher latitudes get less direct sunlight and are colder.
+      '2': Edmonton is on the North Saskatchewan River, but a river can't make long, cold winters warm enough for crops all year.
+      '3': Latitude matters a lot. Places near the poles are cold and places near the equator are warm.
+    hints:
+      - What are winters like in Edmonton? Could crops grow outside in January?
+    solution:
+      - Edmonton (about 54°N) is much farther from the equator than Rome (42°N).
+      - Higher latitudes are generally **colder**, with long winters and a **shorter growing season**.
+      - Being farther north makes year-round farming **harder**, not easier.
+
+  - id: d4
+    level: 3
+    type: open
+    prompt: |-
+      It is 5 000 years ago and you are choosing where to start a farming village: in a **river valley** or on a
+      **dry, rocky hilltop**. Make your choice and explain it using at least **two geographical features**.
+    modelAnswer: |-
+      I would choose the river valley. First, the river gives fresh water for drinking and for watering crops.
+      Second, when the river floods it leaves fertile soil that is good for farming. The river could also be
+      used to travel and trade with other villages by boat. The hilltop has poor, rocky soil and no water. One
+      risk in the valley is a big flood, so I would build my houses on higher ground near the river.
+    rubric:
+      - I made a clear choice.
+      - I explained at least **two** geographical features (such as fresh water, fertile soil, climate, or travel by water).
+      - I connected the features to farming or to people's needs.
+      - I mentioned a possible problem or risk (bonus thinking!).

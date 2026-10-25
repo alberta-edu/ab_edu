@@ -1,0 +1,260 @@
+---
+import 'katex/dist/katex.min.css';
+import Base from '../../../layouts/Base.astro';
+import LessonBlock from '../../../components/LessonBlock.astro';
+import Icon from '../../../components/Icon.astro';
+import { conceptsFor, findOutcome, conceptPath, curriculum } from '../../../lib/content.ts';
+import { renderProblem, levelBadge, conceptKey } from '../../../lib/problem-html.ts';
+import { md } from '../../../lib/render.ts';
+import { SUBJECTS, LEVELS, UNLOCK_AFTER, SITE_NAME } from '../../../site.ts';
+import type { Concept } from '../../../lib/schema.ts';
+import { href, absolute } from '../../../lib/url.ts';
+
+export function getStaticPaths() {
+  return SUBJECTS.flatMap((s) => {
+    const list = conceptsFor(s.slug);
+    return list.map((c, i) => ({
+      params: { subject: s.slug, concept: c.id },
+      props: { concept: c, prev: list[i - 1] ?? null, next: list[i + 1] ?? null },
+    }));
+  });
+}
+
+interface Props {
+  concept: Concept;
+  prev: Concept | null;
+  next: Concept | null;
+}
+const { concept: c, prev, next } = Astro.props;
+const subject = SUBJECTS.find((s) => s.slug === c.subject)!;
+const outcomes = c.outcomes.map((code) => findOutcome(c.grade, c.subject, code));
+const strand = curriculum(c.grade, c.subject).organizingIdeas.find((o) => o.code === c.organizingIdea)!;
+const path = conceptPath(c);
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const anchors = c.lesson.map((b) =>
+  b.type === 'section' || (b.type === 'visual' && b.heading) || (b.type === 'table' && b.heading)
+    ? slug(b.heading!)
+    : b.type === 'passage' || b.type === 'experiment'
+      ? slug(b.title)
+      : undefined,
+);
+const toc = c.lesson
+  .map((b, i) => ({ id: anchors[i], label: 'heading' in b && b.heading ? b.heading : 'title' in b ? b.title : '' }))
+  .filter((t) => t.id && t.label && !c.lesson.find((b) => b.type === 'example' && b.title === t.label));
+
+let number = 0;
+const levels = ([1, 2, 3] as const).map((level) => ({
+  level,
+  info: LEVELS[level],
+  html: c.problems
+    .filter((p) => p.level === level)
+    .map((p) => renderProblem(c, p, ++number))
+    .join(''),
+  count: c.problems.filter((p) => p.level === level).length,
+}));
+const levelText = {
+  1: `Check the basics. Solve ${UNLOCK_AFTER} to unlock Build.`,
+  2: `Use the idea in new ways. Solve ${UNLOCK_AFTER} to unlock Deep Think.`,
+  3: 'Tricky problems that need careful reasoning. Take your time: this is where your brain grows.',
+} as const;
+const showCode = (code: string) => /-LO\d/.test(code);
+
+const title = `${c.title}: Grade 5 ${subject.shortName} (Alberta)`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    name: c.title,
+    description: c.summary,
+    url: absolute(path),
+    inLanguage: 'en-CA',
+    isAccessibleForFree: true,
+    educationalLevel: 'Grade 5',
+    learningResourceType: ['Lesson', 'Practice problems'],
+    audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+    about: subject.name,
+    teaches: c.keyTerms.map((t) => t.term),
+    publisher: { '@type': 'Organization', name: SITE_NAME },
+    educationalAlignment: outcomes.map((o) => ({
+      '@type': 'AlignmentObject',
+      alignmentType: 'teaches',
+      educationalFramework: 'Alberta Program of Studies',
+      targetName: o.outcome,
+      targetDescription: `${subject.name}, Grade 5, ${o.organizingIdea.title}`,
+      ...(showCode(o.code) ? { targetUrl: 'https://curriculum.learnalberta.ca/curriculum/en', alternateName: o.code } : {}),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Grade 5', item: absolute('grade-5/') },
+      { '@type': 'ListItem', position: 2, name: subject.name, item: absolute(`grade-5/${subject.slug}/`) },
+      { '@type': 'ListItem', position: 3, name: c.shortTitle, item: absolute(path) },
+    ],
+  },
+];
+---
+<Base title={title} description={c.summary} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={href('grade-5/')}>Grade 5</a></li>
+        <li><a href={href(`grade-5/${subject.slug}/`)}>{subject.name}</a></li>
+        <li aria-current="page">{c.shortTitle}</li>
+      </ol>
+    </nav>
+
+    <div class="concept-layout">
+      <article class="concept-main" data-concept={conceptKey(c)} id="concept">
+        <header class="page-hero">
+          <p class="page-hero__eyebrow">Grade 5 {subject.shortName} · {strand.title}</p>
+          <h1>{c.title}</h1>
+          <p class="page-hero__lede">{c.summary}</p>
+          <div class="control-row">
+            <span class="chip">{c.problems.length} practice problems</span>
+            <span class="chip">3 levels</span>
+            <a class="btn btn--primary btn--small" href="#practice">Jump to practice <Icon name="arrow" size={16} /></a>
+          </div>
+        </header>
+
+        <details class="card outcome">
+          <summary>Alberta curriculum: what this page covers</summary>
+          <ul>
+            {
+              outcomes.map((o) => (
+                <li>
+                  <strong>{o.outcome}</strong> {showCode(o.code) && <span class="outcome__code">({o.code})</span>}
+                  <br />
+                  <span class="muted">Guiding question: {o.guidingQuestion}</span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="muted" style="margin:0.6rem 0 0">
+            Source: Alberta Education, Program of Studies (New LearnAlberta). <a href={href('about/')}>How we align</a>.
+          </p>
+        </details>
+
+        <div class="big-idea">
+          <div class="big-idea__label">Big idea</div>
+          <Fragment set:html={md(c.bigIdea)} />
+        </div>
+
+        {c.lesson.map((block, i) => <LessonBlock block={block} concept={c} anchor={anchors[i]} />)}
+
+        <section class="lesson-block" aria-labelledby="key-terms">
+          <h2 id="key-terms">Key terms</h2>
+          <dl class="terms">
+            {
+              c.keyTerms.map((t) => (
+                <div class="card term">
+                  <dt>{t.term}</dt>
+                  <dd set:html={md(t.definition)} />
+                </div>
+              ))
+            }
+          </dl>
+        </section>
+
+        <section class="lesson-block" id="practice" aria-labelledby="practice-title">
+          <div class="practice-intro">
+            <h2 id="practice-title" class="section-title" style="margin:0">Practice</h2>
+            <span class="muted" style="font-size:var(--step--1)">
+              Hints and worked solutions are always there. Your progress is saved on this device.
+            </span>
+          </div>
+          {
+            levels.map((l) => (
+              <section class="level-section" data-level={l.level} id={`level-${l.level}`} aria-labelledby={`level-${l.level}-title`}>
+                <div class="level-head">
+                  <h3 id={`level-${l.level}-title`}>
+                    <Fragment set:html={levelBadge(l.level)} />
+                    <span class="sr-only">Level {l.level}</span>
+                  </h3>
+                  <span class="level-head__count" data-level-count>
+                    0 / {l.count} solved
+                  </span>
+                  <p>{levelText[l.level]}</p>
+                  <div class="level-meter" aria-hidden="true">
+                    <span data-level-meter />
+                  </div>
+                </div>
+                {l.level > 1 && (
+                  <div class="level-lock">
+                    <Icon name="lock" />
+                    <p>
+                      Solve {UNLOCK_AFTER} {LEVELS[(l.level - 1) as 1 | 2].name} problems to unlock this level. Feeling confident?
+                    </p>
+                    <button type="button" class="btn btn--ghost btn--small" data-unlock>
+                      Try it now
+                    </button>
+                  </div>
+                )}
+                <div class="level-problems" set:html={l.html} />
+              </section>
+            ))
+          }
+        </section>
+
+        <nav class="grid" aria-label="More concepts" style="margin-top:3rem">
+          {
+            prev && (
+              <a class="card concept-card" href={href(conceptPath(prev))}>
+                <span class="concept-card__body">
+                  <span class="concept-card__sub">← Previous</span>
+                  <span class="concept-card__title">{prev.shortTitle}</span>
+                </span>
+              </a>
+            )
+          }
+          <a class="card concept-card" href={href(`grade-5/${subject.slug}/`)}>
+            <span class="concept-card__body">
+              <span class="concept-card__sub">All topics</span>
+              <span class="concept-card__title">Grade 5 {subject.shortName}</span>
+            </span>
+          </a>
+          {
+            next && (
+              <a class="card concept-card" href={href(conceptPath(next))}>
+                <span class="concept-card__body">
+                  <span class="concept-card__sub">Next →</span>
+                  <span class="concept-card__title">{next.shortTitle}</span>
+                </span>
+              </a>
+            )
+          }
+        </nav>
+      </article>
+
+      <aside class="concept-aside" aria-label="On this page">
+        <nav class="card toc">
+          <h2>On this page</h2>
+          <ol>
+            {toc.map((t) => <li><a href={`#${t.id}`}>{t.label}</a></li>)}
+            <li><a href="#key-terms">Key terms</a></li>
+            <li><a href="#practice">Practice</a></li>
+          </ol>
+          <div class="toc__levels">
+            {
+              levels.map((l) => (
+                <a class="toc__level" href={`#level-${l.level}`} data-toc-level={l.level}>
+                  <Fragment set:html={levelBadge(l.level)} />
+                  <span data-toc-count>0/{l.count}</span>
+                </a>
+              ))
+            }
+          </div>
+        </nav>
+      </aside>
+    </div>
+  </div>
+  <div class="celebrate" aria-live="polite" data-celebrate></div>
+</Base>
+
+<script>
+  import '../../../client/problem-card.ts';
+  import { initPractice } from '../../../client/practice.ts';
+  initPractice();
+</script>
