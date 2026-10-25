@@ -21,9 +21,12 @@ commands, and [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md) before writing any 
 
 1. `npm run check` passes (content verification, unit tests and production build).
 2. `npm run audit` is re-run if content changed, so `docs/curriculum-audit.md` is current.
-3. New or changed pages have been looked at in `npm run preview`, on both phone and
+3. The **Where we are now** section and the phase **Status** column in
+   [docs/PLAN.md](docs/PLAN.md) are up to date, including the list of branches waiting for
+   review.
+4. New or changed pages have been looked at in `npm run preview`, on both phone and
    desktop widths.
-4. Tell the owner the branch name, what changed and what to check.
+5. Tell the owner the branch name, what changed and what to check.
 
 ## Content rules
 
