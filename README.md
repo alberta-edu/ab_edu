@@ -53,8 +53,9 @@ docs/CONTENT-GUIDE.md   How to write a concept
 
 ## Workflow
 
-All work happens on feature branches. Each branch is reviewed and verified by the owner
-before it is merged into `main`, which is the branch that deploys.
+All work happens on feature branches, never directly on `main`. Each branch is reviewed
+and verified by the owner before it is merged into `main`, which is the branch that
+deploys. See [CLAUDE.md](CLAUDE.md) for the full rules.
 
 ## Deploying
 
