@@ -36,7 +36,6 @@ const first = framesFor(examples[0]);
 
 <style is:global>
   column-calc { display: block; }
-  .cc-examples { margin-bottom: 0.8rem; flex-wrap: wrap; }
   .cc-board { display: grid; gap: 1rem; align-items: center; padding: 1rem; border-radius: var(--radius); background: var(--surface-2); }
   @media (min-width: 40rem) { .cc-board { grid-template-columns: auto 1fr; } }
   .cc-stage { justify-self: center; overflow-x: auto; max-width: 100%; }
@@ -56,10 +55,6 @@ const first = framesFor(examples[0]);
   .cc-roof { border-top: 3px solid var(--ink); }
   .cc-bracket { border-right: 3px solid var(--ink); border-radius: 0 0 0 0; }
   .cc-grid--div .cc-bracket { border-top-right-radius: 10px; }
-  .cc-caption { margin: 0; font-size: var(--step-1); font-weight: 700; color: var(--ink); min-height: 3.2em; }
-  .cc-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.75rem; }
-  .cc-count { font-weight: 700; color: var(--ink-3); font-size: var(--step--1); margin-inline: 0.25rem; }
-  @keyframes cc-pop { from { transform: scale(1.5); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .cc-new { animation: none; } }
 </style>
 

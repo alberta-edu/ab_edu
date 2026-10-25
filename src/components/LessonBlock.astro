@@ -17,6 +17,9 @@ import DecimalZoom from './visuals/DecimalZoom.astro';
 import Divisibility from './visuals/Divisibility.astro';
 import FractionAdd from './visuals/FractionAdd.astro';
 import RatioExplorer from './visuals/RatioExplorer.astro';
+import ExpressionSteps from './visuals/ExpressionSteps.astro';
+import MysteryBags from './visuals/MysteryBags.astro';
+import BalanceScale from './visuals/BalanceScale.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -27,6 +30,9 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'balance-scale': BalanceScale,
+  'mystery-bags': MysteryBags,
+  'expression-steps': ExpressionSteps,
   'ratio-explorer': RatioExplorer,
   'fraction-add': FractionAdd,
   divisibility: Divisibility,

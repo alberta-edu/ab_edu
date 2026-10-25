@@ -1,0 +1,303 @@
+id: algebraic-expressions
+grade: 5
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT5-OI2-GQ1-LO1]
+order: 9
+title: Variables and Algebraic Expressions
+shortTitle: Algebraic expressions
+summary: >-
+  Use letters as variables for unknown values, write algebraic expressions with coefficients and
+  constant terms, and evaluate them by substituting a number.
+
+bigIdea: |-
+  A **variable** is a letter that stands for an **unknown value**. An **algebraic expression** uses
+  variables, like \(3n + 2\): 3 bags with \(n\) marbles each, plus 2 loose marbles. To **evaluate** it,
+  replace the variable with a number.
+
+lesson:
+  - title: Mystery bags
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, U2.1, S2.1, S2.6]
+        component: mystery-bags
+        props: { letter: n, examples: [{ bags: 3, loose: 2 }, { bags: 2 }, { bags: 1, loose: 5 }, { split: 4 }] }
+        caption: Each bag holds the same unknown number, \(n\). Tick **Open the bags** and slide \(n\) to evaluate the expression.
+      - type: text
+        covers: [S2.1, S2.2]
+        body: '\(n + n + n\) is 3 groups of \(n\), written \(3n\). The **3** is the **coefficient**.'
+
+  - title: Writing expressions
+    blocks:
+      - type: table
+        covers: [K2.3, K2.4, S2.2, S2.3, S2.5]
+        headers: [In words, Expression]
+        rows:
+          - ['3 times a number \(n\)', '\(3n\) (no × sign)']
+          - ['a number \(n\) divided by 4', '\(\frac{n}{4}\) (a fraction)']
+          - ['5 more than a number \(n\)', '\(n + 5\)']
+          - ['2 times a number \(n\), plus 1', '\(2n + 1\)']
+      - type: callout
+        variant: mistake
+        covers: [K2.3]
+        title: Write the number first
+        body: '"3 times \(n\)" is written \(3n\), never \(n3\). There is no × sign between a number and a variable.'
+
+  - title: The parts of an expression
+    blocks:
+      - type: compare
+        covers: [K2.5, K2.6, U2.2, S2.4]
+        columns:
+          - title: Algebraic term
+            body: |-
+              \[3n\]
+              A **coefficient** (3) times a **variable** (\(n\)).
+          - title: Constant term
+            body: |-
+              \[7\]
+              Just a number.
+          - title: Two terms
+            body: |-
+              \[3n + 7\]
+              An algebraic term **plus** a constant term.
+      - type: callout
+        variant: tip
+        covers: [S2.4]
+        title: One term or two?
+        body: '\(3n\), \(\frac{n}{4}\) and \(7\) are each a **single term**. \(3n + 7\) has **two** terms.'
+
+  - title: Evaluate by substituting
+    blocks:
+      - type: example
+        covers: [K2.7, S2.6]
+        title: Evaluate 3n + 2 when n = 4
+        problem: 'Find the value of \(3n + 2\) when \(n = 4\).'
+        steps:
+          - 'Replace \(n\) with 4: \(3n + 2\) becomes \(3 \times 4 + 2\).'
+          - 'Multiply first: \(12 + 2 = 14\).'
+        answer: 'When \(n = 4\), \(3n + 2 = 14\).'
+      - type: example
+        covers: [S2.5]
+        title: An expression for a situation
+        problem: Pencils come in packs of \(p\). Ms. Lee buys **5 packs** and **3 loose pencils**. Write an expression for the number of pencils.
+        steps:
+          - '5 packs of \(p\) is \(5p\).'
+          - 'Add the 3 loose pencils: \(5p + 3\).'
+        answer: '\(5p + 3\)'
+
+keyTerms:
+  - term: Variable
+    covers: [K2.2]
+    definition: 'A letter, like \(n\), that stands for an unknown value.'
+  - term: Algebraic expression
+    covers: [K2.1]
+    definition: 'An expression with a variable, like \(3n + 2\).'
+  - term: Coefficient
+    covers: [K2.5]
+    definition: 'The number multiplied by a variable. In \(3n\), it is 3.'
+  - term: Constant term
+    covers: [K2.6]
+    definition: 'A term that is just a number, like 2 in \(3n + 2\).'
+  - term: Substitute
+    covers: [K2.7]
+    definition: Replace a variable with a number to evaluate an expression.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.5]
+    type: mc
+    prompt: 'In \(4n + 7\), what is the **coefficient**?'
+    choices: ['4', '\(n\)', '7', '11']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '\(n\) is the **variable**.'
+      '2': '7 is the **constant term**.'
+      '3': '4 and 7 are different kinds of terms. You can''t add them.'
+    hints:
+      - The coefficient is the number multiplied by the variable.
+    solution:
+      - '\(4n\) means 4 times \(n\), so the coefficient is **4**.'
+
+  - id: w2
+    level: 1
+    covers: [S2.1, S2.2]
+    type: mc
+    prompt: 'How do you write \(n + n + n\) using a coefficient?'
+    choices: ['\(3n\)', '\(n + 3\)', '\(3 + n\)', '\(n3\)']
+    answer: 0
+    feedback:
+      '1': '\(n + 3\) means 3 more than \(n\), not 3 groups of \(n\).'
+      '2': '\(3 + n\) is the same as \(n + 3\).'
+      '3': 'The coefficient is written **before** the variable.'
+    hints:
+      - How many \(n\)'s are being added?
+    solution:
+      - 'Three \(n\)''s added together is \(3n\).'
+
+  - id: w3
+    level: 1
+    covers: [K2.7, S2.6]
+    type: number
+    prompt: 'Evaluate \(5m\) when \(m = 6\).'
+    answer: 30
+    verify: 5 * 6
+    hints:
+      - '\(5m\) means 5 times \(m\).'
+    solution:
+      - '\(5m = 5 \times 6 = 30\)'
+
+  - id: w4
+    level: 1
+    covers: [K2.4, S2.3]
+    type: mc
+    prompt: 'How do you write "a number \(n\) divided by 4"?'
+    choices: ['\(\frac{n}{4}\)', '\(\frac{4}{n}\)', '\(4n\)', '\(n - 4\)']
+    answer: 0
+    feedback:
+      '1': 'That is 4 divided by \(n\). The number being divided goes on top.'
+      '2': 'That is 4 **times** \(n\).'
+      '3': 'That is 4 **less than** \(n\).'
+    hints:
+      - Quotients with variables are written as fractions.
+    solution:
+      - '\(n\) divided by 4 is \(\frac{n}{4}\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S2.6]
+    type: number
+    prompt: 'Evaluate \(2k + 9\) when \(k = 7\).'
+    answer: 23
+    verify: 2 * 7 + 9
+    hints:
+      - 'Replace \(k\) with 7, then multiply before adding.'
+    solution:
+      - '\(2k + 9 = 2 \times 7 + 9 = 14 + 9 = 23\)'
+
+  - id: b2
+    level: 2
+    covers: [U2.2, S2.4]
+    type: mc
+    prompt: Which expression has **two** terms?
+    choices: ['\(3a + 5\)', '\(7a\)', '\(\frac{a}{2}\)', '\(12\)']
+    answer: 0
+    feedback:
+      '1': '\(7a\) is a single algebraic term.'
+      '2': 'A quotient with a variable is a single term.'
+      '3': 'A number on its own is a single constant term.'
+    hints:
+      - Look for a plus sign joining two parts.
+    solution:
+      - '\(3a + 5\) is an algebraic term (\(3a\)) plus a constant term (5): **two** terms.'
+
+  - id: b3
+    level: 2
+    covers: [S2.5]
+    type: mc
+    prompt: 'Which expression means "5 more than 3 times a number \(b\)"?'
+    choices: ['\(3b + 5\)', '\(5b + 3\)', '\(3 + b + 5\)', '\(8b\)']
+    answer: 0
+    feedback:
+      '1': 'That is 3 more than 5 times \(b\).'
+      '2': 'That adds \(b\) only once, not 3 times.'
+      '3': 'You can''t combine 3 times \(b\) and 5 into \(8b\).'
+    hints:
+      - '"3 times b" comes first, then add 5.'
+    solution:
+      - '3 times \(b\) is \(3b\). 5 more than that is \(3b + 5\).'
+
+  - id: b4
+    level: 2
+    covers: [K2.4, S2.6]
+    type: number
+    prompt: 'Evaluate \(\frac{n}{3}\) when \(n = 27\).'
+    answer: 9
+    verify: 27 / 3
+    hints:
+      - '\(\frac{n}{3}\) means \(n \div 3\).'
+    solution:
+      - '\(\frac{27}{3} = 27 \div 3 = 9\)'
+
+  - id: b5
+    level: 2
+    covers: [S2.5]
+    type: mc
+    prompt: 'Tickets cost \(t\) dollars each. A family buys **4 tickets** and pays a **$6** parking fee. Which expression shows the total cost?'
+    choices: ['\(4t + 6\)', '\(6t + 4\)', '\(t + 10\)', '\(4 + t + 6\)']
+    answer: 0
+    feedback:
+      '1': 'That would be 6 tickets and a $4 fee.'
+      '2': 'That counts only one ticket.'
+      '3': 'That counts only one ticket, plus 4 dollars.'
+    hints:
+      - 4 tickets at \(t\) dollars each is 4 times \(t\).
+    solution:
+      - '4 tickets cost \(4t\). Add the parking fee: \(4t + 6\).'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S2.6, K2.7]
+    type: mc
+    prompt: 'For which value of \(n\) does \(4n + 3\) equal **31**?'
+    choices: ['\(n = 7\)', '\(n = 8\)', '\(n = 28\)', '\(n = 34\)']
+    answer: 0
+    feedback:
+      '1': '\(4 \times 8 + 3 = 35\), not 31.'
+      '2': '\(4 \times 28 + 3 = 115\). Too big!'
+      '3': '\(4 \times 34 + 3 = 139\). Far too big.'
+    hints:
+      - Substitute each value and check.
+    solution:
+      - '\(4 \times 7 + 3 = 28 + 3 = 31\) ✓'
+
+  - id: d2
+    level: 3
+    covers: [S2.1, S2.2]
+    type: mc
+    prompt: 'Is \(3n\) the same as \(n + 3\)?'
+    choices:
+      - 'No. For example, when \(n = 5\), \(3n = 15\) but \(n + 3 = 8\).'
+      - 'Yes, they use the same numbers.'
+      - 'Yes, because order doesn''t matter.'
+      - 'No, because \(3n\) is always smaller.'
+    answer: 0
+    feedback:
+      '1': 'Using the same symbols doesn''t make the values the same. Test a value!'
+      '2': 'Order doesn''t matter for \(n + 3 = 3 + n\), but \(3n\) means multiplying.'
+      '3': 'When \(n = 1\), \(3n = 3\), which is smaller than \(n + 3 = 4\). But when \(n = 5\), \(3n\) is bigger. So "always smaller" is false.'
+    hints:
+      - Try \(n = 5\) in both.
+    solution:
+      - '\(3n\) means \(n + n + n\), which is 3 times \(n\). \(n + 3\) means 3 more than \(n\).'
+      - 'With \(n = 5\): \(3n = 15\) and \(n + 3 = 8\). Different!'
+
+  - id: d3
+    level: 3
+    covers: [S2.6]
+    type: multi
+    prompt: 'Select **all** the expressions with a value of **12** when \(x = 4\).'
+    choices: ['\(3x\)', '\(x + 8\)', '\(2x + 4\)', '\(\frac{x}{4}\)', '\(12x\)']
+    answer: [0, 1, 2]
+    hints:
+      - Substitute 4 for \(x\) in each expression.
+    solution:
+      - '\(3 \times 4 = 12\) ✓, \(4 + 8 = 12\) ✓, \(2 \times 4 + 4 = 12\) ✓'
+      - '\(\frac{4}{4} = 1\) ✗, \(12 \times 4 = 48\) ✗'
+
+  - id: d4
+    level: 3
+    covers: [S2.5, K2.5, K2.6]
+    type: open
+    prompt: 'Write an expression for the number of wheels on \(b\) bicycles and **1** tricycle. Explain what the coefficient and the constant term mean.'
+    modelAnswer: |-
+      \(2b + 3\). Each bicycle has 2 wheels, so \(b\) bicycles have \(2b\) wheels. The coefficient 2 is the number of
+      wheels on one bicycle. The tricycle adds 3 wheels, so the constant term 3 is the tricycle's wheels.
+    rubric:
+      - 'I wrote \(2b + 3\) (or \(3 + 2b\)).'
+      - I explained that the coefficient 2 is the wheels on each bicycle.
+      - I explained that the constant term 3 is the tricycle's wheels.

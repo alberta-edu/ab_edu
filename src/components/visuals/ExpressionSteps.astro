@@ -1,0 +1,81 @@
+---
+// An expression collapses one operation at a time, following the order of operations.
+import { evaluateSteps, stepHtml } from './expression-steps.ts';
+
+interface Props {
+  examples: string[];
+}
+const { examples } = Astro.props;
+const first = evaluateSteps(examples[0]);
+---
+<expression-steps data-examples={JSON.stringify(examples)}>
+  <div class="seg cc-examples" role="group" aria-label="Choose an expression">
+    {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{e}</button>)}
+  </div>
+  <div class="es-board">
+    <div class="es-expr" data-es="expr" set:html={stepHtml(first[0])} />
+    <p class="cc-caption" data-es="caption" aria-live="polite">{first[0].caption}</p>
+  </div>
+  <div class="cc-controls">
+    <button type="button" class="btn btn--ghost btn--small" data-es="back" disabled>◀ Back</button>
+    <span class="cc-count" data-es="count">Step 1 of {first.length}</span>
+    <button type="button" class="btn btn--primary btn--small" data-es="next">Next step ▶</button>
+  </div>
+</expression-steps>
+
+<style is:global>
+  expression-steps { display: block; }
+  .es-board { display: grid; gap: 1rem; padding: 1.25rem 1rem; border-radius: var(--radius); background: var(--surface-2); }
+  .es-expr { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; justify-content: center; min-height: 4rem; font-size: clamp(1.5rem, 1.1rem + 2vw, 2.4rem); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .es-tok { padding: 0.1em 0.3em; border-radius: 10px; transition: background 0.3s; }
+  .es-op { color: var(--ink-3); }
+  .es-paren { color: var(--l3); font-size: 1.15em; }
+  .es-focus { background: color-mix(in srgb, var(--sun) 50%, transparent); }
+  .es-paren.es-focus { background: color-mix(in srgb, var(--l3) 22%, transparent); }
+  .es-new { color: var(--accent); animation: cc-pop 0.4s ease; }
+</style>
+
+<script>
+  import { evaluateSteps, stepHtml, type Step } from './expression-steps.ts';
+
+  class ExpressionSteps extends HTMLElement {
+    private steps: Step[] = [];
+    private i = 0;
+
+    connectedCallback() {
+      const examples: string[] = JSON.parse(this.dataset.examples!);
+      this.load(examples[0]);
+      this.q('next').addEventListener('click', () => this.go(this.i + 1));
+      this.q('back').addEventListener('click', () => this.go(this.i - 1));
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(examples[Number(b.dataset.ex)]);
+        }),
+      );
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-es="${name}"]`) as T;
+    }
+
+    private load(src: string) {
+      this.steps = evaluateSteps(src);
+      this.go(0);
+    }
+
+    private go(i: number) {
+      const prev = this.i;
+      this.i = Math.max(0, Math.min(this.steps.length - 1, i));
+      const s = this.steps[this.i];
+      // After moving forward, the result of the last step is the new token where the focus began.
+      const fresh = this.i > prev && this.i > 0 ? [this.steps[this.i - 1].focus[0]] : [];
+      this.q('expr').innerHTML = stepHtml(s, fresh);
+      this.q('caption').textContent = s.caption;
+      this.q('count').textContent = `Step ${this.i + 1} of ${this.steps.length}`;
+      this.q<HTMLButtonElement>('back').disabled = this.i === 0;
+      this.q<HTMLButtonElement>('next').disabled = this.i === this.steps.length - 1;
+    }
+  }
+  customElements.define('expression-steps', ExpressionSteps);
+</script>

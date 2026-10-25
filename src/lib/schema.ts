@@ -123,7 +123,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),

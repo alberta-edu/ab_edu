@@ -1,0 +1,268 @@
+id: order-of-operations
+grade: 5
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT5-OI2-GQ1-LO1]
+order: 8
+title: Expressions and the Order of Operations
+shortTitle: Order of operations
+summary: >-
+  Evaluate numerical expressions with parentheses using the order of operations, and see how parentheses
+  can change the value of an expression.
+
+bigIdea: |-
+  A **numerical expression** names a number. To find its value, follow the **order of operations**: first
+  what's in **parentheses**, then **× and ÷** from left to right, then **+ and −** from left to right.
+  Moving the parentheses can **change the value**.
+
+lesson:
+  - title: The order of operations
+    blocks:
+      - type: table
+        covers: [K1.1, K1.2]
+        headers: ['Order', 'Do this', 'Example']
+        rows:
+          - ['1st', '**Parentheses** ( ) first', '\(4 \times (3 + 2) = 4 \times 5\)']
+          - ['2nd', '**Multiply and divide**, left to right', '\(6 + 4 \times 5 = 6 + 20\)']
+          - ['3rd', '**Add and subtract**, left to right', '\(20 - 8 - 3 = 12 - 3\)']
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI2-GQ1-LO1#K1.2]
+        title: Remember from Grade 4
+        body: You already know the 2nd and 3rd rules. **Parentheses** are the new part in Grade 5.
+
+  - title: Watch an expression collapse
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.2]
+        component: expression-steps
+        props:
+          examples: ['4 × (3 + 2)', '20 − (8 − 3)', '18 ÷ (7 − 4) + 2', '30 − (6 + 4) × 2']
+        caption: Press **Next step**. The highlighted part is done first, then it collapses into one number.
+
+  - title: Parentheses change the value
+    blocks:
+      - type: compare
+        covers: [U1.2, K1.1]
+        columns:
+          - title: Without parentheses
+            body: |-
+              \[4 \times 3 + 2 = 12 + 2 = 14\]
+              \[20 - 8 - 3 = 12 - 3 = 9\]
+          - title: With parentheses
+            body: |-
+              \[4 \times (3 + 2) = 4 \times 5 = 20\]
+              \[20 - (8 - 3) = 20 - 5 = 15\]
+      - type: callout
+        variant: tip
+        covers: [U1.2]
+        title: Same numbers, different answers
+        body: Parentheses **group** numbers and operations, so that part is done first.
+
+  - title: An expression is a number
+    blocks:
+      - type: table
+        covers: [U1.1, S1.1]
+        caption: Each expression is just another name for its value.
+        headers: [Expression, Value]
+        rows:
+          - ['\((6 + 4) \times 5\)', '50']
+          - ['\(36 \div (10 - 6)\)', '9']
+          - ['\(100 - (45 + 15)\)', '40']
+
+keyTerms:
+  - term: Numerical expression
+    covers: [U1.1, K1.1]
+    definition: 'Numbers and operations that name a value, like \(4 \times (3 + 2)\).'
+  - term: Parentheses
+    covers: [K1.1, U1.2]
+    definition: 'The symbols ( ) that group numbers and operations to be done first.'
+  - term: Order of operations
+    covers: [K1.2]
+    definition: 'The rules for which operation to do first: parentheses, then × and ÷, then + and −.'
+  - term: Evaluate
+    covers: [S1.1]
+    definition: Find the value of an expression.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\(5 \times (2 + 4)\) = ?'
+    answer: 30
+    verify: 5 * (2 + 4)
+    hints:
+      - Do the parentheses first.
+    solution:
+      - '\(5 \times (2 + 4) = 5 \times 6 = 30\)'
+
+  - id: w2
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\(30 - (10 + 5)\) = ?'
+    answer: 15
+    verify: 30 - (10 + 5)
+    hints:
+      - What is \(10 + 5\)?
+    solution:
+      - '\(30 - (10 + 5) = 30 - 15 = 15\)'
+
+  - id: w3
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: 'In \(18 - (3 + 4) \times 2\), which operation do you do **first**?'
+    choices: ['\(3 + 4\)', '\(4 \times 2\)', '\(18 - 3\)', '\(18 - 7\)']
+    answer: 0
+    feedback:
+      '1': 'Multiplication comes before subtraction, but **parentheses** come before both.'
+      '2': 'Subtraction comes last here, and 3 is inside the parentheses.'
+      '3': 'You can''t subtract until you have multiplied, and before that, the parentheses.'
+    hints:
+      - Look for parentheses.
+    solution:
+      - 'Parentheses first: \(3 + 4 = 7\). Then \(7 \times 2 = 14\). Then \(18 - 14 = 4\).'
+
+  - id: w4
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\((9 - 4) \times 3\) = ?'
+    answer: 15
+    verify: (9 - 4) * 3
+    hints:
+      - Parentheses first.
+    solution:
+      - '\((9 - 4) \times 3 = 5 \times 3 = 15\)'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: '\(40 \div (12 - 4) + 3\) = ?'
+    answer: 8
+    verify: 40 / (12 - 4) + 3
+    hints:
+      - 'Parentheses, then divide, then add.'
+    solution:
+      - '\(40 \div (12 - 4) + 3 = 40 \div 8 + 3 = 5 + 3 = 8\)'
+
+  - id: b2
+    level: 2
+    covers: [U1.2, S1.1]
+    type: mc
+    prompt: Which expression has a value of **20**?
+    choices: ['\(4 \times (3 + 2)\)', '\(4 \times 3 + 2\)', '\(4 + 3 \times 2\)', '\((4 + 3) \times 2\)']
+    answer: 0
+    feedback:
+      '1': '\(4 \times 3 + 2 = 12 + 2 = 14\)'
+      '2': '\(4 + 3 \times 2 = 4 + 6 = 10\)'
+      '3': '\((4 + 3) \times 2 = 7 \times 2 = 14\)'
+    hints:
+      - Evaluate each one, following the order of operations.
+    solution:
+      - '\(4 \times (3 + 2) = 4 \times 5 = 20\) ✓'
+
+  - id: b3
+    level: 2
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: '\(7 + (15 - 6) \div 3\) = ?'
+    answer: 10
+    verify: 7 + (15 - 6) / 3
+    hints:
+      - 'Parentheses first, then divide, then add.'
+    solution:
+      - '\(7 + (15 - 6) \div 3 = 7 + 9 \div 3 = 7 + 3 = 10\)'
+
+  - id: b4
+    level: 2
+    covers: [U1.2, K1.1]
+    type: mc
+    prompt: 'Where should the parentheses go so that \(6 + 4 \times 5\) equals **50**?'
+    choices: ['\((6 + 4) \times 5\)', '\(6 + (4 \times 5)\)', '\((6) + 4 \times 5\)', 'Parentheses can''t change the value.']
+    answer: 0
+    feedback:
+      '1': 'That still multiplies first: \(6 + 20 = 26\).'
+      '2': 'Parentheses around one number change nothing: 26.'
+      '3': 'They can! Try grouping \(6 + 4\).'
+    hints:
+      - 'What would make you add before multiplying?'
+    solution:
+      - '\((6 + 4) \times 5 = 10 \times 5 = 50\) ✓'
+
+  - id: b5
+    level: 2
+    covers: [S1.1, U1.1]
+    type: number
+    prompt: 'Ana has **$20**. She buys a $4 snack and a $7 book. Evaluate \(20 - (4 + 7)\) to find how much she has left.'
+    answer: 9
+    verify: 20 - (4 + 7)
+    hints:
+      - The parentheses hold the total she spent.
+    solution:
+      - '\(20 - (4 + 7) = 20 - 11 = 9\). Ana has **$9** left.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [U1.2, S1.1]
+    type: mc
+    prompt: 'Ben says \(20 - (8 - 3) = 9\). What did he do wrong?'
+    choices:
+      - 'He ignored the parentheses. \(8 - 3 = 5\) comes first, so the answer is 15.'
+      - 'Nothing. 9 is correct.'
+      - 'He should have added 8 + 3.'
+      - 'Subtraction always goes left to right, so parentheses don''t matter.'
+    answer: 0
+    feedback:
+      '1': '\(20 - 5 = 15\), not 9.'
+      '2': 'The expression subtracts inside the parentheses.'
+      '3': 'Left to right is the rule only **after** the parentheses are done.'
+    hints:
+      - Work out what is inside the parentheses first.
+    solution:
+      - '\(20 - (8 - 3) = 20 - 5 = 15\). Ben worked left to right and ignored the parentheses: \(20 - 8 - 3 = 9\).'
+
+  - id: d2
+    level: 3
+    covers: [S1.1, K1.1]
+    type: number
+    prompt: '\((15 - (2 + 3)) \times 2\) = ?'
+    answer: 20
+    verify: (15 - (2 + 3)) * 2
+    hints:
+      - Start with the innermost parentheses.
+    solution:
+      - '\((15 - (2 + 3)) \times 2 = (15 - 5) \times 2 = 10 \times 2 = 20\)'
+
+  - id: d3
+    level: 3
+    covers: [U1.2, S1.1]
+    type: multi
+    prompt: Select the **two** expressions that have the **same value**.
+    choices: ['\(12 - (5 - 2)\)', '\(12 - 5 - 2\)', '\(12 - 5 + 2\)', '\(12 - (5 + 2)\)']
+    answer: [0, 2]
+    hints:
+      - Evaluate all four.
+    solution:
+      - '\(12 - (5 - 2) = 9\), \(12 - 5 - 2 = 5\), \(12 - 5 + 2 = 9\), \(12 - (5 + 2) = 5\).'
+      - 'The first and third both equal **9**. Subtracting \((5 - 2)\) is the same as subtracting 5, then adding 2.'
+
+  - id: d4
+    level: 3
+    covers: [U1.2, K1.2]
+    type: open
+    prompt: 'Explain why \(4 \times (3 + 2)\) and \(4 \times 3 + 2\) have **different values**. Find both values.'
+    modelAnswer: |-
+      In \(4 \times (3 + 2)\), the parentheses mean you add first: \(4 \times 5 = 20\). In \(4 \times 3 + 2\) there are no
+      parentheses, so you multiply first: \(12 + 2 = 14\). The parentheses change the order of the operations, so
+      the values are different.
+    rubric:
+      - I found both values (20 and 14).
+      - I explained that parentheses are done first.
+      - I said that changing the order of operations changes the value.

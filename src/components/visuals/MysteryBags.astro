@@ -1,0 +1,142 @@
+---
+// Algebraic expressions as mystery bags: every bag holds the same unknown number of marbles
+// (the variable). Shows coefficient, variable and constant term, repeated addition, and
+// evaluating by substitution (MAT5-OI2-GQ1-LO1: K2.1-K2.7, U2.1, U2.2, S2.1, S2.2, S2.6).
+interface Props {
+  /** Each expression: bags (coefficient), loose marbles (constant), or a quotient n/k. */
+  examples?: { bags?: number; loose?: number; split?: number }[];
+  letter?: string;
+}
+const { examples = [{ bags: 3, loose: 2 }, { bags: 2 }, { bags: 1, loose: 5 }, { split: 4 }], letter = 'n' } = Astro.props;
+const label = (e: { bags?: number; loose?: number; split?: number }) =>
+  e.split ? `${letter}/${e.split}` : `${e.bags === 1 ? '' : e.bags}${letter}${e.loose ? ` + ${e.loose}` : ''}`;
+---
+<mystery-bags data-examples={JSON.stringify(examples)} data-letter={letter}>
+  <div class="seg cc-examples" role="group" aria-label="Choose an expression">
+    {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{label(e)}</button>)}
+  </div>
+  <div class="mb-board">
+    <div class="mb-expr" data-mb="expr" aria-live="polite"></div>
+    <div class="mb-scene" data-mb="scene" aria-hidden="true"></div>
+    <p class="mb-say" data-mb="say" aria-live="polite"></p>
+  </div>
+  <div class="control-row">
+    <label class="control"><input type="checkbox" data-mb="open" /> Open the bags</label>
+    <label class="control">{letter} = <input type="range" min="1" max="10" value="4" data-mb="n" /> <output data-mb="n-out">4</output></label>
+  </div>
+</mystery-bags>
+
+<style is:global>
+  mystery-bags { display: block; }
+  .mb-board { display: grid; gap: 0.9rem; padding: 1rem; border-radius: var(--radius); background: var(--surface-2); }
+  .mb-expr { display: flex; flex-wrap: wrap; gap: 0.6rem 1.1rem; justify-content: center; align-items: flex-end; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem); font-weight: 700; }
+  .mb-part { display: grid; justify-items: center; gap: 0.1rem; }
+  .mb-part small { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 999px; }
+  .mb-coef { color: var(--math); }
+  .mb-coef small { background: var(--math-soft); }
+  .mb-var { color: var(--l3); font-style: italic; }
+  .mb-var small { background: var(--l3-soft); color: var(--l3); font-style: normal; }
+  .mb-const { color: #b77900; }
+  .mb-const small { background: color-mix(in srgb, var(--sun) 25%, var(--surface)); color: #8a5a00; }
+  .mb-op { color: var(--ink-3); }
+  .mb-scene { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: flex-end; justify-content: center; min-height: 7rem; }
+  .mb-bag { position: relative; width: 5.2rem; height: 6rem; display: grid; place-items: center; }
+  .mb-bag svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .mb-bag .mb-bag-fill { fill: color-mix(in srgb, var(--l3) 70%, var(--surface)); stroke: var(--ink); stroke-width: 3; }
+  .mb-bag .mb-bag-tie { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .mb-bag-letter { position: relative; font-size: 1.9rem; font-weight: 700; font-style: italic; color: #fff; margin-top: 1.1rem; }
+  .mb-marbles { position: relative; display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; width: 3.6rem; margin-top: 1.4rem; }
+  .mb-marble { width: 0.85rem; height: 0.85rem; border-radius: 50%; background: var(--sun); box-shadow: inset 0 -2px 0 rgb(0 0 0 / 25%); animation: rx-in 0.25s ease; }
+  .mb-loose { display: flex; flex-wrap: wrap; gap: 4px; max-width: 6rem; padding-bottom: 0.5rem; }
+  .mb-loose .mb-marble { width: 1.2rem; height: 1.2rem; }
+  .mb-plus { font-size: 2rem; font-weight: 700; color: var(--ink-3); padding-bottom: 1.6rem; }
+  .mb-slice { stroke: #fff; stroke-width: 3; }
+  .mb-say { margin: 0; text-align: center; font-weight: 700; font-size: var(--step-1); }
+  @keyframes rx-in { from { transform: scale(0); } }
+</style>
+
+<script>
+  type Ex = { bags?: number; loose?: number; split?: number };
+
+  const bagSvg = (slices = 0) => {
+    let s = '<svg viewBox="0 0 80 90"><path class="mb-bag-fill" d="M28 12 C 30 20, 18 28, 12 46 C 4 70, 16 86, 40 86 C 64 86, 76 70, 68 46 C 62 28, 50 20, 52 12 Z"/><path class="mb-bag-tie" d="M26 12 Q 40 4 54 12"/>';
+    for (let i = 1; i < slices; i++) s += `<line class="mb-slice" x1="${12 + (56 / slices) * i}" y1="28" x2="${12 + (56 / slices) * i}" y2="86"/>`;
+    return s + '</svg>';
+  };
+
+  class MysteryBags extends HTMLElement {
+    private ex!: Ex;
+    private letter = 'n';
+
+    connectedCallback() {
+      const examples: Ex[] = JSON.parse(this.dataset.examples!);
+      this.letter = this.dataset.letter!;
+      this.ex = examples[0];
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.ex = examples[Number(b.dataset.ex)];
+          this.render();
+        }),
+      );
+      this.q('[data-mb="n"]').addEventListener('input', () => this.render());
+      this.q('[data-mb="open"]').addEventListener('change', () => this.render());
+      this.render();
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(sel: string) {
+      return this.querySelector(sel) as T;
+    }
+
+    private render() {
+      const L = this.letter;
+      const slider = this.q<HTMLInputElement>('[data-mb="n"]');
+      const { bags = 0, loose = 0, split = 0 } = this.ex;
+      // For a quotient, the bag must split evenly: step n by the divisor.
+      slider.step = split ? String(split) : '1';
+      slider.min = split ? String(split) : '1';
+      slider.max = split ? String(split * 5) : '10';
+      if (split && Number(slider.value) % split) slider.value = String(split * 2);
+      const n = Number(slider.value);
+      this.q('[data-mb="n-out"]').textContent = String(n);
+      const open = this.q<HTMLInputElement>('[data-mb="open"]').checked;
+
+      // Expression with labelled parts
+      const part = (txt: string, cls: string, tag: string) => `<span class="mb-part ${cls}">${txt}<small>${tag}</small></span>`;
+      let expr = '';
+      if (split) expr = part(`<span class="frac" style="font-size:1em;color:inherit"><span>${L}</span><span>${split}</span></span>`, 'mb-var', 'quotient term');
+      else {
+        if (bags > 1) expr += part(String(bags), 'mb-coef', 'coefficient');
+        expr += part(L, 'mb-var', 'variable');
+        if (loose) expr += `<span class="mb-op">+</span>` + part(String(loose), 'mb-const', 'constant term');
+      }
+      this.q('[data-mb="expr"]').innerHTML = expr;
+
+      // Scene: bags (closed or open) and loose marbles
+      const marbles = (k: number) => '<span class="mb-marble"></span>'.repeat(k);
+      let scene = '';
+      if (split) {
+        scene = `<div class="mb-bag">${bagSvg(split)}${open ? `<div class="mb-marbles">${marbles(n / split)}</div>` : `<span class="mb-bag-letter">${L}</span>`}</div>`;
+      } else {
+        for (let i = 0; i < bags; i++) scene += `<div class="mb-bag">${bagSvg()}${open ? `<div class="mb-marbles">${marbles(n)}</div>` : `<span class="mb-bag-letter">${L}</span>`}</div>`;
+        if (loose) scene += `<span class="mb-plus">+</span><div class="mb-loose">${marbles(loose)}</div>`;
+      }
+      this.q('[data-mb="scene"]').innerHTML = scene;
+
+      // Sentence
+      let say = '';
+      if (split) {
+        say = open
+          ? `${L} = ${n}: the bag is shared into ${split} equal parts, so ${L}/${split} = ${n} ÷ ${split} = ${n / split}.`
+          : `${L}/${split} means one of ${split} equal parts of the bag. Open the bags to test a value.`;
+      } else {
+        const rep = bags > 1 ? `${Array(bags).fill(L).join(' + ')} = ${bags}${L}. ` : '';
+        say = open
+          ? `${L} = ${n}: ${bags > 1 ? `${bags} × ${n}` : n}${loose ? ` + ${loose}` : ''} = ${bags * n + loose} marbles.`
+          : `${rep}Each bag holds the same unknown number, ${L}. Open the bags to test a value.`;
+      }
+      this.q('[data-mb="say"]').textContent = say;
+    }
+  }
+  customElements.define('mystery-bags', MysteryBags);
+</script>
