@@ -1,0 +1,364 @@
+---
+import 'katex/dist/katex.min.css';
+import Base from '../../../layouts/Base.astro';
+import LessonBlock from '../../../components/LessonBlock.astro';
+import Icon from '../../../components/Icon.astro';
+import { conceptsFor, findOutcome, conceptPath, curriculum, resolveRef, gradeRank, type Statement } from '../../../lib/content.ts';
+import { renderProblem, levelBadge, conceptKey } from '../../../lib/problem-html.ts';
+import { md, mdInline } from '../../../lib/render.ts';
+import { SUBJECTS, LEVELS, UNLOCK_AFTER, SITE_NAME } from '../../../site.ts';
+import type { Concept } from '../../../lib/schema.ts';
+import { href, absolute } from '../../../lib/url.ts';
+
+export function getStaticPaths() {
+  return SUBJECTS.flatMap((s) => {
+    const list = conceptsFor(s.slug);
+    return list.map((c, i) => ({
+      params: { subject: s.slug, concept: c.id },
+      props: { concept: c, prev: list[i - 1] ?? null, next: list[i + 1] ?? null },
+    }));
+  });
+}
+
+interface Props {
+  concept: Concept;
+  prev: Concept | null;
+  next: Concept | null;
+}
+const { concept: c, prev, next } = Astro.props;
+const subject = SUBJECTS.find((s) => s.slug === c.subject)!;
+const outcomes = c.outcomes.map((code) => findOutcome(c.grade, c.subject, code));
+const strand = curriculum(c.grade, c.subject).organizingIdeas.find((o) => o.code === c.organizingIdea)!;
+const path = conceptPath(c);
+const key = conceptKey(c);
+
+// Every curriculum statement this page teaches (from the covers: of its blocks and problems).
+const allRefs = [
+  ...c.lesson.flatMap((s) => s.blocks.flatMap((b) => ('covers' in b ? b.covers : []))),
+  ...c.problems.flatMap((p) => p.covers),
+  ...c.keyTerms.flatMap((t) => t.covers),
+];
+const statements = new Map<string, Statement>();
+for (const r of allRefs) {
+  const st = resolveRef(c, r);
+  statements.set(`${st.outcomeCode}#${st.ref}`, st);
+}
+const current = [...statements.values()].filter((s) => gradeRank(s.grade) === gradeRank(c.grade));
+const earlier = [...statements.values()].filter((s) => gradeRank(s.grade) < gradeRank(c.grade));
+const kindName = { K: 'Knowledge', U: 'Understanding', S: 'Skills and procedures' } as const;
+const byKind = (['K', 'U', 'S'] as const).map((k) => ({ kind: k, list: current.filter((s) => s.kind === k) })).filter((g) => g.list.length);
+/** Curriculum text uses bare TeX like A\frac{b}{c}; show it as plain text. */
+const plainTex = (s: string) => s.replace(/\\frac\{([^}]*)\}\{([^}]*)\}/g, '$1/$2');
+
+let number = 0;
+const levels = ([1, 2, 3] as const).map((level) => {
+  const list = c.problems.filter((p) => p.level === level);
+  return { level, info: LEVELS[level], list, html: list.map((p) => renderProblem(c, p, ++number)) };
+});
+const levelText = {
+  1: `Check the basics. Solve ${UNLOCK_AFTER} to unlock Build.`,
+  2: `Use the idea in new ways. Solve ${UNLOCK_AFTER} to unlock Deep Think.`,
+  3: 'Tricky problems that need careful reasoning. Take your time: this is where your brain grows.',
+} as const;
+const showCode = (code: string) => /-LO\d/.test(code);
+
+const title = `${c.title}: Grade 5 ${subject.shortName} (Alberta)`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    name: c.title,
+    description: c.summary,
+    url: absolute(path),
+    inLanguage: 'en-CA',
+    isAccessibleForFree: true,
+    educationalLevel: 'Grade 5',
+    learningResourceType: ['Lesson', 'Practice problems'],
+    audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
+    about: subject.name,
+    teaches: current.map((s) => plainTex(s.text)),
+    publisher: { '@type': 'Organization', name: SITE_NAME },
+    educationalAlignment: outcomes.map((o) => ({
+      '@type': 'AlignmentObject',
+      alignmentType: 'teaches',
+      educationalFramework: 'Alberta Program of Studies',
+      targetName: o.outcome,
+      targetDescription: `${subject.name}, Grade 5, ${o.organizingIdea.title}`,
+      ...(showCode(o.code) ? { targetUrl: 'https://curriculum.learnalberta.ca/curriculum/en', alternateName: o.code } : {}),
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Grade 5', item: absolute('grade-5/') },
+      { '@type': 'ListItem', position: 2, name: subject.name, item: absolute(`grade-5/${subject.slug}/`) },
+      { '@type': 'ListItem', position: 3, name: c.shortTitle, item: absolute(path) },
+    ],
+  },
+];
+---
+<Base title={title} description={c.summary} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
+  <div class="container concept" data-concept={key} id="concept">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={href('grade-5/')}>Grade 5</a></li>
+        <li><a href={href(`grade-5/${subject.slug}/`)}>{subject.name}</a></li>
+        <li aria-current="page">{c.shortTitle}</li>
+      </ol>
+    </nav>
+
+    <header class="concept-hero">
+      <div>
+        <p class="page-hero__eyebrow">Grade 5 {subject.shortName} · {strand.title}</p>
+        <h1>{c.title}</h1>
+        <p class="page-hero__lede">{c.summary}</p>
+      </div>
+      <span class="ring ring--lg" data-ring={key} data-total={c.problems.length} title="Practice progress"><span>0%</span></span>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Topic sections" data-tabs>
+      <a role="tab" href="#learn" id="tab-learn" aria-controls="learn" data-tab="learn">
+        <span aria-hidden="true">📖</span> Learn <small>{c.lesson.length} steps</small>
+      </a>
+      <a role="tab" href="#practice" id="tab-practice" aria-controls="practice" data-tab="practice">
+        <span aria-hidden="true">✏️</span> Practice <small data-practice-count>0/{c.problems.length}</small>
+      </a>
+      <a role="tab" href="#terms" id="tab-terms" aria-controls="terms" data-tab="terms">
+        <span aria-hidden="true">🗂️</span> Key terms <small>{c.keyTerms.length}</small>
+      </a>
+    </nav>
+
+    <!-- ================================================================ LEARN -->
+    <section class="tab-panel" id="learn" role="tabpanel" aria-labelledby="tab-learn">
+      <div class="big-idea">
+        <div class="big-idea__label">Big idea</div>
+        <Fragment set:html={md(c.bigIdea)} />
+      </div>
+
+      <div class="learn-layout">
+        <nav class="stepper" aria-label="Lesson steps">
+          <ol>
+            {
+              c.lesson.map((s, i) => (
+                <li>
+                  <a href={`#step-${i + 1}`} data-step-link={i + 1}>
+                    <span class="stepper__num">{i + 1}</span>
+                    <span class="stepper__title">{s.title}</span>
+                  </a>
+                </li>
+              ))
+            }
+            <li>
+              <a href="#practice" class="stepper__practice">
+                <span class="stepper__num"><Icon name="spark" size={14} /></span>
+                <span class="stepper__title">Practice</span>
+              </a>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="steps-area">
+          {
+            c.lesson.map((s, i) => (
+              <section class="lesson-step" id={`step-${i + 1}`} data-step={i + 1} aria-labelledby={`step-${i + 1}-title`}>
+                <header class="step-head">
+                  <span class="step-head__num" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <div>
+                    <p class="step-head__count">
+                      Step {i + 1} of {c.lesson.length}
+                    </p>
+                    <h2 id={`step-${i + 1}-title`}>{s.title}</h2>
+                  </div>
+                </header>
+                <div class="step-body">
+                  {s.blocks.map((b, bi) => (
+                    <LessonBlock block={b} concept={c} uid={`s${i + 1}b${bi + 1}`} />
+                  ))}
+                </div>
+              </section>
+            ))
+          }
+          <div class="step-nav" data-step-nav hidden>
+            <button type="button" class="btn btn--ghost" data-step-prev>← Back</button>
+            <span class="step-nav__count" data-step-count></span>
+            <button type="button" class="btn btn--primary" data-step-next>Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="card curriculum-box">
+        <summary><Icon name="check" size={18} /> Alberta curriculum: exactly what this page teaches</summary>
+        {
+          outcomes.map((o) => (
+            <p class="curriculum-box__outcome">
+              <strong>Learning outcome:</strong> {o.outcome} {showCode(o.code) && <span class="outcome__code">({o.code})</span>}
+            </p>
+          ))
+        }
+        {
+          byKind.map((g) => (
+            <div class="curriculum-box__group">
+              <h3>{kindName[g.kind]}</h3>
+              <ul>
+                {g.list.map((s) => (
+                  <li>
+                    {plainTex(s.text)}
+                    {s.items && <span class="muted"> ({s.items.join(', ')})</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+        {
+          earlier.length > 0 && (
+            <div class="curriculum-box__group">
+              <h3>Builds on earlier grades</h3>
+              <ul>
+                {earlier.map((s) => (
+                  <li>
+                    Grade {s.grade.toUpperCase()}: {plainTex(s.text)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        <p class="muted">
+          Source: Alberta Education, Program of Studies (New LearnAlberta). <a href={href('about/')}>How we align</a>.
+        </p>
+      </details>
+    </section>
+
+    <!-- ================================================================ PRACTICE -->
+    <section class="tab-panel" id="practice" role="tabpanel" aria-labelledby="tab-practice">
+      <div class="level-tabs" role="tablist" aria-label="Practice levels">
+        {
+          levels.map((l) => (
+            <button type="button" role="tab" class={`level-tab level-tab--${l.level}`} data-level-tab={l.level} aria-controls={`level-${l.level}`}>
+              <Fragment set:html={levelBadge(l.level)} />
+              <span class="level-tab__count" data-level-tab-count>
+                0/{l.list.length}
+              </span>
+              <span class="level-tab__lock" data-level-lock hidden>
+                <Icon name="lock" size={16} label="Locked" />
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        levels.map((l) => (
+          <section class="level-section" data-level={l.level} id={`level-${l.level}`} role="tabpanel" aria-label={`${l.info.name} (${l.info.difficulty})`}>
+            <div class="level-head">
+              <p>{levelText[l.level]}</p>
+              <span class="level-head__count" data-level-count>
+                0 / {l.list.length} solved
+              </span>
+              <div class="level-meter" aria-hidden="true">
+                <span data-level-meter />
+              </div>
+            </div>
+            {l.level > 1 && (
+              <div class="level-lock">
+                <Icon name="lock" />
+                <p>
+                  Solve {UNLOCK_AFTER} {LEVELS[(l.level - 1) as 1 | 2].name} problems to unlock this level. Feeling confident?
+                </p>
+                <button type="button" class="btn btn--ghost btn--small" data-unlock>
+                  Try it now
+                </button>
+              </div>
+            )}
+            <div class="pager" data-pager>
+              <div class="pager__dots" role="group" aria-label="Problems in this level" data-pager-dots hidden>
+                {l.list.map((p, i) => (
+                  <button type="button" class="pager__dot" data-goto={i} aria-label={`Problem ${i + 1}`}>
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
+              <div class="level-problems" set:html={l.html.join('')} />
+              <div class="pager__nav" data-pager-nav hidden>
+                <button type="button" class="btn btn--ghost" data-pager-prev>← Previous</button>
+                <span class="pager__count" data-pager-count />
+                <button type="button" class="btn btn--ghost" data-pager-next>Next problem →</button>
+              </div>
+            </div>
+            <div class="level-done card" data-level-done hidden>
+              <p class="level-done__icon" aria-hidden="true">🏆</p>
+              <h3>{l.info.name} complete!</h3>
+              {l.level < 3 ? (
+                <button type="button" class="btn btn--primary" data-goto-level={l.level + 1}>
+                  On to {LEVELS[(l.level + 1) as 2 | 3].name} →
+                </button>
+              ) : (
+                <p>You finished every level. This topic will come back in your Review to help you remember it.</p>
+              )}
+            </div>
+          </section>
+        ))
+      }
+    </section>
+
+    <!-- ================================================================ KEY TERMS -->
+    <section class="tab-panel" id="terms" role="tabpanel" aria-labelledby="tab-terms">
+      <p class="muted">Tap a card to flip it. Try to say the meaning before you look!</p>
+      <div class="flip-grid">
+        {
+          c.keyTerms.map((t) => (
+            <button type="button" class="flip" aria-pressed="false">
+              <span class="flip__front">{t.term}</span>
+              <span class="flip__back">
+                <strong>{t.term}</strong>
+                <span set:html={mdInline(t.definition)} />
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </section>
+
+    <nav class="grid concept-more" aria-label="More topics">
+      {
+        prev && (
+          <a class="card concept-card" href={href(conceptPath(prev))}>
+            <span class="concept-card__body">
+              <span class="concept-card__sub">← Previous</span>
+              <span class="concept-card__title">{prev.shortTitle}</span>
+            </span>
+          </a>
+        )
+      }
+      <a class="card concept-card" href={href(`grade-5/${subject.slug}/`)}>
+        <span class="concept-card__body">
+          <span class="concept-card__sub">All topics</span>
+          <span class="concept-card__title">Grade 5 {subject.shortName}</span>
+        </span>
+      </a>
+      {
+        next && (
+          <a class="card concept-card" href={href(conceptPath(next))}>
+            <span class="concept-card__body">
+              <span class="concept-card__sub">Next →</span>
+              <span class="concept-card__title">{next.shortTitle}</span>
+            </span>
+          </a>
+        )
+      }
+    </nav>
+  </div>
+  <div class="celebrate" aria-live="polite" data-celebrate></div>
+</Base>
+
+<script>
+  import '../../../client/problem-card.ts';
+  import { initConceptPage } from '../../../client/concept-page.ts';
+  import { initRings } from '../../../client/rings.ts';
+  initConceptPage();
+  initRings();
+</script>

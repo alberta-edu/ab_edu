@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { SUBJECTS, SITE_NAME, REPO_URL } from '../site.ts';
+import { curriculum } from '../lib/content.ts';
+import { href } from '../lib/url.ts';
+
+const sources = SUBJECTS.map((s) => {
+  const c = curriculum(5, s.slug);
+  return { name: s.name, implemented: c.implemented, source: c.source };
+});
+---
+<Base
+  title="About: how AB Edu follows the Alberta curriculum"
+  description="How AB Edu lessons and practice are matched to Alberta's K-6 program of studies, how content is checked, and how your privacy is protected."
+  path="about/"
+>
+  <div class="container container--narrow">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">About</p>
+      <h1>How {SITE_NAME} works</h1>
+      <p class="page-hero__lede">A free, independent learning site for Alberta students and families.</p>
+    </header>
+    <div class="prose stack">
+      <h2>Matched to the program of studies</h2>
+      <p>
+        Every topic page is built from a specific learning outcome in Alberta's program of studies. Open the
+        <strong>“Alberta curriculum: what this page covers”</strong> box on any topic to see the official outcome
+        and its guiding question. We cover the four subjects assessed by Alberta's Provincial Achievement Tests:
+        English Language Arts and Literature, Mathematics, Science, and Social Studies.
+      </p>
+      <ul>
+        {sources.map((s) => <li><strong>{s.name}</strong>: {s.implemented}</li>)}
+        <li><strong>Social Studies</strong> (new K–6 curriculum): required for Grades 4–6 from September 2026. Grade 5 now studies ancient civilizations.</li>
+      </ul>
+      <p>
+        Curriculum outcomes are © Government of Alberta and are quoted for alignment only, from
+        <a href="https://curriculum.learnalberta.ca/curriculum/en" rel="noopener">New LearnAlberta</a>.
+        {SITE_NAME} is independent and not affiliated with or endorsed by the Government of Alberta or Alberta Education.
+      </p>
+
+      <h2>How the content is made and checked</h2>
+      <ul>
+        <li>Lessons and problems are written with an AI model (Claude), then checked before they are published. No AI runs on this site while you use it.</li>
+        <li>Math answers are checked by a program that recomputes them with exact fractions. Every formula must typeset correctly or the site won't build.</li>
+        <li>Every wrong answer choice is a real mistake students make, and it comes with an explanation.</li>
+        <li>Reading passages are original, written for this site.</li>
+      </ul>
+      <p>Spotted a mistake? Please <a href={`${REPO_URL}/issues`} rel="noopener">open an issue</a>.</p>
+
+      <h2 id="privacy">Privacy</h2>
+      <p>
+        There are no accounts, ads, cookies or trackers. Your progress is saved only in your own browser
+        (localStorage) and never sent anywhere. Clearing your browser data erases it, so use
+        <a href={href('progress/#backup')}>Save backup file</a> if you want to keep it.
+      </p>
+    </div>
+  </div>
+</Base>

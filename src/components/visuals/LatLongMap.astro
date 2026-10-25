@@ -1,0 +1,314 @@
+---
+// World map with a latitude/longitude grid, ancient river-valley civilizations and a
+// coordinate game. The land shapes are projected here at build time, so the browser gets
+// a plain SVG and no map library.
+import { feature } from 'topojson-client';
+import { geoEquirectangular, geoPath } from 'd3-geo';
+import land110 from 'world-atlas/land-110m.json';
+import { SITES, RIVERS, MAP_W, MAP_H, K, project, VIEWS } from './latlong-data.ts';
+
+interface Props {
+  view?: keyof typeof VIEWS;
+  quest?: boolean;
+}
+const { view = 'world', quest = true } = Astro.props;
+
+const projection = geoEquirectangular()
+  .scale(MAP_W / (2 * Math.PI))
+  .translate([MAP_W / 2, MAP_H / 2]);
+const path = geoPath(projection).digits(1);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const landD = path(feature(land110 as any, (land110 as any).objects.land) as any) ?? '';
+
+const lats = [-75, -60, -45, -30, -15, 15, 30, 45, 60, 75];
+const lons = [-165, -150, -135, -120, -105, -90, -75, -60, -45, -30, -15, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165];
+const riverD = (pts: [number, number][]) =>
+  pts.map(([lon, lat], i) => `${i ? 'L' : 'M'}${project(lon, lat).map((v) => v.toFixed(1)).join(' ')}`).join('');
+const box = VIEWS[view].box.join(' ');
+---
+<latlong-map data-view={view} data-sites={JSON.stringify(SITES)}>
+  <div class="ll-toolbar">
+    <div class="seg" role="group" aria-label="Map view">
+      {Object.entries(VIEWS).map(([k, v]) => <button type="button" data-view={k} aria-pressed={String(k === view)}>{v.label}</button>)}
+    </div>
+    <p class="ll-readout" aria-live="off"><span class="muted">Pointer at</span> <strong data-ll="readout">move over the map</strong></p>
+  </div>
+
+  <div class="ll-frame">
+    <svg class="ll-svg" viewBox={box} data-ll="svg" role="img" aria-label="World map with lines of latitude every 15 degrees and lines of longitude every 15 degrees. The equator and prime meridian are highlighted. Markers show ancient civilizations near rivers and coasts, and Edmonton, Alberta.">
+      <rect class="ll-ocean" x="0" y="0" width={MAP_W} height={MAP_H}></rect>
+      <path class="ll-land" d={landD}></path>
+      <g class="ll-grid">
+        {lats.map((lat) => <line x1="0" x2={MAP_W} y1={(90 - lat) * K} y2={(90 - lat) * K}></line>)}
+        {lons.map((lon) => <line y1="0" y2={MAP_H} x1={(lon + 180) * K} x2={(lon + 180) * K}></line>)}
+      </g>
+      <line class="ll-equator" x1="0" x2={MAP_W} y1={MAP_H / 2} y2={MAP_H / 2}></line>
+      <line class="ll-meridian" y1="0" y2={MAP_H} x1={MAP_W / 2} x2={MAP_W / 2}></line>
+      <g class="ll-rivers">{RIVERS.map((r) => <path d={riverD(r.points)}><title>{r.name}</title></path>)}</g>
+      <g data-ll="labels" class="ll-labels"></g>
+      <g data-ll="sites">
+        {
+          SITES.map((s) => {
+            const [x, y] = project(s.lon, s.lat);
+            return (
+              <g class={`ll-site${s.home ? ' ll-site--home' : ''}`} data-site={s.id} transform={`translate(${x.toFixed(1)} ${y.toFixed(1)})`}>
+                <circle r="5"></circle>
+              </g>
+            );
+          })
+        }
+      </g>
+      <g data-ll="cross" class="ll-cross" visibility="hidden">
+        <line data-ll="cx" y1="0" y2={MAP_H}></line>
+        <line data-ll="cy" x1="0" x2={MAP_W}></line>
+      </g>
+      <g data-ll="pin" class="ll-pin" visibility="hidden"><circle r="6"></circle></g>
+    </svg>
+  </div>
+
+  <div class="ll-sites" role="group" aria-label="Places on the map">
+    {
+      SITES.map((s) => (
+        <button type="button" class={`chip ll-chip${s.home ? ' ll-chip--home' : ''}`} data-site={s.id}>
+          {s.name}
+        </button>
+      ))
+    }
+  </div>
+  <div class="ll-card card" data-ll="card" hidden aria-live="polite"></div>
+
+  {
+    quest && (
+      <div class="ll-quest">
+        <div class="ll-quest__head">
+          <strong>Coordinate Quest</strong>
+          <span class="muted">Read the coordinates, then tap that spot on the map.</span>
+          <button type="button" class="btn btn--primary btn--small" data-ll="quest">Start</button>
+        </div>
+        <p class="ll-quest__task" data-ll="task" aria-live="polite" hidden></p>
+      </div>
+    )
+  }
+  <noscript><p class="muted">Turn on JavaScript to explore the map. The coordinates of each place are listed in the table below.</p></noscript>
+</latlong-map>
+
+<style is:global>
+  latlong-map { display: block; }
+  .ll-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; margin-bottom: 0.6rem; }
+  .ll-readout { margin: 0; font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+  .ll-frame { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--line); touch-action: manipulation; }
+  .ll-svg { display: block; width: 100%; height: auto; cursor: crosshair; font-family: var(--font); }
+  .ll-ocean { fill: color-mix(in srgb, var(--math) 12%, var(--surface)); }
+  .ll-land { fill: color-mix(in srgb, var(--science) 22%, var(--surface)); stroke: color-mix(in srgb, var(--science) 45%, var(--surface)); stroke-width: 0.6; vector-effect: non-scaling-stroke; }
+  .ll-grid line { stroke: var(--ink-3); stroke-opacity: 0.35; stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .ll-equator { stroke: var(--bad); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+  .ll-meridian { stroke: var(--brand); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+  .ll-rivers path { fill: none; stroke: #2a7fd4; stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .ll-labels text { fill: var(--ink-2); font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+  .ll-labels .ll-label--eq { fill: var(--bad); }
+  .ll-labels .ll-label--pm { fill: var(--brand); }
+  .ll-site circle { fill: var(--sun); stroke: var(--ink); vector-effect: non-scaling-stroke; stroke-width: 2; cursor: pointer; }
+  .ll-site--home circle { fill: var(--ela); }
+  .ll-site.is-active circle { fill: var(--bad); stroke-width: 3; }
+  .ll-cross line { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; pointer-events: none; }
+  .ll-pin circle { fill: none; stroke: var(--ink); stroke-width: 3; vector-effect: non-scaling-stroke; }
+  .ll-sites { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+  .ll-card { margin-top: 0.75rem; padding: 0.9rem 1rem; }
+  .ll-card h4 { margin: 0 0 0.25rem; }
+  .ll-card p { margin: 0.3rem 0 0; }
+  .ll-card__coord { font-size: var(--step-1); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .ll-quest { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
+  .ll-quest__head { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; }
+  .ll-quest__head .btn { margin-left: auto; }
+  .ll-quest__task { margin: 0.6rem 0 0; font-weight: 700; }
+</style>
+
+<script>
+  import { K, MAP_W, MAP_H, VIEWS, unproject, project, formatCoord, type Site } from './latlong-data.ts';
+
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const QUEST_TOLERANCE = 6; // degrees
+
+  class LatLongMap extends HTMLElement {
+    private svg!: SVGSVGElement;
+    private sites: Site[] = [];
+    private view: keyof typeof VIEWS = 'world';
+    private quest: { target: Site; tries: number } | null = null;
+    private questOrder: Site[] = [];
+    private found = 0;
+
+    connectedCallback() {
+      this.sites = JSON.parse(this.dataset.sites!);
+      this.svg = this.querySelector('[data-ll="svg"]')!;
+      this.view = this.dataset.view as keyof typeof VIEWS;
+      this.setView(this.view);
+      new ResizeObserver(() => this.resize()).observe(this.svg);
+
+      this.svg.addEventListener('pointermove', (e) => this.hover(e));
+      this.svg.addEventListener('pointerleave', () => this.part('cross').setAttribute('visibility', 'hidden'));
+      this.svg.addEventListener('click', (e) => this.tap(e));
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => this.setView(b.dataset.view as keyof typeof VIEWS)),
+      );
+      this.querySelectorAll<HTMLButtonElement>('.ll-chip').forEach((b) => b.addEventListener('click', () => this.select(b.dataset.site!)));
+      this.querySelector('[data-ll="quest"]')?.addEventListener('click', () => this.startQuest());
+    }
+
+    private part<T extends Element = SVGElement>(name: string): T {
+      return this.querySelector(`[data-ll="${name}"]`) as T;
+    }
+
+    private toMap(e: MouseEvent): [number, number] {
+      const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(this.svg.getScreenCTM()!.inverse());
+      return [Math.max(0, Math.min(MAP_W, pt.x)), Math.max(0, Math.min(MAP_H, pt.y))];
+    }
+
+    private setView(v: keyof typeof VIEWS) {
+      this.view = v;
+      this.svg.setAttribute('viewBox', VIEWS[v].box.join(' '));
+      this.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.view === v)));
+      this.resize();
+    }
+
+    /** Map units per screen pixel, so labels and markers keep a readable size at any width. */
+    private unitsPerPx() {
+      const box = VIEWS[this.view].box;
+      return box[2] / (this.svg.getBoundingClientRect().width || box[2]);
+    }
+
+    private resize() {
+      const u = this.unitsPerPx();
+      this.querySelectorAll<SVGCircleElement>('.ll-site circle').forEach((c) => c.setAttribute('r', String(6 * u)));
+      this.part('pin').querySelector('circle')!.setAttribute('r', String(9 * u));
+      this.drawLabels(VIEWS[this.view].box, u);
+    }
+
+    /** Degree labels along the left and top edges of the part of the map that is showing. */
+    private drawLabels(box: number[], u: number) {
+      const g = this.part('labels');
+      g.innerHTML = '';
+      const [x0, y0, w, h] = box;
+      const size = 12 * u;
+      const pxPerDeg = K / u;
+      // Thin out labels when the map is small on screen.
+      const latStep = [15, 30, 45].find((s) => s * pxPerDeg >= 20) ?? 45;
+      const lonStep = [15, 30, 60, 90].find((s) => s * pxPerDeg >= 46) ?? 90;
+      const add = (x: number, y: number, text: string, anchor: string, cls = '') => {
+        const t = document.createElementNS(SVG_NS, 'text');
+        t.setAttribute('x', x.toFixed(1));
+        t.setAttribute('y', y.toFixed(1));
+        t.setAttribute('font-size', size.toFixed(2));
+        t.setAttribute('text-anchor', anchor);
+        t.style.strokeWidth = `${3 * u}px`;
+        if (cls) t.setAttribute('class', cls);
+        t.textContent = text;
+        g.appendChild(t);
+      };
+      for (let lat = -90 + latStep; lat < 90; lat += latStep) {
+        const y = (90 - lat) * K;
+        if (y < y0 + 2 * size || y > y0 + h - 4 * u) continue;
+        add(x0 + 4 * u, y - 3 * u, lat === 0 ? '0° Equator' : `${Math.abs(lat)}°${lat > 0 ? 'N' : 'S'}`, 'start', lat === 0 ? 'll-label--eq' : '');
+      }
+      for (let lon = -180 + lonStep; lon < 180; lon += lonStep) {
+        const x = (lon + 180) * K;
+        if (x < x0 + 40 * u || x > x0 + w - 24 * u) continue;
+        add(x, y0 + size + 3 * u, lon === 0 ? '0°' : `${Math.abs(lon)}°${lon > 0 ? 'E' : 'W'}`, 'middle', lon === 0 ? 'll-label--pm' : '');
+      }
+      // Name the prime meridian along its own line, where it can't collide with other labels.
+      const pmX = MAP_W / 2;
+      if (pmX > x0 && pmX < x0 + w) {
+        add(pmX - 5 * u, y0 + h - 8 * u, 'Prime Meridian', 'start', 'll-label--pm');
+        const t = g.lastElementChild!;
+        t.setAttribute('transform', `rotate(-90 ${(pmX - 5 * u).toFixed(1)} ${(y0 + h - 8 * u).toFixed(1)})`);
+      }
+    }
+
+    private hover(e: PointerEvent) {
+      const [x, y] = this.toMap(e);
+      const [lon, lat] = unproject(x, y);
+      this.part<HTMLElement>('readout').textContent = formatCoord(lat, lon);
+      const cross = this.part('cross');
+      cross.setAttribute('visibility', 'visible');
+      const cx = this.part('cx');
+      cx.setAttribute('x1', String(x));
+      cx.setAttribute('x2', String(x));
+      const cy = this.part('cy');
+      cy.setAttribute('y1', String(y));
+      cy.setAttribute('y2', String(y));
+    }
+
+    private tap(e: MouseEvent) {
+      const hit = (e.target as Element).closest<SVGGElement>('.ll-site');
+      if (hit && !this.quest) return this.select(hit.dataset.site!);
+      const [x, y] = this.toMap(e);
+      const [lon, lat] = unproject(x, y);
+      this.part<HTMLElement>('readout').textContent = formatCoord(lat, lon);
+      const pin = this.part('pin');
+      pin.setAttribute('visibility', 'visible');
+      pin.setAttribute('transform', `translate(${x} ${y})`);
+      if (this.quest) this.checkQuest(lat, lon);
+    }
+
+    private select(id: string) {
+      const s = this.sites.find((x) => x.id === id)!;
+      this.querySelectorAll('.ll-site').forEach((g) => g.classList.toggle('is-active', (g as SVGGElement).dataset.site === id));
+      this.querySelectorAll('.ll-chip').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.site === id)));
+      const card = this.part<HTMLElement>('card');
+      card.hidden = false;
+      card.innerHTML = `
+        <h4>${s.name} <span class="muted">· ${s.place}</span></h4>
+        <div class="ll-card__coord">${formatCoord(s.lat, s.lon)}</div>
+        <p><strong>Water and land:</strong> ${s.feature}</p>
+        <p>${s.note}</p>`;
+      // Zoom in automatically if the place is outside the current view.
+      const [px, py] = project(s.lon, s.lat);
+      const [x0, y0, w, h] = VIEWS[this.view].box;
+      if (px < x0 || px > x0 + w || py < y0 || py > y0 + h) this.setView('world');
+    }
+
+    // ------------------------------------------------------------ quest
+
+    private startQuest() {
+      this.questOrder = this.sites.filter((s) => !s.home).sort(() => Math.random() - 0.5);
+      this.found = 0;
+      this.nextTarget();
+      const btn = this.part<HTMLButtonElement>('quest');
+      btn.textContent = 'Restart';
+    }
+
+    private nextTarget() {
+      const target = this.questOrder[this.found];
+      const task = this.part<HTMLElement>('task');
+      task.hidden = false;
+      if (!target) {
+        this.quest = null;
+        task.innerHTML = `🎉 You found all ${this.found} civilizations! Notice: every one is near a river or a coast.`;
+        return;
+      }
+      this.quest = { target, tries: 0 };
+      task.innerHTML = `Find the ancient civilization at <span class="ll-card__coord">${formatCoord(Math.round(target.lat), Math.round(target.lon))}</span> (${this.found + 1} of ${this.questOrder.length})`;
+    }
+
+    private checkQuest(lat: number, lon: number) {
+      const q = this.quest!;
+      q.tries++;
+      const dLat = lat - q.target.lat;
+      const dLon = lon - q.target.lon;
+      const task = this.part<HTMLElement>('task');
+      if (Math.hypot(dLat, dLon) <= QUEST_TOLERANCE) {
+        this.select(q.target.id);
+        this.found++;
+        task.innerHTML = `✓ Yes! That's <strong>${q.target.name}</strong>. Next one coming…`;
+        setTimeout(() => this.nextTarget(), 1600);
+        this.quest = null;
+        return;
+      }
+      const tips = [];
+      if (Math.abs(dLat) > QUEST_TOLERANCE / 2) tips.push(dLat > 0 ? 'go farther south' : 'go farther north');
+      if (Math.abs(dLon) > QUEST_TOLERANCE / 2) tips.push(dLon > 0 ? 'go farther west' : 'go farther east');
+      task.innerHTML = `You tapped ${formatCoord(lat, lon)}. Not quite: ${tips.join(' and ')}. Target: <span class="ll-card__coord">${formatCoord(Math.round(q.target.lat), Math.round(q.target.lon))}</span>`;
+      if (q.tries >= 3) this.setView('ancient');
+    }
+  }
+  customElements.define('latlong-map', LatLongMap);
+</script>

@@ -1,0 +1,349 @@
+id: particle-model
+grade: 5
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI5-OI1-GQ1-LO1]
+order: 1
+title: The Particle Model of Matter
+shortTitle: The particle model of matter
+summary: >-
+  See how tiny particles are arranged and how they move in solids, liquids and gases, and use the particle
+  model to explain why each state behaves the way it does.
+
+bigIdea: |-
+  All matter is made of **small particles** that are **always moving** and have **spaces between them**.
+  How the particles are arranged, how they move, and how strongly they attract each other make the
+  difference between a **solid**, a **liquid** and a **gas**.
+
+lesson:
+  - title: Everything is made of particles
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.2]
+        component: particle-model
+        props: { start: solid }
+        caption: |-
+          Switch between **Solid**, **Liquid** and **Gas**. The particles are drawn much bigger than real
+          particles, which are far too small to see.
+      - type: table
+        covers: [K1.1]
+        caption: The three ideas of the particle model of matter
+        headers: ['#', Idea]
+        rows:
+          - ['1', 'All matter is made up of **small particles**.']
+          - ['2', 'Particles of matter are **always moving**.']
+          - ['3', 'Particles of matter have **spaces between them**.']
+
+  - title: 'Solid, liquid, gas: the particle view'
+    blocks:
+      - type: compare
+        covers: [K1.2, K1.3, K1.4, S1.1, S1.2]
+        columns:
+          - title: Solid
+            figure: { kind: particle-boxes, boxes: [solid] }
+            body: Particles are **close together** and **vibrate in place**.
+          - title: Liquid
+            figure: { kind: particle-boxes, boxes: [liquid] }
+            body: Particles are **separated by spaces** and can **slide past each other**.
+          - title: Gas
+            figure: { kind: particle-boxes, boxes: [gas] }
+            body: Particles are **separated by large spaces** and are **constantly moving in all directions**.
+
+  - title: Attractive forces
+    blocks:
+      - type: text
+        covers: [K1.5]
+        body: Particles pull on each other. These **attractive forces** are **strongest in solids** and **weakest in gases**.
+      - type: table
+        covers: [K1.5, S1.3]
+        headers: [State, Attractive forces, What that does to the particles]
+        rows:
+          - ['Solid', '**Strongest**', 'Holds particles close together, so they can only vibrate in place.']
+          - ['Liquid', 'Weaker than in a solid', 'Particles stay close, but can slide past each other.']
+          - ['Gas', '**Weakest**', 'Particles move apart, with large spaces, in all directions.']
+
+  - title: 'Virtual experiment: same particles, new container'
+    blocks:
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI1-GQ1-LO1#K3.1, SCI3-OI1-GQ1-LO1#K3.3, SCI3-OI1-GQ1-LO1#K3.5]
+        title: Remember from Grade 3
+        body: |-
+          A **solid** has a definite shape. A **liquid** flows and takes the shape of its container. A **gas** flows
+          easily and expands to the size of its container. Now you can explain **why**, using particles.
+      - type: experiment
+        covers: [U1.1, S1.2, S1.3]
+        title: Move a solid, a liquid and a gas into a wide container
+        question: Each state starts in a tall, narrow container. Then each container becomes wide and short.
+        animation: container-swap
+        props: { seconds: 6 }
+        predict:
+          choices:
+            - Only the solid keeps its shape.
+            - Only the liquid keeps its shape.
+            - All three keep their shape.
+          answer: 0
+        observe: |-
+          The **solid** stayed a tall block. The **liquid** spread out to cover the bottom of the wide container.
+          The **gas** spread out to fill the **whole** container, top to bottom.
+        explain: |-
+          - **Solid:** the strongest attractive forces keep the particles close together, vibrating in place, so the block keeps its shape.
+          - **Liquid:** the particles can slide past each other, so the liquid flows across the bottom.
+          - **Gas:** the attractive forces are weakest, and the particles move in all directions with large spaces between them, so they fill the container.
+
+  - title: Common mix-ups
+    blocks:
+      - type: callout
+        variant: mistake
+        covers: [K1.1, K1.2, K1.4]
+        title: Watch out for these
+        body: |-
+          - Particles in a solid **never stop moving**: they vibrate in place.
+          - A gas's particles don't grow bigger. The **spaces between** them are larger.
+          - Even in a solid, there are **spaces between** particles. They are just small.
+
+keyTerms:
+  - term: Matter
+    covers: [SCI3-OI1-GQ1-LO1#K2.1]
+    definition: Anything that takes up space and has weight.
+  - term: Particle model of matter
+    covers: [K1.1]
+    definition: 'The idea that all matter is made of small particles that are always moving and have spaces between them.'
+  - term: Particle
+    covers: [K1.1]
+    definition: A very small piece of matter, much too small to see.
+  - term: Attractive forces
+    covers: [K1.5]
+    definition: The pull between particles. Strongest in solids and weakest in gases.
+  - term: Vibrate
+    covers: [K1.2]
+    definition: To move back and forth in place, like the particles in a solid.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: In which state are the particles **close together**, **vibrating in place**?
+    choices: [Solid, Liquid, Gas, All three states]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Liquid particles are separated by spaces and can **slide past each other**.
+      '2': Gas particles are separated by **large spaces** and move in all directions.
+      '3': Only one state has particles that stay in place and just vibrate.
+    hints:
+      - Which state keeps its own shape, like an ice cube?
+    solution:
+      - In a **solid**, the particles are close together and vibrate in place.
+
+  - id: w2
+    level: 1
+    covers: [K1.1]
+    type: mc
+    prompt: Which statement is part of the **particle model of matter**?
+    choices:
+      - Particles of matter are always moving.
+      - Particles stop moving when matter gets very cold.
+      - Particles in a solid have no spaces between them.
+      - Only living things are made of particles.
+    answer: 0
+    feedback:
+      '1': In the particle model, particles are **always** moving. In a solid they still vibrate in place.
+      '2': The model says particles always have spaces between them, even in solids.
+      '3': '**All** matter is made up of small particles.'
+    hints:
+      - The particle model has three ideas. One is about what matter is made of, one about movement, and one about spaces.
+    solution:
+      - 'The three ideas: all matter is made of small particles; particles are **always moving**; particles have spaces between them.'
+
+  - id: w3
+    level: 1
+    covers: [K1.5]
+    type: mc
+    prompt: Attractive forces between particles are **strongest** in which state?
+    choices: [Solid, Liquid, Gas]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Liquid particles attract each other, but less strongly than in a solid.
+      '2': Gas particles have the **weakest** attractive forces.
+    hints:
+      - Which state holds its particles so tightly that they can only vibrate in place?
+    solution:
+      - Attractive forces are **strongest in solids** and weakest in gases.
+
+  - id: w4
+    level: 1
+    covers: [K1.5]
+    type: order
+    prompt: Order the states from **strongest** attractive forces between particles to **weakest**.
+    items: [Solid, Liquid, Gas]
+    hints:
+      - The state whose particles only vibrate in place has the strongest pull between them.
+    solution:
+      - Solid (strongest) → liquid → gas (weakest).
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.1, S1.2, K1.3]
+    type: mc
+    figure: { kind: particle-boxes, boxes: [gas, solid, liquid] }
+    prompt: Each box shows the particles of a substance. Which box shows a **liquid**?
+    choices: [Box A, Box B, Box C]
+    fixedOrder: true
+    answer: 2
+    feedback:
+      '0': Box A's particles are separated by **large spaces**. That is a gas.
+      '1': Box B's particles are close together in neat rows. That is a solid.
+    hints:
+      - Liquid particles are separated by spaces, but not by large spaces, and they are not in neat rows.
+    solution:
+      - 'A: large spaces → gas. B: close together in rows → solid.'
+      - 'C: separated by small spaces, jumbled, resting at the bottom → **liquid**.'
+
+  - id: b2
+    level: 2
+    covers: [K1.4, U1.1]
+    type: mc
+    prompt: You can smell cookies baking from the other side of the house. Which idea **best** explains this?
+    choices:
+      - Gas particles are constantly moving in all directions, with large spaces between them.
+      - Gas particles have the strongest attractive forces, so they pull toward you.
+      - Gas particles are much bigger than solid particles.
+      - Gas particles stay in one place and vibrate.
+    answer: 0
+    feedback:
+      '1': Gas particles have the **weakest** attractive forces, not the strongest.
+      '2': Particles in a gas are not bigger. The **spaces between** them are larger.
+      '3': That describes particles in a **solid**.
+    hints:
+      - How do gas particles move? Try Gas in the simulator.
+    solution:
+      - The smell travels as a gas. Gas particles move **in all directions** and spread through the house until some reach your nose.
+
+  - id: b3
+    level: 2
+    covers: [K1.2, K1.3, K1.5]
+    type: multi
+    prompt: Compare the particles in an **ice cube** with the particles in a glass of **liquid water**. Select **all** the true statements.
+    choices:
+      - In ice, the particles vibrate in place.
+      - In liquid water, the particles can slide past each other.
+      - The attractive forces are stronger in ice than in liquid water.
+      - In ice, the particles do not move at all.
+      - In liquid water, there are no spaces between the particles.
+    answer: [0, 1, 2]
+    hints:
+      - Particles are always moving. How do they move in a solid?
+      - Attractive forces are strongest in solids.
+    solution:
+      - '✓ Ice is a solid: its particles vibrate in place.'
+      - '✓ Water is a liquid: its particles slide past each other.'
+      - '✓ Attractive forces are strongest in solids.'
+      - '✗ Particles are always moving. ✗ Liquid particles are separated by spaces.'
+
+  - id: b4
+    level: 2
+    covers: [S1.2, K1.2, K1.3]
+    type: mc
+    prompt: Why does a liquid take the shape of its container, but a solid does not?
+    choices:
+      - Liquid particles can slide past each other, but solid particles vibrate in place.
+      - Liquid particles are bigger than solid particles.
+      - Solids are not made of particles.
+      - Liquid particles do not move.
+    answer: 0
+    feedback:
+      '1': Particle size is not the difference. How the particles **move** is.
+      '2': All matter, including solids, is made of particles.
+      '3': Particles are always moving. Liquid particles slide past each other.
+    hints:
+      - Compare how particles move in a liquid and in a solid.
+    solution:
+      - Liquid particles **slide past each other**, so the liquid flows into the shape of its container.
+      - Solid particles stay close together and **vibrate in place**, so a solid keeps its shape.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.3, K1.4, K1.5]
+    type: mc
+    prompt: In the virtual experiment, why did the **gas** fill the whole wide container, while the **liquid** only covered the bottom?
+    choices:
+      - Gas particles have the weakest attractive forces and move in all directions, so they spread apart. Liquid particles stay closer together.
+      - Gas particles are heavier, so they push up to the top.
+      - The liquid particles stopped moving when the container changed.
+      - The gas had more particles than the liquid.
+    answer: 0
+    feedback:
+      '1': Being heavy would not push particles **up**. The gas spreads because its particles move in all directions.
+      '2': Particles are always moving. The liquid's particles kept sliding past each other.
+      '3': The number of particles isn't the reason. Watch how each state's particles **move**.
+    hints:
+      - Compare the attractive forces in a liquid and in a gas.
+    solution:
+      - Gas particles have the **weakest** attractive forces and move **in all directions**, so they spread out until they fill the container.
+      - Liquid particles attract each other more, so they stay close together and slide across the bottom.
+
+  - id: d2
+    level: 3
+    covers: [K1.1, K1.2]
+    type: mc
+    prompt: 'A classmate says: "Solid particles are packed so tightly that there is no space between them and they can''t move." What is the best response?'
+    choices:
+      - The particle model says particles always have spaces between them and are always moving. In a solid, the spaces are small and the particles vibrate in place.
+      - Your classmate is right about solids.
+      - Your classmate is right that they can't move, but there are spaces.
+      - Your classmate is right that there are no spaces, but they can move.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Check the three ideas of the particle model: they apply to **all** matter, including solids.'
+      '2': Solid particles do move. They vibrate in place.
+      '3': There are spaces between particles in all matter, even solids.
+    hints:
+      - The three ideas of the particle model apply to every state of matter.
+    solution:
+      - All matter has spaces between particles, and particles are always moving.
+      - In a solid, the particles are close together (small spaces) and **vibrate in place**.
+
+  - id: d3
+    level: 3
+    covers: [S1.1, K1.4]
+    type: mc
+    prompt: |-
+      Mila draws particle models of ice and of water vapour (a gas). In her water vapour drawing, she makes
+      each particle **twice as big**. What should she change?
+    choices:
+      - Draw the particles the same size, with large spaces between them in the water vapour.
+      - Nothing. Gas particles are bigger.
+      - Draw the water vapour particles closer together.
+      - Draw the ice particles far apart.
+    answer: 0
+    feedback:
+      '1': In a gas, it is the **spaces** that are large, not the particles.
+      '2': Gas particles are separated by **large** spaces, not packed close.
+      '3': Ice is a solid. Its particles are close together.
+    hints:
+      - What is large in a gas, the particles or the spaces between them?
+    solution:
+      - In a gas, particles are **separated by large spaces**. The particles themselves are not bigger.
+
+  - id: d4
+    level: 3
+    covers: [S1.2, S1.3]
+    type: open
+    prompt: |-
+      Spilled water spreads out into a puddle, but an ice cube stays the same shape. Use the particle model to
+      explain why. Mention **arrangement**, **movement** and **attractive forces**.
+    modelAnswer: |-
+      In ice (a solid), the particles are close together and the attractive forces are strongest, so the particles
+      only vibrate in place and the ice keeps its shape. In liquid water, the attractive forces are weaker and the
+      particles are separated by spaces and can slide past each other, so the water flows and spreads out.
+    rubric:
+      - I described the **arrangement** of particles in ice and in water.
+      - I described how the particles **move** (vibrate in place vs. slide past each other).
+      - I compared the **attractive forces** (strongest in solids).

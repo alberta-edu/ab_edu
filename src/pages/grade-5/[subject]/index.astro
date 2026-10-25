@@ -1,0 +1,96 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { conceptsFor, curriculum, roadmap, conceptPath } from '../../../lib/content.ts';
+import { conceptKey } from '../../../lib/problem-html.ts';
+import { SUBJECTS, type SubjectInfo } from '../../../site.ts';
+import { href, absolute } from '../../../lib/url.ts';
+
+export function getStaticPaths() {
+  return SUBJECTS.map((s) => ({ params: { subject: s.slug }, props: { subject: s } }));
+}
+const { subject } = Astro.props as { subject: SubjectInfo };
+const built = new Map(conceptsFor(subject.slug).map((c) => [c.id, c]));
+const plan = roadmap(5)[subject.slug];
+const cur = curriculum(5, subject.slug);
+const strands = cur.organizingIdeas
+  .map((oi) => ({ ...oi, items: plan.filter((p) => p.organizingIdea === oi.code) }))
+  .filter((s) => s.items.length);
+const path = `grade-5/${subject.slug}/`;
+const description = `Grade 5 ${subject.name} for Alberta students: ${strands.map((s) => s.title).join(', ')}. Lessons, visuals and practice in three levels.`.slice(0, 160);
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: `Grade 5 ${subject.name} (Alberta)`,
+    description,
+    url: absolute(path),
+    inLanguage: 'en-CA',
+    isAccessibleForFree: true,
+    educationalLevel: 'Grade 5',
+    provider: { '@type': 'Organization', name: 'AB Edu' },
+    hasPart: [...built.values()].map((c) => ({ '@type': 'LearningResource', name: c.title, url: absolute(conceptPath(c)) })),
+  },
+];
+---
+<Base title={`Grade 5 ${subject.name} (Alberta curriculum)`} description={description} path={path} subject={subject.slug} jsonLd={jsonLd}>
+  <div class="container">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={href('grade-5/')}>Grade 5</a></li>
+        <li aria-current="page">{subject.name}</li>
+      </ol>
+    </nav>
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">Grade 5 · Alberta curriculum</p>
+      <h1>{subject.name}</h1>
+      <p class="page-hero__lede">{subject.blurb} Topics follow the organizing ideas in Alberta's program of studies.</p>
+      <p class="muted" style="font-size:var(--step--1)">{cur.implemented}</p>
+    </header>
+
+    {
+      strands.map((s) => (
+        <section class="strand" aria-labelledby={`s-${s.code}`}>
+          <div class="strand__head">
+            <h2 id={`s-${s.code}`}>{s.title}</h2>
+            <p>{s.statement}</p>
+          </div>
+          <div class="grid">
+            {s.items.map((item) => {
+              const c = built.get(item.id);
+              return c ? (
+                <a class="card concept-card" href={href(conceptPath(c))}>
+                  <span class="ring" data-ring={conceptKey(c)} data-total={c.problems.length}>
+                    <span>0%</span>
+                  </span>
+                  <span class="concept-card__body">
+                    <span class="concept-card__title">{c.shortTitle}</span>
+                    <span class="concept-card__sub">
+                      {c.problems.length} problems · 3 levels
+                      <span class="chip" data-due-for={conceptKey(c)} hidden style="margin-left:0.3rem">
+                        Review due
+                      </span>
+                    </span>
+                  </span>
+                  <Icon name="arrow" size={18} />
+                </a>
+              ) : (
+                <div class="card concept-card concept-card--soon">
+                  <span class="concept-card__body">
+                    <span class="concept-card__title">{item.title}</span>
+                    <span class="concept-card__sub">Coming soon</span>
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<script>
+  import { initRings } from '../../../client/rings.ts';
+  initRings();
+</script>

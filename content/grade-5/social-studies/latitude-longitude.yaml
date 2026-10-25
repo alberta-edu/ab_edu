@@ -1,0 +1,389 @@
+id: latitude-longitude
+grade: 5
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [o2GVcXJJMUSbV-t0cuKi8A]
+order: 3
+title: Latitude, Longitude and Where Civilizations Grew
+shortTitle: Latitude, longitude & early civilizations
+summary: >-
+  Spin a 3D globe to learn latitude and longitude, then find out why ancient civilizations grew in river
+  valleys and along coastlines, from Egypt to China.
+
+bigIdea: |-
+  Every place on Earth can be described by its **latitude**, **longitude** and **elevation**. Ancient
+  civilizations grew where geography helped: **river valleys** with water, fertile soil and a moderate
+  climate for farming, and **coastlines** with oceans and bays for travel and trade.
+
+lesson:
+  - title: Every place has an address
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.1]
+        component: globe
+        props: { start: latitude }
+      - type: compare
+        covers: [K1.4]
+        columns:
+          - title: Latitude
+            body: |-
+              How far **north or south** of the **equator** (0°).
+
+              Goes up to **90°N** and **90°S**.
+          - title: Longitude
+            body: |-
+              How far **east or west** of the **prime meridian** (0°).
+
+              Goes up to **180°E** and **180°W**.
+
+  - title: Reading coordinates
+    blocks:
+      - type: example
+        covers: [K1.4, S1.1]
+        title: Where was Memphis, in ancient Egypt?
+        problem: Find the latitude and longitude of Memphis.
+        steps:
+          - '**Latitude first.** Memphis is about 30° north of the equator → **30°N**.'
+          - '**Then longitude.** It is about 31° east of the prime meridian → **31°E**.'
+          - 'Always include **N or S** and **E or W**. Without them, "30°, 31°" could mean four different places!'
+        answer: Memphis is at about **30°N, 31°E**.
+      - type: callout
+        variant: tip
+        covers: [K1.4]
+        title: A third way to describe location
+        body: '**Elevation** is how high a place is above sea level. Petra was built high among rocky mountains, while the land at the mouth of the Nile is close to sea level.'
+
+  - title: Where ancient civilizations grew
+    blocks:
+      - type: table
+        covers: [K1.1, K1.3, S1.1]
+        caption: The curriculum's example civilizations. Coordinates are rounded to the nearest degree.
+        headers: [Civilization, City, Coordinates, Water and land]
+        rows:
+          - ['Ancient Egypt', 'Memphis', '30°N, 31°E', 'Nile River valley']
+          - ['Ancient India', 'Mohenjo-daro', '27°N, 68°E', 'Indus River valley']
+          - ['Ancient China', 'Anyang', '36°N, 114°E', 'Yellow River valley']
+          - ['Ancient Greece', 'Athens', '38°N, 24°E', 'Coastline on the Aegean Sea']
+          - ['Ancient Rome', 'Rome', '42°N, 12°E', 'Tiber River, near the Mediterranean coast']
+          - ['Arab civilization (Nabataeans)', 'Petra', '30°N, 35°E', 'Desert, on trade routes']
+      - type: visual
+        covers: [K1.3, K1.4, S1.1]
+        component: latlong-map
+        props: { view: world, quest: true }
+        caption: 'On a flat map the lines of latitude and longitude become a grid. Press **Start** for the Coordinate Quest: read the coordinates, then tap the spot.'
+
+  - title: Why river valleys and coastlines?
+    blocks:
+      - type: compare
+        covers: [K1.2, K1.5, K1.6, S1.2]
+        columns:
+          - title: 🌾 River valleys
+            body: |-
+              - **Abundant water**
+              - **Fertile soil**
+              - **Moderate climate**
+
+              These supported **agriculture**. More farming led to **more settled societies**.
+          - title: ⛵ Coastlines
+            body: |-
+              - **Oceans** and **bays**
+
+              These supported **travel** and **trade** between peoples.
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.2]
+        title: Environment and settlement are connected
+        body: Where people settled depended on their environment, and settling changed how people lived.
+
+  - title: When the environment changes
+    blocks:
+      - type: compare
+        covers: [K1.7, K1.8, S1.3]
+        columns:
+          - title: 🌋 Natural disasters
+            body: |-
+              Changes in the environment can make people **adapt or move**.
+
+              In 79 CE, the volcano Mount Vesuvius erupted and buried the Roman town of Pompeii. Survivors moved to other towns.
+          - title: 🏛️ Changing the environment
+            body: |-
+              People can **change the environment** to meet their needs.
+
+              Romans built **aqueducts** to carry fresh water into their cities. In dry Petra, people built channels and tanks to store rainwater.
+
+keyTerms:
+  - term: Latitude
+    covers: [K1.4]
+    definition: How far north or south a place is from the equator, measured in degrees.
+  - term: Longitude
+    covers: [K1.4]
+    definition: How far east or west a place is from the prime meridian, measured in degrees.
+  - term: Elevation
+    covers: [K1.4]
+    definition: How high a place is above sea level.
+  - term: Civilization
+    covers: [K1.1]
+    definition: A complex society. Ancient civilizations existed thousands of years ago (3000 BCE–500 CE).
+  - term: Fertile soil
+    covers: [K1.2]
+    definition: Rich soil that is good for growing crops.
+  - term: Aqueduct
+    covers: [K1.8]
+    definition: A structure built to carry water from one place to another.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.4]
+    type: mc
+    prompt: '**Latitude** tells you how far a place is…'
+    choices:
+      - north or south of the equator.
+      - east or west of the prime meridian.
+      - above sea level.
+      - from the nearest river.
+    answer: 0
+    feedback:
+      '1': That is **longitude**.
+      '2': Height above sea level is **elevation**.
+      '3': Latitude is measured from the equator.
+    hints:
+      - On the globe, which way does the glowing latitude line move when you slide it?
+    solution:
+      - Latitude measures how far **north or south** of the equator a place is.
+
+  - id: w2
+    level: 1
+    covers: [K1.4]
+    type: mc
+    prompt: What is the latitude of the **equator**?
+    choices: ['0°', '45°', '90°', '180°']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 45° is halfway between the equator and a pole.
+      '2': 90° is the latitude of the North Pole (90°N) or the South Pole (90°S).
+      '3': Latitude never goes above 90°.
+    hints:
+      - Latitude is measured **from** the equator.
+    solution:
+      - The equator is where latitude starts, so it is **0°**.
+
+  - id: w3
+    level: 1
+    covers: [K1.4]
+    type: mc
+    prompt: A city is at **30°N, 31°E**. Which is true?
+    choices:
+      - It is north of the equator and east of the prime meridian.
+      - It is north of the equator and west of the prime meridian.
+      - It is south of the equator and east of the prime meridian.
+      - It is south of the equator and west of the prime meridian.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': E means **east** of the prime meridian.
+      '2': N means **north** of the equator.
+      '3': N means north and E means east.
+    hints:
+      - N = north of the equator. E = east of the prime meridian.
+    solution:
+      - '30°**N** is north of the equator; 31°**E** is east of the prime meridian. This is Memphis, in ancient Egypt.'
+
+  - id: w4
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: Which geographical features of river valleys supported **agriculture** in ancient civilizations?
+    choices:
+      - Abundant water, fertile soil and a moderate climate
+      - Tall mountains, deep snow and strong winds
+      - Volcanoes and earthquakes
+      - Deserts with no water
+    answer: 0
+    feedback:
+      '1': These make farming **harder**.
+      '2': These are natural disasters. They can make people adapt or move.
+      '3': Crops need water.
+    hints:
+      - What do crops need to grow?
+    solution:
+      - River valleys had **abundant water**, **fertile soil** and a **moderate climate**, which supported agriculture.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.1, K1.4]
+    type: mc
+    prompt: Use the table in the lesson. Which civilization grew closest to **36°N, 114°E**?
+    choices:
+      - Ancient China, on the Yellow River
+      - Ancient India, on the Indus River
+      - Ancient Greece, on the Aegean coast
+      - Ancient Egypt, on the Nile River
+    answer: 0
+    feedback:
+      '1': Mohenjo-daro is near 27°N, 68°E. Its longitude is much smaller than 114°E.
+      '2': Athens is near 38°N, 24°E. The latitude is close, but the longitude is far off.
+      '3': Memphis is near 30°N, 31°E, far west of 114°E.
+    hints:
+      - Match the **longitude** first. Which city is about 114° east?
+    solution:
+      - Anyang, in ancient China, is at about **36°N, 114°E**, in the Yellow River valley.
+
+  - id: b2
+    level: 2
+    covers: [K1.4]
+    type: mc
+    prompt: Which coordinates are closest to **Edmonton, Alberta**?
+    choices:
+      - '54°N, 113°W'
+      - '54°N, 113°E'
+      - '54°S, 113°W'
+      - '113°N, 54°W'
+    answer: 0
+    feedback:
+      '1': 113°**E** is east of the prime meridian, in Asia. Alberta is **west** of the prime meridian.
+      '2': 54°**S** is far south of the equator. Alberta is **north** of the equator.
+      '3': Latitude can never be more than 90°, and latitude is written first.
+    hints:
+      - Is Alberta north or south of the equator? East or west of the prime meridian? Try the globe's Places tab.
+    solution:
+      - Alberta is **north** of the equator and **west** of the prime meridian, so Edmonton is at about **54°N, 113°W**.
+
+  - id: b3
+    level: 2
+    covers: [S1.1]
+    type: order
+    prompt: Put these ancient cities in order from **farthest south** to **farthest north**.
+    items:
+      - 'Mohenjo-daro (27°N)'
+      - 'Memphis (30°N)'
+      - 'Anyang (36°N)'
+      - 'Athens (38°N)'
+      - 'Rome (42°N)'
+    hints:
+      - North of the equator, a bigger latitude means farther north.
+    solution:
+      - 'Smaller °N = closer to the equator = farther south.'
+      - 'Mohenjo-daro (27°) → Memphis (30°) → Anyang (36°) → Athens (38°) → Rome (42°)'
+
+  - id: b4
+    level: 2
+    covers: [K1.6, S1.2]
+    type: mc
+    prompt: Athens grew on a coastline with many bays. How did this geography help ancient Greece?
+    choices:
+      - The sea and bays supported travel and trade.
+      - The coast gave it the most fertile soil in the world.
+      - The sea protected it from all natural disasters.
+      - The coast kept Greeks from meeting other peoples.
+    answer: 0
+    feedback:
+      '1': Fertile soil is linked to **river valleys** in this lesson. Coastlines are linked to travel and trade.
+      '2': Coasts don't protect against all natural disasters.
+      '3': The opposite! The sea let Greeks travel and trade with other peoples.
+    hints:
+      - What can you do with boats on a sea full of bays?
+    solution:
+      - Oceans and bays along coastlines supported **travel and trade**.
+
+  - id: b5
+    level: 2
+    covers: [K1.8]
+    type: mc
+    prompt: The Romans built **aqueducts** to carry fresh water into their cities. This is an example of…
+    choices:
+      - people changing the environment to meet their needs.
+      - a natural disaster changing the environment.
+      - people moving away because the environment changed.
+      - a river valley supporting agriculture.
+    answer: 0
+    feedback:
+      '1': A natural disaster happens without people causing it. Aqueducts were built on purpose.
+      '2': The Romans didn't move. They brought the water to where they lived.
+      '3': Aqueducts were built, not a natural feature.
+    hints:
+      - Who built the aqueducts, and why?
+    solution:
+      - People built aqueducts on purpose so cities had fresh water. This is **changing the environment to meet needs**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.4]
+    type: mc
+    prompt: You start in Rome at **42°N, 12°E** and travel **10° due west**, staying on the same line of latitude. Where are you now?
+    choices: ['42°N, 2°E', '42°N, 22°E', '32°N, 12°E', '52°N, 12°E']
+    answer: 0
+    feedback:
+      '1': Rome is **east** of the prime meridian. Going west moves you **toward** 0°, so the number gets smaller.
+      '2': Going west changes your **longitude**, not your latitude.
+      '3': Going west changes your **longitude**, not your latitude.
+    hints:
+      - Which number changes when you move east or west?
+      - East of the prime meridian, moving west brings you closer to 0°.
+    solution:
+      - Moving west changes only the **longitude**. Latitude stays 42°N.
+      - 'Rome is 12° east of the prime meridian; going 10° west leaves \(12 - 10 = 2\): you are at **42°N, 2°E**.'
+
+  - id: d2
+    level: 3
+    covers: [K1.8, S1.2]
+    type: mc
+    prompt: Petra had **no large river**, yet people lived there for hundreds of years. Which is the **best** explanation?
+    choices:
+      - People built channels and storage tanks to collect rainwater, changing their environment to meet their needs.
+      - Petra was near the equator, so it rained every day.
+      - The people of Petra did not need water.
+      - Petra was built beside the Nile River.
+    answer: 0
+    feedback:
+      '1': Petra is at about 30°N, far from the equator, in a desert.
+      '2': Every community needs water. The question is how Petra **got** it.
+      '3': Check the map. Petra is east of Egypt, away from the Nile.
+    hints:
+      - Look at Petra on the globe or map, and reread "When the environment changes".
+    solution:
+      - With no river, people **changed their environment**, building channels and tanks to store rainwater.
+
+  - id: d3
+    level: 3
+    covers: [K1.7, K1.8, S1.3]
+    type: mc
+    prompt: |-
+      After Vesuvius erupted, Pompeii's survivors moved to other towns. In Rome, people built aqueducts.
+      How are these two responses **different**?
+    choices:
+      - The survivors moved because the environment changed; the aqueduct builders changed the environment to meet their needs.
+      - Both are examples of a natural disaster.
+      - Both are examples of people moving to a river valley.
+      - The survivors changed the environment; the aqueduct builders moved away.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Only the eruption was a natural disaster. Aqueducts were built by people.
+      '2': Neither response is about moving to a river valley.
+      '3': This has them the wrong way round.
+    hints:
+      - Which response came **after** a change in the environment? Which one **made** a change?
+    solution:
+      - 'Pompeii: the environment changed (a volcano), and people **moved**.'
+      - 'Rome: people **changed the environment** (aqueducts) to meet their needs.'
+
+  - id: d4
+    level: 3
+    covers: [S1.2, K1.2, K1.5]
+    type: open
+    prompt: |-
+      You are choosing where to start a farming village thousands of years ago: in a **river valley** or on a
+      **dry, rocky hilltop**. Make your choice and justify it using at least **two geographical features**.
+    modelAnswer: |-
+      I would choose the river valley. The river gives abundant water for people and crops, and the valley has
+      fertile soil that is good for farming. A moderate climate would help too. With more farming, my village
+      could grow food for more people and settle there for good. The rocky hilltop has poor soil and no water.
+    rubric:
+      - I made a clear choice.
+      - I used at least **two** geographical features (water, fertile soil, moderate climate).
+      - I connected the features to farming or to settling in one place.

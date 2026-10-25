@@ -1,0 +1,158 @@
+---
+import Base from '../layouts/Base.astro';
+import { loadConcepts, conceptPath } from '../lib/content.ts';
+import { conceptKey, problemKey } from '../lib/problem-html.ts';
+import { SUBJECTS } from '../site.ts';
+import { href } from '../lib/url.ts';
+
+const concepts = loadConcepts(5);
+const bySubject = SUBJECTS.map((s) => ({ ...s, concepts: concepts.filter((c) => c.subject === s.slug).sort((a, b) => a.order - b.order) })).filter(
+  (s) => s.concepts.length,
+);
+/** Problem keys per level, so the browser can count solved problems at each level. */
+const levelKeys = (c: (typeof concepts)[number]) => [1, 2, 3].map((l) => c.problems.filter((p) => p.level === l).map((p) => problemKey(c, p)));
+---
+<Base title="My progress" description="Your Grade 5 progress, saved only in this browser." path="progress/" noindex>
+  <div class="container">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">Saved on this device</p>
+      <h1>My progress</h1>
+      <p class="page-hero__lede">Everything here is stored only in this browser. Nobody else can see it, including us.</p>
+    </header>
+
+    <div class="pg-stats">
+      <div class="card rv-stat"><strong data-stat="solved">0</strong><span>problems solved</span></div>
+      <div class="card rv-stat"><strong data-stat="first">0</strong><span>solved on the first try</span></div>
+      <div class="card rv-stat"><strong data-stat="streak">0</strong><span>day streak</span></div>
+      <div class="card rv-stat"><strong data-stat="review">0</strong><span>topics in review</span></div>
+    </div>
+
+    {
+      bySubject.map((s) => (
+        <section class="strand" data-subject={s.slug}>
+          <div class="strand__head">
+            <h2>{s.name}</h2>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th scope="col">Topic</th>
+                  <th scope="col">★ Warm-up</th>
+                  <th scope="col">★★ Build</th>
+                  <th scope="col">★★★ Deep Think</th>
+                  <th scope="col">Review</th>
+                </tr>
+              </thead>
+              <tbody>
+                {s.concepts.map((c) => (
+                  <tr data-pg-concept={conceptKey(c)} data-levels={JSON.stringify(levelKeys(c))}>
+                    <th scope="row">
+                      <a href={href(conceptPath(c))}>{c.shortTitle}</a>
+                    </th>
+                    {[1, 2, 3].map((l) => (
+                      <td data-pg-level={l}>0 / {levelKeys(c)[l - 1].length}</td>
+                    ))}
+                    <td data-pg-review>Not yet</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="strand" id="backup" aria-labelledby="backup-title">
+      <h2 id="backup-title">Back up or move your progress</h2>
+      <p>
+        Clearing your browser's data (cookies and site data) will erase your progress. Save a backup file to keep it safe, or to move it
+        to another device or browser.
+      </p>
+      <p class="notice" data-storage-warning hidden>
+        This browser is blocking storage (for example, in a private window). Progress will be lost when you close this tab.
+      </p>
+      <div class="control-row">
+        <button type="button" class="btn btn--primary" data-export>Save backup file</button>
+        <label class="btn btn--ghost">
+          Load backup file
+          <input type="file" accept="application/json,.json" data-import class="sr-only" />
+        </label>
+        <button type="button" class="btn btn--ghost" data-reset>Erase all progress</button>
+      </div>
+      <p data-io-msg role="status" class="muted"></p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .pg-stats { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin-bottom: 1rem; }
+  .rv-stat { padding: 0.9rem 1rem; }
+  .rv-stat strong { display: block; font-size: var(--step-2); line-height: 1.1; }
+  .rv-stat span { color: var(--ink-3); font-size: var(--step--1); }
+  td.is-done { color: var(--ok); font-weight: 700; }
+</style>
+
+<script>
+  import { load, onChange, streak, exportJson, importJson, reset, storageAvailable } from '../client/progress.ts';
+  import { INTERVALS, DAY } from '../lib/srs.ts';
+
+  const render = () => {
+    const p = load();
+    const recs = Object.values(p.problems);
+    const set = (k: string, v: number) => (document.querySelector(`[data-stat="${k}"]`)!.textContent = String(v));
+    set('solved', recs.filter((r) => r.s).length);
+    set('first', recs.filter((r) => r.f).length);
+    set('streak', streak(p));
+    set('review', Object.keys(p.review).length);
+
+    document.querySelectorAll<HTMLElement>('[data-pg-concept]').forEach((row) => {
+      const key = row.dataset.pgConcept!;
+      const levels: string[][] = JSON.parse(row.dataset.levels!);
+      const levelSolved = levels.map((keys) => keys.filter((k) => p.problems[k]?.s).length);
+      const totals = levels.map((keys) => keys.length);
+      [1, 2, 3].forEach((l) => {
+        const td = row.querySelector<HTMLElement>(`[data-pg-level="${l}"]`)!;
+        td.textContent = `${levelSolved[l - 1]} / ${totals[l - 1]}${levelSolved[l - 1] === totals[l - 1] ? ' ✓' : ''}`;
+        td.classList.toggle('is-done', levelSolved[l - 1] === totals[l - 1]);
+      });
+      const r = p.review[key];
+      const days = r ? Math.ceil((r.due - Date.now()) / DAY) : 0;
+      row.querySelector('[data-pg-review]')!.textContent = r
+        ? `Box ${r.box + 1} of ${INTERVALS.length} · ${days <= 0 ? 'due today' : `next in ${days} day${days === 1 ? '' : 's'}`}`
+        : 'Not yet';
+    });
+  };
+
+  render();
+  onChange(render);
+  if (!storageAvailable()) document.querySelector<HTMLElement>('[data-storage-warning]')!.hidden = false;
+
+  const msg = document.querySelector<HTMLElement>('[data-io-msg]')!;
+  document.querySelector('[data-export]')!.addEventListener('click', () => {
+    const blob = new Blob([exportJson()], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `ab-edu-progress-${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    msg.textContent = 'Backup saved. Keep the file somewhere safe.';
+  });
+  document.querySelector<HTMLInputElement>('[data-import]')!.addEventListener('change', async (e) => {
+    const file = (e.target as HTMLInputElement).files?.[0];
+    if (!file) return;
+    if (!confirm('Replace the progress in this browser with the backup file?')) return;
+    try {
+      importJson(await file.text());
+      msg.textContent = 'Progress loaded from your backup.';
+    } catch (err) {
+      msg.textContent = (err as Error).message;
+    }
+  });
+  document.querySelector('[data-reset]')!.addEventListener('click', () => {
+    if (confirm('Erase all progress in this browser? This cannot be undone unless you have a backup file.')) {
+      reset();
+      msg.textContent = 'All progress erased.';
+    }
+  });
+</script>
