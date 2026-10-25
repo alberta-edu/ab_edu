@@ -23,7 +23,7 @@ const [n, d] = presets[0];
 
 <style is:global>
   fraction-regroup { display: block; }
-  .rg-stage { position: relative; margin-top: 0.5rem; transition: height 0.4s; }
+  .rg-stage { position: relative; margin-top: 0.5rem; transition: height 0.4s; overflow-x: clip; }
   .rg-piece {
     position: absolute; left: var(--lx); top: var(--ly); width: var(--w); height: 44px;
     display: grid; place-items: center; border-radius: 8px; background: var(--accent); color: var(--brand-ink);

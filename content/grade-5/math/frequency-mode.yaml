@@ -1,0 +1,357 @@
+id: frequency-mode
+grade: 5
+subject: math
+organizingIdea: MAT-OI8
+outcomes: [MAT5-OI8-GQ1-LO1]
+order: 15
+title: Frequency and Mode
+shortTitle: Frequency & mode
+summary: >-
+  Collect data with closed-list and open-ended questions, count frequencies, show them in tables, bar graphs,
+  dot plots and stem-and-leaf plots, and find the mode.
+
+bigIdea: |-
+  **Frequency** is how many times each category appears in a set of data. Tables, bar graphs, dot plots
+  and stem-and-leaf plots all show frequency. The **mode** is the category with the **highest frequency**,
+  and a data set can have **one mode, several modes or none**.
+
+lesson:
+  - title: Asking the question
+    blocks:
+      - type: compare
+        covers: [K2.1, K2.2, K2.3, S2.1, S2.2]
+        columns:
+          - title: Closed-list question
+            body: |-
+              *Which season do you like best: spring, summer, fall or winter?*
+
+              People **choose from a list**, so the answers are already in categories.
+          - title: Open-ended question
+            body: |-
+              *What do you like to do outside?*
+
+              People can say **anything**, so you have to sort the answers into categories afterwards.
+      - type: callout
+        variant: tip
+        covers: [K2.4, S2.3]
+        title: Sorting open-ended answers
+        body: '"Soccer", "hockey" and "skating" could go in a **Sports** category. "Drawing" and "painting" could go in **Art**. Answers can be sorted in more than one way.'
+
+  - title: Sort, count, show
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.2, S2.3, S2.4, S2.5, K2.5, U2.2, U2.3, S1.3]
+        component: data-sorter
+        caption: Press **Sort and count**. Each card is one person's answer. Then switch between the table, bar graph and dot plot. They all show the same frequencies.
+
+  - title: Frequency is a count, not a value
+    blocks:
+      - type: compare
+        covers: [U1.1, U2.1]
+        columns:
+          - title: The data
+            body: The answers themselves, like **Summer** or **Winter**.
+          - title: The frequency
+            body: How many people gave each answer, like **8** people chose Summer.
+      - type: callout
+        variant: mistake
+        covers: [U1.1, K1.2]
+        title: The mode is a category
+        body: If Summer has the highest frequency, 8, the mode is **Summer**, not 8.
+
+  - title: One mode, two modes, or none
+    blocks:
+      - type: table
+        covers: [K1.2, S1.3, S1.4]
+        headers: [Frequencies, Mode]
+        rows:
+          - ['Spring 3, Summer 8, Fall 4, Winter 5', 'One mode: **Summer**']
+          - ['Walk 7, Bus 7, Car 4, Bike 2', 'Two modes: **Walk** and **Bus**']
+          - ['Dog 4, Cat 4, Fish 4, Bird 4', '**No mode**: every category is tied']
+
+  - title: Stem-and-leaf plots
+    blocks:
+      - type: table
+        covers: [K2.5, U2.3]
+        caption: Minutes students spent reading last night. Each leaf is one student.
+        headers: [Stem (tens), Leaves (ones), Frequency]
+        rows:
+          - ['1', '0 5 5 8', '4 students read 10 to 19 minutes']
+          - ['2', '0 0 2 5 5 5 9', '7 students read 20 to 29 minutes']
+          - ['3', '0 0 5', '3 students read 30 to 39 minutes']
+      - type: text
+        covers: [U2.3]
+        body: Stem **2** with leaf **5** means 25 minutes. Count the leaves in a row to find the frequency.
+
+  - title: Answering a statistical question
+    blocks:
+      - type: example
+        covers: [S1.5, K1.1]
+        title: Which pet should the class adopt?
+        problem: 'The class voted on a class pet: fish 9, hamster 6, lizard 4, snail 1.'
+        steps:
+          - 'Compare the frequencies. Fish has the highest frequency, 9.'
+          - 'The mode is **fish**.'
+        answer: The mode suggests the class should adopt a **fish**, because the most students chose it.
+
+keyTerms:
+  - term: Frequency
+    covers: [U2.1, U1.1]
+    definition: How many times a category appears in a set of data.
+  - term: Mode
+    covers: [K1.2]
+    definition: The category with the highest frequency.
+  - term: Closed-list question
+    covers: [K2.2]
+    definition: A question that gives a list of answers to choose from.
+  - term: Open-ended question
+    covers: [K2.3]
+    definition: A question that allows any answer.
+  - term: Frequency table
+    covers: [S2.4]
+    definition: A table that shows each category and its frequency.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.2, K2.3]
+    type: mc
+    prompt: Which is a **closed-list** question?
+    choices:
+      - 'Which sport do you like best: soccer, hockey, basketball or swimming?'
+      - What is your favourite thing to do on weekends?
+      - Why do you like your favourite book?
+      - What would you invent if you could?
+    answer: 0
+    feedback:
+      '1': This allows any answer, so it is open-ended.
+      '2': This allows any answer, so it is open-ended.
+      '3': This allows any answer, so it is open-ended.
+    hints:
+      - A closed-list question gives a list of answers to choose from.
+    solution:
+      - The sports question lists the answers to choose from, so it's **closed-list**.
+
+  - id: w2
+    level: 1
+    covers: [S1.2]
+    type: number
+    prompt: 'Answers to "Favourite pet?": dog, cat, dog, fish, dog, cat, bird, dog. What is the **frequency** of **dog**?'
+    answer: 4
+    hints:
+      - Count how many times "dog" appears.
+    solution:
+      - 'dog, cat, **dog**, fish, **dog**, cat, bird, **dog**: dog appears **4** times.'
+
+  - id: w3
+    level: 1
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: |-
+      What is the **mode**?
+
+      | Fruit | Frequency |
+      |---|---|
+      | Apple | 6 |
+      | Banana | 9 |
+      | Orange | 4 |
+    choices: ['Banana', '9', 'Apple', 'Orange']
+    answer: 0
+    feedback:
+      '1': '9 is the frequency. The mode is the **category**.'
+      '2': 'Apple has 6, but Banana has more.'
+      '3': Orange has the lowest frequency.
+    hints:
+      - Find the highest frequency, then give its category.
+    solution:
+      - 'Banana has the highest frequency, 9, so the mode is **Banana**.'
+
+  - id: w4
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: What is the **mode** of a set of categorical data?
+    choices:
+      - The category with the highest frequency
+      - The highest frequency number
+      - The category with the lowest frequency
+      - The total number of responses
+    answer: 0
+    feedback:
+      '1': The mode is a category, not a number.
+      '2': That is the opposite.
+      '3': That is the total, not the mode.
+    hints:
+      - Think "most often".
+    solution:
+      - The mode is the **category** that appears most often.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.4]
+    type: mc
+    prompt: |-
+      How many modes does this data set have?
+
+      | Snack | Frequency |
+      |---|---|
+      | Popcorn | 7 |
+      | Pretzels | 4 |
+      | Fruit | 7 |
+      | Crackers | 2 |
+    choices: ['Two: popcorn and fruit', 'One: popcorn', 'None', 'Four']
+    answer: 0
+    feedback:
+      '1': Fruit is tied with popcorn for the highest frequency.
+      '2': 'There is a highest frequency, 7. It just belongs to two categories.'
+      '3': Only the categories with the highest frequency are modes.
+    hints:
+      - Look for every category with the highest frequency.
+    solution:
+      - Popcorn and fruit both have 7, the highest frequency, so there are **two modes**.
+
+  - id: b2
+    level: 2
+    covers: [S2.4, U2.2]
+    type: number
+    prompt: |-
+      How many students answered the survey?
+
+      | Lunch | Frequency |
+      |---|---|
+      | Pizza | 11 |
+      | Tacos | 8 |
+      | Soup | 5 |
+      | Salad | 3 |
+    answer: 27
+    verify: 11 + 8 + 5 + 3
+    hints:
+      - Add all the frequencies.
+    solution:
+      - '\(11 + 8 + 5 + 3 = 27\) students'
+
+  - id: b3
+    level: 2
+    covers: [S1.4]
+    type: mc
+    prompt: Which data set has **no mode**?
+    choices:
+      - 'Red 5, Blue 5, Green 5'
+      - 'Red 5, Blue 6, Green 5'
+      - 'Red 2, Blue 6, Green 6'
+      - 'Red 9, Blue 1, Green 1'
+    answer: 0
+    feedback:
+      '1': 'Blue has the highest frequency, so Blue is the mode.'
+      '2': 'Blue and Green tie for the highest, so there are two modes.'
+      '3': 'Red is the mode.'
+    hints:
+      - When every category has the same frequency, none is "most".
+    solution:
+      - All three have frequency 5, so there is **no mode**.
+
+  - id: b4
+    level: 2
+    covers: [K2.4, S2.3, S2.1]
+    type: mc
+    prompt: 'An open-ended question got these answers: soccer, painting, hockey, drawing, skating, music. Which categories fit best?'
+    choices: ['Sports and Arts', 'Summer and Winter', 'Indoor only', 'Long and short words']
+    answer: 0
+    feedback:
+      '1': Painting, drawing and music aren't seasonal.
+      '2': Soccer is usually played outdoors.
+      '3': Categories should help answer the question, not sort spelling.
+    hints:
+      - Which answers are alike?
+    solution:
+      - 'Sports: soccer, hockey, skating. Arts: painting, drawing, music.'
+
+  - id: b5
+    level: 2
+    covers: [K2.5, U2.3]
+    type: number
+    prompt: |-
+      This stem-and-leaf plot shows students' ages at a summer camp. How many campers are **in their teens (10 to 19)**?
+
+      | Stem | Leaves |
+      |---|---|
+      | 0 | 8 9 9 |
+      | 1 | 0 0 1 1 1 2 |
+    answer: 6
+    hints:
+      - The stem 1 means ages 10 to 19. Count its leaves.
+    solution:
+      - 'Stem 1 has leaves 0, 0, 1, 1, 1, 2, so **6** campers are 10 to 12 years old.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [U1.1, K1.2]
+    type: mc
+    prompt: 'In a survey table, **Summer** has the highest frequency, **8**. Leo says "the mode is 8." What is correct?'
+    choices: ['The mode is Summer. 8 is its frequency.', 'Leo is correct.', 'The mode is 4, half of 8.', 'There is no mode.']
+    answer: 0
+    feedback:
+      '1': 'The mode is a **category**, not a count.'
+      '2': 'Halving the frequency has nothing to do with the mode.'
+      '3': 'Summer has the highest frequency, so it is the mode.'
+    hints:
+      - Is the mode a category or a number?
+    solution:
+      - 'The mode is the **category** with the highest frequency: **Summer**. The 8 is how many chose it.'
+
+  - id: d2
+    level: 3
+    covers: [S1.5, K1.1]
+    type: mc
+    prompt: The class wants to choose a field trip that **the most students** will enjoy. What should they do?
+    choices:
+      - Ask a closed-list question with the trip choices, then pick the mode.
+      - Ask one student and do what they say.
+      - Pick the trip with the lowest frequency.
+      - Pick the trip that's first in alphabetical order.
+    answer: 0
+    feedback:
+      '1': One student's opinion doesn't show what most students want.
+      '2': The lowest frequency is what the **fewest** students chose.
+      '3': Alphabetical order has nothing to do with what students enjoy.
+    hints:
+      - Which statistic tells you the most popular choice?
+    solution:
+      - Survey everyone with a closed list of trips. The **mode** is the trip chosen most often.
+
+  - id: d3
+    level: 3
+    covers: [S1.4, K1.2]
+    type: mc
+    prompt: 'Votes so far: Spring 3, Summer 5, Fall 5, Winter 2. One more student votes for **Fall**. What happens to the mode?'
+    choices:
+      - It changes from two modes (Summer and Fall) to one mode, Fall.
+      - It stays the same.
+      - Now there is no mode.
+      - Summer becomes the only mode.
+    answer: 0
+    feedback:
+      '1': Before, there was a tie between Summer and Fall. Now Fall has 6.
+      '2': A mode only disappears when all the categories tie.
+      '3': The new vote went to Fall, not Summer.
+    hints:
+      - What are the modes before the vote? After?
+    solution:
+      - 'Before: Summer and Fall tie at 5, so there are two modes. After: Fall has 6, so **Fall** is the only mode.'
+
+  - id: d4
+    level: 3
+    covers: [S2.2, S1.5]
+    type: open
+    prompt: 'You want to know: "What is the most popular lunch in our class?" Write a **closed-list question** you could ask, and explain how you would use the answers.'
+    modelAnswer: |-
+      "Which lunch do you like best: pizza, tacos, soup or salad?" I would count how many students chose each lunch and
+      put the counts in a frequency table or bar graph. The lunch with the highest frequency, the mode, is the most
+      popular lunch.
+    rubric:
+      - My question gives a list of answers to choose from.
+      - I explained that I would count the frequency of each answer.
+      - I said the mode answers the question.

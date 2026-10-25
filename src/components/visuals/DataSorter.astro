@@ -1,0 +1,172 @@
+---
+// Survey answers sort themselves into categories; the counts become a frequency table, a
+// bar graph or a dot plot, and the mode lights up (MAT5-OI8-GQ1-LO1).
+interface Dataset {
+  question: string;
+  categories: { name: string; icon: string }[];
+  /** One entry per response: the category index. */
+  responses: number[];
+}
+interface Props {
+  datasets?: Dataset[];
+}
+const { datasets = [
+  {
+    question: 'Which season do you like best?',
+    categories: [{ name: 'Spring', icon: '🌷' }, { name: 'Summer', icon: '☀️' }, { name: 'Fall', icon: '🍂' }, { name: 'Winter', icon: '❄️' }],
+    responses: [1, 3, 1, 0, 2, 1, 3, 1, 2, 0, 1, 3, 2, 1, 0, 3, 1, 2, 1, 3],
+  },
+  {
+    question: 'How do you get to school?',
+    categories: [{ name: 'Walk', icon: '🚶' }, { name: 'Bus', icon: '🚌' }, { name: 'Car', icon: '🚗' }, { name: 'Bike', icon: '🚲' }],
+    responses: [0, 1, 1, 0, 2, 1, 0, 3, 0, 1, 2, 0, 1, 3, 1, 0, 2, 0, 1, 2],
+  },
+  {
+    question: 'Which pet would you choose?',
+    categories: [{ name: 'Dog', icon: '🐶' }, { name: 'Cat', icon: '🐱' }, { name: 'Fish', icon: '🐟' }, { name: 'Bird', icon: '🐦' }],
+    responses: [0, 1, 2, 3, 1, 0, 3, 2, 2, 0, 1, 3, 0, 2, 3, 1],
+  },
+] } = Astro.props;
+---
+<data-sorter data-sets={JSON.stringify(datasets)}>
+  <div class="seg cc-examples" role="group" aria-label="Choose a survey">
+    {datasets.map((d, i) => <button type="button" data-set={i} aria-pressed={String(i === 0)}>Survey {i + 1}</button>)}
+  </div>
+  <p class="ds-q" data-ds="q">{datasets[0].question}</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-ds="sort">▶ Sort and count</button>
+    <div class="seg" role="group" aria-label="Show as">
+      <button type="button" data-view="table" aria-pressed="false">Table</button>
+      <button type="button" data-view="bar" aria-pressed="true">Bar graph</button>
+      <button type="button" data-view="dot" aria-pressed="false">Dot plot</button>
+    </div>
+  </div>
+  <div class="ds-stage" data-ds="stage" aria-hidden="true"></div>
+  <div data-ds="view" class="ds-view"></div>
+  <p class="ds-say" data-ds="say" aria-live="polite"></p>
+</data-sorter>
+
+<style is:global>
+  data-sorter { display: block; }
+  .ds-q { margin: 0 0 0.5rem; font-weight: 700; font-size: var(--step-1); }
+  .ds-stage { position: relative; height: 13rem; margin-top: 0.8rem; border-radius: var(--radius); background: var(--surface-2); overflow: hidden; }
+  .ds-card { position: absolute; left: var(--x); top: var(--y); width: 2rem; height: 2rem; display: grid; place-items: center; font-size: 1.15rem; border-radius: 8px; background: var(--surface); box-shadow: var(--shadow); transition: left 0.7s cubic-bezier(.2,.8,.2,1), top 0.7s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i) * 45ms); }
+  .ds-label { position: absolute; bottom: 0.3rem; font-size: 0.75rem; font-weight: 700; color: var(--ink-2); text-align: center; transform: translateX(-50%); opacity: 0; transition: opacity 0.4s 0.8s; }
+  .is-sorted .ds-label { opacity: 1; }
+  .ds-view { margin-top: 0.8rem; }
+  .ds-bars { display: grid; gap: 0.4rem; }
+  .ds-bar { display: grid; grid-template-columns: 7.5rem 1fr 2rem; gap: 0.5rem; align-items: center; font-weight: 700; }
+  .ds-bar span:nth-child(2) { height: 1.4rem; border-radius: 6px; background: var(--surface-3); position: relative; overflow: hidden; }
+  .ds-bar i { position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--ink-3); border-radius: inherit; transition: width 0.6s; }
+  .ds-bar.is-mode i { background: var(--accent); }
+  .ds-dots { display: flex; gap: 1rem; align-items: flex-end; justify-content: center; padding-top: 0.4rem; border-bottom: 3px solid var(--ink); }
+  .ds-dotcol { display: flex; flex-direction: column-reverse; align-items: center; gap: 4px; min-width: 4.5rem; }
+  .ds-dot { width: 1rem; height: 1rem; border-radius: 50%; background: var(--ink-3); }
+  .ds-dotcol.is-mode .ds-dot { background: var(--accent); }
+  .ds-dotnames { display: flex; gap: 1rem; justify-content: center; }
+  .ds-dotnames span { min-width: 4.5rem; text-align: center; font-weight: 700; font-size: var(--step--1); }
+  .ds-table tr.is-mode td { background: var(--accent-soft); font-weight: 700; }
+  .ds-say { margin: 0.7rem 0 0; font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .ds-card { transition: none; } }
+</style>
+
+<script>
+  type Dataset = { question: string; categories: { name: string; icon: string }[]; responses: number[] };
+  type View = 'table' | 'bar' | 'dot';
+
+  class DataSorter extends HTMLElement {
+    private sets: Dataset[] = [];
+    private set!: Dataset;
+    private sorted = false;
+    private view: View = 'bar';
+
+    connectedCallback() {
+      this.sets = JSON.parse(this.dataset.sets!);
+      this.querySelectorAll<HTMLButtonElement>('[data-set]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(this.sets[Number(b.dataset.set)]);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.view = b.dataset.view as View;
+          this.renderView();
+        }),
+      );
+      this.q('sort').addEventListener('click', () => this.sort(!this.sorted));
+      this.load(this.sets[0]);
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-ds="${name}"]`) as HTMLElement;
+    }
+
+    private counts() {
+      return this.set.categories.map((_, c) => this.set.responses.filter((r) => r === c).length);
+    }
+
+    private load(set: Dataset) {
+      this.set = set;
+      this.q('q').textContent = set.question;
+      const stage = this.q('stage');
+      // Scatter the cards in a loose grid (deterministic, so it looks the same every time).
+      stage.innerHTML =
+        set.responses
+          .map((c, i) => {
+            const x = 8 + ((i * 37) % 88);
+            const y = 8 + ((i * 53) % 70);
+            return `<span class="ds-card" style="--i:${i};--x:${x}%;--y:${y}%" data-x="${x}%" data-y="${y}%" data-c="${c}">${set.categories[c].icon}</span>`;
+          })
+          .join('') + set.categories.map((cat, c) => `<span class="ds-label" style="left:${(100 / set.categories.length) * (c + 0.5)}%">${cat.name}</span>`).join('');
+      this.sort(false);
+    }
+
+    private sort(on: boolean) {
+      this.sorted = on;
+      this.classList.toggle('is-sorted', on);
+      this.q('sort').textContent = on ? '↺ Mix them up' : '▶ Sort and count';
+      const n = this.set.categories.length;
+      const filled = new Array(n).fill(0);
+      this.q('stage').querySelectorAll<HTMLElement>('.ds-card').forEach((card) => {
+        if (!on) {
+          card.style.setProperty('--x', card.dataset.x!);
+          card.style.setProperty('--y', card.dataset.y!);
+          return;
+        }
+        const c = Number(card.dataset.c);
+        const k = filled[c]++;
+        const colW = 100 / n;
+        card.style.setProperty('--x', `calc(${colW * c + colW / 2}% - 1rem + ${(k % 2) * 2.2 - 1.1}rem)`);
+        card.style.setProperty('--y', `calc(100% - 3.6rem - ${Math.floor(k / 2) * 2.2}rem)`);
+      });
+      this.q('view').hidden = !on;
+      this.renderView();
+    }
+
+    private renderView() {
+      const counts = this.counts();
+      const max = Math.max(...counts);
+      const modes = counts.every((c) => c === counts[0]) ? [] : counts.map((c, i) => (c === max ? i : -1)).filter((i) => i >= 0);
+      const cats = this.set.categories;
+      const isMode = (i: number) => modes.includes(i);
+      const v = this.q('view');
+      if (this.view === 'table')
+        v.innerHTML = `<div class="table-wrap"><table class="data-table ds-table"><thead><tr><th scope="col">Category</th><th scope="col">Frequency</th></tr></thead><tbody>${cats.map((c, i) => `<tr class="${isMode(i) ? 'is-mode' : ''}"><td>${c.icon} ${c.name}</td><td>${counts[i]}</td></tr>`).join('')}</tbody></table></div>`;
+      if (this.view === 'bar')
+        v.innerHTML = `<div class="ds-bars">${cats.map((c, i) => `<div class="ds-bar${isMode(i) ? ' is-mode' : ''}"><span>${c.icon} ${c.name}</span><span><i style="--w:${(counts[i] / max) * 100}%"></i></span><span>${counts[i]}</span></div>`).join('')}</div>`;
+      if (this.view === 'dot')
+        v.innerHTML = `<div class="ds-dots">${cats.map((_, i) => `<div class="ds-dotcol${isMode(i) ? ' is-mode' : ''}">${'<span class="ds-dot"></span>'.repeat(counts[i])}</div>`).join('')}</div><div class="ds-dotnames">${cats.map((c) => `<span>${c.name}</span>`).join('')}</div>`;
+      const names = modes.map((i) => cats[i].name);
+      this.q('say').textContent = !this.sorted
+        ? `${this.set.responses.length} people answered. Press Sort and count.`
+        : modes.length === 0
+          ? `Every category has the same frequency (${counts[0]}), so this data set has no mode.`
+          : modes.length === 1
+            ? `The mode is ${names[0]}: it has the highest frequency, ${max}.`
+            : `Two categories tie with the highest frequency, ${max}: ${names.join(' and ')}. This data set has two modes.`;
+    }
+  }
+  customElements.define('data-sorter', DataSorter);
+</script>

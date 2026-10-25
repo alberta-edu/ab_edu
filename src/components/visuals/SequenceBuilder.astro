@@ -1,0 +1,107 @@
+---
+// An arithmetic sequence three ways at once: a growing tile pattern, a table of values, and
+// points on a coordinate grid that fit a straight line. Rules use one operation only, as in
+// the Grade 5 outcome (MAT5-OI6-GQ1-LO1).
+interface Props {
+  rules?: { op: 'x' | '+'; k: number }[];
+}
+const { rules = [{ op: 'x', k: 3 }, { op: 'x', k: 2 }, { op: 'x', k: 4 }, { op: '+', k: 3 }, { op: '+', k: 5 }] } = Astro.props;
+const label = (r: { op: string; k: number }) => (r.op === 'x' ? `${r.k}n` : `n + ${r.k}`);
+---
+<sequence-builder data-rules={JSON.stringify(rules)}>
+  <div class="seg cc-examples" role="group" aria-label="Choose a rule">
+    {rules.map((r, i) => <button type="button" data-rule={i} aria-pressed={String(i === 0)}>{label(r)}</button>)}
+  </div>
+  <div class="sq-pattern" data-sq="pattern" aria-hidden="true"></div>
+  <div class="sq-layout">
+    <div class="table-wrap"><table class="data-table sq-table" data-sq="table"></table></div>
+    <div data-sq="graph"></div>
+  </div>
+  <div class="control-row">
+    <label class="control">Predict position <input type="range" min="6" max="50" value="20" data-sq="far" /> <output data-sq="far-out">20</output></label>
+  </div>
+  <p class="sq-say" data-sq="say" aria-live="polite"></p>
+</sequence-builder>
+
+<style is:global>
+  sequence-builder { display: block; }
+  .sq-pattern { display: flex; flex-wrap: wrap; gap: 1.1rem; align-items: flex-end; padding: 0.8rem; border-radius: var(--radius); background: var(--surface-2); min-height: 7rem; }
+  .sq-fig { display: grid; justify-items: center; gap: 0.35rem; }
+  .sq-tiles { display: flex; gap: 3px; align-items: flex-end; }
+  .sq-col { display: flex; flex-direction: column-reverse; gap: 3px; }
+  .sq-tile { width: 0.85rem; height: 0.85rem; border-radius: 3px; background: var(--accent); animation: rx-in 0.25s ease both; }
+  .sq-tile--fixed { background: var(--ink-3); }
+  .sq-fig small { font-weight: 700; color: var(--ink-2); font-size: 0.75rem; }
+  .sq-layout { display: grid; gap: 1rem; margin-top: 0.9rem; align-items: start; }
+  @media (min-width: 44rem) { .sq-layout { grid-template-columns: auto minmax(0, 1fr); } }
+  .sq-table td, .sq-table th { text-align: center; font-variant-numeric: tabular-nums; }
+  .sq-say { margin: 0.6rem 0 0; font-weight: 700; font-size: var(--step-1); }
+  .sq-line { stroke: var(--sun); stroke-width: 2.5; stroke-dasharray: 6 5; }
+  @keyframes rx-in { from { transform: scale(0); } }
+</style>
+
+<script>
+  import { gridSvg } from './coord-grid.ts';
+
+  type Rule = { op: 'x' | '+'; k: number };
+
+  class SequenceBuilder extends HTMLElement {
+    private rule!: Rule;
+
+    connectedCallback() {
+      const rules: Rule[] = JSON.parse(this.dataset.rules!);
+      this.rule = rules[0];
+      this.querySelectorAll<HTMLButtonElement>('[data-rule]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-rule]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.rule = rules[Number(b.dataset.rule)];
+          this.render();
+        }),
+      );
+      this.q('far').addEventListener('input', () => this.render());
+      this.render();
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-sq="${name}"]`) as T;
+    }
+
+    private term(n: number) {
+      return this.rule.op === 'x' ? this.rule.k * n : n + this.rule.k;
+    }
+
+    private render() {
+      const { op, k } = this.rule;
+      const expr = op === 'x' ? `${k}n` : `n + ${k}`;
+      const words = op === 'x' ? `multiply the position by ${k}` : `add ${k} to the position`;
+      // Pattern: n columns of k tiles, or k fixed tiles plus n new tiles.
+      let pat = '';
+      for (let n = 1; n <= 5; n++) {
+        let tiles = '';
+        if (op === 'x') for (let c = 0; c < n; c++) tiles += `<span class="sq-col">${'<span class="sq-tile"></span>'.repeat(k)}</span>`;
+        else tiles = `<span class="sq-col">${'<span class="sq-tile sq-tile--fixed"></span>'.repeat(k)}</span><span class="sq-col">${'<span class="sq-tile"></span>'.repeat(n)}</span>`;
+        pat += `<div class="sq-fig"><div class="sq-tiles">${tiles}</div><small>Position ${n}: ${this.term(n)}</small></div>`;
+      }
+      this.q('pattern').innerHTML = pat;
+      // Table of values
+      const rows = [1, 2, 3, 4, 5, 6].map((n) => `<tr><td>${n}</td><td>${this.term(n)}</td></tr>`).join('');
+      this.q('table').innerHTML = `<thead><tr><th scope="col">Position (n)</th><th scope="col">Term (${expr})</th></tr></thead><tbody>${rows}</tbody>`;
+      // Graph: first 6 points, which fit a straight line
+      const size = Math.max(6, Math.min(12, this.term(6)));
+      const pts = [1, 2, 3, 4, 5, 6].map((n) => ({ x: n, y: this.term(n) })).filter((p) => p.y <= size);
+      let svg = gridSvg(size, pts);
+      const CELL = 34;
+      const PAD = 36;
+      const toXY = (x: number, y: number) => [PAD + x * CELL, PAD + (size - y) * CELL];
+      const last = pts.at(-1)!;
+      const [x1, y1] = toXY(pts[0].x, pts[0].y);
+      const [x2, y2] = toXY(last.x, last.y);
+      svg = svg.replace('</svg>', `<line class="sq-line" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/></svg>`);
+      this.q('graph').innerHTML = svg;
+      const far = Number(this.q<HTMLInputElement>('far').value);
+      this.q('far-out').textContent = String(far);
+      this.q('say').textContent = `Rule: ${words}, so the term is ${expr}. The points fit a straight line. Position ${far} → ${op === 'x' ? `${k} × ${far}` : `${far} + ${k}`} = ${this.term(far)}.`;
+    }
+  }
+  customElements.define('sequence-builder', SequenceBuilder);
+</script>

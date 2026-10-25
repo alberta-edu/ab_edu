@@ -23,6 +23,8 @@ import BalanceScale from './visuals/BalanceScale.astro';
 import SymmetryExplorer from './visuals/SymmetryExplorer.astro';
 import CoordinateGrid from './visuals/CoordinateGrid.astro';
 import RectangleBuilder from './visuals/RectangleBuilder.astro';
+import SequenceBuilder from './visuals/SequenceBuilder.astro';
+import DataSorter from './visuals/DataSorter.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -33,6 +35,8 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'data-sorter': DataSorter,
+  'sequence-builder': SequenceBuilder,
   'rectangle-builder': RectangleBuilder,
   'coordinate-grid': CoordinateGrid,
   'symmetry-explorer': SymmetryExplorer,

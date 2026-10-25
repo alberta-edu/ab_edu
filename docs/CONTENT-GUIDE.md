@@ -43,7 +43,7 @@ a sentence or two.
 
 | Block | Use it for |
 |---|---|
-| `visual` | Interactive visuals: `fraction-explorer`, `fraction-regroup`, `particle-model`, `globe`, `latlong-map`, `inference-equation` |
+| `visual` | Interactive visuals. Math: `place-value`, `decimal-zoom`, `column-calc` (step-by-step algorithms), `divisibility`, `fraction-explorer`, `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`, `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`, `data-sorter`. Other subjects: `particle-model`, `globe`, `latlong-map`, `inference-equation` |
 | `experiment` | An animated virtual experiment: predict → Run → watch → why. The text must match what the animation shows |
 | `compare` | 2–4 side-by-side cards (optionally with a `figure`) for contrasting ideas |
 | `figure` | A generated picture with a caption |
@@ -93,7 +93,15 @@ money. Fractions always render full-size. In YAML, put math in single quotes
 | `evidence` | `passage` (id), `paragraphs` (excerpt), `answer` (sentence ids `p9s1`…), `feedback` per sentence id |
 | `open` | `modelAnswer`, `rubric` (2–5 self-check items); hints and solution are optional |
 
-Figures:
+Figures (in problems, `figure` blocks and `compare` columns):
 - `{ kind: fraction-bars, n, d, wholes }`
 - `{ kind: number-line, n, d, wholes, label }`
+- `{ kind: area-model, a, b }` (multiplication split by place value)
+- `{ kind: coord-grid, size, points: [{ x, y, label }], polygon: [[x, y], …] }`
+- `{ kind: rect, w, h, unit }`
+- `{ kind: shape, shape, lines }` (shapes from the symmetry explorer)
+- `{ kind: square-metre }`
 - `{ kind: particle-boxes, boxes: [gas, solid, liquid] }`
+- Raw inline SVG, for a one-off diagram. Use the site's CSS classes so it works in dark mode.
+
+If YAML complains about `: ` inside text, run `node scripts/quote-yaml.ts <file>`.
