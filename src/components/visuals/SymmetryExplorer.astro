@@ -1,0 +1,146 @@
+---
+// Lines of reflection symmetry appear one at a time; Rotate turns the shape over its ghost
+// and counts each match, giving the order of rotation symmetry (MAT5-OI3-GQ1-LO1).
+import { SHAPES, describeShape } from './symmetry.ts';
+
+interface Props {
+  shapes?: string[];
+  start?: string;
+}
+const { shapes = SHAPES.map((s) => s.id), start = 'square' } = Astro.props;
+const list = SHAPES.filter((s) => shapes.includes(s.id));
+const first = list.find((s) => s.id === start) ?? list[0];
+---
+<symmetry-explorer data-shapes={JSON.stringify(list.map((s) => s.id))} data-start={first.id}>
+  <div class="sy-picker" role="group" aria-label="Choose a shape">
+    {list.map((s) => <button type="button" class="chip ll-chip" data-shape={s.id} aria-pressed={String(s.id === first.id)}>{s.name}</button>)}
+  </div>
+  <div class="sy-layout">
+    <svg class="sy-svg" viewBox="-140 -140 280 280" aria-hidden="true">
+      <path class="sy-ghost" data-sy="ghost" d={first.d}></path>
+      <g class="sy-turn" data-sy="turn"><path class="sy-shape" data-sy="shape" d={first.d}></path><circle class="sy-mark" cx="0" cy="-70" r="7"></circle></g>
+      <g data-sy="lines"></g>
+      <circle class="sy-centre" r="4"></circle>
+    </svg>
+    <div class="sy-panel">
+      <h4 class="sy-name" data-sy="name">{first.name}</h4>
+      <p class="sy-sides muted" data-sy="sides">{first.equalSides ?? ''}</p>
+      <div class="control-row">
+        <button type="button" class="btn btn--primary btn--small" data-sy="mirror">🪞 Show lines of symmetry</button>
+        <button type="button" class="btn btn--ghost btn--small" data-sy="rotate">🔄 Rotate 360°</button>
+      </div>
+      <p class="sy-count" data-sy="count" aria-live="polite"></p>
+      <p class="sy-say" data-sy="say">{describeShape(first)}</p>
+      <p class="sy-note muted" data-sy="note">{first.note ?? ''}</p>
+    </div>
+  </div>
+</symmetry-explorer>
+
+<style is:global>
+  symmetry-explorer { display: block; }
+  .sy-picker { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.8rem; }
+  .sy-layout { display: grid; gap: 1rem; align-items: center; }
+  @media (min-width: 40rem) { .sy-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .sy-svg { width: 100%; max-width: 20rem; justify-self: center; border-radius: var(--radius); background: var(--surface-2); }
+  .sy-ghost { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 5; }
+  .sy-mark { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .sy-centre { fill: var(--ink); }
+  .sy-line { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 8 6; animation: sy-draw 0.4s ease both; }
+  .sy-name { margin: 0; font-size: var(--step-1); }
+  .sy-sides { margin: 0.2rem 0 0; }
+  .sy-count { margin: 0.4rem 0 0; font-weight: 700; font-size: var(--step-1); color: var(--accent); min-height: 1.5em; }
+  .sy-say { margin: 0.3rem 0 0; font-weight: 700; }
+  .sy-note { margin: 0.3rem 0 0; font-size: var(--step--1); }
+  @keyframes sy-draw { from { opacity: 0; } }
+</style>
+
+<script>
+  import { SHAPES, describeShape, type Shape } from './symmetry.ts';
+
+  class SymmetryExplorer extends HTMLElement {
+    private shape!: Shape;
+    private busy = 0;
+
+    connectedCallback() {
+      this.load(this.dataset.start!);
+      this.querySelectorAll<HTMLButtonElement>('[data-shape]').forEach((b) => b.addEventListener('click', () => this.load(b.dataset.shape!)));
+      this.q('mirror').addEventListener('click', () => this.mirror());
+      this.q('rotate').addEventListener('click', () => this.rotate());
+    }
+
+    private q<T extends Element = HTMLElement>(name: string) {
+      return this.querySelector(`[data-sy="${name}"]`) as unknown as T;
+    }
+
+    private load(id: string) {
+      this.busy++;
+      this.shape = SHAPES.find((s) => s.id === id)!;
+      this.querySelectorAll('[data-shape]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.shape === id)));
+      this.q('shape').setAttribute('d', this.shape.d);
+      this.q('ghost').setAttribute('d', this.shape.d);
+      this.q('turn').setAttribute('transform', 'rotate(0)');
+      this.q('lines').innerHTML = '';
+      this.q('name').textContent = this.shape.name;
+      this.q('sides').textContent = this.shape.equalSides ?? '';
+      this.q('note').textContent = this.shape.note ?? '';
+      this.q('say').textContent = describeShape(this.shape);
+      this.q('count').textContent = '';
+    }
+
+    private mirror() {
+      const id = ++this.busy;
+      const g = this.q('lines');
+      g.innerHTML = '';
+      const lines = this.shape.lines === 'circle' ? Array.from({ length: 12 }, (_, i) => i * 15) : this.shape.lines;
+      if (!lines.length) {
+        this.q('count').textContent = 'No lines of symmetry. No fold makes the two halves match.';
+        return;
+      }
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      lines.forEach((deg, i) => {
+        setTimeout(() => {
+          if (id !== this.busy) return;
+          const a = (deg * Math.PI) / 180;
+          const x = Math.cos(a) * 130;
+          const y = Math.sin(a) * 130;
+          g.insertAdjacentHTML('beforeend', `<line class="sy-line" x1="${-x}" y1="${-y}" x2="${x}" y2="${y}"/>`);
+          this.q('count').textContent =
+            this.shape.lines === 'circle' ? `${i + 1} lines… and infinitely many more!` : `${i + 1} line${i ? 's' : ''} of symmetry`;
+        }, reduce ? 0 : i * 450);
+      });
+    }
+
+    private rotate() {
+      const id = ++this.busy;
+      this.q('lines').innerHTML = '';
+      const turn = this.q('turn');
+      const order = this.shape.order;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        this.q('count').textContent = order === Infinity ? 'It matches at every angle.' : `It matches itself ${order} time${order === 1 ? '' : 's'} in one full turn.`;
+        return;
+      }
+      let matches = 0;
+      const t0 = performance.now();
+      const total = 4200;
+      const stops = order === Infinity ? [] : Array.from({ length: order }, (_, i) => (360 / order) * (i + 1));
+      const tick = (now: number) => {
+        if (id !== this.busy) return;
+        const angle = Math.min(360, ((now - t0) / total) * 360);
+        turn.setAttribute('transform', `rotate(${angle.toFixed(1)})`);
+        while (matches < stops.length && angle >= stops[matches]) {
+          matches++;
+          const deg = Math.round(stops[matches - 1]);
+          this.q('count').textContent = `Match ${matches} at ${deg}°${deg === 180 ? ' (half turn)' : ''} ✓`;
+        }
+        if (order === Infinity) this.q('count').textContent = `${Math.round(angle)}°: it still matches!`;
+        if (angle < 360) requestAnimationFrame(tick);
+        else
+          this.q('count').textContent =
+            order === Infinity ? 'It matched at every angle.' : `It matched itself ${order} time${order === 1 ? '' : 's'}: order ${order}.`;
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+  customElements.define('symmetry-explorer', SymmetryExplorer);
+</script>

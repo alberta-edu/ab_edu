@@ -1,0 +1,135 @@
+---
+// The same number of square tiles rearranged into every possible rectangle. Area stays the
+// same, perimeter changes, and the most square-like rectangle has the least perimeter
+// (MAT5-OI5-GQ1-LO1: K1.5, U1.2, S1.7, S1.8, S1.9).
+interface Props {
+  areas?: number[];
+  unit?: string;
+}
+const { areas = [24, 36, 16, 12], unit = 'cm' } = Astro.props;
+---
+<rectangle-builder data-areas={JSON.stringify(areas)} data-unit={unit}>
+  <div class="control-row">
+    <span class="control">Tiles:</span>
+    <div class="seg" role="group" aria-label="Number of tiles">
+      {areas.map((a, i) => <button type="button" data-area={a} aria-pressed={String(i === 0)}>{a}</button>)}
+    </div>
+  </div>
+  <div class="rb-dims" data-rb="dims" role="group" aria-label="Choose a rectangle"></div>
+  <div class="rb-layout">
+    <div class="rb-stage" data-rb="stage" aria-hidden="true"></div>
+    <div class="rb-panel">
+      <p class="rb-big" data-rb="big" aria-live="polite"></p>
+      <div class="rb-chart" data-rb="chart" aria-label="Perimeters of the rectangles"></div>
+      <p class="rb-say" data-rb="say"></p>
+    </div>
+  </div>
+</rectangle-builder>
+
+<style is:global>
+  rectangle-builder { display: block; }
+  .rb-dims { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.6rem 0; }
+  .rb-layout { display: grid; gap: 1rem; align-items: start; }
+  @media (min-width: 46rem) { .rb-layout { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  .rb-stage { position: relative; min-height: 12rem; padding: 0.5rem; border-radius: var(--radius); background: var(--surface-2); overflow: hidden; }
+  .rb-tile {
+    position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s);
+    background: color-mix(in srgb, var(--accent) 70%, var(--surface)); border: 1.5px solid var(--surface); border-radius: 3px;
+    transition: left 0.6s cubic-bezier(.2,.8,.2,1), top 0.6s cubic-bezier(.2,.8,.2,1), width 0.6s, height 0.6s;
+    transition-delay: calc(var(--i) * 12ms);
+  }
+  .rb-outline { position: absolute; border: 3px solid var(--ink); border-radius: 4px; transition: all 0.6s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
+  .rb-side { position: absolute; font-weight: 700; color: var(--ink); font-size: var(--step--1); transition: all 0.6s; white-space: nowrap; }
+  .rb-big { margin: 0; font-size: var(--step-1); font-weight: 700; }
+  .rb-chart { display: grid; gap: 0.3rem; margin: 0.6rem 0; }
+  .rb-bar { display: grid; grid-template-columns: 4.2rem 1fr 3.4rem; gap: 0.4rem; align-items: center; font-size: var(--step--1); font-weight: 700; font-variant-numeric: tabular-nums; cursor: pointer; border: 0; background: none; padding: 0; color: var(--ink); font-family: inherit; text-align: left; }
+  .rb-bar span:nth-child(2) { height: 0.9rem; border-radius: 999px; background: var(--surface-3); position: relative; overflow: hidden; }
+  .rb-bar span:nth-child(2) i { position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--ink-3); border-radius: inherit; }
+  .rb-bar.is-current span:nth-child(2) i { background: var(--accent); }
+  .rb-bar.is-least span:last-child { color: var(--ok); }
+  .rb-say { margin: 0; color: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) { .rb-tile, .rb-outline, .rb-side { transition: none; } }
+</style>
+
+<script>
+  class RectangleBuilder extends HTMLElement {
+    private area = 24;
+    private unit = 'cm';
+    private dims: [number, number] = [4, 6];
+
+    connectedCallback() {
+      const areas: number[] = JSON.parse(this.dataset.areas!);
+      this.unit = this.dataset.unit!;
+      this.querySelectorAll<HTMLButtonElement>('[data-area]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-area]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.setArea(Number(b.dataset.area));
+        }),
+      );
+      this.setArea(areas[0]);
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-rb="${name}"]`) as HTMLElement;
+    }
+
+    private pairs() {
+      const out: [number, number][] = [];
+      for (let w = 1; w * w <= this.area; w++) if (this.area % w === 0) out.push([w, this.area / w]);
+      return out;
+    }
+
+    private setArea(a: number) {
+      this.area = a;
+      const pairs = this.pairs();
+      this.q('dims').innerHTML = pairs.map(([w, l]) => `<button type="button" class="chip ll-chip" data-w="${w}" data-l="${l}">${w} × ${l}</button>`).join('');
+      this.q('dims').querySelectorAll<HTMLButtonElement>('button').forEach((b) => b.addEventListener('click', () => this.show([Number(b.dataset.w), Number(b.dataset.l)])));
+      const stage = this.q('stage');
+      stage.innerHTML = Array.from({ length: a }, (_, i) => `<span class="rb-tile" style="--i:${i}"></span>`).join('') + '<span class="rb-outline"></span><span class="rb-side rb-side--w"></span><span class="rb-side rb-side--l"></span>';
+      this.show(pairs[Math.floor(pairs.length / 2)]);
+    }
+
+    private show([w, l]: [number, number]) {
+      this.dims = [w, l];
+      const stage = this.q('stage');
+      // Lay the long side across.
+      const cols = Math.max(w, l);
+      const rows = Math.min(w, l);
+      const avail = stage.clientWidth - 60 || 300;
+      const s = Math.max(8, Math.min(34, Math.floor(avail / cols)));
+      stage.style.height = `${rows * s + 70}px`;
+      const x0 = 56;
+      const y0 = 14;
+      stage.querySelectorAll<HTMLElement>('.rb-tile').forEach((t, i) => {
+        t.style.setProperty('--s', `${s}px`);
+        t.style.setProperty('--x', `${x0 + (i % cols) * s}px`);
+        t.style.setProperty('--y', `${y0 + Math.floor(i / cols) * s}px`);
+      });
+      const o = stage.querySelector<HTMLElement>('.rb-outline')!;
+      Object.assign(o.style, { left: `${x0 - 2}px`, top: `${y0 - 2}px`, width: `${cols * s + 4}px`, height: `${rows * s + 4}px` });
+      const sw = stage.querySelector<HTMLElement>('.rb-side--w')!;
+      Object.assign(sw.style, { left: `${x0 + (cols * s) / 2 - 20}px`, top: `${y0 + rows * s + 10}px` });
+      sw.textContent = `${cols} ${this.unit}`;
+      const sl = stage.querySelector<HTMLElement>('.rb-side--l')!;
+      Object.assign(sl.style, { left: `2px`, top: `${y0 + (rows * s) / 2 - 10}px` });
+      sl.textContent = `${rows} ${this.unit}`;
+      this.q('dims').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(Number((b as HTMLElement).dataset.w) === w)));
+
+      const per = 2 * (w + l);
+      this.q('big').innerHTML = `${rows} ${this.unit} × ${cols} ${this.unit}<br>Area = ${this.area} ${this.unit}² · Perimeter = ${per} ${this.unit}`;
+      const pairs = this.pairs();
+      const pers = pairs.map(([a, b]) => 2 * (a + b));
+      const max = Math.max(...pers);
+      const least = Math.min(...pers);
+      this.q('chart').innerHTML = pairs
+        .map(([a, b], i) => `<button type="button" class="rb-bar${a === w ? ' is-current' : ''}${pers[i] === least ? ' is-least' : ''}" data-w="${a}" data-l="${b}"><span>${a} × ${b}</span><span><i style="--w:${(pers[i] / max) * 100}%"></i></span><span>${pers[i]} ${this.unit}</span></button>`)
+        .join('');
+      this.q('chart').querySelectorAll<HTMLButtonElement>('.rb-bar').forEach((b) => b.addEventListener('click', () => this.show([Number(b.dataset.w), Number(b.dataset.l)])));
+      const sq = pairs.find(([a, b]) => a === b);
+      this.q('say').textContent =
+        `Every rectangle uses ${this.area} tiles, so the area is always ${this.area} ${this.unit}². ` +
+        `The perimeter changes. The least perimeter, ${least} ${this.unit}, belongs to the ${sq ? 'square' : 'rectangle closest to a square'}.`;
+    }
+  }
+  customElements.define('rectangle-builder', RectangleBuilder);
+</script>

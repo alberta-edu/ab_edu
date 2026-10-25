@@ -1,12 +1,18 @@
 // Problem figures, drawn as SVG at build time from a short description in the content file.
 import { fractionSvg } from '../components/visuals/fraction-svg.ts';
+import { gridSvg } from '../components/visuals/coord-grid.ts';
+import { SHAPES } from '../components/visuals/symmetry.ts';
 
 export type Figure =
   | string
   | { kind: 'fraction-bars'; n: number; d: number; wholes: number }
   | { kind: 'number-line'; n: number; d: number; wholes: number; label: string }
   | { kind: 'particle-boxes'; boxes: ('solid' | 'liquid' | 'gas')[]; labels?: string[] }
-  | { kind: 'area-model'; a: number; b: number };
+  | { kind: 'area-model'; a: number; b: number }
+  | { kind: 'coord-grid'; size: number; points?: { x: number; y: number; label?: string }[]; polygon?: [number, number][] }
+  | { kind: 'rect'; w: number; h: number; unit: string }
+  | { kind: 'shape'; shape: string; lines?: boolean }
+  | { kind: 'square-metre' };
 
 /** Small deterministic random generator so figures are identical on every build. */
 function rng(seed: number) {
@@ -74,6 +80,38 @@ function areaModel(a: number, b: number): string {
   return `<svg viewBox="0 0 ${W} ${H}" class="am-svg" role="img" aria-label="Area model for ${a} times ${b}: ${cols.join(' + ')} across and ${rows.join(' + ')} down.">${out}</svg>`;
 }
 
+/** A rectangle with its side lengths labelled. Drawn to a comfortable size, not to scale. */
+function rectFigure(w: number, h: number, unit: string): string {
+  const ratio = Math.max(0.25, Math.min(1, h / w));
+  const W = 300;
+  const H = Math.round(W * ratio);
+  return `<svg viewBox="-70 -20 ${W + 130} ${H + 70}" class="fig-svg" role="img" aria-label="A rectangle ${w} ${unit} long and ${h} ${unit} wide."><rect class="fig-rect" x="0" y="0" width="${W}" height="${H}" rx="3"/><text class="fig-label" x="${W / 2}" y="${H + 32}" text-anchor="middle">${w} ${unit}</text><text class="fig-label" x="-12" y="${H / 2 + 6}" text-anchor="end">${h} ${unit}</text></svg>`;
+}
+
+/** A shape from the symmetry explorer, optionally with its lines of symmetry. */
+function shapeFigure(id: string, lines = false): string {
+  const sh = SHAPES.find((x) => x.id === id);
+  if (!sh) throw new Error(`Unknown shape ${id}`);
+  let extra = '';
+  if (lines && sh.lines !== 'circle')
+    for (const deg of sh.lines) {
+      const r = (deg * Math.PI) / 180;
+      const x = Math.cos(r) * 125;
+      const y = Math.sin(r) * 125;
+      extra += `<line class="sy-line" x1="${(-x).toFixed(1)}" y1="${(-y).toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    }
+  return `<svg viewBox="-135 -135 270 270" class="fig-svg fig-svg--square" role="img" aria-label="${sh.name}"><path class="sy-shape" d="${sh.d}"/>${extra}</svg>`;
+}
+
+/** 1 m² drawn as a 10 × 10 grid of 10 cm squares, with one 10 cm square zoomed to show 1 cm². */
+function squareMetre(): string {
+  let grid = '';
+  for (let i = 1; i < 10; i++) grid += `<line class="fig-grid" x1="${i * 20}" y1="0" x2="${i * 20}" y2="200"/><line class="fig-grid" x1="0" y1="${i * 20}" x2="200" y2="${i * 20}"/>`;
+  let zoom = '';
+  for (let i = 1; i < 10; i++) zoom += `<line class="fig-grid" x1="${270 + i * 12}" y1="40" x2="${270 + i * 12}" y2="160"/><line class="fig-grid" x1="270" y1="${40 + i * 12}" x2="390" y2="${40 + i * 12}"/>`;
+  return `<svg viewBox="-40 -30 460 270" class="fig-svg" role="img" aria-label="A square metre is 100 centimetres by 100 centimetres, which is 10 000 square centimetres."><rect class="fig-rect" x="0" y="0" width="200" height="200"/>${grid}<rect class="fig-hl" x="0" y="0" width="20" height="20"/><text class="fig-label" x="100" y="225" text-anchor="middle">1 m = 100 cm</text><text class="fig-label" x="-14" y="100" text-anchor="middle" transform="rotate(-90 -14 100)">1 m = 100 cm</text><path class="fig-arrow" d="M22 10 C 120 -20, 220 10, 266 40"/><rect class="fig-rect" x="270" y="40" width="120" height="120"/>${zoom}<rect class="fig-hl" x="270" y="40" width="12" height="12"/><text class="fig-label" x="330" y="185" text-anchor="middle">10 cm × 10 cm</text><text class="fig-small" x="330" y="205" text-anchor="middle">each small square is 1 cm²</text></svg>`;
+}
+
 export function renderFigure(f: Figure): string {
   if (typeof f === 'string') return f;
   switch (f.kind) {
@@ -83,6 +121,14 @@ export function renderFigure(f: Figure): string {
       return fractionSvg(f.n, f.d, f.wholes, { bars: false, marker: { label: f.label } });
     case 'area-model':
       return areaModel(f.a, f.b);
+    case 'coord-grid':
+      return gridSvg(f.size, f.points ?? [], f.polygon ?? []);
+    case 'rect':
+      return rectFigure(f.w, f.h, f.unit);
+    case 'shape':
+      return shapeFigure(f.shape, f.lines);
+    case 'square-metre':
+      return squareMetre();
     case 'particle-boxes': {
       const gap = 30;
       const w = f.boxes.length * 150 + (f.boxes.length - 1) * gap;

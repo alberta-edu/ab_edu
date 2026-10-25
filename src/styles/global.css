@@ -399,6 +399,27 @@ a.concept-card:hover { border-color: var(--accent); }
 .fx-marker { fill: var(--sun); stroke: var(--ink); stroke-width: 2.5; }
 .fx-marker-label, .fx-marker-sub { fill: var(--accent); font-size: 19px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 5px; }
 
+/* generic figures */
+.fig-svg { width: 100%; max-width: 30rem; height: auto; font-family: var(--font); }
+.fig-svg--square { max-width: 16rem; }
+.fig-rect { fill: color-mix(in srgb, var(--accent) 16%, var(--surface)); stroke: var(--ink); stroke-width: 3; }
+.fig-grid { stroke: color-mix(in srgb, var(--ink) 30%, transparent); stroke-width: 1; }
+.fig-hl { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+.fig-arrow { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 4; }
+.fig-label { fill: var(--ink); font-size: 17px; font-weight: 700; }
+.fig-small { fill: var(--ink-2); font-size: 13px; }
+/* coordinate grids and symmetry shapes (visuals and problem figures) */
+.cg-svg { display: block; width: 100%; max-width: 26rem; height: auto; font-family: var(--font); touch-action: manipulation; }
+.cg-line { stroke: var(--line-strong); stroke-width: 1; }
+.cg-axis { stroke: var(--ink); stroke-width: 2.5; }
+.cg-num { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+.cg-axis-label { fill: var(--ink); font-size: 16px; font-weight: 700; font-style: italic; }
+.cg-pt { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.cg-pt-label { fill: var(--accent); font-size: 15px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.cg-poly { fill: color-mix(in srgb, var(--accent) 18%, transparent); stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
+.sy-shape { fill: color-mix(in srgb, var(--accent) 55%, var(--surface)); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.sy-line { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 8 6; }
+
 /* area model (multiplication) */
 .am-svg { width: 100%; height: auto; font-family: var(--font); }
 .am-cell { stroke: var(--ink); stroke-width: 2.5; }

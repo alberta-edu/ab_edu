@@ -1,0 +1,326 @@
+id: symmetry
+grade: 5
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT5-OI3-GQ1-LO1]
+order: 11
+title: Reflection and Rotation Symmetry
+shortTitle: Symmetry
+summary: >-
+  Find lines of reflection symmetry and the order of rotation symmetry in 2-D shapes, explore symmetry in
+  3-D shapes, nature and First Nations, Métis and Inuit designs.
+
+bigIdea: |-
+  A shape has **reflection symmetry** when a line splits it into two halves that match exactly. It has
+  **rotation symmetry** when it matches itself as it turns. Symmetry is a **property of shapes**, and you
+  can find it everywhere: in **nature**, in buildings, and in **First Nations, Métis and Inuit designs**.
+
+lesson:
+  - title: Lines of symmetry
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.3, S1.4, U1.1]
+        component: symmetry-explorer
+        props: { start: square }
+        caption: Choose a shape and press **Show lines of symmetry**. Each dashed line splits the shape into two halves that match exactly.
+
+  - title: Rotation symmetry
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4, K1.5, S1.5]
+        component: symmetry-explorer
+        props: { start: parallelogram }
+        caption: Press **Rotate 360°**. The yellow dot shows the turning. Count how many times the shape lands exactly on its dashed outline.
+      - type: compare
+        covers: [K1.3, K1.4, K1.5]
+        columns:
+          - title: Order of rotation symmetry
+            body: The number of times a shape matches itself in one full turn (360°). A square matches 4 times, so its order is **4**.
+          - title: Central symmetry
+            body: Rotation symmetry by a **half turn (180°)**. A parallelogram has it, but no lines of symmetry!
+
+  - title: Central symmetry up close
+    blocks:
+      - type: figure
+        covers: [K1.6]
+        figure: >-
+          <svg viewBox="-150 -100 300 200" class="fig-svg" role="img" aria-label="A parallelogram. Point P and its image P prime after a half turn are joined by a line through the centre.">
+          <path class="sy-shape" d="M-110 55 L-40 -55 L110 -55 L40 55 Z"/>
+          <line class="sy-line" x1="-110" y1="55" x2="110" y2="-55"/>
+          <circle cx="0" cy="0" r="6" class="fig-hl"/>
+          <circle cx="-110" cy="55" r="7" class="cg-pt"/><circle cx="110" cy="-55" r="7" class="cg-pt"/>
+          <text class="fig-label" x="-130" y="80">P</text><text class="fig-label" x="112" y="-66">P′</text>
+          <text class="fig-small" x="10" y="20">centre</text></svg>
+        caption: 'After a half turn, point **P** lands on **P′**. The straight line joining a point to its image always passes through the **centre of rotation**.'
+
+  - title: Regular polygons and circles
+    blocks:
+      - type: table
+        covers: [K2.1, K2.2, S2.1, S2.2, U2.1]
+        headers: [Shape, Equal sides and angles, Lines of symmetry, Order of rotation]
+        rows:
+          - ['Equilateral triangle', '3 and 3', '3', '3']
+          - ['Square', '4 and 4', '4', '4']
+          - ['Regular pentagon', '5 and 5', '5', '5']
+          - ['Regular hexagon', '6 and 6', '6', '6']
+          - ['Rectangle (not regular)', 'only opposite sides', '2', '2']
+          - ['Circle', '(no sides)', 'infinitely many', 'infinitely many']
+      - type: callout
+        variant: tip
+        covers: [K2.1]
+        title: The regular polygon rule
+        body: In a **regular polygon**, the number of sides = the number of lines of symmetry = the order of rotation symmetry.
+
+  - title: Symmetry in 3-D, in nature and in designs
+    blocks:
+      - type: figure
+        covers: [K1.2, S1.3]
+        figure: >-
+          <svg viewBox="-20 -20 280 230" class="fig-svg" role="img" aria-label="A cube cut by a flat plane through its middle into two matching halves.">
+          <path class="fig-rect" d="M40 60 L140 60 L140 160 L40 160 Z"/>
+          <path class="fig-rect" d="M40 60 L90 20 L190 20 L140 60 Z"/>
+          <path class="fig-rect" d="M140 60 L190 20 L190 120 L140 160 Z"/>
+          <path d="M90 60 L140 20 L140 120 L90 160 Z" style="fill:var(--sun);fill-opacity:0.45;stroke:var(--bad);stroke-width:3;stroke-dasharray:7 5"/>
+          <text class="fig-small" x="150" y="190">plane of symmetry</text></svg>
+        caption: A **3-D shape** has reflection symmetry when a flat **plane** splits it into two halves that match exactly.
+      - type: compare
+        covers: [K1.7, S1.1, S1.2, U1.2]
+        columns:
+          - title: 🦋 In nature
+            body: A butterfly has **1 line** of symmetry. An ideal snowflake has **6 lines** and rotation symmetry of order **6**.
+          - title: ⭐ Star quilts
+            body: The eight-pointed star on star quilts made by many Plains First Nations has **8 lines** of symmetry and order **8**.
+          - title: 🌸 Beadwork and buildings
+            body: Métis floral beadwork, Inuit beadwork, wampum belts, basket weaving, and buildings like tipis and longhouses all use symmetry.
+
+keyTerms:
+  - term: Line of symmetry
+    covers: [K1.1]
+    definition: A line that splits a shape into two halves that match exactly when reflected.
+  - term: Rotation symmetry
+    covers: [K1.3]
+    definition: A shape has it when it matches itself during a turn of less than 360° around its centre.
+  - term: Order of rotation symmetry
+    covers: [K1.4]
+    definition: How many times a shape matches itself in one full turn.
+  - term: Central symmetry
+    covers: [K1.5]
+    definition: Rotation symmetry by a half turn (180°).
+  - term: Regular polygon
+    covers: [K2.1]
+    definition: A polygon with all sides equal and all angles equal.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.4, K1.1]
+    type: mc
+    figure: { kind: shape, shape: square }
+    prompt: How many lines of symmetry does a **square** have?
+    choices: ['4', '2', '1', '8']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'The vertical and horizontal lines work, but don''t forget the two **diagonals**.'
+      '2': 'A square has more than one way to fold into matching halves.'
+      '3': 'A square has 4 sides, and it has the same number of lines of symmetry.'
+    hints:
+      - Try folding across the middle, up and down, and from corner to corner.
+    solution:
+      - 'Vertical, horizontal, and 2 diagonals: **4** lines of symmetry.'
+
+  - id: w2
+    level: 1
+    covers: [S1.4, S2.2]
+    type: mc
+    prompt: Which shape has **exactly one** line of symmetry?
+    choices: [Isosceles triangle, Equilateral triangle, Rectangle, Circle]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': An equilateral triangle has 3 lines of symmetry.
+      '2': A rectangle has 2 lines of symmetry.
+      '3': A circle has infinitely many lines of symmetry.
+    hints:
+      - Which triangle has only two equal sides?
+    solution:
+      - An isosceles triangle has **one** line of symmetry, down the middle between its two equal sides.
+
+  - id: w3
+    level: 1
+    covers: [S1.5, K1.4]
+    type: mc
+    figure: { kind: shape, shape: triangle }
+    prompt: What is the **order of rotation symmetry** of an equilateral triangle?
+    choices: ['3', '1', '2', '6']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Order 1 means no rotation symmetry. An equilateral triangle matches itself more than once in a full turn.'
+      '2': 'A half turn (180°) does **not** make it match. Try thirds of a turn.'
+      '3': '6 is the order for a regular hexagon.'
+    hints:
+      - How many times does it land on its outline in one full turn?
+    solution:
+      - 'It matches at 120°, 240° and 360°: order **3**.'
+
+  - id: w4
+    level: 1
+    covers: [K2.1, S2.1]
+    type: number
+    prompt: How many lines of symmetry does a **regular hexagon** have?
+    answer: 6
+    hints:
+      - In a regular polygon, lines of symmetry = number of sides.
+    solution:
+      - 'A regular hexagon has 6 equal sides, so it has **6** lines of symmetry.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.4, S1.5, K1.5]
+    type: mc
+    figure: { kind: shape, shape: parallelogram }
+    prompt: Which describes the symmetry of this **parallelogram**?
+    choices:
+      - 'No lines of symmetry, but rotation symmetry of order 2'
+      - '2 lines of symmetry and order 2'
+      - '1 line of symmetry and no rotation symmetry'
+      - 'No symmetry at all'
+    answer: 0
+    feedback:
+      '1': 'Folding along either diagonal or across the middle doesn''t make the halves match.'
+      '2': 'No fold makes matching halves, but a half turn does make it match.'
+      '3': 'Try a half turn (180°). It lands exactly on its outline!'
+    hints:
+      - Try folding it, then try turning it halfway.
+    solution:
+      - No line makes two matching halves, so it has **no** lines of symmetry.
+      - It matches itself after a half turn and a full turn, so its order of rotation symmetry is **2** (central symmetry).
+
+  - id: b2
+    level: 2
+    covers: [K1.5, S2.2]
+    type: multi
+    prompt: Select **all** the shapes with **central symmetry** (they match themselves after a half turn).
+    choices: [Rectangle, Square, Regular hexagon, Parallelogram, Equilateral triangle, Isosceles triangle]
+    answer: [0, 1, 2, 3]
+    hints:
+      - Shapes with an even order of rotation symmetry match after a half turn.
+    solution:
+      - 'Rectangle (order 2), square (4), regular hexagon (6), parallelogram (2) ✓'
+      - Triangles don't match after a half turn.
+
+  - id: b3
+    level: 2
+    covers: [K2.1, S2.1]
+    type: number
+    prompt: A stop sign is a **regular octagon** (8 equal sides). What is its **order of rotation symmetry**?
+    answer: 8
+    hints:
+      - Use the regular polygon rule.
+    solution:
+      - 'A regular octagon has 8 sides, so its order of rotation symmetry is **8**.'
+
+  - id: b4
+    level: 2
+    covers: [K1.7, S1.2]
+    type: mc
+    figure: { kind: shape, shape: star, lines: true }
+    prompt: This eight-pointed star appears on **star quilts** made by many Plains First Nations. How many lines of symmetry does it have?
+    choices: ['8', '4', '16', '2']
+    answer: 0
+    feedback:
+      '1': 'Lines through the points work, but so do lines through the gaps between points.'
+      '2': 'It has 16 corners, but each line passes through 2 of them, so 16 corners make 8 lines.'
+      '3': 'Count the dashed lines in the picture.'
+    hints:
+      - Count the dashed lines.
+    solution:
+      - 4 lines pass through opposite points, and 4 pass between them. That's **8** lines.
+
+  - id: b5
+    level: 2
+    covers: [S2.2]
+    type: mc
+    prompt: A shape has **rotation symmetry of order 2** but **no lines of symmetry**. Which shape could it be?
+    choices: [Parallelogram, Rectangle, Square, Isosceles triangle]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A rectangle has 2 lines of symmetry.
+      '2': A square has 4 lines of symmetry and order 4.
+      '3': An isosceles triangle has 1 line of symmetry and no rotation symmetry.
+    hints:
+      - Look back at the parallelogram in Step 2.
+    solution:
+      - 'A parallelogram: no lines of symmetry, order 2.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.1, U2.1]
+    type: number
+    prompt: A **regular polygon** has **10** lines of symmetry. How many sides does it have?
+    answer: 10
+    hints:
+      - Use the regular polygon rule in reverse.
+    solution:
+      - 'In a regular polygon, sides = lines of symmetry. So it has **10** sides (a regular decagon).'
+
+  - id: d2
+    level: 3
+    covers: [K2.2, S2.1]
+    type: mc
+    prompt: Does a **circle** have more lines of symmetry than a **regular polygon with 100 sides**?
+    choices:
+      - Yes. A circle has infinitely many, and the polygon has 100.
+      - No. They both have 100.
+      - No. A circle has no lines of symmetry because it has no sides.
+      - They both have infinitely many.
+    answer: 0
+    feedback:
+      '1': Any line through the centre of a circle is a line of symmetry, so there are more than 100.
+      '2': Every line through the centre of a circle splits it into matching halves.
+      '3': 'The 100-sided polygon has exactly 100: one for each side.'
+    hints:
+      - How many different lines can you draw through the centre of a circle?
+    solution:
+      - Every line through the centre of a circle is a line of symmetry, so it has **infinitely many**.
+      - 'The regular 100-gon has exactly **100**.'
+
+  - id: d3
+    level: 3
+    covers: [K1.6, K1.5]
+    type: mc
+    prompt: A shape has **central symmetry**. After a half turn, where does a point P on the shape go?
+    choices:
+      - On the straight line from P through the centre, the same distance away on the other side
+      - Straight up, the same distance above P
+      - 'Nowhere. P stays where it is.'
+      - To the nearest corner
+    answer: 0
+    feedback:
+      '1': 'A half turn moves P around the centre, not straight up.'
+      '2': 'Only the centre itself stays put during a turn.'
+      '3': A half turn sends each point through the centre to the opposite side, not to a corner.
+    hints:
+      - Look at the P and P′ figure in the lesson.
+    solution:
+      - 'In a half turn, P travels to the opposite side of the centre. The line joining P to its image passes through the centre of rotation.'
+
+  - id: d4
+    level: 3
+    covers: [U2.1, S2.1]
+    type: open
+    prompt: A rectangle has **2** lines of symmetry, but a square has **4**. Explain why, using sides and angles.
+    modelAnswer: |-
+      Both shapes have 4 equal angles, and each has a vertical and a horizontal line of symmetry through the
+      middle of its sides. In a square all 4 sides are equal, so folding along a diagonal also makes the halves
+      match. That gives 2 more lines. In a rectangle the sides next to each other have different lengths, so a
+      diagonal fold doesn't match up.
+    rubric:
+      - I said both have lines through the middles of their sides.
+      - I explained that a square's equal sides make the diagonals lines of symmetry too.
+      - I explained why a rectangle's diagonals are not lines of symmetry.

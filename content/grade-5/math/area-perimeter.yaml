@@ -1,0 +1,305 @@
+id: area-perimeter
+grade: 5
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT5-OI5-GQ1-LO1]
+order: 13
+title: Area and Perimeter of Rectangles
+shortTitle: Area & perimeter
+summary: >-
+  Measure area in cm², m² and km², find the area of rectangles, and see why rectangles with the same
+  area can have different perimeters.
+
+bigIdea: |-
+  Area is measured in **square units**: square centimetres (cm²), square metres (m²) and square kilometres
+  (km²). Choose the unit that fits. Rectangles with the **same area** can have **different perimeters**, and
+  the **square** has the **least** perimeter.
+
+lesson:
+  - title: Square units
+    blocks:
+      - type: compare
+        covers: [K1.1, K1.2, K1.3, K1.4, S1.1, S1.2]
+        columns:
+          - title: 1 cm²
+            body: The area of a square **1 cm by 1 cm**. About the size of the tip of your little finger.
+          - title: 1 m²
+            body: The area of a square **1 m by 1 m**. Four metre sticks could make one.
+          - title: 1 km²
+            body: The area of a square **1 km by 1 km**. Many city blocks would fit inside.
+      - type: figure
+        covers: [S1.3, S1.4]
+        figure: { kind: square-metre }
+        caption: '1 m is 100 cm, so 1 m² is \(100 \times 100 = 10\,000\) cm². In the same way, 1 km is 1 000 m, so 1 km² is \(1\,000 \times 1\,000 = 1\,000\,000\) m².'
+
+  - title: Which unit fits?
+    blocks:
+      - type: table
+        covers: [S1.5, U1.1, S1.6]
+        headers: [What you measure, Best unit, Why]
+        rows:
+          - ['A postage stamp', 'cm²', 'Small, so measure it precisely in small units.']
+          - ['A classroom floor', 'm²', 'cm² would give a huge number.']
+          - ['A city like Edmonton', 'km²', 'It covers hundreds of square kilometres.']
+      - type: callout
+        variant: tip
+        covers: [S1.6]
+        title: Estimate with a benchmark
+        body: Picture how many fingertip squares (cm²) or metre-stick squares (m²) would fit, then estimate.
+
+  - title: Area of a rectangle
+    blocks:
+      - type: example
+        covers: [S1.7]
+        title: A garden bed
+        problem: A rectangular garden bed is **7 m** long and **4 m** wide. What is its area?
+        steps:
+          - 'Area of a rectangle = length × width.'
+          - '\(7 \times 4 = 28\)'
+        answer: The area is **28 m²**.
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI5-GQ1-LO1#K1.4]
+        title: Remember from Grade 4
+        body: The area of a rectangle equals the product of its side lengths.
+
+  - title: Same area, different perimeter
+    blocks:
+      - type: visual
+        covers: [U1.2, K1.5, S1.8, S1.9]
+        component: rectangle-builder
+        props: { areas: [24, 36, 16, 12], unit: cm }
+        caption: Pick a number of tiles, then try each rectangle. The area never changes, but the perimeter does. Which rectangle has the least?
+
+  - title: Solving problems
+    blocks:
+      - type: example
+        covers: [S1.10, S1.9]
+        title: The least fence
+        problem: A rectangular garden must have an area of **36 m²**. Which side lengths need the **least fence** around it?
+        steps:
+          - 'Rectangles with area 36 m²: 1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6.'
+          - 'Perimeters: 74 m, 40 m, 30 m, 26 m and **24 m**.'
+          - 'The square, 6 m × 6 m, has the least perimeter.'
+        answer: A **6 m by 6 m** garden needs only **24 m** of fence.
+
+keyTerms:
+  - term: Area
+    covers: [K1.1]
+    definition: The amount of surface a shape covers, measured in square units.
+  - term: Square centimetre (cm²)
+    covers: [K1.2]
+    definition: The area of a square 1 cm by 1 cm.
+  - term: Square metre (m²)
+    covers: [K1.3]
+    definition: The area of a square 1 m by 1 m. It equals 10 000 cm².
+  - term: Square kilometre (km²)
+    covers: [K1.4]
+    definition: The area of a square 1 km by 1 km. It equals 1 000 000 m².
+  - term: Perimeter
+    covers: [U1.2]
+    definition: The distance around a shape.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.5]
+    type: mc
+    prompt: Which unit is best for the area of a **postcard**?
+    choices: ['cm²', 'm²', 'km²', 'cm']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A postcard is much smaller than 1 m².
+      '2': km² is for huge areas, like cities.
+      '3': cm measures length. Area needs **square** units.
+    hints:
+      - A postcard is smaller than your hand.
+    solution:
+      - 'A postcard is small, so **cm²** fits.'
+
+  - id: w2
+    level: 1
+    covers: [S1.7]
+    type: number
+    figure: { kind: rect, w: 9, h: 6, unit: cm }
+    prompt: What is the **area** of this rectangle?
+    unit: cm²
+    answer: 54
+    verify: 9 * 6
+    hints:
+      - Multiply the side lengths.
+    solution:
+      - '\(9 \times 6 = 54\), so the area is **54 cm²**.'
+
+  - id: w3
+    level: 1
+    covers: [S1.3, S1.4]
+    type: mc
+    prompt: 'How many square centimetres are in **1 square metre**?'
+    choices: ['10 000', '100', '1 000', '1 000 000']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '1 m = 100 cm is a **length**. A square metre is 100 cm **by** 100 cm.'
+      '2': 'That would be a square about 32 cm on each side.'
+      '3': '1 000 000 is the number of m² in a km².'
+    hints:
+      - '1 m² is a square 100 cm by 100 cm.'
+    solution:
+      - '\(100 \times 100 = 10\,000\) cm²'
+
+  - id: w4
+    level: 1
+    covers: [S1.10]
+    type: number
+    figure: { kind: rect, w: 12, h: 5, unit: m }
+    prompt: What is the **perimeter** of this rectangle?
+    unit: m
+    answer: 34
+    verify: 2 * (12 + 5)
+    hints:
+      - 'Add all four sides: 12 + 5 + 12 + 5.'
+    solution:
+      - '\(12 + 5 + 12 + 5 = 34\), so the perimeter is **34 m**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.5, S1.9]
+    type: mc
+    prompt: All of these rectangles have an area of **36 cm²**. Which has the **least** perimeter?
+    choices: ['6 cm × 6 cm', '4 cm × 9 cm', '3 cm × 12 cm', '2 cm × 18 cm']
+    answer: 0
+    feedback:
+      '1': '4 × 9 has a perimeter of 26 cm. Can you find a smaller one?'
+      '2': '3 × 12 has a perimeter of 30 cm.'
+      '3': '2 × 18 has a perimeter of 40 cm.'
+    hints:
+      - Find each perimeter, or remember which shape has the least.
+    solution:
+      - 'The square, 6 × 6, has a perimeter of **24 cm**, the least of all.'
+
+  - id: b2
+    level: 2
+    covers: [S1.7, S1.10]
+    type: number
+    prompt: 'A rectangle has an area of **48 m²**. One side is **8 m**. How long is the other side?'
+    unit: m
+    answer: 6
+    verify: 48 / 8
+    hints:
+      - '8 × ? = 48'
+    solution:
+      - '\(48 \div 8 = 6\), so the other side is **6 m**.'
+
+  - id: b3
+    level: 2
+    covers: [S1.5, U1.1]
+    type: mc
+    prompt: Which unit is best for the area of **Alberta**?
+    choices: ['km²', 'm²', 'cm²', 'km']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Alberta is enormous. In m², the number would be far too big to use.'
+      '2': 'cm² is for small things, like stamps.'
+      '3': km measures length, not area.
+    hints:
+      - Think about the biggest square unit.
+    solution:
+      - 'A whole province covers a huge area, so **km²** fits.'
+
+  - id: b4
+    level: 2
+    covers: [U1.2, S1.8]
+    type: number
+    prompt: 'Rectangle A is **4 m × 5 m**. Rectangle B is **2 m × 10 m**. They have the same area. How much **longer** is B''s perimeter than A''s?'
+    unit: m
+    answer: 6
+    verify: 2 * (2 + 10) - 2 * (4 + 5)
+    hints:
+      - Find both perimeters, then subtract.
+    solution:
+      - 'A: \(4 + 5 + 4 + 5 = 18\) m. B: \(2 + 10 + 2 + 10 = 24\) m.'
+      - '\(24 - 18 = 6\), so B''s perimeter is **6 m** longer.'
+
+  - id: b5
+    level: 2
+    covers: [S1.6]
+    type: mc
+    prompt: Which is the best **estimate** for the area of a classroom door?
+    choices: ['2 m²', '2 cm²', '200 m²', '2 km²']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '2 cm² is about the size of a fingernail or two.'
+      '2': '200 m² is bigger than a whole classroom floor.'
+      '3': '2 km² could hold a whole neighbourhood.'
+    hints:
+      - A door is about 1 m wide and 2 m tall.
+    solution:
+      - 'About \(1 \times 2 = 2\) m².'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.5, S1.9, S1.10]
+    type: number
+    prompt: 'A rectangular garden must have an area of **64 m²**. What is the **least** amount of fence that could go around it?'
+    unit: m
+    answer: 32
+    verify: 4 * 8
+    hints:
+      - Which rectangle with area 64 m² has the least perimeter?
+    solution:
+      - 'The square, 8 m × 8 m, has the least perimeter: \(8 \times 4 = 32\) m.'
+
+  - id: d2
+    level: 3
+    covers: [U1.2, S1.8]
+    type: mc
+    prompt: 'Rectangle A is **3 cm × 12 cm**. Rectangle B is **6 cm × 6 cm**. Which statement is true?'
+    choices:
+      - 'They have the same area, but B has a smaller perimeter.'
+      - They have the same perimeter.
+      - A has a bigger area because it is longer.
+      - B has a bigger area because it is a square.
+    answer: 0
+    feedback:
+      '1': 'A: 3 + 12 + 3 + 12 = 30 cm. B: 6 × 4 = 24 cm. Different!'
+      '2': '3 × 12 = 36 and 6 × 6 = 36. Same area.'
+      '3': '3 × 12 = 36 and 6 × 6 = 36. Same area.'
+    hints:
+      - Find both areas, then both perimeters.
+    solution:
+      - 'Areas: 36 cm² and 36 cm². Perimeters: 30 cm and 24 cm.'
+      - Same area, but the square B has the smaller perimeter.
+
+  - id: d3
+    level: 3
+    covers: [S1.10, S1.7]
+    type: number
+    prompt: 'A **3 m by 2 m** rug lies on a **5 m by 4 m** floor. How much of the floor is **not** covered?'
+    unit: m²
+    answer: 14
+    verify: 5 * 4 - 3 * 2
+    hints:
+      - Find the floor's area and the rug's area.
+    solution:
+      - 'Floor: \(5 \times 4 = 20\) m². Rug: \(3 \times 2 = 6\) m².'
+      - '\(20 - 6 = 14\) m² is not covered.'
+
+  - id: d4
+    level: 3
+    covers: [S1.3, S1.4]
+    type: open
+    prompt: Explain why a square that is **1 m by 1 m** has an area of **10 000 cm²**, not 100 cm².
+    modelAnswer: |-
+      Each side is 1 m, which is 100 cm. So the square is 100 cm by 100 cm. To find its area, multiply the sides:
+      \(100 \times 100 = 10\,000\) cm². 100 cm² would only be a square 10 cm by 10 cm.
+    rubric:
+      - I changed 1 m to 100 cm.
+      - 'I multiplied 100 × 100 = 10 000.'
+      - I explained why 100 cm² is too small.
