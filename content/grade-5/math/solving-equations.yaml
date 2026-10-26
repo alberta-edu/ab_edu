@@ -1,0 +1,297 @@
+id: solving-equations
+grade: 5
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT5-OI2-GQ1-LO1]
+order: 10
+title: Solving Equations with Inverse Operations
+shortTitle: Solving equations
+summary: >-
+  Keep an equation balanced while you undo operations, solve one- and two-step equations with inverse
+  operations, check your solution, and write equations for stories.
+
+bigIdea: |-
+  An **equation** is like a balanced scale: both sides are equal. To find the variable, **undo** the
+  operations with **inverse operations**, doing the **same thing to both sides** so it stays balanced.
+  Then **check** by putting your solution back in.
+
+lesson:
+  - title: Keep it balanced
+    blocks:
+      - type: visual
+        covers: [K3.1, U3.1, S3.2, S3.3]
+        component: balance-scale
+        props:
+          letter: x
+          examples: [{ a: 2, b: 3, c: 11 }, { a: 3, b: 0, c: 12 }, { a: 1, b: 5, c: 9 }]
+        caption: Press **Next step** to solve. Then try **What if I change only one side?**
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI2-GQ1-LO1#K2.1]
+        title: Remember from Grade 4
+        body: You can add, subtract, multiply or divide **both sides** of an equation by the same number, and it stays equal.
+
+  - title: Inverse operations
+    blocks:
+      - type: table
+        covers: [K3.1]
+        headers: [The equation has…, Undo it with…, Example]
+        rows:
+          - ['+ a number', '− the same number', '\(x + 5 = 9 \;\to\; x = 9 - 5\)']
+          - ['− a number', '+ the same number', '\(x - 4 = 9 \;\to\; x = 9 + 4\)']
+          - ['× a number', '÷ the same number', '\(3x = 12 \;\to\; x = 12 \div 3\)']
+          - ['÷ a number', '× the same number', '\(\frac{x}{3} = 5 \;\to\; x = 5 \times 3\)']
+
+  - title: Two steps, in reverse order
+    blocks:
+      - type: example
+        covers: [S3.2, S3.3, K3.2]
+        title: Solve 2x + 3 = 11
+        problem: '\(2x + 3 = 11\)'
+        steps:
+          - 'The left side was built by multiplying by 2, **then** adding 3. Undo them in reverse order.'
+          - 'Undo "+ 3": subtract 3 from both sides. \[2x + 3 - 3 = 11 - 3 \quad\Rightarrow\quad 2x = 8\]'
+          - 'Undo "× 2": divide both sides by 2. \[2x \div 2 = 8 \div 2 \quad\Rightarrow\quad x = 4\]'
+        answer: 'The solution is \(x = 4\).'
+      - type: example
+        covers: [S3.3]
+        title: Solve n ÷ 3 − 2 = 5
+        problem: '\(\frac{n}{3} - 2 = 5\)'
+        steps:
+          - 'Undo "− 2": add 2 to both sides. \(\frac{n}{3} = 7\)'
+          - 'Undo "÷ 3": multiply both sides by 3. \(n = 21\)'
+        answer: 'The solution is \(n = 21\).'
+
+  - title: Check your solution
+    blocks:
+      - type: example
+        covers: [U3.2, S3.4, K3.2]
+        title: Is x = 4 correct?
+        problem: 'Check \(x = 4\) in \(2x + 3 = 11\).'
+        steps:
+          - 'Left side: \(2 \times 4 + 3 = 8 + 3 = 11\).'
+          - 'Right side: \(11\).'
+          - 'Both sides are 11, so \(x = 4\) is the solution ✓'
+
+  - title: Equations for stories
+    blocks:
+      - type: example
+        covers: [S3.1, S3.5]
+        title: Crayons in boxes
+        problem: 'There are **3** boxes with the same number of crayons, \(b\), and **4** loose crayons. There are **28** crayons altogether. How many crayons are in each box?'
+        steps:
+          - 'Write the equation: \(3b + 4 = 28\).'
+          - 'Subtract 4 from both sides: \(3b = 24\).'
+          - 'Divide both sides by 3: \(b = 8\).'
+          - 'Check: \(3 \times 8 + 4 = 28\) ✓'
+        answer: There are **8** crayons in each box.
+
+keyTerms:
+  - term: Equation
+    covers: [U3.1]
+    definition: 'A statement that two expressions are equal, like \(2x + 3 = 11\).'
+  - term: Inverse operation
+    covers: [K3.1]
+    definition: 'The operation that undoes another: + and − undo each other, and so do × and ÷.'
+  - term: Solution
+    covers: [K3.2]
+    definition: The value of the variable that makes an equation true.
+  - term: Check
+    covers: [S3.4]
+    definition: Put the solution back into the equation and see that both sides are equal.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S3.3, K3.1]
+    type: number
+    prompt: 'Solve \(x + 7 = 15\). \(x\) = ?'
+    answer: 8
+    verify: 15 - 7
+    hints:
+      - Undo "+ 7" by subtracting 7 from both sides.
+    solution:
+      - '\(x + 7 - 7 = 15 - 7\), so \(x = 8\).'
+
+  - id: w2
+    level: 1
+    covers: [S3.3, K3.1]
+    type: number
+    prompt: 'Solve \(4y = 28\). \(y\) = ?'
+    answer: 7
+    verify: 28 / 4
+    hints:
+      - '\(4y\) means 4 times \(y\). Undo it by dividing both sides by 4.'
+    solution:
+      - '\(4y \div 4 = 28 \div 4\), so \(y = 7\).'
+
+  - id: w3
+    level: 1
+    covers: [S3.2, U3.1]
+    type: mc
+    prompt: 'What is a good **first** step to solve \(3x + 5 = 20\)?'
+    choices:
+      - Subtract 5 from both sides.
+      - Subtract 5 from the left side only.
+      - Add 5 to both sides.
+      - Multiply both sides by 3.
+    answer: 0
+    feedback:
+      '1': 'Changing only one side breaks the balance. The sides would no longer be equal.'
+      '2': 'Adding 5 doesn''t undo "+ 5". Subtracting does.'
+      '3': 'Multiplying doesn''t undo multiplying. Dividing does, and it''s easier after the + 5 is gone.'
+    hints:
+      - Undo the last operation that was done to \(x\), on both sides.
+    solution:
+      - 'Undo "+ 5" first: \(3x = 15\). Then divide by 3: \(x = 5\).'
+
+  - id: w4
+    level: 1
+    covers: [S3.4, U3.2]
+    type: mc
+    prompt: 'Is \(x = 6\) a solution of \(2x + 1 = 13\)?'
+    choices:
+      - 'Yes, because \(2 \times 6 + 1 = 13\).'
+      - 'No, because \(6 + 1 = 7\).'
+      - 'No, because 6 isn''t in the equation.'
+      - 'Yes, because 6 is less than 13.'
+    answer: 0
+    feedback:
+      '1': '\(2x\) means 2 times \(x\). Don''t forget to multiply.'
+      '2': You check by substituting the value for \(x\).
+      '3': Being less than 13 doesn't make it a solution. Check by substituting.
+    hints:
+      - 'Replace \(x\) with 6 and evaluate the left side.'
+    solution:
+      - '\(2 \times 6 + 1 = 12 + 1 = 13\). Both sides are 13 ✓'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S3.3]
+    type: number
+    prompt: 'Solve \(5n + 2 = 37\). \(n\) = ?'
+    answer: 7
+    verify: (37 - 2) / 5
+    hints:
+      - 'Subtract 2 from both sides first.'
+    solution:
+      - '\(5n + 2 - 2 = 37 - 2\) → \(5n = 35\)'
+      - '\(5n \div 5 = 35 \div 5\) → \(n = 7\)'
+
+  - id: b2
+    level: 2
+    covers: [S3.3, K3.1]
+    type: number
+    prompt: 'Solve \(m - 9 = 14\). \(m\) = ?'
+    answer: 23
+    verify: 14 + 9
+    hints:
+      - 'Undo "− 9" by adding 9 to both sides.'
+    solution:
+      - '\(m - 9 + 9 = 14 + 9\), so \(m = 23\).'
+
+  - id: b3
+    level: 2
+    covers: [S3.3, K3.1]
+    type: number
+    prompt: 'Solve \(\frac{k}{4} = 6\). \(k\) = ?'
+    answer: 24
+    verify: 6 * 4
+    hints:
+      - 'Undo "÷ 4" by multiplying both sides by 4.'
+    solution:
+      - '\(\frac{k}{4} \times 4 = 6 \times 4\), so \(k = 24\).'
+
+  - id: b4
+    level: 2
+    covers: [S3.1]
+    type: mc
+    prompt: '"**A number times 4, plus 6, equals 34.**" Which equation matches?'
+    choices: ['\(4n + 6 = 34\)', '\(6n + 4 = 34\)', '\(n + 4 + 6 = 34\)', '\(4 + 6 = 34n\)']
+    answer: 0
+    feedback:
+      '1': 'That says a number times 6, plus 4.'
+      '2': 'That adds 4 instead of multiplying by 4.'
+      '3': 'The number is the unknown, so it belongs with the 4.'
+    hints:
+      - '"A number times 4" is \(4n\).'
+    solution:
+      - '\(4n\), plus 6, equals 34: \(4n + 6 = 34\).'
+
+  - id: b5
+    level: 2
+    covers: [S3.1, S3.5]
+    type: number
+    prompt: 'Ella buys **3** books that all cost the same and a **$5** bookmark. She spends **$41**. How much does one book cost (in dollars)?'
+    answer: 12
+    verify: (41 - 5) / 3
+    hints:
+      - 'Write an equation: \(3b + 5 = 41\).'
+    solution:
+      - '\(3b + 5 = 41\) → \(3b = 36\) → \(b = 12\)'
+      - 'One book costs **$12**. Check: \(3 \times 12 + 5 = 41\) ✓'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S3.2, U3.1]
+    type: mc
+    prompt: 'To solve \(2x + 6 = 20\), Aki divided both sides by 2 and wrote \(x + 6 = 10\). What went wrong?'
+    choices:
+      - 'Dividing the left side by 2 halves **both** parts: \(x + 3 = 10\). Subtracting 6 first is easier.'
+      - Aki is correct, so \(x = 4\).
+      - Aki should have multiplied both sides by 2.
+      - You can never divide first.
+    answer: 0
+    feedback:
+      '1': 'Check: if \(x = 4\), then \(2 \times 4 + 6 = 14\), not 20.'
+      '2': Multiplying undoes dividing, not the other way round.
+      '3': 'You can divide first, but you must divide **everything** on each side.'
+    hints:
+      - What is \((2x + 6) \div 2\)?
+    solution:
+      - 'Half of \(2x + 6\) is \(x + 3\), not \(x + 6\). So \(x + 3 = 10\), and \(x = 7\).'
+      - 'Or subtract 6 first: \(2x = 14\), so \(x = 7\). Check: \(2 \times 7 + 6 = 20\) ✓'
+
+  - id: d2
+    level: 3
+    covers: [S3.3]
+    type: number
+    prompt: 'Solve \(7b - 4 = 31\). \(b\) = ?'
+    answer: 5
+    verify: (31 + 4) / 7
+    hints:
+      - 'Undo "− 4" first by adding 4 to both sides.'
+    solution:
+      - '\(7b = 35\), so \(b = 5\). Check: \(7 \times 5 - 4 = 31\) ✓'
+
+  - id: d3
+    level: 3
+    covers: [U3.2, S3.4]
+    type: mc
+    prompt: 'Which equation has the solution \(n = 5\)?'
+    choices: ['\(4n + 1 = 21\)', '\(2n + 5 = 20\)', '\(\frac{n}{5} = 5\)', '\(3n - 2 = 15\)']
+    answer: 0
+    feedback:
+      '1': '\(2 \times 5 + 5 = 15\), not 20.'
+      '2': '\(\frac{5}{5} = 1\), not 5.'
+      '3': '\(3 \times 5 - 2 = 13\), not 15.'
+    hints:
+      - Substitute 5 into each equation and check both sides.
+    solution:
+      - '\(4 \times 5 + 1 = 21\) ✓. Both sides are 21.'
+
+  - id: d4
+    level: 3
+    covers: [S3.3, S3.4, U3.1]
+    type: open
+    prompt: 'Solve \(6x + 4 = 40\). Explain each step, then check your solution.'
+    modelAnswer: |-
+      Subtract 4 from both sides to undo "+ 4": \(6x = 36\). Divide both sides by 6 to undo "× 6": \(x = 6\). I did the
+      same thing to both sides each time, so the equation stayed balanced. Check: \(6 \times 6 + 4 = 36 + 4 = 40\) ✓
+    rubric:
+      - I subtracted 4 from both sides first.
+      - I divided both sides by 6 and got \(x = 6\).
+      - I checked by substituting and showed both sides equal 40.

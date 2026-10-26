@@ -1,0 +1,299 @@
+id: add-subtract-algorithms
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT5-OI1-GQ2-LO1]
+order: 2
+title: Adding and Subtracting with Standard Algorithms
+shortTitle: Adding & subtracting
+summary: >-
+  Add and subtract numbers up to 1 000 000 and decimals to thousandths with the standard algorithms, check
+  answers by estimating, and solve money problems.
+
+bigIdea: |-
+  The **standard algorithms** are efficient step-by-step methods. Line up digits by **place value** (decimal
+  point under decimal point), work from the **right**, carry or regroup when needed, and **estimate** to check
+  that the answer makes sense.
+
+lesson:
+  - title: Line up by place value
+    blocks:
+      - type: compare
+        covers: [S1.1, K1.1]
+        columns:
+          - title: ❌ Lined up on the right
+            body: |-
+              ```
+                12.5
+              + 3.75
+              ```
+              The 5 tenths sits under 5 hundredths. Wrong!
+          - title: ✅ Decimal points lined up
+            body: |-
+              ```
+                12.50
+              +  3.75
+              ```
+              Tenths under tenths. An empty place gets a 0.
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI1-GQ2-LO1#K1.1]
+        title: Remember from Grade 4
+        body: The standard algorithms for decimals are based on **place value**. You used them up to hundredths and 10 000.
+
+  - title: Adding, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '+', a: '4 562.35', b: '1 287.8' }
+            - { op: '+', a: '345 678', b: '254 322' }
+            - { op: '+', a: '0.457', b: '0.6' }
+        caption: Press **Next step** to see each column, or **Play all**. Watch where every carry goes.
+
+  - title: Subtracting, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '-', a: '5 002.4', b: '1 876.25' }
+            - { op: '-', a: '804 503', b: '199 999' }
+            - { op: '-', a: '7.3', b: '2.856' }
+        caption: When the top digit is too small, **regroup** from the place to its left, even across zeros.
+
+  - title: Is it reasonable? Estimate!
+    blocks:
+      - type: table
+        covers: [S1.2]
+        caption: Round to friendly numbers, then compare the estimate with the exact answer.
+        headers: [Calculation, Estimate, Exact answer, Reasonable?]
+        rows:
+          - ['4 562.35 + 1 287.8', '4 600 + 1 300 = 5 900', '5 850.15', '✅ close to 5 900']
+          - ['5 002.4 − 1 876.25', '5 000 − 1 900 = 3 100', '3 126.15', '✅ close to 3 100']
+          - ['38.6 + 4.75', '39 + 5 = 44', '86.1 ❌', '❌ far from 44, so check again']
+
+  - title: Money problems
+    blocks:
+      - type: example
+        covers: [S1.3]
+        title: How much change?
+        problem: You pay with **$50.00** for a book that costs **$18.75** and a game that costs **$23.49**. How much change do you get?
+        steps:
+          - 'Add the costs: \(18.75 + 23.49 = 42.24\).'
+          - 'Subtract from what you paid: \(50.00 - 42.24 = 7.76\).'
+          - 'Estimate: \(19 + 23 = 42\), and \(50 - 42 = 8\). Close to $7.76 ✓'
+        answer: You get **$7.76** in change.
+
+keyTerms:
+  - term: Standard algorithm
+    covers: [K1.1]
+    definition: An efficient, step-by-step method for calculating, done column by column.
+  - term: Regroup
+    covers: [S1.1]
+    definition: 'Trade 1 of a place for 10 of the next smaller place, like 1 ten for 10 ones.'
+  - term: Estimate
+    covers: [S1.2]
+    definition: A close, rounded answer used to check whether an exact answer is reasonable.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\(3\,456.7 + 1\,205.35\) = ?'
+    answer: 4662.05
+    verify: 3456.7 + 1205.35
+    hints:
+      - Line up the decimal points. Write 3 456.7 as 3 456.70.
+      - Start with the hundredths column.
+    solution:
+      - 'Line up: 3 456.70 + 1 205.35.'
+      - 'Add column by column from the right: **4 662.05**.'
+
+  - id: w2
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\(8\,000 - 2\,375\) = ?'
+    answer: 5625
+    verify: 8000 - 2375
+    hints:
+      - The ones digit on top is 0. You'll need to regroup across the zeros.
+    solution:
+      - 'Regroup 1 thousand → 9 hundreds, 9 tens, 10 ones: 7 9 9 10.'
+      - 'Then subtract each column: **5 625**.'
+
+  - id: w3
+    level: 1
+    covers: [S1.1]
+    type: number
+    prompt: '\(6.4 - 2.75\) = ?'
+    answer: 3.65
+    verify: 6.4 - 2.75
+    hints:
+      - Write 6.4 as 6.40 so both numbers have hundredths.
+    solution:
+      - '6.40 − 2.75: regroup 1 tenth as 10 hundredths, and 1 one as 10 tenths.'
+      - 'The answer is **3.65**.'
+
+  - id: w4
+    level: 1
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: To add **12.5** and **3.75** in columns, what should you line up?
+    choices:
+      - The decimal points, so tenths are under tenths
+      - The last digits on the right
+      - The first digits on the left
+      - It doesn't matter
+    answer: 0
+    feedback:
+      '1': That would put 5 tenths under 5 hundredths. The places wouldn't match.
+      '2': 12.5 starts with tens, but 3.75 starts with ones.
+      '3': It matters. Only matching places can be added.
+    hints:
+      - Only digits with the same place value can be added together.
+    solution:
+      - Line up the **decimal points**, so every column has one place value.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.3]
+    type: number
+    prompt: Jaylen has **$40.00**. He buys a book for **$12.95** and a pen for **$3.49**. How much money does he have left?
+    answer: 23.56
+    verify: 40 - 12.95 - 3.49
+    hints:
+      - First add what he spends, then subtract from $40.00.
+    solution:
+      - 'Spent: \(12.95 + 3.49 = 16.44\).'
+      - 'Left: \(40.00 - 16.44 = 23.56\). Jaylen has **$23.56**.'
+
+  - id: b2
+    level: 2
+    covers: [S1.1]
+    type: number
+    prompt: '\(245\,806 + 398\,579\) = ?'
+    answer: 644385
+    verify: 245806 + 398579
+    hints:
+      - Work from the ones. Several columns need a carry.
+    solution:
+      - '245 806 + 398 579 = **644 385**'
+
+  - id: b3
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: Which estimate is the **best** quick check for \(6\,912.4 - 2\,089.75\)?
+    choices: ['7 000 − 2 000 = 5 000', '6 000 − 2 000 = 4 000', '7 000 − 3 000 = 4 000', '6 912 − 2 090 = 4 822']
+    answer: 0
+    feedback:
+      '1': 6 912.4 is much closer to 7 000 than to 6 000.
+      '2': 2 089.75 is closer to 2 000 than to 3 000.
+      '3': That isn't a quick estimate. It's nearly the whole calculation.
+    hints:
+      - Round each number to the nearest thousand.
+    solution:
+      - '6 912.4 ≈ 7 000 and 2 089.75 ≈ 2 000, so the answer should be about **5 000**.'
+
+  - id: b4
+    level: 2
+    covers: [S1.1]
+    type: number
+    prompt: '\(702\,005 - 486\,397\) = ?'
+    answer: 215608
+    verify: 702005 - 486397
+    hints:
+      - The ones column needs to regroup across the zeros in the tens and hundreds.
+    solution:
+      - 'Regroup carefully across the zeros, column by column.'
+      - '702 005 − 486 397 = **215 608**'
+
+  - id: b5
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: Ari calculated \(38.6 + 4.75\) and got **86.1**. Without working it out exactly, how can you tell the answer is wrong?
+    choices:
+      - '38.6 + 4.75 is about 39 + 5 = 44, which is far from 86.1.'
+      - The answer should have three decimal places.
+      - An answer can't end in 1.
+      - Adding always gives an answer less than 50.
+    answer: 0
+    feedback:
+      '1': 'The answer will have two decimal places (hundredths), like 4.75.'
+      '2': Answers can end in any digit.
+      '3': That isn't true. It depends on the numbers.
+    hints:
+      - Round each number to the nearest one and add.
+    solution:
+      - 'Estimate: \(39 + 5 = 44\). 86.1 is nearly double that, so Ari made a mistake.'
+      - 'He probably lined up the digits on the right. The exact answer is 43.35.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.1, U1.1]
+    type: number
+    prompt: 'Find the missing number: \(\boxed{\phantom{0}} - 2\,486.75 = 3\,513.25\)'
+    answer: 6000
+    verify: 3513.25 + 2486.75
+    hints:
+      - Subtraction undoes addition. What do you add to 2 486.75 to get the missing number?
+    solution:
+      - 'The missing number is \(3\,513.25 + 2\,486.75\).'
+      - 'That is **6 000**. Check: 6 000 − 2 486.75 = 3 513.25 ✓'
+
+  - id: d2
+    level: 3
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: 'For \(503 - 278\), Sam wrote **375**. In each column he subtracted the smaller digit from the larger one. What went wrong?'
+    choices:
+      - Sam should have regrouped when the top digit was smaller, instead of flipping the subtraction.
+      - Sam should have added instead.
+      - Sam is correct.
+      - Sam should have started on the left.
+    answer: 0
+    feedback:
+      '1': The question asks for a difference, so subtraction is right.
+      '2': 'Check: 375 + 278 = 653, not 503.'
+      '3': The standard algorithm works from the right, but the real problem is the flipped digits.
+    hints:
+      - 'In the ones column, the top digit is 3 and the bottom is 8. Can you just do 8 − 3?'
+    solution:
+      - 'Ones: 3 < 8, so regroup. 13 − 8 = 5. Tens: 9 − 7 = 2 (after regrouping). Hundreds: 4 − 2 = 2.'
+      - 'The answer is **225**. Sam flipped the digits instead of regrouping.'
+
+  - id: d3
+    level: 3
+    covers: [S1.3]
+    type: number
+    prompt: A school raised **$1 248.50** on Monday and **$986.75** on Tuesday. Its goal is **$3 000**. How much more does it need?
+    answer: 764.75
+    verify: 3000 - 1248.50 - 986.75
+    hints:
+      - First find the total raised so far.
+    solution:
+      - 'Raised: \(1\,248.50 + 986.75 = 2\,235.25\).'
+      - 'Still needed: \(3\,000 - 2\,235.25 = 764.75\). The school needs **$764.75** more.'
+
+  - id: d4
+    level: 3
+    covers: [S1.1]
+    type: number
+    prompt: '\(12.07 - 9.638\) = ?'
+    answer: 2.432
+    verify: 12.07 - 9.638
+    hints:
+      - Write 12.07 as 12.070 so both have thousandths.
+    solution:
+      - '12.070 − 9.638: regroup in the thousandths, ones and tens.'
+      - 'The answer is **2.432**.'

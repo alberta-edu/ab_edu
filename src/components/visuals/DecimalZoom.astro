@@ -1,0 +1,123 @@
+---
+// Zoom into a number line: ones → tenths → hundredths → thousandths. Shows where a decimal
+// sits, that there is always another decimal in between, and how it rounds at each level
+// (MAT5-OI1-GQ1-LO1: K1.1, K1.3, S1.3, S1.4, S1.7).
+import { zoomSvg, roundingText } from './decimal-zoom.ts';
+
+interface Props {
+  target?: string;
+  /** Left end of the starting window, in ones. */
+  start?: number;
+}
+const { target = '2.367', start = 0 } = Astro.props;
+const view = { exp: 0, start };
+---
+<decimal-zoom data-target={target} data-start={start}>
+  <div class="dz-crumbs" data-dz="crumbs" aria-label="Zoom levels"></div>
+  <div class="dz-stage" data-dz="svg" set:html={zoomSvg(view, target)} />
+  <p class="dz-say" data-dz="say" aria-live="polite">{roundingText(view, target)}</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-dz="in">🔍 Zoom in around {target}</button>
+    <button type="button" class="btn btn--ghost btn--small" data-dz="out" disabled>Zoom out</button>
+    <span class="muted" style="font-size:var(--step--1)">Or tap any gap on the line to zoom into it.</span>
+  </div>
+</decimal-zoom>
+
+<style is:global>
+  decimal-zoom { display: block; }
+  .dz-crumbs { display: flex; flex-wrap: wrap; gap: 0.3rem; min-height: 1.8rem; margin-bottom: 0.4rem; font-size: var(--step--1); font-weight: 700; }
+  .dz-crumbs span { padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--surface-2); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .dz-crumbs span:last-child { background: var(--accent-soft); color: var(--accent); }
+  .dz-svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .dz-axis { stroke: var(--ink); stroke-width: 3; }
+  .dz-tick { stroke: var(--ink-2); stroke-width: 2; }
+  .dz-tick--major { stroke: var(--ink); stroke-width: 3; }
+  .dz-num { fill: var(--ink-2); font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .dz-num--major { fill: var(--ink); font-size: 17px; }
+  .dz-hit { fill: transparent; cursor: zoom-in; }
+  .dz-hit:hover { fill: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .dz-target { fill: var(--sun); stroke: var(--ink); stroke-width: 2.5; }
+  .dz-target-line { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 3 4; }
+  .dz-target-label { fill: var(--accent); font-size: 18px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 5px; }
+  .dz-stage svg { transform-origin: var(--zx, 50%) 50%; }
+  .dz-stage.is-zooming svg { animation: dz-zoom 0.45s ease-in forwards; }
+  @keyframes dz-zoom { to { transform: scaleX(6); opacity: 0; } }
+  .dz-say { margin: 0.5rem 0 0; font-weight: 700; min-height: 3em; }
+  @media (prefers-reduced-motion: reduce) { .dz-stage.is-zooming svg { animation: none; } }
+</style>
+
+<script>
+  import { zoomSvg, roundingText, fmt, toMilli, type ZoomView } from './decimal-zoom.ts';
+
+  class DecimalZoom extends HTMLElement {
+    private stack: ZoomView[] = [];
+    private target = '';
+
+    connectedCallback() {
+      this.target = this.dataset.target!;
+      this.stack = [{ exp: 0, start: Number(this.dataset.start) }];
+      this.part('in').addEventListener('click', () => {
+        const v = this.view;
+        if (v.exp <= -3) return;
+        const unit = 10 ** (v.exp + 3);
+        this.zoom(Math.floor(toMilli(this.target) / unit) - v.start);
+      });
+      this.part('out').addEventListener('click', () => {
+        if (this.stack.length > 1) this.stack.pop();
+        this.render();
+      });
+      this.part('svg').addEventListener('click', (e) => {
+        const seg = (e.target as Element).closest('[data-seg]');
+        if (seg) this.zoom(Number(seg.getAttribute('data-seg')));
+      });
+      this.render();
+    }
+
+    private get view() {
+      return this.stack.at(-1)!;
+    }
+
+    private part<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-dz="${name}"]`) as T;
+    }
+
+    private zoom(seg: number) {
+      const v = this.view;
+      if (v.exp <= -3) {
+        this.part('say').textContent =
+          'You could keep zooming forever: between any two decimals there are infinitely many more. Grade 5 stops at thousandths.';
+        return;
+      }
+      const stage = this.part('svg');
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      stage.style.setProperty('--zx', `${((seg + 0.5) / 10) * 100}%`);
+      const next = { exp: v.exp - 1, start: (v.start + seg) * 10 };
+      if (reduce) {
+        this.stack.push(next);
+        this.render();
+        return;
+      }
+      stage.classList.add('is-zooming');
+      setTimeout(() => {
+        stage.classList.remove('is-zooming');
+        this.stack.push(next);
+        this.render();
+      }, 430);
+    }
+
+    private render() {
+      const v = this.view;
+      this.part('svg').innerHTML = zoomSvg(v, this.target);
+      const unit = 10 ** (v.exp + 3);
+      const t = toMilli(this.target);
+      const inside = t >= v.start * unit && t <= (v.start + 10) * unit;
+      this.part('say').textContent = inside
+        ? roundingText(v, this.target)
+        : `${this.target} isn't between ${fmt(v.start, v.exp)} and ${fmt(v.start + 10, v.exp)}. Zoom out to find it again.`;
+      this.part('crumbs').innerHTML = this.stack.map((s) => `<span>${fmt(s.start, s.exp)} to ${fmt(s.start + 10, s.exp)}</span>`).join('');
+      this.part<HTMLButtonElement>('out').disabled = this.stack.length === 1;
+      this.part<HTMLButtonElement>('in').disabled = v.exp <= -3 || !inside;
+    }
+  }
+  customElements.define('decimal-zoom', DecimalZoom);
+</script>

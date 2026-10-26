@@ -1,0 +1,75 @@
+---
+// Add or take away fraction pieces with the same denominator, and watch the count change.
+import { fracAddHtml, fracText, type FracExample } from './fraction-add.ts';
+
+interface Props {
+  examples: FracExample[];
+}
+const { examples } = Astro.props;
+const ex = examples[0];
+const label = (e: FracExample) => `${e.a} ${e.op === '+' ? '+' : '−'} ${e.b}`;
+---
+<fraction-add data-examples={JSON.stringify(examples)}>
+  <div class="rg-top">
+    <div class="seg" role="group" aria-label="Choose an example">
+      {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{label(e)}</button>)}
+    </div>
+    <button type="button" class="btn btn--primary btn--small" data-fa="go">{ex.op === '+' ? '▶ Combine' : '▶ Take away'}</button>
+  </div>
+  <p class="rg-say" data-fa="say" aria-live="polite">{fracText(ex, false)}</p>
+  <div data-fa="stage" set:html={fracAddHtml(ex)} />
+</fraction-add>
+
+<style is:global>
+  fraction-add { display: block; }
+  .fa-stage { position: relative; margin-top: 3.2rem; height: var(--h0); transition: height 0.5s 0.6s; }
+  .is-done .fa-stage { height: var(--h1); }
+  .fa-outline { position: absolute; left: 0; top: var(--y); width: var(--w); height: 44px; border: 3px solid var(--ink); border-radius: 10px; margin: -3px; box-sizing: content-box; }
+  .fa-piece {
+    position: absolute; left: var(--x0); top: var(--y0); width: var(--w); height: 44px; display: grid; place-items: center;
+    border-radius: 3px; color: var(--brand-ink); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ink) 25%, transparent);
+    transition: left 0.7s cubic-bezier(.2,.8,.2,1), top 0.7s cubic-bezier(.2,.8,.2,1), opacity 0.5s, background 0.3s;
+    transition-delay: calc(var(--i) * 90ms);
+  }
+  .fa-a { background: var(--accent); }
+  .fa-b { background: var(--sun); color: #1c1b24; }
+  .is-done .fa-piece { left: var(--x1); top: var(--y1); }
+  .is-done .fa-leave { background: var(--bad); opacity: 0.25; }
+  @media (prefers-reduced-motion: reduce) { .fa-piece { transition: none; } }
+</style>
+
+<script>
+  import { fracAddHtml, fracText, type FracExample } from './fraction-add.ts';
+
+  class FractionAdd extends HTMLElement {
+    private examples: FracExample[] = [];
+    private ex!: FracExample;
+    private done = false;
+
+    connectedCallback() {
+      this.examples = JSON.parse(this.dataset.examples!);
+      this.ex = this.examples[0];
+      this.q('[data-fa="go"]').addEventListener('click', () => this.set(!this.done));
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.ex = this.examples[Number(b.dataset.ex)];
+          this.q('[data-fa="stage"]').innerHTML = fracAddHtml(this.ex);
+          this.set(false);
+        }),
+      );
+    }
+
+    private q(sel: string) {
+      return this.querySelector(sel) as HTMLElement;
+    }
+
+    private set(done: boolean) {
+      this.done = done;
+      this.classList.toggle('is-done', done);
+      this.q('[data-fa="go"]').textContent = done ? '↺ Start again' : this.ex.op === '+' ? '▶ Combine' : '▶ Take away';
+      this.q('[data-fa="say"]').textContent = fracText(this.ex, done);
+    }
+  }
+  customElements.define('fraction-add', FractionAdd);
+</script>

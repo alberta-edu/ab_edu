@@ -1,0 +1,121 @@
+---
+// Standard algorithms, one step at a time: every carry, regroup, partial product and
+// "bring down" is shown with a one-line explanation.
+import { framesFor, frameHtml, exampleLabel, type CalcExample } from './column-calc.ts';
+
+interface Props {
+  examples: CalcExample[];
+}
+const { examples } = Astro.props;
+if (!examples?.length) throw new Error('ColumnCalc needs examples');
+const first = framesFor(examples[0]);
+---
+<column-calc data-examples={JSON.stringify(examples)}>
+  {
+    examples.length > 1 && (
+      <div class="seg cc-examples" role="group" aria-label="Choose an example">
+        {examples.map((e, i) => (
+          <button type="button" data-ex={i} aria-pressed={String(i === 0)}>
+            {exampleLabel(e)}
+          </button>
+        ))}
+      </div>
+    )
+  }
+  <div class="cc-board">
+    <div class="cc-stage" data-cc="grid" set:html={frameHtml(first[0])} />
+    <p class="cc-caption" data-cc="caption" aria-live="polite">{first[0].caption}</p>
+  </div>
+  <div class="cc-controls">
+    <button type="button" class="btn btn--ghost btn--small" data-cc="back" disabled>◀ Back</button>
+    <span class="cc-count" data-cc="count">Step 1 of {first.length}</span>
+    <button type="button" class="btn btn--primary btn--small" data-cc="next">Next step ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-cc="play">⏵ Play all</button>
+  </div>
+</column-calc>
+
+<style is:global>
+  column-calc { display: block; }
+  .cc-board { display: grid; gap: 1rem; align-items: center; padding: 1rem; border-radius: var(--radius); background: var(--surface-2); }
+  @media (min-width: 40rem) { .cc-board { grid-template-columns: auto 1fr; } }
+  .cc-stage { justify-self: center; overflow-x: auto; max-width: 100%; }
+  .cc-grid {
+    display: grid; grid-template-columns: repeat(var(--cols), 1.55em); grid-auto-rows: 1.75em;
+    font-size: clamp(1.35rem, 1rem + 1.6vw, 1.9rem); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.75em;
+  }
+  .cc-cell { position: relative; text-align: center; color: var(--ink); }
+  .cc-op { color: var(--ink-3); }
+  .cc-pad { color: var(--ink-3); opacity: 0.6; }
+  .cc-carry { font-size: 0.55em; color: var(--bad); align-self: end; line-height: 1.2; }
+  .cc-hl { background: color-mix(in srgb, var(--sun) 45%, transparent); border-radius: 6px; }
+  .cc-new { color: var(--accent); animation: cc-pop 0.35s ease; }
+  .cc-cross { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--bad); text-decoration-thickness: 2px; }
+  .cc-above { position: absolute; left: 50%; top: -0.75em; transform: translateX(-50%); font-size: 0.5em; color: var(--bad); line-height: 1; }
+  .cc-rule { border-top: 3px solid var(--ink); }
+  .cc-roof { border-top: 3px solid var(--ink); }
+  .cc-bracket { border-right: 3px solid var(--ink); border-radius: 0 0 0 0; }
+  .cc-grid--div .cc-bracket { border-top-right-radius: 10px; }
+  @media (prefers-reduced-motion: reduce) { .cc-new { animation: none; } }
+</style>
+
+<script>
+  import { framesFor, frameHtml, type CalcExample, type Frame } from './column-calc.ts';
+
+  class ColumnCalc extends HTMLElement {
+    private frames: Frame[] = [];
+    private i = 0;
+    private timer = 0;
+
+    connectedCallback() {
+      const examples: CalcExample[] = JSON.parse(this.dataset.examples!);
+      this.load(examples[0]);
+      this.part('next').addEventListener('click', () => this.go(this.i + 1));
+      this.part('back').addEventListener('click', () => this.go(this.i - 1));
+      this.part('play').addEventListener('click', () => this.play());
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(examples[Number(b.dataset.ex)]);
+        }),
+      );
+    }
+
+    private part<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-cc="${name}"]`) as T;
+    }
+
+    private load(e: CalcExample) {
+      this.stop();
+      this.frames = framesFor(e);
+      this.go(0);
+    }
+
+    private go(i: number) {
+      this.i = Math.max(0, Math.min(this.frames.length - 1, i));
+      const f = this.frames[this.i];
+      this.part('grid').innerHTML = frameHtml(f);
+      this.part('caption').textContent = f.caption;
+      this.part('count').textContent = `Step ${this.i + 1} of ${this.frames.length}`;
+      this.part<HTMLButtonElement>('back').disabled = this.i === 0;
+      const next = this.part<HTMLButtonElement>('next');
+      next.disabled = this.i === this.frames.length - 1;
+    }
+
+    private play() {
+      if (this.timer) return this.stop();
+      if (this.i === this.frames.length - 1) this.go(0);
+      this.part('play').textContent = '⏸ Pause';
+      this.timer = window.setInterval(() => {
+        if (this.i >= this.frames.length - 1) return this.stop();
+        this.go(this.i + 1);
+      }, 2200);
+    }
+
+    private stop() {
+      clearInterval(this.timer);
+      this.timer = 0;
+      this.part('play').textContent = '⏵ Play all';
+    }
+  }
+  customElements.define('column-calc', ColumnCalc);
+</script>

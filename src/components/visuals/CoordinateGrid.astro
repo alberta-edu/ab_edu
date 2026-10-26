@@ -1,0 +1,153 @@
+---
+// Interactive first-quadrant grid: read coordinates, find points from their coordinates, and
+// draw a polygon from its vertices (MAT5-OI4-GQ1-LO1).
+import { gridSvg } from './coord-grid.ts';
+
+interface Props {
+  size?: number;
+  /** Vertices for the "draw a polygon" challenge. */
+  polygon?: { label: string; x: number; y: number }[];
+}
+const { size = 10, polygon = [{ label: 'A', x: 2, y: 1 }, { label: 'B', x: 7, y: 1 }, { label: 'C', x: 7, y: 5 }, { label: 'D', x: 2, y: 5 }] } = Astro.props;
+---
+<coordinate-grid data-size={size} data-polygon={JSON.stringify(polygon)}>
+  <div class="seg" role="group" aria-label="Choose an activity">
+    <button type="button" data-mode="explore" aria-pressed="true">Explore</button>
+    <button type="button" data-mode="find" aria-pressed="false">Find the point</button>
+    <button type="button" data-mode="draw" aria-pressed="false">Draw a polygon</button>
+  </div>
+  <div class="cg-layout">
+    <div class="cg-stage" data-cg="svg" set:html={gridSvg(size, [], [], { interactive: true })} />
+    <div class="cg-panel">
+      <p class="cg-task" data-cg="task">Tap any point where the grid lines cross.</p>
+      <p class="cg-say" data-cg="say" aria-live="polite"></p>
+    </div>
+  </div>
+</coordinate-grid>
+
+<style is:global>
+  coordinate-grid { display: block; }
+  .cg-layout { display: grid; gap: 1rem; align-items: start; margin-top: 0.8rem; }
+  @media (min-width: 44rem) { .cg-layout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .cg-hit { fill: transparent; cursor: crosshair; }
+  .cg-guide { stroke: var(--sun); stroke-width: 2.5; stroke-dasharray: 5 4; }
+  .cg-path { fill: none; stroke: var(--accent); stroke-width: 3; }
+  .cg-task { margin: 0; font-weight: 700; font-size: var(--step-1); }
+  .cg-say { margin: 0.5rem 0 0; min-height: 3em; }
+  .cg-say .ok { color: var(--ok); font-weight: 700; }
+  .cg-say .no { color: var(--bad); font-weight: 700; }
+</style>
+
+<script>
+  import { gridSvg, at, CELL, PAD, directions, type GridPoint } from './coord-grid.ts';
+
+  type Mode = 'explore' | 'find' | 'draw';
+
+  class CoordinateGrid extends HTMLElement {
+    private size = 10;
+    private mode: Mode = 'explore';
+    private target: GridPoint | null = null;
+    private found = 0;
+    private polygon: (GridPoint & { label: string })[] = [];
+    private placed: GridPoint[] = [];
+
+    connectedCallback() {
+      this.size = Number(this.dataset.size);
+      this.polygon = JSON.parse(this.dataset.polygon!);
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) => b.addEventListener('click', () => this.setMode(b.dataset.mode as Mode)));
+      this.q('svg').addEventListener('click', (e) => this.tap(e as MouseEvent));
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-cg="${name}"]`) as HTMLElement;
+    }
+
+    private layer() {
+      return this.querySelector('[data-cg="layer"]') as SVGGElement;
+    }
+
+    private setMode(m: Mode) {
+      this.mode = m;
+      this.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.mode === m)));
+      this.layer().innerHTML = '';
+      this.q('say').innerHTML = '';
+      if (m === 'explore') this.q('task').textContent = 'Tap any point where the grid lines cross.';
+      if (m === 'find') {
+        this.found = 0;
+        this.newTarget();
+      }
+      if (m === 'draw') {
+        this.placed = [];
+        this.q('task').textContent = `Plot the vertices in order: ${this.polygon.map((p) => `${p.label}(${p.x}, ${p.y})`).join(', ')}.`;
+      }
+    }
+
+    private newTarget() {
+      const r = () => 1 + Math.floor(Math.random() * (this.size - 1));
+      this.target = { x: r(), y: r() };
+      this.q('task').textContent = `Find the point (${this.target.x}, ${this.target.y}).`;
+    }
+
+    private toGrid(e: MouseEvent): GridPoint | null {
+      const svg = this.querySelector('svg')!;
+      const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM()!.inverse());
+      const x = Math.round((pt.x - PAD) / CELL);
+      const y = Math.round(this.size - (pt.y - PAD) / CELL);
+      if (x < 0 || y < 0 || x > this.size || y > this.size) return null;
+      return { x, y };
+    }
+
+    private dot(p: GridPoint, cls = 'cg-pt', label = '') {
+      const [x, y] = at(p.x, p.y, this.size);
+      const [ox, oy] = at(0, 0, this.size);
+      if (this.mode === 'explore') {
+        this.layer().innerHTML = `<line class="cg-guide" x1="${x}" y1="${y}" x2="${x}" y2="${oy}"/><line class="cg-guide" x1="${x}" y1="${y}" x2="${ox}" y2="${y}"/>`;
+      }
+      this.layer().insertAdjacentHTML('beforeend', `<circle class="${cls}" cx="${x}" cy="${y}" r="7"/>${label ? `<text class="cg-pt-label" x="${x + 9}" y="${y - 9}">${label}</text>` : ''}`);
+    }
+
+    private tap(e: MouseEvent) {
+      const p = this.toGrid(e);
+      if (!p) return;
+      const say = this.q('say');
+      if (this.mode === 'explore') {
+        this.dot(p);
+        say.innerHTML = `<strong>(${p.x}, ${p.y})</strong>: ${p.x} across from the vertical axis, then ${p.y} up from the horizontal axis.`;
+      } else if (this.mode === 'find' && this.target) {
+        if (p.x === this.target.x && p.y === this.target.y) {
+          this.dot(p);
+          this.found++;
+          say.innerHTML = `<span class="ok">✓ Yes! That's (${p.x}, ${p.y}).</span> Found ${this.found}. Here's another…`;
+          setTimeout(() => {
+            this.layer().innerHTML = '';
+            this.newTarget();
+          }, 1300);
+        } else {
+          say.innerHTML = `<span class="no">You tapped (${p.x}, ${p.y}).</span> From there, go ${directions(p, this.target)}.`;
+        }
+      } else if (this.mode === 'draw') {
+        const next = this.polygon[this.placed.length];
+        if (!next) return;
+        if (p.x === next.x && p.y === next.y) {
+          this.placed.push(p);
+          this.dot(p, 'cg-pt', next.label);
+          if (this.placed.length === this.polygon.length) {
+            const pts = this.placed.map((q) => at(q.x, q.y, this.size).join(',')).join(' ');
+            this.layer().insertAdjacentHTML('afterbegin', `<polygon class="cg-poly" points="${pts}"/>`);
+            say.innerHTML = `<span class="ok">✓ Polygon complete!</span> Its vertices are ${this.polygon.map((v) => `${v.label}(${v.x}, ${v.y})`).join(', ')}.`;
+          } else {
+            const prev = this.placed[this.placed.length - 1];
+            const after = this.polygon[this.placed.length];
+            say.innerHTML = `<span class="ok">✓ ${next.label} is plotted.</span> ${after.label} is ${directions(prev, after)} from ${next.label}.`;
+            const pts = this.placed.map((q) => at(q.x, q.y, this.size).join(',')).join(' ');
+            this.layer().querySelector('.cg-path')?.remove();
+            this.layer().insertAdjacentHTML('afterbegin', `<polyline class="cg-path" points="${pts}"/>`);
+          }
+        } else {
+          say.innerHTML = `<span class="no">That's (${p.x}, ${p.y}).</span> ${next.label} is at (${next.x}, ${next.y}): go ${directions(p, next)}.`;
+        }
+      }
+    }
+  }
+  customElements.define('coordinate-grid', CoordinateGrid);
+</script>

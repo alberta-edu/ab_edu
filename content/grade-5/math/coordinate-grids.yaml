@@ -1,0 +1,288 @@
+id: coordinate-grids
+grade: 5
+subject: math
+organizingIdea: MAT-OI4
+outcomes: [MAT5-OI4-GQ1-LO1]
+order: 12
+title: Points and Polygons on a Coordinate Grid
+shortTitle: Coordinate grids
+summary: >-
+  Locate and describe points on a coordinate grid with ordered pairs, give directions between points,
+  and plot polygons from the coordinates of their vertices.
+
+bigIdea: |-
+  A **coordinate grid** gives every crossing point an exact address, an **ordered pair** like (3, 5). The
+  **first** number is how far **across** from the vertical axis. The **second** is how far **up** from the
+  horizontal axis. Coordinates describe locations **precisely**.
+
+lesson:
+  - title: Every point has an address
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.2, S1.1, S1.2]
+        component: coordinate-grid
+        props: { size: 10 }
+        caption: '**Explore**: tap a crossing point to read its coordinates. **Find the point**: tap the point you''re given. **Draw a polygon**: plot each vertex in order.'
+
+  - title: Across first, then up
+    blocks:
+      - type: figure
+        covers: [K1.2]
+        figure: { kind: coord-grid, size: 8, points: [{ x: 3, y: 5, label: 'A (3, 5)' }, { x: 5, y: 3, label: 'B (5, 3)' }] }
+        caption: '(3, 5) and (5, 3) use the same numbers but are **different points**. Order matters: an **ordered pair** is always across first, then up.'
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Remember the order
+        body: Walk along the hall (**across**), then climb the stairs (**up**).
+
+  - title: Directions between points
+    blocks:
+      - type: example
+        covers: [S1.3, K1.3]
+        title: From A to B
+        problem: Describe how to move from **A(2, 3)** to **B(6, 1)**.
+        steps:
+          - 'Across: from 2 to 6 is **4 right**.'
+          - 'Up and down: from 3 to 1 is **2 down**.'
+        answer: From A, go **4 right and 2 down** to reach B.
+
+  - title: Polygons on the grid
+    blocks:
+      - type: figure
+        covers: [S1.4, S1.5, U1.1]
+        figure: { kind: coord-grid, size: 8, points: [{ x: 1, y: 1, label: P }, { x: 6, y: 1, label: Q }, { x: 4, y: 5, label: R }], polygon: [[1, 1], [6, 1], [4, 5]] }
+        caption: 'Triangle PQR has vertices **P(1, 1)**, **Q(6, 1)** and **R(4, 5)**. The coordinates of the vertices describe exactly where the shape is.'
+
+keyTerms:
+  - term: Coordinate grid
+    covers: [K1.1]
+    definition: A grid of horizontal and vertical lines where every crossing point has coordinates.
+  - term: Coordinates
+    covers: [K1.2]
+    definition: 'An ordered pair of numbers, like (3, 5), that gives the location of a point.'
+  - term: Ordered pair
+    covers: [K1.2]
+    definition: 'Two numbers in a set order: across from the vertical axis first, then up from the horizontal axis.'
+  - term: Vertex
+    covers: [S1.5]
+    definition: A corner point of a polygon. The plural is vertices.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.2, K1.2]
+    type: mc
+    figure: { kind: coord-grid, size: 6, points: [{ x: 4, y: 2, label: A }] }
+    prompt: What are the coordinates of point **A**?
+    choices: ['(4, 2)', '(2, 4)', '(4, 4)', '(2, 2)']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'That swaps the order. Go **across** first (4), then **up** (2).'
+      '2': 'A is 4 across, but only 2 up.'
+      '3': 'A is 2 up, but 4 across.'
+    hints:
+      - Count across from the vertical axis first, then count up.
+    solution:
+      - 'A is **4** across and **2** up: (4, 2).'
+
+  - id: w2
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: 'In the ordered pair **(3, 7)**, what does the **7** tell you?'
+    choices:
+      - How far up from the horizontal axis the point is
+      - How far across from the vertical axis the point is
+      - The total distance from (0, 0)
+      - The point's label
+    answer: 0
+    feedback:
+      '1': 'That is the **first** number, 3.'
+      '2': It isn't a total. Each number tells one direction.
+      '3': 'A label is a letter, like A or B.'
+    hints:
+      - The first number is across. What is the second?
+    solution:
+      - 'The second number, 7, tells how far **up** from the horizontal axis.'
+
+  - id: w3
+    level: 1
+    covers: [S1.1]
+    type: mc
+    figure: { kind: coord-grid, size: 6, points: [{ x: 5, y: 1, label: P }, { x: 1, y: 5, label: Q }, { x: 3, y: 4, label: R }, { x: 4, y: 3, label: S }] }
+    prompt: Which point is at **(5, 1)**?
+    choices: [P, Q, R, S]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Q is at (1, 5): 1 across and 5 up.'
+      '2': 'R is at (3, 4).'
+      '3': 'S is at (4, 3).'
+    hints:
+      - Go 5 across, then 1 up.
+    solution:
+      - 'Across 5, up 1: that''s point **P**.'
+
+  - id: w4
+    level: 1
+    covers: [S1.3, K1.3]
+    type: mc
+    prompt: 'Start at **(2, 2)**. Move **3 right** and **4 up**. Where are you?'
+    choices: ['(5, 6)', '(6, 5)', '(5, 2)', '(3, 4)']
+    answer: 0
+    feedback:
+      '1': 'Right changes the first number: 2 + 3 = 5. Up changes the second: 2 + 4 = 6.'
+      '2': 'You also moved up 4.'
+      '3': 'That is just the moves, not where you end up.'
+    hints:
+      - Right changes the first number. Up changes the second number.
+    solution:
+      - 'Across: 2 + 3 = 5. Up: 2 + 4 = 6. You are at **(5, 6)**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.3, K1.3]
+    type: mc
+    prompt: 'How do you move from **(7, 6)** to **(3, 2)**?'
+    choices: ['4 left and 4 down', '4 right and 4 up', '3 left and 2 down', '4 left and 4 up']
+    answer: 0
+    feedback:
+      '1': 'The numbers get smaller, so you move left and down.'
+      '2': 'Those are the coordinates of where you end, not the moves.'
+      '3': 'From 6 to 2 is down, not up.'
+    hints:
+      - 'Across: from 7 to 3. Up and down: from 6 to 2.'
+    solution:
+      - '7 → 3 is 4 **left**. 6 → 2 is 4 **down**.'
+
+  - id: b2
+    level: 2
+    covers: [S1.5, S1.4]
+    type: mc
+    figure: { kind: coord-grid, size: 8, points: [{ x: 2, y: 2, label: A }, { x: 7, y: 2, label: B }, { x: 2, y: 6, label: C }], polygon: [[2, 2], [7, 2], [2, 6]] }
+    prompt: What are the vertices of triangle **ABC**?
+    choices: ['A(2, 2), B(7, 2), C(2, 6)', 'A(2, 2), B(2, 7), C(6, 2)', 'A(2, 2), B(7, 2), C(6, 2)', 'A(0, 0), B(5, 0), C(0, 4)']
+    answer: 0
+    feedback:
+      '1': 'B and C have their numbers swapped. Across first, then up.'
+      '2': 'C is up high on the left, at (2, 6), not (6, 2).'
+      '3': 'The triangle doesn''t start at (0, 0). Read where each vertex really is.'
+    hints:
+      - Read each vertex across first, then up.
+    solution:
+      - 'A(2, 2), B(7, 2), C(2, 6)'
+
+  - id: b3
+    level: 2
+    covers: [S1.4]
+    type: mc
+    prompt: 'Three vertices of a **square** are (1, 1), (4, 1) and (4, 4). What is the fourth vertex?'
+    choices: ['(1, 4)', '(4, 1)', '(1, 1)', '(5, 5)']
+    answer: 0
+    feedback:
+      '1': (4, 1) is already one of the vertices.
+      '2': (1, 1) is already one of the vertices.
+      '3': (5, 5) is outside the square's corners.
+    hints:
+      - The sides go 3 units across and 3 units up. Sketch it on a grid.
+    solution:
+      - 'The square goes from 1 to 4 across and from 1 to 4 up. The missing corner is **(1, 4)**.'
+
+  - id: b4
+    level: 2
+    covers: [S1.3, S1.2]
+    type: mc
+    prompt: 'Point M is **3 units right** of (2, 5). What are its coordinates?'
+    choices: ['(5, 5)', '(2, 8)', '(5, 8)', '(3, 5)']
+    answer: 0
+    feedback:
+      '1': 'Moving right changes the **first** number, not the second.'
+      '2': 'Moving right doesn''t change the second number.'
+      '3': 'Add 3 to 2, don''t replace it with 3.'
+    hints:
+      - Only the across number changes when you move right.
+    solution:
+      - '2 + 3 = 5 across, still 5 up: **(5, 5)**.'
+
+  - id: b5
+    level: 2
+    covers: [S1.4, U1.1]
+    type: mc
+    prompt: 'What shape do the points (2, 3), (2, 7), (6, 7) and (6, 3) make?'
+    choices: ['A square', 'A triangle', 'A rectangle that is not a square', 'A straight line']
+    answer: 0
+    feedback:
+      '1': There are 4 vertices, so it isn't a triangle.
+      '2': 'Check the side lengths: across is 6 − 2 = 4, and up is 7 − 3 = 4. They are equal!'
+      '3': The points aren't all on one line.
+    hints:
+      - Find how long the sides are across and up.
+    solution:
+      - 'Across: 2 to 6 is 4 units. Up: 3 to 7 is 4 units. All four sides are 4 units, so it''s a **square**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.4, U1.1]
+    type: mc
+    prompt: 'A(1, 2) and B(5, 2) are two vertices of a triangle. Point C should make a triangle with **two equal sides**, CA and CB. Which point works?'
+    choices: ['(3, 5)', '(5, 5)', '(1, 5)', '(4, 5)']
+    answer: 0
+    feedback:
+      '1': 'C would be straight above B, so CB is much shorter than CA.'
+      '2': 'C would be straight above A, so CA is much shorter than CB.'
+      '3': 'C is closer to B than to A, so the sides aren''t equal.'
+    hints:
+      - For CA and CB to be equal, C must be the same distance across from A as from B.
+    solution:
+      - 'Halfway between x = 1 and x = 5 is x = 3. A point straight above the middle, like **(3, 5)**, is the same distance from A and B.'
+
+  - id: d2
+    level: 3
+    covers: [K1.2]
+    type: mc
+    prompt: 'Ava says the point **(0, 4)** is on the **horizontal** axis. Is she right?'
+    choices:
+      - 'No. 0 across means it is on the vertical axis, 4 units up.'
+      - Yes. It has a 0 in it.
+      - 'Yes. (0, 4) and (4, 0) are the same point.'
+      - 'No. (0, 4) is not on any axis.'
+    answer: 0
+    feedback:
+      '1': 'Having a 0 isn''t enough. Which number is 0?'
+      '2': 'Order matters. They are different points.'
+      '3': 'Points with a 0 coordinate are on an axis.'
+    hints:
+      - 'If the across number is 0, how far across from the vertical axis is the point?'
+    solution:
+      - '0 across means it is right on the **vertical** axis, 4 up. (4, 0) would be on the horizontal axis.'
+
+  - id: d3
+    level: 3
+    covers: [S1.5]
+    type: number
+    prompt: 'A rectangle has vertices (2, 1), (9, 1), (9, 5) and (2, 5). What is its **perimeter**, in grid units?'
+    answer: 22
+    verify: 2 * ((9 - 2) + (5 - 1))
+    hints:
+      - 'Length across: 9 − 2. Height: 5 − 1.'
+    solution:
+      - 'Across: 9 − 2 = 7 units. Up: 5 − 1 = 4 units.'
+      - 'Perimeter: 7 + 4 + 7 + 4 = **22** units.'
+
+  - id: d4
+    level: 3
+    covers: [S1.3, K1.2]
+    type: open
+    prompt: 'Describe how to move from **(1, 8)** to **(6, 3)** using positional language. Then explain what each number in (6, 3) means.'
+    modelAnswer: |-
+      From (1, 8), go 5 right (1 to 6) and 5 down (8 to 3). In (6, 3), the 6 means the point is 6 units across from the
+      vertical axis, and the 3 means it is 3 units up from the horizontal axis.
+    rubric:
+      - I said 5 right and 5 down.
+      - I explained that the first number is the distance across from the vertical axis.
+      - I explained that the second number is the distance up from the horizontal axis.

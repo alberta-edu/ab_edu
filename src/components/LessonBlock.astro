@@ -11,6 +11,20 @@ import ParticleModel from './visuals/ParticleModel.astro';
 import Globe from './visuals/Globe.astro';
 import LatLongMap from './visuals/LatLongMap.astro';
 import InferenceEquation from './visuals/InferenceEquation.astro';
+import ColumnCalc from './visuals/ColumnCalc.astro';
+import PlaceValue from './visuals/PlaceValue.astro';
+import DecimalZoom from './visuals/DecimalZoom.astro';
+import Divisibility from './visuals/Divisibility.astro';
+import FractionAdd from './visuals/FractionAdd.astro';
+import RatioExplorer from './visuals/RatioExplorer.astro';
+import ExpressionSteps from './visuals/ExpressionSteps.astro';
+import MysteryBags from './visuals/MysteryBags.astro';
+import BalanceScale from './visuals/BalanceScale.astro';
+import SymmetryExplorer from './visuals/SymmetryExplorer.astro';
+import CoordinateGrid from './visuals/CoordinateGrid.astro';
+import RectangleBuilder from './visuals/RectangleBuilder.astro';
+import SequenceBuilder from './visuals/SequenceBuilder.astro';
+import DataSorter from './visuals/DataSorter.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -21,6 +35,20 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'data-sorter': DataSorter,
+  'sequence-builder': SequenceBuilder,
+  'rectangle-builder': RectangleBuilder,
+  'coordinate-grid': CoordinateGrid,
+  'symmetry-explorer': SymmetryExplorer,
+  'balance-scale': BalanceScale,
+  'mystery-bags': MysteryBags,
+  'expression-steps': ExpressionSteps,
+  'ratio-explorer': RatioExplorer,
+  'fraction-add': FractionAdd,
+  divisibility: Divisibility,
+  'decimal-zoom': DecimalZoom,
+  'place-value': PlaceValue,
+  'column-calc': ColumnCalc,
   'fraction-explorer': FractionExplorer,
   'fraction-regroup': FractionRegroup,
   'particle-model': ParticleModel,

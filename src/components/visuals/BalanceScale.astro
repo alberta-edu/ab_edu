@@ -1,0 +1,113 @@
+---
+// Solve an equation on a balance scale, one inverse operation at a time, then check the
+// solution. A "wrong move" button shows what happens if only one side changes.
+import { solveFrames, balanceSvg } from './balance.ts';
+
+interface Props {
+  /** Equations a·x + b = c. */
+  examples?: { a: number; b: number; c: number }[];
+  letter?: string;
+}
+const { examples = [{ a: 2, b: 3, c: 11 }], letter = 'x' } = Astro.props;
+const first = solveFrames(examples[0].a, examples[0].b, examples[0].c, letter);
+const label = (e: { a: number; b: number; c: number }) => `${e.a === 1 ? '' : e.a}${letter}${e.b ? ` + ${e.b}` : ''} = ${e.c}`;
+---
+<balance-scale data-examples={JSON.stringify(examples)} data-letter={letter}>
+  {
+    examples.length > 1 && (
+      <div class="seg cc-examples" role="group" aria-label="Choose an equation">
+        {examples.map((e, i) => (
+          <button type="button" data-ex={i} aria-pressed={String(i === 0)}>
+            {label(e)}
+          </button>
+        ))}
+      </div>
+    )
+  }
+  <div class="bs-board">
+    <p class="bs-eq" data-bs="eq">{first[0].equation}</p>
+    <div class="bs-stage" data-bs="svg" set:html={balanceSvg(first[0], letter)} />
+    <p class="cc-caption" data-bs="caption" aria-live="polite">{first[0].caption}</p>
+  </div>
+  <div class="cc-controls">
+    <button type="button" class="btn btn--ghost btn--small" data-bs="back" disabled>◀ Back</button>
+    <span class="cc-count" data-bs="count">Step 1 of {first.length}</span>
+    <button type="button" class="btn btn--primary btn--small" data-bs="next">Next step ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-bs="wrong">🤔 What if I change only one side?</button>
+  </div>
+</balance-scale>
+
+<style is:global>
+  balance-scale { display: block; }
+  .bs-board { display: grid; gap: 0.5rem; padding: 1rem; border-radius: var(--radius); background: var(--surface-2); }
+  .bs-eq { margin: 0; text-align: center; font-size: clamp(1.5rem, 1.1rem + 2vw, 2.2rem); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--accent); }
+  .bs-svg { display: block; width: 100%; max-width: 38rem; margin-inline: auto; height: auto; font-family: var(--font); }
+  .bs-svg * { transition: all 0.6s ease; }
+  .bs-stand { fill: var(--surface-3); stroke: var(--ink-2); stroke-width: 2; }
+  .bs-beam { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+  .bs-pivot { fill: var(--sun); stroke: var(--ink); stroke-width: 2.5; }
+  .bs-string { stroke: var(--ink-3); stroke-width: 1.5; }
+  .bs-pan { fill: color-mix(in srgb, var(--ink) 12%, var(--surface)); stroke: var(--ink); stroke-width: 2.5; }
+  .bs-cube { fill: var(--sun); stroke: var(--ink); stroke-width: 1.5; }
+  .bs-take { fill: var(--bad); opacity: 0.55; }
+  .bs-bag path { fill: color-mix(in srgb, var(--l3) 75%, var(--surface)); stroke: var(--ink); stroke-width: 2.5; }
+  .bs-bag text { fill: #fff; font-size: 18px; font-weight: 700; font-style: italic; }
+  .bs-group { fill: none; stroke: var(--accent); stroke-width: 2; stroke-dasharray: 5 4; }
+  .bs-faded { opacity: 0.25; }
+  @media (prefers-reduced-motion: reduce) { .bs-svg * { transition: none; } }
+</style>
+
+<script>
+  import { solveFrames, wrongMove, balanceSvg, type BalanceFrame } from './balance.ts';
+
+  type Eq = { a: number; b: number; c: number };
+
+  class BalanceScale extends HTMLElement {
+    private frames: BalanceFrame[] = [];
+    private i = 0;
+    private eq!: Eq;
+    private letter = 'x';
+    private wrongShown = false;
+
+    connectedCallback() {
+      const examples: Eq[] = JSON.parse(this.dataset.examples!);
+      this.letter = this.dataset.letter!;
+      this.load(examples[0]);
+      this.q('next').addEventListener('click', () => this.go(this.i + 1));
+      this.q('back').addEventListener('click', () => this.go(this.wrongShown ? this.i : this.i - 1));
+      this.q('wrong').addEventListener('click', () => this.show(wrongMove(this.eq.a, this.eq.b, this.eq.c), true));
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(examples[Number(b.dataset.ex)]);
+        }),
+      );
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-bs="${name}"]`) as T;
+    }
+
+    private load(eq: Eq) {
+      this.eq = eq;
+      this.frames = solveFrames(eq.a, eq.b, eq.c, this.letter);
+      this.go(0);
+    }
+
+    private go(i: number) {
+      this.i = Math.max(0, Math.min(this.frames.length - 1, i));
+      this.show(this.frames[this.i]);
+    }
+
+    private show(f: BalanceFrame, wrong = false) {
+      this.wrongShown = wrong;
+      this.q('svg').innerHTML = balanceSvg(f, this.letter);
+      this.q('eq').textContent = wrong ? 'Not balanced!' : f.equation;
+      this.q('caption').textContent = f.caption;
+      this.q('count').textContent = wrong ? 'Press Back to undo' : `Step ${this.i + 1} of ${this.frames.length}`;
+      this.q<HTMLButtonElement>('back').disabled = !wrong && this.i === 0;
+      this.q<HTMLButtonElement>('next').disabled = wrong || this.i === this.frames.length - 1;
+    }
+  }
+  customElements.define('balance-scale', BalanceScale);
+</script>

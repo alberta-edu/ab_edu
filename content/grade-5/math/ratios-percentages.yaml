@@ -1,0 +1,307 @@
+id: ratios-percentages
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [_tTreLA_0Ey9KlNK1XSxIA]
+order: 7
+title: Ratios and Percentages
+shortTitle: Ratios & percentages
+summary: >-
+  Use ratios to compare quantities, part to part and part to whole, and show the same part-whole
+  relationship as a ratio, a fraction, a decimal and a percentage.
+
+bigIdea: |-
+  A **ratio** compares two quantities in a situation. It can compare **part to part** (red to blue) or
+  **part to whole** (red to all), and it can be written with a **colon** (3 : 5) or as a **fraction**. A
+  **percentage** is a part-whole ratio out of **100**.
+
+lesson:
+  - title: Comparing with ratios
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1, S1.1]
+        component: ratio-explorer
+        props: { start: set, a: 3, b: 5, labelA: red, labelB: blue }
+        caption: Change the number of red and blue counters. Watch the part-part and part-whole ratios change.
+      - type: compare
+        covers: [K1.1, S1.1]
+        columns:
+          - title: Part to part
+            body: |-
+              red : blue
+              \[3 : 5\]
+              Compares one part with **another part**.
+          - title: Part to whole
+            body: |-
+              red : all counters
+              \[3 : 8\]
+              Compares one part with the **whole**.
+
+  - title: Writing ratios
+    blocks:
+      - type: table
+        covers: [K1.2, S1.1]
+        caption: A bag has 3 red and 5 blue counters.
+        headers: [Compare, With a colon, As a fraction]
+        rows:
+          - ['red to blue', '3 : 5', '\(\frac{3}{5}\)']
+          - ['blue to red', '5 : 3', '\(\frac{5}{3}\)']
+          - ['red to all counters', '3 : 8', '\(\frac{3}{8}\)']
+      - type: callout
+        variant: mistake
+        covers: [U1.1]
+        title: Order matters
+        body: '"Red to blue" is **3 : 5**, but "blue to red" is **5 : 3**. Write the numbers in the same order as the words.'
+
+  - title: Percent means out of 100
+    blocks:
+      - type: visual
+        covers: [K1.3, U1.2, S1.2]
+        component: ratio-explorer
+        props: { start: grid, shaded: 35 }
+        caption: Slide to shade squares. The ratio, fraction, decimal and percentage all describe the **same** shaded part.
+      - type: callout
+        variant: remember
+        covers: [0zWkCgBoa02WpE4F9KEh7Q#K1.4, 0zWkCgBoa02WpE4F9KEh7Q#K1.2]
+        title: Remember from Grade 4
+        body: '**1%** is one hundredth of a whole. To write a decimal as a percentage, multiply by 100: \(0.35 = 35\%\).'
+
+  - title: Four ways, one relationship
+    blocks:
+      - type: table
+        covers: [U1.2, S1.2]
+        headers: [Situation, Ratio, Fraction, Decimal, Percentage]
+        rows:
+          - ['25 of 100 squares shaded', '25 : 100', '\(\frac{25}{100}\)', '0.25', '25%']
+          - ['7 of 10 students walk', '7 : 10', '\(\frac{7}{10} = \frac{70}{100}\)', '0.7', '70%']
+          - ['3 of 5 counters are green', '3 : 5', '\(\frac{3}{5} = \frac{60}{100}\)', '0.6', '60%']
+      - type: example
+        covers: [S1.1, S1.2]
+        title: A class survey
+        problem: In a class of **20** students, **9** walk to school and the rest don't.
+        steps:
+          - 'Part to part, walkers to non-walkers: **9 : 11**.'
+          - 'Part to whole, walkers to the class: **9 : 20**, or \(\frac{9}{20}\).'
+          - '\(\frac{9}{20} = \frac{45}{100}\), so as a decimal it is **0.45**, and as a percentage **45%**.'
+        answer: '9 : 20 = \(\frac{9}{20}\) = 0.45 = 45% of the class walks.'
+
+keyTerms:
+  - term: Ratio
+    covers: [U1.1, K1.2]
+    definition: 'A comparison of two quantities in a situation, like 3 : 5.'
+  - term: Part-part ratio
+    covers: [K1.1]
+    definition: Compares one part of a whole with another part.
+  - term: Part-whole ratio
+    covers: [K1.1]
+    definition: Compares one part with the whole.
+  - term: Percentage
+    covers: [K1.3]
+    definition: 'A part-whole ratio that compares a quantity to 100. 35% means 35 out of 100.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: A bag has **4 red** and **7 blue** marbles. What is the ratio of **red to blue**?
+    choices: ['4 : 7', '7 : 4', '4 : 11', '11 : 4']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'That is blue to red. Keep the order of the words: red first.'
+      '2': 'That is red to **all** the marbles, a part-whole ratio.'
+      '3': That compares all the marbles to the red ones.
+    hints:
+      - Red comes first in the question, so it comes first in the ratio.
+    solution:
+      - 'Red to blue: **4 : 7**.'
+
+  - id: w2
+    level: 1
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: The same bag has **4 red** and **7 blue** marbles. What is the ratio of **red to all** the marbles?
+    choices: ['4 : 11', '4 : 7', '7 : 11', '11 : 4']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'That compares red with blue, part to part.'
+      '2': 'That is blue to all.'
+      '3': That is all to red, the wrong order.
+    hints:
+      - How many marbles are there altogether?
+    solution:
+      - '4 + 7 = 11 marbles, so red to all is **4 : 11**.'
+
+  - id: w3
+    level: 1
+    covers: [K1.3]
+    type: number
+    prompt: '**37** out of **100** squares are shaded. What percentage is shaded?'
+    unit: '%'
+    answer: 37
+    hints:
+      - Percent means out of 100.
+    solution:
+      - '37 out of 100 = **37%**.'
+
+  - id: w4
+    level: 1
+    covers: [K1.1]
+    type: mc
+    prompt: Which of these is a **part-whole** ratio?
+    choices:
+      - The number of girls to the number of students in the class
+      - The number of girls to the number of boys
+      - The number of cats to the number of dogs
+      - The number of red cars to the number of blue cars
+    answer: 0
+    feedback:
+      '1': Girls and boys are both parts of the class. That's part to part.
+      '2': Cats and dogs are two parts. That's part to part.
+      '3': Red and blue cars are two parts. That's part to part.
+    hints:
+      - Which one compares a part with the whole group it belongs to?
+    solution:
+      - 'Girls are part of the class; "students in the class" is the whole. **Part to whole.**'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [U1.2, S1.2]
+    type: number
+    prompt: Write **0.6** as a percentage.
+    unit: '%'
+    answer: 60
+    hints:
+      - '0.6 = 0.60 = 60 hundredths.'
+    solution:
+      - '0.6 = \(\frac{60}{100}\) = **60%**'
+
+  - id: b2
+    level: 2
+    covers: [S1.2, K1.2]
+    type: number
+    prompt: 'The part-whole ratio **3 : 10** describes a part of a whole. Write it as a **decimal**.'
+    answer: 0.3
+    hints:
+      - '3 : 10 can be written as the fraction \(\frac{3}{10}\).'
+    solution:
+      - '3 : 10 = \(\frac{3}{10}\) = 3 tenths = **0.3**'
+
+  - id: b3
+    level: 2
+    covers: [S1.2, U1.2]
+    type: mc
+    prompt: In a class of **25** students, **15** like soccer. What **percentage** of the class likes soccer?
+    choices: ['60%', '15%', '25%', '40%']
+    answer: 0
+    feedback:
+      '1': '15 is out of 25, not out of 100.'
+      '2': 25 is the number of students in the class.
+      '3': '40% is the part that does **not** like soccer (10 out of 25).'
+    hints:
+      - '\(\frac{15}{25}\) = how many hundredths? Multiply the top and bottom by 4.'
+    solution:
+      - '\(\frac{15}{25} = \frac{60}{100}\) = **60%**'
+
+  - id: b4
+    level: 2
+    covers: [U1.2, S1.2]
+    type: multi
+    prompt: 'Select **all** that show the same part-whole relationship as **4 : 5**.'
+    choices: ['\(\frac{4}{5}\)', '0.8', '80%', '5 : 4', '0.45', '45%']
+    answer: [0, 1, 2]
+    hints:
+      - '\(\frac{4}{5} = \frac{?}{100}\)'
+    solution:
+      - '4 : 5 = \(\frac{4}{5} = \frac{80}{100}\) = 0.8 = 80% ✓'
+      - '5 : 4 is the reverse. 0.45 and 45% just use the digits 4 and 5.'
+
+  - id: b5
+    level: 2
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: A team played **12** games and won **7** of them. There were no ties. What is the ratio of **wins to losses**?
+    choices: ['7 : 5', '7 : 12', '5 : 7', '12 : 7']
+    answer: 0
+    feedback:
+      '1': '7 : 12 is wins to **all games**, a part-whole ratio.'
+      '2': That is losses to wins, the reverse order.
+      '3': That compares all games to wins.
+    hints:
+      - How many games did the team lose?
+    solution:
+      - '12 − 7 = 5 losses, so wins to losses is **7 : 5**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.2, K1.3]
+    type: number
+    prompt: '**20** of the **50** students in Grade 5 take the bus. What **percentage** take the bus?'
+    unit: '%'
+    answer: 40
+    verify: 20 * 2
+    hints:
+      - '\(\frac{20}{50} = \frac{?}{100}\)'
+    solution:
+      - '\(\frac{20}{50} = \frac{40}{100}\) = **40%**'
+
+  - id: d2
+    level: 3
+    covers: [S1.2, U1.2]
+    type: mc
+    prompt: 'In class A, **12 of 20** students walk to school. In class B, **14 of 25** walk. Which class has the **greater percentage** of walkers?'
+    choices:
+      - 'Class A (60%)'
+      - 'Class B (56%)'
+      - Class B, because 14 is more than 12.
+      - They are the same.
+    answer: 0
+    feedback:
+      '1': 'Check: \(\frac{14}{25} = \frac{56}{100}\), which is less than \(\frac{60}{100}\).'
+      '2': 'Class B is bigger, so comparing counts isn''t fair. Compare percentages.'
+      '3': '60% and 56% are different.'
+    hints:
+      - Change each fraction to hundredths.
+    solution:
+      - 'A: \(\frac{12}{20} = \frac{60}{100}\) = 60%. B: \(\frac{14}{25} = \frac{56}{100}\) = 56%.'
+      - '**Class A** has the greater percentage of walkers.'
+
+  - id: d3
+    level: 3
+    covers: [K1.1, U1.1]
+    type: mc
+    prompt: 'Leo says: "The ratio of boys to girls is 12 : 13, so \(\frac{12}{13}\) of the class are boys." What is wrong?'
+    choices:
+      - '12 : 13 is part to part. Boys out of the whole class is 12 out of 25, so \(\frac{12}{25}\) are boys.'
+      - Nothing is wrong.
+      - 'It should be \(\frac{13}{12}\).'
+      - 'The ratio should be 13 : 12.'
+    answer: 0
+    feedback:
+      '1': 'A fraction of the class needs the **whole** class, 12 + 13 = 25, as the denominator.'
+      '2': That's girls compared to boys, and it is still part to part.
+      '3': 'The order 12 : 13 for boys to girls is right. The mix-up is part-part vs. part-whole.'
+    hints:
+      - How many students are in the whole class?
+    solution:
+      - 'The class has 12 + 13 = 25 students.'
+      - 'Boys to the whole class is 12 : 25, so \(\frac{12}{25}\) of the class are boys.'
+
+  - id: d4
+    level: 3
+    covers: [S1.1, S1.2, U1.2]
+    type: open
+    prompt: 'A bag has **3 green** and **2 yellow** counters. Describe the bag using a **part-part ratio**, a **part-whole ratio**, a **fraction**, a **decimal** and a **percentage**.'
+    modelAnswer: |-
+      Green to yellow is 3 : 2 (part to part). Green to all counters is 3 : 5 (part to whole). As a fraction,
+      \(\frac{3}{5}\) of the counters are green. \(\frac{3}{5} = \frac{60}{100}\), so as a decimal that's 0.6 and as a
+      percentage 60%.
+    rubric:
+      - 'I wrote a correct part-part ratio (3 : 2 or 2 : 3, with words).'
+      - 'I wrote a correct part-whole ratio (3 : 5 or 2 : 5).'
+      - I matched it with the right fraction, decimal and percentage.

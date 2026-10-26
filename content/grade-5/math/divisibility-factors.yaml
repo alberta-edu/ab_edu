@@ -1,0 +1,315 @@
+id: divisibility-factors
+grade: 5
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT5-OI1-GQ3-LO1]
+order: 3
+title: Divisibility Tests and Factors
+shortTitle: Divisibility & factors
+summary: >-
+  Discover the divisibility tests for 2, 3 and 5, see why dividing by zero is impossible, and use the
+  tests to find the factors of a number.
+
+bigIdea: |-
+  A number is **divisible** by another when the division leaves a **remainder of 0**. Quick
+  **divisibility tests** for 2, 3 and 5 tell you without dividing, and they help you find a number's
+  **factors**. One rule never changes: you **can't divide by 0**.
+
+lesson:
+  - title: What "divisible" means
+    blocks:
+      - type: compare
+        covers: [U1.1]
+        columns:
+          - title: ✅ Divisible
+            body: |-
+              \[15 \div 5 = 3 \text{ R } 0\]
+              Remainder **0**, so 15 is divisible by 5.
+          - title: ❌ Not divisible
+            body: |-
+              \[17 \div 5 = 3 \text{ R } 2\]
+              Remainder **2**, so 17 is not divisible by 5.
+      - type: callout
+        variant: remember
+        covers: [MAT4-OI1-GQ3-LO1#K1.1, MAT4-OI1-GQ3-LO1#K1.2]
+        title: Remember from Grade 4
+        body: A **factor** of a number divides it exactly. The number is a **multiple** of each of its factors.
+
+  - title: Patterns on the hundred chart
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.2]
+        component: divisibility
+        props: { start: 2, number: 60 }
+        caption: Tap a divisor from **0 to 10** and look for the pattern in the numbers that light up. For 3, look at the small digit sums.
+
+  - title: Tests for 2, 5 and 3
+    blocks:
+      - type: table
+        covers: [S1.2]
+        headers: [Divisible by, Test, Example]
+        rows:
+          - ['**2**', 'The ones digit is even: 0, 2, 4, 6 or 8.', '7 3**4** ✓  &nbsp; 45**9** ✗']
+          - ['**5**', 'The ones digit is 0 or 5.', '4 38**5** ✓  &nbsp; 1 50**7** ✗']
+          - ['**3**', 'The sum of the digits is divisible by 3.', '4 728 → 4 + 7 + 2 + 8 = 21 ✓']
+
+  - title: You can't divide by zero
+    blocks:
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: Sharing makes sense
+            body: |-
+              \[12 \div 3 = 4\]
+              because \(4 \times 3 = 12\).
+          - title: Zero groups doesn't
+            body: |-
+              \[12 \div 0 = \;?\]
+              We'd need \(? \times 0 = 12\). Any number times 0 is 0, so there is **no** answer.
+      - type: callout
+        variant: mistake
+        covers: [K1.2]
+        title: Watch out
+        body: '\(12 \div 0\) is **not** 0 and **not** 12. Division by 0 is not possible.'
+
+  - title: Using the tests to find factors
+    blocks:
+      - type: example
+        covers: [K1.1, S1.3]
+        title: Find the factors of 60
+        problem: Use divisibility tests to find all the factors of **60**.
+        steps:
+          - '**2:** the ones digit 0 is even ✓ → \(60 = 2 \times 30\)'
+          - '**3:** the digit sum 6 + 0 = 6 is divisible by 3 ✓ → \(60 = 3 \times 20\)'
+          - '**5:** the ones digit is 0 ✓ → \(60 = 5 \times 12\)'
+          - 'Divide to check 4, 6 and 10 too: \(60 = 4 \times 15 = 6 \times 10\), and of course \(1 \times 60\).'
+        answer: 'Factors of 60: **1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, 60**'
+      - type: callout
+        variant: tip
+        covers: [S1.3]
+        title: Try it yourself
+        body: In the lab above, choose **Test a number** and type any number. You'll see each test and all the factor pairs.
+
+keyTerms:
+  - term: Divisible
+    covers: [U1.1]
+    definition: One number is divisible by another when the division leaves a remainder of 0.
+  - term: Divisibility test
+    covers: [K1.1, S1.2]
+    definition: 'A quick check for whether a number is divisible by another, without dividing.'
+  - term: Factor
+    covers: [MAT4-OI1-GQ3-LO1#K1.1]
+    definition: A number that divides another number exactly.
+  - term: Digit sum
+    covers: [S1.2]
+    definition: 'The total of a number''s digits. For 4 728 it is 4 + 7 + 2 + 8 = 21.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.2]
+    type: mc
+    prompt: Which number is divisible by **5**?
+    choices: ['4 385', '5 551', '3 053', '1 507']
+    answer: 0
+    feedback:
+      '1': 'Starting with 5 doesn''t matter. Look at the **ones** digit: 1.'
+      '2': 'The ones digit is 3, not 0 or 5.'
+      '3': 'The ones digit is 7, not 0 or 5.'
+    hints:
+      - Look only at the ones digit.
+    solution:
+      - '4 38**5** ends in 5, so it is divisible by 5.'
+
+  - id: w2
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: What is \(12 \div 0\)?
+    choices: ['It is not possible', '0', '12', '1']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'If 12 ÷ 0 were 0, then 0 × 0 would be 12. It isn''t.'
+      '2': 'If 12 ÷ 0 were 12, then 12 × 0 would be 12. It is 0.'
+      '3': 'If 12 ÷ 0 were 1, then 1 × 0 would be 12. It is 0.'
+    hints:
+      - Check with multiplication. What number times 0 equals 12?
+    solution:
+      - 'Any number times 0 is 0, never 12. So **division by 0 is not possible**.'
+
+  - id: w3
+    level: 1
+    covers: [S1.2]
+    type: multi
+    prompt: Select **all** the numbers that are divisible by **2**.
+    choices: ['734', '1 000', '459', '2 226', '81']
+    answer: [0, 1, 3]
+    hints:
+      - Even ones digit means divisible by 2.
+    solution:
+      - '73**4**, 1 00**0**, 2 22**6** end in even digits ✓'
+      - '45**9** and 8**1** end in odd digits ✗'
+
+  - id: w4
+    level: 1
+    covers: [S1.2, U1.1]
+    type: mc
+    prompt: Is **51** divisible by **3**?
+    choices:
+      - 'Yes. 5 + 1 = 6, and 6 is divisible by 3.'
+      - 'No. 51 is odd.'
+      - 'No. It doesn''t end in 3, 6 or 9.'
+      - 'Yes. 51 ends in 1.'
+    answer: 0
+    feedback:
+      '1': 'Odd numbers aren''t divisible by **2**. They can still be divisible by 3.'
+      '2': 'The test for 3 uses the **digit sum**, not the last digit.'
+      '3': 'The test for 3 uses the digit sum, not the last digit.'
+    hints:
+      - Add the digits of 51.
+    solution:
+      - '5 + 1 = 6, which is divisible by 3. So 51 is divisible by 3: \(51 = 3 \times 17\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: Is **4 728** divisible by **3**?
+    choices:
+      - 'Yes, because 4 + 7 + 2 + 8 = 21 and 21 is divisible by 3.'
+      - 'No, because 8 is not divisible by 3.'
+      - 'Yes, because it is even.'
+      - 'No, because 4 728 is too big.'
+    answer: 0
+    feedback:
+      '1': 'The test for 3 uses **all** the digits, not just the last one.'
+      '2': Being even is the test for **2**.
+      '3': Any number can be tested, no matter how big.
+    hints:
+      - Find the digit sum.
+    solution:
+      - 'Digit sum: 4 + 7 + 2 + 8 = 21, and 21 = 3 × 7 ✓. So 4 728 is divisible by 3.'
+
+  - id: b2
+    level: 2
+    covers: [S1.3, K1.1]
+    type: multi
+    prompt: Select **all** the factors of **45**.
+    choices: ['1', '3', '5', '9', '15', '6', '2']
+    answer: [0, 1, 2, 3, 4]
+    hints:
+      - 45 is odd, so is 2 a factor? Its ones digit is 5, and its digit sum is 9.
+    solution:
+      - '1 × 45, 3 × 15 (digit sum 9 ✓), 5 × 9 (ends in 5 ✓).'
+      - '45 is odd, so 2 and 6 are **not** factors.'
+
+  - id: b3
+    level: 2
+    covers: [S1.2]
+    type: number
+    prompt: 'The number **4▢2** is divisible by 3. What is the **greatest** digit that can go in the box?'
+    answer: 9
+    hints:
+      - 'The digit sum is 4 + ▢ + 2 = 6 + ▢. It must be divisible by 3.'
+    solution:
+      - '6 + ▢ must be 6, 9, 12 or 15, so ▢ can be 0, 3, 6 or 9.'
+      - 'The greatest is **9**: 492 ÷ 3 = 164 ✓'
+
+  - id: b4
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: Which number is divisible by **2, 3 and 5**?
+    choices: ['90', '75', '64', '45']
+    answer: 0
+    feedback:
+      '1': '75 ends in 5, which is odd, so it isn''t divisible by 2.'
+      '2': '64 doesn''t end in 0 or 5, so it isn''t divisible by 5.'
+      '3': '45 is odd, so it isn''t divisible by 2.'
+    hints:
+      - Divisible by 2 and by 5 means the ones digit must be 0.
+    solution:
+      - '90 ends in 0 (✓ 2, ✓ 5) and 9 + 0 = 9 (✓ 3).'
+
+  - id: b5
+    level: 2
+    covers: [S1.3]
+    type: number
+    prompt: How many factors does **36** have?
+    answer: 9
+    hints:
+      - 'List factor pairs: 1 × 36, 2 × 18, …'
+      - 6 × 6 gives only one new factor.
+    solution:
+      - '1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6'
+      - 'Factors: 1, 2, 3, 4, 6, 9, 12, 18, 36. That''s **9** factors.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.2]
+    type: mc
+    prompt: A number is divisible by **both 2 and 5**. What must its ones digit be?
+    choices: ['0', '5', 'Any even digit', '2 or 5']
+    answer: 0
+    feedback:
+      '1': '5 is odd, so a number ending in 5 is not divisible by 2.'
+      '2': 'Only 0 is both even and one of 0 or 5.'
+      '3': 'A number ending in 2 isn''t divisible by 5, and one ending in 5 isn''t divisible by 2.'
+    hints:
+      - Which digits pass the test for 2? Which pass the test for 5? Which digit is in both lists?
+    solution:
+      - 'Test for 2: 0, 2, 4, 6, 8. Test for 5: 0, 5.'
+      - 'Only **0** is in both lists.'
+
+  - id: d2
+    level: 3
+    covers: [S1.2, U1.1]
+    type: mc
+    prompt: Is **1 000 001** divisible by **3**?
+    choices:
+      - 'No. Its digit sum is 2, which is not divisible by 3.'
+      - Yes. Every big number is divisible by 3.
+      - Yes. It is odd.
+      - You can't tell without dividing.
+    answer: 0
+    feedback:
+      '1': Size has nothing to do with it.
+      '2': Being odd is not a test for 3.
+      '3': The digit sum test works for any number.
+    hints:
+      - Add up the digits. Most of them are 0!
+    solution:
+      - '1 + 0 + 0 + 0 + 0 + 0 + 1 = **2**. 2 is not divisible by 3, so neither is 1 000 001.'
+
+  - id: d3
+    level: 3
+    covers: [S1.3, K1.1]
+    type: number
+    prompt: |-
+      84 cookies are packed into bags with the **same number** in each bag and **none left over**. Each bag holds
+      **more than 1 but fewer than 10** cookies. How many different bag sizes are possible?
+    answer: 5
+    hints:
+      - Which numbers from 2 to 9 are factors of 84?
+      - '84 is even, its digit sum is 12, and it doesn''t end in 0 or 5.'
+    solution:
+      - '2 ✓ (even), 3 ✓ (8 + 4 = 12), 4 ✓ (84 ÷ 4 = 21), 5 ✗, 6 ✓ (passes 2 and 3), 7 ✓ (84 ÷ 7 = 12), 8 ✗ (84 ÷ 8 = 10 R 4), 9 ✗ (12 isn''t divisible by 9)'
+      - 'Bag sizes 2, 3, 4, 6 and 7: **5** sizes.'
+
+  - id: d4
+    level: 3
+    covers: [K1.2]
+    type: open
+    prompt: Use **multiplication** to explain why \(20 \div 0\) is not possible, but \(0 \div 20 = 0\).
+    modelAnswer: |-
+      Division asks what number times the divisor gives the dividend. For \(20 \div 0\), I need a number that
+      gives 20 when multiplied by 0, but any number times 0 is 0, so there is no answer. For \(0 \div 20\),
+      I need a number that gives 0 when multiplied by 20. \(0 \times 20 = 0\), so the answer is 0.
+    rubric:
+      - I used multiplication to check each division.
+      - I explained that any number times 0 is 0, so nothing works for \(20 \div 0\).
+      - 'I showed that \(0 \times 20 = 0\), so \(0 \div 20 = 0\).'
