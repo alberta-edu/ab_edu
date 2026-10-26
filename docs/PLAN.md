@@ -8,6 +8,36 @@ Nothing ships until the owner has reviewed and tested everything locally. All wo
 on feature branches. The owner verifies each one before it is merged into `main`, which is
 the branch that deploys.
 
+## Where we are now
+
+*Last updated: October 25, 2026. Update this section whenever a phase or batch finishes.*
+
+**Current phase: 3 (Math) is built and waiting for your review. Phase 4 (Science) is next.**
+Nothing is published yet: `main` has not been pushed.
+
+| Subject | On `main` | Including branches waiting for review |
+|---|---|---|
+| Math | 1 of 15 | **15 of 15** ✅ (all 165 Math statements) |
+| Science | 1 of 15 | 1 of 15 (particle model, partly) |
+| Social Studies | 1 of 6 | 1 of 6 (latitude and longitude, partly) |
+| ELAL | 1 of 12 | 1 of 12 (inference and evidence, partly) |
+| **Total concepts** | **4 of 48** | **18 of 48** |
+| **Statements taught** | 44 of 674 | 197 of 674 |
+
+The statement counts come from `npm run audit` (see [curriculum-audit.md](curriculum-audit.md)).
+
+**Branches:**
+
+| Branch | What it contains | Status |
+|---|---|---|
+| `feature/grade5-foundation` | Phases 0–2: the site, the 4 sample lessons, tabs and steps, 3D globe, curriculum checks | ✅ Merged into `main` |
+| `chore/claude-md` | CLAUDE.md with the repo rules | ✅ Merged into `main` |
+| `chore/plan-status` | This progress tracking | ✅ Merged into `main` |
+| `feature/grade5-math` | Phase 3: all 15 Math lessons (233 problems) | ⏳ Waiting for your review |
+
+**Next up:** Phase 4, Science, on a new branch `feature/grade5-science`. It reuses shared
+code added on the Math branch, so it will be stacked on `feature/grade5-math`.
+
 ## 1. Ground truth: the curriculum
 
 - Source: the current program of studies, taken from New LearnAlberta's published curriculum
@@ -136,15 +166,15 @@ choice is a real misconception and comes with an explanation.
 
 ## 4. Grade 5 concept map (about 48 concepts)
 
-★ = built in the first vertical slice.
+✅ = built (Math lessons are on `feature/grade5-math` until you approve it). ★ = one of the four sample lessons from Phase 2.
 
-**Math** (13 outcomes → 15 concepts): place value & decimals · adding & subtracting
-(standard algorithms) · divisibility & factors · multiplying & dividing (standard algorithms)
-· ★ improper fractions & mixed numbers · adding & subtracting fractions · ratios &
-percentages · order of operations · algebraic expressions · solving equations · symmetry ·
+**Math** (13 outcomes → 15 concepts), all built ✅: place value & decimals · adding &
+subtracting (standard algorithms) · divisibility & factors · multiplying & dividing (standard
+algorithms) · ★ improper fractions & mixed numbers · adding & subtracting fractions · ratios
+& percentages · order of operations · algebraic expressions · solving equations · symmetry ·
 coordinate grids · area & perimeter · arithmetic sequences · frequency & mode
 
-**Science** (8 outcomes → 15 concepts): ★ particle model & states of matter · mass,
+**Science** (8 outcomes → 15 concepts): ✅ ★ particle model & states of matter · mass,
 volume, density & compressibility · forces of flight · buoyancy · energy resources ·
 weather vs climate & weather tools · climate, living things & agriculture · human body
 systems · plant transport · seasons & Earth's tilt · Moon phases, eclipses & auroras ·
@@ -152,27 +182,27 @@ algorithms, loops & block code · the design process · controlled experiments �
 bias & ethics
 
 **Social Studies** (5 outcomes → 6 concepts): rise & fall of civilizations · historians,
-sources & evidence · ★ latitude, longitude & where civilizations grew · trade routes &
+sources & evidence · ✅ ★ latitude, longitude & where civilizations grew · trade routes &
 early economies · governments & social systems · informed citizenship
 
 **ELAL** (6 outcomes → 12 concepts): text forms & genres · poetry & drama · oral
-communication · word origins & affixes · figurative language · ★ inference & text evidence ·
+communication · word origins & affixes · figurative language · ✅ ★ inference & text evidence ·
 perspective & context · the writing process · author's craft (show, don't tell) ·
 research skills · grammar · spelling & punctuation
 
 ## 5. Phases
 
-| # | Phase | Output |
-|---|---|---|
-| 0 | Research | Curriculum extract, this plan |
-| 1 | Foundation | Astro scaffold, design system, content schema + renderer, problem engine, progress store, spaced review, SEO plumbing, verify/coverage scripts, unit tests, deploy workflow (not pushed) |
-| 2 | Vertical slice | One complete concept per subject (★ above), each with a signature visualization: fraction explorer, particle simulator, latitude/longitude world map, evidence-finding reader. **→ Review checkpoint with owner** |
-| 3 | Math | Remaining 14 concepts |
-| 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) |
-| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) |
-| 6 | ELAL | Remaining 11 concepts (original passages and poems) |
-| 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop |
-| 8 | Release | Only after owner sign-off: merge the feature branch into `main`, push, enable Pages |
+| # | Phase | Output | Status |
+|---|---|---|---|
+| 0 | Research | Curriculum extract (K–6), this plan | ✅ Done |
+| 1 | Foundation | Astro scaffold, design system, content schema + renderer, problem engine, progress store, spaced review, SEO plumbing, verify/coverage/audit scripts, unit tests, deploy workflow (not pushed) | ✅ Done, merged into `main` |
+| 2 | Vertical slice | One complete concept per subject (★ above), each with a signature visualization: fraction explorer, particle simulator, 3D globe and world map, evidence-finding reader. Reworked after your feedback: curriculum-only content, tabs and steps | ✅ Done, merged into `main` |
+| 3 | Math | Remaining 14 concepts | ✅ Built, ⏳ waiting for your review |
+| 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ⏭️ **Next** |
+| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) | Not started |
+| 6 | ELAL | Remaining 11 concepts (original passages and poems) | Not started |
+| 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | Not started |
+| 8 | Release | Only after owner sign-off: merge the feature branches into `main`, push, enable Pages | Not started, needs your sign-off |
 
 ## 6. Decisions for the owner
 
