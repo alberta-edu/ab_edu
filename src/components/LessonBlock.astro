@@ -25,6 +25,10 @@ import CoordinateGrid from './visuals/CoordinateGrid.astro';
 import RectangleBuilder from './visuals/RectangleBuilder.astro';
 import SequenceBuilder from './visuals/SequenceBuilder.astro';
 import DataSorter from './visuals/DataSorter.astro';
+import MeasureTools from './visuals/MeasureTools.astro';
+import DensityBalance from './visuals/DensityBalance.astro';
+import FlightForces from './visuals/FlightForces.astro';
+import FloatLab from './visuals/FloatLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -35,6 +39,10 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'measure-tools': MeasureTools,
+  'density-balance': DensityBalance,
+  'flight-forces': FlightForces,
+  'float-lab': FloatLab,
   'data-sorter': DataSorter,
   'sequence-builder': SequenceBuilder,
   'rectangle-builder': RectangleBuilder,

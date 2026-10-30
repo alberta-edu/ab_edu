@@ -1,0 +1,122 @@
+---
+// Animated experiment: an arrow is aimed straight at the centre of a target. The bowstring
+// gives it thrust only while pushing; then drag slows it and weight pulls it down, so its
+// path curves and it hits below the centre (SCI5-OI2-GQ1-LO1, K1.1-K1.8).
+---
+<arrow-flight>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-af="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-af="live"></p>
+</arrow-flight>
+
+<style is:global>
+  arrow-flight { display: block; }
+  .af-bow { fill: none; stroke: var(--social); stroke-width: 6; stroke-linecap: round; }
+  .af-string { stroke: var(--ink-2); stroke-width: 1.5; }
+  .af-aim { stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 6; }
+  .af-trail { fill: var(--accent); }
+  .af-ring1 { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .af-ring2 { fill: var(--math); }
+  .af-ring3 { fill: var(--bad); }
+  .af-ring4 { fill: var(--sun); }
+  .af-leg { stroke: var(--ink-2); stroke-width: 4; stroke-linecap: round; }
+</style>
+
+<script>
+  import { forceArrow, OBJECT_SVG } from '../visuals/force-arrows.ts';
+  import { tween, wait, reducedMotion } from './anim.ts';
+
+  const BOW_X = 96;
+  const AIM_Y = 140;
+  const TARGET_X = 590;
+  const GROUND = 262;
+
+  class ArrowFlight extends HTMLElement {
+    private pull = 0;
+    private arrow = { x: BOW_X + 8, y: AIM_Y, vx: 0, vy: 0 };
+    private trail: [number, number][] = [];
+    private forces = { thrust: 0, drag: 0, weight: 0 };
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.trail = [];
+      this.arrow = { x: BOW_X + 8, y: AIM_Y, vx: 0, vy: 0 };
+      this.forces = { thrust: 0, drag: 0, weight: 0 };
+      this.querySelector('[data-af="live"]')!.textContent = '';
+      // Draw the bow back, then let go: the string pushes the arrow forward (thrust).
+      await tween(700, (t) => {
+        this.pull = t * 34;
+        this.arrow.x = BOW_X + 8 - this.pull;
+        this.draw();
+      });
+      await tween(160, (t) => {
+        this.pull = 34 * (1 - t);
+        this.arrow.x = BOW_X + 8 - this.pull;
+        this.forces.thrust = 70;
+        this.draw();
+      });
+      this.forces.thrust = 0;
+      this.arrow.vx = 470;
+      // Free flight: drag acts against the movement and weight pulls down.
+      await new Promise<void>((resolve) => {
+        const speedUp = reducedMotion() ? 6 : 1;
+        let last = performance.now();
+        const frame = (now: number) => {
+          const dt = Math.min(0.05, (now - last) / 1000) * speedUp;
+          last = now;
+          const a = this.arrow;
+          const steps = 4;
+          for (let i = 0; i < steps; i++) {
+            const h = dt / steps;
+            a.vx -= 0.0007 * a.vx * a.vx * h;
+            a.vy += 90 * h;
+            a.x += a.vx * h;
+            a.y += a.vy * h;
+          }
+          this.forces.drag = 18 + (a.vx / 470) * 26;
+          this.forces.weight = 40;
+          if (this.trail.length === 0 || a.x - this.trail[this.trail.length - 1][0] > 14) this.trail.push([a.x, a.y]);
+          if (a.x >= TARGET_X - 50) {
+            a.x = TARGET_X - 50;
+            this.draw();
+            resolve();
+          } else {
+            this.draw();
+            requestAnimationFrame(frame);
+          }
+        };
+        requestAnimationFrame(frame);
+      });
+      this.pull = 0;
+      await wait(300);
+      this.querySelector('[data-af="live"]')!.textContent =
+        'The arrow did not fly in a straight line. Its path curved downward, and it hit the target below the centre.';
+    }
+
+    private draw() {
+      const a = this.arrow;
+      const ang = (Math.atan2(a.vy, a.vx || 1) * 180) / Math.PI;
+      const stringX = BOW_X - this.pull;
+      let trail = '';
+      for (const [x, y] of this.trail) trail += `<circle class="af-trail" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"/>`;
+      // The arrow's tip sits 50 px ahead of its centre at this scale.
+      const arrowSvg = `<g transform="translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)}) scale(0.5)">${OBJECT_SVG.arrow}</g>`;
+      const forces =
+        forceArrow('thrust', a.x + 54, a.y, this.forces.thrust, 'Thrust') +
+        forceArrow('drag', a.x - 54, a.y, this.forces.drag, 'Drag') +
+        forceArrow('weight', a.x, a.y + 8, this.forces.weight, 'Weight');
+      const target = `<g transform="translate(${TARGET_X} ${AIM_Y})"><line class="af-leg" x1="-6" y1="40" x2="-30" y2="${GROUND - AIM_Y}"/><line class="af-leg" x1="6" y1="40" x2="30" y2="${GROUND - AIM_Y}"/><ellipse class="af-ring1" rx="16" ry="64"/><ellipse class="af-ring2" rx="12" ry="46"/><ellipse class="af-ring3" rx="8" ry="28"/><ellipse class="af-ring4" rx="4" ry="11"/></g>`;
+      this.querySelector('[data-af="svg"]')!.innerHTML =
+        `<rect class="sci-sky" width="660" height="300"/><rect class="sci-ground" y="${GROUND}" width="660" height="${300 - GROUND}"/>` +
+        `<line class="af-aim" x1="${BOW_X + 60}" y1="${AIM_Y}" x2="${TARGET_X - 18}" y2="${AIM_Y}"/><text class="sci-small" x="${(BOW_X + TARGET_X) / 2}" y="${AIM_Y - 10}" text-anchor="middle">aimed at the centre</text>` +
+        target +
+        `<path class="af-bow" d="M${BOW_X},${AIM_Y - 70} Q${BOW_X + 44},${AIM_Y} ${BOW_X},${AIM_Y + 70}"/><polyline class="af-string" fill="none" points="${BOW_X},${AIM_Y - 70} ${stringX},${AIM_Y} ${BOW_X},${AIM_Y + 70}"/>` +
+        trail +
+        arrowSvg +
+        forces;
+    }
+  }
+  customElements.define('arrow-flight', ArrowFlight);
+</script>

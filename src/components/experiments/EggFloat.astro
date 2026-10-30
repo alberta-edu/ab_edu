@@ -1,0 +1,92 @@
+---
+// Animated experiment: the same kind of egg is placed in tap water and in salt water. Only
+// the fluid is different. The egg sinks in one and floats in the other
+// (SCI5-OI2-GQ1-LO1, K2.1-K2.3, S2.1, S2.2).
+---
+<egg-float>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-ef="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ef="live"></p>
+</egg-float>
+
+<style is:global>
+  egg-float { display: block; }
+  egg-float svg { background: var(--surface-2); }
+  .ef-grain { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1; }
+</style>
+
+<script>
+  import { THINGS, FLUIDS, restingPlace, type FluidId } from '../visuals/float-shapes.ts';
+  import { forceArrow } from '../visuals/force-arrows.ts';
+  import { tween, wait } from './anim.ts';
+
+  const SURFACE = 110;
+  const FLOOR = 262;
+  const GLASSES: { fluid: FluidId; cx: number }[] = [
+    { fluid: 'fresh', cx: 175 },
+    { fluid: 'salt', cx: 485 },
+  ];
+  const egg = THINGS.egg;
+
+  class EggFloat extends HTMLElement {
+    private tops = [20, 20];
+    private arrows = false;
+    private salt = 1; // 0..1: salt being stirred in at the start
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.arrows = false;
+      this.tops = [20, 20];
+      this.querySelector('[data-ef="live"]')!.textContent = '';
+      this.salt = 0;
+      await tween(900, (t) => {
+        this.salt = t;
+        this.draw();
+      });
+      await wait(200);
+      const rests = GLASSES.map((g) => restingPlace(egg, FLUIDS[g.fluid], SURFACE, FLOOR));
+      const splash = SURFACE - egg.h * 0.3;
+      await tween(400, (t) => {
+        this.tops = this.tops.map(() => 20 + (splash - 20) * t * t);
+        this.draw();
+      });
+      await tween(1500, (t) => {
+        this.tops = rests.map((r) => (r.floats ? r.top + (splash - r.top) * Math.exp(-5 * t) * Math.cos(t * 9) : splash + (r.top - splash) * (1 - (1 - t) ** 2)));
+        this.draw();
+      });
+      this.tops = rests.map((r) => r.top);
+      this.arrows = true;
+      this.draw();
+      this.querySelector('[data-ef="live"]')!.textContent = 'The egg sank to the bottom of the tap water. In the salt water, the same kind of egg floated.';
+    }
+
+    private draw() {
+      const out: string[] = [];
+      GLASSES.forEach((g, i) => {
+        const fl = FLUIDS[g.fluid];
+        const x0 = g.cx - 95;
+        const x1 = g.cx + 95;
+        out.push(`<rect class="${fl.cls}" x="${x0}" y="${SURFACE}" width="190" height="${FLOOR - SURFACE}"/><line class="sci-surface" x1="${x0}" y1="${SURFACE}" x2="${x1}" y2="${SURFACE}"/>`);
+        if (g.fluid === 'salt' && this.salt < 1) {
+          // Salt grains falling in and dissolving as it is stirred.
+          for (let k = 0; k < 14; k++) {
+            const y = 40 + ((k * 37 + this.salt * 260) % 200);
+            if (y < FLOOR - 4) out.push(`<rect class="ef-grain" x="${g.cx - 40 + ((k * 23) % 80)}" y="${y.toFixed(1)}" width="5" height="5" opacity="${(1 - this.salt).toFixed(2)}"/>`);
+          }
+        }
+        out.push(`<g transform="translate(${g.cx} ${this.tops[i].toFixed(1)})">${egg.svg}</g>`);
+        out.push(`<path class="sci-glass" d="M${x0},50 L${x0},${FLOOR + 2} L${x1},${FLOOR + 2} L${x1},50"/>`);
+        out.push(`<text class="sci-text" x="${g.cx}" y="${FLOOR + 28}" text-anchor="middle">${fl.label}</text>`);
+        if (this.arrows) {
+          const r = restingPlace(egg, fl, SURFACE, FLOOR);
+          const mid = this.tops[i] + egg.h / 2;
+          out.push(forceArrow('weight', g.cx - 46, mid, 54, 'Weight') + forceArrow('buoyant', g.cx + 46, mid, 54 * r.buoyant, 'Buoyant force'));
+        }
+      });
+      this.querySelector('[data-ef="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('egg-float', EggFloat);
+</script>

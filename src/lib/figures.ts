@@ -2,6 +2,8 @@
 import { fractionSvg } from '../components/visuals/fraction-svg.ts';
 import { gridSvg } from '../components/visuals/coord-grid.ts';
 import { SHAPES } from '../components/visuals/symmetry.ts';
+import { balanceSvg, cylinderSvg } from '../components/visuals/measure-svg.ts';
+import { forceDiagram, type ForceSpec, type ObjectKind } from '../components/visuals/force-arrows.ts';
 
 export type Figure =
   | string
@@ -12,7 +14,10 @@ export type Figure =
   | { kind: 'coord-grid'; size: number; points?: { x: number; y: number; label?: string }[]; polygon?: [number, number][] }
   | { kind: 'rect'; w: number; h: number; unit: string }
   | { kind: 'shape'; shape: string; lines?: boolean }
-  | { kind: 'square-metre' };
+  | { kind: 'square-metre' }
+  | { kind: 'forces'; object: ObjectKind; forces: ForceSpec[]; water?: boolean }
+  | { kind: 'balance'; left: string[]; right: string[]; down: 'left' | 'right' | 'none' }
+  | { kind: 'cylinder'; max: number; minor: number; major: number; level: number };
 
 /** Small deterministic random generator so figures are identical on every build. */
 function rng(seed: number) {
@@ -129,6 +134,12 @@ export function renderFigure(f: Figure): string {
       return shapeFigure(f.shape, f.lines);
     case 'square-metre':
       return squareMetre();
+    case 'balance':
+      return balanceSvg(f.left, f.right, f.down);
+    case 'cylinder':
+      return cylinderSvg(f.max, f.minor, f.major, f.level);
+    case 'forces':
+      return forceDiagram(f.object, f.forces, { water: f.water });
     case 'particle-boxes': {
       const gap = 30;
       const w = f.boxes.length * 150 + (f.boxes.length - 1) * gap;

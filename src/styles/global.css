@@ -435,6 +435,58 @@ a.concept-card:hover { border-color: var(--accent); }
 .pb-dot { fill: var(--accent); }
 .pb-label { fill: var(--ink); font-size: 20px; font-weight: 700; }
 
+/* science visuals: force arrows, objects, water (problems, figures and visuals) */
+.force-svg { max-width: 26rem; }
+.fa line { stroke-width: 5; stroke-linecap: round; }
+.fa--thrust line { stroke: var(--science); } .fa--thrust polygon, .fa-label--thrust { fill: var(--science); }
+.fa--drag line { stroke: var(--bad); } .fa--drag polygon, .fa-label--drag { fill: var(--bad); }
+.fa--lift line, .fa--buoyant line { stroke: var(--math); } .fa--lift polygon, .fa--buoyant polygon, .fa-label--lift, .fa-label--buoyant { fill: var(--math); }
+.fa--weight line { stroke: var(--ink-2); } .fa--weight polygon, .fa-label--weight { fill: var(--ink-2); }
+.fa-label { font-size: 17px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.obj { fill: color-mix(in srgb, var(--sun) 35%, var(--surface)); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.obj--dark { fill: color-mix(in srgb, var(--ink) 55%, var(--surface)); }
+.obj--egg { fill: #f3e6d0; }
+.obj--balloon { fill: color-mix(in srgb, var(--bad) 55%, var(--surface)); }
+.obj-line { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.obj-string { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
+.obj-window, .obj-eye { fill: var(--ink); }
+.sci-water { fill: color-mix(in srgb, var(--math) 22%, transparent); }
+.sci-surface { stroke: var(--math); stroke-width: 2.5; }
+.sci-glass { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linejoin: round; }
+.sci-ground { fill: color-mix(in srgb, var(--science) 30%, var(--surface-2)); }
+.sci-sky { fill: color-mix(in srgb, var(--math) 10%, var(--surface)); }
+.sci-cloud { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
+.sci-text { fill: var(--ink); font-size: 15px; font-weight: 700; }
+.sci-small { fill: var(--ink-2); font-size: 13px; }
+.sci-tick { stroke: var(--ink-2); stroke-width: 1.5; }
+.sci-svg { display: block; width: 100%; height: auto; font-family: var(--font); border-radius: var(--radius-sm); }
+.sci-say { margin: 0.6rem 0 0; font-weight: 700; font-size: var(--step-1); }
+.sci-pick { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sci-pick button { border: 2px solid var(--line); background: var(--surface); border-radius: 999px; padding: 0.35rem 0.8rem; font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); cursor: pointer; min-height: 2.4rem; }
+.sci-pick button[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+/* pan balances (measuring mass, comparing densities) */
+.mt-beam { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+.mt-post { fill: var(--ink-3); }
+.mt-pan { fill: var(--surface-3); stroke: var(--ink); stroke-width: 2.5; }
+.mt-chain { stroke: var(--ink-3); stroke-width: 1.5; }
+.mt-apple { fill: #d23b2e; } .mt-leaf { fill: #3f9a40; }
+.mt-mass { fill: color-mix(in srgb, var(--ink) 18%, var(--surface)); stroke: var(--ink); stroke-width: 2; }
+.mt-mass-t { fill: var(--ink); font-size: 11px; font-weight: 700; }
+.mt-liquid { fill: color-mix(in srgb, var(--math) 45%, transparent); }
+.mt-tick { stroke: var(--ink-2); stroke-width: 1.2; }
+.mt-tick--major { stroke: var(--ink); stroke-width: 2; }
+.mt-num { fill: var(--ink); font-size: 12px; font-weight: 700; }
+/* float or sink: objects and fluids */
+.fo-line { stroke: var(--ink); stroke-width: 2; }
+.fo-cork { fill: #d2a464; stroke: var(--ink); stroke-width: 2; }
+.fo-wood { fill: #a8743d; stroke: var(--ink); stroke-width: 2; }
+.fo-clay { fill: #c0563a; stroke: var(--ink); stroke-width: 2; }
+.fo-steel { fill: #8a94a3; stroke: var(--ink); stroke-width: 2; }
+.fl-fresh { fill: color-mix(in srgb, var(--math) 24%, transparent); }
+.fl-salt { fill: color-mix(in srgb, var(--math) 34%, transparent); }
+.fl-oil { fill: color-mix(in srgb, var(--sun) 45%, transparent); }
+.sci-pick-label { font-size: var(--step--1); font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; margin: 0.6rem 0 0.3rem; }
+
 /* ------------------------------------------------------------------ practice */
 .practice-intro { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center; justify-content: space-between; }
 .level-section { margin-block: 2rem; scroll-margin-top: 5rem; }

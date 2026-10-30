@@ -30,6 +30,14 @@ export const figureSchema = z.union([
   z.strictObject({ kind: z.literal('shape'), shape: z.string(), lines: z.boolean().optional() }),
   z.strictObject({ kind: z.literal('square-metre') }),
   z.strictObject({ kind: z.literal('area-model'), a: z.number().int().min(10).max(999), b: z.number().int().min(2).max(99) }),
+  z.strictObject({
+    kind: z.literal('forces'),
+    object: z.enum(['plane', 'bird', 'arrow', 'spear', 'stone', 'boat', 'block', 'egg', 'balloon', 'ball']),
+    forces: z.array(z.strictObject({ kind: z.enum(['thrust', 'drag', 'lift', 'weight', 'buoyant']), size: z.number().min(0).max(2).optional(), label: z.string().optional() })).min(1).max(4),
+    water: z.boolean().optional(),
+  }),
+  z.strictObject({ kind: z.literal('balance'), left: z.array(z.string()).max(4), right: z.array(z.string()).max(6), down: z.enum(['left', 'right', 'none']) }),
+  z.strictObject({ kind: z.literal('cylinder'), max: z.number().positive(), minor: z.number().positive(), major: z.number().positive(), level: z.number().min(0) }),
   z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(1).max(4), labels: z.array(z.string()).optional() }),
 ]);
 
@@ -132,7 +140,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
@@ -189,7 +197,7 @@ const block = z.discriminatedUnion('type', [
     covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['container-swap']),
+    animation: z.enum(['container-swap', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),

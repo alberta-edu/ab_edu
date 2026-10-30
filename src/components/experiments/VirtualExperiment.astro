@@ -3,13 +3,23 @@
 import type { LessonBlock } from '../../lib/schema.ts';
 import { md, mdInline } from '../../lib/render.ts';
 import ContainerSwap from './ContainerSwap.astro';
+import LiquidLayers from './LiquidLayers.astro';
+import SyringeSqueeze from './SyringeSqueeze.astro';
+import ArrowFlight from './ArrowFlight.astro';
+import EggFloat from './EggFloat.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
   uid: string;
 }
 const { block, uid } = Astro.props;
-const animations = { 'container-swap': ContainerSwap };
+const animations = {
+  'container-swap': ContainerSwap,
+  'liquid-layers': LiquidLayers,
+  'syringe-squeeze': SyringeSqueeze,
+  'arrow-flight': ArrowFlight,
+  'egg-float': EggFloat,
+};
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
 ---
