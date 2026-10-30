@@ -34,6 +34,7 @@ import WeatherStation from './visuals/WeatherStation.astro';
 import ClimateGraph from './visuals/ClimateGraph.astro';
 import HarvestSim from './visuals/HarvestSim.astro';
 import BodySystems from './visuals/BodySystems.astro';
+import PlantTransport from './visuals/PlantTransport.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -44,6 +45,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'plant-transport': PlantTransport,
   'body-systems': BodySystems,
   'harvest-sim': HarvestSim,
   'climate-graph': ClimateGraph,

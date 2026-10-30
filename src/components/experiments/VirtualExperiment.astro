@@ -3,6 +3,7 @@
 import type { LessonBlock } from '../../lib/schema.ts';
 import { md, mdInline } from '../../lib/render.ts';
 import ContainerSwap from './ContainerSwap.astro';
+import CeleryDye from './CeleryDye.astro';
 import BodyTrip from './BodyTrip.astro';
 import SoilStorm from './SoilStorm.astro';
 import LiquidLayers from './LiquidLayers.astro';
@@ -18,6 +19,7 @@ interface Props {
 const { block, uid } = Astro.props;
 const animations = {
   'container-swap': ContainerSwap,
+  'celery-dye': CeleryDye,
   'body-trip': BodyTrip,
   'soil-storm': SoilStorm,
   'liquid-layers': LiquidLayers,
