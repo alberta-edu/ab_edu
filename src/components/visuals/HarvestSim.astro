@@ -1,0 +1,69 @@
+---
+// Sustainable harvesting (SCI5-OI3-GQ1-LO1, K4.6, S4.4): choose how many fish are caught from
+// a lake each year and see whether the population stays stable over 30 years.
+---
+<harvest-sim>
+  <div class="control-row">
+    <label class="control hs-control">Fish caught each year <input type="range" min="0" max="250" step="25" value="100" data-hs="catch" /> <output data-hs="out">100</output></label>
+  </div>
+  <figure class="cg-chart hs-chart">
+    <figcaption>Fish in the lake (up the side) over 30 years (along the bottom)</figcaption>
+    <svg class="sci-svg" viewBox="0 0 560 230" aria-hidden="true" data-hs="svg"></svg>
+  </figure>
+  <p class="sci-say" data-hs="say" aria-live="polite"></p>
+</harvest-sim>
+
+<style is:global>
+  harvest-sim { display: block; }
+  .hs-control { flex-wrap: wrap; }
+  .hs-control output { min-width: 2.5rem; font-variant-numeric: tabular-nums; }
+  .hs-chart { margin-top: 0.75rem; }
+  .hs-line { fill: none; stroke: var(--math); stroke-width: 2.5; stroke-linejoin: round; }
+  .hs-area { fill: color-mix(in srgb, var(--math) 14%, transparent); }
+  .hs-end { fill: var(--math); stroke: var(--surface-2); stroke-width: 2; }
+  .hs-empty { fill: var(--bad); font-size: 13px; font-weight: 700; }
+</style>
+
+<script>
+  import { harvestYears } from './harvest.ts';
+
+  const W = 560;
+  const H = 230;
+  const L = 46;
+  const R = 14;
+  const T = 12;
+  const B = 28;
+  const YEARS = 30;
+  const START = 800;
+
+  class HarvestSim extends HTMLElement {
+    connectedCallback() {
+      const input = this.querySelector<HTMLInputElement>('[data-hs="catch"]')!;
+      input.addEventListener('input', () => this.draw(Number(input.value)));
+      this.draw(Number(input.value));
+    }
+
+    private draw(catchPerYear: number) {
+      this.querySelector('[data-hs="out"]')!.textContent = String(catchPerYear);
+      const pop = harvestYears(START, catchPerYear, YEARS);
+      const x = (yr: number) => L + ((W - L - R) * yr) / YEARS;
+      const y = (n: number) => T + (H - T - B) * (1 - n / 1000);
+      let grid = '';
+      for (let n = 0; n <= 1000; n += 250) grid += `<line class="${n ? 'cg-grid' : 'cg-zero'}" x1="${L}" y1="${y(n)}" x2="${W - R}" y2="${y(n)}"/><text class="cg-axis" x="${L - 6}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
+      for (let yr = 0; yr <= YEARS; yr += 5) grid += `<text class="cg-axis" x="${x(yr)}" y="${H - 8}" text-anchor="middle">${yr}</text>`;
+      const line = pop.map((n, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(n).toFixed(1)}`).join(' ');
+      const area = `${line} L${x(YEARS)},${y(0)} L${x(0)},${y(0)} Z`;
+      const gone = pop.findIndex((n) => n === 0);
+      const end = pop[YEARS];
+      const marker = gone > 0 ? `<text class="hs-empty" x="${Math.min(x(gone) + 6, W - 120)}" y="${y(0) - 8}">No fish left</text>` : `<circle class="hs-end" cx="${x(YEARS)}" cy="${y(end)}" r="5"/>`;
+      this.querySelector('[data-hs="svg"]')!.innerHTML = `${grid}<path class="hs-area" d="${area}"/><path class="hs-line" d="${line}"/>${marker}`;
+
+      const say = this.querySelector('[data-hs="say"]')!;
+      if (gone > 0) say.textContent = `Catching ${catchPerYear} a year is more than the fish can replace. The lake runs out of fish in year ${gone}, so there are no future harvests.`;
+      else if (catchPerYear === 0) say.textContent = `No fishing: the population grows until the lake is full, about ${end} fish.`;
+      else if (Math.abs(pop[YEARS] - pop[YEARS - 5]) <= 5) say.textContent = `Catching ${catchPerYear} a year, the population stays stable at about ${end} fish. This harvest can go on year after year.`;
+      else say.textContent = `Catching ${catchPerYear} a year, the population is still shrinking after 30 years (${end} fish).`;
+    }
+  }
+  customElements.define('harvest-sim', HarvestSim);
+</script>

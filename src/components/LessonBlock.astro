@@ -32,6 +32,7 @@ import FloatLab from './visuals/FloatLab.astro';
 import EnergyMap from './visuals/EnergyMap.astro';
 import WeatherStation from './visuals/WeatherStation.astro';
 import ClimateGraph from './visuals/ClimateGraph.astro';
+import HarvestSim from './visuals/HarvestSim.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -42,6 +43,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'harvest-sim': HarvestSim,
   'climate-graph': ClimateGraph,
   'weather-station': WeatherStation,
   'energy-map': EnergyMap,
