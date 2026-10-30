@@ -486,6 +486,25 @@ a.concept-card:hover { border-color: var(--accent); }
 .fl-salt { fill: color-mix(in srgb, var(--math) 34%, transparent); }
 .fl-oil { fill: color-mix(in srgb, var(--sun) 45%, transparent); }
 .sci-pick-label { font-size: var(--step--1); font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.05em; margin: 0.6rem 0 0.3rem; }
+/* human body: outline, organs and labels (body explorer and experiment) */
+.bd-body > * { fill: color-mix(in srgb, #e0a878 30%, var(--surface)); stroke: var(--line-strong); stroke-width: 2; }
+.bd-tube { fill: none; stroke: #c76b5a; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.bd-trachea { stroke: #7fa7c9; }
+.bd-mouth { fill: none; stroke: #b4433a; stroke-width: 4; stroke-linecap: round; }
+.bd-liver { fill: #9b4a3a; }
+.bd-stomach { fill: #e08b78; stroke: #a8503f; stroke-width: 1.5; }
+.bd-pancreas { fill: #e6c07b; }
+.bd-intestine { fill: none; stroke: #d98f75; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+.bd-lung { fill: #f0a3b0; stroke: #b9606f; stroke-width: 1.5; }
+.bd-diaphragm { fill: none; stroke: #b9606f; stroke-width: 4; stroke-linecap: round; }
+.bd-vessel { fill: none; stroke: #d23b2e; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+.bd-heart { fill: #c0262d; stroke: #7d1419; stroke-width: 1.5; }
+.bd-bone { fill: none; stroke: color-mix(in srgb, var(--ink) 35%, #f2ead8); stroke-width: 6; stroke-linecap: round; }
+.bd-bone circle { fill: none; }
+.bd-muscle { fill: #c25b4e; opacity: 0.85; }
+.bd-label line { stroke: var(--ink-2); stroke-width: 1.5; }
+.bd-label text { fill: var(--ink); font-size: 15px; font-weight: 700; }
+.bd-faded { opacity: 0.12; }
 /* small charts (climate graphs, harvest simulator) */
 .cg-chart { margin: 0; padding: 0.5rem; border-radius: var(--radius-sm); background: var(--surface-2); }
 .cg-chart figcaption { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); margin: 0 0 0.25rem 0.25rem; }

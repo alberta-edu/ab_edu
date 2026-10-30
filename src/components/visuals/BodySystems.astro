@@ -1,0 +1,58 @@
+---
+// Four body systems on one body (SCI5-OI4-GQ1-LO1, K1.3-K1.7, S1.2, S1.3): pick a system to
+// see its major parts, labelled, and what it does.
+import { SYSTEMS, OUTLINE, ORGANS, VIEWBOX, labelSvg, type SystemId } from './body-svg.ts';
+interface Props {
+  start?: SystemId;
+}
+const { start = 'digestive' } = Astro.props;
+---
+<body-systems data-start={start}>
+  <div class="sci-pick" role="group" aria-label="Choose a body system">
+    {SYSTEMS.map((s) => <button type="button" data-bs={s.id} aria-pressed={String(s.id === start)}>{s.label}</button>)}
+  </div>
+  <div class="bs-wrap">
+    <svg class="sci-svg bs-svg" viewBox={VIEWBOX} role="img" aria-label="Front view of a human body showing a body system" data-bs="svg">
+      <Fragment set:html={OUTLINE} />
+      {SYSTEMS.map((s) => <g data-bs-organs={s.id} class={s.id === start ? '' : 'bd-faded'}><Fragment set:html={ORGANS[s.id]} /></g>)}
+      {SYSTEMS.map((s) => <g data-bs-labels={s.id} hidden={s.id !== start}><Fragment set:html={s.parts.map(labelSvg).join('')} /></g>)}
+    </svg>
+  </div>
+  <p class="sci-say" aria-live="polite" data-bs="say"></p>
+  <span hidden data-bs-systems={JSON.stringify(SYSTEMS)}></span>
+</body-systems>
+
+<style is:global>
+  body-systems { display: block; }
+  .bs-wrap { display: flex; justify-content: center; margin-top: 0.75rem; }
+  .bs-svg { background: var(--surface-2); max-width: 30rem; }
+  [data-bs-organs] { transition: opacity 0.3s; }
+</style>
+
+<script>
+  type Sys = { id: string; label: string; does: string; parts: string[] };
+
+  class BodySystems extends HTMLElement {
+    private systems: Sys[] = [];
+
+    connectedCallback() {
+      this.systems = JSON.parse(this.querySelector<HTMLElement>('[data-bs-systems]')!.dataset.bsSystems!);
+      this.querySelectorAll<HTMLButtonElement>('button[data-bs]').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.bs!)));
+      this.pick(this.dataset.start!);
+    }
+
+    private pick(id: string) {
+      const s = this.systems.find((x) => x.id === id)!;
+      this.querySelectorAll('button[data-bs]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-bs') === id)));
+      this.querySelectorAll('[data-bs-organs]').forEach((g) => g.classList.toggle('bd-faded', g.getAttribute('data-bs-organs') !== id));
+      this.querySelectorAll<SVGGElement>('[data-bs-labels]').forEach((g) => g.toggleAttribute('hidden', g.dataset.bsLabels !== id));
+      // Draw the chosen system on top of the others.
+      const svg = this.querySelector('[data-bs="svg"]')!;
+      svg.insertBefore(this.querySelector(`[data-bs-organs="${id}"]`)!, svg.querySelector('[data-bs-labels]'));
+      const parts = s.parts.length > 1 ? `${s.parts.slice(0, -1).join(', ')} and ${s.parts[s.parts.length - 1]}` : s.parts[0];
+      this.querySelector('[data-bs="say"]')!.textContent = `The ${s.label.toLowerCase()} system ${s.does}. Its parts include the ${parts}.`;
+      this.querySelector('[data-bs="svg"]')!.setAttribute('aria-label', `Front view of a human body showing the ${s.label.toLowerCase()} system: ${parts}.`);
+    }
+  }
+  customElements.define('body-systems', BodySystems);
+</script>
