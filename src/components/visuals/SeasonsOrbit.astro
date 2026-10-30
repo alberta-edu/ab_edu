@@ -1,0 +1,188 @@
+---
+// Seasons and day length (SCI5-OI5-GQ1-LO1, K1.2, K1.4, K1.5, S1.1): move Earth around its
+// orbit. Its axis always tilts the same way, so each hemisphere takes turns tilting toward
+// the Sun. Daylight bars show the length of day at three places.
+const PLACES = [
+  { name: 'Edmonton, Alberta', lat: 53.5 },
+  { name: 'Inuvik, Northwest Territories', lat: 68.4 },
+  { name: 'Christchurch, New Zealand (southern hemisphere)', lat: -43.5 },
+];
+const JUMPS = [
+  { label: 'March equinox', day: 79 },
+  { label: 'June solstice', day: 171 },
+  { label: 'September equinox', day: 265 },
+  { label: 'December solstice', day: 354 },
+];
+---
+<seasons-orbit data-places={JSON.stringify(PLACES)}>
+  <svg class="sci-svg so-svg" viewBox="0 0 640 290" aria-hidden="true" data-so="svg"></svg>
+  <div class="control-row so-controls">
+    <button type="button" class="btn btn--small" data-so="play">▶ Play a year</button>
+    <label class="control so-slider">Date <input type="range" min="0" max="364" step="1" value="171" data-so="day" /></label>
+  </div>
+  <div class="sci-pick" role="group" aria-label="Jump to a date">
+    {JUMPS.map((j) => <button type="button" data-so-jump={j.day} aria-pressed={String(j.day === 171)}>{j.label}</button>)}
+  </div>
+  <p class="sci-say" aria-live="polite" data-so="say"></p>
+  <div class="so-bars" data-so="bars">
+    {
+      PLACES.map((p) => (
+        <div class="so-bar">
+          <div class="so-bar__name">{p.name}</div>
+          <div class="so-bar__track"><span class="so-bar__day" /></div>
+          <div class="so-bar__value" />
+        </div>
+      ))
+    }
+    <p class="so-bars__note">Yellow = hours of daylight out of 24.</p>
+  </div>
+</seasons-orbit>
+
+<style is:global>
+  seasons-orbit { display: block; }
+  .so-svg { background: #0f1830; }
+  .so-controls { margin-top: 0.6rem; align-items: center; }
+  .so-slider { flex: 1; min-width: 12rem; }
+  .so-slider input { flex: 1; }
+  .so-orbit { fill: none; stroke: #4a5a86; stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .so-sun { fill: #ffcf3d; }
+  .so-sun-glow { fill: #ffcf3d; opacity: 0.18; }
+  .so-earth-night { fill: #1d3557; stroke: #8fb3ff; stroke-width: 1; }
+  .so-earth-day { fill: #4f9de0; }
+  .so-land { fill: #6cc15a; }
+  .so-axis { stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+  .so-lat { stroke: #fff; stroke-width: 1.2; opacity: 0.7; }
+  .so-equator { stroke: #ffcf3d; stroke-width: 1.5; }
+  .so-text { fill: #dfe7ff; font-size: 12px; font-weight: 700; }
+  .so-big { fill: #fff; font-size: 15px; font-weight: 700; }
+  .so-ray { stroke: #ffcf3d; stroke-width: 2; opacity: 0.6; }
+  .so-dot { fill: #e2453b; stroke: #fff; stroke-width: 1.5; }
+  .so-bars { display: grid; gap: 0.5rem; margin-top: 0.75rem; }
+  .so-bar { display: grid; grid-template-columns: minmax(8rem, 15rem) 1fr 5.5rem; gap: 0.6rem; align-items: center; font-size: var(--step--1); font-weight: 700; }
+  .so-bar__track { height: 14px; border-radius: 999px; background: #1d2b4f; overflow: hidden; }
+  .so-bar__day { display: block; height: 100%; background: #ffcf3d; border-radius: inherit; }
+  .so-bar__value { text-align: right; font-variant-numeric: tabular-nums; }
+  .so-bars__note { margin: 0; font-size: var(--step--1); color: var(--ink-3); }
+  @media (max-width: 34rem) {
+    .so-bar { grid-template-columns: 1fr 5rem; }
+    .so-bar__name { grid-column: 1 / -1; }
+  }
+</style>
+
+<script>
+  import { dayLength, dateText, hoursText, northernSeason, OPPOSITE, JUNE_SOLSTICE, TILT } from './seasons.ts';
+
+  const O = { x: 185, y: 140, rx: 150, ry: 78 };
+  const C = { x: 520, y: 150, r: 78 };
+  const RAD = Math.PI / 180;
+  // In the orbit picture the north end of the axis always leans to the right.
+  const LEAN = 23.44;
+
+  class SeasonsOrbit extends HTMLElement {
+    private day = JUNE_SOLSTICE;
+    private places: { name: string; lat: number }[] = [];
+    private playing = 0;
+
+    connectedCallback() {
+      this.places = JSON.parse(this.dataset.places!);
+      const slider = this.querySelector<HTMLInputElement>('[data-so="day"]')!;
+      slider.addEventListener('input', () => this.set(Number(slider.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-so-jump]').forEach((b) => b.addEventListener('click', () => {
+        this.stop();
+        this.set(Number(b.dataset.soJump));
+      }));
+      const play = this.querySelector<HTMLButtonElement>('[data-so="play"]')!;
+      play.addEventListener('click', () => (this.playing ? this.stop() : this.play()));
+      this.set(this.day);
+    }
+
+    private play() {
+      const btn = this.querySelector<HTMLButtonElement>('[data-so="play"]')!;
+      btn.textContent = '❚❚ Pause';
+      let last = performance.now();
+      const step = (now: number) => {
+        // One year takes about 12 seconds.
+        const days = ((now - last) / 1000) * 30;
+        last = now;
+        this.set((this.day + days) % 365);
+        this.playing = requestAnimationFrame(step);
+      };
+      this.playing = requestAnimationFrame(step);
+    }
+
+    private stop() {
+      cancelAnimationFrame(this.playing);
+      this.playing = 0;
+      this.querySelector('[data-so="play"]')!.textContent = '▶ Play a year';
+    }
+
+    private set(day: number) {
+      this.day = day;
+      const d = Math.round(day) % 365;
+      this.querySelector<HTMLInputElement>('[data-so="day"]')!.value = String(d);
+      this.querySelectorAll('[data-so-jump]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-so-jump')) === d)));
+      const north = northernSeason(d);
+      const toward = Math.cos(((d - JUNE_SOLSTICE) / 365.25) * 2 * Math.PI); // 1 = north toward Sun, −1 = away
+      const lean = Math.abs(toward) < 0.12 ? 'neither hemisphere is tilted toward the Sun' : toward > 0 ? 'the northern hemisphere is tilted toward the Sun' : 'the southern hemisphere is tilted toward the Sun';
+      this.querySelector('[data-so="say"]')!.textContent = `${dateText(d)}: ${lean}. It is ${north} in the north and ${OPPOSITE[north]} in the south.`;
+      const bars = this.querySelectorAll('.so-bar');
+      this.places.forEach((p, i) => {
+        const h = dayLength(p.lat, d);
+        bars[i].querySelector<HTMLElement>('.so-bar__day')!.style.width = `${(h / 24) * 100}%`;
+        bars[i].querySelector('.so-bar__value')!.textContent = hoursText(h);
+      });
+      this.draw(d, toward);
+    }
+
+    private earth(x: number, y: number, r: number, sunDir: number) {
+      // Lit half faces the Sun: a circle with the far half shaded.
+      const a = sunDir;
+      const p1 = { x: x + Math.cos(a + Math.PI / 2) * r, y: y + Math.sin(a + Math.PI / 2) * r };
+      const p2 = { x: x + Math.cos(a - Math.PI / 2) * r, y: y + Math.sin(a - Math.PI / 2) * r };
+      return `<circle class="so-earth-night" cx="${x}" cy="${y}" r="${r}"/><path class="so-earth-day" d="M${p1.x.toFixed(1)},${p1.y.toFixed(1)} A${r},${r} 0 0 0 ${p2.x.toFixed(1)},${p2.y.toFixed(1)} Z"/>`;
+    }
+
+    private draw(d: number, toward: number) {
+      const out: string[] = [];
+      // Orbit, Sun and the four key dates.
+      out.push(`<ellipse class="so-orbit" cx="${O.x}" cy="${O.y}" rx="${O.rx}" ry="${O.ry}"/>`);
+      out.push(`<circle class="so-sun-glow" cx="${O.x}" cy="${O.y}" r="40"/><circle class="so-sun" cx="${O.x}" cy="${O.y}" r="26"/><text class="so-text" x="${O.x}" y="${O.y + 4}" text-anchor="middle" style="fill:#5a3d00">Sun</text>`);
+      const pos = (day: number) => {
+        const a = (180 + ((day - JUNE_SOLSTICE) / 365.25) * 360) * RAD;
+        return { x: O.x + Math.cos(a) * O.rx, y: O.y - Math.sin(a) * O.ry, a };
+      };
+      for (const [label, x, y] of [['June', O.x - O.rx, O.y + 46], ['December', O.x + O.rx, O.y + 46], ['March', O.x, O.y - O.ry - 14], ['September', O.x, O.y + O.ry + 24]] as const)
+        out.push(`<text class="so-text" x="${x}" y="${y}" text-anchor="middle" opacity="0.75">${label}</text>`);
+      const e = pos(d);
+      const sunDir = Math.atan2(O.y - e.y, O.x - e.x);
+      out.push(this.earth(e.x, e.y, 15, sunDir));
+      const ax = Math.sin(LEAN * RAD) * 24;
+      const ay = Math.cos(LEAN * RAD) * 24;
+      out.push(`<line class="so-axis" x1="${(e.x - ax).toFixed(1)}" y1="${(e.y + ay).toFixed(1)}" x2="${(e.x + ax).toFixed(1)}" y2="${(e.y - ay).toFixed(1)}"/><text class="so-text" x="${(e.x + ax + 2).toFixed(1)}" y="${(e.y - ay - 3).toFixed(1)}">N</text>`);
+
+      // Close-up: sunlight from the left; the axis leans toward or away from the Sun.
+      const tilt = TILT * toward; // degrees toward the Sun
+      for (let k = -3; k <= 3; k++) out.push(`<line class="so-ray" x1="${C.x - 115}" y1="${C.y + k * 24}" x2="${C.x - C.r - 8}" y2="${C.y + k * 24}"/>`);
+      out.push(`<text class="so-text" x="${C.x - 115}" y="${C.y - 84}">sunlight</text>`);
+      out.push(this.earth(C.x, C.y, C.r, Math.PI));
+      const t = -tilt * RAD; // rotate the axis: north end toward the left (the Sun) when tilt > 0
+      const ux = Math.sin(t);
+      const uy = -Math.cos(t);
+      const line = (latDeg: number, cls: string) => {
+        const c = Math.sin(latDeg * RAD) * C.r;
+        const h = Math.cos(latDeg * RAD) * C.r;
+        const cx = C.x + ux * c;
+        const cy = C.y + uy * c;
+        return `<line class="${cls}" x1="${(cx - uy * h).toFixed(1)}" y1="${(cy + ux * h).toFixed(1)}" x2="${(cx + uy * h).toFixed(1)}" y2="${(cy - ux * h).toFixed(1)}"/>`;
+      };
+      out.push(line(0, 'so-equator'), line(53.5, 'so-lat'), line(-43.5, 'so-lat'));
+      out.push(`<line class="so-axis" x1="${(C.x - ux * (C.r + 16)).toFixed(1)}" y1="${(C.y - uy * (C.r + 16)).toFixed(1)}" x2="${(C.x + ux * (C.r + 16)).toFixed(1)}" y2="${(C.y + uy * (C.r + 16)).toFixed(1)}"/>`);
+      out.push(`<text class="so-big" x="${(C.x + ux * (C.r + 28)).toFixed(1)}" y="${(C.y + uy * (C.r + 28) + 5).toFixed(1)}" text-anchor="middle">N</text>`);
+      const ed = { x: C.x + ux * Math.sin(53.5 * RAD) * C.r, y: C.y + uy * Math.sin(53.5 * RAD) * C.r };
+      out.push(`<circle class="so-dot" cx="${ed.x.toFixed(1)}" cy="${ed.y.toFixed(1)}" r="5"/>`);
+      out.push(`<text class="so-text" x="${C.x}" y="${C.y + C.r + 40}" text-anchor="middle">Earth up close (red dot: Edmonton)</text>`);
+      this.querySelector('[data-so="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('seasons-orbit', SeasonsOrbit);
+</script>
