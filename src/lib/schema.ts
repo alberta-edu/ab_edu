@@ -16,6 +16,12 @@ const level = z.union([z.literal(1), z.literal(2), z.literal(3)]);
 export const REF_PATTERN = /^(?:([A-Za-z0-9_-]+)#)?([KUS])(\d+)\.(\d+)$/;
 const covers = z.array(z.string().regex(REF_PATTERN, 'curriculum reference like K1.2, S1.3 or CODE#K1.2')).min(1);
 
+/** A block-code program for code figures: moves and turns, and repeat blocks that hold more blocks. */
+type CodeBlock = 'move' | 'left' | 'right' | { repeat: number; body: CodeBlock[] };
+const codeBlock: z.ZodType<CodeBlock> = z.lazy(() =>
+  z.union([z.enum(['move', 'left', 'right']), z.strictObject({ repeat: z.number().int().min(2).max(10), body: z.array(codeBlock).min(1) })]),
+);
+
 export const figureSchema = z.union([
   z.string(),
   z.strictObject({ kind: z.literal('fraction-bars'), n: z.number().int(), d: z.number().int(), wholes: z.number().int() }),
@@ -36,6 +42,7 @@ export const figureSchema = z.union([
     forces: z.array(z.strictObject({ kind: z.enum(['thrust', 'drag', 'lift', 'weight', 'buoyant']), size: z.number().min(0).max(2).optional(), label: z.string().optional() })).min(1).max(4),
     water: z.boolean().optional(),
   }),
+  z.strictObject({ kind: z.literal('code'), blocks: z.array(codeBlock).min(1).max(8) }),
   z.strictObject({ kind: z.literal('moons'), ages: z.array(z.number().min(0).max(29.6)).min(1).max(5), labels: z.array(z.string()).optional() }),
   z.strictObject({ kind: z.literal('balance'), left: z.array(z.string()).max(4), right: z.array(z.string()).max(6), down: z.enum(['left', 'right', 'none']) }),
   z.strictObject({ kind: z.literal('cylinder'), max: z.number().positive(), minor: z.number().positive(), major: z.number().positive(), level: z.number().min(0) }),
@@ -141,7 +148,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),

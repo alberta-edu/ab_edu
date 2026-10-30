@@ -1,0 +1,225 @@
+---
+// Block-code robot puzzles (SCI5-OI6-GQ1-LO1, K1.2-K1.7, S1.1-S1.5): build a program from
+// blocks, including repeat loops, and run it to guide a robot to the star.
+import { PUZZLES } from './block-code.ts';
+interface Props {
+  start?: string;
+}
+const { start = 'line' } = Astro.props;
+---
+<block-code data-start={start} data-puzzles={JSON.stringify(PUZZLES)}>
+  <div class="sci-pick" role="group" aria-label="Choose a puzzle">
+    {PUZZLES.map((p, i) => <button type="button" data-bc-puzzle={p.id} aria-pressed={String(p.id === start)}>Puzzle {i + 1}</button>)}
+  </div>
+  <p class="bc-title" data-bc="title"></p>
+  <div class="bc-layout">
+    <svg class="sci-svg bc-grid" viewBox="0 0 300 300" role="img" aria-label="Robot puzzle grid" data-bc="grid"></svg>
+    <div class="bc-side">
+      <p class="sci-pick-label">Add a block</p>
+      <div class="bc-palette">
+        <button type="button" class="bc-block bc-block--move" data-bc-add="move">move forward</button>
+        <button type="button" class="bc-block bc-block--turn" data-bc-add="left">turn left</button>
+        <button type="button" class="bc-block bc-block--turn" data-bc-add="right">turn right</button>
+        <span class="bc-block bc-block--repeat bc-repeat-add">
+          <button type="button" data-bc-add="repeat">repeat</button>
+          <select data-bc="times" aria-label="How many times to repeat">{[2, 3, 4, 5, 6].map((n) => <option value={n} selected={n === 4}>{n}</option>)}</select>
+          times
+        </span>
+        <button type="button" class="btn btn--ghost btn--small" data-bc="end" disabled>end repeat</button>
+      </div>
+      <p class="sci-pick-label">Your program <span class="bc-count" data-bc="count"></span></p>
+      <ol class="bc-program" data-bc="program" aria-live="polite"></ol>
+      <div class="bc-actions">
+        <button type="button" class="btn btn--primary btn--small" data-bc="run">▶ Run</button>
+        <button type="button" class="btn btn--ghost btn--small" data-bc="undo">Undo</button>
+        <button type="button" class="btn btn--ghost btn--small" data-bc="clear">Clear</button>
+      </div>
+    </div>
+  </div>
+  <p class="sci-say" data-bc="say" aria-live="polite"></p>
+</block-code>
+
+<style is:global>
+  block-code { display: block; }
+  .bc-title { font-weight: 700; margin: 0.5rem 0 0; }
+  .bc-layout { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); align-items: start; margin-top: 0.5rem; }
+  .bc-grid { max-width: 22rem; background: var(--surface-2); }
+  .bc-cell { fill: var(--surface); stroke: var(--line); }
+  .bc-rock { fill: #8a8378; stroke: var(--ink); stroke-width: 1.5; }
+  .bc-star { fill: #f2b53a; stroke: #8a5a10; stroke-width: 1.5; }
+  .bc-robot { fill: var(--accent); stroke: var(--ink); stroke-width: 2; }
+  .bc-trail { fill: color-mix(in srgb, var(--accent) 35%, transparent); }
+  .bc-palette { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .bc-block { display: inline-flex; align-items: center; gap: 0.35rem; border: 0; border-radius: 8px; padding: 0.45rem 0.75rem; font: inherit; font-weight: 700; font-size: var(--step--1); color: #fff; cursor: pointer; min-height: 2.4rem; }
+  .bc-block--move { background: #3f7fe0; }
+  .bc-block--turn { background: #8a5cc7; }
+  .bc-block--repeat { background: #e08a1e; }
+  .bc-repeat-add button { all: unset; cursor: pointer; text-decoration: underline; }
+  .bc-repeat-add select { font: inherit; border-radius: 6px; border: 0; padding: 0.1rem 0.2rem; }
+  .bc-program { list-style: none; margin: 0; padding: 0.5rem; min-height: 3rem; border: 2px dashed var(--line-strong); border-radius: var(--radius-sm); display: grid; gap: 0.25rem; }
+  .bc-program ol { list-style: none; margin: 0.25rem 0 0 1.2rem; padding: 0.35rem 0 0.35rem 0.5rem; border-left: 6px solid #e08a1e; display: grid; gap: 0.25rem; min-height: 1.5rem; }
+  .bc-program li > .bc-block { cursor: default; }
+  .bc-program .is-running > .bc-block { outline: 3px solid var(--ink); outline-offset: 1px; }
+  .bc-program .is-open > ol { border-left-style: dashed; }
+  .bc-empty { color: var(--ink-3); font-size: var(--step--1); }
+  .bc-count { text-transform: none; letter-spacing: 0; color: var(--ink-2); }
+  .bc-actions { display: flex; gap: 0.4rem; margin-top: 0.6rem; flex-wrap: wrap; }
+</style>
+
+<script>
+  import { runProgram, countBlocks, BLOCK_TEXT, type Block, type Puzzle, type Step } from './block-code.ts';
+  import { wait } from '../experiments/anim.ts';
+
+  const CELL = 50;
+
+  class BlockCode extends HTMLElement {
+    private puzzles: Puzzle[] = [];
+    private p!: Puzzle;
+    private program: Block[] = [];
+    private cursor: number[] = []; // path to the open repeat block, [] = top level
+    private history: string[] = [];
+    private robot = { x: 0, y: 0, dir: 0 };
+    private trail: [number, number][] = [];
+    private running = false;
+
+    connectedCallback() {
+      this.puzzles = JSON.parse(this.dataset.puzzles!);
+      this.querySelectorAll<HTMLButtonElement>('[data-bc-puzzle]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-bc-puzzle]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(b.dataset.bcPuzzle!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-bc-add]').forEach((b) => b.addEventListener('click', () => this.add(b.dataset.bcAdd!)));
+      this.querySelector('[data-bc="end"]')!.addEventListener('click', () => {
+        this.cursor.pop();
+        this.render();
+      });
+      this.querySelector('[data-bc="undo"]')!.addEventListener('click', () => {
+        const prev = this.history.pop();
+        if (prev) ({ program: this.program, cursor: this.cursor } = JSON.parse(prev));
+        this.reset();
+      });
+      this.querySelector('[data-bc="clear"]')!.addEventListener('click', () => {
+        this.save();
+        this.program = [];
+        this.cursor = [];
+        this.reset();
+      });
+      this.querySelector('[data-bc="run"]')!.addEventListener('click', () => this.run());
+      this.load(this.dataset.start!);
+    }
+
+    private load(id: string) {
+      this.p = this.puzzles.find((x) => x.id === id)!;
+      this.program = [];
+      this.cursor = [];
+      this.history = [];
+      this.querySelector('[data-bc="title"]')!.textContent = `${this.p.title}${this.p.maxBlocks ? ` (use at most ${this.p.maxBlocks} blocks)` : ''}`;
+      this.reset();
+    }
+
+    private reset() {
+      this.robot = { x: this.p.start[0], y: this.p.start[1], dir: this.p.dir };
+      this.trail = [];
+      this.querySelector('[data-bc="say"]')!.textContent = '';
+      this.render();
+      this.drawGrid();
+    }
+
+    private save() {
+      this.history.push(JSON.stringify({ program: this.program, cursor: this.cursor }));
+    }
+
+    private target(): Block[] {
+      let list = this.program;
+      for (const i of this.cursor) list = (list[i] as { body: Block[] }).body;
+      return list;
+    }
+
+    private add(kind: string) {
+      if (this.running) return;
+      this.save();
+      const list = this.target();
+      if (kind === 'repeat') {
+        list.push({ repeat: Number(this.querySelector<HTMLSelectElement>('[data-bc="times"]')!.value), body: [] });
+        this.cursor = [...this.cursor, list.length - 1];
+      } else list.push(kind as Block);
+      this.reset();
+    }
+
+    private render(active: number[] = []) {
+      const html = (blocks: Block[], path: number[]): string =>
+        blocks
+          .map((b, i) => {
+            const here = [...path, i];
+            const on = active.length === here.length && here.every((v, k) => v === active[k]);
+            if (typeof b === 'string') return `<li class="${on ? 'is-running' : ''}"><span class="bc-block bc-block--${b === 'move' ? 'move' : 'turn'}">${BLOCK_TEXT[b]}</span></li>`;
+            const open = this.cursor.length >= here.length && here.every((v, k) => v === this.cursor[k]);
+            return `<li class="${open ? 'is-open' : ''}"><span class="bc-block bc-block--repeat">repeat ${b.repeat} times</span><ol>${html(b.body, here) || '<li class="bc-empty">add blocks here</li>'}</ol></li>`;
+          })
+          .join('');
+      this.querySelector('[data-bc="program"]')!.innerHTML = html(this.program, []) || '<li class="bc-empty">Tap blocks above to build a program.</li>';
+      const n = countBlocks(this.program);
+      this.querySelector('[data-bc="count"]')!.textContent = `· ${n} block${n === 1 ? '' : 's'}${this.p.maxBlocks ? ` of ${this.p.maxBlocks}` : ''}`;
+      this.querySelector<HTMLButtonElement>('[data-bc="end"]')!.disabled = this.cursor.length === 0;
+    }
+
+    private async run() {
+      if (this.running || !this.program.length) return;
+      this.running = true;
+      this.cursor = [];
+      this.robot = { x: this.p.start[0], y: this.p.start[1], dir: this.p.dir };
+      this.trail = [[this.robot.x, this.robot.y]];
+      this.drawGrid();
+      const { steps, result } = runProgram(this.program, this.p);
+      const say = this.querySelector('[data-bc="say"]')!;
+      say.textContent = 'Running…';
+      for (const s of steps) {
+        this.render(s.at);
+        await wait(380);
+        this.robot = { x: s.x, y: s.y, dir: s.dir };
+        if (this.trail.at(-1)![0] !== s.x || this.trail.at(-1)![1] !== s.y) this.trail.push([s.x, s.y]);
+        this.drawGrid();
+      }
+      if (result === 'wall' || result === 'edge') await this.bump(steps.at(-1));
+      this.render();
+      const n = countBlocks(this.program);
+      if (result === 'goal')
+        say.textContent =
+          this.p.maxBlocks && n > this.p.maxBlocks
+            ? `⭐ You reached the star with ${n} blocks! Now try it with at most ${this.p.maxBlocks}. Look for steps that repeat, and use a loop.`
+            : `⭐ You reached the star with ${n} block${n === 1 ? '' : 's'}!`;
+      else if (result === 'short') say.textContent = 'The robot did every block, but it stopped before the star. Add or change blocks and run it again.';
+      else say.textContent = `Bump! The robot hit ${result === 'wall' ? 'a rock' : 'the edge'} on block ${steps.length}. A computer only does exactly what the code says. Fix that block and try again.`;
+      this.running = false;
+    }
+
+    private async bump(s?: Step) {
+      if (!s) return;
+      const g = this.querySelector('[data-bc="robot"]');
+      g?.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+      await wait(300);
+    }
+
+    private drawGrid() {
+      const out: string[] = [];
+      for (let y = 0; y < this.p.size; y++) for (let x = 0; x < this.p.size; x++) out.push(`<rect class="bc-cell" x="${x * CELL}" y="${y * CELL}" width="${CELL}" height="${CELL}"/>`);
+      for (const [x, y] of this.trail) out.push(`<rect class="bc-trail" x="${x * CELL + 6}" y="${y * CELL + 6}" width="${CELL - 12}" height="${CELL - 12}" rx="6"/>`);
+      for (const [x, y] of this.p.walls ?? []) out.push(`<path class="bc-rock" d="M${x * CELL + 8},${y * CELL + 40} L${x * CELL + 14},${y * CELL + 16} L${x * CELL + 30},${y * CELL + 9} L${x * CELL + 42},${y * CELL + 22} L${x * CELL + 43},${y * CELL + 40} Z"/>`);
+      const [gx, gy] = this.p.goal;
+      const star = Array.from({ length: 10 }, (_, k) => {
+        const r = k % 2 ? 9 : 20;
+        const a = (Math.PI / 5) * k - Math.PI / 2;
+        return `${(gx * CELL + 25 + Math.cos(a) * r).toFixed(1)},${(gy * CELL + 26 + Math.sin(a) * r).toFixed(1)}`;
+      }).join(' ');
+      out.push(`<polygon class="bc-star" points="${star}"/>`);
+      const { x, y, dir } = this.robot;
+      out.push(`<g data-bc="robot"><g transform="translate(${x * CELL + 25} ${y * CELL + 25}) rotate(${dir * 90})"><path class="bc-robot" d="M17,0 L-12,-14 L-6,0 L-12,14 Z"/></g></g>`);
+      const grid = this.querySelector('[data-bc="grid"]')!;
+      grid.setAttribute('viewBox', `0 0 ${this.p.size * CELL} ${this.p.size * CELL}`);
+      grid.innerHTML = out.join('');
+    }
+  }
+  customElements.define('block-code', BlockCode);
+</script>

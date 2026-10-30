@@ -38,6 +38,7 @@ import PlantTransport from './visuals/PlantTransport.astro';
 import SeasonsOrbit from './visuals/SeasonsOrbit.astro';
 import MoonPhases from './visuals/MoonPhases.astro';
 import Aurora from './visuals/Aurora.astro';
+import BlockCode from './visuals/BlockCode.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -48,6 +49,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'block-code': BlockCode,
   'aurora': Aurora,
   'moon-phases': MoonPhases,
   'seasons-orbit': SeasonsOrbit,
