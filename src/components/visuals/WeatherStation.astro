@@ -1,0 +1,222 @@
+---
+// Weather tools (SCI5-OI3-GQ1-LO1, K2.1, S2.1, K1.1): pick a kind of weather and a tool, and
+// watch the tool show its reading.
+const TOOLS = [
+  { id: 'thermometer', label: 'Thermometer', measures: 'temperature' },
+  { id: 'vane', label: 'Wind vane', measures: 'wind direction' },
+  { id: 'sock', label: 'Windsock', measures: 'wind direction and roughly how strong the wind is' },
+  { id: 'anemometer', label: 'Anemometer', measures: 'wind speed' },
+  { id: 'barometer', label: 'Barometer', measures: 'air pressure' },
+  { id: 'gauge', label: 'Rain or snow gauge', measures: 'how much rain or snow falls (precipitation)' },
+  { id: 'hygrometer', label: 'Hygrometer', measures: 'humidity, the amount of water vapour in the air' },
+];
+const WEATHER = [
+  { id: 'sunny', label: '☀️ Sunny and calm', temp: 24, wind: 5, from: 'S', kpa: 102.2, precip: 0, snow: false, humidity: 30 },
+  { id: 'windy', label: '💨 Windy', temp: 12, wind: 45, from: 'W', kpa: 100.8, precip: 0, snow: false, humidity: 35 },
+  { id: 'rainy', label: '🌧️ Rainy', temp: 9, wind: 20, from: 'E', kpa: 99.4, precip: 18, snow: false, humidity: 95 },
+  { id: 'snowy', label: '❄️ Snowy', temp: -12, wind: 15, from: 'N', kpa: 101.0, precip: 8, snow: true, humidity: 80 },
+];
+---
+<weather-station data-tools={JSON.stringify(TOOLS)} data-weather={JSON.stringify(WEATHER)}>
+  <p class="sci-pick-label">Weather</p>
+  <div class="sci-pick" role="group" aria-label="Choose the weather">
+    {WEATHER.map((w, i) => <button type="button" data-ws-weather={w.id} aria-pressed={String(i === 0)}>{w.label}</button>)}
+  </div>
+  <p class="sci-pick-label">Tool</p>
+  <div class="sci-pick" role="group" aria-label="Choose a weather tool">
+    {TOOLS.map((t, i) => <button type="button" data-ws-tool={t.id} aria-pressed={String(i === 0)}>{t.label}</button>)}
+  </div>
+  <svg class="sci-svg ws-svg" viewBox="0 0 560 280" aria-hidden="true" data-ws="svg"></svg>
+  <p class="sci-say" data-ws="say" aria-live="polite"></p>
+  <p class="ws-measures" data-ws="measures"></p>
+</weather-station>
+
+<style is:global>
+  weather-station { display: block; }
+  .ws-svg { margin-top: 0.75rem; }
+  .ws-measures { margin: 0.3rem 0 0; color: var(--ink-2); }
+  .ws-frame { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .ws-red { fill: #d23b2e; }
+  .ws-metal { fill: var(--ink-3); }
+  .ws-stroke { stroke: var(--ink-2); stroke-width: 3; fill: none; stroke-linecap: round; }
+  .ws-needle { stroke: #d23b2e; stroke-width: 4; stroke-linecap: round; }
+  .ws-vane { fill: var(--ink); }
+  .ws-sock { fill: #e8702a; stroke: var(--ink); stroke-width: 1.5; }
+  .ws-sock-band { fill: var(--surface); }
+  .ws-cup { fill: var(--ink-2); }
+  .ws-water { fill: color-mix(in srgb, var(--math) 50%, transparent); }
+  .ws-snow { fill: color-mix(in srgb, var(--math) 18%, var(--surface)); stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 3 3; }
+  .ws-big { fill: var(--accent); font-size: 26px; font-weight: 700; }
+  .ws-arc { fill: none; stroke: var(--line-strong); stroke-width: 10; }
+</style>
+
+<script>
+  import { loopWhileVisible, tween, ease, lerp } from '../experiments/anim.ts';
+
+  type Tool = { id: string; label: string; measures: string };
+  type Weather = { id: string; label: string; temp: number; wind: number; from: string; kpa: number; precip: number; snow: boolean; humidity: number };
+  const DIR_DEG: Record<string, number> = { N: 0, E: 90, S: 180, W: 270 };
+  const DIR_NAME: Record<string, string> = { N: 'north', E: 'east', S: 'south', W: 'west' };
+
+  class WeatherStation extends HTMLElement {
+    private tools: Tool[] = [];
+    private weathers: Weather[] = [];
+    private tool!: Tool;
+    private w!: Weather;
+    // Shown values ease toward the weather's values, so tools visibly respond.
+    private shown = { temp: 0, wind: 0, dir: 0, kpa: 0, precip: 0, humidity: 0 };
+    private spin = 0;
+    private sway = 0;
+
+    connectedCallback() {
+      this.tools = JSON.parse(this.dataset.tools!);
+      this.weathers = JSON.parse(this.dataset.weather!);
+      this.tool = this.tools[0];
+      this.w = this.weathers[0];
+      this.shown = { temp: this.w.temp, wind: this.w.wind, dir: DIR_DEG[this.w.from], kpa: this.w.kpa, precip: this.w.precip, humidity: this.w.humidity };
+      this.querySelectorAll<HTMLButtonElement>('[data-ws-weather]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ws-weather]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.setWeather(this.weathers.find((w) => w.id === b.dataset.wsWeather)!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-ws-tool]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ws-tool]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.tool = this.tools.find((t) => t.id === b.dataset.wsTool)!;
+          this.say();
+          this.draw();
+        }),
+      );
+      this.say();
+      this.draw();
+      loopWhileVisible(this, (dt) => {
+        this.spin += this.shown.wind * 0.25 * dt;
+        this.sway += dt;
+        if (this.tool.id === 'anemometer' || this.tool.id === 'sock' || this.tool.id === 'vane') this.draw();
+      });
+    }
+
+    private setWeather(w: Weather) {
+      const from = { ...this.shown };
+      // Turn the vane the short way round.
+      let to = DIR_DEG[w.from];
+      if (to - from.dir > 180) to -= 360;
+      if (from.dir - to > 180) to += 360;
+      this.w = w;
+      this.say();
+      tween(900, (t) => {
+        const e = ease(t);
+        this.shown = {
+          temp: lerp(from.temp, w.temp, e),
+          wind: lerp(from.wind, w.wind, e),
+          dir: lerp(from.dir, to, e),
+          kpa: lerp(from.kpa, w.kpa, e),
+          precip: lerp(from.precip, w.precip, e),
+          humidity: lerp(from.humidity, w.humidity, e),
+        };
+        this.draw();
+      }).then(() => (this.shown.dir = ((DIR_DEG[w.from] % 360) + 360) % 360));
+    }
+
+    private reading(): string {
+      const w = this.w;
+      switch (this.tool.id) {
+        case 'thermometer':
+          return `${w.temp} °C`;
+        case 'vane':
+          return `Wind from the ${DIR_NAME[w.from]}`;
+        case 'sock':
+          return w.wind < 10 ? 'Hanging down: little wind' : w.wind < 30 ? 'Partly filled: a moderate wind' : 'Straight out: a strong wind';
+        case 'anemometer':
+          return `${w.wind} km/h`;
+        case 'barometer':
+          return `${w.kpa.toFixed(1)} kPa`;
+        case 'gauge':
+          return w.snow ? `${w.precip} cm of snow` : `${w.precip} mm of rain`;
+        default:
+          return `${w.humidity}% humidity`;
+      }
+    }
+
+    private say() {
+      this.querySelector('[data-ws="say"]')!.textContent = `${this.tool.label}: ${this.reading()}`;
+      this.querySelector('[data-ws="measures"]')!.textContent = `A ${this.tool.label.toLowerCase()} measures ${this.tool.measures}.`;
+    }
+
+    private draw() {
+      const s = this.shown;
+      const cx = 280;
+      let art = '';
+      switch (this.tool.id) {
+        case 'thermometer': {
+          const yOf = (c: number) => 230 - ((c + 30) / 70) * 190;
+          let ticks = '';
+          for (let c = -30; c <= 40; c += 10) ticks += `<line class="sci-tick" x1="${cx + 18}" y1="${yOf(c)}" x2="${cx + 30}" y2="${yOf(c)}"/><text class="sci-small" x="${cx + 36}" y="${yOf(c) + 4}">${c} °C</text>`;
+          art = `<rect class="ws-frame" x="${cx - 14}" y="30" width="28" height="215" rx="14"/><circle class="ws-red" cx="${cx}" cy="248" r="18"/><rect class="ws-red" x="${cx - 6}" y="${yOf(s.temp)}" width="12" height="${248 - yOf(s.temp)}"/>${ticks}`;
+          break;
+        }
+        case 'vane': {
+          // The arrow points into the wind: toward where the wind comes from.
+          const letters = ['N', 'E', 'S', 'W'].map((d, i) => {
+            const a = (i * Math.PI) / 2;
+            return `<text class="sci-text" x="${cx + Math.sin(a) * 112}" y="${140 - Math.cos(a) * 112 + 6}" text-anchor="middle">${d}</text>`;
+          });
+          const wob = Math.sin(this.sway * 3) * Math.min(6, s.wind / 6);
+          art = `<circle class="ws-frame" cx="${cx}" cy="140" r="95"/>${letters.join('')}<g transform="translate(${cx} 140) rotate(${(s.dir + wob).toFixed(1)})"><path class="ws-vane" d="M0,-80 L-12,-56 L-4,-56 L-4,50 L-26,74 L-26,86 L0,64 L26,86 L26,74 L4,50 L4,-56 L12,-56 Z"/></g><circle class="ws-metal" cx="${cx}" cy="140" r="6"/><text class="sci-small" x="${cx}" y="272" text-anchor="middle">seen from above</text>`;
+          break;
+        }
+        case 'sock': {
+          // Side view: the sock streams away from the wind. A calm sock hangs down.
+          const lift = Math.min(1, s.wind / 40);
+          const wave = Math.sin(this.sway * 6) * 4 * lift;
+          const dirSign = this.w.from === 'E' ? -1 : 1; // west/north/south wind drawn blowing to the right
+          const ang = 90 - lift * 82 + wave;
+          art = `<line class="ws-stroke" x1="${cx - 60 * dirSign}" y1="262" x2="${cx - 60 * dirSign}" y2="60"/><g transform="translate(${cx - 60 * dirSign} 66) scale(${dirSign} 1) rotate(${ang.toFixed(1)})"><path class="ws-sock" d="M0,-18 L150,-9 L150,9 L0,18 Z"/><path class="ws-sock-band" d="M50,-15 L80,-13.5 L80,13.5 L50,15 Z"/><path class="ws-sock-band" d="M110,-12 L130,-11 L130,11 L110,12 Z"/></g>`;
+          break;
+        }
+        case 'anemometer': {
+          const cups = [0, 120, 240]
+            .map((d) => {
+              const a = ((d + this.spin * 57.3) * Math.PI) / 180;
+              const x = cx + Math.cos(a) * 80;
+              const y = 110 + Math.sin(a) * 26;
+              return `<line class="ws-stroke" x1="${cx}" y1="110" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle class="ws-cup" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="15"/>`;
+            })
+            .join('');
+          art = `<line class="ws-stroke" x1="${cx}" y1="110" x2="${cx}" y2="262"/>${cups}<text class="ws-big" x="${cx}" y="230" text-anchor="middle" dx="110">${Math.round(s.wind)} km/h</text>`;
+          break;
+        }
+        case 'barometer':
+        case 'hygrometer': {
+          const baro = this.tool.id === 'barometer';
+          const [min, max] = baro ? [98, 104] : [0, 100];
+          const v = baro ? s.kpa : s.humidity;
+          const a = (-120 + ((v - min) / (max - min)) * 240) * (Math.PI / 180);
+          let ticks = '';
+          const step = baro ? 1 : 20;
+          for (let t = min; t <= max; t += step) {
+            const ta = (-120 + ((t - min) / (max - min)) * 240) * (Math.PI / 180);
+            ticks += `<line class="sci-tick" x1="${cx + Math.sin(ta) * 88}" y1="${150 - Math.cos(ta) * 88}" x2="${cx + Math.sin(ta) * 100}" y2="${150 - Math.cos(ta) * 100}"/><text class="sci-small" x="${cx + Math.sin(ta) * 74}" y="${150 - Math.cos(ta) * 74 + 4}" text-anchor="middle">${baro ? t : `${t}%`}</text>`;
+          }
+          const ends = baro
+            ? `<text class="sci-small" x="${cx - 100}" y="262" text-anchor="middle">lower: often stormy</text><text class="sci-small" x="${cx + 100}" y="262" text-anchor="middle">higher: often fair</text>`
+            : `<text class="sci-small" x="${cx - 100}" y="262" text-anchor="middle">dry air</text><text class="sci-small" x="${cx + 100}" y="262" text-anchor="middle">very humid air</text>`;
+          art = `<circle class="ws-frame" cx="${cx}" cy="150" r="110"/>${ticks}<line class="ws-needle" x1="${cx}" y1="150" x2="${(cx + Math.sin(a) * 84).toFixed(1)}" y2="${(150 - Math.cos(a) * 84).toFixed(1)}"/><circle class="ws-metal" cx="${cx}" cy="150" r="7"/><text class="sci-text" x="${cx}" y="205" text-anchor="middle">${baro ? 'kPa' : 'humidity'}</text>${ends}`;
+          break;
+        }
+        default: {
+          // Rain or snow gauge: a clear tube marked in mm (rain) or cm (snow).
+          const max = this.w.snow ? 20 : 40;
+          const yOf = (v: number) => 250 - (v / max) * 200;
+          let ticks = '';
+          for (let v = 0; v <= max; v += max / 4) ticks += `<line class="sci-tick" x1="${cx + 30}" y1="${yOf(v)}" x2="${cx + 44}" y2="${yOf(v)}"/><text class="sci-small" x="${cx + 50}" y="${yOf(v) + 4}">${v} ${this.w.snow ? 'cm' : 'mm'}</text>`;
+          const lv = yOf(s.precip);
+          art = `<path class="ws-frame" d="M${cx - 60},30 L${cx + 60},30 L${cx + 30},50 L${cx - 30},50 Z"/><rect class="ws-frame" x="${cx - 30}" y="50" width="60" height="202"/><rect class="${this.w.snow ? 'ws-snow' : 'ws-water'}" x="${cx - 28}" y="${lv.toFixed(1)}" width="56" height="${(250 - lv).toFixed(1)}"/>${ticks}`;
+        }
+      }
+      this.querySelector('[data-ws="svg"]')!.innerHTML = `<rect class="sci-sky" width="560" height="280"/>${art}`;
+    }
+  }
+  customElements.define('weather-station', WeatherStation);
+</script>

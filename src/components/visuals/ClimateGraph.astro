@@ -1,0 +1,178 @@
+---
+// Climate graphs: average monthly temperature and precipitation for a place, compared with
+// Edmonton. Two charts, each with one axis (SCI5-OI3-GQ1-LO1, K1.3, S1.3, S1.4, S1.6).
+import { PLACES, MONTH_NAMES, ZONE_LABEL } from './climate-data.ts';
+interface Props {
+  start?: string;
+}
+const { start = 'vancouver' } = Astro.props;
+const others = PLACES.filter((p) => p.id !== 'edmonton');
+---
+<climate-graph data-start={start} data-places={JSON.stringify(PLACES)}>
+  <p class="sci-pick-label">Compare Edmonton with</p>
+  <div class="sci-pick" role="group" aria-label="Choose a place">
+    {others.map((p) => <button type="button" data-cg-place={p.id} aria-pressed={String(p.id === start)}>{p.name}</button>)}
+  </div>
+  <ul class="cg-legend" aria-hidden="true">
+    <li><span class="cg-key cg-key--place"></span><span data-cg="place-name"></span></li>
+    <li><span class="cg-key cg-key--ref"></span>Edmonton, Alberta (continental)</li>
+  </ul>
+  <div class="cg-charts">
+    <figure class="cg-chart">
+      <figcaption>Average temperature (°C)</figcaption>
+      <svg class="sci-svg" viewBox="0 0 320 210" aria-hidden="true" data-cg="temp"></svg>
+    </figure>
+    <figure class="cg-chart">
+      <figcaption>Average precipitation (mm)</figcaption>
+      <svg class="sci-svg" viewBox="0 0 320 210" aria-hidden="true" data-cg="precip"></svg>
+    </figure>
+  </div>
+  <p class="cg-tip" data-cg="tip" aria-live="polite">Point at or tap a month to read its values.</p>
+  <details class="cg-table">
+    <summary>Show the data as a table</summary>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th scope="col">Month</th><th scope="col" data-cg="th-t">Temperature (°C)</th><th scope="col" data-cg="th-p">Precipitation (mm)</th><th scope="col">Edmonton (°C)</th><th scope="col">Edmonton (mm)</th></tr>
+        </thead>
+        <tbody data-cg="rows">
+          {MONTH_NAMES.map((m) => <tr><th scope="row">{m}</th><td /><td /><td /><td /></tr>)}
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <p class="sr-only" aria-live="polite" data-cg="summary"></p>
+  <span hidden data-cg-zones={JSON.stringify(ZONE_LABEL)}></span>
+</climate-graph>
+
+<style is:global>
+  climate-graph { display: block; }
+  .cg-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; padding: 0; margin: 0.8rem 0 0.4rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .cg-legend li { display: flex; align-items: center; gap: 0.45rem; }
+  .cg-key { display: inline-block; width: 1.4rem; height: 0.7rem; border-radius: 3px; }
+  .cg-key--place { background: var(--math); }
+  .cg-key--ref { background: repeating-linear-gradient(90deg, var(--ink-3) 0 6px, transparent 6px 9px); height: 3px; }
+  .cg-charts { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+  .cg-chart { margin: 0; padding: 0.5rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .cg-chart figcaption { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); margin: 0 0 0.25rem 0.25rem; }
+  .cg-grid { stroke: var(--line); stroke-width: 1; }
+  .cg-zero { stroke: var(--ink-3); stroke-width: 1.5; }
+  .cg-axis { fill: var(--ink-3); font-size: 11px; }
+  .cg-line { fill: none; stroke: var(--math); stroke-width: 2.5; stroke-linejoin: round; }
+  .cg-dot { fill: var(--math); stroke: var(--surface-2); stroke-width: 2; }
+  .cg-ref { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 3; }
+  .cg-bar { fill: var(--math); }
+  .cg-bar-ref { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 3 2; }
+  .cg-hit { fill: transparent; cursor: crosshair; }
+  .cg-hl { fill: color-mix(in srgb, var(--ink) 8%, transparent); }
+  .cg-tip { margin: 0.5rem 0 0; font-weight: 700; min-height: 1.5em; }
+  .cg-table { margin-top: 0.5rem; }
+  .cg-table summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+</style>
+
+<script>
+  import type { Place } from './climate-data.ts';
+  import { MONTHS, MONTH_NAMES, total } from './climate-data.ts';
+
+  const W = 320;
+  const H = 210;
+  const L = 34;
+  const R = 8;
+  const T = 10;
+  const B = 24;
+  const x = (i: number) => L + ((W - L - R) / 12) * (i + 0.5);
+  const colW = (W - L - R) / 12;
+
+  class ClimateGraph extends HTMLElement {
+    private places: Place[] = [];
+    private ref!: Place;
+    private place!: Place;
+    private zones: Record<string, string> = {};
+    private hover = -1;
+
+    connectedCallback() {
+      this.places = JSON.parse(this.dataset.places!);
+      this.zones = JSON.parse(this.querySelector<HTMLElement>('[data-cg-zones]')!.dataset.cgZones!);
+      this.ref = this.places.find((p) => p.id === 'edmonton')!;
+      this.place = this.places.find((p) => p.id === this.dataset.start)!;
+      this.querySelectorAll<HTMLButtonElement>('[data-cg-place]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-cg-place]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.place = this.places.find((p) => p.id === b.dataset.cgPlace)!;
+          this.update();
+        }),
+      );
+      for (const svg of this.querySelectorAll<SVGSVGElement>('[data-cg="temp"], [data-cg="precip"]')) {
+        const at = (e: PointerEvent) => {
+          const box = svg.getBoundingClientRect();
+          const px = ((e.clientX - box.left) / box.width) * W;
+          const i = Math.floor((px - L) / colW);
+          this.setHover(i >= 0 && i < 12 ? i : -1);
+        };
+        svg.addEventListener('pointermove', at);
+        svg.addEventListener('pointerdown', at);
+        svg.addEventListener('pointerleave', () => this.setHover(-1));
+      }
+      this.update();
+    }
+
+    private setHover(i: number) {
+      if (i === this.hover) return;
+      this.hover = i;
+      this.draw();
+      const tip = this.querySelector('[data-cg="tip"]')!;
+      if (i < 0) tip.textContent = 'Point at or tap a month to read its values.';
+      else
+        tip.textContent = `${MONTH_NAMES[i]}: ${this.place.name} ${this.place.temp[i]} °C, ${this.place.precip[i]} mm. Edmonton ${this.ref.temp[i]} °C, ${this.ref.precip[i]} mm.`;
+    }
+
+    private update() {
+      const p = this.place;
+      this.querySelector('[data-cg="place-name"]')!.textContent = `${p.name}, ${p.where} (${this.zones[p.zone].toLowerCase()})`;
+      this.querySelectorAll('[data-cg="rows"] tr').forEach((tr, i) => {
+        const tds = tr.querySelectorAll('td');
+        [p.temp[i], p.precip[i], this.ref.temp[i], this.ref.precip[i]].forEach((v, k) => (tds[k].textContent = String(v)));
+      });
+      this.querySelector('[data-cg="th-t"]')!.textContent = `${p.name} (°C)`;
+      this.querySelector('[data-cg="th-p"]')!.textContent = `${p.name} (mm)`;
+      const range = (t: number[]) => Math.max(...t) - Math.min(...t);
+      this.querySelector('[data-cg="summary"]')!.textContent =
+        `${p.name}: temperatures from ${Math.min(...p.temp)} to ${Math.max(...p.temp)} °C, a range of ${range(p.temp)} degrees, and about ${total(p.precip)} mm of precipitation a year. ` +
+        `Edmonton: ${Math.min(...this.ref.temp)} to ${Math.max(...this.ref.temp)} °C and about ${total(this.ref.precip)} mm a year.`;
+      this.draw();
+    }
+
+    private draw() {
+      const p = this.place;
+      const r = this.ref;
+      const hl = this.hover >= 0 ? `<rect class="cg-hl" x="${(L + colW * this.hover).toFixed(1)}" y="${T}" width="${colW.toFixed(1)}" height="${H - T - B}"/>` : '';
+      const months = MONTHS.map((m, i) => `<text class="cg-axis" x="${x(i).toFixed(1)}" y="${H - 8}" text-anchor="middle">${m}</text>`).join('');
+
+      // Temperature: one axis from -30 to 30 °C.
+      const ty = (c: number) => T + ((30 - c) / 60) * (H - T - B);
+      let tg = '';
+      for (let c = -30; c <= 30; c += 10) tg += `<line class="${c === 0 ? 'cg-zero' : 'cg-grid'}" x1="${L}" y1="${ty(c)}" x2="${W - R}" y2="${ty(c)}"/><text class="cg-axis" x="${L - 5}" y="${ty(c) + 4}" text-anchor="end">${c}</text>`;
+      const path = (t: number[]) => t.map((c, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${ty(c).toFixed(1)}`).join(' ');
+      const dots = p.temp.map((c, i) => `<circle class="cg-dot" cx="${x(i).toFixed(1)}" cy="${ty(c).toFixed(1)}" r="${i === this.hover ? 6 : 4}"/>`).join('');
+      this.querySelector('[data-cg="temp"]')!.innerHTML = `${hl}${tg}<path class="cg-ref" d="${path(r.temp)}"/><path class="cg-line" d="${path(p.temp)}"/>${dots}${months}`;
+
+      // Precipitation: one axis from 0 to 300 mm. Bars for the place, a dashed outline for Edmonton.
+      const py = (mm: number) => T + ((300 - mm) / 300) * (H - T - B);
+      let pg = '';
+      for (let mm = 0; mm <= 300; mm += 100) pg += `<line class="${mm === 0 ? 'cg-zero' : 'cg-grid'}" x1="${L}" y1="${py(mm)}" x2="${W - R}" y2="${py(mm)}"/><text class="cg-axis" x="${L - 5}" y="${py(mm) + 4}" text-anchor="end">${mm}</text>`;
+      const bw = colW - 6;
+      const bars = p.precip
+        .map((mm, i) => {
+          const h = py(0) - py(mm);
+          // Rounded top, square base on the axis.
+          const x0 = x(i) - bw / 2;
+          const rr = Math.min(3, h / 2, bw / 2);
+          return h < 0.5 ? '' : `<path class="cg-bar" d="M${x0.toFixed(1)},${py(0)} V${(py(mm) + rr).toFixed(1)} Q${x0.toFixed(1)},${py(mm).toFixed(1)} ${(x0 + rr).toFixed(1)},${py(mm).toFixed(1)} H${(x0 + bw - rr).toFixed(1)} Q${(x0 + bw).toFixed(1)},${py(mm).toFixed(1)} ${(x0 + bw).toFixed(1)},${(py(mm) + rr).toFixed(1)} V${py(0)} Z"/>`;
+        })
+        .join('');
+      const refBars = r.precip.map((mm, i) => `<rect class="cg-bar-ref" x="${(x(i) - bw / 2 - 1).toFixed(1)}" y="${py(mm).toFixed(1)}" width="${(bw + 2).toFixed(1)}" height="${(py(0) - py(mm)).toFixed(1)}"/>`).join('');
+      this.querySelector('[data-cg="precip"]')!.innerHTML = `${hl}${pg}${bars}${refBars}${months}`;
+    }
+  }
+  customElements.define('climate-graph', ClimateGraph);
+</script>
