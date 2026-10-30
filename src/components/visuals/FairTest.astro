@@ -1,0 +1,136 @@
+---
+// Fair-test ramp lab (SCI5-OI7-GQ1-LO1, K3.1-K3.5, S3.1-S3.5): set up two tests, run them, and
+// check whether only one variable was changed.
+import { VARIABLES } from './fair-test.ts';
+const TESTS = [
+  { id: 'a', label: 'Test A', start: { height: 'low', surface: 'wood', load: 'empty' } },
+  { id: 'b', label: 'Test B', start: { height: 'high', surface: 'wood', load: 'empty' } },
+] as const;
+---
+<fair-test>
+  <div class="ft-setups">
+    {
+      TESTS.map((t) => (
+        <fieldset class="ft-setup">
+          <legend>{t.label}</legend>
+          {(Object.keys(VARIABLES) as (keyof typeof VARIABLES)[]).map((v) => (
+            <label class="ft-var">
+              <span>{VARIABLES[v].label}</span>
+              <select data-ft-test={t.id} data-ft-var={v}>
+                {VARIABLES[v].options.map((o) => <option value={o} selected={t.start[v] === o}>{o}</option>)}
+              </select>
+            </label>
+          ))}
+        </fieldset>
+      ))
+    }
+  </div>
+  <svg class="sci-svg ft-svg" viewBox="0 0 640 310" aria-hidden="true" data-ft="svg"></svg>
+  <div class="control-row"><button type="button" class="btn btn--primary btn--small" data-ft="run">▶ Run both tests</button></div>
+  <p class="ft-verdict" data-ft="verdict" aria-live="polite"></p>
+</fair-test>
+
+<style is:global>
+  fair-test { display: block; }
+  .ft-setups { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .ft-setup { border: 2px solid var(--line); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem 0.75rem; margin: 0; display: grid; gap: 0.4rem; }
+  .ft-setup legend { font-weight: 700; padding: 0 0.3rem; }
+  .ft-var { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; font-size: var(--step--1); font-weight: 700; }
+  .ft-var select { font: inherit; padding: 0.3rem 0.4rem; border-radius: 8px; border: 2px solid var(--line-strong); background: var(--surface); color: var(--ink); }
+  .ft-var select.is-changed { border-color: var(--sun); background: color-mix(in srgb, var(--sun) 18%, var(--surface)); }
+  .ft-svg { margin-top: 0.75rem; background: var(--surface-2); }
+  .ft-ramp { fill: #b98a5a; stroke: var(--ink); stroke-width: 2; }
+  .ft-wood { fill: #d9b483; }
+  .ft-carpet { fill: #8b6fb0; }
+  .ft-car { fill: var(--accent); stroke: var(--ink); stroke-width: 2; }
+  .ft-wheel { fill: var(--ink); }
+  .ft-clay { fill: #c0563a; }
+  .ft-tick { stroke: var(--ink-3); stroke-width: 1; }
+  .ft-dist { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .ft-verdict { margin: 0.6rem 0 0; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); font-weight: 700; }
+  .ft-verdict.is-fair { background: var(--ok-soft); }
+  .ft-verdict.is-unfair { background: var(--warn-soft); }
+</style>
+
+<script>
+  import { analyse, distance, type Setup } from './fair-test.ts';
+  import { tween, ease } from '../experiments/anim.ts';
+
+  const LANES = [40, 185]; // top of each lane
+  const RAMP_X = 20;
+  const FLOOR_X = 150;
+  const PX_PER_CM = 2;
+
+  class FairTest extends HTMLElement {
+    private pos = [0, 0]; // distance travelled along the floor, cm
+    private done = false;
+
+    connectedCallback() {
+      this.querySelectorAll('select').forEach((s) =>
+        s.addEventListener('change', () => {
+          this.pos = [0, 0];
+          this.done = false;
+          this.mark();
+          this.draw();
+          this.querySelector('[data-ft="verdict"]')!.textContent = '';
+          this.querySelector('[data-ft="verdict"]')!.className = 'ft-verdict';
+        }),
+      );
+      this.querySelector('[data-ft="run"]')!.addEventListener('click', () => this.run());
+      this.mark();
+      this.draw();
+    }
+
+    private setup(id: 'a' | 'b'): Setup {
+      const get = (v: string) => this.querySelector<HTMLSelectElement>(`[data-ft-test="${id}"][data-ft-var="${v}"]`)!.value;
+      return { height: get('height'), surface: get('surface'), load: get('load') } as Setup;
+    }
+
+    /** Highlights Test B's settings that differ from Test A. */
+    private mark() {
+      const a = this.setup('a');
+      const b = this.setup('b');
+      this.querySelectorAll<HTMLSelectElement>('[data-ft-test="b"]').forEach((s) => s.classList.toggle('is-changed', a[s.dataset.ftVar as keyof Setup] !== b[s.dataset.ftVar as keyof Setup]));
+    }
+
+    private async run() {
+      const btn = this.querySelector<HTMLButtonElement>('[data-ft="run"]')!;
+      btn.disabled = true;
+      const d = [distance(this.setup('a')), distance(this.setup('b'))];
+      this.done = false;
+      await tween(2200, (t) => {
+        this.pos = d.map((x) => x * ease(t));
+        this.draw();
+      });
+      this.done = true;
+      this.draw();
+      const r = analyse(this.setup('a'), this.setup('b'));
+      const v = this.querySelector('[data-ft="verdict"]')!;
+      v.textContent = `Test A: ${d[0]} cm. Test B: ${d[1]} cm. ${r.message}`;
+      v.className = `ft-verdict ${r.fair ? 'is-fair' : 'is-unfair'}`;
+      btn.disabled = false;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      (['a', 'b'] as const).forEach((id, i) => {
+        const s = this.setup(id);
+        const top = LANES[i];
+        const floorY = top + 90;
+        const rh = { low: 30, medium: 55, high: 80 }[s.height];
+        out.push(`<text class="sci-text" x="${RAMP_X}" y="${top - 8}">Test ${id.toUpperCase()}</text>`);
+        out.push(`<rect class="${s.surface === 'wood' ? 'ft-wood' : 'ft-carpet'}" x="${FLOOR_X}" y="${floorY}" width="480" height="10"/>`);
+        out.push(`<path class="ft-ramp" d="M${RAMP_X},${floorY} L${RAMP_X},${floorY - rh} L${FLOOR_X},${floorY} Z"/>`);
+        for (let cm = 0; cm <= 220; cm += 50) out.push(`<line class="ft-tick" x1="${FLOOR_X + cm * PX_PER_CM}" y1="${floorY + 10}" x2="${FLOOR_X + cm * PX_PER_CM}" y2="${floorY + 18}"/><text class="sci-small" x="${FLOOR_X + cm * PX_PER_CM}" y="${floorY + 32}" text-anchor="middle">${cm} cm</text>`);
+        // The car starts at the top of the ramp and rolls onto the floor.
+        const x = this.pos[i] === 0 ? RAMP_X + 4 : FLOOR_X + this.pos[i] * PX_PER_CM - 20;
+        const y = this.pos[i] === 0 ? floorY - rh - 2 : floorY;
+        const ang = this.pos[i] === 0 ? Math.atan2(rh, FLOOR_X - RAMP_X) * (180 / Math.PI) : 0;
+        out.push(`<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)}) rotate(${ang.toFixed(1)})"><rect class="ft-car" x="0" y="-16" width="38" height="12" rx="4"/>${s.load === 'empty' ? '' : '<circle class="ft-clay" cx="19" cy="-19" r="6"/>'}<circle class="ft-wheel" cx="9" cy="-3" r="4"/><circle class="ft-wheel" cx="29" cy="-3" r="4"/></g>`);
+        if (this.done) out.push(`<text class="ft-dist" x="${Math.min(600, x + 19).toFixed(1)}" y="${floorY - 26}" text-anchor="middle">${Math.round(this.pos[i])} cm</text>`);
+      });
+      this.querySelector('[data-ft="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('fair-test', FairTest);
+</script>

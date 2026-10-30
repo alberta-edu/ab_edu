@@ -40,6 +40,7 @@ import MoonPhases from './visuals/MoonPhases.astro';
 import Aurora from './visuals/Aurora.astro';
 import BlockCode from './visuals/BlockCode.astro';
 import DesignLab from './visuals/DesignLab.astro';
+import FairTest from './visuals/FairTest.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -50,6 +51,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'fair-test': FairTest,
   'design-lab': DesignLab,
   'block-code': BlockCode,
   'aurora': Aurora,
