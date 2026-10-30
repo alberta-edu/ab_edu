@@ -16,10 +16,11 @@ function panItems(items: string[]): string {
   });
   for (const m of masses) {
     const g = m.endsWith('kg') ? Number.parseFloat(m) * 1000 : Number.parseFloat(m);
-    const h = g >= 500 ? 20 : g >= 100 ? 15 : 11;
-    const w = g >= 500 ? 46 : g >= 100 ? 36 : 26;
+    // Bigger masses are drawn bigger, but every label stays large enough to read.
+    const h = g >= 500 ? 30 : g >= 100 ? 26 : 22;
+    const w = g >= 500 ? 84 : g >= 100 ? 74 : 62;
     y -= h;
-    out += `<rect class="mt-mass" x="${-w / 2}" y="${y}" width="${w}" height="${h}" rx="3"/><text class="mt-mass-t" x="0" y="${y + h / 2 + 4}" text-anchor="middle">${m}</text>`;
+    out += `<rect class="mt-mass" x="${-w / 2}" y="${y}" width="${w}" height="${h}" rx="4"/><text class="sci-text" x="0" y="${y + h / 2 + 5}" text-anchor="middle">${m}</text>`;
   }
   return out;
 }
@@ -45,7 +46,7 @@ export function balanceSvg(left: string[], right: string[], down: 'left' | 'righ
     .join('');
   const aria = `Pan balance. Left pan: ${left.join(', ')}. Right pan: ${right.join(', ')}. ${down === 'none' ? 'The balance is level.' : `The ${down} side is lower.`}`;
   return (
-    `<svg viewBox="0 0 560 240" class="fig-svg" role="img" aria-label="${aria}">` +
+    `<svg viewBox="0 -40 560 280" class="fig-svg" role="img" aria-label="${aria}">` +
     `<path class="mt-post" d="M262,228 L298,228 L288,${py} L272,${py} Z"/><rect class="mt-post" x="210" y="226" width="140" height="10" rx="4"/>` +
     `<line class="mt-beam" x1="${ends[0].x.toFixed(1)}" y1="${ends[0].y.toFixed(1)}" x2="${ends[1].x.toFixed(1)}" y2="${ends[1].y.toFixed(1)}"/><circle class="mt-post" cx="${px}" cy="${py}" r="7"/>` +
     pans +

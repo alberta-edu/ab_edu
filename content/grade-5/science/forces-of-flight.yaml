@@ -1,0 +1,387 @@
+id: forces-of-flight
+grade: 5
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI5-OI2-GQ1-LO1]
+order: 3
+title: Forces of Flight
+shortTitle: Forces of flight
+summary: >-
+  Change thrust, drag, lift and weight and watch an airplane or a bird speed up, slow down, climb and
+  descend, then see the forces at work on an arrow.
+
+bigIdea: |-
+  Four forces act on anything that flies. They come in two **opposing pairs**: **thrust** against **drag**,
+  and **lift** against **weight**. Whichever force in a pair is bigger decides whether a flyer speeds up or
+  slows down, and whether it climbs or descends.
+
+lesson:
+  - title: The four forces of flight
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4, K1.5, K1.6, S1.1, S1.4]
+        component: flight-forces
+        caption: |-
+          Move the sliders or try a flight. Watch the **speed** and **altitude** (height above the ground). Switch to
+          the **bird** to see that the same forces act on living things.
+      - type: table
+        covers: [K1.3, K1.4, K1.5, K1.6]
+        headers: [Force, Direction, What it does]
+        rows:
+          - ['**Thrust**', 'Forward, in the direction of movement', 'Pushes the flyer forward']
+          - ['**Drag**', 'Backward, against the movement', 'Slows the flyer down']
+          - ['**Lift**', 'Up', 'Overcomes weight and holds the flyer in the air']
+          - ['**Weight**', 'Down', 'Pulls the flyer toward the ground. It is caused by **gravity**']
+
+  - title: Two pairs of opposing forces
+    blocks:
+      - type: figure
+        covers: [K1.1, K1.2, S1.1]
+        figure: { kind: forces, object: plane, forces: [{ kind: thrust }, { kind: drag }, { kind: lift }, { kind: weight }] }
+        caption: A force diagram. Each arrow points the way its force acts. A longer arrow means a bigger force.
+      - type: compare
+        covers: [K1.1, K1.2, K1.7, U1.1]
+        columns:
+          - title: Thrust vs. drag
+            body: |-
+              These two forces work **forward and backward**. Together they change the flyer's **speed** and its
+              horizontal movement.
+          - title: Lift vs. weight
+            body: |-
+              These two forces work **up and down**. Together they change the flyer's **altitude** and its vertical
+              movement.
+
+  - title: What the forces do
+    blocks:
+      - type: table
+        covers: [K1.7, S1.2, S1.3]
+        headers: [When…, The flyer…]
+        rows:
+          - ['thrust is **greater** than drag', '**speeds up**']
+          - ['drag is **greater** than thrust', '**slows down**']
+          - ['lift is **greater** than weight', '**climbs** to a higher altitude']
+          - ['weight is **greater** than lift', '**descends** to a lower altitude']
+          - ['thrust **equals** drag **and** lift **equals** weight', 'flies **straight and level** at the same speed']
+      - type: figure
+        covers: [K1.7, S1.3, S1.1]
+        figure: { kind: forces, object: bird, forces: [{ kind: thrust }, { kind: drag }, { kind: lift, size: 1.5 }, { kind: weight }] }
+        caption: Lift is greater than weight, and thrust equals drag. This bird **climbs** without speeding up or slowing down.
+
+  - title: 'Virtual experiment: shoot an arrow'
+    blocks:
+      - type: experiment
+        covers: [K1.3, K1.4, K1.6, K1.8, U1.1, S1.2, S1.3]
+        title: Aim an arrow straight at the centre
+        question: The archer aims the arrow **straight at the centre** of a target, then lets go.
+        animation: arrow-flight
+        predict:
+          choices:
+            - It flies in a straight line and hits the centre.
+            - Its path curves down, and it hits below the centre.
+            - Its path curves up, and it hits above the centre.
+          answer: 1
+        observe: |-
+          The bowstring pushed the arrow forward only **while it was touching it**. Then the arrow slowed down, its
+          path curved downward, and it hit **below** the centre.
+        explain: |-
+          - **Thrust** from the bowstring acts only at the start.
+          - **Drag** acts against the movement the whole time, so the arrow slows down.
+          - **Weight** pulls down the whole time, and an arrow has almost no lift, so its path curves toward the ground.
+      - type: callout
+        variant: mistake
+        covers: [K1.3, K1.6]
+        title: Thrust doesn't ride along
+        body: Once an arrow leaves the bow, nothing pushes it forward any more. **Drag** and **weight** keep acting until it lands.
+
+  - title: Traditional technologies of flight
+    blocks:
+      - type: figure
+        covers: [K1.8, S1.1]
+        figure: { kind: forces, object: spear, forces: [{ kind: thrust }, { kind: drag, size: 0.5 }, { kind: weight, size: 0.7 }] }
+        caption: |-
+          A fishing spear at the moment it is thrown. The throw gives it **thrust**. Its long, thin shape keeps
+          **drag** small, and **weight** pulls it down.
+      - type: compare
+        covers: [K1.8, S1.5]
+        columns:
+          - title: Bow and arrow
+            body: The bent bow springs back, and the string gives the arrow **thrust**.
+          - title: Slingshot
+            body: The stretched band snaps forward and gives the stone **thrust**.
+          - title: Fishing spear
+            body: A strong throw gives the spear **thrust**. Its shape keeps **drag** small.
+      - type: text
+        covers: [K1.8, S1.5]
+        body: |-
+          Peoples of many cultures developed these tools long ago. First Nations and Inuit hunters used bows and arrows
+          and fishing spears. Each tool shows an understanding of the forces that affect flight.
+
+keyTerms:
+  - term: Thrust
+    covers: [K1.3]
+    definition: A force that can act in the direction of movement.
+  - term: Drag
+    covers: [K1.4]
+    definition: A force that can act against the direction of movement.
+  - term: Lift
+    covers: [K1.5]
+    definition: An upward force that overcomes weight and holds a flyer in the air.
+  - term: Weight
+    covers: [K1.6]
+    definition: A downward force caused by gravity.
+  - term: Opposing forces
+    covers: [K1.1, K1.2]
+    definition: 'Forces that act in opposite directions: thrust and drag, and lift and weight.'
+  - term: Altitude
+    covers: [K1.7]
+    definition: How high something is above the ground.
+  - term: Straight and level flight
+    covers: [K1.7]
+    definition: Flying at the same speed and altitude, when thrust equals drag and lift equals weight.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.6]
+    type: mc
+    prompt: Which force is caused by **gravity** and pulls a flyer **down**?
+    choices: [Weight, Lift, Thrust, Drag]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Lift pushes **up**.
+      '2': Thrust acts in the direction of movement.
+      '3': Drag acts against the movement, not downward.
+    hints:
+      - This force acts on you even when you are standing still.
+    solution:
+      - '**Weight** is caused by gravity and acts downward.'
+
+  - id: w2
+    level: 1
+    covers: [K1.1, K1.4]
+    type: mc
+    prompt: Which force **opposes thrust**?
+    choices: [Drag, Lift, Weight, Gravity]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Lift opposes **weight**.
+      '2': Weight opposes **lift**.
+      '3': Gravity causes weight, which opposes lift.
+    hints:
+      - Thrust pushes forward. Which force pushes backward?
+    solution:
+      - Thrust and **drag** are opposing forces.
+
+  - id: w3
+    level: 1
+    covers: [K1.5]
+    type: mc
+    prompt: What does **lift** do?
+    choices:
+      - It acts upward to overcome weight and hold a flyer in the air.
+      - It pushes a flyer forward.
+      - It slows a flyer down.
+      - It pulls a flyer toward the ground.
+    answer: 0
+    feedback:
+      '1': That is **thrust**.
+      '2': That is **drag**.
+      '3': That is **weight**.
+    hints:
+      - Lift and weight are an opposing pair.
+    solution:
+      - '**Lift** is an upward force that overcomes weight and holds a flyer in the air.'
+
+  - id: w4
+    level: 1
+    covers: [K1.1, K1.2]
+    type: mc
+    prompt: Which is a pair of **opposing forces**?
+    choices: [Lift and weight, Thrust and lift, Drag and weight, Thrust and weight]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Thrust acts forward and lift acts up. They don't point in opposite directions.
+      '2': Drag acts backward and weight acts down.
+      '3': Thrust acts forward and weight acts down.
+    hints:
+      - Opposing forces point in opposite directions.
+    solution:
+      - Lift (up) and weight (down) are opposing forces. So are thrust (forward) and drag (backward).
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.7, S1.2, S1.1]
+    type: mc
+    figure: { kind: forces, object: plane, forces: [{ kind: thrust, size: 1.6 }, { kind: drag }, { kind: lift }, { kind: weight }] }
+    prompt: Look at the force diagram. What is happening to the airplane?
+    choices:
+      - It is speeding up and staying at the same altitude.
+      - It is slowing down.
+      - It is climbing.
+      - It is flying at a steady speed.
+    answer: 0
+    feedback:
+      '1': The thrust arrow is **longer** than the drag arrow.
+      '2': Lift and weight are the same length, so the altitude doesn't change.
+      '3': Thrust and drag are not equal, so the speed is changing.
+    hints:
+      - Compare the lengths of each opposing pair of arrows.
+    solution:
+      - Thrust is greater than drag → the plane **speeds up**.
+      - Lift equals weight → it stays at the **same altitude**.
+
+  - id: b2
+    level: 2
+    covers: [K1.7, S1.3, S1.1]
+    type: mc
+    figure: { kind: forces, object: bird, forces: [{ kind: thrust }, { kind: drag }, { kind: lift, size: 0.5 }, { kind: weight }] }
+    prompt: Look at the force diagram for this bird. What is it doing?
+    choices: [Descending, Climbing, Speeding up, Flying straight and level]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': To climb, lift would need to be **greater** than weight.
+      '2': Thrust and drag are equal, so its speed stays the same.
+      '3': Straight and level needs lift to **equal** weight.
+    hints:
+      - Which is longer, the lift arrow or the weight arrow?
+    solution:
+      - Weight is greater than lift, so the bird **descends** to a lower altitude.
+
+  - id: b3
+    level: 2
+    covers: [K1.7, U1.1]
+    type: mc
+    prompt: A plane is in **straight and level flight**. What must be true?
+    choices:
+      - Thrust equals drag, and lift equals weight.
+      - Thrust is greater than drag, and lift is greater than weight.
+      - There are no forces acting on the plane.
+      - Lift equals thrust, and drag equals weight.
+    answer: 0
+    feedback:
+      '1': Then the plane would speed up and climb.
+      '2': All four forces still act on the plane. They are just balanced in pairs.
+      '3': Lift is paired with **weight**, and thrust with **drag**.
+    hints:
+      - Straight and level means the speed and the altitude stay the same.
+    solution:
+      - Same speed → thrust = drag. Same altitude → lift = weight.
+
+  - id: b4
+    level: 2
+    covers: [K1.8, K1.3, S1.5]
+    type: mc
+    prompt: When the stretched band of a slingshot snaps forward, which force does it give the stone?
+    choices: [Thrust, Drag, Lift, Weight]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Drag acts **against** the movement, not with it.
+      '2': Lift acts upward. The band pushes the stone forward.
+      '3': Weight comes from gravity, not from the band.
+    hints:
+      - Which force acts in the direction of movement?
+    solution:
+      - The band pushes the stone forward, in the direction it moves. That is **thrust**.
+
+  - id: b5
+    level: 2
+    covers: [K1.3, K1.4, K1.6, U1.1]
+    type: multi
+    prompt: An arrow has just left the bow. Select **all** the forces still acting on it.
+    choices: [Drag, Weight, Thrust from the bowstring, No forces at all]
+    fixedOrder: true
+    answer: [0, 1]
+    hints:
+      - Is the bowstring still touching the arrow?
+    solution:
+      - '✓ **Drag** acts against its movement and slows it down.'
+      - '✓ **Weight** pulls it down.'
+      - '✗ The bowstring only pushes while it touches the arrow.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.6, K1.8, U1.1, S1.5]
+    type: mc
+    prompt: An archer wants to hit the centre of a target far away. Where should they aim?
+    choices:
+      - A little above the centre, because weight pulls the arrow down as it flies.
+      - Right at the centre, because arrows fly in straight lines.
+      - A little below the centre, because lift pushes the arrow up.
+      - It doesn't matter, because drag cancels weight.
+    answer: 0
+    feedback:
+      '1': In the experiment, an arrow aimed at the centre hit **below** it.
+      '2': An arrow has almost no lift. Its path curves **down**.
+      '3': Drag acts backward and weight acts down. They don't cancel.
+    hints:
+      - Remember where the arrow hit in the virtual experiment.
+    solution:
+      - Weight pulls the arrow down for the whole flight, so its path curves downward.
+      - Aiming a little **above** the centre makes up for the drop.
+
+  - id: d2
+    level: 3
+    covers: [K1.7, S1.3]
+    type: mc
+    prompt: A plane is flying straight and level. Which change would make it **descend**?
+    choices:
+      - Lift becomes less than weight.
+      - Thrust becomes greater than drag.
+      - Lift becomes greater than weight.
+      - Nothing changes.
+    answer: 0
+    feedback:
+      '1': That changes the **speed**, not the altitude.
+      '2': That makes the plane **climb**.
+      '3': If the forces stay balanced, the plane keeps flying straight and level.
+    hints:
+      - Altitude changes when lift and weight are not equal.
+    solution:
+      - When weight is greater than lift, the plane **descends** to a lower altitude.
+
+  - id: d3
+    level: 3
+    covers: [S1.6, S1.2, S1.3]
+    type: mc
+    prompt: |-
+      Ava builds a paper airplane. After she throws it, it **slows down quickly** and then drops toward the floor.
+      Which explanation fits?
+    choices:
+      - Drag is greater than thrust, and then weight is greater than lift.
+      - Thrust is greater than drag, and lift is greater than weight.
+      - The paper airplane has no weight.
+      - Lift is acting downward.
+    answer: 0
+    feedback:
+      '1': Then it would speed up and climb.
+      '2': Everything that has mass has weight.
+      '3': Lift always acts **upward**.
+    hints:
+      - Slowing down is about thrust and drag. Dropping is about lift and weight.
+    solution:
+      - Slowing down → drag is greater than thrust (after the throw, there is no more thrust).
+      - Dropping → weight is greater than lift.
+
+  - id: d4
+    level: 3
+    covers: [U1.1, S1.1, S1.2, S1.3]
+    type: open
+    prompt: |-
+      A goose flies straight and level across a lake. Describe the four forces acting on it. Explain how each
+      pair of opposing forces keeps its flight straight and level.
+    modelAnswer: |-
+      Thrust from flapping its wings pushes the goose forward, and drag pushes backward against its movement.
+      They are equal, so its speed stays the same. Lift pushes up and weight pulls down. They are equal too, so its
+      altitude stays the same. That is straight and level flight.
+    rubric:
+      - I named all four forces and their directions.
+      - I said thrust **equals** drag, so the speed stays the same.
+      - I said lift **equals** weight, so the altitude stays the same.

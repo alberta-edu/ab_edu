@@ -82,7 +82,7 @@
         if (this.arrows) {
           const r = restingPlace(egg, fl, SURFACE, FLOOR);
           const mid = this.tops[i] + egg.h / 2;
-          out.push(forceArrow('weight', g.cx - 46, mid, 54, 'Weight') + forceArrow('buoyant', g.cx + 46, mid, 54 * r.buoyant, 'Buoyant force'));
+          out.push(forceArrow('weight', g.cx - 46, Math.min(mid, FLOOR - 86), 54, 'Weight') + forceArrow('buoyant', g.cx + 46, mid, 54 * r.buoyant, 'Buoyant force'));
         }
       });
       this.querySelector('[data-ef="svg"]')!.innerHTML = out.join('');

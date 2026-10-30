@@ -74,15 +74,19 @@ export interface ForceSpec {
 
 /**
  * A force diagram: an object with its forces drawn as arrows from its centre. With `water`
- * the object floats at a water line, and buoyant force replaces lift for the upward arrow.
+ * the object sits in water: at the surface when the buoyant force is at least its weight,
+ * under the surface when it is smaller (the object is sinking).
  */
 export function forceDiagram(object: ObjectKind, forces: ForceSpec[], opts: { water?: boolean; title?: string } = {}): string {
   const BASE = 68;
   // Arrows start at the edge of the object so they don't hide it.
   const edge: Record<ForceKind, number> = { thrust: 0, drag: 0, lift: 0, weight: 0, buoyant: 0 };
-  const half = { plane: [92, 12], bird: [66, 12], arrow: [100, 12], spear: [112, 10], stone: [17, 16], boat: [72, 22], block: [36, 36], egg: [22, 29], balloon: [32, 52], ball: [30, 30] }[object];
+  // Long, thin objects are drawn smaller so their arrows and labels still fit a small card.
+  const scale = object === 'arrow' || object === 'spear' ? 0.55 : 1;
+  const half = { plane: [92, 12], bird: [66, 12], arrow: [100, 12], spear: [112, 10], stone: [17, 16], boat: [72, 22], block: [36, 36], egg: [22, 29], balloon: [32, 52], ball: [30, 30] }[object].map((v) => v * scale);
   edge.thrust = edge.drag = half[0] + 4;
   edge.lift = edge.buoyant = edge.weight = half[1] + 4;
+  if (object === 'balloon') edge.weight = 86; // below the string
   const arrows = forces
     .map((f) => {
       const len = BASE * (f.size ?? 1);
@@ -90,8 +94,32 @@ export function forceDiagram(object: ObjectKind, forces: ForceSpec[], opts: { wa
       return forceArrow(f.kind, dx * edge[f.kind], dy * edge[f.kind], len, f.label ?? FORCE_LABEL[f.kind]);
     })
     .join('');
-  const water = opts.water ? '<rect class="sci-water" x="-230" y="6" width="460" height="200"/><line class="sci-surface" x1="-230" y1="6" x2="230" y2="6"/>' : '';
+  // Fit the picture to the object and its arrows, so small diagrams stay readable.
+  let [left, right, up, down] = [half[0], half[0], half[1], half[1] + (object === 'balloon' ? 34 : 0)];
+  let labelHalf = 0;
+  for (const f of forces) {
+    const tip = edge[f.kind] + BASE * (f.size ?? 1);
+    const text = (f.label ?? FORCE_LABEL[f.kind]).length * 9.5;
+    if (f.kind === 'thrust') right = Math.max(right, tip + 12 + text);
+    else if (f.kind === 'drag') left = Math.max(left, tip + 12 + text);
+    else {
+      labelHalf = Math.max(labelHalf, text / 2);
+      if (f.kind === 'weight') down = Math.max(down, tip + 26);
+      else up = Math.max(up, tip + 26);
+    }
+  }
+  // Leave some water on both sides so it reads as a pond, not a box.
+  if (opts.water) [left, right] = [Math.max(left, half[0] + 80), Math.max(right, half[0] + 80)];
+  const x0 = -Math.max(left, labelHalf) - 10;
+  const w = Math.max(left, labelHalf) + Math.max(right, labelHalf) + 20;
+  const y0 = -up - 6;
+  const h = up + down + 12;
+  const size = (k: ForceKind) => forces.find((f) => f.kind === k)?.size ?? (forces.some((f) => f.kind === k) ? 1 : 0);
+  const sinking = size('buoyant') < size('weight');
+  // A floating object sits partly under the surface; a sinking one is drawn below it.
+  const surface = sinking ? y0 + 4 : -half[1] * 0.2;
+  const water = opts.water ? `<rect class="sci-water" x="${x0}" y="${surface}" width="${w}" height="${y0 + h - surface}"/><line class="sci-surface" x1="${x0}" y1="${surface}" x2="${x0 + w}" y2="${surface}"/>` : '';
   const names = forces.map((f) => f.label ?? FORCE_LABEL[f.kind]).join(', ');
   const aria = opts.title ?? `Force diagram: ${object} with ${names}.`;
-  return `<svg viewBox="-230 -175 460 330" class="fig-svg force-svg" role="img" aria-label="${aria}">${water}<g>${OBJECT_SVG[object]}</g>${arrows}</svg>`;
+  return `<svg viewBox="${x0.toFixed(0)} ${y0.toFixed(0)} ${w.toFixed(0)} ${h.toFixed(0)}" class="fig-svg force-svg" role="img" aria-label="${aria}">${water}<g transform="scale(${scale})">${OBJECT_SVG[object]}</g>${arrows}</svg>`;
 }

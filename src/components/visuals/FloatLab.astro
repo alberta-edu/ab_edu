@@ -115,14 +115,15 @@ const { start = 'wood' } = Astro.props;
       let arrows = '';
       if (this.settled) {
         const mid = this.top + thing.h / 2;
+        // An object resting on the floor gets its weight arrow raised so it and its label stay in the glass.
         arrows =
-          forceArrow('buoyant', cx + 70, mid, WEIGHT * rest.buoyant, 'Buoyant force') + forceArrow('weight', cx - 70, mid, WEIGHT, 'Weight');
+          forceArrow('buoyant', cx + 70, mid, WEIGHT * rest.buoyant, 'Buoyant force') + forceArrow('weight', cx - 70, Math.min(mid, FLOOR - WEIGHT - 32), WEIGHT, 'Weight');
       }
       this.querySelector('[data-fl="svg"]')!.innerHTML =
         `<rect class="${fluid.cls}" x="${X0}" y="${SURFACE}" width="${X1 - X0}" height="${FLOOR - SURFACE}"/><line class="sci-surface" x1="${X0}" y1="${SURFACE}" x2="${X1}" y2="${SURFACE}"/>` +
         `<g transform="translate(${cx} ${this.top.toFixed(1)})">${thing.svg}</g>` +
         `<path class="sci-glass" d="M${X0},40 L${X0},${FLOOR + 2} L${X1},${FLOOR + 2} L${X1},40"/>` +
-        `<text class="sci-small" x="${X1 - 8}" y="${FLOOR - 10}" text-anchor="end">${fluid.label}</text>` +
+        `<text class="sci-small" x="${X1 + 10}" y="${FLOOR - 4}">${fluid.label}</text>` +
         arrows;
     }
   }
