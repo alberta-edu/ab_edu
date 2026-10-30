@@ -36,6 +36,8 @@ import HarvestSim from './visuals/HarvestSim.astro';
 import BodySystems from './visuals/BodySystems.astro';
 import PlantTransport from './visuals/PlantTransport.astro';
 import SeasonsOrbit from './visuals/SeasonsOrbit.astro';
+import MoonPhases from './visuals/MoonPhases.astro';
+import Aurora from './visuals/Aurora.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -46,6 +48,8 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'aurora': Aurora,
+  'moon-phases': MoonPhases,
   'seasons-orbit': SeasonsOrbit,
   'plant-transport': PlantTransport,
   'body-systems': BodySystems,

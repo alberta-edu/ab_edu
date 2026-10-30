@@ -2,6 +2,7 @@
 import { fractionSvg } from '../components/visuals/fraction-svg.ts';
 import { gridSvg } from '../components/visuals/coord-grid.ts';
 import { SHAPES } from '../components/visuals/symmetry.ts';
+import { moonFace } from '../components/visuals/moon.ts';
 import { balanceSvg, cylinderSvg } from '../components/visuals/measure-svg.ts';
 import { forceDiagram, type ForceSpec, type ObjectKind } from '../components/visuals/force-arrows.ts';
 
@@ -17,7 +18,8 @@ export type Figure =
   | { kind: 'square-metre' }
   | { kind: 'forces'; object: ObjectKind; forces: ForceSpec[]; water?: boolean }
   | { kind: 'balance'; left: string[]; right: string[]; down: 'left' | 'right' | 'none' }
-  | { kind: 'cylinder'; max: number; minor: number; major: number; level: number };
+  | { kind: 'cylinder'; max: number; minor: number; major: number; level: number }
+  | { kind: 'moons'; ages: number[]; labels?: string[] };
 
 /** Small deterministic random generator so figures are identical on every build. */
 function rng(seed: number) {
@@ -134,6 +136,11 @@ export function renderFigure(f: Figure): string {
       return shapeFigure(f.shape, f.lines);
     case 'square-metre':
       return squareMetre();
+    case 'moons': {
+      const w = f.ages.length * 130;
+      const faces = f.ages.map((a, i) => moonFace(a, 65 + i * 130, 62, 46) + `<text class="mn-fig-label" x="${65 + i * 130}" y="140" text-anchor="middle">${f.labels?.[i] ?? String.fromCharCode(65 + i)}</text>`).join('');
+      return `<svg viewBox="0 0 ${w} 156" class="fig-svg mn-fig" role="img" aria-label="${f.ages.length} drawings of the Moon">${faces}</svg>`;
+    }
     case 'balance':
       return balanceSvg(f.left, f.right, f.down);
     case 'cylinder':

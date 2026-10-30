@@ -3,6 +3,7 @@
 import type { LessonBlock } from '../../lib/schema.ts';
 import { md, mdInline } from '../../lib/render.ts';
 import ContainerSwap from './ContainerSwap.astro';
+import Eclipses from './Eclipses.astro';
 import SunPath from './SunPath.astro';
 import CeleryDye from './CeleryDye.astro';
 import BodyTrip from './BodyTrip.astro';
@@ -20,6 +21,7 @@ interface Props {
 const { block, uid } = Astro.props;
 const animations = {
   'container-swap': ContainerSwap,
+  'eclipses': Eclipses,
   'sun-path': SunPath,
   'celery-dye': CeleryDye,
   'body-trip': BodyTrip,

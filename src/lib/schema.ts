@@ -36,6 +36,7 @@ export const figureSchema = z.union([
     forces: z.array(z.strictObject({ kind: z.enum(['thrust', 'drag', 'lift', 'weight', 'buoyant']), size: z.number().min(0).max(2).optional(), label: z.string().optional() })).min(1).max(4),
     water: z.boolean().optional(),
   }),
+  z.strictObject({ kind: z.literal('moons'), ages: z.array(z.number().min(0).max(29.6)).min(1).max(5), labels: z.array(z.string()).optional() }),
   z.strictObject({ kind: z.literal('balance'), left: z.array(z.string()).max(4), right: z.array(z.string()).max(6), down: z.enum(['left', 'right', 'none']) }),
   z.strictObject({ kind: z.literal('cylinder'), max: z.number().positive(), minor: z.number().positive(), major: z.number().positive(), level: z.number().min(0) }),
   z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(1).max(4), labels: z.array(z.string()).optional() }),
@@ -140,7 +141,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
@@ -197,7 +198,7 @@ const block = z.discriminatedUnion('type', [
     covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['container-swap', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run']),
+    animation: z.enum(['container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),

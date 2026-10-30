@@ -1,0 +1,107 @@
+---
+// Moon phases (SCI5-OI5-GQ1-LO1, K1.2, K1.3, S1.2, S1.4): the Moon travels around Earth. Half
+// of it is always lit by the Sun; the phase is how much of that lit half we can see from Earth.
+const JUMPS = [
+  { label: 'New Moon', day: 0 },
+  { label: 'First quarter', day: 7.4 },
+  { label: 'Full Moon', day: 14.8 },
+  { label: 'Third quarter', day: 22.1 },
+];
+---
+<moon-phases>
+  <svg class="sci-svg mn-svg" viewBox="0 0 640 300" aria-hidden="true" data-mn="svg"></svg>
+  <div class="control-row so-controls">
+    <button type="button" class="btn btn--small" data-mn="play">▶ Play a month</button>
+    <label class="control so-slider">Day <input type="range" min="0" max="29.5" step="0.1" value="3.7" data-mn="day" /></label>
+  </div>
+  <div class="sci-pick" role="group" aria-label="Jump to a phase">
+    {JUMPS.map((j) => <button type="button" data-mn-jump={j.day} aria-pressed="false">{j.label}</button>)}
+  </div>
+  <p class="sci-say" aria-live="polite" data-mn="say"></p>
+</moon-phases>
+
+<style is:global>
+  moon-phases { display: block; }
+  .mn-svg { background: #0f1830; }
+  .mn-orbit { fill: none; stroke: #4a5a86; stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .mn-earth { fill: #4f9de0; stroke: #8fb3ff; stroke-width: 1; }
+  .mn-sight { stroke: #ffcf3d; stroke-width: 1.5; stroke-dasharray: 3 4; opacity: 0.7; }
+  .mn-name { fill: #fff; font-size: 18px; font-weight: 700; }
+</style>
+
+<script>
+  import { moonFace, phaseName, litFraction, MONTH } from './moon.ts';
+
+  const E = { x: 220, y: 150 };
+  const R = 105;
+  const RAD = Math.PI / 180;
+
+  class MoonPhases extends HTMLElement {
+    private day = 3.7;
+    private playing = 0;
+
+    connectedCallback() {
+      const slider = this.querySelector<HTMLInputElement>('[data-mn="day"]')!;
+      slider.addEventListener('input', () => this.set(Number(slider.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-mn-jump]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.stop();
+          this.set(Number(b.dataset.mnJump));
+        }),
+      );
+      this.querySelector('[data-mn="play"]')!.addEventListener('click', () => (this.playing ? this.stop() : this.play()));
+      this.set(this.day);
+    }
+
+    private play() {
+      this.querySelector('[data-mn="play"]')!.textContent = '❚❚ Pause';
+      let last = performance.now();
+      const step = (now: number) => {
+        // A month takes about 10 seconds.
+        this.set((this.day + ((now - last) / 1000) * 3) % MONTH);
+        last = now;
+        this.playing = requestAnimationFrame(step);
+      };
+      this.playing = requestAnimationFrame(step);
+    }
+
+    private stop() {
+      cancelAnimationFrame(this.playing);
+      this.playing = 0;
+      this.querySelector('[data-mn="play"]')!.textContent = '▶ Play a month';
+    }
+
+    private set(day: number) {
+      this.day = day;
+      this.querySelector<HTMLInputElement>('[data-mn="day"]')!.value = day.toFixed(1);
+      const name = phaseName(day);
+      this.querySelectorAll('[data-mn-jump]').forEach((b) => b.setAttribute('aria-pressed', String(phaseName(Number(b.getAttribute('data-mn-jump'))) === name)));
+      const pct = Math.round(litFraction(day) * 100);
+      const trend = name === 'New Moon' || name === 'Full Moon' ? '' : day < MONTH / 2 ? ' The lit part is growing (waxing).' : ' The lit part is shrinking (waning).';
+      this.querySelector('[data-mn="say"]')!.textContent = `Day ${Math.round(day)}: ${name}. About ${pct}% of the face we see is lit.${trend}`;
+      this.draw();
+    }
+
+    private draw() {
+      const out: string[] = [];
+      // Sunlight from the left.
+      for (let k = -4; k <= 4; k++) out.push(`<line class="so-ray" x1="10" y1="${150 + k * 30}" x2="70" y2="${150 + k * 30}"/>`);
+      out.push(`<text class="so-text" x="10" y="20">sunlight</text>`);
+      out.push(`<circle class="mn-orbit" cx="${E.x}" cy="${E.y}" r="${R}"/>`);
+      out.push(`<circle class="mn-earth" cx="${E.x}" cy="${E.y}" r="20"/><text class="so-text" x="${E.x}" y="${E.y + 38}" text-anchor="middle">Earth</text>`);
+      // The Moon goes counterclockwise, starting between Earth and the Sun (new Moon).
+      const a = (180 + (this.day / MONTH) * 360) * RAD;
+      const m = { x: E.x + Math.cos(a) * R, y: E.y - Math.sin(a) * R };
+      out.push(`<line class="mn-sight" x1="${E.x}" y1="${E.y}" x2="${m.x.toFixed(1)}" y2="${m.y.toFixed(1)}"/>`);
+      // In space, the half facing the Sun (left) is always lit.
+      out.push(`<circle class="mn-dark" cx="${m.x.toFixed(1)}" cy="${m.y.toFixed(1)}" r="13"/><path class="mn-lit" d="M${m.x.toFixed(1)},${(m.y - 13).toFixed(1)} A13,13 0 0 0 ${m.x.toFixed(1)},${(m.y + 13).toFixed(1)} Z"/>`);
+      out.push(`<text class="so-text" x="${E.x}" y="30" text-anchor="middle">Seen from above</text>`);
+      // What we see from Earth.
+      out.push(`<text class="so-text" x="510" y="30" text-anchor="middle">Seen from Alberta</text>`);
+      out.push(moonFace(this.day, 510, 140, 82));
+      out.push(`<text class="mn-name" x="510" y="265" text-anchor="middle">${phaseName(this.day)}</text>`);
+      this.querySelector('[data-mn="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('moon-phases', MoonPhases);
+</script>
