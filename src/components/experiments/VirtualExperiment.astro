@@ -7,6 +7,7 @@ import LiquidLayers from './LiquidLayers.astro';
 import SyringeSqueeze from './SyringeSqueeze.astro';
 import ArrowFlight from './ArrowFlight.astro';
 import EggFloat from './EggFloat.astro';
+import EnergyRun from './EnergyRun.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -19,6 +20,7 @@ const animations = {
   'syringe-squeeze': SyringeSqueeze,
   'arrow-flight': ArrowFlight,
   'egg-float': EggFloat,
+  'energy-run': EnergyRun,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

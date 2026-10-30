@@ -1,0 +1,116 @@
+---
+// Animated experiment: use five energy resources every year for 100 years. Renewable ones
+// are replenished naturally (forests only because they are replanted); fossil fuels run out
+// (SCI5-OI2-GQ2-LO1, K1.1-K1.5).
+---
+<energy-run>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-er="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-er="live"></p>
+</energy-run>
+
+<style is:global>
+  energy-run { display: block; }
+  energy-run svg { background: var(--surface-2); }
+  .er-tank { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .er-fill--renew { fill: color-mix(in srgb, var(--science) 70%, var(--surface)); }
+  .er-fill--fossil { fill: color-mix(in srgb, #8a6d4b 80%, var(--surface)); }
+  .er-year { fill: var(--ink); font-size: 22px; font-weight: 700; }
+  .er-out { fill: var(--bad); font-size: 14px; font-weight: 700; }
+  .er-ok { fill: var(--ok); font-size: 14px; font-weight: 700; }
+  .er-sun { fill: var(--sun); }
+  .er-ray { stroke: var(--sun); stroke-width: 3; stroke-linecap: round; }
+  .er-pole { stroke: var(--ink-2); stroke-width: 3; }
+  .er-blade { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+  .er-tree { fill: #3f9a40; }
+  .er-trunk { fill: #7a5232; }
+  .er-coal { fill: #3a3a3a; stroke: var(--ink); stroke-width: 1.5; }
+  .er-flame { fill: #4f8ee8; }
+  .er-flame-in { fill: #bcd6ff; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  type R = { id: string; label: string; renew: boolean; use: number };
+  // `use` is how much of a full tank each year takes. Renewables refill every year.
+  const RES: R[] = [
+    { id: 'solar', label: 'Solar', renew: true, use: 0 },
+    { id: 'wind', label: 'Wind', renew: true, use: 0 },
+    { id: 'biomass', label: 'Biomass', renew: true, use: 0.3 },
+    { id: 'coal', label: 'Coal', renew: false, use: 1 / 55 },
+    { id: 'gas', label: 'Natural gas', renew: false, use: 1 / 40 },
+  ];
+  const TOP = 92;
+  const H = 140;
+  const TW = 54;
+  const colX = (i: number) => 76 + i * 127;
+
+  const ICON: Record<string, string> = {
+    solar:
+      '<circle class="er-sun" r="14"/>' +
+      Array.from({ length: 8 }, (_, k) => {
+        const a = (k * Math.PI) / 4;
+        return `<line class="er-ray" x1="${(Math.cos(a) * 19).toFixed(1)}" y1="${(Math.sin(a) * 19).toFixed(1)}" x2="${(Math.cos(a) * 26).toFixed(1)}" y2="${(Math.sin(a) * 26).toFixed(1)}"/>`;
+      }).join(''),
+    wind: '<line class="er-pole" x1="0" y1="0" x2="0" y2="30"/><g data-er="blades"><path class="er-blade" d="M0,0 L-4,-26 L4,-26 Z"/><path class="er-blade" d="M0,0 L-4,-26 L4,-26 Z" transform="rotate(120)"/><path class="er-blade" d="M0,0 L-4,-26 L4,-26 Z" transform="rotate(240)"/></g>',
+    biomass: '<rect class="er-trunk" x="-4" y="6" width="8" height="22"/><circle class="er-tree" cx="0" cy="-6" r="18"/>',
+    coal: '<path class="er-coal" d="M-18,10 L-12,-8 L2,-14 L16,-6 L20,10 Z"/>',
+    gas: '<path class="er-flame" d="M0,-24 Q16,-4 10,10 Q0,20 -10,10 Q-16,-4 0,-24 Z"/><path class="er-flame-in" d="M0,-6 Q7,4 4,10 Q0,14 -4,10 Q-7,4 0,-6 Z"/>',
+  };
+
+  class EnergyRun extends HTMLElement {
+    private year = 0;
+    private level = RES.map(() => 1);
+    private spin = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.year = 0;
+      this.level = RES.map(() => 1);
+      this.querySelector('[data-er="live"]')!.textContent = '';
+      let last = 0;
+      await tween(6000, (t) => {
+        const y = Math.floor(t * 100);
+        for (; last < y; last++) {
+          RES.forEach((r, i) => {
+            if (r.renew) this.level[i] = 1; // replenished: sunshine and wind come back, trees are replanted
+            else this.level[i] = Math.max(0, this.level[i] - r.use);
+          });
+        }
+        this.year = y;
+        // Forest dips when trees are harvested, then grows back before the next harvest.
+        const b = RES.findIndex((r) => r.id === 'biomass');
+        this.level[b] = 1 - RES[b].use * Math.abs(Math.sin(t * Math.PI * 10));
+        this.spin = t * 3600;
+        this.draw();
+      });
+      this.year = 100;
+      this.draw();
+      await wait(200);
+      this.querySelector('[data-er="live"]')!.textContent =
+        'After 100 years, solar, wind and biomass were still available. Coal and natural gas ran out and did not come back.';
+    }
+
+    private draw() {
+      const out: string[] = [`<text class="er-year" x="330" y="34" text-anchor="middle">Year ${this.year} of 100</text>`];
+      RES.forEach((r, i) => {
+        const cx = colX(i);
+        const lv = this.level[i];
+        const fh = H * lv;
+        out.push(`<g transform="translate(${cx} 64)">${ICON[r.id]}</g>`.replace('data-er="blades"', `transform="rotate(${this.spin % 360})"`));
+        out.push(`<rect class="er-tank" x="${cx - TW / 2}" y="${TOP}" width="${TW}" height="${H}" rx="6"/>`);
+        if (fh > 0.5) out.push(`<rect class="${r.renew ? 'er-fill--renew' : 'er-fill--fossil'}" x="${cx - TW / 2 + 3}" y="${(TOP + H - fh + 3).toFixed(1)}" width="${TW - 6}" height="${Math.max(0, fh - 6).toFixed(1)}" rx="3"/>`);
+        out.push(`<text class="sci-text" x="${cx}" y="${TOP + H + 24}" text-anchor="middle">${r.label}</text>`);
+        if (this.year > 0) {
+          const msg = r.renew ? '✓ still here' : lv <= 0 ? '✗ ran out' : '';
+          if (msg) out.push(`<text class="${r.renew ? 'er-ok' : 'er-out'}" x="${cx}" y="${TOP + H + 46}" text-anchor="middle">${msg}</text>`);
+        }
+      });
+      this.querySelector('[data-er="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('energy-run', EnergyRun);
+</script>

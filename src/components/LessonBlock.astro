@@ -29,6 +29,7 @@ import MeasureTools from './visuals/MeasureTools.astro';
 import DensityBalance from './visuals/DensityBalance.astro';
 import FlightForces from './visuals/FlightForces.astro';
 import FloatLab from './visuals/FloatLab.astro';
+import EnergyMap from './visuals/EnergyMap.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -39,6 +40,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'energy-map': EnergyMap,
   'measure-tools': MeasureTools,
   'density-balance': DensityBalance,
   'flight-forces': FlightForces,

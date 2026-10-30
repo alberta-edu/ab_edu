@@ -1,0 +1,90 @@
+---
+// How provinces and territories make their electricity, as a simplified tile map of Canada.
+// Tap a region to read its main sources (SCI5-OI2-GQ2-LO1, K1.6, S1.3).
+import { REGIONS, MAIN_LABEL, MAIN_RENEWABLE, type Main } from './energy-data.ts';
+interface Props {
+  start?: string;
+}
+const { start = 'AB' } = Astro.props;
+const used = [...new Set(REGIONS.map((r) => r.main))] as Main[];
+---
+<energy-map data-start={start} data-regions={JSON.stringify(REGIONS)}>
+  <svg class="sci-svg em-svg" viewBox="0 0 640 344" role="group" aria-label="Map of Canada's provinces and territories">
+    {
+      REGIONS.map((r) => (
+        <g class={`em-tile em--${r.main}`} data-em={r.id} role="button" tabindex="0" aria-label={`${r.name}: ${r.sources}`} aria-pressed={String(r.id === start)}>
+          <rect x={r.x} y={r.y} width={r.w} height={r.h} rx="6" />
+          <text x={r.x + r.w / 2} y={r.y + r.h / 2 + 6} text-anchor="middle">{r.id}</text>
+        </g>
+      ))
+    }
+  </svg>
+  <ul class="em-legend" aria-label="Key">
+    {
+      used.map((m) => (
+        <li>
+          <span class={`em-swatch em--${m}`} />
+          {MAIN_LABEL[m]}
+          {MAIN_RENEWABLE[m] !== null && <span class="muted"> ({MAIN_RENEWABLE[m] ? 'renewable' : 'non-renewable'})</span>}
+        </li>
+      ))
+    }
+  </ul>
+  <div class="em-card" aria-live="polite">
+    <p class="em-name" data-em-out="name"></p>
+    <p class="em-sources" data-em-out="sources"></p>
+  </div>
+</energy-map>
+
+<style is:global>
+  energy-map { display: block; }
+  .em-svg { background: var(--surface-2); }
+  .em-tile { cursor: pointer; }
+  .em-tile rect { stroke: var(--surface); stroke-width: 3; }
+  .em-tile text { fill: var(--ink); font-size: 15px; font-weight: 700; pointer-events: none; }
+  .em-tile[aria-pressed='true'] rect { stroke: var(--ink); stroke-width: 4; }
+  .em-tile:focus-visible { outline: none; }
+  .em-tile:focus-visible rect { stroke: var(--accent); stroke-width: 5; }
+  .em--hydro { --em: color-mix(in srgb, var(--math) 45%, var(--surface)); }
+  .em--fossil { --em: color-mix(in srgb, #8a6d4b 55%, var(--surface)); }
+  .em--nuclear { --em: color-mix(in srgb, #8a5cc7 45%, var(--surface)); }
+  .em--wind { --em: color-mix(in srgb, var(--science) 45%, var(--surface)); }
+  .em--mix { --em: color-mix(in srgb, var(--ink) 18%, var(--surface)); }
+  .em-tile rect, .em-swatch { fill: var(--em); background: var(--em); }
+  .em-legend { list-style: none; padding: 0; margin: 0.6rem 0 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: var(--step--1); font-weight: 700; }
+  .em-legend li { display: flex; align-items: center; gap: 0.4rem; }
+  .em-swatch { display: inline-block; width: 1rem; height: 1rem; border-radius: 4px; border: 1px solid var(--line-strong); }
+  .em-card { margin-top: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
+  .em-name { margin: 0; font-weight: 700; font-size: var(--step-1); }
+  .em-sources { margin: 0.2rem 0 0; }
+</style>
+
+<script>
+  import type { Region } from './energy-data.ts';
+
+  class EnergyMap extends HTMLElement {
+    private regions: Region[] = [];
+
+    connectedCallback() {
+      this.regions = JSON.parse(this.dataset.regions!);
+      this.querySelectorAll<SVGGElement>('g[data-em]').forEach((g) => {
+        g.addEventListener('click', () => this.pick(g.dataset.em!));
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.pick(g.dataset.em!);
+          }
+        });
+      });
+      this.pick(this.dataset.start!);
+    }
+
+    private pick(id: string) {
+      const r = this.regions.find((x) => x.id === id)!;
+      this.querySelectorAll('g[data-em]').forEach((g) => g.setAttribute('aria-pressed', String(g.getAttribute('data-em') === id)));
+      this.querySelector('[data-em-out="name"]')!.textContent = r.name;
+      this.querySelector('[data-em-out="sources"]')!.textContent = r.sources;
+    }
+  }
+  customElements.define('energy-map', EnergyMap);
+</script>
