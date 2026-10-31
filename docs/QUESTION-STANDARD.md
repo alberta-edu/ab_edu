@@ -52,6 +52,18 @@ hint. A word a child doesn't know must be explained in the problem or avoided.
 so read each problem and ask: *how would a child who has only done Grade 5 solve this?* Write
 that solution. If you can't, the problem goes.
 
+**The math limits apply in every subject.** A trade problem that really needs equivalent ratios
+or a rate is above the grade, even in Social Studies. Grouping or repeated addition is fine.
+
+**Reasoning beyond the lesson is allowed; needing an untaught fact is not.** A child may reason
+from what the lesson taught, from everyday experience, or from facts the problem states. If a
+fact is needed and the lesson didn't teach it, the problem must supply it. Ask: *what would a
+child have to already know?*
+
+**Math truths need their conditions.** "The square has the least perimeter" only gives a square
+if the side can be any length. If a problem expects whole-number sides, it must say so, and its
+answer must hold for what it says.
+
 ### 2. Everything is checked
 
 - Every computed answer has a `verify:` expression.
@@ -60,6 +72,9 @@ that solution. If you can't, the problem goes.
   source. If a number isn't real, the setting must clearly be invented, like a made-up bakery.
 - Never copy a problem from a contest, textbook or website. Inspiration is fine; every
   problem here is original. Passages are original too.
+- A problem may not contradict the lesson. If the lesson's wording needs a closer look, as with
+  "salt water pushes up harder" when anything floating has a push equal to its weight, the
+  solution must resolve the tension explicitly.
 
 ## The ladder
 
@@ -91,7 +106,9 @@ Each concept's Deep Think needs:
 - at least one problem that isn't multiple choice;
 - in Math, at least one `investigation` or `build` problem. Use them in other subjects
   wherever they fit;
-- nothing that is really just a harder Warm-up.
+- nothing that is really just a harder Warm-up;
+- a real tie to the topic. *Take the topic away: is the problem unchanged?* If it is, it's a logic
+  puzzle wearing a costume, and it goes.
 
 ## Patterns that make a problem deep
 
@@ -162,6 +179,19 @@ evidence for a reading is.
   Never as decoration or stereotype. No stereotypes about anyone.
 - No fear, shame or adult-only themes. No brand names.
 - Avoid pronouns you don't need. Names should not imply what a child can do.
+- **Keep the site fresh.** A child meets many topics, so settings must not repeat. Don't reuse a
+  story shape used elsewhere, and vary the names. Don't borrow names from the topic's own passage.
+
+**Fair to a real ten-year-old**
+- A problem that impresses adults but would lose a child is a bad problem. Picture a 10-year-old
+  reading it on a phone. Would they get it? Would they retell it?
+- Questions that are funny, concrete and easy to picture beat ones that are sharp but dry.
+- Tables are at most 5 columns wide, so that they fit on a phone.
+- Rules in a `build` problem must exclude silly answers: a garden 0 m wide is not a garden.
+- At most 3 written answers per set (`open` problems and parts). Children grade these themselves,
+  so every rubric line must match something the prompt actually asked, and must be about the
+  answer, not an action like "I read it to someone".
+- Cut a question that splits hairs between two nearly equal wordings.
 
 **Multiple choice**
 - Use it only when the wrong answers teach something. Every wrong choice is a real

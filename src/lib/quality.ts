@@ -41,6 +41,11 @@ export function nearDuplicates(c: Concept): [string, string][] {
   return pairs;
 }
 
+/** Columns in the widest Markdown table in a text, or 0. */
+export function tableColumns(text: string): number {
+  return Math.max(0, ...text.split('\n').filter((l) => /^\s*\|.*\|\s*$/.test(l)).map((l) => l.trim().split('|').length - 2));
+}
+
 /** Checks one concept's practice set against the question standard. Returns what is wrong. */
 export function qualityIssues(c: Concept): string[] {
   const issues: string[] = [];
@@ -59,6 +64,15 @@ export function qualityIssues(c: Concept): string[] {
   if (build.length && build.every((p) => p.type !== 'investigation' && isBareCalculation(p.prompt))) issues.push('Build needs at least one story or context');
   if (new Set(c.problems.map((p) => p.thinking)).size < 4) issues.push('the set needs at least 4 different thinking moves');
   if (c.problems.length > 13) issues.push(`${c.problems.length} problems is too many: keep the best 13 or fewer`);
+
+  const pieces: { id: string; type: string; prompt: string; verify?: string }[] = c.problems.flatMap<{ id: string; type: string; prompt: string; verify?: string }>((p) => (p.type === 'investigation' ? p.parts.map((part) => ({ ...part, id: p.id })) : [p]));
+  const written = pieces.filter((p) => p.type === 'open').length;
+  if (written > 3) issues.push(`${written} written answers is too many: children grade these themselves, so keep at most 3`);
+  for (const p of pieces) {
+    if ((p.type === 'number' || p.type === 'fraction') && !p.verify) issues.push(`${p.id}: a computed answer needs verify`);
+    const wide = tableColumns(p.prompt);
+    if (wide > 5) issues.push(`${p.id}: a table with ${wide} columns won't fit on a phone`);
+  }
   for (const [a, b] of nearDuplicates(c)) issues.push(`${a} and ${b} are near-duplicates`);
   return issues;
 }
@@ -80,7 +94,9 @@ export function mathCeilingIssues(p: { id: string; prompt: string; verify?: stri
     if (!times && (a.includes('.') || b.includes('.'))) issues.push(`divides with a decimal (${m[0]}): Grade 6`);
     if (times && !a.includes('.') && !b.includes('.')) {
       const [small, big] = [a, b].sort((x, y) => Number(x) - Number(y));
-      if (Number(small) > 99 || Number(big) > 999) issues.push(`product beyond 3-digit by 2-digit (${m[0]})`);
+      // Times 10, 100 or 1 000 is place value, as in 1 m² = 100 × 100 cm², not the algorithm.
+      const placeValue = /^10+$/.test(a) || /^10+$/.test(b);
+      if (!placeValue && (Number(small) > 99 || Number(big) > 999)) issues.push(`product beyond 3-digit by 2-digit (${m[0]})`);
     }
     if (!times && !a.includes('.') && !b.includes('.') && (Number(b) > 10 || Number(a) > 999) && Number(a) % Number(b) !== 0) {
       issues.push(`division beyond 3-digit by 1-digit (${m[0]})`);
