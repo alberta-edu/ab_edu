@@ -1,0 +1,363 @@
+id: evidence-bias-ethics
+grade: 5
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI5-OI7-GQ1-LO1]
+order: 15
+title: Evidence, Bias and Scientific Ethics
+shortTitle: Evidence, bias and scientific ethics
+summary: >-
+  See how one set of evidence can be shown clearly or misleadingly, use tools that extend our senses, spot
+  bias, and learn the rules that keep science honest.
+
+bigIdea: |-
+  Scientists gather **evidence** by observing phenomena, sometimes with tools like microscopes that extend
+  our senses. Evidence is most reliable when **bias** is limited, when it is **communicated clearly and
+  accurately**, and when it is produced and shared **ethically**.
+
+lesson:
+  - title: Same evidence, different pictures
+    blocks:
+      - type: visual
+        covers: [K4.1, K4.2, S4.1, S4.2]
+        component: data-views
+        caption: Switch between the four ways of showing the same results. Which one tells the story clearly and accurately? Which one doesn't?
+
+  - title: Communicating evidence clearly
+    blocks:
+      - type: table
+        covers: [K4.3, U4.1]
+        caption: Evidence that is communicated clearly and accurately…
+        headers: ['✓', Checklist]
+        rows:
+          - ['1', 'uses the **correct vocabulary**']
+          - ['2', 'includes **all the relevant data**']
+          - ['3', 'is **free from personal bias**']
+          - ['4', 'can be **understood by the intended audience**']
+      - type: callout
+        variant: mistake
+        covers: [K4.4, S4.3]
+        title: Why it matters
+        body: |-
+          A stretched graph, missing data or confusing words can lead people to the wrong conclusion. Evidence that
+          isn't communicated clearly and accurately makes an investigation less **valid** and **reliable**.
+
+  - title: Observing phenomena
+    blocks:
+      - type: compare
+        covers: [K1.1, K1.2, K1.4]
+        columns:
+          - title: Phenomena
+            body: Facts or events that can be **observed**. Some, like the colour of a leaf, can be observed directly with our **senses**.
+          - title: Natural phenomena
+            body: Happen **without human input**, such as lightning and auroras.
+      - type: table
+        covers: [K1.3, S1.1, U1.1]
+        caption: Technologies that let scientists observe what our senses can't
+        headers: [Technology, Lets us observe…]
+        rows:
+          - ['🔭 **Telescope**', 'Objects far away in space, like the craters on the Moon and the moons of other planets.']
+          - ['🔬 **Microscope**', 'Things far too small to see, like the cells in an onion skin.']
+          - ['🩻 **X-ray**', 'The inside of something without opening it, like the bones inside your arm.']
+
+  - title: Spotting bias
+    blocks:
+      - type: compare
+        covers: [K2.1, K2.2, S2.1]
+        columns:
+          - title: What bias is
+            body: Any **personal thoughts, feelings or expectations** that influence an investigation. People usually **aren't aware** of their own biases.
+          - title: Example
+            body: Jamal **expects** his favourite brand of paper towel to soak up the most water, so he squeezes the other brands a little harder when he tests them.
+      - type: table
+        covers: [U2.1, S2.1]
+        caption: Ways to limit bias
+        headers: [Do this, Why it helps]
+        rows:
+          - ['Follow the **same procedure** every time', 'Every test is treated equally.']
+          - ['Do a **blind test** when you can', 'If testers don''t know which is which, their expectations can''t change the results.']
+          - ['Record **all** your results', 'Leaving out results you don''t like hides the real evidence.']
+          - ['Ask someone else to **check** your work', 'Others may notice a bias you missed.']
+
+  - title: Scientific ethics
+    blocks:
+      - type: table
+        covers: [K5.1, K5.2, S5.1, U5.1]
+        caption: 'Scientific ethics: principles and rules that guide behaviour in investigations'
+        headers: [Principle, What it looks like]
+        rows:
+          - ['**Don''t change data**', 'Record what really happened, even if it surprises you.']
+          - ['**Minimize harm**', 'Protect people, animals and the environment. Put living things back where you found them.']
+          - ['**Respect privacy**', 'Don''t share names or personal answers from a survey without permission.']
+          - ['**Limit personal bias**', 'Plan fair tests and let the evidence decide.']
+      - type: callout
+        variant: tip
+        covers: [S5.2, U5.1]
+        title: You are a scientist too
+        body: Every time you investigate, you can act ethically. Report your real results, keep living things safe and treat others' information with care.
+
+keyTerms:
+  - term: Phenomenon
+    covers: [K1.1]
+    definition: A fact or event that can be observed. The plural is phenomena.
+  - term: Natural phenomenon
+    covers: [K1.4]
+    definition: An event that happens without human input, such as lightning or an aurora.
+  - term: Bias
+    covers: [K2.1]
+    definition: Personal thoughts, feelings or expectations that influence an investigation.
+  - term: Evidence
+    covers: [U2.1, K4.3]
+    definition: Observations and data that support or go against an idea.
+  - term: Scientific ethics
+    covers: [K5.1]
+    definition: Principles and rules that guide behaviour when doing scientific investigations.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.3, S1.1]
+    type: mc
+    prompt: Which technology lets you observe the **cells** in an onion skin?
+    choices: [Microscope, Telescope, X-ray, Thermometer]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A telescope is for objects that are far away.
+      '2': An X-ray shows the inside of things, like bones.
+      '3': A thermometer measures temperature.
+    hints:
+      - Cells are very small.
+    solution:
+      - A **microscope** makes very small things look bigger.
+
+  - id: w2
+    level: 1
+    covers: [K2.1]
+    type: mc
+    prompt: What is **bias** in an investigation?
+    choices:
+      - Personal thoughts, feelings or expectations that influence it
+      - A tool for measuring
+      - The variable you change
+      - A kind of graph
+    answer: 0
+    feedback:
+      '1': Bias is about the person, not a tool.
+      '2': That is the manipulated variable.
+      '3': Graphs show data. Bias is something that can affect the data.
+    hints:
+      - It comes from the person doing the investigation.
+    solution:
+      - '**Bias** is any personal thought, feeling or expectation that influences an investigation.'
+
+  - id: w3
+    level: 1
+    covers: [K1.4]
+    type: mc
+    prompt: Which is a **natural phenomenon**?
+    choices: [Lightning, A car engine starting, A light being switched on, A video playing]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A person starts the engine.
+      '2': A person switches on the light.
+      '3': A person starts the video.
+    hints:
+      - Natural phenomena happen without human input.
+    solution:
+      - '**Lightning** happens without any human input.'
+
+  - id: w4
+    level: 1
+    covers: [K5.2]
+    type: multi
+    prompt: Select **all** the ways to act ethically in a science investigation.
+    choices: [Not changing data, Minimizing harm to living things, Respecting people's privacy, Limiting personal bias, Leaving out results you don't like]
+    fixedOrder: true
+    answer: [0, 1, 2, 3]
+    hints:
+      - Leaving out results is a way of changing the data.
+    solution:
+      - ✓ The first four are scientific ethics.
+      - ✗ Leaving out results hides the real evidence.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S4.2, K4.4]
+    type: mc
+    prompt: In the stretched bar graph, why does the 8-hour plant look so much taller than the 2-hour plant?
+    choices:
+      - The scale starts at 10 cm instead of 0, which exaggerates the difference.
+      - The 8-hour plant really was 3 times as tall.
+      - The data in the table was wrong.
+      - Bar graphs always exaggerate.
+    answer: 0
+    feedback:
+      '1': The table shows 16 cm and 12 cm. That is only 4 cm taller.
+      '2': The table and the graphs use the same data.
+      '3': A bar graph with a scale starting at 0 shows the data fairly.
+    hints:
+      - Look at the number where the scale starts.
+    solution:
+      - Starting the scale at 10 cm cuts off the bottom of every bar, so small differences look huge.
+
+  - id: b2
+    level: 2
+    covers: [S2.1, K2.1]
+    type: mc
+    prompt: |-
+      Priya wants to show that her homemade bird feeder attracts the most birds. She watches her feeder for an hour,
+      but watches the store-bought feeder for only 10 minutes. What is the problem?
+    choices:
+      - Her expectations biased the investigation. The feeders weren't watched the same way.
+      - She should have used three feeders.
+      - Birds can't be counted.
+      - There is no problem.
+    answer: 0
+    feedback:
+      '1': More feeders wouldn't fix the unequal watching times.
+      '2': Birds can be counted. The problem is how she counted.
+      '3': The unequal times favour her own feeder.
+    hints:
+      - Did both feeders get a fair chance?
+    solution:
+      - Priya expected her feeder to win, and she watched it 6 times longer. That is **bias**. Both feeders should be watched for the same time.
+
+  - id: b3
+    level: 2
+    covers: [K4.3, S4.3]
+    type: mc
+    prompt: |-
+      A Grade 5 class makes a poster about their experiment for Grade 1 students. Which choice best helps the
+      evidence be understood by the intended audience?
+    choices:
+      - A simple, clearly labelled bar graph and short sentences
+      - Long paragraphs full of hard science words
+      - Only the raw numbers, with no labels
+      - A graph with no title or scale
+    answer: 0
+    feedback:
+      '1': Grade 1 students may not understand long paragraphs or hard words.
+      '2': Numbers without labels are hard for anyone to understand.
+      '3': Without a title or scale, readers can't tell what the graph shows.
+    hints:
+      - Who is going to read the poster?
+    solution:
+      - Evidence should **be understood by the intended audience**. For young readers, a clear, labelled graph works best.
+
+  - id: b4
+    level: 2
+    covers: [K5.2, S5.1]
+    type: mc
+    prompt: Sam's results don't match what he predicted. What is the **ethical** thing to do?
+    choices:
+      - Report the real results and explain what he found.
+      - Change the numbers to match his prediction.
+      - Throw away the results and say the experiment didn't happen.
+      - Copy a friend's results.
+    answer: 0
+    feedback:
+      '1': Changing data breaks the rules of scientific ethics.
+      '2': Hiding results is not honest.
+      '3': Copying someone else's results isn't real evidence.
+    hints:
+      - Scientific ethics include not changing data.
+    solution:
+      - Sam should **report what really happened**. Surprising results are still evidence.
+
+  - id: b5
+    level: 2
+    covers: [K1.2, K1.3, S1.1]
+    type: mc
+    prompt: Which phenomenon can you observe **directly** with your senses, without any technology?
+    choices: [The colour of a leaf, The bones inside your arm, The craters on a planet's moon, The cells in your skin]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': You need an X-ray to see bones inside your body.
+      '2': You need a telescope to see craters on another planet's moon.
+      '3': You need a microscope to see cells.
+    hints:
+      - Which one could you see just by looking?
+    solution:
+      - You can see the **colour of a leaf** with your eyes. The others need technology.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.2, U2.1, S2.1]
+    type: mc
+    prompt: Why is a **blind test** a good way to limit bias in a taste test of two juices?
+    choices:
+      - Tasters don't know which juice is which, so their expectations can't affect their choices.
+      - The tasters close their eyes so they can taste better.
+      - It makes the juices taste the same.
+      - It means nobody records the results.
+    answer: 0
+    feedback:
+      '1': In a blind test, the tasters can keep their eyes open. The labels are hidden.
+      '2': The juices still taste different. Only the labels are hidden.
+      '3': Results must still be recorded.
+    hints:
+      - People usually aren't aware of their own biases.
+    solution:
+      - People usually don't notice their own biases. Hiding which juice is which stops **expectations** from influencing the results.
+
+  - id: d2
+    level: 3
+    covers: [K4.1, K4.3, S4.3]
+    type: mc
+    prompt: |-
+      A class tests 6 paper towels. A company's ad shows only the 2 results where its towel did best, and leaves out
+      the other 4. What is the problem?
+    choices:
+      - It doesn't include all the relevant data, so people could reach the wrong conclusion.
+      - It has too many results.
+      - Ads should never use graphs.
+      - There is no problem, because the 2 results are real.
+    answer: 0
+    feedback:
+      '1': It shows too **few** results, not too many.
+      '2': Graphs can be fine if they are clear and accurate.
+      '3': Real results can still mislead if important ones are left out.
+    hints:
+      - Clear and accurate evidence includes all the relevant data.
+    solution:
+      - Showing only some of the data hides the full picture. People might think the towel always wins.
+
+  - id: d3
+    level: 3
+    covers: [K5.2, S5.2]
+    type: mc
+    prompt: Your class is studying insects in the schoolyard. Which plan is **most ethical**?
+    choices:
+      - Observe the insects in a clear container for a short time, then release them where you found them.
+      - Keep the insects in a jar until the end of the year.
+      - Collect as many insects as possible to get more data.
+      - Move all the insects to another field.
+    answer: 0
+    feedback:
+      '1': Keeping them for months could harm them.
+      '2': More data isn't worth harming many living things.
+      '3': Moving them could harm them and their environment.
+    hints:
+      - Scientific ethics include minimizing harm to animals and the environment.
+    solution:
+      - Observing briefly and **releasing** them where you found them **minimizes harm**.
+
+  - id: d4
+    level: 3
+    covers: [S5.1, U5.1, K5.2]
+    type: open
+    prompt: Explain why scientific ethics are important. Give **two** examples of ethical behaviour in an investigation.
+    modelAnswer: |-
+      Scientific ethics make sure evidence is honest and that no one gets hurt, so people can trust the results. For
+      example, a scientist should never change data, even when it doesn't match a prediction. Scientists should also
+      respect the privacy of people in a survey by not sharing their names.
+    rubric:
+      - I explained why ethics matter (for example, trust or avoiding harm).
+      - I gave a first example of ethical behaviour.
+      - I gave a second, different example.

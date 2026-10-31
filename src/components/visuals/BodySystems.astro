@@ -12,7 +12,7 @@ const { start = 'digestive' } = Astro.props;
     {SYSTEMS.map((s) => <button type="button" data-bs={s.id} aria-pressed={String(s.id === start)}>{s.label}</button>)}
   </div>
   <div class="bs-wrap">
-    <svg class="sci-svg bs-svg" viewBox={VIEWBOX} role="img" aria-label="Front view of a human body showing a body system" data-bs="svg">
+    <svg class="sci-svg bsys-svg" viewBox={VIEWBOX} role="img" aria-label="Front view of a human body showing a body system" data-bs="svg">
       <Fragment set:html={OUTLINE} />
       {SYSTEMS.map((s) => <g data-bs-organs={s.id} class={s.id === start ? '' : 'bd-faded'}><Fragment set:html={ORGANS[s.id]} /></g>)}
       {SYSTEMS.map((s) => <g data-bs-labels={s.id} hidden={s.id !== start}><Fragment set:html={s.parts.map(labelSvg).join('')} /></g>)}
@@ -25,7 +25,7 @@ const { start = 'digestive' } = Astro.props;
 <style is:global>
   body-systems { display: block; }
   .bs-wrap { display: flex; justify-content: center; margin-top: 0.75rem; }
-  .bs-svg { background: var(--surface-2); max-width: 30rem; }
+  .bsys-svg { background: var(--surface-2); max-width: 30rem; }
   [data-bs-organs] { transition: opacity 0.3s; }
 </style>
 

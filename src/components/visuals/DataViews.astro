@@ -1,0 +1,106 @@
+---
+// The same evidence shown four ways (SCI5-OI7-GQ1-LO1, K4.1-K4.4, S4.1-S4.3): a table, a bar
+// graph, a line graph, and a bar graph whose scale doesn't start at zero.
+const DATA = [
+  { label: '2 h', value: 12 },
+  { label: '4 h', value: 14 },
+  { label: '6 h', value: 15 },
+  { label: '8 h', value: 16 },
+];
+const VIEWS = [
+  { id: 'table', label: 'Table', note: 'A table shows every exact number. The pattern is harder to see at a glance.' },
+  { id: 'bars', label: 'Bar graph', note: 'The scale starts at 0, so the bar heights are fair. You can see the plants grew a little taller with more light.' },
+  { id: 'line', label: 'Line graph', note: 'A line graph shows the trend: height went up with more light, but more slowly at the end.' },
+  { id: 'stretched', label: 'Stretched bar graph', note: 'The scale starts at 10 cm, not 0. The 8-hour bar now looks 3 times as tall as the 2-hour bar, but the plant is only 4 cm taller. This picture exaggerates the evidence.' },
+];
+---
+<data-views data-data={JSON.stringify(DATA)} data-views={JSON.stringify(VIEWS)}>
+  <div class="sci-pick" role="group" aria-label="Choose a way to show the data">
+    {VIEWS.map((v, i) => <button type="button" data-dv-view={v.id} aria-pressed={String(i === 0)}>{v.label}</button>)}
+  </div>
+  <figure class="ch-chart dv-chart">
+    <figcaption>Height of bean plants after 3 weeks, by hours of light each day</figcaption>
+    <div data-dv="table">
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th scope="col">Hours of light</th>{DATA.map((d) => <th scope="col">{d.label}</th>)}</tr></thead>
+          <tbody><tr><th scope="row">Height (cm)</th>{DATA.map((d) => <td>{d.value}</td>)}</tr></tbody>
+        </table>
+      </div>
+    </div>
+    <svg class="sci-svg" viewBox="0 0 480 240" role="img" aria-label="Graph of the plant heights" data-dv="svg" hidden></svg>
+  </figure>
+  <p class="sci-say" aria-live="polite" data-dv="note"></p>
+</data-views>
+
+<style is:global>
+  data-views { display: block; }
+  .dv-chart { margin-top: 0.6rem; }
+  .dv-chart svg { max-width: 32rem; }
+  .dv-bar { fill: var(--math); }
+  .dv-line { fill: none; stroke: var(--math); stroke-width: 2.5; }
+  .dv-dot { fill: var(--math); stroke: var(--surface-2); stroke-width: 2; }
+  .dv-val { fill: var(--ink); font-size: 13px; font-weight: 700; }
+  .dv-break { fill: none; stroke: var(--bad); stroke-width: 2; }
+</style>
+
+<script>
+  type D = { label: string; value: number };
+  type V = { id: string; label: string; note: string };
+
+  const W = 480;
+  const H = 240;
+  const L = 50;
+  const R = 16;
+  const T = 16;
+  const B = 34;
+
+  class DataViews extends HTMLElement {
+    private data: D[] = [];
+    private views: V[] = [];
+
+    connectedCallback() {
+      this.data = JSON.parse(this.dataset.data!);
+      this.views = JSON.parse(this.dataset.views!);
+      this.querySelectorAll<HTMLButtonElement>('[data-dv-view]').forEach((b) => b.addEventListener('click', () => this.show(b.dataset.dvView!)));
+      this.show('table');
+    }
+
+    private show(id: string) {
+      this.querySelectorAll('[data-dv-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-dv-view') === id)));
+      this.querySelector<HTMLElement>('[data-dv="table"]')!.hidden = id !== 'table';
+      const svg = this.querySelector<SVGSVGElement>('[data-dv="svg"]')!;
+      svg.toggleAttribute('hidden', id === 'table');
+      this.querySelector('[data-dv="note"]')!.textContent = this.views.find((v) => v.id === id)!.note;
+      if (id !== 'table') this.draw(id, svg);
+    }
+
+    private draw(id: string, svg: SVGSVGElement) {
+      const min = id === 'stretched' ? 10 : 0;
+      const max = 20;
+      const y = (v: number) => T + (H - T - B) * (1 - (v - min) / (max - min));
+      const n = this.data.length;
+      const colW = (W - L - R) / n;
+      const x = (i: number) => L + colW * (i + 0.5);
+      const out: string[] = [];
+      const step = id === 'stretched' ? 2 : 5;
+      for (let v = min; v <= max; v += step) out.push(`<line class="${v === min ? 'ch-zero' : 'ch-grid'}" x1="${L}" y1="${y(v)}" x2="${W - R}" y2="${y(v)}"/><text class="ch-axis" x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`);
+      out.push(`<text class="ch-axis" x="12" y="${T + (H - T - B) / 2}" transform="rotate(-90 12 ${T + (H - T - B) / 2})" text-anchor="middle">height (cm)</text>`);
+      this.data.forEach((d, i) => out.push(`<text class="ch-axis" x="${x(i)}" y="${H - 12}" text-anchor="middle">${d.label} of light</text>`));
+      if (id === 'line') {
+        out.push(`<path class="dv-line" d="${this.data.map((d, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(' ')}"/>`);
+        this.data.forEach((d, i) => out.push(`<circle class="dv-dot" cx="${x(i).toFixed(1)}" cy="${y(d.value).toFixed(1)}" r="5"/><text class="dv-val" x="${x(i).toFixed(1)}" y="${(y(d.value) - 10).toFixed(1)}" text-anchor="middle">${d.value}</text>`));
+      } else {
+        const bw = colW * 0.55;
+        this.data.forEach((d, i) => {
+          const top = y(d.value);
+          out.push(`<rect class="dv-bar" x="${(x(i) - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${(y(min) - top).toFixed(1)}" rx="3"/><text class="dv-val" x="${x(i).toFixed(1)}" y="${(top - 6).toFixed(1)}" text-anchor="middle">${d.value}</text>`);
+        });
+        // A small zigzag on the axis warns that the scale doesn't start at zero.
+        if (min > 0) out.push(`<path class="dv-break" d="M${L - 6},${y(min) - 4} l6,-5 l6,5 l6,-5"/>`);
+      }
+      svg.innerHTML = out.join('');
+    }
+  }
+  customElements.define('data-views', DataViews);
+</script>

@@ -6,7 +6,7 @@
   <div class="control-row">
     <label class="control hs-control">Fish caught each year <input type="range" min="0" max="250" step="25" value="100" data-hs="catch" /> <output data-hs="out">100</output></label>
   </div>
-  <figure class="cg-chart hs-chart">
+  <figure class="ch-chart hs-chart">
     <figcaption>Fish in the lake (up the side) over 30 years (along the bottom)</figcaption>
     <svg class="sci-svg" viewBox="0 0 560 230" aria-hidden="true" data-hs="svg"></svg>
   </figure>
@@ -49,8 +49,8 @@
       const x = (yr: number) => L + ((W - L - R) * yr) / YEARS;
       const y = (n: number) => T + (H - T - B) * (1 - n / 1000);
       let grid = '';
-      for (let n = 0; n <= 1000; n += 250) grid += `<line class="${n ? 'cg-grid' : 'cg-zero'}" x1="${L}" y1="${y(n)}" x2="${W - R}" y2="${y(n)}"/><text class="cg-axis" x="${L - 6}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
-      for (let yr = 0; yr <= YEARS; yr += 5) grid += `<text class="cg-axis" x="${x(yr)}" y="${H - 8}" text-anchor="middle">${yr}</text>`;
+      for (let n = 0; n <= 1000; n += 250) grid += `<line class="${n ? 'ch-grid' : 'ch-zero'}" x1="${L}" y1="${y(n)}" x2="${W - R}" y2="${y(n)}"/><text class="ch-axis" x="${L - 6}" y="${y(n) + 4}" text-anchor="end">${n}</text>`;
+      for (let yr = 0; yr <= YEARS; yr += 5) grid += `<text class="ch-axis" x="${x(yr)}" y="${H - 8}" text-anchor="middle">${yr}</text>`;
       const line = pop.map((n, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(n).toFixed(1)}`).join(' ');
       const area = `${line} L${x(YEARS)},${y(0)} L${x(0)},${y(0)} Z`;
       const gone = pop.findIndex((n) => n === 0);

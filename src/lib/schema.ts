@@ -148,7 +148,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
+    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
