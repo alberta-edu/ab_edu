@@ -1,0 +1,351 @@
+id: trade-economy
+grade: 5
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [VtfkI_gtBk66PSC2mQV7zQ]
+order: 4
+title: Trade Routes and Early Economies
+shortTitle: Trade routes & early economies
+summary: >-
+  Turn a farming village into a city, set taxes from the Nile's floods, and follow goods and ideas along the
+  Silk Road, the Royal Road and the trans-Saharan route.
+
+bigIdea: |-
+  Better farming meant **fewer farmers** could feed **more people**. Others took up new jobs, and **cities**
+  grew. Extra food led to **trade**, markets, banks, money and taxes. Long **trade routes** then carried goods
+  and ideas across the ancient world.
+
+lesson:
+  - title: From village to city
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: village-city
+        caption: 'Move the slider down until people go hungry. Then add irrigation and oxen, and try again. How few farmers can feed everyone?'
+      - type: compare
+        covers: [K1.1, K1.2, S1.1]
+        columns:
+          - title: 💧 Irrigation
+            body: Canals bring river water to the fields. More land grows more food.
+          - title: 🐂 Animal labour
+            body: Oxen pull heavy ploughs, so fewer people can farm more land.
+          - title: 🏙️ Specialized jobs
+            body: With fewer people farming, others become potters, weavers and traders. Towns grow into **cities**.
+
+  - title: Extra food becomes trade
+    blocks:
+      - type: example
+        covers: [K1.3]
+        title: A farmer with a surplus
+        problem: A farmer grows more grain than the family can eat. What can they do with the extra, or **surplus**?
+        steps:
+          - 'A potter needs food, and the farmer needs pots.'
+          - 'They **exchange**: grain for pots. That is trade.'
+          - 'The builder, the weaver and the healer can all join in, trading **goods and services** for food.'
+        answer: Extra farm products, exchanged for goods and services, developed **trade**.
+      - type: table
+        covers: [K1.4, S1.2]
+        caption: As cities grew, these economic practices developed. Many are still with us.
+        headers: [Practice, In ancient civilizations, Today]
+        rows:
+          - ['**Markets**', 'People exchanged goods at the Greek agora and the Roman forum.', 'Farmers’ markets, malls and online stores']
+          - ['**Banks**', 'Greek temples stored valuables for people. Some also lent money.', 'Banks keep our savings and make loans.']
+          - ['**Currency**', 'Cowrie shells and bronze money in China; metal coins in Greece and Rome', 'Coins, bank notes and cards']
+          - ['**Taxation**', 'Egyptian farmers paid a share of their harvest in grain.', 'People pay income tax and sales tax.']
+
+  - title: Taxes and the Nile
+    blocks:
+      - type: visual
+        covers: [K1.5, U1.2]
+        component: nilometer
+        caption: 'Egyptian officials measured the Nile’s flood with a **nilometer**. Move the slider to see what the height meant. The words come from Pliny the Elder, a Roman writer. The icons only show the idea.'
+      - type: compare
+        covers: [U1.2, K1.5, S1.2]
+        columns:
+          - title: 🏺 Why taxes then?
+            body: Taxation **first developed in ancient civilizations**. Rulers collected taxes to pay for soldiers, officials and roads, and to store food.
+          - title: 🏫 Why taxes now?
+            body: Governments collect money from citizens to **protect communities** and **provide services**, such as fire departments, roads and schools.
+
+  - title: Routes across the ancient world
+    blocks:
+      - type: visual
+        covers: [K1.6, K1.7, S1.3]
+        component: trade-map
+        props: { show: goods }
+        caption: Tap a route and watch the traveller go. Which civilizations did it connect? What did it carry?
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: Land and water
+        body: As civilizations grew and took over more land, they built networks of **land-based** routes (solid lines) and **water-based** routes (dashed line) to connect their lands.
+
+  - title: Trade carried more than goods
+    blocks:
+      - type: visual
+        covers: [K1.8, S1.4]
+        component: trade-map
+        props: { show: ideas }
+        caption: Traders carried more than goods. Tap each route to see what else travelled along it.
+      - type: table
+        covers: [U1.1, S1.4]
+        caption: How technology and contact transformed civilizations
+        headers: [Change, Example]
+        rows:
+          - ['**Social**', 'New jobs and new beliefs changed how people lived together.']
+          - ['**Political**', 'Roads and riches helped rulers govern bigger lands.']
+          - ['**Economic**', 'Markets and more goods made some cities very rich.']
+          - ['**Environmental**', 'Canals and farms changed the land itself.']
+
+keyTerms:
+  - term: Irrigation
+    covers: [K1.1]
+    definition: Bringing water to crops through canals or other channels.
+  - term: Surplus
+    covers: [K1.3]
+    definition: More of something than you need, such as extra food that can be traded.
+  - term: Specialized labour
+    covers: [K1.2]
+    definition: When people do one main kind of work, such as making pots, instead of doing everything for themselves.
+  - term: Currency
+    covers: [K1.4]
+    definition: Something accepted as money, such as cowrie shells or coins.
+  - term: Taxes
+    covers: [U1.2, K1.5]
+    definition: Money or goods that a government collects from citizens to protect communities and provide services.
+  - term: Trade route
+    covers: [K1.6]
+    definition: A path over land or water that traders follow to exchange goods over long distances.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.1]
+    type: multi
+    prompt: Which advancements increased farm production, and meant that fewer workers were needed? Choose all that apply.
+    choices: [Irrigation, Oxen pulling ploughs, Coins, Written laws]
+    answer: [0, 1]
+    feedback:
+      '2': Coins help with buying and selling, but they don't grow more food.
+      '3': Laws help organize people, but they don't grow more food.
+    hints:
+      - Which ones are used directly on a farm?
+    solution:
+      - '**Irrigation** and **animal labour** both grow more food with fewer people.'
+
+  - id: w2
+    level: 1
+    covers: [K1.3]
+    type: mc
+    prompt: A farmer grows more grain than the family needs. This extra grain is called a…
+    choices: [surplus, tax, market, route]
+    answer: 0
+    feedback:
+      '1': A tax is what a government collects.
+      '2': A market is a place to exchange goods.
+      '3': A route is a path that traders follow.
+    hints:
+      - It is the amount left over.
+    solution:
+      - Extra food beyond what you need is a **surplus**.
+
+  - id: w3
+    level: 1
+    covers: [U1.2]
+    type: mc
+    prompt: Why do governments collect **taxes**?
+    choices:
+      - To protect communities and provide services
+      - To give leaders a way to punish farmers
+      - To stop people from trading
+      - To make everyone equally rich
+    answer: 0
+    feedback:
+      '1': Taxes pay for things that people share. They aren't meant as a punishment.
+      '2': Taxes don't stop trade. Many taxes are collected on trade.
+      '3': Taxes pay for government services. They don't make everyone equally rich.
+    hints:
+      - Think about what fire departments and roads need.
+    solution:
+      - Taxes are how a government collects money to **protect communities and provide services**.
+
+  - id: w4
+    level: 1
+    covers: [K1.6, S1.3]
+    type: multi
+    prompt: Which of these are trade routes that connected ancient civilizations? Choose all that apply.
+    choices: [The Silk Road, The Royal Road, The trans-Saharan route, The Alaska Highway]
+    answer: [0, 1, 2]
+    feedback:
+      '3': The Alaska Highway was built in the 1940s, long after the ancient world.
+    hints:
+      - Three of these are on the lesson's map.
+    solution:
+      - The **Silk Road**, the **Royal Road** and the **trans-Saharan route** all connected ancient lands.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.1, K1.2]
+    type: order
+    prompt: Put these changes in order to explain how a village grows into a city.
+    items:
+      - Farmers start using irrigation and oxen.
+      - Farms produce more food with fewer workers.
+      - Some people are free to take up other jobs.
+      - Potters, weavers and traders set up in one place.
+      - The settlement grows into a city.
+    hints:
+      - What has to happen on the farm before anyone can leave it?
+    solution:
+      - Better tools → more food with fewer workers → people free for other jobs → specialized workers gather → a city grows.
+
+  - id: b2
+    level: 2
+    covers: [K1.1, S1.1]
+    type: number
+    prompt: In a made-up village of 100 people, each farmer with better tools can feed 4 people. How many of the 100 need to farm to feed everyone?
+    answer: 25
+    unit: farmers
+    verify: 100 / 4
+    hints:
+      - How many groups of 4 are there in 100?
+    solution:
+      - '\(100 \div 4 = 25\) farmers. The other 75 people are free to do other jobs.'
+
+  - id: b3
+    level: 2
+    covers: [K1.4, S1.2]
+    type: mc
+    prompt: You put your savings in an account to keep them safe. Which ancient practice is this most like?
+    choices:
+      - People storing valuables in Greek temples
+      - People exchanging goods at the agora
+      - Farmers paying a share of grain to officials
+      - Caravans carrying salt across the Sahara
+    answer: 0
+    feedback:
+      '1': That is more like a market.
+      '2': That is more like paying taxes.
+      '3': That is more like shipping goods on a trade route.
+    hints:
+      - Where did people in Greece keep their valuables safe?
+    solution:
+      - Keeping valuables somewhere safe is what **banks** do. Greek temples did this long ago.
+
+  - id: b4
+    level: 2
+    covers: [K1.7, S1.3]
+    type: mc
+    prompt: Use the trade map. West Africa had gold but needed salt. Which route helped solve this?
+    choices:
+      - The trans-Saharan route
+      - The Silk Road
+      - The Royal Road
+      - The Red Sea and Indian Ocean route
+    answer: 0
+    feedback:
+      '1': The Silk Road linked China to the Mediterranean, far from West Africa.
+      '2': The Royal Road ran across Persia, far from West Africa.
+      '3': This route linked Egypt and India by sea.
+    hints:
+      - Which route on the map reaches West Africa?
+    solution:
+      - Camel caravans on the **trans-Saharan route** carried salt south and gold north.
+
+  - id: b5
+    level: 2
+    covers: [K1.8, S1.4]
+    type: mc
+    prompt: Merchants and monks travelled from India to China on trade routes, and Buddhism spread to China. What does this show?
+    choices:
+      - Trade increased contact, which spread ideas and beliefs.
+      - Trade routes carried only goods.
+      - People in China travelled to India only to buy silk.
+      - Beliefs can't move from one place to another.
+    answer: 0
+    feedback:
+      '1': This example shows that a belief system moved along the route too.
+      '2': Silk came **from** China, and this example is about a belief.
+      '3': Buddhism began in India and spread to China, so beliefs can move.
+    hints:
+      - What moved from India to China in this example?
+    solution:
+      - International trade increased contact, which allowed **religions and belief systems** to spread.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.5, U1.2]
+    type: mc
+    prompt: 'Pliny wrote that a flood of 12 cubits brought hunger, and 16 brought delight. Why might Egyptian officials expect a **bigger grain tax** at 16 cubits?'
+    choices:
+      - More land was watered, so a bigger harvest was expected.
+      - More water means that fewer people live in Egypt.
+      - The tax was paid in water, not in grain.
+      - High floods always destroyed the harvest.
+    answer: 0
+    feedback:
+      '1': The flood height is about water reaching the fields, not the number of people.
+      '2': Farmers paid in part of their harvest.
+      '3': Floods of **more than** 16 cubits could hurt the harvest, but 16 was the best level.
+    hints:
+      - What does the flood do for the fields?
+    solution:
+      - A good flood waters more land, which means a bigger harvest and more grain to tax.
+
+  - id: d2
+    level: 3
+    covers: [S1.4, K1.7]
+    type: mc
+    prompt: 'When trade moved from desert caravans to sea routes, Petra began to lose wealth. Which is the **best** explanation of why this could happen?'
+    choices:
+      - Petra's wealth depended on caravans passing through, so fewer caravans meant less trade.
+      - Sea routes stopped people from wanting spices.
+      - Petra was built on the coast and flooded.
+      - Trade always makes every city poorer.
+    answer: 0
+    feedback:
+      '1': People still wanted spices. They just came by a different path.
+      '2': Petra was in the desert, not on the coast.
+      '3': Trade made many cities rich, including Petra for a long time.
+    hints:
+      - How did Petra grow rich in the first place?
+    solution:
+      - Petra grew rich from the caravans that passed through it. When the goods moved to the sea, its wealth moved too.
+
+  - id: d3
+    level: 3
+    covers: [U1.1, S1.4]
+    type: mc
+    prompt: 'Gunpowder, invented in China, spread west along trade routes. Over time, it changed how wars were fought and which rulers held power. Which **kind** of transformation is this mainly?'
+    choices:
+      - Political
+      - Environmental
+      - Agricultural
+      - None, since a technology can't change a civilization
+    answer: 0
+    feedback:
+      '1': Environmental change is about the land, water and air.
+      '2': Gunpowder wasn't about growing food.
+      '3': Technology and contact did change civilizations.
+    hints:
+      - Which kind of change is about who rules?
+    solution:
+      - It changed who held power, so it is mainly a **political** transformation.
+
+  - id: d4
+    level: 3
+    covers: [S1.2, K1.4]
+    type: open
+    prompt: Pick one economic practice from ancient civilizations (markets, banks, currency or taxation). Explain how it was used then, and how it is used in your community today.
+    modelAnswer: |-
+      I picked markets. In ancient Greece, people exchanged goods at the agora, the central market of a city.
+      Today, my family buys vegetables at the farmers' market and orders things online. The idea is the
+      same, since buyers and sellers come together, but today we can pay with a card, or never meet in person.
+    rubric:
+      - I named one economic practice.
+      - I described how it was used in an ancient civilization.
+      - I described how it is used today.
+      - I said what has stayed the same or has changed.
