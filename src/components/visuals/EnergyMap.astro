@@ -43,7 +43,7 @@ const used = [...new Set(REGIONS.map((r) => r.main))] as Main[];
   .em-tile rect { stroke: var(--surface); stroke-width: 3; }
   .em-tile text { fill: var(--ink); font-size: 15px; font-weight: 700; pointer-events: none; }
   .em-tile[aria-pressed='true'] rect { stroke: var(--ink); stroke-width: 4; }
-  .em-tile:focus-visible { outline: none; }
+  .em-tile:focus, .em-tile:focus-visible { outline: none; }
   .em-tile:focus-visible rect { stroke: var(--accent); stroke-width: 5; }
   .em--hydro { --em: color-mix(in srgb, var(--math) 45%, var(--surface)); }
   .em--fossil { --em: color-mix(in srgb, #8a6d4b 55%, var(--surface)); }

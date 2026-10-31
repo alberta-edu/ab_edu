@@ -30,7 +30,8 @@ const SKIES = Object.keys(SKY) as Sky[];
             <g class="wm-town" data-wm-town={t.id} role="button" tabindex="0" aria-label={t.name}>
               <circle class="wm-hit" cx={x} cy={y} r="24" />
               <circle class="wm-dot" cx={x} cy={y} r="5" />
-              <text class="wm-name" x={x} y={y + 30} text-anchor="middle">{t.name}</text>
+              {/* Calgary's name goes to its left, clear of Lethbridge's symbol just below it. */}
+              <text class="wm-name" x={t.id === 'calgary' ? x - 12 : x} y={t.id === 'calgary' ? y + 5 : y + 30} text-anchor={t.id === 'calgary' ? 'end' : 'middle'}>{t.name}</text>
               <g data-wm-mark={t.id}></g>
             </g>
           );
@@ -47,7 +48,7 @@ const SKIES = Object.keys(SKY) as Sky[];
   .wm-svg { max-width: 22rem; margin-inline: auto; background: var(--surface-2); }
   .wm-land { fill: color-mix(in srgb, var(--science) 22%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; stroke-linejoin: round; }
   .wm-town { cursor: pointer; }
-  .wm-town:focus-visible { outline: none; }
+  .wm-town:focus, .wm-town:focus-visible { outline: none; }
   .wm-town:focus-visible .wm-hit { stroke: var(--accent); stroke-width: 3; }
   .wm-hit { fill: transparent; }
   .wm-dot { fill: var(--ink); }
