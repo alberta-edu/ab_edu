@@ -1,0 +1,77 @@
+---
+// Watch a base and a suffix join, and see the letters change (LANENG5-OI9-GQ1-LO1, K3.2, S3.1 to S3.3).
+import { SPELL_PATTERNS } from './word-builder.ts';
+import { mdInline } from '../../lib/render.ts';
+const data = SPELL_PATTERNS.map((p) => ({ ...p, tip: mdInline(p.tip) }));
+---
+<spell-builder data-patterns={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a spelling pattern">
+    {SPELL_PATTERNS.map((p, i) => <button type="button" data-spb={p.id} aria-pressed={String(i === 0)}>{p.label}</button>)}
+  </div>
+  <p class="spb-tip" data-spb-part="tip"></p>
+  <div class="spb-join" data-spb-part="join" aria-live="polite"></div>
+  <p class="spb-note" data-spb-part="note"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-spb-part="go">Join them ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-spb-part="next">Another word ↻</button>
+  </div>
+  <noscript><ul>{SPELL_PATTERNS.flatMap((p) => p.examples.map((e) => <li>{e.base} + {e.add} = {e.result}</li>))}</ul></noscript>
+</spell-builder>
+
+<style is:global>
+  spell-builder { display: block; }
+  .spb-tip { margin: 0.7rem 0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
+  .spb-join { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.5rem; min-height: 4rem; padding: 0.5rem 0; font-size: var(--step-2); font-weight: 700; }
+  .spb-tile { padding: 0.2rem 0.6rem; border-radius: 7px; background: var(--surface-2); border: 2px solid var(--line-strong); }
+  .spb-tile--add { background: var(--accent-soft); border-color: var(--accent); }
+  .spb-result { color: var(--accent); }
+  .spb-result b { color: var(--bad); }
+  .spb-gone { color: var(--bad); text-decoration: line-through; }
+  .spb-note { margin: 0; min-height: 1.6rem; color: var(--ink-2); }
+</style>
+
+<script>
+  import { addSuffix, type SpellPattern } from './word-builder.ts';
+
+  class SpellBuilder extends HTMLElement {
+    private patterns: SpellPattern[] = [];
+    private pattern = 0;
+    private example = 0;
+
+    connectedCallback() {
+      this.patterns = JSON.parse(this.dataset.patterns!);
+      this.querySelectorAll<HTMLButtonElement>('[data-spb]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.pattern = this.patterns.findIndex((p) => p.id === b.dataset.spb);
+          this.example = 0;
+          this.querySelectorAll('[data-spb]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.draw(false);
+        }),
+      );
+      this.part('go').addEventListener('click', () => this.draw(true));
+      this.part('next').addEventListener('click', () => {
+        this.example++;
+        this.draw(false);
+      });
+      this.draw(false);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-spb-part="${name}"]`)!;
+    }
+
+    private draw(joined: boolean) {
+      const p = this.patterns[this.pattern];
+      const e = p.examples[this.example % p.examples.length];
+      this.part('tip').innerHTML = p.tip;
+      const result = addSuffix(e.base, e.add);
+      // Show which letters of the base the suffix rule removed.
+      const kept = result.startsWith(e.base) ? e.base : e.base.slice(0, -1);
+      const gone = e.base.slice(kept.length);
+      const base = joined && gone ? `${kept}<span class="spb-gone">${gone}</span>` : e.base;
+      this.part('join').innerHTML = `<span class="spb-tile">${base}</span>+<span class="spb-tile spb-tile--add">${e.add}</span>${joined ? `=<span class="spb-result">${result}</span>` : '=<span class="spb-result">?</span>'}`;
+      this.part('note').textContent = joined ? e.note : 'What will the word look like?';
+    }
+  }
+  customElements.define('spell-builder', SpellBuilder);
+</script>

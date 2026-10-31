@@ -1,0 +1,352 @@
+id: spelling-punctuation
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG5-OI9-GQ1-LO1]
+order: 12
+title: Spelling Patterns, Capitals and Punctuation
+shortTitle: Spelling & punctuation
+summary: >-
+  Watch words join and change their spelling, use word parts to spell long words, fix capital letters, and
+  try parentheses and abbreviations to get the effect you want.
+
+bigIdea: |-
+  English spelling has **patterns**. Words are built from meaningful parts, and those parts help you spell. **Capitals
+  and punctuation** do real work too: they show what’s important, and they tell readers how your writing should sound.
+
+lesson:
+  - title: Watch the spelling change
+    blocks:
+      - type: visual
+        covers: [K3.2, S3.1, S3.2, S3.3]
+        component: spell-builder
+        caption: Pick a pattern. Predict the spelling, then press “Join them.”
+
+  - title: Prefixes stay whole
+    blocks:
+      - type: table
+        covers: [S3.3, K3.2]
+        caption: A prefix doesn’t change. Just join it to the base, even if that puts two letters together.
+        headers: [Prefix, Base, Word]
+        rows:
+          - ['trans-', 'port', '**transport**']
+          - ['sub-', 'marine', '**submarine**']
+          - ['ex-', 'hale', '**exhale**']
+          - ['com-', 'mit', '**commit** (two m’s: one from the prefix, one from the base)']
+      - type: table
+        covers: [S3.1, U3.1]
+        caption: Suffix families help you choose between a and e.
+        headers: [This word ends in…, So this word ends in…]
+        rows:
+          - ['assist**ant**', 'assist**ance**']
+          - ['import**ant**', 'import**ance**']
+          - ['differ**ent**', 'differ**ence**']
+          - ['resid**ent**', 'resid**ence**']
+
+  - title: Patterns make writing faster
+    blocks:
+      - type: example
+        covers: [K3.1, S3.2, K3.2]
+        title: Spell a word you’ve never written
+        problem: How would you spell the word that means “full of mystery”?
+        steps:
+          - '**Find the parts:** mystery + ous.'
+          - '**Check the base:** it ends in a consonant and *y*.'
+          - '**Use the pattern:** the *y* changes to *i*.'
+          - '**Join them:** mysteri + ous.'
+        answer: '**mysterious**'
+      - type: callout
+        variant: tip
+        covers: [K3.1, U3.1]
+        title: Why bother?
+        body: When you can spell patterns quickly and correctly, you have more attention left for your ideas. Your writing flows better.
+
+  - title: Capitals show what’s important
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: punct-lab
+        props:
+          mode: capitals
+          sentence: Last July, Mayor Singh and Dr. Ortiz visited Banff National Park in Alberta.
+        caption: Tap the words that need capitals. Common words in the middle of the sentence stay lowercase.
+
+  - title: Parentheses and abbreviations
+    blocks:
+      - type: compare
+        covers: [K1.3, S1.2]
+        columns:
+          - title: ( ) Parentheses
+            body: |-
+              Show **additional, separate or less important** words or numbers.
+
+              > The rink (the one by the school) opens today.
+
+              > Lethbridge (population about 100,000) is windy.
+          - title: Abbreviations
+            body: |-
+              Shorter forms make communication **easier and faster**.
+
+              > Dr. Ortiz lives on Centre St. It’s 3 km away.
+      - type: callout
+        variant: mistake
+        covers: [K1.2, U1.1]
+        title: Will your reader know it?
+        body: Save abbreviations for ones that your reader will understand. “See you at the ASAP mtg” is confusing if your reader doesn’t know what you mean.
+
+  - title: Make punctuation work for you
+    blocks:
+      - type: visual
+        covers: [S1.3, U1.1, S1.2]
+        component: punct-lab
+        props:
+          mode: effect
+          versions:
+            - { text: 'We won.', effect: 'A plain period sounds calm and maybe a little flat.' }
+            - { text: 'We won!', effect: 'An exclamation mark shows excitement.' }
+            - { text: 'WE WON!!!', effect: 'All capitals look like shouting. Use them rarely, for a big effect.' }
+            - { text: 'We won (somehow).', effect: 'The parentheses add a quiet, funny side comment.' }
+        caption: Same message, different effects. Which fits a text to your best friend? Which fits a school report?
+
+keyTerms:
+  - term: Morpheme
+    covers: [K3.2]
+    definition: The smallest part of a word that has meaning, such as a base, a prefix or a suffix.
+  - term: Spelling pattern
+    covers: [K3.1, S3.1]
+    definition: A regular way that letters behave in words, which you can use to spell other words.
+  - term: Parentheses
+    covers: [K1.3]
+    definition: Marks ( ) that show additional, separate or less important words or numbers.
+  - term: Abbreviation
+    covers: [K1.2]
+    definition: A shortened form of a word or phrase, such as Dr. for Doctor.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S3.3, K3.2]
+    type: text
+    prompt: Join the base and the suffix. **fame** + **ous** = ?
+    accept: [famous]
+    hints:
+      - Does the suffix start with a vowel? What happens to a silent e?
+    solution:
+      - '*-ous* starts with a vowel, so the silent e drops: **famous**.'
+
+  - id: w2
+    level: 1
+    covers: [S3.3, K3.2]
+    type: text
+    prompt: Join the base and the suffix. **move** + **ment** = ?
+    accept: [movement]
+    hints:
+      - Does the suffix start with a vowel or a consonant?
+    solution:
+      - '*-ment* starts with a consonant, so the e stays: **movement**.'
+
+  - id: w3
+    level: 1
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Which sentence uses **capital letters** correctly?
+    choices:
+      - My aunt moved to Calgary in June.
+      - my aunt moved to calgary in june.
+      - My Aunt Moved To Calgary In June.
+      - My aunt moved to calgary in june.
+    answer: 0
+    feedback:
+      '1': The start of a sentence, and names of places and months, need capitals.
+      '2': Common words such as *moved* don’t need capitals.
+      '3': '*Calgary* and *June* are names, so they need capitals.'
+    hints:
+      - Which words are specific names?
+    solution:
+      - The first word and the names **Calgary** and **June** take capitals.
+
+  - id: w4
+    level: 1
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: What do **parentheses** show?
+    choices:
+      - Additional, separate or less important words or numbers
+      - The most important words in a sentence
+      - The end of a sentence
+      - A question
+    answer: 0
+    feedback:
+      '1': It’s the opposite. Parentheses hold what is less important.
+      '2': A period, question mark or exclamation mark shows that.
+      '3': A question mark shows that.
+    hints:
+      - Think about “The rink (the one by the school) opens today.”
+    solution:
+      - Parentheses hold **additional, separate or less important** words or numbers.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S3.2, S3.3]
+    type: mc
+    prompt: Which spelling of “full of mystery” is correct?
+    choices: [mysterious, mysteryous, mystereous, misteryous]
+    answer: 0
+    feedback:
+      '1': The y changes to i before this suffix.
+      '2': There’s no e in this pattern. The y changes to i.
+      '3': The base is *mystery*, and it begins with *my*. The y also changes to i.
+    hints:
+      - The base ends in a consonant and y. What’s the pattern?
+    solution:
+      - mystery + ous, with y changing to i, gives **mysterious**.
+
+  - id: b2
+    level: 2
+    covers: [S3.1, K3.2]
+    type: mc
+    prompt: You know that *different* ends in -ent. Which is the correct spelling of the related noun?
+    choices: [difference, differance, diffrance, diference]
+    answer: 0
+    feedback:
+      '1': An -ent word takes -ence, not -ance.
+      '2': Keep the base *differ*, and an -ent word takes -ence.
+      '3': The base *differ* has two f’s. A prefix or suffix doesn’t change that.
+    hints:
+      - The e in *different* carries over to the longer word.
+    solution:
+      - differ**ent** → differ**ence**.
+
+  - id: b3
+    level: 2
+    covers: [K3.2, S3.2]
+    type: mc
+    prompt: Why does the word *sign* have a silent **g**?
+    choices:
+      - It shares a base with *signal* and *signature*, where you can hear the g.
+      - Silent letters are added at random.
+      - It’s a mistake that was never fixed.
+      - It is there to make the word longer.
+    answer: 0
+    feedback:
+      '1': It’s not random. Spellings often keep a word’s meaning family together.
+      '2': It’s no mistake. It connects the word to its relatives.
+      '3': Length isn’t the reason. Look at its related words.
+    hints:
+      - Say *signal*. What do you hear?
+    solution:
+      - Bases keep their spelling, **even when the sound changes**. *Signal* shows you the g.
+
+  - id: b4
+    level: 2
+    covers: [K1.2]
+    type: mc
+    prompt: Which is the correct abbreviation in this sentence? “**Doctor** Lee works on Main **Street**.”
+    choices: [Dr. Lee works on Main St., Dtr. Lee works on Main Str., Doc Lee works on Main Stret., D. Lee works on M. Street.]
+    answer: 0
+    feedback:
+      '1': The standard abbreviations are *Dr.* and *St.*.
+      '2': '*Stret* isn’t an abbreviation of *Street*, and *Doc* is informal.'
+      '3': These are too short, and readers won’t know what they stand for.
+    hints:
+      - Think about what is printed on street signs and doctors' office doors.
+    solution:
+      - '**Dr.** and **St.** are the abbreviations that readers will recognize.'
+
+  - id: b5
+    level: 2
+    covers: [S1.3, U1.1]
+    type: mc
+    prompt: You are writing a scary story, and you want your reader to feel a sudden shock. Which is the most **effective**?
+    choices:
+      - The door opened. Slowly. Then, nothing. And then a hand!
+      - The door opened slowly then there was nothing and then a hand.
+      - the door opened slowly (then nothing) then a hand
+      - The Door Opened Slowly. Then Nothing. Then A Hand.
+    answer: 0
+    feedback:
+      '1': With no punctuation, nothing tells the reader where to pause, and the surprise is lost.
+      '2': The parentheses make the moment seem less important, which isn’t what you want here.
+      '3': Capitals on every word don’t add to the suspense. They just look odd.
+    hints:
+      - How can punctuation make a reader pause, then jump?
+    solution:
+      - Short sentences make the reader **pause**, and the exclamation mark delivers the shock.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S3.3, K3.2]
+    type: mc
+    prompt: 'A student writes *reside + ent = residdent*. What should they check?'
+    choices:
+      - The silent e drops before a vowel. Nothing doubles, so it is *resident*.
+      - The e should stay, so it is *resideent*.
+      - The suffix should be *-ant*, so it is *residant*.
+      - There is no pattern here, so any spelling is fine.
+    answer: 0
+    feedback:
+      '1': The silent e drops when a suffix starts with a vowel.
+      '2': The suffix doesn’t change. Look at the related word, *residence*.
+      '3': Patterns like this do apply, and they make spelling easier.
+    hints:
+      - What happens to a silent e? Does anything double?
+    solution:
+      - reside (drop e) + ent = **resident**.
+
+  - id: d2
+    level: 3
+    covers: [K3.2, S3.1, S3.2]
+    type: mc
+    prompt: You’re not sure how to spell the end of a word that sounds like “magi-shun.” How can **word parts** help you?
+    choices:
+      - It means a person who does magic, so write magic + ian = magician.
+      - Write it just how it sounds, “magishun.”
+      - Any ending will do, as long as you use a capital letter.
+      - Use a shorter word, because long words have no patterns.
+    answer: 0
+    feedback:
+      '1': English doesn’t always spell words by sound. Word parts are more reliable.
+      '2': Capitals have nothing to do with this. Use the parts.
+      '3': Long words often have the clearest patterns, because they’re made from parts.
+    hints:
+      - What is the base? What suffix means “a person who”?
+    solution:
+      - The base keeps its c, and **-ian** means a person. So **magician** is spelled from its meaning.
+
+  - id: d3
+    level: 3
+    covers: [S1.2, K1.3, S1.3]
+    type: mc
+    prompt: Which sentence uses **parentheses** best?
+    choices:
+      - My cousin (who has never skated) signed up for hockey.
+      - (My cousin) signed up for hockey.
+      - My cousin signed (up) for hockey.
+      - My cousin signed up for hockey (.)
+    answer: 0
+    feedback:
+      '1': The subject is the main part of the sentence. It isn’t an added detail.
+      '2': '*Up* is needed for the meaning. It isn’t extra information.'
+      '3': A period ends a sentence. It doesn’t go inside parentheses by itself.
+    hints:
+      - The sentence should still work if you take out what is inside the parentheses.
+    solution:
+      - The words **(who has never skated)** add an extra detail, and the sentence still works without them.
+
+  - id: d4
+    level: 3
+    covers: [S1.1, S1.2, S1.3, K1.1]
+    type: open
+    prompt: |-
+      Write a short note to a friend about a place in Alberta you would like to visit. Use **capitals** correctly, use one
+      set of **parentheses**, and use **punctuation** to show how you feel. Then say why you chose that punctuation.
+    modelAnswer: |-
+      Maya, I want to visit Dinosaur Provincial Park (the one near Brooks) this July. Can you imagine finding a real
+      fossil?! I used parentheses for the extra detail, and I used ?! to show that I am both asking and excited.
+    rubric:
+      - Names and sentence starts have capitals.
+      - My parentheses hold extra information.
+      - My punctuation shows how I feel, and I explained why I used it.

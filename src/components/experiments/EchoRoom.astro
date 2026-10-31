@@ -1,0 +1,95 @@
+---
+// Animated experiment: the same voice in a small carpeted classroom and an empty gym. Sound waves
+// spread, bounce off the walls and come back: quickly and softly in the small room, late and loud in
+// the gym, where the echo lands on top of the next word (LANENG5-OI2-GQ1-LO1, K3.3, S3.1).
+---
+<echo-room>
+  <svg class="sci-svg" viewBox="0 0 660 290" aria-hidden="true" data-erm="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-erm="live"></p>
+</echo-room>
+
+<style is:global>
+  echo-room { display: block; }
+  .erm-wall { fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 4; }
+  .erm-carpet { fill: color-mix(in srgb, var(--ela) 22%, var(--surface)); }
+  .erm-wave { fill: none; stroke: var(--accent); stroke-width: 3; }
+  .erm-echo { fill: none; stroke: var(--bad); stroke-width: 3; stroke-dasharray: 7 6; }
+  .erm-person { fill: var(--accent); }
+  .erm-word { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .erm-echoword { fill: var(--bad); font-size: 15px; font-weight: 700; }
+  @media (max-width: 40rem) {
+    svg .erm-word { font-size: 19px; }
+    svg .erm-echoword { font-size: 17px; }
+  }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const SMALL = { x: 20, y: 44, w: 190, h: 150 };
+  const GYM = { x: 240, y: 14, w: 400, h: 210 };
+  const WORDS = ['Welcome', 'to', 'our', 'show'];
+  /** Sound travels this far (in picture units) while the whole animation plays. */
+  const SPEED = 1400;
+  /** A new word starts this far apart, as a share of the whole animation. */
+  const WORD_GAP = 0.22;
+
+  type Room = typeof SMALL;
+
+  /** Circle clipped to a room, so waves stop at the walls. */
+  const circle = (cls: string, cx: number, cy: number, r: number, clip: string, opacity: number) =>
+    `<circle class="${cls}" cx="${cx}" cy="${cy}" r="${r.toFixed(1)}" clip-path="url(#${clip})" opacity="${opacity.toFixed(2)}"/>`;
+
+  class EchoRoom extends HTMLElement {
+    connectedCallback() {
+      this.draw(0);
+    }
+
+    /** t runs from 0 to 1 across the whole sentence. */
+    private room(room: Room, clip: string, t: number, carpet: boolean, label: string) {
+      const cx = room.x + 34;
+      const cy = room.y + room.h / 2;
+      const far = room.w - 34;
+      let html = `<clipPath id="${clip}"><rect x="${room.x}" y="${room.y}" width="${room.w}" height="${room.h}"/></clipPath>
+        <rect class="erm-wall" x="${room.x}" y="${room.y}" width="${room.w}" height="${room.h}"/>`;
+      if (carpet) html += `<rect class="erm-carpet" x="${room.x + 2}" y="${room.y + 2}" width="${room.w - 4}" height="${room.h - 4}"/>`;
+      html += `<circle class="erm-person" cx="${cx}" cy="${cy}" r="11"/>`;
+      // One wave for each word. Its echo leaves the far wall when the wave gets there.
+      WORDS.forEach((_, i) => {
+        const age = t - i * WORD_GAP;
+        if (age <= 0) return;
+        const r = age * SPEED;
+        if (r < far + 40) html += circle('erm-wave', cx, cy, r, clip, Math.max(0.2, 1 - r / (far + 40)));
+        const echoR = r - far;
+        // A carpet soaks up most of the sound, so the small room's echo is faint.
+        if (echoR > 0 && echoR < far) html += circle('erm-echo', room.x + room.w, cy, echoR, clip, (carpet ? 0.2 : 0.9) * (1 - echoR / far));
+      });
+      html += `<text class="sci-small" x="${room.x + room.w / 2}" y="${room.y + room.h + 20}" text-anchor="middle">${label}</text>`;
+      return html;
+    }
+
+    private draw(t: number) {
+      const shown = t > 0 ? Math.min(WORDS.length, Math.floor(t / WORD_GAP) + 1) : 0;
+      const said = WORDS.slice(0, shown).join(' ');
+      // A word comes back to the speaker after crossing the gym and returning.
+      const back = (2 * (GYM.w - 34)) / SPEED;
+      const heard = WORDS.filter((_, i) => t >= i * WORD_GAP + back);
+      const echo = heard.join(' ').toLowerCase();
+      this.querySelector('[data-erm="svg"]')!.innerHTML =
+        this.room(SMALL, 'erm-small', t, true, 'Small carpeted classroom') +
+        this.room(GYM, 'erm-gym', t, false, 'Big empty gym') +
+        `<text class="erm-word" x="115" y="274" text-anchor="middle">${said}</text>
+         <text class="erm-word" x="440" y="274" text-anchor="middle">${said}<tspan class="erm-echoword" dx="10">${echo ? `…${echo}` : ''}</tspan></text>`;
+    }
+
+    async run() {
+      const live = this.querySelector('[data-erm="live"]')!;
+      live.textContent = '';
+      await tween(6000, (t) => this.draw(t));
+      this.draw(1);
+      await wait(200);
+      live.textContent = 'In the small carpeted room the words stay clear. In the big gym, echoes come back late and land on top of the next words.';
+    }
+  }
+  customElements.define('echo-room', EchoRoom);
+</script>

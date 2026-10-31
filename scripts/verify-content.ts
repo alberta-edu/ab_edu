@@ -16,7 +16,18 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'then-now': { set: ['innovations', 'issues'] },
   'trade-map': { show: ['goods', 'ideas'] },
   'empire-map': { set: ['conquest', 'africa'] },
+  'page-explorer': { set: ['forms', 'features'] },
+  'sentence-lab': { mode: ['roles', 'tense', 'adverb', 'join'] },
+  'punct-lab': { mode: ['capitals', 'effect'] },
 };
+
+/** A comma in an unquoted `{ text: a, b }` splits the text and leaves `b` as a key with no value. */
+function strayKeys(value: unknown, path = 'props'): string[] {
+  if (Array.isArray(value)) return value.flatMap((v, i) => strayKeys(v, `${path}[${i}]`));
+  if (value === null) return [path];
+  if (typeof value === 'object') return Object.entries(value as object).flatMap(([k, v]) => strayKeys(v, `${path}.${k}`));
+  return [];
+}
 
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
@@ -135,10 +146,11 @@ function verifyConcept(c: Concept) {
       if (b.type === 'figure') texts.push(b.caption);
       if (b.type === 'compare') texts.push(...b.columns.map((col) => col.body));
       if (b.type === 'table') {
-        texts.push(...b.rows.flat());
+        texts.push(...b.rows.flat(), ...b.headers, ...(b.caption ? [b.caption] : []));
         if (b.rows.some((r) => r.length !== b.headers.length)) fail(undefined, `${label}: table rows of the wrong length`);
       }
       if (b.type === 'visual' && b.caption) texts.push(b.caption);
+      if (b.type === 'visual') for (const k of strayKeys(b.props)) fail(undefined, `${label}: ${k} is empty. Quote any text with a comma in it.`);
       if (b.type === 'visual' && b.component === 'inference-equation') {
         const ex = b.props.examples as unknown[];
         if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');
@@ -159,6 +171,26 @@ function verifyConcept(c: Concept) {
             texts.push(card.text, card.why);
           }
           for (const bin of bins) if (!cards.some((card) => card.bin === bin.id)) fail(undefined, `${label}: bin "${bin.id}" has no cards`);
+        }
+      }
+      if (b.type === 'visual' && b.component === 'talk-it-out') {
+        const turns = b.props.turns as { choices: { good: boolean; text: string; reply: string; why: string }[] }[];
+        // A turn with no good reply would leave the student stuck, with no way to continue.
+        for (const [i, turn] of turns.entries()) {
+          if (!turn.choices.some((x) => x.good)) fail(undefined, `${label}: talk-it-out turn ${i + 1} has no good reply`);
+          for (const x of turn.choices) texts.push(x.text, x.reply, x.why);
+        }
+      }
+      if (b.type === 'visual' && b.component === 'story-path') {
+        const { stages, flash } = b.props as { stages: unknown[]; flash?: { after: number } };
+        if (flash && (flash.after < 0 || flash.after >= stages.length - 1)) fail(undefined, `${label}: story-path flash-forward must come before the last stage`);
+      }
+      if (b.type === 'visual' && b.component === 'script-stage') {
+        const { lines } = b.props as { lines: { who: number; pose: string }[] };
+        const poses = ['still', 'lean', 'away', 'down', 'up'];
+        for (const l of lines) {
+          if (l.who !== 0 && l.who !== 1) fail(undefined, `${label}: script-stage line for unknown character ${l.who}`);
+          if (!poses.includes(l.pose)) fail(undefined, `${label}: script-stage pose "${l.pose}" is not one of ${poses.join(', ')}`);
         }
       }
       if (b.type === 'experiment') {

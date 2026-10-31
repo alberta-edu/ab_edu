@@ -1,0 +1,94 @@
+---
+// From telling to showing (LANENG5-OI8-GQ1-LO1, K2.4, K2.6, S2.4, S2.6). Same place, different moods.
+// Sliding the dial swaps a plain "telling" sentence for sensory details, and the scene takes on the mood.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  moods: { id: string; label: string; tell: string; details: { sense: string; text: string }[] }[];
+}
+const { moods } = Astro.props;
+const max = Math.max(...moods.map((m) => m.details.length));
+const data = moods.map((m) => ({ ...m, tell: mdInline(m.tell), details: m.details.map((d) => ({ sense: d.sense, text: mdInline(d.text) })) }));
+---
+<show-dial data-moods={JSON.stringify(data)} data-mood={moods[0].id} data-max={max}>
+  <div class="seg" role="group" aria-label="Choose a mood">
+    {moods.map((m, i) => <button type="button" data-shd-mood={m.id} aria-pressed={String(i === 0)}>{m.label}</button>)}
+  </div>
+  <svg class="sci-svg shd-scene" viewBox="0 0 660 200" aria-hidden="true">
+    <rect class="shd-sky" width="660" height="200"></rect>
+    <circle class="shd-sun" cx="560" cy="48" r="26"></circle>
+    <path class="shd-ground" d="M0 150 Q 330 130 660 152 V200 H0 Z"></path>
+    <path class="shd-tree" d="M110 150 L134 60 L158 150 Z M70 156 L90 92 L110 156 Z"></path>
+    <path class="shd-cabin" d="M270 150 V94 H420 V150 Z"></path>
+    <path class="shd-roof" d="M254 96 L345 46 L436 96 Z"></path>
+    <rect class="shd-window" x="292" y="108" width="34" height="28"></rect>
+    <rect class="shd-window" x="366" y="108" width="34" height="28"></rect>
+    <path class="shd-smoke" d="M396 62 q-10 -14 2 -24 q12 -10 2 -26"></path>
+  </svg>
+  <label class="control shd-control">🗣️ Tell <input type="range" min="0" max={max} value="0" step="1" data-shd="dial" aria-label="From telling to showing" /> 🎬 Show</label>
+  <div class="shd-text" data-shd="text" aria-live="polite"></div>
+  <p class="shd-senses" data-shd="senses"></p>
+  <noscript>{moods.map((m) => <p><strong>{m.label}:</strong> <span set:html={mdInline(m.details.map((d) => d.text).join(' '))} /></p>)}</noscript>
+</show-dial>
+
+<style is:global>
+  show-dial { display: block; }
+  .shd-scene { margin-top: 0.6rem; }
+  .shd-sky, .shd-sun, .shd-ground, .shd-tree, .shd-cabin, .shd-roof, .shd-window { transition: fill 0.5s; }
+  /* A little picture, so each mood keeps its own colours in both themes. */
+  show-dial[data-mood='cozy'] .shd-sky { fill: #f7cf8d; }
+  show-dial[data-mood='cozy'] .shd-sun { fill: #f08a3c; }
+  show-dial[data-mood='cozy'] .shd-ground { fill: #e9eef2; }
+  show-dial[data-mood='cozy'] .shd-tree { fill: #2f6b4c; }
+  show-dial[data-mood='cozy'] .shd-cabin { fill: #9a5a33; }
+  show-dial[data-mood='cozy'] .shd-roof { fill: #5e3219; }
+  show-dial[data-mood='cozy'] .shd-window { fill: #ffd867; }
+  show-dial[data-mood='eerie'] .shd-sky { fill: #2a2f45; }
+  show-dial[data-mood='eerie'] .shd-sun { fill: #cfd6e4; }
+  show-dial[data-mood='eerie'] .shd-ground { fill: #454c60; }
+  show-dial[data-mood='eerie'] .shd-tree { fill: #171b28; }
+  show-dial[data-mood='eerie'] .shd-cabin { fill: #3a3a42; }
+  show-dial[data-mood='eerie'] .shd-roof { fill: #20202a; }
+  show-dial[data-mood='eerie'] .shd-window { fill: #12131b; }
+  .shd-smoke { fill: none; stroke: #8b8f9a; stroke-width: 5; stroke-linecap: round; opacity: 0.8; }
+  show-dial[data-mood='eerie'] .shd-smoke { opacity: 0; }
+  .shd-control { margin-top: 0.7rem; }
+  .shd-text { margin-top: 0.6rem; padding: 0.7rem 0.9rem; min-height: 6.5rem; border-radius: var(--radius-sm); background: var(--surface-2); font-size: var(--step-1); }
+  .shd-text span { display: inline; }
+  .shd-text .is-new { background: color-mix(in srgb, var(--sun) 30%, transparent); border-radius: 3px; }
+  .shd-senses { margin: 0.4rem 0 0; min-height: 1.4rem; font-size: var(--step--1); color: var(--ink-3); }
+  @media (prefers-reduced-motion: reduce) { .shd-sky, .shd-sun, .shd-ground, .shd-tree, .shd-cabin, .shd-roof, .shd-window { transition: none; } }
+</style>
+
+<script>
+  type Mood = { id: string; label: string; tell: string; details: { sense: string; text: string }[] };
+
+  class ShowDial extends HTMLElement {
+    private moods: Mood[] = [];
+    private mood = 0;
+
+    connectedCallback() {
+      this.moods = JSON.parse(this.dataset.moods!);
+      const dial = this.querySelector<HTMLInputElement>('[data-shd="dial"]')!;
+      dial.addEventListener('input', () => this.draw(Number(dial.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-shd-mood]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.mood = this.moods.findIndex((m) => m.id === b.dataset.shdMood);
+          this.querySelectorAll('[data-shd-mood]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.dataset.mood = b.dataset.shdMood;
+          this.draw(Number(dial.value));
+        }),
+      );
+      this.draw(0);
+    }
+
+    private draw(n: number) {
+      const m = this.moods[this.mood];
+      const shown = m.details.slice(0, n);
+      const text = this.querySelector('[data-shd="text"]')!;
+      text.innerHTML = n === 0 ? m.tell : shown.map((d, i) => `<span class="${i === n - 1 ? 'is-new' : ''}">${d.text}</span>`).join(' ');
+      this.querySelector('[data-shd="senses"]')!.textContent = n === 0 ? 'Telling: the writer names the feeling.' : `Showing with: ${shown.map((d) => d.sense).join(', ')}`;
+    }
+  }
+  customElements.define('show-dial', ShowDial);
+</script>

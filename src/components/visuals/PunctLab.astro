@@ -1,0 +1,103 @@
+---
+// Capitals and punctuation change how writing reads (LANENG5-OI9-GQ1-LO1, K1.1, K1.3, S1.1 to S1.3).
+// "capitals": tap the words that need a capital. "effect": try the same words in different dress and
+// read how each one sounds; parentheses make a side note quieter.
+interface Props {
+  mode: 'capitals' | 'effect';
+  /** capitals: the sentence, with the words that need capitals capitalized. */
+  sentence?: string;
+  /** effect: versions of the same message, each with what it makes the reader feel. */
+  versions?: { text: string; effect: string }[];
+}
+const { mode, sentence = '', versions = [] } = Astro.props;
+const words = sentence.split(' ').map((w, i) => {
+  const needs = /^[A-Z]/.test(w);
+  return { shown: w.toLowerCase(), right: w, needs, first: i === 0 };
+});
+const toFix = words.filter((w) => w.needs).length;
+---
+<punct-lab data-mode={mode} data-tofix={toFix}>
+  {
+    mode === 'capitals' ? (
+      <>
+        <p class="cfx-sentence">
+          {words.map((w) => (
+            <>
+              <button type="button" class="cfx-word" data-right={w.right} data-needs={String(w.needs)}>{w.shown}</button>{' '}
+            </>
+          ))}
+        </p>
+        <p class="cfx-say" data-cfx="say" aria-live="polite">Tap each word that needs a capital letter. {toFix} words need one.</p>
+        <button type="button" class="btn btn--ghost btn--small" data-cfx="reset">↺ Start again</button>
+      </>
+    ) : (
+      <>
+        <div class="sci-pick" role="group" aria-label="Choose a version">
+          {versions.map((v, i) => <button type="button" data-cfx-v={i} aria-pressed={String(i === 0)}>Version {i + 1}</button>)}
+        </div>
+        {
+          versions.map((v, i) => (
+            <div data-cfx-card={i} hidden={i !== 0}>
+              <p class="cfx-big">{v.text}</p>
+              <p class="cfx-say">{v.effect}</p>
+            </div>
+          ))
+        }
+      </>
+    )
+  }
+</punct-lab>
+
+<style is:global>
+  punct-lab { display: block; }
+  .cfx-sentence { margin: 0 0 0.6rem; line-height: 2.1; }
+  .cfx-word { padding: 0.15rem 0.3rem; font: inherit; font-size: var(--step-1); font-weight: 700; color: var(--ink); background: var(--surface-2); border: 2px solid transparent; border-radius: 6px; cursor: pointer; }
+  .cfx-word:hover:not(:disabled) { border-color: var(--accent); }
+  .cfx-word.is-right { color: var(--ok); background: var(--ok-soft); border-color: var(--ok); }
+  .cfx-word.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  .cfx-say { margin: 0.5rem 0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); min-height: 2.6rem; }
+  .cfx-big { margin: 0.7rem 0 0.2rem; font-size: var(--step-2); font-weight: 700; line-height: 1.3; }
+</style>
+
+<script>
+  class PunctLab extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.mode === 'capitals') {
+        this.querySelectorAll<HTMLButtonElement>('.cfx-word').forEach((b) => b.addEventListener('click', () => this.tap(b)));
+        this.querySelector('[data-cfx="reset"]')!.addEventListener('click', () => this.reset());
+      } else {
+        this.querySelectorAll<HTMLButtonElement>('[data-cfx-v]').forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll('[data-cfx-v]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.querySelectorAll<HTMLElement>('[data-cfx-card]').forEach((c) => (c.hidden = c.dataset.cfxCard !== b.dataset.cfxV));
+          }),
+        );
+      }
+    }
+
+    private tap(b: HTMLButtonElement) {
+      const say = this.querySelector('[data-cfx="say"]')!;
+      if (b.dataset.needs === 'true') {
+        b.textContent = b.dataset.right!;
+        b.classList.add('is-right');
+        this.querySelectorAll('.cfx-word.is-wrong').forEach((w) => w.classList.remove('is-wrong'));
+        b.disabled = true;
+        const left = Number(this.dataset.tofix) - this.querySelectorAll('.cfx-word.is-right').length;
+        say.textContent = left ? `Right! ${left} more to find.` : 'All fixed! Capitals show which words are important: names, titles and the start of a sentence.';
+      } else {
+        b.classList.add('is-wrong');
+        say.textContent = `“${b.textContent}” is a common word in the middle of a sentence, so it stays lowercase.`;
+      }
+    }
+
+    private reset() {
+      this.querySelectorAll<HTMLButtonElement>('.cfx-word').forEach((b) => {
+        b.textContent = b.dataset.right!.toLowerCase();
+        b.disabled = false;
+        b.classList.remove('is-right', 'is-wrong');
+      });
+      this.querySelector('[data-cfx="say"]')!.textContent = `Tap each word that needs a capital letter. ${this.dataset.tofix} words need one.`;
+    }
+  }
+  customElements.define('punct-lab', PunctLab);
+</script>

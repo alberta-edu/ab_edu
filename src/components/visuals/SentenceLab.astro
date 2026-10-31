@@ -1,0 +1,201 @@
+---
+// A workbench for grammar (LANENG5-OI9-GQ1-LO1, K2.1 to K2.5, S2.1 to S2.8). Each mode lets students
+// change a sentence and watch what happens: swap nouns for pronouns, move through time, slide an adverb
+// around, or join two ideas with a conjunction.
+import { ADVERB_SETS, ADVERB_SPOTS, JOIN_SETS, ROLE_SENTENCES, TENSE_SETS, TENSES } from './sentence-lab.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  mode: 'roles' | 'tense' | 'adverb' | 'join';
+}
+const { mode } = Astro.props;
+const joins = JOIN_SETS.map((j) => ({ ...j, options: j.options.map((o) => ({ ...o, note: mdInline(o.note) })) }));
+const ROLE_NAME = { subject: 'Subject', object: 'Object', possessive: 'Possessive' };
+---
+<sentence-lab data-mode={mode} data-joins={mode === 'join' ? JSON.stringify(joins) : undefined} data-tenses={mode === 'tense' ? JSON.stringify(TENSE_SETS) : undefined}>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-slb="another">Another sentence ↻</button>
+    {mode === 'roles' && <button type="button" class="btn btn--primary btn--small" data-slb="swap" aria-pressed="false">Swap nouns for pronouns</button>}
+  </div>
+
+  {
+    mode === 'roles' && (
+      <>
+        {ROLE_SENTENCES.map((tokens, i) => (
+          <p class="slb-sentence" data-slb-item={i} hidden={i !== 0}>
+            {tokens.map((t) => (
+              t.text === '.' ? <span>.</span> : (
+                <>
+                  {' '}
+                  <span class={t.role ? `slb-token slb-token--${t.role}` : 'slb-token'} data-noun={t.text} data-pronoun={t.pronoun}>
+                    <span class="slb-word">{t.text}</span>
+                    {t.role && <small>{ROLE_NAME[t.role]}</small>}
+                  </span>
+                </>
+              )
+            ))}
+          </p>
+        ))}
+        <p class="slb-say">The <strong>subject</strong> does the action. The <strong>object</strong> receives it.</p>
+      </>
+    )
+  }
+
+  {
+    mode === 'tense' && (
+      <>
+        <div class="slb-time" aria-hidden="true"><i data-slb="marker"></i></div>
+        <div class="seg" role="group" aria-label="Choose a tense">
+          {TENSES.map((t, i) => <button type="button" data-slb-tense={t} aria-pressed={String(i === 1)}>{t[0].toUpperCase() + t.slice(1)}</button>)}
+        </div>
+        <p class="slb-sentence" data-slb="tense" aria-live="polite">{TENSE_SETS[0].present}</p>
+      </>
+    )
+  }
+
+  {
+    mode === 'adverb' && (
+      <>
+        {ADVERB_SETS.map((set, i) => (
+          <div data-slb-item={i} hidden={i !== 0}>
+            <p class="slb-sentence" data-slb-out aria-live="polite"></p>
+          </div>
+        ))}
+        <div class="seg" role="group" aria-label="Choose where the adverb goes">
+          {ADVERB_SPOTS.map((s, i) => <button type="button" data-slb-spot={s} aria-pressed={String(i === 1)}>{{ start: 'At the start', before: 'Before the verb', after: 'After the verb' }[s]}</button>)}
+        </div>
+        <p class="slb-say">The adverb describes the verb wherever it goes. Moving it changes what the reader notices first.</p>
+      </>
+    )
+  }
+
+  {
+    mode === 'join' && (
+      <>
+        <p class="slb-sentence" data-slb="join" aria-live="polite"></p>
+        <div class="sci-pick" data-slb="options" role="group" aria-label="Choose a conjunction"></div>
+        <p class="slb-say" data-slb="note">Choose the connecting word that fits the two ideas.</p>
+      </>
+    )
+  }
+</sentence-lab>
+
+<style is:global>
+  sentence-lab { display: block; }
+  .slb-sentence { margin: 0.7rem 0; font-size: var(--step-2); font-weight: 700; line-height: 1.5; }
+  .slb-token { display: inline-grid; justify-items: center; vertical-align: top; }
+  .slb-token small { font-size: 0.72rem; font-weight: 700; line-height: 1.1; }
+  .slb-token--subject .slb-word { padding: 0 0.25rem; border-radius: 5px; background: color-mix(in srgb, var(--math) 22%, var(--surface)); }
+  .slb-token--object .slb-word { padding: 0 0.25rem; border-radius: 5px; background: color-mix(in srgb, var(--ela) 25%, var(--surface)); }
+  .slb-token--possessive .slb-word { padding: 0 0.25rem; border-radius: 5px; background: color-mix(in srgb, var(--sun) 35%, var(--surface)); }
+  .slb-token--subject small { color: var(--math); }
+  .slb-token--object small { color: var(--ela); }
+  .slb-token--possessive small { color: var(--warn); }
+  .slb-say { margin: 0.7rem 0 0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.6rem; }
+  .slb-say.is-right { background: var(--ok-soft); }
+  .slb-say.is-wrong { background: var(--warn-soft); }
+  .slb-time { position: relative; height: 0.5rem; margin: 0.8rem 0.6rem; border-radius: 999px; background: var(--surface-3); }
+  .slb-time i { position: absolute; top: 50%; left: 50%; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--accent); transform: translate(-50%, -50%); transition: left 0.35s ease; }
+  .slb-joinword { color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) { .slb-time i { transition: none; } }
+</style>
+
+<script>
+  import { ADVERB_SETS, adverbSentence, type AdverbSpot, type JoinSet, type Tense } from './sentence-lab.ts';
+
+  class SentenceLab extends HTMLElement {
+    private at = 0;
+    private spot: AdverbSpot = 'before';
+    private tense: Tense = 'present';
+    private pronouns = false;
+
+    connectedCallback() {
+      this.querySelector('[data-slb="another"]')!.addEventListener('click', () => {
+        this.at++;
+        this.draw();
+      });
+      this.querySelector('[data-slb="swap"]')?.addEventListener('click', () => {
+        this.pronouns = !this.pronouns;
+        this.draw();
+      });
+      this.querySelectorAll<HTMLButtonElement>('[data-slb-tense]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.tense = b.dataset.slbTense as Tense;
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-slb-spot]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.spot = b.dataset.slbSpot as AdverbSpot;
+          this.draw();
+        }),
+      );
+      this.draw();
+    }
+
+    private draw() {
+      const mode = this.dataset.mode;
+      if (mode === 'roles') this.drawRoles();
+      if (mode === 'tense') this.drawTense();
+      if (mode === 'adverb') this.drawAdverb();
+      if (mode === 'join') this.drawJoin();
+    }
+
+    private drawRoles() {
+      const items = this.querySelectorAll<HTMLElement>('[data-slb-item]');
+      const i = this.at % items.length;
+      items.forEach((el, k) => (el.hidden = k !== i));
+      items[i].querySelectorAll<HTMLElement>('[data-noun]').forEach((t, k) => {
+        const word = t.querySelector('.slb-word')!;
+        const pronoun = t.dataset.pronoun;
+        let text = this.pronouns && pronoun ? pronoun : t.dataset.noun!;
+        if (k === 0) text = text[0].toUpperCase() + text.slice(1);
+        word.textContent = text;
+      });
+      const swap = this.querySelector('[data-slb="swap"]')!;
+      swap.setAttribute('aria-pressed', String(this.pronouns));
+      swap.textContent = this.pronouns ? 'Show the nouns again' : 'Swap nouns for pronouns';
+    }
+
+    private drawTense() {
+      const sets = JSON.parse(this.dataset.tenses!) as Record<Tense, string>[];
+      const set = sets[this.at % sets.length];
+      this.querySelector('[data-slb="tense"]')!.textContent = set[this.tense];
+      this.querySelectorAll('[data-slb-tense]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-slb-tense') === this.tense)));
+      this.querySelector<HTMLElement>('[data-slb="marker"]')!.style.left = { past: '8%', present: '50%', future: '92%' }[this.tense];
+    }
+
+    private drawAdverb() {
+      const items = this.querySelectorAll<HTMLElement>('[data-slb-item]');
+      const i = this.at % items.length;
+      items.forEach((el, k) => (el.hidden = k !== i));
+      const set = ADVERB_SETS[i];
+      const text = adverbSentence(set, this.spot);
+      const re = new RegExp(`(${set.adverb})`, 'i');
+      items[i].querySelector('[data-slb-out]')!.innerHTML = text.replace(re, '<span class="slb-joinword">$1</span>');
+      this.querySelectorAll('[data-slb-spot]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-slb-spot') === this.spot)));
+    }
+
+    private drawJoin(word?: string) {
+      const sets = JSON.parse(this.dataset.joins!) as JoinSet[];
+      const set = sets[this.at % sets.length];
+      const picked = set.options.find((o) => o.word === word);
+      const middle = picked ? `<span class="slb-joinword">${picked.word}</span>` : '<span class="slb-joinword">___</span>';
+      this.querySelector('[data-slb="join"]')!.innerHTML = `${set.first}, ${middle} ${set.second}.`;
+      const box = this.querySelector('[data-slb="options"]')!;
+      box.innerHTML = '';
+      for (const o of set.options) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = o.word;
+        b.setAttribute('aria-pressed', String(o.word === word));
+        b.addEventListener('click', () => this.drawJoin(o.word));
+        box.appendChild(b);
+      }
+      const note = this.querySelector('[data-slb="note"]')!;
+      note.className = `slb-say${picked ? (picked.fits ? ' is-right' : ' is-wrong') : ''}`;
+      note.innerHTML = picked ? picked.note : 'Choose the connecting word that fits the two ideas.';
+    }
+  }
+  customElements.define('sentence-lab', SentenceLab);
+</script>

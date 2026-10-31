@@ -1,0 +1,60 @@
+---
+// The writing process as a path, following one piece of writing through all five stages
+// (LANENG5-OI8-GQ1-LO1, K1.1, K1.2, K1.3, K1.8, S1.7, S1.8, S1.9). In revising, cut words are struck out
+// and new ones are highlighted: write them as ~~cut~~ and ++added++ in the YAML.
+import { md } from '../../lib/render.ts';
+
+interface Props {
+  stages: { icon: string; label: string; job: string; page: string }[];
+}
+const { stages } = Astro.props;
+const marked = (s: string) => md(s).replace(/~~(.+?)~~/g, '<del>$1</del>').replace(/\+\+(.+?)\+\+/g, '<ins>$1</ins>');
+---
+<writing-path>
+  <ol class="wrp-trail">
+    {
+      stages.map((s, i) => (
+        <li>
+          <button type="button" data-wrp={i} aria-pressed={String(i === 0)}>
+            <span class="wrp-icon" aria-hidden="true">{s.icon}</span>
+            <span>{s.label}</span>
+          </button>
+        </li>
+      ))
+    }
+  </ol>
+  {
+    stages.map((s, i) => (
+      <div class="wrp-stage" data-wrp-stage={i} hidden={i !== 0}>
+        <p class="wrp-job"><strong>{s.label}:</strong> {s.job}</p>
+        <div class="wrp-page prose" set:html={marked(s.page)} />
+      </div>
+    ))
+  }
+</writing-path>
+
+<style is:global>
+  writing-path { display: block; }
+  .wrp-trail { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.3rem; margin: 0; padding: 0; list-style: none; }
+  .wrp-trail button { width: 100%; min-height: 3.6rem; display: grid; justify-items: center; align-content: center; gap: 0.1rem; padding: 0.3rem 0.1rem; font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; }
+  .wrp-trail button[aria-pressed='true'] { color: var(--ink); border-color: var(--accent); background: var(--accent-soft); }
+  .wrp-icon { font-size: 1.3rem; line-height: 1; }
+  .wrp-job { margin: 0.7rem 0 0.4rem; }
+  .wrp-page { padding: 0.9rem 1.1rem; min-height: 11rem; border-radius: var(--radius-sm); border: 1px solid var(--line-strong); background: var(--surface); box-shadow: var(--shadow); }
+  .wrp-page del { color: var(--bad); }
+  .wrp-page ins { background: var(--ok-soft); color: var(--ok); text-decoration: none; font-weight: 700; }
+</style>
+
+<script>
+  class WritingPath extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-wrp]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-wrp]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelectorAll<HTMLElement>('[data-wrp-stage]').forEach((s) => (s.hidden = s.dataset.wrpStage !== b.dataset.wrp));
+        }),
+      );
+    }
+  }
+  customElements.define('writing-path', WritingPath);
+</script>

@@ -1,0 +1,454 @@
+id: text-forms-genres
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG5-OI1-GQ1-LO1]
+order: 1
+title: Text Forms, Genres and Structures
+shortTitle: Text forms & genres
+summary: >-
+  Find out why texts are written, explore photo essays, tall tales and science fiction, and see how
+  text features and story structures help you follow along.
+
+bigIdea: |-
+  Every text has a **purpose**, a **form** and a **structure**. Knowing what kind of text you are
+  reading helps you enjoy it, understand it, and see the world through someone else’s eyes.
+
+lesson:
+  - title: Why was it written?
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: inform, label: To inform, icon: 📘 }
+            - { id: entertain, label: To entertain, icon: 🎭 }
+            - { id: persuade, label: To persuade, icon: 📣 }
+            - { id: inspire, label: To inspire, icon: ✨ }
+          cards:
+            - { text: A website that explains how bees make honey, bin: inform, why: 'It gives facts, so its purpose is to inform.' }
+            - { text: A printed bus schedule, bin: inform, why: 'It tells people when the buses come. A text does not have to be on a screen.' }
+            - { text: A funny comic about a dog who drives a tractor, bin: entertain, why: 'It is there to make you laugh.' }
+            - { text: A video game story about a lost dragon, bin: entertain, why: 'A digital story can entertain, too.' }
+            - { text: A poster that says “Vote for Maya for class president!”, bin: persuade, why: 'It tries to change what you will do.' }
+            - { text: A letter asking the town to build a skate park, bin: persuade, why: 'It tries to change the town’s mind.' }
+            - { text: A speech about an athlete who never gave up, bin: inspire, why: 'It makes you feel that you could do hard things too.' }
+            - { text: A song about a community helping each other after a flood, bin: inspire, why: 'It lifts people up and makes them want to help.' }
+        caption: Where does each text belong? Some are digital and some are not. Both count as texts.
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Often more than one
+        body: A text can have **more than one purpose**. A funny video about recycling can entertain you and inform you at the same time.
+
+  - title: Three text forms
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.5, S1.3]
+        component: page-explorer
+        props: { set: forms }
+        caption: Look at each form. What do you notice first on each page?
+      - type: callout
+        variant: mistake
+        covers: [K1.4, K1.5]
+        title: A form can mix
+        body: Literary forms can be **fiction** (invented) or **non-fiction** (true). A **hybrid** includes both in one text.
+
+  - title: Text features point the way
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.1]
+        component: page-explorer
+        props: { set: features }
+        caption: Tap each feature, then switch the features off. What gets harder to find?
+      - type: callout
+        variant: tip
+        covers: [S2.2, K2.1]
+        title: Use them in your own writing
+        body: When you write a report or a web page, add **sidebars**, a **glossary**, headings and bold words, so your reader can find what matters most.
+
+  - title: How a story moves
+    blocks:
+      - type: visual
+        covers: [K1.6, K3.4, K3.5, S3.2]
+        component: story-path
+        props:
+          stages:
+            - { label: Beginning, text: 'We meet Big Marie, a woman so tall that geese steer around her head.' }
+            - { label: Problem, text: 'Snow buries the whole town up to the chimneys. Nobody can find the road.' }
+            - { label: Events, text: 'Many events with many details: Marie laughs, picks up a grain elevator and scoops out the main street, then the county.' }
+            - { label: Resolution, text: 'The roads are clear. The problem is solved.' }
+            - { label: Ending, text: 'Marie pats the snow into a pile in the west, and that is how the Rocky Mountains got their snowy tops.' }
+          flash:
+            after: 2
+            text: '*A hundred years later, children ski down those mountains. Not one of them knows whose mitten patted the snow smooth.* Then the story jumps back to Marie.'
+        caption: Walk through the story. Then add a flash-forward and walk through it again.
+      - type: callout
+        variant: remember
+        covers: [LANENG4-OI1-GQ1-LO1#K1.6]
+        title: Remember from Grade 4
+        body: Narrative texts, both fiction and non-fiction, can follow a structure.
+      - type: text
+        covers: [K1.6]
+        body: Both fiction and non-fiction **narratives** can use this structure. A true story of a rescue has a problem and a resolution too.
+
+  - title: A tall tale
+    blocks:
+      - type: passage
+        id: marie
+        title: Big Marie of the Peace
+        form: Tall tale
+        paragraphs:
+          - Everyone in Peace River country knows about Big Marie. She was so tall that geese flying south had to steer around her head. When she sneezed, farmers two valleys over held on to their hats.
+          - One winter, the snow fell so deep that it buried the whole town up to the chimneys. Nobody could find the road, the school or the store. People tunnelled out, looked around and went back to bed.
+          - Big Marie just laughed, and her laugh shook the icicles off every roof for a hundred kilometres. She picked up a grain elevator, turned it upside down and used it as a shovel. With three scoops she cleared the main street. With ten, she cleared the county.
+          - She piled all that snow up in the west, higher and higher, and patted it smooth with her mitten. And that, folks will tell you, is how the Rocky Mountains got their snowy tops.
+        note: An original tall tale written for AB Edu. Paragraph numbers help you point to evidence.
+      - type: compare
+        covers: [K3.1, K3.2, K3.3, S3.1]
+        columns:
+          - title: 🤠 Tall tale
+            body: An **exaggerated** tale about a central **legendary character** with extraordinary body features or abilities.
+          - title: 🚀 Science fiction
+            body: A modern fantasy about **technology**, **futuristic situations**, and real or imagined **scientific** happenings.
+
+  - title: Characters and theme
+    blocks:
+      - type: passage
+        id: mars
+        title: The Greenhouse on Mars
+        form: Science fiction
+        paragraphs:
+          - Ines hated the red dust. Three months after landing on Mars, she still woke up homesick for Lethbridge and its endless wind. “Nothing grows here,” she told her brother Teo, pressing her glove against the window of the dome.
+          - “Schedule says water the beans at 0800,” said Commander Bo, without looking up from the tablet. Commander Bo said the same thing every morning, in the same voice.
+          - Teo leaned over and whispered, “Ines only pretends she doesn’t care. She waters the beans twice when no one is looking.”
+          - One morning, the robot gardener broke down, and the beans began to droop. Ines ran to the greenhouse and mixed the water by hand. She sat beside the plants all night, watching the sensors blink.
+          - Ten years later, Ines would stand in this same dome and show a class of children the first forest on Mars. She would tell them about this night. But that was still far away.
+          - For now, there was only one green shoot, pushing up through the red dust. Ines touched it and smiled. “Schedule says water the beans at 0800,” said Commander Bo. “I know,” said Ines. “This is my garden now.”
+        note: An original story written for AB Edu.
+      - type: table
+        covers: [K3.8, K3.9, K3.10, K3.11, S3.4]
+        caption: Two types of characters in “The Greenhouse on Mars”
+        headers: [Character, Type, 'How we know']
+        rows:
+          - ['**Ines**', '**Round:** interesting and layered, and she changes', 'What she **says** at first (“Nothing grows here”), what she **does** (sits up all night), and what her brother **says** about her.']
+          - ['**Commander Bo**', '**Flat:** does not change', 'Says the same thing, in the same voice, from the first day to the last.']
+      - type: compare
+        covers: [K3.6, K3.7, S3.3, U3.1]
+        columns:
+          - title: Theme
+            body: The **underlying message** of a text. It is rarely stated. Here, a place can become home when you care for it.
+          - title: Third person
+            body: The author narrates, using names or pronouns (*Ines*, *she*). No one in the story says “I” except when speaking.
+
+  - title: Non-fiction that argues
+    blocks:
+      - type: passage
+        id: rink
+        title: Keep the Rink Open
+        form: Editorial, Riverbend Times (a made-up town)
+        paragraphs:
+          - Town council wants to close Riverbend’s outdoor rink to save $8,000 a year. We think that would be a mistake.
+          - The rink keeps children active all winter. Because it is free, families who cannot pay for arena time can still skate.
+          - The rink also brings neighbours together. When the lights come on, people who have never met end up sharing a bench and a thermos of hot chocolate.
+          - Council should find its savings somewhere else. Keep the rink open.
+        note: An original editorial written for AB Edu. An editorial is an opinion piece by a newspaper’s editors.
+      - type: table
+        covers: [K4.1, K4.2, S4.1]
+        caption: Finding the structure of “Keep the Rink Open”
+        headers: [Structure, Where you see it]
+        rows:
+          - ['**Larger topic**', 'Whether to keep the rink open']
+          - ['**Subtopics**', 'Keeping children active (paragraph 2), and bringing neighbours together (paragraph 3)']
+          - ['**Cause and effect**', 'The rink is free (cause), so families who cannot pay for arena time can still skate (effect).']
+      - type: callout
+        variant: tip
+        covers: [K4.3, S4.2, U4.1]
+        title: Form your own opinion
+        body: 'Ask three questions. **Structure:** how is the argument built? **Content:** what reasons are given, and what is left out? **Source:** who wrote it, and why? Then talk it over. Others may see it differently, and you will see the issue through their eyes.'
+
+  - title: Build your reading stamina
+    blocks:
+      - type: compare
+        covers: [K1.3, S1.4, S1.2]
+        columns:
+          - title: 🏃 Stamina grows like a muscle
+            body: Reading stamina is how long you can stay with a text. It grows when you read things you **enjoy**.
+          - title: 📚 Try many genres
+            body: Sample tall tales, science fiction, photo essays, news and opinion pieces. Notice which ones you want to keep reading.
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.4]
+        title: Enjoying a text is part of the point
+        body: Genres, forms and structures help writers share ideas and help readers enjoy them. Follow what you like, and read a little longer each time.
+
+keyTerms:
+  - term: Hybrid
+    covers: [K1.5]
+    definition: A type of text that includes both fiction and non-fiction text forms.
+  - term: Sidebar
+    covers: [K2.1]
+    definition: A box beside the main text with extra information about the topic.
+  - term: Glossary
+    covers: [K2.1]
+    definition: A list of important words from a text, with their meanings.
+  - term: Tall tale
+    covers: [K3.2]
+    definition: An exaggerated tale about a central legendary character with extraordinary physical features or abilities.
+  - term: Science fiction
+    covers: [K3.3]
+    definition: A modern fantasy text about technology, futuristic situations, and real or imagined scientific happenings.
+  - term: Flash-forward
+    covers: [K3.5]
+    definition: A break in the plot that takes the audience forward in time to future events.
+  - term: Theme
+    covers: [K3.6]
+    definition: The underlying message of a text.
+  - term: Third person
+    covers: [K3.7]
+    definition: A point of view where the author narrates a story about the characters, using names or pronouns.
+  - term: Round character
+    covers: [K3.9]
+    definition: An interesting, layered character who may change throughout a story.
+  - term: Flat character
+    covers: [K3.10]
+    definition: A character who does not change throughout a story.
+  - term: Editorial
+    covers: [K4.1]
+    definition: A persuasive non-fiction text that gives the opinion of a newspaper’s editors.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: A poster says, “Bring your own bag and save the river! Join us this Saturday.” What is its **main purpose**?
+    choices: [To persuade, To entertain, To tell a made-up story, To explain how rivers form]
+    answer: 0
+    feedback:
+      '1': It is not trying to amuse you. It wants you to do something.
+      '2': The poster isn’t a story. It asks you to act.
+      '3': It gives no explanation of rivers. Look at what it asks you to do.
+    hints:
+      - What does the poster want you to **do**?
+    solution:
+      - It tries to change what people do this Saturday, so its main purpose is to **persuade**.
+
+  - id: w2
+    level: 1
+    covers: [K3.2, S3.1]
+    type: mc
+    prompt: Which detail tells you that “Big Marie of the Peace” is a **tall tale**?
+    choices:
+      - Geese had to steer around her head.
+      - It takes place in Peace River country.
+      - It is about winter.
+      - It has four paragraphs.
+    answer: 0
+    feedback:
+      '1': A real place can appear in any genre. What is **exaggerated** here?
+      '2': Any genre can happen in winter. Look for an extraordinary ability or feature.
+      '3': Length doesn’t tell you the genre.
+    hints:
+      - A tall tale has a legendary character with extraordinary features or abilities.
+    solution:
+      - No real person is tall enough to steer geese away. That **exaggeration** is the mark of a tall tale.
+
+  - id: w3
+    level: 1
+    covers: [K3.9, K3.10]
+    type: mc
+    prompt: A character starts out selfish and learns to share by the end of the story. What type of character is this?
+    choices: [Round, Flat]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A flat character does **not** change. This one does.
+    hints:
+      - Does this character change?
+    solution:
+      - The character changes during the story, so this is a **round** character.
+
+  - id: w4
+    level: 1
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: You meet a hard word in a science book and want its meaning. Which **text feature** should you check?
+    choices: [The glossary, The sidebar, The page number, The title]
+    answer: 0
+    feedback:
+      '1': A sidebar gives extra information about the topic. It isn’t a list of word meanings.
+      '2': A page number only tells you where you are.
+      '3': The title names the whole book, not the words inside it.
+    hints:
+      - Which feature is a short list of words and their meanings?
+    solution:
+      - The **glossary** lists important words and their meanings.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K3.5, S3.2]
+    type: evidence
+    prompt: Tap the sentence where “The Greenhouse on Mars” uses a **flash-forward**.
+    passage: mars
+    paragraphs: [4, 5, 6]
+    answer: [p5s1]
+    feedback:
+      p4s1: This happens in the story’s present. Look for a jump into the future.
+      p5s2: This is part of the flash-forward. Find the sentence where the jump **starts**.
+      p5s3: This sentence comes back from the future. Find where the jump **starts**.
+      p6s1: The phrase “For now” brings us back to the present.
+    hints:
+      - Look for words that tell how much later something happens.
+    solution:
+      - '“Ten years later, Ines would stand in this same dome…” The story jumps ahead in time, then returns.'
+
+  - id: b2
+    level: 2
+    covers: [K3.11, S3.4]
+    type: evidence
+    prompt: We learn about Ines from what **another character says** about her. Tap that sentence.
+    passage: mars
+    paragraphs: [1, 3]
+    answer: [p3s1, p3s2]
+    feedback:
+      p1s1: The narrator tells us this. No character is speaking.
+      p1s2: The narrator tells us this. Look for another character’s words.
+      p1s3: Here, Ines is the one speaking.
+    hints:
+      - Who talks about Ines when she isn’t the one speaking?
+    solution:
+      - Teo whispers, “Ines only pretends she doesn’t care.” Others’ words can reveal a character.
+
+  - id: b3
+    level: 2
+    covers: [K3.6, S3.3]
+    type: mc
+    prompt: What is the best statement of the **theme** of “The Greenhouse on Mars”?
+    choices:
+      - A place can become home when you care for it.
+      - Mars has red dust.
+      - Robots always break down.
+      - Ines has a brother named Teo.
+    answer: 0
+    feedback:
+      '1': That is a detail from the setting. A theme is an underlying message.
+      '2': This happens once in the story, and it isn’t the message of the whole text.
+      '3': That is a fact about the plot, not a message.
+    hints:
+      - How does Ines feel about Mars at the start, and at the end?
+    solution:
+      - Ines goes from “Nothing grows here” to “This is my garden now.” Caring for the plants makes Mars feel like **home**.
+
+  - id: b4
+    level: 2
+    covers: [K4.2, S4.1]
+    type: evidence
+    prompt: Tap the sentence in “Keep the Rink Open” that shows **cause and effect**.
+    passage: rink
+    paragraphs: [2, 3]
+    answer: [p2s2]
+    feedback:
+      p2s1: This gives a benefit, but it doesn’t say what causes it. Look for the word that signals a cause.
+      p3s1: This names a subtopic. It doesn’t explain a cause and its effect.
+      p3s2: This describes a scene. Look for the word “because.”
+    hints:
+      - Look for a signal word such as **because**.
+    solution:
+      - '“Because it is free, families who cannot pay for arena time can still skate.” Free rink (cause), so more families skate (effect).'
+
+  - id: b5
+    level: 2
+    covers: [K1.4, K1.5, S1.3]
+    type: mc
+    prompt: A book tells the invented adventures of a talking ant. Each chapter ends with a page of true ant facts. What form is it?
+    choices: [Hybrid, News article, Photo essay, Editorial]
+    answer: 0
+    feedback:
+      '1': A news article reports a real, recent event. A talking ant isn’t one.
+      '2': A photo essay is built mostly from photos with short captions.
+      '3': An editorial argues an opinion. This book mixes a story with facts.
+    hints:
+      - The book has both an invented story and true facts.
+    solution:
+      - It includes both fiction and non-fiction, so it is a **hybrid**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K3.7, S3.3]
+    type: mc
+    prompt: |-
+      Which sentence is written in the **third person**?
+    choices:
+      - Ines ran to the greenhouse and mixed the water by hand.
+      - I ran to the greenhouse and mixed the water by hand.
+      - We ran to the greenhouse and mixed the water by hand.
+      - Run to the greenhouse and mix the water by hand.
+    answer: 0
+    feedback:
+      '1': “I” shows that the character is telling the story. A third-person narrator is outside the story.
+      '2': “We” includes the speaker in the action. Third person uses names or pronouns such as *she* and *they*.
+      '3': This is a command to the reader. It isn’t telling a story about a character.
+    hints:
+      - Look for a character’s name, or a pronoun such as *she*, *he* or *they*.
+    solution:
+      - The narrator refers to Ines by name, so the sentence is in the **third person**.
+
+  - id: d2
+    level: 3
+    covers: [K4.3, S4.2]
+    type: mc
+    prompt: |-
+      “Keep the Rink Open” says nothing about what else the $8,000 could pay for. Why does a careful reader
+      notice that?
+    choices:
+      - It shows the editorial tells only one side, so the reader may want more information before deciding.
+      - It proves that the editorial is false.
+      - It proves that the town has no money.
+      - It doesn’t matter, because an editorial always gives every side.
+    answer: 0
+    feedback:
+      '1': Leaving something out doesn’t make the rest false. It just means there is more to find out.
+      '2': The editorial never says that. Be careful not to read in what isn’t there.
+      '3': An editorial is an opinion piece. It argues one side.
+    hints:
+      - An editorial tries to persuade. What might it leave out to do that?
+    solution:
+      - An editorial argues one side. Noticing what is left out helps you form **your own** opinion from its content and source.
+
+  - id: d3
+    level: 3
+    covers: [K1.2, S1.1, U2.1]
+    type: multi
+    prompt: A website about wolves has funny cartoons, true facts in sidebars, and a button asking you to donate to protect wolves. Which **purposes** does it have?
+    choices: [To entertain, To inform, To persuade, To sell wolves as pets]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': Nothing here sells wolves. It asks people to help protect them.
+    hints:
+      - A text can have more than one purpose. Check each part of the website.
+    solution:
+      - Cartoons **entertain**, sidebars **inform**, and the donate button tries to **persuade**.
+
+  - id: d4
+    level: 3
+    covers: [S3.4, K3.11, U3.1]
+    type: open
+    prompt: |-
+      Is Ines a round character? Use **what she says or does** and **what someone else says about her** to
+      support your answer. What does her story help you understand about being far from home?
+    modelAnswer: |-
+      Yes, Ines is a round character because she changes. At first she says, “Nothing grows here” (paragraph 1), but by
+      the end she says, “This is my garden now” (paragraph 6). Teo says she only pretends she doesn’t care (paragraph 3),
+      which shows there is more to her than we first see. Her story helps me see that someone far from home can feel lonely
+      and still come to care about a new place.
+    rubric:
+      - I said whether Ines is round and explained why.
+      - I used something Ines says or does.
+      - I used what another character says about her.
+      - I explained what her story helps me understand.

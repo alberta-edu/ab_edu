@@ -1,0 +1,103 @@
+---
+// English is built from many languages. Tap a word to see where it came from, how its meaning moved
+// over time, or how new words get made (LANENG5-OI3-GQ1-LO1, K1.1, K1.2, S1.1 to S1.3).
+import { makeFrame, toMap } from './ancient-map.ts';
+import { landPath } from './land-path.ts';
+import { ORIGINS, SHIFTS, NEW_WORDS } from './word-journey.ts';
+import { mdInline } from '../../lib/render.ts';
+
+const F = makeFrame(-170, 165, -5, 78, 660);
+const land = landPath(F);
+const origins = ORIGINS.map((o) => {
+  const [x, y] = toMap(F, o.at);
+  return { ...o, x: Math.round(x), y: Math.round(y) };
+});
+---
+<word-journey>
+  <div class="seg" role="group" aria-label="Choose what to explore">
+    <button type="button" data-wjy-tab="from" aria-pressed="true">🌍 Where from?</button>
+    <button type="button" data-wjy-tab="change" aria-pressed="false">⏳ Changed</button>
+    <button type="button" data-wjy-tab="new" aria-pressed="false">✨ New</button>
+  </div>
+
+  <div data-wjy-panel="from">
+    <svg class="sci-svg wjy-map" viewBox={`0 0 ${F.width} ${F.height}`} role="img" aria-label="World map with a pin where each word's source language was spoken.">
+      <rect class="sci-sky" width={F.width} height={F.height}></rect>
+      <path class="wjy-land" d={land}></path>
+      {origins.map((o, i) => <circle class={`wjy-pin${i === 0 ? ' is-on' : ''}`} data-wjy-pin={o.word} cx={o.x} cy={o.y} r="7"></circle>)}
+    </svg>
+    <div class="sci-pick wjy-words" role="group" aria-label="Choose a word">
+      {origins.map((o, i) => <button type="button" data-wjy-word={o.word} aria-pressed={String(i === 0)}>{o.word}</button>)}
+    </div>
+    {
+      origins.map((o, i) => (
+        <p class="wjy-card" data-wjy-card={o.word} hidden={i !== 0}>
+          <strong>{o.word}</strong> comes from {o.language}: <em>{o.source}</em>, “{o.sourceMeaning}”.
+        </p>
+      ))
+    }
+  </div>
+
+  <div data-wjy-panel="change" hidden>
+    <div class="wjy-shifts">
+      {
+        SHIFTS.map((s) => (
+          <div class="wjy-shift">
+            <h4>{s.word}</h4>
+            <ol>
+              {s.stops.map((stop) => <li><span>{stop.when}</span> <b set:html={mdInline(stop.meaning)} /></li>)}
+            </ol>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div data-wjy-panel="new" hidden>
+    <div class="wjy-news">
+      {NEW_WORDS.map((w) => <div class="wjy-new"><span class="wjy-year">{w.year}</span><h4>{w.word}</h4><p set:html={mdInline(w.how)} /></div>)}
+    </div>
+  </div>
+</word-journey>
+
+<style is:global>
+  word-journey { display: block; }
+  .wjy-map { margin-top: 0.7rem; }
+  .wjy-land { fill: color-mix(in srgb, var(--science) 22%, var(--surface-2)); stroke: var(--line-strong); stroke-width: 0.6; }
+  .wjy-pin { fill: var(--surface); stroke: var(--ela); stroke-width: 3; transition: r 0.2s; }
+  .wjy-pin.is-on { fill: var(--ela); r: 11px; }
+  .wjy-words { margin-top: 0.6rem; }
+  .wjy-card { margin: 0.6rem 0 0; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step-1); }
+  .wjy-shifts, .wjy-news { display: grid; gap: 0.6rem; margin-top: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .wjy-shift, .wjy-new { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .wjy-shift h4, .wjy-new h4 { margin: 0 0 0.3rem; font-size: var(--step-1); color: var(--accent); }
+  .wjy-shift ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.3rem; }
+  .wjy-shift li { padding-left: 0.6rem; border-left: 3px solid var(--line-strong); }
+  .wjy-shift li:last-child { border-left-color: var(--accent); }
+  .wjy-shift li span { display: block; font-size: var(--step--1); color: var(--ink-3); }
+  .wjy-shift li b { font-weight: 400; }
+  .wjy-year { font-size: var(--step--1); font-weight: 700; color: var(--ink-3); }
+  .wjy-new p { margin: 0; }
+</style>
+
+<script>
+  class WordJourney extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-wjy-tab]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const id = b.dataset.wjyTab!;
+          this.querySelectorAll('[data-wjy-tab]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelectorAll<HTMLElement>('[data-wjy-panel]').forEach((p) => (p.hidden = p.dataset.wjyPanel !== id));
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-wjy-word]').forEach((b) => b.addEventListener('click', () => this.showWord(b.dataset.wjyWord!)));
+    }
+
+    private showWord(word: string) {
+      this.querySelectorAll('[data-wjy-word]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-wjy-word') === word)));
+      this.querySelectorAll<HTMLElement>('[data-wjy-card]').forEach((c) => (c.hidden = c.dataset.wjyCard !== word));
+      this.querySelectorAll<SVGElement>('[data-wjy-pin]').forEach((p) => p.classList.toggle('is-on', p.dataset.wjyPin === word));
+    }
+  }
+  customElements.define('word-journey', WordJourney);
+</script>

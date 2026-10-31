@@ -1,0 +1,150 @@
+---
+// Small mock pages to explore. "forms" compares a photo essay, a news article and a hybrid
+// (LANENG5-OI1-GQ1-LO1, K1.4, K1.5). "features" switches a page's text features on and off to show
+// how they organize content and point to what matters most (K2.1, U2.1).
+interface Props {
+  set?: 'forms' | 'features';
+}
+const { set = 'forms' } = Astro.props;
+const FORMS = [
+  { id: 'photo', label: '📷 Photo essay', note: 'A **photo essay** tells a story or gives information mostly through a series of photos, with short captions.' },
+  { id: 'news', label: '📰 News article', note: 'A **news article** reports a recent event. The headline and first sentence give the key facts.' },
+  { id: 'hybrid', label: '🧩 Hybrid', note: 'A **hybrid** includes both fiction and non-fiction: here, an invented story about a beaver kit, beside true facts about beavers.' },
+];
+const FEATURES = [
+  { id: 'heading', label: 'Headings', job: 'Name the topic of each section, so you can find what you need quickly.' },
+  { id: 'bold', label: 'Bold words', job: 'Show the most important words at a glance.' },
+  { id: 'sidebar', label: 'Sidebar', job: 'A box beside the main text with extra information on the topic.' },
+  { id: 'glossary', label: 'Glossary', job: 'A short list of important words and their meanings.' },
+];
+const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+---
+<page-explorer data-set={set}>
+  {
+    set === 'forms' ? (
+      <>
+        <div class="sci-pick" role="group" aria-label="Choose a text form">
+          {FORMS.map((f, i) => <button type="button" data-pgx={f.id} aria-pressed={String(i === 0)}>{f.label}</button>)}
+        </div>
+        <div class="pgx-page" data-pgx-page="photo">
+          <h4 class="pgx-title">A Day at the Stampede Grounds</h4>
+          <div class="pgx-photos">
+            <figure><div class="pgx-photo" aria-hidden="true">🌅</div><figcaption>Dawn. The grounds are still quiet.</figcaption></figure>
+            <figure><div class="pgx-photo" aria-hidden="true">🐎</div><figcaption>Noon. Horses wait for the parade.</figcaption></figure>
+            <figure><div class="pgx-photo" aria-hidden="true">🎡</div><figcaption>Night. The rides light up the sky.</figcaption></figure>
+          </div>
+        </div>
+        <div class="pgx-page" data-pgx-page="news" hidden>
+          <h4 class="pgx-title">Hail Damages Riverbend School Roof</h4>
+          <p class="pgx-by">Riverbend Times · Tuesday (a made-up town)</p>
+          <p>Golf-ball-sized hail damaged the roof of Riverbend School on Monday evening. No one was hurt. Classes will move to the community hall this week while crews make repairs.</p>
+        </div>
+        <div class="pgx-page pgx-split" data-pgx-page="hybrid" hidden>
+          <div><span class="pgx-tag">Fiction</span><p>Little Kit peeked out of the lodge. “Today,” she told her brother, “I will cut down the tallest tree in the world!”</p></div>
+          <aside><span class="pgx-tag">Non-fiction</span><p><strong>Fact:</strong> A beaver’s front teeth never stop growing. Chewing wood keeps them from getting too long.</p></aside>
+        </div>
+        {FORMS.map((f, i) => <p class="pgx-note" data-pgx-note={f.id} hidden={i !== 0} set:html={strong(f.note)} />)}
+      </>
+    ) : (
+      <>
+        <div class="control-row">
+          <div class="seg" role="group" aria-label="Text features">
+            <button type="button" data-pgx-on="true" aria-pressed="true">Features on</button>
+            <button type="button" data-pgx-on="false" aria-pressed="false">Features off</button>
+          </div>
+        </div>
+        <div class="pgx-page pgx-article is-on">
+          <div class="pgx-main">
+            <h4 class="pgx-f pgx-f--heading" data-pgx-part="heading">How Beavers Change the Land</h4>
+            <p>Beavers build <strong class="pgx-f" data-pgx-part="bold">dams</strong> across streams. The water behind a dam spreads out into a <strong class="pgx-f" data-pgx-part="bold">pond</strong>.</p>
+            <h4 class="pgx-f pgx-f--heading" data-pgx-part="heading">Homes for Other Animals</h4>
+            <p>Ducks, frogs and moose can all use the new wetland, which holds water even in a dry summer.</p>
+          </div>
+          <aside class="pgx-side pgx-f" data-pgx-part="sidebar"><strong>Did you know?</strong><br />Canada’s national animal is the beaver.</aside>
+          <aside class="pgx-gloss pgx-f" data-pgx-part="glossary"><strong>Glossary</strong><br /><em>dam:</em> a wall that holds back water<br /><em>wetland:</em> land covered by shallow water</aside>
+        </div>
+        <div class="pgx-feats" role="group" aria-label="What each feature does">
+          {FEATURES.map((f) => <button type="button" class="pgx-feat" data-pgx-feat={f.id}><strong>{f.label}</strong></button>)}
+        </div>
+        <p class="pgx-note" data-pgx="job" aria-live="polite">Tap a feature to find it on the page.</p>
+        <div hidden data-pgx-jobs={JSON.stringify(Object.fromEntries(FEATURES.map((f) => [f.id, f.job])))}></div>
+      </>
+    )
+  }
+</page-explorer>
+
+<style is:global>
+  page-explorer { display: block; }
+  .pgx-page { margin-top: 0.7rem; padding: 1rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); box-shadow: var(--shadow); }
+  .pgx-page p { margin: 0.3rem 0; }
+  .pgx-title { margin: 0 0 0.4rem; font-size: var(--step-1); }
+  .pgx-by { font-size: var(--step--1); color: var(--ink-3); }
+  .pgx-photos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; }
+  .pgx-photos figure { margin: 0; font-size: var(--step--1); }
+  .pgx-photo { display: grid; place-items: center; aspect-ratio: 4 / 3; font-size: clamp(1.8rem, 7vw, 3.2rem); border-radius: 6px; background: var(--accent-soft); margin-bottom: 0.25rem; }
+  .pgx-split { display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pgx-split aside { padding: 0.6rem; border-radius: 6px; background: var(--surface-2); }
+  .pgx-tag { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
+  .pgx-note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.8rem; }
+  .pgx-article { display: grid; gap: 0.7rem; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+  .pgx-main { grid-row: span 2; }
+  .pgx-main h4 { margin: 0.5rem 0 0.1rem; font-size: var(--step-0); }
+  .pgx-side, .pgx-gloss { padding: 0.6rem; border-radius: 6px; font-size: var(--step--1); }
+  .pgx-side { background: var(--accent-soft); }
+  .pgx-gloss { background: var(--surface-2); }
+  .pgx-article:not(.is-on) { display: block; }
+  .pgx-article:not(.is-on) h4 { font-weight: 400; font-size: var(--step-0); margin: 0; display: inline; }
+  .pgx-article:not(.is-on) .pgx-main p { display: inline; margin: 0; }
+  /* The blocks run together as one paragraph here, so they need a space between them. */
+  .pgx-article:not(.is-on) .pgx-main h4::after, .pgx-article:not(.is-on) .pgx-main p::after { content: ' '; }
+  .pgx-article:not(.is-on) strong.pgx-f { font-weight: 400; }
+  .pgx-article:not(.is-on) .pgx-side, .pgx-article:not(.is-on) .pgx-gloss { display: none; }
+  .pgx-f.is-lit { outline: 3px solid var(--sun); outline-offset: 2px; border-radius: 3px; }
+  .pgx-feats { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
+  .pgx-feat { border: 2px solid var(--line); background: var(--surface); border-radius: 999px; padding: 0.35rem 0.8rem; font: inherit; font-size: var(--step--1); color: var(--ink); cursor: pointer; min-height: 2.4rem; }
+  .pgx-feat[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .pgx-feats:has(.pgx-feat:disabled) .pgx-feat { opacity: 0.6; cursor: default; }
+  @media (max-width: 34rem) {
+    .pgx-split, .pgx-article { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  class PageExplorer extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-pgx]').forEach((b) => {
+        if (b.dataset.pgx === 'job') return;
+        b.addEventListener('click', () => this.showForm(b.dataset.pgx!));
+      });
+      this.querySelectorAll<HTMLButtonElement>('[data-pgx-on]').forEach((b) => b.addEventListener('click', () => this.toggle(b.dataset.pgxOn === 'true')));
+      this.querySelectorAll<HTMLButtonElement>('[data-pgx-feat]').forEach((b) => b.addEventListener('click', () => this.showFeature(b.dataset.pgxFeat!)));
+    }
+
+    private showForm(id: string) {
+      this.querySelectorAll('button[data-pgx]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-pgx') === id)));
+      this.querySelectorAll<HTMLElement>('[data-pgx-page]').forEach((p) => (p.hidden = p.dataset.pgxPage !== id));
+      this.querySelectorAll<HTMLElement>('[data-pgx-note]').forEach((p) => (p.hidden = p.dataset.pgxNote !== id));
+    }
+
+    private toggle(on: boolean) {
+      this.querySelectorAll('[data-pgx-on]').forEach((b) => b.setAttribute('aria-pressed', String((b.getAttribute('data-pgx-on') === 'true') === on)));
+      this.querySelector('.pgx-article')!.classList.toggle('is-on', on);
+      this.querySelectorAll<HTMLButtonElement>('[data-pgx-feat]').forEach((b) => {
+        b.disabled = !on;
+        b.setAttribute('aria-pressed', 'false');
+      });
+      this.querySelectorAll('.pgx-f').forEach((p) => p.classList.remove('is-lit'));
+      this.querySelector('[data-pgx="job"]')!.textContent = on
+        ? 'Tap a feature to find it on the page.'
+        : 'The words are the same, but nothing shows you where to look or what matters most.';
+    }
+
+    private showFeature(id: string) {
+      const jobs = JSON.parse(this.querySelector<HTMLElement>('[data-pgx-jobs]')!.dataset.pgxJobs!);
+      this.querySelectorAll('[data-pgx-feat]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-pgx-feat') === id)));
+      this.querySelectorAll<HTMLElement>('.pgx-f').forEach((p) => p.classList.toggle('is-lit', p.dataset.pgxPart === id));
+      this.querySelector('[data-pgx="job"]')!.textContent = jobs[id];
+    }
+  }
+  customElements.define('page-explorer', PageExplorer);
+</script>

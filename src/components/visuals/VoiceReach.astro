@@ -1,0 +1,78 @@
+---
+// Projecting a voice with breath, body and energy (LANENG5-OI2-GQ1-LO1, K2.5, S2.2). Each one switched
+// on sends the sound one row further back, until the whole class can hear.
+const ROWS = 3;
+const JOBS = {
+  breath: 'Breathe low and deep, so there is plenty of air behind your words.',
+  body: 'Stand tall with your head up, facing your listeners, so the sound travels out.',
+  energy: 'Send your voice to the back row, as if you really want them to hear.',
+};
+---
+<voice-reach>
+  <svg class="sci-svg" viewBox="0 0 660 200" role="img" aria-label="A speaker at the front of a classroom with three rows of listeners. Sound waves reach further back as breath, body and energy are switched on.">
+    <rect class="vrc-room" width="660" height="200" rx="8"></rect>
+    <g class="vrc-speaker"><circle cx="60" cy="72" r="16"></circle><path d="M40 140 q2 -46 20 -50 q18 4 20 50 Z"></path></g>
+    {Array.from({ length: ROWS }, (_, r) => (
+      <g class="vrc-row" data-vrc-row={r}>
+        {[0, 1, 2].map((s) => <circle cx={270 + r * 150} cy={45 + s * 55} r="15"></circle>)}
+        <text class="sci-small" x={270 + r * 150} y="192" text-anchor="middle">Row {r + 1}</text>
+      </g>
+    ))}
+    <g data-vrc="waves"></g>
+  </svg>
+  <div class="sci-pick vrc-pick" role="group" aria-label="Switch on what helps your voice carry">
+    <button type="button" data-vrc-on="breath" aria-pressed="false">🫁 Breath</button>
+    <button type="button" data-vrc-on="body" aria-pressed="false">🧍 Body</button>
+    <button type="button" data-vrc-on="energy" aria-pressed="false">⚡ Energy</button>
+  </div>
+  <p class="vrc-say" data-vrc="say" aria-live="polite">Hardly anyone can hear this. Switch on breath, body and energy.</p>
+  <div hidden data-vrc-jobs={JSON.stringify(JOBS)}></div>
+</voice-reach>
+
+<style is:global>
+  voice-reach { display: block; }
+  .vrc-room { fill: var(--surface-2); }
+  .vrc-speaker circle, .vrc-speaker path { fill: var(--accent); }
+  .vrc-row circle { fill: var(--line-strong); transition: fill 0.3s; }
+  .vrc-row.is-hearing circle { fill: var(--ok); }
+  .vrc-wave { fill: none; stroke: var(--accent); stroke-width: 3; opacity: 0.55; stroke-linecap: round; }
+  .vrc-pick { margin-top: 0.6rem; }
+  .vrc-say { margin: 0.5rem 0 0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); min-height: 3rem; }
+</style>
+
+<script>
+  import { voiceReach } from './voice.ts';
+
+  class VoiceReach extends HTMLElement {
+    private jobs: Record<string, string> = {};
+    private on = { breath: false, body: false, energy: false };
+
+    connectedCallback() {
+      this.jobs = JSON.parse(this.querySelector<HTMLElement>('[data-vrc-jobs]')!.dataset.vrcJobs!);
+      this.querySelectorAll<HTMLButtonElement>('[data-vrc-on]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const id = b.dataset.vrcOn as keyof typeof this.on;
+          this.on[id] = !this.on[id];
+          b.setAttribute('aria-pressed', String(this.on[id]));
+          this.draw(this.on[id] ? this.jobs[id] : '');
+        }),
+      );
+      this.draw('');
+    }
+
+    private draw(job: string) {
+      const reach = voiceReach(this.on.breath, this.on.body, this.on.energy);
+      this.querySelectorAll<SVGElement>('[data-vrc-row]').forEach((r) => r.classList.toggle('is-hearing', Number(r.dataset.vrcRow) < reach));
+      // One arc more for each row the voice reaches, with a small arc always showing a quiet voice.
+      const arcs = Array.from({ length: 1 + reach * 2 }, (_, i) => {
+        const r = 50 + i * 85;
+        const h = Math.min(90, 24 + i * 14);
+        return `<path class="vrc-wave" d="M${60 + r} ${85 - h} Q ${60 + r + 26} 85 ${60 + r} ${85 + h}"/>`;
+      });
+      this.querySelector('[data-vrc="waves"]')!.innerHTML = arcs.join('');
+      const end = reach === 3 ? ' The back row can hear you now.' : reach === 0 ? 'Hardly anyone can hear this. Switch on breath, body and energy.' : ` ${reach} of 3 rows can hear you.`;
+      this.querySelector('[data-vrc="say"]')!.textContent = `${job}${end}`.trim();
+    }
+  }
+  customElements.define('voice-reach', VoiceReach);
+</script>

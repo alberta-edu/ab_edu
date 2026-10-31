@@ -1,0 +1,360 @@
+id: word-origins-affixes
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG5-OI3-GQ1-LO1]
+order: 4
+title: Word Origins, Bases and Affixes
+shortTitle: Word origins & affixes
+summary: >-
+  Trace English words back around the world, see how meanings change, take words apart into bases and
+  affixes, and build your vocabulary with the right tools.
+
+bigIdea: |-
+  English words come from **many languages**, and their meanings keep changing. Most long words are built
+  from parts: a **base** that holds the meaning, plus **affixes** that change it. Knowing those parts helps
+  you understand words you have never seen.
+
+lesson:
+  - title: Words from around the world
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1, S1.2, S1.3, U1.1]
+        component: word-journey
+        caption: Tap a word to find where it came from. Then look at the other two tabs. Source for word histories, Wiktionary.
+
+  - title: Take words apart
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.4, U1.1]
+        component: word-builder
+        caption: Tap each prefix and suffix. An **affix** changes the meaning of a word when it is added to a **base**.
+      - type: callout
+        variant: tip
+        covers: [K1.3, S1.4]
+        title: A base keeps its meaning
+        body: '**port** means “carry” in *transport* and *export*. **mit** means “send” in *transmit*, *admit* and *permit*. Learn one base, and you get a hint about a whole family of words.'
+
+  - title: Solve a word you’ve never seen
+    blocks:
+      - type: example
+        covers: [S1.4, K1.3, K2.1]
+        title: What does “circumnavigate” mean?
+        problem: 'You read: “Her dream was to **circumnavigate** the globe in a small boat.”'
+        steps:
+          - '**Find the prefix:** *circum-* means “around.”'
+          - '**Find the base:** *navigate* means “to steer a ship or find your way.”'
+          - '**Put them together:** to steer around.'
+          - '**Check the sentence:** to steer around the globe in a boat makes sense ✓'
+        answer: To **circumnavigate** is to sail or travel all the way around something.
+      - type: callout
+        variant: tip
+        covers: [K2.1]
+        title: More words, better reading
+        body: Each word you know makes the next text easier to understand.
+
+  - title: Two tools for words
+    blocks:
+      - type: compare
+        covers: [K2.2, S2.3, U2.1]
+        columns:
+          - title: 📖 Dictionary
+            body: |-
+              Tells you what a word **means**, and often where it came from.
+
+              > **spacious** (adj.) having plenty of room. *A spacious kitchen.*
+          - title: 📗 Thesaurus
+            body: |-
+              Gives you **other words** with similar or opposite meanings.
+
+              > **spacious:** roomy, large, wide. *Opposite:* cramped.
+      - type: callout
+        variant: mistake
+        covers: [K2.2]
+        title: Check before you swap
+        body: Words from a thesaurus aren’t exact matches. Look up a new word in a dictionary to make sure that it fits your sentence.
+
+  - title: Grow your word collection
+    blocks:
+      - type: compare
+        covers: [K2.3, S2.1, S2.2, S2.4]
+        columns:
+          - title: 📚 Read widely
+            body: Stories, news, comics and science books all use different words. Each kind adds some to your collection.
+          - title: 👂 Listen and note
+            body: When someone uses a word in an interesting way, notice how they used it, and try it yourself.
+          - title: 📝 Keep a word log
+            body: Record words that interest you, what they mean, and a sentence of your own. Say each one, draw it or use it to help you remember.
+
+  - title: Words for school subjects
+    blocks:
+      - type: table
+        covers: [S3.1, S3.2, S3.3, U3.1]
+        caption: Tier 2 and tier 3 words give you exact ways to say what you mean.
+        headers: [Kind of word, What it is, Examples, 'In a sentence']
+        rows:
+          - ['**Tier 2**', 'Useful in many subjects', '*compare, analyze, predict*', 'Let’s **compare** the two maps.']
+          - ['**Tier 3**', 'Belongs to one subject', '*denominator* (math), *buoyancy* (science), *latitude* (social studies)', 'The **denominator** of this fraction is 8.']
+      - type: callout
+        variant: tip
+        covers: [U3.1, S3.1]
+        title: A lifelong project
+        body: Nobody ever finishes learning words. Each new one you learn gives you a new way to communicate.
+
+keyTerms:
+  - term: Base
+    covers: [K1.3, S1.4]
+    definition: The part of a word that holds its main meaning. Affixes attach to it.
+  - term: Affix
+    covers: [K1.3]
+    definition: A word part added to a base that changes its meaning.
+  - term: Prefix
+    covers: [K1.3]
+    definition: An affix that goes before a base, such as trans- or sub-.
+  - term: Suffix
+    covers: [K1.3]
+    definition: An affix that goes after a base, such as -ous or -ment.
+  - term: Word origin
+    covers: [K1.1, S1.1]
+    definition: Where a word came from, such as the language it was first used in.
+  - term: Thesaurus
+    covers: [K2.2]
+    definition: A book or website that lists words with similar or opposite meanings.
+  - term: Tier 2 word
+    covers: [S3.2]
+    definition: A useful word that appears in many subjects, such as compare.
+  - term: Tier 3 word
+    covers: [S3.3]
+    definition: A word that belongs to one subject, such as denominator in math.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.3, S1.4]
+    type: mc
+    prompt: What does the prefix **sub-** mean in *subway* and *submarine*?
+    choices: [Under, Around, Across, Out]
+    answer: 0
+    feedback:
+      '1': That is *circum-*.
+      '2': That is *trans-*.
+      '3': That is *ex-*.
+    hints:
+      - Where does a subway train run? Where does a submarine go?
+    solution:
+      - A subway runs **under** the ground, and a submarine travels **under** the sea.
+
+  - id: w2
+    level: 1
+    covers: [K1.3, S1.4]
+    type: mc
+    prompt: A **musician** is a person who makes music. Which part of the word tells you it is a person?
+    choices: ['-ian', 'music', 'mus', 'ci']
+    answer: 0
+    feedback:
+      '1': That is the base. It tells you what the person works with.
+      '2': That is only part of the base, and has no meaning here.
+      '3': Those letters aren’t a word part here. Look at the end of the word.
+    hints:
+      - Think of *historian* and *musician*. What do they share?
+    solution:
+      - The suffix **-ian** means “a person who does or knows.”
+
+  - id: w3
+    level: 1
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Which language did the word **kayak** come from?
+    choices: [Inuktitut, French, Latin, Japanese]
+    answer: 0
+    feedback:
+      '1': French gave English *menu*, and it passed along *toboggan*.
+      '2': Latin gave English *video*.
+      '3': Japanese gave English *emoji*.
+    hints:
+      - Check the map in the first step. Where is its pin?
+    solution:
+      - '*Kayak* comes from the Inuktitut word *qayaq*, “hunter’s boat.”'
+
+  - id: w4
+    level: 1
+    covers: [K2.2, S2.3]
+    type: mc
+    prompt: You keep writing the word *happy* and want another word to use. Which tool should you open **first**?
+    choices: [A thesaurus, A map, A calculator, A glossary of science words]
+    answer: 0
+    feedback:
+      '1': A map shows places, not words.
+      '2': A calculator works with numbers, not words.
+      '3': A science glossary won’t list other words for *happy*.
+    hints:
+      - Which tool gives other words with similar meanings?
+    solution:
+      - A **thesaurus** lists words with similar meanings, such as *joyful* or *cheerful*.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.3, S1.4]
+    type: text
+    prompt: Join the base and the affix to make a word. **trans** + **port** = ?
+    accept: [transport]
+    hints:
+      - Just join the two parts. The spelling doesn’t change.
+    solution:
+      - '*trans* (across) + *port* (carry) = **transport**, to carry across.'
+
+  - id: b2
+    level: 2
+    covers: [K1.3, S1.4, U1.1]
+    type: mc
+    prompt: What does the word **export** most likely mean? (*ex-* = out, *port* = carry)
+    choices:
+      - To send goods out of a country
+      - To carry something across a river
+      - To bring goods into a country
+      - To keep goods in a warehouse
+    answer: 0
+    feedback:
+      '1': “Across” would need *trans-*.
+      '2': That is the opposite. *ex-* means out, not in.
+      '3': That doesn’t carry anything out at all.
+    hints:
+      - Use each part’s meaning. Out + carry = ?
+    solution:
+      - Carry out. To **export** is to send goods **out** of a country.
+
+  - id: b3
+    level: 2
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: |-
+      Long ago, people said the night sky was **awful**. They meant it was full of awe. If someone says that today,
+      what would most listeners think?
+    choices:
+      - The sky looks very bad.
+      - The sky is full of awe.
+      - The sky is new.
+      - The sky is made of a material called awe.
+    answer: 0
+    feedback:
+      '1': That was the old meaning. The word has changed since then.
+      '2': The word doesn’t tell you anything about age.
+      '3': It describes how something seems, not what it is made of.
+    hints:
+      - What does *awful* mean when you say it about food today?
+    solution:
+      - 'Vocabulary changes over time. *Awful* once meant “awe-inspiring,” and today it means **very bad**.'
+
+  - id: b4
+    level: 2
+    covers: [S1.3, K1.2]
+    type: multi
+    prompt: Which of these words are **new** to English, from about the last 30 years?
+    choices: [selfie, podcast, blog, sky, menu]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': '*Sky* came into English from Old Norse long ago.'
+      '4': '*Menu* came into English from French long before computers.'
+    hints:
+      - Three of these needed the internet or cell phones to exist.
+    solution:
+      - '*Selfie* (2002), *podcast* (2004) and *blog* (1999) are all new words. They reflect how we live now.'
+
+  - id: b5
+    level: 2
+    covers: [S3.2, S3.3]
+    type: mc
+    prompt: Which is a **tier 3** word?
+    choices: [latitude, compare, predict, explain]
+    answer: 0
+    feedback:
+      '1': You compare things in every subject, so this is a tier 2 word.
+      '2': You can predict in science, reading and more, so this is a tier 2 word.
+      '3': You explain in every subject, so this is a tier 2 word.
+    hints:
+      - A tier 3 word belongs to one subject.
+    solution:
+      - '**Latitude** belongs to social studies, so it is a tier 3 word.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.3, S1.4, U1.1]
+    type: mc
+    prompt: '*Transmit*, *permit* and *admit* all share the base **mit**. What does **mit** mean, and how can you tell?'
+    choices:
+      - Send, because each word is about sending or letting something go somewhere.
+      - Carry, because all three have to do with suitcases.
+      - Under, because all three have to do with going below.
+      - It has no meaning, because a base is only a group of letters.
+    answer: 0
+    feedback:
+      '1': '**port** is the base that means “carry.” And none of these words is about suitcases.'
+      '2': '**sub-** means under, and it isn’t in any of these words.'
+      '3': A base holds the main meaning of a word. That is what makes it so useful.
+    hints:
+      - To transmit is to send across. What does that leave for *mit*?
+    solution:
+      - Take away *trans-* (across), and **mit** must mean **send**.
+
+  - id: d2
+    level: 3
+    covers: [S2.3, K2.2]
+    type: mc
+    prompt: |-
+      Omar uses a thesaurus to replace *big* with *obese*. He writes, “We live in an obese house.”
+      What went wrong?
+    choices:
+      - He didn’t check how the new word is used. A dictionary would show it describes people’s bodies, not houses.
+      - Thesauruses always give wrong words.
+      - The word *big* is spelled incorrectly.
+      - Houses can never be described by adjectives.
+    answer: 0
+    feedback:
+      '1': A thesaurus gives useful options, but they aren’t exact matches. You have to choose carefully.
+      '2': '*Big* is spelled correctly. The problem is the new word.'
+      '3': Adjectives such as *spacious* describe houses well.
+    hints:
+      - What is the tool that tells you what a word really means?
+    solution:
+      - Words from a thesaurus are not exact matches. Check them in a **dictionary**. *Spacious* would fit here.
+
+  - id: d3
+    level: 3
+    covers: [K1.1, K1.2, S1.1]
+    type: mc
+    prompt: '*Sky* once meant “cloud” in Old Norse. *Nice* once meant “ignorant” in Latin. What do these two histories show?'
+    choices:
+      - Words come from other languages, and their meanings can change.
+      - Words never change once they enter English.
+      - All English words come from Old Norse.
+      - People used to be wrong about the weather.
+    answer: 0
+    feedback:
+      '1': These two words changed a lot. Compare the old meanings with today’s.
+      '2': English words come from a variety of origins, as the map showed.
+      '3': These are histories of words, not of weather science.
+    hints:
+      - Compare each word’s old meaning with its meaning today.
+    solution:
+      - English has words from **a variety of origins**, and vocabulary **changes over time**.
+
+  - id: d4
+    level: 3
+    covers: [S2.2, S2.1, S3.1]
+    type: open
+    prompt: |-
+      Start your **word log**. Choose a word from a book, a show or a talk that you liked. Write the word, what it
+      means, where you found it, and a sentence of your own. Then explain how you will remember it.
+    modelAnswer: |-
+      **Word:** spacious. **Meaning:** having plenty of room. **Found in:** a book about the Space Station.
+      **My sentence:** Our new tent is so spacious that the dog has her own corner. **To remember it:** I see the word
+      *space* inside it, and a spacious room has lots of space.
+    rubric:
+      - I chose a word that interested me and said where I found it.
+      - I wrote what it means.
+      - I used it in a sentence of my own.
+      - I described a way to remember it.

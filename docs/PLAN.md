@@ -12,15 +12,15 @@ the branch that deploys.
 
 *Last updated: October 30, 2026. Update this section whenever a phase or batch finishes.*
 
-**Current phase: 5 (Social Studies) is done and merged into `main`. Phase 6 (ELAL) is next.**
+**Current phase: 6 (ELAL) is done and merged into `main`. Phase 7 (Polish) is next.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
 | Math | **15 of 15** ✅ | **165 of 165** ✅ |
 | Science | **15 of 15** ✅ | **204 of 204** ✅ |
 | Social Studies | **6 of 6** ✅ | **62 of 62** ✅ |
-| ELAL | 1 of 12 | partly (inference and evidence) |
-| **Total** | **37 of 48** | 442 of 674 (see [curriculum-audit.md](curriculum-audit.md)) |
+| ELAL | **12 of 12** ✅ | **243 of 243** ✅ |
+| **Total** | **48 of 48** ✅ | **674 of 674** ✅ (see [curriculum-audit.md](curriculum-audit.md)) |
 
 **Branches:**
 
@@ -32,6 +32,7 @@ the branch that deploys.
 | `feature/grade5-math` | Phase 3: all 15 Math lessons (233 problems) | ✅ Merged into `main` |
 | `feature/grade5-science` | Phase 4: the other 14 Science lessons (195 problems across all 15), 11 virtual experiments | ✅ Merged into `main` |
 | `feature/grade5-social-studies` | Phase 5: the other 5 Social Studies lessons, 11 new visuals and 1 virtual experiment | ✅ Merged into `main` |
+| `feature/grade5-elal` | Phase 6: the other 11 ELAL lessons (157 problems across all 12), 18 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 
 Nothing is waiting for review right now. The owner will do the manual review at the very end, after all phases.
 
@@ -40,7 +41,7 @@ until all tasks are finished and people have reviewed it. Until then, the deploy
 each push to `main` because Pages is off. That is expected: the build still runs, and nothing
 goes public.
 
-**Next up:** Phase 6, ELAL, on a new branch from `main`, in a new chat thread.
+**Next up:** Phase 7, Polish, on a new branch from `main`, in a new chat thread.
 
 ## 1. Ground truth: the curriculum
 
@@ -190,8 +191,8 @@ code · the design process · controlled experiments · evidence, bias & ethics
 historians, sources & evidence · ★ latitude, longitude & where civilizations grew · trade routes &
 early economies · governments & social systems · informed citizenship
 
-**ELAL** (6 outcomes → 12 concepts): text forms & genres · poetry & drama · oral
-communication · word origins & affixes · figurative language · ✅ ★ inference & text evidence ·
+**ELAL** (6 outcomes → 12 concepts), all built ✅: text forms & genres · poetry & drama · oral
+communication · word origins & affixes · figurative language · ★ inference & text evidence ·
 perspective & context · the writing process · author's craft (show, don't tell) ·
 research skills · grammar · spelling & punctuation
 
@@ -205,8 +206,8 @@ research skills · grammar · spelling & punctuation
 | 3 | Math | Remaining 14 concepts | ✅ Done, merged into `main` |
 | 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ✅ Done, merged into `main` |
 | 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline, empire maps, village-to-city, scroll-scan experiment) | ✅ Done, merged into `main` |
-| 6 | ELAL | Remaining 11 concepts (original passages and poems) | ⏭️ **Next** |
-| 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | Not started |
+| 6 | ELAL | Remaining 11 concepts (original passages and poems), each with a visual you can play with (word builder, voice lab, poem reader, script stage, show-don't-tell dial, grammar lab, echo-room experiment) | ✅ Done, merged into `main` |
+| 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | ⏭️ **Next** |
 | 8 | Release | Only after all other phases are finished and people have reviewed the whole site: enable GitHub Pages and publish | Not started, needs review and your sign-off |
 
 ## 6. Decisions for the owner

@@ -37,7 +37,7 @@ lesson:
   - title: Explicit or implicit?
     blocks:
       - type: compare
-        covers: [K3.1, S3.1]
+        covers: [K3.1, S3.1, U3.1]
         columns:
           - title: Explicit
             body: |-
@@ -115,6 +115,52 @@ lesson:
         title: Point to the exact words
         body: Quote the words, or name the paragraph number, so your reader can check your evidence.
 
+  - title: Your reading toolkit
+    blocks:
+      - type: table
+        covers: [K1.1, K1.2, K1.6, S1.1, U1.1]
+        caption: You have now used two of these with “The Arch.” Good readers use all six before, during and after reading.
+        headers: [Strategy, What you do, 'In “The Arch”']
+        rows:
+          - ['**Predicting**', 'Guess what comes next.', 'The weather will change.']
+          - ['**Inferring**', 'Work out what is hinted at.', 'The roof is dripping, so it is getting warmer.']
+          - ['**Making connections**', 'Link the text to your life, to other texts or to the world.', 'My grandmother reads the sky, too.']
+          - ['**Summarizing**', 'Give the main idea briefly.', 'Grandpa reads the sky and knows that a warm spell is coming.']
+          - ['**Synthesizing**', 'Put ideas together into something new.', 'Long experience can teach what a thermometer can’t.']
+          - ['**Evaluating**', 'Make a judgement, based on evidence in the text.', 'Grandpa is a good weather reader, because he was right.']
+      - type: callout
+        variant: tip
+        covers: [K1.6, K1.7]
+        title: Know why you are reading
+        body: 'Reading is easier when your **purpose** is clear. For a report, you also manage information: research it, organize it, and use it for that purpose.'
+
+  - title: When reading gets stuck
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: reread, label: Reread, icon: 🔁 }
+            - { id: rate, label: Adjust my rate, icon: 🐢 }
+            - { id: ask, label: Ask questions, icon: ❓ }
+            - { id: clues, label: Use context clues, icon: 🔍 }
+            - { id: resources, label: Use a resource, icon: 📖 }
+          cards:
+            - { text: I got to the end of the page and I don't know what happened., bin: reread, why: 'Go back and read it again.' }
+            - { text: "This part has lots of details, and I'm rushing.", bin: rate, why: 'Slow down for the harder parts.' }
+            - { text: Why would Grandpa smile at a cold sky?, bin: ask, why: 'Asking questions gives you something to look for.' }
+            - { text: "I don't know “squinted,” but he is looking at something far away.", bin: clues, why: 'The words around it hint at its meaning.' }
+            - { text: "Paragraph 4 describes an arch, and I can't picture it.", bin: resources, why: 'A picture or a dictionary can help.' }
+        caption: Noticing that you are lost is called **self-monitoring**. What would you do in each case?
+      - type: compare
+        covers: [K1.3, K1.5, S1.2]
+        columns:
+          - title: 🧠 Metacognition
+            body: '**Thinking about your thinking.** “Wait. I’m confused. What part lost me?”'
+          - title: ✅ Did it work?
+            body: After you try a strategy, check it. If you still don't understand, try another. Reading gets more fluent as this gets easier.
+
 keyTerms:
   - term: Explicit
     covers: [K3.1]
@@ -134,6 +180,15 @@ keyTerms:
   - term: Context clues
     covers: [K1.4]
     definition: Words around an unfamiliar word that help you work out its meaning.
+  - term: Self-monitoring
+    covers: [K1.4]
+    definition: Noticing when you stop understanding, and using a skill to make sense of the text.
+  - term: Metacognition
+    covers: [K1.5]
+    definition: Thinking about your own thinking, to help you understand better.
+  - term: Evaluating
+    covers: [K1.2]
+    definition: Making a judgement based on evidence in the text.
 
 problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
@@ -388,3 +443,45 @@ problems:
       - I quoted words or named paragraph numbers.
       - I explained my inference (clue + what I know).
       - I connected the arch to what happened next.
+
+  - id: d5
+    level: 3
+    covers: [K1.2, S1.1, K1.1]
+    type: mc
+    prompt: Which sentence is an example of **evaluating** “The Arch”?
+    choices:
+      - Grandpa is a good weather reader, because the thermometer proves he was right.
+      - Nadia’s class was going skating at Bowness Park.
+      - I wonder what will happen tomorrow.
+      - Maybe the next story will be about Nadia’s skating.
+    answer: 0
+    feedback:
+      '1': This is a fact from the text. Evaluating makes a judgement.
+      '2': This is asking a question, not making a judgement.
+      '3': This is a prediction, not a judgement.
+    hints:
+      - Evaluating means making a judgement based on evidence.
+    solution:
+      - It makes a **judgement** (a good weather reader) and backs it up with **evidence** (the thermometer).
+
+  - id: d6
+    level: 3
+    covers: [K1.4, K1.5, S1.2, S1.3]
+    type: mc
+    prompt: |-
+      Omar is reading about the arch. He notices, “I don’t get what this cloud band has to do with anything.”
+      He rereads and is still confused. What should he do **next**?
+    choices:
+      - Try a different strategy, such as asking a question or looking up a picture of that kind of sky.
+      - Keep rereading the same part, over and over, without changing anything.
+      - Stop reading, because he isn't good at this.
+      - Skip to the end and pretend he understood it.
+    answer: 0
+    feedback:
+      '1': Rereading didn't work this time. A good reader checks that and tries something else.
+      '2': Getting stuck happens to every reader. Noticing it is a **skill**.
+      '3': This leaves him just as confused. A good reader fixes the problem.
+    hints:
+      - He evaluated rereading, and it didn't work. What are his other tools?
+    solution:
+      - He is using **metacognition** to notice the problem. When one skill doesn't work, try **another**.

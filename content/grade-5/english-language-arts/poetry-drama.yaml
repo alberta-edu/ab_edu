@@ -1,0 +1,424 @@
+id: poetry-drama
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG5-OI1-GQ1-LO1]
+order: 2
+title: Poetry and Drama
+shortTitle: Poetry & drama
+summary: >-
+  Listen to a lyric poem, learn it by heart, write your own, then watch a scripted scene to see how
+  words, bodies and voices bring a story and a place to life.
+
+bigIdea: |-
+  Poetry can be read, heard or spoken, and it can be enjoyed for its **beauty and emotion**. Drama
+  tells a story through **dialogue and action**. Both can connect us to people and to the land.
+
+lesson:
+  - title: Listen to a poem
+    blocks:
+      - type: visual
+        covers: [K5.1, K5.2, K5.4, S5.1, S5.4]
+        component: poem-reader
+        props:
+          title: Coulee Morning
+          ideas:
+            - Climbing the coulee alone at sunrise
+            - Missing the grandmother who walked here too
+            - A bird’s song, and the sadness lifting
+          stanzas:
+            - - The morning sun is a slow gold door
+              - that opens on the prairie floor.
+              - I climb the coulee, all alone,
+              - my boots loud on the frosty stone.
+            - - My grandmother walked this trail with me.
+              - She knew each bird and every tree.
+              - Now I say their names out loud.
+              - My voice is small beneath the cloud.
+            - - Then a meadowlark begins to sing,
+              - like a bell on a small brown wing,
+              - and the ache in my chest is a fist letting go,
+              - and I know what she knew. I know. I know.
+        caption: Press Listen, or read it aloud. Each block of lines is a **stanza** that relates to one idea.
+      - type: callout
+        variant: tip
+        covers: [U5.1, S5.1]
+        title: What did you feel?
+        body: You don’t have to “solve” a poem. Notice where it sounds beautiful, and what it makes you feel.
+
+  - title: Lyric poems carry feelings
+    blocks:
+      - type: table
+        covers: [K5.3, S5.3, U5.1]
+        caption: '“Coulee Morning” is a **lyric poem**: it expresses personal feelings. Figurative language helps us feel them.'
+        headers: [Stanza, The words, The feeling]
+        rows:
+          - ['1', '“The morning sun is a slow gold door”', 'Quiet wonder. The sun isn’t really a door, but the words let us see it opening.']
+          - ['2', '“My voice is small beneath the cloud.”', 'Loneliness. A small voice under a big sky makes the speaker feel tiny.']
+          - ['3', '“like a bell on a small brown wing”', 'Joy returning. The bird’s song rings out, clear as a bell.']
+          - ['3', '“the ache in my chest is a fist letting go”', 'Relief. We can almost feel the sadness loosen.']
+
+  - title: Learn it by heart
+    blocks:
+      - type: visual
+        covers: [S5.2, K5.1]
+        component: poem-reader
+        props:
+          title: Coulee Morning
+          stanzas:
+            - - The morning sun is a slow gold door
+              - that opens on the prairie floor.
+              - I climb the coulee, all alone,
+              - my boots loud on the frosty stone.
+            - - My grandmother walked this trail with me.
+              - She knew each bird and every tree.
+              - Now I say their names out loud.
+              - My voice is small beneath the cloud.
+            - - Then a meadowlark begins to sing,
+              - like a bell on a small brown wing,
+              - and the ache in my chest is a fist letting go,
+              - and I know what she knew. I know. I know.
+        caption: Press “Hide some words” after each try. Recite it, or make up a tune and sing it.
+      - type: callout
+        variant: tip
+        covers: [S5.2, S5.4]
+        title: One stanza at a time
+        body: Each stanza holds one idea. Picture the idea, say that stanza, then add the next one.
+
+  - title: Write a lyric poem
+    blocks:
+      - type: example
+        covers: [S5.5, K5.3, K5.4]
+        title: From a feeling to a stanza
+        problem: Write a stanza about a feeling you know well.
+        steps:
+          - '**Pick a real feeling:** proud after finishing a long ski trail.'
+          - '**Picture one moment:** the top of the last hill, with my legs shaking.'
+          - '**Compare it to something:** my legs are wet noodles, and the wind is cheering.'
+          - '**Group the lines around that one idea:** that group is your stanza.'
+        answer: |-
+          My legs are noodles, wet and weak.
+          The wind is cheering on my cheek.
+
+  - title: A scene on stage
+    blocks:
+      - type: visual
+        covers: [K6.2, K6.3, S6.1]
+        component: script-stage
+        props:
+          characters: [Anna, Tomas]
+          lines:
+            - { who: 0, say: 'Dust on the sill again. I wiped it an hour ago.', body: 'Drops her shoulders, and wipes the sill slowly.', voice: 'Slow and flat. She sounds tired.', pose: down }
+            - { who: 1, say: 'Pa says rain is coming.', body: 'Stands tall and looks up at the sky.', voice: 'Bright, with a rising pitch. He sounds hopeful.', pose: up }
+            - { who: 0, say: 'Pa said that in June. And in July.', body: 'Turns away from him.', voice: 'Quiet and sharp, with stress on **July**.', pose: away }
+            - { who: 1, say: 'Then we plant again. There is still seed in the shed.', body: 'Leans toward her.', voice: 'Steady and firm, at an even pace.', pose: lean }
+            - { who: 0, say: 'And if the wind takes that too?', body: 'Looks down at the cloth in her hands.', voice: 'Soft, rising at the end, because it is a real question.', pose: down }
+            - { who: 1, say: 'Then we wipe the sill again. Together.', body: 'Holds out his hand for the cloth.', voice: 'Slow and warm, with a pause before **Together**.', pose: lean }
+        caption: 'The plot moves through **dialogue and action**. Step through it and watch all three kinds of language.'
+
+  - title: Reading a script
+    blocks:
+      - type: passage
+        id: dust
+        title: Dust on the Sill
+        form: Script
+        paragraphs:
+          - 'A farmhouse kitchen on the southern Alberta prairie, 1934. It has not rained properly in years.'
+          - 'ANNA: (wiping the windowsill) Dust on the sill again. I wiped it an hour ago.'
+          - 'TOMAS: (looking out at the sky) Pa says rain is coming.'
+          - 'ANNA: (turning away) Pa said that in June. And in July.'
+          - 'TOMAS: Then we plant again. There is still seed in the shed.'
+          - 'ANNA: And if the wind takes that too?'
+          - 'TOMAS: (holding out his hand) Then we wipe the sill again. Together.'
+          - 'Anna gives him the cloth. They both look out at the empty sky.'
+        note: An original scene written for AB Edu. Words in parentheses are stage directions.
+      - type: compare
+        covers: [K6.1, S6.2, U6.1]
+        columns:
+          - title: What we learn about the time
+            body: Drama can show people in other **times, places and situations**. We see the dust, and how long a family waited for rain.
+          - title: Main characters and events
+            body: '**Anna** has almost given up. **Tomas** keeps hoping. The main event is small: she hands him the cloth. It shows she will keep going, too.'
+
+  - title: Poems, places and you
+    blocks:
+      - type: visual
+        covers: [K7.1, S7.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: living, label: Living things, icon: 🌾 }
+            - { id: built, label: Human-made structures, icon: 🌉 }
+            - { id: cycles, label: Patterns and cycles, icon: 🔄 }
+            - { id: stories, label: Stories of place, icon: 🗺️ }
+          cards:
+            - { text: The meadowlark you listen for every spring, bin: living, why: 'A bird is a living thing that can tie you to a place.' }
+            - { text: The poplar you climbed at your cousin’s farm, bin: living, why: 'Trees and plants can hold memories of a place.' }
+            - { text: The old bridge your family crosses on the way to the lake, bin: built, why: 'People built it, and it is part of how you know the land.' }
+            - { text: The grain elevator you can see from your window, bin: built, why: 'A human-made landmark can feel like part of home.' }
+            - { text: "The first frost, when your family brings in the garden", bin: cycles, why: 'The seasons repeat every year.' }
+            - { text: The way the sun sets further north as summer comes, bin: cycles, why: 'This pattern repeats every year.' }
+            - { text: Your uncle’s story of how the coulee near his farm got its name, bin: stories, why: 'A story can teach you what a place means.' }
+        caption: Land can matter to us in many ways. Sort these personal connections.
+      - type: callout
+        variant: tip
+        covers: [U7.1, S7.1]
+        title: What place matters to you?
+        body: In “Coulee Morning,” a trail and a bird connect the speaker to a grandmother. **Meaning comes from experience.** Think of a place that means something to you, and why.
+
+keyTerms:
+  - term: Stanza
+    covers: [K5.4]
+    definition: A series of lines grouped together in a poem that relate to a similar idea.
+  - term: Lyric poetry
+    covers: [K5.3]
+    definition: Poetry that expresses personal emotions or feelings.
+  - term: Script
+    covers: [K6.2]
+    definition: The written form of a dramatic work, in which plot and characters are developed through dialogue and action.
+  - term: Dialogue
+    covers: [K6.2]
+    definition: The words characters say to each other.
+  - term: Non-verbal language
+    covers: [K6.3]
+    definition: Showing ideas without words, through things like body movement.
+  - term: Paraverbal language
+    covers: [K6.3]
+    definition: How the voice delivers words, such as how fast, how loud, and in what tone.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K5.4, S5.4]
+    type: number
+    prompt: How many **stanzas** does “Coulee Morning” have?
+    answer: 3
+    hints:
+      - A stanza is a group of lines. Count the groups, not the lines.
+    solution:
+      - The poem has **3** groups of lines, so it has 3 stanzas.
+
+  - id: w2
+    level: 1
+    covers: [K5.3]
+    type: mc
+    prompt: What makes a poem a **lyric poem**?
+    choices:
+      - It expresses personal emotions or feelings.
+      - It always tells a funny story.
+      - It must be exactly four lines long.
+      - It explains facts about nature.
+    answer: 0
+    feedback:
+      '1': A lyric poem might be funny, but its mark is personal feeling.
+      '2': Lyric poems can be any length. Length doesn’t define them.
+      '3': A poem about nature can be lyric, but explaining facts is not what makes it so.
+    hints:
+      - Think about what “Coulee Morning” shares with us.
+    solution:
+      - Lyric poetry expresses **personal emotions or feelings**.
+
+  - id: w3
+    level: 1
+    covers: [K6.3]
+    type: mc
+    prompt: Anna **turns away** from Tomas. What kind of language is this?
+    choices: [Non-verbal, Verbal, Paraverbal]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Verbal language means the words themselves. She isn’t saying this.
+      '2': Paraverbal language is about how the voice sounds. This is a body movement.
+    hints:
+      - Is she using words, her voice, or her body?
+    solution:
+      - She shows her feelings with her body, so this is **non-verbal** language.
+
+  - id: w4
+    level: 1
+    covers: [K6.2]
+    type: mc
+    prompt: In a **scripted** drama, how do we learn about the plot and characters?
+    choices:
+      - Through dialogue and action
+      - Through a glossary and a sidebar
+      - Through rhymes in every line
+      - Through chapter titles
+    answer: 0
+    feedback:
+      '1': Those are text features, not parts of a script.
+      '2': Some plays rhyme, but plot and characters are developed through what people say and do.
+      '3': Scripts don’t depend on chapter titles. Look at what the characters say and do.
+    hints:
+      - What did you watch on the little stage?
+    solution:
+      - In a scripted drama, plot and characters develop through **dialogue and action**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S5.3, K5.3]
+    type: mc
+    prompt: '“The ache in my chest is a fist letting go.” What feeling do these words help you experience?'
+    choices:
+      - Sadness beginning to loosen
+      - Anger about to turn into a fight
+      - Pain from a real injury
+      - Excitement about a game
+    answer: 0
+    feedback:
+      '1': A fist **letting go** is opening, not getting ready to hit.
+      '2': The poem’s “ache” is a feeling. Nothing in the poem says the speaker is hurt.
+      '3': No game appears in the poem. Think about the grandmother and the bird.
+    hints:
+      - What happens to your hand when a fist lets go?
+    solution:
+      - A tight fist that opens feels like relief. The speaker’s sadness **begins to loosen**.
+
+  - id: b2
+    level: 2
+    covers: [K6.1, S6.1]
+    type: evidence
+    prompt: Tap the sentence that tells you the **time and place** of “Dust on the Sill.”
+    passage: dust
+    paragraphs: [1, 2]
+    answer: [p1s1]
+    feedback:
+      p1s2: This tells about the weather. Find the sentence that names the place and year.
+      p2s1: This is Anna’s first line. Look at the words before the dialogue.
+      p2s2: This is Anna’s line. Look at the words before the dialogue.
+    hints:
+      - Writers of scripts often set the scene at the very top.
+    solution:
+      - '“A farmhouse kitchen on the southern Alberta prairie, 1934.”'
+
+  - id: b3
+    level: 2
+    covers: [S6.2]
+    type: mc
+    prompt: How do Tomas and Anna **differ** in this scene?
+    choices:
+      - Tomas keeps hoping, while Anna has almost given up.
+      - Anna wants to plant, and Tomas wants to leave.
+      - Tomas is angry at Pa, and Anna is not.
+      - They agree about everything from start to finish.
+    answer: 0
+    feedback:
+      '1': It’s the other way around. Who says “Then we plant again”?
+      '2': Tomas trusts what Pa says. Anna is the one who doubts it.
+      '3': Look at Anna’s line about June and July. They see things differently.
+    hints:
+      - Compare Anna’s line about June and July with Tomas’s line about the seed.
+    solution:
+      - Tomas says “Then we plant again.” Anna says “And if the wind takes that too?” **He hopes, she doubts.**
+
+  - id: b4
+    level: 2
+    covers: [K6.3, S6.2]
+    type: mc
+    prompt: The line is “Then we wipe the sill again. Together.” Which delivery best fits the end of the scene?
+    choices:
+      - Slow and warm, with a pause before “Together”
+      - Very fast and laughing
+      - Shouted angrily
+      - In a flat, bored voice
+    answer: 0
+    feedback:
+      '1': A fast, laughing voice doesn’t fit a family that is worn out and worried.
+      '2': Tomas is trying to comfort Anna, not fight with her.
+      '3': A flat voice would hide how much he cares. Think about why he says “Together.”
+    hints:
+      - What is Tomas trying to do for Anna?
+    solution:
+      - He is comforting her. A **slow, warm** tone and a pause make “Together” matter.
+
+  - id: b5
+    level: 2
+    covers: [K7.1, S7.1]
+    type: mc
+    prompt: Priya feels happy each fall when the geese fly over her farm. Which **feature of land** is she connected to?
+    choices:
+      - Patterns and cycles
+      - Human-made structures
+      - Stories of place
+      - Text features
+    answer: 0
+    feedback:
+      '1': Geese weren’t built by people. Which part of this happens again each year?
+      '2': Nobody is telling a story here. Look at what repeats.
+      '3': Text features belong in books and web pages, not on the land.
+    hints:
+      - This happens **each fall**. What does that tell you?
+    solution:
+      - The geese return every year, so this is a connection to **patterns and cycles**. (They are living things too, but it is the repeating that she looks forward to.)
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S5.4, K5.4]
+    type: order
+    prompt: Put the **ideas** of “Coulee Morning” in the order of its stanzas.
+    items:
+      - Climbing the coulee alone at sunrise
+      - Missing the grandmother who walked there too
+      - A bird’s song, and the sadness lifting
+    hints:
+      - Each stanza relates to one idea. Start with the opening stanza.
+    solution:
+      - 'Stanza 1: the climb at sunrise. Stanza 2: missing her grandmother. Stanza 3: the meadowlark and relief.'
+
+  - id: d2
+    level: 3
+    covers: [K6.2, S6.2, U6.1]
+    type: mc
+    prompt: |-
+      The last line of “Dust on the Sill” is not spoken: “Anna gives him the cloth.” Why is this **action** the most
+      important moment of the scene?
+    choices:
+      - It shows, without words, that Anna has chosen to keep going with him.
+      - It shows that Anna is finished with her chores for the day.
+      - It tells the audience that it has started to rain.
+      - It shows that Tomas is angry with her.
+    answer: 0
+    feedback:
+      '1': Then it would just be a chore. Think about what they were arguing about.
+      '2': Check the end of the scene. The sky is still empty.
+      '3': He has just said “Together.” Nothing here sounds angry.
+    hints:
+      - What had Anna been doing all scene? What does handing over the cloth mean?
+    solution:
+      - Plot can move through action. Anna says nothing, but giving him the cloth **answers** his “Together.”
+
+  - id: d3
+    level: 3
+    covers: [S5.5, K5.3]
+    type: open
+    prompt: |-
+      Write **one stanza** of your own lyric poem about a place that matters to you. Use at least one comparison, and
+      show how you feel.
+    modelAnswer: |-
+      The rink is a mirror under the moon.
+      My skates hum a low and silver tune.
+      I am not the smallest one out here.
+      The cold air tells me I belong here.
+    rubric:
+      - My lines relate to one idea, so they form a stanza.
+      - My stanza shows a real feeling.
+      - I used at least one comparison.
+      - I read it aloud and changed anything that sounded wrong.
+
+  - id: d4
+    level: 3
+    covers: [S7.1, U7.1, S5.1]
+    type: open
+    prompt: |-
+      The speaker in “Coulee Morning” connects a place to a personal memory. Describe a **feature of land** that means
+      something to you, and explain what experience gave it that meaning.
+    modelAnswer: |-
+      The river path near my house means a lot to me. My dad taught me to ride a bike there, and every time I see the
+      big poplar by the bend, I remember how scared and proud I felt when he let go.
+    rubric:
+      - I named a feature of land (a living thing, a structure, a pattern or a story of a place).
+      - I described an experience I had there.
+      - I explained why it matters to me.
