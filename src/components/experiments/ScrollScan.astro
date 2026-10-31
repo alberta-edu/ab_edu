@@ -1,0 +1,106 @@
+---
+// Animated experiment: a scroll burned by Vesuvius in 79 CE is too fragile to open. An X-ray scan
+// and a computer "unroll" it without touching it, and the first word appears: the Greek for
+// "purple", first read in 2023 (outcome Fy8zbilfU0yzOlpS8c5Cdg, K1.5 and S1.6).
+---
+<scroll-scan>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-sc="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sc="live"></p>
+</scroll-scan>
+
+<style is:global>
+  scroll-scan { display: block; }
+  .sc-bg { fill: color-mix(in srgb, var(--ink) 88%, var(--surface)); }
+  .sc-scroll { fill: #2a211b; stroke: #5a4a3c; stroke-width: 2; }
+  .sc-end { fill: #3a2d24; stroke: #6b5848; stroke-width: 2; }
+  .sc-spiral { fill: none; stroke: #e2b56b; stroke-width: 2.4; }
+  .sc-beam { fill: #5fd0ff; opacity: 0.35; }
+  .sc-beamline { stroke: #5fd0ff; stroke-width: 2.5; }
+  .sc-sheet { fill: #3a2d24; stroke: #6b5848; stroke-width: 2; }
+  .sc-letter { fill: #f6e6c2; font-size: 44px; font-weight: 700; font-family: Georgia, 'Times New Roman', serif; }
+  .sc-label { fill: #f6f4ef; font-size: 17px; font-weight: 700; }
+  .sc-note { fill: #d9d5cc; font-size: 15px; }
+  @media (max-width: 40rem) {
+    svg .sc-label { font-size: 24px; }
+    svg .sc-note { font-size: 19px; }
+  }
+</style>
+
+<script>
+  import { ease, lerp, tween, wait } from './anim.ts';
+
+  const LETTERS = ['Π', 'Ο', 'Ρ', 'Φ', 'Υ', 'Ρ', 'Α', 'C'];
+  const SPIRAL_TURNS = 4.5;
+
+  /** A rolled-up sheet seen from the end: a spiral that opens as `open` goes from 0 to 1. */
+  function spiral(cx: number, cy: number, spin: number) {
+    let d = '';
+    for (let i = 0; i <= 120; i++) {
+      const a = (i / 120) * SPIRAL_TURNS * Math.PI * 2 + spin;
+      const r = 6 + (i / 120) * 62;
+      // Squashed, as the burned scrolls were.
+      const x = cx + Math.cos(a) * r;
+      const y = cy + Math.sin(a) * r * 0.72;
+      d += `${i ? 'L' : 'M'}${x.toFixed(1)} ${y.toFixed(1)}`;
+    }
+    return d;
+  }
+
+  class ScrollScan extends HTMLElement {
+    connectedCallback() {
+      this.drawScroll(-1);
+    }
+
+    private set(html: string) {
+      this.querySelector('[data-sc="svg"]')!.innerHTML = `<rect class="sc-bg" width="660" height="300" rx="8"/>${html}`;
+    }
+
+    private drawScroll(beamX: number) {
+      const beam = beamX >= 0 ? `<rect class="sc-beam" x="${beamX - 22}" y="40" width="44" height="170"/><line class="sc-beamline" x1="${beamX}" y1="40" x2="${beamX}" y2="210"/>` : '';
+      this.set(`
+        <path class="sc-scroll" d="M140 90 Q 330 70 520 88 Q 540 125 520 164 Q 330 180 140 162 Q 122 125 140 90 Z"/>
+        <path class="sc-end" d="M120 126 a24 37 0 1 0 48 0 a24 37 0 1 0 -48 0"/>
+        ${beam}
+        <text class="sc-label" x="330" y="240" text-anchor="middle">${beamX >= 0 ? 'An X-ray beam scans through the scroll' : 'A burned scroll from Herculaneum, 79 CE'}</text>
+        <text class="sc-note" x="330" y="268" text-anchor="middle">Turned to charcoal. If you try to open it, it crumbles.</text>`);
+    }
+
+    async run() {
+      const live = this.querySelector('[data-sc="live"]')!;
+      live.textContent = '';
+      await tween(2200, (t) => this.drawScroll(lerp(140, 520, ease(t))));
+      await wait(150);
+      await tween(2000, (t) => {
+        this.set(`
+          <path class="sc-spiral" d="${spiral(330, 110, t * 1.6)}"/>
+          <text class="sc-label" x="330" y="222" text-anchor="middle">The scan shows the layers inside</text>
+          <text class="sc-note" x="330" y="250" text-anchor="middle">A computer finds each layer, one thin sheet at a time.</text>`);
+      });
+      await tween(1400, (t) => {
+        const w = lerp(90, 560, ease(t));
+        this.set(`
+          <rect class="sc-sheet" x="${330 - w / 2}" y="50" width="${w}" height="120" rx="4"/>
+          <text class="sc-label" x="330" y="222" text-anchor="middle">The computer “unrolls” it, without touching it</text>`);
+      });
+      await tween(2400, (t) => {
+        const shown = t * LETTERS.length;
+        const letters = LETTERS.map((l, i) => {
+          const o = Math.max(0, Math.min(1, shown - i));
+          return `<text class="sc-letter" x="${92 + i * 68}" y="126" text-anchor="middle" opacity="${o.toFixed(2)}">${l}</text>`;
+        }).join('');
+        this.set(`
+          <rect class="sc-sheet" x="50" y="50" width="560" height="120" rx="4"/>
+          ${letters}
+          <text class="sc-label" x="330" y="222" text-anchor="middle">A computer program spots the ink</text>`);
+      });
+      this.set(`
+        <rect class="sc-sheet" x="50" y="50" width="560" height="120" rx="4"/>
+        ${LETTERS.map((l, i) => `<text class="sc-letter" x="${92 + i * 68}" y="126" text-anchor="middle">${l}</text>`).join('')}
+        <text class="sc-label" x="330" y="222" text-anchor="middle">porphyras: the Greek word for “purple”</text>
+        <text class="sc-note" x="330" y="250" text-anchor="middle">Read in 2023, after almost 2,000 years, without opening the scroll.</text>`);
+      await wait(250);
+      live.textContent = 'The scan and the computer revealed a Greek word, porphyras, meaning purple, inside the scroll, which was never opened.';
+    }
+  }
+  customElements.define('scroll-scan', ScrollScan);
+</script>

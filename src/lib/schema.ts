@@ -148,7 +148,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
+    component: z.enum(['civ-timeline', 'rise-fall-city', 'then-now', 'card-sort', 'social-scientists', 'village-city', 'nilometer', 'trade-map', 'social-pyramid', 'empire-map', 'issue-investigator', 'fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'body-systems', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
@@ -205,7 +205,7 @@ const block = z.discriminatedUnion('type', [
     covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run']),
+    animation: z.enum(['scroll-scan', 'container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),

@@ -1,0 +1,117 @@
+---
+// Social pyramid for an ancient civilization. Tap a class to compare how many people were in it,
+// how much power they had, and their opportunities and challenges (K1.7, U1.1, S1.4).
+import { PYRAMIDS } from './pyramid-data.ts';
+
+const W = 440;
+const H = 270;
+const TOP = 6;
+/** Half-width at a height. The top is flat, like a cut-off pyramid, so its labels fit inside. */
+const half = (y: number) => 36 + ((y - TOP) / (H - TOP)) * (W / 2 - 36);
+---
+<social-pyramid>
+  <div class="seg" role="group" aria-label="Choose a civilization">
+    {PYRAMIDS.map((p, i) => <button type="button" data-py={p.id} aria-pressed={String(i === 0)}>{p.name}</button>)}
+  </div>
+  {
+    PYRAMIDS.map((p) => {
+      const n = p.classes.length;
+      const h = (H - TOP) / n;
+      return (
+        <div class="py-panel" data-py-panel={p.id}>
+          <div class="py-layout">
+            <svg class="sci-svg py-svg" viewBox={`0 0 ${W} ${H + 4}`} role="group" aria-label={`Social pyramid of ${p.name}`}>
+              {p.classes.map((c, i) => {
+                const y0 = TOP + i * h;
+                const y1 = y0 + h;
+                const a = half(y0);
+                const b = half(y1);
+                const mid = W / 2;
+                return (
+                  <g class="py-layer" data-py-layer={c.id} tabindex="0" role="button" aria-label={c.name} style={`--shade:${20 + i * 12}%`}>
+                    <path d={`M${mid - a} ${y0}L${mid + a} ${y0}L${mid + b} ${y1 - 2}L${mid - b} ${y1 - 2}Z`}></path>
+                    <text x={mid} y={y0 + h / 2 + 5} text-anchor="middle">{c.name}</text>
+                  </g>
+                );
+              })}
+            </svg>
+            <div class="py-card" data-py-card aria-live="polite">
+              {p.classes.map((c) => (
+                <div class="py-detail" data-py-detail={c.id}>
+                  <h4>{c.name}</h4>
+                  <div class="py-meter"><span class="py-meter__key">People</span><span class="py-dots" aria-label={`${c.people} out of 5`}>{Array.from({ length: 5 }, (_, i) => <span class={i < c.people ? 'is-on' : ''}></span>)}</span></div>
+                  <div class="py-meter"><span class="py-meter__key">Power</span><span class="py-dots py-dots--power" aria-label={`${c.power} out of 5`}>{Array.from({ length: 5 }, (_, i) => <span class={i < c.power ? 'is-on' : ''}></span>)}</span></div>
+                  <p><strong>Place based on:</strong> {c.basedOn}</p>
+                  <p><strong>Opportunities:</strong> {c.opportunities}</p>
+                  <p><strong>Challenges:</strong> {c.challenges}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+  <p class="muted py-note">The dots show the idea, not exact counts.</p>
+</social-pyramid>
+
+<style is:global>
+  social-pyramid { display: block; }
+  .py-panel { margin-top: 0.7rem; }
+  .py-layout { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .py-layer { cursor: pointer; outline: none; }
+  .py-layer path { fill: color-mix(in srgb, var(--social) var(--shade), var(--surface)); stroke: var(--surface); stroke-width: 2; }
+  .py-layer text { fill: var(--ink); font-size: 16px; font-weight: 700; pointer-events: none; }
+  .py-layer:hover path { fill: color-mix(in srgb, var(--social) 55%, var(--surface)); }
+  .py-layer.is-on path { fill: var(--social); }
+  .py-layer.is-on text { fill: var(--surface); }
+  .py-layer:focus-visible path { stroke: var(--focus); stroke-width: 3; }
+  .py-card { padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 16rem; }
+  .py-card h4 { margin: 0 0 0.4rem; }
+  .py-card p { margin: 0.35rem 0 0; font-size: var(--step--1); line-height: 1.4; }
+  .py-meter { display: flex; align-items: center; gap: 0.5rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .py-meter__key { width: 3.2rem; }
+  .py-dots { display: inline-flex; gap: 3px; }
+  .py-dots span { width: 0.85rem; height: 0.85rem; border-radius: 50%; background: var(--surface-3); }
+  .py-dots span.is-on { background: var(--math); }
+  .py-dots--power span.is-on { background: var(--social); }
+  .py-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 40rem) {
+    .py-layout { grid-template-columns: 1fr; }
+    .py-card { min-height: 0; }
+    svg .py-layer text { font-size: 18px; }
+  }
+</style>
+
+<script>
+  class SocialPyramid extends HTMLElement {
+    connectedCallback() {
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-py]')];
+      tabs.forEach((b) => b.addEventListener('click', () => this.showPyramid(b.dataset.py!)));
+      this.querySelectorAll<SVGGElement>('.py-layer').forEach((g) => {
+        g.addEventListener('click', () => this.pick(g));
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.pick(g);
+          }
+        });
+      });
+      this.querySelectorAll<HTMLElement>('[data-py-panel]').forEach((p) => this.pick(p.querySelector<SVGGElement>('.py-layer')!));
+      this.showPyramid(tabs[0].dataset.py!);
+    }
+
+    private showPyramid(id: string) {
+      this.querySelectorAll('[data-py]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-py') === id)));
+      this.querySelectorAll<HTMLElement>('[data-py-panel]').forEach((p) => (p.hidden = p.dataset.pyPanel !== id));
+    }
+
+    private pick(g: SVGGElement) {
+      const panel = g.closest('.py-panel')!;
+      const id = g.dataset.pyLayer!;
+      panel.querySelectorAll<SVGGElement>('.py-layer').forEach((l) => l.classList.toggle('is-on', l === g));
+      panel.querySelectorAll<HTMLElement>('[data-py-detail]').forEach((d) => (d.hidden = d.dataset.pyDetail !== id));
+    }
+  }
+  customElements.define('social-pyramid', SocialPyramid);
+</script>

@@ -1,0 +1,143 @@
+---
+// One ancient place, four kinds of social scientist. Each lens lights up the evidence that person
+// studies at Pompeii (outcome Fy8zbilfU0yzOlpS8c5Cdg, K1.4 and S1.3).
+const LENSES = [
+  {
+    id: 'historian',
+    icon: '📜',
+    name: 'Historian',
+    studies: 'Written records of the past',
+    evidence: 'A letter by Pliny the Younger, who watched the eruption from across the bay and wrote down what he saw.',
+    question: 'What happened, when, and what did people at the time say about it?',
+  },
+  {
+    id: 'archaeologist',
+    icon: '⛏️',
+    name: 'Archaeologist',
+    studies: 'Objects and buildings that people left behind',
+    evidence: 'Houses, tools and loaves of bread buried under the ash, dug up layer by layer.',
+    question: 'What can these objects show us, and how old are they?',
+  },
+  {
+    id: 'anthropologist',
+    icon: '🧑‍🤝‍🧑',
+    name: 'Anthropologist',
+    studies: 'How people lived, and what they believed and valued',
+    evidence: 'Family shrines in homes, wall paintings, and messages that people scratched on walls.',
+    question: 'What was daily life like? What mattered to these people?',
+  },
+  {
+    id: 'geographer',
+    icon: '🗺️',
+    name: 'Geographer',
+    studies: 'Places, land and how people use them',
+    evidence: 'The rich volcanic soil, the nearby Bay of Naples, and how far the ash fell from the volcano.',
+    question: 'Why did people settle here, and how did the land shape their lives?',
+  },
+];
+---
+<social-scientists>
+  <div class="sci-pick" role="group" aria-label="Choose a social scientist">
+    {LENSES.map((l, i) => <button type="button" data-sl={l.id} aria-pressed={String(i === 0)}><span aria-hidden="true">{l.icon}</span> {l.name}</button>)}
+  </div>
+  <svg class="sci-svg sl-scene" data-lens="historian" viewBox="0 0 660 290" role="img" aria-label="Pompeii after the eruption, with Mount Vesuvius behind it, the Bay of Naples to one side, ruined streets and an open dig. The evidence each social scientist studies lights up.">
+    <rect class="sci-sky" width="660" height="290"></rect>
+    <g class="sl-part" data-for="geographer">
+      <path class="sl-mountain" d="M300 150 L440 26 L470 46 L500 30 L660 150 Z"></path>
+      <path class="sl-plume" d="M462 38 q-12 -18 6 -26 q18 -6 26 8 q-14 4 -18 18 Z"></path>
+      <path class="sl-sea" d="M0 118 H210 Q 180 170 90 182 L0 190 Z"></path>
+      <text class="sci-small" x="20" y="150">Bay of Naples</text>
+      <text class="sci-small" x="452" y="112" text-anchor="middle">Mount Vesuvius</text>
+    </g>
+    <path class="sl-land" d="M0 190 L90 182 Q 180 170 210 118 H300 L660 150 V290 H0 Z"></path>
+
+    <g class="sl-part" data-for="anthropologist">
+      <path class="sl-wall" d="M250 214 V132 H402 V214 Z"></path>
+      <path class="sl-mural" d="M264 146 H324 V196 H264 Z"></path>
+      <circle class="sl-mural-face" cx="294" cy="164" r="9"></circle>
+      <path class="sl-mural-face" d="M280 196 q14 -24 28 0 Z"></path>
+      <path class="sl-shrine" d="M342 196 V168 L362 152 L382 168 V196 Z"></path>
+      <path class="sl-flame" d="M362 186 q-6 -8 0 -16 q6 8 0 16 Z"></path>
+    </g>
+
+    <g class="sl-part" data-for="archaeologist">
+      <path class="sl-pit" d="M420 208 H640 L620 274 H440 Z"></path>
+      <path class="sl-layer" d="M427 228 H634 L628 244 H432 Z"></path>
+      <path class="sl-pot" d="M482 262 q-14 -10 -8 -24 h24 q6 14 -8 24 Z"></path>
+      <circle class="sl-bread" cx="556" cy="256" r="12"></circle>
+      <path class="sl-bread-cut" d="M546 256 H566 M556 246 V266"></path>
+      <path class="sl-tool" d="M590 206 L604 256 M582 256 H620"></path>
+    </g>
+
+    <g class="sl-part" data-for="historian">
+      <path class="sl-scroll" d="M46 222 h130 q10 0 10 10 v28 q0 10 -10 10 h-130 q-10 0 -10 -10 v-28 q0 -10 10 -10 Z"></path>
+      <path class="sl-lines" d="M56 236 H166 M56 246 H166 M56 256 H136"></path>
+    </g>
+  </svg>
+
+  {
+    LENSES.map((l) => (
+      <div class="sl-card" data-sl-panel={l.id}>
+        <h4>{l.icon} {l.name}</h4>
+        <dl>
+          <dt>Studies</dt><dd>{l.studies}</dd>
+          <dt>Evidence at Pompeii</dt><dd>{l.evidence}</dd>
+          <dt>Asks</dt><dd>{l.question}</dd>
+        </dl>
+      </div>
+    ))
+  }
+</social-scientists>
+
+<style is:global>
+  social-scientists { display: block; }
+  .sl-scene { margin-top: 0.6rem; }
+  .sl-part { transition: opacity 0.25s; opacity: 0.32; }
+  .sl-scene[data-lens='historian'] [data-for='historian'],
+  .sl-scene[data-lens='archaeologist'] [data-for='archaeologist'],
+  .sl-scene[data-lens='anthropologist'] [data-for='anthropologist'],
+  .sl-scene[data-lens='geographer'] [data-for='geographer'] { opacity: 1; }
+  .sl-mountain { fill: color-mix(in srgb, var(--social) 45%, var(--surface)); stroke: var(--ink-3); }
+  .sl-plume { fill: var(--ink-3); }
+  .sl-sea { fill: color-mix(in srgb, var(--math) 40%, var(--surface)); }
+  .sl-land { fill: color-mix(in srgb, var(--science) 26%, var(--surface-2)); }
+  .sl-wall { fill: color-mix(in srgb, var(--sun) 22%, var(--surface)); stroke: var(--ink-3); stroke-width: 2; }
+  .sl-mural { fill: var(--bad); opacity: 0.8; }
+  .sl-mural-face { fill: var(--sun); }
+  .sl-shrine { fill: var(--surface); stroke: var(--ink-3); stroke-width: 2; }
+  .sl-flame { fill: var(--sun); }
+  .sl-pit { fill: color-mix(in srgb, var(--social) 55%, var(--surface)); stroke: var(--ink-3); stroke-width: 2; }
+  .sl-layer { fill: color-mix(in srgb, var(--ink-3) 50%, var(--surface)); }
+  .sl-pot { fill: var(--social); stroke: var(--ink); stroke-width: 1.5; }
+  .sl-bread { fill: #8b5a2b; stroke: var(--ink); stroke-width: 1.5; }
+  .sl-bread-cut { stroke: var(--ink); stroke-width: 1.5; fill: none; }
+  .sl-tool { stroke: var(--ink); stroke-width: 3.5; fill: none; stroke-linecap: round; }
+  .sl-scroll { fill: color-mix(in srgb, var(--sun) 25%, var(--surface)); stroke: var(--ink-3); stroke-width: 2; }
+  .sl-lines { stroke: var(--ink-2); stroke-width: 2.5; fill: none; }
+  .sl-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .sl-card h4 { margin: 0 0 0.3rem; }
+  .sl-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.75rem; }
+  .sl-card dt { font-weight: 700; color: var(--ink-2); font-size: var(--step--1); padding-top: 0.1rem; }
+  .sl-card dd { margin: 0; }
+  @media (max-width: 34rem) {
+    .sl-card dl { grid-template-columns: 1fr; }
+    .sl-card dd { margin-bottom: 0.35rem; }
+  }
+</style>
+
+<script>
+  class SocialScientists extends HTMLElement {
+    connectedCallback() {
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-sl]')];
+      buttons.forEach((b) => b.addEventListener('click', () => this.show(b.dataset.sl!)));
+      this.show(buttons[0].dataset.sl!);
+    }
+
+    private show(id: string) {
+      this.querySelectorAll('[data-sl]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-sl') === id)));
+      this.querySelector('.sl-scene')!.setAttribute('data-lens', id);
+      this.querySelectorAll<HTMLElement>('[data-sl-panel]').forEach((p) => (p.hidden = p.dataset.slPanel !== id));
+    }
+  }
+  customElements.define('social-scientists', SocialScientists);
+</script>

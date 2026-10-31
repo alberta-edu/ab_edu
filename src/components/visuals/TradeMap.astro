@@ -1,0 +1,149 @@
+---
+// Map of four ancient trade routes. Tap a route to send a traveller along it; switch between the
+// goods that moved and the ideas that moved (outcome VtfkI_gtBk66PSC2mQV7zQ, K1.6-K1.8, S1.3, S1.4).
+import { TRADE_FRAME as F, TRADE_ROUTES, linePath, toMap } from './ancient-map.ts';
+import { RIVERS } from './latlong-data.ts';
+import { landPath } from './land-path.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** Which list the card opens on. */
+  show?: 'goods' | 'ideas';
+}
+const { show = 'goods' } = Astro.props;
+const land = landPath(F);
+const rivers = RIVERS.filter((r) => r.name !== 'Tiber');
+const clipId = `tm-clip-${show}`;
+---
+<trade-map data-show={show}>
+  <div class="sci-pick" role="group" aria-label="Choose a trade route">
+    {TRADE_ROUTES.map((r, i) => <button type="button" data-tm={r.id} aria-pressed={String(i === 0)}>{r.traveller} {r.name}</button>)}
+  </div>
+
+  <div class="tm-frame">
+    <svg class="sci-svg tm-svg" viewBox={`0 0 ${F.width} ${F.height}`} role="img" aria-label="A map from West Africa to China showing the Silk Road, the Royal Road, the trans-Saharan route and the Red Sea and Indian Ocean route.">
+      <defs><clipPath id={clipId}><rect width={F.width} height={F.height}></rect></clipPath></defs>
+      <rect class="tm-sea" width={F.width} height={F.height}></rect>
+      <g clip-path={`url(#${clipId})`}>
+        <path class="tm-land" d={land}></path>
+        <g class="tm-rivers">{rivers.map((r) => <path d={linePath(F, r.points)}></path>)}</g>
+      </g>
+      {
+        TRADE_ROUTES.map((r) => (
+          <g class={`tm-route tm-route--${r.kind}`} data-route={r.id}>
+            <path class="tm-line" id={`tm-${show}-${r.id}`} d={linePath(F, r.points)}></path>
+            {r.stops.map((s) => {
+              const [x, y] = toMap(F, s.at);
+              return (
+                <g class="tm-stop">
+                  <circle cx={x.toFixed(1)} cy={y.toFixed(1)} r="4"></circle>
+                  <text x={x.toFixed(1)} y={(y + (s.side === 'below' ? 17 : -9)).toFixed(1)} text-anchor="middle">{s.name}</text>
+                </g>
+              );
+            })}
+          </g>
+        ))
+      }
+      <text class="tm-traveller" data-tm-traveller text-anchor="middle" dominant-baseline="middle"></text>
+    </svg>
+  </div>
+
+  <div class="seg tm-seg" role="group" aria-label="What to show">
+    <button type="button" data-tm-show="goods" aria-pressed={String(show === 'goods')}>📦 Goods</button>
+    <button type="button" data-tm-show="ideas" aria-pressed={String(show === 'ideas')}>💡 Ideas</button>
+  </div>
+
+  {
+    TRADE_ROUTES.map((r) => (
+      <div class="tm-card" data-tm-panel={r.id}>
+        <h4>{r.name} <span class="muted tm-kind">{r.kind === 'land' ? 'land route' : 'water route'}</span></h4>
+        <p class="tm-connects"><strong>Connected:</strong> {r.connects}</p>
+        <p>{r.about}</p>
+        <div data-tm-list="goods"><strong>Goods that moved</strong><ul>{r.goods.map((g) => <li set:html={mdInline(g)} />)}</ul></div>
+        <div data-tm-list="ideas"><strong>Ideas that moved</strong><ul>{r.ideas.map((g) => <li set:html={mdInline(g)} />)}</ul></div>
+      </div>
+    ))
+  }
+</trade-map>
+
+<style is:global>
+  trade-map { display: block; }
+  .tm-frame { margin-top: 0.6rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .tm-svg { border-radius: 0; }
+  .tm-sea { fill: color-mix(in srgb, var(--math) 14%, var(--surface)); }
+  .tm-land { fill: color-mix(in srgb, var(--sun) 22%, var(--surface)); stroke: color-mix(in srgb, var(--social) 45%, var(--surface)); stroke-width: 0.7; }
+  .tm-rivers path { fill: none; stroke: color-mix(in srgb, var(--math) 60%, var(--surface)); stroke-width: 1.6; }
+  .tm-route { opacity: 0.4; transition: opacity 0.2s; }
+  .tm-route.is-on { opacity: 1; }
+  .tm-line { fill: none; stroke: var(--social); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+  .tm-route--water .tm-line { stroke: var(--math); stroke-dasharray: 8 6; }
+  .tm-route.is-on .tm-line { stroke-width: 4.5; }
+  .tm-stop circle { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; }
+  .tm-stop text { display: none; fill: var(--ink); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+  .tm-route.is-on .tm-stop text { display: inline; }
+  .tm-traveller { font-size: 22px; }
+  .tm-seg { margin-top: 0.7rem; }
+  .tm-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .tm-card h4 { margin: 0 0 0.3rem; }
+  .tm-kind { font-size: var(--step--1); font-weight: 400; }
+  .tm-card p { margin: 0 0 0.4rem; }
+  .tm-card ul { margin: 0.2rem 0 0; padding-left: 1.2rem; }
+  @media (max-width: 40rem) {
+    svg .tm-stop text { font-size: 22px; stroke-width: 4px; }
+    svg .tm-traveller { font-size: 34px; }
+    .tm-frame { margin-inline: -0.4rem; }
+  }
+</style>
+
+<script>
+  import { reducedMotion, tween } from '../experiments/anim.ts';
+  import { TRADE_ROUTES } from './ancient-map.ts';
+
+  class TradeMap extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-tm]').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.tm!)));
+      this.querySelectorAll<HTMLButtonElement>('[data-tm-show]').forEach((b) => b.addEventListener('click', () => this.showList(b.dataset.tmShow!)));
+      this.showList(this.dataset.show!);
+      // Show the first route, and start the traveller only once the map is on screen.
+      this.pick(TRADE_ROUTES[0].id, false);
+      new IntersectionObserver((entries, io) => {
+        if (entries[0].isIntersecting) {
+          io.disconnect();
+          this.travel(TRADE_ROUTES[0].id);
+        }
+      }).observe(this.querySelector('.tm-frame')!);
+    }
+
+    private showList(which: string) {
+      this.querySelectorAll('[data-tm-show]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-tm-show') === which)));
+      this.querySelectorAll<HTMLElement>('[data-tm-list]').forEach((l) => (l.hidden = l.dataset.tmList !== which));
+    }
+
+    private pick(id: string, animate = true) {
+      this.querySelectorAll('[data-tm]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-tm') === id)));
+      this.querySelectorAll<SVGGElement>('.tm-route').forEach((g) => g.classList.toggle('is-on', g.dataset.route === id));
+      this.querySelectorAll<HTMLElement>('[data-tm-panel]').forEach((p) => (p.hidden = p.dataset.tmPanel !== id));
+      if (animate) this.travel(id);
+    }
+
+    private async travel(id: string) {
+      const route = TRADE_ROUTES.find((r) => r.id === id)!;
+      const line = this.querySelector<SVGPathElement>(`.tm-route[data-route="${id}"] .tm-line`)!;
+      const t = this.querySelector<SVGTextElement>('[data-tm-traveller]')!;
+      const token = ++this.run;
+      t.textContent = route.traveller;
+      const place = (f: number) => {
+        const p = line.getPointAtLength(f * line.getTotalLength());
+        t.setAttribute('x', p.x.toFixed(1));
+        t.setAttribute('y', (p.y - 2).toFixed(1));
+      };
+      if (reducedMotion()) return place(0.5);
+      await tween(5000, (f) => {
+        if (token === this.run) place(f);
+      });
+    }
+  }
+  customElements.define('trade-map', TradeMap);
+</script>

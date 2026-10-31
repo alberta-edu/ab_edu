@@ -1,0 +1,132 @@
+---
+// Sort cards into bins, one card at a time. Every card explains itself after it lands, so a wrong
+// tap teaches something too. Bins and cards come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  bins: { id: string; label: string; icon?: string }[];
+  cards: { text: string; bin: string; why: string }[];
+}
+const { bins, cards } = Astro.props;
+const data = cards.map((c) => ({ text: mdInline(c.text), bin: c.bin, why: mdInline(c.why) }));
+---
+<card-sort data-cards={JSON.stringify(data)}>
+  <p class="cs-progress muted" data-cs="progress"></p>
+  <div class="cs-card" data-cs="card" aria-live="polite"></div>
+  <div class="cs-bins" role="group" aria-label="Choose where this card belongs" style={`--bins:${bins.length}`}>
+    {
+      bins.map((b) => (
+        <section class="cs-bin" data-bin={b.id}>
+          <button type="button" class="cs-bin__btn" data-cs-bin={b.id}>
+            {b.icon && <span aria-hidden="true">{b.icon}</span>} {b.label}
+          </button>
+          <ul class="cs-list" data-cs-list={b.id}></ul>
+        </section>
+      ))
+    }
+  </div>
+  <p class="cs-note" data-cs="note" aria-live="polite" hidden></p>
+  <button type="button" class="btn btn--small" data-cs="again" hidden>↺ Sort them again</button>
+  <noscript>
+    <ul>{cards.map((c) => <li><span set:html={mdInline(c.text)} />: <strong>{bins.find((b) => b.id === c.bin)?.label}</strong>. <span set:html={mdInline(c.why)} /></li>)}</ul>
+  </noscript>
+</card-sort>
+
+<style is:global>
+  card-sort { display: block; }
+  .cs-progress { margin: 0 0 0.4rem; font-size: var(--step--1); }
+  .cs-card { padding: 0.9rem 1rem; min-height: 4.2rem; border-radius: var(--radius-sm); border: 2px solid var(--accent); background: var(--surface); font-weight: 700; box-shadow: var(--shadow); }
+  .cs-card.is-wrong { border-color: var(--bad); }
+  .cs-card.is-done { border-color: var(--ok); background: var(--ok-soft); }
+  .cs-bins { display: grid; gap: 0.5rem; grid-template-columns: repeat(var(--bins), minmax(0, 1fr)); margin-top: 0.7rem; }
+  .cs-bin { display: flex; flex-direction: column; gap: 0.4rem; }
+  .cs-bin__btn { min-height: 3rem; padding: 0.4rem 0.5rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--accent-soft); font: inherit; font-weight: 700; color: var(--ink); cursor: pointer; }
+  .cs-bin__btn:hover:not(:disabled) { border-color: var(--accent); }
+  .cs-bin__btn:disabled { cursor: default; opacity: 0.75; }
+  .cs-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; font-size: var(--step--1); line-height: 1.3; }
+  .cs-list li { padding: 0.35rem 0.5rem; border-radius: 6px; background: var(--surface-2); }
+  .cs-note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .cs-note.is-right { background: var(--ok-soft); }
+  .cs-note.is-wrong { background: var(--warn-soft); }
+  card-sort > .btn { margin-top: 0.5rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-card.is-wrong { animation: cs-shake 0.3s ease; }
+    @keyframes cs-shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  }
+  @media (max-width: 34rem) {
+    .cs-bins { grid-template-columns: repeat(min(var(--bins), 2), minmax(0, 1fr)); }
+  }
+</style>
+
+<script>
+  type Card = { text: string; bin: string; why: string };
+
+  class CardSort extends HTMLElement {
+    private cards: Card[] = [];
+    private queue: Card[] = [];
+    private firstTry = 0;
+    private missed = false;
+
+    connectedCallback() {
+      this.cards = JSON.parse(this.dataset.cards!);
+      this.querySelectorAll<HTMLButtonElement>('[data-cs-bin]').forEach((b) => b.addEventListener('click', () => this.place(b.dataset.csBin!)));
+      this.part('again').addEventListener('click', () => this.start());
+      this.start();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-cs="${name}"]`)!;
+    }
+
+    private start() {
+      this.queue = [...this.cards].sort(() => Math.random() - 0.5);
+      this.firstTry = 0;
+      this.missed = false;
+      this.querySelectorAll('[data-cs-list]').forEach((l) => (l.innerHTML = ''));
+      this.querySelectorAll<HTMLButtonElement>('[data-cs-bin]').forEach((b) => (b.disabled = false));
+      this.part('again').hidden = true;
+      this.part('note').hidden = true;
+      this.part('card').className = 'cs-card';
+      this.showCard();
+    }
+
+    private showCard() {
+      const card = this.queue[0];
+      this.part('progress').textContent = `Card ${this.cards.length - this.queue.length + 1} of ${this.cards.length}`;
+      this.part('card').innerHTML = card.text;
+    }
+
+    private place(bin: string) {
+      const card = this.queue[0];
+      if (!card) return;
+      const el = this.part('card');
+      const note = this.part('note');
+      note.hidden = false;
+      if (bin !== card.bin) {
+        this.missed = true;
+        el.classList.remove('is-wrong');
+        void el.offsetWidth; // restart the shake
+        el.classList.add('is-wrong');
+        note.className = 'cs-note is-wrong';
+        note.textContent = 'Not that one. Read the card again and try another bin.';
+        return;
+      }
+      el.classList.remove('is-wrong');
+      if (!this.missed) this.firstTry++;
+      this.missed = false;
+      const li = document.createElement('li');
+      li.innerHTML = card.text;
+      this.querySelector(`[data-cs-list="${bin}"]`)!.appendChild(li);
+      note.className = 'cs-note is-right';
+      note.innerHTML = `✓ ${card.why}`;
+      this.queue.shift();
+      if (this.queue.length) return this.showCard();
+      this.part('progress').textContent = `All ${this.cards.length} cards sorted.`;
+      el.classList.add('is-done');
+      el.textContent = `Done! You got ${this.firstTry} of ${this.cards.length} on the first try.`;
+      this.querySelectorAll<HTMLButtonElement>('[data-cs-bin]').forEach((b) => (b.disabled = true));
+      this.part('again').hidden = false;
+    }
+  }
+  customElements.define('card-sort', CardSort);
+</script>

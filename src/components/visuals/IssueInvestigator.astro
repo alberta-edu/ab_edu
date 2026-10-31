@@ -1,0 +1,125 @@
+---
+// Investigate a made-up local issue using several sources. Each source shows part of the picture;
+// a meter shows how much you have heard (outcome MRmYJnVX90eGJ1QhgKk-eg, K1.2, K1.3, S1.2, S1.3).
+const SOURCES = [
+  {
+    id: 'post',
+    icon: '📱',
+    kind: 'Social media post',
+    who: 'Shared by a neighbour',
+    says: '“The river is almost dry! The whole town runs out of water next week!”',
+    weigh: 'It is scary and spreads fast, but it gives no numbers and no source. Check it before you share it.',
+  },
+  {
+    id: 'report',
+    icon: '📊',
+    kind: 'Town water report',
+    who: 'Town of Riverbend',
+    says: 'River flow is 40% below normal this summer. The reservoir holds about 60 days of water.',
+    weigh: 'It has real numbers. The problem is serious, but the post’s “next week” was wrong.',
+  },
+  {
+    id: 'farmer',
+    icon: '🌱',
+    kind: 'Interview',
+    who: 'A farmer near town',
+    says: '“My crops and animals need water. If I lose this year’s harvest, I could lose my farm.”',
+    weigh: 'A farmer’s living depends on water, so limits feel very risky from where this person stands.',
+  },
+  {
+    id: 'shop',
+    icon: '🏪',
+    kind: 'Interview',
+    who: 'A garden-store owner',
+    says: '“If people can’t water their lawns, they stop buying plants, and I may have to let staff go.”',
+    weigh: 'This person is thinking about jobs in the town, which matter too.',
+  },
+  {
+    id: 'scientist',
+    icon: '🔬',
+    kind: 'News article',
+    who: 'A water scientist, quoted in the local paper',
+    says: 'Lawns use a large share of town water in summer. Watering at night loses less to the sun.',
+    weigh: 'Evidence from an expert suggests a small change by many people could help.',
+  },
+];
+---
+<issue-investigator data-total={SOURCES.length}>
+  <div class="ii-issue">
+    <div class="ii-issue__tag">The issue, in the made-up town of Riverbend</div>
+    <strong>The river is low this summer. Should the town limit how people use water?</strong>
+  </div>
+
+  <div class="ii-meter" aria-hidden="true"><span data-ii="bar"></span></div>
+  <p class="sci-say ii-say" aria-live="polite" data-ii="say">You have read 0 of {SOURCES.length} sources. Tap one to begin.</p>
+
+  <div class="ii-sources" role="group" aria-label="Sources">
+    {
+      SOURCES.map((s) => (
+        <button type="button" class="ii-source" data-ii-source={s.id} aria-expanded="false">
+          <span class="ii-source__icon" aria-hidden="true">{s.icon}</span>
+          <span><span class="ii-source__kind">{s.kind}</span><span class="ii-source__who">{s.who}</span></span>
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    SOURCES.map((s) => (
+      <div class="ii-card" data-ii-panel={s.id}>
+        <p class="ii-quote">{s.says}</p>
+        <p class="ii-weigh"><strong>Think about it:</strong> {s.weigh}</p>
+      </div>
+    ))
+  }
+</issue-investigator>
+
+<style is:global>
+  issue-investigator { display: block; }
+  .ii-issue { padding: 0.75rem 0.95rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
+  .ii-issue__tag { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .ii-meter { height: 0.8rem; margin-top: 0.7rem; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+  .ii-meter span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
+  .ii-say { font-size: var(--step-0); }
+  .ii-sources { display: grid; gap: 0.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); margin-top: 0.6rem; }
+  .ii-source { display: flex; gap: 0.55rem; align-items: center; min-height: 3.4rem; padding: 0.4rem 0.7rem; text-align: left; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); font: inherit; color: var(--ink); cursor: pointer; }
+  .ii-source__icon { font-size: 1.4rem; }
+  .ii-source__kind { display: block; font-weight: 700; line-height: 1.2; }
+  .ii-source__who { display: block; font-size: var(--step--1); color: var(--ink-2); line-height: 1.2; }
+  .ii-source.is-read { background: var(--surface-2); }
+  .ii-source[aria-expanded='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .ii-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .ii-quote { margin: 0; font-size: var(--step-1); font-weight: 700; }
+  .ii-weigh { margin: 0.5rem 0 0; }
+</style>
+
+<script>
+  class IssueInvestigator extends HTMLElement {
+    private read = new Set<string>();
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-ii-source]').forEach((b) => b.addEventListener('click', () => this.open(b.dataset.iiSource!)));
+      this.querySelectorAll<HTMLElement>('[data-ii-panel]').forEach((p) => (p.hidden = true));
+    }
+
+    private open(id: string) {
+      this.read.add(id);
+      const total = Number(this.dataset.total);
+      this.querySelectorAll<HTMLElement>('[data-ii-source]').forEach((b) => {
+        const on = b.dataset.iiSource === id;
+        b.setAttribute('aria-expanded', String(on));
+        if (on) b.classList.add('is-read');
+      });
+      this.querySelectorAll<HTMLElement>('[data-ii-panel]').forEach((p) => (p.hidden = p.dataset.iiPanel !== id));
+      this.querySelector<HTMLElement>('[data-ii="bar"]')!.style.width = `${(this.read.size / total) * 100}%`;
+      const n = this.read.size;
+      const say = n === total
+        ? `You have read all ${total} sources. Each person wants something reasonable, and now you can see why. That is how empathy grows.`
+        : n === 1
+          ? `You have read 1 of ${total} sources. One source shows only one side. What might someone else say?`
+          : `You have read ${n} of ${total} sources. The picture is getting clearer. Whose view are you still missing?`;
+      this.querySelector('[data-ii="say"]')!.textContent = say;
+    }
+  }
+  customElements.define('issue-investigator', IssueInvestigator);
+</script>

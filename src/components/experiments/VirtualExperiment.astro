@@ -13,6 +13,7 @@ import SyringeSqueeze from './SyringeSqueeze.astro';
 import ArrowFlight from './ArrowFlight.astro';
 import EggFloat from './EggFloat.astro';
 import EnergyRun from './EnergyRun.astro';
+import ScrollScan from './ScrollScan.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -20,6 +21,7 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const animations = {
+  'scroll-scan': ScrollScan,
   'container-swap': ContainerSwap,
   'eclipses': Eclipses,
   'sun-path': SunPath,

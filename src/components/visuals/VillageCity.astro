@@ -1,0 +1,104 @@
+---
+// Farming tools and a village of 100 people: how irrigation and animal labour free people for
+// other jobs, and how a village becomes a city (outcome VtfkI_gtBk66PSC2mQV7zQ, K1.1-K1.4, S1.1).
+import { PEOPLE } from './village-city.ts';
+---
+<village-city>
+  <div class="vc-controls">
+    <label class="vc-toggle"><input type="checkbox" data-vc="irrigation" /> <span>💧 Irrigation canals</span></label>
+    <label class="vc-toggle"><input type="checkbox" data-vc="oxen" /> <span>🐂 Oxen to pull the plough</span></label>
+  </div>
+  <label class="vc-slider">
+    <span class="sci-pick-label">How many of the {PEOPLE} people farm? <strong data-vc="farmers-num"></strong></span>
+    <input type="range" min="20" max="100" step="1" value="95" data-vc="farmers" />
+  </label>
+
+  <div class="vc-stage">
+    <div class="vc-people" data-vc="people" aria-hidden="true">
+      {Array.from({ length: PEOPLE }, () => <span class="vc-dot"></span>)}
+    </div>
+    <div class="vc-readout">
+      <div class="vc-title" data-vc="stage"></div>
+      <div class="vc-meter" aria-hidden="true"><span class="vc-meter__need"></span><span class="vc-meter__food" data-vc="food-bar"></span></div>
+      <p class="vc-line" data-vc="food-line"></p>
+      <p class="vc-line" data-vc="jobs"></p>
+      <p class="vc-line" data-vc="practices"></p>
+    </div>
+  </div>
+  <p class="sci-say vc-say" aria-live="polite" data-vc="say"></p>
+  <p class="muted vc-legend"><span class="vc-dot vc-dot--farmer"></span> farmer <span class="vc-dot vc-dot--other"></span> other job. A made-up village, to show the idea.</p>
+</village-city>
+
+<style is:global>
+  village-city { display: block; }
+  .vc-controls { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .vc-toggle { display: flex; align-items: center; gap: 0.45rem; min-height: 2.6rem; padding: 0.3rem 0.8rem; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); font-weight: 700; cursor: pointer; }
+  .vc-toggle input { width: 1.1rem; height: 1.1rem; accent-color: var(--accent); }
+  .vc-toggle:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .vc-slider { display: block; margin-top: 0.4rem; }
+  .vc-slider input { width: 100%; min-height: 2rem; accent-color: var(--accent); }
+  .vc-stage { display: grid; gap: 1rem; grid-template-columns: minmax(10rem, 15rem) 1fr; align-items: start; margin-top: 0.4rem; }
+  .vc-people { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; }
+  .vc-people .vc-dot { width: auto; height: auto; aspect-ratio: 1; margin: 0; }
+  .vc-dot { display: inline-block; width: 0.75rem; height: 0.75rem; margin: 0 0.15rem 0 0.4rem; border-radius: 50%; background: var(--science); transition: background 0.2s; vertical-align: -1px; }
+  .vc-dot--other, .vc-people .vc-dot.is-other { background: var(--sun); }
+  .vc-title { font-size: var(--step-1); font-weight: 700; }
+  .vc-title.is-bad { color: var(--bad); }
+  .vc-meter { position: relative; height: 0.9rem; margin: 0.4rem 0; border-radius: 99px; background: var(--surface-3); overflow: hidden; }
+  .vc-meter__food { position: absolute; inset: 0 auto 0 0; background: var(--science); transition: width 0.2s; }
+  .vc-meter__food.is-bad { background: var(--bad); }
+  /* The line at 100 people's food sits at 40% because the bar runs to 250. */
+  .vc-meter__need { position: absolute; z-index: 1; top: 0; bottom: 0; left: 40%; border-left: 2px solid var(--ink); }
+  .vc-line { margin: 0.25rem 0 0; font-size: var(--step--1); }
+  .vc-say { font-size: var(--step-0); }
+  .vc-legend { margin: 0.4rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 34rem) {
+    .vc-stage { grid-template-columns: 1fr; }
+    .vc-people { max-width: 15rem; }
+  }
+</style>
+
+<script>
+  import { farmersNeeded, villageState } from './village-city.ts';
+
+  class VillageCity extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll('input').forEach((i) => i.addEventListener('input', () => this.update()));
+      this.update();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-vc="${name}"]`)!;
+    }
+
+    private update() {
+      const irrigation = (this.part('irrigation') as HTMLInputElement).checked;
+      const oxen = (this.part('oxen') as HTMLInputElement).checked;
+      const farmers = Number((this.part('farmers') as HTMLInputElement).value);
+      const s = villageState(farmers, irrigation, oxen);
+      const need = farmersNeeded(irrigation, oxen);
+
+      this.part('farmers-num').textContent = String(farmers);
+      this.querySelectorAll('.vc-people .vc-dot').forEach((d, i) => d.classList.toggle('is-other', i >= farmers));
+      const stage = this.part('stage');
+      stage.textContent = s.stage;
+      stage.classList.toggle('is-bad', s.hungry);
+      const bar = this.part('food-bar');
+      bar.style.width = `${Math.min(100, s.food / 2.5)}%`;
+      bar.classList.toggle('is-bad', s.hungry);
+      this.part('food-line').textContent = s.hungry
+        ? `Food for ${s.food} people. That is not enough for ${100}.`
+        : s.surplus
+          ? `Food for ${s.food} people. That leaves extra food for ${s.surplus} more to trade.`
+          : `Food for ${s.food} people: just enough, with none to trade.`;
+      this.part('jobs').textContent = s.jobs.length ? `Other jobs: ${s.jobs.join(', ')}.` : 'Other jobs: none yet.';
+      this.part('practices').textContent = s.practices.length ? `The settlement now has: ${s.practices.join(', ')}.` : 'No market or money yet. People swap what they can.';
+
+      const tools = irrigation && oxen ? 'With both tools' : irrigation ? 'With irrigation' : oxen ? 'With oxen' : 'With only hand tools';
+      this.part('say').textContent = s.hungry
+        ? `Too few farmers: people go hungry. ${tools}, at least ${need} of 100 must farm.`
+        : `${tools}, ${need} of 100 people must farm. Everyone else can do another job.`;
+    }
+  }
+  customElements.define('village-city', VillageCity);
+</script>

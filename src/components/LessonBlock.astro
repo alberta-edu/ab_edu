@@ -43,6 +43,17 @@ import DesignLab from './visuals/DesignLab.astro';
 import FairTest from './visuals/FairTest.astro';
 import DataViews from './visuals/DataViews.astro';
 import WeatherMap from './visuals/WeatherMap.astro';
+import CivTimeline from './visuals/CivTimeline.astro';
+import RiseFallCity from './visuals/RiseFallCity.astro';
+import ThenNow from './visuals/ThenNow.astro';
+import CardSort from './visuals/CardSort.astro';
+import SocialScientists from './visuals/SocialScientists.astro';
+import VillageCity from './visuals/VillageCity.astro';
+import Nilometer from './visuals/Nilometer.astro';
+import TradeMap from './visuals/TradeMap.astro';
+import SocialPyramid from './visuals/SocialPyramid.astro';
+import EmpireMap from './visuals/EmpireMap.astro';
+import IssueInvestigator from './visuals/IssueInvestigator.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -53,6 +64,17 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'civ-timeline': CivTimeline,
+  'rise-fall-city': RiseFallCity,
+  'then-now': ThenNow,
+  'card-sort': CardSort,
+  'social-scientists': SocialScientists,
+  'village-city': VillageCity,
+  nilometer: Nilometer,
+  'trade-map': TradeMap,
+  'social-pyramid': SocialPyramid,
+  'empire-map': EmpireMap,
+  'issue-investigator': IssueInvestigator,
   'weather-map': WeatherMap,
   'data-views': DataViews,
   'fair-test': FairTest,

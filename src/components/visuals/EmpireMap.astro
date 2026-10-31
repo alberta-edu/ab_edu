@@ -1,0 +1,173 @@
+---
+// Two maps. "conquest" shows how Persia, Greece, Rome and the Arab empire took over land.
+// "africa" shows how some African empires ended and others began (K1.8 and K1.9). The land is
+// projected at build time. Empire outlines are rough and clipped to the land.
+import { AFRICA_FRAME, AFRICAN_CHAINS, EMPIRE_FRAME, EMPIRES, linePath, toMap } from './ancient-map.ts';
+import { landPath } from './land-path.ts';
+
+interface Props {
+  set?: 'conquest' | 'africa';
+}
+const { set = 'conquest' } = Astro.props;
+const F = set === 'africa' ? AFRICA_FRAME : EMPIRE_FRAME;
+const land = landPath(F);
+const clipId = `ep-land-${set}`;
+const axis = { from: -800, to: 1900 };
+const pct = (y: number) => ((y - axis.from) / (axis.to - axis.from)) * 100;
+---
+<empire-map data-set={set}>
+  {
+    set === 'conquest' ? (
+      <div class="sci-pick" role="group" aria-label="Choose an empire">
+        {EMPIRES.map((e, i) => <button type="button" data-ep={e.id} aria-pressed={String(i === 0)}>{e.name}</button>)}
+      </div>
+    ) : (
+      <div class="sci-pick" role="group" aria-label="Choose a group of African empires">
+        {AFRICAN_CHAINS.map((c, i) => <button type="button" data-ep={c.id} aria-pressed={String(i === 0)}>{c.label}</button>)}
+      </div>
+    )
+  }
+
+  <div class="ep-frame">
+    <svg class="sci-svg ep-svg" viewBox={`0 0 ${F.width} ${F.height}`} role="img" aria-label={set === 'africa' ? 'A map of Africa north of the equator, marking Kush, Axum, Ghana, Mali, Songhai, Ife and Benin.' : 'A map from Spain to India. The land an empire held is coloured in.'}>
+      <defs><clipPath id={clipId}><path d={land}></path></clipPath></defs>
+      <rect class="ep-sea" width={F.width} height={F.height}></rect>
+      <path class="ep-land" d={land}></path>
+      {
+        set === 'conquest' && (
+          <>
+            <g clip-path={`url(#${clipId})`}>
+              {EMPIRES.map((e) =>
+                e.stages.map((s, i) => <path class="ep-area" data-area={`${e.id}-${i}`} d={linePath(F, s.area, true)}></path>),
+              )}
+            </g>
+            {EMPIRES.map((e) => {
+              const [x, y] = toMap(F, e.home.at);
+              return (
+                <g class="ep-home" data-home={e.id}>
+                  <circle cx={x.toFixed(1)} cy={y.toFixed(1)} r="5"></circle>
+                  <text x={x.toFixed(1)} y={(y - 10).toFixed(1)} text-anchor="middle">{e.home.name}</text>
+                </g>
+              );
+            })}
+          </>
+        )
+      }
+      {
+        set === 'africa' &&
+          AFRICAN_CHAINS.map((c) => (
+            <g class="ep-chain" data-chain={c.id}>
+              <path class="ep-arrow" d={linePath(F, c.places.map((p) => p.at))}></path>
+              {c.places.map((p) => {
+                const [x, y] = toMap(F, p.at);
+                return (
+                  <g class="ep-home">
+                    <circle cx={x.toFixed(1)} cy={y.toFixed(1)} r="6"></circle>
+                    <text x={x.toFixed(1)} y={(y + (p.below ? 22 : -12)).toFixed(1)} text-anchor="middle">{p.name}</text>
+                  </g>
+                );
+              })}
+            </g>
+          ))
+      }
+    </svg>
+  </div>
+
+  {
+    set === 'conquest' &&
+      EMPIRES.map((e) => (
+        <div class="ep-card" data-ep-panel={e.id}>
+          {e.stages.length > 1 && (
+            <div class="seg ep-stages" role="group" aria-label={`Choose a date for ${e.name}`}>
+              {e.stages.map((s, i) => <button type="button" data-ep-stage={i} aria-pressed={String(i === e.stages.length - 1)}>{s.label}</button>)}
+            </div>
+          )}
+          <h4>{e.name} <span class="muted ep-date">{e.stages.length === 1 ? e.stages[0].label : ''}</span></h4>
+          <p>{e.how}</p>
+        </div>
+      ))
+  }
+  {
+    set === 'africa' &&
+      AFRICAN_CHAINS.map((c) => (
+        <div class="ep-card" data-ep-panel={c.id}>
+          <div class="ep-times" aria-hidden="true">
+            {c.places.map((p) => (
+              <div class="ep-time">
+                <span class="ep-time__name">{p.name}</span>
+                <span class="ep-time__track"><span class="ep-time__bar" style={`left:${pct(p.from).toFixed(1)}%;width:${(pct(p.to) - pct(p.from)).toFixed(1)}%`}></span></span>
+              </div>
+            ))}
+            <div class="ep-time ep-time--axis"><span class="ep-time__name"></span><span class="ep-time__labels"><span>800 BCE</span><span>1 CE</span><span>1000 CE</span><span>1900 CE</span></span></div>
+          </div>
+          <ul class="ep-dates">{c.places.map((p) => <li><strong>{p.name}:</strong> {p.dates}</li>)}</ul>
+          <p><strong>The dispute:</strong> {c.dispute}</p>
+          <p><strong>How it ended:</strong> {c.ending}</p>
+        </div>
+      ))
+  }
+  <p class="muted ep-note">{set === 'conquest' ? 'Borders are approximate. Empires changed over time, and many had no exact borders.' : 'Dates and places are approximate. Dots mark an important city of each empire.'}</p>
+</empire-map>
+
+<style is:global>
+  empire-map { display: block; }
+  .ep-frame { margin-top: 0.6rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .ep-svg { border-radius: 0; }
+  .ep-sea { fill: color-mix(in srgb, var(--math) 14%, var(--surface)); }
+  .ep-land { fill: color-mix(in srgb, var(--sun) 14%, var(--surface)); stroke: var(--line-strong); stroke-width: 0.8; }
+  .ep-area { fill: var(--social); fill-opacity: 0.6; opacity: 0; transition: opacity 0.35s; }
+  .ep-area.is-on { opacity: 1; }
+  .ep-home { opacity: 1; }
+  .ep-home circle { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .ep-home text { fill: var(--ink); font-size: 14px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+  [data-home] { display: none; }
+  [data-home].is-on { display: inline; }
+  .ep-chain { opacity: 0.28; transition: opacity 0.2s; }
+  .ep-chain.is-on { opacity: 1; }
+  .ep-arrow { fill: none; stroke: var(--social); stroke-width: 3; stroke-dasharray: 7 5; }
+  .ep-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .ep-card h4 { margin: 0 0 0.3rem; }
+  .ep-card p { margin: 0.35rem 0 0; }
+  .ep-date { font-size: var(--step--1); font-weight: 400; }
+  .ep-stages { margin-bottom: 0.5rem; }
+  .ep-dates { margin: 0.5rem 0 0; padding-left: 1.2rem; font-size: var(--step--1); }
+  .ep-times { display: grid; gap: 0.25rem; }
+  .ep-time { display: grid; grid-template-columns: 4rem 1fr; gap: 0.5rem; align-items: center; font-size: var(--step--1); font-weight: 700; }
+  .ep-time__track { position: relative; height: 0.8rem; border-radius: 99px; background: var(--surface-3); }
+  .ep-time__bar { position: absolute; top: 0; bottom: 0; border-radius: 99px; background: var(--social); }
+  .ep-time__labels { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 400; color: var(--ink-2); }
+  .ep-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 40rem) {
+    svg .ep-home text { font-size: 22px; stroke-width: 4px; }
+    .ep-frame { margin-inline: -0.4rem; }
+  }
+</style>
+
+<script>
+  class EmpireMap extends HTMLElement {
+    connectedCallback() {
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-ep]')];
+      buttons.forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.ep!)));
+      this.querySelectorAll<HTMLButtonElement>('[data-ep-stage]').forEach((b) =>
+        b.addEventListener('click', () => this.stage(b.closest<HTMLElement>('[data-ep-panel]')!.dataset.epPanel!, Number(b.dataset.epStage))),
+      );
+      this.pick(buttons[0].dataset.ep!);
+    }
+
+    private pick(id: string) {
+      this.querySelectorAll('[data-ep]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-ep') === id)));
+      this.querySelectorAll<HTMLElement>('[data-ep-panel]').forEach((p) => (p.hidden = p.dataset.epPanel !== id));
+      this.querySelectorAll<SVGGElement>('[data-home]').forEach((g) => g.classList.toggle('is-on', g.dataset.home === id));
+      this.querySelectorAll<SVGGElement>('[data-chain]').forEach((g) => g.classList.toggle('is-on', g.dataset.chain === id));
+      if (this.dataset.set !== 'conquest') return;
+      const stages = this.querySelectorAll(`[data-ep-panel="${id}"] [data-ep-stage]`);
+      this.stage(id, stages.length ? stages.length - 1 : 0);
+    }
+
+    private stage(id: string, i: number) {
+      this.querySelectorAll(`[data-ep-panel="${id}"] [data-ep-stage]`).forEach((b) => b.setAttribute('aria-pressed', String(Number((b as HTMLElement).dataset.epStage) === i)));
+      this.querySelectorAll<SVGPathElement>('.ep-area').forEach((a) => a.classList.toggle('is-on', a.dataset.area === `${id}-${i}`));
+    }
+  }
+  customElements.define('empire-map', EmpireMap);
+</script>

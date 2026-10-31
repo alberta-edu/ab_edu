@@ -135,6 +135,18 @@ function verifyConcept(c: Concept) {
         const ex = b.props.examples as unknown[];
         if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');
       }
+      if (b.type === 'visual' && b.component === 'card-sort') {
+        const { bins, cards } = b.props as { bins?: { id: string }[]; cards?: { text: string; bin: string; why: string }[] };
+        if (!bins?.length || !cards?.length) fail(undefined, `${label}: card-sort needs props.bins and props.cards`);
+        else {
+          for (const card of cards) {
+            if (!bins.some((x) => x.id === card.bin)) fail(undefined, `${label}: card "${card.text}" is in unknown bin "${card.bin}"`);
+            if (!card.why) fail(undefined, `${label}: card "${card.text}" has no explanation`);
+            texts.push(card.text, card.why);
+          }
+          for (const bin of bins) if (!cards.some((card) => card.bin === bin.id)) fail(undefined, `${label}: bin "${bin.id}" has no cards`);
+        }
+      }
       if (b.type === 'experiment') {
         texts.push(b.question, b.observe, b.explain, ...b.predict.choices);
         if (b.predict.answer >= b.predict.choices.length) fail(undefined, `experiment "${b.title}" answer out of range`);
