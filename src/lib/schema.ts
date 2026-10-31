@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { THINKING_MOVE_IDS } from './thinking.ts';
 
 /**
  * Markdown string. Math uses \( inline \) and \[ display \] delimiters so that
@@ -54,6 +55,8 @@ const problemBase = {
   /** Unique within the concept, e.g. "w1". The global id is `<concept id>/<id>`. */
   id: z.string().regex(/^[a-z0-9-]+$/),
   level,
+  /** The kind of thinking this problem trains. See src/lib/thinking.ts. */
+  thinking: z.enum(THINKING_MOVE_IDS).default('apply'),
   prompt: md,
   hints: z.array(md).min(1).max(3),
   /** Worked solution, one step per entry. */
@@ -140,7 +143,54 @@ const open = z.strictObject({
   rubric: z.array(md).min(2).max(5),
 });
 
-export const problemSchema = z.discriminatedUnion('type', [mc, multi, number, fraction, text, order, evidence, open]);
+/**
+ * Many right answers. The student types values and every rule must hold, so a child can invent
+ * their own answer: "design a pen with an area of 36 m²". The verifier runs the `examples`
+ * through the rules, and each `counterexamples` entry must break at least one.
+ */
+const buildValues = z.record(z.string(), z.union([z.number(), z.string()]));
+const build = z.strictObject({
+  ...problemBase,
+  type: z.literal('build'),
+  fields: z.array(z.strictObject({ name: z.string().regex(/^[a-z]\w*$/), label: z.string().min(1), unit: z.string().optional() })).min(1).max(4),
+  /** `test` uses the field names, e.g. "w * h == 36 && w != h". `fail` is shown when it doesn't hold. */
+  rules: z.array(z.strictObject({ test: z.string().min(1), fail: md })).min(1).max(5),
+  examples: z.array(buildValues).min(1),
+  counterexamples: z.array(buildValues).default([]),
+});
+
+/** One step of an investigation: an ordinary problem without its own id, level or references. */
+const partFields = { id: true, level: true, covers: true, thinking: true } as const;
+const partHelp = { hints: z.array(md).max(3).default([]), solution: z.array(md).default([]) };
+
+/**
+ * A story with 2-4 linked parts, shown one at a time. Each part builds on the one before,
+ * so the student practises breaking a hard problem down. `prompt` holds the story.
+ */
+const investigation = z.strictObject({
+  ...problemBase,
+  type: z.literal('investigation'),
+  hints: z.array(md).max(0).default([]),
+  solution: z.array(md).max(0).default([]),
+  parts: z
+    .array(
+      z.discriminatedUnion('type', [
+        mc.omit(partFields).extend(partHelp),
+        multi.omit(partFields).extend(partHelp),
+        number.omit(partFields).extend(partHelp),
+        fraction.omit(partFields).extend(partHelp),
+        text.omit(partFields).extend(partHelp),
+        build.omit(partFields).extend(partHelp),
+        open.omit(partFields),
+      ]),
+    )
+    .min(2)
+    .max(4),
+  /** Shown once every part is solved: the idea the whole investigation was building to. */
+  wrapUp: md,
+});
+
+export const problemSchema = z.discriminatedUnion('type', [mc, multi, number, fraction, text, order, evidence, open, build, investigation]);
 
 const block = z.discriminatedUnion('type', [
   /** Short explanation. Keep it brief: visuals and formatted blocks carry the lesson. */
@@ -246,6 +296,7 @@ export const conceptSchema = z.strictObject({
 
 export type Concept = z.infer<typeof conceptSchema>;
 export type Problem = z.infer<typeof problemSchema>;
+export type InvestigationPart = Extract<Problem, { type: 'investigation' }>['parts'][number];
 export type LessonStep = Concept['lesson'][number];
 export type LessonBlock = LessonStep['blocks'][number];
 export type Passage = Extract<LessonBlock, { type: 'passage' }>;

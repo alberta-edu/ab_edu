@@ -1,11 +1,13 @@
 // Content quality gate, run before every build (npm run verify).
 // Fails on anything that would show a student a wrong answer or a broken page.
-import { loadConcepts, roadmap, resolveRef, gradeRank } from '../src/lib/content.ts';
+import { loadConcept, loadConceptDraft, loadConcepts, roadmap, resolveRef, gradeRank } from '../src/lib/content.ts';
 import { renderProblem, passageSentences } from '../src/lib/problem-html.ts';
 import { md } from '../src/lib/render.ts';
-import { evaluate, eq, parseFractionAnswer, parseDecimal } from '../src/lib/rational.ts';
+import { evaluate, eq, holds, parseFractionAnswer, parseDecimal, type Rational } from '../src/lib/rational.ts';
+import { parseFieldInput } from '../src/lib/check.ts';
+import { mathCeilingIssues, qualityIssues } from '../src/lib/quality.ts';
 import { UNLOCK_AFTER } from '../src/site.ts';
-import type { Concept, Passage } from '../src/lib/schema.ts';
+import type { Concept, InvestigationPart, Passage, Problem } from '../src/lib/schema.ts';
 
 const errors: string[] = [];
 const warnings: string[] = [];
@@ -29,6 +31,9 @@ function strayKeys(value: unknown, path = 'props'): string[] {
   return [];
 }
 
+/** True once the file's problems name a thinking move (the schema fills in a default until then). */
+const rawHasMoves = (c: Concept) => c.problems.some((p) => p.thinking !== 'apply' && p.level === 3);
+
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
   const fail = (id: string | undefined, msg: string) => errors.push(`${where(id)}: ${msg}`);
@@ -51,24 +56,48 @@ function verifyConcept(c: Concept) {
     c.lesson.flatMap((s) => s.blocks).filter((b): b is Passage => b.type === 'passage').map((p) => [p.id, p]),
   );
 
-  for (const p of c.problems) {
-    if (ids.has(p.id)) fail(p.id, 'duplicate problem id');
-    ids.add(p.id);
-
+  /** Checks the answer data of a problem or an investigation part. */
+  const checkAnswer = (p: Exclude<Problem, { type: 'investigation' }> | InvestigationPart, id: string) => {
+    if (c.subject === 'math') for (const issue of mathCeilingIssues({ id, prompt: p.prompt, verify: 'verify' in p ? p.verify : undefined, answer: 'answer' in p ? p.answer : undefined })) fail(id, `above Grade 5: ${issue}`);
     switch (p.type) {
       case 'mc':
       case 'multi': {
         const answers = p.type === 'mc' ? [p.answer] : p.answer;
-        if (answers.some((a) => a >= p.choices.length)) fail(p.id, 'answer index out of range');
-        if (new Set(answers).size !== answers.length) fail(p.id, 'duplicate answer index');
-        if (new Set(p.choices.map((x) => x.trim())).size !== p.choices.length) fail(p.id, 'duplicate choices');
+        if (answers.some((a) => a >= p.choices.length)) fail(id, 'answer index out of range');
+        if (new Set(answers).size !== answers.length) fail(id, 'duplicate answer index');
+        if (new Set(p.choices.map((x) => x.trim())).size !== p.choices.length) fail(id, 'duplicate choices');
         for (const k of Object.keys(p.feedback)) {
-          if (Number(k) >= p.choices.length) fail(p.id, `feedback for missing choice ${k}`);
-          if (answers.includes(Number(k))) fail(p.id, `feedback given for a correct choice ${k}`);
+          if (Number(k) >= p.choices.length) fail(id, `feedback for missing choice ${k}`);
+          if (answers.includes(Number(k))) fail(id, `feedback given for a correct choice ${k}`);
         }
         if (p.type === 'mc') {
           const missing = p.choices.map((_, i) => i).filter((i) => i !== p.answer && !p.feedback[String(i)]);
-          if (missing.length) fail(p.id, `wrong choices without feedback: ${missing.join(', ')}`);
+          if (missing.length) fail(id, `wrong choices without feedback: ${missing.join(', ')}`);
+        }
+        break;
+      }
+      case 'build': {
+        const read = (values: Record<string, string | number>) => {
+          const vars: Record<string, Rational> = {};
+          for (const f of p.fields) {
+            const v = parseFieldInput(String(values[f.name] ?? ''), f.unit);
+            if (!v) throw new Error(`no value for "${f.name}" in ${JSON.stringify(values)}`);
+            vars[f.name] = v;
+          }
+          return vars;
+        };
+        try {
+          for (const ex of p.examples) {
+            const vars = read(ex);
+            const broken = p.rules.find((r) => !holds(r.test, vars));
+            if (broken) fail(id, `example ${JSON.stringify(ex)} breaks the rule "${broken.test}"`);
+          }
+          for (const ex of p.counterexamples) {
+            const vars = read(ex);
+            if (p.rules.every((r) => holds(r.test, vars))) fail(id, `counterexample ${JSON.stringify(ex)} passes every rule`);
+          }
+        } catch (e) {
+          fail(id, (e as Error).message);
         }
         break;
       }
@@ -76,34 +105,42 @@ function verifyConcept(c: Concept) {
         if (p.verify !== undefined) {
           const v = evaluate(p.verify);
           const want = parseDecimal(String(p.answer));
-          if (!want || !eq(v, want)) fail(p.id, `verify "${p.verify}" = ${v.n}/${v.d}, but answer is ${p.answer}`);
+          if (!want || !eq(v, want)) fail(id, `verify "${p.verify}" = ${v.n}/${v.d}, but answer is ${p.answer}`);
         }
         break;
       case 'fraction': {
         const value = parseFractionAnswer(p.answer);
-        if (p.verify !== undefined && !eq(evaluate(p.verify), value)) fail(p.id, `verify "${p.verify}" does not equal ${p.answer}`);
+        if (p.verify !== undefined && !eq(evaluate(p.verify), value)) fail(id, `verify "${p.verify}" does not equal ${p.answer}`);
         const isMixed = / /.test(p.answer);
-        if (p.form === 'mixed' && !isMixed && value.d !== 1) fail(p.id, 'form is mixed but answer is not written as a mixed number');
-        if (p.form === 'improper' && isMixed) fail(p.id, 'form is improper but answer is a mixed number');
+        if (p.form === 'mixed' && !isMixed && value.d !== 1) fail(id, 'form is mixed but answer is not written as a mixed number');
+        if (p.form === 'improper' && isMixed) fail(id, 'form is improper but answer is a mixed number');
         break;
       }
       case 'order':
-        if (new Set(p.items).size !== p.items.length) fail(p.id, 'duplicate order items');
+        if (new Set(p.items).size !== p.items.length) fail(id, 'duplicate order items');
         break;
       case 'evidence': {
         const passage = passages.get(p.passage);
         if (!passage) {
-          fail(p.id, `passage "${p.passage}" not found`);
+          fail(id, `passage "${p.passage}" not found`);
           break;
         }
         const sentences = passageSentences(passage);
         const shown = new Set(p.paragraphs.flatMap((n) => (sentences[n - 1] ?? []).map((s) => s.id)));
-        for (const n of p.paragraphs) if (!sentences[n - 1]) fail(p.id, `paragraph ${n} does not exist`);
-        for (const a of p.answer) if (!shown.has(a)) fail(p.id, `answer ${a} is not in the excerpt`);
-        for (const k of Object.keys(p.feedback)) if (!shown.has(k)) fail(p.id, `feedback for ${k}, which is not in the excerpt`);
+        for (const n of p.paragraphs) if (!sentences[n - 1]) fail(id, `paragraph ${n} does not exist`);
+        for (const a of p.answer) if (!shown.has(a)) fail(id, `answer ${a} is not in the excerpt`);
+        for (const k of Object.keys(p.feedback)) if (!shown.has(k)) fail(id, `feedback for ${k}, which is not in the excerpt`);
         break;
       }
     }
+  };
+
+  for (const p of c.problems) {
+    if (ids.has(p.id)) fail(p.id, 'duplicate problem id');
+    ids.add(p.id);
+
+    if (p.type === 'investigation') p.parts.forEach((part, i) => checkAnswer(part, `${p.id} part ${i + 1}`));
+    else checkAnswer(p, p.id);
 
     try {
       renderProblem(c, p, 1);
@@ -211,12 +248,21 @@ function verifyConcept(c: Concept) {
     }
   }
 
+  // Old problems carry no thinking move yet. The quality rules apply once a concept has been rewritten.
+  if (rawHasMoves(c)) for (const issue of qualityIssues(c)) fail(undefined, issue);
+  else warnings.push(`${where()}: not yet rewritten to the question standard`);
+
   if (c.summary.length < 110) warnings.push(`${where()}: summary is short for a meta description (${c.summary.length} chars)`);
 }
 
+/**
+ * `npm run verify -- <concept-id>` checks one file, so someone writing it isn't blocked by other
+ * files in progress. A path to a .yaml file checks a draft kept outside content/.
+ */
+const only = process.argv[2];
 let concepts: Concept[] = [];
 try {
-  concepts = loadConcepts(5);
+  concepts = only ? [only.endsWith('.yaml') ? loadConceptDraft(only) : loadConcept(only, 5)] : loadConcepts(5);
 } catch (e) {
   console.error((e as Error).message);
   process.exit(1);

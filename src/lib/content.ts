@@ -167,24 +167,41 @@ export function roadmap(grade: number): Record<SubjectSlug, RoadmapItem[]> {
 
 let conceptCache: Concept[] | null = null;
 
+function loadConceptFile(grade: number, slug: SubjectSlug, file: string): Concept {
+  const path = join(ROOT, 'content', `grade-${grade}`, slug, file);
+  const result = conceptSchema.safeParse(parse(readFileSync(path, 'utf8')));
+  if (!result.success) {
+    throw new Error(`${path}\n${z.prettifyError(result.error)}`);
+  }
+  const c = result.data;
+  if (`${c.id}.yaml` !== file) throw new Error(`${path}: id "${c.id}" must match the file name`);
+  if (c.subject !== slug) throw new Error(`${path}: subject "${c.subject}" must match its folder`);
+  for (const code of c.outcomes) findOutcome(grade, slug, code);
+  return c;
+}
+
+/** Loads a draft from any path. It gets the same checks, apart from where the file lives. */
+export function loadConceptDraft(path: string): Concept {
+  const result = conceptSchema.safeParse(parse(readFileSync(path, 'utf8')));
+  if (!result.success) throw new Error(`${path}\n${z.prettifyError(result.error)}`);
+  return result.data;
+}
+
+/** Loads one concept by id, without reading the other files. */
+export function loadConcept(id: string, grade = 5): Concept {
+  for (const { slug } of SUBJECTS) {
+    if (existsSync(join(ROOT, 'content', `grade-${grade}`, slug, `${id}.yaml`))) return loadConceptFile(grade, slug, `${id}.yaml`);
+  }
+  throw new Error(`No concept file for "${id}"`);
+}
+
 export function loadConcepts(grade = 5): Concept[] {
   if (conceptCache) return conceptCache;
   const concepts: Concept[] = [];
   for (const { slug } of SUBJECTS) {
     const dir = join(ROOT, 'content', `grade-${grade}`, slug);
     if (!existsSync(dir)) continue;
-    for (const file of readdirSync(dir).filter((f) => f.endsWith('.yaml')).sort()) {
-      const path = join(dir, file);
-      const result = conceptSchema.safeParse(parse(readFileSync(path, 'utf8')));
-      if (!result.success) {
-        throw new Error(`${path}\n${z.prettifyError(result.error)}`);
-      }
-      const c = result.data;
-      if (`${c.id}.yaml` !== file) throw new Error(`${path}: id "${c.id}" must match the file name`);
-      if (c.subject !== slug) throw new Error(`${path}: subject "${c.subject}" must match its folder`);
-      for (const code of c.outcomes) findOutcome(grade, slug, code);
-      concepts.push(c);
-    }
+    for (const file of readdirSync(dir).filter((f) => f.endsWith('.yaml')).sort()) concepts.push(loadConceptFile(grade, slug, file));
   }
   conceptCache = concepts;
   return concepts;
