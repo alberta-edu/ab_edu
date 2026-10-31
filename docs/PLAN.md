@@ -34,6 +34,11 @@ the branch that deploys.
 
 Nothing is waiting for review right now.
 
+**Not published yet:** the repo stays private and the site is not published on GitHub Pages
+until all tasks are finished and people have reviewed it. Until then, the deploy job fails on
+each push to `main` because Pages is off. That is expected: the build still runs, and nothing
+goes public.
+
 **Next up:** Phase 5, Social Studies, on a new branch from `main`, in a new chat thread.
 
 ## 1. Ground truth: the curriculum
@@ -161,7 +166,7 @@ choice is a real misconception and comes with an explanation.
   Graph tags, and JSON-LD (`LearningResource` with `educationalAlignment` to the Alberta
   outcome, plus `BreadcrumbList`). Content that has not been written yet is listed as
   "coming soon", never published as thin pages.
-- **Hosting**: GitHub Pages at `https://alberta-edu.github.io/ab_edu/`, deployed by a
+- **Hosting** (not published until Phase 8): GitHub Pages at `https://alberta-edu.github.io/ab_edu/`, deployed by a
   GitHub Actions workflow. The base path is configured in one place.
 
 ## 4. Grade 5 concept map (about 48 concepts)
@@ -201,7 +206,7 @@ research skills · grammar · spelling & punctuation
 | 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) | ⏭️ **Next** |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems) | Not started |
 | 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | Not started |
-| 8 | Release | Only after owner sign-off: merge the feature branches into `main`, push, enable Pages | Not started, needs your sign-off |
+| 8 | Release | Only after all other phases are finished and people have reviewed the whole site: enable GitHub Pages and publish | Not started, needs review and your sign-off |
 
 ## 6. Decisions for the owner
 
