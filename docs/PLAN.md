@@ -12,12 +12,12 @@ the branch that deploys.
 
 *Last updated: October 30, 2026. Update this section whenever a phase or batch finishes.*
 
-**Current phase: 4 (Science) is built on `feature/grade5-science` and waiting for the owner's review. Phase 5 (Social Studies) comes after that.**
+**Current phase: 4 (Science) is done and merged into `main`. Phase 5 (Social Studies) is next.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
 | Math | **15 of 15** ✅ | **165 of 165** ✅ |
-| Science | **15 of 15** ✅ (not on `main` yet: 14 are on the branch) | **204 of 204** ✅ |
+| Science | **15 of 15** ✅ | **204 of 204** ✅ |
 | Social Studies | 1 of 6 | partly (latitude and longitude) |
 | ELAL | 1 of 12 | partly (inference and evidence) |
 | **Total** | **32 of 48** | 392 of 674 (see [curriculum-audit.md](curriculum-audit.md)) |
@@ -30,9 +30,11 @@ the branch that deploys.
 | `chore/claude-md` | CLAUDE.md with the repo rules | ✅ Merged into `main` |
 | `chore/plan-status` | This progress tracking | ✅ Merged into `main` |
 | `feature/grade5-math` | Phase 3: all 15 Math lessons (233 problems) | ✅ Merged into `main` |
-| `feature/grade5-science` | Phase 4: the other 14 Science lessons (195 problems across all 15), 11 virtual experiments | 🔍 **Waiting for owner review** |
+| `feature/grade5-science` | Phase 4: the other 14 Science lessons (195 problems across all 15), 11 virtual experiments | ✅ Merged into `main` |
 
-**Next up:** after Science is reviewed and merged, Phase 5, Social Studies, on a new branch from `main`, in a new chat thread.
+Nothing is waiting for review right now.
+
+**Next up:** Phase 5, Social Studies, on a new branch from `main`, in a new chat thread.
 
 ## 1. Ground truth: the curriculum
 
@@ -115,7 +117,9 @@ choice is a real misconception and comes with an explanation.
 - Every formula is typeset with KaTeX at **build time** with `throwOnError`, so a LaTeX
   typo fails the build instead of reaching a student.
 - Facts in science and social studies stay within the curriculum's own knowledge
-  statements. Places, dates and coordinates are checked against reliable references.
+  statements. Places, dates, coordinates and data are checked against primary sources, and
+  each data file names its source (for example, climate graphs use Environment and Climate
+  Change Canada's 1991–2020 normals).
 
 ## 3. Architecture
 
@@ -193,8 +197,8 @@ research skills · grammar · spelling & punctuation
 | 1 | Foundation | Astro scaffold, design system, content schema + renderer, problem engine, progress store, spaced review, SEO plumbing, verify/coverage/audit scripts, unit tests, deploy workflow (not pushed) | ✅ Done, merged into `main` |
 | 2 | Vertical slice | One complete concept per subject (★ above), each with a signature visualization: fraction explorer, particle simulator, 3D globe and world map, evidence-finding reader. Reworked after your feedback: curriculum-only content, tabs and steps | ✅ Done, merged into `main` |
 | 3 | Math | Remaining 14 concepts | ✅ Done, merged into `main` |
-| 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | 🔍 Built, waiting for owner review |
-| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) | ⏭️ Next, after Science is merged |
+| 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ✅ Done, merged into `main` |
+| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline) | ⏭️ **Next** |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems) | Not started |
 | 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | Not started |
 | 8 | Release | Only after owner sign-off: merge the feature branches into `main`, push, enable Pages | Not started, needs your sign-off |
