@@ -1,0 +1,119 @@
+---
+// Make a sample weather map (SCI5-OI3-GQ1-LO1, S2.4, S2.5, K2.2): read the day's data, choose a
+// symbol, then tap a town to place it.
+import { TOWNS, SKY, project, borderPath, type Sky } from './weather-map.ts';
+const SKIES = Object.keys(SKY) as Sky[];
+---
+<weather-map data-towns={JSON.stringify(TOWNS)} data-sky={JSON.stringify(SKY)}>
+  <div class="wm-layout">
+    <div>
+      <p class="sci-pick-label">1. Read the data</p>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th scope="col">Town</th><th scope="col">Sky</th><th scope="col">Temperature</th></tr></thead>
+          <tbody>{TOWNS.map((t) => <tr><th scope="row">{t.name}</th><td>{SKY[t.sky].label}</td><td>{t.temp} °C</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="sci-pick-label">2. Choose a symbol</p>
+      <div class="sci-pick" role="group" aria-label="Choose a weather symbol">
+        {SKIES.map((s, i) => <button type="button" data-wm-sky={s} aria-pressed={String(i === 0)}>{SKY[s].icon} {SKY[s].label}</button>)}
+      </div>
+      <p class="sci-pick-label">3. Tap each town on the map</p>
+      <div class="control-row"><button type="button" class="btn btn--ghost btn--small" data-wm="clear">Clear the map</button></div>
+    </div>
+    <svg class="sci-svg wm-svg" viewBox="0 0 300 450" role="group" aria-label="Map of Alberta. Tap a town to place the chosen symbol.">
+      <path class="wm-land" d={borderPath()} />
+      {
+        TOWNS.map((t) => {
+          const [x, y] = project(t.lat, t.lon);
+          return (
+            <g class="wm-town" data-wm-town={t.id} role="button" tabindex="0" aria-label={t.name}>
+              <circle class="wm-hit" cx={x} cy={y} r="24" />
+              <circle class="wm-dot" cx={x} cy={y} r="5" />
+              <text class="wm-name" x={x} y={y + 30} text-anchor="middle">{t.name}</text>
+              <g data-wm-mark={t.id}></g>
+            </g>
+          );
+        })
+      }
+    </svg>
+  </div>
+  <p class="sci-say" data-wm="say" aria-live="polite"></p>
+</weather-map>
+
+<style is:global>
+  weather-map { display: block; }
+  .wm-layout { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); align-items: start; }
+  .wm-svg { max-width: 22rem; margin-inline: auto; background: var(--surface-2); }
+  .wm-land { fill: color-mix(in srgb, var(--science) 22%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; stroke-linejoin: round; }
+  .wm-town { cursor: pointer; }
+  .wm-town:focus-visible { outline: none; }
+  .wm-town:focus-visible .wm-hit { stroke: var(--accent); stroke-width: 3; }
+  .wm-hit { fill: transparent; }
+  .wm-dot { fill: var(--ink); }
+  .wm-name { fill: var(--ink); font-size: 14px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+  .wm-icon { font-size: 28px; }
+  .wm-temp { fill: var(--ink); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+</style>
+
+<script>
+  import { countCorrect, project, type Sky, type Town } from './weather-map.ts';
+
+  class WeatherMap extends HTMLElement {
+    private towns: Town[] = [];
+    private sky: Record<Sky, { icon: string; label: string }> = {} as never;
+    private chosen: Sky = 'sun';
+    private placed: Record<string, Sky | undefined> = {};
+
+    connectedCallback() {
+      this.towns = JSON.parse(this.dataset.towns!);
+      this.sky = JSON.parse(this.dataset.sky!);
+      this.querySelectorAll<HTMLButtonElement>('[data-wm-sky]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-wm-sky]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.chosen = b.dataset.wmSky as Sky;
+        }),
+      );
+      this.querySelectorAll<SVGGElement>('[data-wm-town]').forEach((g) => {
+        const place = () => this.place(g.dataset.wmTown!);
+        g.addEventListener('click', place);
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            place();
+          }
+        });
+      });
+      this.querySelector('[data-wm="clear"]')!.addEventListener('click', () => {
+        this.placed = {};
+        this.towns.forEach((t) => this.draw(t));
+        this.report();
+      });
+      this.report();
+    }
+
+    private place(id: string) {
+      this.placed[id] = this.chosen;
+      this.draw(this.towns.find((t) => t.id === id)!);
+      this.report();
+    }
+
+    private draw(t: Town) {
+      const [x, y] = project(t.lat, t.lon);
+      const mark = this.querySelector(`[data-wm-mark="${t.id}"]`)!;
+      const s = this.placed[t.id];
+      mark.innerHTML = s ? `<text class="wm-icon" x="${x}" y="${y - 8}" text-anchor="middle">${this.sky[s].icon}</text><text class="wm-temp" x="${x + 20}" y="${y + 5}">${t.temp}°</text>` : '';
+    }
+
+    private report() {
+      const done = Object.values(this.placed).filter(Boolean).length;
+      const right = countCorrect(this.placed);
+      const say = this.querySelector('[data-wm="say"]')!;
+      if (done === 0) say.textContent = 'Choose a symbol, then tap a town.';
+      else if (right === this.towns.length) say.textContent = '✓ Your weather map matches the data! A map shows the whole region at a glance, which a table can’t.';
+      else if (done === this.towns.length) say.textContent = `${right} of ${this.towns.length} symbols match the data. Check the table and fix the others.`;
+      else say.textContent = `${done} of ${this.towns.length} towns done.`;
+    }
+  }
+  customElements.define('weather-map', WeatherMap);
+</script>

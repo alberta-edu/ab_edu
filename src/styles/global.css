@@ -520,6 +520,17 @@ a.concept-card:hover { border-color: var(--accent); }
 .bc-svg, .lb-figure__art .bc-svg, .problem__figure .bc-svg { max-width: 15rem; }
 .compare__figure .bc-svg { max-height: none; max-width: 13rem; }
 .bc-text { fill: #fff; font-size: 14px; font-weight: 700; }
+/* On phones, science drawings shrink to about half size, so their labels are drawn bigger to stay readable. */
+@media (max-width: 40rem) {
+  .vx__stage { margin-inline: -0.9rem; }
+  svg .sci-text, svg .ll-step, svg .er-year, svg .sp-name, svg .ft-dist, svg .cd-clock, svg .st-label, svg .ec-title { font-size: 22px; }
+  svg .sci-small, svg .so-text, svg .ss-num, svg .sp-note, svg .er-ok, svg .er-out, svg .st-result-ok, svg .st-result-bad, svg .mt-num { font-size: 19px; }
+  svg .fa-label, svg .ss-read, svg .sp-clock, svg .af-label { font-size: 22px; }
+  svg .em-tile text { font-size: 20px; }
+  harvest-sim svg .ch-axis, harvest-sim svg .hs-empty { font-size: 19px; }
+  data-views svg .ch-axis { font-size: 17px; }
+  data-views svg .dv-val { font-size: 19px; }
+}
 /* small charts (climate graphs, harvest simulator) */
 .ch-chart { margin: 0; padding: 0.5rem; border-radius: var(--radius-sm); background: var(--surface-2); }
 .ch-chart figcaption { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); margin: 0 0 0.25rem 0.25rem; }

@@ -59,12 +59,13 @@ lesson:
   - title: Reading climate graphs
     blocks:
       - type: visual
-        covers: [K1.3, S1.4, S1.6, S1.3]
+        covers: [K1.3, S1.2, S1.4, S1.6, S1.3]
         component: climate-graph
         props: { start: vancouver }
         caption: |-
-          Each line or bar is an **average for one month**, taken over about 30 years. The dashed outline is always
-          **Edmonton**, so you can compare Alberta with other places.
+          Each line or bar is an **average for one month**, taken over about 30 years. Years of local, national and
+          global weather like this show each place's **climate**. The dashed outline is always **Edmonton**, so you can
+          compare Alberta with other places.
       - type: table
         covers: [K1.5, S1.3]
         caption: Climate zones
@@ -86,6 +87,13 @@ lesson:
           - ['**Proximity to bodies of water**', 'Oceans and big lakes keep nearby places mild.', 'Alberta is far from the oceans, so its temperatures change a lot from winter to summer.']
           - ['**Landforms**', 'Mountains can block moist air.', 'The Rocky Mountains block moist air from the Pacific Ocean, so Alberta is fairly dry.']
           - ['**Altitude**', 'Higher places are usually cooler.', 'The high peaks of the Rocky Mountains stay cold enough to keep snow and glaciers all summer.']
+
+  - title: Make a weather map
+    blocks:
+      - type: visual
+        covers: [S2.5, S2.4, K2.2]
+        component: weather-map
+        caption: This is a sample day, with made-up readings. Use the data to build a weather map of Alberta.
 
   - title: Predicting the weather
     blocks:
@@ -291,6 +299,28 @@ problems:
       - A forecast tells you what the weather will be soon.
     solution:
       - Knowing a storm is coming lets the farmer **plan ahead** and protect the crop.
+
+  - id: b6
+    level: 2
+    covers: [S2.2, K2.1]
+    type: mc
+    prompt: |-
+      Noor builds a simple weather tool from a straight-sided jar with a ruler taped to it, and sets it outside in an
+      open spot. Which tool did Noor make, and what does it measure?
+    choices:
+      - A rain gauge, which measures precipitation
+      - A wind vane, which measures wind direction
+      - A barometer, which measures air pressure
+      - A thermometer, which measures temperature
+    answer: 0
+    feedback:
+      '1': A wind vane needs a part that turns in the wind.
+      '2': A barometer responds to air pressure. An open jar catches rain.
+      '3': A thermometer shows how warm the air is. A ruler can't show that.
+    hints:
+      - What could collect in an open jar outside? What would the ruler measure?
+    solution:
+      - Rain collects in the jar, and the ruler shows how deep it is. That is a simple **rain gauge**.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1

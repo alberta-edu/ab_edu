@@ -178,7 +178,7 @@ const JUMPS = [
       out.push(`<text class="so-big" x="${(C.x + ux * (C.r + 28)).toFixed(1)}" y="${(C.y + uy * (C.r + 28) + 5).toFixed(1)}" text-anchor="middle">N</text>`);
       const ed = { x: C.x + ux * Math.sin(53.5 * RAD) * C.r, y: C.y + uy * Math.sin(53.5 * RAD) * C.r };
       out.push(`<circle class="so-dot" cx="${ed.x.toFixed(1)}" cy="${ed.y.toFixed(1)}" r="5"/>`);
-      out.push(`<text class="so-text" x="${C.x}" y="${C.y + C.r + 40}" text-anchor="middle">Earth up close (red dot: Edmonton)</text>`);
+      out.push(`<text class="so-text" x="${C.x}" y="${C.y + C.r + 40}" text-anchor="middle">Red dot: Edmonton</text>`);
       this.querySelector('[data-so="svg"]')!.innerHTML = out.join('');
     }
   }
