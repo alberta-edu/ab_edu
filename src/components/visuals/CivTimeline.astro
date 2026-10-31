@@ -1,0 +1,113 @@
+---
+// Timeline of the curriculum's ancient civilizations, 3000 BCE to 500 CE. Drag through time to see
+// who was alive at the same moment; tap a civilization for how it rose and fell.
+import { CIVS, FIRST_YEAR, LAST_YEAR, yearText } from './civ-data.ts';
+
+const pct = (y: number) => ((y - FIRST_YEAR) / (LAST_YEAR - FIRST_YEAR)) * 100;
+const ticks = [-3000, -2000, -1000, 1, 500];
+---
+<civ-timeline>
+  <div class="tl-chart">
+    <div class="tl-rows" role="group" aria-label="Choose a civilization">
+      {
+        CIVS.map((c) => (
+          <button type="button" class="tl-row" data-civ={c.id} aria-pressed="false">
+            <span class="tl-name">{c.name}</span>
+            <span class="tl-track">
+              {c.spans.map(([a, b]) => (
+                <span class="tl-bar" style={`left:${pct(a).toFixed(2)}%;width:${(pct(b) - pct(a)).toFixed(2)}%`} />
+              ))}
+            </span>
+          </button>
+        ))
+      }
+      <div class="tl-cursor" data-tl="cursor" aria-hidden="true"></div>
+    </div>
+    <div class="tl-axis" aria-hidden="true">
+      <span class="tl-name"></span>
+      <span class="tl-scale">
+        {ticks.map((y) => <span class="tl-tick" style={`left:${pct(y).toFixed(2)}%`}>{yearText(y)}</span>)}
+      </span>
+    </div>
+  </div>
+
+  <label class="tl-slider">
+    <span class="sci-pick-label">Travel through time</span>
+    <input type="range" min={FIRST_YEAR} max={LAST_YEAR} step="50" value="-100" data-tl="year" />
+  </label>
+  <p class="sci-say tl-say" aria-live="polite" data-tl="say"></p>
+  <div class="tl-story" data-tl="story" aria-live="polite" hidden></div>
+  <noscript>
+    <ul>{CIVS.map((c) => <li><strong>{c.name}</strong> ({c.dates}). {c.rise.text} {c.fall.text}</li>)}</ul>
+  </noscript>
+</civ-timeline>
+
+<style is:global>
+  civ-timeline { display: block; }
+  .tl-chart { --name: 7.5rem; }
+  .tl-rows { position: relative; display: grid; gap: 0.25rem; }
+  .tl-row { display: grid; grid-template-columns: var(--name) 1fr; align-items: center; gap: 0.5rem; width: 100%; min-height: 2.5rem; padding: 0 0.4rem; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--surface-2); font: inherit; color: var(--ink); text-align: left; cursor: pointer; }
+  .tl-row[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .tl-name { font-size: var(--step--1); font-weight: 700; line-height: 1.15; }
+  .tl-track { position: relative; display: block; height: 1rem; border-radius: 99px; background: var(--surface-3); }
+  .tl-bar { position: absolute; top: 0; bottom: 0; border-radius: 99px; background: color-mix(in srgb, var(--social) 45%, var(--surface)); transition: background 0.15s; }
+  .tl-row.is-alive .tl-bar { background: var(--social); }
+  /* The cursor lines up with the tracks: name column, gap and row padding come first. */
+  .tl-cursor { position: absolute; top: -0.2rem; bottom: -0.2rem; width: 0; left: calc(var(--name) + 0.9rem + (100% - var(--name) - 1.3rem) * var(--at, 0)); border-left: 2px dashed var(--ink); pointer-events: none; }
+  .tl-axis { display: grid; grid-template-columns: var(--name) 1fr; gap: 0.5rem; padding: 0.25rem 0.4rem 0; }
+  .tl-scale { position: relative; height: 2.2rem; }
+  .tl-tick { position: absolute; top: 0; transform: translateX(-50%); font-size: 0.75rem; color: var(--ink-2); white-space: nowrap; }
+  .tl-tick:first-child { transform: none; }
+  .tl-tick:last-child { transform: translateX(-100%); }
+  .tl-slider { display: block; margin-top: 0.3rem; }
+  .tl-slider input { width: 100%; accent-color: var(--accent); min-height: 2rem; }
+  .tl-say { font-size: var(--step-0); }
+  .tl-story { display: grid; gap: 0.6rem; margin-top: 0.75rem; }
+  .tl-story h4 { margin: 0; }
+  .tl-cards { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .tl-card { padding: 0.75rem 0.9rem; border-radius: var(--radius-sm); }
+  .tl-card p { margin: 0.25rem 0 0; }
+  .tl-card--rise { background: var(--ok-soft); }
+  .tl-card--fall { background: var(--warn-soft); }
+  .tl-card__kind { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  @media (max-width: 40rem) {
+    .tl-chart { --name: 5.2rem; }
+    .tl-name { font-size: 0.8rem; }
+    .tl-tick { font-size: 0.68rem; }
+    .tl-tick:nth-child(2), .tl-tick:last-child { display: none; }
+  }
+</style>
+
+<script>
+  import { CIVS, FIRST_YEAR, LAST_YEAR, aliveText, civsAlive } from './civ-data.ts';
+
+  class CivTimeline extends HTMLElement {
+    connectedCallback() {
+      const year = this.querySelector<HTMLInputElement>('[data-tl="year"]')!;
+      year.addEventListener('input', () => this.setYear(Number(year.value)));
+      this.querySelectorAll<HTMLButtonElement>('.tl-row').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.civ!)));
+      this.setYear(Number(year.value));
+    }
+
+    private setYear(y: number) {
+      const alive = civsAlive(y);
+      this.querySelector<HTMLElement>('[data-tl="cursor"]')!.style.setProperty('--at', String((y - FIRST_YEAR) / (LAST_YEAR - FIRST_YEAR)));
+      this.querySelectorAll<HTMLElement>('.tl-row').forEach((r) => r.classList.toggle('is-alive', alive.some((c) => c.id === r.dataset.civ)));
+      this.querySelector('[data-tl="say"]')!.textContent = aliveText(y);
+    }
+
+    private pick(id: string) {
+      const c = CIVS.find((x) => x.id === id)!;
+      this.querySelectorAll('.tl-row').forEach((r) => r.setAttribute('aria-pressed', String((r as HTMLElement).dataset.civ === id)));
+      const story = this.querySelector<HTMLElement>('[data-tl="story"]')!;
+      story.hidden = false;
+      story.innerHTML = `
+        <h4>${c.name} <span class="muted">· ${c.dates}</span></h4>
+        <div class="tl-cards">
+          <div class="tl-card tl-card--rise"><div class="tl-card__kind">▲ Why it rose: ${c.rise.factor}</div><p>${c.rise.text}</p></div>
+          <div class="tl-card tl-card--fall"><div class="tl-card__kind">▼ Why it fell: ${c.fall.factor}</div><p>${c.fall.text}</p></div>
+        </div>`;
+    }
+  }
+  customElements.define('civ-timeline', CivTimeline);
+</script>

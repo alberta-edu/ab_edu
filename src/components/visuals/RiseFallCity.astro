@@ -1,0 +1,166 @@
+---
+// A city that grows as you tap the factors of a civilization's rise, or crumbles as you tap the
+// factors of its decline (curriculum outcome Fy8zbilfU0yzOlpS8c5Cdg, K1.1 and K1.2).
+import { RISE_FACTORS, FALL_FACTORS } from './civ-data.ts';
+
+interface Props {
+  mode?: 'rise' | 'fall';
+}
+const { mode = 'rise' } = Astro.props;
+const factors = mode === 'rise' ? RISE_FACTORS : FALL_FACTORS;
+---
+<rise-fall-city data-mode={mode} data-factors={JSON.stringify(factors)}>
+  <svg class="sci-svg" viewBox="0 0 660 280" role="img" aria-label={mode === 'rise' ? 'A small settlement that gains a building for each factor you tap.' : 'A great city that loses a building for each factor you tap.'}>
+    <rect class="sci-sky" width="660" height="280"></rect>
+    <path class="rf-hill" d="M0 228 Q 330 205 660 228 V280 H0 Z"></path>
+    <path class="rf-sea" d="M0 236 Q 60 228 124 240 L150 280 H0 Z"></path>
+    <g class="rf-huts">
+      <path class="rf-stone" d="M300 232 v-16 l14 -11 14 11 v16 Z"></path>
+      <path class="rf-stone" d="M340 232 v-14 l12 -10 12 10 v14 Z"></path>
+    </g>
+
+    <g class="rf-piece" data-piece="harbour">
+      <g class="rf-up">
+        <rect class="rf-wood" x="74" y="226" width="86" height="7" rx="2"></rect>
+        <path class="rf-boat" d="M26 234 h44 l-8 13 h-28 Z"></path>
+        <line class="rf-mast" x1="48" y1="234" x2="48" y2="204"></line>
+        <path class="rf-sail" d="M50 206 l18 22 h-18 Z"></path>
+      </g>
+      <path class="rf-rubble" d="M74 234 l10 -6 8 5 8 -7 14 8 10 -4 12 4 Z"></path>
+    </g>
+
+    <g class="rf-piece" data-piece="granary">
+      <g class="rf-up">
+        <path class="rf-stone" d="M178 232 v-34 q0 -20 21 -20 q21 0 21 20 v34 Z"></path>
+        <path class="rf-stone-dark" d="M193 232 v-15 a6 6 0 0 1 12 0 v15 Z"></path>
+      </g>
+      <path class="rf-rubble" d="M172 234 l12 -9 12 5 10 -8 18 12 Z"></path>
+    </g>
+
+    <g class="rf-piece" data-piece="market">
+      <g class="rf-up">
+        <rect class="rf-wood" x="238" y="196" width="6" height="36"></rect>
+        <rect class="rf-wood" x="284" y="196" width="6" height="36"></rect>
+        <path class="rf-awning" d="M232 200 l10 -20 h44 l10 20 Z"></path>
+        <rect class="rf-goods" x="246" y="218" width="36" height="14" rx="2"></rect>
+      </g>
+      <path class="rf-rubble" d="M232 234 l14 -7 12 4 16 -8 20 11 Z"></path>
+    </g>
+
+    <g class="rf-piece" data-piece="palace">
+      <g class="rf-up">
+        <path class="rf-roof" d="M378 148 L450 112 L522 148 Z"></path>
+        <rect class="rf-stone" x="386" y="148" width="128" height="10"></rect>
+        <g class="rf-columns">
+          <rect x="394" y="158" width="12" height="74"></rect>
+          <rect x="420" y="158" width="12" height="74"></rect>
+          <rect x="446" y="158" width="12" height="74"></rect>
+          <rect x="472" y="158" width="12" height="74"></rect>
+          <rect x="496" y="158" width="12" height="74"></rect>
+        </g>
+      </g>
+      <path class="rf-rubble" d="M384 234 l18 -12 14 6 18 -14 20 12 16 -9 32 17 Z"></path>
+      <rect class="rf-broken" x="394" y="196" width="12" height="36"></rect>
+      <rect class="rf-broken" x="472" y="210" width="12" height="22"></rect>
+    </g>
+
+    <g class="rf-piece" data-piece="aqueduct">
+      <g class="rf-up">
+        <path class="rf-stone" d="M528 172 H660 V184 H528 Z"></path>
+        <path class="rf-stone" d="M532 184 h18 v50 h-18 Z M578 184 h18 v50 h-18 Z M624 184 h18 v50 h-18 Z"></path>
+        <rect class="rf-water" x="528" y="168" width="132" height="4"></rect>
+      </g>
+      <path class="rf-rubble" d="M526 236 l14 -8 16 4 18 -7 22 8 20 -5 40 8 Z"></path>
+    </g>
+
+    <g class="rf-piece" data-piece="wall">
+      <g class="rf-up">
+        <path class="rf-wall" d="M164 262 v-22 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v6 h10 v-6 h10 v22 Z"></path>
+      </g>
+      <path class="rf-rubble" d="M164 264 l30 -12 30 8 40 -10 40 10 50 -12 50 12 50 -10 60 14 Z"></path>
+    </g>
+  </svg>
+
+  <div class="sci-pick rf-factors" role="group" aria-label={mode === 'rise' ? 'Add a factor' : 'Apply a factor'}>
+    {factors.map((f) => <button type="button" data-rf={f.id} aria-pressed="false">{f.label}</button>)}
+  </div>
+  <p class="sci-say rf-say" aria-live="polite" data-rf-say>{mode === 'rise' ? 'A few huts by the sea. Tap a factor to see what helps this place grow.' : 'A great city at its height. Tap a factor to see what can bring it down.'}</p>
+  <button type="button" class="btn btn--small rf-reset" data-rf-reset hidden>↺ Start again</button>
+  <noscript><ul>{factors.map((f) => <li><strong>{f.label}:</strong> {f.example}</li>)}</ul></noscript>
+</rise-fall-city>
+
+<style is:global>
+  rise-fall-city { display: block; }
+  .rf-hill { fill: var(--sci-ground, color-mix(in srgb, var(--science) 30%, var(--surface-2))); }
+  .rf-sea { fill: color-mix(in srgb, var(--math) 40%, var(--surface)); }
+  .rf-stone { fill: color-mix(in srgb, var(--social) 30%, var(--surface)); stroke: var(--ink-3); stroke-width: 1.5; }
+  .rf-stone-dark { fill: var(--ink-2); }
+  .rf-columns rect, .rf-broken { fill: color-mix(in srgb, var(--social) 22%, var(--surface)); stroke: var(--ink-3); stroke-width: 1.5; }
+  .rf-roof { fill: var(--social); stroke: var(--ink-3); stroke-width: 1.5; }
+  .rf-wood, .rf-mast { fill: #8b5a2b; stroke: #8b5a2b; }
+  .rf-mast { stroke-width: 3; }
+  .rf-boat { fill: #8b5a2b; }
+  .rf-sail { fill: var(--surface); stroke: var(--ink-3); }
+  .rf-awning { fill: var(--ela); }
+  .rf-goods { fill: var(--sun); }
+  .rf-water { fill: var(--math); }
+  .rf-wall { fill: color-mix(in srgb, var(--ink-3) 45%, var(--surface)); stroke: var(--ink-3); stroke-width: 1.5; }
+  .rf-rubble { fill: color-mix(in srgb, var(--ink-3) 55%, var(--surface)); stroke: var(--ink-3); stroke-width: 1; }
+
+  .rf-up, .rf-rubble, .rf-broken { transform-box: fill-box; transform-origin: 50% 100%; transition: transform 0.55s cubic-bezier(.2, .9, .3, 1.2), opacity 0.35s; }
+  .rf-piece .rf-up { transform: scaleY(0); opacity: 0; }
+  .rf-piece .rf-rubble, .rf-piece .rf-broken { opacity: 0; transform: scaleY(0.3); }
+  .rf-piece.is-up .rf-up { transform: none; opacity: 1; }
+  .rf-piece.is-down .rf-rubble, .rf-piece.is-down .rf-broken { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .rf-up, .rf-rubble, .rf-broken { transition: none; }
+  }
+  .rf-factors { margin-top: 0.7rem; }
+  .rf-say { font-size: var(--step-0); min-height: 3em; }
+  .rf-reset { margin-top: 0.4rem; }
+</style>
+
+<script>
+  import type { CityFactor } from './civ-data.ts';
+
+  class RiseFallCity extends HTMLElement {
+    private factors: CityFactor[] = [];
+    private rise = true;
+    private intro = '';
+
+    connectedCallback() {
+      this.factors = JSON.parse(this.dataset.factors!);
+      this.rise = this.dataset.mode === 'rise';
+      this.intro = this.querySelector('[data-rf-say]')!.textContent!;
+      this.querySelectorAll<HTMLButtonElement>('[data-rf]').forEach((b) => b.addEventListener('click', () => this.apply(b)));
+      this.querySelector('[data-rf-reset]')!.addEventListener('click', () => this.reset());
+      this.reset();
+    }
+
+    private reset() {
+      this.querySelectorAll('.rf-piece').forEach((p) => {
+        p.classList.toggle('is-up', !this.rise);
+        p.classList.remove('is-down');
+      });
+      this.querySelectorAll('[data-rf]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      this.querySelector('[data-rf-say]')!.textContent = this.intro;
+      this.querySelector<HTMLElement>('[data-rf-reset]')!.hidden = true;
+    }
+
+    private apply(b: HTMLButtonElement) {
+      const f = this.factors.find((x) => x.id === b.dataset.rf)!;
+      const piece = this.querySelector(`.rf-piece[data-piece="${f.piece}"]`)!;
+      b.setAttribute('aria-pressed', 'true');
+      if (this.rise) piece.classList.add('is-up');
+      else {
+        piece.classList.remove('is-up');
+        piece.classList.add('is-down');
+      }
+      const done = [...this.querySelectorAll('[data-rf]')].every((x) => x.getAttribute('aria-pressed') === 'true');
+      const end = this.rise ? ' A small settlement has become a great civilization, and no single factor did it alone.' : ' The city has fallen, and no single factor did it alone.';
+      this.querySelector('[data-rf-say]')!.textContent = `${f.label}: ${f.example}${done ? end : ''}`;
+      this.querySelector<HTMLElement>('[data-rf-reset]')!.hidden = false;
+    }
+  }
+  customElements.define('rise-fall-city', RiseFallCity);
+</script>

@@ -1,0 +1,331 @@
+id: informed-citizenship
+grade: 5
+subject: social-studies
+organizingIdea: mHPvaWAVOU-k7Fefv9hAWw
+outcomes: [MRmYJnVX90eGJ1QhgKk-eg]
+order: 6
+title: Becoming an Informed Citizen
+shortTitle: Informed citizenship
+summary: >-
+  Use the ancient world to understand issues today, investigate a town's water problem through five sources,
+  and choose ways that informed citizens can take action.
+
+bigIdea: |-
+  Studying the past helps us understand issues **today**. **Informed citizens** look at many sources and
+  listen to different perspectives. Then they can **take action**. Knowing what is really going on gives
+  you the power to make a difference.
+
+lesson:
+  - title: The past helps explain today
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: then-now
+        props: { set: issues }
+        caption: Tap each topic. What does the ancient story help you notice about today?
+
+  - title: Investigate an issue
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.3]
+        component: issue-investigator
+        caption: Riverbend is a made-up town. Read each source, and notice how the picture changes.
+      - type: callout
+        variant: mistake
+        covers: [K1.2, S1.3]
+        title: One source is never enough
+        body: The first post you see is often the loudest, not the most accurate. Informed citizens seek out **multiple sources** with **different perspectives**.
+
+  - title: Standing in someone else's shoes
+    blocks:
+      - type: table
+        covers: [S1.2, K1.3]
+        caption: The same issue, three perspectives
+        headers: [Person, What they value, What they might want]
+        rows:
+          - ['🌱 **Farmer**', 'Keeping the crops and animals alive', 'Water for farms first']
+          - ['🏪 **Store owner**', 'Keeping the store open and staff employed', 'As few limits as possible']
+          - ['🔬 **Scientist**', 'Making the water last until fall', 'Limits on lawn watering, starting soon']
+      - type: callout
+        variant: tip
+        covers: [K1.3]
+        title: Empathy
+        body: You don't have to agree with someone to understand them. Asking "What does this person value?" can build **empathy** for their actions.
+
+  - title: Take action
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: share, label: Sharing information, icon: 📣 }
+            - { id: donate, label: Collecting donations, icon: 🎁 }
+            - { id: volunteer, label: Volunteering, icon: 🙋 }
+            - { id: change, label: Changing personal behaviours, icon: 🔄 }
+          cards:
+            - { text: Make a poster with the facts from the town's water report., bin: share, why: 'A poster passes on accurate information to others.' }
+            - { text: Tell a friend that the "one week left" post was wrong., bin: share, why: 'Correcting a rumour is a way of sharing information.' }
+            - { text: Hold a bake sale for families hit by the drought., bin: donate, why: 'This raises money to give to people in need.' }
+            - { text: Run a drive at school to collect bottled water., bin: donate, why: 'This collects goods to give to people in need.' }
+            - { text: Help plant drought-tolerant plants at the town park., bin: volunteer, why: 'You are giving your own time to help the community.' }
+            - { text: Take shorter showers and turn off the tap while brushing your teeth., bin: change, why: 'You are changing what you do each day.' }
+        caption: Informed citizens can respond in many ways. Where does each action belong?
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.4]
+        title: Being informed gives you power
+        body: When you know the facts and understand others' views, you can make better choices, correct rumours and help others. You don't have to wait until you are older to start.
+
+keyTerms:
+  - term: Informed citizen
+    covers: [K1.2]
+    definition: A person who seeks information from multiple sources, with different perspectives, on issues and events.
+  - term: Perspective
+    covers: [K1.2, S1.2]
+    definition: The way that a person sees an issue, based on their life and what they value.
+  - term: Empathy
+    covers: [K1.3]
+    definition: Understanding the feelings, actions and values of someone else.
+  - term: Volunteering
+    covers: [K1.4]
+    definition: Giving your time to help others, without being paid.
+  - term: Contemporary
+    covers: [K1.1, S1.1]
+    definition: Happening or existing now.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: What do **informed citizens** do?
+    choices:
+      - Seek information from multiple sources with different perspectives
+      - Believe the first post they see
+      - Only listen to people who agree with them
+      - Avoid all news
+    answer: 0
+    feedback:
+      '1': One post gives only one view, and it may be wrong.
+      '2': Hearing only one side leaves out a lot of the picture.
+      '3': Without information, it's hard to understand an issue.
+    hints:
+      - How many sources did you read about Riverbend?
+    solution:
+      - Informed citizens seek information from **multiple sources** with **various perspectives**.
+
+  - id: w2
+    level: 1
+    covers: [K1.4]
+    type: multi
+    prompt: Which of these are ways that informed citizens can take action? Choose all that apply.
+    choices:
+      - Sharing information
+      - Collecting donations
+      - Volunteering
+      - Changing personal behaviours
+      - Spreading a rumour without checking it
+    answer: [0, 1, 2, 3]
+    feedback:
+      '4': An unchecked rumour can mislead people. Informed citizens check the facts first.
+    hints:
+      - The lesson's sort had four bins.
+    solution:
+      - Sharing information, collecting donations, volunteering and changing personal behaviours are all ways to take action.
+
+  - id: w3
+    level: 1
+    covers: [K1.3]
+    type: mc
+    prompt: How can considering different perspectives help you?
+    choices:
+      - It can build empathy for other people's actions and values.
+      - It means that you must agree with everyone.
+      - It makes it harder to understand people.
+      - It proves that you were wrong.
+    answer: 0
+    feedback:
+      '1': You can understand someone without agreeing with them.
+      '2': It usually makes it easier to understand people.
+      '3': It doesn't prove you wrong. It gives you more to think about.
+    hints:
+      - What did the callout in the lesson say?
+    solution:
+      - Considering various perspectives can build **empathy**.
+
+  - id: w4
+    level: 1
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Why study issues from ancient civilizations?
+    choices:
+      - They can give us insight into issues today.
+      - Nothing that happened then is like anything today.
+      - The past can tell us exactly what will happen next.
+      - We only need them for tests.
+    answer: 0
+    feedback:
+      '1': The trails in the lesson link past issues with those of today.
+      '2': History can give us insight, but it can't predict the future exactly.
+      '3': Knowing history can help you understand today's news.
+    hints:
+      - Think about Roman aqueducts and today's water pipes.
+    solution:
+      - The study of past issues and events can give **insight** into those of today.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: In the Riverbend sources, what did the town's water report show about the social media post?
+    choices:
+      - The problem is real, but the "next week" claim was wrong, since there is water for about 60 days.
+      - The post was completely correct.
+      - There is no water problem at all.
+      - The report and the post say exactly the same thing.
+    answer: 0
+    feedback:
+      '1': The report shows there is about 60 days of water, not one week.
+      '2': The report shows river flow is 40% below normal, so the problem is real.
+      '3': The post has no numbers, and its timing differs from the report's.
+    hints:
+      - Reread the report's numbers and compare them to the post.
+    solution:
+      - Reading both shows that the problem is **real**, and that the post **exaggerated** it. That's why we use multiple sources.
+
+  - id: b2
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: 'The farmer wants water for farms first. The store owner wants as few limits as possible. Why do they see the issue differently?'
+    choices:
+      - Their lives and what they value are different.
+      - One of them must be lying.
+      - One of them doesn't live on Earth.
+      - People always see issues the same way.
+    answer: 0
+    feedback:
+      '1': They can both be honest. Each is thinking about what matters most to them.
+      '2': They both live in the same area and face the same river.
+      '3': People often see the same issue differently.
+    hints:
+      - What does each of them depend on?
+    solution:
+      - A perspective comes from a person's life and values. The farmer depends on crops, and the store owner on customers.
+
+  - id: b3
+    level: 2
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: 'Athens let citizen men vote, but left out women and enslaved people. What is a good question this raises about today?'
+    choices:
+      - Who might be left out of decisions in our community?
+      - What did Athenians eat for breakfast?
+      - Why don't we build temples like the Parthenon?
+      - How much did a Greek ship weigh?
+    answer: 0
+    feedback:
+      '1': That's an interesting question about the past, but it isn't connected to who gets a say.
+      '2': That is about architecture, not about who gets a say.
+      '3': That is about ships, not about who gets a say.
+    hints:
+      - The Athens story is about who gets a say.
+    solution:
+      - The successes and failures of past systems can help us ask who gets a say **today**.
+
+  - id: b4
+    level: 2
+    covers: [K1.4]
+    type: mc
+    prompt: 'Sam learns that plants lose more water in the midday sun. Sam reminds the family to water at night, and stops watering the garden at noon. Which action is **stopping at noon**?'
+    choices:
+      - Changing personal behaviours
+      - Collecting donations
+      - Volunteering
+      - Sharing information
+    answer: 0
+    feedback:
+      '1': No money or goods are being collected.
+      '2': Sam isn't giving time to help a group.
+      '3': Reminding the family is sharing information. Stopping at noon is a change in Sam's own habit.
+    hints:
+      - Who is doing something differently?
+    solution:
+      - Sam changed a personal habit, so this is **changing personal behaviours**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: You find three websites that all say the same thing about an issue, and all of them link back to one blog post. How many **independent** sources do you really have?
+    choices: ['One', 'Three', 'Four', 'None, since all websites are false']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': They all repeat the same post, so they don't add new evidence.
+      '2': Counting the blog doesn't help, since the others just repeat it.
+      '3': Not all websites are false. But you need to know where this claim came from.
+    hints:
+      - Where did the information first come from?
+    solution:
+      - Three copies of one post are really **one source**. Look for sources that found the information independently.
+
+  - id: d2
+    level: 3
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: 'Trade moved away from Petra, and it lost wealth. Today, a mine closes in a small town. Which is the **best** insight the past gives us?'
+    choices:
+      - When a place depends on one source of wealth, a change can hurt the people there, so it helps to plan ahead.
+      - The town will turn into ruins exactly the way Petra did.
+      - Mines and caravans are the same thing.
+      - The past has nothing to say about this.
+    answer: 0
+    feedback:
+      '1': The past gives insight, not an exact prediction.
+      '2': They are very different. The pattern is what can be compared.
+      '3': The same pattern can show up in both, so the past can help.
+    hints:
+      - What did Petra and the town both depend on?
+    solution:
+      - Both depended on one source of wealth. Comparing them helps us ask good questions, without assuming the same result.
+
+  - id: d3
+    level: 3
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: 'A classmate says, "The store owner only cares about money." Which reply shows the **most empathy**?'
+    choices:
+      - The owner may be worried about their staff losing jobs. I still think that lawn limits are needed, but I get why they're upset.
+      - You're right, the owner is selfish.
+      - You're wrong, and the owner is right about everything.
+      - It doesn't matter what the owner thinks.
+    answer: 0
+    feedback:
+      '1': This judges the owner without trying to understand them.
+      '2': Empathy doesn't mean that you have to agree with everything.
+      '3': Everyone affected by the issue has a perspective worth hearing.
+    hints:
+      - Empathy means understanding someone, even if you disagree.
+    solution:
+      - This reply tries to understand the owner's values, while still keeping its own opinion. That is empathy.
+
+  - id: d4
+    level: 3
+    covers: [S1.4, U1.1, K1.4, S1.3]
+    type: open
+    prompt: Choose an issue in your school or community. Name two sources you would check. Then describe one action that you could take once you are informed.
+    modelAnswer: |-
+      At my school, a lot of food gets thrown away at lunch. I would check the numbers from the lunch monitors,
+      and I would ask students why they throw food away. If I found out that most waste is from food that kids
+      don't like, I could share this with the principal and suggest other choices. Knowing the facts would
+      help people listen to me.
+    rubric:
+      - I named a real issue.
+      - I named two different sources, or perspectives, that I would check.
+      - I described one action (sharing information, collecting donations, volunteering or changing behaviour).
+      - I explained how being informed would help me.

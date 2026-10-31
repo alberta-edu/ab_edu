@@ -1,0 +1,369 @@
+id: rise-fall-civilizations
+grade: 5
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [Fy8zbilfU0yzOlpS8c5Cdg]
+order: 1
+title: The Rise and Fall of Ancient Civilizations
+shortTitle: Rise & fall of civilizations
+summary: >-
+  Travel through a timeline of ancient civilizations, build and topple a city, and follow nine ancient
+  innovations all the way to the world you live in today.
+
+bigIdea: |-
+  Civilizations and empires **rise** and **decline** because of many factors, some from **inside** and some
+  from **outside**. Even after they fall, their **innovations** live on and keep changing. That is why we say
+  their **legacies continue**.
+
+lesson:
+  - title: Six civilizations on one timeline
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: civ-timeline
+        caption: 'Drag the slider to travel through time, then tap a civilization to see why it rose and why it fell.'
+      - type: callout
+        variant: tip
+        covers: [S1.1]
+        title: Reading BCE and CE
+        body: '**BCE** years count **down** toward year 1, so 500 BCE comes **before** 100 BCE. **CE** years count **up**, the way we count today.'
+
+  - title: What makes a civilization rise?
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: rise-fall-city
+        props: { mode: rise }
+        caption: Tap each factor. What does it add to the city?
+      - type: compare
+        covers: [K1.1]
+        columns:
+          - title: 🏠 Internal factors
+            body: |-
+              From **inside** the civilization:
+
+              - organized structures
+              - strong leadership
+              - military power
+              - innovations
+          - title: 🌍 External factors
+            body: |-
+              From **outside**, or from how it connects to the world:
+
+              - **opportunity**, such as a good location or a weak neighbour
+              - **wealth** gained through trade with others
+
+  - title: What makes a civilization decline?
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1]
+        component: rise-fall-city
+        props: { mode: fall }
+        caption: Now the city is at its height. Tap each factor to see what can bring it down.
+      - type: callout
+        variant: mistake
+        covers: [K1.2, S1.1]
+        title: There is rarely just one cause
+        body: Rome did not fall in one day or for one reason. Its costs, its fights over who should rule and its wars all added up over hundreds of years.
+
+  - title: Inside or outside?
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: internal, label: Internal, icon: 🏠 }
+            - { id: external, label: External, icon: 🌍 }
+          cards:
+            - { text: A king organizes officials to count and store the harvest., bin: internal, why: 'This is an organized structure, built from inside. It helps a civilization rise.' }
+            - { text: Rivals fight each other to become emperor., bin: internal, why: 'A struggle for power happens inside and leads to decline.' }
+            - { text: An army from another land invades., bin: external, why: 'War and military conquest can come from outside and lead to decline.' }
+            - { text: Rains weaken and the rivers change course., bin: external, why: 'An environmental change comes from outside people’s control and can lead to decline.' }
+            - { text: Paying for the army empties the treasury., bin: internal, why: 'Expenses are a problem inside the empire and can lead to decline.' }
+            - { text: A sea full of bays lets traders sail to new lands., bin: external, why: 'Geography gives an opportunity, which helps a civilization rise.' }
+
+  - title: Innovations that never went away
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2, U1.1]
+        component: then-now
+        props: { set: innovations }
+        caption: Follow each trail from the ancient world to today.
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.2]
+        title: Legacies continue
+        body: A **legacy** is something passed down from the past. Rome fell, yet you still use its alphabet, and your calendar still comes from its calendar.
+
+keyTerms:
+  - term: Empire
+    covers: [K1.1]
+    definition: A large state, often made up of many lands and peoples, ruled by one government or leader.
+  - term: Internal factor
+    covers: [K1.1, K1.2]
+    definition: A cause from inside a civilization, such as strong leadership or a rebellion.
+  - term: External factor
+    covers: [K1.1, K1.2]
+    definition: A cause from outside a civilization, such as an invasion from another land or a change in the climate.
+  - term: Decline
+    covers: [K1.2]
+    definition: A slow loss of power, wealth or strength.
+  - term: Innovation
+    covers: [K1.3]
+    definition: A new idea, tool or way of doing something.
+  - term: Legacy
+    covers: [U1.1]
+    definition: Something passed down from the past that still affects people today.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.1]
+    type: multi
+    prompt: Which of these helped civilizations **rise**? Choose all that apply.
+    choices:
+      - Strong leadership
+      - Organized structures
+      - Rebellions
+      - Innovations
+      - Environmental changes
+    answer: [0, 1, 3]
+    feedback:
+      '2': Rebellions are listed as a cause of **decline**.
+      '4': Environmental changes are listed as a cause of **decline**.
+    hints:
+      - Which of these would make a civilization stronger?
+    solution:
+      - Strong leadership, organized structures and innovations help a civilization rise. Rebellions and environmental changes can cause decline.
+
+  - id: w2
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: Which is a cause of **decline**?
+    choices:
+      - Struggles for power and leadership
+      - A new innovation
+      - More wealth from trade
+      - Better organization
+    answer: 0
+    feedback:
+      '1': Innovations usually help a civilization rise.
+      '2': Wealth usually helps a civilization rise.
+      '3': Organized structures help a civilization rise.
+    hints:
+      - Which one would make people fight each other instead of working together?
+    solution:
+      - Struggles for power and leadership weaken a civilization from the inside.
+
+  - id: w3
+    level: 1
+    covers: [K1.3, U1.1]
+    type: mc
+    prompt: You use the digits 0 to 9 and the alphabet every day. What do these show?
+    choices:
+      - Innovations from ancient civilizations have evolved into what we use today.
+      - Ancient civilizations had nothing to do with life today.
+      - These ideas were invented in the last 100 years.
+      - Only Rome created innovations.
+    answer: 0
+    feedback:
+      '1': The trails in the lesson connect ancient ideas to today.
+      '2': These ideas are thousands of years old.
+      '3': Many civilizations created innovations. Our digits came through India and Arab scholars.
+    hints:
+      - Look at the last stop on the writing and mathematics trails.
+    solution:
+      - These are **legacies**. Innovations from ancient civilizations have evolved into what we use today.
+
+  - id: w4
+    level: 1
+    covers: [S1.1]
+    type: mc
+    prompt: Which year came **first**?
+    choices: [500 BCE, 100 BCE, 100 CE, 500 CE]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': BCE years count down, so 500 BCE comes before 100 BCE.
+      '2': Every BCE year comes before every CE year.
+      '3': This is the latest of the four.
+    hints:
+      - BCE years count **down** toward year 1.
+    solution:
+      - BCE years count down, so the biggest BCE number is the earliest. **500 BCE** came first.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: Around 1900 BCE, people left the great cities of the Indus Valley. Many scientists think weaker rains and changing rivers were part of the reason. Which decline factor is this?
+    choices:
+      - Environmental changes
+      - Expenses
+      - Changes to values and belief systems
+      - Military conquest
+    answer: 0
+    feedback:
+      '1': Expenses are about money. Rain and rivers are part of the environment.
+      '2': This is about values and beliefs, not rain and rivers.
+      '3': No invading army is mentioned here.
+    hints:
+      - Are rain and rivers part of the economy, or the environment?
+    solution:
+      - Rain and rivers are part of the environment, so this is **environmental change**.
+
+  - id: b2
+    level: 2
+    covers: [S1.1]
+    type: order
+    prompt: Put these events in order, from **earliest** to **latest**.
+    items:
+      - Kings unite Egypt (about 3100 BCE)
+      - People leave the Indus Valley cities (about 1900 BCE)
+      - Rome conquers Greece (146 BCE)
+      - Rome takes over the Nabataean kingdom (106 CE)
+      - The last western Roman emperor is removed (476 CE)
+    hints:
+      - BCE comes before CE. Among BCE dates, the biggest number is the earliest.
+    solution:
+      - '3100 BCE → 1900 BCE → 146 BCE → 106 CE → 476 CE. BCE years count down, and CE years count up.'
+
+  - id: b3
+    level: 2
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: The Nabataeans of Petra grew rich by guiding and taxing caravans that carried incense through the desert. Which factor best explains their **rise**?
+    choices:
+      - Wealth
+      - Rebellions
+      - Environmental changes
+      - Struggles for power
+    answer: 0
+    feedback:
+      '1': Rebellions are a cause of decline, and none is mentioned here.
+      '2': Environmental changes are a cause of decline. Nothing here says the desert changed.
+      '3': That is a cause of decline. Nothing here says that leaders fought each other.
+    hints:
+      - What did the caravans bring to Petra?
+    solution:
+      - Trade made the Nabataeans rich, so **wealth** best explains their rise.
+
+  - id: b4
+    level: 2
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: 'Follow this trail: Egyptian hieroglyphs → the Greek alphabet → the Latin alphabet → the letters in this sentence. Which innovation does it show evolving?'
+    choices:
+      - Writing systems
+      - Calendars
+      - Architecture
+      - Rights and freedoms
+    answer: 0
+    feedback:
+      '1': Calendars track days and years, not letters.
+      '2': Architecture is about buildings.
+      '3': Rights and freedoms are about how people may be treated.
+    hints:
+      - What do hieroglyphs and alphabets let you do?
+    solution:
+      - Each stop on this trail is a way to record language, so it shows **writing systems** evolving.
+
+  - id: b5
+    level: 2
+    covers: [K1.3, S1.2, U1.1]
+    type: mc
+    prompt: The Alberta Legislature in Edmonton has a dome and tall columns. Which ancient legacy does this show?
+    choices:
+      - Greek columns and Roman domes, in architecture
+      - The Egyptian calendar
+      - Chinese money
+      - The Twelve Tables of Rome
+    answer: 0
+    feedback:
+      '1': A calendar tracks time. Domes and columns are parts of buildings.
+      '2': Money is used for trade. Domes and columns are parts of buildings.
+      '3': The Twelve Tables were written laws, not parts of a building.
+    hints:
+      - Domes and columns are parts of what kind of thing?
+    solution:
+      - Greek temples had rows of columns, and Romans built huge domes. Both still shape our **architecture**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: |-
+      Rome faced all of these. Which one is an **external** factor?
+    choices:
+      - Armies from beyond its borders attacked
+      - Rival generals fought to become emperor
+      - The cost of the army emptied the treasury
+      - Emperors put less silver in their coins
+    answer: 0
+    feedback:
+      '1': The generals were Romans, so this came from inside.
+      '2': This cost came from Rome’s own spending, so it came from inside.
+      '3': This was Rome’s own decision, so it came from inside.
+    hints:
+      - Which one came from outside Rome?
+    solution:
+      - Armies from beyond its borders came from **outside** Rome. The other three all happened inside.
+
+  - id: d2
+    level: 3
+    covers: [S1.1, K1.2]
+    type: mc
+    prompt: 'A student says, "Rome fell in 476 CE because one enemy attacked it." What is the **best** response?'
+    choices:
+      - That leaves out a lot. High costs, power struggles and earlier wars had been weakening Rome for a long time.
+      - That is exactly right. A civilization always falls for one reason.
+      - That is wrong. Rome never declined.
+      - That is wrong. Enemies never affect a civilization.
+    answer: 0
+    feedback:
+      '1': Decline usually has many causes, working together over a long time.
+      '2': The last western emperor was removed in 476 CE, so Rome’s power in the west did end.
+      '3': War and military conquest **are** listed as a cause of decline.
+    hints:
+      - Think about the city you toppled in the lesson. How many factors did it take?
+    solution:
+      - The events of 476 CE were only the last part of a long decline with many causes, both internal and external.
+
+  - id: d3
+    level: 3
+    covers: [K1.1, K1.2, S1.1]
+    type: mc
+    prompt: The same factor can play a part in both rise and decline. Which example shows this?
+    choices:
+      - A big army won land for Rome, and later the cost of paying that army helped drain its treasury.
+      - Rebellions made Rome strong, then made it weak.
+      - Environmental changes built Rome’s roads.
+      - Rome had one army, and it never cost anything.
+    answer: 0
+    feedback:
+      '1': Rebellions weaken a civilization. They did not make Rome strong.
+      '2': People built the roads. The environment did not.
+      '3': Rome’s army was very costly.
+    hints:
+      - What did Rome gain from its army? What did the army cost?
+    solution:
+      - Military power helped Rome rise. Paying for that power became an **expense** that helped it decline.
+
+  - id: d4
+    level: 3
+    covers: [U1.1, S1.2, K1.3]
+    type: open
+    prompt: Choose one innovation from the lesson's trails. Explain how it began, how it changed, and how it affects your life today.
+    modelAnswer: |-
+      I chose calendars. Egyptians used a year of 365 days. Julius Caesar's calendar added a leap day every four
+      years, and in 1582 that calendar was corrected to give the one we use now. It affects my life because I
+      use it to know when school starts, and when my birthday is. Rome is gone, but its calendar is still here.
+    rubric:
+      - I named one innovation and the civilization where it began.
+      - I described at least one way it changed over time.
+      - I connected it to my own life today.

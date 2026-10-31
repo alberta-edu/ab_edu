@@ -1,0 +1,95 @@
+---
+// Slide the Nile's flood up a nilometer. Officials used the reading to predict the harvest and set
+// the grain tax (outcome VtfkI_gtBk66PSC2mQV7zQ, K1.5 and U1.2).
+import { levelY as y } from './nilometer.ts';
+
+const MARKS = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+---
+<nilo-meter>
+  <div class="nl-layout">
+    <svg class="sci-svg nl-svg" viewBox="0 0 300 260" role="img" aria-label="A stone stairway going down into the Nile, marked in cubits. The water level rises and falls as you move the slider.">
+      <rect class="sci-sky" width="300" height="260"></rect>
+      <rect class="nl-wall" x="90" y="28" width="150" height="232"></rect>
+      <path class="nl-stairs" d="M90 260 V238 H112 V216 H134 V194 H156 V172 H178 V150 H200 V128 H222 V106 H240 V260 Z"></path>
+      <rect class="nl-water" data-nl="water" x="0" y={y(14)} width="300" height={260 - y(14)}></rect>
+      <rect class="nl-surface" data-nl="surface" x="0" width="300" height="3" y={y(14)}></rect>
+      <rect class="nl-scale" x="244" y="28" width="46" height="232"></rect>
+      {
+        MARKS.map((c) => (
+          <g>
+            <line class="sci-tick" x1="244" x2="254" y1={y(c)} y2={y(c)}></line>
+            <text class="nl-num" x="260" y={y(c) + 5}>{c}</text>
+          </g>
+        ))
+      }
+      <text class="nl-unit" x="267" y="20" text-anchor="middle">cubits</text>
+    </svg>
+    <div class="nl-side">
+      <label class="nl-slider">
+        <span class="sci-pick-label">Flood height: <strong data-nl="height"></strong></span>
+        <input type="range" min="10" max="18" step="1" value="14" data-nl="input" />
+      </label>
+      <div class="nl-verdict" data-nl="verdict" aria-live="polite"></div>
+      <div class="nl-row"><span class="nl-key">Harvest</span><span class="nl-icons" data-nl="harvest" aria-hidden="true"></span></div>
+      <div class="nl-row"><span class="nl-key">Grain tax</span><span class="nl-icons" data-nl="tax" aria-hidden="true"></span></div>
+      <p class="nl-note" data-nl="note"></p>
+    </div>
+  </div>
+</nilo-meter>
+
+<style is:global>
+  nilo-meter { display: block; }
+  .nl-layout { display: grid; gap: 1rem; grid-template-columns: minmax(0, 17rem) 1fr; align-items: center; }
+  .nl-wall, .nl-scale { fill: color-mix(in srgb, var(--sun) 16%, var(--surface)); stroke: var(--line-strong); }
+  .nl-stairs { fill: color-mix(in srgb, var(--social) 30%, var(--surface)); stroke: var(--ink-3); stroke-width: 1.5; }
+  .nl-water { fill: color-mix(in srgb, var(--math) 42%, transparent); transition: y 0.3s, height 0.3s; }
+  .nl-surface { fill: var(--math); transition: y 0.3s; }
+  .nl-num { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .nl-unit { fill: var(--ink-2); font-size: 12px; }
+  .nl-slider { display: block; }
+  .nl-slider input { width: 100%; min-height: 2rem; accent-color: var(--accent); }
+  .nl-verdict { padding: 0.55rem 0.8rem; margin: 0.3rem 0 0.6rem; border-radius: var(--radius-sm); font-weight: 700; font-size: var(--step-1); background: var(--surface-2); }
+  .nl-verdict.is-good { background: var(--ok-soft); }
+  .nl-verdict.is-bad { background: var(--warn-soft); }
+  .nl-row { display: flex; align-items: center; gap: 0.6rem; min-height: 2rem; }
+  .nl-key { width: 5rem; flex: none; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .nl-icons { letter-spacing: 0.1em; font-size: 1.15rem; }
+  .nl-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 34rem) {
+    .nl-layout { grid-template-columns: 1fr; }
+    .nl-svg { max-width: 15rem; margin-inline: auto; }
+    svg .nl-num { font-size: 15px; }
+  }
+</style>
+
+<script>
+  import { levelY, reading } from './nilometer.ts';
+
+  class NiloMeter extends HTMLElement {
+    connectedCallback() {
+      const input = this.querySelector<HTMLInputElement>('[data-nl="input"]')!;
+      input.addEventListener('input', () => this.show(Number(input.value)));
+      this.show(Number(input.value));
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-nl="${name}"]`)!;
+    }
+
+    private show(c: number) {
+      const r = reading(c);
+      const level = levelY(c);
+      this.part('water').setAttribute('y', String(level));
+      this.part('water').setAttribute('height', String(260 - level));
+      this.part('surface').setAttribute('y', String(level));
+      this.part('height').textContent = `${c} cubits`;
+      const v = this.part('verdict');
+      v.textContent = r.word;
+      v.className = `nl-verdict ${r.good ? 'is-good' : 'is-bad'}`;
+      this.part('harvest').textContent = '🌾'.repeat(r.harvest);
+      this.part('tax').textContent = '💰'.repeat(r.tax);
+      this.part('note').textContent = r.note;
+    }
+  }
+  customElements.define('nilo-meter', NiloMeter);
+</script>

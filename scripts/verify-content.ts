@@ -10,6 +10,14 @@ import type { Concept, Passage } from '../src/lib/schema.ts';
 const errors: string[] = [];
 const warnings: string[] = [];
 
+/** Props that pick a mode. A typo here would draw the wrong picture without any error. */
+const PROP_CHOICES: Record<string, Record<string, string[]>> = {
+  'rise-fall-city': { mode: ['rise', 'fall'] },
+  'then-now': { set: ['innovations', 'issues'] },
+  'trade-map': { show: ['goods', 'ideas'] },
+  'empire-map': { set: ['conquest', 'africa'] },
+};
+
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
   const fail = (id: string | undefined, msg: string) => errors.push(`${where(id)}: ${msg}`);
@@ -134,6 +142,24 @@ function verifyConcept(c: Concept) {
       if (b.type === 'visual' && b.component === 'inference-equation') {
         const ex = b.props.examples as unknown[];
         if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');
+      }
+      if (b.type === 'visual' && b.component in PROP_CHOICES) {
+        for (const [prop, allowed] of Object.entries(PROP_CHOICES[b.component])) {
+          const value = b.props[prop];
+          if (value !== undefined && !allowed.includes(String(value))) fail(undefined, `${label}: ${b.component} ${prop} "${value}" is not one of ${allowed.join(', ')}`);
+        }
+      }
+      if (b.type === 'visual' && b.component === 'card-sort') {
+        const { bins, cards } = b.props as { bins?: { id: string }[]; cards?: { text: string; bin: string; why: string }[] };
+        if (!bins?.length || !cards?.length) fail(undefined, `${label}: card-sort needs props.bins and props.cards`);
+        else {
+          for (const card of cards) {
+            if (!bins.some((x) => x.id === card.bin)) fail(undefined, `${label}: card "${card.text}" is in unknown bin "${card.bin}"`);
+            if (!card.why) fail(undefined, `${label}: card "${card.text}" has no explanation`);
+            texts.push(card.text, card.why);
+          }
+          for (const bin of bins) if (!cards.some((card) => card.bin === bin.id)) fail(undefined, `${label}: bin "${bin.id}" has no cards`);
+        }
       }
       if (b.type === 'experiment') {
         texts.push(b.question, b.observe, b.explain, ...b.predict.choices);

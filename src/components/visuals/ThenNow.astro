@@ -1,0 +1,75 @@
+---
+// Pick a topic and follow its trail from the ancient world to today. The panels are in the HTML,
+// so without JavaScript every trail is still readable.
+import { TRAILS } from './then-now-data.ts';
+
+interface Props {
+  set?: 'innovations' | 'issues';
+}
+const { set = 'innovations' } = Astro.props;
+const trails = TRAILS[set];
+---
+<then-now>
+  <div class="sci-pick" role="group" aria-label="Choose a topic">
+    {trails.map((t, i) => <button type="button" data-tn={t.id} aria-pressed={String(i === 0)}><span aria-hidden="true">{t.icon}</span> {t.title}</button>)}
+  </div>
+  {
+    trails.map((t) => (
+      <div class="tn-panel" data-tn-panel={t.id}>
+        <ol class="tn-trail" style={`--n:${t.stops.length}`}>
+          {t.stops.map((s, i) => (
+            <li class={`tn-stop${i === t.stops.length - 1 ? ' tn-stop--now' : ''}`}>
+              <div class="tn-when">{s.when}</div>
+              <p>{s.text}</p>
+            </li>
+          ))}
+        </ol>
+        {t.insight && <p class="sci-say tn-insight">{t.insight}</p>}
+      </div>
+    ))
+  }
+  <p class="muted tn-count" aria-live="polite" data-tn-count></p>
+</then-now>
+
+<style is:global>
+  then-now { display: block; }
+  .tn-trail { list-style: none; display: grid; gap: 1.4rem; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); margin: 0.8rem 0 0; padding: 0; }
+  .tn-stop { position: relative; padding: 0.7rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); border-top: 4px solid color-mix(in srgb, var(--social) 50%, var(--surface)); }
+  .tn-stop p { margin: 0.25rem 0 0; font-size: var(--step--1); line-height: 1.4; }
+  .tn-stop:not(:last-child)::after { content: '→'; position: absolute; right: -1.15rem; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--social); }
+  .tn-stop--now { background: var(--accent-soft); border-top-color: var(--accent); }
+  .tn-when { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .tn-insight { font-size: var(--step-0); }
+  .tn-count { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .tn-panel:not([hidden]) .tn-stop { animation: rise 0.3s ease backwards; }
+    .tn-panel:not([hidden]) .tn-stop:nth-child(2) { animation-delay: 0.1s; }
+    .tn-panel:not([hidden]) .tn-stop:nth-child(3) { animation-delay: 0.2s; }
+    .tn-panel:not([hidden]) .tn-stop:nth-child(4) { animation-delay: 0.3s; }
+  }
+  @media (max-width: 40rem) {
+    .tn-trail { grid-template-columns: 1fr; }
+    .tn-stop:not(:last-child)::after { content: '↓'; right: auto; left: 1rem; top: auto; bottom: -1.35rem; transform: none; }
+  }
+</style>
+
+<script>
+  class ThenNow extends HTMLElement {
+    private seen = new Set<string>();
+
+    connectedCallback() {
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-tn]')];
+      buttons.forEach((b) => b.addEventListener('click', () => this.show(b.dataset.tn!)));
+      this.show(buttons[0].dataset.tn!);
+    }
+
+    private show(id: string) {
+      this.seen.add(id);
+      const buttons = this.querySelectorAll('[data-tn]');
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-tn') === id)));
+      this.querySelectorAll<HTMLElement>('[data-tn-panel]').forEach((p) => (p.hidden = p.dataset.tnPanel !== id));
+      this.querySelector('[data-tn-count]')!.textContent = `You have followed ${this.seen.size} of ${buttons.length} trails.`;
+    }
+  }
+  customElements.define('then-now', ThenNow);
+</script>
