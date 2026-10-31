@@ -43,8 +43,8 @@ a sentence or two.
 
 | Block | Use it for |
 |---|---|
-| `visual` | Interactive visuals. Math: `place-value`, `decimal-zoom`, `column-calc` (step-by-step algorithms), `divisibility`, `fraction-explorer`, `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`, `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`, `data-sorter`. Science: `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`, `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`, `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`, `data-views`. Social Studies: `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`, `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`, `issue-investigator`. Any subject: `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`). ELAL: `inference-equation` |
-| `experiment` | An animated virtual experiment: predict → Run → watch → why. The text must match what the animation shows. Animations: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`, `energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan` |
+| `visual` | Interactive visuals. Math: `place-value`, `decimal-zoom`, `column-calc` (step-by-step algorithms), `divisibility`, `fraction-explorer`, `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`, `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`, `data-sorter`. Science: `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`, `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`, `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`, `data-views`. Social Studies: `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`, `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`, `issue-investigator`. Any subject: `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`). ELAL: `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`), `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`, `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (mark revisions as `~~cut~~` and `++added++`), `sentence-rhythm`, `show-dial`, `topic-funnel`, `sentence-lab` (`mode: roles`, `tense`, `adverb` or `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`) |
+| `experiment` | An animated virtual experiment: predict → Run → watch → why. The text must match what the animation shows. Animations: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`, `energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room` |
 | `compare` | 2–4 side-by-side cards (optionally with a `figure`) for contrasting ideas |
 | `figure` | A generated picture with a caption |
 | `table` | Facts that line up in rows and columns |
@@ -113,6 +113,10 @@ If YAML complains about `: ` inside text, run `node scripts/quote-yaml.ts <file>
 
 A comma inside an unquoted `[a, b, c]` list starts a new item, and nothing warns you unless the
 answer indexes stop matching. Quote that item, or write the list one item per line.
+
+In YAML, write apostrophes in text as `’`. A straight `'` inside a single-quoted string ends the string early.
+
+Don't write angle brackets around affixes in lesson text (`<ous>`): Markdown reads them as HTML tags. Write `-ous` and `trans-` instead.
 
 Each visual uses its own CSS class prefix. Before picking a new one, search `src/` for it: a
 class defined twice (even in different components) restyles both, because component styles
