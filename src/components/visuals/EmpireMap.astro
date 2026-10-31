@@ -4,6 +4,7 @@
 // projected at build time. Empire outlines are rough and clipped to the land.
 import { AFRICA_FRAME, AFRICAN_CHAINS, EMPIRE_FRAME, EMPIRES, linePath, toMap } from './ancient-map.ts';
 import { landPath } from './land-path.ts';
+import { yearText } from './civ-data.ts';
 
 interface Props {
   set?: 'conquest' | 'africa';
@@ -98,7 +99,7 @@ const pct = (y: number) => ((y - axis.from) / (axis.to - axis.from)) * 100;
                 <span class="ep-time__track"><span class="ep-time__bar" style={`left:${pct(p.from).toFixed(1)}%;width:${(pct(p.to) - pct(p.from)).toFixed(1)}%`}></span></span>
               </div>
             ))}
-            <div class="ep-time ep-time--axis"><span class="ep-time__name"></span><span class="ep-time__labels"><span>800 BCE</span><span>1 CE</span><span>1000 CE</span><span>1900 CE</span></span></div>
+            <div class="ep-time ep-time--axis"><span class="ep-time__name"></span><span class="ep-time__labels">{[axis.from, 1, 1000, axis.to].map((y) => <span style={`left:${pct(y).toFixed(1)}%`}>{yearText(y)}</span>)}</span></div>
           </div>
           <ul class="ep-dates">{c.places.map((p) => <li><strong>{p.name}:</strong> {p.dates}</li>)}</ul>
           <p><strong>The dispute:</strong> {c.dispute}</p>
@@ -135,10 +136,14 @@ const pct = (y: number) => ((y - axis.from) / (axis.to - axis.from)) * 100;
   .ep-time { display: grid; grid-template-columns: 4rem 1fr; gap: 0.5rem; align-items: center; font-size: var(--step--1); font-weight: 700; }
   .ep-time__track { position: relative; height: 0.8rem; border-radius: 99px; background: var(--surface-3); }
   .ep-time__bar { position: absolute; top: 0; bottom: 0; border-radius: 99px; background: var(--social); }
-  .ep-time__labels { display: flex; justify-content: space-between; font-size: 0.72rem; font-weight: 400; color: var(--ink-2); }
+  .ep-time__labels { position: relative; height: 1.1rem; font-size: 0.72rem; font-weight: 400; color: var(--ink-2); }
+  .ep-time__labels span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .ep-time__labels span:first-child { transform: none; }
+  .ep-time__labels span:last-child { transform: translateX(-100%); }
   .ep-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
   @media (max-width: 40rem) {
     svg .ep-home text { font-size: 22px; stroke-width: 4px; }
+    .ep-time__labels span:first-child, .ep-time__labels span:last-child { display: none; }
     .ep-frame { margin-inline: -0.4rem; }
   }
 </style>

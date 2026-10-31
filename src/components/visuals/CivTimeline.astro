@@ -1,12 +1,12 @@
 ---
 // Timeline of the curriculum's ancient civilizations, 3000 BCE to 500 CE. Drag through time to see
 // who was alive at the same moment; tap a civilization for how it rose and fell.
-import { CIVS, FIRST_YEAR, LAST_YEAR } from './civ-data.ts';
+import { CIVS, FIRST_YEAR, LAST_YEAR, yearText } from './civ-data.ts';
 
 const pct = (y: number) => ((y - FIRST_YEAR) / (LAST_YEAR - FIRST_YEAR)) * 100;
 const ticks = [-3000, -2000, -1000, 1, 500];
 ---
-<civ-timeline data-civs={JSON.stringify(CIVS)}>
+<civ-timeline>
   <div class="tl-chart">
     <div class="tl-rows" role="group" aria-label="Choose a civilization">
       {
@@ -26,7 +26,7 @@ const ticks = [-3000, -2000, -1000, 1, 500];
     <div class="tl-axis" aria-hidden="true">
       <span class="tl-name"></span>
       <span class="tl-scale">
-        {ticks.map((y) => <span class="tl-tick" style={`left:${pct(y).toFixed(2)}%`}>{y < 0 ? `${-y} BCE` : y === 1 ? '1 CE' : `${y} CE`}</span>)}
+        {ticks.map((y) => <span class="tl-tick" style={`left:${pct(y).toFixed(2)}%`}>{yearText(y)}</span>)}
       </span>
     </div>
   </div>
@@ -79,13 +79,10 @@ const ticks = [-3000, -2000, -1000, 1, 500];
 </style>
 
 <script>
-  import { FIRST_YEAR, LAST_YEAR, civsAlive, yearText, type Civ } from './civ-data.ts';
+  import { CIVS, FIRST_YEAR, LAST_YEAR, aliveText, civsAlive } from './civ-data.ts';
 
   class CivTimeline extends HTMLElement {
-    private civs: Civ[] = [];
-
     connectedCallback() {
-      this.civs = JSON.parse(this.dataset.civs!);
       const year = this.querySelector<HTMLInputElement>('[data-tl="year"]')!;
       year.addEventListener('input', () => this.setYear(Number(year.value)));
       this.querySelectorAll<HTMLButtonElement>('.tl-row').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.civ!)));
@@ -93,18 +90,14 @@ const ticks = [-3000, -2000, -1000, 1, 500];
     }
 
     private setYear(y: number) {
-      const shown = y === 0 ? 1 : y;
-      const alive = civsAlive(shown);
+      const alive = civsAlive(y);
       this.querySelector<HTMLElement>('[data-tl="cursor"]')!.style.setProperty('--at', String((y - FIRST_YEAR) / (LAST_YEAR - FIRST_YEAR)));
       this.querySelectorAll<HTMLElement>('.tl-row').forEach((r) => r.classList.toggle('is-alive', alive.some((c) => c.id === r.dataset.civ)));
-      const names = alive.map((c) => c.name);
-      this.querySelector('[data-tl="say"]')!.textContent = names.length
-        ? `In ${yearText(shown)}: ${names.join(', ')}.`
-        : `In ${yearText(shown)}: none of these civilizations had begun yet.`;
+      this.querySelector('[data-tl="say"]')!.textContent = aliveText(y);
     }
 
     private pick(id: string) {
-      const c = this.civs.find((x) => x.id === id)!;
+      const c = CIVS.find((x) => x.id === id)!;
       this.querySelectorAll('.tl-row').forEach((r) => r.setAttribute('aria-pressed', String((r as HTMLElement).dataset.civ === id)));
       const story = this.querySelector<HTMLElement>('[data-tl="story"]')!;
       story.hidden = false;

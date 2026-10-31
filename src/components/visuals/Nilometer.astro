@@ -1,11 +1,9 @@
 ---
 // Slide the Nile's flood up a nilometer. Officials used the reading to predict the harvest and set
-// the grain tax (outcome VtfkI_gtBk66PSC2mQV7zQ, K1.5 and U1.2). The harvest words follow the
-// scale that Pliny the Elder recorded in Natural History, book 5. The sacks only show the idea.
+// the grain tax (outcome VtfkI_gtBk66PSC2mQV7zQ, K1.5 and U1.2).
+import { levelY as y } from './nilometer.ts';
+
 const MARKS = [10, 11, 12, 13, 14, 15, 16, 17, 18];
-const BOTTOM = 240;
-const STEP = 22;
-const y = (c: number) => BOTTOM - (c - 10) * STEP;
 ---
 <nilo-meter>
   <div class="nl-layout">
@@ -14,7 +12,7 @@ const y = (c: number) => BOTTOM - (c - 10) * STEP;
       <rect class="nl-wall" x="90" y="28" width="150" height="232"></rect>
       <path class="nl-stairs" d="M90 260 V238 H112 V216 H134 V194 H156 V172 H178 V150 H200 V128 H222 V106 H240 V260 Z"></path>
       <rect class="nl-water" data-nl="water" x="0" y={y(14)} width="300" height={260 - y(14)}></rect>
-      <line class="nl-surface" data-nl="surface" x1="0" x2="300" y1={y(14)} y2={y(14)}></line>
+      <rect class="nl-surface" data-nl="surface" x="0" width="300" height="3" y={y(14)}></rect>
       <rect class="nl-scale" x="244" y="28" width="46" height="232"></rect>
       {
         MARKS.map((c) => (
@@ -45,7 +43,7 @@ const y = (c: number) => BOTTOM - (c - 10) * STEP;
   .nl-wall, .nl-scale { fill: color-mix(in srgb, var(--sun) 16%, var(--surface)); stroke: var(--line-strong); }
   .nl-stairs { fill: color-mix(in srgb, var(--social) 30%, var(--surface)); stroke: var(--ink-3); stroke-width: 1.5; }
   .nl-water { fill: color-mix(in srgb, var(--math) 42%, transparent); transition: y 0.3s, height 0.3s; }
-  .nl-surface { stroke: var(--math); stroke-width: 3; transition: y1 0.3s, y2 0.3s; }
+  .nl-surface { fill: var(--math); transition: y 0.3s; }
   .nl-num { fill: var(--ink); font-size: 14px; font-weight: 700; }
   .nl-unit { fill: var(--ink-2); font-size: 12px; }
   .nl-slider { display: block; }
@@ -65,15 +63,7 @@ const y = (c: number) => BOTTOM - (c - 10) * STEP;
 </style>
 
 <script>
-  /** Pliny's scale for a flood, with the size of the harvest and tax out of 5. */
-  function reading(c: number) {
-    if (c <= 12) return { word: 'Hunger', good: false, harvest: 1, tax: 1, note: 'Too little water reached the fields. Officials expected little grain, so there was little to tax.' };
-    if (c === 13) return { word: 'Still hunger', good: false, harvest: 2, tax: 2, note: 'More land was watered, but not enough to feed everyone well.' };
-    if (c === 14) return { word: 'Joy', good: true, harvest: 3, tax: 3, note: 'Water reached many fields, and officials could expect a good crop.' };
-    if (c === 15) return { word: 'Security', good: true, harvest: 4, tax: 4, note: 'A safe, strong harvest was coming, so officials could expect a bigger grain tax.' };
-    if (c === 16) return { word: 'Delight', good: true, harvest: 5, tax: 5, note: 'The best flood of all. Officials expected the biggest harvest, and the biggest grain tax.' };
-    return { word: 'Too much', good: false, harvest: 2, tax: 2, note: 'The water stayed too long, so planting came late. A flood this high could bring famine too.' };
-  }
+  import { levelY, reading } from './nilometer.ts';
 
   class NiloMeter extends HTMLElement {
     connectedCallback() {
@@ -88,11 +78,10 @@ const y = (c: number) => BOTTOM - (c - 10) * STEP;
 
     private show(c: number) {
       const r = reading(c);
-      const level = 240 - (c - 10) * 22;
+      const level = levelY(c);
       this.part('water').setAttribute('y', String(level));
       this.part('water').setAttribute('height', String(260 - level));
-      this.part('surface').setAttribute('y1', String(level));
-      this.part('surface').setAttribute('y2', String(level));
+      this.part('surface').setAttribute('y', String(level));
       this.part('height').textContent = `${c} cubits`;
       const v = this.part('verdict');
       v.textContent = r.word;

@@ -12,7 +12,7 @@ the branch that deploys.
 
 *Last updated: October 30, 2026. Update this section whenever a phase or batch finishes.*
 
-**Current phase: 5 (Social Studies) is built and waiting for the owner's review on `feature/grade5-social-studies`. Phase 6 (ELAL) is next.**
+**Current phase: 5 (Social Studies) is done and merged into `main`. Phase 6 (ELAL) is next.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
@@ -31,16 +31,16 @@ the branch that deploys.
 | `chore/plan-status` | This progress tracking | ✅ Merged into `main` |
 | `feature/grade5-math` | Phase 3: all 15 Math lessons (233 problems) | ✅ Merged into `main` |
 | `feature/grade5-science` | Phase 4: the other 14 Science lessons (195 problems across all 15), 11 virtual experiments | ✅ Merged into `main` |
-| `feature/grade5-social-studies` | Phase 5: the other 5 Social Studies lessons, 11 new visuals and 1 virtual experiment | 👀 Waiting for review |
+| `feature/grade5-social-studies` | Phase 5: the other 5 Social Studies lessons, 11 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 
-**Waiting for review:** `feature/grade5-social-studies`.
+Nothing is waiting for review right now. The owner will do the manual review at the very end, after all phases.
 
 **Not published yet:** the repo stays private and the site is not published on GitHub Pages
 until all tasks are finished and people have reviewed it. Until then, the deploy job fails on
 each push to `main` because Pages is off. That is expected: the build still runs, and nothing
 goes public.
 
-**Next up:** Phase 6, ELAL, on a new branch from `main` once Phase 5 is merged, in a new chat thread.
+**Next up:** Phase 6, ELAL, on a new branch from `main`, in a new chat thread.
 
 ## 1. Ground truth: the curriculum
 
@@ -204,7 +204,7 @@ research skills · grammar · spelling & punctuation
 | 2 | Vertical slice | One complete concept per subject (★ above), each with a signature visualization: fraction explorer, particle simulator, 3D globe and world map, evidence-finding reader. Reworked after your feedback: curriculum-only content, tabs and steps | ✅ Done, merged into `main` |
 | 3 | Math | Remaining 14 concepts | ✅ Done, merged into `main` |
 | 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ✅ Done, merged into `main` |
-| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline, empire maps, village-to-city, scroll-scan experiment) | 👀 Built, waiting for review on `feature/grade5-social-studies` |
+| 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline, empire maps, village-to-city, scroll-scan experiment) | ✅ Done, merged into `main` |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems) | ⏭️ **Next** |
 | 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | Not started |
 | 8 | Release | Only after all other phases are finished and people have reviewed the whole site: enable GitHub Pages and publish | Not started, needs review and your sign-off |

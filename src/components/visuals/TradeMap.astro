@@ -30,7 +30,7 @@ const clipId = `tm-clip-${show}`;
       </g>
       {
         TRADE_ROUTES.map((r) => (
-          <g class={`tm-route tm-route--${r.kind}`} data-route={r.id}>
+          <g class={`tm-route tm-route--${r.kind}`} data-route={r.id} data-traveller={r.traveller}>
             <path class="tm-line" id={`tm-${show}-${r.id}`} d={linePath(F, r.points)}></path>
             {r.stops.map((s) => {
               const [x, y] = toMap(F, s.at);
@@ -97,21 +97,22 @@ const clipId = `tm-clip-${show}`;
 
 <script>
   import { reducedMotion, tween } from '../experiments/anim.ts';
-  import { TRADE_ROUTES } from './ancient-map.ts';
 
   class TradeMap extends HTMLElement {
     private run = 0;
+    private current = '';
 
     connectedCallback() {
       this.querySelectorAll<HTMLButtonElement>('[data-tm]').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.tm!)));
       this.querySelectorAll<HTMLButtonElement>('[data-tm-show]').forEach((b) => b.addEventListener('click', () => this.showList(b.dataset.tmShow!)));
       this.showList(this.dataset.show!);
-      // Show the first route, and start the traveller only once the map is on screen.
-      this.pick(TRADE_ROUTES[0].id, false);
+      // Show the first route, and start a traveller only once the map is on screen. If a route was
+      // picked before then, its traveller is already on its way, so leave it alone.
+      this.pick(this.querySelector<HTMLElement>('[data-tm]')!.dataset.tm!, false);
       new IntersectionObserver((entries, io) => {
         if (entries[0].isIntersecting) {
           io.disconnect();
-          this.travel(TRADE_ROUTES[0].id);
+          if (!this.run) this.travel(this.current);
         }
       }).observe(this.querySelector('.tm-frame')!);
     }
@@ -122,6 +123,7 @@ const clipId = `tm-clip-${show}`;
     }
 
     private pick(id: string, animate = true) {
+      this.current = id;
       this.querySelectorAll('[data-tm]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-tm') === id)));
       this.querySelectorAll<SVGGElement>('.tm-route').forEach((g) => g.classList.toggle('is-on', g.dataset.route === id));
       this.querySelectorAll<HTMLElement>('[data-tm-panel]').forEach((p) => (p.hidden = p.dataset.tmPanel !== id));
@@ -129,11 +131,11 @@ const clipId = `tm-clip-${show}`;
     }
 
     private async travel(id: string) {
-      const route = TRADE_ROUTES.find((r) => r.id === id)!;
-      const line = this.querySelector<SVGPathElement>(`.tm-route[data-route="${id}"] .tm-line`)!;
+      const route = this.querySelector<SVGGElement>(`.tm-route[data-route="${id}"]`)!;
+      const line = route.querySelector<SVGPathElement>('.tm-line')!;
       const t = this.querySelector<SVGTextElement>('[data-tm-traveller]')!;
       const token = ++this.run;
-      t.textContent = route.traveller;
+      t.textContent = route.dataset.traveller!;
       const place = (f: number) => {
         const p = line.getPointAtLength(f * line.getTotalLength());
         t.setAttribute('x', p.x.toFixed(1));

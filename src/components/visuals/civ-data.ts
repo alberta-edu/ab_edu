@@ -69,6 +69,13 @@ export const CIVS: Civ[] = [
 
 export const civsAlive = (year: number) => CIVS.filter((c) => c.spans.some(([a, b]) => year >= a && year <= b));
 
+/** What the timeline says about a year. No one is alive before the first start or after the last end. */
+export function aliveText(year: number) {
+  const names = civsAlive(year).map((c) => c.name);
+  if (names.length) return `In ${yearText(year)}: ${names.join(', ')}.`;
+  return `In ${yearText(year)}: ${year < 0 ? 'none of these civilizations had begun yet.' : 'all of these civilizations had already ended.'}`;
+}
+
 export interface CityFactor {
   id: string;
   label: string;

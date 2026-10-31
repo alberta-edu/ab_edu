@@ -4,7 +4,7 @@
 import { TRAILS } from './then-now-data.ts';
 
 interface Props {
-  set?: keyof typeof TRAILS;
+  set?: 'innovations' | 'issues';
 }
 const { set = 'innovations' } = Astro.props;
 const trails = TRAILS[set];

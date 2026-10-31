@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { CIVS, CITY_PIECES, FALL_FACTORS, RISE_FACTORS, civsAlive, yearText } from '../src/components/visuals/civ-data.ts';
+import { CIVS, CITY_PIECES, FALL_FACTORS, RISE_FACTORS, aliveText, civsAlive, yearText } from '../src/components/visuals/civ-data.ts';
+import { levelY, reading } from '../src/components/visuals/nilometer.ts';
 import { AFRICAN_CHAINS, AFRICA_FRAME, EMPIRES, EMPIRE_FRAME, TRADE_FRAME, TRADE_ROUTES, toMap, type LonLat, type MapFrame } from '../src/components/visuals/ancient-map.ts';
 import { PEOPLE, farmersNeeded, villageState } from '../src/components/visuals/village-city.ts';
 import { PYRAMIDS } from '../src/components/visuals/pyramid-data.ts';
@@ -27,6 +28,29 @@ describe('civilization timeline', () => {
     expect(alive(-2000)).toEqual(['egypt', 'india']);
     expect(alive(-100)).toEqual(['egypt', 'china', 'rome', 'arab']);
     expect(alive(450)).toEqual(['rome']);
+  });
+
+  it('says the right thing at both ends of the slider', () => {
+    expect(aliveText(-3200)).toMatch(/had begun yet/);
+    expect(aliveText(500)).toMatch(/had already ended/);
+    expect(aliveText(-2000)).toBe('In 2000 BCE: Egypt, India (Indus Valley).');
+  });
+});
+
+describe('nilometer', () => {
+  it('follows the flood scale that Pliny recorded', () => {
+    expect([12, 13, 14, 15, 16].map((c) => reading(c).word)).toEqual(['Hunger', 'Still hunger', 'Joy', 'Security', 'Delight']);
+    expect(reading(10).word).toBe('Hunger');
+    expect(reading(18).word).toBe('Too much');
+  });
+
+  it('expects the biggest harvest and tax at 16 cubits, which problem d1 relies on', () => {
+    expect(reading(16).tax).toBeGreaterThan(reading(12).tax);
+    expect(reading(16).harvest).toBeGreaterThan(reading(18).harvest);
+  });
+
+  it('draws a higher flood higher up', () => {
+    expect(levelY(18)).toBeLessThan(levelY(10));
   });
 });
 

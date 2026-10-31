@@ -10,7 +10,8 @@
 
 <style is:global>
   scroll-scan { display: block; }
-  .sc-bg { fill: color-mix(in srgb, var(--ink) 88%, var(--surface)); }
+  /* Always dark, in both themes: the charred scroll and its light captions sit on top of it. */
+  .sc-bg { fill: #2b2933; }
   .sc-scroll { fill: #2a211b; stroke: #5a4a3c; stroke-width: 2; }
   .sc-end { fill: #3a2d24; stroke: #6b5848; stroke-width: 2; }
   .sc-spiral { fill: none; stroke: #e2b56b; stroke-width: 2.4; }
