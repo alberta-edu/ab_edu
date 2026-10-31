@@ -1,0 +1,115 @@
+---
+// A poem to hear and to learn by heart (LANENG5-OI1-GQ1-LO1, K5.1, S5.1, S5.2). "Listen" reads it
+// aloud line by line. "Learn by heart" fades words out in steps, and a tap brings one back.
+interface Props {
+  title: string;
+  stanzas: string[][];
+  /** What each stanza is about (K5.4), shown beside it. */
+  ideas?: string[];
+}
+const { title, stanzas, ideas = [] } = Astro.props;
+let n = 0;
+---
+<poem-reader>
+  <h4 class="pmr-title">{title}</h4>
+  <div class="pmr-poem">
+    {
+      stanzas.map((lines, s) => (
+        <div class="pmr-stanza">
+          {ideas[s] && <p class="pmr-idea"><span>Stanza {s + 1}</span> {ideas[s]}</p>}
+          {lines.map((line) => (
+            <p class="pmr-line" data-line={line}>
+              {line.split(' ').map((w) => (
+                <><span class="pmr-w" data-w={n++}>{w}</span>{' '}</>
+              ))}
+            </p>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-pmr="listen" hidden>🔊 Listen</button>
+    <button type="button" class="btn btn--ghost btn--small" data-pmr="fade">🧠 Hide some words</button>
+    <button type="button" class="btn btn--ghost btn--small" data-pmr="reset" hidden>↺ Show all</button>
+  </div>
+  <p class="muted pmr-help" data-pmr="help" aria-live="polite">Read it out loud. Then hide some words and say the whole poem again.</p>
+</poem-reader>
+
+<style is:global>
+  poem-reader { display: block; }
+  .pmr-title { margin: 0 0 0.5rem; font-size: var(--step-1); }
+  .pmr-poem { display: grid; gap: 0.9rem; }
+  .pmr-stanza { padding: 0.6rem 0.9rem; border-left: 4px solid var(--accent); background: var(--surface-2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+  .pmr-idea { margin: 0 0 0.35rem; font-size: var(--step--1); color: var(--ink-2); }
+  .pmr-idea span { font-weight: 700; color: var(--accent); margin-right: 0.3rem; }
+  /* A hanging indent, so a line that wraps on a phone still reads as one line of the poem. */
+  .pmr-line { margin: 0; padding-left: 1em; text-indent: -1em; font-size: var(--step-1); line-height: 1.6; border-radius: 4px; }
+  .pmr-line.is-reading { background: color-mix(in srgb, var(--sun) 35%, transparent); }
+  .pmr-w.is-hidden { color: transparent; border-bottom: 2px solid var(--ink-3); cursor: pointer; }
+  .pmr-help { margin: 0; font-size: var(--step--1); }
+</style>
+
+<script>
+  import { canSpeak, speak, stopSpeaking } from './voice.ts';
+  import { isHidden } from './writing-tools.ts';
+
+  const HELP = [
+    'Read it out loud. Then hide some words and say the whole poem again.',
+    'Say the whole poem, filling in the gaps. Tap a gap if you get stuck.',
+    'Half the words are gone. Say it again, picturing what each stanza is about.',
+    'Only a few words are left to lean on.',
+    'Every word is hidden. Can you say the whole poem from memory?',
+  ];
+
+  class PoemReader extends HTMLElement {
+    private level = 0;
+    private reading = false;
+
+    connectedCallback() {
+      const listen = this.part('listen');
+      if (canSpeak()) {
+        listen.hidden = false;
+        listen.addEventListener('click', () => this.listen());
+      }
+      this.part('fade').addEventListener('click', () => this.setLevel(this.level + 1));
+      this.part('reset').addEventListener('click', () => this.setLevel(0));
+      this.addEventListener('click', (e) => (e.target as HTMLElement).closest('.pmr-w')?.classList.remove('is-hidden'));
+      // Lesson steps change the hash, and a poem shouldn't keep reading from a step that is now hidden.
+      for (const event of ['hashchange', 'pagehide']) window.addEventListener(event, () => this.stop());
+    }
+
+    private stop() {
+      this.reading = false;
+      stopSpeaking();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLButtonElement>(`[data-pmr="${name}"]`)!;
+    }
+
+    private setLevel(level: number) {
+      this.level = Math.min(4, level);
+      this.querySelectorAll<HTMLElement>('.pmr-w').forEach((w) => w.classList.toggle('is-hidden', isHidden(Number(w.dataset.w), this.level)));
+      this.part('fade').disabled = this.level === 4;
+      this.part('reset').hidden = this.level === 0;
+      this.part('help').textContent = HELP[this.level];
+    }
+
+    private async listen() {
+      const btn = this.part('listen');
+      if (this.reading) return this.stop();
+      this.reading = true;
+      btn.textContent = '■ Stop';
+      for (const line of this.querySelectorAll<HTMLElement>('.pmr-line')) {
+        if (!this.reading) break;
+        line.classList.add('is-reading');
+        await speak(line.dataset.line!);
+        line.classList.remove('is-reading');
+      }
+      this.reading = false;
+      btn.textContent = '🔊 Listen';
+    }
+  }
+  customElements.define('poem-reader', PoemReader);
+</script>

@@ -1,0 +1,141 @@
+---
+// One sentence, many deliveries (LANENG5-OI2-GQ1-LO1, K2.4, K2.6, S2.1). The words sit on a line that
+// shows the voice sliding up and down. Stress, inflection, pace, articulation and tone all change the
+// picture, and the browser can read it aloud when it has a speech voice.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  words: string[];
+  /** What the sentence means when each word is stressed. */
+  meanings: string[];
+}
+const { words, meanings } = Astro.props;
+const seg = (name: string, options: [string, string][], on: string) => ({ name, options, on });
+const groups = [
+  seg('inflection', [['falling', '↘ Falling'], ['flat', '→ Flat'], ['rising', '↗ Rising']], 'falling'),
+  seg('pace', [['slow', '🐢 Slow'], ['medium', 'Medium'], ['fast', '🐇 Fast']], 'medium'),
+  seg('articulation', [['clear', 'Clear'], ['mumbled', 'Mumbled']], 'clear'),
+  seg('tone', [['friendly', '🙂 Friendly'], ['upset', '😠 Upset'], ['sad', '😔 Sad']], 'friendly'),
+];
+---
+<voice-lab data-words={JSON.stringify(words)} data-meanings={JSON.stringify(meanings.map((m) => mdInline(m)))}>
+  <p class="sci-pick-label">Stress: tap a word</p>
+  <div class="sci-pick" role="group" aria-label="Choose the word to stress">
+    {words.map((w, i) => <button type="button" data-vlb-stress={i} aria-pressed="false">{w}</button>)}
+  </div>
+  <svg class="sci-svg vlb-svg" viewBox="0 0 440 170" aria-hidden="true" data-vlb="svg"></svg>
+  <p class="vlb-mean" data-vlb="mean" aria-live="polite"></p>
+  <div class="vlb-groups">
+    {
+      groups.map((g) => (
+        <div>
+          <p class="sci-pick-label">{g.name}</p>
+          <div class="seg" role="group" aria-label={g.name}>
+            {g.options.map(([id, label]) => <button type="button" data-vlb-group={g.name} data-vlb-value={id} aria-pressed={String(id === g.on)}>{label}</button>)}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-vlb="speak" hidden>🔊 Hear it</button>
+    <span class="muted vlb-note" data-vlb="note"></span>
+  </div>
+</voice-lab>
+
+<style is:global>
+  voice-lab { display: block; }
+  .vlb-svg { margin: 0.6rem auto 0; max-width: 34rem; background: var(--surface-2); }
+  .vlb-line { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; opacity: 0.5; }
+  .vlb-word { fill: var(--ink); font-weight: 400; }
+  .vlb-word.is-stress { font-weight: 700; fill: var(--accent); }
+  voice-lab[data-tone='upset'] .vlb-line { stroke: var(--bad); }
+  voice-lab[data-tone='sad'] .vlb-line { stroke: var(--math); }
+  voice-lab[data-articulation='mumbled'] .vlb-word { filter: blur(1.4px); opacity: 0.75; }
+  .vlb-mean { margin: 0.5rem 0 0; padding: 0.55rem 0.8rem; min-height: 2.6rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-weight: 700; }
+  .vlb-groups { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; margin-top: 0.3rem; }
+  .vlb-note { font-size: var(--step--1); }
+</style>
+
+<script>
+  import { canSpeak, contour, INFLECTION_PITCH, PACE_RATE, speak, stopSpeaking, type Inflection, type Pace } from './voice.ts';
+
+  const GAP: Record<Pace, number> = { slow: 34, medium: 18, fast: 5 };
+  const NOTE: Record<string, string> = {
+    rising: 'A rising voice sounds like a question.',
+    falling: 'A falling voice sounds finished and sure.',
+    flat: 'A flat voice can sound bored.',
+    friendly: '',
+    upset: 'Tone tells listeners how you feel, whatever the words say.',
+    sad: 'Tone tells listeners how you feel, whatever the words say.',
+    mumbled: 'Mumbling makes listeners work hard. Shape each sound clearly.',
+  };
+
+  class VoiceLab extends HTMLElement {
+    private words: string[] = [];
+    private meanings: string[] = [];
+    private stress = 0;
+    private state: Record<string, string> = { inflection: 'falling', pace: 'medium', articulation: 'clear', tone: 'friendly' };
+
+    connectedCallback() {
+      this.words = JSON.parse(this.dataset.words!);
+      this.meanings = JSON.parse(this.dataset.meanings!);
+      this.querySelectorAll<HTMLButtonElement>('[data-vlb-stress]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.stress = Number(b.dataset.vlbStress);
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-vlb-group]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.state[b.dataset.vlbGroup!] = b.dataset.vlbValue!;
+          this.querySelectorAll(`[data-vlb-group="${b.dataset.vlbGroup}"]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.draw();
+        }),
+      );
+      const say = this.querySelector<HTMLButtonElement>('[data-vlb="speak"]')!;
+      if (canSpeak()) {
+        say.hidden = false;
+        say.addEventListener('click', () => {
+          stopSpeaking();
+          void speak(this.words.join(' '), { rate: PACE_RATE[this.state.pace as Pace], pitch: INFLECTION_PITCH[this.state.inflection as Inflection] });
+        });
+      }
+      this.draw();
+    }
+
+    disconnectedCallback() {
+      stopSpeaking();
+    }
+
+    private draw() {
+      const { inflection, pace, articulation, tone } = this.state;
+      this.dataset.tone = tone;
+      this.dataset.articulation = articulation;
+      const ys = contour(this.words.length, inflection as Inflection, this.stress);
+      // Width of each word at 22px (or 30px when stressed), so spacing can follow the pace.
+      const widths = this.words.map((w, i) => w.length * (i === this.stress ? 16 : 11.5));
+      const gap = GAP[pace as Pace];
+      const total = widths.reduce((a, b) => a + b, 0) + gap * (this.words.length - 1);
+      const scale = Math.min(1, 410 / total);
+      let x = (440 - total * scale) / 2;
+      const points: [number, number][] = [];
+      const text = this.words
+        .map((w, i) => {
+          const cx = x + (widths[i] * scale) / 2;
+          const y = 125 - ys[i] * 90;
+          x += (widths[i] + gap) * scale;
+          points.push([cx, y + 12]);
+          return `<text class="vlb-word${i === this.stress ? ' is-stress' : ''}" x="${cx.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" style="font-size:${((i === this.stress ? 30 : 22) * scale).toFixed(1)}px">${w}</text>`;
+        })
+        .join('');
+      const line = points.map(([px, py], i) => `${i ? 'L' : 'M'}${px.toFixed(1)} ${py.toFixed(1)}`).join(' ');
+      this.querySelector('[data-vlb="svg"]')!.innerHTML = `<path class="vlb-line" d="${line}"/>${text}`;
+      this.querySelectorAll('[data-vlb-stress]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-vlb-stress')) === this.stress)));
+      this.querySelector('[data-vlb="mean"]')!.innerHTML = this.meanings[this.stress];
+      const note = articulation === 'mumbled' ? NOTE.mumbled : NOTE[tone] || NOTE[inflection];
+      this.querySelector('[data-vlb="note"]')!.textContent = note;
+    }
+  }
+  customElements.define('voice-lab', VoiceLab);
+</script>

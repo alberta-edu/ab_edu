@@ -1,0 +1,124 @@
+---
+// A group discussion to steer (LANENG5-OI2-GQ1-LO1, K4.1 to K4.4, S4.1 to S4.4). Each turn offers ways
+// to reply. Every reply gets a response from the group, and a meter shows the trust that builds or falls.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  turns: {
+    speaker: string;
+    says: string;
+    choices: { text: string; good: boolean; reply: string; why: string }[];
+  }[];
+  ending: string;
+}
+const { turns, ending } = Astro.props;
+const data = {
+  ending: mdInline(ending),
+  turns: turns.map((t) => ({
+    speaker: t.speaker,
+    says: mdInline(t.says),
+    choices: t.choices.map((c) => ({ good: c.good, text: mdInline(c.text), reply: mdInline(c.reply), why: mdInline(c.why) })),
+  })),
+};
+---
+<talk-it-out data-talk={JSON.stringify(data)}>
+  <div class="tlk-meter" aria-hidden="true"><span>Group trust</span><div class="tlk-bar"><div data-tlk="bar"></div></div></div>
+  <p class="tlk-bubble" data-tlk="says" aria-live="polite"></p>
+  <div class="tlk-choices" data-tlk="choices" role="group" aria-label="Choose what you say"></div>
+  <div class="tlk-result" data-tlk="result" aria-live="polite" hidden></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-tlk="next" hidden>Continue ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-tlk="again" hidden>↺ Start again</button>
+  </div>
+</talk-it-out>
+
+<style is:global>
+  talk-it-out { display: block; }
+  .tlk-meter { display: flex; align-items: center; gap: 0.6rem; font-size: var(--step--1); font-weight: 700; }
+  .tlk-bar { flex: 1; height: 0.8rem; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+  .tlk-bar div { height: 100%; width: 50%; background: var(--ok); transition: width 0.35s ease; }
+  .tlk-bubble { margin: 0.7rem 0; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step-1); }
+  .tlk-choices { display: grid; gap: 0.4rem; }
+  .tlk-choices button { padding: 0.6rem 0.8rem; text-align: left; font: inherit; color: var(--ink); background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius-sm); cursor: pointer; }
+  .tlk-choices button:hover:not(:disabled) { border-color: var(--accent); }
+  .tlk-choices button:disabled { cursor: default; opacity: 0.6; }
+  .tlk-choices button.is-good { opacity: 1; border-color: var(--ok); background: var(--ok-soft); }
+  .tlk-choices button.is-bad { opacity: 1; border-color: var(--bad); background: var(--bad-soft); }
+  .tlk-result { margin-top: 0.6rem; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .tlk-result p { margin: 0 0 0.25rem; }
+  .tlk-result p:last-child { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
+  @media (prefers-reduced-motion: reduce) { .tlk-bar div { transition: none; } }
+</style>
+
+<script>
+  type Choice = { good: boolean; text: string; reply: string; why: string };
+  type Turn = { speaker: string; says: string; choices: Choice[] };
+
+  class TalkItOut extends HTMLElement {
+    private turns: Turn[] = [];
+    private ending = '';
+    private at = 0;
+    private trust = 50;
+
+    connectedCallback() {
+      const data = JSON.parse(this.dataset.talk!);
+      this.turns = data.turns;
+      this.ending = data.ending;
+      this.part('next').addEventListener('click', () => {
+        this.at++;
+        this.showTurn();
+      });
+      this.part('again').addEventListener('click', () => this.start());
+      this.start();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-tlk="${name}"]`)!;
+    }
+
+    private start() {
+      this.at = 0;
+      this.trust = 50;
+      this.part('again').hidden = true;
+      this.showTurn();
+    }
+
+    private showTurn() {
+      this.part('bar').style.width = `${this.trust}%`;
+      this.part('result').hidden = true;
+      this.part('next').hidden = true;
+      const box = this.part('choices');
+      box.innerHTML = '';
+      if (this.at >= this.turns.length) {
+        this.part('says').innerHTML = this.ending;
+        this.part('again').hidden = false;
+        return;
+      }
+      const turn = this.turns[this.at];
+      this.part('says').innerHTML = `<strong>${turn.speaker}:</strong> ${turn.says}`;
+      for (const c of turn.choices) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.innerHTML = c.text;
+        b.addEventListener('click', () => this.pick(c, b));
+        box.appendChild(b);
+      }
+    }
+
+    private pick(c: Choice, b: HTMLButtonElement) {
+      this.trust = Math.max(10, Math.min(100, this.trust + (c.good ? 20 : -15)));
+      this.part('bar').style.width = `${this.trust}%`;
+      b.classList.add(c.good ? 'is-good' : 'is-bad');
+      const result = this.part('result');
+      result.hidden = false;
+      result.innerHTML = `<p>${c.reply}</p><p>${c.why}</p>`;
+      if (c.good) {
+        this.part('choices').querySelectorAll('button').forEach((x) => (x.disabled = true));
+        this.part('next').hidden = false;
+      } else {
+        b.disabled = true;
+      }
+    }
+  }
+  customElements.define('talk-it-out', TalkItOut);
+</script>

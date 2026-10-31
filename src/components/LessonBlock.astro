@@ -54,6 +54,24 @@ import TradeMap from './visuals/TradeMap.astro';
 import SocialPyramid from './visuals/SocialPyramid.astro';
 import EmpireMap from './visuals/EmpireMap.astro';
 import IssueInvestigator from './visuals/IssueInvestigator.astro';
+import StoryPath from './visuals/StoryPath.astro';
+import PageExplorer from './visuals/PageExplorer.astro';
+import PoemReader from './visuals/PoemReader.astro';
+import ScriptStage from './visuals/ScriptStage.astro';
+import VoiceLab from './visuals/VoiceLab.astro';
+import VoiceReach from './visuals/VoiceReach.astro';
+import TalkItOut from './visuals/TalkItOut.astro';
+import WordBuilder from './visuals/WordBuilder.astro';
+import WordJourney from './visuals/WordJourney.astro';
+import FigureLens from './visuals/FigureLens.astro';
+import PerspectiveLens from './visuals/PerspectiveLens.astro';
+import WritingPath from './visuals/WritingPath.astro';
+import SentenceRhythm from './visuals/SentenceRhythm.astro';
+import ShowDial from './visuals/ShowDial.astro';
+import TopicFunnel from './visuals/TopicFunnel.astro';
+import SentenceLab from './visuals/SentenceLab.astro';
+import SpellBuilder from './visuals/SpellBuilder.astro';
+import PunctLab from './visuals/PunctLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -64,6 +82,24 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'story-path': StoryPath,
+  'page-explorer': PageExplorer,
+  'poem-reader': PoemReader,
+  'script-stage': ScriptStage,
+  'voice-lab': VoiceLab,
+  'voice-reach': VoiceReach,
+  'talk-it-out': TalkItOut,
+  'word-builder': WordBuilder,
+  'word-journey': WordJourney,
+  'figure-lens': FigureLens,
+  'perspective-lens': PerspectiveLens,
+  'writing-path': WritingPath,
+  'sentence-rhythm': SentenceRhythm,
+  'show-dial': ShowDial,
+  'topic-funnel': TopicFunnel,
+  'sentence-lab': SentenceLab,
+  'spell-builder': SpellBuilder,
+  'punct-lab': PunctLab,
   'civ-timeline': CivTimeline,
   'rise-fall-city': RiseFallCity,
   'then-now': ThenNow,

@@ -1,0 +1,92 @@
+---
+// One beaver pond, three people looking at it (LANENG5-OI7-GQ1-LO1, K4.1 to K4.3, S4.2). Each lens
+// lights up what that person notices and shows what shapes their view.
+import { mdInline } from '../../lib/render.ts';
+
+interface Person {
+  id: string;
+  icon: string;
+  name: string;
+  /** The part of the scene this person looks at. */
+  focus: 'field' | 'dam' | 'pond';
+  thinks: string;
+  shapedBy: string;
+}
+interface Props {
+  people: Person[];
+}
+const { people } = Astro.props;
+---
+<perspective-lens>
+  <div class="sci-pick" role="group" aria-label="Choose whose eyes to look through">
+    {people.map((p, i) => <button type="button" data-plx={p.id} data-focus={p.focus} aria-pressed={String(i === 0)}><span aria-hidden="true">{p.icon}</span> {p.name}</button>)}
+  </div>
+  <svg class="sci-svg plx-scene" data-focus={people[0].focus} viewBox="0 0 660 250" role="img" aria-label="A creek with a beaver dam. Behind the dam the water spreads into a pond with ducks. Part of a hay field beside it is flooded.">
+    <rect class="sci-sky" width="660" height="250"></rect>
+    <path class="plx-hill" d="M0 90 Q 170 40 340 84 T 660 76 V250 H0 Z"></path>
+    <g class="plx-part" data-part="field">
+      <path class="plx-field" d="M0 118 H250 L210 250 H0 Z"></path>
+      <path class="plx-rows" d="M30 130 L14 244 M80 130 L62 244 M130 130 L112 244 M180 130 L162 244"></path>
+      <path class="plx-flood" d="M120 196 Q 190 170 236 190 L214 250 H104 Z"></path>
+    </g>
+    <g class="plx-part" data-part="pond">
+      <path class="plx-water" d="M236 190 Q 330 120 450 150 Q 480 200 430 250 H214 Z"></path>
+      <path class="plx-duck" d="M300 186 q10 -12 22 -4 q6 -8 12 -2 l-6 4 q0 12 -14 12 q-12 0 -14 -10 Z"></path>
+      <path class="plx-duck" d="M360 214 q10 -12 22 -4 q6 -8 12 -2 l-6 4 q0 12 -14 12 q-12 0 -14 -10 Z"></path>
+    </g>
+    <path class="plx-creek" d="M470 170 Q 560 190 660 170 V250 H450 Z"></path>
+    <g class="plx-part" data-part="dam">
+      <path class="plx-dam" d="M450 140 L492 148 L470 250 L424 250 Z"></path>
+      <path class="plx-sticks" d="M448 160 L486 168 M440 186 L482 194 M432 214 L476 222"></path>
+    </g>
+    <text class="sci-small" x="16" y="112">Hay field</text>
+    <text class="sci-small" x="320" y="146">Pond</text>
+    <text class="sci-small" x="500" y="130" text-anchor="middle">Beaver dam</text>
+  </svg>
+  {
+    people.map((p, i) => (
+      <div class="plx-card" data-plx-card={p.id} hidden={i !== 0}>
+        <p class="plx-thought" set:html={mdInline(p.thinks)} />
+        <p class="plx-why"><strong>Shaped by:</strong> <span set:html={mdInline(p.shapedBy)} /></p>
+      </div>
+    ))
+  }
+</perspective-lens>
+
+<style is:global>
+  perspective-lens { display: block; }
+  .plx-scene { margin-top: 0.6rem; }
+  .plx-part { opacity: 0.45; transition: opacity 0.3s; }
+  .plx-scene[data-focus='field'] [data-part='field'],
+  .plx-scene[data-focus='dam'] [data-part='dam'],
+  .plx-scene[data-focus='pond'] [data-part='pond'] { opacity: 1; }
+  .plx-hill { fill: color-mix(in srgb, var(--science) 18%, var(--surface-2)); }
+  .plx-field { fill: color-mix(in srgb, var(--sun) 50%, var(--surface)); }
+  .plx-rows { fill: none; stroke: color-mix(in srgb, var(--social) 60%, var(--surface)); stroke-width: 3; }
+  .plx-flood { fill: color-mix(in srgb, var(--math) 40%, var(--surface)); }
+  .plx-water, .plx-creek { fill: color-mix(in srgb, var(--math) 40%, var(--surface)); }
+  .plx-duck { fill: var(--ink-2); }
+  .plx-dam { fill: #7a5230; stroke: var(--ink); stroke-width: 1.5; }
+  .plx-sticks { fill: none; stroke: #4e321a; stroke-width: 4; stroke-linecap: round; }
+  .plx-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
+  .plx-card p { margin: 0; }
+  .plx-thought { font-size: var(--step-1); font-weight: 700; }
+  .plx-why { margin-top: 0.4rem !important; font-size: var(--step--1); }
+</style>
+
+<script>
+  class PerspectiveLens extends HTMLElement {
+    connectedCallback() {
+      const scene = this.querySelector('.plx-scene')!;
+      this.querySelectorAll<HTMLButtonElement>('[data-plx]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const id = b.dataset.plx!;
+          this.querySelectorAll('[data-plx]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelectorAll<HTMLElement>('[data-plx-card]').forEach((c) => (c.hidden = c.dataset.plxCard !== id));
+          scene.setAttribute('data-focus', b.dataset.focus!);
+        }),
+      );
+    }
+  }
+  customElements.define('perspective-lens', PerspectiveLens);
+</script>

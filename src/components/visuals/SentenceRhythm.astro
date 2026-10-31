@@ -1,0 +1,65 @@
+---
+// See the rhythm of your writing (LANENG5-OI8-GQ1-LO1, K1.6, K1.7). Each sentence becomes a bar as long
+// as its word count. Same-length bars read as choppy; varied bars read as flowing. Students can type
+// their own paragraph. Nothing typed here leaves the page.
+interface Props {
+  examples: { label: string; text: string }[];
+}
+const { examples } = Astro.props;
+---
+<sentence-rhythm>
+  <div class="sci-pick" role="group" aria-label="Choose an example">
+    {examples.map((e, i) => <button type="button" data-rhy={e.text} aria-pressed={String(i === 0)}>{e.label}</button>)}
+  </div>
+  <label class="sr-only" for="rhy-text">Your paragraph</label>
+  <textarea id="rhy-text" class="rhy-text open-answer" rows="6" data-rhy-input>{examples[0].text}</textarea>
+  <div class="rhy-bars" data-rhy-bars aria-hidden="true"></div>
+  <p class="rhy-say" data-rhy-say aria-live="polite"></p>
+</sentence-rhythm>
+
+<style is:global>
+  sentence-rhythm { display: block; }
+  .rhy-text { margin-top: 0.6rem; }
+  .rhy-bars { display: grid; gap: 0.25rem; margin-top: 0.6rem; }
+  .rhy-bar { display: flex; align-items: center; gap: 0.4rem; font-size: var(--step--1); color: var(--ink-3); }
+  .rhy-bar i { display: block; height: 1rem; border-radius: 4px; background: var(--accent); transition: width 0.25s; }
+  .rhy-say { margin: 0.6rem 0 0; padding: 0.55rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .rhy-bar i { transition: none; } }
+</style>
+
+<script>
+  import { rhythmOf, sentenceLengths, type Rhythm } from './writing-tools.ts';
+
+  const SAY: Record<Rhythm, string> = {
+    empty: 'Type a few sentences to see their rhythm.',
+    few: 'Keep going! Rhythm shows up after three or more sentences.',
+    choppy: 'Choppy: the sentences are all about the same length. Try joining two, or adding a very short one.',
+    long: 'Long and winding: readers need a place to breathe. Try adding a short sentence.',
+    varied: 'Flowing: short and long sentences mix, so the writing has rhythm.',
+  };
+
+  class SentenceRhythm extends HTMLElement {
+    connectedCallback() {
+      const input = this.querySelector<HTMLTextAreaElement>('[data-rhy-input]')!;
+      input.addEventListener('input', () => this.draw(input.value));
+      this.querySelectorAll<HTMLButtonElement>('[data-rhy]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-rhy]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          input.value = b.dataset.rhy!;
+          this.draw(input.value);
+        }),
+      );
+      this.draw(input.value);
+    }
+
+    private draw(text: string) {
+      const lengths = sentenceLengths(text);
+      const longest = Math.max(20, ...lengths);
+      this.querySelector('[data-rhy-bars]')!.innerHTML = lengths
+        .map((n) => `<div class="rhy-bar"><i style="width:${((n / longest) * 85).toFixed(1)}%"></i>${n}</div>`)
+        .join('');
+      this.querySelector('[data-rhy-say]')!.textContent = SAY[rhythmOf(lengths)];
+    }
+  }
+  customElements.define('sentence-rhythm', SentenceRhythm);
+</script>

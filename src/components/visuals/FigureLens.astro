@@ -1,0 +1,84 @@
+---
+// Figurative language through two lenses (LANENG5-OI3-GQ1-LO1, K3.1, S3.5, S3.6). "Read it literally"
+// draws the silly picture of the exact words. "What it means" shows what the writer is really saying.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  items: { phrase: string; kind: string; picture: string; literally: string; means: string; because: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((i) => ({ ...i, phrase: mdInline(i.phrase), literally: mdInline(i.literally), means: mdInline(i.means), because: mdInline(i.because) }));
+---
+<figure-lens data-items={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a phrase">
+    {items.map((item, i) => <button type="button" data-fgl-item={i} aria-pressed={String(i === 0)}>{i + 1}. {item.kind}</button>)}
+  </div>
+  <p class="fgl-phrase" data-fgl="phrase"></p>
+  <div class="seg" role="group" aria-label="Choose how to read it">
+    <button type="button" data-fgl-lens="literal" aria-pressed="true">🔎 Read it literally</button>
+    <button type="button" data-fgl-lens="figurative" aria-pressed="false">💡 What it means</button>
+  </div>
+  <div class="fgl-panel" data-fgl="panel" aria-live="polite">
+    <div class="fgl-picture" data-fgl="picture" aria-hidden="true"></div>
+    <p data-fgl="text"></p>
+  </div>
+  <noscript><ul>{items.map((i) => <li><span set:html={mdInline(i.phrase)} />: <span set:html={mdInline(i.means)} /></li>)}</ul></noscript>
+</figure-lens>
+
+<style is:global>
+  figure-lens { display: block; }
+  .fgl-phrase { margin: 0.7rem 0; font-size: var(--step-2); font-weight: 700; line-height: 1.25; }
+  .fgl-panel { margin-top: 0.6rem; padding: 0.8rem 1rem; min-height: 9.5rem; border-radius: var(--radius-sm); background: var(--surface-2); text-align: center; }
+  .fgl-panel.is-figurative { background: var(--accent-soft); text-align: left; }
+  .fgl-picture { font-size: clamp(2.2rem, 9vw, 3.6rem); line-height: 1.2; letter-spacing: 0.08em; }
+  .fgl-panel p { margin: 0.4rem 0 0; }
+  .fgl-panel.is-figurative .fgl-picture { display: none; }
+  @media (prefers-reduced-motion: no-preference) {
+    .fgl-picture { animation: fgl-wobble 2.4s ease-in-out infinite; }
+    @keyframes fgl-wobble { 50% { transform: translateY(-3px) rotate(-1deg); } }
+  }
+</style>
+
+<script>
+  type Item = { phrase: string; kind: string; picture: string; literally: string; means: string; because: string };
+
+  class FigureLens extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+    private lens: 'literal' | 'figurative' = 'literal';
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.querySelectorAll<HTMLButtonElement>('[data-fgl-item]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.at = Number(b.dataset.fglItem);
+          this.lens = 'literal';
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-fgl-lens]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.lens = b.dataset.fglLens as typeof this.lens;
+          this.draw();
+        }),
+      );
+      this.draw();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-fgl="${name}"]`)!;
+    }
+
+    private draw() {
+      const item = this.items[this.at];
+      const figurative = this.lens === 'figurative';
+      this.querySelectorAll('[data-fgl-item]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-fgl-item')) === this.at)));
+      this.querySelectorAll('[data-fgl-lens]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-fgl-lens') === this.lens)));
+      this.part('phrase').innerHTML = item.phrase;
+      this.part('panel').classList.toggle('is-figurative', figurative);
+      this.part('picture').textContent = item.picture;
+      this.part('text').innerHTML = figurative ? `${item.means} ${item.because}` : item.literally;
+    }
+  }
+  customElements.define('figure-lens', FigureLens);
+</script>

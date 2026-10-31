@@ -16,6 +16,9 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'then-now': { set: ['innovations', 'issues'] },
   'trade-map': { show: ['goods', 'ideas'] },
   'empire-map': { set: ['conquest', 'africa'] },
+  'page-explorer': { set: ['forms', 'features'] },
+  'sentence-lab': { mode: ['roles', 'tense', 'adverb', 'join'] },
+  'punct-lab': { mode: ['capitals', 'effect'] },
 };
 
 function verifyConcept(c: Concept) {
@@ -159,6 +162,26 @@ function verifyConcept(c: Concept) {
             texts.push(card.text, card.why);
           }
           for (const bin of bins) if (!cards.some((card) => card.bin === bin.id)) fail(undefined, `${label}: bin "${bin.id}" has no cards`);
+        }
+      }
+      if (b.type === 'visual' && b.component === 'talk-it-out') {
+        const turns = b.props.turns as { choices: { good: boolean; text: string; reply: string; why: string }[] }[];
+        // A turn with no good reply would leave the student stuck, with no way to continue.
+        for (const [i, turn] of turns.entries()) {
+          if (!turn.choices.some((x) => x.good)) fail(undefined, `${label}: talk-it-out turn ${i + 1} has no good reply`);
+          for (const x of turn.choices) texts.push(x.text, x.reply, x.why);
+        }
+      }
+      if (b.type === 'visual' && b.component === 'story-path') {
+        const { stages, flash } = b.props as { stages: unknown[]; flash?: { after: number } };
+        if (flash && (flash.after < 0 || flash.after >= stages.length - 1)) fail(undefined, `${label}: story-path flash-forward must come before the last stage`);
+      }
+      if (b.type === 'visual' && b.component === 'script-stage') {
+        const { lines } = b.props as { lines: { who: number; pose: string }[] };
+        const poses = ['still', 'lean', 'away', 'down', 'up'];
+        for (const l of lines) {
+          if (l.who !== 0 && l.who !== 1) fail(undefined, `${label}: script-stage line for unknown character ${l.who}`);
+          if (!poses.includes(l.pose)) fail(undefined, `${label}: script-stage pose "${l.pose}" is not one of ${poses.join(', ')}`);
         }
       }
       if (b.type === 'experiment') {

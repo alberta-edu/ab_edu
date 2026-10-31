@@ -1,0 +1,75 @@
+---
+// Tap an affix and watch real words come apart into their pieces (LANENG5-OI3-GQ1-LO1, K1.3, S1.4).
+// Words that share a base are linked, so students see that a base keeps its meaning.
+import { AFFIXES } from './word-builder.ts';
+const label = (a: (typeof AFFIXES)[number]) => (a.kind === 'prefix' ? `${a.affix}-` : `-${a.affix}`);
+const prefixes = AFFIXES.filter((a) => a.kind === 'prefix');
+const suffixes = AFFIXES.filter((a) => a.kind === 'suffix');
+---
+<word-builder>
+  <p class="sci-pick-label">Prefixes: go before a base</p>
+  <div class="sci-pick" role="group" aria-label="Choose a prefix">
+    {prefixes.map((a) => <button type="button" data-wbd={a.affix} aria-pressed="false">{label(a)}</button>)}
+  </div>
+  <p class="sci-pick-label">Suffixes: go after a base</p>
+  <div class="sci-pick" role="group" aria-label="Choose a suffix">
+    {suffixes.map((a) => <button type="button" data-wbd={a.affix} aria-pressed="false">{label(a)}</button>)}
+  </div>
+  <div class="wbd-out" data-wbd-out aria-live="polite"></div>
+  <noscript>
+    <ul>{AFFIXES.map((a) => <li><strong>{label(a)}</strong> ({a.meaning}): {a.words.map((w) => w.word).join(', ')}</li>)}</ul>
+  </noscript>
+</word-builder>
+
+<style is:global>
+  word-builder { display: block; }
+  .wbd-out { margin-top: 0.8rem; display: grid; gap: 0.6rem; }
+  .wbd-mean { margin: 0; font-size: var(--step-1); }
+  .wbd-word { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .wbd-tiles { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.3rem; }
+  .wbd-tile { display: grid; align-content: center; justify-items: center; padding: 0.3rem 0.6rem; min-width: 3.4rem; border-radius: 7px; background: var(--surface); border: 2px solid var(--line-strong); text-align: center; }
+  .wbd-tile b { font-size: var(--step-1); }
+  .wbd-tile small { color: var(--ink-3); line-height: 1.1; }
+  .wbd-tile--affix { border-color: var(--accent); background: var(--accent-soft); }
+  .wbd-op { align-self: center; font-weight: 700; color: var(--ink-3); }
+  .wbd-whole { align-self: center; font-size: var(--step-1); font-weight: 700; color: var(--accent); }
+  .wbd-def { margin: 0.4rem 0 0; }
+  .wbd-family { margin: 0.2rem 0 0; font-size: var(--step--1); color: var(--ink-2); }
+  @media (prefers-reduced-motion: no-preference) {
+    .wbd-tile { animation: wbd-in 0.3s ease backwards; }
+    .wbd-tile + .wbd-op + .wbd-tile { animation-delay: 0.12s; }
+    @keyframes wbd-in { from { transform: translateY(8px); opacity: 0; } }
+  }
+</style>
+
+<script>
+  import { AFFIXES, joinParts, sameBase } from './word-builder.ts';
+
+  class WordBuilder extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-wbd]').forEach((b) => b.addEventListener('click', () => this.show(b.dataset.wbd!)));
+      this.show(AFFIXES[2].affix); // trans-: its base "port" links to export
+    }
+
+    private show(id: string) {
+      const a = AFFIXES.find((x) => x.affix === id)!;
+      this.querySelectorAll('[data-wbd]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-wbd') === id)));
+      const words = a.words
+        .map((w) => {
+          const family = sameBase(w);
+          const tiles = w.parts
+            .map((p) => `<span class="wbd-tile${p.kind === 'base' ? '' : ' wbd-tile--affix'}"><b>${p.text}</b>${p.meaning === p.text ? '' : `<small>${p.meaning}</small>`}</span>`)
+            .join('<span class="wbd-op" aria-hidden="true">+</span>');
+          return `<div class="wbd-word">
+            <div class="wbd-tiles">${tiles}<span class="wbd-op" aria-hidden="true">=</span><span class="wbd-whole">${joinParts(w.parts)}</span></div>
+            <p class="wbd-def">${w.meaning}</p>
+            ${family.length ? `<p class="wbd-family">Same base: ${family.join(', ')}</p>` : ''}
+          </div>`;
+        })
+        .join('');
+      const name = a.kind === 'prefix' ? `${a.affix}-` : `-${a.affix}`;
+      this.querySelector('[data-wbd-out]')!.innerHTML = `<p class="wbd-mean"><strong>${name}</strong> means “${a.meaning}”</p>${words}`;
+    }
+  }
+  customElements.define('word-builder', WordBuilder);
+</script>

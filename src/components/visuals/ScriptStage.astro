@@ -1,0 +1,107 @@
+---
+// A scripted scene on a little stage, one line at a time. Each line shows what is said (verbal), what
+// the body does (non-verbal) and how the voice sounds (paraverbal), as in LANENG5-OI1-GQ1-LO1, K6.2, K6.3.
+import { mdInline } from '../../lib/render.ts';
+
+type Pose = 'still' | 'lean' | 'away' | 'down' | 'up';
+interface Props {
+  characters: [string, string];
+  lines: { who: 0 | 1; say: string; body: string; voice: string; pose: Pose }[];
+}
+const { characters, lines } = Astro.props;
+const figure = (x: number, cls: string) => `
+  <g class="stg-fig ${cls}" style="transform-origin:${x}px 200px">
+    <circle cx="${x}" cy="104" r="20"></circle>
+    <path d="M${x - 24} 200 q2 -66 24 -72 q22 6 24 72 Z"></path>
+  </g>`;
+const data = lines.map((l) => ({ ...l, say: mdInline(l.say), body: mdInline(l.body), voice: mdInline(l.voice) }));
+---
+<script-stage data-lines={JSON.stringify(data)}>
+  <svg class="sci-svg stg-svg" viewBox="0 0 660 230" aria-hidden="true">
+    <rect class="stg-back" width="660" height="230"></rect>
+    <path class="stg-curtain" d="M0 0 H110 Q 90 90 40 230 H0 Z"></path>
+    <path class="stg-curtain" d="M660 0 H550 Q 570 90 620 230 H660 Z"></path>
+    <rect class="stg-floor" y="196" width="660" height="34"></rect>
+    <g set:html={figure(230, 'stg-a')}></g>
+    <g set:html={figure(430, 'stg-b')}></g>
+    <text class="stg-name" x="230" y="222" text-anchor="middle">{characters[0]}</text>
+    <text class="stg-name" x="430" y="222" text-anchor="middle">{characters[1]}</text>
+  </svg>
+  <div class="stg-rows" aria-live="polite">
+    <p class="stg-say"><span class="stg-who" data-stg="who"></span> <span data-stg="say"></span></p>
+    <p class="stg-row"><span class="stg-tag">🗣️ Verbal</span> <span>The words themselves</span></p>
+    <p class="stg-row"><span class="stg-tag">🧍 Non-verbal</span> <span data-stg="body"></span></p>
+    <p class="stg-row"><span class="stg-tag">🎚️ Paraverbal</span> <span data-stg="voice"></span></p>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-stg="back">◀ Back</button>
+    <button type="button" class="btn btn--primary btn--small" data-stg="next">Next line ▶</button>
+    <span class="muted" style="font-size:var(--step--1)" data-stg="count"></span>
+  </div>
+</script-stage>
+
+<style is:global>
+  script-stage { display: block; }
+  .stg-back { fill: #2b2933; }
+  .stg-curtain { fill: var(--ela); opacity: 0.85; }
+  .stg-floor { fill: #6b4a2f; }
+  .stg-name { fill: #f6f4ef; font-size: 15px; font-weight: 700; }
+  @media (max-width: 40rem) {
+    svg .stg-name { font-size: 22px; }
+  }
+  .stg-fig { transition: transform 0.4s ease, opacity 0.3s; opacity: 0.55; }
+  .stg-fig.is-speaking { opacity: 1; }
+  .stg-a circle, .stg-a path { fill: #f2b01e; }
+  .stg-b circle, .stg-b path { fill: #7fb6ff; }
+  .stg-fig.pose-lean.stg-a { transform: rotate(8deg) translateX(14px); }
+  .stg-fig.pose-lean.stg-b { transform: rotate(-8deg) translateX(-14px); }
+  .stg-fig.pose-away.stg-a { transform: rotate(-6deg) translateX(-36px); }
+  .stg-fig.pose-away.stg-b { transform: rotate(6deg) translateX(36px); }
+  .stg-fig.pose-down { transform: scaleY(0.86); }
+  .stg-fig.pose-up { transform: translateY(-14px); }
+  .stg-rows { display: grid; gap: 0.35rem; margin-top: 0.6rem; min-height: 9rem; align-content: start; }
+  .stg-rows p { margin: 0; }
+  .stg-say { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step-1); font-weight: 700; }
+  .stg-who { color: var(--accent); text-transform: uppercase; font-size: var(--step--1); letter-spacing: 0.04em; }
+  .stg-row { display: grid; grid-template-columns: 7.4rem 1fr; gap: 0.4rem; padding: 0.2rem 0.3rem; font-size: var(--step--1); }
+  .stg-tag { font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .stg-fig { transition: none; } }
+</style>
+
+<script>
+  type Line = { who: 0 | 1; say: string; body: string; voice: string; pose: string };
+
+  class ScriptStage extends HTMLElement {
+    private lines: Line[] = [];
+    private at = 0;
+    private names: string[] = [];
+
+    connectedCallback() {
+      this.lines = JSON.parse(this.dataset.lines!);
+      this.names = [...this.querySelectorAll('.stg-name')].map((n) => n.textContent ?? '');
+      this.part('next').addEventListener('click', () => this.go(this.at + 1));
+      this.part('back').addEventListener('click', () => this.go(this.at - 1));
+      this.go(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-stg="${name}"]`)!;
+    }
+
+    private go(i: number) {
+      this.at = Math.max(0, Math.min(this.lines.length - 1, i));
+      const line = this.lines[this.at];
+      this.part('who').textContent = `${this.names[line.who]}:`;
+      this.part('say').innerHTML = line.say;
+      this.part('body').innerHTML = line.body;
+      this.part('voice').innerHTML = line.voice;
+      this.part('count').textContent = `Line ${this.at + 1} of ${this.lines.length}`;
+      [this.querySelector('.stg-a')!, this.querySelector('.stg-b')!].forEach((fig, who) => {
+        fig.setAttribute('class', `stg-fig ${who ? 'stg-b' : 'stg-a'}${who === line.who ? ` is-speaking pose-${line.pose}` : ''}`);
+      });
+      (this.part('back') as HTMLButtonElement).disabled = this.at === 0;
+      (this.part('next') as HTMLButtonElement).disabled = this.at === this.lines.length - 1;
+    }
+  }
+  customElements.define('script-stage', ScriptStage);
+</script>
