@@ -3,6 +3,7 @@
 /** Number of words in each sentence of a text. */
 export function sentenceLengths(text: string): number[] {
   return text
+    .replace(/\b(Dr|Mr|Mrs|Ms|St)\./g, '$1')
     .split(/(?<=[.!?])["”’)]*\s+/)
     .map((s) => s.trim())
     .filter((s) => /[A-Za-z0-9]/.test(s))
@@ -15,10 +16,9 @@ export type Rhythm = 'empty' | 'few' | 'choppy' | 'long' | 'varied';
 export function rhythmOf(lengths: number[]): Rhythm {
   if (!lengths.length) return 'empty';
   if (lengths.length < 3) return 'few';
-  const avg = lengths.reduce((a, b) => a + b, 0) / lengths.length;
-  const spread = Math.max(...lengths) - Math.min(...lengths);
-  if (spread >= 5) return 'varied';
-  return avg >= 16 ? 'long' : 'choppy';
+  // Flowing writing needs a short sentence to rest on, however much the long ones differ.
+  if (Math.min(...lengths) >= 12) return 'long';
+  return Math.max(...lengths) - Math.min(...lengths) >= 5 ? 'varied' : 'choppy';
 }
 
 /**

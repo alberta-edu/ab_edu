@@ -51,7 +51,7 @@ let n = 0;
 </style>
 
 <script>
-  import { canSpeak, speak, stopSpeaking } from './voice.ts';
+  import { canSpeak, speak, stopSpeaking, whenHidden } from './voice.ts';
   import { isHidden } from './writing-tools.ts';
 
   const HELP = [
@@ -64,6 +64,8 @@ let n = 0;
 
   class PoemReader extends HTMLElement {
     private level = 0;
+    /** Which reading is current. Starting or stopping one makes any older one give up. */
+    private run = 0;
     private reading = false;
 
     connectedCallback() {
@@ -75,13 +77,16 @@ let n = 0;
       this.part('fade').addEventListener('click', () => this.setLevel(this.level + 1));
       this.part('reset').addEventListener('click', () => this.setLevel(0));
       this.addEventListener('click', (e) => (e.target as HTMLElement).closest('.pmr-w')?.classList.remove('is-hidden'));
-      // Lesson steps change the hash, and a poem shouldn't keep reading from a step that is now hidden.
-      for (const event of ['hashchange', 'pagehide']) window.addEventListener(event, () => this.stop());
+      whenHidden(this, () => this.stop());
     }
 
     private stop() {
+      if (!this.reading) return;
+      this.run++;
       this.reading = false;
       stopSpeaking();
+      this.querySelectorAll('.pmr-line.is-reading').forEach((l) => l.classList.remove('is-reading'));
+      this.part('listen').textContent = '🔊 Listen';
     }
 
     private part(name: string) {
@@ -99,14 +104,16 @@ let n = 0;
     private async listen() {
       const btn = this.part('listen');
       if (this.reading) return this.stop();
+      const run = ++this.run;
       this.reading = true;
       btn.textContent = '■ Stop';
       for (const line of this.querySelectorAll<HTMLElement>('.pmr-line')) {
-        if (!this.reading) break;
+        if (run !== this.run) return;
         line.classList.add('is-reading');
         await speak(line.dataset.line!);
         line.classList.remove('is-reading');
       }
+      if (run !== this.run) return;
       this.reading = false;
       btn.textContent = '🔊 Listen';
     }

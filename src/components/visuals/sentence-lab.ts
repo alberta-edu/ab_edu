@@ -35,8 +35,9 @@ export interface AdverbSet {
 }
 export const ADVERB_SETS: AdverbSet[] = [
   { adverb: 'quietly', subject: 'The fox', verb: 'crept', rest: 'past the tent' },
-  { adverb: 'suddenly', subject: 'The wind', verb: 'changed', rest: 'direction' },
-  { adverb: 'carefully', subject: 'Nadia', verb: 'crossed', rest: 'the icy bridge' },
+  // These verbs take no object, so nothing separates a verb from its object when the adverb moves.
+  { adverb: 'suddenly', subject: 'The wind', verb: 'shifted', rest: 'to the west' },
+  { adverb: 'carefully', subject: 'Nadia', verb: 'stepped', rest: 'onto the icy bridge' },
 ];
 export type AdverbSpot = 'start' | 'before' | 'after';
 export const ADVERB_SPOTS: AdverbSpot[] = ['start', 'before', 'after'];

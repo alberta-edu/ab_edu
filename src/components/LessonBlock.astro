@@ -223,11 +223,11 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as cons
   block.type === 'table' && (
     <div class="lb table-wrap">
       <table class="data-table">
-        {block.caption && <caption>{block.caption}</caption>}
+        {block.caption && <caption set:html={mdInline(block.caption)} />}
         <thead>
           <tr>
             {block.headers.map((h) => (
-              <th scope="col">{h}</th>
+              <th scope="col" set:html={mdInline(h)} />
             ))}
           </tr>
         </thead>

@@ -112,7 +112,8 @@ Figures (in problems, `figure` blocks and `compare` columns):
 If YAML complains about `: ` inside text, run `node scripts/quote-yaml.ts <file>`.
 
 A comma inside an unquoted `[a, b, c]` list starts a new item, and nothing warns you unless the
-answer indexes stop matching. Quote that item, or write the list one item per line.
+answer indexes stop matching. Quote that item, or write the list one item per line. The same comma in an unquoted
+`{ text: a, b }` inside a visual's props fails `npm run verify`.
 
 In YAML, write apostrophes in text as `’`. A straight `'` inside a single-quoted string ends the string early.
 

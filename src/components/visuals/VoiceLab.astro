@@ -41,6 +41,7 @@ const groups = [
     <button type="button" class="btn btn--primary btn--small" data-vlb="speak" hidden>🔊 Hear it</button>
     <span class="muted vlb-note" data-vlb="note"></span>
   </div>
+  <p class="muted vlb-note" data-vlb="limit" hidden>The computer voice can show stress, pitch and pace. Try tone and articulation with your own voice!</p>
 </voice-lab>
 
 <style is:global>
@@ -58,7 +59,7 @@ const groups = [
 </style>
 
 <script>
-  import { canSpeak, contour, INFLECTION_PITCH, PACE_RATE, speak, stopSpeaking, type Inflection, type Pace } from './voice.ts';
+  import { canSpeak, contour, PACE_RATE, pitchAt, speak, stopSpeaking, whenHidden, type Inflection, type Pace } from './voice.ts';
 
   const GAP: Record<Pace, number> = { slow: 34, medium: 18, fast: 5 };
   const NOTE: Record<string, string> = {
@@ -75,6 +76,8 @@ const groups = [
     private words: string[] = [];
     private meanings: string[] = [];
     private stress = 0;
+    /** Which reading is current. Pressing the button again makes the older one give up. */
+    private run = 0;
     private state: Record<string, string> = { inflection: 'falling', pace: 'medium', articulation: 'clear', tone: 'friendly' };
 
     connectedCallback() {
@@ -96,16 +99,26 @@ const groups = [
       const say = this.querySelector<HTMLButtonElement>('[data-vlb="speak"]')!;
       if (canSpeak()) {
         say.hidden = false;
-        say.addEventListener('click', () => {
+        this.querySelector<HTMLElement>('[data-vlb="limit"]')!.hidden = false;
+        say.addEventListener('click', () => this.hear());
+        whenHidden(this, () => {
+          this.run++;
           stopSpeaking();
-          void speak(this.words.join(' '), { rate: PACE_RATE[this.state.pace as Pace], pitch: INFLECTION_PITCH[this.state.inflection as Inflection] });
         });
       }
       this.draw();
     }
 
-    disconnectedCallback() {
+    /** Speaks word by word, so the pitch can follow the line on the screen. */
+    private async hear() {
+      const run = ++this.run;
       stopSpeaking();
+      const heights = contour(this.words.length, this.state.inflection as Inflection, this.stress);
+      const rate = PACE_RATE[this.state.pace as Pace];
+      for (const [i, word] of this.words.entries()) {
+        if (run !== this.run) return;
+        await speak(word, { pitch: pitchAt(heights[i]), rate: i === this.stress ? rate * 0.8 : rate });
+      }
     }
 
     private draw() {

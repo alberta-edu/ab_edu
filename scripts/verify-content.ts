@@ -21,6 +21,14 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'punct-lab': { mode: ['capitals', 'effect'] },
 };
 
+/** A comma in an unquoted `{ text: a, b }` splits the text and leaves `b` as a key with no value. */
+function strayKeys(value: unknown, path = 'props'): string[] {
+  if (Array.isArray(value)) return value.flatMap((v, i) => strayKeys(v, `${path}[${i}]`));
+  if (value === null) return [path];
+  if (typeof value === 'object') return Object.entries(value as object).flatMap(([k, v]) => strayKeys(v, `${path}.${k}`));
+  return [];
+}
+
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
   const fail = (id: string | undefined, msg: string) => errors.push(`${where(id)}: ${msg}`);
@@ -138,10 +146,11 @@ function verifyConcept(c: Concept) {
       if (b.type === 'figure') texts.push(b.caption);
       if (b.type === 'compare') texts.push(...b.columns.map((col) => col.body));
       if (b.type === 'table') {
-        texts.push(...b.rows.flat());
+        texts.push(...b.rows.flat(), ...b.headers, ...(b.caption ? [b.caption] : []));
         if (b.rows.some((r) => r.length !== b.headers.length)) fail(undefined, `${label}: table rows of the wrong length`);
       }
       if (b.type === 'visual' && b.caption) texts.push(b.caption);
+      if (b.type === 'visual') for (const k of strayKeys(b.props)) fail(undefined, `${label}: ${k} is empty. Quote any text with a comma in it.`);
       if (b.type === 'visual' && b.component === 'inference-equation') {
         const ex = b.props.examples as unknown[];
         if (!Array.isArray(ex) || !ex.length) fail(undefined, 'inference-equation needs props.examples');

@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { AFFIXES, SPELL_PATTERNS, addSuffix, joinParts, sameBase } from '../src/components/visuals/word-builder.ts';
 import { NEW_WORDS, ORIGINS, SHIFTS } from '../src/components/visuals/word-journey.ts';
 import { ADVERB_SETS, JOIN_SETS, ROLE_SENTENCES, TENSE_SETS, TENSES, adverbSentence } from '../src/components/visuals/sentence-lab.ts';
-import { contour, voiceReach } from '../src/components/visuals/voice.ts';
+import { contour, pitchAt, voiceReach } from '../src/components/visuals/voice.ts';
 import { isHidden, rhythmOf, sentenceLengths } from '../src/components/visuals/writing-tools.ts';
 import { loadConcepts, outcomeStatements } from '../src/lib/content.ts';
 
@@ -99,7 +99,12 @@ describe('sentence lab', () => {
 
   it('keeps a person’s name capitalized when the adverb goes first', () => {
     const nadia = ADVERB_SETS.find((s) => s.subject === 'Nadia')!;
-    expect(adverbSentence(nadia, 'start')).toBe('Carefully, Nadia crossed the icy bridge.');
+    expect(adverbSentence(nadia, 'start')).toBe('Carefully, Nadia stepped onto the icy bridge.');
+  });
+
+  it('never puts the adverb between a verb and its object', () => {
+    for (const s of ADVERB_SETS) expect(s.rest, s.verb).toMatch(/^(past|to|onto|across|into|over) /);
+    expect(adverbSentence(ADVERB_SETS[1], 'after')).toBe('The wind shifted suddenly to the west.');
   });
 
   it('has exactly one conjunction that fits each pair of ideas', () => {
@@ -125,6 +130,15 @@ describe('voice', () => {
     }
   });
 
+  it('speaks a stressed word higher, within the range speech allows', () => {
+    const line = contour(4, 'flat', 2);
+    expect(pitchAt(line[2])).toBeGreaterThan(pitchAt(line[1]));
+    for (const y of [0, 0.5, 1]) {
+      expect(pitchAt(y)).toBeGreaterThan(0);
+      expect(pitchAt(y)).toBeLessThanOrEqual(2);
+    }
+  });
+
   it('reaches one row further for each of breath, body and energy', () => {
     expect(voiceReach(false, false, false)).toBe(0);
     expect(voiceReach(true, false, false)).toBe(1);
@@ -146,6 +160,14 @@ describe('writing tools', () => {
     expect(rhythmOf([4, 5, 4, 5])).toBe('choppy');
     expect(rhythmOf([18, 20, 17])).toBe('long');
     expect(rhythmOf([3, 14, 6])).toBe('varied');
+  });
+
+  it('does not call long-winded writing flowing', () => {
+    expect(rhythmOf([20, 25, 30])).toBe('long');
+  });
+
+  it('does not end a sentence at an abbreviation', () => {
+    expect(sentenceLengths('Dr. Ortiz called. We ran.')).toEqual([3, 2]);
   });
 
   it('reads both examples in the writing lesson as they are labelled', () => {
