@@ -221,7 +221,7 @@ describe('science data', () => {
       expect(p.precip).toHaveLength(12);
       expect(Math.min(...p.temp)).toBeGreaterThanOrEqual(-30);
       expect(Math.max(...p.temp)).toBeLessThanOrEqual(30);
-      expect(Math.max(...p.precip)).toBeLessThanOrEqual(300);
+      expect(Math.max(...p.precip)).toBeLessThanOrEqual(350);
     }
   });
 
@@ -230,6 +230,14 @@ describe('science data', () => {
     expect(total(at('cairo').precip)).toBeLessThan(50);
     expect(total(at('vancouver').precip)).toBeGreaterThan(total(at('edmonton').precip));
     expect(at('vancouver').temp[0]).toBeGreaterThan(at('edmonton').temp[0]);
+    // The Iqaluit problem and the Edmonton and Vancouver model answer quote these numbers.
+    expect(at('iqaluit').temp[0]).toBe(-26);
+    expect(at('iqaluit').temp[6]).toBe(8);
+    expect(total(at('iqaluit').precip)).toBeGreaterThan(340);
+    expect(total(at('iqaluit').precip)).toBeLessThan(380);
+    expect(at('edmonton').temp[0]).toBe(-10);
+    expect(at('vancouver').temp[0]).toBe(4);
+    for (const m of [0, 10, 11]) expect(at('vancouver').precip[m]).toBeGreaterThan(150);
   });
 
   it('lists all 13 provinces and territories on the energy map, without overlaps', () => {

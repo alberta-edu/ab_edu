@@ -63,7 +63,7 @@ lesson:
         component: climate-graph
         props: { start: vancouver }
         caption: |-
-          Each line or bar is an **average for one month**, taken over about 30 years. Years of local, national and
+          Each line or bar is an **average for one month**, taken over 30 years (1991–2020). Years of local, national and
           global weather like this show each place's **climate**. The dashed outline is always **Edmonton**, so you can
           compare Alberta with other places.
       - type: table
@@ -211,15 +211,15 @@ problems:
     covers: [K1.5, S1.4, S1.3]
     type: mc
     prompt: |-
-      A place has an average January temperature of **−28 °C** and an average July temperature of **8 °C**. It gets
-      about 400 mm of precipitation a year. Which climate zone fits best?
+      A place has an average January temperature of **−26 °C** and an average July temperature of **8 °C**. It gets
+      about 360 mm of precipitation a year. Which climate zone fits best?
     choices: [Polar, Tropical, Dry, Temperate]
     fixedOrder: true
     answer: 0
     feedback:
       '1': Tropical places are hot all year.
-      '2': Dry places get very little precipitation. 400 mm is not very little, and the cold is the big clue.
-      '3': Temperate places have mild winters, not −28 °C.
+      '2': Dry places get very little precipitation, and many of them are hot. Here, the cold is the big clue.
+      '3': Temperate places have mild winters, not −26 °C.
     hints:
       - Even the warmest month is only 8 °C.
     solution:
@@ -393,7 +393,7 @@ problems:
       and one difference in **precipitation**.
     modelAnswer: |-
       Edmonton's winters are much colder than Vancouver's: Edmonton's January average is about −10 °C, but
-      Vancouver's is about 4 °C. Vancouver gets much more precipitation, especially in fall and winter, when it gets
+      Vancouver's is about 4 °C. Vancouver gets much more precipitation, especially from November to January, when it gets
       over 150 mm a month. Edmonton gets most of its precipitation in summer, and much less in total.
     rubric:
       - I compared the temperatures, using numbers or words from the graph.

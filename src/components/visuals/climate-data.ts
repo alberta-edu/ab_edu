@@ -1,7 +1,9 @@
-// Climate normals for the climate graph (SCI5-OI3-GQ1-LO1, K1.3, K1.5, S1.3, S1.4, S1.6):
-// average monthly temperature (°C) and precipitation (mm) over about 30 years, rounded.
-// Sources: Environment and Climate Change Canada climate normals; World Meteorological
-// Organization normals for Singapore and Cairo.
+// Climate normals for the climate graph (SCI5-OI3-GQ1-LO1, K1.3, K1.5, S1.3, S1.4, S1.6): average
+// monthly temperature (°C) and precipitation (mm) for 1991-2020, rounded to whole numbers.
+// Canadian stations: Environment and Climate Change Canada, Canadian Climate Normals 1991-2020
+// (Edmonton City Centre 3012208, Calgary Airport 3031092, Vancouver Airport 1108395, Toronto
+// Pearson 6158731, Iqaluit 2402592). Singapore: National Environment Agency. Cairo Airport:
+// World Meteorological Organization normals, as published by NOAA.
 
 export type Zone = 'continental' | 'temperate' | 'polar' | 'tropical' | 'dry';
 
@@ -18,13 +20,13 @@ export const MONTHS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D
 export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export const PLACES: Place[] = [
-  { id: 'edmonton', name: 'Edmonton', where: 'Alberta', zone: 'continental', temp: [-10, -9, -4, 5, 11, 15, 17, 16, 11, 4, -4, -9], precip: [21, 12, 16, 25, 46, 76, 94, 62, 39, 19, 17, 16] },
-  { id: 'calgary', name: 'Calgary', where: 'Alberta', zone: 'continental', temp: [-7, -5, -2, 4, 9, 14, 16, 16, 11, 5, -2, -7], precip: [10, 10, 18, 26, 57, 94, 66, 56, 46, 16, 13, 11] },
-  { id: 'vancouver', name: 'Vancouver', where: 'British Columbia', zone: 'temperate', temp: [4, 5, 7, 9, 13, 16, 18, 18, 15, 10, 6, 4], precip: [168, 105, 113, 88, 65, 54, 36, 37, 51, 120, 188, 161] },
-  { id: 'toronto', name: 'Toronto', where: 'Ontario', zone: 'continental', temp: [-6, -5, 0, 7, 13, 19, 22, 21, 16, 10, 4, -2], precip: [61, 51, 52, 69, 76, 77, 75, 71, 74, 63, 74, 62] },
-  { id: 'iqaluit', name: 'Iqaluit', where: 'Nunavut', zone: 'polar', temp: [-28, -28, -24, -15, -4, 4, 8, 7, 2, -5, -13, -22], precip: [21, 17, 22, 28, 27, 34, 57, 67, 50, 37, 27, 18] },
-  { id: 'singapore', name: 'Singapore', where: 'Southeast Asia', zone: 'tropical', temp: [27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 27, 27], precip: [221, 105, 154, 164, 159, 136, 154, 165, 143, 155, 256, 287] },
-  { id: 'cairo', name: 'Cairo', where: 'Egypt', zone: 'dry', temp: [14, 15, 18, 21, 25, 27, 28, 28, 26, 24, 19, 16], precip: [5, 4, 3, 1, 0, 0, 0, 0, 0, 1, 3, 6] },
+  { id: 'edmonton', name: 'Edmonton', where: 'Alberta', zone: 'continental', temp: [-10, -8, -3, 5, 12, 16, 18, 17, 12, 5, -4, -9], precip: [20, 12, 17, 29, 44, 70, 83, 61, 39, 21, 18, 12] },
+  { id: 'calgary', name: 'Calgary', where: 'Alberta', zone: 'continental', temp: [-8, -6, -2, 5, 10, 14, 17, 16, 12, 5, -2, -6], precip: [10, 12, 18, 30, 61, 113, 66, 54, 37, 17, 16, 13] },
+  { id: 'vancouver', name: 'Vancouver', where: 'British Columbia', zone: 'temperate', temp: [4, 5, 7, 9, 13, 16, 18, 18, 15, 10, 6, 4], precip: [174, 91, 106, 86, 59, 51, 34, 36, 52, 124, 175, 172] },
+  { id: 'toronto', name: 'Toronto', where: 'Ontario', zone: 'continental', temp: [-5, -4, 1, 7, 14, 19, 22, 21, 17, 10, 4, -2], precip: [62, 50, 51, 77, 78, 81, 74, 69, 69, 67, 72, 59] },
+  { id: 'iqaluit', name: 'Iqaluit', where: 'Nunavut', zone: 'polar', temp: [-26, -27, -22, -14, -3, 4, 8, 8, 3, -3, -11, -19], precip: [16, 14, 21, 23, 21, 49, 40, 62, 51, 30, 19, 16] },
+  { id: 'singapore', name: 'Singapore', where: 'Southeast Asia', zone: 'tropical', temp: [27, 27, 28, 28, 29, 29, 28, 28, 28, 28, 27, 27], precip: [222, 105, 152, 164, 164, 135, 147, 147, 125, 168, 252, 332] },
+  { id: 'cairo', name: 'Cairo', where: 'Egypt', zone: 'dry', temp: [14, 16, 18, 22, 26, 28, 29, 29, 28, 25, 20, 16], precip: [5, 4, 6, 1, 0, 0, 0, 0, 0, 1, 4, 3] },
 ];
 
 export const ZONE_LABEL: Record<Zone, string> = {
