@@ -1,0 +1,423 @@
+id: perspective-context
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI7
+outcomes: [LANENG5-OI7-GQ1-LO1]
+order: 7
+title: Perspective and Context
+shortTitle: Perspective & context
+summary: >-
+  Look at one beaver pond through three people’s eyes, explore how life shapes what they think, connect
+  texts to your world, and summarize with evidence.
+
+bigIdea: |-
+  Two people can look at the same thing and see something completely different. Their **perspectives** come
+  from their cultures, experiences and interests. The **context** around a person, an event or a text helps you
+  understand why.
+
+lesson:
+  - title: One pond, three views
+    blocks:
+      - type: visual
+        covers: [K4.1, K4.2, K4.3]
+        component: perspective-lens
+        props:
+          people:
+            - id: dad
+              icon: 🚜
+              name: Dad
+              focus: field
+              thinks: “That water is drowning my winter feed.”
+              shapedBy: His **experience** on the farm, and his **interest** in keeping his cattle fed.
+            - id: tess
+              icon: ✏️
+              name: Tess
+              focus: pond
+              thinks: “That pond is the best thing that ever happened to this creek.”
+              shapedBy: Her **interest** in wild animals. She spent the summer drawing them.
+            - id: novak
+              icon: 🥚
+              name: Mrs. Novak
+              focus: dam
+              thinks: “A dam like that would have saved us in the dry years.”
+              shapedBy: Her **experience** of a time when her well ran dry.
+        caption: Tap each person. What does each one notice first?
+
+  - title: Read the story
+    blocks:
+      - type: passage
+        id: pond
+        title: The Beaver Pond
+        form: Realistic fiction
+        paragraphs:
+          - The water had come up overnight. It covered the low corner of the hay field, and Dad stood at the edge of it with his jaw tight. “That’s a whole corner of winter feed,” he said. “Those beavers have to go.”
+          - Tess said nothing. She had spent all summer sketching the pond from the willows, and she knew each duck family by sight. To her, the dam wasn’t a problem. It was the best thing that had ever happened to the creek.
+          - Mrs. Novak from the next farm came by with a carton of eggs. She looked at the water and laughed. “You weren’t here in the dry years, Tess,” she said. “My well went dry, and the cattle stood around in the mud where this creek used to be. I would have paid good money for a pond like that.”
+          - Dad looked at the water for a long time. A flood had taken his father’s whole crop when Dad was ten, and he had never forgotten that fall.
+          - That night, Tess drew the creek again, but this time she drew the hay field too. At the top of the page she wrote, “What if the water could go around?” She left the sketch beside Dad’s coffee cup.
+        note: An original story written for AB Edu.
+
+  - title: Why they see it that way
+    blocks:
+      - type: table
+        covers: [S4.2, S4.3, K4.2]
+        caption: A main character and supporting characters can see the same pond differently.
+        headers: [Character, Their experiences and interests, What they think and do]
+        rows:
+          - ['**Tess** (main)', 'She loves drawing wildlife, and she never lived through a drought.', 'She wants to keep the pond, and looks for a way to keep the field too.']
+          - ['**Dad** (supporting)', 'He needs the feed, and his father lost a crop to a flood.', 'He sees danger, and wants the beavers gone.']
+          - ['**Mrs. Novak** (supporting)', 'She lived through the dry years, when her well went dry.', 'She sees stored water, and she laughs at the “problem.”']
+      - type: callout
+        variant: tip
+        covers: [K4.2, S4.4]
+        title: Propose another view
+        body: 'A story doesn’t tell you everything. Ask: **whose view is missing?** How would a neighbour downstream, who needs the creek to keep flowing, see this dam?'
+
+  - title: Text can change your mind
+    blocks:
+      - type: compare
+        covers: [S4.1, U4.1]
+        columns:
+          - title: Before reading
+            body: '“Beavers are cute. Who could be against them?”'
+          - title: After reading
+            body: '“I still like beavers, but now I see why a farmer would worry about losing his feed.”'
+      - type: callout
+        variant: tip
+        covers: [S4.1, U4.1]
+        title: Your view can grow
+        body: Reading about other perspectives doesn’t mean giving up your own. It means your understanding of the world gets bigger.
+
+  - title: Context is the background
+    blocks:
+      - type: compare
+        covers: [K5.1, K5.4, S5.1, S5.2, S5.5]
+        columns:
+          - title: Without context
+            body: |-
+              > Dad stood with his jaw tight.
+
+              He seems angry about a little water.
+          - title: With context
+            body: |-
+              > A flood had taken his father’s whole crop when Dad was ten.
+
+              Now we can see that he is **afraid**, and why.
+      - type: text
+        covers: [U5.1, K5.4]
+        body: '**Context** means the circumstances that form the background of a person, event, idea or text. Knowing it helps you understand why characters think and act as they do.'
+
+  - title: Who wrote it, and who is reading?
+    blocks:
+      - type: table
+        covers: [K5.2, K5.3, S5.3, S5.4]
+        caption: Two articles about beaver dams. What is the context of each writer?
+        headers: [Writer, Their background, How that may shape the text]
+        rows:
+          - ['A wetland scientist', 'Studies birds and frogs for a living', 'May focus on how ponds help wildlife']
+          - ['A rancher', 'Has lost hay to flooding', 'May focus on how dams harm farms']
+      - type: callout
+        variant: tip
+        covers: [S5.3, S5.4, K5.2]
+        title: Check the author, and check yourself
+        body: For an informational text, look up who wrote it, and why. Then notice your own context. If you grew up on a ranch, you may read that article very differently than someone who lives in a city.
+
+  - title: Connect and summarize
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: self, label: Text to self, icon: 🙋 }
+            - { id: text, label: Text to text, icon: 📚 }
+            - { id: world, label: Text to world, icon: 🌎 }
+          cards:
+            - { text: “Tess reminds me of when I wanted to keep a stray cat, and my mom said no.”, bin: self, why: 'This connects the story to your own life.' }
+            - { text: “My family had a flood in our basement, so I get why Dad is scared.”, bin: self, why: 'This connects the story to your own experience.' }
+            - { text: “Nadia in ‘The Arch’ also learned something from an older person.”, bin: text, why: 'This connects the story to another text.' }
+            - { text: “I read a book where beavers rebuilt a stream, which is what happens here.”, bin: text, why: 'This connects the story to another book.' }
+            - { text: “People on the news are arguing about water use, too.”, bin: world, why: 'This connects the story to what is happening in the world.' }
+            - { text: “Dry years really do happen on the prairies, and farmers really do worry.”, bin: world, why: 'This connects the story to real events in the world.' }
+        caption: Connections can become evidence for what you think. Where does each one belong?
+      - type: example
+        covers: [K2.2, S2.1, U2.1]
+        title: Summarize “The Beaver Pond”
+        problem: Give the main idea, with supporting evidence.
+        steps:
+          - '**Main idea:** People can see the same pond differently, because of what they have lived through.'
+          - '**Evidence from the text:** Dad fears flooding (paragraph 4), and Mrs. Novak remembers drought (paragraph 3).'
+          - '**Evidence from the world:** Farmers on the prairies can face both floods and dry years.'
+        answer: 'Dad, Tess and Mrs. Novak each see the pond differently because of their experiences, and Tess starts looking for a solution that works for everyone.'
+
+keyTerms:
+  - term: Perspective
+    covers: [K4.1]
+    definition: An attitude, belief or way of thinking about events or information.
+  - term: Context
+    covers: [K5.1]
+    definition: The circumstances that form the background of a person, an event, an idea or a text.
+  - term: Main character
+    covers: [S4.3]
+    definition: The character the story is mostly about.
+  - term: Supporting character
+    covers: [S4.3]
+    definition: A character who helps tell the main character’s story.
+  - term: Text-to-self connection
+    covers: [K2.1]
+    definition: A link between a text and your own life.
+  - term: Text-to-text connection
+    covers: [K2.1]
+    definition: A link between a text and another text.
+  - term: Text-to-world connection
+    covers: [K2.1]
+    definition: A link between a text and events or ideas in the world.
+  - term: Summarize
+    covers: [K2.2]
+    definition: To identify the main ideas of a text and use supporting evidence.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K4.1]
+    type: mc
+    prompt: What is a **perspective**?
+    choices:
+      - An attitude, belief or way of thinking about events or information
+      - A fact that everyone agrees on
+      - The title of a story
+      - The place a story happens
+    answer: 0
+    feedback:
+      '1': Different people can have different perspectives on the same fact.
+      '2': A title names a text. It doesn’t tell how someone thinks.
+      '3': That is the setting.
+    hints:
+      - Think about Dad, Tess and Mrs. Novak looking at the pond.
+    solution:
+      - A perspective is a person’s **attitude, belief or way of thinking** about something.
+
+  - id: w2
+    level: 1
+    covers: [K4.2]
+    type: multi
+    prompt: What can **influence** a person’s perspective?
+    choices: [Culture, Experiences, Interests, The font of a book]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': A font changes how text looks, not how a person thinks.
+    hints:
+      - Three of these come from a person’s life.
+    solution:
+      - Perspectives are influenced by **cultures, experiences and interests**.
+
+  - id: w3
+    level: 1
+    covers: [K2.1]
+    type: mc
+    prompt: '“This book reminds me of when I got lost at the Calgary Zoo.” What kind of connection is this?'
+    choices: [Text to self, Text to text, Text to world]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The reader isn’t comparing it to another book.
+      '2': This is the reader’s own experience, not an event in the wider world.
+    hints:
+      - Whose experience does the reader mention?
+    solution:
+      - The reader connects the book to **their own life**, so this is **text to self**.
+
+  - id: w4
+    level: 1
+    covers: [K5.1]
+    type: mc
+    prompt: In reading, what does **context** mean?
+    choices:
+      - The circumstances that form the background of a person, event, idea or text
+      - The last sentence of a story
+      - A list of words at the back of a book
+      - How long a text is
+    answer: 0
+    feedback:
+      '1': That is only the ending. Context is what surrounds and explains things.
+      '2': That is a glossary.
+      '3': Length doesn’t explain why people act as they do.
+    hints:
+      - What did we learn about Dad that changed how we saw him?
+    solution:
+      - Context is the **background**. It helps explain why things happen.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S4.2, K5.4]
+    type: evidence
+    prompt: Tap the sentence that best explains **why Dad is so worried** about the water.
+    passage: pond
+    paragraphs: [1, 4]
+    answer: [p4s2]
+    feedback:
+      p1s1: This says what happened, but not why he is so worried.
+      p1s2: This shows that he is upset, but not why he feels it so strongly.
+      p1s3: This tells what he is losing. Find the experience behind his fear.
+      p1s4: This says what he wants to do. Look for the reason from his past.
+      p4s1: He is thinking hard here. What is he thinking about?
+    hints:
+      - Look for something that happened to him long ago.
+    solution:
+      - '“A flood had taken his father’s whole crop when Dad was ten…” His **experience** shapes how he sees the water.'
+
+  - id: b2
+    level: 2
+    covers: [S4.2, S4.3]
+    type: mc
+    prompt: Why does Mrs. Novak **laugh** at the water when Dad is so worried?
+    choices:
+      - She lived through a drought, so to her, stored water looks like good luck.
+      - She doesn’t care about the Novak family’s cattle.
+      - She thinks that Dad is telling a joke.
+      - She wants to buy Dad’s farm.
+    answer: 0
+    feedback:
+      '1': She does care. Her cattle stood in the mud during the dry years, and it stayed with her.
+      '2': Dad isn’t joking, and she doesn’t say that he is.
+      '3': The story doesn’t say this. Read what she says about the dry years.
+    hints:
+      - Read what Mrs. Novak says in paragraph 3.
+    solution:
+      - Her **experience** of the dry years makes a full pond look like a good thing.
+
+  - id: b3
+    level: 2
+    covers: [S4.4]
+    type: mc
+    prompt: Which is an **alternative perspective** that the story does **not** show?
+    choices:
+      - A neighbour downstream, who worries that the dam will stop the creek from reaching their land
+      - A farmer who worries about losing hay
+      - A girl who loves drawing the ducks
+      - An older neighbour who remembers a drought
+    answer: 0
+    feedback:
+      '1': That is Dad. The story already shows his view.
+      '2': That is Tess. The story already shows her view.
+      '3': That is Mrs. Novak. The story already shows her view.
+    hints:
+      - Three of these are characters in the story.
+    solution:
+      - No one downstream appears in the story, so that view would be a **new perspective**.
+
+  - id: b4
+    level: 2
+    covers: [K5.3, S5.4]
+    type: mc
+    prompt: An article says that a new gravel pit will be great for the town. You learn that the author owns the gravel company. How should this **context** affect your reading?
+    choices:
+      - Look for other sources too, because the author has a reason to favour the pit.
+      - Believe it, because the author knows about gravel.
+      - Ignore it, because all companies lie.
+      - It shouldn’t matter, because authors have no context.
+    answer: 0
+    feedback:
+      '1': The author may know a lot, but also gains from the pit. Check other sources.
+      '2': That is too strong. Knowing the author’s context doesn’t prove the article is false.
+      '3': Every author has a context, and it can shape what they write.
+    hints:
+      - What does the author gain if readers agree?
+    solution:
+      - The author’s **context** can shape the text, so it’s wise to check other sources.
+
+  - id: b5
+    level: 2
+    covers: [K2.2, S2.1]
+    type: mc
+    prompt: Which is the **best summary** of “The Beaver Pond”?
+    choices:
+      - A beaver dam floods a hay field, and Dad, Tess and Mrs. Novak see it differently because of their experiences.
+      - Mrs. Novak brought over a carton of eggs.
+      - Tess sketched ducks, and she drew in the willows all summer, and she knew each duck family, and she had a coffee cup.
+      - Beavers are the best animals, and everyone should love them.
+    answer: 0
+    feedback:
+      '1': That’s one small detail. It doesn’t give the main idea.
+      '2': These are just details, and one is wrong. Coffee is Dad’s.
+      '3': That is an opinion. It isn’t what the story says.
+    hints:
+      - A summary gives the main idea, not every detail.
+    solution:
+      - It gives the **main idea** (one event, different views), with the key details in place.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S4.3]
+    type: mc
+    prompt: Dad and Mrs. Novak are **alike** and **different**. Which statement is true?
+    choices:
+      - Both are shaped by hard times in the past, but they fear opposite things.
+      - Both think that the beavers have to go.
+      - Both have spent the summer drawing ducks.
+      - Both lived through the same flood when they were ten.
+    answer: 0
+    feedback:
+      '1': Mrs. Novak says she would have paid good money for a pond.
+      '2': That is Tess.
+      '3': Only Dad’s family is said to have lost a crop to a flood.
+    hints:
+      - What does each one remember? What does each one fear?
+    solution:
+      - Dad remembers **too much water**, and Mrs. Novak remembers **too little**.
+
+  - id: d2
+    level: 3
+    covers: [S5.2, S4.2, K5.4]
+    type: evidence
+    prompt: Tess wrote, “What if the water could go around?” Tap the sentence that shows that her **view has started to change**.
+    passage: pond
+    paragraphs: [2, 5]
+    answer: [p5s1]
+    feedback:
+      p2s1: Here Tess isn’t saying anything. Look at the end of the story.
+      p2s2: This shows what she already loved before anything changed.
+      p2s3: This is her first view. Look for what is different at the end.
+      p2s4: This is her first view. Look for what is different at the end.
+      p5s2: This is her idea. Find the sentence that shows **what she now pays attention to**.
+      p5s3: This shows that she wants to share her idea. Find where she first shows a new view.
+    hints:
+      - What does she include in her new drawing that she had left out before?
+    solution:
+      - '“…this time she drew the hay field too.” Now she sees what matters to Dad, as well as what matters to her.'
+
+  - id: d3
+    level: 3
+    covers: [S4.1, S5.3, U4.1, U5.1]
+    type: open
+    prompt: |-
+      Whose perspective in “The Beaver Pond” is closest to your own? Explain how **your own experiences or interests**
+      shape what you think. Then tell one way the story changed or added to your view.
+    modelAnswer: |-
+      I am closest to Tess, because I love animals and I have never lived on a farm. That makes it easy for me to want to
+      save the beavers. But reading about Dad and his father’s flood made me see that it isn’t that simple. Now I would
+      want to look for a solution that works for both the beavers and the farmer.
+    rubric:
+      - I named a character and explained why I am close to that view.
+      - I connected this to my own experiences or interests.
+      - I explained how the story changed or added to my view.
+
+  - id: d4
+    level: 3
+    covers: [S2.1, K2.1, K2.2]
+    type: open
+    prompt: |-
+      Summarize “The Beaver Pond” in two or three sentences. Then support your summary with evidence from the text
+      and from **one connection** to yourself, another text or the world.
+    modelAnswer: |-
+      A beaver dam floods part of a hay field, and three people see it differently. Dad fears losing his feed because
+      a flood once took his father’s crop (paragraph 4), while Mrs. Novak remembers when her well went dry (paragraph 3). This
+      reminds me of the news stories about water use, where people also want different things.
+    rubric:
+      - I gave the main idea, not every detail.
+      - I used evidence from the text.
+      - I made one connection and said what kind it was.
