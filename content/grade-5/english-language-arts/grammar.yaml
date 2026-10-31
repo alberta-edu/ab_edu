@@ -1,0 +1,353 @@
+id: grammar
+grade: 5
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG5-OI9-GQ1-LO1]
+order: 11
+title: "Grammar: Tense, Pronouns, Adverbs and Conjunctions"
+shortTitle: Grammar
+summary: >-
+  Change a sentence and see what happens: find subjects and objects, swap in pronouns, keep your tense
+  steady, slide adverbs around, and join ideas with conjunctions.
+
+bigIdea: |-
+  Grammar lets readers follow your meaning. **Tense** tells them when. **Subjects and objects** tell them who
+  did what to whom. **Pronouns** save repeating nouns. **Adverbs** describe actions, and **conjunctions** join ideas.
+
+lesson:
+  - title: Who did what to whom?
+    blocks:
+      - type: visual
+        covers: [K2.4, K2.5, S2.3, S2.4, S2.5, S2.8]
+        component: sentence-lab
+        props: { mode: roles }
+        caption: Press the button to swap in pronouns. What stays the same? Try another sentence.
+      - type: table
+        covers: [K2.4, K2.5, S2.8]
+        caption: Three types of pronouns
+        headers: [Type, Job, Examples]
+        rows:
+          - ['**Subject pronoun**', 'Replaces the noun doing the action', 'I, you, he, she, it, we, they']
+          - ['**Object pronoun**', 'Replaces the noun receiving the action', 'me, you, him, her, us, them, whom']
+          - ['**Possessive pronoun**', 'Shows who something belongs to', 'my, your, his, her, our, their']
+
+  - title: Pronouns must agree
+    blocks:
+      - type: compare
+        covers: [K2.4, S2.5]
+        columns:
+          - title: ❌ Doesn’t agree
+            body: |-
+              The **players** packed **her** bags.
+
+              *Players* is plural, but *her* is singular.
+          - title: ✅ Agrees
+            body: |-
+              The **players** packed **their** bags.
+
+              *Players* and *their* are both plural.
+      - type: callout
+        variant: mistake
+        covers: [S2.3, S2.4, S2.8]
+        title: “Sam and me” or “Sam and I”?
+        body: 'Take away the other person, and listen. “**Sam and I** found the puck” (*I* found it: subject). “The dog followed **Sam and me**” (followed *me*: object).'
+
+  - title: Subject and verb agree, too
+    blocks:
+      - type: table
+        covers: [S2.2, U2.1]
+        caption: A singular subject takes a singular verb. A plural subject takes a plural verb.
+        headers: [Subject, Verb, Sentence]
+        rows:
+          - ['**Maya** (one)', 'skates', 'Maya **skates** on the lagoon.']
+          - ['**Maya and Leo** (two)', 'skate', 'Maya and Leo **skate** on the lagoon.']
+          - ['**The dog** (one)', 'barks', 'The dog **barks** at the geese.']
+          - ['**The dogs** (more than one)', 'bark', 'The dogs **bark** at the geese.']
+
+  - title: Stay in one time
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: sentence-lab
+        props: { mode: tense }
+        caption: Press Past, Present and Future. Watch how the verb changes, and where the marker moves.
+      - type: compare
+        covers: [K2.1, S2.1]
+        columns:
+          - title: ❌ Tense shifts
+            body: I **walked** to the rink, and I **lace** up my skates.
+          - title: ✅ Tense stays
+            body: I **walked** to the rink, and I **laced** up my skates.
+
+  - title: Adverbs on the move
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.6]
+        component: sentence-lab
+        props: { mode: adverb }
+        caption: An **adverb** describes a verb, and it often ends in *-ly*. Move it, then try another sentence.
+
+  - title: Join your ideas
+    blocks:
+      - type: visual
+        covers: [K2.3, S2.7]
+        component: sentence-lab
+        props: { mode: join }
+        caption: '**Conjunctions** are connecting words. Each one tells the reader how two ideas are related.'
+
+keyTerms:
+  - term: Tense
+    covers: [K2.1]
+    definition: The form of a verb that shows when an action happens, such as past, present or future.
+  - term: Subject
+    covers: [S2.3]
+    definition: The noun or pronoun that does the action in a sentence.
+  - term: Object
+    covers: [S2.4, K2.5]
+    definition: The noun or pronoun that receives the action in a sentence.
+  - term: Pronoun
+    covers: [K2.4]
+    definition: A word used in place of a noun, such as she, them or their.
+  - term: Adverb
+    covers: [K2.2]
+    definition: A word that describes a verb. It often ends in -ly, and it can go before or after the verb.
+  - term: Conjunction
+    covers: [K2.3]
+    definition: A connecting word that joins ideas together in a sentence.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.5]
+    type: mc
+    prompt: 'In the sentence “The coach called **us**,” what kind of pronoun is *us*?'
+    choices: [Object pronoun, Subject pronoun, Possessive pronoun]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The coach is doing the action. *Us* receives it.
+      '2': A possessive pronoun shows ownership. Nothing here belongs to anyone.
+    hints:
+      - Who is doing the calling? Who receives the call?
+    solution:
+      - '*Us* receives the action, so it is an **object pronoun**.'
+
+  - id: w2
+    level: 1
+    covers: [K2.2]
+    type: mc
+    prompt: 'Which word in this sentence is an **adverb**? “The fox crept quietly past the tent.”'
+    choices: [quietly, fox, tent, past]
+    answer: 0
+    feedback:
+      '1': A fox is a noun. An adverb describes a verb.
+      '2': A tent is a noun.
+      '3': This word tells where. Look for the word ending in *-ly* that describes how it crept.
+    hints:
+      - How did the fox creep?
+    solution:
+      - '**Quietly** describes the verb *crept*, and it ends in *-ly*.'
+
+  - id: w3
+    level: 1
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: '“The chinook **will melt** the snow.” What tense is this?'
+    choices: [Future, Past, Present]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Past tense would be *melted*.
+      '2': Present tense would be *melts*.
+    hints:
+      - Has it happened yet?
+    solution:
+      - '*Will melt* tells you it hasn’t happened yet, so it is **future** tense.'
+
+  - id: w4
+    level: 1
+    covers: [K2.3, S2.7]
+    type: mc
+    prompt: 'Which word is the **conjunction**? “We wanted to go out, but it was raining.”'
+    choices: [but, wanted, raining, out]
+    answer: 0
+    feedback:
+      '1': That is a verb. Which word connects the two ideas?
+      '2': This tells what the weather was doing. Look for the connecting word.
+      '3': This tells where they wanted to go. Look for the connecting word.
+    hints:
+      - A conjunction joins ideas.
+    solution:
+      - '**But** connects the two ideas, and shows a contrast.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S2.3, S2.4]
+    type: mc
+    prompt: 'In “**Nadia** thanked **her grandfather**,” which is the subject and which is the object?'
+    choices:
+      - Nadia is the subject, and her grandfather is the object.
+      - Her grandfather is the subject, and Nadia is the object.
+      - Both are subjects.
+      - Both are objects.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Who did the thanking? That person is the subject.
+      '2': Only Nadia does the thanking.
+      '3': Someone has to be doing the action. Who is it?
+    hints:
+      - Who did the thanking? Who was thanked?
+    solution:
+      - Nadia does the action (**subject**). Her grandfather receives it (**object**).
+
+  - id: b2
+    level: 2
+    covers: [S2.5, K2.4]
+    type: mc
+    prompt: 'Choose the pronoun that **agrees**: “The twins finished ___ project early.”'
+    choices: [their, his, its, her]
+    answer: 0
+    feedback:
+      '1': There are two twins, so the pronoun must be plural.
+      '2': Twins are people, and there are two of them. *Its* is singular.
+      '3': There are two twins, so the pronoun must be plural.
+    hints:
+      - Is *the twins* singular or plural?
+    solution:
+      - '*Twins* is plural, so it takes the plural pronoun **their**.'
+
+  - id: b3
+    level: 2
+    covers: [S2.2]
+    type: mc
+    prompt: Which sentence has correct **subject-verb agreement**?
+    choices:
+      - The geese fly south every fall.
+      - The geese flies south every fall.
+      - A goose fly south every fall.
+      - The goose and the duck flies south.
+    answer: 0
+    feedback:
+      '1': '*Geese* is plural, so it needs the plural verb *fly*.'
+      '2': One goose needs the singular verb *flies*.
+      '3': Two animals make a plural subject, so it needs *fly*.
+    hints:
+      - Check whether the subject is one thing or more than one.
+    solution:
+      - '*Geese* is plural, and *fly* is plural.'
+
+  - id: b4
+    level: 2
+    covers: [S2.1, K2.1]
+    type: mc
+    prompt: |-
+      Which version keeps the **same tense** all the way through?
+    choices:
+      - Maya packed her bag and ran to the bus.
+      - Maya packed her bag and runs to the bus.
+      - Maya packs her bag and ran to the bus.
+      - Maya will pack her bag and ran to the bus.
+    answer: 0
+    feedback:
+      '1': '*Packed* is past, and *runs* is present.'
+      '2': '*Packs* is present, and *ran* is past.'
+      '3': '*Will pack* is future, and *ran* is past.'
+    hints:
+      - Find the two verbs. Are they in the same time?
+    solution:
+      - '*Packed* and *ran* are both in the **past** tense.'
+
+  - id: b5
+    level: 2
+    covers: [S2.7, K2.3]
+    type: mc
+    prompt: 'Which conjunction best fits? “Leo was tired, ___ he kept skating.”'
+    choices: [but, so, or, because]
+    answer: 0
+    feedback:
+      '1': '*So* would mean being tired made him skate. That doesn’t fit.'
+      '2': '*Or* offers a choice. He did both of these things.'
+      '3': '*Because* would mean he kept skating since he was tired. That doesn’t fit.'
+    hints:
+      - Are the two ideas similar, or do they contrast?
+    solution:
+      - You would expect a tired person to stop, so **but** shows the contrast.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S2.8, S2.3, S2.4, K2.4]
+    type: mc
+    prompt: 'In “**She** gave **him** **her** mitts,” which description is correct?'
+    choices:
+      - She is a subject pronoun, him is an object pronoun, and her is a possessive pronoun.
+      - She is an object pronoun, him is a subject pronoun, and her is a possessive pronoun.
+      - All three are subject pronouns.
+      - She and him are possessive pronouns, and her is an object pronoun.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Who did the giving? That word is the subject.
+      '2': Only one of these does the action. Which one receives the mitts?
+      '3': Which one shows who the mitts belong to?
+    hints:
+      - Ask who gave, who received, and whose mitts they are.
+    solution:
+      - '**She** does the giving (subject), **him** receives (object), and **her** shows ownership (possessive).'
+
+  - id: d2
+    level: 3
+    covers: [S2.6, K2.2]
+    type: multi
+    prompt: 'Which sentences place the adverb *suddenly* correctly, so that it describes the verb?'
+    choices:
+      - Suddenly, the wind changed direction.
+      - The wind suddenly changed direction.
+      - The wind changed suddenly.
+      - The suddenly wind changed direction.
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': Here, *suddenly* is in front of the noun *wind*, and it doesn’t describe a verb.
+    hints:
+      - An adverb can go in several places. It must be describing the verb.
+    solution:
+      - An adverb can go at the start, **before** the verb or **after** it. The fourth sentence puts it in front of a noun.
+
+  - id: d3
+    level: 3
+    covers: [K2.5, S2.8]
+    type: mc
+    prompt: 'Which is correct, and why? “The teacher asked Sam and ___ to help.”'
+    choices:
+      - me, because the teacher asked me. Sam and I receive the action.
+      - I, because *I* always sounds more polite.
+      - myself, because it is longer.
+      - mine, because it shows that we belong to the teacher.
+    answer: 0
+    feedback:
+      '1': Try it without Sam. Would you say “The teacher asked I”?
+      '2': Length doesn’t matter. What receives the action?
+      '3': '*Mine* shows ownership. Nothing here is owned.'
+    hints:
+      - Take away “Sam and,” then listen to the sentence.
+    solution:
+      - '“The teacher asked **me**” sounds right. *Me* is an **object pronoun**, because it receives the action.'
+
+  - id: d4
+    level: 3
+    covers: [S2.1, S2.5, S2.6, S2.7, U2.1]
+    type: open
+    prompt: |-
+      Write three or four sentences about something you did last weekend. Stay in the **past tense**. Use at least one
+      **pronoun**, one **adverb** and one **conjunction**. Then label each one.
+    modelAnswer: |-
+      Last Saturday, my sister and I hiked to the falls. We **carefully** (adverb) crossed the icy bridge, **but** (conjunction)
+      my sister slipped anyway. I gave **her** (pronoun) my hand, and we walked the rest of the way together.
+    rubric:
+      - All of my verbs are in the past tense.
+      - My pronouns agree with the nouns that they replace.
+      - I used and labelled an adverb and a conjunction.
