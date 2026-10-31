@@ -1,0 +1,341 @@
+id: body-systems
+grade: 5
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI5-OI4-GQ1-LO1]
+order: 8
+title: Human Body Systems
+shortTitle: Human body systems
+summary: >-
+  Explore the digestive, respiratory, circulatory and musculoskeletal systems, then follow a breath and a
+  bite of food as three systems team up to feed a muscle.
+
+bigIdea: |-
+  Humans are complex organisms. Inside the body, **biological systems** carry out vital processes like
+  movement, nutrition and respiration. The systems **rely on each other**: the digestive, respiratory and
+  circulatory systems work together to supply the body with oxygen and nutrients.
+
+lesson:
+  - title: Four body systems
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.3, S1.2]
+        component: body-systems
+        props: { start: digestive }
+        caption: Choose a system to see its major parts. The picture shows a person facing you, so their right side is on your left.
+      - type: table
+        covers: [K1.4, K1.5, K1.6, K1.7, S1.2, S1.3]
+        headers: [System, What it does, Major parts]
+        rows:
+          - ['**Digestive**', 'Breaks down food and absorbs nutrients', 'Mouth, stomach, intestines, liver, pancreas']
+          - ['**Respiratory**', 'Exchanges oxygen and carbon dioxide', 'Trachea, lungs, diaphragm']
+          - ['**Circulatory**', 'Moves blood around the body', 'Heart, blood vessels']
+          - ['**Musculoskeletal**', 'Supports and moves the body', 'Muscles, bones']
+
+  - title: Vital biological processes
+    blocks:
+      - type: table
+        covers: [K1.2, S1.1, U1.1]
+        caption: Processes that complex organisms need to stay alive and healthy
+        headers: [Process, What it means, Systems that carry it out]
+        rows:
+          - ['🏃 **Movement**', 'Moving the body and its parts', 'Musculoskeletal']
+          - ['🍎 **Nutrition**', 'Getting nutrients from food', 'Digestive, with the circulatory system carrying the nutrients']
+          - ['🫁 **Respiration**', 'Taking in oxygen and getting rid of carbon dioxide', 'Respiratory, with the circulatory system carrying the oxygen']
+          - ['📏 **Growth**', 'Getting bigger and stronger', 'All systems, using the nutrients and oxygen they deliver']
+          - ['🐣 **Reproduction**', 'Making offspring', 'Other body systems']
+      - type: callout
+        variant: tip
+        covers: [K1.3, S1.1]
+        title: Not just humans
+        body: Many other animals, like dogs, horses and birds, also have digestive, respiratory, circulatory and musculoskeletal systems.
+
+  - title: 'Virtual experiment: feed a muscle'
+    blocks:
+      - type: experiment
+        covers: [K1.8, S1.4, K1.1]
+        title: Follow a breath and a bite of food
+        question: Your arm muscle needs **oxygen** and **nutrients** to work. You take a breath and eat a bite of food.
+        animation: body-trip
+        predict:
+          choices:
+            - The digestive system carries them to the muscle.
+            - The respiratory system carries them to the muscle.
+            - The circulatory system carries them to the muscle.
+            - The muscle makes them by itself.
+          answer: 2
+        observe: |-
+          Oxygen went from the **lungs** into the blood. Nutrients went from the **intestines** into the blood. The
+          **heart** pumped the blood through **blood vessels** to the arm muscle.
+        explain: |-
+          - The **respiratory** system brings in oxygen.
+          - The **digestive** system breaks down food and absorbs nutrients.
+          - The **circulatory** system carries both to every part of the body.
+          - Each system relies on the others. Together they supply oxygen and nutrients.
+
+  - title: Systems rely on each other
+    blocks:
+      - type: compare
+        covers: [K1.1, K1.8, U1.1]
+        columns:
+          - title: Without the lungs
+            body: The blood would have no oxygen to carry.
+          - title: Without the intestines
+            body: The blood would have no nutrients to carry.
+          - title: Without the heart
+            body: Oxygen and nutrients would never reach the muscles.
+      - type: callout
+        variant: mistake
+        covers: [K1.5, K1.6]
+        title: The lungs don't send air to your muscles
+        body: Air stays in the lungs. Only the **oxygen** passes into the blood, and the **circulatory system** carries it.
+
+keyTerms:
+  - term: Biological system
+    covers: [K1.1, K1.3]
+    definition: A group of body parts that work together to carry out a vital process.
+  - term: Digestive system
+    covers: [K1.4]
+    definition: Breaks down food and absorbs nutrients. Includes the mouth, stomach, intestines, liver and pancreas.
+  - term: Respiratory system
+    covers: [K1.5]
+    definition: Exchanges oxygen and carbon dioxide. Includes the trachea, lungs and diaphragm.
+  - term: Circulatory system
+    covers: [K1.6]
+    definition: Moves blood around the body. Includes the heart and blood vessels.
+  - term: Musculoskeletal system
+    covers: [K1.7]
+    definition: Supports and moves the body. Includes muscles and bones.
+  - term: Nutrients
+    covers: [K1.4, K1.8]
+    definition: The useful parts of food that the body absorbs and uses.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.6, S1.3]
+    type: mc
+    prompt: The **heart** is part of which system?
+    choices: [Circulatory, Digestive, Respiratory, Musculoskeletal]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The digestive system breaks down food.
+      '2': The respiratory system includes the trachea, lungs and diaphragm.
+      '3': The heart is a muscle, but it belongs to the system that moves blood.
+    hints:
+      - Which system moves blood around the body?
+    solution:
+      - The heart pumps blood, so it is part of the **circulatory** system.
+
+  - id: w2
+    level: 1
+    covers: [K1.5]
+    type: mc
+    prompt: What does the **respiratory system** do?
+    choices:
+      - Exchanges oxygen and carbon dioxide
+      - Breaks down food
+      - Moves blood around the body
+      - Supports the body
+    answer: 0
+    feedback:
+      '1': That is the digestive system.
+      '2': That is the circulatory system.
+      '3': That is the musculoskeletal system.
+    hints:
+      - Think about the lungs.
+    solution:
+      - The respiratory system **exchanges oxygen and carbon dioxide**.
+
+  - id: w3
+    level: 1
+    covers: [K1.4, S1.3]
+    type: multi
+    prompt: Select **all** the parts of the **digestive system**.
+    choices: [Mouth, Stomach, Intestines, Liver, Pancreas, Lungs, Heart]
+    fixedOrder: true
+    answer: [0, 1, 2, 3, 4]
+    hints:
+      - The digestive system breaks down food and absorbs nutrients.
+    solution:
+      - ✓ Mouth, stomach, intestines, liver and pancreas.
+      - ✗ The lungs are respiratory. The heart is circulatory.
+
+  - id: w4
+    level: 1
+    covers: [K1.7]
+    type: mc
+    prompt: Which system **supports and moves** the body?
+    choices: [Musculoskeletal, Circulatory, Digestive, Respiratory]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The circulatory system moves **blood**, not the whole body.
+      '2': The digestive system breaks down food.
+      '3': The respiratory system exchanges gases.
+    hints:
+      - This system includes muscles and bones.
+    solution:
+      - The **musculoskeletal** system (muscles and bones) supports and moves the body.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.5, S1.3]
+    type: mc
+    prompt: The **diaphragm** is a dome-shaped muscle under the lungs. Which system is it part of?
+    choices: [Respiratory, Musculoskeletal, Digestive, Circulatory]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': It is a muscle, but its job is to help you breathe.
+      '2': It sits near the stomach, but it doesn't break down food.
+      '3': It doesn't move blood.
+    hints:
+      - The diaphragm helps your lungs fill with air.
+    solution:
+      - The diaphragm is part of the **respiratory** system, with the trachea and lungs.
+
+  - id: b2
+    level: 2
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: Which vital biological process does the **digestive system** mainly carry out?
+    choices: [Nutrition, Movement, Respiration, Reproduction]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Movement is mainly the musculoskeletal system.
+      '2': Respiration is mainly the respiratory system.
+      '3': The digestive system doesn't make offspring.
+    hints:
+      - The digestive system gets nutrients from food.
+    solution:
+      - Getting nutrients from food is **nutrition**.
+
+  - id: b3
+    level: 2
+    covers: [K1.8, S1.4]
+    type: order
+    prompt: Put the steps in order to show how **oxygen** gets from the air to an arm muscle.
+    items:
+      - Air comes in through the mouth or nose.
+      - Air travels down the trachea.
+      - Air fills the lungs.
+      - Oxygen passes from the lungs into the blood.
+      - The heart pumps the blood through blood vessels to the arm muscle.
+    hints:
+      - The respiratory system comes first, then the circulatory system.
+    solution:
+      - Mouth or nose → trachea → lungs → into the blood → the heart pumps it to the muscle.
+
+  - id: b4
+    level: 2
+    covers: [K1.7, S1.1, K1.3]
+    type: mc
+    prompt: A dog chases a ball. Which of the dog's systems moves its legs?
+    choices: [Musculoskeletal, Respiratory, Digestive, Dogs don't have body systems]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The respiratory system brings in oxygen, but it doesn't move the legs.
+      '2': The digestive system breaks down food.
+      '3': Many animals, including dogs, have these same systems.
+    hints:
+      - Which system includes muscles and bones?
+    solution:
+      - The dog's **musculoskeletal** system moves its legs. Many animals have the same systems as humans.
+
+  - id: b5
+    level: 2
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: The **liver** and **pancreas** are part of which system?
+    choices: [Digestive, Circulatory, Respiratory, Musculoskeletal]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The circulatory system is the heart and blood vessels.
+      '2': The respiratory system is the trachea, lungs and diaphragm.
+      '3': The musculoskeletal system is muscles and bones.
+    hints:
+      - Look at the parts of each system in the table.
+    solution:
+      - The liver and pancreas are part of the **digestive** system.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.1, K1.8, U1.1]
+    type: mc
+    prompt: If a person's heart stopped pumping, their muscles would soon run out of oxygen, even though the lungs still had air in them. What does this show?
+    choices:
+      - Body systems rely on each other.
+      - The lungs carry oxygen to the muscles.
+      - The heart makes oxygen.
+      - Muscles don't need oxygen.
+    answer: 0
+    feedback:
+      '1': Air stays in the lungs. The blood carries the oxygen.
+      '2': The heart pumps blood. Oxygen comes in through the lungs.
+      '3': Muscles need oxygen to work.
+    hints:
+      - Which system carries oxygen from the lungs to the muscles?
+    solution:
+      - The respiratory system brings oxygen in, but the **circulatory** system must carry it. The systems **rely on each other**.
+
+  - id: d2
+    level: 3
+    covers: [K1.8, S1.4]
+    type: mc
+    prompt: When you run, you breathe faster and your heart beats faster. Why?
+    choices:
+      - Your muscles need more oxygen, so the respiratory and circulatory systems work harder together.
+      - Your stomach needs more air to digest food.
+      - Your bones need more blood to stay hard.
+      - Running makes the diaphragm part of the digestive system.
+    answer: 0
+    feedback:
+      '1': Air goes to the lungs, not the stomach.
+      '2': It is the working **muscles** that need more.
+      '3': The diaphragm is always part of the respiratory system.
+    hints:
+      - What do working muscles need from the blood?
+    solution:
+      - Working muscles need more **oxygen**. You breathe faster to take in more, and your heart pumps faster to deliver it.
+
+  - id: d3
+    level: 3
+    covers: [K1.8, K1.4, K1.6]
+    type: mc
+    prompt: 'Kai says: "The digestive system feeds my whole body by itself." What is missing from Kai''s idea?'
+    choices:
+      - The circulatory system has to carry the nutrients to the rest of the body.
+      - Nothing. The digestive system works alone.
+      - The respiratory system breaks down the food.
+      - The bones absorb the nutrients.
+    answer: 0
+    feedback:
+      '1': The digestive system absorbs nutrients, but it can't deliver them everywhere.
+      '2': The respiratory system exchanges gases. It doesn't break down food.
+      '3': Nutrients are absorbed in the digestive system and carried by the blood.
+    hints:
+      - In the experiment, how did the nutrients reach the arm muscle?
+    solution:
+      - Nutrients pass into the blood, and the **circulatory** system carries them around the body.
+
+  - id: d4
+    level: 3
+    covers: [K1.8, S1.4]
+    type: open
+    prompt: Explain how **three** body systems work together to supply a leg muscle with oxygen and nutrients.
+    modelAnswer: |-
+      The respiratory system takes in air. Oxygen passes from the lungs into the blood. The digestive system breaks
+      down food, and nutrients pass from the intestines into the blood. The circulatory system's heart pumps the
+      blood through the blood vessels to the leg muscle, delivering the oxygen and nutrients.
+    rubric:
+      - I explained what the **respiratory** system does.
+      - I explained what the **digestive** system does.
+      - I explained how the **circulatory** system delivers both to the muscle.

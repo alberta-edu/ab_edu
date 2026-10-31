@@ -1,0 +1,401 @@
+id: weather-climate
+grade: 5
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI5-OI3-GQ1-LO1]
+order: 6
+title: Weather, Climate and Weather Tools
+shortTitle: Weather, climate and weather tools
+summary: >-
+  Read seven weather tools, tell weather from climate, compare climate graphs for Alberta and the world,
+  and learn how forecasters predict the weather.
+
+bigIdea: |-
+  **Weather** is what the air outside is like over a short time: today, this week. **Climate** is the
+  pattern of weather in a region over **at least 30 years**. Tools measure the weather, and years of
+  those measurements describe the climate.
+
+lesson:
+  - title: Tools that measure the weather
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, K1.1, U2.1]
+        component: weather-station
+        caption: Pick a kind of weather, then a tool. Watch what each tool shows.
+      - type: table
+        covers: [K2.1, K1.1]
+        headers: [Tool, Measures]
+        rows:
+          - ['Thermometer', 'Temperature']
+          - ['Wind vane', 'Wind direction (the arrow points to where the wind comes **from**)']
+          - ['Windsock', 'Wind direction, and roughly how strong the wind is']
+          - ['Anemometer', 'Wind speed']
+          - ['Barometer', 'Air pressure']
+          - ['Rain or snow gauge', 'Precipitation: how much rain or snow falls']
+          - ['Hygrometer', 'Humidity: how much water vapour is in the air']
+
+  - title: Weather or climate?
+    blocks:
+      - type: compare
+        covers: [K1.1, K1.2, S1.1]
+        columns:
+          - title: Weather
+            body: |-
+              **Short-term** conditions: temperature, wind speed and direction, amount of sunlight, precipitation,
+              humidity and cloud cover.
+
+              *"It's −15 °C and snowing in Edmonton today."*
+          - title: Climate
+            body: |-
+              **Long-term** weather patterns of a region over **at least 30 years**.
+
+              *"Edmonton has cold, snowy winters and warm summers."*
+      - type: callout
+        variant: mistake
+        covers: [S1.1, U1.1]
+        title: One day doesn't change a climate
+        body: A snowstorm in May is **weather**. Only patterns over many years tell you about the **climate**.
+
+  - title: Reading climate graphs
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2, S1.4, S1.6, S1.3]
+        component: climate-graph
+        props: { start: vancouver }
+        caption: |-
+          Each line or bar is an **average for one month**, taken over 30 years (1991–2020). Years of local, national and
+          global weather like this show each place's **climate**. The dashed outline is always **Edmonton**, so you can
+          compare Alberta with other places.
+      - type: table
+        covers: [K1.5, S1.3]
+        caption: Climate zones
+        headers: [Zone, What it is like, Example from the graph]
+        rows:
+          - ['**Tropical**', 'Hot all year, often with lots of rain', 'Singapore']
+          - ['**Dry**', 'Very little precipitation', 'Cairo, Egypt']
+          - ['**Temperate**', 'Mild: winters are not very cold, summers are not very hot', 'Vancouver, British Columbia']
+          - ['**Continental**', 'Cold winters and warm summers: a big change through the year', 'Edmonton and Calgary, Alberta']
+          - ['**Polar**', 'Very cold for most of the year', 'Iqaluit, Nunavut']
+
+  - title: What shapes a climate
+    blocks:
+      - type: table
+        covers: [K1.4, S1.5]
+        headers: [Factor, What it does, In Alberta]
+        rows:
+          - ['**Geographical location**', 'Places farther from the equator get less of the Sun''s heat.', 'Alberta is far north of the equator, so winters are long and cold.']
+          - ['**Proximity to bodies of water**', 'Oceans and big lakes keep nearby places mild.', 'Alberta is far from the oceans, so its temperatures change a lot from winter to summer.']
+          - ['**Landforms**', 'Mountains can block moist air.', 'The Rocky Mountains block moist air from the Pacific Ocean, so Alberta is fairly dry.']
+          - ['**Altitude**', 'Higher places are usually cooler.', 'The high peaks of the Rocky Mountains stay cold enough to keep snow and glaciers all summer.']
+
+  - title: Make a weather map
+    blocks:
+      - type: visual
+        covers: [S2.5, S2.4, K2.2]
+        component: weather-map
+        caption: This is a sample day, with made-up readings. Use the data to build a weather map of Alberta.
+
+  - title: Predicting the weather
+    blocks:
+      - type: table
+        covers: [K2.4, S2.7, K2.2]
+        headers: [Method, How it helps]
+        rows:
+          - ['**Computer modelling**', 'Computers use today''s measurements to calculate what the weather will do next.']
+          - ['**Historical data**', 'Records from past years show what usually happens at this time of year.']
+          - ['**Satellite imaging**', 'Pictures from space show clouds and storms moving.']
+          - ['**First Nations, Métis and Inuit traditional knowledge**', 'Generations of watching the sky, the wind, the land and animals help people read the signs of coming weather.']
+      - type: text
+        covers: [K2.3, K1.6, S2.8]
+        body: |-
+          First Nations, Métis and Inuit communities use **traditional knowledge** along with modern tools to interpret
+          and predict the weather. Their long-term observations, passed down over many years, also describe the
+          **climate** of their local area.
+      - type: callout
+        variant: tip
+        covers: [S2.6, K2.2]
+        title: Why forecasts matter
+        body: |-
+          Forecasts on websites, weather maps and weather apps help people stay safe in storms and extreme cold, and
+          help farmers, pilots and travellers plan.
+
+keyTerms:
+  - term: Weather
+    covers: [K1.1]
+    definition: The short-term conditions in a region, such as temperature, wind, sunlight, precipitation, humidity and cloud cover.
+  - term: Climate
+    covers: [K1.2]
+    definition: The long-term weather patterns of a region over a period of at least 30 years.
+  - term: Precipitation
+    covers: [K1.1]
+    definition: Water that falls from the sky, such as rain or snow.
+  - term: Humidity
+    covers: [K1.1]
+    definition: The amount of water vapour in the air. Measured with a hygrometer.
+  - term: Climate zone
+    covers: [K1.5]
+    definition: 'An area with a distinct climate: tropical, dry, temperate, polar or continental.'
+  - term: Anemometer
+    covers: [K2.1]
+    definition: A tool with spinning cups that measures wind speed.
+  - term: Barometer
+    covers: [K2.1]
+    definition: A tool that measures air pressure.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: '"It is raining in Red Deer this afternoon." Is this about weather or climate?'
+    choices: [Weather, Climate]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Climate is about patterns over at least 30 years. This is about one afternoon.
+    hints:
+      - Is this about a short time or a long time?
+    solution:
+      - It describes conditions over a **short time**, so it is **weather**.
+
+  - id: w2
+    level: 1
+    covers: [K1.2]
+    type: number
+    prompt: Climate is the pattern of weather in a region over a period of at least how many **years**?
+    answer: 30
+    unit: years
+    hints:
+      - It is more than a few years. Think of three decades.
+    solution:
+      - Climate describes weather patterns over **at least 30 years**.
+
+  - id: w3
+    level: 1
+    covers: [K2.1]
+    type: mc
+    prompt: Which tool measures **wind speed**?
+    choices: [Anemometer, Thermometer, Barometer, Hygrometer]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A thermometer measures temperature.
+      '2': A barometer measures air pressure.
+      '3': A hygrometer measures humidity.
+    hints:
+      - This tool has cups that spin faster when the wind is stronger.
+    solution:
+      - An **anemometer** measures wind speed.
+
+  - id: w4
+    level: 1
+    covers: [K2.1, K1.1]
+    type: mc
+    prompt: A **hygrometer** measures…
+    choices: [humidity, air pressure, temperature, precipitation]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Air pressure is measured with a barometer.
+      '2': Temperature is measured with a thermometer.
+      '3': Precipitation is measured with a rain or snow gauge.
+    hints:
+      - It is about water vapour in the air.
+    solution:
+      - A hygrometer measures **humidity**, the amount of water vapour in the air.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.5, S1.4, S1.3]
+    type: mc
+    prompt: |-
+      A place has an average January temperature of **−26 °C** and an average July temperature of **8 °C**. It gets
+      about 360 mm of precipitation a year. Which climate zone fits best?
+    choices: [Polar, Tropical, Dry, Temperate]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Tropical places are hot all year.
+      '2': Dry places get very little precipitation, and many of them are hot. Here, the cold is the big clue.
+      '3': Temperate places have mild winters, not −26 °C.
+    hints:
+      - Even the warmest month is only 8 °C.
+    solution:
+      - Very cold for most of the year, and cool even in summer → **polar**. (This is Iqaluit, Nunavut.)
+
+  - id: b2
+    level: 2
+    covers: [K1.4, S1.6, S1.5]
+    type: mc
+    prompt: In the climate graphs, Vancouver's winters are much **warmer** than Edmonton's. Which factor best explains this?
+    choices:
+      - Vancouver is next to the Pacific Ocean.
+      - Vancouver is much farther north.
+      - Vancouver has fewer weather tools.
+      - Vancouver gets less precipitation.
+    answer: 0
+    feedback:
+      '1': Vancouver is actually farther **south** than Edmonton, but the ocean is the bigger reason.
+      '2': Tools measure the climate. They don't change it.
+      '3': Vancouver gets **more** precipitation than Edmonton.
+    hints:
+      - Which climate factor is about bodies of water?
+    solution:
+      - Being close to a large body of water, the **Pacific Ocean**, keeps Vancouver's winters mild.
+
+  - id: b3
+    level: 2
+    covers: [S2.3, S2.4]
+    type: number
+    prompt: |-
+      Jaylen recorded the high temperature each school day for one week:
+
+      | Mon | Tue | Wed | Thu | Fri |
+      |---|---|---|---|---|
+      | 12 °C | 15 °C | 9 °C | 18 °C | 14 °C |
+
+      What is the difference between the **warmest** and **coldest** days?
+    answer: 9
+    unit: °C
+    hints:
+      - Find the highest and the lowest temperatures first.
+    solution:
+      - Warmest is Thursday (18 °C). Coldest is Wednesday (9 °C).
+      - '18 − 9 = **9 °C**.'
+    verify: '18 - 9'
+
+  - id: b4
+    level: 2
+    covers: [K2.4, S2.7]
+    type: multi
+    prompt: Select **all** the methods used to predict the weather.
+    choices: [Computer modelling, Historical data, Satellite imaging, 'First Nations, Métis and Inuit traditional knowledge', Flipping a coin]
+    fixedOrder: true
+    answer: [0, 1, 2, 3]
+    hints:
+      - One choice is just a guess, not a method based on observations.
+    solution:
+      - ✓ Computer modelling, historical data, satellite imaging and traditional knowledge are all used to predict the weather.
+      - ✗ Flipping a coin is a guess.
+
+  - id: b5
+    level: 2
+    covers: [S2.6]
+    type: mc
+    prompt: Why would a farmer check the weather forecast before harvesting a crop?
+    choices:
+      - To plan the harvest before a storm could damage the crop.
+      - To find out the climate zone of the farm.
+      - To measure the humidity of the soil.
+      - Forecasts don't help farmers.
+    answer: 0
+    feedback:
+      '1': The climate zone doesn't change from day to day. A forecast is about the coming days.
+      '2': A forecast tells you about the weather, not the soil.
+      '3': Forecasts help many people plan, including farmers.
+    hints:
+      - A forecast tells you what the weather will be soon.
+    solution:
+      - Knowing a storm is coming lets the farmer **plan ahead** and protect the crop.
+
+  - id: b6
+    level: 2
+    covers: [S2.2, K2.1]
+    type: mc
+    prompt: |-
+      Noor builds a simple weather tool from a straight-sided jar with a ruler taped to it, and sets it outside in an
+      open spot. Which tool did Noor make, and what does it measure?
+    choices:
+      - A rain gauge, which measures precipitation
+      - A wind vane, which measures wind direction
+      - A barometer, which measures air pressure
+      - A thermometer, which measures temperature
+    answer: 0
+    feedback:
+      '1': A wind vane needs a part that turns in the wind.
+      '2': A barometer responds to air pressure. An open jar catches rain.
+      '3': A thermometer shows how warm the air is. A ruler can't show that.
+    hints:
+      - What could collect in an open jar outside? What would the ruler measure?
+    solution:
+      - Rain collects in the jar, and the ruler shows how deep it is. That is a simple **rain gauge**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: The arrow of a wind vane is pointing **north**. Which way is the wind blowing?
+    choices:
+      - From the north, toward the south
+      - From the south, toward the north
+      - From the east, toward the west
+      - You can't tell from a wind vane.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A wind vane's arrow points to where the wind comes **from**, not where it goes.
+      '2': The arrow is pointing north, not east.
+      '3': A wind vane is the tool for wind direction.
+    hints:
+      - The wind pushes the wide tail away, so the arrow turns to face into the wind.
+    solution:
+      - The arrow points **into** the wind. Pointing north means the wind is coming **from the north**, blowing south.
+
+  - id: d2
+    level: 3
+    covers: [S1.5, K1.4]
+    type: mc
+    prompt: Alberta is fairly **dry** compared with the coast of British Columbia. Which factor best explains this?
+    choices:
+      - The Rocky Mountains block moist air from the Pacific Ocean.
+      - Alberta is at the equator.
+      - Alberta is next to a large ocean.
+      - Alberta has no altitude.
+    answer: 0
+    feedback:
+      '1': Alberta is far north of the equator.
+      '2': Alberta is far from any ocean.
+      '3': Every place has an altitude. This doesn't explain dryness.
+    hints:
+      - Which landform lies between Alberta and the Pacific Ocean?
+    solution:
+      - The **Rocky Mountains** (a landform) block much of the moist air coming from the Pacific Ocean.
+
+  - id: d3
+    level: 3
+    covers: [S1.1, U1.1, K1.2]
+    type: mc
+    prompt: '"It snowed in Calgary last May, so Calgary''s climate must be getting colder." What is wrong with this conclusion?'
+    choices:
+      - One snowfall is weather. Climate is based on patterns over at least 30 years.
+      - Nothing. One snowfall proves it.
+      - It never snows in Calgary.
+      - Climate is only about rain, not snow.
+    answer: 0
+    feedback:
+      '1': One event can't show a long-term pattern.
+      '2': Calgary gets snow every winter, and sometimes in spring.
+      '3': Climate includes all kinds of precipitation, and temperature too.
+    hints:
+      - How long a time does climate describe?
+    solution:
+      - A single snowfall is **weather**. To say the climate is changing, you need patterns over **many years**.
+
+  - id: d4
+    level: 3
+    covers: [S1.6, S1.4]
+    type: open
+    prompt: |-
+      Use the climate graphs to compare **Edmonton** with **Vancouver**. Describe one difference in **temperature**
+      and one difference in **precipitation**.
+    modelAnswer: |-
+      Edmonton's winters are much colder than Vancouver's: Edmonton's January average is about −10 °C, but
+      Vancouver's is about 4 °C. Vancouver gets much more precipitation, especially from November to January, when it gets
+      over 150 mm a month. Edmonton gets most of its precipitation in summer, and much less in total.
+    rubric:
+      - I compared the temperatures, using numbers or words from the graph.
+      - I compared the precipitation.
+      - I named which place was colder, and which was wetter.

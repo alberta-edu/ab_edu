@@ -1,0 +1,170 @@
+---
+// The four forces of flight (SCI5-OI2-GQ1-LO1, K1.1-K1.7): set thrust, drag, lift and weight,
+// and watch how the pairs of opposing forces change speed and altitude.
+const PRESETS = [
+  { id: 'level', label: 'Straight and level', f: [5, 5, 5, 5] },
+  { id: 'faster', label: 'Speed up', f: [8, 4, 5, 5] },
+  { id: 'climb', label: 'Climb', f: [5, 5, 8, 5] },
+  { id: 'descend', label: 'Descend', f: [5, 5, 2, 5] },
+];
+const SLIDERS = [
+  { id: 'thrust', label: 'Thrust' },
+  { id: 'drag', label: 'Drag' },
+  { id: 'lift', label: 'Lift' },
+  { id: 'weight', label: 'Weight' },
+];
+---
+<flight-forces data-presets={JSON.stringify(PRESETS)}>
+  <div class="seg ff-what" role="group" aria-label="What is flying?">
+    <button type="button" data-ff-obj="plane" aria-pressed="true">Airplane</button>
+    <button type="button" data-ff-obj="bird" aria-pressed="false">Bird</button>
+  </div>
+  <svg class="sci-svg ff-svg" viewBox="0 0 640 300" aria-hidden="true" data-ff="svg"></svg>
+  <div class="ff-meters" aria-hidden="true">
+    <div><span>Speed</span><span class="ff-bar"><span data-ff="speed"></span></span></div>
+    <div><span>Altitude</span><span class="ff-bar"><span data-ff="alt"></span></span></div>
+  </div>
+  <div class="ff-sliders">
+    {
+      SLIDERS.map((s) => (
+        <label class={`control ff-slider ff-slider--${s.id}`}>
+          <span class="ff-name">{s.label}</span>
+          <input type="range" min="0" max="10" step="1" value="5" data-ff-force={s.id} />
+          <output data-ff-out={s.id}>5</output>
+        </label>
+      ))
+    }
+  </div>
+  <div class="sci-pick" role="group" aria-label="Try a flight">
+    {PRESETS.map((p) => <button type="button" data-ff-preset={p.id} aria-pressed="false">{p.label}</button>)}
+  </div>
+  <p class="sci-say" data-ff="say" aria-live="polite"></p>
+</flight-forces>
+
+<style is:global>
+  flight-forces { display: block; }
+  .ff-what { margin-bottom: 0.6rem; }
+  .ff-meters { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1rem; margin-top: 0.5rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .ff-meters > div { display: flex; align-items: center; gap: 0.5rem; }
+  .ff-bar { flex: 1; height: 10px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+  .ff-bar span { display: block; height: 100%; width: 50%; background: var(--accent); border-radius: inherit; }
+  .ff-sliders { display: grid; gap: 0.25rem 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin-block: 0.75rem; }
+  .ff-slider { flex-wrap: nowrap; }
+  .ff-name { min-width: 4.2rem; }
+  .ff-slider output { min-width: 1.4rem; text-align: right; font-variant-numeric: tabular-nums; }
+  .ff-slider--thrust { --accent: var(--science); color: var(--science); }
+  .ff-slider--drag { --accent: var(--bad); color: var(--bad); }
+  .ff-slider--lift { --accent: var(--math); color: var(--math); }
+  .ff-stripe { fill: color-mix(in srgb, var(--ink) 25%, transparent); }
+  .ff-slider--weight { --accent: var(--ink-2); color: var(--ink-2); }
+</style>
+
+<script>
+  import { forceArrow, OBJECT_SVG, type ObjectKind } from './force-arrows.ts';
+  import { loopWhileVisible } from '../experiments/anim.ts';
+
+  type Forces = { thrust: number; drag: number; lift: number; weight: number };
+  const KEYS = ['thrust', 'drag', 'lift', 'weight'] as const;
+  const W = 640;
+  const H = 300;
+  const GROUND = 262;
+
+  class FlightForces extends HTMLElement {
+    private f: Forces = { thrust: 5, drag: 5, lift: 5, weight: 5 };
+    private obj: ObjectKind = 'plane';
+    private speed = 3; // 0..6
+    private alt = 130; // y of the flyer
+    private scroll = 0;
+    private clouds = [
+      { x: 80, y: 60, s: 1 },
+      { x: 300, y: 40, s: 0.7 },
+      { x: 520, y: 80, s: 1.2 },
+      { x: 700, y: 50, s: 0.9 },
+    ];
+
+    connectedCallback() {
+      const presets: { id: string; f: number[] }[] = JSON.parse(this.dataset.presets!);
+      this.querySelectorAll<HTMLInputElement>('[data-ff-force]').forEach((inp) =>
+        inp.addEventListener('input', () => {
+          this.f[inp.dataset.ffForce as keyof Forces] = Number(inp.value);
+          this.querySelectorAll('[data-ff-preset]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+          this.sync();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-ff-preset]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const p = presets.find((x) => x.id === b.dataset.ffPreset)!;
+          KEYS.forEach((k, i) => (this.f[k] = p.f[i]));
+          this.querySelectorAll('[data-ff-preset]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.speed = 3;
+          this.alt = p.id === 'climb' ? 200 : p.id === 'descend' ? 70 : 130;
+          this.sync();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-ff-obj]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.obj = b.dataset.ffObj as ObjectKind;
+          this.querySelectorAll('[data-ff-obj]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.sync();
+        }),
+      );
+      this.sync();
+      this.draw();
+      loopWhileVisible(this, (dt) => this.tick(dt));
+    }
+
+    private sync() {
+      for (const k of KEYS) {
+        this.querySelector<HTMLInputElement>(`[data-ff-force="${k}"]`)!.value = String(this.f[k]);
+        this.querySelector(`[data-ff-out="${k}"]`)!.textContent = String(this.f[k]);
+      }
+      const { thrust, drag, lift, weight } = this.f;
+      const who = this.obj === 'plane' ? 'The airplane' : 'The bird';
+      const h = thrust > drag ? 'speeds up' : thrust < drag ? 'slows down' : 'keeps the same speed';
+      const v = lift > weight ? 'climbs to a higher altitude' : lift < weight ? 'descends to a lower altitude' : 'stays at the same altitude';
+      const level = thrust === drag && lift === weight ? ' This is straight and level flight.' : '';
+      const why1 = thrust > drag ? 'thrust is greater than drag' : thrust < drag ? 'drag is greater than thrust' : 'thrust and drag are equal';
+      const why2 = lift > weight ? 'lift is greater than weight' : lift < weight ? 'weight is greater than lift' : 'lift and weight are equal';
+      this.querySelector('[data-ff="say"]')!.textContent = `${who} ${h} and ${v}: ${why1}, and ${why2}.${level}`;
+    }
+
+    private tick(dt: number) {
+      const { thrust, drag, lift, weight } = this.f;
+      // Speed changes while thrust and drag are unbalanced, altitude while lift and weight are.
+      this.speed = Math.max(0.6, Math.min(6, this.speed + (thrust - drag) * 0.35 * dt));
+      this.alt = Math.max(46, Math.min(GROUND - 36, this.alt - (lift - weight) * 9 * dt));
+      this.scroll += this.speed * 40 * dt;
+      this.draw();
+    }
+
+    private draw() {
+      const { thrust, drag, lift, weight } = this.f;
+      const S = 9; // pixels per unit of force
+      let clouds = '';
+      for (const c of this.clouds) {
+        const x = ((((c.x - this.scroll * c.s) % (W + 160)) + W + 160) % (W + 160)) - 80;
+        clouds += `<g transform="translate(${x.toFixed(1)} ${c.y}) scale(${c.s})"><ellipse class="sci-cloud" cx="0" cy="0" rx="38" ry="14"/><ellipse class="sci-cloud" cx="16" cy="-9" rx="20" ry="13"/></g>`;
+      }
+      // Ground stripes scroll at full speed so a change of speed is easy to see.
+      let stripes = '';
+      for (let i = 0; i < 12; i++) {
+        const x = ((((i * 70 - this.scroll * 1.6) % 840) + 840) % 840) - 100;
+        stripes += `<rect class="ff-stripe" x="${x.toFixed(1)}" y="${GROUND + 14}" width="34" height="5" rx="2"/>`;
+      }
+      const cx = 300;
+      const cy = this.alt;
+      const half = this.obj === 'plane' ? 94 : 70;
+      const flyer = `<g transform="translate(${cx} ${cy.toFixed(1)})">${OBJECT_SVG[this.obj]}</g>`;
+      const arrows =
+        forceArrow('thrust', cx + half, cy, thrust * S) +
+        forceArrow('drag', cx - half, cy, drag * S) +
+        forceArrow('lift', cx, cy - 16, lift * S) +
+        forceArrow('weight', cx, cy + 16, weight * S);
+      this.querySelector('[data-ff="svg"]')!.innerHTML =
+        `<rect class="sci-sky" x="0" y="0" width="${W}" height="${H}"/>${clouds}<rect class="sci-ground" x="0" y="${GROUND}" width="${W}" height="${H - GROUND}"/>${stripes}${flyer}${arrows}`;
+      this.querySelector<HTMLElement>('[data-ff="speed"]')!.style.width = `${(this.speed / 6) * 100}%`;
+      this.querySelector<HTMLElement>('[data-ff="alt"]')!.style.width = `${((GROUND - 36 - this.alt) / (GROUND - 82)) * 100}%`;
+    }
+  }
+  customElements.define('flight-forces', FlightForces);
+</script>

@@ -1,0 +1,421 @@
+id: mass-volume-density
+grade: 5
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI5-OI1-GQ1-LO1]
+order: 2
+title: Mass, Volume, Density and Compressibility
+shortTitle: Mass, volume, density and compressibility
+summary: >-
+  Measure mass with a balance scale and volume in millilitres, compare densities by weighing and layering,
+  and see why air squeezes but water doesn't.
+
+bigIdea: |-
+  **Mass** is how much matter something has. **Volume** is how much space it takes up. **Density** compares
+  the two: the more mass packed into the same volume, the **denser** it is. Anything **less dense** than the
+  fluid around it floats.
+
+lesson:
+  - title: Measuring mass
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, S2.1]
+        component: measure-tools
+        props: { mode: mass }
+        caption: |-
+          Put an object on the left pan. Add standard masses to the right pan until the beam is **level**. Then the
+          two sides have the same mass.
+      - type: table
+        covers: [K2.1]
+        caption: Physical properties of matter
+        headers: [Property, What it tells you]
+        rows:
+          - ['State', 'Solid, liquid or gas']
+          - ['Mass', 'The amount of matter']
+          - ['Volume', 'The amount of space it takes up']
+          - ['Density', 'How its mass compares to its volume']
+          - ['Compressibility', 'How much it can be squeezed into a smaller volume']
+
+  - title: Measuring volume
+    blocks:
+      - type: visual
+        covers: [K2.4, K2.5, S2.2]
+        component: measure-tools
+        props: { mode: volume }
+        caption: |-
+          Pour, then read the mark that is level with the **top of the liquid**. Bend down so your eye is at the
+          same height as the liquid.
+      - type: table
+        covers: [K2.3, K2.5, K2.6]
+        caption: SI units and their abbreviations
+        headers: [Measures, Unit, Abbreviation]
+        rows:
+          - ['Mass', 'gram', '**g**']
+          - ['Mass', 'kilogram (1 kg = 1000 g)', '**kg**']
+          - ['Volume of a liquid', 'millilitre', '**mL**']
+          - ['Volume of a liquid', 'litre (1 L = 1000 mL)', '**L**']
+      - type: callout
+        variant: tip
+        covers: [S2.7]
+        title: Use tools safely
+        body: |-
+          - Set glass containers on a flat table, away from the edge.
+          - Pour slowly, and wipe up spills right away.
+          - Never taste anything you are measuring in an investigation.
+
+  - title: 'Density: same size, different mass'
+    blocks:
+      - type: visual
+        covers: [K2.7, K2.8, K2.9, K2.10, S2.3]
+        component: density-balance
+        caption: |-
+          Every cube is the **same size** (the same volume). Put two cubes on the balance. The cube with **more
+          mass** sinks lower, so it is **denser**.
+      - type: compare
+        covers: [K2.8, K2.9]
+        columns:
+          - title: Denser
+            body: More mass in the same volume. A steel cube is **denser** than a wooden cube of the same size.
+          - title: Less dense
+            body: Less mass in the same volume. Cork is **less dense** than wood.
+
+  - title: 'Virtual experiment: a tower of liquids'
+    blocks:
+      - type: experiment
+        covers: [K2.10, K2.11, S2.4]
+        title: Pour four liquids into one container
+        question: |-
+          Pour **vegetable oil** first, then **water**, then **dish soap**, then **honey**. Each liquid is poured on
+          top of the ones already in the container.
+        animation: liquid-layers
+        predict:
+          choices:
+            - They stay in the order they were poured, with oil at the bottom.
+            - They sort into layers, with the densest liquid at the bottom.
+            - They all mix together into one colour.
+          answer: 1
+        observe: |-
+          Each new liquid sank down through any liquid that was **less dense** than it. From bottom to top, the
+          layers ended up as **honey**, **dish soap**, **water**, **vegetable oil**.
+        explain: |-
+          - A liquid that is **denser** sinks when it is added to another liquid.
+          - A liquid that is **less dense** floats on top.
+          - So honey is the densest of the four, and vegetable oil is the least dense.
+
+  - title: Density and particles
+    blocks:
+      - type: compare
+        covers: [S2.5, U2.1]
+        columns:
+          - title: Solid or liquid
+            figure: { kind: particle-boxes, boxes: [liquid] }
+            body: Particles are **close together**, so many particles, and a lot of mass, fit in a small volume.
+          - title: Gas
+            figure: { kind: particle-boxes, boxes: [gas] }
+            body: Particles have **large spaces** between them, so the same volume holds far fewer particles. Gases are much **less dense**.
+      - type: callout
+        variant: mistake
+        covers: [K2.8, K2.11]
+        title: Heavy is not the same as dense
+        body: |-
+          A huge log has more mass than a small pebble, but the log floats and the pebble sinks. What matters is
+          how much mass is packed into **each bit of space**: the pebble is denser than water, the log is not.
+
+  - title: 'Virtual experiment: squeeze air and water'
+    blocks:
+      - type: experiment
+        covers: [K2.12, S2.6, U2.1]
+        title: Push two sealed syringes
+        question: |-
+          One sealed syringe holds 60 mL of **air**. The other holds 60 mL of **water**. Both plungers get the
+          **same push**.
+        animation: syringe-squeeze
+        predict:
+          choices:
+            - The air squeezes into a much smaller volume. The water hardly changes.
+            - The water squeezes more than the air.
+            - Both squeeze to the same smaller volume.
+          answer: 0
+        observe: |-
+          The **air** was squeezed from 60 mL to 30 mL. The **water** stayed at about 60 mL.
+        explain: |-
+          - Air is a gas. Its particles have **large spaces** between them, so pushing moves them closer together.
+          - Water is a liquid. Its particles are already **close together**, so there is almost no space to squeeze out.
+          - Air has high **compressibility**. Water has very low compressibility.
+
+keyTerms:
+  - term: Mass
+    covers: [K2.2, K2.3]
+    definition: The amount of matter in a solid, liquid or gas. Measured in grams (g) and kilograms (kg).
+  - term: Volume
+    covers: [K2.4, K2.5]
+    definition: The amount of space a solid, liquid or gas takes up. Liquid volume is measured in millilitres (mL) and litres (L).
+  - term: Density
+    covers: [K2.7, K2.8]
+    definition: A comparison of mass to volume. More mass in the same volume means a higher density.
+  - term: Denser / less dense
+    covers: [K2.9]
+    definition: Words for comparing densities. Steel is denser than wood. Oil is less dense than water.
+  - term: Compressibility
+    covers: [K2.12]
+    definition: The ability of a liquid or gas to reduce in volume when it is under pressure.
+  - term: Balance scale
+    covers: [S2.1]
+    definition: A tool that measures mass by balancing an object against standard masses.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.2, K2.4]
+    type: mc
+    prompt: What is **mass**?
+    choices:
+      - The amount of matter in something
+      - The amount of space something takes up
+      - How much something can be squeezed
+      - How tall something is
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': That is **volume**.
+      '2': That is **compressibility**.
+      '3': Height is a length, not the amount of matter.
+    hints:
+      - Mass is measured in grams and kilograms on a balance scale.
+    solution:
+      - '**Mass** is the amount of matter in a solid, liquid or gas.'
+
+  - id: w2
+    level: 1
+    covers: [K2.5, S2.2]
+    type: mc
+    prompt: You want to measure how much juice is in a glass. Which unit should you use?
+    choices: [Millilitres (mL), Grams (g), Kilograms (kg), Centimetres (cm)]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Grams measure **mass**, not the volume of a liquid.
+      '2': Kilograms measure **mass**.
+      '3': Centimetres measure length.
+    hints:
+      - '"How much juice" means how much space the juice takes up: its volume.'
+    solution:
+      - The volume of a liquid is measured in **millilitres (mL)** or litres (L).
+
+  - id: w3
+    level: 1
+    covers: [K2.6]
+    type: text
+    prompt: Write the SI abbreviation for **kilograms**.
+    accept: [kg]
+    hints:
+      - It uses two lowercase letters.
+    solution:
+      - Kilograms → **kg**. (Grams → g, millilitres → mL, litres → L.)
+
+  - id: w4
+    level: 1
+    covers: [K2.12, S2.6]
+    type: mc
+    prompt: Which one can be squeezed into a much **smaller volume** when you push on it?
+    choices: [Air, Water, Both the same, Neither]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Water hardly changes volume when you push on it.
+      '2': In the syringe experiment, the same push changed them very differently.
+      '3': One of them squeezed to half its volume.
+    hints:
+      - Think of the two sealed syringes.
+    solution:
+      - '**Air** is very compressible. Water hardly squeezes at all.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K2.10, S2.3, K2.8]
+    type: mc
+    figure: { kind: balance, left: [A], right: [B], down: left }
+    prompt: Cubes A and B are exactly the **same size**. Which cube is **denser**?
+    choices: [Cube A, Cube B, They have the same density, You can't tell without water]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The lower pan holds the cube with **more** mass.
+      '2': The balance is not level, so their masses are different.
+      '3': A balance is enough when the volumes are the same.
+    hints:
+      - Which side of the balance is lower? That side has more mass.
+    solution:
+      - The left pan is lower, so cube A has **more mass**.
+      - They have the same volume, so cube A is **denser**.
+
+  - id: b2
+    level: 2
+    covers: [S2.2, K2.5]
+    type: number
+    figure: { kind: cylinder, max: 100, minor: 2, major: 10, level: 64 }
+    prompt: Read the volume of water in this graduated cylinder.
+    answer: 64
+    unit: mL
+    hints:
+      - Find the numbered mark just below the top of the water.
+      - Each small mark is 2 mL.
+    solution:
+      - The water is above the 60 mL mark, by 2 small marks.
+      - '60 + 2 + 2 = **64 mL**.'
+    verify: '60 + 2 + 2'
+
+  - id: b3
+    level: 2
+    covers: [S2.1, K2.3]
+    type: number
+    figure: { kind: balance, left: [Rock], right: [100 g, 50 g, 10 g, 10 g], down: none }
+    prompt: The balance is level. What is the **mass** of the rock, in grams?
+    answer: 170
+    unit: g
+    hints:
+      - When the beam is level, both sides have the same mass.
+    solution:
+      - Level beam → the rock's mass equals the masses on the right pan.
+      - '100 + 50 + 10 + 10 = **170 g**.'
+    verify: '100 + 50 + 10 + 10'
+
+  - id: b4
+    level: 2
+    covers: [K2.10, S2.4]
+    type: order
+    prompt: |-
+      A student tests some liquids. **Maple syrup** sinks in dish soap. **Dish soap** sinks in water.
+      **Vegetable oil** floats on water. Order the liquids from **densest** (bottom of a tower) to **least dense** (top).
+    items: [Maple syrup, Dish soap, Water, Vegetable oil]
+    hints:
+      - A liquid that sinks in another liquid is denser than it.
+    solution:
+      - Maple syrup is denser than dish soap. Dish soap is denser than water. Oil is less dense than water.
+      - 'Bottom to top: maple syrup → dish soap → water → vegetable oil.'
+
+  - id: b5
+    level: 2
+    covers: [K2.7, K2.8]
+    type: mc
+    prompt: A bag of feathers and a brick each have a mass of **1 kg**. The feathers take up much **more space**. Which is **less dense**?
+    choices: [The feathers, The brick, They have the same density, You can't compare them]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The brick packs the same mass into a **smaller** volume, so it is denser.
+      '2': Their masses are equal, but their volumes are not.
+      '3': Density compares mass to volume, and you know both.
+    hints:
+      - Same mass. Which one spreads that mass over more space?
+    solution:
+      - Same mass, but the feathers have a much greater volume.
+      - Less mass for each bit of space → the feathers are **less dense**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.10, K2.11, S2.3]
+    type: mc
+    prompt: |-
+      Blocks P and Q are the **same size**. In water, P floats and Q sinks. If you put them on a balance
+      scale, what will happen?
+    choices:
+      - Q's side goes lower, because Q has more mass.
+      - P's side goes lower, because P floats.
+      - The balance stays level, because they are the same size.
+      - You can't tell without measuring their volumes.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Floating means P is **less dense** than water. Same size and less dense means **less** mass.
+      '2': Same size doesn't mean same mass. Their densities are different.
+      '3': They are already the same size, so their volumes are equal.
+    hints:
+      - Q sinks, so Q is denser than water. P floats, so P is less dense.
+      - With the same volume, the denser block has more mass.
+    solution:
+      - Q sinks and P floats, so Q is denser than P.
+      - Same volume + denser → more mass. Q's side of the balance goes **lower**.
+
+  - id: d2
+    level: 3
+    covers: [U2.1, S2.6, K2.12]
+    type: mc
+    prompt: Why can you squeeze air into a smaller volume, but not water?
+    choices:
+      - Air particles have large spaces between them that can be made smaller. Water particles are already close together.
+      - Air particles are smaller than water particles.
+      - Air particles stop moving when you push on them.
+      - Water has no particles, so there is nothing to squeeze.
+    answer: 0
+    feedback:
+      '1': The difference is the **spaces** between the particles, not their size.
+      '2': Particles are always moving.
+      '3': All matter, including water, is made of particles.
+    hints:
+      - Compare the spaces between particles in a gas and in a liquid.
+    solution:
+      - In a gas, particles are separated by **large spaces**. Pushing moves them closer together, so the volume shrinks.
+      - In a liquid, particles are already close together, so the volume hardly changes.
+
+  - id: d3
+    level: 3
+    covers: [K2.11, K2.8]
+    type: mc
+    prompt: 'Sam says: "Big, heavy things sink, and small, light things float." Which observation shows Sam is wrong?'
+    choices:
+      - A big log floats, but a small pebble sinks.
+      - A big rock sinks.
+      - A small leaf floats.
+      - A heavy anchor sinks.
+    answer: 0
+    feedback:
+      '1': This matches Sam's idea, so it can't show it is wrong.
+      '2': This matches Sam's idea too.
+      '3': Sam would expect this. Look for something that **doesn't** fit.
+    hints:
+      - Look for a big thing that floats, or a small thing that sinks.
+    solution:
+      - The log is big and heavy but floats. The pebble is small and light but sinks.
+      - 'Floating depends on **density**, not size: things less dense than water float.'
+
+  - id: d4
+    level: 3
+    covers: [S2.5, U2.1, K2.11]
+    type: mc
+    prompt: Air bubbles in a fish tank always rise to the top. Use the particle model to explain why.
+    choices:
+      - The air's particles have large spaces between them, so the air is less dense than the water, and it floats up.
+      - The air's particles are lighter because they are smaller.
+      - The water pushes the air up because water particles stop moving.
+      - Air has no mass, so it can't sink.
+    answer: 0
+    feedback:
+      '1': The particles aren't smaller. In a gas, the **spaces between** them are larger.
+      '2': Particles are always moving.
+      '3': Air is matter, so it has mass. It just has very little mass for its volume.
+    hints:
+      - Something less dense than the fluid around it floats.
+      - How are the particles of a gas spread out?
+    solution:
+      - Gas particles are separated by **large spaces**, so a bubble holds few particles for its volume.
+      - Air is much **less dense** than water, so the bubbles float up.
+
+  - id: d5
+    level: 3
+    covers: [S2.3, K2.10]
+    type: open
+    prompt: |-
+      You have two cubes of the **same size**: one of plastic and one of rubber. You also have a balance scale.
+      Explain how to find out which material is **denser**.
+    modelAnswer: |-
+      Put the plastic cube on one pan and the rubber cube on the other. The cubes have the same volume, so the
+      side that goes lower has more mass. The cube on the lower side is the denser material. If the balance stays
+      level, they have the same density.
+    rubric:
+      - I put one cube on each pan of the balance.
+      - I said the lower side has **more mass**.
+      - I explained that, with the **same volume**, more mass means **denser**.

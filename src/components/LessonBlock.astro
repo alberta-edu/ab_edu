@@ -25,6 +25,24 @@ import CoordinateGrid from './visuals/CoordinateGrid.astro';
 import RectangleBuilder from './visuals/RectangleBuilder.astro';
 import SequenceBuilder from './visuals/SequenceBuilder.astro';
 import DataSorter from './visuals/DataSorter.astro';
+import MeasureTools from './visuals/MeasureTools.astro';
+import DensityBalance from './visuals/DensityBalance.astro';
+import FlightForces from './visuals/FlightForces.astro';
+import FloatLab from './visuals/FloatLab.astro';
+import EnergyMap from './visuals/EnergyMap.astro';
+import WeatherStation from './visuals/WeatherStation.astro';
+import ClimateGraph from './visuals/ClimateGraph.astro';
+import HarvestSim from './visuals/HarvestSim.astro';
+import BodySystems from './visuals/BodySystems.astro';
+import PlantTransport from './visuals/PlantTransport.astro';
+import SeasonsOrbit from './visuals/SeasonsOrbit.astro';
+import MoonPhases from './visuals/MoonPhases.astro';
+import Aurora from './visuals/Aurora.astro';
+import BlockCode from './visuals/BlockCode.astro';
+import DesignLab from './visuals/DesignLab.astro';
+import FairTest from './visuals/FairTest.astro';
+import DataViews from './visuals/DataViews.astro';
+import WeatherMap from './visuals/WeatherMap.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -35,6 +53,24 @@ interface Props {
 }
 const { block, uid } = Astro.props;
 const visuals = {
+  'weather-map': WeatherMap,
+  'data-views': DataViews,
+  'fair-test': FairTest,
+  'design-lab': DesignLab,
+  'block-code': BlockCode,
+  'aurora': Aurora,
+  'moon-phases': MoonPhases,
+  'seasons-orbit': SeasonsOrbit,
+  'plant-transport': PlantTransport,
+  'body-systems': BodySystems,
+  'harvest-sim': HarvestSim,
+  'climate-graph': ClimateGraph,
+  'weather-station': WeatherStation,
+  'energy-map': EnergyMap,
+  'measure-tools': MeasureTools,
+  'density-balance': DensityBalance,
+  'flight-forces': FlightForces,
+  'float-lab': FloatLab,
   'data-sorter': DataSorter,
   'sequence-builder': SequenceBuilder,
   'rectangle-builder': RectangleBuilder,

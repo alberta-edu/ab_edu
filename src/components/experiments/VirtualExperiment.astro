@@ -3,13 +3,35 @@
 import type { LessonBlock } from '../../lib/schema.ts';
 import { md, mdInline } from '../../lib/render.ts';
 import ContainerSwap from './ContainerSwap.astro';
+import Eclipses from './Eclipses.astro';
+import SunPath from './SunPath.astro';
+import CeleryDye from './CeleryDye.astro';
+import BodyTrip from './BodyTrip.astro';
+import SoilStorm from './SoilStorm.astro';
+import LiquidLayers from './LiquidLayers.astro';
+import SyringeSqueeze from './SyringeSqueeze.astro';
+import ArrowFlight from './ArrowFlight.astro';
+import EggFloat from './EggFloat.astro';
+import EnergyRun from './EnergyRun.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
   uid: string;
 }
 const { block, uid } = Astro.props;
-const animations = { 'container-swap': ContainerSwap };
+const animations = {
+  'container-swap': ContainerSwap,
+  'eclipses': Eclipses,
+  'sun-path': SunPath,
+  'celery-dye': CeleryDye,
+  'body-trip': BodyTrip,
+  'soil-storm': SoilStorm,
+  'liquid-layers': LiquidLayers,
+  'syringe-squeeze': SyringeSqueeze,
+  'arrow-flight': ArrowFlight,
+  'egg-float': EggFloat,
+  'energy-run': EnergyRun,
+};
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
 ---

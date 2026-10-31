@@ -1,0 +1,63 @@
+---
+// The northern lights (SCI5-OI5-GQ1-LO1, K1.6, S1.3): moving curtains of coloured light over a
+// northern night sky.
+---
+<aurora-sky>
+  <svg class="sci-svg au-svg" viewBox="0 0 640 300" role="img" aria-label="Animated drawing of the northern lights: green curtains of light, with pink edges, rippling across a night sky above dark trees.">
+    <defs>
+      <linearGradient id="au-curtain" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c46be0" stop-opacity="0" />
+        <stop offset="0.25" stop-color="#c46be0" stop-opacity="0.45" />
+        <stop offset="0.45" stop-color="#46f08a" stop-opacity="0.8" />
+        <stop offset="1" stop-color="#46f08a" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+    <rect width="640" height="300" fill="#081026" />
+    <g data-au="stars"></g>
+    <g data-au="curtains"></g>
+    <path fill="#050a14" d="M0,300 L0,250 L20,232 L28,250 L44,220 L58,252 L80,236 L92,254 L120,226 L140,256 L170,240 L190,258 L230,246 L270,260 L330,250 L380,262 L420,240 L438,256 L460,224 L478,254 L500,234 L516,256 L540,214 L560,254 L590,236 L606,256 L640,240 L640,300 Z" />
+  </svg>
+</aurora-sky>
+
+<style is:global>
+  aurora-sky { display: block; }
+  .au-svg { border-radius: var(--radius-sm); }
+</style>
+
+<script>
+  import { loopWhileVisible } from '../experiments/anim.ts';
+
+  class AuroraSky extends HTMLElement {
+    private t = 0;
+
+    connectedCallback() {
+      let stars = '';
+      for (let k = 0; k < 60; k++) stars += `<circle cx="${(k * 97) % 640}" cy="${(k * 53) % 230}" r="${k % 5 ? 0.8 : 1.4}" fill="#fff" opacity="0.7"/>`;
+      this.querySelector('[data-au="stars"]')!.innerHTML = stars;
+      this.draw();
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches)
+        loopWhileVisible(this, (dt) => {
+          this.t += dt;
+          this.draw();
+        });
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (let c = 0; c < 3; c++) {
+        // A wavy ribbon: a top edge and a bottom edge that ripple slowly.
+        const top: string[] = [];
+        const bottom: string[] = [];
+        for (let x = -20; x <= 660; x += 20) {
+          const w = Math.sin(x / 90 + this.t * 0.6 + c * 2) * 26 + Math.sin(x / 37 - this.t * 0.9 + c) * 8;
+          const base = 70 + c * 34 + w;
+          top.push(`${x},${(base - 50 - c * 6).toFixed(1)}`);
+          bottom.unshift(`${x},${(base + 70).toFixed(1)}`);
+        }
+        out.push(`<polygon points="${[...top, ...bottom].join(' ')}" fill="url(#au-curtain)" opacity="${(0.75 - c * 0.18 + Math.sin(this.t + c) * 0.1).toFixed(2)}"/>`);
+      }
+      this.querySelector('[data-au="curtains"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('aurora-sky', AuroraSky);
+</script>

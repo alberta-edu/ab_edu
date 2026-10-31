@@ -1,0 +1,375 @@
+id: energy-resources
+grade: 5
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI5-OI2-GQ2-LO1]
+order: 5
+title: Renewable and Non-renewable Energy
+shortTitle: Renewable and non-renewable energy
+summary: >-
+  Run 100 years of energy use to see which resources run out, compare renewable and non-renewable energy,
+  and explore how Alberta and the rest of Canada make electricity.
+
+bigIdea: |-
+  People rely on **energy resources** to meet their energy needs. **Renewable** resources, like sunlight and
+  wind, are naturally replenished. **Non-renewable** resources, like fossil fuels, get used up because they
+  take thousands or millions of years to form again.
+
+lesson:
+  - title: 'Virtual experiment: 100 years of energy'
+    blocks:
+      - type: experiment
+        covers: [K1.1, K1.2, K1.4, U1.1]
+        title: Use five energy resources every year for 100 years
+        question: |-
+          A town uses **solar**, **wind**, **biomass** (wood from a forest that is replanted), **coal** and
+          **natural gas** every year. Watch what is left.
+        animation: energy-run
+        predict:
+          choices:
+            - All five run out.
+            - Coal and natural gas run out. The others are still there.
+            - Solar and wind run out. The others are still there.
+            - None of them run out.
+          answer: 1
+        observe: |-
+          After 100 years, **solar**, **wind** and **biomass** were still available. **Coal** and **natural gas** ran
+          out, and they did not come back.
+        explain: |-
+          - The Sun shines and the wind blows again every day. New trees grow where trees were cut, because the forest was replanted. These are **renewable**.
+          - Coal and natural gas take **millions of years** to form. Once they are used, they are gone for a very long time. They are **non-renewable**.
+
+  - title: Renewable energy resources
+    blocks:
+      - type: table
+        covers: [K1.2, K1.3]
+        caption: Renewable resources are naturally replenished, if they are handled responsibly.
+        headers: [Resource, The energy comes from…]
+        rows:
+          - ['☀️ **Solar**', 'sunlight']
+          - ['💨 **Wind**', 'moving air']
+          - ['🌳 **Biomass**', 'wood and other plant material']
+          - ['🌋 **Geothermal**', 'heat from deep inside Earth']
+          - ['🌊 **Tidal**', 'ocean tides rising and falling']
+          - ['💧 **Water and hydro**', 'flowing water in rivers and at dams']
+      - type: callout
+        variant: mistake
+        covers: [K1.2]
+        title: Renewable only if handled responsibly
+        body: A forest is renewable **if it is replanted**. Cut trees faster than they can grow back, and the forest gets used up.
+
+  - title: Non-renewable energy resources
+    blocks:
+      - type: compare
+        covers: [K1.4, K1.5]
+        columns:
+          - title: Fossil fuels
+            body: |-
+              **Coal**, **oil** and **natural gas**. They take millions of years to form, so once they are burned, they
+              are not replenished.
+          - title: Nuclear
+            body: |-
+              Nuclear power stations use **uranium**, a metal mined from the ground. Earth won't make more of it for
+              us to use.
+      - type: compare
+        covers: [K1.1, S1.1]
+        columns:
+          - title: Renewable
+            body: Naturally **replenished**. Not used up over time.
+          - title: Non-renewable
+            body: '**Used up** over time. Not replenished for thousands or millions of years.'
+
+  - title: Advantages and disadvantages
+    blocks:
+      - type: table
+        covers: [S1.2, S1.1, U1.1]
+        headers: [Resource, Advantage, Disadvantage]
+        rows:
+          - ['Solar', 'Renewable. No smoke while making electricity.', 'Works only when the Sun is shining.']
+          - ['Wind', 'Renewable. No smoke while making electricity.', 'Works only when the wind is blowing.']
+          - ['Water and hydro', 'Renewable. Makes electricity day and night.', 'Dams flood land and change rivers where animals live.']
+          - ['Biomass', 'Renewable when forests and crops are replanted.', 'Burning it makes smoke.']
+          - ['Fossil fuels', 'Ready any time. Easy to store and move.', 'Non-renewable. Burning them pollutes the air.']
+          - ['Nuclear', 'Makes a lot of electricity steadily, with no smoke.', 'Non-renewable. Its waste must be stored safely for a very long time.']
+
+  - title: Energy across Canada
+    blocks:
+      - type: visual
+        covers: [S1.3, K1.6]
+        component: energy-map
+        props: { start: AB }
+        caption: |-
+          Each box is a province or territory, in roughly the right place. The colour shows how it makes **most of
+          its electricity**. Tap a box to read more. Based on 2021 data from the Canada Energy Regulator.
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: Alberta uses both kinds
+        body: |-
+          Alberta relies on **fossil fuels** (non-renewable) and on **water and hydro**, **wind** and **biomass**
+          (renewable) to meet its energy needs.
+
+keyTerms:
+  - term: Energy resource
+    covers: [K1.1, U1.1]
+    definition: Something people use to meet their energy needs, such as wind, sunlight or coal.
+  - term: Renewable
+    covers: [K1.2]
+    definition: Naturally replenished, so it is not used up over time if it is handled responsibly.
+  - term: Non-renewable
+    covers: [K1.4]
+    definition: Used up over time, because it will not be replenished for thousands or millions of years.
+  - term: Fossil fuels
+    covers: [K1.5]
+    definition: Coal, oil and natural gas. They are non-renewable.
+  - term: Biomass
+    covers: [K1.3]
+    definition: Wood and other plant material used for energy. Renewable when it is replanted.
+  - term: Geothermal
+    covers: [K1.3]
+    definition: Energy from heat deep inside Earth. Renewable.
+  - term: Tidal
+    covers: [K1.3]
+    definition: Energy from ocean tides rising and falling. Renewable.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.3]
+    type: mc
+    prompt: Which energy resource is **renewable**?
+    choices: [Wind, Coal, Natural gas, Nuclear]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Coal is a fossil fuel. It takes millions of years to form.
+      '2': Natural gas is a fossil fuel, so it is non-renewable.
+      '3': Nuclear energy is non-renewable.
+    hints:
+      - Which one comes back again every day?
+    solution:
+      - '**Wind** is renewable: the wind keeps blowing, so it is not used up.'
+
+  - id: w2
+    level: 1
+    covers: [K1.5]
+    type: mc
+    prompt: Which energy resource is **non-renewable**?
+    choices: [Oil, Solar, Tidal, Geothermal]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Sunlight is replenished every day, so solar is renewable.
+      '2': The tides rise and fall every day, so tidal energy is renewable.
+      '3': Heat from deep inside Earth is renewable.
+    hints:
+      - Look for a fossil fuel.
+    solution:
+      - '**Oil** is a fossil fuel. Fossil fuels are non-renewable.'
+
+  - id: w3
+    level: 1
+    covers: [K1.4]
+    type: mc
+    prompt: Why is **coal** a non-renewable energy resource?
+    choices:
+      - It will not be naturally replenished for millions of years.
+      - It is black.
+      - It is found underground.
+      - It is heavy.
+    answer: 0
+    feedback:
+      '1': Colour doesn't decide whether a resource is renewable.
+      '2': Geothermal heat also comes from underground, and it is renewable.
+      '3': Mass doesn't decide whether a resource is renewable.
+    hints:
+      - What does "non-renewable" mean?
+    solution:
+      - Coal takes **millions of years** to form, so once it is used, it is not replenished.
+
+  - id: w4
+    level: 1
+    covers: [K1.3, K1.5]
+    type: multi
+    prompt: Select **all** the renewable energy resources.
+    choices: [Solar, Geothermal, Tidal, Biomass, Natural gas, Nuclear]
+    fixedOrder: true
+    answer: [0, 1, 2, 3]
+    hints:
+      - Fossil fuels and nuclear are non-renewable.
+    solution:
+      - ✓ Solar, geothermal, tidal and biomass are renewable.
+      - ✗ Natural gas (a fossil fuel) and nuclear are non-renewable.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K1.2]
+    type: mc
+    prompt: |-
+      A town burns wood from a nearby forest for energy. It cuts down trees every year and **never plants new
+      ones**. What will happen?
+    choices:
+      - The forest could be used up, because it is not handled responsibly.
+      - Nothing. Biomass is renewable, so it can never run out.
+      - The forest will turn into a fossil fuel right away.
+      - The trees will grow back faster because they were cut.
+    answer: 0
+    feedback:
+      '1': Biomass is renewable **only** if it is handled responsibly, such as by replanting.
+      '2': Fossil fuels take millions of years to form.
+      '3': Without replanting, there may be nothing left to grow back.
+    hints:
+      - When is biomass replenished?
+    solution:
+      - Biomass is renewable when forests are **replanted**. Without replanting, the forest gets used up.
+
+  - id: b2
+    level: 2
+    covers: [K1.6]
+    type: multi
+    prompt: Select **all** the energy resources that Alberta relies on.
+    choices: [Fossil fuels, Water and hydro, Wind, Biomass, Tidal]
+    fixedOrder: true
+    answer: [0, 1, 2, 3]
+    hints:
+      - Alberta uses both renewable and non-renewable resources. Does Alberta touch an ocean?
+    solution:
+      - ✓ Alberta relies on fossil fuels, water and hydro, wind and biomass.
+      - ✗ Tidal energy needs an ocean coast. Alberta has none.
+
+  - id: b3
+    level: 2
+    covers: [S1.3]
+    type: mc
+    prompt: Use the map of Canada. Which province makes **almost all** of its electricity from water (hydro)?
+    choices: [Quebec, Alberta, Ontario, Nova Scotia]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Alberta makes most of its electricity from fossil fuels.
+      '2': Ontario makes most of its electricity from nuclear energy.
+      '3': Nova Scotia makes most of its electricity from fossil fuels.
+    hints:
+      - Look for the blue boxes on the map.
+    solution:
+      - '**Quebec** makes almost all of its electricity from water (hydro). So do Manitoba and Newfoundland and Labrador.'
+
+  - id: b4
+    level: 2
+    covers: [S1.2]
+    type: mc
+    prompt: What is one **disadvantage** of wind energy?
+    choices:
+      - It only works when the wind is blowing.
+      - It will run out in a few years.
+      - It is a fossil fuel.
+      - It makes a lot of smoke.
+    answer: 0
+    feedback:
+      '1': Wind is renewable. It doesn't run out.
+      '2': Wind is not a fossil fuel.
+      '3': Wind turbines make no smoke.
+    hints:
+      - Think about calm days.
+    solution:
+      - Wind turbines only make electricity when the **wind is blowing**.
+
+  - id: b5
+    level: 2
+    covers: [S1.2, S1.1]
+    type: mc
+    prompt: What is one **advantage** of fossil fuels?
+    choices:
+      - They are ready to use any time and are easy to store and move.
+      - They are renewable.
+      - Burning them keeps the air clean.
+      - They form again in a few days.
+    answer: 0
+    feedback:
+      '1': Fossil fuels are **non-renewable**.
+      '2': Burning fossil fuels pollutes the air.
+      '3': Fossil fuels take millions of years to form.
+    hints:
+      - Compare fossil fuels with sunlight, which isn't there at night.
+    solution:
+      - Fossil fuels can be stored and used **any time**, day or night, calm or windy.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.4, K1.5, S1.1]
+    type: mc
+    prompt: '"Nuclear power stations make no smoke, so nuclear energy is renewable." What is wrong with this idea?'
+    choices:
+      - Renewable means naturally replenished. Nuclear power uses uranium, which is not replenished.
+      - Nothing. Anything with no smoke is renewable.
+      - Nuclear power stations make a lot of smoke.
+      - Nuclear energy is a fossil fuel.
+    answer: 0
+    feedback:
+      '1': Having no smoke is an advantage, but it doesn't make a resource renewable.
+      '2': Nuclear power stations don't burn fuel, so they make no smoke.
+      '3': Nuclear energy is non-renewable, but it is not a fossil fuel.
+    hints:
+      - What does "renewable" actually mean?
+    solution:
+      - '**Renewable** is about being replenished, not about smoke.'
+      - Uranium is not replenished, so nuclear energy is **non-renewable**.
+
+  - id: d2
+    level: 3
+    covers: [K1.3, S1.3]
+    type: mc
+    prompt: A community in the middle of the Prairies wants a renewable energy resource. Which one **can't** it use?
+    choices: [Tidal, Solar, Wind, Biomass]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The Sun shines on the Prairies, so solar can work.
+      '2': The Prairies are often windy, so wind can work.
+      '3': Plants grow on the Prairies, so biomass can work.
+    hints:
+      - Where do tides happen?
+    solution:
+      - Tidal energy comes from **ocean tides**. The middle of the Prairies is far from any ocean.
+
+  - id: d3
+    level: 3
+    covers: [S1.2, K1.2, K1.4]
+    type: mc
+    prompt: |-
+      A town wants electricity that **won't run out** and that keeps flowing **day and night**, even on calm days.
+      Which plan is best?
+    choices:
+      - Use wind and solar, plus hydro from a nearby river.
+      - Use only solar.
+      - Use only coal.
+      - Use only wind.
+    answer: 0
+    feedback:
+      '1': Solar doesn't work at night.
+      '2': Coal works day and night, but it will run out.
+      '3': Wind doesn't work on calm days.
+    hints:
+      - Which renewable resource works day and night?
+    solution:
+      - All three are renewable, so they won't run out.
+      - Hydro keeps making electricity day and night, when the Sun isn't shining or the wind isn't blowing.
+
+  - id: d4
+    level: 3
+    covers: [S1.2, S1.1]
+    type: open
+    prompt: |-
+      Choose **one renewable** and **one non-renewable** energy resource. For each one, give an advantage and a
+      disadvantage.
+    modelAnswer: |-
+      Solar is renewable. An advantage is that it makes no smoke while making electricity. A disadvantage is that it
+      works only when the Sun is shining. Natural gas is non-renewable. An advantage is that it is ready to use any
+      time. A disadvantage is that it will be used up, and burning it pollutes the air.
+    rubric:
+      - I named one renewable and one non-renewable resource.
+      - I gave an advantage and a disadvantage for **each** one.
+      - My reasons match what each resource is like.

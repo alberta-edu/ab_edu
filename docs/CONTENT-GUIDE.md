@@ -43,8 +43,8 @@ a sentence or two.
 
 | Block | Use it for |
 |---|---|
-| `visual` | Interactive visuals. Math: `place-value`, `decimal-zoom`, `column-calc` (step-by-step algorithms), `divisibility`, `fraction-explorer`, `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`, `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`, `data-sorter`. Other subjects: `particle-model`, `globe`, `latlong-map`, `inference-equation` |
-| `experiment` | An animated virtual experiment: predict → Run → watch → why. The text must match what the animation shows |
+| `visual` | Interactive visuals. Math: `place-value`, `decimal-zoom`, `column-calc` (step-by-step algorithms), `divisibility`, `fraction-explorer`, `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`, `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`, `data-sorter`. Science: `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`, `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`, `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`, `data-views`. Other subjects: `globe`, `latlong-map`, `inference-equation` |
+| `experiment` | An animated virtual experiment: predict → Run → watch → why. The text must match what the animation shows. Animations: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`, `energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses` |
 | `compare` | 2–4 side-by-side cards (optionally with a `figure`) for contrasting ideas |
 | `figure` | A generated picture with a caption |
 | `table` | Facts that line up in rows and columns |
@@ -102,6 +102,18 @@ Figures (in problems, `figure` blocks and `compare` columns):
 - `{ kind: shape, shape, lines }` (shapes from the symmetry explorer)
 - `{ kind: square-metre }`
 - `{ kind: particle-boxes, boxes: [gas, solid, liquid] }`
+- `{ kind: forces, object: plane, forces: [{ kind: thrust, size: 1.5 }, { kind: drag }], water: true }` (force diagram; a longer arrow is a bigger force)
+- `{ kind: balance, left: [A], right: [100 g, 50 g], down: left }` (`down`: `left`, `right` or `none`; items like `100 g` are drawn as standard masses)
+- `{ kind: cylinder, max: 100, minor: 2, major: 10, level: 64 }` (graduated cylinder)
+- `{ kind: moons, ages: [3.7, 7.4], labels: [A, B] }` (Moon faces; `ages` are days into the cycle)
+- `{ kind: code, blocks: [move, { repeat: 4, body: [move, right] }] }` (block code)
 - Raw inline SVG, for a one-off diagram. Use the site's CSS classes so it works in dark mode.
 
 If YAML complains about `: ` inside text, run `node scripts/quote-yaml.ts <file>`.
+
+A comma inside an unquoted `[a, b, c]` list starts a new item, and nothing warns you unless the
+answer indexes stop matching. Quote that item, or write the list one item per line.
+
+Each visual uses its own CSS class prefix. Before picking a new one, search `src/` for it: a
+class defined twice (even in different components) restyles both, because component styles
+are global.

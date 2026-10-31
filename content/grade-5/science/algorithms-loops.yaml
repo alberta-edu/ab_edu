@@ -1,0 +1,345 @@
+id: algorithms-loops
+grade: 5
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI5-OI6-GQ1-LO1]
+order: 12
+title: Algorithms, Loops and Block Code
+shortTitle: Algorithms, loops and block code
+summary: >-
+  Build block code to guide a robot to a star, use loops to repeat instructions, and learn why a computer
+  can only do exactly what its code says.
+
+bigIdea: |-
+  An **algorithm** is a set of steps to solve a problem. **Code** turns an algorithm into instructions a
+  computer can run. A computer **cannot think for itself**: it does exactly what the code says. A **loop**
+  repeats instructions, so programs can be shorter.
+
+lesson:
+  - title: Guide the robot with code
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.4, K1.5, S1.1, S1.2, S1.3]
+        component: block-code
+        props: { start: line }
+        caption: |-
+          Tap blocks to build a program, then press **Run**. Puzzle 1 can be solved with just **2 blocks**, if you use
+          a **repeat** loop.
+      - type: callout
+        variant: tip
+        covers: [K1.6, S1.3]
+        title: The robot can't think
+        body: If the robot bumps into a rock, it isn't being silly. A computer **must rely on code** for everything it does, so the code needs fixing.
+
+  - title: Code and computational artifacts
+    blocks:
+      - type: text
+        covers: [U1.1]
+        body: People use **design** to meet needs. Some things are designed for **humans** to use, like a web page. Others are designed for **machines**, like the code that tells a robot how to move.
+      - type: compare
+        covers: [K1.3, K1.4, K1.5]
+        columns:
+          - title: Code
+            body: Any language that a computer can **understand and run**.
+          - title: Visual block-based code
+            body: Prepared chunks of instructions in **drag-and-drop blocks** that fit together like puzzle pieces to make a program.
+      - type: table
+        covers: [K1.1]
+        caption: A computational artifact is anything a person creates using a computer.
+        headers: [Computational artifact, Example]
+        rows:
+          - ['Computer programs and code', 'The robot program you just built']
+          - ['Images', 'A poster designed on a computer']
+          - ['Audio', 'A song recorded and edited on a computer']
+          - ['Video', 'A video edited on a tablet']
+          - ['Presentations', 'A slide show about the planets']
+          - ['Web pages', 'This lesson']
+
+  - title: Loops make code shorter
+    blocks:
+      - type: compare
+        covers: [K1.7, S1.5, S1.2]
+        columns:
+          - title: Without a loop (8 blocks)
+            figure: { kind: code, blocks: [move, right, move, right, move, right, move, right] }
+            body: The same two blocks, written out four times.
+          - title: With a loop (3 blocks)
+            figure: { kind: code, blocks: [{ repeat: 4, body: [move, right] }] }
+            body: A **loop** repeats the instructions inside it. Same result, much shorter.
+      - type: callout
+        variant: mistake
+        covers: [K1.7, S1.3]
+        title: Count the repeats carefully
+        body: If a loop repeats one time too few or one time too many, the robot stops in the wrong place. Check the number.
+
+  - title: From algorithm to code
+    blocks:
+      - type: example
+        covers: [S1.4, S1.5, K1.2]
+        title: Translate an algorithm into blocks
+        problem: |-
+          **Algorithm (in words):** To climb a staircase, step forward, turn to face up the stairs, step up, then turn
+          to face forward again. Do this 4 times.
+        steps:
+          - 'Find the steps that repeat: **move forward**, **turn left**, **move forward**, **turn right**.'
+          - 'They happen **4 times**, so put them inside a **repeat 4 times** block.'
+          - 'Count the blocks: 1 repeat block + 4 blocks inside = **5 blocks**.'
+        answer: Try it in **Puzzle 3** in step 1. Can you solve it in 5 blocks?
+      - type: figure
+        covers: [S1.4, S1.5]
+        figure: { kind: code, blocks: [{ repeat: 4, body: [move, left, move, right] }] }
+        caption: The staircase algorithm as block code.
+
+keyTerms:
+  - term: Algorithm
+    covers: [K1.2]
+    definition: A set of steps for solving a problem or doing a task.
+  - term: Code
+    covers: [K1.3]
+    definition: Any language that can be understood by and run on a computer.
+  - term: Visual block-based language
+    covers: [K1.5]
+    definition: Code made of drag-and-drop blocks that fit together like puzzle pieces.
+  - term: Loop
+    covers: [K1.7]
+    definition: A repetition of instructions in an algorithm.
+  - term: Computational artifact
+    covers: [K1.1]
+    definition: Anything a person creates using a computer, such as a program, image, video or web page.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.7]
+    type: mc
+    prompt: What is a **loop**?
+    choices:
+      - A repetition of instructions in an algorithm
+      - A mistake in the code
+      - A picture made on a computer
+      - The last block in a program
+    answer: 0
+    feedback:
+      '1': A mistake in code is called a bug. A loop is planned on purpose.
+      '2': A picture is a computational artifact, not a loop.
+      '3': A loop can be anywhere in a program.
+    hints:
+      - Think of the **repeat** block.
+    solution:
+      - A loop **repeats** instructions.
+
+  - id: w2
+    level: 1
+    covers: [K1.1]
+    type: mc
+    prompt: Which is a **computational artifact**?
+    choices: [A video edited on a tablet, A drawing made with crayons, A clay pot, A song sung around a campfire]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Crayons aren't a computer.
+      '2': A clay pot is shaped by hand.
+      '3': Singing doesn't need a computer.
+    hints:
+      - A computational artifact is created using a computer.
+    solution:
+      - The **video** was created using a computer (a tablet), so it is a computational artifact.
+
+  - id: w3
+    level: 1
+    covers: [K1.6]
+    type: mc
+    prompt: Can a computer decide what to do by itself, without code?
+    choices:
+      - No. A computer must rely on code for everything it does.
+      - Yes. Computers think the way people do.
+      - Only when it is turned off.
+      - Only robots can think for themselves.
+    answer: 0
+    feedback:
+      '1': A computer only follows instructions.
+      '2': A computer that is off does nothing at all.
+      '3': Robots run on code too.
+    hints:
+      - What did the robot do when the code sent it into a rock?
+    solution:
+      - A computer **cannot think for itself**. It does exactly what its code says.
+
+  - id: w4
+    level: 1
+    covers: [K1.5, K1.4]
+    type: mc
+    prompt: In a **visual block-based language**, how do you make a program?
+    choices:
+      - Fit drag-and-drop blocks together like puzzle pieces
+      - Draw a picture of what you want
+      - Speak to the computer
+      - Type random letters
+    answer: 0
+    feedback:
+      '1': Drawing makes an image, not a program.
+      '2': Block-based languages use blocks.
+      '3': Random letters aren't code a computer can run.
+    hints:
+      - Remember the blocks you tapped in the robot puzzle.
+    solution:
+      - Blocks of prepared instructions **fit together like puzzle pieces** to make a program.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.3, S1.2]
+    type: mc
+    figure: { kind: code, blocks: [move, move, right, move] }
+    prompt: A robot starts facing **right** (east). Each **move forward** moves it one square. Where does it end up after this code runs?
+    choices:
+      - 2 squares right and 1 square down
+      - 3 squares right
+      - 2 squares right and 1 square up
+      - 1 square right and 2 squares down
+    answer: 0
+    feedback:
+      '1': The turn happens before the last move, so the last move isn't to the right.
+      '2': Turning **right** from facing east makes the robot face down (south).
+      '3': The two moves to the right come first.
+    hints:
+      - Follow the blocks one at a time. Which way does the robot face after turning right?
+    solution:
+      - Two moves to the right. Turn right, so now it faces **down**. One move down.
+      - It ends **2 squares right and 1 square down**.
+
+  - id: b2
+    level: 2
+    covers: [K1.7, S1.2]
+    type: mc
+    figure: { kind: code, blocks: [{ repeat: 5, body: [move] }] }
+    prompt: Which code does exactly the **same thing** as this code?
+    choices:
+      - move forward five times in a row
+      - move forward once
+      - turn right five times
+      - repeat 5 times, with nothing inside
+    answer: 0
+    feedback:
+      '1': The loop repeats the move **5** times.
+      '2': There is no turn inside the loop.
+      '3': The loop has a **move forward** block inside it.
+    hints:
+      - How many times does the block inside run?
+    solution:
+      - The loop runs **move forward** 5 times, the same as 5 move blocks in a row.
+
+  - id: b3
+    level: 2
+    covers: [S1.5, K1.7]
+    type: number
+    figure: { kind: code, blocks: [{ repeat: 6, body: [move, left] }] }
+    prompt: This program uses a loop. If you wrote it **without** a loop, how many blocks would you need?
+    answer: 12
+    unit: blocks
+    hints:
+      - There are 2 blocks inside the loop. How many times do they run?
+    solution:
+      - '2 blocks, repeated 6 times: 2 × 6 = **12 blocks**.'
+    verify: '2 * 6'
+
+  - id: b4
+    level: 2
+    covers: [S1.4]
+    type: mc
+    prompt: |-
+      **Algorithm:** "Walk forward 3 squares, then turn left." Which block code matches it?
+    choices:
+      - '**repeat 3 times** [move forward], then **turn left**'
+      - '**repeat 3 times** [move forward, turn left]'
+      - '**turn left**, then **repeat 3 times** [move forward]'
+      - '**move forward**, then **turn left** 3 times'
+    answer: 0
+    feedback:
+      '1': This turns left after **every** step, three times.
+      '2': This turns first, then walks.
+      '3': This walks only 1 square.
+    hints:
+      - Which part repeats, and which part happens only once at the end?
+    solution:
+      - Only the **move forward** repeats 3 times. The **turn left** happens once, after the loop.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S1.3, S1.5, K1.7]
+    type: mc
+    figure: { kind: code, blocks: [{ repeat: 3, body: [move, move, right] }] }
+    prompt: Jess wants the robot to walk all the way around a square and end where it started. The robot stops one side short. What should Jess change?
+    choices:
+      - Repeat 4 times instead of 3, because a square has 4 sides.
+      - Change turn right to turn left.
+      - Add another move forward inside the loop.
+      - Take the loop away.
+    answer: 0
+    feedback:
+      '1': Turning left would just go around the other way, still one side short.
+      '2': That makes each side longer. It doesn't add the missing side.
+      '3': The loop is fine. It just needs to repeat the right number of times.
+    hints:
+      - How many sides does a square have? How many does the loop draw?
+    solution:
+      - Each time through the loop draws **one side**. A square has 4 sides, so the loop must **repeat 4 times**.
+
+  - id: d2
+    level: 3
+    covers: [K1.6, S1.3]
+    type: mc
+    prompt: 'Omar''s code sends the robot straight into a rock. Omar says: "The robot should know to go around it." What is the best response?'
+    choices:
+      - A computer can't think for itself. Omar needs to add blocks that turn the robot around the rock.
+      - The robot is broken.
+      - Robots always go around rocks on their own.
+      - Run the same code again and it will work.
+    answer: 0
+    feedback:
+      '1': The robot did exactly what the code said, so it isn't broken.
+      '2': Robots only follow their code.
+      '3': The same code always does the same thing.
+    hints:
+      - Who decides what the robot does?
+    solution:
+      - A computer **relies on code** for everything. To go around the rock, the code must include the turns and moves.
+
+  - id: d3
+    level: 3
+    covers: [S1.5, K1.7]
+    type: mc
+    prompt: |-
+      A robot needs to: move forward, turn left, move forward, turn left, move forward, turn left, move forward,
+      turn left. Which program is **shortest** and still correct?
+    choices:
+      - '**repeat 4 times** [move forward, turn left]'
+      - '**repeat 8 times** [move forward, turn left]'
+      - '**repeat 4 times** [move forward], then **repeat 4 times** [turn left]'
+      - All 8 blocks written out
+    answer: 0
+    feedback:
+      '1': That repeats twice too many times.
+      '2': That does all the moves first and all the turns after.
+      '3': That works, but it uses 8 blocks instead of 3.
+    hints:
+      - Which pair of blocks repeats? How many times?
+    solution:
+      - 'The pair **move forward, turn left** repeats **4 times**. One loop with 2 blocks inside: 3 blocks in all.'
+
+  - id: d4
+    level: 3
+    covers: [S1.5, K1.2, S1.4]
+    type: open
+    prompt: |-
+      Design an algorithm with a **loop** that makes a robot walk around a square that is **3 squares on each side**
+      and end where it started. Write it as block code.
+    modelAnswer: |-
+      repeat 4 times: [move forward, move forward, move forward, turn right]. Each time through the loop, the robot
+      walks one side of 3 squares and turns the corner. After 4 times, it has walked all 4 sides and is back at the start.
+    rubric:
+      - My program uses a **repeat** loop.
+      - Each time through the loop, the robot walks **3 squares** and turns.
+      - The loop repeats **4 times**, once for each side.

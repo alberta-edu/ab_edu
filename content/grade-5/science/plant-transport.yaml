@@ -1,0 +1,273 @@
+id: plant-transport
+grade: 5
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI5-OI4-GQ1-LO1]
+order: 9
+title: 'Plant Transport: Xylem and Phloem'
+shortTitle: 'Plant transport: xylem and phloem'
+summary: >-
+  Watch water climb the xylem and sugars travel through the phloem, stand a celery stalk in blue water,
+  and compare a plant's transport system with your circulatory system.
+
+bigIdea: |-
+  Plants are complex organisms too. Their **transport system** has two kinds of tubes. **Xylem** carries
+  water and nutrients up from the roots. **Phloem** carries sugars from the leaves to the rest of the plant.
+  Together they do a job like the **circulatory system** in animals.
+
+lesson:
+  - title: Two kinds of tubes
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.3, K2.4, S2.1]
+        component: plant-transport
+        caption: Switch between **Xylem**, **Phloem** and **Both**. Follow the dots to see what each one carries, and which way.
+      - type: compare
+        covers: [K2.3, K2.4]
+        columns:
+          - title: Xylem
+            body: Carries **water and nutrients** from the **roots** to the rest of the plant.
+          - title: Phloem
+            body: Carries **sugars** from the **leaves** to the rest of the plant.
+
+  - title: 'Virtual experiment: a celery stalk in blue water'
+    blocks:
+      - type: experiment
+        covers: [K2.3, S2.1, K2.1]
+        title: Stand a celery stalk in coloured water
+        question: A fresh celery stalk, with its leaves, stands in a glass of water with **blue food colouring**. Wait one day.
+        animation: celery-dye
+        predict:
+          choices:
+            - The blue colour climbs the stalk into the leaves.
+            - The blue colour stays in the glass.
+            - Only the outside of the stalk turns blue.
+          answer: 0
+        observe: |-
+          Blue colour climbed up **thin tubes** inside the stalk and reached the **leaves**. A cut across the stalk
+          showed a row of blue dots.
+        explain: |-
+          - The blue dots are the **xylem** tubes.
+          - Xylem carries water, and anything dissolved in it, **up** through the plant to the leaves.
+
+  - title: Like a circulatory system
+    blocks:
+      - type: table
+        covers: [K2.2, U2.1, S2.1]
+        headers: ['', Animal circulatory system, Plant transport system]
+        rows:
+          - ['Tubes', 'Blood vessels', 'Xylem and phloem']
+          - ['What moves', 'Blood carrying oxygen and nutrients', 'Water, nutrients and sugars']
+          - ['Why it matters', 'Every part of the body gets what it needs', 'Every part of the plant gets what it needs to survive']
+      - type: callout
+        variant: mistake
+        covers: [K2.3, K2.4]
+        title: Don't mix them up
+        body: |-
+          **X**ylem carries water **up** from the roots. **Ph**loem carries sugars **from** the leaves. A memory trick:
+          **ph**loem carries **f**ood (sugars).
+
+keyTerms:
+  - term: Xylem
+    covers: [K2.3]
+    definition: Tubes in a plant that carry water and nutrients from the roots to the rest of the plant.
+  - term: Phloem
+    covers: [K2.4]
+    definition: Tubes in a plant that carry sugars from the leaves to the rest of the plant.
+  - term: Transport system
+    covers: [K2.1, U2.1]
+    definition: Parts of an organism that move materials to where they are needed. In plants, the xylem and phloem.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.3]
+    type: mc
+    prompt: Which part of a plant carries **water** from the roots to the rest of the plant?
+    choices: [Xylem, Phloem, Leaves, Flowers]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Phloem carries **sugars** from the leaves.
+      '2': Leaves receive water. They don't carry it up from the roots.
+      '3': Flowers don't carry water through the plant.
+    hints:
+      - In the celery experiment, which tubes turned blue?
+    solution:
+      - '**Xylem** carries water and nutrients from the roots.'
+
+  - id: w2
+    level: 1
+    covers: [K2.4]
+    type: mc
+    prompt: What does **phloem** carry?
+    choices: [Sugars from the leaves, Water from the roots, Blood, Air from the soil]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': That is the job of the **xylem**.
+      '2': Plants don't have blood.
+      '3': Phloem carries sugars.
+    hints:
+      - '"Phloem carries food."'
+    solution:
+      - Phloem carries **sugars from the leaves** to the rest of the plant.
+
+  - id: w3
+    level: 1
+    covers: [K2.1]
+    type: multi
+    prompt: Select **all** the parts of a plant's transport system.
+    choices: [Xylem, Phloem, Heart, Lungs]
+    fixedOrder: true
+    answer: [0, 1]
+    hints:
+      - Plants don't have the same organs as animals.
+    solution:
+      - ✓ Xylem and phloem.
+      - ✗ Hearts and lungs are animal organs.
+
+  - id: w4
+    level: 1
+    covers: [K2.3]
+    type: mc
+    prompt: In the xylem, which way does water move?
+    choices:
+      - Up, from the roots to the leaves
+      - Down, from the leaves to the roots
+      - It doesn't move.
+      - In a circle around the stem
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Water starts in the soil, so it enters at the roots.
+      '2': In the visual, the water dots kept moving.
+      '3': Xylem tubes run up and down the stem.
+    hints:
+      - Where does a plant get its water?
+    solution:
+      - Water enters at the roots and moves **up** through the xylem to the leaves.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K2.3, S2.1]
+    type: mc
+    prompt: In the celery experiment, why did the leaves turn a little blue?
+    choices:
+      - The xylem carried the coloured water up the stalk to the leaves.
+      - The phloem carried sugar down from the leaves.
+      - The blue colour soaked in through the leaves from the air.
+      - The leaves were already blue.
+    answer: 0
+    feedback:
+      '1': Phloem carries sugars, and the colour moved **up**, not down.
+      '2': Only the bottom of the stalk was in the coloured water.
+      '3': The leaves started out green.
+    hints:
+      - Which tubes carry water up?
+    solution:
+      - The **xylem** carried the coloured water up from the glass to the leaves.
+
+  - id: b2
+    level: 2
+    covers: [K2.2]
+    type: mc
+    prompt: The xylem and phloem in plants do a job similar to which system in animals?
+    choices: [Circulatory, Digestive, Respiratory, Musculoskeletal]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The digestive system breaks down food.
+      '2': The respiratory system exchanges gases.
+      '3': The musculoskeletal system supports and moves the body.
+    hints:
+      - Which animal system moves materials around the body in tubes?
+    solution:
+      - Like the **circulatory** system, xylem and phloem move materials to every part of the organism.
+
+  - id: b3
+    level: 2
+    covers: [K2.4, S2.1]
+    type: mc
+    prompt: A carrot stores sugar in its root, under the ground. How did the sugar get there?
+    choices:
+      - The phloem carried it down from the leaves.
+      - The xylem carried it up from the soil.
+      - The root takes in sugar from the soil.
+      - Rain carried it into the root.
+    answer: 0
+    feedback:
+      '1': Xylem carries water and nutrients **up**. Sugars come from the leaves.
+      '2': Sugars travel from the leaves, not from the soil.
+      '3': Rainwater travels in the xylem, which carries water up.
+    hints:
+      - Where do a plant's sugars come from?
+    solution:
+      - The **phloem** carries sugars from the leaves to the rest of the plant, including down to the root.
+
+  - id: b4
+    level: 2
+    covers: [K2.3]
+    type: order
+    prompt: Put the path of water through a plant in order.
+    items: [Water in the soil, Roots, Xylem in the stem, Leaves]
+    hints:
+      - Water starts outside the plant.
+    solution:
+      - Soil → roots → xylem in the stem → leaves.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.4, U2.1]
+    type: mc
+    prompt: |-
+      The phloem of a tree is just under its bark. Hungry deer chew off the bark, and the phloem under it, in a
+      ring all the way around a young tree's trunk. What will the roots stop getting?
+    choices: [Sugars from the leaves, Water from the soil, Air, Nothing changes]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Water moves **up** from the roots in the xylem, so the roots still have water.
+      '2': The phloem carries sugars, not air.
+      '3': With the phloem cut, sugars can't travel past the ring.
+    hints:
+      - What does the phloem carry, and from where?
+    solution:
+      - The phloem carries sugars **from the leaves**. Cut all the way around, it can't bring sugars down to the roots.
+
+  - id: d2
+    level: 3
+    covers: [K2.3, U2.1]
+    type: mc
+    prompt: A plant in very dry soil starts to droop. Which explanation fits best?
+    choices:
+      - The xylem has very little water to carry up from the roots.
+      - The phloem is carrying too much sugar.
+      - The leaves are sending water down to the roots.
+      - Plants don't need water.
+    answer: 0
+    feedback:
+      '1': Sugar isn't the problem here. Water is.
+      '2': Water moves **up** from the roots, not down from the leaves.
+      '3': Plants need water to survive.
+    hints:
+      - What does the xylem carry, and where does it come from?
+    solution:
+      - Dry soil means the roots can take in little water, so the **xylem** has little to carry up to the stem and leaves.
+
+  - id: d3
+    level: 3
+    covers: [K2.2, K2.3, K2.4, S2.1]
+    type: open
+    prompt: Explain how a plant's xylem and phloem are like the circulatory system in your body.
+    modelAnswer: |-
+      The circulatory system moves blood through blood vessels to every part of the body. A plant's xylem and phloem
+      are tubes that do a similar job. The xylem carries water and nutrients up from the roots, and the phloem carries
+      sugars from the leaves to the rest of the plant, so every part gets what it needs.
+    rubric:
+      - I said what the circulatory system does.
+      - I said what the **xylem** carries, and from where.
+      - I said what the **phloem** carries, and from where.

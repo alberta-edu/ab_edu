@@ -1,0 +1,329 @@
+id: design-process
+grade: 5
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI5-OI6-GQ1-LO1]
+order: 13
+title: The Design Process
+shortTitle: The design process
+summary: >-
+  Improve a water bottle one iteration at a time, evaluate it on six design factors, and learn the
+  difference between enhancing and refining a design.
+
+bigIdea: |-
+  Designers make an artifact to meet a **need**, then test it, **evaluate** it and improve it. Each new
+  version is an **iteration**. **Enhancing** adds something new and **refining** makes something better.
+  Many iterations, and help from others, make a design better meet the need.
+
+lesson:
+  - title: Design, test, improve
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.4, S2.2, S2.5, U2.1]
+        component: design-lab
+        caption: |-
+          Version 1 of this water bottle leaks, has a sharp lid and cracks when dropped. Make one change at a time and
+          watch the evaluation bars. Does every change make every factor better?
+      - type: callout
+        variant: tip
+        covers: [S2.2, K2.1]
+        title: Watch for trade-offs
+        body: Thinner walls use less plastic (more **efficient**) but break more easily (less **reliable**). Designers weigh the factors against each other.
+
+  - title: Factors that influence design
+    blocks:
+      - type: table
+        covers: [K2.1, K2.2, K2.3]
+        headers: [Factor, Question to ask]
+        rows:
+          - ['**Safety**', 'Could anyone get hurt using it?']
+          - ['**Functionality**', 'Is it useful for the job it was designed for?']
+          - ['**Usability**', 'How easy is it to use?']
+          - ['**Reliability**', 'Does it keep working, again and again?']
+          - ['**Efficiency**', 'Does it avoid wasting materials, time or energy?']
+          - ['**Aesthetics**', 'Does it look and feel good?']
+
+  - title: Enhance or refine?
+    blocks:
+      - type: compare
+        covers: [K2.4, U2.1]
+        columns:
+          - title: Enhancing
+            body: '**Adding** something new. Example: adding a handle to a water bottle that never had one.'
+          - title: Refining
+            body: '**Improving** something that is already there. Example: making the lid seal tighter so it stops leaking.'
+      - type: table
+        covers: [S2.1, K2.4]
+        caption: Designs that were enhanced or refined to better meet people's needs
+        headers: [Design, Change, Enhanced or refined?]
+        rows:
+          - ['A video game', 'An update fixes a bug that made the game crash.', 'Refined: it now works more **reliably**.']
+          - ['A video game', 'An update adds a new level.', 'Enhanced: something new was added.']
+          - ['A bicycle', 'Gears are added so riders can climb hills.', 'Enhanced: a new feature.']
+          - ['A school website', 'Buttons are made bigger so they are easier to tap on a phone.', 'Refined: better **usability**.']
+
+  - title: Better together
+    blocks:
+      - type: example
+        covers: [S2.3, S2.4, S2.5, K2.5]
+        title: Design an artifact to meet a need
+        problem: '**Need:** Students in your class keep losing their pencils.'
+        steps:
+          - '**Understand the need.** Pencils roll off desks and get lost.'
+          - '**Design version 1.** A pencil holder that sticks to the side of the desk.'
+          - '**Test and evaluate.** It holds pencils (functionality), but it is hard to get the pencils out (usability).'
+          - '**Collaborate.** Classmates try it and suggest a wider opening.'
+          - '**Make version 2.** Refine the opening. Test again, and keep iterating.'
+      - type: callout
+        variant: tip
+        covers: [K2.5, S2.4]
+        title: Why ask others?
+        body: Other people notice problems you missed and bring new ideas. Design can be **improved through collaboration**.
+
+keyTerms:
+  - term: Design process
+    covers: [S2.3, U2.1]
+    definition: The steps of creating something to meet a need, then testing and improving it.
+  - term: Iteration
+    covers: [K2.4, S2.5]
+    definition: A new version of a design, made after testing and improving the last one.
+  - term: Enhancing
+    covers: [K2.4]
+    definition: Improving a design by adding something new.
+  - term: Refining
+    covers: [K2.4]
+    definition: Improving something that is already part of a design.
+  - term: Functionality
+    covers: [K2.2]
+    definition: The quality of being useful to do the job something was designed for.
+  - term: Usability
+    covers: [K2.3]
+    definition: How easily something can be used to get the result you want.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K2.2]
+    type: mc
+    prompt: What does **functionality** mean?
+    choices:
+      - Being useful for the job it was designed for
+      - How nice it looks
+      - How easy it is to use
+      - How little material it uses
+    answer: 0
+    feedback:
+      '1': That is **aesthetics**.
+      '2': That is **usability**.
+      '3': That is part of **efficiency**.
+    hints:
+      - Does the design do its job?
+    solution:
+      - '**Functionality** is the quality of being useful to do the job something was designed for.'
+
+  - id: w2
+    level: 1
+    covers: [K2.3]
+    type: mc
+    prompt: What does **usability** mean?
+    choices:
+      - How easily something can be used
+      - How long something lasts
+      - How safe something is
+      - How colourful something is
+    answer: 0
+    feedback:
+      '1': That is closer to **reliability**.
+      '2': That is **safety**.
+      '3': That is part of **aesthetics**.
+    hints:
+      - The word starts with "use".
+    solution:
+      - '**Usability** is how easily something can be used to get the result you want.'
+
+  - id: w3
+    level: 1
+    covers: [K2.1]
+    type: multi
+    prompt: Select **all** the factors that can influence a design.
+    choices: [Safety, Functionality, Usability, Reliability, Efficiency, Aesthetics]
+    fixedOrder: true
+    answer: [0, 1, 2, 3, 4, 5]
+    hints:
+      - Look back at the six bars in the design lab.
+    solution:
+      - All six are design factors. Designers think about every one of them.
+
+  - id: w4
+    level: 1
+    covers: [K2.4, U2.1]
+    type: mc
+    prompt: What is an **iteration** of a design?
+    choices:
+      - A new version, made after testing and improving the last one
+      - The very first idea
+      - A list of materials
+      - A design that can never change
+    answer: 0
+    feedback:
+      '1': The first version is only the start. Iterations come after it.
+      '2': A materials list doesn't change the design.
+      '3': Iterations are all about changing and improving.
+    hints:
+      - In the design lab, what changed with every new version?
+    solution:
+      - An **iteration** is a new version of a design, improved after testing.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [K2.4]
+    type: mc
+    prompt: A backpack never had a water-bottle pocket. The new version adds one. Is this **enhancing** or **refining**?
+    choices: [Enhancing, Refining]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Refining improves something that is already there. The pocket is new.
+    hints:
+      - Was the pocket there before?
+    solution:
+      - Adding something new is **enhancing**.
+
+  - id: b2
+    level: 2
+    covers: [K2.4, S2.1]
+    type: mc
+    prompt: The zipper on a backpack keeps getting stuck. The new version uses a smoother zipper. Is this **enhancing** or **refining**?
+    choices: [Refining, Enhancing]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The backpack already had a zipper. It was improved, not added.
+    hints:
+      - Was the zipper already part of the design?
+    solution:
+      - Improving something that is already there is **refining**.
+
+  - id: b3
+    level: 2
+    covers: [K2.1, S2.2]
+    type: mc
+    prompt: A water bottle still works perfectly after being dropped 50 times. Which factor does this show?
+    choices: [Reliability, Aesthetics, Efficiency, Usability]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Aesthetics is about how it looks.
+      '2': Efficiency is about not wasting material, time or energy.
+      '3': Usability is about how easy it is to use.
+    hints:
+      - It keeps working, again and again.
+    solution:
+      - Working again and again without breaking is **reliability**.
+
+  - id: b4
+    level: 2
+    covers: [S2.2, K2.3]
+    type: mc
+    prompt: A math game app is fun, but players can't figure out which button starts a new game. Which factor most needs work?
+    choices: [Usability, Safety, Reliability, Efficiency]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Nobody can get hurt here.
+      '2': The app doesn't crash. It is just confusing.
+      '3': The problem isn't about wasting materials or time.
+    hints:
+      - Is the app easy to use?
+    solution:
+      - The app is hard to use, so its **usability** needs work.
+
+  - id: b5
+    level: 2
+    covers: [S2.3, S2.5]
+    type: order
+    prompt: Put the steps of the design process in order.
+    items: [Understand the need, Design a first version, Test and evaluate it, Improve it to make a new iteration]
+    hints:
+      - You can't test something before it exists.
+    solution:
+      - Understand the need → design version 1 → test and evaluate → improve and iterate.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K2.1, S2.2]
+    type: mc
+    prompt: In the design lab, making the walls thinner raised one factor but lowered another. Which?
+    choices:
+      - Efficiency went up, but reliability went down.
+      - Safety went up, but aesthetics went down.
+      - Usability went up, but functionality went down.
+      - Every factor went up.
+    answer: 0
+    feedback:
+      '1': Thinner walls didn't change safety or looks.
+      '2': The bottle was just as easy to use and still held water.
+      '3': Look at which bar turned red.
+    hints:
+      - Thinner walls use less plastic, but what happens when the bottle is dropped?
+    solution:
+      - Less plastic → more **efficient**. Thinner walls break more easily → less **reliable**. That is a trade-off.
+
+  - id: d2
+    level: 3
+    covers: [K2.5, S2.4]
+    type: mc
+    prompt: Why is it a good idea to have classmates test your design?
+    choices:
+      - They may notice problems you missed and suggest new ideas.
+      - So you don't have to test it yourself.
+      - Because a design should never change after you build it.
+      - So they can copy it.
+    answer: 0
+    feedback:
+      '1': You should still test it yourself too.
+      '2': Designs get better by changing.
+      '3': The goal is to improve the design together.
+    hints:
+      - Design can be improved through collaboration.
+    solution:
+      - Others see the design with fresh eyes. **Collaboration** helps you find problems and better ideas.
+
+  - id: d3
+    level: 3
+    covers: [S2.1, K2.4, K2.1]
+    type: mc
+    prompt: A video game company sends an update that stops the game from crashing. Is this enhancing or refining, and which factor improves?
+    choices:
+      - Refining, and reliability improves
+      - Enhancing, and aesthetics improves
+      - Enhancing, and safety improves
+      - Refining, and the game gets new levels
+    answer: 0
+    feedback:
+      '1': Nothing new was added, and the look didn't change.
+      '2': The fix improves something that was already there.
+      '3': New levels would be an enhancement, and this update doesn't add any.
+    hints:
+      - Was something new added, or was something already there made better?
+    solution:
+      - The game already existed. Fixing the crash **refines** it, and the game now works more **reliably**.
+
+  - id: d4
+    level: 3
+    covers: [S2.2, S2.4]
+    type: open
+    prompt: |-
+      Evaluate your school backpack using **three** design factors. Then propose one **enhancement** and one
+      **refinement** that would help it better meet your needs.
+    modelAnswer: |-
+      Functionality: it holds all my books. Usability: the zipper is hard to open with one hand. Reliability: one
+      strap is starting to rip. An enhancement would be adding a side pocket for my water bottle. A refinement would be
+      making the straps stronger so they don't rip.
+    rubric:
+      - I evaluated the backpack using **three** factors.
+      - I proposed an **enhancement** (something new).
+      - I proposed a **refinement** (something improved).

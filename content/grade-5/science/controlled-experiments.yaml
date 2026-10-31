@@ -1,0 +1,347 @@
+id: controlled-experiments
+grade: 5
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI5-OI7-GQ1-LO1]
+order: 14
+title: Controlled Experiments and Variables
+shortTitle: Controlled experiments and variables
+summary: >-
+  Run toy-car ramp tests to see what makes a fair test, name the manipulated, responding and controlled
+  variables, and defend a conclusion with evidence.
+
+bigIdea: |-
+  A **controlled experiment** changes **one** variable and keeps all the others the same. Then, if the
+  result changes, you know what caused it. The evidence lets you make a conclusion about **cause and
+  effect**.
+
+lesson:
+  - title: Is it a fair test?
+    blocks:
+      - type: visual
+        covers: [K3.1, K3.5, S3.1, S3.2, S3.4]
+        component: fair-test
+        caption: |-
+          Set up Test A and Test B, then run them. Changes in Test B are highlighted. Try changing **one** variable,
+          then try changing **two**. What does the lab say?
+
+  - title: Three kinds of variables
+    blocks:
+      - type: compare
+        covers: [K3.2, K3.3, K3.4, S3.3]
+        columns:
+          - title: Manipulated (independent)
+            body: 'The variable you **change on purpose**, to see what effect it has. *In the ramp lab: the ramp height.*'
+          - title: Responding (dependent)
+            body: 'The variable that **changes as a result**, which you measure. *In the ramp lab: how far the car rolls.*'
+          - title: Controlled
+            body: 'Every variable you **keep the same**. *In the ramp lab: the floor surface and the car load.*'
+      - type: callout
+        variant: tip
+        covers: [K3.1, K3.5]
+        title: One change at a time
+        body: A **variable** is any condition that could affect the outcome. Change only **one**, and control all the rest.
+
+  - title: Plan a controlled experiment
+    blocks:
+      - type: example
+        covers: [S3.1, S3.2, S3.3, K3.5]
+        title: Does the amount of water affect how tall bean plants grow?
+        problem: Plan a controlled experiment with four bean plants.
+        steps:
+          - '**Manipulated variable:** the amount of water each plant gets every day (for example 0 mL, 25 mL, 50 mL, 100 mL).'
+          - '**Responding variable:** the height of each plant after 3 weeks, measured in centimetres.'
+          - '**Controlled variables:** the same kind of seed, the same soil, the same pot size, the same amount of sunlight and the same temperature.'
+          - '**Conduct it:** water the plants every day, then measure and record each plant''s height.'
+        answer: Only the water changes, so any difference in height can be traced to the water.
+
+  - title: From evidence to a conclusion
+    blocks:
+      - type: table
+        covers: [S3.4, U3.1]
+        caption: 'Evidence from the ramp lab (surface: wood, car load: empty)'
+        headers: [Ramp height (manipulated), Distance rolled (responding)]
+        rows:
+          - ['Low', '100 cm']
+          - ['Medium', '160 cm']
+          - ['High', '220 cm']
+      - type: compare
+        covers: [S3.5, U3.1]
+        columns:
+          - title: Conclusion
+            body: The **higher** the ramp, the **farther** the car rolls.
+          - title: Defend it with evidence
+            body: Only the ramp height changed. Every time it went up, the distance went up. So the ramp height **caused** the change.
+      - type: callout
+        variant: mistake
+        covers: [S3.5, K3.5]
+        title: Don't claim more than you tested
+        body: This test used one kind of car on a wood floor. The evidence supports a conclusion about **that** set-up, not about every car and every floor.
+
+keyTerms:
+  - term: Variable
+    covers: [K3.1]
+    definition: A condition or factor that can influence the outcome of an experiment.
+  - term: Manipulated variable
+    covers: [K3.2]
+    definition: The variable you change on purpose in a controlled experiment. Also called the independent variable.
+  - term: Responding variable
+    covers: [K3.3]
+    definition: The variable that changes because of the manipulated variable. Also called the dependent variable.
+  - term: Controlled variable
+    covers: [K3.4]
+    definition: A variable that is kept the same in a controlled experiment.
+  - term: Controlled experiment
+    covers: [K3.5]
+    definition: An investigation in which one variable is changed and all other variables are kept the same.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K3.5]
+    type: mc
+    prompt: What is a **controlled experiment**?
+    choices:
+      - An investigation where one variable is changed and all others are kept the same
+      - An investigation where you change as many things as you can
+      - An investigation with no variables
+      - An investigation that only a scientist can do
+    answer: 0
+    feedback:
+      '1': Changing many things at once makes it impossible to tell what caused a result.
+      '2': Every experiment has variables. You control most of them.
+      '3': Anyone can plan and conduct a controlled experiment.
+    hints:
+      - Think of the ramp lab's fair test.
+    solution:
+      - In a controlled experiment, **one** variable is changed and **all the others** are kept the same.
+
+  - id: w2
+    level: 1
+    covers: [K3.1]
+    type: mc
+    prompt: What is a **variable**?
+    choices:
+      - A condition or factor that can influence the outcome of an experiment
+      - The answer to an experiment
+      - A tool for measuring
+      - A mistake in an experiment
+    answer: 0
+    feedback:
+      '1': The outcome is measured with the responding variable, but a variable is any factor that could affect it.
+      '2': A ruler is a tool. A variable is a condition.
+      '3': Variables aren't mistakes. Every experiment has them.
+    hints:
+      - Ramp height and floor surface were examples.
+    solution:
+      - A **variable** is any condition or factor that can influence the outcome.
+
+  - id: w3
+    level: 1
+    covers: [K3.2, S3.3]
+    type: mc
+    prompt: Which variable do you **change on purpose** in a controlled experiment?
+    choices: [Manipulated variable, Responding variable, Controlled variable]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The responding variable changes **as a result**. You measure it.
+      '2': Controlled variables are kept **the same**.
+    hints:
+      - You "manipulate" it, which means you handle or change it.
+    solution:
+      - The **manipulated** (independent) variable is the one you change on purpose.
+
+  - id: w4
+    level: 1
+    covers: [K3.3, S3.3]
+    type: mc
+    prompt: In the ramp lab, **how far the car rolls** is which kind of variable?
+    choices: [Responding variable, Manipulated variable, Controlled variable]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': You didn't set the distance. It changed because of what you set.
+      '2': The distance wasn't kept the same. It was what you measured.
+    hints:
+      - Which variable changes as a result, and gets measured?
+    solution:
+      - The distance changes because of the ramp set-up, so it is the **responding** (dependent) variable.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S3.2, K3.2]
+    type: mc
+    prompt: Zoe gives four identical plants different amounts of water each day and measures how tall they grow. What is her **manipulated** variable?
+    choices: [The amount of water, How tall the plants grow, The kind of plant, The size of the pots]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Height is what she measures, so it is the responding variable.
+      '2': The plants are identical, so the kind of plant is controlled.
+      '3': The pot size should be the same for every plant, so it is controlled.
+    hints:
+      - What does Zoe change on purpose?
+    solution:
+      - Zoe changes the **amount of water** on purpose. That is the manipulated variable.
+
+  - id: b2
+    level: 2
+    covers: [S3.2, K3.4]
+    type: multi
+    prompt: In Zoe's plant experiment, select **all** the variables that should be **controlled**.
+    choices: [The kind of seed, The amount of sunlight, The type of soil, The amount of water, The height of the plants]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    hints:
+      - Controlled variables are kept the same. Which two are not?
+    solution:
+      - ✓ Seed, sunlight and soil stay the same.
+      - ✗ Water is manipulated. Height is responding.
+
+  - id: b3
+    level: 2
+    covers: [S3.1, K3.5]
+    type: mc
+    prompt: |-
+      To test whether ramp height matters, Ben uses a **low** ramp on **wood** for Test A and a **high** ramp on
+      **carpet** for Test B. What is wrong?
+    choices:
+      - He changed two variables, so he can't tell which one caused any difference.
+      - He should have used three ramps.
+      - Nothing. It is a fair test.
+      - He should not measure the distance.
+    answer: 0
+    feedback:
+      '1': The problem isn't the number of ramps. Two things changed.
+      '2': Both the height and the surface changed.
+      '3': Measuring the distance is how he gets evidence.
+    hints:
+      - Count how many variables are different between Test A and Test B.
+    solution:
+      - Height **and** surface both changed. To test height, Ben must keep the surface the same.
+
+  - id: b4
+    level: 2
+    covers: [S3.3, K3.2, K3.3]
+    type: mc
+    prompt: Another name for the **manipulated** variable is the…
+    choices: [independent variable, dependent variable, controlled variable]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The dependent variable is the **responding** variable.
+      '2': Controlled variables are kept the same.
+    hints:
+      - The manipulated variable doesn't depend on anything. You choose it.
+    solution:
+      - The manipulated variable is also called the **independent** variable.
+
+  - id: b5
+    level: 2
+    covers: [S3.4, S3.5]
+    type: mc
+    prompt: |-
+      A class tests whether the floor surface affects how far a car rolls. Everything else is kept the same.
+
+      | Surface | Distance rolled |
+      |---|---|
+      | Wood | 160 cm |
+      | Carpet | 72 cm |
+
+      Which conclusion does the evidence support?
+    choices:
+      - The car rolls farther on wood than on carpet.
+      - The car rolls farther on carpet than on wood.
+      - The surface has no effect.
+      - Heavier cars roll farther.
+    answer: 0
+    feedback:
+      '1': Check the numbers again. Which surface has the bigger distance?
+      '2': The distances are very different, so the surface had an effect.
+      '3': The car load wasn't tested.
+    hints:
+      - Compare the two distances.
+    solution:
+      - 160 cm on wood is much more than 72 cm on carpet, so the car **rolls farther on wood**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [S3.5, U3.1]
+    type: mc
+    prompt: |-
+      Ali's two tests: a high ramp on wood, and a low ramp on carpet. The car went much farther in the first test.
+      Ali concludes, "Carpet makes cars slow down." Can Ali defend this conclusion?
+    choices:
+      - No. The ramp height also changed, so the carpet might not be the cause.
+      - Yes. The car went farther on wood.
+      - Yes. Carpet is always slower.
+      - No. Ali should have used a heavier car.
+    answer: 0
+    feedback:
+      '1': It went farther, but two things were different.
+      '2': Ali's own evidence can't show that, because it wasn't a fair test.
+      '3': Car load isn't the problem. Two variables changed.
+    hints:
+      - Was this a controlled experiment?
+    solution:
+      - Two variables changed. The difference could be from the **height**, the **surface**, or both, so Ali can't defend the conclusion.
+
+  - id: d2
+    level: 3
+    covers: [S3.1, K3.4]
+    type: mc
+    prompt: You want to test whether the **temperature of water** affects how fast sugar dissolves. Which plan is a controlled experiment?
+    choices:
+      - Use the same amount of sugar and water in each cup, stir each the same way, and change only the water temperature.
+      - Use warm water with lots of sugar, and cold water with a little sugar.
+      - Stir the warm water but not the cold water.
+      - Use different kinds of sugar in each cup.
+    answer: 0
+    feedback:
+      '1': The amount of sugar changed as well as the temperature.
+      '2': Stirring changed as well as the temperature.
+      '3': The kind of sugar changed, not the temperature.
+    hints:
+      - Only the temperature should change.
+    solution:
+      - Keep the sugar, the amount of water and the stirring the same (**controlled**). Change only the **temperature** (manipulated).
+
+  - id: d3
+    level: 3
+    covers: [S3.4, U3.1]
+    type: mc
+    prompt: In the ramp lab, an empty car rolled 220 cm and the same car carrying clay rolled 227 cm. Nothing else changed. What is the best conclusion?
+    choices:
+      - The car load had very little effect on how far the car rolled.
+      - Clay makes cars roll much farther.
+      - The test was unfair.
+      - The ramp height caused the difference.
+    answer: 0
+    feedback:
+      '1': 7 cm is a very small difference compared with 220 cm.
+      '2': Only one variable changed, so it was fair.
+      '3': The ramp height didn't change.
+    hints:
+      - How big is the difference compared with the distances?
+    solution:
+      - The distances were almost the same, so the **car load** had **very little effect** on the distance.
+
+  - id: d4
+    level: 3
+    covers: [S3.1, S3.2, S3.3]
+    type: open
+    prompt: |-
+      Plan a controlled experiment to find out whether the **size of a paper airplane's wings** affects how far it
+      flies. Name the manipulated, responding and controlled variables.
+    modelAnswer: |-
+      Manipulated variable: the size of the wings (small, medium, large). Responding variable: how far each airplane
+      flies, measured in metres. Controlled variables: the same kind of paper, the same body shape, the same person
+      throwing it the same way, from the same spot, indoors with no wind.
+    rubric:
+      - I named the **manipulated** variable (wing size).
+      - I named the **responding** variable (distance flown), and how to measure it.
+      - I listed at least three **controlled** variables.

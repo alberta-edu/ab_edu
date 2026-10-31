@@ -1,0 +1,123 @@
+---
+// Animated experiment: follow a breath of air and a bite of food. The respiratory system takes
+// in oxygen, the digestive system absorbs nutrients, and the circulatory system carries both
+// to a muscle in the arm (SCI5-OI4-GQ1-LO1, K1.1, K1.8, S1.4).
+import { OUTLINE, ORGANS, VIEWBOX } from '../visuals/body-svg.ts';
+const PATHS = {
+  air: 'M150,58 L148,72 L148,128 L126,152',
+  air2: 'M148,128 L172,152',
+  oxygen: 'M128,160 Q142,150 158,164',
+  food: 'M150,66 L152,72 L156,120 L160,176 L168,196 L178,212',
+  gut: 'M172,226 L150,250 L124,256 L150,266 L178,258',
+  nutrients: 'M150,262 L150,230 L158,176',
+  blood: 'M158,162 Q190,128 210,146',
+};
+---
+<body-trip>
+  <p class="bt-caption" data-bt="caption">Press Run to follow a breath and a bite of food.</p>
+  <svg class="sci-svg bt-svg" viewBox={VIEWBOX} aria-hidden="true">
+    <Fragment set:html={OUTLINE} />
+    <g data-bt="lungs-wrap"><Fragment set:html={ORGANS.respiratory} /></g>
+    <Fragment set:html={ORGANS.digestive} />
+    <Fragment set:html={ORGANS.circulatory} />
+    <g class="bd-muscle" data-bt="muscle"><ellipse cx="214" cy="150" rx="11" ry="24" transform="rotate(-14 214 150)" /></g>
+    {Object.entries(PATHS).map(([id, d]) => <path class="bt-route" data-bt-path={id} d={d} />)}
+    <g data-bt="dots"></g>
+  </svg>
+  <div class="bt-key" aria-hidden="true">
+    <span><i class="bt-k bt-k--o2"></i>Oxygen</span>
+    <span><i class="bt-k bt-k--food"></i>Food and nutrients</span>
+  </div>
+  <p class="sr-only" aria-live="polite" data-bt="live"></p>
+</body-trip>
+
+<style is:global>
+  body-trip { display: block; }
+  .bt-svg { background: var(--surface-2); max-width: 30rem; margin-inline: auto; }
+  .bt-route { fill: none; stroke: none; }
+  .bt-o2 { fill: #2b8fd6; stroke: var(--surface); stroke-width: 1.5; }
+  .bt-food { fill: #e2a52b; stroke: #8a6212; stroke-width: 1.5; }
+  .bt-blood { fill: #d23b2e; }
+  .bt-caption { margin: 0 0 0.5rem; text-align: center; font-weight: 700; font-size: var(--step-1); min-height: 1.6em; }
+  .bt-glow { filter: drop-shadow(0 0 6px #e2a52b); }
+  .bt-k--o2 { background: #2b8fd6; }
+  .bt-k--food { background: #e2a52b; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  type Dot = { cls: string; x: number; y: number; r: number };
+
+  class BodyTrip extends HTMLElement {
+    private dots: Dot[] = [];
+
+    private at(id: string, t: number) {
+      const p = this.querySelector<SVGPathElement>(`[data-bt-path="${id}"]`)!;
+      const pt = p.getPointAtLength(p.getTotalLength() * Math.min(1, Math.max(0, t)));
+      return { x: pt.x, y: pt.y };
+    }
+
+    private draw() {
+      this.querySelector('[data-bt="dots"]')!.innerHTML = this.dots.map((d) => `<circle class="${d.cls}" cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="${d.r}"/>`).join('');
+    }
+
+    private caption(text: string) {
+      this.querySelector('[data-bt="caption"]')!.textContent = text;
+    }
+
+    /** Moves `n` dots along a path, one after another. */
+    private flow(path: string, cls: string, n: number, ms: number, r = 5) {
+      return tween(ms, (t) => {
+        this.dots = this.dots.filter((d) => d.cls !== `${cls} f-${path}`);
+        for (let k = 0; k < n; k++) {
+          const tt = t * 1.6 - k * (0.6 / n);
+          if (tt <= 0 || tt >= 1) continue;
+          this.dots.push({ cls: `${cls} f-${path}`, ...this.at(path, tt), r });
+        }
+        this.draw();
+      });
+    }
+
+    async run() {
+      this.dots = [];
+      const muscle = this.querySelector('[data-bt="muscle"]')!;
+      muscle.classList.remove('bt-glow');
+      this.querySelector('[data-bt="live"]')!.textContent = '';
+
+      this.caption('1. Breathe in: air goes to the lungs');
+      const lungs = this.querySelector<SVGGElement>('[data-bt="lungs-wrap"]')!;
+      await Promise.all([this.flow('air', 'bt-o2', 6, 1300), this.flow('air2', 'bt-o2', 6, 1300), tween(1300, (t) => lungs.setAttribute('transform', `translate(150 160) scale(${1 + 0.06 * Math.sin(t * Math.PI)}) translate(-150 -160)`))]);
+      this.caption('Oxygen passes from the lungs into the blood');
+      await this.flow('oxygen', 'bt-o2', 6, 1100);
+
+      this.caption('2. Eat: food goes to the stomach');
+      await this.flow('food', 'bt-food', 1, 1400, 8);
+      this.caption('Food is broken down in the intestines');
+      await this.flow('gut', 'bt-food', 6, 1300, 4);
+      this.caption('Nutrients pass into the blood');
+      await this.flow('nutrients', 'bt-food', 6, 1100, 4);
+
+      this.caption('3. The heart pumps blood to the muscle');
+      const heart = this.querySelector<SVGPathElement>('.bd-heart')!;
+      await tween(1800, (t) => {
+        heart.setAttribute('transform', `translate(158 162) scale(${1 + 0.12 * Math.abs(Math.sin(t * Math.PI * 4))}) translate(-158 -162)`);
+        this.dots = [];
+        for (let k = 0; k < 8; k++) {
+          const tt = t * 1.6 - k * 0.075;
+          if (tt <= 0 || tt >= 1) continue;
+          const p = this.at('blood', tt);
+          this.dots.push({ cls: 'bt-blood', ...p, r: 6 }, { cls: k % 2 ? 'bt-food' : 'bt-o2', x: p.x + 3, y: p.y - 3, r: 3 });
+        }
+        this.draw();
+      });
+      heart.removeAttribute('transform');
+      muscle.classList.add('bt-glow');
+      this.caption('The arm muscle gets oxygen and nutrients!');
+      await wait(400);
+      this.querySelector('[data-bt="live"]')!.textContent =
+        'Oxygen from the lungs and nutrients from the intestines passed into the blood. The heart pumped the blood through blood vessels to the arm muscle.';
+    }
+  }
+  customElements.define('body-trip', BodyTrip);
+</script>

@@ -1,0 +1,90 @@
+---
+// Animated experiment: watch the Sun on June 21 from noon until midnight, in Edmonton and in
+// Inuvik. In Inuvik the Sun never sets: the midnight sun (SCI5-OI5-GQ1-LO1, K1.5, S1.1).
+---
+<sun-path>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-sp="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sp="live"></p>
+</sun-path>
+
+<style is:global>
+  sun-path { display: block; }
+  .sp-ground { fill: #4f7a3a; }
+  .sp-sun { fill: #ffcf3d; stroke: #e0a400; stroke-width: 2; }
+  .sp-trail { fill: #ffcf3d; opacity: 0.55; }
+  .sp-name { fill: #fff; font-size: 16px; font-weight: 700; paint-order: stroke; stroke: rgba(0, 0, 0, 0.35); stroke-width: 3px; }
+  .sp-clock { fill: var(--ink); font-size: 18px; font-weight: 700; }
+  .sp-note { fill: #fff; font-size: 13px; font-weight: 700; }
+</style>
+
+<script>
+  import { sunAltitude } from '../visuals/seasons.ts';
+  import { tween, wait } from './anim.ts';
+
+  const DAY = 171; // June 21
+  const HORIZON = 210;
+  const PANELS = [
+    { name: 'Edmonton', lat: 53.5, x0: 10 },
+    { name: 'Inuvik', lat: 68.4, x0: 340 },
+  ];
+  const PW = 310;
+
+  /** Sky colour from deep night blue to day blue, by the Sun's height. */
+  function sky(alt: number) {
+    const t = Math.max(0, Math.min(1, (alt + 8) / 14));
+    const mix = (a: number, b: number) => Math.round(a + (b - a) * t);
+    return `rgb(${mix(16, 120)},${mix(24, 180)},${mix(56, 235)})`;
+  }
+
+  class SunPath extends HTMLElement {
+    private hour = 12;
+    private trails: [number, number][][] = [[], []];
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    private pos(p: (typeof PANELS)[number], hour: number) {
+      const alt = sunAltitude(p.lat, DAY, hour % 24);
+      // The Sun circles the sky: highest in the south at noon, lowest in the north at midnight.
+      const x = p.x0 + PW / 2 + Math.sin(((hour - 12) / 24) * 2 * Math.PI) * 120;
+      return { x, y: HORIZON - alt * 2.6, alt };
+    }
+
+    async run() {
+      this.trails = [[], []];
+      this.querySelector('[data-sp="live"]')!.textContent = '';
+      await tween(5000, (t) => {
+        this.hour = 12 + t * 12;
+        PANELS.forEach((p, i) => {
+          const s = this.pos(p, this.hour);
+          const tr = this.trails[i];
+          if (!tr.length || Math.hypot(s.x - tr[tr.length - 1][0], s.y - tr[tr.length - 1][1]) > 9) tr.push([s.x, s.y]);
+        });
+        this.draw();
+      });
+      await wait(200);
+      this.querySelector('[data-sp="live"]')!.textContent =
+        'At midnight, the Sun had set in Edmonton. In Inuvik, the Sun was still above the horizon: the midnight sun.';
+    }
+
+    private draw() {
+      const out: string[] = [];
+      const h = Math.floor(this.hour % 24);
+      const m = Math.floor(((this.hour % 24) - h) * 60);
+      PANELS.forEach((p, i) => {
+        const s = this.pos(p, this.hour);
+        out.push(`<rect x="${p.x0}" y="20" width="${PW}" height="${HORIZON - 20}" rx="8" fill="${sky(s.alt)}"/>`);
+        for (const [x, y] of this.trails[i]) out.push(`<circle class="sp-trail" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"/>`);
+        out.push(`<circle class="sp-sun" cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="13"/>`);
+        out.push(`<rect class="sp-ground" x="${p.x0}" y="${HORIZON}" width="${PW}" height="60" rx="4"/>`);
+        out.push(`<text class="sp-name" x="${p.x0 + 12}" y="44">${p.name}</text>`);
+        const note = s.alt > -0.8 ? 'Sun is up' : 'Sun has set';
+        out.push(`<text class="sp-note" x="${p.x0 + PW / 2}" y="${HORIZON + 34}" text-anchor="middle">${note}</text>`);
+      });
+      out.push(`<text class="sp-clock" x="330" y="293" text-anchor="middle">June 21 · ${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}${h === 0 ? ' (midnight)' : h === 12 ? ' (noon)' : ''}</text>`);
+      this.querySelector('[data-sp="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('sun-path', SunPath);
+</script>

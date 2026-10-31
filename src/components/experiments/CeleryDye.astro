@@ -1,0 +1,93 @@
+---
+// Animated experiment: a celery stalk stands in water with blue food colouring. Over a day the
+// colour climbs the xylem tubes into the leaves; a cut across the stalk shows blue dots where
+// the xylem is (SCI5-OI4-GQ1-LO1, K2.1, K2.3, S2.1).
+---
+<celery-dye>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-cd="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-cd="live"></p>
+</celery-dye>
+
+<style is:global>
+  celery-dye { display: block; }
+  celery-dye svg { background: var(--surface-2); }
+  .cd-stalk { fill: #a9d68a; stroke: #4f8a35; stroke-width: 2; }
+  .cd-leaf { fill: #7cc35f; stroke: #3f7a2a; stroke-width: 1.5; }
+  .cd-blue { fill: #2b6fd6; }
+  .cd-water { fill: color-mix(in srgb, #2b6fd6 55%, transparent); }
+  .cd-strand { stroke: #2b6fd6; stroke-width: 3.5; stroke-linecap: round; }
+  .cd-clock { fill: var(--ink-2); font-size: 15px; font-weight: 700; }
+  .cd-lead { stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 6 6; }
+  .cd-cut { fill: #c9e6b4; stroke: #4f8a35; stroke-width: 2.5; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const STALK = { x: 160, top: 70, bottom: 268, w: 46 };
+  const WATER = 196;
+  const STRANDS = [-14, -5, 5, 14];
+
+  class CeleryDye extends HTMLElement {
+    private rise = 0; // 0..1: how far up the stalk the colour has climbed
+    private leafBlue = 0;
+    private cut = 0; // 0..1: the cross-section appearing
+    private hours = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.rise = this.leafBlue = this.cut = this.hours = 0;
+      this.querySelector('[data-cd="live"]')!.textContent = '';
+      await tween(3600, (t) => {
+        this.rise = t;
+        this.leafBlue = Math.max(0, (t - 0.75) / 0.25);
+        this.hours = Math.round(t * 24);
+        this.draw();
+      });
+      await wait(300);
+      await tween(800, (t) => {
+        this.cut = t;
+        this.draw();
+      });
+      this.querySelector('[data-cd="live"]')!.textContent =
+        'The blue colour climbed up thin tubes in the stalk and reached the leaves. A cut across the stalk shows a row of blue dots: the xylem.';
+    }
+
+    private draw() {
+      const { x, top, bottom, w } = STALK;
+      const out: string[] = [];
+      // Leaves, tinted blue at the edges once the colour arrives.
+      const leaf = (dx: number, dy: number, r: number) =>
+        `<g transform="translate(${x + dx} ${top + dy}) rotate(${r})"><path class="cd-leaf" d="M0,0 Q-26,-18 -14,-48 Q8,-30 0,0 Z"/><path class="cd-blue" opacity="${(this.leafBlue * 0.55).toFixed(2)}" d="M0,0 Q-26,-18 -14,-48 Q8,-30 0,0 Z"/></g>`;
+      out.push(leaf(-10, 6, -30), leaf(6, 2, 10), leaf(18, 10, 40), leaf(-2, -6, -6));
+      out.push(`<rect class="cd-stalk" x="${x - w / 2}" y="${top}" width="${w}" height="${bottom - top}" rx="10"/>`);
+      // Coloured water climbing each xylem strand.
+      const climbTop = bottom - (bottom - top) * this.rise;
+      for (const s of STRANDS) out.push(`<line class="cd-strand" x1="${x + s}" y1="${bottom - 4}" x2="${x + s}" y2="${Math.min(bottom - 4, climbTop + 4).toFixed(1)}"/>`);
+      // Glass of blue water.
+      out.push(`<rect class="cd-water" x="${x - 60}" y="${WATER}" width="120" height="${bottom + 2 - WATER}"/><path class="sci-glass" d="M${x - 60},150 L${x - 60},${bottom + 4} L${x + 60},${bottom + 4} L${x + 60},150"/>`);
+      out.push(`<text class="cd-clock" x="${x}" y="292" text-anchor="middle">${this.hours} hours later</text>`);
+      // Cross-section of the stalk, seen end-on.
+      if (this.cut > 0) {
+        const cx = 470;
+        const cy = 150;
+        const o = this.cut.toFixed(2);
+        out.push(`<g opacity="${o}"><line class="cd-lead" x1="${x + w / 2 + 8}" y1="120" x2="${cx - 96}" y2="${cy}"/>`);
+        out.push(`<path class="cd-cut" d="M${cx - 80},${cy - 20} Q${cx},${cy + 90} ${cx + 80},${cy - 20} Q${cx + 70},${cy - 40} ${cx + 50},${cy - 30} Q${cx},${cy + 20} ${cx - 50},${cy - 30} Q${cx - 70},${cy - 40} ${cx - 80},${cy - 20} Z"/>`);
+        // Xylem dots along the middle of the U-shaped cut: a curve between the inner and outer edges.
+        for (let k = 0; k < 9; k++) {
+          const t = (k + 0.5) / 9;
+          const px = (1 - t) ** 2 * (cx - 66) + 2 * (1 - t) * t * cx + t ** 2 * (cx + 66);
+          const py = (1 - t) ** 2 * (cy - 24) + 2 * (1 - t) * t * (cy + 52) + t ** 2 * (cy - 24);
+          out.push(`<circle class="cd-blue" cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="5"/>`);
+        }
+        out.push(`<text class="sci-text" x="${cx}" y="${cy + 92}" text-anchor="middle">Cut across the stalk</text><text class="sci-small" x="${cx}" y="${cy + 112}" text-anchor="middle">blue dots = xylem tubes</text></g>`);
+      }
+      this.querySelector('[data-cd="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('celery-dye', CeleryDye);
+</script>

@@ -1,0 +1,131 @@
+---
+// Float or sink: drop an object into a fluid and compare the buoyant force with its weight
+// (SCI5-OI2-GQ1-LO1, K2.1-K2.4, S2.1-S2.3).
+import { THINGS, FLUIDS } from './float-shapes.ts';
+interface Props {
+  start?: keyof typeof THINGS;
+}
+const { start = 'wood' } = Astro.props;
+---
+<float-lab data-start={start}>
+  <p class="sci-pick-label">Fluid</p>
+  <div class="sci-pick" role="group" aria-label="Choose the fluid">
+    {Object.entries(FLUIDS).map(([id, f]) => <button type="button" data-fl-fluid={id} aria-pressed={String(id === 'fresh')}>{f.label}</button>)}
+  </div>
+  <p class="sci-pick-label">Drop in</p>
+  <div class="sci-pick" role="group" aria-label="Choose an object">
+    {Object.entries(THINGS).map(([id, t]) => <button type="button" data-fl-thing={id} aria-pressed={String(id === start)}>{t.label}</button>)}
+  </div>
+  <svg class="sci-svg fl-svg" viewBox="0 0 560 300" aria-hidden="true" data-fl="svg"></svg>
+  <p class="sci-say" data-fl="say" aria-live="polite"></p>
+</float-lab>
+
+<style is:global>
+  float-lab { display: block; }
+  .fl-svg { background: var(--surface-2); margin-top: 0.75rem; }
+</style>
+
+<script>
+  import { THINGS, FLUIDS, restingPlace, type ThingId, type FluidId } from './float-shapes.ts';
+  import { forceArrow } from './force-arrows.ts';
+  import { tween } from '../experiments/anim.ts';
+
+  const X0 = 150;
+  const X1 = 410;
+  const SURFACE = 120;
+  const FLOOR = 272;
+  const WEIGHT = 58;
+
+  class FloatLab extends HTMLElement {
+    private thing: ThingId = 'wood';
+    private fluid: FluidId = 'fresh';
+    private top = 20;
+    private settled = false;
+    private run = 0;
+
+    connectedCallback() {
+      this.thing = this.dataset.start as ThingId;
+      this.querySelectorAll<HTMLButtonElement>('[data-fl-thing]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-fl-thing]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.thing = b.dataset.flThing as ThingId;
+          this.drop();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-fl-fluid]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-fl-fluid]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.fluid = b.dataset.flFluid as FluidId;
+          this.drop();
+        }),
+      );
+      const rest = restingPlace(THINGS[this.thing], FLUIDS[this.fluid], SURFACE, FLOOR);
+      this.top = rest.top;
+      this.settled = true;
+      this.draw();
+      this.say();
+    }
+
+    private async drop() {
+      const id = ++this.run;
+      const thing = THINGS[this.thing];
+      const rest = restingPlace(thing, FLUIDS[this.fluid], SURFACE, FLOOR);
+      this.settled = false;
+      this.querySelector('[data-fl="say"]')!.textContent = '';
+      const startTop = 24;
+      // Fall to the surface, then either bob up to the floating depth or keep sinking.
+      const splash = SURFACE - thing.h * 0.4;
+      await tween(350, (t) => {
+        if (id !== this.run) return;
+        this.top = startTop + (splash - startTop) * t * t;
+        this.draw();
+      });
+      if (id !== this.run) return;
+      const fall = rest.floats ? 900 : 700 + 900 / Math.max(1, rest.buoyant * 4 + 0.3);
+      await tween(fall, (t) => {
+        if (id !== this.run) return;
+        if (rest.floats) {
+          const wobble = Math.exp(-4 * t) * Math.cos(t * 14) * 10;
+          this.top = rest.top + (splash - rest.top) * Math.exp(-5 * t) + wobble * (1 - t);
+        } else this.top = splash + (rest.top - splash) * (1 - (1 - t) ** 2);
+        this.draw();
+      });
+      if (id !== this.run) return;
+      this.top = rest.top;
+      this.settled = true;
+      this.draw();
+      this.say();
+    }
+
+    private say() {
+      const thing = THINGS[this.thing];
+      const fluid = FLUIDS[this.fluid];
+      const rest = restingPlace(thing, fluid, SURFACE, FLOOR);
+      const where = fluid.label.toLowerCase();
+      this.querySelector('[data-fl="say"]')!.textContent = rest.floats
+        ? `The ${thing.label.toLowerCase()} floats in ${where}: the buoyant force is equal to its weight.`
+        : `The ${thing.label.toLowerCase()} sinks in ${where}: the buoyant force is less than its weight.`;
+    }
+
+    private draw() {
+      const thing = THINGS[this.thing];
+      const fluid = FLUIDS[this.fluid];
+      const rest = restingPlace(thing, fluid, SURFACE, FLOOR);
+      const cx = (X0 + X1) / 2;
+      let arrows = '';
+      if (this.settled) {
+        const mid = this.top + thing.h / 2;
+        // An object resting on the floor gets its weight arrow raised so it and its label stay in the glass.
+        arrows =
+          forceArrow('buoyant', cx + 70, mid, WEIGHT * rest.buoyant, 'Buoyant force') + forceArrow('weight', cx - 70, Math.min(mid, FLOOR - WEIGHT - 32), WEIGHT, 'Weight');
+      }
+      this.querySelector('[data-fl="svg"]')!.innerHTML =
+        `<rect class="${fluid.cls}" x="${X0}" y="${SURFACE}" width="${X1 - X0}" height="${FLOOR - SURFACE}"/><line class="sci-surface" x1="${X0}" y1="${SURFACE}" x2="${X1}" y2="${SURFACE}"/>` +
+        `<g transform="translate(${cx} ${this.top.toFixed(1)})">${thing.svg}</g>` +
+        `<path class="sci-glass" d="M${X0},40 L${X0},${FLOOR + 2} L${X1},${FLOOR + 2} L${X1},40"/>` +
+        `<text class="sci-small" x="${X1 + 10}" y="${FLOOR - 4}">${fluid.label}</text>` +
+        arrows;
+    }
+  }
+  customElements.define('float-lab', FloatLab);
+</script>

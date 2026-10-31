@@ -1,0 +1,111 @@
+---
+// Animated experiment: pour four liquids into a tall container, least dense first. Each new
+// liquid sinks below the liquids that are less dense than it, so the column ends up sorted
+// with the densest liquid at the bottom (SCI5-OI1-GQ1-LO1, K2.10, K2.11, S2.4).
+interface Props {
+  /** Pouring order. */
+  order?: ('honey' | 'soap' | 'water' | 'oil')[];
+}
+const { order = ['oil', 'water', 'soap', 'honey'] } = Astro.props;
+---
+<liquid-layers data-order={JSON.stringify(order)}>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-ll="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ll="live"></p>
+</liquid-layers>
+
+<style is:global>
+  liquid-layers { display: block; }
+  .ll-bg { fill: var(--surface-2); }
+  .ll-layer { stroke: color-mix(in srgb, var(--ink) 35%, transparent); stroke-width: 1; }
+  .ll-lead { stroke: var(--ink-3); stroke-width: 1.5; }
+  .ll-step { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait, ease, lerp } from './anim.ts';
+
+  type Id = 'honey' | 'soap' | 'water' | 'oil';
+  const LIQ: Record<Id, { name: string; density: number; colour: string }> = {
+    honey: { name: 'Honey', density: 1.42, colour: '#c27c0e' },
+    soap: { name: 'Dish soap', density: 1.06, colour: '#3fa34d' },
+    water: { name: 'Water (with blue food colouring)', density: 1.0, colour: '#3b82f6' },
+    oil: { name: 'Vegetable oil', density: 0.92, colour: '#f2d36b' },
+  };
+  const X0 = 250;
+  const WIDTH = 140;
+  const BOTTOM = 272;
+  const LAYER = 46;
+
+  interface Layer { id: Id; y: number; h: number }
+
+  class LiquidLayers extends HTMLElement {
+    private order: Id[] = [];
+    private layers: Layer[] = [];
+    private stream = 0; // bottom of the pouring stream, 0 = none
+    private pouring: Id | null = null;
+    private note = 'Ready to pour.';
+
+    connectedCallback() {
+      this.order = JSON.parse(this.dataset.order!);
+      this.draw();
+    }
+
+    async run() {
+      this.layers = [];
+      this.querySelector('[data-ll="live"]')!.textContent = '';
+      for (const [i, id] of this.order.entries()) {
+        const top = BOTTOM - LAYER * this.layers.length;
+        this.note = `Pour ${i + 1}: ${LIQ[id].name.replace(/ \(.*\)/, '').toLowerCase()}`;
+        this.pouring = id;
+        await tween(380, (t) => {
+          this.stream = lerp(24, top, t);
+          this.draw();
+        });
+        const layer: Layer = { id, y: top, h: 0 };
+        this.layers.push(layer);
+        await tween(650, (t) => {
+          layer.h = LAYER * t;
+          layer.y = top - layer.h;
+          this.draw();
+        });
+        this.pouring = null;
+        this.stream = 0;
+        await this.settle();
+        await wait(250);
+      }
+      this.note = 'Sorted by density';
+      this.draw();
+      this.querySelector('[data-ll="live"]')!.textContent =
+        'The liquids did not stay in the order they were poured. From bottom to top: honey, dish soap, water, vegetable oil.';
+    }
+
+    /** Moves every layer to its place: denser liquids below less dense ones. */
+    private async settle() {
+      const sorted = [...this.layers].sort((a, b) => LIQ[b.id].density - LIQ[a.id].density);
+      const from = this.layers.map((l) => l.y);
+      const to = this.layers.map((l) => BOTTOM - LAYER * (sorted.indexOf(l) + 1));
+      if (from.every((y, i) => Math.abs(y - to[i]) < 0.5)) return;
+      await tween(900, (t) => {
+        this.layers.forEach((l, i) => (l.y = lerp(from[i], to[i], ease(t))));
+        this.draw();
+      });
+    }
+
+    private draw() {
+      const parts: string[] = [`<rect class="ll-bg" width="660" height="300"/>`];
+      if (this.pouring) parts.push(`<rect x="${X0 + WIDTH / 2 - 5}" y="24" width="10" height="${Math.max(0, this.stream - 24)}" rx="4" fill="${LIQ[this.pouring].colour}"/>`);
+      // Draw the moving (newest) layer last so you can see it pass through the others.
+      for (const l of this.layers) {
+        parts.push(`<rect class="ll-layer" x="${X0 + 3}" y="${l.y.toFixed(1)}" width="${WIDTH - 6}" height="${l.h.toFixed(1)}" fill="${LIQ[l.id].colour}" opacity="0.92"/>`);
+        if (l.h > 20) {
+          const cy = l.y + l.h / 2;
+          parts.push(`<line class="ll-lead" x1="${X0 + WIDTH + 6}" y1="${cy.toFixed(1)}" x2="${X0 + WIDTH + 30}" y2="${cy.toFixed(1)}"/><text class="sci-text" x="${X0 + WIDTH + 36}" y="${(cy + 5).toFixed(1)}">${LIQ[l.id].name.replace(/ \(.*\)/, '')}</text>`);
+        }
+      }
+      parts.push(`<path class="sci-glass" d="M${X0},50 L${X0},${BOTTOM + 2} L${X0 + WIDTH},${BOTTOM + 2} L${X0 + WIDTH},50"/>`);
+      parts.push(`<text class="ll-step" x="${X0 - 20}" y="40" text-anchor="end">${this.note}</text>`);
+      this.querySelector('[data-ll="svg"]')!.innerHTML = parts.join('');
+    }
+  }
+  customElements.define('liquid-layers', LiquidLayers);
+</script>

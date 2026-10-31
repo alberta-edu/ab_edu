@@ -1,0 +1,127 @@
+---
+// Plant transport (SCI5-OI4-GQ1-LO1, K2.1-K2.4, S2.1): water and nutrients flow up the xylem
+// from the roots; sugars flow from the leaves through the phloem to the rest of the plant.
+const PATHS = {
+  // Xylem: root tips → stem (left tube) → each leaf.
+  x1: 'M200,330 Q230,300 272,262 L272,90 L190,60',
+  x2: 'M340,330 Q300,300 272,262 L272,150 L180,128',
+  x3: 'M270,318 L272,262 L272,120 L370,96',
+  x4: 'M300,320 Q290,290 272,262 L272,190 L366,170',
+  // Phloem: each leaf → stem (right tube) → roots, and up to the growing tip.
+  p1: 'M190,64 L288,92 L288,262 Q314,296 344,326',
+  p2: 'M366,174 L288,192 L288,262 Q260,296 204,326',
+  p3: 'M180,132 L288,150 L288,40',
+  p4: 'M370,100 L288,120 L288,262 L286,318',
+};
+---
+<plant-transport>
+  <div class="sci-pick" role="group" aria-label="What to show">
+    <button type="button" data-pt-show="xylem" aria-pressed="true">Xylem</button>
+    <button type="button" data-pt-show="phloem" aria-pressed="false">Phloem</button>
+    <button type="button" data-pt-show="both" aria-pressed="false">Both</button>
+  </div>
+  <svg class="sci-svg pt-svg" viewBox="60 20 440 330" aria-hidden="true">
+    <rect class="sci-sky" x="60" y="20" width="440" height="242" />
+    <rect class="pt-soil" x="60" y="262" width="440" height="90" />
+    <g class="pt-root">
+      <path d="M272,262 Q230,300 200,330 M272,262 Q300,300 340,330 M272,262 L270,318 M280,262 Q290,290 300,320 M236,298 L222,318 M312,302 L326,316" />
+    </g>
+    <path class="pt-stem" d="M262,262 L262,36 Q280,22 298,36 L298,262 Z" />
+    <g class="pt-leaf">
+      <path d="M262,90 Q220,40 160,58 Q200,100 262,90 Z" />
+      <path d="M262,150 Q210,108 150,128 Q196,170 262,150 Z" />
+      <path d="M298,120 Q340,70 400,92 Q360,136 298,120 Z" />
+      <path d="M298,190 Q350,148 400,168 Q356,212 298,190 Z" />
+    </g>
+    <line class="pt-tube pt-tube--x" x1="272" y1="262" x2="272" y2="44" data-pt-tube="xylem" />
+    <line class="pt-tube pt-tube--p" x1="288" y1="262" x2="288" y2="44" data-pt-tube="phloem" />
+    {Object.entries(PATHS).map(([id, d]) => <path class="pt-route" data-pt-path={id} d={d} />)}
+    <g data-pt="dots"></g>
+    <text class="pt-tag pt-tag--x" x="246" y="232" text-anchor="end" data-pt-tag="xylem">Xylem</text>
+    <text class="pt-tag pt-tag--p" x="314" y="232" data-pt-tag="phloem">Phloem</text>
+    <text class="sci-small" x="70" y="282">roots in the soil</text>
+    <text class="sci-small" x="70" y="40">leaves</text>
+  </svg>
+  <div class="bt-key" aria-hidden="true">
+    <span data-pt-key="xylem"><i class="bt-k pt-k--water"></i>Water and nutrients</span>
+    <span data-pt-key="phloem"><i class="bt-k pt-k--sugar"></i>Sugars</span>
+  </div>
+  <p class="sci-say" aria-live="polite" data-pt="say"></p>
+</plant-transport>
+
+<style is:global>
+  plant-transport { display: block; }
+  .pt-svg { max-width: 34rem; margin: 0.75rem auto 0; }
+  .pt-soil { fill: color-mix(in srgb, #8b5a2b 45%, var(--surface)); }
+  .pt-root { fill: none; stroke: #c9a46a; stroke-width: 6; stroke-linecap: round; }
+  .pt-stem { fill: #5fae4f; stroke: #2f6f2a; stroke-width: 2; }
+  .pt-leaf path { fill: #6cc15a; stroke: #2f6f2a; stroke-width: 2; }
+  .pt-tube { stroke-width: 6; stroke-linecap: round; opacity: 0.85; }
+  .pt-tube--x { stroke: #2b8fd6; }
+  .pt-tube--p { stroke: #e08a1e; }
+  .pt-route { fill: none; stroke: none; }
+  .pt-water { fill: #2b8fd6; stroke: var(--surface); stroke-width: 1.5; }
+  .pt-sugar { fill: #f2b53a; stroke: #8a5a10; stroke-width: 1.5; }
+  .pt-tag { font-size: 16px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+  .pt-tag--x { fill: var(--math); }
+  .pt-tag--p { fill: color-mix(in srgb, #e08a1e 80%, var(--ink)); }
+  .pt-k--water { background: #2b8fd6; }
+  .pt-k--sugar { background: #f2b53a; }
+  .pt-hide { display: none; }
+</style>
+
+<script>
+  import { loopWhileVisible } from '../experiments/anim.ts';
+
+  const SAY = {
+    xylem: 'Xylem carries water and nutrients up from the roots to the rest of the plant.',
+    phloem: 'Phloem carries sugars from the leaves to the rest of the plant: down to the roots and up to the growing tip.',
+    both: 'Xylem and phloem are the plant’s transport system. They do a job like the circulatory system in animals.',
+  };
+
+  class PlantTransport extends HTMLElement {
+    private show: 'xylem' | 'phloem' | 'both' = 'xylem';
+    private t = 0;
+    private routes: { el: SVGPathElement; len: number; kind: 'x' | 'p' }[] = [];
+
+    connectedCallback() {
+      this.routes = [...this.querySelectorAll<SVGPathElement>('[data-pt-path]')].map((el) => ({ el, len: el.getTotalLength(), kind: el.dataset.ptPath![0] as 'x' | 'p' }));
+      this.querySelectorAll<HTMLButtonElement>('[data-pt-show]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-pt-show]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.show = b.dataset.ptShow as typeof this.show;
+          this.update();
+        }),
+      );
+      this.update();
+      this.draw();
+      loopWhileVisible(this, (dt) => {
+        this.t += dt;
+        this.draw();
+      });
+    }
+
+    private update() {
+      const on = (k: 'xylem' | 'phloem') => this.show === 'both' || this.show === k;
+      for (const k of ['xylem', 'phloem'] as const) {
+        this.querySelectorAll(`[data-pt-tube="${k}"], [data-pt-tag="${k}"], [data-pt-key="${k}"]`).forEach((e) => e.classList.toggle('pt-hide', !on(k)));
+      }
+      this.querySelector('[data-pt="say"]')!.textContent = SAY[this.show];
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (const r of this.routes) {
+        if (r.kind === 'x' && this.show === 'phloem') continue;
+        if (r.kind === 'p' && this.show === 'xylem') continue;
+        // Evenly spaced dots slide along each route: 70 px apart, 40 px per second.
+        for (let s = (this.t * 40) % 70; s < r.len; s += 70) {
+          const p = r.el.getPointAtLength(s);
+          out.push(`<circle class="${r.kind === 'x' ? 'pt-water' : 'pt-sugar'}" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="5"/>`);
+        }
+      }
+      this.querySelector('[data-pt="dots"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('plant-transport', PlantTransport);
+</script>

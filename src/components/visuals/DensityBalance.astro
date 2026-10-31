@@ -1,0 +1,114 @@
+---
+// Directly comparing densities: cubes of the same size on a balance. The side with more
+// mass is denser. A cube less dense than water floats in it (SCI5-OI1-GQ1-LO1, K2.7-K2.11, S2.3).
+const CUBES = [
+  { id: 'cork', label: 'Cork', density: 0.24, colour: '#d2a464' },
+  { id: 'wood', label: 'Wood', density: 0.5, colour: '#a8743d' },
+  { id: 'wax', label: 'Candle wax', density: 0.9, colour: '#f1ead6' },
+  { id: 'aluminum', label: 'Aluminum', density: 2.7, colour: '#c3c9d1' },
+  { id: 'steel', label: 'Steel', density: 7.9, colour: '#76818f' },
+];
+---
+<density-balance data-cubes={JSON.stringify(CUBES)}>
+  <div class="db-picks">
+    {
+      ['left', 'right'].map((side, si) => (
+        <div>
+          <p class="sci-pick-label">{side === 'left' ? 'Left pan' : 'Right pan'}</p>
+          <div class="sci-pick" role="group" aria-label={`Cube on the ${side} pan`}>
+            {CUBES.map((c) => (
+              <button type="button" data-db-side={side} data-db-cube={c.id} aria-pressed={String(c.id === (si === 0 ? 'wood' : 'aluminum'))}>
+                {c.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <svg class="sci-svg db-svg" viewBox="0 0 560 250" aria-hidden="true" data-db="svg"></svg>
+  <p class="sci-say" data-db="say" aria-live="polite"></p>
+  <p class="db-water" data-db="water"></p>
+</density-balance>
+
+<style is:global>
+  density-balance { display: block; }
+  .db-picks { display: grid; gap: 0.25rem 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+  .db-svg { background: var(--surface-2); margin-top: 0.75rem; }
+  .db-cube { stroke: var(--ink); stroke-width: 2.5; }
+  .db-cube-top { stroke: var(--ink); stroke-width: 2; filter: brightness(1.12); }
+  .db-water { margin: 0.4rem 0 0; color: var(--ink-2); }
+</style>
+
+<script>
+  import { tween, ease, lerp } from '../experiments/anim.ts';
+
+  type Cube = { id: string; label: string; density: number; colour: string };
+  const PIVOT = { x: 280, y: 80 };
+  const ARM = 170;
+
+  class DensityBalance extends HTMLElement {
+    private cubes: Cube[] = [];
+    private left!: Cube;
+    private right!: Cube;
+    private angle = 0;
+
+    connectedCallback() {
+      this.cubes = JSON.parse(this.dataset.cubes!);
+      this.left = this.cubes.find((c) => c.id === 'wood')!;
+      this.right = this.cubes.find((c) => c.id === 'aluminum')!;
+      this.querySelectorAll<HTMLButtonElement>('[data-db-cube]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const side = b.dataset.dbSide as 'left' | 'right';
+          this.querySelectorAll(`[data-db-side="${side}"]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this[side] = this.cubes.find((c) => c.id === b.dataset.dbCube)!;
+          this.update();
+        }),
+      );
+      this.angle = this.target();
+      this.update();
+    }
+
+    private target() {
+      // Right cube heavier → beam turns clockwise. Same size, so mass follows density.
+      return Math.max(-1, Math.min(1, Math.log10(this.right.density / this.left.density))) * 15;
+    }
+
+    private update() {
+      const from = this.angle;
+      const to = this.target();
+      tween(500, (t) => {
+        this.angle = lerp(from, to, ease(t));
+        this.draw();
+      });
+      const { left: L, right: R } = this;
+      const say = this.querySelector('[data-db="say"]')!;
+      if (L.id === R.id) say.textContent = `Two ${L.label.toLowerCase()} cubes of the same size have the same mass, so the balance is level.`;
+      else {
+        const [hi, lo] = L.density > R.density ? [L, R] : [R, L];
+        say.textContent = `Same size, but the ${hi.label.toLowerCase()} cube has more mass, so ${hi.label.toLowerCase()} is denser than ${lo.label.toLowerCase()}.`;
+      }
+      const inWater = (c: Cube) => `${c.label} is ${c.density < 1 ? 'less dense than water, so it floats' : 'denser than water, so it sinks'}`;
+      this.querySelector('[data-db="water"]')!.textContent =
+        L.id === R.id ? `In water: ${inWater(L).toLowerCase()}.` : `In water: ${inWater(L).toLowerCase()}. ${inWater(R)}.`;
+    }
+
+    private draw() {
+      const r = (this.angle * Math.PI) / 180;
+      const ends = [-1, 1].map((s) => ({ x: PIVOT.x + s * ARM * Math.cos(r), y: PIVOT.y + s * ARM * Math.sin(r) }));
+      const cube = (c: Cube) =>
+        `<path class="db-cube-top" fill="${c.colour}" d="M-34,-68 L-22,-80 L46,-80 L34,-68 Z"/><path class="db-cube" fill="${c.colour}" style="filter:brightness(0.85)" d="M34,-68 L46,-80 L46,-12 L34,0 Z"/><rect class="db-cube" fill="${c.colour}" x="-34" y="-68" width="68" height="68"/>`;
+      const pans = ends
+        .map((p, i) => {
+          const py = p.y + 106;
+          return `<line class="mt-chain" x1="${p.x}" y1="${p.y}" x2="${p.x - 56}" y2="${py}"/><line class="mt-chain" x1="${p.x}" y1="${p.y}" x2="${p.x + 56}" y2="${py}"/><path class="mt-pan" d="M${p.x - 64},${py} Q${p.x},${py + 26} ${p.x + 64},${py} Z"/><g transform="translate(${p.x.toFixed(1)} ${py.toFixed(1)})">${cube(i === 0 ? this.left : this.right)}</g>`;
+        })
+        .join('');
+      this.querySelector('[data-db="svg"]')!.innerHTML =
+        `<path class="mt-post" d="M262,236 L298,236 L288,${PIVOT.y} L272,${PIVOT.y} Z"/><rect class="mt-post" x="210" y="234" width="140" height="10" rx="4"/>` +
+        `<line class="mt-beam" x1="${ends[0].x.toFixed(1)}" y1="${ends[0].y.toFixed(1)}" x2="${ends[1].x.toFixed(1)}" y2="${ends[1].y.toFixed(1)}"/><circle class="mt-post" cx="${PIVOT.x}" cy="${PIVOT.y}" r="7"/>` +
+        pans;
+    }
+  }
+  customElements.define('density-balance', DensityBalance);
+</script>

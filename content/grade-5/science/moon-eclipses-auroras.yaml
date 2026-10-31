@@ -1,0 +1,371 @@
+id: moon-eclipses-auroras
+grade: 5
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI5-OI5-GQ1-LO1]
+order: 11
+title: Moon Phases, Eclipses and Auroras
+shortTitle: Moon phases, eclipses and auroras
+summary: >-
+  Move the Moon around Earth to see its phases, watch a solar and a lunar eclipse happen, and see what
+  the northern lights look like.
+
+bigIdea: |-
+  **Astronomical phenomena** are events we can observe among objects in space. The Moon's **phases**
+  repeat in a predictable cycle of about a month. **Eclipses** happen when the Sun, Earth and Moon line up.
+  **Auroras** light up the night sky, and in the north we call them the **northern lights**.
+
+lesson:
+  - title: Phases of the Moon
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, S1.2, S1.7]
+        component: moon-phases
+        caption: |-
+          Press **Play a month** or drag the day. The Sun always lights **half** of the Moon. The phase is how much of
+          that lit half we can see from Earth.
+      - type: figure
+        covers: [K1.3, S1.4]
+        figure: { kind: moons, ages: [3.7, 7.4, 14.8, 22.1, 25.8], labels: [Crescent, First qtr, Full, Third qtr, Crescent] }
+        caption: The Moon grows from **new** to **full** (waxing), then shrinks back to new (waning). The whole cycle takes about **29½ days**.
+
+  - title: A predictable cycle
+    blocks:
+      - type: table
+        covers: [K1.3, S1.4, S1.2]
+        headers: [Phase, About which day, What you see]
+        rows:
+          - ['New Moon', 'Day 0', 'Almost nothing: the lit half faces away from Earth.']
+          - ['First quarter', 'Day 7', 'The right half is lit.']
+          - ['Full Moon', 'Day 15', 'The whole face is lit.']
+          - ['Third quarter', 'Day 22', 'The left half is lit.']
+          - ['New Moon again', 'Day 29½', 'The cycle starts over.']
+      - type: text
+        covers: [K1.8, S1.5, K1.7]
+        body: |-
+          Because the Moon's cycle is so predictable, many First Nations, including Cree and Anishinaabe peoples,
+          count the year in **13 moons**. The names differ from place to place, and many come from what is happening in
+          nature at that time, such as geese returning or berries ripening. Métis calendars also mark the year by
+          seasonal hunting, gathering and farming.
+      - type: callout
+        variant: mistake
+        covers: [K1.2, S1.3]
+        title: "Phases aren't Earth's shadow"
+        body: |-
+          Earth's shadow doesn't make the phases. The phase depends on how much of the Moon's **lit half** faces us.
+          Earth's shadow falls on the Moon only during a **lunar eclipse**.
+
+  - title: 'Virtual experiment: two kinds of eclipses'
+    blocks:
+      - type: experiment
+        covers: [S1.3, K1.2, K1.1]
+        title: Line up the Sun, Earth and Moon
+        question: |-
+          Watch two line-ups. In a **solar eclipse**, the Moon moves between the Sun and Earth. In a **lunar
+          eclipse**, Earth is between the Sun and the Moon.
+        animation: eclipses
+        predict:
+          choices:
+            - During the lunar eclipse, the full Moon turns dark and reddish.
+            - During the lunar eclipse, the Moon gets brighter.
+            - During the lunar eclipse, the Moon becomes a crescent.
+          answer: 0
+        observe: |-
+          **Solar eclipse:** the Moon covered the Sun, and the daytime sky went dark. **Lunar eclipse:** the full
+          Moon slid into Earth's shadow and turned a dark, reddish colour.
+        explain: |-
+          - In a solar eclipse, the Moon blocks the Sun's light from reaching part of Earth.
+          - In a lunar eclipse, Earth blocks the Sun's light from reaching the Moon.
+
+  - title: Solar and lunar eclipses
+    blocks:
+      - type: compare
+        covers: [S1.3, K1.2]
+        columns:
+          - title: Solar eclipse
+            body: |-
+              **Line-up:** Sun → Moon → Earth.
+
+              **What you observe:** the Moon covers part or all of the Sun in the daytime. During a total eclipse, the
+              sky goes dark like evening.
+          - title: Lunar eclipse
+            body: |-
+              **Line-up:** Sun → Earth → Moon.
+
+              **What you observe:** at night, the full Moon slowly darkens and often turns reddish or copper-coloured.
+      - type: callout
+        variant: tip
+        covers: [S1.3]
+        title: Stay safe
+        body: Never look straight at the Sun, even during a solar eclipse. It can hurt your eyes. A lunar eclipse is safe to watch.
+
+  - title: The northern lights
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.3, K1.1]
+        component: aurora
+        caption: |-
+          **Auroras** are curtains and ribbons of coloured light that ripple across the night sky. They are often green,
+          sometimes with pink or purple edges. In the northern hemisphere they are the **northern lights**, or
+          **aurora borealis**.
+      - type: text
+        covers: [S1.6, S1.8, U1.1]
+        body: |-
+          The northern lights are often seen in northern Alberta and across northern Canada on dark, clear nights.
+          **Stories** about them differ from place to place. Inuvialuit legends say the lights are the spirits of people
+          who once lived, playing a game with a walrus skull. Cree legends say they are spirits who remain in the sky.
+          Dene Elder Jonas Antoine of Fort Simpson learned from his grandfather that if you listen closely, you can hear
+          them. In many northern communities, children are told never to whistle at them.
+
+keyTerms:
+  - term: Astronomical phenomena
+    covers: [K1.1, K1.2]
+    definition: Events that can be observed among objects in space, such as Moon phases, eclipses and auroras.
+  - term: Moon phase
+    covers: [K1.2, K1.3]
+    definition: The shape of the lit part of the Moon that we see from Earth. Phases repeat about every 29½ days.
+  - term: Waxing / waning
+    covers: [K1.3]
+    definition: Waxing means the lit part is growing. Waning means it is shrinking.
+  - term: Solar eclipse
+    covers: [S1.3]
+    definition: When the Moon passes between the Sun and Earth and blocks the Sun.
+  - term: Lunar eclipse
+    covers: [S1.3]
+    definition: "When Earth passes between the Sun and the Moon, and Earth's shadow falls on the Moon."
+  - term: Aurora borealis
+    covers: [K1.6]
+    definition: The northern lights. Curtains of coloured light in the night sky of the northern hemisphere.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    covers: [K1.3]
+    type: mc
+    prompt: About how long does it take the Moon to go through all of its phases, from new Moon to new Moon?
+    choices: [About 29½ days, About 1 day, About 7 days, About 1 year]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': One day is how long Earth takes to spin once.
+      '2': Seven days takes the Moon only from new to first quarter.
+      '3': One year is how long Earth takes to travel around the Sun.
+    hints:
+      - The cycle is about a month long.
+    solution:
+      - The Moon's phases repeat about every **29½ days**, about a month.
+
+  - id: w2
+    level: 1
+    covers: [K1.2]
+    type: mc
+    prompt: In which phase is the **whole face** of the Moon lit?
+    choices: [Full Moon, New Moon, First quarter, Waxing crescent]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': At new Moon, the lit half faces away from us.
+      '2': At first quarter, only half the face is lit.
+      '3': A crescent is a thin sliver.
+    hints:
+      - It is halfway through the cycle.
+    solution:
+      - At **full Moon**, we see the Moon's whole lit half.
+
+  - id: w3
+    level: 1
+    covers: [K1.6]
+    type: mc
+    prompt: In the northern hemisphere, auroras are called the…
+    choices: [northern lights, Milky Way, solar eclipse, midnight sun]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The Milky Way is our galaxy, a band of stars.
+      '2': A solar eclipse is when the Moon blocks the Sun.
+      '3': The midnight sun is the Sun staying up all night in summer.
+    hints:
+      - Another name is aurora borealis.
+    solution:
+      - In the northern hemisphere, auroras are the **northern lights** (aurora borealis).
+
+  - id: w4
+    level: 1
+    covers: [S1.3]
+    type: mc
+    prompt: During a **solar eclipse**, what blocks the Sun?
+    choices: [The Moon, Earth, Clouds, Another star]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': When Earth is in the way, it is a **lunar** eclipse, and the Moon is darkened.
+      '2': Clouds can hide the Sun, but that is weather, not an eclipse.
+      '3': Other stars are much too far away.
+    hints:
+      - In a solar eclipse, something passes between the Sun and Earth.
+    solution:
+      - In a solar eclipse, the **Moon** passes between the Sun and Earth and blocks the Sun.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    covers: [S1.2, K1.2]
+    type: mc
+    figure: { kind: moons, ages: [3.7, 7.4, 11, 14.8] }
+    prompt: Which drawing shows a **first quarter** Moon?
+    choices: [A, B, C, D]
+    fixedOrder: true
+    answer: 1
+    feedback:
+      '0': A is a thin crescent.
+      '2': C is more than half lit. It is a waxing gibbous Moon.
+      '3': D is a full Moon.
+    hints:
+      - At first quarter, exactly half of the face is lit.
+    solution:
+      - '**B**: the right half is lit, so it is a first quarter Moon.'
+
+  - id: b2
+    level: 2
+    covers: [K1.3, S1.4]
+    type: order
+    prompt: Put the phases in order, starting from the **new Moon**.
+    items: [New Moon, Waxing crescent, First quarter, Waxing gibbous, Full Moon]
+    hints:
+      - After a new Moon, the lit part grows (waxes) a little each night.
+    solution:
+      - New Moon → waxing crescent → first quarter → waxing gibbous → full Moon.
+
+  - id: b3
+    level: 2
+    covers: [S1.2, K1.3]
+    type: mc
+    prompt: Tonight you see a **first quarter** Moon. About one week later, which phase will you see?
+    choices: [Full Moon, New Moon, Waxing crescent, First quarter again]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': New Moon comes about one week **before** first quarter, or three weeks after.
+      '2': The crescent comes **before** first quarter.
+      '3': The same phase comes back only after about 29½ days.
+    hints:
+      - First quarter is about day 7. Add 7 days.
+    solution:
+      - First quarter is about day 7, and full Moon is about day 15. One week later, you'll see a **full Moon**.
+
+  - id: b4
+    level: 2
+    covers: [S1.3]
+    type: mc
+    prompt: What can you observe during a total **lunar eclipse**?
+    choices:
+      - The full Moon darkens and turns reddish.
+      - The Sun disappears in the middle of the day.
+      - The Moon gets brighter than usual.
+      - The Moon disappears and leaves a hole in the sky.
+    answer: 0
+    feedback:
+      '1': That happens during a **solar** eclipse.
+      '2': "The Moon gets darker, because it is in Earth's shadow."
+      '3': You can still see the Moon. It turns dark and reddish.
+    hints:
+      - "In a lunar eclipse, the Moon moves into Earth's shadow."
+    solution:
+      - "In Earth's shadow, the full Moon darkens and often turns **reddish**."
+
+  - id: b5
+    level: 2
+    covers: [S1.3, K1.6]
+    type: mc
+    prompt: Which description matches the **northern lights**?
+    choices:
+      - Ripples and curtains of coloured light, often green, across the night sky
+      - A bright white band that appears only at noon
+      - The Moon turning red
+      - The Sun staying up all night
+    answer: 0
+    feedback:
+      '1': Auroras are seen at night, on dark, clear nights.
+      '2': That is a lunar eclipse.
+      '3': That is the midnight sun.
+    hints:
+      - Think of the aurora animation.
+    solution:
+      - The northern lights are **moving curtains of coloured light**, often green, in the night sky.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    covers: [K1.2, S1.3]
+    type: mc
+    prompt: '"The Moon has phases because Earth''s shadow covers part of it." What is wrong with this idea?'
+    choices:
+      - The phase depends on how much of the Moon's lit half faces Earth. Earth's shadow only falls on the Moon during a lunar eclipse.
+      - Nothing. Earth's shadow makes the phases.
+      - The Moon makes its own light, so it has no phases.
+      - The Sun's shadow makes the phases.
+    answer: 0
+    feedback:
+      '1': If Earth's shadow made the phases, we would see eclipses every month.
+      '2': The Moon doesn't make its own light. It is lit by the Sun.
+      '3': The Sun is the light source. It doesn't cast a shadow on the Moon.
+    hints:
+      - When does Earth's shadow fall on the Moon?
+    solution:
+      - Half of the Moon is always lit by the Sun. As the Moon travels around Earth, we see **more or less of that lit half**.
+      - "Earth's shadow on the Moon is a **lunar eclipse**, which is much rarer."
+
+  - id: d2
+    level: 3
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: A lunar eclipse can only happen at **full Moon**. Why?
+    choices:
+      - Earth has to be between the Sun and the Moon, and that is where the Moon is when it is full.
+      - The Moon is only round at full Moon.
+      - The Moon is closest to the Sun at full Moon.
+      - Lunar eclipses happen at every phase.
+    answer: 0
+    feedback:
+      '1': The Moon is always round. We just see different amounts of its lit half.
+      '2': At full Moon, the Moon is on the far side of Earth from the Sun.
+      '3': A lunar eclipse needs the line-up Sun → Earth → Moon.
+    hints:
+      - Where is the Moon in the line-up during a lunar eclipse?
+    solution:
+      - 'For a lunar eclipse, Earth must be **between** the Sun and the Moon. Then we see the Moon''s whole lit side: a **full Moon**.'
+
+  - id: d3
+    level: 3
+    covers: [K1.3, K1.8, S1.5]
+    type: mc
+    prompt: Why does a calendar of **13 moons** work for counting the year?
+    choices:
+      - The Moon's phases repeat in a predictable cycle of about 29½ days, and 12 to 13 of those fit in a year.
+      - The Moon only appears 13 times a year.
+      - Every month has exactly 13 days.
+      - The Moon changes randomly.
+    answer: 0
+    feedback:
+      '1': The Moon can be seen in most of its phases all through the year.
+      '2': Months are much longer than 13 days.
+      '3': The phases follow a predictable cycle.
+    hints:
+      - How long is one Moon cycle? How many days are in a year?
+    solution:
+      - The phases repeat about every 29½ days, a cycle you can count on. A year of 365 days holds **12 to 13** of these cycles.
+
+  - id: d4
+    level: 3
+    covers: [S1.3]
+    type: open
+    prompt: Describe what you would **observe** during a total solar eclipse and during a total lunar eclipse. Explain the line-up for each.
+    modelAnswer: |-
+      During a total solar eclipse, the Moon covers the Sun in the daytime and the sky goes dark like evening. The
+      Moon is between the Sun and Earth. During a total lunar eclipse, the full Moon slowly darkens and turns reddish
+      at night. Earth is between the Sun and the Moon, so Earth's shadow falls on the Moon.
+    rubric:
+      - I described what you see during a **solar** eclipse.
+      - I described what you see during a **lunar** eclipse.
+      - I gave the correct line-up for each.
