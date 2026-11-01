@@ -180,244 +180,354 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K4.1]
+    thinking: recall
+    covers: [K4.1, K4.2]
     type: mc
-    prompt: What is a **perspective**?
+    prompt: |-
+      It snows all night. A child looks out and shouts, “Snow day!” The snowplow driver looks out and groans, “Fourteen
+      hours in the truck.” Why do they think so differently?
     choices:
-      - An attitude, belief or way of thinking about events or information
-      - A fact that everyone agrees on
-      - The title of a story
-      - The place a story happens
+      - Their lives make the snow mean different things.
+      - They are looking at different amounts of snow.
+      - One of them must be wrong about the snow.
+      - The driver has never seen a snowfall before.
     answer: 0
     feedback:
-      '1': Different people can have different perspectives on the same fact.
-      '2': A title names a text. It doesn’t tell how someone thinks.
-      '3': That is the setting.
+      '1': It’s the same snow outside the same window. What’s different about the two people?
+      '2': Both can be right, since they aren’t arguing about what the snow is. They’re saying what it means for them.
+      '3': It’s the opposite. The driver knows snow very well, and that is why the groan comes so fast.
     hints:
-      - Think about Dad, Tess and Mrs. Novak looking at the pond.
+      - What does the snow mean for the child’s day? What does it mean for the driver’s day?
     solution:
-      - A perspective is a person’s **attitude, belief or way of thinking** about something.
+      - The snow is the same. The **perspectives** are different, because each person’s experiences and interests are different.
 
   - id: w2
     level: 1
-    covers: [K4.2]
-    type: multi
-    prompt: What can **influence** a person’s perspective?
-    choices: [Culture, Experiences, Interests, The font of a book]
-    fixedOrder: true
-    answer: [0, 1, 2]
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: |-
+      You finish a story about a girl whose best friend moves away. You think, “This is just like when my best friend moved
+      to Regina last year.” What kind of connection is that?
+    choices: [Text to self, Text to text, Text to world, It isn’t a connection]
+    answer: 0
     feedback:
-      '3': A font changes how text looks, not how a person thinks.
+      '1': That would link this story to another book or text. What are you linking it to here?
+      '2': That would link the story to events in the world, such as the news. Whose life are you thinking about here?
+      '3': You did link the story to something else. What did you link it to?
     hints:
-      - Three of these come from a person’s life.
+      - Whose best friend moved to Regina?
     solution:
-      - Perspectives are influenced by **cultures, experiences and interests**.
+      - It happened to **you**, so this is a **text-to-self** connection.
 
   - id: w3
     level: 1
-    covers: [K2.1]
+    thinking: notice
+    covers: [K5.1, S5.1]
     type: mc
-    prompt: '“This book reminds me of when I got lost at the Calgary Zoo.” What kind of connection is this?'
-    choices: [Text to self, Text to text, Text to world]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The reader isn’t comparing it to another book.
-      '2': This is the reader’s own experience, not an event in the wider world.
-    hints:
-      - Whose experience does the reader mention?
-    solution:
-      - The reader connects the book to **their own life**, so this is **text to self**.
-
-  - id: w4
-    level: 1
-    covers: [K5.1]
-    type: mc
-    prompt: In reading, what does **context** mean?
+    prompt: |-
+      “Ana answered in a whisper, and she kept her eyes on her desk.” Which piece of background gives you the best
+      **context** for this?
     choices:
-      - The circumstances that form the background of a person, event, idea or text
-      - The last sentence of a story
-      - A list of words at the back of a book
-      - How long a text is
+      - It was Ana’s first day at this school, and she knew nobody.
+      - The walls in Ana’s new classroom were painted a light green.
+      - The classroom clock said that it was almost a quarter past ten.
+      - The class was going to have pizza for lunch at noon that day.
     answer: 0
     feedback:
-      '1': That is only the ending. Context is what surrounds and explains things.
-      '2': That is a glossary.
-      '3': Length doesn’t explain why people act as they do.
+      '1': That’s a real detail, but does it help you understand why she’s whispering?
+      '2': That tells you when, but does it help you understand how she’s feeling?
+      '3': Would pizza make someone whisper? Look for what is going on in Ana’s life.
     hints:
-      - What did we learn about Dad that changed how we saw him?
+      - Which detail would help you understand why she is acting this way?
     solution:
-      - Context is the **background**. It helps explain why things happen.
+      - Context is the background to a person or event. Being new and knowing nobody helps explain the whisper. The other details don’t.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S4.2, K5.4]
-    type: evidence
-    prompt: Tap the sentence that best explains **why Dad is so worried** about the water.
-    passage: pond
-    paragraphs: [1, 4]
-    answer: [p4s2]
+    thinking: perspective
+    covers: [K4.3, S4.2]
+    type: mc
+    prompt: |-
+      Three characters in a funny story describe the same thing:
+
+      - **A:** “Every Saturday the roaring monster leaves its closet. I hide under the bed until it’s gone.”
+      - **B:** “Every Saturday it swallows the crumbs I saved behind the couch. Thief!”
+      - **C:** “Every Saturday it saves me an hour of sweeping. Best thing I ever bought.”
+
+      Who is each speaker?
+    choices:
+      - 'A: a dog. B: a mouse. C: a parent.'
+      - 'A: a parent. B: a dog. C: a mouse.'
+      - 'A: a mouse. B: a parent. C: a dog.'
+      - 'A: a dog. B: a parent. C: a mouse.'
+    answer: 0
     feedback:
-      p1s1: This says what happened, but not why he is so worried.
-      p1s2: This shows that he is upset, but not why he feels it so strongly.
-      p1s3: This tells what he is losing. Find the experience behind his fear.
-      p1s4: This says what he wants to do. Look for the reason from his past.
-      p4s1: He is thinking hard here. What is he thinking about?
+      '1': Would a parent hide under the bed from a vacuum cleaner? Who is frightened by that noise?
+      '2': Would a parent save crumbs behind a couch? Who would want them?
+      '3': Would a parent call it a thief for taking crumbs? And who actually buys vacuum cleaners?
     hints:
-      - Look for something that happened to him long ago.
+      - What is the thing they’re all describing?
+      - What does each speaker want or care about?
     solution:
-      - '“A flood had taken his father’s whole crop when Dad was ten…” His **experience** shapes how he sees the water.'
+      - It’s a vacuum cleaner. Each speaker’s interests decide what they notice about it.
+      - The dog hates the noise, the mouse wants the crumbs and the parent cares about the time saved. One object, three perspectives.
 
   - id: b2
     level: 2
-    covers: [S4.2, S4.3]
-    type: mc
-    prompt: Why does Mrs. Novak **laugh** at the water when Dad is so worried?
-    choices:
-      - She lived through a drought, so to her, stored water looks like good luck.
-      - She doesn’t care about the Novak family’s cattle.
-      - She thinks that Dad is telling a joke.
-      - She wants to buy Dad’s farm.
-    answer: 0
-    feedback:
-      '1': She does care. Her cattle stood in the mud during the dry years, and it stayed with her.
-      '2': Dad isn’t joking, and she doesn’t say that he is.
-      '3': The story doesn’t say this. Read what she says about the dry years.
-    hints:
-      - Read what Mrs. Novak says in paragraph 3.
-    solution:
-      - Her **experience** of the dry years makes a full pond look like a good thing.
-
-  - id: b3
-    level: 2
-    covers: [S4.4]
-    type: mc
-    prompt: Which is an **alternative perspective** that the story does **not** show?
-    choices:
-      - A neighbour downstream, who worries that the dam will stop the creek from reaching their land
-      - A farmer who worries about losing hay
-      - A girl who loves drawing the ducks
-      - An older neighbour who remembers a drought
-    answer: 0
-    feedback:
-      '1': That is Dad. The story already shows his view.
-      '2': That is Tess. The story already shows her view.
-      '3': That is Mrs. Novak. The story already shows her view.
-    hints:
-      - Three of these are characters in the story.
-    solution:
-      - No one downstream appears in the story, so that view would be a **new perspective**.
-
-  - id: b4
-    level: 2
-    covers: [K5.3, S5.4]
-    type: mc
-    prompt: An article says that a new gravel pit will be great for the town. You learn that the author owns the gravel company. How should this **context** affect your reading?
-    choices:
-      - Look for other sources too, because the author has a reason to favour the pit.
-      - Believe it, because the author knows about gravel.
-      - Ignore it, because all companies lie.
-      - It shouldn’t matter, because authors have no context.
-    answer: 0
-    feedback:
-      '1': The author may know a lot, but also gains from the pit. Check other sources.
-      '2': That is too strong. Knowing the author’s context doesn’t prove the article is false.
-      '3': Every author has a context, and it can shape what they write.
-    hints:
-      - What does the author gain if readers agree?
-    solution:
-      - The author’s **context** can shape the text, so it’s wise to check other sources.
-
-  - id: b5
-    level: 2
-    covers: [K2.2, S2.1]
-    type: mc
-    prompt: Which is the **best summary** of “The Beaver Pond”?
-    choices:
-      - A beaver dam floods a hay field, and Dad, Tess and Mrs. Novak see it differently because of their experiences.
-      - Mrs. Novak brought over a carton of eggs.
-      - Tess sketched ducks, and she drew in the willows all summer, and she knew each duck family, and she had a coffee cup.
-      - Beavers are the best animals, and everyone should love them.
-    answer: 0
-    feedback:
-      '1': That’s one small detail. It doesn’t give the main idea.
-      '2': These are just details, and one is wrong. Coffee is Dad’s.
-      '3': That is an opinion. It isn’t what the story says.
-    hints:
-      - A summary gives the main idea, not every detail.
-    solution:
-      - It gives the **main idea** (one event, different views), with the key details in place.
-
-  # ---------------------------------------------------------------- Level 3: Deep Think
-  - id: d1
-    level: 3
-    covers: [S4.3]
-    type: mc
-    prompt: Dad and Mrs. Novak are **alike** and **different**. Which statement is true?
-    choices:
-      - Both are shaped by hard times in the past, but they fear opposite things.
-      - Both think that the beavers have to go.
-      - Both have spent the summer drawing ducks.
-      - Both lived through the same flood when they were ten.
-    answer: 0
-    feedback:
-      '1': Mrs. Novak says she would have paid good money for a pond.
-      '2': That is Tess.
-      '3': Only Dad’s family is said to have lost a crop to a flood.
-    hints:
-      - What does each one remember? What does each one fear?
-    solution:
-      - Dad remembers **too much water**, and Mrs. Novak remembers **too little**.
-
-  - id: d2
-    level: 3
-    covers: [S5.2, S4.2, K5.4]
+    thinking: evidence
+    covers: [S4.2, S5.2, U4.1]
     type: evidence
-    prompt: Tess wrote, “What if the water could go around?” Tap the sentence that shows that her **view has started to change**.
+    prompt: At the start, Tess sees only a wonderful pond. Tap the sentence where you can **first** tell that she now sees Dad’s side too.
     passage: pond
     paragraphs: [2, 5]
     answer: [p5s1]
     feedback:
-      p2s1: Here Tess isn’t saying anything. Look at the end of the story.
-      p2s2: This shows what she already loved before anything changed.
-      p2s3: This is her first view. Look for what is different at the end.
-      p2s4: This is her first view. Look for what is different at the end.
-      p5s2: This is her idea. Find the sentence that shows **what she now pays attention to**.
-      p5s3: This shows that she wants to share her idea. Find where she first shows a new view.
+      p2s1: She isn’t saying anything here, and we don’t yet know what she’s thinking. Read on.
+      p2s2: This shows what she cares about before anything has changed.
+      p2s3: This is still her first view. Look for where her view grows.
+      p2s4: This is still her first view. Look for where her view grows.
+      p5s2: This does show it, but something earlier already gave it away. Read the sentence before this one.
+      p5s3: She’s sharing the idea here, but it began earlier. What did she draw first?
     hints:
-      - What does she include in her new drawing that she had left out before?
+      - In her first drawings, what did Tess draw? What’s different in the last paragraph?
+      - Look at what she adds to the page.
     solution:
-      - '“…this time she drew the hay field too.” Now she sees what matters to Dad, as well as what matters to her.'
+      - All summer, Tess sketched only the pond. Now “this time she drew the hay field too.”
+      - The hay field is what Dad is worried about. Putting it on the page shows that her view has grown to include his.
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [S4.4, K4.3]
+    type: mc
+    prompt: |-
+      **Everybody Loves the New Rink Lights!**
+
+      “We can skate until midnight!” says Jess, a teenager. “Sales are up!” says the snack bar owner. “More ice time!”
+      says the hockey coach.
+
+      Whose view is missing, and most likely to be different?
+    choices:
+      - A family whose bedroom windows face the rink
+      - A second coach from the same hockey league
+      - A skater who drives in from the next town
+      - A company that sells snacks to the snack bar
+    answer: 0
+    feedback:
+      '1': More ice time would help this coach as well. Who might not enjoy the rink being lit up at midnight?
+      '2': This skater would also get more time on the ice. Who gets something bad from those lights?
+      '3': This company would also sell more. Think about who lives near the rink.
+    hints:
+      - The headline says *everybody*. What do all three people get from the lights?
+      - Who might lose something when the lights stay on until midnight?
+    solution:
+      - All three people quoted get something good from the lights. That’s a clue that someone may have been left out.
+      - A family with bedroom windows facing the rink would have bright lights and noise at midnight. They could see this very differently.
+
+  - id: b4
+    level: 2
+    thinking: evidence
+    covers: [K5.3, S5.4]
+    type: mc
+    prompt: |-
+      A pamphlet is called *Why Thin Crust Is the Best Pizza*. It lists five reasons. At the bottom, it says, “By Dom, owner of
+      Dom’s Thin Crust Pizza.” How should knowing this change how you read the pamphlet?
+    choices:
+      - Keep reading, and ask what Dom may have left out.
+      - Stop reading, since all of it must be untrue.
+      - Trust all of it, since Dom knows pizza best.
+      - Change nothing, since writers don’t matter.
+    answer: 0
+    feedback:
+      '1': Dom may tell the truth about thin crust, and his crust may be great. His job doesn’t make his reasons false. What might he not bother to mention, though?
+      '2': He probably does know a lot about pizza. But he also has a shop to run. Would he write much about what’s good about thick crust?
+      '3': A writer’s context can shape what is in a text. What might Dom’s job make him focus on?
+    hints:
+      - What does Dom do all day? What would he want to write about?
+      - Does that make his reasons false? Or just one part of the story?
+    solution:
+      - Knowing who wrote a text gives you its context. Dom’s job may shape what he chooses to focus on.
+      - That doesn’t make him wrong, so you don’t have to throw the pamphlet away. You read it knowing there may be more to the story.
+
+  - id: b5
+    level: 2
+    thinking: flaw
+    covers: [K2.2, S2.1, U2.1]
+    type: mc
+    prompt: |-
+      Jun summarizes *The Beaver Pond* like this:
+
+      “**Main idea:** Dad hates animals. **Evidence:** He says, ‘Those beavers have to go.’”
+
+      Where does Jun’s summary go wrong?
+    choices:
+      - The quote shows a worry about his hay, not a hatred of animals.
+      - The quote isn’t really in the story, so it can’t be evidence.
+      - A summary can’t have a quote, since it has to use your own words.
+      - A main idea has to be about Tess, since she is the main character.
+    answer: 0
+    feedback:
+      '1': He does say that, in the first paragraph. Read what he says just before it.
+      '2': A short quote is good evidence for a summary. Does this one prove what Jun says it proves?
+      '3': A main idea has to be about the whole story, and that can include other characters. Does “Dad hates animals” sum up the story?
+    hints:
+      - Read Dad’s words in the first paragraph. What is he upset about?
+      - Does the whole story seem to be about Dad hating animals?
+    solution:
+      - Just before that line, Dad says, “That’s a whole corner of winter feed.” Paragraph 4 tells us about his fear of floods. He’s worried about water and hay, and he never says anything about hating animals.
+      - A stronger summary has a main idea that fits the whole story, such as “People can see the same pond differently because of what they have lived through,” with evidence for it.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K5.1, K5.4, S5.1, S5.2, U5.1, K4.2]
+    type: investigation
+    prompt: |-
+      Every morning at 8:00, old Mrs. Kovacs walks to the bus stop on Elm Street. The Number 9 bus pulls up. The doors open.
+      The driver waves. Mrs. Kovacs shakes her head, waves back, and the bus drives on. Then she walks home.
+    parts:
+      - type: mc
+        prompt: From only this much, what can you honestly say?
+        choices:
+          - She goes there on purpose, but we can’t tell why.
+          - She gets mixed up and forgets where she’s going.
+          - She is afraid of getting on the bus and riding.
+          - She is waiting for some other bus to come along.
+        answer: 0
+        feedback:
+          '1': Could be, but what in the story shows that? She does this calmly, every day, and she knows the way home.
+          '2': Could be, but what in the story shows that? She’s waving at the driver.
+          '3': If so, why does she walk home right after this bus leaves?
+        hints:
+          - Sort what the story says from what you are guessing. Does the story say why she does it?
+        solution:
+          - The story says what she does, and it doesn’t say why. She does it every day, so it isn’t an accident. But for the reason, we need more.
+      - type: mc
+        prompt: |-
+          Now you find out that Mrs. Kovacs drove the Number 9 bus for 40 years. She retired last spring. Luis, today’s
+          driver, is someone she trained. What do you now think her morning walk is?
+        choices:
+          - A daily visit to her old route and an old friend
+          - A daily check so she can report Luis to his boss
+          - A daily try to get her old job back from Luis
+          - A daily trip she wishes that she could still ride
+        answer: 0
+        feedback:
+          '1': Does she act like someone looking for mistakes? Look at what she and Luis do when the doors open.
+          '2': She shakes her head when the doors open, and then she goes home. Does that look like someone asking for a job?
+          '3': She could get on if she wanted to, since the doors open every day. So what does she come for?
+        hints:
+          - Read the story again, knowing this. What does the wave mean now?
+        solution:
+          - The actions are the same, but the wave now looks like a hello between two old friends. She’s come to see her route and the person she trained.
+          - Context didn’t change what she does. It changed what we understand.
+      - type: mc
+        prompt: Imani rides the Number 9 each day. She tells her mom, “That poor lady keeps missing her bus.” Why does Imani read it this way?
+        choices:
+          - She can see what happens, but she doesn’t know the background.
+          - She doesn’t care very much about older people in her community.
+          - She isn’t on the bus often enough to see what Mrs. Kovacs does.
+          - She can’t be sure, since people on a bus can’t see the bus stop.
+        answer: 0
+        feedback:
+          '1': She calls her “poor lady,” so she does seem to care. What is it that she’s missing?
+          '2': She rides it every day, so she sees it often. Is seeing it enough to understand it?
+          '3': She can see the stop, and she sees exactly what happens. What did you know that she doesn’t?
+        hints:
+          - What did you know after the second part that Imani doesn’t know?
+        solution:
+          - Imani sees just what you saw at the start. Without the context, she fills in a reason of her own.
+      - type: open
+        prompt: Write what Mrs. Kovacs is thinking as she waves at the bus. Write 2 or 3 sentences, as if she’s saying them to herself, and use what you know about her.
+        modelAnswer: |-
+          Forty years on this road, and Luis still takes that corner too fast. I’ll tell him tomorrow. Some mornings I just
+          need to hear those doors open.
+        rubric:
+          - I wrote from Mrs. Kovacs’s point of view, as if she’s thinking.
+          - I used something from her background, such as her 40 years of driving or training Luis.
+          - What I wrote fits what she does in the story.
+    wrapUp: The same actions can mean very different things. Before you decide why someone does something, ask what you don’t know about their background.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: perspective
+    covers: [K5.2, S5.3, U5.1]
+    type: investigation
+    prompt: |-
+      Read this bit of a story twice, the way two different readers might read it:
+
+      > *A huge dog bounded across the yard, jumped up on Sadie and licked her whole face. She could not get away.*
+
+      Reader 1 grew up with big, gentle dogs. Reader 2 got knocked down by a big dog last year.
+    parts:
+      - type: mc
+        prompt: How is each reader likely to feel about this moment?
+        choices:
+          - Reader 1 smiles, and Reader 2 feels tense.
+          - Reader 1 feels tense, and Reader 2 smiles.
+          - Both of them smile, because the dog is friendly.
+          - Both of them feel tense, because she’s trapped.
+        answer: 0
+        feedback:
+          '1': Which reader has a good memory of big dogs? Which one has a bad memory?
+          '2': The words do fit a friendly dog. But think about what Reader 2 remembers while reading them.
+          '3': The words do fit that as well. But think about what Reader 1 remembers while reading them.
+        hints:
+          - What memory does each reader bring along?
+        solution:
+          - Reader 1 remembers gentle dogs, so this looks fun. Reader 2 remembers getting knocked down, so “could not get away” feels bad.
+          - The words are exactly the same. What each reader brings to them is different.
+      - type: multi
+        prompt: Each reader’s experience can change how the story feels. But which of these are **actually in the text**?
+        choices:
+          - The dog licked Sadie’s face.
+          - The dog wanted to hurt Sadie.
+          - The dog is big.
+          - Sadie loved every second of it.
+        fixedOrder: true
+        answer: [0, 2]
+        feedback:
+          '1': The text never says what the dog wanted. That comes from a reader’s own memories.
+          '3': The text never says how Sadie feels. That comes from a reader’s own memories.
+        hints:
+          - Point to the words. If you can’t point to them, it came from the reader.
+        solution:
+          - '“Licked her whole face” and “huge dog” are right there in the text.'
+          - What the dog wanted and how Sadie felt aren’t in the text. Each reader added those. That’s fine, but it’s good to notice when you’re doing it.
+      - type: open
+        prompt: You are the author, and you want **both** readers to find this moment funny. Add one sentence to the story that would help.
+        modelAnswer: Sadie laughed so hard that she got the hiccups, and the dog seemed to think this was the best game ever.
+        rubric:
+          - My sentence shows how Sadie feels, or that the dog means no harm.
+          - It would help a reader who is nervous around dogs feel safe enough to laugh.
+    wrapUp: Readers bring their own lives to every text, and writers can use their words to guide what readers feel.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S4.1, S5.3, U4.1, U5.1]
+    thinking: perspective
+    covers: [S4.4, S4.2, K5.4]
     type: open
     prompt: |-
-      Whose perspective in “The Beaver Pond” is closest to your own? Explain how **your own experiences or interests**
-      shape what you think. Then tell one way the story changed or added to your view.
-    modelAnswer: |-
-      I am closest to Tess, because I love animals and I have never lived on a farm. That makes it easy for me to want to
-      save the beavers. But reading about Dad and his father’s flood made me see that it isn’t that simple. Now I would
-      want to look for a solution that works for both the beavers and the farmer.
-    rubric:
-      - I named a character and explained why I am close to that view.
-      - I connected this to my own experiences or interests.
-      - I explained how the story changed or added to my view.
+      Kiran writes to the beach manager: “That gull is a thief! It stole my sandwich off my towel while I was swimming.”
 
-  - id: d4
-    level: 3
-    covers: [S2.1, K2.1, K2.2]
-    type: open
-    prompt: |-
-      Summarize “The Beaver Pond” in two or three sentences. Then support your summary with evidence from the text
-      and from **one connection** to yourself, another text or the world.
+      Now you find out three things. The gull has three hungry chicks on the rocks. Fish have been hard to find this week.
+      The sandwich sat alone on the towel for an hour.
+
+      Write the gull’s reply to the manager in 2 or 3 sentences.
     modelAnswer: |-
-      A beaver dam floods part of a hay field, and three people see it differently. Dad fears losing his feed because
-      a flood once took his father’s crop (paragraph 4), while Mrs. Novak remembers when her well went dry (paragraph 3). This
-      reminds me of the news stories about water use, where people also want different things.
+      I didn’t steal anything. Fish have been hard to find all week, and I have three chicks screaming at me on the rocks.
+      That sandwich sat alone on a towel for a whole hour, so as far as I could tell, nobody wanted it. I rescued it.
     rubric:
-      - I gave the main idea, not every detail.
-      - I used evidence from the text.
-      - I made one connection and said what kind it was.
+      - I wrote as the gull, using *I*.
+      - I used at least two of the three facts from the prompt.
+      - My gull sees what happened differently from Kiran, and says why.
+    hints:
+      - What does the gull care about most this week?
+      - Kiran calls it stealing. What would the gull call it?

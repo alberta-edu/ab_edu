@@ -160,244 +160,299 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.2]
+    thinking: recall
+    covers: [K1.2, S1.8, S1.9]
     type: order
-    prompt: Put the stages of the writing process in order.
-    items: [Planning, Drafting, Revising, Editing, Publishing]
+    prompt: You are writing a thank-you letter to your bus driver. Put your steps in order.
+    items:
+      - Decide who will read it and what you want to say
+      - Write it all down fast, without stopping to fix anything
+      - Add the story of the day the bus got stuck in the snow
+      - Fix the spelling and the commas
+      - Add a drawing and hand it to the driver
     hints:
-      - You can’t fix what isn’t written, and you publish last.
+      - The five stages are planning, drafting, revising, editing and publishing. Which step matches each one?
     solution:
-      - '**Planning → drafting → revising → editing → publishing.**'
+      - '**Plan** who it’s for. **Draft** it fast. **Revise** by adding the story. **Edit** the spelling and commas. **Publish** it with a drawing.'
 
   - id: w2
     level: 1
+    thinking: notice
     covers: [K1.8, S1.8]
     type: mc
-    prompt: Ari changes “i like dogs” to “I like dogs.” Which stage is this?
-    choices: [Editing, Planning, Revising, Publishing]
+    prompt: |-
+      Here is a draft: “our lizerd, Gary, is the best class pet”
+
+      Which of these changes is **revising**, not editing?
+    choices:
+      - 'Adding the sentence “He stares at every substitute teacher.”'
+      - Changing *lizerd* to *lizard*
+      - Giving *our* a capital letter
+      - Putting a period at the end
     answer: 0
     feedback:
-      '1': Planning comes before you write any sentences.
-      '2': Revising changes the words and ideas. Ari only fixed a capital and a period.
-      '3': Publishing shares the finished piece.
+      '1': That fixes spelling, so that’s editing. Which change makes the writing say more?
+      '2': That fixes a capital letter, so that’s editing. Which change makes the writing say more?
+      '3': That fixes punctuation, so that’s editing. Which change makes the writing say more?
     hints:
-      - Did Ari change the idea, or just fix the capital and the punctuation?
+      - Editing fixes spelling, punctuation and grammar. Which of these does something else?
     solution:
-      - Fixing spelling, punctuation and grammar is **editing**.
+      - Editing fixes mistakes. **Revising** adds or removes words, phrases or sentences to make the writing clear and focused. Adding the sentence about Gary is revising.
 
   - id: w3
     level: 1
+    thinking: apply
     covers: [K1.5]
     type: mc
-    prompt: What does a **topic sentence** do?
+    prompt: |-
+      Which sentence would make the best **topic sentence** for this paragraph?
+
+      “___ He put his socks in the freezer. He fed my homework to the printer. Last night, he tried to wash the remote.”
     choices:
-      - It gives the main idea and links the ideas in a paragraph.
-      - It comes at the very end and says goodbye.
-      - It lists every fact in the paragraph.
-      - It always asks a question.
+      - My little brother is a one-person disaster.
+      - My little brother’s socks were very cold.
+      - My little brother is six years old now.
+      - My little brother did not wash the remote.
     answer: 0
     feedback:
-      '1': That is closer to a concluding sentence. A topic sentence introduces the paragraph.
-      '2': The details do that. A topic sentence states the main idea.
-      '3': It can, but it doesn’t have to. What matters is that it gives the main idea.
+      '1': That only covers one detail. A topic sentence has to link all of them.
+      '2': That’s true of him, maybe, but it doesn’t link the socks, the homework and the remote.
+      '3': The paragraph says he tried. And this covers just one detail. What do all three details show?
     hints:
-      - It tells your reader what the paragraph is about.
+      - What do all three details have in common?
     solution:
-      - A topic sentence gives structure, and it links the ideas within the paragraph.
-
-  - id: w4
-    level: 1
-    covers: [K1.3]
-    type: multi
-    prompt: Which of these are part of **planning**?
-    choices: [Thinking about your audience, Generating ideas, Narrowing a topic, Fixing commas]
-    fixedOrder: true
-    answer: [0, 1, 2]
-    feedback:
-      '3': You fix commas when you **edit**, long after planning.
-    hints:
-      - Planning happens before you begin to draft.
-    solution:
-      - Planning includes considering audience, purpose and form, generating ideas, and narrowing a topic.
+      - All three details show the same thing, that he causes trouble. A topic sentence gives the main idea, and it links all of the details. **“A one-person disaster”** does that.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.4, S1.5]
+    thinking: decide
+    covers: [K1.3]
     type: mc
-    prompt: |-
-      Which **transition** best joins these sentences?
-
-      > Most of the class wanted a field trip. ___, the bus cost too much.
-    choices: [However, For example, Also, First]
+    prompt: Your teacher wants a **one-page** piece. Which topic is narrow enough to do well in one page?
+    choices:
+      - Why my cat knocks cups off the table
+      - Everything there is to know about cats
+      - All of the pets that people keep in Canada
+      - The whole history of animals on Earth
     answer: 0
     feedback:
-      '1': The second sentence isn’t an example of the first.
-      '2': '*Also* adds something similar, but this is a contrast.'
-      '3': '*First* begins a list, but here the second idea pushes back against the first.'
+      '1': There are whole shelves of books about cats. Could you say everything in one page?
+      '2': That would take many pages. Could you narrow this down to one pet, or one thing it does?
+      '3': That would fill a library. Which topic is about just one small thing?
     hints:
-      - Does the second sentence agree with the first, or push against it?
+      - Imagine writing each one. Which ones would you never finish in one page?
     solution:
-      - The second idea **contrasts** with the first, so **However** fits best.
+      - Topics that are too big end up shallow. A narrow topic leaves room for details that are interesting.
+      - The cat and the cups is one small question, and you can answer it well on one page.
 
   - id: b2
     level: 2
-    covers: [K1.8, S1.7]
-    type: mc
+    thinking: decide
+    covers: [S1.6, K1.3, S1.1]
+    type: multi
     prompt: |-
-      This paragraph is about how to stay safe on a bike path. Which sentence should you **remove** so that it stays focused?
-
-      > Always wear a helmet. Ride on the right. My cousin has a red bike. Ring your bell when you pass.
+      You’re writing to your **principal**. Your position: *Our school should hold one Hat Day.* Which two reasons
+      are the strongest evidence for this reader?
     choices:
-      - My cousin has a red bike.
-      - Always wear a helmet.
-      - Ride on the right.
-      - Ring your bell when you pass.
-    answer: 0
+      - I own a really excellent hat.
+      - Everyone wearing a hat would give $1 to the library fund.
+      - Hats are fun, and everybody knows it.
+      - The school next door held a Hat Day, and it went smoothly.
+      - My dad says that hats are back in style.
+    fixedOrder: true
+    answer: [1, 3]
     feedback:
-      '1': A helmet is about safety, so it belongs.
-      '2': Riding on the right is about safety, so it belongs.
-      '3': Ringing a bell is about safety, so it belongs.
+      '0': That’s good news for you. But what does it do for the school?
+      '2': Saying “everybody knows it” isn’t evidence. What would a principal need to know?
+      '4': Your dad’s fashion opinion doesn’t help a principal decide. What does a principal worry about?
     hints:
-      - Which sentence has nothing to do with staying safe?
+      - Imagine that you are the principal. What are you hoping for? What are you worried about?
     solution:
-      - The colour of a cousin’s bike doesn’t help with safety, so **cut** it.
+      - A principal cares about the school. Money for the library is a real benefit to the school. A Hat Day that went smoothly next door answers the worry that it might cause trouble.
+      - The other reasons might work on your friends. Strong evidence fits your position and matters to your reader.
 
   - id: b3
     level: 2
-    covers: [K1.6, K1.7, S1.7]
+    thinking: notice
+    covers: [K1.4, S1.5]
     type: mc
     prompt: |-
-      Which version has the best **writing fluency**?
-    choices:
-      - The wind rose. For a moment, the whole field of wheat bent low, as if the land itself were bowing to the storm.
-      - The wind rose. The wheat bent. The storm came. The sky went dark.
-      - The wind rose and the wheat bent and the storm came and the sky went dark and it rained.
-      - Wind. Wheat. Storm. Dark.
+      “My sister hates spiders. **So,** she keeps one as a pet.” Which transition should replace *So* to make these two sentences
+      make sense together?
+    choices: [However, In addition, Most importantly, First]
     answer: 0
     feedback:
-      '1': Every sentence is the same length, so it sounds choppy.
-      '2': One long string joined by *and* doesn’t give readers a place to rest.
-      '3': These aren’t complete sentences, and they don’t flow.
+      '1': That adds another detail of the same kind. Is keeping a spider the same kind of detail as hating spiders?
+      '2': That says the next detail matters most, but it doesn’t explain how these two ideas fit together.
+      '3': That would start a list in order. Is there a list here?
     hints:
-      - Read each one out loud. Which has a mix of short and long?
+      - Would you expect someone who hates spiders to keep one? What sort of word warns a reader about a surprise?
     solution:
-      - Mixing a **short** sentence with a **long** one gives writing rhythm and flow.
+      - The second sentence is the opposite of what you’d expect. **However** tells a reader that a surprise or a change of direction is coming.
+      - A transition is more than decoration. It tells the reader how two ideas are linked.
 
   - id: b4
     level: 2
-    covers: [S1.6, S1.4]
-    type: mc
-    prompt: You are writing to persuade your principal to add a recycling program. Which is the most **relevant evidence**?
+    thinking: decide
+    covers: [S1.9, K4.2, S4.1, U4.1]
+    type: multi
+    prompt: |-
+      Your family wants to get rid of an old couch. You are making a poster for the end of your driveway, and people will
+      see it from their cars:
+
+      **FREE COUCH. It smells a little like a hockey bag. You carry it.**
+
+      Which choices would help this poster do its job?
     choices:
-      - Our class threw away 40 plastic bottles in one week.
-      - Recycling bins come in blue and green.
-      - I like the colour green.
-      - The principal has a nice office.
-    answer: 0
+      - A chart of every couch your family has ever owned
+      - Huge printing that people can read from the road
+      - Tiny, curly cursive that looks really fancy
+      - A photo of the couch with the caption “This couch”
+      - An arrow that points up the driveway to the couch
+    fixedOrder: true
+    answer: [1, 3, 4]
     feedback:
-      '1': The colour of the bins doesn’t show why a program is needed.
-      '2': That is a personal preference. It isn’t evidence for your position.
-      '3': That has nothing to do with recycling.
+      '0': A chart can be helpful, but does a driver need this one to decide about the couch?
+      '2': Cursive can be a lovely personal touch on a card. Can it be read from a moving car?
     hints:
-      - Which detail shows that there’s a real need?
+      - What is the poster’s purpose? Who will be reading it, and from where?
     solution:
-      - A real count of bottles shows the need, so it **supports** the position.
+      - The purpose is to get someone to take the couch, and the readers are people going by in cars.
+      - Big printing can be read from far away. A photo with a caption shows what’s on offer, and an arrow shows where it is.
+      - Each choice has to support the purpose and the audience. The tool you choose changes how readers respond.
 
   - id: b5
     level: 2
-    covers: [K4.2, S4.1, U4.1]
+    thinking: model
+    covers: [K1.1, S1.3]
     type: mc
-    prompt: You are making a sign for a bake sale that people should see from down the hall. Which **tool** fits best?
+    prompt: |-
+      Yara has been writing a story for 40 minutes, and she has one sentence. After every word, she stops to check the spelling,
+      fix a comma and try to make it sound better. What should she change?
     choices:
-      - Big, bold printing with a marker
-      - Tiny cursive with a thin pen
-      - A long report typed in a small font
-      - Pencil on lined paper
+      - Get her ideas down first, and leave the fixing for later stages.
+      - Do all of her fixing faster, and keep doing it after each word.
+      - Look up every word that she might need before she starts writing.
+      - Publish the one sentence now, since it’s been checked so carefully.
     answer: 0
     feedback:
-      '1': Tiny cursive is hard to read up close, let alone down the hall.
-      '2': A long report takes too long to read while walking by.
-      '3': Pencil lines are too light to see from far away.
+      '1': Speed isn’t the trouble. She’s trying to do several jobs at the same time. What could she do about that?
+      '2': She would spend the whole afternoon looking up words and not writing. What is the first draft’s job?
+      '3': One sentence isn’t a story yet. Which stage does she need to spend more time on?
     hints:
-      - Think about how far away your readers are.
+      - How many jobs is she trying to do at the same time?
+      - Which stage is for getting ideas down? Which stages are for fixing them?
     solution:
-      - Big, bold **printing** can be read from far away, which suits the purpose.
+      - Yara is drafting, revising and editing all at once, and that’s really hard.
+      - The writing process breaks the work into chunks. She should draft first without stopping, and then revise and edit later. That gives each job its own turn.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.4, S1.5]
-    type: order
-    prompt: Put these sentences in the **best order** to make a paragraph.
-    items:
-      - Beavers change the land around them.
-      - First, they build a dam across a stream.
-      - Next, the water behind the dam spreads out into a pond.
-      - Soon, ducks, frogs and moose move in.
-      - One small animal can create a whole new home for others.
-    hints:
-      - Start with the topic sentence. Use the transitions to find the sequence.
-    solution:
-      - The **topic sentence** comes first, then details in sequence (*First, Next, Soon*), then the **concluding sentence**.
+    thinking: breakdown
+    covers: [K1.8, S1.7, K1.4, K1.5, S1.5]
+    type: investigation
+    prompt: |-
+      Here is Gabi’s first draft. You’re helping to revise it.
+
+      1. My uncle’s campfire chili is the worst food in Alberta.
+      2. His truck is blue.
+      3. Then the dog sniffed it and walked away.
+      4. First, he added a whole bottle of hot sauce.
+      5. Next, a marshmallow fell in, and he left it there.
+      6. It was bad.
+    parts:
+      - type: mc
+        prompt: One sentence doesn’t belong in a piece about terrible chili. Which sentence should Gabi cut?
+        choices: [Sentence 2, Sentence 3, Sentence 5, Sentence 6]
+        answer: 0
+        feedback:
+          '1': The dog walking away is great evidence that the chili is bad! It only needs a better place.
+          '2': The marshmallow is a funny and useful detail about the chili. Which sentence isn’t about the chili?
+          '3': This sentence does need work, but it’s about the chili. Which one isn’t?
+        hints:
+          - Read each sentence, and ask whether it tells you about the chili.
+        solution:
+          - The colour of the truck has nothing to do with the chili. Revising includes removing what doesn’t help.
+      - type: mc
+        prompt: Gabi uses *First*, *Next* and *Then* to put the details in order. Which sentence is in the wrong place?
+        choices:
+          - Move sentence 3 to come after sentence 5.
+          - Move sentence 4 to come after sentence 5.
+          - Move sentence 5 to come before sentence 1.
+          - Move sentence 1 to come after sentence 3.
+        answer: 0
+        feedback:
+          '1': Sentence 4 begins with *First*, so what is it doing after *Next*? Follow the order words.
+          '2': The topic sentence has to come before the details. And *Next* can’t come before *First*.
+          '3': Sentence 1 is the topic sentence, which tells readers what the piece is about. Which order word is out of place?
+        hints:
+          - Which order word should come first? Which should come last?
+        solution:
+          - The order should be *First*, *Next*, *Then*. The sentence that starts with *Then* has to come after the other two.
+          - It’s funnier that way too, because the dog’s reaction comes after you’ve heard about the chili.
+      - type: open
+        prompt: |-
+          Sentence 6, “It was bad,” is the concluding sentence. It doesn’t do much. Rewrite it so that it links back to the
+          topic sentence and gives the piece a good ending.
+        modelAnswer: Even our dog, who eats socks, wouldn’t touch it, so my uncle’s chili is still the worst food in Alberta.
+        rubric:
+          - My new sentence links back to the idea that the chili is the worst food in Alberta.
+          - It says more than “It was bad.” It gives an interesting or funny ending.
+    wrapUp: Revising doesn’t mean fixing the spelling. It means cutting what doesn’t help, moving what’s in the wrong place, and making what’s left stronger.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S1.7, K1.8]
+    thinking: why
+    covers: [K1.6, K1.7, S1.7]
     type: mc
+    figure: |-
+      <svg viewBox="0 0 340 112" class="fig-svg" role="img" aria-label="Bars showing sentence lengths. Draft A has four short bars of nearly equal length. Draft B has one very long bar, then one short bar, which is highlighted."><text class="fig-label" x="0" y="31">Draft A</text><rect class="fig-rect" x="72" y="14" width="48" height="24"/><rect class="fig-rect" x="126" y="14" width="48" height="24"/><rect class="fig-rect" x="180" y="14" width="48" height="24"/><rect class="fig-hl" x="234" y="14" width="36" height="24"/><text class="fig-label" x="0" y="87">Draft B</text><rect class="fig-rect" x="72" y="70" width="204" height="24"/><rect class="fig-hl" x="282" y="70" width="36" height="24"/></svg>
     prompt: |-
-      A student’s whole revision of a draft was to add three exclamation marks and fix one spelling error. What is
-      the problem?
+      **Draft A:** The rink was cold. The ice was hard. The puck was fast. I was slow.
+
+      **Draft B:** The rink was cold, the ice was hard, and the puck flew past everyone like a rocket. I was slow.
+
+      Each bar shows one sentence. Read both aloud. *I was slow* is exactly the same in both drafts, but it’s funnier in Draft B. Why?
     choices:
-      - That is editing. Revising means improving the ideas, by adding or removing words, phrases or sentences.
-      - Nothing. Fixing errors is the same as revising.
-      - The student should have published first.
-      - A draft can never be improved.
+      - The long sentence builds up speed, so the short one lands hard.
+      - The sentence *I was slow* has more words in it in Draft B.
+      - Draft B has more sentences, which makes it longer and funnier.
+      - Only Draft B tells a reader that the writer was a slow skater.
     answer: 0
     feedback:
-      '1': Fixing errors is **editing**. Revising changes the writing’s content, order and clarity.
-      '2': Publishing is the last stage. It comes after revising and editing.
-      '3': That’s what revising is for!
+      '1': Count the words in the bars at the end. Both have the same three words.
+      '2': Count the bars. Draft A has four sentences, and Draft B has only two.
+      '3': Both drafts end with “I was slow.” It’s not what it says. It’s what comes before it.
     hints:
-      - What’s the difference between revising and editing?
+      - Look at the bars just before the highlighted one. What is different?
+      - Read Draft B aloud. What happens to your voice in the long sentence? Then what happens at *I was slow*?
     solution:
-      - Revising improves **fluency, coherence, sequence and support**. Editing fixes **spelling, punctuation and grammar**.
+      - In Draft A, all the sentences are about the same length, so they sound like a drumbeat. *I was slow* is just one more beat.
+      - In Draft B, the long sentence rushes along, and then the short one stops you. That sudden change is what makes it funny.
+      - 'What we learned: length is a tool. Writing fluency is the rhythm and flow of language, and a short sentence hits hardest after a long one.'
 
   - id: d3
     level: 3
-    covers: [S1.9, K1.3, S1.2]
-    type: mc
-    prompt: You are publishing a report for parents about why students need more recess. What would **best support your purpose**?
-    choices:
-      - A chart showing how many students feel more focused after recess, with a caption
-      - A clip art picture of a dinosaur on every page
-      - A very long glossary of playground words
-      - A secret code that readers must solve
-    answer: 0
-    feedback:
-      '1': The pictures may be fun, but they don’t help persuade parents.
-      '2': Parents don’t need a long list of playground words to understand your point.
-      '3': Making readers work harder gets in the way of your purpose.
-    hints:
-      - What would help convince a parent?
-    solution:
-      - A chart with a caption shows **evidence**, so it supports your purpose and connects with your audience.
-
-  - id: d4
-    level: 3
-    covers: [S1.1, S1.4, S1.5, S1.6]
+    thinking: design
+    covers: [S1.6, S1.5, K1.4, K1.5]
     type: open
     prompt: |-
-      Write a short piece to persuade your class of something that matters to you. Include a **topic introduction**, at
-      least **two pieces of evidence**, **transitions**, and a **conclusion**.
+      Write a short paragraph for your school newspaper with this position: **Monday should be cancelled.**
+
+      Your paragraph needs a topic sentence, two pieces of evidence and a concluding sentence. Start your second piece
+      of evidence with a transition. Be funny if you like, but your reasons have to really support your position.
     modelAnswer: |-
-      Our school should start a Friday reading club. First, reading with friends makes it more fun, and last year the
-      book fair sold out in one day, so students clearly like books. In addition, the library is already open at lunch, so
-      a club would cost nothing. Most importantly, it would give students a quiet place to relax. For all of these
-      reasons, a Friday reading club would be good for everyone.
+      Monday should be cancelled. Nobody in my class has ever been fully awake on one. In addition, the bus is late more
+      often on Mondays than on any other day. Without Monday, the whole week would get off to a better start, so let’s take it off the calendar.
     rubric:
-      - My first sentence introduces the topic and my position.
-      - I gave at least two pieces of relevant evidence.
-      - I used transitions to link my ideas.
-      - I ended with a conclusion.
-      - I read it over, then revised and edited it.
+      - My first sentence gives my position.
+      - I gave two pieces of evidence, and each one supports my position.
+      - My second piece of evidence starts with a transition.
+      - My last sentence links back to the position and ends the paragraph.
+    hints:
+      - What is really wrong with Mondays? Make a quick list, and choose your two best reasons.
+      - Which transition fits? Try *In addition* or *Most importantly*.
