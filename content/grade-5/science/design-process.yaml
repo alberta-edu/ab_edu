@@ -104,226 +104,410 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.2]
+    thinking: notice
+    covers: [K2.2, K2.3]
     type: mc
-    prompt: What does **functionality** mean?
+    prompt: |-
+      **Umbrella A** opens with one easy click, but rain pours through the holes in it.
+
+      **Umbrella B** keeps you perfectly dry, but opening it takes a wrench and five minutes.
+
+      What does each umbrella do well?
     choices:
-      - Being useful for the job it was designed for
-      - How nice it looks
-      - How easy it is to use
-      - How little material it uses
+      - A has good usability. B has good functionality.
+      - A has good functionality. B has good usability.
+      - A has good aesthetics. B has good usability.
+      - A has good reliability. B has good safety.
     answer: 0
     feedback:
-      '1': That is **aesthetics**.
-      '2': That is **usability**.
-      '3': That is part of **efficiency**.
+      '1': You have them swapped. Which umbrella does the job of keeping you dry? Which one is easy to use?
+      '2': Nothing here tells us how Umbrella A looks, and Umbrella B is anything but easy to use.
+      '3': Nothing here says whether either one keeps working over time, or whether either one is safe.
     hints:
-      - Does the design do its job?
+      - What is the job of an umbrella? Which one does that job?
+      - Functionality asks, “Does it do its job?” Usability asks, “Is it easy to use?”
+      - One umbrella does its job but is a pain to use. The other is easy to use but doesn’t do its job.
     solution:
-      - '**Functionality** is the quality of being useful to do the job something was designed for.'
+      - Ask two separate questions about each umbrella.
+      - 'Does it do its job of keeping you dry? B does, so B has good **functionality**.'
+      - 'Is it easy to use? A is, so A has good **usability**.'
+      - 'What we learned: a design can be strong on one of these and weak on the other.'
 
   - id: w2
     level: 1
-    covers: [K2.3]
-    type: mc
-    prompt: What does **usability** mean?
+    thinking: apply
+    covers: [K2.4, S2.1]
+    type: multi
+    prompt: A camping tent gets a new version with six changes. Select **all** the changes that are **enhancing**.
     choices:
-      - How easily something can be used
-      - How long something lasts
-      - How safe something is
-      - How colourful something is
-    answer: 0
-    feedback:
-      '1': That is closer to **reliability**.
-      '2': That is **safety**.
-      '3': That is part of **aesthetics**.
+      - It now has a window.
+      - Its zipper no longer sticks.
+      - It now has a pocket for a flashlight.
+      - Its poles are stronger.
+      - Its floor keeps out more water.
+      - It now has a small porch roof.
+    fixedOrder: true
+    answer: [0, 2, 5]
     hints:
-      - The word starts with "use".
+      - Enhancing adds something new. Refining improves something already there.
+      - For each change, ask, “Did the old tent have one of these?”
+      - Every tent already has a zipper, poles and a floor.
     solution:
-      - '**Usability** is how easily something can be used to get the result you want.'
+      - For each change, ask whether the old tent already had that part.
+      - The window, the pocket and the porch roof are new, so they are **enhancing**.
+      - The zipper, the poles and the floor were already there and got better, so they are **refining**.
 
   - id: w3
     level: 1
-    covers: [K2.1]
-    type: multi
-    prompt: Select **all** the factors that can influence a design.
-    choices: [Safety, Functionality, Usability, Reliability, Efficiency, Aesthetics]
+    thinking: apply
+    covers: [K2.1, S2.2]
+    type: mc
+    prompt: A toaster makes perfect toast every single time. But each slice takes **40 minutes**, and the whole kitchen gets hot. Which factor most needs work?
+    choices: [Efficiency, Reliability, Functionality, Aesthetics]
     fixedOrder: true
-    answer: [0, 1, 2, 3, 4, 5]
+    answer: 0
+    feedback:
+      '1': Reliability asks whether it keeps working again and again. This toaster does, every single time.
+      '2': Functionality asks whether it does its job. It does make perfect toast.
+      '3': Aesthetics is about how it looks and feels. Nothing here says it looks bad.
     hints:
-      - Look back at the six bars in the design lab.
+      - Which of the toaster’s good points can you cross off first?
+      - What is being wasted while the toast is made?
+      - Time and energy are both going somewhere they shouldn’t. Which factor is about that?
     solution:
-      - All six are design factors. Designers think about every one of them.
+      - The toast is perfect and it works every time, so its job and its reliability are fine.
+      - It wastes time (40 minutes a slice) and energy (a hot kitchen).
+      - Avoiding waste of materials, time or energy is **efficiency**.
 
   - id: w4
     level: 1
-    covers: [K2.4, U2.1]
-    type: mc
-    prompt: What is an **iteration** of a design?
-    choices:
-      - A new version, made after testing and improving the last one
-      - The very first idea
-      - A list of materials
-      - A design that can never change
-    answer: 0
-    feedback:
-      '1': The first version is only the start. Iterations come after it.
-      '2': A materials list doesn't change the design.
-      '3': Iterations are all about changing and improving.
+    thinking: apply
+    covers: [S2.3, S2.5]
+    type: order
+    prompt: Put this design story in order, from first to last.
+    items:
+      - Notice that mittens keep getting lost at recess
+      - 'Make version 1: a long string joining two mittens'
+      - 'Test it: the string catches on the slide'
+      - 'Make version 2: a short clip from each mitten to the coat'
+      - Test version 2 at recess
     hints:
-      - In the design lab, what changed with every new version?
+      - What has to be true before anyone would bother making anything?
+      - You can’t test something that doesn’t exist yet.
+      - What made the designer think of clips instead of string?
     solution:
-      - An **iteration** is a new version of a design, improved after testing.
+      - A design starts with a **need**, so the lost mittens come first.
+      - Then comes version 1, then a test of it.
+      - The problem found in the test leads to the next **iteration**, and that one gets tested too.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K2.4]
+    thinking: backwards
+    covers: [S2.5, S2.2]
     type: mc
-    prompt: A backpack never had a water-bottle pocket. The new version adds one. Is this **enhancing** or **refining**?
-    choices: [Enhancing, Refining]
-    fixedOrder: true
+    prompt: |-
+      Yara’s cardboard sled has reached version 2. It is exactly the same as version 1, except that the **bottom** is now covered in a sheet of plastic.
+
+      Work backwards. Which test result most likely led to this change?
+    choices:
+      - After two runs, the bottom went soggy and tore.
+      - Her friends said the sled looked boring.
+      - The sled was hard to drag back up the hill.
+      - Only one person at a time could fit on it.
     answer: 0
     feedback:
-      '1': Refining improves something that is already there. The pocket is new.
+      '1': A sheet under the sled is hard to see while it’s being used. A boring look would lead to a change on top, like paint.
+      '2': Being hard to drag would lead to something like a rope or a handle.
+      '3': Not fitting two people would lead to a bigger sled, and this one is the same size.
     hints:
-      - Was the pocket there before?
+      - What does a sheet of plastic do that cardboard can’t?
+      - For each test result, picture the change it would lead to. Is it a sheet on the bottom?
+      - What is the bottom of a sled touching all day?
     solution:
-      - Adding something new is **enhancing**.
+      - Start from the change, and ask what problem it would fix.
+      - Plastic stops water, and the bottom of a sled slides over wet snow all day. So the problem was probably soggy cardboard.
+      - Each of the other results would lead to a different change.
+      - 'What we learned: every iteration is an answer to something a test showed.'
 
   - id: b2
     level: 2
+    thinking: why
     covers: [K2.4, S2.1]
     type: mc
-    prompt: The zipper on a backpack keeps getting stuck. The new version uses a smoother zipper. Is this **enhancing** or **refining**?
-    choices: [Refining, Enhancing]
-    fixedOrder: true
+    prompt: |-
+      A scooter never had a bell. **Version 2** adds one. In testing, nobody can hear it, so **version 3** makes the bell louder.
+
+      What kind of change does version 3 make?
+    choices:
+      - Refining, because the bell was already part of version 2.
+      - Enhancing, because the first scooter had no bell at all.
+      - Enhancing, because a louder bell counts as something new.
+      - Refining, because every change after version 1 is refining.
     answer: 0
     feedback:
-      '1': The backpack already had a zipper. It was improved, not added.
+      '1': The first scooter did have no bell, and that made version 2 an enhancement. But version 3 is built from version 2. What did it start with?
+      '2': It is the same bell, doing the same job, but better. Nothing new was added this time.
+      '3': That’s the right word for the wrong reason. Version 2 came after version 1, and it was enhancing.
     hints:
-      - Was the zipper already part of the design?
+      - Which version is version 3 changing?
+      - Look at version 2 just before the change. Does it have a bell?
+      - Something added once can be improved later.
     solution:
-      - Improving something that is already there is **refining**.
+      - Compare version 3 with the version right before it, not with the very first one.
+      - Version 2 already had a bell. Making it louder improves something that is already there, so that is **refining**.
+      - 'What we learned: enhancing can add a new part, and later iterations can refine that part.'
 
   - id: b3
     level: 2
+    thinking: whatif
     covers: [K2.1, S2.2]
     type: mc
-    prompt: A water bottle still works perfectly after being dropped 50 times. Which factor does this show?
-    choices: [Reliability, Aesthetics, Efficiency, Usability]
-    fixedOrder: true
+    prompt: Your class designs a snow shovel for clearing the school path. A tester says, “Make the blade twice as wide!” Picture pushing that shovel through deep snow. What will most likely happen?
+    choices:
+      - Efficiency goes up, since each push clears more path, but usability goes down, since it’s harder to push.
+      - Efficiency and usability both go up, since a bigger shovel does more of the work for you.
+      - Usability goes up, since a wide blade is easier to aim, but efficiency goes down, since it clears less.
+      - Aesthetics goes up, since a wide blade looks stronger, but nothing else changes at all.
     answer: 0
     feedback:
-      '1': Aesthetics is about how it looks.
-      '2': Efficiency is about not wasting material, time or energy.
-      '3': Usability is about how easy it is to use.
+      '1': Picture what is in front of that wide blade. Twice the snow is pushing back. Is that easier for you?
+      '2': A wider blade clears a wider strip of path on each push. Think about how much snow moves, and how hard the push feels.
+      '3': Something important would change for the person pushing. Think about how heavy twice the snow would feel.
     hints:
-      - It keeps working, again and again.
+      - How much path does one push clear with the wider blade?
+      - Now picture how much snow is piled in front of the blade. How does your arm feel?
+      - One factor gets better, one gets worse. Which is which?
     solution:
-      - Working again and again without breaking is **reliability**.
+      - Picture one push. The wider blade clears a wider strip, so you need fewer pushes. That is more **efficient**.
+      - But there is twice as much snow to move on each push, so it is much harder to use. That is less **usable**.
+      - Designers call this a trade-off. To know whether it’s worth it, you would test it with the people who’ll do the shovelling.
 
   - id: b4
     level: 2
-    covers: [S2.2, K2.3]
+    thinking: perspective
+    covers: [K2.5, S2.4, K2.3]
     type: mc
-    prompt: A math game app is fun, but players can't figure out which button starts a new game. Which factor most needs work?
-    choices: [Usability, Safety, Reliability, Efficiency]
-    fixedOrder: true
+    prompt: |-
+      Hugo, in Grade 5, builds a row of coat hooks for the kindergarten room. He tests every hook himself. Easy to reach, strong, five stars!
+
+      On Monday, kindergarten children are jumping for the hooks, and the coats are in a heap on the floor. What went wrong?
+    choices:
+      - The people who would use the hooks never helped test them.
+      - He needed to test each hook more times by himself.
+      - The hooks weren’t reliable, so they kept on breaking.
+      - He needed to build more hooks along the same row.
     answer: 0
     feedback:
-      '1': Nobody can get hurt here.
-      '2': The app doesn't crash. It is just confusing.
-      '3': The problem isn't about wasting materials or time.
+      '1': Hugo could test them a thousand times and they would still feel easy to reach, for Hugo.
+      '2': The hooks are strong, and nothing broke. The coats are on the floor for a different reason.
+      '3': More hooks at the same height still leave every child jumping.
     hints:
-      - Is the app easy to use?
+      - Why were the hooks five stars for Hugo and not for the kindergarten children?
+      - Who was doing the testing, and who was using them on Monday?
+      - What would one kindergarten tester have shown Hugo on day one?
     solution:
-      - The app is hard to use, so its **usability** needs work.
-
-  - id: b5
-    level: 2
-    covers: [S2.3, S2.5]
-    type: order
-    prompt: Put the steps of the design process in order.
-    items: [Understand the need, Design a first version, Test and evaluate it, Improve it to make a new iteration]
-    hints:
-      - You can't test something before it exists.
-    solution:
-      - Understand the need → design version 1 → test and evaluate → improve and iterate.
+      - Compare who tested the hooks with who needs them. Hugo is much taller than a kindergarten child.
+      - He wasn’t careless. He really did test them, but only from where he stands.
+      - One kindergarten tester would have shown the problem right away. Design can be **improved through collaboration**, because other people notice what you can’t.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.1, S2.2]
-    type: mc
-    prompt: In the design lab, making the walls thinner raised one factor but lowered another. Which?
-    choices:
-      - Efficiency went up, but reliability went down.
-      - Safety went up, but aesthetics went down.
-      - Usability went up, but functionality went down.
-      - Every factor went up.
-    answer: 0
-    feedback:
-      '1': Thinner walls didn't change safety or looks.
-      '2': The bottle was just as easy to use and still held water.
-      '3': Look at which bar turned red.
-    hints:
-      - Thinner walls use less plastic, but what happens when the bottle is dropped?
-    solution:
-      - Less plastic → more **efficient**. Thinner walls break more easily → less **reliable**. That is a trade-off.
+    thinking: breakdown
+    covers: [S2.5, U2.1, K2.2, K2.4, S2.3]
+    type: investigation
+    prompt: |-
+      A pet door is meant to let **Noodle the cat** into the kitchen and keep **Tank the bulldog** out.
+
+      Noodle needs a door at least **20 cm** wide. Tank needs at least **35 cm**. Version 1 of the door is **40 cm** wide.
+    parts:
+      - type: mc
+        prompt: In the first test, Noodle walks in. So does Tank, who eats all of Noodle’s food. Which factor did this test show is failing?
+        choices: [Functionality, Usability, Aesthetics, Efficiency]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': The door is easy to use. If anything, it was too easy for Tank!
+          '2': Nothing here is about how the door looks.
+          '3': Nothing here is about wasted materials, time or energy.
+        hints:
+          - What job was this door designed to do?
+          - Did the door do both halves of its job?
+        solution:
+          - The door’s job is “cat in, dog out”. It only did half of that, so its **functionality** is failing.
+      - type: build
+        prompt: Design version 2. Choose a width that does the whole job.
+        fields:
+          - { name: w, label: 'Door width', unit: cm }
+        rules:
+          - { test: 'w >= 20', fail: 'Poor Noodle is stuck in the doorway. Check how wide she needs it.' }
+          - { test: 'w < 35', fail: 'Here comes Tank, straight for the food bowl. How wide does he need it?' }
+        examples:
+          - { w: 25 }
+          - { w: 30 }
+          - { w: 20 }
+        counterexamples:
+          - { w: 40 }
+          - { w: 35 }
+          - { w: 15 }
+        hints:
+          - What is the narrowest door Noodle can use?
+          - What is the narrowest door Tank can use? Your door has to be narrower than that.
+        solution:
+          - It must be at least 20 cm for Noodle, and less than 35 cm to stop Tank.
+          - 20 cm, 25 cm and 30 cm all work, because each one fits Noodle and not Tank. Many answers are right.
+      - type: mc
+        prompt: Is the change from version 1 to version 2 enhancing or refining?
+        choices:
+          - Refining, because the door was there already and was made to work better.
+          - Enhancing, because the door has a brand new width.
+          - Enhancing, because the door stops a dog for the first time.
+          - Refining, because the door is now smaller than it was.
+        answer: 0
+        feedback:
+          '1': Every door has a width. Is anything added that the door didn’t have before?
+          '2': It does a better job now. But did that take a new part, or a better version of the same part?
+          '3': That’s the right word for the wrong reason. Making a door bigger could be refining too.
+        hints:
+          - Did version 2 add any new part?
+        solution:
+          - No new part was added. The same door got better, so this is **refining**.
+      - type: mc
+        prompt: |-
+          A month later, two things have changed. A raccoon who needs **26 cm** has found the door. And Noodle, after a lot of treats, now needs **28 cm**.
+
+          What should version 3 be?
+        choices:
+          - Add a flap that opens only for a tag on Noodle’s collar.
+          - Make the door 27 cm wide, halfway between the two animals.
+          - Make the door 30 cm wide so that Noodle fits comfortably.
+          - Go back to version 1, since every version has a problem.
+        answer: 0
+        feedback:
+          '1': Try it. Noodle needs 28 cm, so she gets stuck. The raccoon needs 26 cm, so it walks right in.
+          '2': Noodle fits, and that’s great. But what happens when the raccoon arrives?
+          '3': Version 1 let in Noodle, Tank and the raccoon. Problems are what tell you what to do next.
+        hints:
+          - Write down the width each animal needs. Who needs a wider door, Noodle or the raccoon?
+          - To stop the raccoon, how wide can the door be? To let Noodle in, how wide must it be? Can one door do both?
+          - If no width can work, then changing the width again won’t help. What else could change?
+        solution:
+          - The door has to be less than 26 cm to stop the raccoon, and at least 28 cm for Noodle. No width can be both.
+          - So refining the width has gone as far as it can. Something new is needed. A collar tag does the sorting that width no longer can, and it is **enhancing**.
+          - Nobody could have planned for this in version 1. Only testing over time showed it.
+    wrapUp: Each test shows you something you didn’t know. Refining can take a design a long way, and when it can’t go any further, it’s time to enhance.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K2.5, S2.4]
-    type: mc
-    prompt: Why is it a good idea to have classmates test your design?
-    choices:
-      - They may notice problems you missed and suggest new ideas.
-      - So you don't have to test it yourself.
-      - Because a design should never change after you build it.
-      - So they can copy it.
-    answer: 0
-    feedback:
-      '1': You should still test it yourself too.
-      '2': Designs get better by changing.
-      '3': The goal is to improve the design together.
-    hints:
-      - Design can be improved through collaboration.
-    solution:
-      - Others see the design with fresh eyes. **Collaboration** helps you find problems and better ideas.
+    thinking: flaw
+    covers: [U2.1, K2.3, S2.2, S2.4]
+    type: investigation
+    prompt: |-
+      Olu’s lunchbox has one job: fit in a backpack, and open fast at lunch.
+
+      | Version | What was new |
+      |---|---|
+      | 1 | Holds lunch |
+      | 2 | A fork holder |
+      | 3 | A radio |
+      | 4 | A fan and two wheels |
+      | 5 | A bike horn |
+
+      Version 5 won’t fit in a backpack. It takes 6 minutes to open. Olu says, “Five versions, something new every time, so version 5 must be my best!”
+    parts:
+      - type: mc
+        prompt: Which factor got clearly worse from version 1 to version 5?
+        choices: [Usability, Aesthetics, Safety, Reliability]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': We aren’t told how it looks. For all we know, it’s gorgeous.
+          '2': We aren’t told about anyone getting hurt, even by the horn.
+          '3': We aren’t told about anything breaking. The radio may play all day.
+        hints:
+          - Which facts in the story are about how hard the lunchbox is to live with?
+        solution:
+          - It no longer fits in a backpack, and it takes 6 minutes to open. It has become much harder to use, so its **usability** got worse.
+      - type: mc
+        prompt: Where exactly did Olu’s thinking go wrong?
+        choices:
+          - He added new things without checking that they helped meet the need.
+          - He made too many versions, and good designers stop after two or three.
+          - He enhanced the design, when it’s always better only to refine a design.
+          - He listened to other people, when designers should really work alone.
+        answer: 0
+        feedback:
+          '1': More versions aren’t the trouble. Iterations are how designs get better. What did he skip after each new version?
+          '2': Enhancing is often just what a design needs. The fork holder might be useful! Did he check?
+          '3': Others can notice what you missed, so collaboration can help. Something else went wrong here.
+        hints:
+          - Look at the job again. Then look at the radio. Does it help with the job?
+          - What should happen after each new version, before the next one is made?
+        solution:
+          - New doesn’t mean better. A version is only better if testing shows it meets the need better.
+          - Olu counted the new things. He should have checked each one against the need. A radio doesn’t help a lunchbox fit in a backpack or open fast.
+      - type: open
+        prompt: You are the designer now. For version 6, say what stays and what goes. Then propose one **refinement**, and name the factor it helps.
+        modelAnswer: |-
+          I would keep the part that holds lunch and the fork holder, since a fork is useful at lunch. The radio, fan, wheels and horn go, so that it fits in a backpack again. My refinement is a lid latch that opens with one click, which helps usability.
+        rubric:
+          - What I kept and removed fits the job of fitting in a backpack and opening fast.
+          - My refinement improves something the lunchbox already has.
+          - I named the factor my refinement helps.
+    wrapUp: Many iterations help a design only because each one gets tested against the need. Without that, they just pile up.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S2.1, K2.4, K2.1]
-    type: mc
-    prompt: A video game company sends an update that stops the game from crashing. Is this enhancing or refining, and which factor improves?
-    choices:
-      - Refining, and reliability improves
-      - Enhancing, and aesthetics improves
-      - Enhancing, and safety improves
-      - Refining, and the game gets new levels
-    answer: 0
-    feedback:
-      '1': Nothing new was added, and the look didn't change.
-      '2': The fix improves something that was already there.
-      '3': New levels would be an enhancement, and this update doesn't add any.
+    thinking: why
+    covers: [K2.1, S2.2]
+    type: open
+    prompt: |-
+      Two reports land on a tester’s desk.
+
+      **Kazoo:** works 9 out of every 10 toots.
+
+      **Bicycle brake:** works 9 out of every 10 squeezes.
+
+      Both get the same reliability score, but only one of them is a real problem. Explain why. Then name one other thing where “9 out of 10” would be fine, and one where it wouldn’t.
+    modelAnswer: |-
+      If a kazoo fails, you just toot again, and nobody is hurt. If a brake fails, you could crash, so it has to work every time. How reliable something must be depends on what happens when it fails. A light-up party hat would be fine at 9 out of 10. A life jacket wouldn’t, because it has to work every single time.
+    rubric:
+      - I explained that what matters is what happens when it fails.
+      - I named something where 9 out of 10 would be fine, and it fits that idea.
+      - I named something where 9 out of 10 would not be fine, and it fits that idea.
     hints:
-      - Was something new added, or was something already there made better?
+      - Picture the tenth toot. Then picture the tenth squeeze, at the bottom of a hill.
+      - What happens right after each one fails?
+      - Now think about a thing you own. If it failed once in a while, would you shrug, or would you be in trouble?
     solution:
-      - The game already existed. Fixing the crash **refines** it, and the game now works more **reliably**.
+      - Don’t start with the score. Start with the moment each one fails. A silent kazoo is a small joke. A brake that doesn’t work could hurt someone.
+      - So reliability and safety are connected here. A design’s scores only mean something once you ask what the design is for.
 
   - id: d4
     level: 3
-    covers: [S2.2, S2.4]
+    thinking: design
+    covers: [S2.3, S2.4, K2.5, K2.4]
     type: open
     prompt: |-
-      Evaluate your school backpack using **three** design factors. Then propose one **enhancement** and one
-      **refinement** that would help it better meet your needs.
+      Nasra and her brother Lev share a bedroom, and they both test a new night light. Nasra says, “Too dim! I can’t read my book.” Lev says, “Too bright! I can’t fall asleep.”
+
+      Both testers are right. Propose **version 2**, so that it meets both needs. Is your change enhancing or refining? How do you know?
     modelAnswer: |-
-      Functionality: it holds all my books. Usability: the zipper is hard to open with one hand. Reliability: one
-      strap is starting to rip. An enhancement would be adding a side pocket for my water bottle. A refinement would be
-      making the straps stronger so they don't rip.
+      I would put the light on a bendy neck with a small shade. Nasra points it at her book, and the shade keeps the light off Lev’s side of the room. This is enhancing, because the neck and the shade are new parts that version 1 didn’t have.
     rubric:
-      - I evaluated the backpack using **three** factors.
-      - I proposed an **enhancement** (something new).
-      - I proposed a **refinement** (something improved).
+      - My version 2 helps Nasra read and helps Lev sleep.
+      - I said whether my change is enhancing or refining.
+      - My reason fits (new part means enhancing, better version of an existing part means refining).
+    hints:
+      - Does the light have to be one brightness for the whole room?
+      - Forget “brighter or dimmer”. What does each of them actually need?
+      - Think about where the light goes, and who gets to control it.
+    solution:
+      - Don’t pick a winner. Ask what each tester really needs. Nasra needs light on her book. Lev needs dark on his pillow.
+      - Those don’t have to fight. One answer is a bendy neck with a shade. Another is a small clip-on light that only lights up the page.
+      - Both work because they send the light only where it’s wanted. Two testers who disagree can lead to a better idea than either one alone.
