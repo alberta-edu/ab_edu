@@ -290,9 +290,9 @@ problems:
     figure: >-
       <svg viewBox="0 0 440 250" class="fig-svg" role="img" aria-label="A map of a gym. A group at tables is in the bottom left corner. Kids on a bench are in the bottom right corner. Fan A starts in the middle and spreads to the left, reaching the tables. Fan B starts near the top middle and spreads to the right, reaching the bench. Fan C starts at the left wall and spreads toward the top middle, reaching nobody.">
       <rect class="pb-box" x="5" y="5" width="430" height="240" rx="6"/>
-      <rect class="obj" x="20" y="170" width="120" height="65" rx="4"/><text class="fig-small" x="80" y="200" text-anchor="middle">Group</text><text class="fig-small" x="80" y="218" text-anchor="middle">at tables</text>
-      <rect class="obj" x="340" y="175" width="85" height="60" rx="4"/><text class="fig-small" x="382" y="202" text-anchor="middle">Kids on</text><text class="fig-small" x="382" y="220" text-anchor="middle">a bench</text>
-      <polygon class="fig-arrow" points="215,130 60,110 60,220"/><polygon class="fig-arrow" points="260,60 420,110 420,210"/><polygon class="fig-arrow" points="25,70 235,25 235,115"/>
+      <rect class="obj" x="20" y="170" width="120" height="65" rx="4"/><text class="fig-small" x="80" y="210" text-anchor="middle">Group</text><text class="fig-small" x="80" y="227" text-anchor="middle">at tables</text>
+      <rect class="obj" x="340" y="175" width="85" height="60" rx="4"/><text class="fig-small" x="382" y="210" text-anchor="middle">Kids on</text><text class="fig-small" x="382" y="227" text-anchor="middle">a bench</text>
+      <polygon class="fig-arrow" points="215,130 50,105 50,190"/><polygon class="fig-arrow" points="260,60 420,100 420,190"/><polygon class="fig-arrow" points="25,70 235,25 235,115"/>
       <circle class="fig-hl" cx="215" cy="130" r="6"/><circle class="fig-hl" cx="260" cy="60" r="6"/><circle class="fig-hl" cx="25" cy="70" r="6"/>
       <text class="fig-label" x="228" y="150">A</text><text class="fig-label" x="254" y="44">B</text><text class="fig-label" x="20" y="54">C</text></svg>
     prompt: |-
@@ -366,19 +366,19 @@ problems:
       flies to a treehouse and drops the pizza into the basket without stopping. The graph shows its altitude on the trip.
     parts:
       - type: multi
-        prompt: In which sections does the lift **equal** the weight? Select **all** of them.
+        prompt: When Zippy flies **level**, its lift equals its weight. In which sections is it flying level? Select **all** of them.
         choices: [Section A, Section B, Section C, Section D, Section E]
         fixedOrder: true
         answer: [1, 3]
         feedback:
-          '0': The line is going up here. What does that tell you about lift and weight?
-          '2': The line is going up here. What does that tell you about lift and weight?
-          '4': The line is going down here. What does that tell you about lift and weight?
+          '0': The line is going up here. Is Zippy staying at the same altitude?
+          '2': The line is going up here. Is Zippy staying at the same altitude?
+          '4': The line is going down here. Is Zippy staying at the same altitude?
         hints:
           - What does the line look like when the altitude isn’t changing?
         solution:
-          - When lift equals weight, the altitude stays the same, so the line is flat. That happens in sections **B** and **D**.
-          - In A and C, lift is greater than weight. In E, weight is greater than lift.
+          - Flying level means the altitude stays the same, so the line is flat. That happens in sections **B** and **D**, where lift equals weight.
+          - In A and C, the line goes up, so Zippy is climbing. In E, the line goes down, so Zippy is descending.
       - type: mc
         prompt: Right after the pizza drops, Zippy shoots upward, even though its propellers haven’t changed at all. Why?
         choices:
@@ -510,20 +510,20 @@ problems:
     type: open
     prompt: |-
       **Invent** a device that carries a paper note through the air, across your classroom. You can use things like paper,
-      tape, straws, a balloon, string or paper clips. Describe your device. Say where its **thrust** comes from, what its
+      tape, straws, rubber bands or paper clips. Describe your device. Say where its **thrust** comes from, what its
       **drag** does, what holds it up against its **weight**, and one thing you’d do to keep everyone safe.
     hints:
       - How will it get moving? What keeps pushing it, and for how long?
       - Picture it halfway across the room. What is slowing it down? What is pulling it down? What is stopping it from falling?
       - Now picture testing it with the class around you. What could go wrong, and who could it hit?
     modelAnswer: |-
-      I would thread a straw onto a string tied across the room, tape a blown-up balloon to the straw and tape the note on.
-      When I let the balloon go, the air rushing out gives it **thrust**. **Drag** from the air slows it down, so I’d keep the
-      balloon small and smooth. The string holds it up against its **weight**.
+      I would fold a paper glider with wide wings and tape the note flat under it. A stretched rubber band launches it, and
+      that gives it **thrust**, but only at the start. **Drag** from the air slows it down, so I’d keep the glider thin and
+      smooth. **Lift** from its wings holds it up against its **weight**, so I’d keep the note small and light.
 
-      To keep everyone safe, I’d tie the string above head height and away from where people walk.
+      To keep everyone safe, I’d launch it only when nobody is in front of me or off to either side, because a test glider can veer.
 
-      Another idea is a paper glider. The throw gives it thrust only at the start, and lift from its wings opposes its weight.
+      Another idea is a small model plane with a propeller. The spinning propeller keeps giving thrust for as long as it spins.
     rubric:
       - I described what my device is made of and how it carries the note.
       - I said where its **thrust** comes from, and that **drag** slows it down.
