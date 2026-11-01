@@ -120,250 +120,393 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.1]
+    thinking: apply
+    covers: [K1.1, K1.2]
     type: multi
-    prompt: Which of these helped civilizations **rise**? Choose all that apply.
+    prompt: Congratulations! You now rule a tiny made-up kingdom, and you want it to **rise**. Which jobs go on your to-do list? Choose all that apply.
     choices:
-      - Strong leadership
-      - Organized structures
-      - Rebellions
-      - Innovations
-      - Environmental changes
-    answer: [0, 1, 3]
+      - Have officials count the harvest and store the extra grain
+      - Train and pay soldiers to guard the borders
+      - Try out a new way to bring water to the city
+      - Spend the whole treasury on a giant gold statue of yourself
+      - Let your two cousins battle over who rules next
+    answer: [0, 1, 2]
     feedback:
-      '2': Rebellions are listed as a cause of **decline**.
-      '4': Environmental changes are listed as a cause of **decline**.
+      '3': It would look amazing, but an empty treasury is an **expense** problem. That is a cause of decline.
+      '4': A **struggle for power** splits a kingdom from the inside. That is a cause of decline.
     hints:
-      - Which of these would make a civilization stronger?
+      - For each job, ask if it makes the kingdom stronger or weaker.
+      - Look for organized structures, military power and innovations on the list.
     solution:
-      - Strong leadership, organized structures and innovations help a civilization rise. Rebellions and environmental changes can cause decline.
+      - Counting and storing grain is an **organized structure**. Trained soldiers are **military power**. A new way to bring water is an **innovation**.
+      - The statue empties the treasury, and the cousins’ battle is a struggle for power. Both of these can bring a kingdom down.
 
   - id: w2
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: Which is a cause of **decline**?
-    choices:
-      - Struggles for power and leadership
-      - A new innovation
-      - More wealth from trade
-      - Better organization
-    answer: 0
-    feedback:
-      '1': Innovations usually help a civilization rise.
-      '2': Wealth usually helps a civilization rise.
-      '3': Organized structures help a civilization rise.
+    thinking: apply
+    covers: [S1.1]
+    type: order
+    prompt: Your time machine can only go **forward**. Put these five stops in order, starting with the earliest.
+    items:
+      - China’s first emperor unites warring states (221 BCE)
+      - Rome conquers Greece (146 BCE)
+      - Egypt becomes part of Rome (30 BCE)
+      - Rome takes over the Nabataean kingdom (106 CE)
+      - The last western Roman emperor is removed (476 CE)
     hints:
-      - Which one would make people fight each other instead of working together?
+      - Which stops are BCE? Do they all come before the CE ones?
+      - BCE years count **down** toward year 1. Which BCE number is farthest from year 1?
     solution:
-      - Struggles for power and leadership weaken a civilization from the inside.
+      - All BCE years come before all CE years, so sort the two groups separately.
+      - 'BCE years count down, so the biggest number is earliest: 221, then 146, then 30.'
+      - 'CE years count up, the way we count today: 106, then 476.'
 
   - id: w3
     level: 1
+    thinking: notice
     covers: [K1.3, U1.1]
     type: mc
-    prompt: You use the digits 0 to 9 and the alphabet every day. What do these show?
-    choices:
-      - Innovations from ancient civilizations have evolved into what we use today.
-      - Ancient civilizations had nothing to do with life today.
-      - These ideas were invented in the last 100 years.
-      - Only Rome created innovations.
-    answer: 0
-    feedback:
-      '1': The trails in the lesson connect ancient ideas to today.
-      '2': These ideas are thousands of years old.
-      '3': Many civilizations created innovations. Our digits came through India and Arab scholars.
-    hints:
-      - Look at the last stop on the writing and mathematics trails.
-    solution:
-      - These are **legacies**. Innovations from ancient civilizations have evolved into what we use today.
+    prompt: |-
+      Zofia paints this sign for the end of her driveway:
 
-  - id: w4
-    level: 1
-    covers: [S1.1]
-    type: mc
-    prompt: Which year came **first**?
-    choices: [500 BCE, 100 BCE, 100 CE, 500 CE]
-    fixedOrder: true
+      **LEMONADE 50¢. OPEN JULY 3.**
+
+      Ancient innovations are hiding all over that sign. Which of these is **not** one of them?
+    choices:
+      - Architecture
+      - Writing systems
+      - Calendars
+      - Currency
     answer: 0
     feedback:
-      '1': BCE years count down, so 500 BCE comes before 100 BCE.
-      '2': Every BCE year comes before every CE year.
-      '3': This is the latest of the four.
+      '1': Look at the letters themselves. Where did the alphabet on the sign come from?
+      '2': Look at the date. Who is the month of July named for?
+      '3': Look at the price. What does a person hand over to buy the lemonade?
     hints:
-      - BCE years count **down** toward year 1.
+      - Read the sign one piece at a time. What is each piece using?
+      - Check each choice against the sign. Which one has nothing to point at?
     solution:
-      - BCE years count down, so the biggest BCE number is the earliest. **500 BCE** came first.
+      - The letters come from the Latin alphabet (writing systems). July comes from Rome’s calendar (calendars). The 50¢ is money (currency).
+      - A driveway sign has no columns or domes, so **architecture** is the one that isn’t there.
+      - The digits are a legacy too. They came to us through India and Arab scholars. One small sign carries thousands of years.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.2, S1.1]
+    thinking: evidence
+    covers: [K1.1, S1.1]
     type: mc
-    prompt: Around 1900 BCE, people left the great cities of the Indus Valley. Many scientists think weaker rains and changing rivers were part of the reason. Which decline factor is this?
+    prompt: |-
+      Two made-up cities started out the same size, 300 years ago.
+
+      | | Oarhaven | Stonebank |
+      |---|---|---|
+      | Leader | Strong | Strong |
+      | Army | Well trained | Well trained |
+      | Officials | Store grain | Store grain |
+      | Location | Sheltered harbour | Behind steep mountains |
+      | Today | Huge and rich | Still small |
+
+      Which factor best explains why only Oarhaven rose?
     choices:
-      - Environmental changes
-      - Expenses
-      - Changes to values and belief systems
-      - Military conquest
+      - Opportunity, from its location
+      - Strong leadership, from its ruler
+      - Military power, from its army
+      - Organized structures, from its officials
     answer: 0
     feedback:
-      '1': Expenses are about money. Rain and rivers are part of the environment.
-      '2': This is about values and beliefs, not rain and rivers.
-      '3': No invading army is mentioned here.
+      '1': A strong leader may well have helped. But look across that row. Can something both cities had explain why they ended up different?
+      '2': Look across the army row. If both cities have the same army, can the army explain the difference?
+      '3': Look across the officials row. What do you notice about the two cities?
     hints:
-      - Are rain and rivers part of the economy, or the environment?
+      - The question isn’t only why Oarhaven rose. It is why **only** Oarhaven rose.
+      - Go down the table, one row at a time. Which rows are the same for both cities?
+      - Which row before the last one is different?
     solution:
-      - Rain and rivers are part of the environment, so this is **environmental change**.
+      - To explain a difference, look for what is different. Leaders, armies and officials match, so none of them can explain it.
+      - Only the location is different. A harbour gives a city the chance to trade with others, and that is **opportunity**.
+      - 'What we learned: a factor can help a city and still not be the reason it beat its neighbour.'
 
   - id: b2
     level: 2
-    covers: [S1.1]
-    type: order
-    prompt: Put these events in order, from **earliest** to **latest**.
-    items:
-      - Kings unite Egypt (about 3100 BCE)
-      - People leave the Indus Valley cities (about 1900 BCE)
-      - Rome conquers Greece (146 BCE)
-      - Rome takes over the Nabataean kingdom (106 CE)
-      - The last western Roman emperor is removed (476 CE)
+    thinking: notice
+    covers: [S1.1, K1.1]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 520 240" class="fig-svg" role="img" aria-label="A timeline of six civilizations. Egypt: about 3100 BCE to 30 BCE. Indus Valley: about 2600 BCE to 1900 BCE. China: about 1600 BCE to 220 CE. Greece: about 800 BCE to 146 BCE. Rome: 753 BCE to 476 CE. Nabataeans: about 300 BCE to 106 CE.">
+        <line class="fig-grid" x1="131.6" y1="16" x2="131.6" y2="210"/>
+        <line class="fig-grid" x1="239.7" y1="16" x2="239.7" y2="210"/>
+        <line class="fig-grid" x1="347.8" y1="16" x2="347.8" y2="210"/>
+        <line class="fig-grid" x1="456" y1="16" x2="456" y2="210"/>
+        <text class="fig-small" x="6" y="39">Egypt</text><rect class="fig-hl" x="120.8" y="25" width="331.9" height="18"/>
+        <text class="fig-small" x="6" y="69">Indus Valley</text><rect class="fig-hl" x="174.9" y="55" width="75.6" height="18"/>
+        <text class="fig-small" x="6" y="99">China</text><rect class="fig-hl" x="283" y="85" width="196.7" height="18"/>
+        <text class="fig-small" x="6" y="129">Greece</text><rect class="fig-hl" x="369.5" y="115" width="70.7" height="18"/>
+        <text class="fig-small" x="6" y="159">Rome</text><rect class="fig-hl" x="374.5" y="145" width="132.9" height="18"/>
+        <text class="fig-small" x="6" y="189">Nabataeans</text><rect class="fig-hl" x="423.5" y="175" width="43.9" height="18"/>
+        <text class="fig-small" x="131.6" y="228" text-anchor="middle">3000 BCE</text>
+        <text class="fig-small" x="239.7" y="228" text-anchor="middle">2000 BCE</text>
+        <text class="fig-small" x="347.8" y="228" text-anchor="middle">1000 BCE</text>
+        <text class="fig-small" x="456" y="228" text-anchor="middle">1 CE</text>
+      </svg>
+    prompt: A new film about the ancient world has four scenes, and the director needs a fact-checker. Use the timeline. Which scene could **never** have happened, because the two groups were never alive at the same time?
+    choices:
+      - A Roman soldier buys a pot in an Indus Valley city.
+      - A Greek sailor sells a jar of oil to an Egyptian.
+      - A Nabataean guide leads an Egyptian merchant.
+      - A Chinese merchant greets a merchant from Rome.
+    answer: 0
+    feedback:
+      '1': Find the Greece bar and the Egypt bar. Is there a time when both bars are on the timeline?
+      '2': Find the Nabataeans bar and the Egypt bar. Do they overlap anywhere, even a little?
+      '3': China and Rome were very far apart. But this question is about time, so check if their bars overlap.
     hints:
-      - BCE comes before CE. Among BCE dates, the biggest number is the earliest.
+      - What would you look for on the timeline to show that two groups were alive at the same time?
+      - For each scene, find the two bars. Slide your finger straight up and down. Does it ever touch both?
+      - Look for two bars with a gap between them.
     solution:
-      - '3100 BCE → 1900 BCE → 146 BCE → 106 CE → 476 CE. BCE years count down, and CE years count up.'
+      - Two groups could only meet if their bars overlap. So check each scene’s two bars.
+      - The Indus Valley bar ends around 1900 BCE, and the Rome bar doesn’t start until 753 BCE. That leaves a gap of more than 1,000 years.
+      - The other three pairs all overlap, so their scenes pass this check. Tell the director to cut the soldier!
 
   - id: b3
     level: 2
-    covers: [K1.1, S1.1]
+    thinking: perspective
+    covers: [K1.1, K1.2]
     type: mc
-    prompt: The Nabataeans of Petra grew rich by guiding and taxing caravans that carried incense through the desert. Which factor best explains their **rise**?
+    prompt: In 146 BCE, Rome conquered Greece. One book tells this as part of **Rome’s rise**. Another tells it as part of **Greece’s decline**. Which description fits both books?
     choices:
-      - Wealth
-      - Rebellions
-      - Environmental changes
-      - Struggles for power
+      - For Rome, an internal factor. For Greece, an external factor.
+      - For Rome, an external factor. For Greece, an internal factor.
+      - For both of them, an external factor, as they were two lands.
+      - For both of them, an internal factor, as they were at war.
     answer: 0
     feedback:
-      '1': Rebellions are a cause of decline, and none is mentioned here.
-      '2': Environmental changes are a cause of decline. Nothing here says the desert changed.
-      '3': That is a cause of decline. Nothing here says that leaders fought each other.
+      '1': Where were Rome’s soldiers trained and paid? And where did the conquering army come from, if you were standing in Greece?
+      '2': Rome’s army was its own. Did Rome’s strength come from outside Rome?
+      '3': Ask this for each side. If you are in Greece, is the army from outside? If you are in Rome, is it?
     hints:
-      - What did the caravans bring to Petra?
+      - Pretend you’re writing Rome’s story. Was the army part of Rome or not?
+      - Now pretend you’re writing Greece’s story. Did this army come from inside Greece?
     solution:
-      - Trade made the Nabataeans rich, so **wealth** best explains their rise.
+      - In Rome’s story, the army is Rome’s own **military power**, built inside Rome. So it is an internal factor in its rise.
+      - In Greece’s story, the same army is **war and military conquest**, arriving from outside. So it is an external factor in its decline.
+      - 'What we learned: inside and outside depend on whose story you are telling. One event can be a rise for one and a decline for another.'
 
   - id: b4
     level: 2
+    thinking: model
     covers: [K1.3, S1.2]
-    type: mc
-    prompt: 'Follow this trail: Egyptian hieroglyphs → the Greek alphabet → the Latin alphabet → the letters in this sentence. Which innovation does it show evolving?'
-    choices:
-      - Writing systems
-      - Calendars
-      - Architecture
-      - Rights and freedoms
-    answer: 0
-    feedback:
-      '1': Calendars track days and years, not letters.
-      '2': Architecture is about buildings.
-      '3': Rights and freedoms are about how people may be treated.
-    hints:
-      - What do hieroglyphs and alphabets let you do?
-    solution:
-      - Each stop on this trail is a way to record language, so it shows **writing systems** evolving.
+    type: number
+    prompt: |-
+      A calendar of exactly 365 days slips against the seasons by about **1 day every 4 years**. Each date comes a little earlier in the season.
 
-  - id: b5
-    level: 2
-    covers: [K1.3, S1.2, U1.1]
-    type: mc
-    prompt: The Alberta Legislature in Edmonton has a dome and tall columns. Which ancient legacy does this show?
-    choices:
-      - Greek columns and Roman domes, in architecture
-      - The Egyptian calendar
-      - Chinese money
-      - The Twelve Tables of Rome
-    answer: 0
-    feedback:
-      '1': A calendar tracks time. Domes and columns are parts of buildings.
-      '2': Money is used for trade. Domes and columns are parts of buildings.
-      '3': The Twelve Tables were written laws, not parts of a building.
+      Imagine nobody ever fixed this. After about how many years would your **July** party land a whole 90 days early, in April weather? Pack your snow pants!
+    answer: 360
+    unit: years
+    verify: 90 * 4
     hints:
-      - Domes and columns are parts of what kind of thing?
+      - How long does it take to slip just 1 day?
+      - Think of the years in groups of 4. Each group slips 1 day.
+      - How many groups do you need to slip 90 days?
     solution:
-      - Greek temples had rows of columns, and Romans built huge domes. Both still shape our **architecture**.
+      - Picture the years in groups of 4. Each group moves the calendar by 1 day.
+      - 'To slip 90 days, you need 90 groups. \(90 \times 4 = 360\) years.'
+      - That is slow, but people did notice. Egypt’s calendar had 365 days. Rome’s added a leap day every 4 years, and in 1582 that calendar was corrected again.
+      - 'What we learned: innovations evolve because people spot a problem and fix it. The calendar on your wall is the latest stop on that trail.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.2, S1.1]
-    type: mc
+    thinking: breakdown
+    covers: [K1.1, K1.2, S1.1]
+    type: investigation
     prompt: |-
-      Rome faced all of these. Which one is an **external** factor?
-    choices:
-      - Armies from beyond its borders attacked
-      - Rival generals fought to become emperor
-      - The cost of the army emptied the treasury
-      - Emperors put less silver in their coins
-    answer: 0
-    feedback:
-      '1': The generals were Romans, so this came from inside.
-      '2': This cost came from Rome’s own spending, so it came from inside.
-      '3': This was Rome’s own decision, so it came from inside.
-    hints:
-      - Which one came from outside Rome?
-    solution:
-      - Armies from beyond its borders came from **outside** Rome. The other three all happened inside.
+      Emperor Bartholomew the Bigger, of the made-up Empire of Vell, wants more land. He conquers these lands in order, nearest first. Each pays tax, in sacks of silver each year. But soldiers must guard it, and the farther away it is, the more that costs.
+
+      | Land | Tax it pays | Cost to guard it |
+      |---|---|---|
+      | 1st | 30 | 10 |
+      | 2nd | 30 | 15 |
+      | 3rd | 30 | 25 |
+      | 4th | 30 | 40 |
+      | 5th | 30 | 60 |
+    parts:
+      - type: number
+        prompt: Bartholomew holds only the first 2 lands. How many sacks does he have left each year, after paying the guards?
+        answer: 35
+        unit: sacks
+        verify: 60 - 25
+        hints:
+          - What comes in from the 2 lands? What goes out?
+        solution:
+          - '2 lands pay \(30 + 30 = 60\) sacks. Guarding them costs \(10 + 15 = 25\) sacks. \(60 - 25 = 35\) sacks left.'
+      - type: number
+        prompt: He keeps on conquering, and he holds all 5 lands. His map is magnificent. How many sacks does he have left each year now?
+        answer: 0
+        unit: sacks
+        verify: 150 - (10 + 15 + 25 + 40 + 60)
+        hints:
+          - Add up all the tax. Then add up all the guarding costs.
+        solution:
+          - '5 lands pay \(5 \times 30 = 150\) sacks. Guarding them costs \(10 + 15 + 25 + 40 + 60 = 150\) sacks. Nothing is left!'
+      - type: number
+        prompt: He wishes he had stopped sooner. If he had stopped at the best moment, what is the **most** sacks he could have left each year?
+        answer: 40
+        unit: sacks
+        verify: (30 - 10) + (30 - 15) + (30 - 25)
+        hints:
+          - For each land, does it bring in more than it costs, or less?
+          - Keep a running total as you go down the table, one land at a time.
+        solution:
+          - 'Each land adds its tax and takes away its cost. Land by land, that leaves 20, then 35, then 40, then 30, then 0.'
+          - The most is **40 sacks**, with 3 lands. The 4th land costs 40 to guard and pays only 30, so it makes him poorer.
+      - type: mc
+        prompt: A historian writes, “The army made Vell rise, and the army made Vell decline.” How can both be true?
+        choices:
+          - At first, conquest brought in more than it cost. Later, it cost more than it brought in.
+          - It can’t be true. Any one factor either helps a rise or causes a decline, but never both.
+          - The historian must mean two armies, since the one that won was not the one that cost so much.
+          - The later lands paid less and less tax, and that is what ended up emptying the treasury.
+        answer: 0
+        feedback:
+          '1': Look at your numbers. The same army earned silver at first, and then used it all up.
+          '2': It is the same army the whole way through. Look at what happens to its cost.
+          '3': Check the tax column in the table. Does the tax change?
+        hints:
+          - What was the army doing for Vell during the first 3 lands? And what about the last 2?
+        solution:
+          - Military power won the first lands, and those brought in more silver than they cost, so Vell rose.
+          - Paying to guard the far lands was an **expense**, and that helped Vell decline. One factor played both parts.
+    wrapUp: Growing bigger isn’t the same as growing stronger. Rome’s trained, paid soldiers won land all around the Mediterranean, and paying for that huge army later drained its treasury. The factor that lifts an empire can also help to bring it down.
 
   - id: d2
     level: 3
-    covers: [S1.1, K1.2]
-    type: mc
-    prompt: 'A student says, "Rome fell in 476 CE because one enemy attacked it." What is the **best** response?'
-    choices:
-      - That leaves out a lot. High costs, power struggles and earlier wars had been weakening Rome for a long time.
-      - That is exactly right. A civilization always falls for one reason.
-      - That is wrong. Rome never declined.
-      - That is wrong. Enemies never affect a civilization.
-    answer: 0
-    feedback:
-      '1': Decline usually has many causes, working together over a long time.
-      '2': The last western emperor was removed in 476 CE, so Rome’s power in the west did end.
-      '3': War and military conquest **are** listed as a cause of decline.
-    hints:
-      - Think about the city you toppled in the lesson. How many factors did it take?
-    solution:
-      - The events of 476 CE were only the last part of a long decline with many causes, both internal and external.
+    thinking: decide
+    covers: [K1.2, S1.1]
+    type: investigation
+    prompt: |-
+      Welcome to the made-up **Empire Clinic**, where sick empires come for help. Today’s patient is the Empire of Ostra, whose farmers pay part of their harvest as tax. The ruler lists the symptoms:
+
+      - Two generals both say they are emperor.
+      - Paying the huge army has emptied the treasury.
+      - Rains have weakened, so farms grow less food.
+      - Raiders from beyond the border keep attacking.
+
+      “Four separate problems,” says the ruler. “Can you fix them?”
+    parts:
+      - type: multi
+        prompt: Start the checkup. Which symptoms come from **outside** the empire? Choose all that apply.
+        choices:
+          - The raiders from beyond the border
+          - The weaker rains
+          - The two generals
+          - The empty treasury
+        answer: [0, 1]
+        feedback:
+          '2': These are Ostra’s own generals, fighting over who rules. Where is that fight coming from?
+          '3': Ostra chose to pay for this army. Whose spending is that?
+        hints:
+          - Could Ostra’s ruler have stopped this from starting by giving an order?
+        solution:
+          - Raiders come from beyond the border, and no ruler controls the rain. Those are external.
+          - The generals and the spending belong to Ostra itself. Those are internal.
+      - type: mc
+        prompt: Now follow the weaker rains, one step at a time. What else could they make worse?
+        choices:
+          - Smaller harvests mean less tax, so the treasury gets even emptier.
+          - Nothing, since weather comes from outside and can’t change what is inside.
+          - Smaller harvests mean a smaller army, so the army starts to cost less.
+          - Weaker rains give the generals less to fight about, so they will stop.
+        answer: 0
+        feedback:
+          '1': The rain starts outside, but where do the crops grow? Read how the farmers pay their tax.
+          '2': The soldiers are still there, and they still need pay. Does less food make them cheaper?
+          '3': Think about hungry people and an empty treasury. Would that make the fight over who rules go away?
+        hints:
+          - What do the farmers pay their tax with?
+        solution:
+          - Weaker rains mean smaller harvests. Farmers pay tax with part of their harvest, so less tax comes in.
+          - The treasury gets even emptier. An outside problem has made an inside problem worse.
+      - type: mc
+        prompt: The soldiers haven’t been paid. Each general promises to pay them if they fight for him. What is most likely to happen next?
+        choices:
+          - Soldiers fight each other, so fewer are guarding the border against raiders.
+          - Soldiers stop fighting at all, so the two generals give up their argument.
+          - Soldiers guard the border even harder, so the raiders soon give up and go home.
+          - Soldiers join the raiders, so the raiders stop attacking the rest of the empire.
+        answer: 0
+        feedback:
+          '1': The generals want to win, and they are offering pay. Would they just give up?
+          '2': Follow the soldiers. If they are fighting for a general, where are they standing?
+          '3': If the raiders got more soldiers, would they attack less?
+        hints:
+          - Each soldier can only be in one place. Where will the generals want them?
+        solution:
+          - Soldiers who follow a general are busy fighting the other general’s soldiers. So fewer soldiers guard the border, and the raiders get a free path.
+          - So these aren’t four separate problems. Rain, money, power and raiders all push on each other.
+      - type: open
+        prompt: You are the doctor, and you can treat only **one** symptom today. Which one do you choose? Say what else it would help, and what could still go wrong.
+        modelAnswer: |-
+          I would treat the two generals, and make them agree on one emperor. Then the soldiers would stop fighting each other and go back to guarding the border, so the raiders would have a harder time.
+
+          It could still go wrong because the rains are still weak and the treasury is still empty. If the soldiers don’t get paid, a new general could make the same promise.
+        rubric:
+          - I chose one symptom.
+          - I explained what else it would help, using a link between the symptoms.
+          - I said what could still go wrong.
+        hints:
+          - Which symptom pushes on the most other symptoms? Which one can a ruler do something about?
+    wrapUp: Civilizations rarely decline for one reason. Causes from inside and outside feed each other, and that is why Rome’s costs, fights over who should rule and wars all added up. To explain a fall, look for the links between the causes, not just the list.
 
   - id: d3
     level: 3
-    covers: [K1.1, K1.2, S1.1]
+    thinking: why
+    covers: [U1.1, K1.2, S1.1]
     type: mc
-    prompt: The same factor can play a part in both rise and decline. Which example shows this?
+    prompt: |-
+      Three friends argue about when Rome ended.
+
+      **Mei:** “476 CE. That’s when the last western emperor was removed.”
+
+      **Tariq:** “No, almost 1,000 years later. The eastern half kept going.”
+
+      **Anouk:** “It hasn’t ended. Look at the letters in this sentence!”
+
+      Who is right?
     choices:
-      - A big army won land for Rome, and later the cost of paying that army helped drain its treasury.
-      - Rebellions made Rome strong, then made it weak.
-      - Environmental changes built Rome’s roads.
-      - Rome had one army, and it never cost anything.
+      - Each is right about a different thing, so we must ask what “ended” means.
+      - Mei is right, because a civilization ends when its last western ruler is gone.
+      - Tariq is right, because a civilization ends when its very last part is gone.
+      - Anouk is right, because a legacy means that a civilization has never fallen.
     answer: 0
     feedback:
-      '1': Rebellions weaken a civilization. They did not make Rome strong.
-      '2': People built the roads. The environment did not.
-      '3': Rome’s army was very costly.
+      '1': Mei’s fact is true. But did every part of Rome stop in that year?
+      '2': Tariq’s fact is true. But is that the only thing that someone could mean by the end of Rome?
+      '3': Anouk’s letters really did come from Rome. But is an alphabet the same thing as an emperor and an army?
     hints:
-      - What did Rome gain from its army? What did the army cost?
+      - Is any of their facts wrong? Check each one against the lesson.
+      - What exactly is each friend talking about? Is it the same thing?
+      - Finish each sentence for each friend. “____ ended in this year.” What goes in the blank?
     solution:
-      - Military power helped Rome rise. Paying for that power became an **expense** that helped it decline.
+      - All three facts are true, so none of them is simply wrong. The trouble must be in the question.
+      - Mei is talking about the western emperors. Tariq is talking about the eastern half. Anouk is talking about Rome’s legacy.
+      - A big question often hides smaller ones. Rome’s rule in the west ended, its eastern half lasted much longer, and its legacies continue today.
 
   - id: d4
     level: 3
-    covers: [U1.1, S1.2, K1.3]
+    thinking: design
+    covers: [K1.3, S1.2, U1.1]
     type: open
-    prompt: Choose one innovation from the lesson's trails. Explain how it began, how it changed, and how it affects your life today.
+    prompt: Pick one trail from the lesson, such as writing, calendars or money. It’s the year 2126, and you get to add the **next stop**. What is it, and what problem does it fix? What has stayed the same at every stop on the trail, including yours?
     modelAnswer: |-
-      I chose calendars. Egyptians used a year of 365 days. Julius Caesar's calendar added a leap day every four
-      years, and in 1582 that calendar was corrected to give the one we use now. It affects my life because I
-      use it to know when school starts, and when my birthday is. Rome is gone, but its calendar is still here.
+      I picked writing. The next stop is a pair of glasses that shows words in the air, and you write by saying them quietly. It fixes the problem that you can’t write and carry things at the same time.
+
+      What has stayed the same, from hieroglyphs to the Latin alphabet to my glasses, is the idea of marks that hold on to words, so that someone else can read them later.
     rubric:
-      - I named one innovation and the civilization where it began.
-      - I described at least one way it changed over time.
-      - I connected it to my own life today.
+      - I chose a trail and invented a next stop for it.
+      - I said what problem my new stop fixes.
+      - I named something that has stayed the same at every stop, including mine.
+    hints:
+      - Look at the stops on your trail. What did each stop fix about the one before it?
+      - Cover up the details. What job has this thing always done?
