@@ -194,294 +194,450 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: notice
     covers: [K3.1, S3.1]
     type: mc
-    prompt: In “The Arch,” what did the thermometer read **in the morning**?
-    choices: [Plus seven, Minus twenty-six, Zero, Minus seven]
-    answer: 0
+    figure: |-
+      <svg viewBox="0 0 390 140" class="fig-svg" role="img" aria-label="Three pictures of the sky over mountains. Picture 1: a curved blue arch, like a rainbow, across grey clouds. Picture 2: a straight band of blue sky just above the mountains, with thick grey clouds above the band. Picture 3: thick grey clouds just above the mountains, with blue sky above the clouds.">
+        <g>
+          <rect width="120" height="110" fill="#8e93a0"/>
+          <ellipse cx="28" cy="20" rx="24" ry="11" fill="#7c818e"/><ellipse cx="94" cy="24" rx="22" ry="11" fill="#7c818e"/>
+          <path d="M14 104 Q60 -30 106 104" fill="none" stroke="#8fcdf2" stroke-width="18"/>
+          <polygon points="0,110 25,78 43,92 65,70 87,90 105,76 120,88 120,110" fill="#565e6c"/>
+          <text class="fig-label" x="60" y="132" text-anchor="middle">Picture 1</text>
+        </g>
+        <g transform="translate(135 0)">
+          <rect width="120" height="50" fill="#8e93a0"/>
+          <ellipse cx="30" cy="22" rx="24" ry="12" fill="#7c818e"/><ellipse cx="88" cy="20" rx="26" ry="12" fill="#7c818e"/>
+          <rect y="50" width="120" height="60" fill="#8fcdf2"/>
+          <polygon points="0,110 25,78 43,92 65,70 87,90 105,76 120,88 120,110" fill="#565e6c"/>
+          <text class="fig-label" x="60" y="132" text-anchor="middle">Picture 2</text>
+        </g>
+        <g transform="translate(270 0)">
+          <rect width="120" height="50" fill="#8fcdf2"/>
+          <rect y="50" width="120" height="60" fill="#8e93a0"/>
+          <ellipse cx="34" cy="62" rx="24" ry="8" fill="#7c818e"/><ellipse cx="90" cy="60" rx="24" ry="7" fill="#7c818e"/>
+          <polygon points="0,110 25,78 43,92 65,70 87,90 105,76 120,88 120,110" fill="#565e6c"/>
+          <text class="fig-label" x="60" y="132" text-anchor="middle">Picture 3</text>
+        </g>
+      </svg>
+    prompt: |-
+      Grandpa calls it an **arch**. Now look at what the author wrote in paragraph 4:
+
+      > A long band of clear blue sky stretched above them, as straight as if someone had drawn it with a ruler. Above the band, the clouds were thick and grey.
+
+      “Them” means the mountains. Which picture matches the author’s words?
+    choices: [Picture 1, Picture 2, Picture 3]
+    fixedOrder: true
+    answer: 1
     feedback:
-      '1': Minus twenty-six was the temperature the day **before** (paragraph 1).
-      '2': Zero is not in the story. Look at paragraph 9.
-      '3': Read paragraph 9 again carefully. Is it plus or minus?
+      '0': The word *arch* makes many of us picture this shape. What do the author’s words say about the shape of the band?
+      '2': Read the last sentence again. Where are the clouds, compared with the band?
     hints:
-      - This answer is **explicit**. It is stated right in the words. Look at paragraph 9.
+      - Which words tell you the **shape** of the blue band?
+      - Check one detail at a time. Where is the blue, and where are the clouds?
     solution:
-      - 'Paragraph 9 says: “In the morning, the thermometer read plus seven.” This is **explicit** information.'
+      - Test each picture against the words, one detail at a time.
+      - '“As straight as if someone had drawn it with a ruler” means no curve. That rules out Picture 1.'
+      - '“Above the band, the clouds were thick and grey” puts the clouds on top. That rules out Picture 3.'
+      - Picture 2 fits every detail. These details are **explicit**. When the picture in your head doesn’t match the words, trust the words.
 
   - id: w2
     level: 1
-    covers: [K3.1, S3.1]
-    type: mc
-    prompt: |-
-      Is this idea **explicit** or **implicit** in the story?
-
-      > Nadia did not want to go skating in such cold weather.
+    thinking: notice
+    covers: [K3.1, S3.1, U3.1]
+    type: multi
+    prompt: Which of these ideas are **explicit** in “The Arch”? Choose every idea the story states outright.
     choices:
-      - Implicit. The author hints at it, and the reader figures it out from clues.
-      - Explicit. The author states it directly.
-    fixedOrder: true
-    answer: 0
+      - Nadia’s class was going skating the next day.
+      - A strong wind blew against the house that night.
+      - In the morning, the icicles were getting smaller.
+      - Nadia did not believe what Grandpa told her.
+      - Grandpa felt sure about the weather.
+    answer: [0, 1, 2]
     feedback:
-      '1': The author never writes that Nadia didn't want to go. We figure it out from what she says and does.
+      '3': Can you point to a sentence that says this? Look again at what she does and says in paragraph 6.
+      '4': Can you point to a sentence that says this? Or did you work it out from how he acts?
     hints:
-      - Can you find a sentence that says exactly this? If not, how do you know it?
+      - For each idea, try to put your finger on one sentence that says it.
+      - Different words with the same meaning still count as explicit. *Shrinking* means getting smaller.
     solution:
-      - The story never says “Nadia did not want to go.” We work it out from clues, so it is **implicit**.
+      - '**Explicit** ideas are stated, even if you say them in your own words: the trip (paragraph 1), the wind (paragraph 8) and the shrinking icicles (paragraph 9).'
+      - '**Implicit** ideas are hinted at. No sentence says Nadia didn’t believe him. You work it out from her rolled eyes and “Very funny.”'
+      - The same goes for Grandpa feeling sure. You work that out from his smile and his seventy winters.
 
   - id: w3
     level: 1
-    covers: [S3.5]
-    type: evidence
-    prompt: Tap a sentence that shows the **weather changed** overnight.
-    passage: arch
-    paragraphs: [9]
-    answer: [p9s1, p9s2]
+    thinking: apply
+    covers: [K1.1, S3.2]
+    type: mc
+    prompt: |-
+      > Mina sits at the window with her boots on and her backpack zipped. Each time a car turns the corner, she sits up tall.
+
+      A reader infers: *Mina is waiting for someone to come and get her.*
+
+      Which of these is the **what I already know** part of that inference?
+    choices:
+      - People watch the road when they are expecting someone.
+      - Mina has her boots on and her backpack zipped.
+      - Mina is waiting for someone to come and get her.
+      - People wear boots when there is snow outside.
+    answer: 0
     feedback:
-      p9s3: Good thinking. She unzipped her coat **because** it was warm. But this shows Nadia's reaction. Find a sentence about the weather itself.
-      p9s4: This shows how Nadia feels, not what the weather is like.
+      '1': This is in the text, so it is a **clue**. What did you bring from your own life?
+      '2': This is where you end up, so it is the **inference**. What helped you get there?
+      '3': You do know this, but where does it lead? It might tell you about the weather. Does it tell you why she watches the cars?
     hints:
-      - Look for a sentence about the temperature, or about snow and ice.
+      - Which choices could you know even if you had never read about Mina?
+      - Of those, which one links the watching to the waiting?
     solution:
-      - '“In the morning, the thermometer read plus seven.” or “The icicles along the garage were shrinking…”'
+      - 'Sort the pieces. Clue: boots on, backpack zipped, sitting up at each car. Inference: she is waiting for a ride.'
+      - The missing link comes from your own life. People watch the road when they are expecting someone.
+      - Knowing something true isn’t enough. It has to connect the clue to the inference.
 
   - id: w4
     level: 1
-    covers: [K1.1, S3.2]
+    thinking: recall
+    covers: [K1.1, K1.2, S1.1]
     type: mc
-    prompt: Which is the best description of an **inference**?
+    prompt: Four friends finish “The Arch,” and each one says something about it. Which friend is **evaluating**?
     choices:
-      - An idea you work out using clues from the text plus what you already know.
-      - A sentence you copy word for word from the story.
-      - A wild guess with no reasons.
-      - The title of a story.
+      - “Nadia should have listened, because Grandpa had watched that sky for seventy winters.”
+      - “A girl gives up on a skating trip, until one warm night changes her mind.”
+      - “My uncle checks the clouds every morning on his farm, just like Grandpa does.”
+      - “Nadia will listen next time Grandpa reads the sky, because she saw he was right.”
     answer: 0
     feedback:
-      '1': Copying words gives you **evidence** or **explicit** information. An inference goes beyond the words.
-      '2': An inference has reasons. They come from clues in the text.
-      '3': A title can give clues, but it is not an inference.
+      '1': This gives the main idea briefly. That is **summarizing**.
+      '2': This links the story to someone in the friend’s own life. That is **making a connection**.
+      '3': This looks ahead to what might happen next. That is **predicting**, even with a good reason attached.
     hints:
-      - Think of the equation at the start of the lesson.
+      - What is each friend doing? Retelling, linking to life, looking ahead, or judging?
+      - Evaluating makes a judgement and backs it up with evidence from the text.
     solution:
-      - 'Clue in the text + what I already know = **inference**.'
+      - '“Should have listened” is a **judgement**. “Watched that sky for seventy winters” is the **evidence** from the text.'
+      - A judgement backed by evidence is **evaluating**.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S3.2, S3.5]
-    type: evidence
-    prompt: At the start, Nadia no longer wants to go skating. Tap the sentence that is the **best evidence**.
-    passage: arch
-    paragraphs: [1, 2]
-    answer: [p2s1]
+    thinking: why
+    covers: [S3.1, S3.2, S3.4]
+    type: mc
+    prompt: |-
+      Nadia has just seen the thermometer.
+
+      > “Great,” she said to no one, and pushed her skates deeper into the back of the closet.
+
+      What does she really mean by **“Great”**?
+    choices:
+      - This cold is bad news for my trip.
+      - This cold will make the ice perfect.
+      - My skates are put away, all ready to go.
+      - I can’t wait to tell Grandpa.
+    answer: 0
     feedback:
-      p1s1: This tells the temperature, but not how Nadia **feels** about the trip.
-      p1s2: She is looking at the cold, but this doesn't show her feelings about skating.
-      p1s3: This explains the trip, not how Nadia feels about it now.
-      p1s4: This shows she **was** excited before. Look for what she does after seeing the temperature.
+      '1': That takes the word at face value, and it even has a reason. But look at her hands. Would someone happy about the ice do that with her skates?
+      '2': Picture what she does. If you were getting skates ready, would you push them **deeper into the back** of a closet?
+      '3': Look at three words in the sentence, “to no one.” Grandpa doesn’t come in until paragraph 3.
     hints:
-      - Look for something Nadia **says** or **does** after she sees how cold it is.
+      - Look at what she does right after she speaks. Do her words and her hands agree?
+      - When someone’s words and actions don’t match, which would you trust?
+      - Say “Great” out loud the way someone would after getting bad news. Does it fit the sentence?
     solution:
-      - '“Great,” she said to no one, and pushed her skates deeper into the back of the closet.'
-      - Her flat “Great” and hiding her skates show she doesn't plan to go.
+      - The word itself is explicit, but its meaning isn’t. So check it against what she does.
+      - She pushes the skates away and deeper in. People don’t do that with something they are happy about.
+      - Paragraph 1 adds the reason. The trip she has waited two weeks for is tomorrow, and it is minus twenty-six.
+      - '**What we learned:** words in quotation marks can mean the opposite of what they say. Actions are evidence too.'
 
   - id: b2
     level: 2
+    thinking: whatif
     covers: [S3.2, S3.4]
     type: mc
-    prompt: Why does Grandpa tell Nadia to leave her heavy mitts at home?
+    prompt: |-
+      The story ends like this:
+
+      > “Mitts?” Grandpa called after her.
+      >
+      > Nadia held up her thinnest pair and grinned.
+
+      Suppose the author had written “her mitts” and left out *thinnest*. What is the most important thing we would lose?
     choices:
-      - From the arch in the sky, he predicts that warmer weather is coming.
-      - He thinks she should stay home from the trip.
-      - He forgot how cold it was outside.
-      - Her heavy mitts are wet from shovelling.
+      - A silent way for Nadia to tell Grandpa that he was right.
+      - The only clue that it has turned warm outside this morning.
+      - The clue that shows Nadia has decided to go skating.
+      - The fact that Nadia owns more than one pair of mitts.
     answer: 0
     feedback:
-      '1': He wants her to go, just with lighter mitts.
-      '2': He just came in from shovelling with frost on his eyebrows. He knows it's cold **now**.
-      '3': Grandpa did the shovelling, and the story doesn't mention wet mitts.
+      '1': Thin mitts do fit warm weather. But is this the only clue? Look back at paragraph 9.
+      '2': Would we still know this without the word? Look at what she does with her skates.
+      '3': The word does tell us this. But would the ending feel any different without that fact?
     hints:
-      - What does Grandpa look at right before he speaks? (paragraphs 3 to 5)
-      - What would make heavy mitts unnecessary?
+      - What did Grandpa say about mitts in paragraph 5? How did Nadia react?
+      - Take each choice. Would we still know it if *thinnest* were gone?
+      - One word, “Mitts?”, is really a bigger question. What is Grandpa asking her?
     solution:
-      - Grandpa sees the arch of clear sky (paragraph 4). Heavy mitts are for cold days, so he expects **warmer** weather.
+      - 'Go back to where mitts first come up. Grandpa says, “Leave your heavy mitts at home,” and Nadia rolls her eyes.'
+      - So “Mitts?” is really a friendly tease. *Well, what do you think of my advice now?*
+      - Holding up her **thinnest** pair answers him without a word. *You were right.* The grin says she doesn’t mind.
+      - The warm weather and the skating trip already come through in paragraph 9. One small word carries the whole joke between them.
 
   - id: b3
     level: 2
-    covers: [S3.5]
+    thinking: evidence
+    covers: [S3.2, S3.3, S3.5]
     type: evidence
-    prompt: Tap the sentence that best shows **why Grandpa trusts** his prediction.
+    prompt: Nadia expected another bitter cold day. In the morning, new information makes her **revise** that. Tap the sentence that shows her changing her mind **little by little**.
     passage: arch
-    paragraphs: [5, 6, 7]
-    answer: [p7s1]
+    paragraphs: [8, 9]
+    answer: [p9s3]
     feedback:
-      p5s1: This is where he points out the arch, not why he trusts what it means.
-      p5s2: His smile shows he is confident. Find the sentence that explains **where** that confidence comes from.
-      p5s3: This is his prediction, not his reason for trusting it.
-      p6s1: This is Nadia's reaction, not Grandpa's reason.
+      p8s1: Something woke her, but what does she do about it?
+      p8s2: This is a clue for the reader. Is Nadia working anything out yet?
+      p8s3: She goes back to sleep here, so she isn’t changing her mind yet.
+      p9s1: This is the new information itself. Find what Nadia does about it.
+      p9s2: This is more new information about the weather. Find what Nadia does about it.
+      p9s4: By now her mind is made up, because she is already running. Look for the step just before this.
     hints:
-      - Look for what Grandpa says about his **experience**.
+      - Which sentences tell you what Nadia **does**?
+      - Is there a sentence where she does something in two stages?
     solution:
-      - '“I''ve been watching that sky for seventy winters,” he said… Seventy winters is a lot of experience.'
+      - '“Nadia unzipped her winter coat halfway, then all the way.”'
+      - The author could have written “She unzipped her coat.” *Halfway, then all the way* lets us watch her test the warm air, then trust it.
+      - Readers revise the same way. New information comes in, you check it, and you change your idea.
 
   - id: b4
     level: 2
-    covers: [S3.2, K3.2]
+    thinking: flaw
+    covers: [K1.4, K1.5, S1.2, S1.3]
     type: mc
-    prompt: How do Nadia's feelings change from the beginning of the story to the end?
-    choices:
-      - From disappointed to excited
-      - From excited to disappointed
-      - From scared to angry
-      - They stay the same.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': That's backwards. At the end she grabs her skates and grins.
-      '2': Nothing suggests she is scared or angry. Compare paragraphs 2 and 9.
-      '3': Compare paragraph 2 (skates pushed away) with paragraph 9 (skates pulled out).
-    hints:
-      - Compare what Nadia does with her skates in paragraph 2 and in paragraph 9.
-    solution:
-      - 'Beginning: she hides her skates and says a flat “Great”: **disappointed**.'
-      - 'End: she grabs her skates, runs for the door and grins: **excited**.'
+    prompt: |-
+      Zoe reads paragraph 5 of “The Arch” three times, until she can say it from memory. “Got it,” she says.
 
-  - id: b5
-    level: 2
-    covers: [K1.4, S1.3]
-    type: mc
-    prompt: In paragraph 3, Grandpa **squinted** toward the mountains. Using context clues, what does *squinted* most likely mean?
+      A friend asks, “Why does Grandpa say to leave the heavy mitts at home?” Zoe has no idea.
+
+      What should Zoe learn from this about her reading?
     choices:
-      - Looked with his eyes partly closed, to see something far away
-      - Shouted loudly
-      - Closed his eyes to sleep
-      - Turned his back
+      - Rereading gave her the words, so now she needs a skill that helps with the meaning.
+      - Rereading is the right skill, so she should read it a few more times until it clicks.
+      - She read it too slowly, so she should read it faster to keep the ideas together.
+      - The question is unfair, because paragraph 5 never says why Grandpa gave that advice.
     answer: 0
     feedback:
-      '1': Grandpa doesn't speak until paragraph 5. What is he doing **toward the mountains**?
-      '2': He is looking at something in the distance, not sleeping.
-      '3': The next paragraph describes what he sees, so he must be **facing** the mountains.
+      '1': She can already say every word. What would one more time give her that she doesn’t already have?
+      '2': Her speed isn’t what is stopping her. Would reading faster help her work out a hint?
+      '3': It’s true that paragraph 5 doesn’t say. That makes the idea **implicit**, not unfair. How do readers find implicit ideas?
     hints:
-      - What does paragraph 4 describe? That is what Grandpa was looking at.
+      - Zoe can say the words. What can’t she do yet?
+      - After you try a strategy, ask, “Did it work?” What did rereading do for Zoe, and what didn’t it do?
     solution:
-      - Grandpa is looking at the faraway mountains, and paragraph 4 describes what he sees.
-      - So *squinted* means he narrowed his eyes to see better.
+      - 'Notice: the friend’s question shows Zoe that “Got it” wasn’t true yet.'
+      - 'Check: rereading worked for remembering the words. It didn’t work for the meaning.'
+      - 'Try something else: ask a question, such as “What is Grandpa looking at just before he speaks?” Then read paragraphs 3 and 4 for clues.'
+      - 'What we learned: being able to say the words isn’t the same as understanding them.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S3.2, S3.5]
-    type: evidence
-    prompt: Tap the sentence that suggests Grandpa **already knew** what would happen, even before he said it.
-    passage: arch
-    paragraphs: [5]
-    answer: [p5s2]
+    thinking: notice
+    covers: [S3.1, S3.2, S3.5]
+    type: multi
+    prompt: Readers wrote these ideas after finishing “The Arch.” Some **go further than the story can support**. Choose every idea that goes too far.
+    choices:
+      - Grandpa knew the thermometer would read plus seven.
+      - Nadia’s class had a wonderful time on the lagoon.
+      - Grandpa has lived in the same house for seventy years.
+      - Grandpa expected warmer weather by the next day.
+      - Nadia decided to go once she saw how warm it was.
+      - By the end, Nadia no longer thought the mitts were a joke.
+    answer: [0, 1, 2]
     feedback:
-      p5s1: He points out the arch here, but this doesn't show he knows what it means.
-      p5s3: Here he **says** his prediction. Find the clue that shows he knew the answer **before** he spoke.
+      '3': There is good support for this one. What would make heavy mitts unnecessary?
+      '4': There is good support for this one. Look at the order of what she does in paragraph 9.
+      '5': There is good support for this one. Which mitts does she hold up at the end?
     hints:
-      - Look at how Grandpa's face is described.
+      - For each idea, try to point to a clue. Does the clue really say that much, or only part of it?
+      - Be careful with exact numbers, and with anything that would happen after the last line.
+      - What does “seventy winters” tell you he was doing? Does it tell you where he lived?
     solution:
-      - '“He smiled the way he did when he knew the answer to a riddle.”'
-      - The arch is like a riddle Grandpa has already solved. That is an implicit clue.
+      - Grandpa’s advice supports “warmer,” because heavy mitts wouldn’t be needed. Nothing says he knew the exact number.
+      - The story ends as Nadia runs out the door, so we never see the lagoon. She might have had a great time, but **we can’t tell**.
+      - Seventy winters of watching the sky tells us how long he has been watching. It doesn’t tell us about his house.
+      - The other three each have clues behind them. Her coat comes off before she digs out her skates, and she holds up her thinnest mitts with a grin.
+      - 'What we learned: an inference needs clues behind it. “You can’t tell” is sometimes the smartest answer.'
 
   - id: d2
     level: 3
-    covers: [S3.3]
-    type: mc
+    thinking: decide
+    covers: [S3.2, S3.4, S3.5]
+    type: open
     prompt: |-
-      After paragraph 2, a reader might **predict** that Nadia will skip the skating trip.
-      Which detail later makes the reader **revise** that prediction?
-    choices:
-      - She pulls out her skates and runs for the door.
-      - She rolls her eyes at Grandpa.
-      - A strong wind wakes her in the night.
-      - Grandpa goes to make tea.
-    answer: 0
-    feedback:
-      '1': Rolling her eyes shows she still doesn't believe Grandpa. That **supports** the first prediction.
-      '2': The wind is a clue that the weather is changing, but it doesn't show what Nadia decides.
-      '3': This doesn't tell us anything about Nadia's plans.
+      Nadia has just rolled her eyes at Grandpa. Then:
+
+      > “I’ve been watching that sky for seventy winters,” he said, and went to make tea.
+
+      Why does he walk away without arguing?
+
+      - **Ella** thinks his feelings are hurt.
+      - **Jonah** thinks he is so sure that he doesn’t need to argue.
+
+      Whose reading does the evidence support better? Use clues from **at least two different paragraphs**, and say how each clue helps. Then say what the other reader has in their favour.
+    modelAnswer: |-
+      Jonah’s reading is stronger. In paragraph 5, Grandpa “smiled the way he did when he knew the answer to a riddle.” People smile like that when they are enjoying a secret, not when they are worried about being believed. In paragraph 10, he calls “Mitts?” after Nadia. That sounds like friendly teasing, and I don’t think someone with hurt feelings would joke like that.
+
+      Ella does have a point. He stops talking and leaves right after Nadia rolls her eyes, and that could look like hurt feelings. But no clue shows him upset. There are no sad words and no frown.
+    rubric:
+      - I chose one reading and said so clearly.
+      - I used clues from at least **two different paragraphs**, and I quoted them or named the paragraphs.
+      - I explained how each clue points to my reading (clue + what I know).
+      - I was fair to the other reader, and I said what they have in their favour.
     hints:
-      - Which detail shows Nadia doing the **opposite** of skipping the trip?
-    solution:
-      - In paragraph 9, Nadia digs out her skates and runs for the door, so readers **revise** their prediction.
+      - Look at how Grandpa acts in paragraph 5, and again in paragraph 10.
+      - Make two short lists, one of clues for Ella and one for Jonah. Which list is stronger?
 
   - id: d3
     level: 3
-    covers: [K3.1, S3.1, S3.2]
-    type: mc
-    prompt: Which of these is an **inference** (implicit), not something the story states directly?
-    choices:
-      - Grandpa expected warmer weather before anyone else did.
-      - The thermometer read plus seven in the morning.
-      - Nadia's class was going skating at Bowness Park.
-      - Grandpa went to make tea.
-    answer: 0
-    feedback:
-      '1': This is stated directly in paragraph 9. It is **explicit**.
-      '2': This is stated directly in paragraph 1. It is **explicit**.
-      '3': This is stated directly in paragraph 7. It is **explicit**.
-    hints:
-      - Three of these can be found word for word in the story. Which one do you have to work out?
-    solution:
-      - The story never says Grandpa expected warmer weather. We **infer** it from his smile, his advice about mitts, and what happens next.
+    thinking: flaw
+    covers: [S3.5, S3.4, S3.2]
+    type: investigation
+    prompt: |-
+      Liam writes: “Grandpa **wasn’t just guessing** about the weather. My proof: *In the morning, the thermometer read plus seven.*”
+
+      Sana frowns. “That sentence is in the story. But does it prove **that**?”
+    parts:
+      - type: mc
+        prompt: What does the sentence Liam quoted really show?
+        choices:
+          - That Grandpa’s advice turned out right, but not what it was based on.
+          - That Grandpa had a good reason, because his advice turned out right.
+          - Nothing at all, because a thermometer can’t really be trusted.
+          - That Grandpa read the thermometer himself early that morning.
+        answer: 0
+        feedback:
+          '1': Being right is good evidence that he gave good advice, and that is why we can judge him a good weather reader. But if you guess who will win a race and that runner wins, did you have a reason?
+          '2': Nothing in the story makes us doubt the thermometer. The sentence does show something. It just may not be what Liam says.
+          '3': The story doesn’t say who read it. And who read it wouldn’t tell us why Grandpa gave his advice the day before.
+        hints:
+          - Read Liam’s claim and his proof one at a time. What is the claim about? What is the proof about?
+          - When does Liam’s sentence happen? When did Grandpa give his advice?
+        solution:
+          - Liam’s claim is about **why** Grandpa spoke up the day before. His proof is about the weather the next morning.
+          - The sentence is good evidence for a different idea, that Grandpa’s advice was right. That is why we can call him a good weather reader.
+          - But a lucky guess would turn out right too. To show he wasn’t guessing, we need clues from **before** the weather changed.
+      - type: multi
+        prompt: So which details **do** help show that Grandpa wasn’t just guessing?
+        choices:
+          - “Look at that arch,” Grandpa said.
+          - “I’ve been watching that sky for seventy winters,” he said.
+          - Nadia rolled her eyes.
+          - The icicles along the garage were shrinking.
+          - His eyebrows were white with frost.
+        answer: [0, 1]
+        feedback:
+          '2': This shows what Nadia thinks, not where Grandpa’s advice came from.
+          '3': This is Liam’s trap again. It shows the warm weather came, not what Grandpa based his advice on.
+          '4': This shows he has been out in the cold. Does it show he can read the sky?
+        hints:
+          - You are looking for clues from **before** the weather changed. What was Grandpa looking at? How did he learn to read it?
+        solution:
+          - '“Look at that arch” shows he saw something in the sky. He gave his advice because of it.'
+          - Seventy winters of watching tells us how he learned what it means. Together they give him a reason, and a guess doesn’t have one.
+    wrapUp: A true sentence can still be the wrong evidence. Always ask, “Does this prove **my** idea, or something else?”
 
   - id: d4
     level: 3
-    covers: [S3.4, S3.5]
-    type: open
+    thinking: breakdown
+    covers: [K3.2, S3.2, S3.3, S3.4]
+    type: investigation
     prompt: |-
-      What did the arch in the sky tell Grandpa, and how do you know? Use **evidence from at least two
-      paragraphs** and explain your inference.
-    modelAnswer: |-
-      The arch told Grandpa that warmer weather was coming. When he sees it (paragraph 4), he tells Nadia to leave her
-      heavy mitts at home (paragraph 5), and he says he has been “watching that sky for seventy winters”
-      (paragraph 7). I know he was right because the next morning the thermometer read plus seven and the
-      icicles were shrinking (paragraph 9).
-    rubric:
-      - I used evidence from at least **two different paragraphs**.
-      - I quoted words or named paragraph numbers.
-      - I explained my inference (clue + what I know).
-      - I connected the arch to what happened next.
+      Every night after supper, Mira fills Biscuit’s bowl. For five nights, the dog hasn’t touched it. “He must be sick,” Mira says.
+
+      Follow the clues one at a time. Your ideas may have to change!
+    parts:
+      - type: mc
+        prompt: '**New clue:** The vet says Biscuit is healthy. He has even **gained weight**. What is the best new idea?'
+        choices:
+          - Biscuit must be getting extra food from somewhere else.
+          - Biscuit must be sick in a way that the vet can’t find.
+          - Biscuit must be eating from his bowl when nobody is looking.
+        answer: 0
+        feedback:
+          '1': It’s hard to let go of a first idea. But would a dog that won’t eat because it is sick gain weight?
+          '2': What does the story say about the bowl for all five nights?
+        hints:
+          - Does Mira’s first idea still fit? What doesn’t fit it now?
+          - The bowl stays full, yet Biscuit is getting heavier. How can both be true?
+        solution:
+          - Mira’s first idea was sensible, because it fit the one clue she had. Now a new clue doesn’t fit, so she **revises**.
+          - A full bowl plus more weight means the food must be coming from somewhere else.
+      - type: mc
+        prompt: '**New clue:** Five nights ago, Dad made a huge meatloaf, and supper has been meatloaf ever since. Mira’s little brother, Felix, calls it “sock loaf.” But his plate is clean every night, and Biscuit stays under Felix’s chair at every meal. What does Mira infer?'
+        choices:
+          - Felix is slipping his meatloaf to Biscuit under the table.
+          - Felix has changed his mind, and now he loves the meatloaf.
+          - Dad is giving meatloaf to Biscuit when he clears the table.
+          - Biscuit is taking meatloaf from the kitchen counter at night.
+        answer: 0
+        feedback:
+          '1': A clean plate could mean that. Does it explain Biscuit’s weight, or why he stays under that chair?
+          '2': What do the clues say about Dad and Biscuit? Look for the clue that places Biscuit somewhere.
+          '3': Do any of the clues mention the counter? Look for the clue that places Biscuit somewhere.
+        hints:
+          - Which detail doesn’t seem to fit? Look at “sock loaf” and the clean plate.
+          - Put together the plate and the chair. What could be happening under the table?
+        solution:
+          - Felix dislikes the meatloaf, yet his plate is clean. Biscuit is always right under his chair, and Biscuit is getting extra food.
+          - 'From life, you know that dogs wait where food might fall. All the clues fit one idea: the meatloaf goes under the table.'
+      - type: mc
+        prompt: '**Test it:** Felix loves pizza, and Friday is pizza night. If Mira’s inference is right, what should happen to Biscuit’s bowl on Friday?'
+        choices:
+          - It should be empty, because Felix will eat his supper and Biscuit will be hungry.
+          - It should stay full, because Biscuit will be full of pizza from under the table.
+          - It should stay full, because Biscuit has simply stopped liking his dog food.
+        answer: 0
+        feedback:
+          '1': Think about Felix. Why was the food going under the table in the first place?
+          '2': That is a different idea from Mira’s. What does **her** inference say should happen?
+        hints:
+          - Why was Felix passing the food along? Is that still true on pizza night?
+          - If nothing comes under the table, how will Biscuit feel when his bowl is filled after supper?
+        solution:
+          - Follow the food. Felix loves pizza, so he eats it himself. Nothing comes under the table.
+          - Biscuit gets no extra supper, so he should be hungry, and his bowl should end up empty.
+      - type: open
+        prompt: '**Friday night:** Biscuit licks his bowl clean. What can Mira say about her inference now? And what would she have to do if the bowl had stayed full?'
+        modelAnswer: Her inference is **confirmed**. On the one night Felix wanted his own supper, Biscuit was hungry again. It isn’t complete proof, so she could also watch under the table the next time there is meatloaf. If the bowl had stayed full, she would have to **revise** her inference and look for new clues, because Biscuit would be getting food some other way.
+        rubric:
+          - I said that the empty bowl confirms Mira’s inference.
+          - I used the clue about the bowl to explain why.
+          - I said that a full bowl would mean revising the inference and looking for new clues.
+    wrapUp: You changed your mind twice, and that was good reading. A prediction isn’t a promise. Each new clue can confirm it or revise it, and you can test an inference by asking, “If I’m right, what should happen next?”
 
   - id: d5
     level: 3
-    covers: [K1.2, S1.1, K1.1]
-    type: mc
-    prompt: Which sentence is an example of **evaluating** “The Arch”?
-    choices:
-      - Grandpa is a good weather reader, because the thermometer proves he was right.
-      - Nadia’s class was going skating at Bowness Park.
-      - I wonder what will happen tomorrow.
-      - Maybe the next story will be about Nadia’s skating.
-    answer: 0
-    feedback:
-      '1': This is a fact from the text. Evaluating makes a judgement.
-      '2': This is asking a question, not making a judgement.
-      '3': This is a prediction, not a judgement.
-    hints:
-      - Evaluating means making a judgement based on evidence.
-    solution:
-      - It makes a **judgement** (a good weather reader) and backs it up with **evidence** (the thermometer).
-
-  - id: d6
-    level: 3
-    covers: [K1.4, K1.5, S1.2, S1.3]
-    type: mc
+    thinking: design
+    covers: [K3.1, S3.1, S3.2]
+    type: open
     prompt: |-
-      Omar is reading about the arch. He notices, “I don’t get what this cloud band has to do with anything.”
-      He rereads and is still confused. What should he do **next**?
-    choices:
-      - Try a different strategy, such as asking a question or looking up a picture of that kind of sky.
-      - Keep rereading the same part, over and over, without changing anything.
-      - Stop reading, because he isn't good at this.
-      - Skip to the end and pretend he understood it.
-    answer: 0
-    feedback:
-      '1': Rereading didn't work this time. A good reader checks that and tries something else.
-      '2': Getting stuck happens to every reader. Noticing it is a **skill**.
-      '3': This leaves him just as confused. A good reader fixes the problem.
+      In paragraph 8, Nadia pulls her blanket over her head and goes back to sleep. Rewrite that moment.
+
+      Write **one or two sentences** that make a reader think, *Nadia is starting to wonder if Grandpa was right.*
+
+      The catch is that you can’t say it. Don’t use *wonder*, *think*, *believe*, *realize* or *right*. Show it through what Nadia **does** or **says**, and use a detail from the story.
+    modelAnswer: |-
+      Here are two different ways.
+
+      Nadia sat up and listened to the drip, drip, drip. Then she climbed out of bed, opened the closet, and looked at her skates for a long time.
+
+      “Seventy winters,” she whispered to the ceiling.
+
+      Neither one states the idea. In the first, a reader knows that she pushed those skates away, so looking at them again is a clue. In the second, she is repeating Grandpa’s words in the dark, so they must be on her mind.
+    rubric:
+      - I never stated the idea, and I didn’t use any of the words on the list.
+      - A reader could point to a clue in what Nadia does or says.
+      - I used a detail from the story, such as the drip, the skates, the mitts or the seventy winters.
+      - My sentences fit the moment, at night in Nadia’s room.
     hints:
-      - He evaluated rereading, and it didn't work. What are his other tools?
-    solution:
-      - He is using **metacognition** to notice the problem. When one skill doesn't work, try **another**.
+      - Which things in the story are connected to what Grandpa said? Could Nadia do something with one of them?
+      - Try a small action or a few whispered words. Small details often say more than big statements.
