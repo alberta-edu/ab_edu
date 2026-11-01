@@ -126,227 +126,290 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [S3.3, K3.2]
     type: text
-    prompt: Join the base and the suffix. **fame** + **ous** = ?
-    accept: [famous]
+    prompt: |-
+      Our cat climbed the curtains, the fridge and then the neighbour’s roof. She is very ___.
+
+      Join the parts. **adventure** + **ous** = ?
+    accept: [adventurous]
     hints:
-      - Does the suffix start with a vowel? What happens to a silent e?
+      - What letter does the suffix start with? What happens to a silent e?
     solution:
-      - '*-ous* starts with a vowel, so the silent e drops: **famous**.'
+      - The suffix *-ous* starts with a vowel, so the silent e drops. That gives **adventurous**.
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [S3.3, K3.2]
     type: text
-    prompt: Join the base and the suffix. **move** + **ment** = ?
-    accept: [movement]
+    prompt: |-
+      Gran was ___ when the dog ate her slippers.
+
+      Join the parts. **fury** + **ous** = ?
+    accept: [furious]
     hints:
-      - Does the suffix start with a vowel or a consonant?
+      - The base ends in a consonant and y. What does the y turn into?
     solution:
-      - '*-ment* starts with a consonant, so the e stays: **movement**.'
+      - The base ends in *r* and *y*, so the y changes to i. That gives **furious**.
 
   - id: w3
     level: 1
-    covers: [K1.1, S1.1]
-    type: mc
-    prompt: Which sentence uses **capital letters** correctly?
-    choices:
-      - My aunt moved to Calgary in June.
-      - my aunt moved to calgary in june.
-      - My Aunt Moved To Calgary In June.
-      - My aunt moved to calgary in june.
-    answer: 0
-    feedback:
-      '1': The start of a sentence, and names of places and months, need capitals.
-      '2': Common words such as *moved* don’t need capitals.
-      '3': '*Calgary* and *June* are names, so they need capitals.'
+    thinking: apply
+    covers: [S3.3, K3.2]
+    type: text
+    prompt: Prefixes stay whole. Join the parts. **com** + **mand** = ?
+    accept: [command]
     hints:
-      - Which words are specific names?
+      - Does a prefix lose a letter when it joins a base? Write out both parts.
     solution:
-      - The first word and the names **Calgary** and **June** take capitals.
-
-  - id: w4
-    level: 1
-    covers: [K1.3, S1.2]
-    type: mc
-    prompt: What do **parentheses** show?
-    choices:
-      - Additional, separate or less important words or numbers
-      - The most important words in a sentence
-      - The end of a sentence
-      - A question
-    answer: 0
-    feedback:
-      '1': It’s the opposite. Parentheses hold what is less important.
-      '2': A period, question mark or exclamation mark shows that.
-      '3': A question mark shows that.
-    hints:
-      - Think about “The rink (the one by the school) opens today.”
-    solution:
-      - Parentheses hold **additional, separate or less important** words or numbers.
+      - Keep every letter of the prefix and every letter of the base. That’s why **command** has two m’s, with one from each part.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S3.2, S3.3]
+    thinking: flaw
+    covers: [S3.3, S3.1, K3.2]
     type: mc
-    prompt: Which spelling of “full of mystery” is correct?
-    choices: [mysterious, mysteryous, mystereous, misteryous]
+    prompt: |-
+      Ren’s story has these four spelling mistakes.
+
+      > hopeing, nerveous, furyous, gloryous
+
+      What one habit explains all of them?
+    choices:
+      - Ren glues on the suffix without changing the end of the base.
+      - Ren spells each word just the way it sounds out loud.
+      - Ren forgets that a prefix stays whole when it joins a base.
+      - Ren always takes away a letter before adding a suffix.
     answer: 0
     feedback:
-      '1': The y changes to i before this suffix.
-      '2': There’s no e in this pattern. The y changes to i.
-      '3': The base is *mystery*, and it begins with *my*. The y also changes to i.
+      '1': If Ren spelled by sound, would *hopeing* have that silent e? Look at where the letters came from.
+      '2': Are these parts at the start of the word or at the end?
+      '3': Try it. Take the suffix off each word. Has any letter been taken away from the base?
     hints:
-      - The base ends in a consonant and y. What’s the pattern?
+      - Pull each word apart. *hope* + *ing*. What are the other three?
+      - Compare each base with how it looks in Ren’s word. Did it change?
     solution:
-      - mystery + ous, with y changing to i, gives **mysterious**.
+      - Pull them apart, and you find hope + ing, nerve + ous, fury + ous and glory + ous. Each base is still whole.
+      - So Ren is gluing the parts together without checking the end of the base. The correct spellings are **hoping, nervous, furious** and **glorious**.
+      - That is good news for Ren. It’s not four problems, but one habit to fix. Look at the end of the base before you join.
 
   - id: b2
     level: 2
-    covers: [S3.1, K3.2]
-    type: mc
-    prompt: You know that *different* ends in -ent. Which is the correct spelling of the related noun?
-    choices: [difference, differance, diffrance, diference]
-    answer: 0
-    feedback:
-      '1': An -ent word takes -ence, not -ance.
-      '2': Keep the base *differ*, and an -ent word takes -ence.
-      '3': The base *differ* has two f’s. A prefix or suffix doesn’t change that.
+    thinking: connect
+    covers: [S3.2, S3.1, K3.2]
+    type: text
+    prompt: |-
+      A person who helps at the door is an *attendant*. So the list of who came to school is the ___ sheet.
+
+      Type the missing word.
+    accept: [attendance]
     hints:
-      - The e in *different* carries over to the longer word.
+      - Look at the end of *attendant*. Is it *a* or *e*?
+      - Does a word ending in *-ant* lead to *-ance* or to *-ence*?
     solution:
-      - differ**ent** → differ**ence**.
+      - You can’t hear the difference between *-ance* and *-ence*, so listening won’t help.
+      - But the word family can. Atten**dant** has an *a*, so the related word has one too. **attendance**
 
   - id: b3
     level: 2
-    covers: [K3.2, S3.2]
-    type: mc
-    prompt: Why does the word *sign* have a silent **g**?
-    choices:
-      - It shares a base with *signal* and *signature*, where you can hear the g.
-      - Silent letters are added at random.
-      - It’s a mistake that was never fixed.
-      - It is there to make the word longer.
-    answer: 0
-    feedback:
-      '1': It’s not random. Spellings often keep a word’s meaning family together.
-      '2': It’s no mistake. It connects the word to its relatives.
-      '3': Length isn’t the reason. Look at its related words.
+    thinking: notice
+    covers: [K1.1, S1.1]
+    type: text
+    caseSensitive: true
+    prompt: |-
+      Type this sentence with the right capital letters. One *turkey* is a bird, and the other is a country.
+
+      > we ate turkey in turkey last march.
+    accept: [We ate turkey in Turkey last March]
     hints:
-      - Say *signal*. What do you hear?
+      - Which words name one particular place or time?
+      - Would you ever write *march* with a small letter? When would it be a capital?
     solution:
-      - Bases keep their spelling, **even when the sound changes**. *Signal* shows you the g.
+      - '*We* starts the sentence. **Turkey** the country is a name, so it takes a capital, but the bird doesn’t.'
+      - '**March** the month is a name too. (A band would *march* with a small letter.)'
+      - “We ate turkey in Turkey last March.” Capitals tell the reader which one you mean.
 
   - id: b4
     level: 2
-    covers: [K1.2]
+    thinking: notice
+    covers: [K1.2, S1.1]
     type: mc
-    prompt: Which is the correct abbreviation in this sentence? “**Doctor** Lee works on Main **Street**.”
-    choices: [Dr. Lee works on Main St., Dtr. Lee works on Main Str., Doc Lee works on Main Stret., D. Lee works on M. Street.]
+    prompt: |-
+      Yuna’s invitation says:
+
+      > Party at Dr. Patel’s, 14 Patel Dr., St. Albert. Park on Main St.
+
+      *Dr.* and *St.* each have two meanings here. How can a reader tell which is which?
+    choices:
+      - Before a name, they are *Doctor* and *Saint*. After a name, they are *Drive* and *Street*.
+      - Each one has a single meaning, so *Dr.* is a *Doctor* and *St.* is a *Street* every time.
+      - The one with a capital letter is a title, and the one with a small letter is a road.
+      - A reader can’t tell, so abbreviations should never be used on an invitation like this.
     answer: 0
     feedback:
-      '1': The standard abbreviations are *Dr.* and *St.*.
-      '2': '*Stret* isn’t an abbreviation of *Street*, and *Doc* is informal.'
-      '3': These are too short, and readers won’t know what they stand for.
+      '1': Could Yuna’s party be at “14 Patel Doctor”? Try the words in their places.
+      '2': Look again. All four of these abbreviations start with a capital.
+      '3': Try reading it aloud. Did you actually get stuck? What told you which was which?
     hints:
-      - Think about what is printed on street signs and doctors' office doors.
+      - Read it aloud, saying the full words. Which meaning did you use each time?
+      - Where does each abbreviation sit, compared with the name beside it?
     solution:
-      - '**Dr.** and **St.** are the abbreviations that readers will recognize.'
+      - Abbreviations make writing faster, and a reader uses the words around them to work out what they mean.
+      - '*Dr. Patel* is a person, and *Patel Dr.* is a road. *St. Albert* is a saint’s name, and *Main St.* is a road. The spot beside the name gives it away.'
 
   - id: b5
     level: 2
-    covers: [S1.3, U1.1]
+    thinking: decide
+    covers: [S1.3, K1.1, K1.3, U1.1]
     type: mc
-    prompt: You are writing a scary story, and you want your reader to feel a sudden shock. Which is the most **effective**?
+    prompt: The caretaker has just painted the bench by the rink. Which sign would do the best job of keeping people off it?
     choices:
-      - The door opened. Slowly. Then, nothing. And then a hand!
-      - The door opened slowly then there was nothing and then a hand.
-      - the door opened slowly (then nothing) then a hand
-      - The Door Opened Slowly. Then Nothing. Then A Hand.
+      - WET PAINT!
+      - wet paint
+      - Wet paint (probably)
+      - (Wet paint)
     answer: 0
     feedback:
-      '1': With no punctuation, nothing tells the reader where to pause, and the surprise is lost.
-      '2': The parentheses make the moment seem less important, which isn’t what you want here.
-      '3': Capitals on every word don’t add to the suspense. They just look odd.
+      '1': It’s accurate, but it’s very quiet. Would you stop for it if you were rushing to the rink?
+      '2': That little *(probably)* gives people a reason to touch it and find out. Does the sign sound sure?
+      '3': Parentheses hold what is extra or less important. Is this less important?
     hints:
-      - How can punctuation make a reader pause, then jump?
+      - What does each sign make you think about the paint?
+      - Which marks say “this matters,” and which say “this is just a side note”?
     solution:
-      - Short sentences make the reader **pause**, and the exclamation mark delivers the shock.
+      - The sign has one job, and that’s to grab attention right away.
+      - Capitals show what’s important, and they look like shouting. Here, that’s what you want. So is the exclamation mark.
+      - In a school report, those same capitals would be too loud. The effect has to suit the job.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S3.3, K3.2]
-    type: mc
-    prompt: 'A student writes *reside + ent = residdent*. What should they check?'
-    choices:
-      - The silent e drops before a vowel. Nothing doubles, so it is *resident*.
-      - The e should stay, so it is *resideent*.
-      - The suffix should be *-ant*, so it is *residant*.
-      - There is no pattern here, so any spelling is fine.
-    answer: 0
-    feedback:
-      '1': The silent e drops when a suffix starts with a vowel.
-      '2': The suffix doesn’t change. Look at the related word, *residence*.
-      '3': Patterns like this do apply, and they make spelling easier.
-    hints:
-      - What happens to a silent e? Does anything double?
-    solution:
-      - reside (drop e) + ent = **resident**.
+    thinking: pattern
+    covers: [S3.1, S3.2, K3.2, U3.1]
+    type: investigation
+    prompt: |-
+      A silent e drops before a suffix that starts with a vowel.
+
+      > fame + ous = famous
+      >
+      > nerve + ous = nervous
+
+      But look at this one.
+
+      > courage + ous = courageous
+
+      The e stayed! Is the rule broken, or is the e doing a job?
+    parts:
+      - type: mc
+        prompt: In *courage*, the g sounds like a j. Without the e, the new word would be *couragous*. Think of the g in *got* and *gum*, then read it aloud. What would happen?
+        choices:
+          - The g would sound hard, as in *got*, so it wouldn’t sound like *courage*.
+          - The g would go silent, as in *sign*, so you wouldn’t hear it at all.
+          - The g would still sound like a j, so the e isn’t needed there at all.
+        answer: 0
+        feedback:
+          '1': Read *cou-ra-gous* slowly. Can you hear a g in it?
+          '2': Look at the letters after the g in *gum* and *got*. What letter comes after the g in *couragous*?
+        hints:
+          - Which letter comes right after the g in *couragous*? Is it like *got* or like *gum*?
+        solution:
+          - A g followed by *o* is hard, as in *got*. So *couragous* would have the wrong sound.
+          - The e is keeping the g sounding like a j. It stays because it has a job to do.
+      - type: text
+        prompt: Test your idea on a new word. **outrage** + **ous** = ?
+        accept: [outrageous]
+        hints:
+          - In *outrage*, does the g sound like a j? What would keep it that way?
+        solution:
+          - The g in *outrage* sounds like a j too, so the e stays. **outrageous**
+      - type: mc
+        prompt: Now use your idea to decide about two more words. What are **change** + **able** and **change** + **ing**?
+        choices:
+          - changable and changeing
+          - changeable and changeing
+          - changable and changing
+          - changeable and changing
+        fixedOrder: true
+        answer: 3
+        feedback:
+          '0': Check each word separately. Which of them needs the e to keep the g’s sound, and which doesn’t?
+          '1': Read *changing* aloud without the e. Does the g still sound like a j? Then does the e have a job?
+          '2': Read *changable* aloud. The g comes before an *a*. How does it sound?
+        hints:
+          - Try each word aloud with no e. Does the g still sound like a j?
+          - Which letter comes right after the g in each one?
+        solution:
+          - Without the e, *changable* would have a hard g, as in *gas*. So the e stays. **changeable**
+          - In *changing*, the g still sounds like a j with the *i* right after it. The e has no job, so it drops. **changing**
+    wrapUp: A spelling pattern usually has a reason. The silent e drops when it has no job to do, and it stays when it’s keeping a sound right. If you know why, you can work out words that you’ve never seen.
 
   - id: d2
     level: 3
-    covers: [K3.2, S3.1, S3.2]
-    type: mc
-    prompt: You’re not sure how to spell the end of a word that sounds like “magi-shun.” How can **word parts** help you?
-    choices:
-      - It means a person who does magic, so write magic + ian = magician.
-      - Write it just how it sounds, “magishun.”
-      - Any ending will do, as long as you use a capital letter.
-      - Use a shorter word, because long words have no patterns.
-    answer: 0
-    feedback:
-      '1': English doesn’t always spell words by sound. Word parts are more reliable.
-      '2': Capitals have nothing to do with this. Use the parts.
-      '3': Long words often have the clearest patterns, because they’re made from parts.
-    hints:
-      - What is the base? What suffix means “a person who”?
-    solution:
-      - The base keeps its c, and **-ian** means a person. So **magician** is spelled from its meaning.
+    thinking: why
+    covers: [K3.2, S3.2, S3.1, U3.1]
+    type: investigation
+    prompt: |-
+      A silly new club wants every word spelled just the way it sounds. Its first two changes are *sign* to *sine* and *muscle* to *mussel*. “All those silent letters are useless,” says the club.
+
+      Is that true?
+    parts:
+      - type: text
+        prompt: Say the word *muscular*. Which letter can you hear in it that is silent in *muscle*? Type the letter.
+        accept: [c]
+        hints:
+          - Say *mus-cu-lar* slowly. Then look at how *muscle* is spelled.
+        solution:
+          - You can hear the **c** in *muscular*. The silent c in *muscle* shows that the two words are in one family.
+      - type: text
+        prompt: Now use the same idea to spell a word by its family. It sounds like “sof-en” and means “to make something soft.” Type the word.
+        accept: [soften]
+        hints:
+          - Which word is hiding inside it? Keep all of that word’s letters.
+        solution:
+          - The base is *soft*, and bases keep their spelling even when the sound changes. So the *t* stays, and you get **soften**.
+      - type: mc
+        prompt: What would readers lose if the club got its way?
+        choices:
+          - They couldn’t see that *sign*, *signal* and *signature* all belong to one family.
+          - They could no longer read words aloud, since sounds wouldn’t match the letters.
+          - They’d lose nothing at all, because a word’s spelling has no link to its meaning.
+          - They’d have to learn a bigger alphabet, since each sound would need a new letter.
+        answer: 0
+        feedback:
+          '1': The club’s spellings do match the sounds. What would they hide instead?
+          '2': You just used a word’s meaning to spell *soften*. Does that fit this idea?
+          '3': The club isn’t adding any letters. Compare *sine* with *signal*. What has gone missing?
+        hints:
+          - Write *sine* beside *signal*. Do they still look related?
+        solution:
+          - The spelling *sign* keeps the g, and you can hear that g in *signal* and *signature*. So the spelling shows you the meaning family.
+          - If you change it to *sine*, the family link disappears. And there’s a bonus problem. A *mussel* is a shellfish, so “flex your mussel” would be quite a sight!
+    wrapUp: Silent letters aren’t always useless. Spelling shows meaning as well as sound, so looking for a word’s family can help you spell words that you can’t sound out.
 
   - id: d3
     level: 3
-    covers: [S1.2, K1.3, S1.3]
-    type: mc
-    prompt: Which sentence uses **parentheses** best?
-    choices:
-      - My cousin (who has never skated) signed up for hockey.
-      - (My cousin) signed up for hockey.
-      - My cousin signed (up) for hockey.
-      - My cousin signed up for hockey (.)
-    answer: 0
-    feedback:
-      '1': The subject is the main part of the sentence. It isn’t an added detail.
-      '2': '*Up* is needed for the meaning. It isn’t extra information.'
-      '3': A period ends a sentence. It doesn’t go inside parentheses by itself.
-    hints:
-      - The sentence should still work if you take out what is inside the parentheses.
-    solution:
-      - The words **(who has never skated)** add an extra detail, and the sentence still works without them.
-
-  - id: d4
-    level: 3
-    covers: [S1.1, S1.2, S1.3, K1.1]
+    thinking: design
+    covers: [K1.3, S1.2, S1.3]
     type: open
     prompt: |-
-      Write a short note to a friend about a place in Alberta you would like to visit. Use **capitals** correctly, use one
-      set of **parentheses**, and use **punctuation** to show how you feel. Then say why you chose that punctuation.
+      Parentheses can hold an extra detail, and sometimes that detail changes how a reader feels.
+
+      > Our hockey team has never lost a game (we have never played one).
+
+      Now it’s your turn. Add parentheses with your own surprising detail to this sentence. Then say how your detail changes what a reader thinks.
+
+      > My brother cleaned his room.
+    hints:
+      - How might he have cleaned it? What would you hate to find out later?
+      - Take out what’s in your parentheses. Does the sentence still work?
     modelAnswer: |-
-      Maya, I want to visit Dinosaur Provincial Park (the one near Brooks) this July. Can you imagine finding a real
-      fossil?! I used parentheses for the extra detail, and I used ?! to show that I am both asking and excited.
+      My brother cleaned his room (by pushing everything under the bed).
+
+      At first, it sounds like he worked hard. The detail in parentheses shows that he didn’t really clean anything, so the reader laughs.
     rubric:
-      - Names and sentence starts have capitals.
-      - My parentheses hold extra information.
-      - My punctuation shows how I feel, and I explained why I used it.
+      - The sentence still works if you take out what’s inside the parentheses.
+      - My parentheses hold a detail that I made up, and it’s more than just a repeat.
+      - I said how my detail changes what a reader thinks.

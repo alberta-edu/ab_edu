@@ -119,235 +119,298 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.5]
-    type: mc
-    prompt: 'In the sentence “The coach called **us**,” what kind of pronoun is *us*?'
-    choices: [Object pronoun, Subject pronoun, Possessive pronoun]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The coach is doing the action. *Us* receives it.
-      '2': A possessive pronoun shows ownership. Nothing here belongs to anyone.
+    thinking: apply
+    covers: [S2.4, S2.3]
+    type: text
+    prompt: |-
+      > The mayor chased a pig across the parking lot.
+
+      What is the **object** of this sentence? Type the noun that receives the action.
+    accept: [pig, the pig, a pig]
     hints:
-      - Who is doing the calling? Who receives the call?
+      - Who is doing the chasing? Who is being chased?
     solution:
-      - '*Us* receives the action, so it is an **object pronoun**.'
+      - The mayor does the chasing, so *mayor* is the subject.
+      - The **pig** gets chased, so it receives the action. It is the object.
+      - Swap them, and you get a very different news story. “The pig chased the mayor.”
 
   - id: w2
     level: 1
+    thinking: notice
     covers: [K2.2]
     type: mc
-    prompt: 'Which word in this sentence is an **adverb**? “The fox crept quietly past the tent.”'
-    choices: [quietly, fox, tent, past]
+    prompt: |-
+      > The silly goat quietly ate my hat.
+
+      Two words here end in *-ly*. Which one is the **adverb**?
+    choices:
+      - '*quietly*, because it describes how the goat ate'
+      - '*silly*, because it describes what the goat is like'
+      - Both of them, because every word ending in *-ly* is an adverb
     answer: 0
     feedback:
-      '1': A fox is a noun. An adverb describes a verb.
-      '2': A tent is a noun.
-      '3': This word tells where. Look for the word ending in *-ly* that describes how it crept.
+      '1': An adverb describes a verb. *Goat* isn’t a verb, so what kind of word is *silly* describing?
+      '2': Adverbs **often** end in *-ly*, but not every *-ly* word is an adverb. What does each word describe?
     hints:
-      - How did the fox creep?
+      - Find the verb. What did the goat do? Which word tells you how?
     solution:
-      - '**Quietly** describes the verb *crept*, and it ends in *-ly*.'
+      - The verb is *ate*. How did the goat eat? **Quietly.** So *quietly* is the adverb.
+      - '*Silly* describes the goat, which is a noun. The *-ly* is a clue, but you have to check what the word describes.'
 
   - id: w3
     level: 1
+    thinking: notice
     covers: [K2.1, S2.1]
-    type: mc
-    prompt: '“The chinook **will melt** the snow.” What tense is this?'
-    choices: [Future, Past, Present]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Past tense would be *melted*.
-      '2': Present tense would be *melts*.
-    hints:
-      - Has it happened yet?
-    solution:
-      - '*Will melt* tells you it hasn’t happened yet, so it is **future** tense.'
+    type: text
+    prompt: |-
+      One verb slipped out of the past tense. Type that verb the way it should be.
 
-  - id: w4
-    level: 1
-    covers: [K2.3, S2.7]
-    type: mc
-    prompt: 'Which word is the **conjunction**? “We wanted to go out, but it was raining.”'
-    choices: [but, wanted, raining, out]
-    answer: 0
-    feedback:
-      '1': That is a verb. Which word connects the two ideas?
-      '2': This tells what the weather was doing. Look for the connecting word.
-      '3': This tells where they wanted to go. Look for the connecting word.
+      > The walrus yawned, scratched his belly and rolls over.
+    accept: [rolled, rolled over]
     hints:
-      - A conjunction joins ideas.
+      - Find the three things that the walrus did. When did he do them?
     solution:
-      - '**But** connects the two ideas, and shows a contrast.'
+      - '*Yawned* and *scratched* are in the past tense, but *rolls* is in the present.'
+      - All three actions happen at the same time, so it should be **rolled**.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S2.3, S2.4]
+    thinking: notice
+    covers: [S2.8, K2.5, K2.4]
     type: mc
-    prompt: 'In “**Nadia** thanked **her grandfather**,” which is the subject and which is the object?'
+    prompt: |-
+      Both sentences have the word *her*.
+
+      > **A.** I drew her.
+      >
+      > **B.** I drew her horse.
+
+      What type of pronoun is *her* in each one?
     choices:
-      - Nadia is the subject, and her grandfather is the object.
-      - Her grandfather is the subject, and Nadia is the object.
-      - Both are subjects.
-      - Both are objects.
-    fixedOrder: true
+      - A is an object pronoun. B is a possessive pronoun.
+      - A is a possessive pronoun. B is an object pronoun.
+      - Both are object pronouns, since I’m doing the drawing.
+      - Both are possessive pronouns, since it is the same word.
     answer: 0
     feedback:
-      '1': Who did the thanking? That person is the subject.
-      '2': Only Nadia does the thanking.
-      '3': Someone has to be doing the action. Who is it?
+      '1': In which picture does a horse belong to someone? Look again at which sentence has the horse.
+      '2': In sentence B, what got drawn? Was it her, or something of hers?
+      '3': The word looks the same, but it has two different jobs. Ask what each one is doing.
     hints:
-      - Who did the thanking? Who was thanked?
+      - What is in each drawing?
+      - In which sentence does *her* receive the action? In which does it tell you who owns something?
     solution:
-      - Nadia does the action (**subject**). Her grandfather receives it (**object**).
+      - In A, *her* is the person in the picture. She receives the action, so it is an **object pronoun**.
+      - In B, the horse is in the picture, and *her* tells you whose horse it is. That makes it a **possessive pronoun**.
+      - You can’t tell a pronoun’s type just by how it looks. You have to see what job it does.
 
   - id: b2
     level: 2
-    covers: [S2.5, K2.4]
+    thinking: flaw
+    covers: [S2.8, S2.4, K2.5]
     type: mc
-    prompt: 'Choose the pronoun that **agrees**: “The twins finished ___ project early.”'
-    choices: [their, his, its, her]
+    prompt: |-
+      Rina wrote this:
+
+      > At the farm, the llama licked Hugo and I.
+
+      “It has to be *I*,” she says. “*Hugo and I* always sounds more polite.” Where did her thinking go wrong?
+    choices:
+      - Polite isn’t the test. The pronoun receives the action, so it must be *me*.
+      - Nothing went wrong. *I* is correct after *and*, so her sentence can stay.
+      - It should be *Hugo and my*. The pronoun shows who the lick belonged to.
+      - It should be *Hugo and we*. Two people got licked, so it must be plural.
     answer: 0
     feedback:
-      '1': There are two twins, so the pronoun must be plural.
-      '2': Twins are people, and there are two of them. *Its* is singular.
-      '3': There are two twins, so the pronoun must be plural.
+      '1': Take away “Hugo and,” then read it aloud. Does “the llama licked I” sound right?
+      '2': Nothing here is owned. *My* would need a noun after it, like *my hand*.
+      '3': Hugo is already named, so the pronoun only stands for the speaker. Would you say “the llama licked we”?
     hints:
-      - Is *the twins* singular or plural?
+      - Take away Hugo. What would the sentence say?
+      - Who is doing the licking? Who gets licked?
     solution:
-      - '*Twins* is plural, so it takes the plural pronoun **their**.'
+      - Take away “Hugo and,” and the mistake shows. “The llama licked I” sounds wrong, and “The llama licked **me**” sounds right.
+      - The llama is the subject. Hugo and the speaker receive the lick, so the speaker needs an object pronoun.
+      - '*Hugo and I* is right when they do the action. “Hugo and I fed the llama.” It depends on the job, not on how polite it sounds.'
 
   - id: b3
     level: 2
-    covers: [S2.2]
+    thinking: notice
+    covers: [S2.5, K2.4]
     type: mc
-    prompt: Which sentence has correct **subject-verb agreement**?
+    prompt: |-
+      A muddy puppy is wearing little boots. Two people left two notes about it, and the notes differ by just one word.
+
+      > **Note A:** Take the boots off the puppy, and put **them** in the tub.
+      >
+      > **Note B:** Take the boots off the puppy, and put **it** in the tub.
+
+      What goes in the tub?
     choices:
-      - The geese fly south every fall.
-      - The geese flies south every fall.
-      - A goose fly south every fall.
-      - The goose and the duck flies south.
+      - A puts the boots in the tub. B puts the puppy in the tub.
+      - A puts the puppy in the tub. B puts the boots in the tub.
+      - Both notes put the boots in the tub, since boots are named first.
+      - You can’t tell, because a pronoun could stand for either noun.
     answer: 0
     feedback:
-      '1': '*Geese* is plural, so it needs the plural verb *fly*.'
-      '2': One goose needs the singular verb *flies*.
-      '3': Two animals make a plural subject, so it needs *fly*.
+      '1': Is *them* for one thing or more than one? How many puppies are there?
+      '2': Look at *it*. Could *it* stand for a pair of boots?
+      '3': Often that’s a real problem, but here one noun is singular and one is plural. Does that help?
     hints:
-      - Check whether the subject is one thing or more than one.
+      - Is *boots* singular or plural? What about *puppy*?
+      - Which noun could *them* replace? Which could *it* replace?
     solution:
-      - '*Geese* is plural, and *fly* is plural.'
+      - A pronoun must agree with its noun in number. *Boots* is plural and *puppy* is singular.
+      - So *them* can only be the boots, and *it* can only be the puppy. One small word decides who gets a bath.
 
   - id: b4
     level: 2
-    covers: [S2.1, K2.1]
+    thinking: model
+    covers: [S2.7, K2.3]
     type: mc
     prompt: |-
-      Which version keeps the **same tense** all the way through?
-    choices:
-      - Maya packed her bag and ran to the bus.
-      - Maya packed her bag and runs to the bus.
-      - Maya packs her bag and ran to the bus.
-      - Maya will pack her bag and ran to the bus.
+      The dog started it. It howled first, and that made Dad start to sing. Which conjunction tells the story correctly?
+
+      > The dog howled, ___ Dad sang.
+    choices: [so, because, or, although]
     answer: 0
     feedback:
-      '1': '*Packed* is past, and *runs* is present.'
-      '2': '*Packs* is present, and *ran* is past.'
-      '3': '*Will pack* is future, and *ran* is past.'
+      '1': “The dog howled because Dad sang” says that Dad’s singing made the dog howl. Who started it in that version?
+      '2': This offers a choice between the two, but both of them happened.
+      '3': This means that Dad sang even though the dog howled. Was the howl stopping him, or starting him?
     hints:
-      - Find the two verbs. Are they in the same time?
+      - Which came first? Which one caused the other?
+      - Read the sentence aloud with each conjunction. Who started it each time?
     solution:
-      - '*Packed* and *ran* are both in the **past** tense.'
+      - Conjunctions tell the reader how two ideas are related, and that can change the whole story.
+      - “The dog howled, **so** Dad sang” means that the howl came first. “The dog howled **because** Dad sang” turns the story around.
 
   - id: b5
     level: 2
-    covers: [S2.7, K2.3]
-    type: mc
-    prompt: 'Which conjunction best fits? “Leo was tired, ___ he kept skating.”'
-    choices: [but, so, or, because]
-    answer: 0
-    feedback:
-      '1': '*So* would mean being tired made him skate. That doesn’t fit.'
-      '2': '*Or* offers a choice. He did both of these things.'
-      '3': '*Because* would mean he kept skating since he was tired. That doesn’t fit.'
+    thinking: pattern
+    covers: [S2.3, S2.4, S2.8]
+    type: text
+    prompt: |-
+      In a comic, one panel says:
+
+      > They followed us.
+
+      In the next panel, the chase turns around. Now we’re behind them. Write the new caption, using only pronouns and the verb *followed*.
+    accept: [we followed them]
     hints:
-      - Are the two ideas similar, or do they contrast?
+      - Who is doing the following now? That is the subject.
+      - Can *us* be the subject of a sentence? What would you use instead?
     solution:
-      - You would expect a tired person to stop, so **but** shows the contrast.
+      - We are now the ones following, so we’re the subject. *Us* becomes **we**.
+      - They now receive the action, so they’re the object. *They* becomes **them**.
+      - With nouns, you only swap the places, as in “The geese followed the kids” and “The kids followed the geese.” Many pronouns also change their form when they change jobs.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S2.8, S2.3, S2.4, K2.4]
-    type: mc
-    prompt: 'In “**She** gave **him** **her** mitts,” which description is correct?'
-    choices:
-      - She is a subject pronoun, him is an object pronoun, and her is a possessive pronoun.
-      - She is an object pronoun, him is a subject pronoun, and her is a possessive pronoun.
-      - All three are subject pronouns.
-      - She and him are possessive pronouns, and her is an object pronoun.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Who did the giving? That word is the subject.
-      '2': Only one of these does the action. Which one receives the mitts?
-      '3': Which one shows who the mitts belong to?
-    hints:
-      - Ask who gave, who received, and whose mitts they are.
-    solution:
-      - '**She** does the giving (subject), **him** receives (object), and **her** shows ownership (possessive).'
+    thinking: notice
+    covers: [S2.2, S2.5, K2.4, U2.1]
+    type: investigation
+    prompt: |-
+      The word *deer* looks the same for one deer or for many. So how could you tell how many are in your garden?
+
+      Read each sentence and look for clues.
+    parts:
+      - type: mc
+        prompt: '“The deer **eat** my tulips.” How many deer?'
+        choices: [One, More than one, You can’t tell]
+        fixedOrder: true
+        answer: 1
+        feedback:
+          '0': For one animal, we say “The goose *eats*.” What does *eat* with no *s* go with?
+          '2': The noun doesn’t tell you, but look at the verb.
+        hints:
+          - Compare “The dog eats” with “The dogs eat.”
+        solution:
+          - A plural subject takes a plural verb. *Eat* goes with more than one, so the verb gives it away.
+      - type: mc
+        prompt: '“The deer **ate** my tulips.” How many deer?'
+        choices: [One, More than one, You can’t tell]
+        fixedOrder: true
+        answer: 2
+        feedback:
+          '0': Try the past tense with one dog, and then with two. “The dog ate.” “The dogs ate.” What do you notice?
+          '1': Did the verb give that away this time? Compare “The dog ate” with “The dogs ate.”
+        hints:
+          - Compare “The dog ate” with “The dogs ate.” Does the verb change?
+        solution:
+          - In the past tense, this verb is the same for one or for many. So the clue has disappeared, and the honest answer is that you can’t tell.
+      - type: mc
+        prompt: '“The deer ate my tulips. Then **they** ran away.” How many deer?'
+        choices: [One, More than one, You can’t tell]
+        fixedOrder: true
+        answer: 1
+        feedback:
+          '0': Would you use *they* for one deer? What would you say instead?
+          '2': The verbs don’t help here, but there’s a new clue. Which word replaces *deer*?
+        hints:
+          - Which noun does *they* stand for? Is *they* singular or plural?
+        solution:
+          - A pronoun must agree in number with the noun that it replaces. *They* is plural, so there was more than one deer.
+    wrapUp: Grammar can carry real information. Even when a noun doesn’t tell you how many, a present-tense verb or a pronoun can. Agreement isn’t only a rule. It is how readers work out what’s going on.
 
   - id: d2
     level: 3
-    covers: [S2.6, K2.2]
+    thinking: why
+    covers: [S2.1, K2.1]
     type: multi
-    prompt: 'Which sentences place the adverb *suddenly* correctly, so that it describes the verb?'
+    prompt: |-
+      Hazel is checking the class newspaper. She circled every sentence with two tenses. “They’re all mistakes,” she says. Which of these are **really** mistakes? Choose all that apply.
     choices:
-      - Suddenly, the wind changed direction.
-      - The wind suddenly changed direction.
-      - The wind changed suddenly.
-      - The suddenly wind changed direction.
-    fixedOrder: true
-    answer: [0, 1, 2]
+      - Yesterday the goat ate my hat and runs away.
+      - Last week we built a fort, and then it falls down.
+      - Last night I ate six tacos, and today I feel awful.
+      - I lost a skate yesterday, so I will borrow one tomorrow.
+    answer: [0, 1]
     feedback:
-      '3': Here, *suddenly* is in front of the noun *wind*, and it doesn’t describe a verb.
+      '2': When did the eating happen? When is the feeling awful happening? Do those times match?
+      '3': Is the losing happening at the same time as the borrowing?
     hints:
-      - An adverb can go in several places. It must be describing the verb.
+      - In each sentence, ask when each action really happens.
+      - Is the writer talking about one time, or about two different times?
     solution:
-      - An adverb can go at the start, **before** the verb or **after** it. The fourth sentence puts it in front of a noun.
+      - Tense tells the reader when. So keep your tense steady for as long as the time stays the same.
+      - The goat ate and ran away yesterday, so *runs* is a mistake. The fort was built and fell down last week, so *falls* is a mistake.
+      - The tacos were eaten last night, but the awful feeling is happening today. The verbs change because the **time** really changes. So Hazel’s rule goes too far.
 
   - id: d3
     level: 3
-    covers: [K2.5, S2.8]
-    type: mc
-    prompt: 'Which is correct, and why? “The teacher asked Sam and ___ to help.”'
-    choices:
-      - me, because the teacher asked me. Sam and I receive the action.
-      - I, because *I* always sounds more polite.
-      - myself, because it is longer.
-      - mine, because it shows that we belong to the teacher.
-    answer: 0
-    feedback:
-      '1': Try it without Sam. Would you say “The teacher asked I”?
-      '2': Length doesn’t matter. What receives the action?
-      '3': '*Mine* shows ownership. Nothing here is owned.'
-    hints:
-      - Take away “Sam and,” then listen to the sentence.
-    solution:
-      - '“The teacher asked **me**” sounds right. *Me* is an **object pronoun**, because it receives the action.'
-
-  - id: d4
-    level: 3
-    covers: [S2.1, S2.5, S2.6, S2.7, U2.1]
-    type: open
+    thinking: design
+    covers: [S2.6, K2.2]
+    type: investigation
     prompt: |-
-      Write three or four sentences about something you did last weekend. Stay in the **past tense**. Use at least one
-      **pronoun**, one **adverb** and one **conjunction**. Then label each one.
-    modelAnswer: |-
-      Last Saturday, my sister and I hiked to the falls. We **carefully** (adverb) crossed the icy bridge, **but** (conjunction)
-      my sister slipped anyway. I gave **her** (pronoun) my hand, and we walked the rest of the way together.
-    rubric:
-      - All of my verbs are in the past tense.
-      - My pronouns agree with the nouns that they replace.
-      - I used and labelled an adverb and a conjunction.
+      Here are two sentences about the school mascot. They have the same words in a different order.
+
+      > **A.** The mascot stood up slowly and danced.
+      >
+      > **B.** The mascot stood up and danced slowly.
+    parts:
+      - type: mc
+        prompt: In which sentence does the mascot do a slow-motion dance?
+        choices: [B, A]
+        answer: 0
+        feedback:
+          '1': In A, *slowly* comes right after *stood up*. Which action is it describing?
+        hints:
+          - Which verb is *slowly* right beside in each sentence?
+        solution:
+          - In B, *slowly* follows *danced*, so the dance is slow. In A, the standing up is slow, and the dance could be any speed.
+      - type: open
+        prompt: Now make your own pair. Write a sentence with two verbs and an adverb. Then move the adverb so that it describes the other verb, and say how the picture changes.
+        modelAnswer: |-
+          **One:** The goalie skated quickly and waved.
+
+          **Two:** The goalie skated and waved quickly.
+
+          In the first, the skating is fast and the wave is normal. In the second, the goalie could be skating at any speed, but the wave is a quick little flick.
+        rubric:
+          - Both of my sentences have the same two verbs and the same adverb.
+          - The adverb describes a different verb in each sentence.
+          - I said how the picture changes.
+    wrapUp: An adverb can move, and sometimes that doesn’t change the meaning. But when a sentence has two verbs, moving the adverb can change which action it describes.

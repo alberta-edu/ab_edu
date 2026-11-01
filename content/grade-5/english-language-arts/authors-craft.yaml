@@ -156,243 +156,355 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: notice
     covers: [S2.6]
     type: mc
-    prompt: Which sentence **shows**, rather than tells, that Leo is cold?
+    prompt: The goalie is nervous before the big game. Which sentence **shows** that, rather than tells it?
     choices:
-      - Leo’s teeth chattered, and he tucked his hands into his armpits.
-      - Leo was very cold.
-      - Leo felt cold outside today.
-      - It was cold, and Leo felt it.
+      - The goalie retied the same skate four times and forgot to drink her water.
+      - The goalie had never felt so worried and so jumpy in her whole life.
+      - The goalie was far more nervous than anyone on the team could have guessed.
+      - Everyone in the room could tell how nervous and upset the goalie felt.
     answer: 0
     feedback:
-      '1': This **tells** us. It names the feeling.
-      '2': The word “cold” is doing all the work. What would we see Leo do?
-      '3': This still tells us. Show what the cold does to him.
+      '1': '*Worried* and *jumpy* still name the feeling. The sentence tells us instead of letting us see it.'
+      '2': This says *nervous* right out loud. What would we see the goalie do?
+      '3': The sentence says everyone could tell, but it doesn’t let **you** see what they saw.
     hints:
-      - Which sentence never uses the word *cold*?
+      - Try to draw each sentence. Which one gives you a picture?
+      - Look for a sentence that never names a feeling.
     solution:
-      - Chattering teeth and hidden hands let us **see** that he is cold.
+      - Showing lets the reader work out the feeling from what a person does.
+      - Nobody ties the same skate four times unless their mind is on something else, so we **see** the nerves. The word *nervous* isn’t needed.
 
   - id: w2
     level: 1
-    covers: [K2.6]
+    thinking: apply
+    covers: [K2.4, S2.8]
     type: mc
-    prompt: What creates **mood** in a text?
-    choices:
-      - Setting, the attitude of the narrator, and descriptions
-      - Only the title
-      - Only the number of pages
-      - The size of the font
+    prompt: |-
+      A thesaurus lists four synonyms for *walked*. Which one fits best here?
+
+      > So that the baby wouldn’t wake up, Grandpa ___ past the crib.
+    choices: [tiptoed, marched, strolled, staggered]
     answer: 0
     feedback:
-      '1': A title may hint at the mood, but it isn’t the whole picture.
-      '2': Length doesn’t create atmosphere.
-      '3': The font doesn’t create atmosphere. Words do.
+      '1': It means *walked*, but marching is loud. The baby would be awake by the second step.
+      '2': It means *walked*, but strolling is relaxed. Grandpa is being careful here.
+      '3': It means *walked*, but someone who staggers might crash into the crib.
     hints:
-      - Remember the cabin. What changed the mood?
+      - What is Grandpa trying to do? Read the start of the sentence again.
+      - Picture each word. Which way of walking is the quietest?
     solution:
-      - Mood comes from the **setting, the attitude of the narrator, and descriptions**.
+      - All four are synonyms, but they don’t mean exactly the same thing.
+      - The sentence needs quiet, careful steps, so **tiptoed** fits. A thesaurus gives you choices, and you still have to pick.
 
   - id: w3
     level: 1
-    covers: [K2.4, S2.8]
+    thinking: apply
+    covers: [K2.5, K2.1]
     type: mc
-    prompt: Which word is a **synonym** for *tired*?
-    choices: [exhausted, energetic, hungry, quick]
-    answer: 0
-    feedback:
-      '1': That is an **antonym**, a word with the opposite meaning.
-      '2': That is a different feeling, not the same one.
-      '3': That doesn’t mean anything like *tired*.
-    hints:
-      - A synonym has the same or a similar meaning.
-    solution:
-      - '**Exhausted** means very tired.'
-
-  - id: w4
-    level: 1
-    covers: [K2.5]
-    type: mc
-    prompt: What is a **mentor text**?
+    prompt: Dara loves a funny book where a lost boot tells its own story. Which shows Dara using the book as a **mentor text**?
     choices:
-      - An example of effective writing that you can learn from
-      - A message that a teacher texts to a student
-      - A dictionary
-      - A list of spelling rules
+      - She notices how the boot’s grumbling makes her laugh, then lets her own lost mitten grumble.
+      - She copies the funniest page into her story, then changes every *boot* to *mitten*.
+      - She reads the book again and again, until she knows every one of its jokes by heart.
+      - She writes a review telling her class that it is the funniest book of the whole year.
     answer: 0
     feedback:
-      '1': That is a real text message. A mentor text is an example to study.
-      '2': A dictionary gives you meanings, but it isn’t an example of effective storytelling.
-      '3': Rules aren’t an example of writing to learn from.
+      '1': That is copying with one word changed. A mentor text teaches you a move to try in your **own** words.
+      '2': Enjoying a book is great, but she hasn’t studied how the author does it or tried it herself.
+      '3': A review tells others about the book. A mentor text is something you learn to write from.
     hints:
-      - We studied one in this lesson, called “First Dive.”
+      - What does a mentor do? They show you how, so that you can do it yourself.
     solution:
-      - A mentor text is **an example of effective communication**.
+      - A **mentor text** is an example of effective writing that you learn from.
+      - Dara works out how the author gets the laugh. Then she uses that idea in her own story, with her own words.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K2.4, S2.4]
-    type: multi
-    prompt: Which of these use **sensory language**?
-    choices:
-      - The bread smelled sweet and yeasty.
-      - The ice cracked like a rifle shot.
-      - The wool scratched at my neck.
-      - The town has about 5,000 people.
-    fixedOrder: true
-    answer: [0, 1, 2]
+    thinking: notice
+    covers: [S2.5]
+    type: mc
+    prompt: |-
+      Tam wrote this story opening. Everyone who read it yawned.
+
+      > The sun shone on the farm. “Nice day,” said Pa. “Very nice,” said Lou. The goats ate their grass. Everyone was happy.
+
+      What is missing?
+    choices: [A problem, A setting, Some dialogue, A point of view]
+    answer: 0
     feedback:
-      '3': This is a useful fact, but it doesn’t help you see, hear, smell, taste or feel anything.
+      '1': Look at the first sentence. Where does this story happen?
+      '2': Pa and Lou are talking. The dialogue just isn’t giving us anything to care about.
+      '3': The narrator is telling us about the characters by name, so this is third person.
     hints:
-      - Which ones let you smell, hear or feel something?
+      - Check each choice against the opening. Which ones can you find in it?
+      - What does anyone in this story want or need?
     solution:
-      - Smell, hearing and touch are all **senses**. The population is just a fact.
+      - The setting, the dialogue and the point of view are all there. So what’s wrong?
+      - Nobody needs anything, so nothing has to happen. A story needs a **problem**.
+      - One sentence can wake it up. “The goats ate their grass, and then they ate Pa’s truck keys.”
 
   - id: b2
     level: 2
-    covers: [S2.6, S2.5]
-    type: evidence
-    prompt: Tap the sentence that **shows** that Lena is scared.
-    passage: mentor
-    paragraphs: [1, 3]
-    answer: [p1s2, p3s3]
+    thinking: evidence
+    covers: [S2.7, K2.3]
+    type: mc
+    prompt: |-
+      A birthday cake has just landed face-down on the floor.
+
+      > “Five-second rule,” said Pax, reaching for a fork.
+      >
+      > “It’s ruined. I ruin everything,” said Oona.
+      >
+      > “Okay. Someone find a spatula. Someone get ice cream. We have ten minutes,” said Ngozi.
+
+      Later, a raccoon walks into the kitchen. A voice says, “Right. Shut the pantry first, then get a broom.” Who is it most likely to be?
+    choices:
+      - Pax
+      - Oona
+      - Ngozi
+      - It could be any of them, because this is a new problem.
+    fixedOrder: true
+    answer: 2
     feedback:
-      p1s1: This describes the board. How does **Lena** react?
-      p3s1: This describes where she looks. Look for what her body does.
-      p3s2: This shows what she sees. Look for how she reacts.
+      '0': Pax’s voice is cheerful and goes straight for the food. Pax would probably be offering the raccoon some cake.
+      '1': Oona’s voice blames herself when things go wrong. This speaker isn’t worried about blame at all.
+      '3': The problem is new, but people keep their voices. Compare how each one talks when things go wrong.
     hints:
-      - Look for what her body does.
+      - How does each person handle the fallen cake? What do their words tell you?
+      - Read the raccoon line aloud. Is it a joke, a worry or a set of instructions?
     solution:
-      - '“Lena stopped, one foot forward, and held her breath.” and “Her knees began to shake.” The word *scared* is never used.'
+      - Just one line of dialogue gives each person a voice. Pax jokes, Oona worries and Ngozi gives orders.
+      - The raccoon line gives orders, step by step, just like the spatula line. So it sounds like **Ngozi**.
+      - That is how dialogue works. It tells us who someone is, without the author having to say it.
 
   - id: b3
     level: 2
-    covers: [S2.7, K2.3]
-    type: mc
-    prompt: 'Max calls, “It’s just the spring. It does that.” What do his words show about his **voice** in the story?'
+    thinking: decide
+    covers: [K2.1, S2.1]
+    type: multi
+    prompt: Arjun wrote a pirate story for Grade 3 readers, and four people gave him feedback. Which comments can he actually **use** to make his story better?
     choices:
-      - He is calm and sure about the board.
-      - He is scared and doesn’t know what to do.
-      - He is angry at Lena.
-      - He wants Lena to get off the board.
-    answer: 0
+      - “On page 2, I didn’t know why the pirate was crying, so I stopped caring.”
+      - “I’m in Grade 3, and I don’t know what *melancholy* means. Is it important?”
+      - “It’s great! You’re the best writer in the whole school, and I love it so much!”
+      - “Pirates are boring. You should cut them all and write about horses, like me.”
+    answer: [0, 1]
     feedback:
-      '1': He sounds the opposite of scared. His short sentences are relaxed.
-      '2': Nothing he says is angry. It’s meant to help.
-      '3': He says the noise is normal, so he isn’t telling her to leave.
+      '2': That is kind, and it’s nice to hear. But does it tell Arjun anything to change?
+      '3': This reader wants a different story. It doesn’t show where this one goes wrong.
     hints:
-      - Read what he says in a relaxed way, then a scared way. Which one fits?
+      - For each comment, ask, “What would Arjun do tomorrow because of this?”
+      - Who is this story for? Whose confusion matters most?
     solution:
-      - His short, relaxed sentences show that he is **calm and sure**.
+      - Useful feedback points to a place where a reader got lost.
+      - The page 2 comment tells Arjun where to add a reason for the tears. The Grade 3 reader shows that the word *melancholy* (very sad) is too hard for his audience.
+      - The praise gives him nothing to change, and the horse comment asks for someone else’s story.
 
   - id: b4
     level: 2
-    covers: [K2.2, S2.2]
-    type: mc
-    prompt: You are writing about a thunderstorm for a Grade 1 class. Which sentence best suits your **audience**?
-    choices:
-      - “The sky went boom, and everyone ran inside to stay safe!”
-      - “The atmospheric disturbance produced significant electrical discharge.”
-      - “Thunderstorms pose hazards that residents should mitigate.”
-      - “A storm was reported in the municipality on Tuesday evening.”
-    answer: 0
-    feedback:
-      '1': Grade 1 students wouldn’t know these words.
-      '2': These words are too hard for that audience, and it sounds like a government report.
-      '3': That sounds like a news report for adults.
+    thinking: perspective
+    covers: [K2.2, S2.1]
+    type: open
+    prompt: |-
+      A skunk has moved in under the school. The principal puts this sign on the Kindergarten door:
+
+      > Students are advised to avoid the vicinity of the odorous mammal.
+
+      (*Vicinity* means the area nearby. *Odorous* means smelly.) The five-year-olds just stare at it. Rewrite the sign so that they would understand it.
+    modelAnswer: |-
+      There is a skunk under our school! It can make a big stink. Stay away from it!
+    rubric:
+      - My sign says that there is a skunk and that children should stay away.
+      - Every word is one that a five-year-old knows.
+      - My sentences are short.
     hints:
-      - Which sentence would a six-year-old enjoy and understand?
-    solution:
-      - The **words change with the audience**. Short, lively words suit young readers.
+      - What is the sign really trying to say? Say it the way you would to a little brother or sister.
 
   - id: b5
     level: 2
-    covers: [K2.1, S2.1]
-    type: mc
-    prompt: A friend reads your draft and says, “I got confused at the part in the barn.” What should a good writer do?
-    choices:
-      - Look at that part again and improve it. Feedback helps.
-      - Throw out the whole story.
-      - Ignore it, because your friend is wrong.
-      - Make the barn part longer without changing it.
-    answer: 0
-    feedback:
-      '1': One confusing part doesn’t mean the whole story is bad.
-      '2': Your friend is telling you what a reader experienced. That’s useful, even if it is hard to hear.
-      '3': More of a confusing part is still confusing.
-    hints:
-      - Creative thinking includes applying feedback.
-    solution:
-      - '**Applying feedback** is a key part of creative work.'
+    thinking: notice
+    covers: [K2.6, S2.4, S2.8]
+    type: investigation
+    prompt: |-
+      Farah wants her story to feel creepy. Her friend read this part and burst out laughing.
+
+      > Cold air hung in the black hallway. Behind the lockers, something scraped. Then, very slowly, it wiggled closer.
+    parts:
+      - type: mc
+        prompt: Which word broke the mood?
+        choices: [wiggled, scraped, black, slowly]
+        answer: 0
+        feedback:
+          '1': A scraping sound you can’t see is creepy. This word is helping.
+          '2': A black hallway is a creepy setting. This word is helping.
+          '3': Something coming *slowly* builds the tension. This word is helping.
+        hints:
+          - Picture the thing behind the lockers doing each action. When do you start to laugh?
+        solution:
+          - Every other word builds the creepy mood. Then *wiggled* makes the thing sound like a happy puppy.
+      - type: mc
+        prompt: Farah looks in a thesaurus for other words that could fit. Which one should replace *wiggled*?
+        choices: [crawled, bounced, strolled, went]
+        answer: 0
+        feedback:
+          '1': Now it sounds like a beach ball. The mood breaks again.
+          '2': Now it sounds like it’s out for a nice walk with an ice cream.
+          '3': It isn’t silly, but it’s flat. The reader can’t picture anything, so the mood fades.
+        hints:
+          - Try each word in the sentence. Which one lets you picture something you wouldn’t want to meet?
+        solution:
+          - “Then, very slowly, it **crawled** closer.” We can picture it, and we don’t want to.
+    wrapUp: Mood is built from the setting and the descriptions, one word at a time, and one wrong word can knock it down. A thesaurus gives you choices, but you decide which one fits.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.6, S2.4]
+    thinking: why
+    covers: [S2.2, K2.4, K2.6]
     type: mc
     prompt: |-
-      What **mood** do these sentences create?
+      In “First Dive,” the word *groaned* appears twice.
 
-      > Fog sat on the empty road. A single street light buzzed and flickered. Somewhere behind me, gravel crunched.
-    choices: [Tense and uneasy, Cheerful and sunny, Silly and playful, Bored and sleepy]
+      > The diving board groaned. Lena stopped, one foot forward, and held her breath.
+      >
+      > She took one more step. The board groaned again, and this time she laughed…
+
+      The author could have used a synonym the second time, such as *creaked*. Why keep the same word?
+    choices:
+      - The sound stays exactly the same, so we can see that Lena is the one who has changed.
+      - The board is getting weaker, so the second groan warns us that it is about to break.
+      - The same word reminds us that the board is still scary, so the tense mood keeps going.
+      - Repeating a word is always stronger than using a synonym, so writers should avoid them.
     answer: 0
     feedback:
-      '1': Fog, flickering light and footsteps from behind aren’t cheerful.
-      '2': Nothing here is a joke. What would you feel on this road?
-      '3': The narrator is paying close attention. A crunch behind you would wake you up!
+      '1': Max already told us that the sound is “just the spring.” Does the story treat the board as breaking?
+      '2': Look at what Lena does the second time. Does the mood stay tense?
+      '3': Synonyms are often just what a writer needs. So why was the same word better **here**?
     hints:
-      - How would you feel if you were on that road?
+      - What does Lena do after the first groan? What does she do after the second?
+      - Did the board change, or did something else?
+      - What would a reader think if the sound had a new name the second time?
     solution:
-      - The fog, the flicker and the unseen footsteps create a **tense, uneasy** mood.
+      - Compare the two moments. The first groan stops her, and the second makes her laugh.
+      - The board hasn’t changed, and the word tells us so. All that has changed is Lena, and the mood flips with her.
+      - If the author had written *creaked*, we might think that the sound was different. Here, a repeated word does more than a new one.
 
   - id: d2
     level: 3
-    covers: [S2.2, K2.3]
-    type: evidence
-    prompt: 'Which sentence from “First Dive” uses **figurative language** to make the water seem strange?'
-    passage: mentor
-    paragraphs: [3]
-    answer: [p3s2]
-    feedback:
-      p3s1: This only says what she does. Look for a comparison.
-      p3s3: This shows her fear, but it doesn’t compare anything. Find the simile.
-    hints:
-      - Look for the word *like*.
-    solution:
-      - '“Blue water moved far below her like a slow, deep thought.” The comparison makes the water feel strange and far away.'
+    thinking: perspective
+    covers: [K2.6, S2.7]
+    type: investigation
+    prompt: |-
+      Two narrators describe the same morning.
+
+      **Narrator A**
+
+      > Snow lay on the window ledge, thick and soft as bread dough. The plows hadn’t come. Not one car moved on our street. Perfect.
+
+      **Narrator B**
+
+      > Snow lay on the window ledge, thick and heavy as wet cement. The plows hadn’t come. Not one car moved on our street. Perfect.
+    parts:
+      - type: mc
+        prompt: Only one comparison is different. Who is each narrator most likely to be?
+        choices:
+          - A is a child hoping for a snow day. B is a bus driver who has to get to work.
+          - A is a bus driver who has to get to work. B is a child hoping for a snow day.
+          - A and B are both children hoping for a snow day, since they both say *Perfect*.
+          - You can’t tell anything, since almost all of their words are exactly the same.
+        answer: 0
+        feedback:
+          '1': Would someone who has to drive through it think of soft bread dough? Who would think of wet cement?
+          '2': Look at the comparisons again. Would you choose *wet cement* for snow that you were glad to see?
+          '3': One comparison can give away a lot. How does each narrator feel about that snow?
+        hints:
+          - Which narrator likes this snow? How can you tell?
+        solution:
+          - Bread dough is soft and fun to play with. Wet cement is heavy and gets in your way.
+          - The same snow feels different because the narrators want different things.
+      - type: mc
+        prompt: Both narrators end with the word *Perfect*. What does Narrator B mean by it?
+        choices:
+          - The opposite of what the word says. This is a terrible morning.
+          - Just what the word says. The snow looks beautiful this morning.
+          - The same as Narrator A. It’s wonderful that nobody can go out.
+          - That the plows have done a perfect job of clearing the street.
+        answer: 0
+        feedback:
+          '1': Does someone who sees wet cement on the ledge think that it looks beautiful?
+          '2': Who needs the street to be clear? Would that person be glad that no cars can move?
+          '3': Read the story again. The plows haven’t come at all.
+        hints:
+          - Read B’s paragraph aloud in the voice of a tired driver. How does *Perfect* come out?
+        solution:
+          - After *wet cement* and an unplowed street, *Perfect* can only be a grumble. B means the opposite of the word.
+          - The same word carries two moods, because the narrators have two attitudes.
+      - type: mc
+        prompt: Which sentence could come next for Narrator B, keeping the same mood and **showing** it?
+        choices:
+          - Somewhere under that white mess was my bus, and all I had was a tiny shovel.
+          - Somewhere under that white pile was my sled, and today it was all mine.
+          - I felt very grumpy about all of the snow, and I wished that it would melt.
+          - The snow on the street was white, and it was about as deep as a chair.
+        answer: 0
+        feedback:
+          '1': That is a happy sled. Whose mood does this belong to?
+          '2': It’s the right mood, but it **tells** us with the word *grumpy*. Can a sentence let us see it?
+          '3': This only gives facts. Where has B’s attitude gone?
+        hints:
+          - Which choices sound like B? Of those, which one lets you picture the problem?
+        solution:
+          - The buried bus and tiny shovel keep B’s grumbling mood, and they let us see it without naming a feeling.
+    wrapUp: The setting can stay exactly the same while the mood changes completely. Mood also comes from the attitude of the narrator, and one comparison can give that attitude away.
 
   - id: d3
     level: 3
-    covers: [S2.6, S2.4, S2.1]
+    thinking: design
+    covers: [K2.5, S2.2, K2.3, S2.1]
     type: open
     prompt: |-
-      Change this **telling** sentence into two or three sentences that **show** it. Use at least two senses, and
-      don’t use the word *excited*.
+      Treat this line as a **mentor text**.
 
-      > Maya was excited about the first day of the fair.
+      > My grandmother has three rules: wipe your boots, say thank you, and never, ever touch the good scissors.
+
+      First, say in a sentence what makes it funny. Then borrow the trick, not the words: write your own line about a different person or a pet.
+    hints:
+      - Read the three rules. Which one would make you ask a question?
+      - What do the first two rules make you expect from the third?
     modelAnswer: |-
-      Maya was up before the sun, with her boots already on. She could smell the mini doughnuts from the end of the
-      block, and she started to run.
+      **The trick:** The first two rules are ordinary, so you expect a third ordinary one. Then comes one that is oddly exact, and you wonder what happened to those scissors.
+
+      **Mine:** Our dog is afraid of three things: thunder, the vet, and one particular sock.
     rubric:
-      - I never used the word *excited*.
-      - I used at least two senses.
-      - A reader can tell how Maya feels from what she does.
-      - I read it aloud and made it better.
+      - I said what makes the line funny, such as ordinary things followed by a surprise.
+      - The first things in my line are ordinary, and the last one is a surprise.
+      - My surprise is something specific that makes a reader wonder.
+      - My line has a new subject and my own words.
 
   - id: d4
     level: 3
-    covers: [S2.3, S2.5, K2.3]
+    thinking: whatif
+    covers: [S2.4, S2.6, K2.6, K2.4]
     type: open
     prompt: |-
-      Write the opening of a story that will **entertain** your classmates. Establish a **setting**, a **problem**, and a
-      **point of view**. Include at least one line of **dialogue** and one piece of **figurative language**.
+      Here is a very boring sentence.
+
+      > A cat walked across the kitchen table.
+
+      Rewrite it twice, using one or two sentences each time. It’s the same cat on the same table. First make it **cozy**. Then make it **spooky**. You may not use any feeling words, such as *cozy*, *spooky* or *afraid*.
+    hints:
+      - What could you see, hear or touch at that table in each version?
+      - Try changing *walked* first. Then change the light in the room.
     modelAnswer: |-
-      The canoe was a leaf spinning on the Bow River, and Sam had just lost the paddle. “Nice work,” said his sister, who was
-      holding the only sandwich. The dock got smaller and smaller behind them, and neither of them knew how to swim.
+      **Cozy:** Mittens padded across the warm table and curled up beside the toast, purring.
+
+      **Spooky:** Two yellow eyes slid across the dark table. A claw tapped once on the glass, and the purring stopped.
     rubric:
-      - The reader can tell where the story takes place.
-      - There is a clear problem.
-      - I kept to one point of view.
-      - I used dialogue and figurative language.
+      - Both versions have a cat on a kitchen table.
+      - I didn’t name a feeling in either version.
+      - Each version has a sensory or specific word that helps set the mood.
+      - Without labels, a reader could tell which version is cozy and which is spooky.
