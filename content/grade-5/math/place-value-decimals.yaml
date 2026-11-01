@@ -120,204 +120,325 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.1, S1.2]
+    thinking: recall
+    covers: [S1.1, U1.1]
     type: mc
-    prompt: In **4 307.25**, what is the value of the digit **5**?
-    choices: ['5 hundredths', '5 tenths', '5 ones', '5 thousandths']
+    prompt: In **3 333.333**, one of the digits is worth 3 thousands. What is the digit in its **mirror place** worth?
+    choices: ['3 thousandths', '3 tenths', '3 hundredths', '3 ones']
     answer: 0
     feedback:
-      '1': 'The tenths place is the first place after the decimal point. In 4 307.25 that digit is 2.'
-      '2': 'The ones place holds 7, just left of the decimal point.'
-      '3': '4 307.25 has only two decimal places, so there is no thousandths digit.'
+      '1': 'Tenths is the mirror of the **tens**. Both are 1 place from the ones. How far from the ones is the thousands place?'
+      '2': 'Hundredths is the mirror of the **hundreds**. Both are 2 places from the ones. How far from the ones is the thousands place?'
+      '3': The ones place is the centre of the mirror, so it has no partner.
     hints:
-      - Count the places after the decimal point. The first is tenths.
+      - How many places is the thousands place from the ones?
+      - Count the same number of places to the right of the ones.
     solution:
-      - 'After the decimal point: 2 is in the **tenths**, 5 is in the **hundredths**.'
-      - 'So the 5 is worth 5 hundredths, or 0.05.'
+      - 'The thousands place is **3 places** to the left of the ones.'
+      - 'Three places to the right of the ones is the thousandths place, so its digit is worth **3 thousandths**.'
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [S1.2]
     type: number
-    prompt: Write **two million forty thousand six** as a numeral.
-    answer: 2040006
-    verify: 2000000 + 40000 + 6
+    prompt: Write **sixty-one thousand five and twenty-eight thousandths** as a numeral.
+    answer: 61005.028
+    verify: 61005 + 0.028
     hints:
-      - 'Two million is 2 000 000.'
-      - Every place that isn't named gets a 0.
+      - The word **and** marks the decimal point. What goes on each side of it?
+      - The decimal part ends in the thousandths place, so it needs 3 digits after the point.
     solution:
-      - '2 000 000 + 40 000 + 6 = **2 040 006**'
+      - 'Before "and": sixty-one thousand five is 61 005. Every place that isn’t named gets a 0.'
+      - 'After "and": twenty-eight thousandths has its last digit in the thousandths place, so it is 0.028.'
+      - 'Together: **61 005.028**.'
 
   - id: w3
     level: 1
-    covers: [S1.1, U1.1]
-    type: mc
-    prompt: Which place is the **mirror** of the hundreds place?
-    choices: [Hundredths, Tenths, Thousandths, Ones]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'Tenths mirrors the **tens**: both are 1 place from the ones.'
-      '2': 'Thousandths mirrors the **thousands**: both are 3 places from the ones.'
-      '3': The ones place is the centre of the mirror. It has no partner.
+    thinking: notice
+    covers: [S1.3]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 380 92" class="fig-svg" role="img" aria-label="A number line from 5.3 to 5.4 split into 10 equal steps. A pointer marks the sixth step after 5.3."><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="50" x2="350" y2="50"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="40" x2="30" y2="60"/><line class="fig-grid" style="stroke:var(--ink)" x1="62" y1="44" x2="62" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="94" y1="44" x2="94" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="126" y1="44" x2="126" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="158" y1="44" x2="158" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="190" y1="44" x2="190" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="222" y1="44" x2="222" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="254" y1="44" x2="254" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="286" y1="44" x2="286" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="318" y1="44" x2="318" y2="56"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="350" y1="40" x2="350" y2="60"/><polygon class="cg-pt" points="222,42 213,22 231,22"/><text class="fig-label" x="30" y="84" text-anchor="middle">5.3</text><text class="fig-label" x="350" y="84" text-anchor="middle">5.4</text></svg>
+    prompt: What number is the pointer marking on this number line?
+    answer: 5.36
+    verify: 5.3 + 0.06
     hints:
-      - Hundreds is 2 places left of the ones. What is 2 places right of the ones?
+      - How much is each small step worth? There are 10 steps from 5.3 to 5.4.
+      - Write 5.3 as 5.30 and 5.4 as 5.40. Each step adds 1 hundredth. Count the steps from 5.30.
     solution:
-      - 'Hundreds is **2 places** left of the ones; hundredths is **2 places** right. They are mirrors.'
+      - 'One tenth is split into 10 equal steps, so each step is 1 hundredth.'
+      - 'The pointer is 6 steps past 5.30, so it marks **5.36**.'
 
   - id: w4
     level: 1
+    thinking: notice
     covers: [K1.2]
-    type: mc
-    prompt: Which number is **equal** to 3.4?
-    choices: ['3.40', '3.04', '30.4', '3.004']
-    answer: 0
+    type: multi
+    prompt: Erase the **last zero** from each number. Select **all** the numbers that keep exactly the same value.
+    choices: ['6.30', '0.600', '8.050', '630', '7 200', '40']
+    answer: [0, 1, 2]
     feedback:
-      '1': '3.04 has 0 tenths and 4 hundredths. 3.4 has 4 tenths.'
-      '2': '30.4 has 3 tens, not 3 ones.'
-      '3': '3.004 has 4 thousandths, not 4 tenths.'
+      '3': 'Erasing this zero turns 630 into 63. On this side of the decimal point, a zero holds the other digits in their places.'
+      '4': 'Erasing this zero turns 7 200 into 720. The 7 slides from thousands to hundreds.'
+      '5': 'Erasing this zero turns 40 into 4. The 4 slides from tens to ones.'
     hints:
-      - A zero in the rightmost place doesn't change a decimal's value.
+      - Where does each zero sit? Is it after the decimal point, or before it?
+      - Try one. What is 630 without its last zero? What is 6.30 without its last zero?
     solution:
-      - 'Adding a zero at the right end: \(3.4 = 3.40\).'
+      - 'A zero in the rightmost place **of a decimal** changes nothing: 6.30 = 6.3, 0.600 = 0.60 and 8.050 = 8.05.'
+      - 'In a whole number, the last zero holds the other digits in their places. Erase it and every digit slides.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.6]
+    thinking: evidence
+    covers: [K1.1, S1.7]
     type: mc
-    prompt: Which statement is **true**?
-    choices: ['6.08 < 6.8', '6.08 > 6.8', '6.08 = 6.8', '0.608 > 6.08']
+    prompt: Lena and Amir each measure the class gecko, using different rulers. Lena writes **14.2 cm**. Amir writes **14.18 cm**. Each says the other one is wrong. What do you tell them?
+    choices:
+      - Both can be right. 14.18 rounds to 14.2, and it is the more precise number.
+      - Only Amir can be right. 14.2 and 14.18 are different, so one has to be a mistake.
+      - Only Lena can be right. 14.2 is the greater number, so it is the better measure.
+      - Neither can be right. The same gecko has to give both of them the same digits.
     answer: 0
     feedback:
-      '1': 'Compare tenths: 6.08 has 0 tenths and 6.8 has 8 tenths.'
-      '2': 'They have different tenths digits, so they can''t be equal.'
-      '3': '0.608 has 0 ones, and 6.08 has 6 ones.'
+      '1': 'Round 14.18 to the nearest tenth. What do you get? Then look at what Lena wrote.'
+      '2': 'Being greater doesn’t make a measurement better. Which number gives the length to a smaller step?'
+      '3': 'A ruler marked in tenths and a ruler marked in hundredths give different digits for the same gecko. Round the finer one and compare.'
     hints:
-      - Line up the decimal points. Compare ones first, then tenths.
+      - What would Amir’s number be if you rounded it to one decimal place?
+      - Which number has more decimal places? What does that tell you about the ruler?
     solution:
-      - 'Ones are both 6. Tenths: 0 < 8, so \(6.08 < 6.8\).'
+      - 'Round 14.18 to the nearest tenth. The digit to the right of the tenths is 8, so it rounds up to 14.2. That is Lena’s number.'
+      - 'So the two numbers agree. Lena measured to the nearest tenth, and Amir measured to the nearest hundredth.'
+      - 'What we learned: more decimal places make a number **more precise**. Fewer places don’t make it wrong.'
 
   - id: b2
     level: 2
-    covers: [S1.5]
-    type: order
-    prompt: Put these numbers in order from **least** to **greatest**.
-    items: ['2.09', '2.405', '2.45', '2.5']
+    thinking: connect
+    covers: [S1.1, U1.1, S1.5]
+    type: number
+    prompt: |-
+      A **mirror number** has the same digit in each pair of mirror places. **352.53** is one: 3 hundreds and 3 hundredths, 5 tens and 5 tenths.
+
+      What is the **greatest** mirror number that is less than **500**? Use hundreds, tens, ones, tenths and hundredths.
+    answer: 499.94
+    verify: 400 + 90 + 9 + 0.9 + 0.04
     hints:
-      - All the ones digits are 2. Compare the tenths.
-      - 2.405 and 2.45 have the same tenths. Compare their hundredths.
+      - What is the biggest hundreds digit you can use and still stay under 500?
+      - Make the tens and the ones as big as you can. The ones digit has no partner.
+      - Now fill in the tenths and the hundredths. Each one must copy its mirror place.
     solution:
-      - 'Tenths: 0, 4, 4, 5. So 2.09 is least and 2.5 is greatest.'
-      - '2.405 vs 2.45: hundredths 0 < 5, so 2.405 < 2.45.'
-      - '2.09 < 2.405 < 2.45 < 2.5'
+      - 'Start on the left, where the digits are worth the most. To stay under 500, the hundreds digit is 4.'
+      - 'The tens and ones can be as big as possible, so they are 9 and 9.'
+      - 'Now copy across the mirror. The tenths match the tens (9), and the hundredths match the hundreds (4).'
+      - 'The number is **499.94**.'
 
   - id: b3
     level: 2
-    covers: [S1.4, K1.3]
+    thinking: flaw
+    covers: [S1.7]
     type: number
-    prompt: Write **any** decimal number that is **between 0.7 and 0.8**.
-    answer: 0.75
-    tolerance: 0.0499
+    prompt: |-
+      The Great Bottle Drive collected **1 249 637** bottles. The poster will show this number rounded to the nearest **hundred thousand**.
+
+      Zara rounds in two steps. First, to the nearest thousand: 1 250 000. Then that number to the nearest hundred thousand: 1 300 000.
+
+      Check her work. What should the poster say?
+    unit: bottles
+    answer: 1200000
+    verify: 12 * 100000
     hints:
-      - 'Zoom in: 0.7 = 0.70 and 0.8 = 0.80. What is between 0.70 and 0.80?'
+      - Go back to the first number. Which digit is in the hundred thousands place?
+      - Look at the digit just to its right in **1 249 637**. Is it 5 or more?
+      - Now compare that digit with the one Zara looked at in her second step.
     solution:
-      - 'Write them with two decimal places: 0.70 and 0.80.'
-      - '0.71, 0.72, … 0.79 are all between them. So is 0.755, and many more!'
+      - 'In 1 249 637, the hundred thousands digit is 2. The digit just to its right is 4, so the 2 stays: **1 200 000**.'
+      - 'Zara’s first step was correct, but it changed that 4 into a 5. Her second step looked at the 5 and rounded up.'
+      - 'What we learned: always round from the first number. Rounding a rounded number can push it the wrong way.'
 
   - id: b4
     level: 2
-    covers: [S1.7]
-    type: number
-    prompt: Round **3 456 078** to the nearest **ten thousand**.
-    answer: 3460000
+    thinking: apply
+    covers: [S1.5]
+    type: order
+    prompt: Five paper planes flew these distances. Put the flights in order from **shortest** to **longest**.
+    items: ['3.058 m', '3.06 m', '3.506 m', '3.56 m', '3.6 m']
     hints:
-      - The ten thousands digit is 5. Look at the digit to its right.
+      - All of them have 3 ones. Which digit should you compare next?
+      - Write every distance with three decimal places, so they are easier to compare.
+      - 'Two pairs share a tenths digit. Compare the hundredths in those pairs.'
     solution:
-      - '3 4**5**6 078: the ten thousands digit is 5, and the digit to its right is 6.'
-      - '6 is 5 or more, so round up: **3 460 000**.'
-
-  - id: b5
-    level: 2
-    covers: [S1.7]
-    type: mc
-    prompt: A scale shows a bag of apples has a mass of **2.468 kg**. The label rounds to the nearest **tenth** of a kilogram. What does the label say?
-    choices: ['2.5 kg', '2.4 kg', '2.47 kg', '3 kg']
-    answer: 0
-    feedback:
-      '1': 'The hundredths digit is 6, which is 5 or more, so the tenths digit rounds **up**.'
-      '2': 'That is rounded to the nearest **hundredth**.'
-      '3': That is rounded to the nearest **one**.
-    hints:
-      - The tenths digit is 4. Look at the digit just to its right.
-    solution:
-      - '2.**4**68: the digit right of the tenths is 6, so round up: **2.5 kg**.'
+      - 'Write them all with three decimal places: 3.058, 3.060, 3.506, 3.560 and 3.600.'
+      - 'Tenths first: two distances have 0 tenths, two have 5 tenths and one has 6 tenths.'
+      - 'Then the hundredths inside each pair: 3.058 < 3.060, and 3.506 < 3.560.'
+      - 'So the order is 3.058, 3.06, 3.506, 3.56, 3.6. The longest-looking numbers are not the longest flights.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.5, S1.6]
-    type: mc
-    prompt: Mila says **4.125 > 4.2** "because 4.125 has more digits." What is the best response?
-    choices:
-      - 'Compare place by place from the left: 1 tenth is less than 2 tenths, so 4.125 < 4.2.'
-      - Mila is right. More digits always means a greater number.
-      - 'Mila is right, because 125 > 2.'
-      - The numbers are equal because they have the same ones digit.
-    answer: 0
-    feedback:
-      '1': '4.2 = 4.200, and 200 thousandths is more than 125 thousandths.'
-      '2': 'Compare 4.125 with 4.200, not 125 with 2.'
-      '3': The ones match, but the tenths don't.
-    hints:
-      - 'Write 4.2 with three decimal places: 4.200.'
-    solution:
-      - '4.2 = 4.200. Compare tenths: 1 < 2.'
-      - 'So **4.125 < 4.2**. Counting digits doesn''t compare decimals.'
+    thinking: breakdown
+    covers: [K1.1, S1.3, S1.7]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 400 124" class="fig-svg" role="img" aria-label="A number line from 1.1 to 1.3 with halfway marks at 1.15 and 1.25. Dot is just past 1.15. Gus is just before 1.25 and Pearl is just after 1.25, almost touching."><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="62" x2="370" y2="62"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="50" x2="30" y2="74"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="200" y1="50" x2="200" y2="74"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="370" y1="50" x2="370" y2="74"/><line class="fig-grid" style="stroke:var(--ink)" x1="115" y1="55" x2="115" y2="69"/><line class="fig-grid" style="stroke:var(--ink)" x1="285" y1="55" x2="285" y2="69"/><circle class="cg-pt" cx="117" cy="62" r="5"/><circle class="cg-pt" cx="283" cy="62" r="5"/><circle class="cg-pt" cx="287" cy="62" r="5"/><text class="fig-label" x="117" y="42" text-anchor="middle">Dot</text><text class="fig-label" x="278" y="42" text-anchor="end">Gus</text><text class="fig-label" x="292" y="42">Pearl</text><text class="fig-label" x="30" y="100" text-anchor="middle">1.1</text><text class="fig-label" x="200" y="100" text-anchor="middle">1.2</text><text class="fig-label" x="370" y="100" text-anchor="middle">1.3</text><text class="fig-small" x="115" y="92" text-anchor="middle">1.15</text><text class="fig-small" x="285" y="92" text-anchor="middle">1.25</text></svg>
+    prompt: |-
+      Three snails race along a track. The judges measure exactly how far each one crawled: **Gus 1.249 m**, **Pearl 1.251 m** and **Dot 1.151 m**.
+
+      The old scoreboard rounds every distance to the nearest **tenth**.
+    parts:
+      - type: number
+        prompt: What does the scoreboard show for Pearl?
+        unit: m
+        answer: 1.3
+        verify: 1.2 + 0.1
+        hints:
+          - The tenths digit is 2. Which digit do you look at next?
+        solution:
+          - 'In 1.251, the digit to the right of the tenths is 5, so the 2 rounds up. The board shows **1.3**.'
+      - type: mc
+        prompt: The board shows **Gus 1.2, Pearl 1.3, Dot 1.2**. Gus’s fans are furious. Look at the number line. What really happened?
+        choices:
+          - Gus nearly tied Pearl and beat Dot easily.
+          - Gus tied Dot and lost to Pearl by a lot.
+          - Gus nearly tied Dot and beat Pearl easily.
+          - All three snails were almost exactly tied.
+        answer: 0
+        feedback:
+          '1': 'That is what the board says. Now look at the exact distances. Are Gus and Dot close together on the number line?'
+          '2': 'Pearl’s 1.251 is greater than Gus’s 1.249. Compare the digits place by place. Which two dots are almost touching?'
+          '3': 'Two of them almost touch, but one is far behind. Which one?'
+        hints:
+          - Ignore the board. Which two dots are almost touching?
+        solution:
+          - 'Gus and Pearl are only 0.002 m apart. Gus is 0.098 m ahead of Dot.'
+          - 'Rounding flips at the halfway mark 1.25, and Gus and Pearl stop on either side of it. Dot and Gus are both between the halfway marks 1.15 and 1.25, so they round the same.'
+      - type: number
+        prompt: The judges want a new board. It has to round to a place that shows **three different numbers** for these snails. How many decimal places must it show, at least?
+        unit: decimal places
+        answer: 3
+        verify: 2 + 1
+        hints:
+          - Try rounding all three to hundredths first. Are the numbers all different?
+        solution:
+          - 'To hundredths: Gus 1.25, Pearl 1.25, Dot 1.15. Gus and Pearl still tie.'
+          - 'To thousandths, all three are different, so the board needs **3** decimal places. More decimal places are more precise.'
+      - type: build
+        prompt: A new race! Invent two snails that are **less than 0.01 m apart**, but the old board shows **3.4** for the first and **3.5** for the second.
+        fields:
+          - { name: x, label: 'First snail', unit: m }
+          - { name: y, label: 'Second snail', unit: m }
+        rules:
+          - { test: 'x >= 3.35 && x < 3.45', fail: 'Round your first snail to the nearest tenth. The board should show 3.4.' }
+          - { test: 'y >= 3.45 && y < 3.55', fail: 'Round your second snail to the nearest tenth. The board should show 3.5.' }
+          - { test: 'y - x < 0.01', fail: 'The board is right, but these snails are too far apart. Where is the point where rounding flips from 3.4 to 3.5? Stay close to it.' }
+        examples:
+          - { x: 3.449, y: 3.451 }
+          - { x: 3.445, y: 3.45 }
+        counterexamples:
+          - { x: 3.4, y: 3.5 }
+          - { x: 3.44, y: 3.46 }
+          - { x: 3.45, y: 3.451 }
+        hints:
+          - What is the smallest number that rounds to 3.5?
+          - One snail stops just before that number. The other stops on it or just after.
+        solution:
+          - 'Rounding flips at 3.45. Anything from 3.45 up rounds to 3.5, and anything just below it rounds to 3.4.'
+          - '3.449 and 3.451 work. So do 3.445 and 3.45.'
+          - 'They all work for the same reason: one snail stops just below the flip, and the other stops on it or just past it.'
+    wrapUp: Rounding is useful, but it hides things. Two numbers almost touching can round far apart, and two numbers far apart can round the same. Choose the place that fits what you need to know.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S1.7, S1.4]
-    type: number
-    prompt: What is the **greatest** number with **three decimal places** that rounds to **6.4** when rounded to the nearest tenth?
-    answer: 6.449
-    hints:
-      - Which numbers round to 6.4? They go from 6.35 up to just below 6.45.
-      - With three decimal places, what is the last number before 6.450?
-    solution:
-      - '6.45 would round up to 6.5. So the number must be less than 6.450.'
-      - 'The greatest three-place decimal below 6.450 is **6.449**.'
+    thinking: why
+    covers: [K1.3, S1.4, U1.1]
+    type: investigation
+    prompt: |-
+      **Squeeze-In** is a game for two. Start with 0.9 and 1. On your turn, name a number **between** the last number said and 1. If you can’t, you lose.
+
+      Elif and Rowan play until the last number said is **0.999**. Rowan cheers, "Thousandths are the last place, so nothing fits between 0.999 and 1. I win!"
+    parts:
+      - type: build
+        prompt: You are Elif. Name a number that keeps the game going.
+        fields:
+          - { name: x, label: 'Your number' }
+        rules:
+          - { test: 'x > 0.999', fail: 'That number isn’t past 0.999. It has to land between 0.999 and 1.' }
+          - { test: 'x < 1', fail: 'That number is past 1, or on it. It has to land between 0.999 and 1.' }
+        examples:
+          - { x: 0.9995 }
+          - { x: 0.9991 }
+          - { x: 0.99999 }
+        counterexamples:
+          - { x: 1 }
+          - { x: 0.999 }
+          - { x: 0.99 }
+          - { x: 1.0001 }
+        hints:
+          - A zero on the right end of a decimal doesn’t change its value. How could that make some room?
+          - Write 0.999 as 0.9990, and write 1 as 1.0000.
+          - What numbers with four decimal places come after 0.9990?
+        solution:
+          - 'Add a zero: 0.999 = 0.9990. Now there is a new place to use.'
+          - '0.9991 is between them. So are 0.9995 and 0.99999.'
+          - 'They all work for the same reason: each one is past 0.999 and hasn’t reached 1.'
+      - type: mc
+        prompt: Elif used a place **4 places** to the right of the ones. Nobody has taught you its name, but the place value mirror can tell you. What is it called?
+        choices: ['ten-thousandths', 'ten-thousands', 'thousandths', 'hundred-thousandths']
+        answer: 0
+        feedback:
+          '1': 'That is the right place on the **left** of the ones. Places to the right of the ones end in "ths".'
+          '2': 'Thousandths is only 3 places from the ones. That is where 0.999 stopped.'
+          '3': 'That name would fit 5 places from the ones. Count again.'
+        hints:
+          - What is 4 places to the **left** of the ones? Say ones, tens, hundreds, and keep going.
+        solution:
+          - 'Four places to the left of the ones is the ten thousands. Its mirror is the **ten-thousandths**.'
+      - type: open
+        prompt: Rowan wants to know how long the game could last. Could it ever end because there are **no numbers left**? Explain how you know.
+        hints:
+          - Suppose someone has just said 0.9999. Can you still move? What did you do last time?
+        modelAnswer: |-
+          No, it never has to end. Whatever number was said last, I can add a zero on the right, then make that place bigger than zero. For example, after 0.9999 I can say 0.99995. The places keep going forever, so there is always another number between.
+        rubric:
+          - I said the game never has to run out of numbers.
+          - I explained how to make a new number, such as by using a new place on the right.
+          - I gave an example of a number that would come next.
+    wrapUp: There are infinitely many decimal numbers between any two decimals. The mirror has no end, so there is always a smaller place to use. Rowan can’t win that way, and nobody else can either.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [K1.1]
-    type: mc
-    prompt: Two students measured the same pencil. One wrote **14.2 cm** and the other wrote **14.18 cm**. Which measurement is **more precise**?
-    choices:
-      - '14.18 cm, because it has more decimal places.'
-      - '14.2 cm, because 2 tenths is more than 1 tenth.'
-      - 'They are equally precise, because they are about the same length.'
-      - '14.2 cm, because shorter numbers are more exact.'
-    answer: 0
-    feedback:
-      '1': 'Being **greater** is not the same as being **more precise**.'
-      '2': '14.18 gives the length to the nearest hundredth of a centimetre, which is finer than tenths.'
-      '3': Fewer decimal places means **less** precise.
-    hints:
-      - Precision is about how many decimal places, not about which number is bigger.
-    solution:
-      - '14.18 cm is measured to the nearest **hundredth**; 14.2 cm only to the nearest tenth.'
-      - 'More decimal places → **more precise**.'
-
-  - id: d4
-    level: 3
-    covers: [K1.3, S1.4]
+    thinking: flaw
+    covers: [S1.5, S1.6, K1.2]
     type: multi
-    prompt: Select **all** the numbers that are **between 3.29 and 3.3**.
-    choices: ['3.295', '3.291', '3.299', '3.31', '3.30', '3.2']
+    prompt: |-
+      Quiz show host Fitz Bellow is very sure of himself. He reads the digits after the point as a **whole number**. So he shouts \(2.125 > 2.2\), because 125 is more than 2.
+
+      Sometimes his habit does no harm. Select **all** the pairs that Fitz still compares **correctly**.
+    choices:
+      - '0.6 and 0.7'
+      - '2.35 and 2.81'
+      - '4.05 and 4.7'
+      - '1.25 and 1.3'
+      - '8.40 and 8.4'
+      - '4.09 and 4.1'
     answer: [0, 1, 2]
+    feedback:
+      '3': 'Fitz sees 25 and 3, so he says \(1.25 > 1.3\). Write 1.3 as 1.30 and compare again.'
+      '4': 'Fitz sees 40 and 4, so he says \(8.40 > 8.4\). What does a zero on the right end do to a decimal?'
+      '5': 'Fitz sees 9 and 1, so he says \(4.09 > 4.1\). But 4.09 has 0 tenths, and 4.1 has 1 tenth.'
     hints:
-      - 'Write both ends with three decimal places: 3.290 and 3.300.'
+      - For each pair, work out what Fitz would say. Then work out what is really true.
+      - 'Try \(4.05\) and \(4.7\). Fitz compares 5 and 7. What is the true comparison?'
+      - The two answers have to match. Watch out for pairs that are equal, too.
     solution:
-      - '3.290 < 3.291, 3.295, 3.299 < 3.300 ✓'
-      - '3.30 is **equal** to 3.3, not between. 3.31 is greater, and 3.2 is less.'
+      - 'Do each pair twice: once as Fitz, once by comparing place by place.'
+      - '0.6 < 0.7 and 2.35 < 2.81: the numbers have the same number of decimal places, so his habit does no harm.'
+      - '4.05 < 4.7: Fitz compares 5 and 7 and happens to be right. He got lucky.'
+      - '1.25 < 1.3 and 4.09 < 4.1, but Fitz says the opposite. And \(8.40 = 8.4\), but Fitz says "greater".'
+      - 'What we learned: to fix his habit, first give both numbers the same number of decimal places. Then comparing them as whole numbers really works.'
