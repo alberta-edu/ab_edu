@@ -133,236 +133,326 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: Which of these is an **improper fraction**?
-    choices:
-      - '\(\frac{9}{5}\)'
-      - '\(\frac{5}{9}\)'
-      - '\(\frac{1}{2}\)'
-      - '\(1\frac{4}{5}\)'
-    answer: 0
-    feedback:
-      '1': 'In \(\frac{5}{9}\) the numerator (5) is **less** than the denominator (9). It is less than one whole.'
-      '2': '\(\frac{1}{2}\) is less than one whole. Its numerator is less than its denominator.'
-      '3': '\(1\frac{4}{5}\) is a **mixed number**: wholes and a fractional part. It equals \(\frac{9}{5}\), but it is not written as an improper fraction.'
+    thinking: notice
+    covers: [S1.1, S1.4]
+    type: fraction
+    figure: { kind: number-line, n: 13, d: 5, wholes: 3, label: P }
+    prompt: What **mixed number** is at point **P**?
+    answer: 2 3/5
+    form: mixed
+    verify: 13/5
     hints:
-      - Compare the numerator (top) with the denominator (bottom).
-      - An improper fraction has a numerator that is **greater** than its denominator.
+      - Look between 0 and 1. How many **spaces** are there? Count the spaces, not the marks.
+      - Which whole number comes just before P? How many spaces past it is P?
     solution:
-      - An improper fraction has a numerator greater than its denominator.
-      - 'In \(\frac{9}{5}\), 9 is greater than 5 ✓'
+      - 'There are 5 equal spaces between 0 and 1, so each space is one fifth.'
+      - 'P is 3 spaces past 2, so P is at \(2\frac{3}{5}\). Its other name is \(\frac{13}{5}\).'
 
   - id: w2
     level: 1
-    covers: [S1.2, S1.3, S1.4]
+    thinking: apply
+    covers: [S1.5, K1.4]
     type: fraction
-    figure: { kind: fraction-bars, n: 10, d: 4, wholes: 3 }
-    prompt: Each bar is **one whole**. Write the shaded amount as an **improper fraction**.
-    answer: 10/4
+    prompt: 'Write \(3\frac{5}{6}\) as an **improper fraction**.'
+    answer: 23/6
     form: improper
-    verify: 4/4 + 4/4 + 2/4
+    verify: 3 + 5/6
     hints:
-      - How many equal parts is each bar cut into? That is your denominator.
-      - Count every shaded part, in all the bars. That is your numerator.
+      - How many sixths are in one whole?
+      - 'Then 3 wholes are how many sixths? Don’t forget the 5 extra sixths.'
     solution:
-      - Each bar is cut into **4** equal parts, so the parts are fourths.
-      - 'Count the shaded fourths: \(4 + 4 + 2 = 10\).'
-      - 'The shaded amount is \(\frac{10}{4}\).'
+      - '3 wholes are \(3 \times 6 = 18\) sixths.'
+      - 'Add the 5 extra sixths: \(18 + 5 = 23\). So \(3\frac{5}{6} = \frac{23}{6}\).'
 
   - id: w3
     level: 1
-    covers: [S1.5]
+    thinking: apply
+    covers: [S1.5, K1.2]
     type: fraction
-    prompt: 'Write \(\frac{7}{4}\) as a **mixed number**.'
-    answer: 1 3/4
+    prompt: 'Write \(\frac{19}{4}\) as a **mixed number**.'
+    answer: 4 3/4
     form: mixed
-    verify: 7/4
+    verify: 19/4
     hints:
       - How many fourths make one whole?
-      - '\(7 \div 4\) = ? R ?'
+      - 'How many groups of 4 fit in 19? What is left over?'
     solution:
-      - '4 fourths make 1 whole. \(7 \div 4 = 1 \text{ R } 3\)'
-      - '1 whole and 3 fourths left: \(\frac{7}{4} = 1\frac{3}{4}\).'
+      - '\(19 \div 4 = 4 \text{ R } 3\): 4 wholes and 3 fourths left over.'
+      - '\(\frac{19}{4} = 4\frac{3}{4}\)'
 
   - id: w4
     level: 1
-    covers: [S1.5]
-    type: fraction
-    prompt: 'Write \(2\frac{1}{3}\) as an **improper fraction**.'
-    answer: 7/3
-    form: improper
-    verify: 2 + 1/3
+    thinking: apply
+    covers: [S1.6]
+    type: mc
+    prompt: 'A truck’s gas gauge has marks at 0, \(\frac{1}{2}\) and 1. Which of these readings is **more than half** a tank?'
+    choices:
+      - '\(\frac{7}{12}\)'
+      - '\(\frac{5}{12}\)'
+      - '\(\frac{5}{10}\)'
+      - '\(\frac{3}{8}\)'
+    answer: 0
+    feedback:
+      '1': 'Half of 12 is 6. Is 5 more than 6?'
+      '2': 'Half of 10 is 5, so this one is exactly on the \(\frac{1}{2}\) mark.'
+      '3': 'Half of 8 is 4. Is 3 more than 4?'
     hints:
-      - How many thirds are in one whole?
-      - 'Two wholes are \(2 \times 3\) thirds. Then add the 1 extra third.'
+      - For each fraction, what is half of the denominator?
+      - Is the numerator bigger than that half?
     solution:
-      - '2 wholes are \(2 \times 3 = 6\) thirds.'
-      - 'Add the extra third: \(6 + 1 = 7\) thirds, so \(2\frac{1}{3} = \frac{7}{3}\).'
+      - 'Half of 12 is 6, and 7 is more than 6, so \(\frac{7}{12}\) is more than half.'
+      - 'Each of the others has a numerator that is half of its denominator or less.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.1, U1.2]
-    type: fraction
-    figure: { kind: number-line, n: 7, d: 3, wholes: 3, label: P }
-    prompt: What **mixed number** is at point **P**?
-    answer: 2 1/3
-    form: mixed
-    verify: 7/3
+    thinking: model
+    covers: [S1.2, S1.3, S1.5]
+    type: number
+    prompt: 'Pickle the cat eats exactly \(\frac{1}{3}\) of a can of food at every meal. After **14** meals, how many cans have been **opened**?'
+    answer: 5
+    unit: cans
+    verify: (14 + 1) / 3
     hints:
-      - Count the small spaces between 0 and 1. That tells you the size of each part.
-      - P is past which whole number? How many small parts past it?
+      - 'Count in thirds. After 14 meals, how many thirds of a can has Pickle eaten?'
+      - 'Change that into a mixed number.'
+      - 'The question isn’t how much was eaten. Is the last can empty, or just started?'
     solution:
-      - Each whole is cut into **3** equal spaces, so each space is one third.
-      - 'P is **1** third past **2**, so P is at \(2\frac{1}{3}\) (also \(\frac{7}{3}\)).'
+      - 'Pickle has eaten 14 thirds: \(\frac{14}{3} = 4\frac{2}{3}\) cans.'
+      - '4 cans are empty, and \(\frac{2}{3}\) of a fifth can is gone. That fifth can had to be opened, so **5** cans.'
 
   - id: b2
     level: 2
-    covers: [S1.2, S1.5]
-    type: fraction
-    prompt: 'A scoop holds \(\frac{1}{4}\) cup. Mia uses **11 scoops** of flour. How many cups is that? Write a **mixed number**.'
-    answer: 2 3/4
-    form: mixed
-    verify: 11/4
+    thinking: notice
+    covers: [K1.1, U1.1]
+    type: multi
+    prompt: Which of these sentences **could be true**? Choose all that could.
+    choices:
+      - 'Our dog ate \(\frac{5}{4}\) sandwiches.'
+      - 'The hike took \(\frac{7}{4}\) hours.'
+      - 'We drank \(\frac{6}{5}\) jugs of juice.'
+      - '\(\frac{6}{5}\) of the students in my class are here today.'
+      - 'I read \(\frac{9}{8}\) of this one book.'
+      - 'Our gas tank is \(\frac{7}{6}\) full.'
+    answer: [0, 1, 2]
+    feedback:
+      '3': '\(\frac{5}{5}\) would be the whole class. Can more than the whole class be here?'
+      '4': '\(\frac{8}{8}\) is the whole book. What would you read after that?'
+      '5': 'A full tank is \(\frac{6}{6}\). Can a tank hold more than full?'
     hints:
-      - '11 scoops of \(\frac{1}{4}\) cup is 11 fourths of a cup.'
-      - How many whole cups can you make from 11 fourths? What is left over?
+      - What does each fraction say about the whole? Is it more than 1?
+      - 'Can there be more than one of the thing, or is there just one, like one class or one book?'
     solution:
-      - '11 scoops is \(\frac{11}{4}\) cups.'
-      - '\(11 \div 4 = 2 \text{ R } 3\), so Mia uses \(2\frac{3}{4}\) cups.'
+      - 'Sandwiches, hours and jugs can come in more than one, so an amount past 1 makes sense: \(1\frac{1}{4}\) sandwiches, \(1\frac{3}{4}\) hours and \(1\frac{1}{5}\) jugs.'
+      - 'A class, a book and a tank are each one whole here. You can’t have more than all of it, so those fractions can’t go past 1.'
 
   - id: b3
     level: 2
-    covers: [S1.6]
-    type: mc
-    prompt: 'Which fraction is **greater than** \(\frac{1}{2}\) but **less than** 1?'
-    choices:
-      - '\(\frac{5}{8}\)'
-      - '\(\frac{3}{8}\)'
-      - '\(\frac{4}{8}\)'
-      - '\(\frac{9}{8}\)'
-    answer: 0
-    feedback:
-      '1': 'Half of 8 is 4. Since 3 is less than 4, \(\frac{3}{8}\) is **less** than \(\frac{1}{2}\).'
-      '2': 'Half of 8 is 4, so \(\frac{4}{8}\) is **exactly** \(\frac{1}{2}\).'
-      '3': 'The numerator 9 is greater than the denominator 8, so \(\frac{9}{8}\) is **more** than 1.'
+    thinking: backwards
+    covers: [K1.4, S1.3, S1.5]
+    type: fraction
+    prompt: |-
+      An ice-cube tray holds **6** cubes. Ravi fills **4** trays, and starts another one but doesn’t fill it.
+      What is the **most** ice he could have? Write the number of trays as an **improper fraction**.
+    answer: 29/6
+    form: improper
+    verify: 4 + 5/6
     hints:
-      - 'Half of 8 is 4, so \(\frac{4}{8} = \frac{1}{2}\).'
-      - For a fraction to be less than 1, its numerator must be less than 8.
+      - What is the most cubes the last tray can hold without being full?
+      - 'So the mixed number looks like \(4\frac{?}{6}\).'
+      - 'Now count everything in sixths of a tray.'
     solution:
-      - 'Greater than \(\frac{1}{2}\): the numerator must be more than 4.'
-      - 'Less than 1: the numerator must be less than 8.'
-      - 'Only 5 fits both: \(\frac{1}{2} < \frac{5}{8} < 1\).'
+      - 'A full tray is 6 cubes, so the unfinished tray can hold at most 5. That is \(4\frac{5}{6}\) trays.'
+      - '4 trays are \(4 \times 6 = 24\) cubes, and \(24 + 5 = 29\), so \(\frac{29}{6}\) trays.'
+      - 'What we learned: the fractional part of a mixed number is always less than 1, or it would make another whole.'
 
   - id: b4
     level: 2
+    thinking: connect
     covers: [S1.1, S1.5, MAT4-OI1-GQ5-LO1#S1.7]
     type: order
-    prompt: Put these numbers in order from **least** to **greatest**.
+    prompt: Four pythons at a pretend reptile show are measured, in metres. Put them in order from **shortest** to **longest**.
     items:
-      - '\(\frac{5}{6}\)'
-      - '\(\frac{7}{6}\)'
-      - '\(1\frac{5}{6}\)'
-      - '\(\frac{13}{6}\)'
+      - '\(\frac{11}{5}\) m'
+      - '\(\frac{9}{4}\) m'
+      - '\(\frac{7}{3}\) m'
+      - '\(2\frac{1}{2}\) m'
     hints:
-      - Which one is less than 1? Start with it.
-      - 'Change \(1\frac{5}{6}\) into sixths so every number is counted in sixths.'
+      - Write each length as a mixed number. What do you notice?
+      - 'All four have the same number of whole metres, so only the fractional parts matter.'
+      - 'Picture one metre cut into 5 parts, and another cut into 2. Which part is longer?'
     solution:
-      - '\(1\frac{5}{6} = \frac{11}{6}\), so compare the numerators 5, 7, 11, 13.'
-      - '\[\frac{5}{6} < \frac{7}{6} < 1\frac{5}{6} < \frac{13}{6}\]'
+      - '\(\frac{11}{5} = 2\frac{1}{5}\), \(\frac{9}{4} = 2\frac{1}{4}\) and \(\frac{7}{3} = 2\frac{1}{3}\). Every python is 2 metres and a bit.'
+      - 'The more parts a metre is cut into, the smaller each part is, so \(\frac{1}{5} < \frac{1}{4} < \frac{1}{3} < \frac{1}{2}\).'
+      - 'Shortest to longest: \(\frac{11}{5}\), \(\frac{9}{4}\), \(\frac{7}{3}\), \(2\frac{1}{2}\).'
 
   - id: b5
     level: 2
-    covers: [K1.3]
+    thinking: flaw
+    covers: [S1.3, S1.4, S1.6]
     type: mc
-    prompt: Which of these is **not** equal to 3?
+    figure: { kind: fraction-bars, n: 8, d: 5, wholes: 2 }
+    prompt: 'Each bar is **one whole**. Tia says this picture shows \(\frac{8}{10}\), because 8 of the 10 parts are shaded. What would you tell her?'
     choices:
-      - '\(\frac{3}{1}\)'
-      - '\(\frac{12}{4}\)'
-      - '\(\frac{9}{3}\)'
-      - '\(\frac{6}{3}\)'
-    answer: 3
+      - 'Each part is one fifth of a bar, so the picture shows \(\frac{8}{5}\).'
+      - 'You are right, because 8 parts out of the 10 are shaded here.'
+      - 'Each bar has 5 parts and 8 are shaded, so it shows \(\frac{5}{8}\).'
+      - 'There are 2 bars and 8 shaded parts, so the picture shows \(\frac{8}{2}\).'
+    answer: 0
     feedback:
-      '0': '\(\frac{3}{1}\) means 3 wholes, so it **does** equal 3.'
-      '1': '4 fourths make 1 whole, so 12 fourths make 3 wholes.'
-      '2': '3 thirds make 1 whole, so 9 thirds make 3 wholes.'
+      '1': '\(\frac{8}{10}\) is less than 1. But look: one whole bar is completely shaded, and there is more shaded after it.'
+      '2': 'The numerator counts the shaded parts, and the denominator counts the parts in **one whole**. Also, \(\frac{5}{8}\) is less than 1. Does the picture show less than 1?'
+      '3': '\(\frac{8}{2}\) is 4 wholes, but there are only 2 bars here. What does the denominator tell you?'
     hints:
-      - Divide each numerator by its denominator to find the number of wholes.
+      - Is the shaded amount more or less than one whole bar? Is \(\frac{8}{10}\) more or less than 1?
+      - The denominator is the number of equal parts in **one** whole, not in the whole picture.
     solution:
-      - '\(\frac{3}{1} = 3\), \(\frac{12}{4} = 3\), \(\frac{9}{3} = 3\)'
-      - '\(\frac{6}{3} = 2\), so it is **not** equal to 3.'
+      - 'One bar is fully shaded and part of the second bar too, so the amount is more than 1. But \(\frac{8}{10}\) is less than 1, so it can’t be right.'
+      - 'Each bar has 5 equal parts, so each part is one fifth. 8 fifths are shaded: \(\frac{8}{5} = 1\frac{3}{5}\).'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.5]
-    type: mc
-    prompt: 'Jordan wrote \(\frac{14}{4} = 3\frac{1}{4}\). What went wrong?'
-    choices:
-      - 'The remainder is 2, not 1. It should be \(3\frac{2}{4}\).'
-      - Nothing. Jordan is correct.
-      - 'It should be \(4\frac{1}{4}\), because 14 is close to 16.'
-      - Improper fractions cannot be written as mixed numbers.
-    answer: 0
-    feedback:
-      '1': 'Check it: \(3\frac{1}{4}\) is \(3 \times 4 + 1 = 13\) fourths, not 14.'
-      '2': '\(4\frac{1}{4}\) is \(4 \times 4 + 1 = 17\) fourths. That is too many.'
-      '3': Every improper fraction can be written as a whole number or a mixed number.
-    hints:
-      - 'Work it out yourself: \(14 \div 4\) = ? R ?'
-      - 'Then check Jordan''s answer by changing \(3\frac{1}{4}\) back into fourths.'
-    solution:
-      - '\(14 \div 4 = 3 \text{ R } 2\), so \(\frac{14}{4} = 3\frac{2}{4}\).'
-      - 'Jordan''s \(3\frac{1}{4}\) is only 13 fourths. Jordan used the wrong remainder.'
+    thinking: connect
+    covers: [K1.3, S1.3, S1.5]
+    type: investigation
+    prompt: |-
+      A junkyard has a pile of **14** wheels and nothing else. Count the pile as vehicles. A tricycle has 3 wheels,
+      so one wheel is \(\frac{1}{3}\) of a tricycle’s set. A car has 4 wheels, so one wheel is \(\frac{1}{4}\) of a car’s set.
+    parts:
+      - type: fraction
+        prompt: How many **tricycles’ worth** of wheels are in the pile? Write a mixed number.
+        answer: 4 2/3
+        form: mixed
+        verify: 14/3
+        hints:
+          - 14 wheels are 14 thirds of a tricycle set. How many groups of 3 fit in 14?
+        solution:
+          - '\(14 \div 3 = 4 \text{ R } 2\), so \(\frac{14}{3} = 4\frac{2}{3}\) tricycles’ worth: 4 complete sets, and 2 wheels of another.'
+      - type: fraction
+        prompt: How many **cars’ worth** are in the same pile? Write a mixed number.
+        answer: 3 2/4
+        form: mixed
+        verify: 14/4
+        hints:
+          - Same wheels, but now each group is a set of 4.
+        solution:
+          - '\(14 \div 4 = 3 \text{ R } 2\), so \(\frac{14}{4} = 3\frac{2}{4}\) cars’ worth. Same pile, different whole, different fraction.'
+      - type: fraction
+        prompt: A unicycle has only **1** wheel. Write the number of unicycles in the pile as an **improper fraction**.
+        answer: 14/1
+        form: improper
+        verify: 14 / 1
+        hints:
+          - One wheel is one whole unicycle. So how many parts are in one whole?
+          - The denominator is the number of parts in one whole.
+        solution:
+          - 'One whole unicycle has 1 part, so the denominator is 1: \(\frac{14}{1}\), which is 14 unicycles.'
+      - type: build
+        prompt: Bring a **new pile**. It must make a whole number of bicycles (2 wheels), tricycles (3) and cars (4), with no wheels left over. How many wheels could it have?
+        fields:
+          - { name: w, label: 'Number of wheels', unit: wheels }
+        rules:
+          - { test: 'w > 0', fail: 'A pile needs some wheels in it.' }
+          - { test: 'w % 3 == 0', fail: 'Some wheels are left over when you build tricycles.' }
+          - { test: 'w % 4 == 0', fail: 'The tricycles work, but some wheels are left over when you build cars.' }
+        examples:
+          - { w: 12 }
+          - { w: 24 }
+          - { w: 36 }
+        counterexamples:
+          - { w: 14 }
+          - { w: 18 }
+          - { w: 16 }
+        hints:
+          - The numerator must split exactly into groups of 2, groups of 3 and groups of 4.
+          - Try the numbers you say when you count by 4s. Which also work for 3s?
+        solution:
+          - '**12** wheels make 6 bicycles, 4 tricycles and 3 cars: \(\frac{12}{2} = 6\), \(\frac{12}{3} = 4\), \(\frac{12}{4} = 3\).'
+          - '**24** and **36** work too. All of them split exactly into groups of 3 and groups of 4, and those also split into 2s.'
+    wrapUp: The wheels never changed. Only the whole changed, and the denominator tells you what one whole is. When the numerator splits exactly into groups of the denominator, the improper fraction is really a whole number.
 
   - id: d2
     level: 3
-    covers: [K1.4, S1.5]
-    type: number
+    thinking: flaw
+    covers: [K1.4, S1.5, S1.3]
+    type: investigation
     prompt: |-
-      A fraction has a denominator of **6**. As a mixed number, its whole-number part is **4**.
-      What is the **greatest** numerator it could have?
-    answer: 29
-    verify: 4 * 6 + 5
-    hints:
-      - 'The mixed number looks like \(4\frac{?}{6}\). How big can the fractional part be before it makes another whole?'
-      - '\(4\frac{6}{6}\) would be 5 wholes, so the most the fractional part can be is \(\frac{5}{6}\).'
-    solution:
-      - 'The largest fractional part is \(\frac{5}{6}\), so the number is \(4\frac{5}{6}\).'
-      - '4 wholes are \(4 \times 6 = 24\) sixths, and \(24 + 5 = 29\): the greatest numerator is **29**.'
+      A pizza shop’s new robot waiter changes mixed numbers into improper fractions its own way. A customer orders
+      \(3\frac{1}{2}\) pizzas. The robot adds \(3 + 1 = 4\) and proudly brings \(\frac{4}{2}\) pizzas. The customer is not impressed.
+    parts:
+      - type: number
+        prompt: How many **half pizzas** should the customer have got?
+        answer: 7
+        verify: 3 * 2 + 1
+        hints:
+          - How many halves are in one pizza? In 3 pizzas?
+        solution:
+          - '3 pizzas are \(3 \times 2 = 6\) halves. One more half makes **7**.'
+      - type: number
+        prompt: How many half pizzas short is the robot’s delivery?
+        answer: 3
+        verify: 7 - 4
+        hints:
+          - The robot brought 4 halves.
+        solution:
+          - '\(7 - 4 = 3\) halves short.'
+      - type: mc
+        prompt: Why does the robot’s way come up short?
+        choices:
+          - It counts each whole pizza as only 1 part, not as 2 halves.
+          - It should have added the 2 in the denominator to get 6.
+          - It should have made the denominator bigger than 2 here.
+          - It goes wrong only for pizzas that are cut into halves.
+        answer: 0
+        feedback:
+          '1': '\(\frac{6}{2}\) is 3 pizzas, and the customer ordered more than 3. Think about what the robot did with the 3 whole pizzas.'
+          '2': 'The parts are still halves, so the denominator stays 2. It’s the number of halves that is wrong.'
+          '3': 'Try \(2\frac{3}{4}\). The robot would make \(\frac{5}{4}\), but the right answer is \(\frac{11}{4}\). Fourths go wrong too.'
+        hints:
+          - 'In its sum 3 + 1, what does the robot think the 3 is counting? How many halves are in 3 pizzas?'
+        solution:
+          - 'The robot added the 3 as if 3 pizzas were 3 halves. Really they are 6 halves. Each whole should count as all of its parts.'
+      - type: open
+        prompt: 'Write a better rule for the robot, one that works for any mixed number. Test it on \(2\frac{3}{4}\).'
+        modelAnswer: |-
+          Multiply the wholes by the denominator, because each whole has that many parts. Add the numerator. Keep the same denominator, because the
+          parts don’t change size. For \(2\frac{3}{4}\): \(2 \times 4 = 8\), then \(8 + 3 = 11\), so it makes \(\frac{11}{4}\).
+        rubric:
+          - My rule turns each whole into parts by multiplying by the denominator.
+          - My rule adds the numerator and keeps the denominator the same.
+          - 'When I tested my rule, \(2\frac{3}{4}\) became \(\frac{11}{4}\).'
+    wrapUp: A whole is not one part. It is as many parts as the denominator says.
 
   - id: d3
     level: 3
-    covers: [S1.1, U1.2]
-    type: multi
-    prompt: Select **all** the numbers that are **between 2 and 3** on a number line.
-    choices:
-      - '\(\frac{9}{4}\)'
-      - '\(\frac{5}{2}\)'
-      - '\(\frac{12}{4}\)'
-      - '\(\frac{7}{3}\)'
-      - '\(\frac{11}{6}\)'
-      - '\(2\frac{4}{5}\)'
-    answer: [0, 1, 3, 5]
-    hints:
-      - Change each improper fraction to a mixed number. Which ones start with 2 and a bit?
-      - 'Look closely at \(\frac{12}{4}\) and \(\frac{11}{6}\).'
-    solution:
-      - '\(\frac{9}{4} = 2\frac{1}{4}\) ✓  \(\frac{5}{2} = 2\frac{1}{2}\) ✓  \(\frac{7}{3} = 2\frac{1}{3}\) ✓  \(2\frac{4}{5}\) ✓'
-      - '\(\frac{12}{4} = 3\) exactly, and \(\frac{11}{6} = 1\frac{5}{6}\) is less than 2.'
-
-  - id: d4
-    level: 3
-    covers: [U1.2, S1.5]
-    type: open
+    thinking: design
+    covers: [S1.1, S1.5, S1.6]
+    type: build
     prompt: |-
-      Explain why \(2\frac{3}{4}\) and \(\frac{11}{4}\) are at the **same point** on a number line.
-      Use the words **fourths** and **whole**.
-    modelAnswer: |-
-      Each whole is 4 fourths. \(2\frac{3}{4}\) is 2 wholes, which is 8 fourths, plus 3 more fourths: 11 fourths.
-      \(\frac{11}{4}\) also means 11 fourths. They are the same amount written two ways, so they are the same point.
-    rubric:
-      - I said that one whole is 4 fourths.
-      - 'I changed \(2\frac{3}{4}\) into fourths (8 + 3 = 11), or \(\frac{11}{4}\) into wholes and fourths.'
-      - I explained that the same amount means the same point.
+      A ski trail is **3 km** long. The club wants a hot chocolate hut between the 2 km mark and the 3 km mark,
+      **closer to the 3 km mark**. Choose a spot, and write it in kilometres as an **improper fraction**.
+    fields:
+      - { name: n, label: 'Numerator' }
+      - { name: d, label: 'Denominator' }
+    rules:
+      - { test: 'd >= 2 && d % 1 == 0 && n % 1 == 0', fail: 'Use whole numbers, and a denominator of at least 2.' }
+      - { test: 'n / d > 2 && n / d < 3', fail: 'That spot isn’t between the 2 km and 3 km marks. Change your fraction to a mixed number to check.' }
+      - { test: 'n / d > 5 / 2', fail: 'That spot is between the marks, but is it closer to 3 km? Look at the fractional part of its mixed number.' }
+    examples:
+      - { n: 11, d: 4 }
+      - { n: 8, d: 3 }
+      - { n: 14, d: 5 }
+    counterexamples:
+      - { n: 9, d: 4 }
+      - { n: 5, d: 2 }
+      - { n: 12, d: 4 }
+      - { n: 7, d: 4 }
+    hints:
+      - Where is the exact middle between 2 km and 3 km? Which benchmark does that use?
+      - 'So your spot is 2 wholes, plus a fractional part that is more than \(\frac{1}{2}\) but less than 1.'
+      - 'Choose that mixed number first. Then change it to an improper fraction.'
+    solution:
+      - 'The middle is \(2\frac{1}{2}\). The hut needs 2 wholes plus a part greater than \(\frac{1}{2}\).'
+      - '\(2\frac{3}{4} = \frac{11}{4}\) works, because 3 is more than half of 4. So does \(2\frac{2}{3} = \frac{8}{3}\), and \(2\frac{4}{5} = \frac{14}{5}\).'
+      - 'They are all different spots, and there are many more. Try halves: \(\frac{5}{2}\) is exactly the middle, and \(\frac{6}{2}\) is 3 km itself. No fraction in halves can work.'
