@@ -90,209 +90,296 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: notice
     covers: [U1.1, S1.5]
     type: mc
-    prompt: 'In the sequence 4, 8, 12, 16, …, what is the term at **position 3**?'
+    prompt: 'Hockey players line up in order. Their jersey numbers go 4, 8, 12, 16, … What number is on the player at **position 3**?'
     choices: ['12', '3', '16', '8']
     answer: 0
     feedback:
-      '1': '3 is the position, not the term.'
-      '2': '16 is at position 4.'
-      '3': '8 is at position 2.'
+      '1': '3 tells you **where** the player stands. The question asks what number is on the jersey.'
+      '2': '16 is the 4th number in the line. Count again from the start.'
+      '3': '8 is the 2nd number in the line. Count one more.'
     hints:
-      - Count along the sequence to the 3rd number.
+      - Which player is first in line? Point to each one and count.
     solution:
-      - '1st: 4, 2nd: 8, **3rd: 12**'
+      - '1st player: 4. 2nd player: 8. **3rd player: 12**.'
+      - 'The position is **where** a term is. The term is **what** is there.'
 
   - id: w2
     level: 1
-    covers: [S1.3]
+    thinking: apply
+    covers: [S1.4, K1.3, K1.1]
     type: mc
     prompt: |-
-      Which rule matches this table?
+      Which expression gives the number of legs on \(n\) spiders?
 
-      | Position | 1 | 2 | 3 |
+      | Spiders (\(n\)) | 1 | 2 | 3 |
       |---|---|---|---|
-      | Term | 5 | 10 | 15 |
-    choices: ['Multiply the position by 5', 'Add 5 to the position', 'Add 4 to the position', 'Multiply the position by 10']
+      | Legs | 8 | 16 | 24 |
+    choices: ['\(8n\)', '\(n + 8\)', '\(n + 7\)', '\(\frac{n}{8}\)']
     answer: 0
     feedback:
-      '1': 'Check position 2: 2 + 5 = 7, not 10.'
-      '2': 'Check position 2: 2 + 4 = 6, not 10.'
-      '3': 'Check position 1: 1 × 10 = 10, not 5.'
+      '1': 'Try it on 1 spider: \(1 + 8 = 9\) legs. That is one leg too many.'
+      '2': 'This works for 1 spider, but try 2 spiders: \(2 + 7 = 9\), not 16.'
+      '3': 'Try it on 8 spiders: \(\frac{8}{8} = 1\). Eight spiders have far more than 1 leg.'
     hints:
-      - Test each rule on every position in the table.
+      - Test each expression on every column of the table.
+      - A rule has to work for 1 spider, 2 spiders and 3 spiders.
     solution:
-      - '1 × 5 = 5, 2 × 5 = 10, 3 × 5 = 15 ✓'
+      - 'Each spider brings 8 legs, so multiply by 8.'
+      - '\(8 \times 1 = 8\), \(8 \times 2 = 16\), \(8 \times 3 = 24\). The expression is \(8n\).'
 
   - id: w3
     level: 1
+    thinking: apply
     covers: [S1.5, S1.3]
     type: number
-    prompt: 'The sequence 7, 8, 9, 10, … follows the rule \(n + 6\). What is the term at **position 10**?'
+    prompt: 'In a board game, you start on square 6 and move exactly 1 square every turn. After turn \(n\), you are on square \(n + 6\). What square are you on after **turn 10**?'
     answer: 16
     verify: 10 + 6
     hints:
-      - Put 10 in place of \(n\).
+      - Which number goes in place of \(n\)?
     solution:
-      - '\(10 + 6 = 16\)'
+      - 'Turn 10 means \(n\) is 10, so \(10 + 6 = 16\). You are on **square 16**.'
 
   - id: w4
     level: 1
-    covers: [K1.2, S1.2]
+    thinking: apply
+    covers: [S1.1, U1.1]
     type: mc
-    prompt: When you plot the (position, term) points of an arithmetic sequence on a coordinate grid, what do you see?
-    choices: ['The points fit on a straight line.', 'The points make a circle.', 'The points are scattered randomly.', 'All the points are at the same height.']
+    prompt: 'You graph the sequence with the rule \(n + 2\). Each point is (position, term). Which point shows **position 3**?'
+    choices: ['(3, 5)', '(5, 3)', '(3, 2)', '(3, 6)']
     answer: 0
     feedback:
-      '1': The points of an arithmetic sequence never curve around.
-      '2': They follow a pattern, so they aren't random.
-      '3': The terms change, so the heights change too.
+      '1': 'These are the right numbers in the wrong order. The position comes first, so it tells you how far across.'
+      '2': 'The 2 comes from the rule, but it isn''t the term. Work out \(3 + 2\).'
+      '3': 'The rule says to **add** 2. You multiplied by 2.'
     hints:
-      - Look at the graph in the lesson.
+      - First find the term at position 3. Then ask which number comes first in the pair.
+      - 'The term is \(3 + 2\). The position goes first, and the term goes second.'
     solution:
-      - Each step along adds the same amount, so the points fit a **straight line**.
+      - 'At position 3 the term is \(3 + 2 = 5\).'
+      - 'Position first, then term: **(3, 5)**.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.4, K1.3]
-    type: mc
-    prompt: 'Which expression gives the term at position \(n\) for 3, 6, 9, 12, …?'
-    choices: ['\(3n\)', '\(n + 3\)', '\(n + 2\)', '\(\frac{n}{3}\)']
-    answer: 0
-    feedback:
-      '1': 'Check position 2: \(2 + 3 = 5\), not 6.'
-      '2': 'Check position 2: \(2 + 2 = 4\), not 6.'
-      '3': 'Check position 3: \(\frac{3}{3} = 1\), not 9.'
+    thinking: notice
+    covers: [K1.2, S1.2, S1.1]
+    type: text
+    figure: { kind: coord-grid, size: 10, points: [{ x: 1, y: 2 }, { x: 2, y: 4 }, { x: 3, y: 7 }, { x: 4, y: 8 }, { x: 5, y: 10 }] }
+    prompt: 'Nia graphed pairs of mittens. Each point is (pairs, mittens). One point is wrong, and you can spot it without any math, just by looking. Where should that point be? Type it like **(2, 9)**.'
+    accept: ['(3, 6)', '(3,6)', '3, 6', '3,6']
     hints:
-      - Is each term 3 times its position, or 3 more than its position?
+      - Hold a ruler against the points. What should the points of an arithmetic sequence do?
+      - The point at position 3 sticks out of the line. How many mittens are in 3 pairs?
     solution:
-      - '1 × 3 = 3, 2 × 3 = 6, 3 × 3 = 9: the expression is \(3n\).'
+      - 'The points of an arithmetic sequence fit on a **straight line**. Four of these do. The point (3, 7) sits above that line.'
+      - 'It would also mean that 3 pairs have 7 mittens. Somebody has one very lonely mitten!'
+      - 'The rule is \(2n\), so 3 pairs have \(2 \times 3 = 6\) mittens. The point should be at **(3, 6)**.'
 
   - id: b2
     level: 2
-    covers: [S1.5]
+    thinking: flaw
+    covers: [S1.3, S1.5, K1.1]
     type: number
-    prompt: 'A sequence follows the rule \(7n\). What is the term at **position 12**?'
-    answer: 84
-    verify: 7 * 12
+    prompt: |-
+      A chipmunk hides the same number of acorns every day. Bodhi only checks on even days.
+
+      | Day | 2 | 4 | 6 |
+      |---|---|---|---|
+      | Acorns hidden so far | 6 | 12 | 18 |
+
+      Bodhi says, "It goes up by 6 each time, so the rule is \(6n\)." How many acorns will be hidden by **day 7**?
+    answer: 21
+    verify: 3 * 7
+    unit: acorns
     hints:
-      - '\(7n\) means 7 times the position.'
+      - Try Bodhi's rule on day 2. Does \(6n\) give 6?
+      - Look at the top row of the table. Does the day go up by 1 each time, as a position usually does?
+      - 'Compare each day with the acorns below it: 2 → 6, 4 → 12. What do you multiply the day by?'
     solution:
-      - '\(7 \times 12 = 84\)'
+      - 'Test the rule first: \(6 \times 2 = 12\), but the table says 6 on day 2. So \(6n\) is wrong.'
+      - 'Here is the flaw: Bodhi skipped the odd days. The acorns go up by 6, but that takes **2 days**.'
+      - 'Compare each day with its acorns: 2 → 6, 4 → 12, 6 → 18. Each term is the day times 3, so the rule is \(3n\).'
+      - 'Day 7: \(3 \times 7 = 21\) acorns.'
 
   - id: b3
     level: 2
-    covers: [S1.5, K1.1]
-    type: mc
-    prompt: |-
-      What is the missing term?
-
-      | Position | 1 | 2 | 3 | 4 |
-      |---|---|---|---|---|
-      | Term | 10 | 11 | 12 | ? |
-    choices: ['13', '14', '40', '4']
-    answer: 0
-    feedback:
-      '1': 'The terms go up by 1 each time.'
-      '2': 'The rule is "add 9", not "multiply by 10".'
-      '3': '4 is the position. The question asks for the term.'
+    thinking: model
+    covers: [S1.3, S1.5, S1.6]
+    type: number
+    prompt: 'Emil is 2. His sister Jun is 6. Emil says, "Jun is 3 times my age. So the rule is \(3n\), and when I''m 10, she''ll be 30!" How old will Jun really be when Emil is **10**?'
+    answer: 14
+    verify: 10 + 4
+    unit: years old
     hints:
-      - Each term is the position plus 9.
+      - 'Picture next year. How old is Emil then? How old is Jun? Does \(3n\) still work?'
+      - When Emil has a birthday, how many years older does Jun get?
+      - What stays the same every year, no matter how old they are?
     solution:
-      - 'The rule is \(n + 9\), so position 4 → \(4 + 9 = 13\).'
+      - 'Emil''s rule does fit today: \(3 \times 2 = 6\). But one point isn''t enough to prove a rule. Try next year.'
+      - 'Next year Emil is 3 and Jun is 7. Emil''s rule would say 9, so it fails.'
+      - 'They each get 1 year older every year, so Jun is **always 4 years older**. The rule is \(n + 4\).'
+      - 'When Emil is 10, Jun is \(10 + 4 = 14\).'
+      - 'What we learned: \(3n\) and \(n + 4\) both give 6 at position 2. The story tells you which rule is true.'
 
   - id: b4
     level: 2
-    covers: [S1.3, S1.6]
-    type: mc
-    prompt: 'In the sequence with rule \(5n\), which **position** has the term **45**?'
-    choices: ['9', '45', '40', '225']
-    answer: 0
-    feedback:
-      '1': '45 is the term. Which position gives it?'
-      '2': '40 would be \(45 - 5\). The rule multiplies, so undo it by dividing.'
-      '3': '\(45 \times 5 = 225\) goes the wrong way.'
-    hints:
-      - '5 × ? = 45'
-    solution:
-      - '\(5 \times 9 = 45\), so the term 45 is at position **9**.'
-
-  - id: b5
-    level: 2
-    covers: [S1.6]
+    thinking: pattern
+    covers: [S1.3, S1.5, K1.3]
     type: number
-    prompt: 'Each table at a party seats **4** people. How many people can sit at **15** tables?'
-    answer: 60
-    verify: 4 * 15
+    figure: |-
+      <svg viewBox="0 0 300 160" class="fig-svg" role="img" aria-label="A caterpillar drawn in three rows: 4 segments in week 1, 5 in week 2 and 6 in week 3. The last segment of each is its head."><text class="cg-num" x="4" y="35">Week 1</text><circle class="cg-poly" cx="90" cy="30" r="16"/><circle class="cg-poly" cx="124" cy="30" r="16"/><circle class="cg-poly" cx="158" cy="30" r="16"/><circle class="cg-pt" cx="192" cy="30" r="16"/><text class="cg-num" x="4" y="85">Week 2</text><circle class="cg-poly" cx="90" cy="80" r="16"/><circle class="cg-poly" cx="124" cy="80" r="16"/><circle class="cg-poly" cx="158" cy="80" r="16"/><circle class="cg-poly" cx="192" cy="80" r="16"/><circle class="cg-pt" cx="226" cy="80" r="16"/><text class="cg-num" x="4" y="135">Week 3</text><circle class="cg-poly" cx="90" cy="130" r="16"/><circle class="cg-poly" cx="124" cy="130" r="16"/><circle class="cg-poly" cx="158" cy="130" r="16"/><circle class="cg-poly" cx="192" cy="130" r="16"/><circle class="cg-poly" cx="226" cy="130" r="16"/><circle class="cg-pt" cx="260" cy="130" r="16"/></svg>
+    prompt: A cartoon caterpillar grows one new segment every week. The drawing shows weeks 1, 2 and 3. How many segments will it have in **week 40**?
+    answer: 43
+    verify: 40 + 3
+    unit: segments
     hints:
-      - 'Tables (position) → people (term): 1 → 4, 2 → 8, … The rule is \(4n\).'
+      - In the drawing, which part of the caterpillar stays the same from week to week? Which part grows?
+      - Compare each week's segments to the week number. Week 1 has 4. Week 2 has 5. Is it times or plus?
+      - 'Try \(4n\) on week 2 before you trust it. Does it give 5?'
     solution:
-      - '\(4 \times 15 = 60\) people.'
+      - 'Week 1 has 4 segments, so \(4n\) looks tempting. But week 2 would then have 8, and the drawing shows 5.'
+      - 'Compare with the week number: 1 → 4, 2 → 5, 3 → 6. There are always **3 more segments than the week number**.'
+      - 'The rule is \(n + 3\). Week 40: \(40 + 3 = 43\) segments.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.3, U1.1]
-    type: mc
-    prompt: 'Is **50** a term in the sequence with rule \(3n\)?'
-    choices:
-      - 'No. 50 is not a multiple of 3, so no natural-number position gives 50.'
-      - 'Yes, at position 50.'
-      - 'Yes. Every number is in every sequence.'
-      - 'Yes, at position 17.'
-    answer: 0
-    feedback:
-      '1': 'Position 50 gives \(3 \times 50 = 150\).'
-      '2': 'The sequence 3, 6, 9, … skips most numbers.'
-      '3': '\(3 \times 17 = 51\), not 50.'
-    hints:
-      - Is there a whole number \(n\) with \(3 \times n = 50\)?
-    solution:
-      - '\(3 \times 16 = 48\) and \(3 \times 17 = 51\). Nothing in between gives 50, so **50 is not a term**.'
+    thinking: breakdown
+    covers: [S1.4, S1.6, K1.2, S1.1, S1.2]
+    type: investigation
+    prompt: |-
+      Two trolls start a beard contest. On contest day, **Hob's** beard is already **6 cm** long, and **Brak** has just shaved his off. Each week, Hob's beard grows **1 cm** and Brak's grows **3 cm**.
+
+      Let \(n\) be the number of weeks since contest day.
+    parts:
+      - type: mc
+        prompt: Which rules give the length of each beard after \(n\) weeks?
+        choices:
+          - 'Hob: \(n + 6\). Brak: \(3n\).'
+          - 'Hob: \(6n\). Brak: \(3n\).'
+          - 'Hob: \(n + 6\). Brak: \(n + 3\).'
+          - 'Hob: \(6n\). Brak: \(n + 3\).'
+        answer: 0
+        feedback:
+          '1': 'Test Hob after 1 week and after 2 weeks. Would his beard really jump 6 cm in a week?'
+          '2': 'Test Brak after 1 week and after 2 weeks. He gains 3 cm each week, so what is he at after 2 weeks?'
+          '3': 'Test both rules after 2 weeks. Hob should be at 8 cm and Brak at 6 cm.'
+        hints:
+          - Work out each beard after 1 week and after 2 weeks. Then test the rules.
+        solution:
+          - 'Hob: 6 cm, then 7, 8, 9… He is always 6 more than the number of weeks, so \(n + 6\).'
+          - 'Brak: 3, 6, 9… Three cm for every week, so \(3n\).'
+      - type: number
+        prompt: After how many weeks are the two beards exactly the same length?
+        answer: 3
+        verify: 6 / (3 - 1)
+        unit: weeks
+        hints:
+          - Make a little table with weeks 1, 2, 3 and so on.
+          - How much of Hob's lead does Brak catch up each week?
+        solution:
+          - 'Week 1: Hob 7, Brak 3. Week 2: Hob 8, Brak 6. Week 3: Hob 9, Brak 9.'
+          - 'Another way: Brak gains 2 cm on Hob each week. A 6 cm lead takes **3 weeks** to catch.'
+      - type: mc
+        figure: { kind: coord-grid, size: 12, points: [{ x: 1, y: 7, label: Hob }, { x: 2, y: 8 }, { x: 3, y: 9 }, { x: 4, y: 10 }, { x: 5, y: 11 }, { x: 6, y: 12 }, { x: 1, y: 3, label: Brak }, { x: 2, y: 6 }, { x: 4, y: 12 }] }
+        prompt: 'Here is the graph, with each point at (weeks, beard length). What does it tell you about the time **after week 3**?'
+        choices:
+          - Brak stays ahead for good, because his line is steeper and stays straight.
+          - Hob gets ahead again, because his beard had a longer start than Brak's.
+          - They stay equal from now on, because their lines have met at one point.
+          - Brak gets ahead, then Hob catches up, because the lines will bend back.
+        answer: 0
+        feedback:
+          '1': 'A head start only matters until it has been used up. Look at the points after week 3.'
+          '2': 'Look at week 4. Hob is at 10 cm and Brak is at 12 cm.'
+          '3': 'The points of an arithmetic sequence fit on a straight line, so neither line can bend back.'
+        hints:
+          - Look at the points after the place where they meet. Which is higher?
+          - Each week, how much higher does each line go?
+        solution:
+          - 'The two lines cross at (3, 9), where both beards are 9 cm.'
+          - 'After that, Brak''s points are higher. His line goes up 3 each step and Hob''s goes up 1.'
+          - 'Both are straight, so they can never bend to meet again. Brak stays ahead.'
+      - type: mc
+        prompt: '**What if** a magic comb makes both beards grow **3 cm** each week? Hob still starts at 6 cm, and Brak still starts shaved. When does Brak catch up?'
+        choices:
+          - Never, because Hob stays exactly 6 cm ahead every single week.
+          - In week 2, because that is when Brak's beard reaches 6 cm long.
+          - After a very long time, because the shorter beard keeps on catching up.
+          - Never, because the comb makes Hob's beard grow faster than Brak's.
+        answer: 0
+        feedback:
+          '1': 'Brak does reach 6 cm in week 2. But how long is Hob''s beard by then?'
+          '2': 'Work out the gap for a few weeks. Does it ever get smaller?'
+          '3': 'Each beard grows 3 cm a week, so neither grows faster.'
+        hints:
+          - Work out both beards for a few weeks. What happens to the gap?
+          - Picture their points on the graph. Would the two lines ever cross?
+        solution:
+          - 'After 1 week: Hob 9, Brak 3. After 2 weeks: Hob 12, Brak 6. After 3 weeks: Hob 15, Brak 9.'
+          - 'The gap is 6 cm every time. On a graph, the two lines would go up at the same steepness and **never cross**.'
+    wrapUp: 'A rule tells you the whole story of a sequence. The steepness of its line shows how much is added at each step. Two lines can only meet if one is steeper than the other.'
 
   - id: d2
     level: 3
-    covers: [S1.2, K1.2]
-    type: mc
-    prompt: 'You graph the sequences \(2n\) and \(5n\) on the same grid. Which line is **steeper**?'
-    choices:
-      - '\(5n\), because its terms go up by 5 for each position.'
-      - '\(2n\), because 2 is smaller.'
-      - They are equally steep.
-      - Neither one makes a straight line.
-    answer: 0
-    feedback:
-      '1': 'A smaller jump per position makes a **flatter** line.'
-      '2': 'One goes up 2 each step and the other goes up 5. They can''t be equally steep.'
-      '3': Both are arithmetic sequences, so both make straight lines.
+    thinking: design
+    covers: [S1.3, S1.6, U1.1]
+    type: build
+    prompt: |-
+      A frog starts on the bank, at pad 0, and always jumps the same number of lily pads. Flies are resting on pads **24** and **40**. A skunk is asleep on pad **30**.
+
+      Choose a jump size so the frog lands on both fly pads, and **never** lands on the skunk's pad.
+    fields:
+      - { name: k, label: 'Lily pads per jump' }
+    rules:
+      - { test: 'k > 0', fail: 'A frog that doesn''t jump catches no flies.' }
+      - { test: 'k % 1 == 0', fail: 'The frog lands only on whole-numbered pads, so use a whole number of pads per jump.' }
+      - { test: '24 % k == 0', fail: 'List the pads that this frog lands on. It jumps right over the flies on pad 24.' }
+      - { test: '40 % k == 0', fail: 'List the pads that this frog lands on. It jumps right over the flies on pad 40.' }
+      - { test: '30 % k != 0', fail: 'Both flies get eaten, but this frog lands on the skunk at pad 30. Try again, and pick a different jump.' }
+    examples:
+      - { k: 8 }
+      - { k: 4 }
+    counterexamples:
+      - { k: 2 }
+      - { k: 1 }
+      - { k: 6 }
+      - { k: 5 }
     hints:
-      - For each step right (position + 1), how far up does each line go?
+      - If the frog jumps 3 pads each time, write down the pads it lands on. Is that a sequence you know?
+      - 'A frog that jumps 3 pads follows the rule \(3n\): after jump \(n\) it is on pad \(3 \times n\). For your frog, 24 and 40 must both be terms.'
+      - 'Which numbers go into both 24 and 40 with no remainder? Now check each one against 30.'
     solution:
-      - 'Each step right, \(2n\) goes up 2 but \(5n\) goes up 5. The \(5n\) line is **steeper**.'
+      - 'A frog that jumps 3 pads lands on 3, 6, 9, … That is the rule \(3n\). Any jump size works the same way, and each landing pad is a term.'
+      - 'A pad is a term only if the jump size goes into it with no remainder. So the jump size must go into 24 and 40, but **not** into 30.'
+      - 'The numbers that go into both 24 and 40 are 1, 2, 4 and 8. Numbers 1 and 2 also go into 30, so those frogs wake the skunk.'
+      - '**4 works** (rule \(4n\)): pad 24 at jump 6, pad 40 at jump 10, and it goes from 28 to 32 over the skunk.'
+      - '**8 works** (rule \(8n\)): pad 24 at jump 3, pad 40 at jump 5, and it goes from 24 to 32 over the skunk.'
 
   - id: d3
     level: 3
-    covers: [S1.6, S1.4]
-    type: number
-    prompt: 'In the sequence with rule \(n + 12\), which **position** has the term **40**?'
-    answer: 28
-    verify: 40 - 12
-    hints:
-      - '? + 12 = 40'
-    solution:
-      - '\(40 - 12 = 28\). Check: \(28 + 12 = 40\) ✓'
-
-  - id: d4
-    level: 3
-    covers: [S1.3, S1.4, S1.5]
+    thinking: why
+    covers: [K1.2, S1.2, S1.3, S1.4]
     type: open
-    prompt: 'The sequence 6, 12, 18, 24, … continues. Describe the rule in words, write it as an expression, and find the term at **position 30**.'
+    figure: |-
+      <svg viewBox="0 0 330 160" class="fig-svg" role="img" aria-label="Two rows of box stacks. Row A has 2, 4, 6 and 8 boxes. Row B has 1, 2, 4 and 8 boxes."><rect class="cg-poly" x="12" y="116" width="26" height="14"/><rect class="cg-poly" x="12" y="102" width="26" height="14"/><rect class="cg-poly" x="44" y="116" width="26" height="14"/><rect class="cg-poly" x="44" y="102" width="26" height="14"/><rect class="cg-poly" x="44" y="88" width="26" height="14"/><rect class="cg-poly" x="44" y="74" width="26" height="14"/><rect class="cg-poly" x="76" y="116" width="26" height="14"/><rect class="cg-poly" x="76" y="102" width="26" height="14"/><rect class="cg-poly" x="76" y="88" width="26" height="14"/><rect class="cg-poly" x="76" y="74" width="26" height="14"/><rect class="cg-poly" x="76" y="60" width="26" height="14"/><rect class="cg-poly" x="76" y="46" width="26" height="14"/><rect class="cg-poly" x="108" y="116" width="26" height="14"/><rect class="cg-poly" x="108" y="102" width="26" height="14"/><rect class="cg-poly" x="108" y="88" width="26" height="14"/><rect class="cg-poly" x="108" y="74" width="26" height="14"/><rect class="cg-poly" x="108" y="60" width="26" height="14"/><rect class="cg-poly" x="108" y="46" width="26" height="14"/><rect class="cg-poly" x="108" y="32" width="26" height="14"/><rect class="cg-poly" x="108" y="18" width="26" height="14"/><text class="cg-num" x="73" y="152" text-anchor="middle">Row A</text><rect class="cg-poly" x="188" y="116" width="26" height="14"/><rect class="cg-poly" x="220" y="116" width="26" height="14"/><rect class="cg-poly" x="220" y="102" width="26" height="14"/><rect class="cg-poly" x="252" y="116" width="26" height="14"/><rect class="cg-poly" x="252" y="102" width="26" height="14"/><rect class="cg-poly" x="252" y="88" width="26" height="14"/><rect class="cg-poly" x="252" y="74" width="26" height="14"/><rect class="cg-poly" x="284" y="116" width="26" height="14"/><rect class="cg-poly" x="284" y="102" width="26" height="14"/><rect class="cg-poly" x="284" y="88" width="26" height="14"/><rect class="cg-poly" x="284" y="74" width="26" height="14"/><rect class="cg-poly" x="284" y="60" width="26" height="14"/><rect class="cg-poly" x="284" y="46" width="26" height="14"/><rect class="cg-poly" x="284" y="32" width="26" height="14"/><rect class="cg-poly" x="284" y="18" width="26" height="14"/><text class="cg-num" x="249" y="152" text-anchor="middle">Row B</text></svg>
+    hints:
+      - How much taller is each stack than the one before it? Work that out for both rows.
+      - 'Think of the top of each stack as a point on a grid: (stack number, boxes). Would the points fit on a straight line?'
+    prompt: |-
+      You want a **straight** ramp for your toy car, resting on the top of all four stacks of boxes in a row. Row A has 2, 4, 6 and 8 boxes. Row B has 1, 2, 4 and 8 boxes.
+
+      Which row will work? Explain **why**, using how much each stack goes up from the one before. Then write an expression for the boxes in stack \(n\) of that row.
     modelAnswer: |-
-      Each term is the position multiplied by 6 (1 → 6, 2 → 12, 3 → 18). As an expression, it is \(6n\). At position 30,
-      the term is \(6 \times 30 = 180\).
+      Row A works. Each stack is 2 boxes taller than the one before, so the tops go up by the same amount each step and a straight
+      ramp touches them all. In Row B the stacks go up by 1, then 2, then 4, so the tops bend more and more steeply. The rule for Row A
+      is \(2n\).
     rubric:
-      - I described the rule as "multiply the position by 6".
-      - I wrote the expression \(6n\).
-      - I found that the 30th term is 180.
+      - I chose Row A.
+      - I said that Row A goes up by the same amount, 2 boxes, at every step.
+      - I said that Row B goes up by different amounts (1, 2, then 4), so its tops can't fit on a straight line.
+      - I wrote the expression \(2n\).
