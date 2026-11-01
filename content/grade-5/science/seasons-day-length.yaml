@@ -125,231 +125,318 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.4]
+    thinking: recall
+    covers: [K1.4, K1.2]
     type: mc
-    prompt: What causes the seasons?
-    choices:
-      - "Earth's tilted axis, as Earth travels around the Sun"
-      - Earth getting much closer to the Sun in summer
-      - The Moon blocking the Sun in winter
-      - Clouds covering the Sun in winter
+    prompt: On the **December solstice**, which hemisphere is tilted toward the Sun?
+    choices: [Southern, Northern, Both, Neither]
+    fixedOrder: true
     answer: 0
     feedback:
-      '1': Then both hemispheres would have summer at the same time, but they don't.
-      '2': The Moon doesn't cause the seasons.
-      '3': Clouds change the weather, not the seasons.
+      '1': Think about Alberta in December. What season is it, and what does that say about the tilt?
+      '2': Earth is one solid ball with one tilt. If one end leans toward the Sun, what does the other end do?
+      '3': That is true on another kind of day. Which days are those?
     hints:
-      - Remember the orbit model. What stayed the same as Earth moved?
+      - What season is it in Canada in December?
     solution:
-      - "Earth's axis is **tilted**. Each hemisphere takes turns tilting toward the Sun."
+      - It is winter in Canada, so the north is tilted away from the Sun. That means the **southern** hemisphere is tilted toward it.
 
   - id: w2
     level: 1
-    covers: [K1.4]
-    type: mc
-    prompt: In **June**, which hemisphere is tilted toward the Sun?
-    choices: [Northern, Southern, Both, Neither]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': In June, the southern hemisphere is tilted away. It is winter there.
-      '2': When one hemisphere tilts toward the Sun, the other tilts away.
-      '3': Neither is tilted toward the Sun only at the equinoxes.
+    thinking: apply
+    covers: [K1.5, S1.1]
+    type: number
+    prompt: On the June solstice, Edmonton gets about **17 hours** of daylight. About how many hours of **darkness** does it get that day?
+    answer: 7
+    unit: hours
+    verify: '24 - 17'
     hints:
-      - June is summer in Canada.
+      - How many hours are there in one whole day, light and dark together?
     solution:
-      - In June the **northern** hemisphere is tilted toward the Sun, so it is summer in Canada.
+      - 'A day always has 24 hours. The tilt only changes how they are shared out: \(24 - 17 = 7\) hours of darkness.'
 
   - id: w3
     level: 1
-    covers: [K1.2, K1.5]
+    thinking: apply
+    covers: [K1.5, S1.6]
     type: mc
-    prompt: In Canada, the day with the **most daylight** of the year is called the…
-    choices: [June solstice, December solstice, March equinox, September equinox]
-    fixedOrder: true
+    prompt: It is midnight on June 21. You are camping near Inuvik. You unzip the tent and look north. What do you see?
+    choices:
+      - The Sun, low above the horizon
+      - The Sun, high overhead
+      - A dark sky full of stars
+      - The Moon, where the Sun should be
     answer: 0
     feedback:
-      '1': The December solstice has the **least** daylight in Canada.
-      '2': At an equinox, day and night are about equal.
-      '3': At an equinox, day and night are about equal.
+      '1': The Sun does stay up, but think back to the experiment. Where was it at midnight?
+      '2': That is what midnight looks like in Edmonton on a clear night. What is special about Inuvik in June?
+      '3': The Moon doesn’t take over from the Sun. Which way is the north tilted in June?
     hints:
-      - The longest day is when the north tilts most toward the Sun.
+      - Remember the experiment that followed the Sun from noon until midnight.
     solution:
-      - The **June solstice** (about June 21) has the most daylight in the northern hemisphere.
-
-  - id: w4
-    level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: On an **equinox**, about how long is the day?
-    choices: [About 12 hours, About 24 hours, About 6 hours, It depends only on the weather]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': That happens near the poles in summer, not at an equinox.
-      '2': At an equinox, day and night are about equal.
-      '3': Day length depends on Earth's tilt, not on the weather.
-    hints:
-      - '"Equinox" comes from words meaning "equal night".'
-    solution:
-      - At an equinox, day and night are about **equal**, so about **12 hours** each.
+      - This is the **midnight sun**. In June, Inuvik stays in sunlight all night, and the Sun dips low in the north without setting.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.4]
+    thinking: notice
+    covers: [K1.4, K1.5, S1.1]
     type: mc
-    prompt: It is summer in Alberta. What season is it in New Zealand, in the southern hemisphere?
-    choices: [Winter, Summer, Spring, Fall]
+    figure: >-
+      <svg viewBox="0 0 420 180" class="fig-svg" role="img" aria-label="The Sun in the middle with Earth on each side. Earth A is to the left of the Sun and Earth B is to the right. On both, the axis leans the same way, with the north end marked N leaning to the right. So on Earth A the N end leans toward the Sun, and on Earth B it leans away.">
+      <circle class="fig-hl" cx="210" cy="86" r="36"/>
+      <text class="sci-text" x="210" y="91" text-anchor="middle">Sun</text>
+      <circle class="obj" cx="70" cy="86" r="34"/><line class="fig-arrow" x1="39" y1="73" x2="101" y2="99"/><line class="obj-line" x1="90" y1="40" x2="50" y2="132"/>
+      <text class="sci-text" x="94" y="36">N</text>
+      <circle class="obj" cx="350" cy="86" r="34"/><line class="fig-arrow" x1="319" y1="73" x2="381" y2="99"/><line class="obj-line" x1="370" y1="40" x2="330" y2="132"/>
+      <text class="sci-text" x="374" y="36">N</text>
+      <text class="sci-text" x="70" y="166" text-anchor="middle">Earth A</text><text class="sci-text" x="350" y="166" text-anchor="middle">Earth B</text></svg>
+    prompt: This picture shows Earth at two points on its trip around the Sun. **N** marks the North Pole, and the picture is not to scale. Which Earth shows **June** in Alberta?
+    choices: [Earth A, Earth B, Both, Neither]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': The hemispheres have opposite seasons.
-      '2': Spring in the south goes with fall in the north.
-      '3': Fall in the south goes with spring in the north.
+      '1': Put your finger on the N. Which way does that end lean, compared with where the Sun is?
+      '2': The axis leans the same way in both pictures, which is easy to notice. But is the N end on the same side of the Sun?
+      '3': The north is tilted toward the Sun for part of the year. Check both pictures again.
     hints:
-      - When the north tilts toward the Sun, the south tilts away.
+      - Alberta is in the northern half of Earth. Find the N on each Earth.
+      - In June, is the north tilted toward the Sun or away from it?
     solution:
-      - The southern hemisphere is tilted away from the Sun, so it is **winter** in New Zealand.
+      - On **Earth A**, the N end leans toward the Sun, so the north has summer and long days. That is June.
+      - On Earth B, the same lean now points away from the Sun, so that is December.
+      - Look at what didn’t change. The axis leans the same way in both pictures. Only Earth’s place on its trip changed.
 
   - id: b2
     level: 2
+    thinking: pattern
     covers: [K1.5, S1.1]
-    type: number
-    prompt: Edmonton gets about **17** hours of daylight on the June solstice and about **7.5** hours on the December solstice. How many more hours of daylight does it get in June?
-    answer: 9.5
-    unit: hours
+    type: mc
+    prompt: |-
+      Here is the daylight in three made-up towns in the northern hemisphere. Which town is **farthest north**?
+
+      | Town | June solstice | December solstice |
+      |---|---|---|
+      | Pine Hollow | 15 hours | 9 hours |
+      | Elk Crossing | 18 hours | 6 hours |
+      | Lynx Bay | 22 hours | 2 hours |
+    choices: [Lynx Bay, Pine Hollow, Elk Crossing, You can’t tell]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': It is tempting to think the far north is dark, so it must have the fewest hours in June. What happened in Inuvik in June?
+      '2': Elk Crossing fits in the middle. Which town has the biggest change between June and December?
+      '3': You can tell. You already know what Edmonton and Inuvik do. Which one has the bigger change, and which one is farther north?
     hints:
-      - Subtract the December daylight from the June daylight.
+      - Compare two places you know, Edmonton and Inuvik. What happens to each of them in June and in December?
+      - Work out the gap between June and December for each town.
     solution:
-      - '17 − 7.5 = **9.5 hours** more daylight in June.'
-    verify: '17 - 15/2'
+      - Edmonton goes from about 17 hours to about 7½. Inuvik, much farther north, goes from all day to none. The farther north, the **bigger the swing**.
+      - The gaps are Pine Hollow 6 hours, Elk Crossing 12 hours and Lynx Bay 20 hours. So **Lynx Bay** is farthest north.
 
   - id: b3
     level: 2
-    covers: [S1.1, K1.5]
-    type: mc
-    prompt: Why are summer days in Alberta **longer** than winter days?
+    thinking: notice
+    covers: [S1.4, K1.3]
+    type: multi
+    prompt: You are filling in next year’s calendar today, **in pen**. Which of these could you mark on the right day, within a day or so? Select **all** that work.
     choices:
-      - In summer, the northern hemisphere is tilted toward the Sun, so more of each day is spent in sunlight.
-      - In summer, Earth spins more slowly.
-      - In summer, the Sun is bigger.
-      - In summer, there are more hours in a day.
-    answer: 0
-    feedback:
-      '1': Earth spins at the same speed all year.
-      '2': The Sun doesn't change size.
-      '3': A day always has 24 hours. Only the daylight part changes.
+      - The longest day of the year
+      - The day in March when day and night are about equal
+      - The first big snowfall of the winter
+      - The hottest afternoon of the summer
+    fixedOrder: true
+    answer: [0, 1]
     hints:
-      - Look at the daylight bars when the north tilts toward the Sun.
+      - Which of these are caused by where Earth is on its trip around the Sun? Which are weather?
     solution:
-      - Tilted toward the Sun, Alberta spends **more of each 24-hour day** in sunlight.
+      - ✓ The longest day is the June solstice. Earth’s trip repeats every year, so you can mark it years ahead.
+      - ✓ The March equinox comes back on time every year in the same way.
+      - ✗ A snowfall is weather. Weather follows the seasons in a rough way, but no one can give its exact day a year ahead.
+      - ✗ The hottest afternoon is weather too. It can move by weeks from one year to the next.
 
   - id: b4
     level: 2
-    covers: [S1.4, K1.3]
-    type: multi
-    prompt: Select **all** the astronomical phenomena that happen in a **cycle**, repeating every year.
-    choices: [The four seasons, Days getting longer and shorter, Solstices and equinoxes, A thunderstorm on one afternoon]
-    fixedOrder: true
-    answer: [0, 1, 2]
-    hints:
-      - A cycle repeats in a predictable pattern.
-    solution:
-      - ✓ Seasons, changing day length, and solstices and equinoxes repeat every year.
-      - ✗ A single thunderstorm is weather, and it doesn't repeat on a schedule.
-
-  - id: b5
-    level: 2
-    covers: [S1.6, K1.5]
+    thinking: decide
+    covers: [S1.9, K1.9, U1.1]
     type: mc
-    prompt: In the experiment, why did the Sun stay in the sky all night in Inuvik but not in Edmonton?
+    prompt: |-
+      In February, a Chinook, a warm winter wind, melts the snow on Aunt Marnie’s farm. She stands outside in a T-shirt
+      with her tomato seeds. “It’s spring! Time to plant!” Grandpa points at the Sun, already setting in the late afternoon. Which clue should she trust more?
     choices:
-      - Inuvik is much farther north, so in June it stays in sunlight even at midnight.
-      - Inuvik is closer to the Sun than Edmonton.
-      - The clocks in Inuvik are different.
-      - It never gets dark in Inuvik.
+      - The short days, because day length follows the same cycle each year
+      - The warm wind, because seeds only care about the temperature today
+      - The warm wind, because a Chinook means that spring has come early
+      - The short days, because February days are as long as those in June
     answer: 0
     feedback:
-      '1': Both towns are the same distance from the Sun. Their position on the tilted Earth is what differs.
-      '2': Clocks don't change where the Sun is.
-      '3': In winter, Inuvik has the polar night, when the Sun doesn't rise.
+      '1': The warmth is real, but how long might it last? Seeds will need warm days for weeks.
+      '2': A Chinook is weather. It can blow for a few days and then leave. Has Earth moved any farther along its trip?
+      '3': Right clue, wrong reason. Compare February’s short days with the long days of June.
     hints:
-      - How far north is each town?
+      - Which of the two clues could change again by next week?
+      - What moves the seasons along? Could one warm wind speed that up?
     solution:
-      - In June the north is tilted toward the Sun. Inuvik is so far north that it stays in sunlight all night.
+      - A Chinook is **weather**, and it can be gone in days. Winter can come right back and kill young plants.
+      - Day length comes from Earth’s tilt and its trip around the Sun, so it can’t be fooled. Short days tell Aunt Marnie that it is still winter.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.4, S1.1]
-    type: mc
-    prompt: 'Mia says: "It''s summer because Earth is closer to the Sun." Which fact shows Mia is wrong?'
-    choices:
-      - When it is summer in Canada, it is winter in Australia.
-      - The Sun is hot.
-      - Summer has long days.
-      - Earth travels around the Sun.
-    answer: 0
-    feedback:
-      '1': True, but it doesn't show whether distance causes seasons.
-      '2': This is true, but it doesn't rule out Mia's idea.
-      '3': This is true, but it doesn't test Mia's idea.
-    hints:
-      - If distance caused summer, what would be true for the whole planet?
-    solution:
-      - If being closer caused summer, the **whole Earth** would have summer at once. Opposite seasons in the two hemispheres show the **tilt** is the cause.
+    thinking: whatif
+    covers: [K1.4, K1.5, S1.1, S1.7]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 420 150" class="fig-svg" role="img" aria-label="Two desk globes on stands. The first, labelled before, leans to one side. The second, labelled after Mr. Bolt's repair, stands perfectly straight.">
+      <circle class="obj" cx="120" cy="64" r="40"/><line class="obj-line" x1="143" y1="12" x2="97" y2="116"/><rect class="obj obj--dark" x="82" y="116" width="44" height="8"/>
+      <circle class="obj" cx="300" cy="64" r="40"/><line class="obj-line" x1="300" y1="10" x2="300" y2="116"/><rect class="obj obj--dark" x="278" y="116" width="44" height="8"/>
+      <text class="sci-small" x="120" y="142" text-anchor="middle">Before</text><text class="sci-small" x="300" y="142" text-anchor="middle">After the repair</text></svg>
+    prompt: |-
+      Ms. Aziz’s class uses a desk globe and a lamp as a model of Earth and the Sun. Over the weekend, Mr. Bolt, the
+      kind caretaker, notices that the globe leans. He decides that it is broken, and he bends it perfectly straight.
+
+      On Monday, the class carries the straight globe around the lamp anyway. What would life be like on a planet like that?
+    parts:
+      - type: mc
+        prompt: As the straight globe goes around the lamp, is the north ever tilted toward the lamp?
+        choices:
+          - No. Neither half ever tilts toward the lamp.
+          - Yes, at the spot on the trip that stands for June.
+          - Yes, for half of the trip around the lamp.
+        answer: 0
+        feedback:
+          '1': At that spot, the globe is on one side of the lamp. But with no lean, can either end tip toward it?
+          '2': Which end could be tipped toward the lamp, if the globe stands straight up?
+        hints:
+          - Tilt comes from the lean. What happened to the lean?
+        solution:
+          - With no lean, neither end ever tips toward the lamp, anywhere on the trip.
+      - type: number
+        prompt: On a straight-up Earth, about how many hours of daylight would Edmonton get on **June 21**?
+        answer: 12
+        unit: hours
+        verify: '24 / 2'
+        hints:
+          - Look at the table in the lesson. On which days is neither hemisphere tilted toward the Sun?
+          - How much daylight does Edmonton get on those days?
+        solution:
+          - On the equinoxes, neither hemisphere is tilted toward the Sun, and Edmonton gets about **12 hours**.
+          - A straight-up Earth would be like that every day. Every day of the year would be an equinox.
+      - type: mc
+        prompt: What would happen to the midnight sun and the polar night in Inuvik on this planet?
+        choices:
+          - Both would be gone, with about 12 hours of daylight every day.
+          - The midnight sun would stay all year, because Inuvik is so far north.
+          - The polar night would stay all year, because Inuvik is so far north.
+        answer: 0
+        feedback:
+          '1': Being far north wasn’t enough by itself. What gave Inuvik its midnight sun in June?
+          '2': Being far north wasn’t enough by itself. What gave Inuvik its dark weeks in December?
+        hints:
+          - What two things together made the midnight sun, Inuvik’s place on Earth and what else?
+        solution:
+          - The midnight sun needs the north to tilt toward the Sun, and the polar night needs it to tilt away. With no tilt, both vanish.
+      - type: mc
+        prompt: |-
+          Mr. Bolt laughs and puts the lean back. Now Rafa carries the globe around the lamp, but keeps turning the stand so that the
+          north end **always leans toward the lamp**. What does Rafa’s model show for Alberta?
+        choices:
+          - Summer all year, with long days that never get short
+          - The ordinary four seasons, because the lean is back
+          - Winter all year, with short days that never get long
+        answer: 0
+        feedback:
+          '1': The lean is back, but is it behaving as Earth’s does? Which way does Earth’s axis point as it travels?
+          '2': Rafa’s lean is aimed at the lamp. Is the north tilted toward the Sun or away from it?
+        hints:
+          - Is the north tilted toward or away from the lamp in Rafa’s model? Does that ever change?
+          - In the lesson’s visual, did the axis keep turning to face the Sun?
+        solution:
+          - The north is tilted toward the lamp the whole way around, so Alberta would be stuck in summer, and the south stuck in winter.
+          - Earth’s real axis keeps leaning the **same way** as it travels. That is why the hemispheres take turns.
+    wrapUp: Seasons need two things together. Earth must lean, and the lean must keep pointing the same way as Earth travels. Take away either one and the seasons stop changing.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K1.5, S1.6]
+    thinking: flaw
+    covers: [K1.4]
     type: mc
-    prompt: What is daylight like in Inuvik in late **December**?
+    prompt: |-
+      Hanif’s pen pal Bronte lives in Perth, Australia. Bronte writes, “Earth is closest to the Sun in early January. I checked! And January
+      here is boiling. So being closer must cause summer.” Hanif reads this in Edmonton, beside a snowdrift. Bronte’s fact is true. So where does Bronte’s reasoning fail?
     choices:
-      - "The Sun doesn't rise at all: the polar night."
-      - The Sun never sets.
-      - About 12 hours of daylight.
-      - Exactly the same as in June.
+      - Earth is that close for Edmonton too, and it is winter in Edmonton.
+      - Perth is much nearer to the Sun than Edmonton is in January.
+      - Perth’s heat in January comes from its deserts and not from the Sun.
+      - Nothing in space can be at its closest during a winter month.
     answer: 0
     feedback:
-      '1': That is the midnight sun, in June.
-      '2': About 12 hours happens at the equinoxes.
-      '3': In December, the north is tilted away from the Sun.
+      '1': Compared with how far away the Sun is, is the gap between two towns on Earth a big one or a tiny one?
+      '2': Why are there deserts and hot summers there in the first place? And why is January hot, but not July?
+      '3': The problem says that Bronte’s fact is true, and it is. Winter in one place doesn’t stop Earth being close.
     hints:
-      - In December, the north tilts away from the Sun. Inuvik is very far north.
+      - Bronte checked one place. Try Bronte’s reason in another place on the same day.
+      - If being closer caused summer, who else should be having summer in January?
     solution:
-      - Tilted away from the Sun, Inuvik has the **polar night**, when the Sun stays below the horizon all day.
+      - Test the reason in another place. In early January, the whole Earth is at its closest, yet Edmonton is deep in winter.
+      - So closeness can’t be the cause. In January, Perth is tilted toward the Sun and Edmonton is tilted away.
+      - It seemed right because Bronte’s two facts really do happen together in Perth. One place that fits doesn’t prove a cause.
 
   - id: d3
     level: 3
-    covers: [S1.9, K1.9]
-    type: mc
-    prompt: How can watching the length of the day help a farmer in Alberta?
-    choices:
-      - Longer days in spring show it is nearly time to plant.
-      - Longer days mean it will rain tomorrow.
-      - Day length tells the farmer the price of wheat.
-      - Day length doesn't change, so it can't help.
-    answer: 0
-    feedback:
-      '1': Day length follows the seasons, not tomorrow's weather.
-      '2': Day length is about the seasons, not prices.
-      '3': Day length changes a lot through the year in Alberta.
-    hints:
-      - Day length follows the seasons.
-    solution:
-      - Days grow longer as spring arrives. That pattern helps farmers know when to **plant**, and shorter days in fall signal harvest time.
+    thinking: perspective
+    covers: [S1.6, K1.5, S1.1, K1.7]
+    type: open
+    prompt: |-
+      A friend in Edmonton asks, “Why does Inuvik hold a Sunrise Festival every January? The Sun rises every day!” Write a short answer that
+      helps your friend see the sunrise from Inuvik. Use the word **tilt**, and explain why this sunrise isn’t big news in Edmonton.
+    modelAnswer: |-
+      In December, the north is tilted away from the Sun. Inuvik is so far north that for weeks the Sun doesn’t rise at all. That
+      is the polar night. Edmonton is farther south, so even on its shortest day it gets about 7½ hours of daylight, and the Sun still rises every
+      morning. As Earth moves on, the north tilts away less, and in January the Sun comes back to Inuvik. After weeks of dark, that
+      first sunrise is worth a festival.
+    rubric:
+      - I said the north is **tilted** away from the Sun in winter.
+      - I explained that the Sun doesn’t rise for weeks in Inuvik, because it is so far north.
+      - I explained that Edmonton still has a sunrise every day, even on its shortest day.
+      - I said that the Sun’s return after the long dark is why the sunrise is big news.
 
   - id: d4
     level: 3
-    covers: [S1.1, K1.4, K1.5]
-    type: open
-    prompt: Explain why Edmonton has long days in June and short days in December. Use the word **tilt**.
-    modelAnswer: |-
-      Earth's axis is tilted, and it always points the same way as Earth goes around the Sun. In June, the northern
-      hemisphere is tilted toward the Sun, so Edmonton spends more of each day in sunlight and the days are long. In
-      December, the northern hemisphere is tilted away from the Sun, so the days are short.
-    rubric:
-      - I said Earth's axis is **tilted**.
-      - I said the north tilts **toward** the Sun in June, with long days.
-      - I said the north tilts **away** from the Sun in December, with short days.
+    thinking: design
+    covers: [K1.4, K1.5, S1.7, S1.1]
+    type: build
+    prompt: |-
+      A storybook writer invents **Kelp Harbour**, a town in the **southern** hemisphere. Science-loving readers will check the book’s daylight chart.
+      Fill it in so that they can’t complain. Make June and December add up to about 24 hours, as they do in Edmonton (17 + 7½).
+    fields:
+      - { name: june, label: 'June solstice', unit: hours }
+      - { name: sept, label: 'September equinox', unit: hours }
+      - { name: dec, label: 'December solstice', unit: hours }
+      - { name: mar, label: 'March equinox', unit: hours }
+    rules:
+      - { test: 'sept == 12 && mar == 12', fail: 'Check the equinoxes. Is either hemisphere tilted toward the Sun on those days?' }
+      - { test: 'june < 12', fail: 'Which way is the southern hemisphere tilted in June? What does that do to the length of the day?' }
+      - { test: 'dec > 12', fail: 'Which way is the southern hemisphere tilted in December? What does that do to the length of the day?' }
+      - { test: 'june >= 0 && dec <= 24', fail: 'A day only has 24 hours, so daylight must be between 0 and 24 hours.' }
+      - { test: 'june + dec >= 23 && june + dec <= 25', fail: 'The seasons look right. Now check that June and December add up to about 24 hours.' }
+    examples:
+      - { june: 8, sept: 12, dec: 16, mar: 12 }
+      - { june: 7.5, sept: 12, dec: 17, mar: 12 }
+      - { june: 2, sept: 12, dec: 22, mar: 12 }
+    counterexamples:
+      - { june: 16, sept: 12, dec: 8, mar: 12 }
+      - { june: 8, sept: 8, dec: 16, mar: 16 }
+      - { june: 5, sept: 12, dec: 13, mar: 12 }
+      - { june: 0, sept: 12, dec: 30, mar: 12 }
+    hints:
+      - Start with the two easy ones. What are the equinoxes like everywhere on Earth?
+      - In June, the north tilts toward the Sun. What is the south doing?
+      - Try starting with Edmonton’s chart. What would you need to swap to move it to the south?
+    solution:
+      - On an equinox, neither hemisphere tilts toward the Sun, so both equinoxes get about 12 hours everywhere.
+      - In June, the south tilts away, so June must be short. In December, it tilts toward the Sun, so December must be long.
+      - June 8, December 16 works. So does June 7½, December 17, which is Edmonton’s chart with the two solstices swapped.
+      - June 2, December 22 works too, for a town very far south. All of these have the tilt the right way around, which is what matters.
