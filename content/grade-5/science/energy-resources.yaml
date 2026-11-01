@@ -136,240 +136,390 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.3]
-    type: mc
-    prompt: Which energy resource is **renewable**?
-    choices: [Wind, Coal, Natural gas, Nuclear]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Coal is a fossil fuel. It takes millions of years to form.
-      '2': Natural gas is a fossil fuel, so it is non-renewable.
-      '3': Nuclear energy is non-renewable.
+    thinking: recall
+    covers: [K1.1, K1.3, K1.5]
+    type: multi
+    prompt: A class is putting a green leaf sticker on every **renewable** energy resource. Which ones get a sticker?
+    choices: [Tidal, Geothermal, Biomass, Oil, Coal, Nuclear]
+    answer: [0, 1, 2]
     hints:
-      - Which one comes back again every day?
+      - Which of these does nature keep making more of, soon enough for us to use?
+      - Coal and oil are fossil fuels. What does that tell you?
     solution:
-      - '**Wind** is renewable: the wind keeps blowing, so it is not used up.'
+      - Tides keep rising and falling, heat keeps coming from deep inside Earth, and replanted plants grow back. Those three get a sticker.
+      - Oil and coal are fossil fuels, and nuclear uses uranium. All three are non-renewable.
 
   - id: w2
     level: 1
-    covers: [K1.5]
+    thinking: why
+    covers: [K1.4, K1.5]
     type: mc
-    prompt: Which energy resource is **non-renewable**?
-    choices: [Oil, Solar, Tidal, Geothermal]
-    fixedOrder: true
+    prompt: Coal forms naturally in the ground. So why don’t we call it **renewable**?
+    choices:
+      - New coal takes millions of years to form.
+      - Coal is found under the ground.
+      - Burning coal makes smoke.
+      - Coal is not a natural material.
     answer: 0
     feedback:
-      '1': Sunlight is replenished every day, so solar is renewable.
-      '2': The tides rise and fall every day, so tidal energy is renewable.
-      '3': Heat from deep inside Earth is renewable.
+      '1': Heat for geothermal energy also comes from under the ground, and geothermal is renewable. Where something is found doesn’t decide it.
+      '2': Burning wood makes smoke too, and wood from a replanted forest is renewable. What does the word “renewable” ask about?
+      '3': The question says coal forms naturally. Being natural isn’t enough. What else matters?
     hints:
-      - Look for a fossil fuel.
+      - Renewable means nature replenishes it. How long would that take for coal?
     solution:
-      - '**Oil** is a fossil fuel. Fossil fuels are non-renewable.'
+      - Renewable is about how soon nature replaces what we use.
+      - Coal takes **millions of years** to form, so what we burn won’t be replaced in time for anyone to use it.
 
   - id: w3
     level: 1
-    covers: [K1.4]
-    type: mc
-    prompt: Why is **coal** a non-renewable energy resource?
-    choices:
-      - It will not be naturally replenished for millions of years.
-      - It is black.
-      - It is found underground.
-      - It is heavy.
-    answer: 0
-    feedback:
-      '1': Colour doesn't decide whether a resource is renewable.
-      '2': Geothermal heat also comes from underground, and it is renewable.
-      '3': Mass doesn't decide whether a resource is renewable.
+    thinking: notice
+    covers: [S1.2]
+    type: multi
+    prompt: Picture a **dark, calm** night. No Sun, and not one leaf is moving. Which of these **can’t** make electricity right now?
+    choices: [Solar, Wind, Water and hydro, Nuclear, Natural gas]
+    answer: [0, 1]
     hints:
-      - What does "non-renewable" mean?
+      - For each one, ask what it needs. Is that thing there tonight?
     solution:
-      - Coal takes **millions of years** to form, so once it is used, it is not replenished.
+      - Solar needs sunshine and wind needs moving air. Tonight neither is there.
+      - A river keeps flowing at night, and nuclear and natural gas power stations don’t need sun or wind.
 
   - id: w4
     level: 1
-    covers: [K1.3, K1.5]
-    type: multi
-    prompt: Select **all** the renewable energy resources.
-    choices: [Solar, Geothermal, Tidal, Biomass, Natural gas, Nuclear]
-    fixedOrder: true
-    answer: [0, 1, 2, 3]
+    thinking: apply
+    covers: [K1.6, K1.1]
+    type: mc
+    prompt: Alberta relies on **both** kinds of energy resource. Which pair shows one renewable and one non-renewable resource that Alberta relies on?
+    choices:
+      - Wind and natural gas
+      - Wind and water
+      - Natural gas and coal
+      - Tidal and natural gas
+    answer: 0
+    feedback:
+      '1': Both of these are real parts of Alberta’s energy, but are they different kinds?
+      '2': Both of these are fossil fuels. The question asks for one of each kind.
+      '3': Tides are ocean tides. Look at a map of Alberta. Does it touch an ocean?
     hints:
-      - Fossil fuels and nuclear are non-renewable.
+      - Label each resource as renewable or non-renewable first.
+      - Then think about where Alberta is.
     solution:
-      - ✓ Solar, geothermal, tidal and biomass are renewable.
-      - ✗ Natural gas (a fossil fuel) and nuclear are non-renewable.
+      - Wind is renewable and natural gas is a fossil fuel, so this pair has one of each.
+      - Alberta has no ocean coast, so it can’t rely on tides.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.2]
+    thinking: flaw
+    covers: [K1.4, S1.1, S1.3]
     type: mc
     prompt: |-
-      A town burns wood from a nearby forest for energy. It cuts down trees every year and **never plants new
-      ones**. What will happen?
+      Almost all of Nunavut’s electricity comes from diesel, a fossil fuel. A ship brings a new load every summer.
+      Arlo says, “It comes back every year, so diesel is renewable!” What is wrong with Arlo’s thinking?
     choices:
-      - The forest could be used up, because it is not handled responsibly.
-      - Nothing. Biomass is renewable, so it can never run out.
-      - The forest will turn into a fossil fuel right away.
-      - The trees will grow back faster because they were cut.
+      - The ship brings more, but nature won’t replace that fuel for millions of years.
+      - It comes back only once a year, and it would need to come back every day.
+      - Nothing that comes from far away can be called a renewable resource.
+      - The ship uses fuel to get there, so more fuel is lost than the ship brings.
     answer: 0
     feedback:
-      '1': Biomass is renewable **only** if it is handled responsibly, such as by replanting.
-      '2': Fossil fuels take millions of years to form.
-      '3': Without replanting, there may be nothing left to grow back.
+      '1': What if a ship came every single day? Would that change how long the fuel takes to form?
+      '2': Sunlight comes from very far away, and solar is renewable. Distance isn’t the test.
+      '3': That may matter, but it isn’t what makes a resource renewable or not. What does the word ask about?
     hints:
-      - When is biomass replenished?
+      - Who is doing the “bringing back” here, people or nature?
+      - Follow the fuel backward. Once the ship’s load is burned, what replaces the fuel in the ground?
     solution:
-      - Biomass is renewable when forests are **replanted**. Without replanting, the forest gets used up.
+      - Renewable means **nature** replenishes the resource. So ask who is bringing the diesel back.
+      - People move it from a store of fuel that took millions of years to form. Each load leaves that store a little emptier.
+      - Why it seemed right is that the fuel really does arrive every year. Being delivered again isn’t the same as being made again.
 
   - id: b2
     level: 2
-    covers: [K1.6]
-    type: multi
-    prompt: Select **all** the energy resources that Alberta relies on.
-    choices: [Fossil fuels, Water and hydro, Wind, Biomass, Tidal]
-    fixedOrder: true
-    answer: [0, 1, 2, 3]
+    thinking: notice
+    covers: [S1.3, S1.2, U1.1]
+    type: mc
+    prompt: |-
+      The map says Prince Edward Island is “mostly wind”. Read the details: “Almost all the electricity **made** on the
+      island comes from wind, but most of what Islanders **use** is bought from New Brunswick.”
+
+      A calm week comes and the island’s turbines stop. What is most likely?
+    choices:
+      - Most lights stay on, because most of the electricity comes from New Brunswick.
+      - All the lights go out, because the island’s electricity is made from wind.
+      - The turbines keep spinning, because wind is renewable and can’t run out.
+      - The island switches to tidal power, because it has the ocean all around it.
+    answer: 0
+    feedback:
+      '1': That would be true if all the electricity Islanders use were made on the island. Read the details again.
+      '2': Renewable means the wind will come back. Does it mean the wind blows every day?
+      '3': Nothing in the details says the island makes tidal power. What do they say about where its electricity comes from?
     hints:
-      - Alberta uses both renewable and non-renewable resources. Does Alberta touch an ocean?
+      - The details use two different words in bold. What is the difference between them?
+      - Where does most of the electricity Islanders use come from? Does that place need wind on the island?
     solution:
-      - ✓ Alberta relies on fossil fuels, water and hydro, wind and biomass.
-      - ✗ Tidal energy needs an ocean coast. Alberta has none.
+      - The map colour shows how electricity is **made** on the island. That isn’t the same as what people there **use**.
+      - Most of what Islanders use comes from New Brunswick, so a calm week on the island doesn’t stop most of it.
+      - 'What we learned: to know how a place meets its energy needs, read past the colour on the map.'
 
   - id: b3
     level: 2
-    covers: [S1.3]
-    type: mc
-    prompt: Use the map of Canada. Which province makes **almost all** of its electricity from water (hydro)?
-    choices: [Quebec, Alberta, Ontario, Nova Scotia]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Alberta makes most of its electricity from fossil fuels.
-      '2': Ontario makes most of its electricity from nuclear energy.
-      '3': Nova Scotia makes most of its electricity from fossil fuels.
+    thinking: connect
+    covers: [S1.1, S1.2, K1.3, K1.5]
+    type: text
+    figure: >-
+      <svg viewBox="0 0 420 210" class="fig-svg" role="img" aria-label="A chart with two columns, no smoke and makes smoke, and two rows, renewable and non-renewable. Solar is in the box for renewable with no smoke. A question mark is in the box for renewable that makes smoke. Nuclear is in the box for non-renewable with no smoke. Coal is in the box for non-renewable that makes smoke.">
+      <text class="fig-label" x="205" y="28" text-anchor="middle">No smoke</text><text class="fig-label" x="340" y="28" text-anchor="middle">Makes smoke</text>
+      <text class="fig-label" x="4" y="92">Renewable</text><text class="fig-label" x="4" y="172">Non-</text><text class="fig-label" x="4" y="192">renewable</text>
+      <rect class="fig-rect" x="140" y="44" width="130" height="76"/><rect class="fig-hl" x="275" y="44" width="130" height="76"/>
+      <rect class="fig-rect" x="140" y="126" width="130" height="76"/><rect class="fig-rect" x="275" y="126" width="130" height="76"/>
+      <text class="fig-label" x="205" y="88" text-anchor="middle">Solar</text><text class="fig-label" x="340" y="90" text-anchor="middle" font-size="30">?</text>
+      <text class="fig-label" x="205" y="170" text-anchor="middle">Nuclear</text><text class="fig-label" x="340" y="170" text-anchor="middle">Coal</text>
+      </svg>
+    prompt: |-
+      Cleo says, “Renewable and no smoke mean the same thing!” She makes this chart to prove it, then gets stuck on
+      the **?** box. Which energy resource from the lesson belongs in that box?
+    accept: [biomass, wood, burning wood, trees, plant material]
     hints:
-      - Look for the blue boxes on the map.
+      - The box needs a resource that is renewable but still makes smoke. How can something make smoke?
+      - Look for a renewable resource that gets burned.
     solution:
-      - '**Quebec** makes almost all of its electricity from water (hydro). So do Manitoba and Newfoundland and Labrador.'
+      - 'The **?** box needs something renewable that makes smoke when it is used: **biomass**. Burned wood makes smoke, and a replanted forest grows back.'
+      - Cleo’s chart also has **nuclear**, which has no smoke but is non-renewable. So her idea fails both ways.
+      - These are two different questions. Will it run out? Does it make smoke? One answer doesn’t tell you the other.
 
   - id: b4
     level: 2
-    covers: [S1.2]
-    type: mc
-    prompt: What is one **disadvantage** of wind energy?
-    choices:
-      - It only works when the wind is blowing.
-      - It will run out in a few years.
-      - It is a fossil fuel.
-      - It makes a lot of smoke.
-    answer: 0
-    feedback:
-      '1': Wind is renewable. It doesn't run out.
-      '2': Wind is not a fossil fuel.
-      '3': Wind turbines make no smoke.
-    hints:
-      - Think about calm days.
-    solution:
-      - Wind turbines only make electricity when the **wind is blowing**.
+    thinking: connect
+    covers: [S1.3, K1.5, K1.6]
+    type: multi
+    prompt: |-
+      The silly villain Baron Blackout steals **every drop and lump of fossil fuel** in Canada. These notes come from
+      the lesson’s map. Which places lose most of their electricity?
 
-  - id: b5
-    level: 2
-    covers: [S1.2, S1.1]
-    type: mc
-    prompt: What is one **advantage** of fossil fuels?
-    choices:
-      - They are ready to use any time and are easy to store and move.
-      - They are renewable.
-      - Burning them keeps the air clean.
-      - They form again in a few days.
-    answer: 0
-    feedback:
-      '1': Fossil fuels are **non-renewable**.
-      '2': Burning fossil fuels pollutes the air.
-      '3': Fossil fuels take millions of years to form.
+      | Place | Makes most electricity from |
+      |---|---|
+      | Alberta | natural gas |
+      | Quebec | water (hydro) |
+      | Ontario | nuclear |
+      | Nunavut | diesel, made from oil |
+      | Nova Scotia | coal and natural gas |
+    choices: [Alberta, Nunavut, Nova Scotia, Ontario, Quebec]
+    answer: [0, 1, 2]
     hints:
-      - Compare fossil fuels with sunlight, which isn't there at night.
+      - Which three things count as fossil fuels?
+      - Non-renewable and fossil fuel are not the same group. Check Ontario with care.
     solution:
-      - Fossil fuels can be stored and used **any time**, day or night, calm or windy.
+      - Fossil fuels are coal, oil and natural gas. Alberta, Nunavut and Nova Scotia all rely on them, so the Baron’s plan works there.
+      - Ontario’s nuclear energy is non-renewable, but it isn’t a fossil fuel. It keeps running.
+      - Quebec doesn’t even notice. Its rivers keep flowing.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.4, K1.5, S1.1]
-    type: mc
-    prompt: '"Nuclear power stations make no smoke, so nuclear energy is renewable." What is wrong with this idea?'
-    choices:
-      - Renewable means naturally replenished. Nuclear power uses uranium, which is not replenished.
-      - Nothing. Anything with no smoke is renewable.
-      - Nuclear power stations make a lot of smoke.
-      - Nuclear energy is a fossil fuel.
-    answer: 0
-    feedback:
-      '1': Having no smoke is an advantage, but it doesn't make a resource renewable.
-      '2': Nuclear power stations don't burn fuel, so they make no smoke.
-      '3': Nuclear energy is non-renewable, but it is not a fossil fuel.
-    hints:
-      - What does "renewable" actually mean?
-    solution:
-      - '**Renewable** is about being replenished, not about smoke.'
-      - Uranium is not replenished, so nuclear energy is **non-renewable**.
+    thinking: evidence
+    covers: [S1.2, K1.3, S1.1]
+    type: investigation
+    prompt: |-
+      The lights in Aunt Bea’s cabin turn on and off by themselves. Her neighbour blames a ghost named Gerald. The
+      cabin has one energy source and no batteries. You keep a log.
+
+      | When | Sky | Wind | Lights |
+      |---|---|---|---|
+      | Mon noon | sunny | calm | on |
+      | Mon midnight | dark | calm | off |
+      | Tue noon | sunny | windy | on |
+      | Tue midnight | dark | windy | off |
+    parts:
+      - type: mc
+        prompt: Which energy source fits **every** row of the log?
+        choices: [Solar, Wind, Hydro from a creek, A diesel generator]
+        answer: 0
+        feedback:
+          '1': Look at Monday noon and Tuesday midnight. Do the lights follow the wind?
+          '2': A creek flows day and night. Would the lights go off at midnight?
+          '3': Diesel is ready any time. Why would it stop at midnight?
+        hints:
+          - Find two rows where only one thing changed.
+          - Compare Tuesday noon with Tuesday midnight. What changed, and what stayed the same?
+        solution:
+          - The lights are on in both sunny rows and off in both dark rows. The wind makes no difference.
+          - So the cabin runs on **solar**. Sorry, Gerald.
+      - type: mc
+        prompt: |-
+          The cabin next door also has one source and no batteries. Its log has only two rows:
+          **noon, sunny and windy: on.** **Midnight, dark and calm: off.** What can you say about its source?
+        choices:
+          - You can’t tell yet, because solar and wind both fit.
+          - It must be solar, because the lights are on when it is sunny.
+          - It must be wind, because the lights are on when it is windy.
+          - It can’t be solar or wind, because both rows are different.
+        answer: 0
+        feedback:
+          '1': That fits the log. But test wind against the same two rows. Does it fit too?
+          '2': That fits the log. But test solar against the same two rows. Does it fit too?
+          '3': Being different is what you would expect from solar or wind. Try each one on both rows.
+        hints:
+          - Test solar on both rows. Then test wind on both rows.
+          - In this log, the Sun and the wind always came and went together.
+        solution:
+          - Solar would give on, then off. Wind would also give on, then off.
+          - Sun and wind changed **together** in this log, so it can’t separate them. Sometimes the honest answer is “not yet”.
+      - type: mc
+        prompt: You can log one more moment at the cabin next door. Which moment would **settle** it?
+        choices:
+          - A dark, windy night
+          - A sunny, windy noon
+          - A dark, calm night
+        answer: 0
+        feedback:
+          '1': Solar and wind would both give “on” here. Would that help you choose?
+          '2': Solar and wind would both give “off” here. Would that help you choose?
+        hints:
+          - You need a moment when solar and wind would give **different** results.
+          - So you want one of them to be there and the other to be missing.
+        solution:
+          - On a dark, windy night, solar would give off and wind would give on. Either result tells you the source.
+          - A sunny, calm noon would settle it too. Both moments pull the Sun and the wind apart.
+      - type: mc
+        prompt: |-
+          Aunt Bea wants her lights on at midnight, even on calm nights, using only renewable energy. A creek flows
+          past the cabin all year. What should she add?
+        choices:
+          - A small hydro generator on the creek
+          - Twice as many solar panels
+          - A bigger wind turbine
+          - A diesel generator
+        answer: 0
+        feedback:
+          '1': Think about midnight. How much electricity do twice as many panels make with no Sun?
+          '2': Think about a calm night. How much electricity does a bigger turbine make with no wind?
+          '3': It would keep the lights on, but check her other rule. Is diesel renewable?
+        hints:
+          - List what is missing on a calm midnight. What is still there?
+        solution:
+          - At a calm midnight there is no Sun and no wind, and more panels or a bigger turbine can’t change that.
+          - The creek still flows. Hydro is renewable and makes electricity day and night.
+    wrapUp: Each resource needs something to work. Knowing what it needs lets you predict when it stops, and clears Gerald’s name.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K1.3, S1.3]
-    type: mc
-    prompt: A community in the middle of the Prairies wants a renewable energy resource. Which one **can't** it use?
-    choices: [Tidal, Solar, Wind, Biomass]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The Sun shines on the Prairies, so solar can work.
-      '2': The Prairies are often windy, so wind can work.
-      '3': Plants grow on the Prairies, so biomass can work.
-    hints:
-      - Where do tides happen?
-    solution:
-      - Tidal energy comes from **ocean tides**. The middle of the Prairies is far from any ocean.
+    thinking: breakdown
+    covers: [K1.2, K1.4, U1.1, S1.1]
+    type: investigation
+    prompt: |-
+      The town of Knotty Pines heats its skating rink by burning trees from its own forest. The forest has **40 big
+      trees**. Every year, the young trees planted long ago give **10 more big trees**.
+
+      Mayor Bigsby wants a much warmer rink, so the town starts to cut **15 big trees** a year. “Wood is renewable,”
+      the mayor says. “It can’t run out!”
+    parts:
+      - type: number
+        prompt: How many big trees are left after **one** year of this?
+        answer: 35
+        unit: trees
+        verify: 40 + 10 - 15
+        hints:
+          - Some trees come in and some go out. What happens to the total?
+        solution:
+          - '\(40 + 10 - 15 = 35\). The forest lost 5 big trees overall.'
+      - type: number
+        prompt: If the town keeps this up, after how many years are **no big trees** left?
+        answer: 8
+        unit: years
+        verify: 40 / (15 - 10)
+        hints:
+          - You found how much the forest shrinks in one year. Does that change from year to year?
+          - Count down from 40 by that amount.
+        solution:
+          - 'The forest loses 5 big trees every year: 40, 35, 30, 25, 20, 15, 10, 5, 0.'
+          - That is **8 years**, so the mayor’s “it can’t run out” is wrong.
+      - type: number
+        prompt: What is the **most** big trees the town can cut each year and still keep 40 big trees forever?
+        answer: 10
+        unit: trees
+        verify: 15 - 5
+        hints:
+          - For the forest to stay the same size, how must trees going out compare with trees coming in?
+        solution:
+          - The forest stays the same size when the trees cut equal the new big trees. That is **10 a year**.
+          - This is what “handled responsibly” looks like here. The young trees must also keep being planted.
+      - type: mc
+        prompt: |-
+          The next town burns coal from a mine with 40 loads left. It is very careful and uses only **1 load a year**.
+          Knotty Pines goes back to cutting 10 trees a year. Which is true?
+        choices:
+          - The mine will run out in the end, but the forest can keep going.
+          - The mine lasts forever, because 1 load a year is so little.
+          - The mine and the forest will both run out in the end.
+          - The forest runs out first, because it uses 10 and the mine uses 1.
+        answer: 0
+        feedback:
+          '1': How many new loads of coal appear each year? What does 40 minus 1, again and again, come to?
+          '2': With 10 in and 10 out, what happens to the forest’s size from year to year?
+          '3': A bigger number isn’t the whole story. What comes **in** each year to the forest? What comes in to the mine?
+        hints:
+          - For each one, ask what comes in each year and what goes out.
+          - How long does new coal take to form?
+        solution:
+          - 'The forest: 10 in and 10 out, so it stays at 40.'
+          - 'The mine: almost nothing comes in, because new coal takes millions of years. So 1 out each year empties it after about 40 years.'
+          - Being careful makes coal last longer, but only a renewable resource can keep going.
+    wrapUp: Renewable doesn’t mean it can’t run out. It means nature can replace it, if we use it no faster than it comes back.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S1.2, K1.2, K1.4]
-    type: mc
+    thinking: connect
+    covers: [K1.1, K1.2, K1.4, S1.1]
+    type: multi
     prompt: |-
-      A town wants electricity that **won't run out** and that keeps flowing **day and night**, even on calm days.
-      Which plan is best?
+      People on the made-up planet Zibble use these four energy resources. Nobody on Earth has heard of them, but
+      the meaning of **renewable** still works. Select **all** the renewable ones.
     choices:
-      - Use wind and solar, plus hydro from a nearby river.
-      - Use only solar.
-      - Use only coal.
-      - Use only wind.
-    answer: 0
-    feedback:
-      '1': Solar doesn't work at night.
-      '2': Coal works day and night, but it will run out.
-      '3': Wind doesn't work on calm days.
+      - 'Fizzweed: only one small patch left, but it grows back in a month if some is left.'
+      - 'Geyser steam: Zibble’s hot centre keeps pushing it up, day after day.'
+      - 'Snorp crystals: enough for 1000 more years, but new ones take 9 million years to form.'
+      - 'Blue tar: easy to store and ready any time. It took 5 million years to form.'
+    answer: [0, 1]
     hints:
-      - Which renewable resource works day and night?
+      - Ignore how much there is for now. What question does the word “renewable” ask?
+      - For each one, ask how soon nature would replace what people use.
     solution:
-      - All three are renewable, so they won't run out.
-      - Hydro keeps making electricity day and night, when the Sun isn't shining or the wind isn't blowing.
+      - Renewable asks whether nature replenishes a resource soon enough to use it, not how much there is today.
+      - Fizzweed grows back in a month, so it is renewable, though only if people handle it responsibly. If they burn the whole patch, it is gone.
+      - Geyser steam keeps coming, like geothermal heat on Earth.
+      - Snorp crystals feel safe because there are so many, but they are slowly being used up. Blue tar is handy, but handy isn’t the test. Both are non-renewable.
 
   - id: d4
     level: 3
-    covers: [S1.2, S1.1]
+    thinking: design
+    covers: [S1.2, K1.3, K1.4, U1.1]
     type: open
     prompt: |-
-      Choose **one renewable** and **one non-renewable** energy resource. For each one, give an advantage and a
-      disadvantage.
+      You are advising the made-up town of Little Otter Bay, on a cold northern coast.
+
+      - Winter is very dark.
+      - It is windy most days, but some days are calm.
+      - The creek freezes solid in winter.
+      - A ship can reach the town only in summer.
+
+      Choose a **main** energy resource and a **backup**. Use facts about the town to explain why, and give one
+      disadvantage of **each** choice.
     modelAnswer: |-
-      Solar is renewable. An advantage is that it makes no smoke while making electricity. A disadvantage is that it
-      works only when the Sun is shining. Natural gas is non-renewable. An advantage is that it is ready to use any
-      time. A disadvantage is that it will be used up, and burning it pollutes the air.
+      My main resource is wind, because it is windy most days, even in the dark winter, and it is renewable. Its
+      disadvantage is that it stops on calm days. My backup is diesel, because the summer ship can bring it and the
+      town can store it for calm winter days. Its disadvantage is that it will be used up, and burning it pollutes
+      the air. I would not use solar or hydro as the main resource, because winter is dark and the creek freezes.
     rubric:
-      - I named one renewable and one non-renewable resource.
-      - I gave an advantage and a disadvantage for **each** one.
-      - My reasons match what each resource is like.
+      - I chose a main resource and a backup.
+      - I used at least one fact about the town to explain each choice.
+      - I gave a true disadvantage for each choice.
+      - My backup can work at a time when my main resource can’t.
+    hints:
+      - Go through the list. Which resources does each fact rule out, and when?
+      - When would your main resource stop? Your backup has to work at that time.
