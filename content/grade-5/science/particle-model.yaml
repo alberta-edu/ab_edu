@@ -123,227 +123,330 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: In which state are the particles **close together**, **vibrating in place**?
-    choices: [Solid, Liquid, Gas, All three states]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Liquid particles are separated by spaces and can **slide past each other**.
-      '2': Gas particles are separated by **large spaces** and move in all directions.
-      '3': Only one state has particles that stay in place and just vibrate.
-    hints:
-      - Which state keeps its own shape, like an ice cube?
-    solution:
-      - In a **solid**, the particles are close together and vibrate in place.
-
-  - id: w2
-    level: 1
-    covers: [K1.1]
-    type: mc
-    prompt: Which statement is part of the **particle model of matter**?
-    choices:
-      - Particles of matter are always moving.
-      - Particles stop moving when matter gets very cold.
-      - Particles in a solid have no spaces between them.
-      - Only living things are made of particles.
-    answer: 0
-    feedback:
-      '1': In the particle model, particles are **always** moving. In a solid they still vibrate in place.
-      '2': The model says particles always have spaces between them, even in solids.
-      '3': '**All** matter is made up of small particles.'
-    hints:
-      - The particle model has three ideas. One is about what matter is made of, one about movement, and one about spaces.
-    solution:
-      - 'The three ideas: all matter is made of small particles; particles are **always moving**; particles have spaces between them.'
-
-  - id: w3
-    level: 1
-    covers: [K1.5]
-    type: mc
-    prompt: Attractive forces between particles are **strongest** in which state?
-    choices: [Solid, Liquid, Gas]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Liquid particles attract each other, but less strongly than in a solid.
-      '2': Gas particles have the **weakest** attractive forces.
-    hints:
-      - Which state holds its particles so tightly that they can only vibrate in place?
-    solution:
-      - Attractive forces are **strongest in solids** and weakest in gases.
-
-  - id: w4
-    level: 1
-    covers: [K1.5]
-    type: order
-    prompt: Order the states from **strongest** attractive forces between particles to **weakest**.
-    items: [Solid, Liquid, Gas]
-    hints:
-      - The state whose particles only vibrate in place has the strongest pull between them.
-    solution:
-      - Solid (strongest) → liquid → gas (weakest).
-
-  # ---------------------------------------------------------------- Level 2: Build
-  - id: b1
-    level: 2
+    thinking: notice
     covers: [S1.1, S1.2, K1.3]
     type: mc
-    figure: { kind: particle-boxes, boxes: [gas, solid, liquid] }
-    prompt: Each box shows the particles of a substance. Which box shows a **liquid**?
+    figure: { kind: particle-boxes, boxes: [solid, gas, liquid] }
+    prompt: Each box shows the particles of something, drawn much bigger than real particles. Which box could be the **maple syrup** in a jug?
     choices: [Box A, Box B, Box C]
     fixedOrder: true
     answer: 2
     feedback:
-      '0': Box A's particles are separated by **large spaces**. That is a gas.
-      '1': Box B's particles are close together in neat rows. That is a solid.
+      '0': These particles sit close together in neat rows, each one in its own spot. Could syrup pour if its particles stayed put like that?
+      '1': These particles have large spaces between them. Does syrup look like something that spreads out to fill a whole room?
     hints:
-      - Liquid particles are separated by spaces, but not by large spaces, and they are not in neat rows.
+      - Is maple syrup a solid, a liquid or a gas?
+      - How are the particles of that state arranged? Find the box that matches.
     solution:
-      - 'A: large spaces → gas. B: close together in rows → solid.'
-      - 'C: separated by small spaces, jumbled, resting at the bottom → **liquid**.'
+      - Maple syrup pours and takes the shape of its jug, even if it pours slowly. So it is a liquid.
+      - Liquid particles are separated by spaces and can slide past each other. They gather at the bottom of the container, as in **Box C**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.2]
+    type: multi
+    prompt: A brick sits on the ground, perfectly still. Select **all** the things that are true about its particles.
+    choices:
+      - They are always moving.
+      - They have spaces between them.
+      - They are close together.
+      - They have stopped moving, because the brick is still.
+      - They can slide past each other.
+    answer: [0, 1, 2]
+    feedback:
+      '3': The brick looks still, but the particle model says something about **all** matter. What does it say about movement?
+      '4': If its particles could slide past each other, what would a brick do when you put it on the ground?
+    hints:
+      - A brick is a solid. How do the particles in a solid behave?
+      - The three ideas of the particle model are true for all matter, even when nothing seems to be happening.
+    solution:
+      - All matter is made of particles that are always moving and have spaces between them. That includes a brick.
+      - In a solid, the particles are close together and **vibrate in place**. The brick looks still because each particle stays in its spot.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.5]
+    type: order
+    prompt: Put these in order, from the **strongest** attractive forces between particles to the **weakest**.
+    items:
+      - A steel spoon
+      - A glass of apple juice
+      - The air inside a balloon
+    hints:
+      - Decide first whether each one is a solid, a liquid or a gas.
+    solution:
+      - The spoon is a solid, the juice is a liquid and the air is a gas.
+      - Attractive forces are strongest in solids and weakest in gases, so the order is spoon, juice, air.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.1, K1.2, U1.1]
+    type: mc
+    prompt: |-
+      Zac walks through air without even noticing it. He can swim through water. But when he tries to walk through a
+      wall like a cartoon ghost, all he gets is a sore nose. Which idea explains the difference?
+    choices:
+      - Attractive forces hold the wall’s particles in place, but air and water particles can move aside.
+      - The wall’s particles have no spaces between them, but air and water particles do have spaces.
+      - The wall’s particles have stopped moving, but air and water particles are still moving around.
+      - The wall is made of particles, but air and water are not made of anything you can bump into.
+    answer: 0
+    feedback:
+      '1': The three ideas of the particle model are true for all matter. What do they say about spaces between particles?
+      '2': The wall looks still, but what does the particle model say about movement in all matter?
+      '3': You can feel water when you swim and air when the wind blows. What is all matter made of?
+    hints:
+      - For Zac to get through, something has to get out of his way. What would have to move aside?
+      - Compare how free the particles are to move in a wall, in water and in air.
+    solution:
+      - To get through something, Zac has to push its particles out of the way.
+      - In air and water, the particles can move around or slide past each other, so they move aside for him.
+      - In a wall, the strongest attractive forces hold the particles close together, vibrating in place. They won’t move aside for a nose.
 
   - id: b2
     level: 2
-    covers: [K1.4, U1.1]
+    thinking: notice
+    covers: [S1.1, K1.4]
     type: mc
-    prompt: You can smell cookies baking from the other side of the house. Which idea **best** explains this?
-    choices:
-      - Gas particles are constantly moving in all directions, with large spaces between them.
-      - Gas particles have the strongest attractive forces, so they pull toward you.
-      - Gas particles are much bigger than solid particles.
-      - Gas particles stay in one place and vibrate.
-    answer: 0
+    figure: >-
+      <svg viewBox="0 0 445 140" class="fig-svg" role="img" aria-label="Four drawings of a sealed jar, each with 8 particles. In A, small particles are bunched at the top. In B, very large particles fill the jar and touch each other. In C, small particles are spread all through the jar with large spaces between them. In D, small particles are bunched at the bottom.">
+      <rect class="pb-box" x="0" y="10" width="100" height="100" rx="8"/><rect class="pb-box" x="115" y="10" width="100" height="100" rx="8"/><rect class="pb-box" x="230" y="10" width="100" height="100" rx="8"/><rect class="pb-box" x="345" y="10" width="100" height="100" rx="8"/>
+      <circle class="pb-dot" cx="16" cy="24" r="6"/><circle class="pb-dot" cx="36" cy="22" r="6"/><circle class="pb-dot" cx="58" cy="25" r="6"/><circle class="pb-dot" cx="82" cy="22" r="6"/><circle class="pb-dot" cx="24" cy="40" r="6"/><circle class="pb-dot" cx="46" cy="39" r="6"/><circle class="pb-dot" cx="68" cy="41" r="6"/><circle class="pb-dot" cx="86" cy="38" r="6"/>
+      <circle class="pb-dot" cx="133" cy="29" r="15"/><circle class="pb-dot" cx="165" cy="29" r="15"/><circle class="pb-dot" cx="197" cy="29" r="15"/><circle class="pb-dot" cx="133" cy="60" r="15"/><circle class="pb-dot" cx="165" cy="60" r="15"/><circle class="pb-dot" cx="197" cy="60" r="15"/><circle class="pb-dot" cx="149" cy="91" r="15"/><circle class="pb-dot" cx="181" cy="91" r="15"/>
+      <circle class="pb-dot" cx="246" cy="26" r="6"/><circle class="pb-dot" cx="288" cy="36" r="6"/><circle class="pb-dot" cx="316" cy="22" r="6"/><circle class="pb-dot" cx="256" cy="62" r="6"/><circle class="pb-dot" cx="306" cy="66" r="6"/><circle class="pb-dot" cx="242" cy="96" r="6"/><circle class="pb-dot" cx="280" cy="90" r="6"/><circle class="pb-dot" cx="318" cy="98" r="6"/>
+      <circle class="pb-dot" cx="360" cy="96" r="6"/><circle class="pb-dot" cx="381" cy="98" r="6"/><circle class="pb-dot" cx="403" cy="95" r="6"/><circle class="pb-dot" cx="427" cy="98" r="6"/><circle class="pb-dot" cx="368" cy="80" r="6"/><circle class="pb-dot" cx="390" cy="81" r="6"/><circle class="pb-dot" cx="412" cy="79" r="6"/><circle class="pb-dot" cx="431" cy="83" r="6"/>
+      <text class="pb-label" x="50" y="134" text-anchor="middle">A</text><text class="pb-label" x="165" y="134" text-anchor="middle">B</text><text class="pb-label" x="280" y="134" text-anchor="middle">C</text><text class="pb-label" x="395" y="134" text-anchor="middle">D</text></svg>
+    prompt: A sealed jar holds a gas. Four students each draw its particles, using 8 particles. Which drawing fits the particle model?
+    choices: [Drawing A, Drawing B, Drawing C, Drawing D]
+    fixedOrder: true
+    answer: 2
     feedback:
-      '1': Gas particles have the **weakest** attractive forces, not the strongest.
-      '2': Particles in a gas are not bigger. The **spaces between** them are larger.
-      '3': That describes particles in a **solid**.
+      '0': Gas can feel light, so this seems sensible. But which way do gas particles move? Would they all stay up at the top?
+      '1': A gas does fill its whole jar, so this looks right. But what got bigger to do that, the particles or something else?
+      '3': This is how a liquid sits in a jar. What did the gas do in the wide container in the experiment?
     hints:
-      - How do gas particles move? Try Gas in the simulator.
+      - In the virtual experiment, how much of the wide container did the gas fill?
+      - Ask two questions about each drawing. Does the gas reach the whole jar? What is large in a gas?
     solution:
-      - The smell travels as a gas. Gas particles move **in all directions** and spread through the house until some reach your nose.
+      - A gas fills its whole container, because its particles move in all directions. That rules out A and D, where the particles are bunched at one end.
+      - In a gas, the **spaces** are large, not the particles. That rules out B.
+      - '**Drawing C** shows ordinary-sized particles spread all through the jar, with large spaces between them.'
 
   - id: b3
     level: 2
-    covers: [K1.2, K1.3, K1.5]
-    type: multi
-    prompt: Compare the particles in an **ice cube** with the particles in a glass of **liquid water**. Select **all** the true statements.
+    thinking: why
+    covers: [S1.3, K1.4, K1.5, K1.3]
+    type: mc
+    prompt: |-
+      You take the lid off a jar of pickles and leave it on the table. The juice stays in the jar. But the smell, which
+      is a gas from the juice, soon reaches every corner of the kitchen. Why does the gas leave while the juice stays?
     choices:
-      - In ice, the particles vibrate in place.
-      - In liquid water, the particles can slide past each other.
-      - The attractive forces are stronger in ice than in liquid water.
-      - In ice, the particles do not move at all.
-      - In liquid water, there are no spaces between the particles.
-    answer: [0, 1, 2]
+      - Attractive forces are weakest in a gas, so its particles spread out in all directions.
+      - Gas particles are much bigger than juice particles, so the jar can’t hold them all.
+      - Gas particles are attracted to the people in the kitchen, so they travel to their noses.
+      - Juice particles have stopped moving, so they aren’t able to climb out of the open jar.
+    answer: 0
+    feedback:
+      '1': What is large in a gas, the particles or the spaces between them?
+      '2': The smell also reaches the corners where nobody is standing. Which particles do attractive forces act between?
+      '3': What does the particle model say about movement in all matter? What are juice particles able to do?
     hints:
-      - Particles are always moving. How do they move in a solid?
-      - Attractive forces are strongest in solids.
+      - Think about what keeps the particles of a liquid close to each other. How strong is that in a gas?
+      - Compare two things for the juice and the gas. How strongly do the particles attract, and how do they move?
     solution:
-      - '✓ Ice is a solid: its particles vibrate in place.'
-      - '✓ Water is a liquid: its particles slide past each other.'
-      - '✓ Attractive forces are strongest in solids.'
-      - '✗ Particles are always moving. ✗ Liquid particles are separated by spaces.'
+      - Start with the juice. Its particles slide past each other, but attractive forces keep them close together, so the juice stays in a group at the bottom of the jar.
+      - In the gas, attractive forces are weakest. Its particles move in all directions with large spaces between them, so nothing keeps them together in the jar.
+      - That is why a smell can reach corners far away, even ones that are behind the jar or above it.
 
   - id: b4
     level: 2
-    covers: [S1.2, K1.2, K1.3]
+    thinking: flaw
+    covers: [K1.2, S1.2]
     type: mc
-    prompt: Why does a liquid take the shape of its container, but a solid does not?
+    prompt: |-
+      A hockey puck flies across the rink. Anika says, “Solid particles vibrate in place. But this puck’s particles are
+      zooming across the rink! So a moving puck isn’t really a solid.” What did Anika miss?
     choices:
-      - Liquid particles can slide past each other, but solid particles vibrate in place.
-      - Liquid particles are bigger than solid particles.
-      - Solids are not made of particles.
-      - Liquid particles do not move.
+      - Each particle keeps its spot among its neighbours, and the whole puck moves together.
+      - The particles stop vibrating while the puck moves, and start again when it stops.
+      - The particles slide past each other as it moves, and go back when it stops.
+      - Only the particles on the outside move, and the ones in the middle stay behind.
     answer: 0
     feedback:
-      '1': Particle size is not the difference. How the particles **move** is.
-      '2': All matter, including solids, is made of particles.
-      '3': Particles are always moving. Liquid particles slide past each other.
+      '1': Particles are always moving. Does the model say a solid’s particles ever stop vibrating?
+      '2': If the particles slid past each other, what would happen to the puck’s shape? Does it change?
+      '3': If the middle stayed behind, what would be left sitting at the spot where the puck started?
     hints:
-      - Compare how particles move in a liquid and in a solid.
+      - Look at the puck when it lands in the net. Did its shape change on the way?
+      - “In place” could mean a spot in the rink, or a spot among the other particles. Which fits?
     solution:
-      - Liquid particles **slide past each other**, so the liquid flows into the shape of its container.
-      - Solid particles stay close together and **vibrate in place**, so a solid keeps its shape.
+      - Picture the puck when it lands in the net. It is the same shape as before, so its particles are still arranged the same way.
+      - So “in place” means each particle stays in its spot among its neighbours, vibrating there.
+      - The whole puck can fly across the rink, and every particle travels with it. It is still a solid.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.3, K1.4, K1.5]
-    type: mc
-    prompt: In the virtual experiment, why did the **gas** fill the whole wide container, while the **liquid** only covered the bottom?
-    choices:
-      - Gas particles have the weakest attractive forces and move in all directions, so they spread apart. Liquid particles stay closer together.
-      - Gas particles are heavier, so they push up to the top.
-      - The liquid particles stopped moving when the container changed.
-      - The gas had more particles than the liquid.
-    answer: 0
-    feedback:
-      '1': Being heavy would not push particles **up**. The gas spreads because its particles move in all directions.
-      '2': Particles are always moving. The liquid's particles kept sliding past each other.
-      '3': The number of particles isn't the reason. Watch how each state's particles **move**.
-    hints:
-      - Compare the attractive forces in a liquid and in a gas.
-    solution:
-      - Gas particles have the **weakest** attractive forces and move **in all directions**, so they spread out until they fill the container.
-      - Liquid particles attract each other more, so they stay close together and slide across the bottom.
+    thinking: whatif
+    covers: [S1.3, K1.5, K1.4, K1.1, S1.2]
+    type: investigation
+    prompt: |-
+      In a silly cartoon, Professor Wobble builds two rays. The **Un-Sticker** makes the attractive forces between
+      particles weaker. The **Super-Sticker** makes them stronger. Nothing else changes: the same particles, the same
+      number of them, always moving.
+
+      It’s make-believe, but the particle model can still tell you what would happen.
+    parts:
+      - type: mc
+        prompt: A steel spoon lies in a bowl. The Un-Sticker weakens its forces until they match a liquid’s. What do you see?
+        choices:
+          - The spoon slumps and spreads across the bottom of the bowl.
+          - The spoon keeps its shape, because steel is such a hard material.
+          - The spoon snaps into lots of small, hard pieces in the bowl.
+          - The spoon spreads out and fills the whole room up to the ceiling.
+        answer: 0
+        feedback:
+          '1': What keeps steel hard in the first place? What happens if that gets weaker?
+          '2': Small hard pieces would still have particles that vibrate in place. Do these forces match a solid’s now?
+          '3': That would need forces as weak as a gas’s. These only match a liquid’s. What can liquid particles do?
+        hints:
+          - Now that the forces match a liquid’s, what can the particles do that they couldn’t do before?
+        solution:
+          - Weaker forces no longer hold each particle in its spot, so the particles can slide past each other.
+          - The spoon can’t keep its shape. It flows across the bottom of the bowl, as a liquid does.
+      - type: multi
+        prompt: |-
+          One more zap, and the forces are as weak as a gas’s. The door is closed, and the spoon spreads through the
+          whole room. Compare the particles now with the ones in the spoon at the start. Select **all** that are different.
+        choices:
+          - The spaces between them are much larger.
+          - They move in all directions.
+          - Each particle has grown bigger.
+          - There are more particles than before.
+          - They were still before, and they move now.
+        answer: [0, 1]
+        feedback:
+          '2': The spoon now fills a whole room. It seems the particles must have grown. What else could have got bigger?
+          '3': The story says the number of particles stays the same. Did anything new get added to the room?
+          '4': Particles are always moving. What were they doing in the spoon?
+        hints:
+          - Read the story again. What did it promise would stay the same?
+          - In the spoon, what were the particles doing? What are they doing now?
+        solution:
+          - The particles are the same ones, the same size and the same number.
+          - What changed is how they are arranged and how they move. They now have large spaces between them and move in all directions, instead of vibrating close together.
+      - type: mc
+        prompt: |-
+          Now the other ray. A sealed jar holds air. The Super-Sticker makes the air’s forces as strong as a solid’s.
+          What is in the jar now?
+        choices:
+          - A tiny solid lump, with most of the jar empty
+          - A solid block that fills the whole jar exactly
+          - The same air as before, since gas can’t change
+          - A liquid that fills the jar right up to the lid
+        answer: 0
+        feedback:
+          '1': It seems as if the air should keep the jar’s shape. But how far apart are particles in a solid? How far apart were they in the air?
+          '2': Forces that strong are in solids. What would they do to particles that are far apart?
+          '3': These forces match a solid’s, not a liquid’s. And how much of a jar would the same few particles fill if they came close together?
+        hints:
+          - Forces as strong as a solid’s would do what to the particles?
+          - Think about all those large spaces between the air’s particles. Where do they go?
+          - Picture the air’s particles, far apart in the jar. Now slide all of them close together. How much room do they need?
+        solution:
+          - In air, there are large spaces between the particles. Forces as strong as a solid’s pull the particles close together.
+          - The number of particles stays the same, and most of what filled the jar was **space**. So the same particles now take up only a tiny lump.
+    wrapUp: |-
+      The particles stayed the same every time. Change how strongly they attract each other, and you change how they are
+      arranged and how they move, and that is what makes something a solid, a liquid or a gas.
 
   - id: d2
     level: 3
-    covers: [K1.1, K1.2]
-    type: mc
-    prompt: 'A classmate says: "Solid particles are packed so tightly that there is no space between them and they can''t move." What is the best response?'
-    choices:
-      - The particle model says particles always have spaces between them and are always moving. In a solid, the spaces are small and the particles vibrate in place.
-      - Your classmate is right about solids.
-      - Your classmate is right that they can't move, but there are spaces.
-      - Your classmate is right that there are no spaces, but they can move.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'Check the three ideas of the particle model: they apply to **all** matter, including solids.'
-      '2': Solid particles do move. They vibrate in place.
-      '3': There are spaces between particles in all matter, even solids.
-    hints:
-      - The three ideas of the particle model apply to every state of matter.
-    solution:
-      - All matter has spaces between particles, and particles are always moving.
-      - In a solid, the particles are close together (small spaces) and **vibrate in place**.
+    thinking: evidence
+    covers: [S1.2, K1.1, K1.2, K1.3]
+    type: investigation
+    prompt: |-
+      Jonah pours sand from a pail into a bucket at the park. “Look,” he says. “Sand pours, and it takes the shape of
+      whatever it’s in. It flows just like water. Sand is a **liquid**!” Mira isn’t so sure.
+    parts:
+      - type: multi
+        prompt: Mira looks for evidence. Which of these show that sand **isn’t** behaving like water? Select **all** of them.
+        choices:
+          - Poured on a plate, it stands up in a heap.
+          - Under a magnifying glass, each grain keeps its own shape.
+          - It pours from one pail into another.
+          - It takes the shape of any pail it’s in.
+        answer: [0, 1]
+        feedback:
+          '2': This is the evidence Jonah used. Water pours too, so does this show a difference?
+          '3': This is the evidence Jonah used. Water does it too, so does this show a difference?
+        hints:
+          - For each one, ask whether water would do the same thing.
+          - Picture pouring a cup of water on a plate, and then a cup of sand.
+        solution:
+          - Water poured on a plate spreads out flat. It doesn’t stand up in a heap, so that is a real difference.
+          - A grain of sand has its own shape, which it keeps. Water has no shape of its own.
+          - Pouring and taking the shape of a pail are things water does too, so they don’t show a difference.
+      - type: mc
+        prompt: So what is really sliding when sand pours?
+        choices:
+          - Whole grains slide past each other, while the particles in each grain vibrate in place.
+          - Each grain is one big particle, so these large particles slide past each other.
+          - The particles in the grains slide past each other, just as they do in water.
+          - The air between the grains slides along, while the grains themselves stay still.
+        answer: 0
+        feedback:
+          '1': You can see a grain of sand. How big are real particles? Could you ever see one?
+          '2': If the particles in a grain could slide, what would happen to the shape of that grain?
+          '3': Watch the sand come out of the pail. Do the grains stay where they were?
+        hints:
+          - Can you see a grain of sand? Can you see a particle?
+          - Think about two different sizes of thing. There are grains, and there are the particles inside a grain.
+        solution:
+          - A grain is far bigger than a particle. Particles are much too small to see, so each grain is made of a huge number of them.
+          - Inside a grain, the particles are close together and vibrate in place, which is why the grain keeps its shape.
+          - When sand pours, it is the whole grains that slide past each other.
+      - type: open
+        prompt: Write a short reply to Jonah. Say what sand really is, and explain why it can pour, using both **grains** and **particles**.
+        modelAnswer: |-
+          Sand is a solid, Jonah. It pours because it is made of lots of tiny grains that can slide past each other. But
+          look at one grain. It keeps its shape, because the particles inside it are close together and vibrate in place.
+          And poured on a plate, sand makes a heap, which water can’t do.
+        rubric:
+          - I said that sand is a **solid**.
+          - I said that sand pours because its **grains** slide past each other.
+          - I said that the **particles** inside a grain are close together and vibrate in place.
+    wrapUp: |-
+      Before you decide what state something is in, ask what you are looking at. Sand flows as a crowd of grains, but each
+      grain is a solid.
 
   - id: d3
     level: 3
-    covers: [S1.1, K1.4]
-    type: mc
-    prompt: |-
-      Mila draws particle models of ice and of water vapour (a gas). In her water vapour drawing, she makes
-      each particle **twice as big**. What should she change?
-    choices:
-      - Draw the particles the same size, with large spaces between them in the water vapour.
-      - Nothing. Gas particles are bigger.
-      - Draw the water vapour particles closer together.
-      - Draw the ice particles far apart.
-    answer: 0
-    feedback:
-      '1': In a gas, it is the **spaces** that are large, not the particles.
-      '2': Gas particles are separated by **large** spaces, not packed close.
-      '3': Ice is a solid. Its particles are close together.
-    hints:
-      - What is large in a gas, the particles or the spaces between them?
-    solution:
-      - In a gas, particles are **separated by large spaces**. The particles themselves are not bigger.
-
-  - id: d4
-    level: 3
-    covers: [S1.2, S1.3]
+    thinking: design
+    covers: [S1.1, S1.2, S1.3, K1.5]
     type: open
     prompt: |-
-      Spilled water spreads out into a puddle, but an ice cube stays the same shape. Use the particle model to
-      explain why. Mention **arrangement**, **movement** and **attractive forces**.
+      Your class will act out the particle model at an assembly, and everyone plays a particle. You’re the director.
+      Write what the actors should do to show a **solid**, a **liquid** and a **gas**, using how they hold on to each
+      other to show **attractive forces**. Then name one way your play is **not** like real particles.
+    hints:
+      - For each state, think about three things. How close do the actors stand? How do they move? How tightly do they hold on?
+      - Imagine the show running for an hour. What would real particles do that tired actors wouldn’t? And look at the actors’ size.
     modelAnswer: |-
-      In ice (a solid), the particles are close together and the attractive forces are strongest, so the particles
-      only vibrate in place and the ice keeps its shape. In liquid water, the attractive forces are weaker and the
-      particles are separated by spaces and can slide past each other, so the water flows and spreads out.
+      **Solid:** Stand close together in rows with your arms linked tightly. Stay in your spot and wiggle.
+
+      **Liquid:** Stay close, with small spaces between you, and hold hands loosely. Shuffle past each other.
+
+      **Gas:** Let go. Spread out across the whole gym and keep walking in every direction.
+
+      **How it isn’t like real particles:** Actors get tired and stop, but real particles are always moving. Also,
+      actors are easy to see, but real particles are much too small to see.
     rubric:
-      - I described the **arrangement** of particles in ice and in water.
-      - I described how the particles **move** (vibrate in place vs. slide past each other).
-      - I compared the **attractive forces** (strongest in solids).
+      - My solid is close together and only vibrates in place, and my liquid has spaces and slides past each other.
+      - My gas has large spaces and moves in all directions.
+      - The actors hold on most tightly in my solid and least in my gas.
+      - I named a real way that the actors are different from particles.

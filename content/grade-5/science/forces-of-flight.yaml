@@ -143,265 +143,389 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.6]
+    thinking: notice
+    covers: [K1.7, S1.1, S1.2]
     type: mc
-    prompt: Which force is caused by **gravity** and pulls a flyer **down**?
-    choices: [Weight, Lift, Thrust, Drag]
-    fixedOrder: true
+    figure: { kind: forces, object: plane, forces: [{ kind: thrust, size: 0.6 }, { kind: drag }, { kind: lift }, { kind: weight }] }
+    prompt: Each arrow points the way its force acts, and a longer arrow means a bigger force. What is this airplane doing?
+    choices:
+      - Slowing down, at the same altitude
+      - Speeding up, at the same altitude
+      - Climbing, at the same speed
+      - Descending, at the same speed
     answer: 0
     feedback:
-      '1': Lift pushes **up**.
-      '2': Thrust acts in the direction of movement.
-      '3': Drag acts against the movement, not downward.
+      '1': Which arrow is longer, thrust or drag? Which way would that change the speed?
+      '2': Which pair of arrows decides whether a plane climbs? Are they different lengths?
+      '3': Which pair of arrows decides whether a plane descends? Are they different lengths?
     hints:
-      - This force acts on you even when you are standing still.
+      - Compare the arrows two at a time. Start with thrust and drag, then lift and weight.
     solution:
-      - '**Weight** is caused by gravity and acts downward.'
+      - Drag is longer than thrust, so the plane **slows down**.
+      - Lift and weight are the same length, so its altitude stays the same.
 
   - id: w2
     level: 1
-    covers: [K1.1, K1.4]
-    type: mc
-    prompt: Which force **opposes thrust**?
-    choices: [Drag, Lift, Weight, Gravity]
-    fixedOrder: true
-    answer: 0
+    thinking: recall
+    covers: [K1.1, K1.2, K1.3, K1.4, K1.5, K1.6]
+    type: multi
+    prompt: Select **all** the true statements about the forces on a flying gull.
+    choices:
+      - Thrust and drag are opposing forces.
+      - Lift and weight are opposing forces.
+      - Weight is caused by gravity.
+      - Drag acts in the direction the gull is moving.
+      - Lift acts forward, and thrust acts upward.
+    answer: [0, 1, 2]
     feedback:
-      '1': Lift opposes **weight**.
-      '2': Weight opposes **lift**.
-      '3': Gravity causes weight, which opposes lift.
+      '3': Which force pushes in the direction of movement? What does the other force in that pair do?
+      '4': Which force holds a flyer up in the air? Which one pushes it forward?
     hints:
-      - Thrust pushes forward. Which force pushes backward?
+      - Picture the four arrows on a force diagram. Which way does each one point?
     solution:
-      - Thrust and **drag** are opposing forces.
+      - Thrust (forward) and drag (backward) are one opposing pair. Lift (up) and weight (down) are the other.
+      - Weight is caused by gravity. Drag acts against the movement, and lift is the upward force.
 
   - id: w3
     level: 1
-    covers: [K1.5]
+    thinking: apply
+    covers: [K1.3, K1.8]
     type: mc
-    prompt: What does **lift** do?
-    choices:
-      - It acts upward to overcome weight and hold a flyer in the air.
-      - It pushes a flyer forward.
-      - It slows a flyer down.
-      - It pulls a flyer toward the ground.
-    answer: 0
-    feedback:
-      '1': That is **thrust**.
-      '2': That is **drag**.
-      '3': That is **weight**.
-    hints:
-      - Lift and weight are an opposing pair.
-    solution:
-      - '**Lift** is an upward force that overcomes weight and holds a flyer in the air.'
-
-  - id: w4
-    level: 1
-    covers: [K1.1, K1.2]
-    type: mc
-    prompt: Which is a pair of **opposing forces**?
-    choices: [Lift and weight, Thrust and lift, Drag and weight, Thrust and weight]
+    prompt: A fishing spear has just left the thrower’s hand. Which force on the spear has now **stopped**?
+    choices: [Thrust, Drag, Weight]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': Thrust acts forward and lift acts up. They don't point in opposite directions.
-      '2': Drag acts backward and weight acts down.
-      '3': Thrust acts forward and weight acts down.
+      '1': The spear is still moving through the air. What does the air do to something moving through it?
+      '2': Is gravity still pulling on the spear after it leaves the hand?
     hints:
-      - Opposing forces point in opposite directions.
+      - What was pushing the spear forward? Is it still touching the spear?
     solution:
-      - Lift (up) and weight (down) are opposing forces. So are thrust (forward) and drag (backward).
+      - The thrower’s push gave the spear **thrust**, but only while the hand was touching it.
+      - Drag and weight keep acting until the spear lands.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.7, S1.2, S1.1]
+    thinking: flaw
+    covers: [K1.7, S1.2, U1.1]
     type: mc
-    figure: { kind: forces, object: plane, forces: [{ kind: thrust, size: 1.6 }, { kind: drag }, { kind: lift }, { kind: weight }] }
-    prompt: Look at the force diagram. What is happening to the airplane?
+    prompt: |-
+      On a family flight, the seat screen shows the same speed and the same altitude for a whole hour. Omar says, “The
+      engines must be pushing harder than the drag, or else we’d be slowing down.” What should his sister tell him?
     choices:
-      - It is speeding up and staying at the same altitude.
-      - It is slowing down.
-      - It is climbing.
-      - It is flying at a steady speed.
+      - Equal thrust and drag keep the speed steady. We’d slow down only if drag were bigger.
+      - You’re right. Thrust always has to be bigger than drag for a plane to keep on flying.
+      - At this height there is no drag at all, so the engines don’t have to push against it.
+      - Drag is bigger than thrust right now. That’s what stops the plane from speeding up.
     answer: 0
     feedback:
-      '1': The thrust arrow is **longer** than the drag arrow.
-      '2': Lift and weight are the same length, so the altitude doesn't change.
-      '3': Thrust and drag are not equal, so the speed is changing.
+      '1': If thrust really were bigger than drag for a whole hour, what would the speed number on the screen be doing?
+      '2': The plane is moving, so what does drag do? Check the two arrows in the thrust and drag pair.
+      '3': If drag were the bigger force, which way would the speed number on the screen go?
     hints:
-      - Compare the lengths of each opposing pair of arrows.
+      - What would the speed on the screen do if thrust were bigger than drag?
+      - Look back at what happens when thrust equals drag.
     solution:
-      - Thrust is greater than drag → the plane **speeds up**.
-      - Lift equals weight → it stays at the **same altitude**.
+      - Test Omar’s idea against the screen. If thrust were bigger than drag, the plane would keep **speeding up**. The speed isn’t changing.
+      - So thrust and drag must be **equal**. Equal forces don’t stop the plane. They keep it at the same speed.
+      - It only slows down if drag becomes the bigger force.
 
   - id: b2
     level: 2
-    covers: [K1.7, S1.3, S1.1]
+    thinking: model
+    covers: [K1.7, S1.2, S1.3, S1.4]
     type: mc
-    figure: { kind: forces, object: bird, forces: [{ kind: thrust }, { kind: drag }, { kind: lift, size: 0.5 }, { kind: weight }] }
-    prompt: Look at the force diagram for this bird. What is it doing?
-    choices: [Descending, Climbing, Speeding up, Flying straight and level]
-    fixedOrder: true
+    prompt: |-
+      You watch a magpie from your window. It leaves the roof with its wings spread, and it doesn’t flap at all. It glides
+      lower and lower, getting slower, until it lands on the lawn. What is true during the glide?
+    choices:
+      - Weight is greater than lift, and drag is greater than thrust.
+      - Weight is greater than lift, and thrust is equal to drag.
+      - Lift is equal to weight, and drag is greater than thrust.
+      - There is no lift, because its wings are not flapping.
     answer: 0
     feedback:
-      '1': To climb, lift would need to be **greater** than weight.
-      '2': Thrust and drag are equal, so its speed stays the same.
-      '3': Straight and level needs lift to **equal** weight.
+      '1': Thrust equal to drag would keep the speed steady. What did the story say about its speed?
+      '2': Lift equal to weight would keep its altitude the same. What happened to its altitude?
+      '3': If there were no lift at all, it would drop straight down like a stone. Does a glide look like that?
     hints:
-      - Which is longer, the lift arrow or the weight arrow?
+      - The story describes two changes. Which pair of forces goes with each one?
+      - Lower and lower is about one pair of forces. Slower and slower is about the other pair.
     solution:
-      - Weight is greater than lift, so the bird **descends** to a lower altitude.
+      - The magpie goes lower and lower, so weight is greater than lift. There is still some lift, or it would drop like a stone.
+      - It gets slower, so drag is greater than thrust. With no flapping, there is nothing to push it forward.
 
   - id: b3
     level: 2
-    covers: [K1.7, U1.1]
+    thinking: connect
+    covers: [K1.4, K1.8, S1.2, S1.5]
     type: mc
-    prompt: A plane is in **straight and level flight**. What must be true?
+    prompt: |-
+      In an empty field, Ruth pulls a slingshot band back the same distance twice. She shoots a small, smooth stone, and
+      then a big ball of crumpled foil with the **same weight**. Which one goes farther, and why?
     choices:
-      - Thrust equals drag, and lift equals weight.
-      - Thrust is greater than drag, and lift is greater than weight.
-      - There are no forces acting on the plane.
-      - Lift equals thrust, and drag equals weight.
+      - The stone, because its small, smooth shape has less drag to slow it down.
+      - The foil, because its big shape catches more thrust from the slingshot’s band.
+      - Neither, because the same pull gives the same thrust, so they fly the same.
+      - The stone, because weight pulls down much less on it than it does on the foil.
     answer: 0
     feedback:
-      '1': Then the plane would speed up and climb.
-      '2': All four forces still act on the plane. They are just balanced in pairs.
-      '3': Lift is paired with **weight**, and thrust with **drag**.
+      '1': The band does the same job both times. After that, does being big help or hurt as it moves through the air?
+      '2': They start out the same. Which force acts on them all through the flight, and could it be different for each?
+      '3': The story says they have the same weight. What is different about them?
     hints:
-      - Straight and level means the speed and the altitude stay the same.
+      - What is the same in both shots? What is different?
+      - Why is a fishing spear made long and thin?
     solution:
-      - Same speed → thrust = drag. Same altitude → lift = weight.
+      - The pull is the same and the weight is the same, so neither of those can make a difference.
+      - What’s different is the shape. A big, crumpled shape has much more **drag**, so the foil slows down sooner.
+      - The small, smooth stone keeps its speed for longer, so it goes farther. It’s the same idea as a long, thin spear.
 
   - id: b4
     level: 2
-    covers: [K1.8, K1.3, S1.5]
+    thinking: notice
+    covers: [S1.7, S1.6]
     type: mc
-    prompt: When the stretched band of a slingshot snaps forward, which force does it give the stone?
-    choices: [Thrust, Drag, Lift, Weight]
+    figure: >-
+      <svg viewBox="0 0 440 250" class="fig-svg" role="img" aria-label="A map of a gym. A group at tables is in the bottom left corner. Kids on a bench are in the bottom right corner. Fan A starts in the middle and spreads to the left, reaching the tables. Fan B starts near the top middle and spreads to the right, reaching the bench. Fan C starts at the left wall and spreads toward the top middle, reaching nobody.">
+      <rect class="pb-box" x="5" y="5" width="430" height="240" rx="6"/>
+      <rect class="obj" x="20" y="170" width="120" height="65" rx="4"/><text class="fig-small" x="80" y="200" text-anchor="middle">Group</text><text class="fig-small" x="80" y="218" text-anchor="middle">at tables</text>
+      <rect class="obj" x="340" y="175" width="85" height="60" rx="4"/><text class="fig-small" x="382" y="202" text-anchor="middle">Kids on</text><text class="fig-small" x="382" y="220" text-anchor="middle">a bench</text>
+      <polygon class="fig-arrow" points="215,130 60,110 60,220"/><polygon class="fig-arrow" points="260,60 420,110 420,210"/><polygon class="fig-arrow" points="25,70 235,25 235,115"/>
+      <circle class="fig-hl" cx="215" cy="130" r="6"/><circle class="fig-hl" cx="260" cy="60" r="6"/><circle class="fig-hl" cx="25" cy="70" r="6"/>
+      <text class="fig-label" x="228" y="150">A</text><text class="fig-label" x="254" y="44">B</text><text class="fig-label" x="20" y="54">C</text></svg>
+    prompt: |-
+      Your class is testing gliders you built, using a rubber-band launcher in the gym. Test gliders often veer off to one
+      side. Each dashed fan shows everywhere a glider might go from that launch spot. Which spot is safest?
+    choices: [Spot A, Spot B, Spot C]
     fixedOrder: true
-    answer: 0
+    answer: 2
     feedback:
-      '1': Drag acts **against** the movement, not with it.
-      '2': Lift acts upward. The band pushes the stone forward.
-      '3': Weight comes from gravity, not from the band.
+      '0': The middle of this fan is clear. But follow its lower edge. Who is there, if a glider veers that way?
+      '1': The middle of this fan is clear. But follow its lower edge. Who is there, if a glider veers that way?
     hints:
-      - Which force acts in the direction of movement?
+      - Don’t look only at the middle of each fan. A glider could go anywhere inside it.
+      - Follow both edges of each fan to the end. Does either edge reach a person?
     solution:
-      - The band pushes the stone forward, in the direction it moves. That is **thrust**.
+      - A glider’s nose can hurt someone, so the whole flight path has to be clear, not just the straight line.
+      - The edge of fan A reaches the group at the tables. The edge of fan B reaches the kids on the bench.
+      - All of fan C stays clear of people, so **Spot C** is safest. Testing a new device means expecting it to go the wrong way.
 
   - id: b5
     level: 2
-    covers: [K1.3, K1.4, K1.6, U1.1]
-    type: multi
-    prompt: An arrow has just left the bow. Select **all** the forces still acting on it.
-    choices: [Drag, Weight, Thrust from the bowstring, No forces at all]
-    fixedOrder: true
-    answer: [0, 1]
+    thinking: design
+    covers: [S1.1, K1.7, S1.2, S1.3]
+    type: build
+    prompt: |-
+      A stunt pilot is drawing a force diagram for a trick called the **Lazy Elevator**. The plane **climbs** while it
+      **slows down**. The weight arrow is **6 cm** long. Choose whole-number lengths from 1 cm to 12 cm for the other
+      three arrows, to make the trick work.
+    fields:
+      - { name: thrust, label: 'Thrust', unit: cm }
+      - { name: drag, label: 'Drag', unit: cm }
+      - { name: lift, label: 'Lift', unit: cm }
+    rules:
+      - { test: 'thrust % 1 == 0 && drag % 1 == 0 && lift % 1 == 0', fail: 'Use whole numbers of centimetres.' }
+      - { test: 'thrust >= 1 && drag >= 1 && lift >= 1 && thrust <= 12 && drag <= 12 && lift <= 12', fail: 'Keep each arrow between 1 cm and 12 cm.' }
+      - { test: 'lift > 6', fail: 'This plane isn’t climbing. Which arrow has to beat the weight arrow?' }
+      - { test: 'drag > thrust', fail: 'This plane isn’t slowing down. Which of thrust and drag has to be longer?' }
+    examples:
+      - { thrust: 3, drag: 5, lift: 8 }
+      - { thrust: 1, drag: 12, lift: 7 }
+      - { thrust: 9, drag: 10, lift: 12 }
+    counterexamples:
+      - { thrust: 5, drag: 3, lift: 8 }
+      - { thrust: 3, drag: 5, lift: 6 }
+      - { thrust: 3, drag: 5, lift: 13 }
+      - { thrust: 2.5, drag: 5, lift: 8 }
     hints:
-      - Is the bowstring still touching the arrow?
+      - Which pair of arrows decides whether the plane climbs? Which pair decides whether it slows down?
+      - Deal with one pair at a time. Does what you choose for one pair change the other pair?
     solution:
-      - '✓ **Drag** acts against its movement and slows it down.'
-      - '✓ **Weight** pulls it down.'
-      - '✗ The bowstring only pushes while it touches the arrow.'
-
-  - id: b6
-    level: 2
-    covers: [S1.6, S1.7]
-    type: mc
-    prompt: Your class is building and testing small gliders. Which is the **safest** way to work?
-    choices:
-      - Cut away from your body, and throw the gliders only when the flight path is clear.
-      - Pass scissors by throwing them to a friend.
-      - Throw your glider toward your classmates to test it.
-      - Stand on a chair to launch it.
-    answer: 0
-    feedback:
-      '1': Hand scissors over carefully, with the handles first.
-      '2': A glider's nose can hurt someone's eye.
-      '3': You could fall. Launch from the floor.
-    hints:
-      - Think about the tools you use and where the glider goes.
-    solution:
-      - Use tools carefully, and make sure nobody is in the flight path before you launch.
+      - The two pairs do separate jobs. Lift and weight decide the climbing. Thrust and drag decide the speed.
+      - To climb, lift must be longer than 6 cm. To slow down, drag must be longer than thrust.
+      - 'Thrust 3 cm, drag 5 cm, lift 8 cm works. So does thrust 9 cm, drag 10 cm, lift 12 cm. Both follow the same two rules, however long the arrows are.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.6, K1.8, U1.1, S1.5]
-    type: mc
-    prompt: An archer wants to hit the centre of a target far away. Where should they aim?
-    choices:
-      - A little above the centre, because weight pulls the arrow down as it flies.
-      - Right at the centre, because arrows fly in straight lines.
-      - A little below the centre, because lift pushes the arrow up.
-      - It doesn't matter, because drag cancels weight.
-    answer: 0
-    feedback:
-      '1': In the experiment, an arrow aimed at the centre hit **below** it.
-      '2': An arrow has almost no lift. Its path curves **down**.
-      '3': Drag acts backward and weight acts down. They don't cancel.
-    hints:
-      - Remember where the arrow hit in the virtual experiment.
-    solution:
-      - Weight pulls the arrow down for the whole flight, so its path curves downward.
-      - Aiming a little **above** the centre makes up for the drop.
+    thinking: breakdown
+    covers: [K1.2, K1.5, K1.6, K1.7, S1.3, S1.2, U1.1]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 440 226" class="fig-svg" role="img" aria-label="A graph of a drone's altitude over its trip. In section A it rises from the ground. In section B it stays level. At the treehouse it drops the pizza. In section C it rises again. In section D it stays level at a higher altitude. In section E it descends to the ground.">
+      <line class="sci-tick" x1="30" y1="10" x2="30" y2="196"/><line class="sci-tick" x1="30" y1="196" x2="430" y2="196"/>
+      <line class="obj-line" x1="30" y1="194" x2="110" y2="100"/><line class="obj-line" x1="110" y1="100" x2="220" y2="100"/><line class="obj-line" x1="220" y1="100" x2="280" y2="56"/><line class="obj-line" x1="280" y1="56" x2="350" y2="56"/><line class="obj-line" x1="350" y1="56" x2="420" y2="194"/>
+      <circle class="fig-hl" cx="220" cy="100" r="7"/>
+      <text class="fig-label" x="56" y="134">A</text><text class="fig-label" x="160" y="90">B</text><text class="fig-label" x="238" y="66">C</text><text class="fig-label" x="310" y="46">D</text><text class="fig-label" x="396" y="124">E</text>
+      <text class="fig-small" x="220" y="124" text-anchor="middle">drops the pizza</text>
+      <text class="fig-small" x="230" y="216" text-anchor="middle">Along the trip</text><text class="fig-small" x="36" y="22">Altitude</text></svg>
+    prompt: |-
+      Zippy is a make-believe delivery drone. Its propellers give it both lift and thrust. Zippy takes off with a pizza,
+      flies to a treehouse and drops the pizza into the basket without stopping. The graph shows its altitude on the trip.
+    parts:
+      - type: multi
+        prompt: In which sections does the lift **equal** the weight? Select **all** of them.
+        choices: [Section A, Section B, Section C, Section D, Section E]
+        fixedOrder: true
+        answer: [1, 3]
+        feedback:
+          '0': The line is going up here. What does that tell you about lift and weight?
+          '2': The line is going up here. What does that tell you about lift and weight?
+          '4': The line is going down here. What does that tell you about lift and weight?
+        hints:
+          - What does the line look like when the altitude isn’t changing?
+        solution:
+          - When lift equals weight, the altitude stays the same, so the line is flat. That happens in sections **B** and **D**.
+          - In A and C, lift is greater than weight. In E, weight is greater than lift.
+      - type: mc
+        prompt: Right after the pizza drops, Zippy shoots upward, even though its propellers haven’t changed at all. Why?
+        choices:
+          - The weight got smaller, so the same lift is now greater than the weight.
+          - The lift got bigger, because lift grows as soon as the pizza is gone.
+          - The falling pizza pushes the drone upward, and that gives it some thrust.
+          - The drag from the air disappears, so the drone is free to go upward.
+        answer: 0
+        feedback:
+          '1': The story says the propellers haven’t changed. So which of the two forces did change?
+          '2': Thrust comes from Zippy’s propellers, and they haven’t changed. What did the pizza add to the drone before it dropped?
+          '3': Drag acts against the movement. Which pair of forces decides whether a flyer goes up or down?
+        hints:
+          - Lift and weight decide whether Zippy climbs. Which of these changed when the pizza left?
+        solution:
+          - The pizza was part of what gravity was pulling down. Without it, Zippy’s **weight** is smaller.
+          - The lift is the same as before, so now lift is greater than weight, and Zippy climbs.
+      - type: mc
+        prompt: In section D, Zippy is flying level again without the pizza. What must have happened at the end of section C?
+        choices:
+          - The propellers slowed so that lift got smaller, down to the new weight.
+          - Zippy’s weight went up, until it was the same as the weight it had before.
+          - The propellers sped up so that the lift got greater than the new weight.
+          - Thrust grew until it was the same as the lift from the propellers.
+        answer: 0
+        feedback:
+          '1': Nothing was added to Zippy. Can the weight go back up without the pizza?
+          '2': If lift got even greater than the weight, would the line on the graph go flat?
+          '3': Thrust is paired with drag, not lift. Which pair decides the altitude?
+        hints:
+          - What must be true of lift and weight in a flat section? Has the weight changed since the pizza dropped?
+        solution:
+          - Level flight needs lift to equal weight. Zippy’s weight is now smaller, and it stays that way.
+          - So the lift must have come down to match it. That happens when the propellers slow a little.
+      - type: mc
+        prompt: |-
+          The next day, Zippy tows a huge, flat banner that weighs **the same** as the pizza. Zippy must fly at the same
+          speed and altitude as in section B. What has to change, compared with carrying the pizza?
+        choices:
+          - More thrust, because the banner adds drag. The lift can stay the same.
+          - More lift, because the banner is so big. The thrust can stay the same.
+          - More lift and more thrust, because any big load needs more of each one.
+          - Nothing at all, because the banner has the same weight as the pizza.
+        answer: 0
+        feedback:
+          '1': The banner weighs the same as the pizza. So does lift need to change to hold it up?
+          '2': Look at each pair on its own. Did the weight change? Did the drag change?
+          '3': Weight is one of four forces. What would a huge, flat shape do as it moves through the air?
+        hints:
+          - Check each opposing pair on its own. Which force in the lift and weight pair has changed, if any?
+          - What does a huge, flat shape do as it moves through the air?
+        solution:
+          - 'Lift and weight: the weight is the same, so the same lift holds Zippy at that altitude.'
+          - 'Thrust and drag: a huge, flat banner has much more drag. To keep the same speed, thrust has to grow to match the new drag.'
+    wrapUp: |-
+      Each opposing pair does its own job. Change the weight, and the altitude is affected. Change the drag, and the speed
+      is affected. To fix a flight, find out which pair has become uneven.
 
   - id: d2
     level: 3
-    covers: [K1.7, S1.3]
-    type: mc
-    prompt: A plane is flying straight and level. Which change would make it **descend**?
-    choices:
-      - Lift becomes less than weight.
-      - Thrust becomes greater than drag.
-      - Lift becomes greater than weight.
-      - Nothing changes.
-    answer: 0
-    feedback:
-      '1': That changes the **speed**, not the altitude.
-      '2': That makes the plane **climb**.
-      '3': If the forces stay balanced, the plane keeps flying straight and level.
-    hints:
-      - Altitude changes when lift and weight are not equal.
-    solution:
-      - When weight is greater than lift, the plane **descends** to a lower altitude.
+    thinking: why
+    covers: [K1.3, K1.4, K1.6, S1.2, S1.3, U1.1]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 400 150" class="fig-svg" role="img" aria-label="A foam rocket in three stages. Going up, it points up with a dashed arrow pointing up. At the top, it has stopped. Coming down, it points down with a dashed arrow pointing down.">
+      <rect class="obj" x="62" y="46" width="16" height="48" rx="3"/><polygon class="obj" points="62,46 78,46 70,28"/><line class="fig-arrow" x1="100" y1="90" x2="100" y2="30"/><polygon class="fig-hl" points="100,20 93,34 107,34"/>
+      <rect class="obj" x="192" y="26" width="16" height="48" rx="3"/><polygon class="obj" points="192,26 208,26 200,8"/>
+      <rect class="obj" x="322" y="46" width="16" height="48" rx="3"/><polygon class="obj" points="322,94 338,94 330,112"/><line class="fig-arrow" x1="360" y1="40" x2="360" y2="100"/><polygon class="fig-hl" points="360,110 353,96 367,96"/>
+      <text class="fig-small" x="80" y="140" text-anchor="middle">Going up</text><text class="fig-small" x="200" y="140" text-anchor="middle">Stopped at the top</text><text class="fig-small" x="330" y="140" text-anchor="middle">Coming down</text></svg>
+    prompt: |-
+      On a still day in an open field, you launch a foam rocket straight up. Once it leaves the launcher, nothing pushes
+      it any more. It rises, slows down, stops for a moment at the top and comes back down.
+    parts:
+      - type: mc
+        prompt: Which way does the **drag** on the rocket point?
+        choices:
+          - 'Going up, it points down. Coming down, it points up.'
+          - 'Going up, it points down. Coming down, it points down.'
+          - 'Going up, it points up. Coming down, it points down.'
+          - 'Going up, there is none. Coming down, it points up.'
+        answer: 0
+        feedback:
+          '1': Lots of people picture drag as a force that always pulls things down. What does drag act against?
+          '2': This has drag going along with the rocket. Would that slow the rocket down?
+          '3': The rocket is moving through the air on the way up as well. Does the air act on it then?
+        hints:
+          - Drag acts against the direction of movement. Which way is the rocket moving in each picture?
+        solution:
+          - Drag acts against the direction of movement, so it depends on which way the rocket is moving.
+          - On the way up it points **down**. On the way down it points **up**.
+      - type: multi
+        prompt: The rocket has stopped for a moment at the very top. Select **all** the forces acting on it at that moment.
+        choices: [Weight, Drag, Thrust from the launcher]
+        fixedOrder: true
+        answer: [0]
+        feedback:
+          '1': Drag acts against movement. Is the rocket moving at this moment?
+          '2': Is the launcher still touching the rocket?
+        hints:
+          - Check each force in turn. What does it need in order to act on the rocket?
+        solution:
+          - Weight is caused by gravity, and gravity doesn’t stop, so **weight** still acts.
+          - Drag acts against movement, and the rocket isn’t moving at that moment. Thrust ended when it left the launcher.
+      - type: mc
+        prompt: Why does the rocket lose speed so quickly on the way up, but gain speed more gently on the way down?
+        choices:
+          - On the way up, weight and drag both act against its movement. On the way down, they oppose each other.
+          - On the way up, weight is greater than usual. On the way down, weight is smaller than it was at the start.
+          - On the way up, drag is the only force acting. On the way down, weight is the only force that is acting.
+          - On the way up, it has no thrust at all. On the way down, it has thrust from gravity pulling on it.
+        answer: 0
+        feedback:
+          '1': Weight is caused by gravity. Does the rocket’s weight change as it goes up and down?
+          '2': Look at your first two answers. Does weight stop acting on the way up? Does drag stop on the way down?
+          '3': Gravity’s pull has its own name, and it isn’t thrust. Which two forces act on the rocket after it leaves the launcher?
+        hints:
+          - Draw the two force arrows on each rocket. Do they point the same way, or opposite ways?
+        solution:
+          - Going up, weight points down and drag points down. Both act against the movement, so they slow the rocket quickly.
+          - Coming down, weight points down and drag points up. They oppose each other, so drag cancels part of the pull, and the rocket speeds up more gently.
+    wrapUp: |-
+      Weight always points down, but drag points against the movement. So the same two forces can work together or against
+      each other, depending on which way something is moving.
 
   - id: d3
     level: 3
-    covers: [S1.6, S1.2, S1.3]
-    type: mc
-    prompt: |-
-      Ava builds a paper airplane. After she throws it, it **slows down quickly** and then drops toward the floor.
-      Which explanation fits?
-    choices:
-      - Drag is greater than thrust, and then weight is greater than lift.
-      - Thrust is greater than drag, and lift is greater than weight.
-      - The paper airplane has no weight.
-      - Lift is acting downward.
-    answer: 0
-    feedback:
-      '1': Then it would speed up and climb.
-      '2': Everything that has mass has weight.
-      '3': Lift always acts **upward**.
-    hints:
-      - Slowing down is about thrust and drag. Dropping is about lift and weight.
-    solution:
-      - Slowing down → drag is greater than thrust (after the throw, there is no more thrust).
-      - Dropping → weight is greater than lift.
-
-  - id: d4
-    level: 3
-    covers: [U1.1, S1.1, S1.2, S1.3]
+    thinking: design
+    covers: [S1.6, S1.7, S1.2, S1.3, K1.3, K1.4, K1.6]
     type: open
     prompt: |-
-      A goose flies straight and level across a lake. Describe the four forces acting on it. Explain how each
-      pair of opposing forces keeps its flight straight and level.
+      **Invent** a device that carries a paper note through the air, across your classroom. You can use things like paper,
+      tape, straws, a balloon, string or paper clips. Describe your device. Say where its **thrust** comes from, what its
+      **drag** does, what holds it up against its **weight**, and one thing you’d do to keep everyone safe.
+    hints:
+      - How will it get moving? What keeps pushing it, and for how long?
+      - Picture it halfway across the room. What is slowing it down? What is pulling it down? What is stopping it from falling?
+      - Now picture testing it with the class around you. What could go wrong, and who could it hit?
     modelAnswer: |-
-      Thrust from flapping its wings pushes the goose forward, and drag pushes backward against its movement.
-      They are equal, so its speed stays the same. Lift pushes up and weight pulls down. They are equal too, so its
-      altitude stays the same. That is straight and level flight.
+      I would thread a straw onto a string tied across the room, tape a blown-up balloon to the straw and tape the note on.
+      When I let the balloon go, the air rushing out gives it **thrust**. **Drag** from the air slows it down, so I’d keep the
+      balloon small and smooth. The string holds it up against its **weight**.
+
+      To keep everyone safe, I’d tie the string above head height and away from where people walk.
+
+      Another idea is a paper glider. The throw gives it thrust only at the start, and lift from its wings opposes its weight.
     rubric:
-      - I named all four forces and their directions.
-      - I said thrust **equals** drag, so the speed stays the same.
-      - I said lift **equals** weight, so the altitude stays the same.
+      - I described what my device is made of and how it carries the note.
+      - I said where its **thrust** comes from, and that **drag** slows it down.
+      - I said what holds it up against its **weight**.
+      - I gave a safety step that fits my device.
