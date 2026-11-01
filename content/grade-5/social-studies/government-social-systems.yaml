@@ -155,231 +155,373 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [K1.1, S1.2]
     type: mc
-    prompt: Who rules in an **authoritarian** government?
+    prompt: In a made-up land, General Vex marches his soldiers into the capital and announces that he alone will now make every law. No one in his family has ever ruled. What kind of government is this?
     choices:
-      - A single leader or a small group of leaders
-      - Every citizen, equally
-      - No one at all
-      - Whoever wins a game
+      - A dictatorship
+      - A monarchy
+      - An egalitarian one
+      - An empire
     answer: 0
     feedback:
-      '1': When citizens share power, it is not authoritarian.
-      '2': A government has someone making decisions.
-      '3': Authoritarian leaders gain power by divinity rights, heredity or force.
+      '1': A monarchy usually has a ruler from a ruling family. Did Vex get power from his family?
+      '2': Egalitarian describes a social system where power isn’t based on gender. It doesn’t tell us how Vex took control.
+      '3': An empire rules over many lands and peoples. Vex has only taken over one capital so far.
     hints:
-      - Is power spread out, or held by a few?
+      - How did Vex get his power? Who holds it now?
     solution:
-      - Authoritarian governments are ruled by **a single leader or a small group**.
+      - One leader holds total power, and he got it by force. That is a **dictatorship**, one kind of authoritarian government.
 
   - id: w2
     level: 1
+    thinking: recall
     covers: [K1.2]
     type: multi
-    prompt: Which are ways that authoritarian leaders may claim power? Choose all that apply.
-    choices: [Divinity rights, Heredity, Force, A vote by all the people]
-    answer: [0, 1, 2]
+    prompt: A herald shouts a made-up king’s boasts to the crowd. Which boasts claim power through **divinity rights**? Choose all that apply.
+    choices:
+      - '"Chosen by the gods of the sky!"'
+      - '"Son of the sun!"'
+      - '"Grandson of old King Bram!"'
+      - '"Conqueror of the Seven Valleys!"'
+    answer: [0, 1]
     feedback:
-      '3': Leaders chosen by a vote of all the people are not authoritarian leaders.
+      '2': This claim comes from his family, so it is heredity.
+      '3': This claim comes from winning battles, so it is force.
     hints:
-      - The lesson's sort had three bins.
+      - Which boasts link the king to something above the people on Earth?
     solution:
-      - Authoritarian leaders may claim power through **divinity rights**, **heredity** and **force**.
+      - Being chosen by gods or being a son of the sun are **divinity rights**.
+      - A famous grandfather is heredity. Conquering valleys is force.
 
   - id: w3
     level: 1
-    covers: [K1.5, K1.6]
+    thinking: apply
+    covers: [K1.4, K1.5, K1.6]
     type: mc
-    prompt: In which social system is power **not** based on gender?
-    choices: [Egalitarian, Patriarchal, Matriarchal]
+    prompt: In the made-up valley of Orrin, the eldest woman of each family sits on the ruling council. Men may not join. What kind of social system is this?
+    choices: [Matriarchal, Patriarchal, Egalitarian]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': In a patriarchal system, men hold most of the power, so it is based on gender.
-      '2': In a matriarchal system, women hold most of the power, so it is based on gender.
+      '1': In a patriarchal system, men hold most of the power. Who holds it in Orrin?
+      '2': In an egalitarian system, power isn’t based on gender. Is gender deciding who sits on this council?
     hints:
-      - Which word sounds like "equal"?
+      - Who has the power in Orrin, and what decides that?
     solution:
-      - In **egalitarian** social systems, power is not based on gender.
+      - Power in Orrin is based on gender, and women hold it. That makes it **matriarchal**.
 
   - id: w4
     level: 1
+    thinking: notice
     covers: [K1.7]
     type: mc
-    prompt: In ancient social pyramids, who had the **fewest** people and the **most** power?
+    prompt: Bryn draws a social pyramid upside down. It is wide at the top and comes to a point at the bottom. Each class is still in its right place from top to bottom. What is wrong with the drawing?
     choices:
-      - The highest social class
-      - The lower social classes
-      - Enslaved people
-      - All classes were the same size and had the same power.
+      - It shows the most people in the highest class, but that class had the fewest.
+      - It shows the highest class with no power, but that class had the most.
+      - It shows enslaved people in the highest class, but they were in the lowest.
+      - It shows every class at the same size, but the classes were all different.
     answer: 0
     feedback:
-      '1': The lower classes had the most people and less power.
-      '2': Enslaved people had the least power and freedom.
-      '3': These social systems were hierarchical, so classes were not equal.
+      '1': The highest class is still on top, so it still looks the most powerful. What does the **width** of a layer tell you?
+      '2': The classes didn’t change places. Only the shape changed.
+      '3': The layers in Bryn’s drawing go from wide to narrow, so they aren’t the same size.
     hints:
-      - Look at the shape of the pyramid.
+      - What does a wide layer mean? What does a narrow layer mean?
     solution:
-      - The narrow top of the pyramid is the **highest class**, with few people and the most power.
+      - The width of a layer shows how many people were in it.
+      - The highest class had the **fewest** people, so it should be the narrow point. Most people were in the lower classes, at the wide base.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.2, S1.3]
+    thinking: notice
+    covers: [S1.1, K1.8]
     type: mc
-    prompt: Zhou kings said that Heaven had taken away the right to rule from the Shang rulers, and given it to them. What is this claim called?
+    prompt: Here are four made-up places. Which one is an **empire**?
     choices:
-      - The mandate of heaven
-      - The divine right of kings
-      - Heredity
-      - The Royal Road
+      - 'Kell: its army beat six neighbouring peoples, and it rules them all now.'
+      - 'Morna: a huge city of temples and scribes, all in its own one valley.'
+      - 'Sabra: its merchants trade with ten lands, and each land has its own ruler.'
+      - 'Dorn: one powerful chief decides everything for the people of Dorn.'
     answer: 0
     feedback:
-      '1': The divine right of kings was the idea used by later European kings.
-      '2': Heredity is power passed down through a family. The Zhou took power from another family.
-      '3': The Royal Road was a Persian road.
+      '1': Morna sounds like a civilization, with cities, jobs and shared ways of life. But how many lands and peoples does it rule?
+      '2': Trade can help an empire to grow. But does Sabra rule those ten lands?
+      '3': That tells you how Dorn is governed. A strong leader doesn’t make an empire. What else would Dorn need?
     hints:
-      - This idea comes from ancient China.
+      - Don’t ask "How big or rich is it?" Ask "Who does it rule?"
     solution:
-      - This is the **mandate of heaven**. It meant that a ruler who lost Heaven's favour could lose the throne.
+      - An empire is one power that **rules over many lands and peoples**. Kell took over six peoples and rules them.
+      - Morna can be big and be a civilization without being an empire. Sabra is rich from trade, but it doesn’t rule the lands it trades with.
 
   - id: b2
     level: 2
-    covers: [K1.3, S1.3]
+    thinking: evidence
+    covers: [S1.4, K1.7]
     type: mc
-    prompt: '"Things were terrible during the civil wars. I don''t love the emperor, but at least now there is peace." What motivates this follower?'
-    choices: [A desire for stability, Fear, Tradition, Wealth]
+    prompt: |-
+      Imagine a complaint box in ancient Rome. One note says:
+
+      "Those games cost me a fortune again! But if I stop paying, people will forget how important my family is."
+
+      Use Rome’s pyramid. Who most likely wrote this?
+    choices:
+      - A senator
+      - The emperor
+      - A plebeian with a trade
+      - An enslaved person
     answer: 0
     feedback:
-      '1': This person isn't afraid of being punished. They value the peace.
-      '2': This person isn't following because of old customs.
-      '3': Wealth isn't mentioned.
+      '1': The emperor’s biggest worry in the pyramid is different. Tap his layer. Who could remove him?
+      '2': Tap this layer. Long hours in the shop were this person’s challenge. Did it include paying for games?
+      '3': An enslaved person had no fortune to spend. Who in the pyramid paid for games to keep their standing?
     hints:
-      - What does this person value most about the emperor?
+      - Which words in the note are clues about this person’s money and place in society?
+      - Tap each layer of Rome’s pyramid and read its challenges.
     solution:
-      - Wanting peace and order after a time of war is a **desire for stability**.
+      - Senators and the rich paid for public games and buildings to keep their standing. The note fits a **senator**.
+      - A class with more power and privilege still has challenges, but they are very different from the challenges at the bottom.
 
   - id: b3
     level: 2
-    covers: [S1.4, K1.7]
+    thinking: flaw
+    covers: [K1.9]
     type: mc
-    prompt: Use the pyramid. Which statement compares the classes correctly in ancient Rome?
+    prompt: |-
+      Ayesha says, "West African empires were like a relay race. Ghana ended and Mali began. Then Mali ended and Songhai began." Look at the timeline. What is wrong with her idea?
+    figure: |-
+      <svg viewBox="0 0 380 150" class="fig-svg" role="img" aria-label="A timeline from the year 700 to the year 1600. Ghana runs from about 700 to 1200. Mali runs from about 1235 to 1600. Songhai runs from about 1464 to 1591.">
+        <g fill="currentColor" opacity="0.75">
+          <rect x="20" y="16" width="180" height="20" rx="3"/>
+          <rect x="213" y="50" width="131" height="20" rx="3"/>
+          <rect x="295" y="84" width="46" height="20" rx="3"/>
+        </g>
+        <g fill="currentColor" font-size="13">
+          <text x="208" y="31">Ghana</text>
+          <text x="207" y="65" text-anchor="end">Mali</text>
+          <text x="289" y="99" text-anchor="end">Songhai</text>
+          <text x="20" y="136" text-anchor="middle">700</text>
+          <text x="128" y="136" text-anchor="middle">1000</text>
+          <text x="236" y="136" text-anchor="middle">1300</text>
+          <text x="344" y="136" text-anchor="middle">1600 CE</text>
+        </g>
+        <line x1="20" y1="118" x2="344" y2="118" stroke="currentColor" stroke-width="2"/>
+        <g stroke="currentColor" stroke-width="2">
+          <line x1="20" y1="113" x2="20" y2="123"/><line x1="128" y1="113" x2="128" y2="123"/><line x1="236" y1="113" x2="236" y2="123"/><line x1="344" y1="113" x2="344" y2="123"/>
+        </g>
+      </svg>
     choices:
-      - Senators could hold high office, while enslaved people were treated as property.
-      - Enslaved people had more rights than senators.
-      - Freed people ruled the empire.
-      - All Romans had the same opportunities.
+      - Songhai began while Mali was still going, so Mali hadn’t ended yet.
+      - Mali began long before Ghana ended, so those two ran side by side.
+      - Songhai began before Mali did, so she has those two the wrong way round.
+      - Ghana came after Songhai, so she has the whole race the wrong way round.
     answer: 0
     feedback:
-      '1': The opposite. Enslaved people had almost no rights.
-      '2': Freed people could not hold high office.
-      '3': Rome was hierarchical, so opportunities depended on class.
+      '1': Find where Ghana’s bar stops and where Mali’s bar starts. Do they overlap?
+      '2': Compare the left ends of the Mali and Songhai bars. Which one starts first?
+      '3': Which bar starts farthest to the left?
     hints:
-      - Tap the senators' layer and the bottom layer of Rome's pyramid.
+      - A relay runner stops before the next one gets very far. Where do two bars sit above each other?
     solution:
-      - Rome was hierarchical. Senators held high office, and enslaved people had almost no rights.
+      - Mali’s bar and Songhai’s bar overlap for more than 100 years. Songhai didn’t wait for Mali to end. It broke away while princes in Mali were fighting over the throne.
+      - Empires don’t always hand over neatly. Struggles over wealth and the gold and salt trade could start a new empire while an old one was still there.
 
   - id: b4
     level: 2
-    covers: [S1.1, K1.8]
-    type: mc
-    prompt: What makes an **empire** different from other civilizations?
-    choices:
-      - It rules over many lands and peoples, often taken through conquest.
-      - It has no government.
-      - It must be in Africa.
-      - It has no cities.
-    answer: 0
-    feedback:
-      '1': Empires have governments that rule their lands.
-      '2': Empires grew on many continents, including Persia and Rome.
-      '3': Empires have many cities.
-    hints:
-      - Look at how Rome's map changes from 264 BCE to 117 CE.
-    solution:
-      - An empire rules **many lands and peoples**, and it often gets them through trade and military conquest.
-
-  - id: b5
-    level: 2
-    covers: [K1.9]
-    type: order
-    prompt: Put these West African empires in order, from **earliest** to **latest**.
-    items: [Ghana, Mali, Songhai]
-    hints:
-      - Tap "Ghana, Mali and Songhai" on the map and read the timeline.
-    solution:
-      - '**Ghana** (about 700–1200 CE) → **Mali** (about 1235–1600 CE) → **Songhai** (about 1464–1591 CE).'
+    thinking: breakdown
+    covers: [K1.7, S1.4, U1.1]
+    type: investigation
+    prompt: |-
+      Your class plays Pyramid Day. Of **25** students, **1** is the ruler, **4** are nobles and **20** are farmers. Only the farmers bake. They make **30** cookies. The ruler takes **10**, and each noble takes **3**.
+    parts:
+      - type: number
+        prompt: How many cookies are left for all 20 farmers to share?
+        answer: 8
+        verify: 30 - 10 - 4 * 3
+        unit: cookies
+        hints:
+          - There are 4 nobles. How many do they take altogether?
+        solution:
+          - The nobles take \(4 \times 3 = 12\) cookies. Then \(30 - 10 - 12 = 8\).
+          - The 5 students at the top have 22 cookies. The 20 students who did all the baking share 8.
+      - type: mc
+        prompt: Priya drew a farmer card. "Can I study hard and move up?" she asks. Look at Egypt’s pyramid. Which class came through education, and what was the catch?
+        choices:
+          - Scribes, but few families could afford the years of schooling.
+          - Scribes, but the job was mostly heavy labour.
+          - Nobles and priests, but the schooling took many years.
+          - The pharaoh, but rivals could plot against the throne.
+        answer: 0
+        feedback:
+          '1': Tap the Scribes layer again. What does it say about heavy labour?
+          '2': Tap this layer again. What is it based on?
+          '3': Tap this layer. It is based on heredity. Could studying get you there?
+        hints:
+          - Tap each layer and look at what it is based on.
+        solution:
+          - Scribes’ places were based on **education**. It was a real way up, but few families could afford the years of hard schooling.
+      - type: mc
+        prompt: A noble’s grandchild will most likely still be near the top. A farmer’s grandchild will most likely still be farming. Why is that?
+        choices:
+          - Wealth and family place pass down, and wealth can pay for schooling.
+          - Children of nobles are born cleverer, so they earn the top places.
+          - Farming families chose to stay put, so their children never wished to move.
+          - Each new ruler picks people for each class, based on who works hardest.
+        answer: 0
+        feedback:
+          '1': The pyramid says that the top places were based on heredity and wealth. Does it say anything about being born cleverer?
+          '2': Priya wanted to move up. What actually stood in the way of a child like her?
+          '3': The farmers in your game worked hardest, and they got the fewest cookies. Is hard work what decided a person’s class?
+        hints:
+          - Look at what the top classes were based on. What gets handed from parents to children?
+        solution:
+          - Heredity and wealth pass from parents to children, and wealth can pay for schooling. So a family’s class tends to carry on.
+    wrapUp: The few at the top had the most, and the way up was narrow. A social system like this helps to keep power where it already is, and those differences can divide people.
+    hints: []
+    solution: []
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.8]
-    type: mc
-    prompt: 'On the map, the land held by Greece in 323 BCE looks a lot like that held by Persia in 500 BCE. What is the **best** explanation?'
-    choices:
-      - Alexander the Great conquered the Persian Empire and took over its lands.
-      - Greece and Persia were always one country.
-      - Persia gave its land away as a gift.
-      - The two maps show the same year.
-    answer: 0
-    feedback:
-      '1': They were separate powers, and they fought each other.
-      '2': Alexander's armies took this land by conquest.
-      '3': These maps show dates about 177 years apart.
-    hints:
-      - Tap each empire's card and read how it grew.
-    solution:
-      - Alexander's armies **conquered** Persia, so much of its land became part of his empire.
+    thinking: whatif
+    covers: [K1.3, S1.3, U1.1]
+    type: investigation
+    prompt: |-
+      King Odo rules a made-up land. Three villagers bow as he passes.
+
+      - **Nan:** "My family has bowed to his family for 200 years."
+      - **Ferro:** "Before Odo, raiders burned my bakery twice. Now we have peace."
+      - **Pim:** "I bow because his guards are watching me."
+    parts:
+      - type: mc
+        prompt: What motivates each follower?
+        choices:
+          - 'Nan: tradition. Ferro: stability. Pim: fear.'
+          - 'Nan: stability. Ferro: tradition. Pim: fear.'
+          - 'Nan: tradition. Ferro: fear. Pim: stability.'
+          - 'Nan: fear. Ferro: stability. Pim: tradition.'
+        answer: 0
+        feedback:
+          '1': Nan never mentions peace. Which words in Nan’s quote show why she bows?
+          '2': Ferro talks about what has been better since Odo came. Is that fear, or a wish for things to stay calm?
+          '3': Pim mentions guards. Is that an old custom, or something else?
+        hints:
+          - Find the words in each quote that give the reason.
+        solution:
+          - 'Nan follows what her family has always done: **tradition**. Ferro wants peace to last: **stability**. Pim is afraid of the guards: **fear**.'
+      - type: mc
+        prompt: Odo sends all his guards to a far-off war. Who is most likely to stop bowing first?
+        choices: [Pim, Nan, Ferro]
+        answer: 0
+        feedback:
+          '1': Do guards have anything to do with Nan’s reason?
+          '2': Ferro cares about raiders. It might worry Ferro later, but who changes the moment the guards leave?
+        hints:
+          - For each villager, ask whether their reason has just gone away.
+        solution:
+          - Pim only bows because the guards are watching. With no guards, that reason is gone.
+      - type: mc
+        prompt: The guards come back, but they stay in the palace. Raiders burn Ferro’s bakery again, and Ferro stops bowing. What is most likely to win Ferro back?
+        choices:
+          - Guards posted on the road to stop the raiders
+          - A grand ceremony to honour Odo’s ancestors
+          - Soldiers who punish Ferro for refusing to bow
+          - A speech saying that the gods chose King Odo
+        answer: 0
+        feedback:
+          '1': That might please Nan. What did Ferro say mattered?
+          '2': That could make Ferro bow, but for a new reason. Ferro would be just like Pim. Is that really winning Ferro back?
+          '3': Ferro never mentioned the gods. What was Ferro’s reason for bowing in the first place?
+        hints:
+          - Go back to Ferro’s quote. What was the reason for bowing?
+        solution:
+          - Ferro followed Odo for peace. Giving that peace back is what speaks to Ferro’s reason.
+      - type: mc
+        prompt: '"I have plenty of guards," says Odo. "Why bother with anything else?" What is the best answer?'
+        choices:
+          - Guards can’t watch everyone always, so fear alone stops working when they leave.
+          - Guards cost so much that a ruler should send them away and rely on tradition.
+          - Fear never makes anyone obey, so the guards aren’t helping you at all.
+          - People’s reasons never change, so you can relax as soon as they all bow.
+        answer: 0
+        feedback:
+          '1': Think about Ferro. Would tradition have stopped the raiders?
+          '2': Pim did bow while the guards were watching. So does fear do nothing?
+          '3': Look at what happened to Ferro. Did Ferro’s reason stay the same?
+        hints:
+          - Think back over the story. What happened to Pim’s bowing when the guards left?
+        solution:
+          - Fear works only while the guards are there. Rulers who kept power used tradition, stability and fear together, so that one bad day couldn’t bring it all down.
+    wrapUp: To work out what could shake a ruler, ask why each person follows. Different reasons break in different ways, and that is why rulers worked to keep all three going.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K1.9]
+    thinking: why
+    covers: [K1.2, S1.3]
     type: mc
-    prompt: Mali controlled trade in gold and salt. In 1591, Morocco invaded Songhai to seize the gold trade. What do these two facts have in common?
+    prompt: |-
+      A Zhou king says that Heaven chose him, and that Heaven can take that right away from a bad ruler. Then floods drown the crops for three years. A rebel shouts, "See? Heaven has left the king!"
+
+      Why is this more of a danger to him than to a king who only says, "My father was king"?
     choices:
-      - In both, control of a valuable trade was tied to power.
-      - In both, the empire had no contact with others.
-      - In both, trade had no effect on who ruled.
-      - In both, salt was worth nothing.
+      - His claim depends on Heaven staying pleased, so bad times can be used against him.
+      - Floods only come to lands where a ruler has claimed to be chosen by Heaven.
+      - A king who rules by heredity can stop floods, since his family has always ruled.
+      - Kings who rule by heredity never face rebels, so only this king has to worry.
     answer: 0
     feedback:
-      '1': The trade routes linked these empires to many other lands.
-      '2': Both show that trade had a big effect on who held power.
-      '3': Salt was so valuable that people crossed the Sahara for it.
+      '1': Floods can happen under any ruler. The difference is in what people can **say** about the flood.
+      '2': Can anyone’s family stop a flood? Think about what the flood does to each king’s claim.
+      '3': Any ruler can face rebels. So what does the rebel in this story have to work with?
     hints:
-      - Why would Morocco want to attack an empire so far away?
+      - After the flood, is "My father was king" still true?
+      - After the flood, how sure can people be that Heaven still chose this king?
     solution:
-      - Gold and salt meant wealth, and wealth meant power. Economic disputes helped end some empires and begin others.
+      - '"My father was king" stays true, however bad the floods get.'
+      - '"Heaven chose me" can be taken back, and a disaster gives people a reason to say it has been. The **mandate of heaven** could make a ruler strong, and it could also be turned against him.'
+      - 'Here is one more thing to notice: it even gives a rebel from another family a way to claim power.'
 
   - id: d3
     level: 3
-    covers: [U1.1, S1.3]
-    type: multi
-    prompt: A pharaoh wants to keep power. Which actions would help, based on the lesson? Choose all that apply.
-    choices:
-      - Hold grand ceremonies that show a link to the gods
-      - Keep grain stored, so people trust that order and food will last
-      - Have soldiers punish rebels
-      - Let any farmer replace the pharaoh by a vote
-    answer: [0, 1, 2]
-    feedback:
-      '3': That would give up power, not keep it.
+    thinking: flaw
+    covers: [S1.5, K1.4, K1.5]
+    type: open
+    prompt: |-
+      A museum sign says: **"Egypt had a woman pharaoh, Hatshepsut. So Egypt was a matriarchy."**
+
+      Use the lesson’s table. What is wrong with the thinking on the sign? Then write a better sign.
     hints:
-      - Think about tradition, stability and fear.
-    solution:
-      - Ceremonies draw on **tradition** and belief, stored grain offers **stability**, and soldiers create **fear**. All three help a ruler to keep power.
+      - What would have to be true of a whole society for it to be a matriarchy?
+      - Look at the Egypt row of the table. What else does it say about men and women?
+    modelAnswer: |-
+      One woman ruling doesn't mean that women held most of the power. The table says that men held most high
+      offices in Egypt. A better sign: "In Egypt, men held most high offices. Women could own property, and a few,
+      such as Hatshepsut, ruled as pharaoh."
+    rubric:
+      - I explained that one woman ruling doesn’t show that women held most of the power.
+      - I used a fact from the table, such as who held most of the high offices.
+      - My new sign says only what the evidence supports.
 
   - id: d4
     level: 3
-    covers: [S1.5, S1.4]
+    thinking: perspective
+    covers: [S1.4, K1.7]
     type: open
-    prompt: Imagine that you are a girl and your brother is a boy, both in a citizen family in ancient Athens. Describe how your lives might differ because of gender.
+    prompt: |-
+      It is the day of the great public games in Rome. Use Rome’s pyramid. Write two short diary lines about this same day: one by a **senator**, and one by someone from the **bottom layer**. Show how different the day looks from each place in the pyramid.
+    hints:
+      - Tap both layers. What is an opportunity or a challenge for each?
+      - What would each person be doing or worrying about on the day of the games?
     modelAnswer: |-
-      My brother would likely go to school, learn to take part in public life, and vote when he grew up. I would
-      mostly stay home, and learn to run a household. I could not vote, even though I am from a citizen
-      family. This shows that Athens was patriarchal, since power was based on gender.
+      Senator: "These games cost me a fortune again, but the crowd cheered my family's name. It is worth it to keep
+      our place." Enslaved person: "I was setting out benches before sunrise. Nobody asked if I wanted to come, and
+      no one will ever cheer my name."
     rubric:
-      - I described at least one thing the boy could do.
-      - I described at least one limit on the girl.
-      - I connected the differences to gender and power (a patriarchal system).
+      - Both of my lines are about the same day of games.
+      - My senator’s line fits that layer, such as paying for the games to keep their standing.
+      - My other line fits the bottom layer, such as having little money or no freedom.
