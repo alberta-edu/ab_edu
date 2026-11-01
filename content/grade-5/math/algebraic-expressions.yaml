@@ -106,198 +106,319 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.5]
+    thinking: recall
+    covers: [K2.5, K2.6]
     type: mc
-    prompt: 'In \(4n + 7\), what is the **coefficient**?'
-    choices: ['4', '\(n\)', '7', '11']
-    fixedOrder: true
+    prompt: 'In \(6y + 4\), what is the **coefficient**?'
+    choices: ['6', '\(y\)', '4', '10']
     answer: 0
     feedback:
-      '1': '\(n\) is the **variable**.'
-      '2': '7 is the **constant term**.'
-      '3': '4 and 7 are different kinds of terms. You can''t add them.'
+      '1': '\(y\) is the variable. The coefficient is a number.'
+      '2': '4 is the constant term. It stands on its own, with no variable.'
+      '3': '6 and 4 are different kinds of terms. The 6 is multiplying \(y\), so you can’t add them.'
     hints:
-      - The coefficient is the number multiplied by the variable.
+      - Which number is being multiplied by the variable?
     solution:
-      - '\(4n\) means 4 times \(n\), so the coefficient is **4**.'
+      - '\(6y\) means 6 times \(y\), so the coefficient is **6**. The 4 is the constant term.'
 
   - id: w2
     level: 1
-    covers: [S2.1, S2.2]
+    thinking: notice
+    covers: [S2.1, S2.2, K2.3, S2.5]
     type: mc
-    prompt: 'How do you write \(n + n + n\) using a coefficient?'
-    choices: ['\(3n\)', '\(n + 3\)', '\(3 + n\)', '\(n3\)']
+    figure: >-
+      <svg viewBox="0 0 330 80" class="fig-svg" role="img" aria-label="A toy caterpillar drawn as a row. There are four equal body pieces, each labelled n centimetres, and a head labelled 3 centimetres.">
+      <rect class="fig-rect" x="10" y="15" width="60" height="45"/><text class="fig-label" x="40" y="44" text-anchor="middle">n</text>
+      <rect class="fig-rect" x="70" y="15" width="60" height="45"/><text class="fig-label" x="100" y="44" text-anchor="middle">n</text>
+      <rect class="fig-rect" x="130" y="15" width="60" height="45"/><text class="fig-label" x="160" y="44" text-anchor="middle">n</text>
+      <rect class="fig-rect" x="190" y="15" width="60" height="45"/><text class="fig-label" x="220" y="44" text-anchor="middle">n</text>
+      <rect class="fig-hl" x="250" y="15" width="65" height="45" rx="14"/><text class="fig-label" x="282" y="44" text-anchor="middle">3</text>
+      </svg>
+    prompt: 'This toy caterpillar has **4** body pieces, each \(n\) cm long, and a head **3** cm long. Which expression gives its whole length in centimetres?'
+    choices: ['\(4n + 3\)', '\(7n\)', '\(n + 7\)', '\(n4 + 3\)']
     answer: 0
     feedback:
-      '1': '\(n + 3\) means 3 more than \(n\), not 3 groups of \(n\).'
-      '2': '\(3 + n\) is the same as \(n + 3\).'
-      '3': 'The coefficient is written **before** the variable.'
+      '1': 'That would mean 7 pieces of length \(n\). Is the head \(n\) cm long?'
+      '2': 'That counts only one body piece, plus 7 cm.'
+      '3': 'Right idea, but the coefficient is written **before** the variable.'
     hints:
-      - How many \(n\)'s are being added?
+      - How would you write the 4 body pieces as an addition?
+      - '\(n + n + n + n\) can be written with a coefficient.'
     solution:
-      - 'Three \(n\)''s added together is \(3n\).'
+      - 'The body is \(n + n + n + n\), which is \(4n\). The head adds 3 cm.'
+      - 'So the whole length is \(4n + 3\) centimetres.'
 
   - id: w3
     level: 1
-    covers: [K2.7, S2.6]
-    type: number
-    prompt: 'Evaluate \(5m\) when \(m = 6\).'
-    answer: 30
-    verify: 5 * 6
+    thinking: recall
+    covers: [S2.4, U2.2, K2.4, K2.6]
+    type: multi
+    prompt: Which of these are a **single term**? Select all that are.
+    choices:
+      - '\(5x\)'
+      - '\(9\)'
+      - '\(\frac{x}{3}\)'
+      - '\(5x + 9\)'
+      - '\(x + 1\)'
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'The + sign joins two terms: \(5x\) and 9.'
+      '4': 'The + sign joins two terms: \(x\) and 1.'
     hints:
-      - '\(5m\) means 5 times \(m\).'
+      - Look for a + sign joining two parts.
     solution:
-      - '\(5m = 5 \times 6 = 30\)'
+      - '\(5x\) is a product with a variable, \(\frac{x}{3}\) is a quotient with a variable, and 9 is a number. Each one is a single term.'
+      - '\(5x + 9\) and \(x + 1\) each have two terms.'
 
   - id: w4
     level: 1
-    covers: [K2.4, S2.3]
-    type: mc
-    prompt: 'How do you write "a number \(n\) divided by 4"?'
-    choices: ['\(\frac{n}{4}\)', '\(\frac{4}{n}\)', '\(4n\)', '\(n - 4\)']
-    answer: 0
-    feedback:
-      '1': 'That is 4 divided by \(n\). The number being divided goes on top.'
-      '2': 'That is 4 **times** \(n\).'
-      '3': 'That is 4 **less than** \(n\).'
+    thinking: apply
+    covers: [K2.7, S2.6, K2.4]
+    type: number
+    prompt: 'Evaluate \(\frac{t}{4} + 3\) when \(t = 20\).'
+    answer: 8
+    verify: 20 / 4 + 3
     hints:
-      - Quotients with variables are written as fractions.
+      - What does the fraction bar in \(\frac{t}{4}\) tell you to do?
+      - 'Replace \(t\) with 20. Divide first, then add.'
     solution:
-      - '\(n\) divided by 4 is \(\frac{n}{4}\).'
+      - 'Replace \(t\) with 20: \(\frac{20}{4} + 3\).'
+      - '\(20 \div 4 = 5\), and \(5 + 3 = 8\).'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S2.6]
-    type: number
-    prompt: 'Evaluate \(2k + 9\) when \(k = 7\).'
-    answer: 23
-    verify: 2 * 7 + 9
+    thinking: model
+    covers: [S2.3, S2.5, K2.4, U2.2]
+    type: mc
+    prompt: |-
+      A piñata bursts and \(c\) candies fall out. **6** children share them equally. Then each child also
+      gets **2** lollipops from a party bag. Which expression shows how many treats **one** child gets?
+    choices:
+      - '\(\frac{c}{6} + 2\)'
+      - '\(6c + 2\)'
+      - '\(\frac{6}{c} + 2\)'
+      - '\(\frac{c}{2} + 6\)'
+    answer: 0
+    feedback:
+      '1': 'That gives one child 6 times all the candies that fell. Should sharing make the pile bigger?'
+      '2': 'That divides 6 by the number of candies. Which number is being shared out?'
+      '3': 'That shares the candies among 2 children and gives each one 6 lollipops.'
     hints:
-      - 'Replace \(k\) with 7, then multiply before adding.'
+      - What happens to the \(c\) candies? How do we write that with a variable?
+      - The candies are divided by 6. Then what gets added to one child’s pile?
     solution:
-      - '\(2k + 9 = 2 \times 7 + 9 = 14 + 9 = 23\)'
+      - 'Sharing \(c\) candies among 6 children gives each child \(\frac{c}{6}\) candies.'
+      - 'Each child also gets 2 lollipops, so one child has \(\frac{c}{6} + 2\) treats.'
 
   - id: b2
     level: 2
-    covers: [U2.2, S2.4]
+    thinking: flaw
+    covers: [K2.2, U2.1, S2.2]
     type: mc
-    prompt: Which expression has **two** terms?
-    choices: ['\(3a + 5\)', '\(7a\)', '\(\frac{a}{2}\)', '\(12\)']
+    prompt: |-
+      Mr. Abara packs **6** boxes. Each box holds the same number of books, \(b\), so there are \(6b\) books.
+      Sol says, "\(6b\) means 6 books." What does the \(b\) really stand for?
+    choices:
+      - The number of books in one box
+      - The word "books", to label the 6
+      - The number 2, as b is the second letter
+      - A number that changes from box to box
     answer: 0
     feedback:
-      '1': '\(7a\) is a single algebraic term.'
-      '2': 'A quotient with a variable is a single term.'
-      '3': 'A number on its own is a single constant term.'
+      '1': 'This is Sol’s mistake. A variable stands for a number, not for a thing. What would \(6b\) be if \(b\) were 20?'
+      '2': 'A letter doesn’t get its value from the alphabet. The story decides what number it stands for.'
+      '3': 'Each box holds the **same** number of books. That is why one letter is enough.'
     hints:
-      - Look for a plus sign joining two parts.
+      - The problem tells you what \(b\) is. Read that sentence again.
+      - 'Suppose each box holds 20 books. What is \(6b\) then? Is that 6 books?'
     solution:
-      - '\(3a + 5\) is an algebraic term (\(3a\)) plus a constant term (5): **two** terms.'
+      - '\(b\) is a specific number we don’t know yet: how many books are in one box.'
+      - 'If each box held 20 books, \(6b\) would be \(6 \times 20 = 120\) books, not 6 books.'
 
   - id: b3
     level: 2
-    covers: [S2.5]
-    type: mc
-    prompt: 'Which expression means "5 more than 3 times a number \(b\)"?'
-    choices: ['\(3b + 5\)', '\(5b + 3\)', '\(3 + b + 5\)', '\(8b\)']
-    answer: 0
+    thinking: notice
+    covers: [S2.6, K2.7, U2.1]
+    type: multi
+    prompt: |-
+      Magician Zed has **3** hats with the same number of rabbits in each, \(h\), and **2** more rabbits
+      hopping around. So \(3h + 2\) rabbits are on stage. A helper loses count. Which totals **could** be
+      true? (No half rabbits!)
+    choices: ['11', '14', '10', '12', '15']
+    answer: [0, 1]
     feedback:
-      '1': 'That is 3 more than 5 times \(b\).'
-      '2': 'That adds \(b\) only once, not 3 times.'
-      '3': 'You can''t combine 3 times \(b\) and 5 into \(8b\).'
+      '2': 'Take away the 2 hopping rabbits, and 8 are left for 3 hats. Can 3 hats share 8 evenly?'
+      '3': 'Take away the 2 hopping rabbits, and 10 are left for 3 hats. Can 3 hats share 10 evenly?'
+      '4': 'Take away the 2 hopping rabbits, and 13 are left for 3 hats. Can 3 hats share 13 evenly?'
     hints:
-      - '"3 times b" comes first, then add 5.'
+      - What would the total be if each hat held 1 rabbit? What about 2 rabbits?
+      - Try \(h = 1, 2, 3, 4\) and list the totals.
     solution:
-      - '3 times \(b\) is \(3b\). 5 more than that is \(3b + 5\).'
+      - 'Substitute whole numbers for \(h\): \(h = 1\) gives 5, \(h = 2\) gives 8, \(h = 3\) gives **11**, \(h = 4\) gives **14**, \(h = 5\) gives 17.'
+      - 'Another way: take away the 2 hopping rabbits. What is left must be shared evenly among 3 hats.'
 
   - id: b4
     level: 2
-    covers: [K2.4, S2.6]
-    type: number
-    prompt: 'Evaluate \(\frac{n}{3}\) when \(n = 27\).'
-    answer: 9
-    verify: 27 / 3
-    hints:
-      - '\(\frac{n}{3}\) means \(n \div 3\).'
-    solution:
-      - '\(\frac{27}{3} = 27 \div 3 = 9\)'
-
-  - id: b5
-    level: 2
-    covers: [S2.5]
+    thinking: connect
+    covers: [S2.1, S2.5, U2.2]
     type: mc
-    prompt: 'Tickets cost \(t\) dollars each. A family buys **4 tickets** and pays a **$6** parking fee. Which expression shows the total cost?'
-    choices: ['\(4t + 6\)', '\(6t + 4\)', '\(t + 10\)', '\(4 + t + 6\)']
+    figure: >-
+      <svg viewBox="0 0 320 170" class="fig-svg" role="img" aria-label="A rectangle with its long side labelled L metres and its short side labelled 3 metres.">
+      <rect class="fig-rect" x="50" y="20" width="220" height="100"/>
+      <text class="fig-label" x="160" y="150" text-anchor="middle">L m</text>
+      <text class="fig-label" x="42" y="76" text-anchor="end">3 m</text>
+      </svg>
+    prompt: 'A sandbox is \(L\) metres long and **3** metres wide. Wood trim goes **all the way around** it. Which expression shows how many metres of trim are needed?'
+    choices: ['\(2L + 6\)', '\(2L + 3\)', '\(L + 6\)', '\(3L\)']
     answer: 0
     feedback:
-      '1': 'That would be 6 tickets and a $4 fee.'
-      '2': 'That counts only one ticket.'
-      '3': 'That counts only one ticket, plus 4 dollars.'
+      '1': 'That counts both long sides but only one short side.'
+      '2': 'That counts both short sides but only one long side.'
+      '3': 'That is the area of the sandbox: the sand on top, not the trim around it.'
     hints:
-      - 4 tickets at \(t\) dollars each is 4 times \(t\).
+      - Walk around the sandbox with your finger. Which sides do you pass?
+      - 'Write the trip as an addition: \(L + 3 + L + 3\).'
     solution:
-      - '4 tickets cost \(4t\). Add the parking fee: \(4t + 6\).'
+      - 'All the way around is \(L + 3 + L + 3\) metres.'
+      - 'The two long sides are \(L + L = 2L\). The two short sides are \(3 + 3 = 6\). So the trim is \(2L + 6\) metres.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S2.6, K2.7]
-    type: mc
-    prompt: 'For which value of \(n\) does \(4n + 3\) equal **31**?'
-    choices: ['\(n = 7\)', '\(n = 8\)', '\(n = 28\)', '\(n = 34\)']
-    answer: 0
-    feedback:
-      '1': '\(4 \times 8 + 3 = 35\), not 31.'
-      '2': '\(4 \times 28 + 3 = 115\). Too big!'
-      '3': '\(4 \times 34 + 3 = 139\). Far too big.'
-    hints:
-      - Substitute each value and check.
-    solution:
-      - '\(4 \times 7 + 3 = 28 + 3 = 31\) ✓'
+    thinking: decide
+    covers: [S2.5, S2.6, K2.5, K2.6]
+    type: investigation
+    prompt: |-
+      Two farms rent out llamas for walks. **Woolly Acres** charges $5 to start, plus $3 for each hour.
+      **Hilltop Llamas** charges $15 to start, plus $1 for each hour. A walk lasts \(h\) hours.
+    parts:
+      - type: mc
+        prompt: Which expression shows the cost, in dollars, at **Woolly Acres**?
+        choices: ['\(3h + 5\)', '\(5h + 3\)', '\(h + 8\)', '\(8h\)']
+        answer: 0
+        feedback:
+          '1': 'That charges $5 for each hour. Which price happens every hour?'
+          '2': 'That charges $8 to start and only $1 for each hour.'
+          '3': 'That charges the $5 again every hour. How many times do you pay it?'
+        hints: [Which price depends on how long you walk? Which one doesn’t?]
+        solution: ['$3 each hour is \(3h\). The $5 is paid once. So the cost is \(3h + 5\). Hilltop’s cost is \(h + 15\) in the same way.']
+      - type: number
+        prompt: 'Hilltop’s cost is \(h + 15\). Try a **5-hour** walk at Woolly Acres. How many dollars does it cost?'
+        answer: 20
+        unit: dollars
+        verify: 3 * 5 + 5
+        hints: [Replace \(h\) with 5 in \(3h + 5\).]
+        solution: ['\(3 \times 5 + 5 = 20\). At Hilltop, \(5 + 15 = 20\) too. For 5 hours, the two farms cost the same!']
+      - type: mc
+        prompt: One family wants a **2-hour** walk. Another wants a **9-hour** trek. Which farm should each family pick to pay less?
+        choices:
+          - '2 hours at Woolly Acres, 9 hours at Hilltop'
+          - '2 hours at Hilltop, 9 hours at Woolly Acres'
+          - 'Woolly Acres for both of the walks'
+          - 'Hilltop Llamas for both of the walks'
+        answer: 0
+        feedback:
+          '1': 'Evaluate both expressions when \(h = 2\). What do you get?'
+          '2': 'Woolly Acres wins for 2 hours. Now evaluate both when \(h = 9\).'
+          '3': 'Hilltop wins for 9 hours. Now evaluate both when \(h = 2\).'
+        hints: [Evaluate both expressions for \(h = 2\), then again for \(h = 9\).]
+        solution:
+          - 'For 2 hours: Woolly Acres costs \(3 \times 2 + 5 = 11\) dollars and Hilltop costs \(2 + 15 = 17\) dollars.'
+          - 'For 9 hours: Woolly Acres costs \(3 \times 9 + 5 = 32\) dollars and Hilltop costs \(9 + 15 = 24\) dollars.'
+      - type: mc
+        prompt: Why does the cheaper farm switch when the walk gets longer?
+        choices:
+          - 'The coefficient adds up every hour, and the constant doesn’t.'
+          - 'A bigger constant term makes a bill grow faster each hour.'
+          - 'The letter \(h\) stands for a different number at each farm.'
+          - 'Woolly Acres raises its price per hour after the fifth hour.'
+        answer: 0
+        feedback:
+          '1': 'Hilltop has the bigger constant, but its bill grows by only $1 each hour.'
+          '2': 'For the same walk, \(h\) is the same number at both farms.'
+          '3': 'The price stays $3 an hour for the whole walk. So what else could make the bill catch up?'
+        hints:
+          - What happens to each bill when you add one more hour?
+        solution:
+          - 'Each extra hour adds $3 at Woolly Acres, but only $1 at Hilltop. The $5 and the $15 never change.'
+          - 'So Woolly Acres starts lower but climbs faster. Short walks suit it, and long walks suit Hilltop.'
+    wrapUp: 'In \(3h + 5\), the term \(3h\) changes as \(h\) changes, but the constant term stays the same. An expression can tell you the whole story before you know the number.'
 
   - id: d2
     level: 3
-    covers: [S2.1, S2.2]
-    type: mc
-    prompt: 'Is \(3n\) the same as \(n + 3\)?'
-    choices:
-      - 'No. For example, when \(n = 5\), \(3n = 15\) but \(n + 3 = 8\).'
-      - 'Yes, they use the same numbers.'
-      - 'Yes, because order doesn''t matter.'
-      - 'No, because \(3n\) is always smaller.'
-    answer: 0
-    feedback:
-      '1': 'Using the same symbols doesn''t make the values the same. Test a value!'
-      '2': 'Order doesn''t matter for \(n + 3 = 3 + n\), but \(3n\) means multiplying.'
-      '3': 'When \(n = 1\), \(3n = 3\), which is smaller than \(n + 3 = 4\). But when \(n = 5\), \(3n\) is bigger. So "always smaller" is false.'
-    hints:
-      - Try \(n = 5\) in both.
-    solution:
-      - '\(3n\) means \(n + n + n\), which is 3 times \(n\). \(n + 3\) means 3 more than \(n\).'
-      - 'With \(n = 5\): \(3n = 15\) and \(n + 3 = 8\). Different!'
+    thinking: evidence
+    covers: [S2.6, K2.7, K2.6, S2.5]
+    type: investigation
+    prompt: |-
+      A silly machine burps when you feed it pickles. It follows one rule every time.
+
+      | Pickles in, \(n\) | Burps out |
+      |---|---|
+      | 1 | 5 |
+      | 2 | 8 |
+      | 3 | 11 |
+    parts:
+      - type: multi
+        prompt: Which of these expressions fit the **first row**? Select all that do.
+        choices:
+          - '\(3n + 2\)'
+          - '\(4n + 1\)'
+          - '\(2n + 3\)'
+          - '\(n + 4\)'
+          - '\(5n + 1\)'
+        answer: [0, 1, 2, 3]
+        feedback:
+          '4': 'With \(n = 1\), this gives \(5 + 1 = 6\), not 5.'
+        hints: [Replace \(n\) with 1 in each one.]
+        solution: ['With \(n = 1\), the first four all give 5. So one row is not enough to tell them apart!']
+      - type: mc
+        prompt: Which expression fits **every** row?
+        choices:
+          - '\(3n + 2\)'
+          - '\(4n + 1\)'
+          - '\(2n + 3\)'
+          - '\(n + 4\)'
+        answer: 0
+        feedback:
+          '1': 'With \(n = 2\), this gives 9 burps, but the machine gave 8.'
+          '2': 'With \(n = 2\), this gives 7 burps, but the machine gave 8.'
+          '3': 'With \(n = 2\), this gives 6 burps, but the machine gave 8.'
+        hints: [Test each one with \(n = 2\). Test any survivor with \(n = 3\).]
+        solution: ['\(3 \times 1 + 2 = 5\), \(3 \times 2 + 2 = 8\) and \(3 \times 3 + 2 = 11\). The only one that fits every row is \(3n + 2\).']
+      - type: number
+        prompt: How many burps come out for **10** pickles?
+        answer: 32
+        unit: burps
+        verify: 3 * 10 + 2
+        hints: [You don’t need to keep filling in the table. What can you do with the expression?]
+        solution: ['Substitute: \(3 \times 10 + 2 = 32\) burps.']
+      - type: number
+        prompt: Now feed it **no pickles at all**. How many burps come out?
+        answer: 2
+        unit: burps
+        verify: 3 * 0 + 2
+        hints: [Replace \(n\) with 0. Which part of the expression is left?]
+        solution: ['\(3 \times 0 + 2 = 2\). The constant term doesn’t depend on the pickles. The machine burps twice even when it’s empty.']
+    wrapUp: One row that fits proves very little. An expression earns your trust by fitting every row, and then it can answer questions the table never asked.
 
   - id: d3
     level: 3
-    covers: [S2.6]
-    type: multi
-    prompt: 'Select **all** the expressions with a value of **12** when \(x = 4\).'
-    choices: ['\(3x\)', '\(x + 8\)', '\(2x + 4\)', '\(\frac{x}{4}\)', '\(12x\)']
-    answer: [0, 1, 2]
-    hints:
-      - Substitute 4 for \(x\) in each expression.
-    solution:
-      - '\(3 \times 4 = 12\) ✓, \(4 + 8 = 12\) ✓, \(2 \times 4 + 4 = 12\) ✓'
-      - '\(\frac{4}{4} = 1\) ✗, \(12 \times 4 = 48\) ✗'
-
-  - id: d4
-    level: 3
-    covers: [S2.5, K2.5, K2.6]
+    thinking: why
+    covers: [U2.1, K2.2, S2.1, S2.6]
     type: open
-    prompt: 'Write an expression for the number of wheels on \(b\) bicycles and **1** tricycle. Explain what the coefficient and the constant term mean.'
+    prompt: |-
+      A closet holds \(s\) pairs of shoes and one lonely extra shoe, so there are \(2s + 1\) shoes. You don’t
+      know \(s\). Max says there could be exactly **40** shoes. Is Max right? Explain how you can tell without
+      knowing \(s\).
+    hints:
+      - Try \(s = 1, 2, 3\). What do you notice about the totals?
+      - What kind of number is \(2s\) always? Think about pairs.
     modelAnswer: |-
-      \(2b + 3\). Each bicycle has 2 wheels, so \(b\) bicycles have \(2b\) wheels. The coefficient 2 is the number of
-      wheels on one bicycle. The tricycle adds 3 wheels, so the constant term 3 is the tricycle's wheels.
+      Max is not right. \(2s\) means \(s + s\), or a whole number of pairs, so it is always an even number. Adding the 1
+      lonely shoe always makes the total odd. 40 is even, so it can’t be the total. For example, \(s = 19\) gives 39 shoes
+      and \(s = 20\) gives 41 shoes, so the totals jump right over 40.
     rubric:
-      - 'I wrote \(2b + 3\) (or \(3 + 2b\)).'
-      - I explained that the coefficient 2 is the wheels on each bicycle.
-      - I explained that the constant term 3 is the tricycle's wheels.
+      - I said that there can’t be exactly 40 shoes.
+      - I explained that \(2s\) is always even, because shoes in pairs always make an even number.
+      - I explained that adding 1 to an even number always gives an odd number, and 40 is even.

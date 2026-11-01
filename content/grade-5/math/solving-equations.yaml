@@ -104,194 +104,307 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [S3.3, K3.1]
     type: number
-    prompt: 'Solve \(x + 7 = 15\). \(x\) = ?'
-    answer: 8
-    verify: 15 - 7
+    prompt: 'Solve \(\frac{m}{4} = 6\). \(m\) = ?'
+    answer: 24
+    verify: 6 * 4
     hints:
-      - Undo "+ 7" by subtracting 7 from both sides.
+      - What has been done to \(m\)? What undoes that?
+      - Multiply both sides by 4.
     solution:
-      - '\(x + 7 - 7 = 15 - 7\), so \(x = 8\).'
+      - '\(m\) was divided by 4, so undo it by multiplying both sides by 4.'
+      - '\(m = 6 \times 4 = 24\). Check: \(\frac{24}{4} = 6\) ✓'
 
   - id: w2
     level: 1
-    covers: [S3.3, K3.1]
-    type: number
-    prompt: 'Solve \(4y = 28\). \(y\) = ?'
-    answer: 7
-    verify: 28 / 4
+    thinking: recall
+    covers: [S3.2, S3.3, K3.1, U3.1]
+    type: order
+    prompt: 'Put these lines in order to solve \(5x - 4 = 31\).'
+    items:
+      - Add 4 to both sides.
+      - '\(5x = 35\)'
+      - Divide both sides by 5.
+      - '\(x = 7\)'
     hints:
-      - '\(4y\) means 4 times \(y\). Undo it by dividing both sides by 4.'
+      - Which operation was done to \(x\) last? Undo that one first.
     solution:
-      - '\(4y \div 4 = 28 \div 4\), so \(y = 7\).'
+      - 'The − 4 was done last, so undo it first: add 4 to both sides to get \(5x = 35\).'
+      - 'Then undo the × 5: divide both sides by 5 to get \(x = 7\).'
 
   - id: w3
     level: 1
-    covers: [S3.2, U3.1]
-    type: mc
-    prompt: 'What is a good **first** step to solve \(3x + 5 = 20\)?'
+    thinking: notice
+    covers: [U3.2, S3.4, K3.2]
+    type: multi
+    prompt: 'For which of these equations is \(x = 4\) the **solution**? Select all of them.'
     choices:
-      - Subtract 5 from both sides.
-      - Subtract 5 from the left side only.
-      - Add 5 to both sides.
-      - Multiply both sides by 3.
-    answer: 0
+      - '\(2x + 1 = 9\)'
+      - '\(3x - 2 = 10\)'
+      - '\(\frac{x}{2} + 5 = 7\)'
+      - '\(5x - 1 = 18\)'
+      - '\(x + 4 = 16\)'
+    answer: [0, 1, 2]
     feedback:
-      '1': 'Changing only one side breaks the balance. The sides would no longer be equal.'
-      '2': 'Adding 5 doesn''t undo "+ 5". Subtracting does.'
-      '3': 'Multiplying doesn''t undo multiplying. Dividing does, and it''s easier after the + 5 is gone.'
+      '3': 'With \(x = 4\), the left side is \(20 - 1 = 19\), not 18.'
+      '4': 'With \(x = 4\), the left side is \(4 + 4 = 8\), not 16.'
     hints:
-      - Undo the last operation that was done to \(x\), on both sides.
+      - You don’t have to solve anything. What can you do with the 4?
+      - Put 4 in place of \(x\), then compare the two sides.
     solution:
-      - 'Undo "+ 5" first: \(3x = 15\). Then divide by 3: \(x = 5\).'
-
-  - id: w4
-    level: 1
-    covers: [S3.4, U3.2]
-    type: mc
-    prompt: 'Is \(x = 6\) a solution of \(2x + 1 = 13\)?'
-    choices:
-      - 'Yes, because \(2 \times 6 + 1 = 13\).'
-      - 'No, because \(6 + 1 = 7\).'
-      - 'No, because 6 isn''t in the equation.'
-      - 'Yes, because 6 is less than 13.'
-    answer: 0
-    feedback:
-      '1': '\(2x\) means 2 times \(x\). Don''t forget to multiply.'
-      '2': You check by substituting the value for \(x\).
-      '3': Being less than 13 doesn't make it a solution. Check by substituting.
-    hints:
-      - 'Replace \(x\) with 6 and evaluate the left side.'
-    solution:
-      - '\(2 \times 6 + 1 = 12 + 1 = 13\). Both sides are 13 ✓'
+      - 'A solution makes both sides equal. Substitute 4 into each equation.'
+      - '\(8 + 1 = 9\) ✓, \(12 - 2 = 10\) ✓ and \(2 + 5 = 7\) ✓. The other two don’t match.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S3.3]
-    type: number
-    prompt: 'Solve \(5n + 2 = 37\). \(n\) = ?'
-    answer: 7
-    verify: (37 - 2) / 5
+    thinking: connect
+    covers: [S3.2, K3.1]
+    type: mc
+    prompt: |-
+      A knight puts on a chain shirt, then a chest plate over it. To get undressed, the chest plate comes
+      off first. Now look at \(4k + 7 = 31\). First \(k\) was multiplied by 4, and then 7 was added. What
+      should you undo first?
+    choices:
+      - Subtract 7 from both sides
+      - Divide both sides by 4
+      - Add 7 to both sides
+      - Multiply both sides by 4
+    answer: 0
+    feedback:
+      '1': 'That is like pulling off the chain shirt with the chest plate still on. Which step went on last?'
+      '2': 'You do want to undo the + 7 first. But does adding undo adding?'
+      '3': 'Multiplying doesn’t undo multiplying, and the × 4 isn’t the last thing that happened to \(k\).'
     hints:
-      - 'Subtract 2 from both sides first.'
+      - Which operation went on last, like the chest plate?
+      - Which operation undoes + 7?
     solution:
-      - '\(5n + 2 - 2 = 37 - 2\) → \(5n = 35\)'
-      - '\(5n \div 5 = 35 \div 5\) → \(n = 7\)'
+      - 'The + 7 went on last, so it comes off first: subtract 7 from both sides to get \(4k = 24\).'
+      - 'Then the × 4 comes off: \(k = 6\). Check: \(4 \times 6 + 7 = 31\) ✓'
 
   - id: b2
     level: 2
-    covers: [S3.3, K3.1]
+    thinking: model
+    covers: [S3.1, S3.5, S3.3]
     type: number
-    prompt: 'Solve \(m - 9 = 14\). \(m\) = ?'
-    answer: 23
-    verify: 14 + 9
+    prompt: |-
+      You build a snow fort. Each of its **4** walls uses the same number of snow blocks, \(w\). The gate tower
+      uses **6** blocks. You use **50** blocks in all. How many blocks are in one wall?
+    answer: 11
+    unit: blocks
+    verify: (50 - 6) / 4
     hints:
-      - 'Undo "− 9" by adding 9 to both sides.'
+      - What does the story say is equal to 50? Try writing it as an equation.
+      - 'The walls use \(4w\) blocks. Add the tower: \(4w + 6 = 50\).'
     solution:
-      - '\(m - 9 + 9 = 14 + 9\), so \(m = 23\).'
+      - 'All the blocks together make 50, so \(4w + 6 = 50\).'
+      - 'Subtract 6 from both sides: \(4w = 44\). Divide both sides by 4: \(w = 11\).'
+      - 'Check: \(4 \times 11 + 6 = 44 + 6 = 50\) ✓'
 
   - id: b3
     level: 2
-    covers: [S3.3, K3.1]
-    type: number
-    prompt: 'Solve \(\frac{k}{4} = 6\). \(k\) = ?'
-    answer: 24
-    verify: 6 * 4
+    thinking: flaw
+    covers: [S3.2, S3.4, U3.2]
+    type: mc
+    prompt: |-
+      Oskar tries to solve \(3x + 6 = 21\). He writes \(x + 6 = 7\), and then \(x = 1\). When he checks,
+      \(3 \times 1 + 6 = 9\), not 21. What went wrong first?
+    choices:
+      - He undid the × 3 before undoing the + 6.
+      - He subtracted 6, and he needed to add 6.
+      - He forgot to divide the 21 by 3.
+      - His check is wrong, because each step was fair.
+    answer: 0
+    feedback:
+      '1': 'Subtracting does undo + 6. So that step wasn’t the first problem. Look at his first line.'
+      '2': 'He did divide the 21: \(21 \div 3 = 7\). What did he do to the left side?'
+      '3': 'The check is right: 9 is not 21. A check that fails is telling you something.'
     hints:
-      - 'Undo "÷ 4" by multiplying both sides by 4.'
+      - Compare his first line with the equation. What changed on each side?
+      - Which operation happened to \(x\) last? Which one did Oskar undo first?
     solution:
-      - '\(\frac{k}{4} \times 4 = 6 \times 4\), so \(k = 24\).'
+      - 'The + 6 was the last thing done to \(x\), so it should come off first. Oskar went for the × 3 instead, and he left the + 6 as it was.'
+      - 'In reverse order: \(3x = 15\), then \(x = 5\). Check: \(3 \times 5 + 6 = 21\) ✓'
 
   - id: b4
     level: 2
-    covers: [S3.1]
-    type: mc
-    prompt: '"**A number times 4, plus 6, equals 34.**" Which equation matches?'
-    choices: ['\(4n + 6 = 34\)', '\(6n + 4 = 34\)', '\(n + 4 + 6 = 34\)', '\(4 + 6 = 34n\)']
-    answer: 0
-    feedback:
-      '1': 'That says a number times 6, plus 4.'
-      '2': 'That adds 4 instead of multiplying by 4.'
-      '3': 'The number is the unknown, so it belongs with the 4.'
+    thinking: backwards
+    covers: [S3.1, S3.3, S3.5]
+    type: number
+    prompt: |-
+      A bag of \(t\) maple candies is shared equally among **4** cousins. Each cousin eats **2** right away and
+      has **3** left. How many candies were in the bag?
+    answer: 20
+    unit: candies
+    verify: (3 + 2) * 4
     hints:
-      - '"A number times 4" is \(4n\).'
+      - What happened to the candies first? What happened next?
+      - 'The story says \(\frac{t}{4} - 2 = 3\). Which step do you undo first?'
     solution:
-      - '\(4n\), plus 6, equals 34: \(4n + 6 = 34\).'
+      - 'The story, as an equation: \(\frac{t}{4} - 2 = 3\).'
+      - 'Add 2 to both sides: \(\frac{t}{4} = 5\). So each cousin started with 5.'
+      - 'Multiply both sides by 4: \(t = 20\). Check: \(20 \div 4 - 2 = 3\) ✓'
 
   - id: b5
     level: 2
-    covers: [S3.1, S3.5]
-    type: number
-    prompt: 'Ella buys **3** books that all cost the same and a **$5** bookmark. She spends **$41**. How much does one book cost (in dollars)?'
-    answer: 12
-    verify: (41 - 5) / 3
+    thinking: model
+    covers: [S3.1]
+    type: multi
+    prompt: 'Which stories fit the equation \(2x + 5 = 17\)? Select all that do.'
+    choices:
+      - 'Two pencils cost \(x\) dollars each, and an eraser costs $5. The total is $17.'
+      - 'Twin cats each have a mass of \(x\) kg, and their basket is 5 kg. It all comes to 17 kg.'
+      - 'A baker fills \(x\) trays with 2 muffins each, and then 5 muffins sell. There are 17 left.'
+      - 'Five friends each have \(x\) apples, and 2 apples are extra. There are 17 apples in all.'
+    answer: [0, 1]
+    feedback:
+      '2': 'Selling 5 muffins takes them away. That story is \(2x - 5 = 17\).'
+      '3': 'Five friends with \(x\) apples each is \(5x\). That story is \(5x + 2 = 17\).'
     hints:
-      - 'Write an equation: \(3b + 5 = 41\).'
+      - 'In each story, what is being multiplied by \(x\)? Is something added or taken away?'
+      - The equation needs 2 groups of \(x\), plus 5, to make 17.
     solution:
-      - '\(3b + 5 = 41\) → \(3b = 36\) → \(b = 12\)'
-      - 'One book costs **$12**. Check: \(3 \times 12 + 5 = 41\) ✓'
+      - 'The equation says: 2 groups of \(x\), plus 5, make 17.'
+      - 'The pencils and the cats both tell that story, even though they are about different things. One equation can fit many stories.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S3.2, U3.1]
-    type: mc
-    prompt: 'To solve \(2x + 6 = 20\), Aki divided both sides by 2 and wrote \(x + 6 = 10\). What went wrong?'
-    choices:
-      - 'Dividing the left side by 2 halves **both** parts: \(x + 3 = 10\). Subtracting 6 first is easier.'
-      - Aki is correct, so \(x = 4\).
-      - Aki should have multiplied both sides by 2.
-      - You can never divide first.
-    answer: 0
-    feedback:
-      '1': 'Check: if \(x = 4\), then \(2 \times 4 + 6 = 14\), not 20.'
-      '2': Multiplying undoes dividing, not the other way round.
-      '3': 'You can divide first, but you must divide **everything** on each side.'
-    hints:
-      - What is \((2x + 6) \div 2\)?
-    solution:
-      - 'Half of \(2x + 6\) is \(x + 3\), not \(x + 6\). So \(x + 3 = 10\), and \(x = 7\).'
-      - 'Or subtract 6 first: \(2x = 14\), so \(x = 7\). Check: \(2 \times 7 + 6 = 20\) ✓'
+    thinking: whatif
+    covers: [U3.1, K3.1, S3.1, S3.3]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 420 180" class="fig-svg" role="img" aria-label="A level balance scale. The left pan holds three cabbages labelled c and a 2 kilogram mass. The right pan holds a 14 kilogram mass.">
+      <rect class="fig-rect" x="205" y="30" width="10" height="130"/>
+      <rect class="fig-rect" x="160" y="160" width="100" height="8"/>
+      <rect class="fig-rect" x="103" y="33" width="4" height="87"/>
+      <rect class="fig-rect" x="313" y="33" width="4" height="87"/>
+      <rect class="fig-rect" x="60" y="27" width="300" height="6"/>
+      <rect class="fig-rect" x="20" y="120" width="170" height="6"/>
+      <rect class="fig-rect" x="230" y="120" width="170" height="6"/>
+      <circle class="fig-hl" cx="45" cy="103" r="17"/><text class="fig-label" x="45" y="109" text-anchor="middle">c</text>
+      <circle class="fig-hl" cx="85" cy="103" r="17"/><text class="fig-label" x="85" y="109" text-anchor="middle">c</text>
+      <circle class="fig-hl" cx="125" cy="103" r="17"/><text class="fig-label" x="125" y="109" text-anchor="middle">c</text>
+      <rect class="fig-rect" x="146" y="88" width="38" height="32"/><text class="fig-small" x="165" y="109" text-anchor="middle">2 kg</text>
+      <rect class="fig-rect" x="335" y="88" width="48" height="32"/><text class="fig-small" x="359" y="109" text-anchor="middle">14 kg</text>
+      </svg>
+    prompt: |-
+      A market scale is level. On the left are **3** cabbages, each \(c\) kg, and a 2 kg mass. On the right is
+      a 14 kg mass.
+    parts:
+      - type: number
+        prompt: What is the mass of one cabbage?
+        answer: 4
+        unit: kg
+        verify: (14 - 2) / 3
+        hints:
+          - The scale is level, so what must be true of the two sides?
+          - 'Write the equation: \(3c + 2 = 14\).'
+        solution: ['\(3c + 2 = 14\). Subtract 2 from both sides: \(3c = 12\). Divide both sides by 3: \(c = 4\).']
+      - type: number
+        prompt: 'A **1 kg** kitten jumps onto each pan. The scale stays level, and the equation is now \(3c + 3 = 15\). Solve it. \(c\) = ?'
+        answer: 4
+        verify: (15 - 3) / 3
+        hints: [Undo the + 3, then undo the × 3.]
+        solution: ['\(3c = 12\), so \(c = 4\) again. Of course it does. The kittens didn’t change the cabbages!']
+      - type: mc
+        prompt: Which change would make the scale **stop** being level?
+        choices:
+          - One kitten jumps off, and one stays on
+          - Both kittens jump off at the same time
+          - Each pan gets one more kitten of 1 kg
+          - Everything on both pans is doubled
+        answer: 0
+        feedback:
+          '1': 'That takes 1 kg away from each side. Each side loses the same amount.'
+          '2': 'That adds 1 kg to each side. Each side gains the same amount.'
+          '3': 'Each side was 15 kg, so each side becomes 30 kg. They are still equal.'
+        hints: [Is the same thing happening to both sides?]
+        solution:
+          - 'If only one kitten jumps off, one side loses 1 kg and the other doesn’t. The two sides are no longer equal.'
+          - 'In the other three changes, the same thing happens to both sides, so they stay equal.'
+    wrapUp: Doing the same thing to both sides can change every number you see, but it can’t change the solution. That is why inverse operations are safe to use.
 
   - id: d2
     level: 3
-    covers: [S3.3]
-    type: number
-    prompt: 'Solve \(7b - 4 = 31\). \(b\) = ?'
-    answer: 5
-    verify: (31 + 4) / 7
-    hints:
-      - 'Undo "− 4" first by adding 4 to both sides.'
-    solution:
-      - '\(7b = 35\), so \(b = 5\). Check: \(7 \times 5 - 4 = 31\) ✓'
+    thinking: backwards
+    covers: [S3.1, S3.3, S3.5, S3.4]
+    type: investigation
+    prompt: |-
+      You are the mind reader at the school talent show. A friend thinks of a whole number, \(n\), multiplies it
+      by **3**, adds **4**, and tells you only the result. Then you name their number!
+    parts:
+      - type: mc
+        prompt: Mina’s result is **19**. Which equation tells her story?
+        choices:
+          - '\(3n + 4 = 19\)'
+          - '\(4n + 3 = 19\)'
+          - '\(3n = 19 + 4\)'
+          - '\(n + 3 + 4 = 19\)'
+        answer: 0
+        feedback:
+          '1': 'That multiplies by 4 and adds 3. Mina did it the other way around.'
+          '2': 'That adds the 4 to the result. Mina added it before she told you the result.'
+          '3': 'That adds 3. Mina multiplied by 3.'
+        hints: [Follow what Mina did to \(n\), in order.]
+        solution: ['\(n\) was multiplied by 3, giving \(3n\). Then 4 was added, and that came to 19.']
+      - type: number
+        prompt: What number did Mina think of?
+        answer: 5
+        verify: (19 - 4) / 3
+        hints: [Undo her last step first.]
+        solution: ['Subtract 4 from both sides: \(3n = 15\). Divide both sides by 3: \(n = 5\). Check: \(3 \times 5 + 4 = 19\) ✓']
+      - type: mc
+        prompt: Jude says his result is **21**. What can you say right away?
+        choices:
+          - 'Jude made a slip, as no whole number gives 21.'
+          - 'Jude thought of 7, as \(21 \div 3 = 7\).'
+          - 'Jude thought of 17, as \(21 - 4 = 17\).'
+          - 'Jude thought of 25, as \(21 + 4 = 25\).'
+        answer: 0
+        feedback:
+          '1': 'Check it: \(3 \times 7 + 4 = 25\), not 21. That skipped undoing the + 4.'
+          '2': 'Check it: \(3 \times 17 + 4 = 55\), not 21. That undid only one step.'
+          '3': 'Check it: \(3 \times 25 + 4 = 79\), not 21. Adding 4 doesn’t undo adding 4.'
+        hints:
+          - Undo the steps. What do you get after you subtract 4?
+          - Can 17 be divided by 3 with no remainder?
+        solution:
+          - 'Subtract 4: \(3n = 17\). But 17 can’t be divided by 3 with no remainder, so \(n\) isn’t a whole number.'
+          - '\(n = 5\) gives 19 and \(n = 6\) gives 22. The results jump right over 21, so Jude must have made a slip.'
+    wrapUp: A mind reader isn’t reading minds. You are running your friend’s steps in reverse. Sometimes the reverse even shows that a step went wrong!
 
   - id: d3
     level: 3
-    covers: [U3.2, S3.4]
-    type: mc
-    prompt: 'Which equation has the solution \(n = 5\)?'
-    choices: ['\(4n + 1 = 21\)', '\(2n + 5 = 20\)', '\(\frac{n}{5} = 5\)', '\(3n - 2 = 15\)']
-    answer: 0
-    feedback:
-      '1': '\(2 \times 5 + 5 = 15\), not 20.'
-      '2': '\(\frac{5}{5} = 1\), not 5.'
-      '3': '\(3 \times 5 - 2 = 13\), not 15.'
+    thinking: design
+    covers: [S3.4, U3.2, K3.2, S3.1]
+    type: build
+    prompt: |-
+      Agent Fig must hide the locker number **7** inside an equation that looks like \(ax + b = 50\). The solution
+      has to be \(x = 7\), and solving it must take two steps. Choose whole numbers for \(a\) and \(b\).
+    fields:
+      - { name: a, label: 'a (the coefficient)' }
+      - { name: b, label: 'b (the number added)' }
+    rules:
+      - { test: 'a >= 2', fail: 'If \(a\) is 1, nobody has to undo a multiplication. Make \(a\) at least 2.' }
+      - { test: 'b >= 1', fail: 'With nothing added, there is only one step to undo. Make \(b\) at least 1.' }
+      - { test: 'a * 7 + b == 50', fail: 'Check it: put 7 in place of \(x\). Does the left side come to exactly 50?' }
+    examples:
+      - { a: 2, b: 36 }
+      - { a: 5, b: 15 }
+      - { a: 7, b: 1 }
+    counterexamples:
+      - { a: 3, b: 2 }
+      - { a: 1, b: 43 }
+      - { a: 10, b: 20 }
     hints:
-      - Substitute 5 into each equation and check both sides.
+      - If \(x\) is 7, what does the term \(ax\) become? Pick an \(a\) and try it.
+      - After you pick \(a\), how much more does the left side need to reach 50?
+      - Why can’t \(a\) be 8?
     solution:
-      - '\(4 \times 5 + 1 = 21\) ✓. Both sides are 21.'
-
-  - id: d4
-    level: 3
-    covers: [S3.3, S3.4, U3.1]
-    type: open
-    prompt: 'Solve \(6x + 4 = 40\). Explain each step, then check your solution.'
-    modelAnswer: |-
-      Subtract 4 from both sides to undo "+ 4": \(6x = 36\). Divide both sides by 6 to undo "× 6": \(x = 6\). I did the
-      same thing to both sides each time, so the equation stayed balanced. Check: \(6 \times 6 + 4 = 36 + 4 = 40\) ✓
-    rubric:
-      - I subtracted 4 from both sides first.
-      - I divided both sides by 6 and got \(x = 6\).
-      - I checked by substituting and showed both sides equal 40.
+      - 'Start from the answer and build forward. Pick \(a = 5\): \(5 \times 7 = 35\). To reach 50, you need \(b = 15\). So \(5x + 15 = 50\).'
+      - 'Or pick \(a = 2\): \(2 \times 7 = 14\), so \(b = 36\). That gives \(2x + 36 = 50\). Both work, because in each one the left side is 50 when \(x = 7\).'
+      - '\(a\) can’t be 8, because \(8 \times 7 = 56\) is already more than 50.'
+      - Making an equation is solving in reverse. You multiply and then add. The codebreaker subtracts and then divides.

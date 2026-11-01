@@ -88,181 +88,345 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.1]
+    thinking: apply
+    covers: [S1.1, K1.2]
     type: number
-    prompt: '\(5 \times (2 + 4)\) = ?'
-    answer: 30
-    verify: 5 * (2 + 4)
+    prompt: '\(7 \times (6 - 2)\) = ?'
+    answer: 28
+    verify: 7 * (6 - 2)
     hints:
-      - Do the parentheses first.
+      - Which part of the expression does the rule say to do first?
+      - Work out the parentheses, then multiply.
     solution:
-      - '\(5 \times (2 + 4) = 5 \times 6 = 30\)'
+      - 'Parentheses first: \(6 - 2 = 4\).'
+      - 'Then multiply: \(7 \times 4 = 28\).'
 
   - id: w2
     level: 1
-    covers: [S1.1]
-    type: number
-    prompt: '\(30 - (10 + 5)\) = ?'
-    answer: 15
-    verify: 30 - (10 + 5)
+    thinking: recall
+    covers: [K1.2, S1.1]
+    type: order
+    prompt: 'Put the steps in the right order to evaluate \(30 - (2 + 4) \times 3\).'
+    items:
+      - '\(2 + 4 = 6\)'
+      - '\(6 \times 3 = 18\)'
+      - '\(30 - 18 = 12\)'
     hints:
-      - What is \(10 + 5\)?
+      - Which step is inside the parentheses?
+      - After the parentheses, which comes first, × or −?
     solution:
-      - '\(30 - (10 + 5) = 30 - 15 = 15\)'
+      - 'Parentheses first: \(2 + 4 = 6\).'
+      - 'Then × before −: \(6 \times 3 = 18\).'
+      - 'Last, \(30 - 18 = 12\).'
 
   - id: w3
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: 'In \(18 - (3 + 4) \times 2\), which operation do you do **first**?'
-    choices: ['\(3 + 4\)', '\(4 \times 2\)', '\(18 - 3\)', '\(18 - 7\)']
-    answer: 0
+    thinking: notice
+    covers: [U1.1, S1.1, K1.1]
+    type: multi
+    prompt: An expression is just another name for a number. Which of these are names for **12**? Select all that are.
+    choices:
+      - '\(3 \times (1 + 3)\)'
+      - '\(20 - (5 + 3)\)'
+      - '\((2 + 4) \times 2\)'
+      - '\(20 - 5 + 3\)'
+      - '\(2 + 4 \times 2\)'
+    answer: [0, 1, 2]
     feedback:
-      '1': 'Multiplication comes before subtraction, but **parentheses** come before both.'
-      '2': 'Subtraction comes last here, and 3 is inside the parentheses.'
-      '3': 'You can''t subtract until you have multiplied, and before that, the parentheses.'
+      '3': 'No parentheses here, so go left to right: \(15 + 3 = 18\).'
+      '4': 'No parentheses here, so multiply first: \(2 + 8 = 10\).'
     hints:
-      - Look for parentheses.
+      - Evaluate each one on its own. Look for parentheses first.
+      - 'Compare \(20 - (5 + 3)\) with \(20 - 5 + 3\). Do the parentheses change anything?'
     solution:
-      - 'Parentheses first: \(3 + 4 = 7\). Then \(7 \times 2 = 14\). Then \(18 - 14 = 4\).'
-
-  - id: w4
-    level: 1
-    covers: [S1.1]
-    type: number
-    prompt: '\((9 - 4) \times 3\) = ?'
-    answer: 15
-    verify: (9 - 4) * 3
-    hints:
-      - Parentheses first.
-    solution:
-      - '\((9 - 4) \times 3 = 5 \times 3 = 15\)'
+      - '\(3 \times 4 = 12\), \(20 - 8 = 12\) and \(6 \times 2 = 12\) are all names for 12.'
+      - '\(20 - 5 + 3 = 18\) and \(2 + 4 \times 2 = 10\) use the same numbers as two of the others. Without the parentheses, they name different numbers.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.1, K1.2]
-    type: number
-    prompt: '\(40 \div (12 - 4) + 3\) = ?'
-    answer: 8
-    verify: 40 / (12 - 4) + 3
+    thinking: model
+    covers: [U1.2, K1.1, S1.1]
+    type: mc
+    prompt: |-
+      A camp cook feeds **4 tents**. Each tent gets **6 pancakes and 2 sausages**. The helper writes the
+      order as \(4 \times 6 + 2\). What shows up at breakfast?
+    choices:
+      - 24 pancakes, and just 2 sausages for the whole camp
+      - 6 pancakes for the whole camp, and 8 sausages
+      - 24 pancakes, and 8 sausages for the whole camp
+      - 4 pancakes for each tent, and 12 sausages
+    answer: 0
+    feedback:
+      '1': 'That would be \(6 + 2 \times 4\). In the helper’s order, what is the 4 multiplying?'
+      '2': 'That is what the camp needs. But the helper’s order has no parentheses, so what does the 4 multiply?'
+      '3': 'Read it in order: \(4 \times 6\) comes first, because × goes before +. What does \(4 \times 6\) count?'
     hints:
-      - 'Parentheses, then divide, then add.'
+      - In \(4 \times 6 + 2\), which step happens first?
+      - What does the 4 multiply? What does it leave out?
     solution:
-      - '\(40 \div (12 - 4) + 3 = 40 \div 8 + 3 = 5 + 3 = 8\)'
+      - 'With no parentheses, × goes first: \(4 \times 6 = 24\) pancakes. Then + 2 adds 2 sausages, for the whole camp.'
+      - 'The helper needed to group one tent’s food: \(4 \times (6 + 2) = 4 \times 8 = 32\) pieces of food.'
+      - The parentheses say that each tent gets the whole group.
 
   - id: b2
     level: 2
+    thinking: whatif
     covers: [U1.2, S1.1]
-    type: mc
-    prompt: Which expression has a value of **20**?
-    choices: ['\(4 \times (3 + 2)\)', '\(4 \times 3 + 2\)', '\(4 + 3 \times 2\)', '\((4 + 3) \times 2\)']
-    answer: 0
-    feedback:
-      '1': '\(4 \times 3 + 2 = 12 + 2 = 14\)'
-      '2': '\(4 + 3 \times 2 = 4 + 6 = 10\)'
-      '3': '\((4 + 3) \times 2 = 7 \times 2 = 14\)'
+    type: number
+    prompt: |-
+      Your uncle owes you \(2 + 6 \times 5 - 1\) gummy worms. He says you may add **one pair of parentheses**
+      around one + or one − and the two numbers beside it. What is the **most** gummy worms you can get?
+    answer: 39
+    unit: gummy worms
+    verify: (2 + 6) * 5 - 1
     hints:
-      - Evaluate each one, following the order of operations.
+      - How many places could the parentheses go? Try each one.
+      - Multiplying makes the biggest jump. What would you most like the × to multiply?
     solution:
-      - '\(4 \times (3 + 2) = 4 \times 5 = 20\) ✓'
+      - 'With no parentheses, you get \(2 + 30 - 1 = 31\) worms.'
+      - 'Around the −: \(2 + 6 \times (5 - 1) = 2 + 24 = 26\). That is worse than doing nothing!'
+      - 'Around the +: \((2 + 6) \times 5 - 1 = 40 - 1 = 39\). That is the most.'
+      - The same numbers gave 26, 31 or 39. Only the grouping changed.
 
   - id: b3
     level: 2
-    covers: [S1.1, K1.2]
+    thinking: backwards
+    covers: [K1.2, S1.1]
     type: number
-    prompt: '\(7 + (15 - 6) \div 3\) = ?'
-    answer: 10
-    verify: 7 + (15 - 6) / 3
+    prompt: |-
+      A blob of jam landed on Marek’s homework and hid one number.
+      \[24 \div (9 - \square) + 1 = 5\]
+      What number is under the jam?
+    answer: 3
+    verify: 9 - 24 / (5 - 1)
     hints:
-      - 'Parentheses first, then divide, then add.'
+      - Which step happens last when you evaluate this expression? What must the value be just before it?
+      - 'If something + 1 = 5, the something is 4. So 24 ÷ (the parentheses) = 4.'
+      - What number do you divide 24 by to get 4? That is the value of the parentheses.
     solution:
-      - '\(7 + (15 - 6) \div 3 = 7 + 9 \div 3 = 7 + 3 = 10\)'
+      - 'The order is parentheses, then ÷, then +. To go backwards, start with the last step.'
+      - 'Before adding 1, the value was 4, so \(24 \div (9 - \square) = 4\).'
+      - 'Since \(24 \div 6 = 4\), the parentheses must equal 6. So \(9 - \square = 6\), and the jam hides **3**.'
+      - 'Check: \(24 \div (9 - 3) + 1 = 24 \div 6 + 1 = 4 + 1 = 5\) ✓'
 
   - id: b4
     level: 2
-    covers: [U1.2, K1.1]
+    thinking: flaw
+    covers: [K1.2, U1.2, S1.1]
     type: mc
-    prompt: 'Where should the parentheses go so that \(6 + 4 \times 5\) equals **50**?'
-    choices: ['\((6 + 4) \times 5\)', '\(6 + (4 \times 5)\)', '\((6) + 4 \times 5\)', 'Parentheses can''t change the value.']
+    prompt: |-
+      A potion needs \(40 - (2 + 3) \times 4\) drops of toad juice. Apprentice Pip poured **140** drops, and
+      the whole tower turned green. How did Pip get 140?
+    choices:
+      - 'Pip did the parentheses, then went left to right.'
+      - 'Pip ignored the parentheses and multiplied first.'
+      - 'Pip did every step in the right order.'
+      - 'Pip added first, then multiplied by 40.'
     answer: 0
     feedback:
-      '1': 'That still multiplies first: \(6 + 20 = 26\).'
-      '2': 'Parentheses around one number change nothing: 26.'
-      '3': 'They can! Try grouping \(6 + 4\).'
+      '1': 'That gives \(40 - 2 + 12 = 50\) drops, not 140.'
+      '2': 'The right order is parentheses, then ×, then −. Try it. Do you get 140?'
+      '3': 'That gives \(5 \times 40 = 200\) drops, and the 4 is left over.'
     hints:
-      - 'What would make you add before multiplying?'
+      - The recipe starts with 40 and takes something away. How could anyone end up with more than 40?
+      - 'Try the parentheses first: what is \(40 - 5\)? What happens if you then multiply?'
     solution:
-      - '\((6 + 4) \times 5 = 10 \times 5 = 50\) ✓'
-
-  - id: b5
-    level: 2
-    covers: [S1.1, U1.1]
-    type: number
-    prompt: 'Ana has **$20**. She buys a $4 snack and a $7 book. Evaluate \(20 - (4 + 7)\) to find how much she has left.'
-    answer: 9
-    verify: 20 - (4 + 7)
-    hints:
-      - The parentheses hold the total she spent.
-    solution:
-      - '\(20 - (4 + 7) = 20 - 11 = 9\). Ana has **$9** left.'
+      - 'Starting at 40 and taking away can’t give 140, so something happened in the wrong order.'
+      - 'Pip did \(2 + 3 = 5\), then \(40 - 5 = 35\), then \(35 \times 4 = 140\). Subtracting came before multiplying.'
+      - 'The right way: \(40 - 5 \times 4 = 40 - 20 = 20\) drops.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [U1.2, S1.1]
-    type: mc
-    prompt: 'Ben says \(20 - (8 - 3) = 9\). What did he do wrong?'
-    choices:
-      - 'He ignored the parentheses. \(8 - 3 = 5\) comes first, so the answer is 15.'
-      - 'Nothing. 9 is correct.'
-      - 'He should have added 8 + 3.'
-      - 'Subtraction always goes left to right, so parentheses don''t matter.'
-    answer: 0
-    feedback:
-      '1': '\(20 - 5 = 15\), not 9.'
-      '2': 'The expression subtracts inside the parentheses.'
-      '3': 'Left to right is the rule only **after** the parentheses are done.'
-    hints:
-      - Work out what is inside the parentheses first.
-    solution:
-      - '\(20 - (8 - 3) = 20 - 5 = 15\). Ben worked left to right and ignored the parentheses: \(20 - 8 - 3 = 9\).'
+    thinking: model
+    covers: [U1.2, K1.1, U1.1, S1.1]
+    type: investigation
+    prompt: |-
+      Renata has **$30**. A comic book costs **$12**, and she has a coupon for **$5 off**.
+    parts:
+      - type: number
+        prompt: How much money does Renata have left after buying the comic with the coupon?
+        answer: 23
+        verify: 30 - (12 - 5)
+        hints: [What does the comic really cost once the coupon is used?]
+        solution: ['The comic really costs \(12 - 5 = 7\) dollars. Then \(30 - 7 = 23\) dollars are left.']
+      - type: mc
+        prompt: Which expression tells that story?
+        choices:
+          - '\(30 - (12 - 5)\)'
+          - '\(30 - (12 + 5)\)'
+          - '\(30 + (12 - 5)\)'
+          - '\((30 - 5) + 12\)'
+        answer: 0
+        feedback:
+          '1': 'That makes the comic cost $17. A coupon should make it cheaper.'
+          '2': 'That adds the cost of the comic to her money. Buying something should leave her with less.'
+          '3': 'That takes away the coupon and gives her the price of the comic.'
+        hints: [Which two numbers together make the real price of the comic?]
+        solution: ['The parentheses group the real price, \(12 - 5\). Then that whole price comes off the $30.']
+      - type: number
+        prompt: 'Her friend Luca leaves out the parentheses and writes \(30 - 12 - 5\). How much does that say she has left?'
+        answer: 13
+        verify: 30 - 12 - 5
+        hints: [With no parentheses, go left to right.]
+        solution: ['\(30 - 12 = 18\), then \(18 - 5 = 13\) dollars.']
+      - type: mc
+        prompt: 'Luca’s answer is **$10** too low, but the coupon is only worth $5. Why $10?'
+        choices:
+          - 'She should save $5, but he made her pay $5 more.'
+          - 'He took the $12 away two times, which is close.'
+          - 'He took the coupon off the price and off her money.'
+          - 'Leaving out parentheses always changes things by $10.'
+        answer: 0
+        feedback:
+          '1': 'Taking $12 twice would make the answer $12 too low, not $10.'
+          '2': 'In his expression, the coupon comes off only once. Look at what it comes off.'
+          '3': 'Try a $2 coupon. What would the gap be then?'
+        hints:
+          - In Luca’s expression, is the 5 helping Renata or costing her?
+          - What should the $5 do to her money? What does it do in his version?
+        solution:
+          - 'The coupon should leave her $5 **better** off than paying full price. Full price leaves $18, so she should have $23.'
+          - 'Luca made her $5 **worse** off than full price: $13. From $5 better to $5 worse is a gap of $10.'
+    wrapUp: 'Parentheses keep a group together. Subtract the whole group \((12 - 5)\), and you don’t get the same thing as subtracting each number.'
 
   - id: d2
     level: 3
-    covers: [S1.1, K1.1]
-    type: number
-    prompt: '\((15 - (2 + 3)) \times 2\) = ?'
-    answer: 20
-    verify: (15 - (2 + 3)) * 2
-    hints:
-      - Start with the innermost parentheses.
-    solution:
-      - '\((15 - (2 + 3)) \times 2 = (15 - 5) \times 2 = 10 \times 2 = 20\)'
+    thinking: pattern
+    covers: [U1.2, K1.1, K1.2]
+    type: investigation
+    prompt: |-
+      Ms. Quill prints math books, and ink costs a lot. She deletes any pair of parentheses that doesn’t
+      change the value of its expression.
+    parts:
+      - type: multi
+        prompt: Which of these pairs can Ms. Quill **delete**? Select all that she can.
+        choices:
+          - '\(10 + (4 - 1)\)'
+          - '\((6 + 2) - 3\)'
+          - '\(5 + (2 + 6)\)'
+          - '\(10 - (4 - 1)\)'
+          - '\(2 \times (3 + 4)\)'
+          - '\((9 - 3) \div 3\)'
+        answer: [0, 1, 2]
+        feedback:
+          '3': 'With them: \(10 - 3 = 7\). Without them: \(6 - 1 = 5\). They must stay.'
+          '4': 'With them: \(2 \times 7 = 14\). Without them: \(6 + 4 = 10\). They must stay.'
+          '5': 'With them: \(6 \div 3 = 2\). Without them: \(9 - 1 = 8\). They must stay.'
+        hints:
+          - Find each value twice, with the parentheses and without them.
+        solution:
+          - 'The first three give 13, 5 and 13 either way, so those pairs are wasted ink.'
+          - 'The other three change value: 7 or 5, 14 or 10, 2 or 8.'
+      - type: mc
+        prompt: 'She keeps the pair in \(10 - (4 - 1)\) but deletes the pair in \(10 + (4 - 1)\). Why does the minus sign in front matter?'
+        choices:
+          - 'With the pair, you take away 3. Without it, you take away 4, then 1 more.'
+          - 'A minus sign in front makes parentheses go first, and a plus sign doesn’t.'
+          - 'Subtracting always comes before adding, so the plus sign has to wait.'
+          - 'Without the pair, the 1 gets added back on to the 10 at the end.'
+        answer: 0
+        feedback:
+          '1': 'Parentheses go first in both expressions. The question is whether going first changes the value.'
+          '2': 'Neither + nor − always goes first. They go in order from left to right.'
+          '3': 'Look again at \(10 - 4 - 1\). What happens to the 1?'
+        hints:
+          - 'Write out \(10 - 4 - 1\) and say what is happening to the 10 at each step.'
+        solution:
+          - '\(10 - (4 - 1)\) takes away one group worth 3, which leaves 7.'
+          - '\(10 - 4 - 1\) takes away 4, then 1 more, which is 5 in all. So it leaves 5.'
+      - type: mc
+        prompt: A new book has bigger numbers. Without working them all out, which pair **must stay**?
+        choices:
+          - '\(100 - (37 + 9)\)'
+          - '\(100 + (37 - 9)\)'
+          - '\((100 - 37) + 9\)'
+          - '\(100 + (37 + 9)\)'
+        answer: 0
+        feedback:
+          '1': 'A plus sign is in front, like \(10 + (4 - 1)\). Left to right gives the same value.'
+          '2': 'These parentheses are at the start, so left to right already does them first.'
+          '3': 'Everything is being added. The order can’t change the value.'
+        hints:
+          - Which expression looks most like the one she had to keep?
+          - Find the one where a whole group is being subtracted.
+        solution:
+          - '\(100 - (37 + 9)\) takes away 46. Without the pair, \(100 - 37 + 9\) takes away 37 and then adds 9 back. So the pair must stay.'
+          - 'In the other three, left to right gives the same value as doing the parentheses first.'
+    wrapUp: 'Parentheses matter when going left to right, or × and ÷ first, would give a different result. A minus sign in front of a group is one place to watch closely.'
 
   - id: d3
     level: 3
-    covers: [U1.2, S1.1]
-    type: multi
-    prompt: Select the **two** expressions that have the **same value**.
-    choices: ['\(12 - (5 - 2)\)', '\(12 - 5 - 2\)', '\(12 - 5 + 2\)', '\(12 - (5 + 2)\)']
-    answer: [0, 2]
-    hints:
-      - Evaluate all four.
-    solution:
-      - '\(12 - (5 - 2) = 9\), \(12 - 5 - 2 = 5\), \(12 - 5 + 2 = 9\), \(12 - (5 + 2) = 5\).'
-      - 'The first and third both equal **9**. Subtracting \((5 - 2)\) is the same as subtracting 5, then adding 2.'
+    thinking: connect
+    covers: [K1.2, U1.2, S1.1]
+    type: investigation
+    prompt: |-
+      Nonna’s old calculator has no parentheses keys, and it doesn’t know the order of operations. It does
+      each step right away, in the order you press the buttons. Press **2 + 3 × 4 =** and it does
+      \(2 + 3 = 5\), then \(5 \times 4 = 20\).
+    parts:
+      - type: number
+        prompt: 'What is the true value of \(2 + 3 \times 4\)?'
+        answer: 14
+        verify: 2 + 3 * 4
+        hints: [Which comes first, × or +?]
+        solution: ['Multiply first: \(3 \times 4 = 12\). Then \(2 + 12 = 14\). The calculator’s 20 is wrong.']
+      - type: mc
+        prompt: The calculator’s 20 is the right answer to a different expression. Which one?
+        choices:
+          - '\((2 + 3) \times 4\)'
+          - '\(2 + (3 + 4)\)'
+          - '\(2 \times (3 + 4)\)'
+          - '\(4 + 3 \times 2\)'
+        answer: 0
+        feedback:
+          '1': 'That equals 9. What did the calculator do first?'
+          '2': 'That equals 14. What did the calculator do first?'
+          '3': 'That equals 10. What did the calculator do first?'
+        hints: [The calculator did \(2 + 3\) first. How do you show that in an expression?]
+        solution: ['It added first, so it acted as if there were parentheses: \((2 + 3) \times 4 = 5 \times 4 = 20\).']
+      - type: mc
+        prompt: Nonna wants the **true** value, 14, without writing anything down. Which buttons should she press?
+        choices:
+          - '3 × 4 + 2 ='
+          - '2 × 4 + 3 ='
+          - '4 + 2 × 3 ='
+          - '2 + 4 × 3 ='
+        answer: 0
+        feedback:
+          '1': 'That finds \(8 + 3 = 11\). Which two numbers does \(2 + 3 \times 4\) multiply?'
+          '2': 'That finds \(6 \times 3 = 18\). The calculator adds first when you press + first.'
+          '3': 'That finds \(6 \times 3 = 18\). The calculator adds first when you press + first.'
+        hints: [Press the step that has to happen first, first.]
+        solution: ['The multiplying has to happen first, so press it first: \(3 \times 4 = 12\), then \(12 + 2 = 14\).']
+      - type: mc
+        prompt: 'Now she needs \(30 - (4 + 2) \times 3\). She presses **4 + 2 × 3 =** and sees 18. What should she do next?'
+        choices:
+          - 'Clear it, then press 30 − 18 ='
+          - 'Keep going and press − 30 ='
+          - 'Keep going and press + 30 ='
+          - 'Stop, because 18 is the value'
+        answer: 0
+        feedback:
+          '1': 'That would be \(18 - 30\). The expression takes 18 away from 30, not 30 away from 18.'
+          '2': 'That gives 48. Should the expression add 30 and 18?'
+          '3': '18 is only \((4 + 2) \times 3\). The expression still has to take that away from something.'
+        hints: [What does the 18 stand for in the expression? What still has to happen to it?]
+        solution: ['18 is the value of \((4 + 2) \times 3\). The last step is \(30 - 18 = 12\). The 30 has to go first, so she has to start again.']
+    wrapUp: The rules tell you which step comes first. This calculator can’t read the rules, so a person has to choose the order of the buttons. That part is thinking, not pressing.
 
   - id: d4
     level: 3
-    covers: [U1.2, K1.2]
+    thinking: design
+    covers: [U1.1, U1.2, S1.1]
     type: open
-    prompt: 'Explain why \(4 \times (3 + 2)\) and \(4 \times 3 + 2\) have **different values**. Find both values.'
+    prompt: 'Invent a short, silly story in which \(5 \times (4 + 2)\) is the right way to find the answer. Find the answer. Then say what would go wrong in your story if someone wrote \(5 \times 4 + 2\).'
     modelAnswer: |-
-      In \(4 \times (3 + 2)\), the parentheses mean you add first: \(4 \times 5 = 20\). In \(4 \times 3 + 2\) there are no
-      parentheses, so you multiply first: \(12 + 2 = 14\). The parentheses change the order of the operations, so
-      the values are different.
+      Five giants each order 4 tacos and 2 pickles for lunch. All together that is \(5 \times (4 + 2) = 5 \times 6 = 30\)
+      pieces of food. If someone wrote \(5 \times 4 + 2 = 22\), each giant would get 4 tacos, but only 2 pickles would
+      arrive for all five giants to share.
     rubric:
-      - I found both values (20 and 14).
-      - I explained that parentheses are done first.
-      - I said that changing the order of operations changes the value.
+      - My story has 5 groups, and each group has both a 4 and a 2 in it.
+      - I found that the answer is 30.
+      - I explained that \(5 \times 4 + 2\) counts the 2 only once instead of once for each group.
