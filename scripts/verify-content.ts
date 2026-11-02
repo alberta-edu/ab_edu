@@ -31,8 +31,8 @@ function strayKeys(value: unknown, path = 'props'): string[] {
   return [];
 }
 
-/** True once the file's problems name a thinking move (the schema fills in a default until then). */
-const rawHasMoves = (c: Concept) => c.problems.some((p) => p.thinking !== 'apply' && p.level === 3);
+/** Zero is a real answer when a rule says so, such as "z >= 0" for how many of something to pick. */
+const allowedZero = (p: { rules: { test: string }[] }, name: string, value: string) => value === '0' && p.rules.some((r) => new RegExp(`\\b${name}\\s*>=\\s*0\\b`).test(r.test));
 
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
@@ -95,6 +95,20 @@ function verifyConcept(c: Concept) {
           for (const ex of p.counterexamples) {
             const vars = read(ex);
             if (p.rules.every((r) => holds(r.test, vars))) fail(id, `counterexample ${JSON.stringify(ex)} passes every rule`);
+          }
+          // A pen 0 m wide or -3 m long is never a real answer, so the rules have to reject it.
+          for (const f of p.fields) {
+            for (const silly of ['0', '-1']) {
+              const vars = { ...read(p.examples[0]), [f.name]: parseDecimal(silly)! };
+              if (allowedZero(p, f.name, silly)) continue;
+              let passes = false;
+              try {
+                passes = p.rules.every((r) => holds(r.test, vars));
+              } catch {
+                // Dividing by the value counts as rejecting it.
+              }
+              if (passes) fail(id, `rules accept ${f.name} = ${silly}: add a rule such as "${f.name} > 0"`);
+            }
           }
         } catch (e) {
           fail(id, (e as Error).message);
@@ -248,9 +262,7 @@ function verifyConcept(c: Concept) {
     }
   }
 
-  // Old problems carry no thinking move yet. The quality rules apply once a concept has been rewritten.
-  if (rawHasMoves(c)) for (const issue of qualityIssues(c)) fail(undefined, issue);
-  else warnings.push(`${where()}: not yet rewritten to the question standard`);
+  for (const issue of qualityIssues(c)) fail(undefined, issue);
 
   if (c.summary.length < 110) warnings.push(`${where()}: summary is short for a meta description (${c.summary.length} chars)`);
 }

@@ -56,7 +56,7 @@ const problemBase = {
   id: z.string().regex(/^[a-z0-9-]+$/),
   level,
   /** The kind of thinking this problem trains. See src/lib/thinking.ts. */
-  thinking: z.enum(THINKING_MOVE_IDS).default('apply'),
+  thinking: z.enum(THINKING_MOVE_IDS),
   prompt: md,
   hints: z.array(md).min(1).max(3),
   /** Worked solution, one step per entry. */
