@@ -5,6 +5,7 @@ import { conceptsFor, curriculum, roadmap, conceptPath } from '../../../lib/cont
 import { conceptKey } from '../../../lib/problem-html.ts';
 import { SUBJECTS, type SubjectInfo } from '../../../site.ts';
 import { href, absolute } from '../../../lib/url.ts';
+import { subjectGuide } from '../../../lib/educator.ts';
 
 export function getStaticPaths() {
   return SUBJECTS.map((s) => ({ params: { subject: s.slug }, props: { subject: s } }));
@@ -17,6 +18,7 @@ const strands = cur.organizingIdeas
   .map((oi) => ({ ...oi, items: plan.filter((p) => p.organizingIdea === oi.code) }))
   .filter((s) => s.items.length);
 const path = `grade-5/${subject.slug}/`;
+const hasGuide = !!subjectGuide(subject.slug);
 const description = `Grade 5 ${subject.name} for Alberta students: ${strands.map((s) => s.title).join(', ')}. Lessons, visuals and practice in three levels.`.slice(0, 160);
 const jsonLd = [
   {
@@ -46,6 +48,7 @@ const jsonLd = [
       <h1>{subject.name}</h1>
       <p class="page-hero__lede">{subject.blurb} Topics follow the organizing ideas in Alberta's program of studies.</p>
       <p class="muted" style="font-size:var(--step--1)">{cur.implemented}</p>
+      {hasGuide && <p class="educator-link"><span aria-hidden="true">🍎</span> <strong>Teaching this subject?</strong> <a href={href(`${path}educators/`)}>Read the guide for teachers and parents</a>.</p>}
     </header>
 
     {
