@@ -18,6 +18,7 @@ describe('render', () => {
       '“Leave your mitts.”',
     ]);
     expect(splitSentences('“Mitts?” Grandpa called after her.')).toEqual(['“Mitts?” Grandpa called after her.']);
+    expect(splitSentences('Mrs. Novak waved. Dr. Lee smiled.')).toEqual(['Mrs. Novak waved.', 'Dr. Lee smiled.']);
   });
   it('makes plain text for meta tags', () => {
     expect(plain('**Write** \\(\\frac{7}{4}\\) as a [mixed](x) number')).toBe('Write \\frac{7}{4} as a mixed number');
