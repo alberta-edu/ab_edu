@@ -208,9 +208,9 @@ problems:
     covers: [K3.1, S3.6]
     type: multi
     prompt: |-
-      “When the bell rings, our hallway is a **river**.”
+      “When the bell rings, our hallway is a **river**, and my locker is always upstream.”
 
-      A metaphor carries over only some things about a river. Which of these does the writer want you to picture?
+      (*Upstream* means against the way the water flows.) A metaphor carries over only some things about a river. Which of these does the writer want you to picture?
     choices:
       - The floor of the hallway is wet.
       - Students all stream along in one direction.
@@ -266,8 +266,11 @@ problems:
     covers: [S3.6, S3.5]
     type: mc
     prompt: |-
-      In *Storm over the Foothills*, the first rain “came down in silver **needles**.” Suppose the writer changed one word:
-      “came down in silver **threads**.” What would change for a reader?
+      In *Storm over the Foothills*, the writer describes the first rain.
+
+      > …the first rain came down in silver **needles**.
+
+      Suppose the writer changed one word, to “silver **threads**.” What would change for a reader?
     choices:
       - The rain would seem soft and not sharp.
       - The rain would be a different colour.
@@ -287,26 +290,27 @@ problems:
 
   - id: b4
     level: 2
-    thinking: notice
-    covers: [K3.2, S3.5]
-    type: mc
-    prompt: Which of these sentences is a **metaphor**?
-    choices:
-      - In the net, my brother is a wall.
-      - In the net, my brother is like a wall.
-      - My brother is a goalie on our team.
-      - My brother is leaning on the wall.
-    answer: 0
+    thinking: evidence
+    covers: [S3.6, S3.5]
+    type: evidence
+    prompt: A **burr** is a prickly seed case that clings to your clothes. No one in this story says that the little brother is scared, but a comparison shows it. Tap that sentence.
+    passage: storm
+    paragraphs: [1, 2, 4]
+    answer: [p2s1]
     feedback:
-      '1': This does compare him to a wall, but it uses *like*. That makes it a simile.
-      '2': He really is a goalie, so this is simply a fact. A metaphor compares two things that are not alike.
-      '3': This is a real wall, and he is really leaning on it. Nothing is being compared.
+      p1s1: This is a comparison, but it’s about the storm. Which one is about the brother?
+      p1s2: Nothing is being compared here. Look for a sentence about the brother.
+      p1s3: Nothing is being compared here. Look for a sentence about the brother.
+      p2s2: These comparisons are about the thunder and the rain. Which one is about the brother?
+      p4s1: This brings the giant back, but it’s about the storm leaving. Which comparison is about the brother?
+      p4s2: The end of this sentence is a good clue, because he finally lets go. But the comparison here is about the valley. Which comparison shows how he was holding on?
     hints:
-      - Which sentences compare him to something he isn’t?
-      - Of those, which one has no comparison word?
+      - Which sentences mention the brother?
+      - In each of those, what is being compared with what?
     solution:
-      - Test each sentence. Is it a real fact? Does it compare two things that aren’t alike? Is there a *like* or *as*?
-      - 'Only “my brother is a wall” compares him to something he isn’t, without *like* or *as*. A wall and a goalie share one thing: **nothing gets past**.'
+      - '“My little brother held my sleeve as tightly as a burr on a sock.”'
+      - A burr clings and won’t let go until you pull it off. Someone holding on that tightly is scared, and the writer never has to say so.
+      - That is what a simile can do. It lets you feel an idea that the words don’t state.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
@@ -388,8 +392,15 @@ problems:
     covers: [K3.2, S3.6]
     type: mc
     prompt: |-
-      *Storm over the Foothills* begins, “The storm was a grey giant.” Near the end, it says, “As fast as it had come,
-      the **giant** was gone.” Suppose the writer had put “the **storm** was gone” there instead. What would we lose?
+      *Storm over the Foothills* begins like this:
+
+      > The storm was a grey giant, striding over the foothills toward our farm.
+
+      Near the end, it says:
+
+      > As fast as it had come, the **giant** was gone.
+
+      Suppose the writer had put “the **storm** was gone” there instead. What would we lose?
     choices:
       - The feeling that something alive came and then walked away
       - The clue that the family saw a real giant in the valley

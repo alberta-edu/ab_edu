@@ -321,34 +321,25 @@ problems:
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    thinking: why
-    covers: [S3.1, S3.2, S3.4]
-    type: mc
-    prompt: |-
-      Nadia has just seen the thermometer.
-
-      > “Great,” she said to no one, and pushed her skates deeper into the back of the closet.
-
-      What does she really mean by **“Great”**?
-    choices:
-      - This cold is bad news for my trip.
-      - This cold will make the ice perfect.
-      - My skates are put away, all ready to go.
-      - I can’t wait to tell Grandpa.
-    answer: 0
+    thinking: evidence
+    covers: [S3.2, S3.4, S3.5]
+    type: evidence
+    prompt: “Great,” Nadia says, and she means the opposite. The cold is bad news for her. Tap the sentence that best shows **how much this trip matters to her**.
+    passage: arch
+    paragraphs: [1, 2]
+    answer: [p1s4]
     feedback:
-      '1': That takes the word at face value, and it even has a reason. But look at her hands. Would someone happy about the ice do that with her skates?
-      '2': Picture what she does. If you were getting skates ready, would you push them **deeper into the back** of a closet?
-      '3': Look at three words in the sentence, “to no one.” Grandpa doesn’t come in until paragraph 3.
+      p1s1: This tells you how cold it is. Does it tell you anything about how Nadia feels?
+      p1s2: She is looking at the cold, but people look out of windows for all kinds of reasons. Look for a sentence about the trip.
+      p1s3: This tells you what is planned. Someone could be going on a trip and not care much. Which sentence shows that she cares?
+      p2s1: This shows that she is upset right now. Which sentence shows how she felt before today?
     hints:
-      - Look at what she does right after she speaks. Do her words and her hands agree?
-      - When someone’s words and actions don’t match, which would you trust?
-      - Say “Great” out loud the way someone would after getting bad news. Does it fit the sentence?
+      - Which sentences are about the trip, or about how Nadia felt before today?
+      - Would someone do that for a trip they didn’t care about?
     solution:
-      - The word itself is explicit, but its meaning isn’t. So check it against what she does.
-      - She pushes the skates away and deeper in. People don’t do that with something they are happy about.
-      - Paragraph 1 adds the reason. The trip she has waited two weeks for is tomorrow, and it is minus twenty-six.
-      - '**What we learned:** words in quotation marks can mean the opposite of what they say. Actions are evidence too.'
+      - '“She had been counting down the days for two weeks.”'
+      - People count down only to something they can’t wait for. The story never says “Nadia really wanted to go.” This sentence lets you work it out.
+      - Now “Great” makes sense. The day she has waited for is tomorrow, and it is minus twenty-six.
 
   - id: b2
     level: 2
@@ -436,6 +427,33 @@ problems:
       - 'Check: rereading worked for remembering the words. It didn’t work for the meaning.'
       - 'Try something else: ask a question, such as “What is Grandpa looking at just before he speaks?” Then read paragraphs 3 and 4 for clues.'
       - 'What we learned: being able to say the words isn’t the same as understanding them.'
+
+  - id: b5
+    level: 2
+    thinking: evidence
+    covers: [K3.2, S3.2, S3.5]
+    type: evidence
+    prompt: No sentence says that Grandpa expects warmer weather tomorrow. Tap the sentence that best **proves** he does.
+    passage: arch
+    paragraphs: [4, 5, 6, 7]
+    answer: [p5s3]
+    feedback:
+      p4s1: This describes the sky. It shows what he is looking at, but not what he thinks will happen.
+      p4s2: This describes the clouds. It shows what he is looking at, but not what he thinks will happen.
+      p5s1: He thinks the arch matters. But does this sentence say what it means for tomorrow?
+      p5s2: The smile shows that he knows something. Does it tell you what he knows?
+      p6s1: This is how Nadia reacts. You are looking for what Grandpa expects.
+      p6s2: This is Nadia talking. You are looking for what Grandpa expects.
+      p6s3: This is how cold it is today, and that is why Nadia doesn’t believe him. What does Grandpa say about tomorrow?
+      p7s1: This shows how he came to know so much. Does it say what he expects to happen?
+    hints:
+      - Look only at what Grandpa says and does.
+      - Which of his sentences is about tomorrow?
+      - When would you not need heavy mitts?
+    solution:
+      - '“Leave your heavy mitts at home tomorrow.”'
+      - You wouldn’t leave heavy mitts at home unless you expected it to be warmer. That is a clue plus what you know.
+      - The smile and the seventy winters are real clues that he knows something. Only this sentence tells us what he expects.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
@@ -546,75 +564,6 @@ problems:
     wrapUp: A true sentence can still be the wrong evidence. Always ask, “Does this prove **my** idea, or something else?”
 
   - id: d4
-    level: 3
-    thinking: breakdown
-    covers: [K3.2, S3.2, S3.3, S3.4]
-    type: investigation
-    prompt: |-
-      Every night after supper, Mira fills Biscuit’s bowl. For five nights, the dog hasn’t touched it. “He must be sick,” Mira says.
-
-      Follow the clues one at a time. Your ideas may have to change!
-    parts:
-      - type: mc
-        prompt: '**New clue:** The vet says Biscuit is healthy. He has even **gained weight**. What is the best new idea?'
-        choices:
-          - Biscuit must be getting extra food from somewhere else.
-          - Biscuit must be sick in a way that the vet can’t find.
-          - Biscuit must be eating from his bowl when nobody is looking.
-        answer: 0
-        feedback:
-          '1': It’s hard to let go of a first idea. But would a dog that won’t eat because it is sick gain weight?
-          '2': What does the story say about the bowl for all five nights?
-        hints:
-          - Does Mira’s first idea still fit? What doesn’t fit it now?
-          - The bowl stays full, yet Biscuit is getting heavier. How can both be true?
-        solution:
-          - Mira’s first idea was sensible, because it fit the one clue she had. Now a new clue doesn’t fit, so she **revises**.
-          - A full bowl plus more weight means the food must be coming from somewhere else.
-      - type: mc
-        prompt: '**New clue:** Five nights ago, Dad made a huge meatloaf, and supper has been meatloaf ever since. Mira’s little brother, Felix, calls it “sock loaf.” But his plate is clean every night, and Biscuit stays under Felix’s chair at every meal. What does Mira infer?'
-        choices:
-          - Felix is slipping his meatloaf to Biscuit under the table.
-          - Felix has changed his mind, and now he loves the meatloaf.
-          - Dad is giving meatloaf to Biscuit when he clears the table.
-          - Biscuit is taking meatloaf from the kitchen counter at night.
-        answer: 0
-        feedback:
-          '1': A clean plate could mean that. Does it explain Biscuit’s weight, or why he stays under that chair?
-          '2': What do the clues say about Dad and Biscuit? Look for the clue that places Biscuit somewhere.
-          '3': Do any of the clues mention the counter? Look for the clue that places Biscuit somewhere.
-        hints:
-          - Which detail doesn’t seem to fit? Look at “sock loaf” and the clean plate.
-          - Put together the plate and the chair. What could be happening under the table?
-        solution:
-          - Felix dislikes the meatloaf, yet his plate is clean. Biscuit is always right under his chair, and Biscuit is getting extra food.
-          - 'From life, you know that dogs wait where food might fall. All the clues fit one idea: the meatloaf goes under the table.'
-      - type: mc
-        prompt: '**Test it:** Felix loves pizza, and Friday is pizza night. If Mira’s inference is right, what should happen to Biscuit’s bowl on Friday?'
-        choices:
-          - It should be empty, because Felix will eat his supper and Biscuit will be hungry.
-          - It should stay full, because Biscuit will be full of pizza from under the table.
-          - It should stay full, because Biscuit has simply stopped liking his dog food.
-        answer: 0
-        feedback:
-          '1': Think about Felix. Why was the food going under the table in the first place?
-          '2': That is a different idea from Mira’s. What does **her** inference say should happen?
-        hints:
-          - Why was Felix passing the food along? Is that still true on pizza night?
-          - If nothing comes under the table, how will Biscuit feel when his bowl is filled after supper?
-        solution:
-          - Follow the food. Felix loves pizza, so he eats it himself. Nothing comes under the table.
-          - Biscuit gets no extra supper, so he should be hungry, and his bowl should end up empty.
-      - type: open
-        prompt: '**Friday night:** Biscuit licks his bowl clean. What can Mira say about her inference now? And what would she have to do if the bowl had stayed full?'
-        modelAnswer: Her inference is **confirmed**. On the one night Felix wanted his own supper, Biscuit was hungry again. It isn’t complete proof, so she could also watch under the table the next time there is meatloaf. If the bowl had stayed full, she would have to **revise** her inference and look for new clues, because Biscuit would be getting food some other way.
-        rubric:
-          - I said that the empty bowl confirms Mira’s inference.
-          - I used the clue about the bowl to explain why.
-          - I said that a full bowl would mean revising the inference and looking for new clues.
-    wrapUp: You changed your mind twice, and that was good reading. A prediction isn’t a promise. Each new clue can confirm it or revise it, and you can test an inference by asking, “If I’m right, what should happen next?”
-
-  - id: d5
     level: 3
     thinking: design
     covers: [K3.1, S3.1, S3.2]
