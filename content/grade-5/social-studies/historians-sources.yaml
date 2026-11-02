@@ -216,32 +216,32 @@ problems:
   - id: b1
     level: 2
     thinking: flaw
-    covers: [S1.4]
+    covers: [S1.4, K1.5]
     type: mc
     prompt: |-
-      At a yard sale, a seller offers a clay tablet “from ancient Rome”. Scratched on it is:
+      At a yard sale, a seller offers an old letter “from a soldier who helped find the Rosetta Stone in 1799”. It says:
 
-      *Today is my birthday. The year is 50 BCE.*
+      *Found a big stone today. Now scholars can read hieroglyphs at last!*
 
-      A museum worker laughs. “That was not made in ancient Rome.” She hasn’t even tested the clay. How can she tell?
+      A museum worker laughs. “No soldier wrote that on that day.” She hasn’t even tested the paper. How can she tell?
     choices:
-      - No one in 50 BCE could count down to a year 1 that hadn’t come yet.
-      - Rome hadn’t begun in 50 BCE, so no Romans were there to write it.
-      - Romans in 50 BCE hadn’t learned how to write on anything at all.
-      - Clay wears away in a few years, so no tablet could last so long.
+      - Scholars couldn’t read hieroglyphs until 1822, so no one knew this in 1799.
+      - The stone has only Greek on it, so it could never help with hieroglyphs.
+      - Soldiers in 1799 couldn’t read or write, so none of them could send a letter.
+      - Paper wears away in a few years, so no letter from 1799 could last until now.
     answer: 0
     feedback:
-      '1': By tradition, Rome began in 753 BCE. So was Rome around in 50 BCE?
-      '2': Rome’s alphabet and written laws are from well before 50 BCE. Look at the year itself instead.
-      '3': She didn’t test the clay at all. Look at what the words say.
+      '1': The stone carries the same message in Greek and in hieroglyphs. That is why it helped.
+      '2': Plenty of people could write letters in 1799. Look at what this letter claims to know instead.
+      '3': She didn’t test the paper at all. Look at what the words say.
     hints:
-      - Read the words as if you were that Roman on that birthday. What do you know about the future?
-      - BCE years count down toward year 1. What would you have to know in order to count down to something?
-      - Could anyone living then know which year would later be called year 1?
+      - Read the letter as if you were that soldier on that day. What do you know about the future?
+      - The stone was found in 1799. Scholars could read hieroglyphs by 1822. Put those two dates side by side.
+      - Could anyone looking at the stone on the day it was found know how the story would end?
     solution:
-      - Try being the Roman. To say “50 BCE”, you would have to know that year 1 was coming in about 50 years.
-      - No one could know that. People began to count years this way hundreds of years later.
-      - So the tablet was made long after, by someone using a modern way of counting. It isn’t a primary source from ancient Rome at all.
+      - Try being the soldier. The stone has just come out of the ground. You can see writing on it, and that is all.
+      - Scholars worked it out by 1822, more than 20 years later. No one in 1799 could know that yet.
+      - So the letter was written long after, by someone who already knew the ending. It isn’t a primary source from that day at all.
 
   - id: b2
     level: 2

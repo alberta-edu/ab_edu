@@ -351,7 +351,7 @@ problems:
           - 'The crossings left are (5, 2), (5, 3), (6, 2) and (6, 3). That is **4** out of 81 crossings on the whole grid.'
       - type: text
         figure: { kind: coord-grid, size: 8, points: [{ x: 5, y: 2 }, { x: 5, y: 3, label: Now }, { x: 6, y: 2 }, { x: 6, y: 3 }] }
-        prompt: 'You stand at **(5, 3)**. It says only, "Right, obviously." Where is the capsule? Type it like **(1, 6)**.'
+        prompt: 'You stand at **(5, 3)**. It says only, "Right, obviously." Use **all** the clues so far. Where is the capsule? Type it like **(1, 6)**.'
         accept: ['(6, 3)', '(6,3)', '6, 3', '6,3']
         hints:
           - The detector didn't say up or down. What does that tell you about the second number?

@@ -267,7 +267,14 @@ problems:
 
       "Those games cost me a fortune again! But if I stop paying, people will forget how important my family is."
 
-      Use Rome’s pyramid. Who most likely wrote this?
+      Here is Rome’s social pyramid, from the top down. Who most likely wrote this?
+
+      | Layer | A challenge this layer faced |
+      |---|---|
+      | Emperor | Rivals and the army could remove him. |
+      | Senators and the rich | Had to pay for public games and buildings to keep their standing. |
+      | Plebeians with a trade | Long hours in shops and workshops, and little say in how Rome was run. |
+      | The poor and enslaved people | The poor paid high rents. Enslaved people were treated as property. |
     choices:
       - A senator
       - The emperor
@@ -275,12 +282,12 @@ problems:
       - An enslaved person
     answer: 0
     feedback:
-      '1': The emperor’s biggest worry in the pyramid is different. Tap his layer. Who could remove him?
-      '2': Tap this layer. Long hours in the shop were this person’s challenge. Did it include paying for games?
-      '3': An enslaved person had no fortune to spend. Who in the pyramid paid for games to keep their standing?
+      '1': The emperor’s biggest worry in the table is different. Who could remove him?
+      '2': Read this row again. Long hours in the shop were this person’s challenge. Did it include paying for games?
+      '3': An enslaved person had no fortune to spend. Who in the table paid for games to keep their standing?
     hints:
       - Which words in the note are clues about this person’s money and place in society?
-      - Tap each layer of Rome’s pyramid and read its challenges.
+      - Read the table row by row. Which challenge fits this note?
     solution:
       - Senators and the rich paid for public games and buildings to keep their standing. The note fits a **senator**.
       - A class with more power and privilege still has challenges, but they are very different from the challenges at the bottom.
@@ -348,7 +355,16 @@ problems:
           - The nobles take \(4 \times 3 = 12\) cookies. Then \(30 - 10 - 12 = 8\).
           - The 5 students at the top have 22 cookies. The 20 students who did all the baking share 8.
       - type: mc
-        prompt: Priya drew a farmer card. "Can I study hard and move up?" she asks. Look at Egypt’s pyramid. Which class came through education, and what was the catch?
+        prompt: |-
+          Priya drew a farmer card. "Can I study hard and move up?" she asks. Here is the real social pyramid of ancient Egypt, from the top down. Which class came through education, and what was the catch?
+
+          | Layer | What it was based on, and what life was like |
+          |---|---|
+          | Pharaoh | **Heredity.** Held great wealth. Rivals could plot against the throne. |
+          | Nobles and priests | **Heredity and wealth.** Ran the temples and regions. Had to stay loyal to the pharaoh. |
+          | Scribes | **Education.** Good government jobs, away from heavy labour. Years of hard schooling, which few families could afford. |
+          | Craftspeople and soldiers | **Occupation.** Respect for their skill. Long, hard work, and danger in war. |
+          | Farmers and enslaved people | **Born into it, or captured.** Farmers paid grain tax. Enslaved people had no freedom at all. |
         choices:
           - Scribes, but few families could afford the years of schooling.
           - Scribes, but the job was mostly heavy labour.
@@ -356,15 +372,15 @@ problems:
           - The pharaoh, but rivals could plot against the throne.
         answer: 0
         feedback:
-          '1': Tap the Scribes layer again. What does it say about heavy labour?
-          '2': Tap this layer again. What is it based on?
-          '3': Tap this layer. It is based on heredity. Could studying get you there?
+          '1': Read the Scribes row again. What does it say about heavy labour?
+          '2': Read this row again. What is it based on?
+          '3': Read this row. It is based on heredity. Could studying get you there?
         hints:
-          - Tap each layer and look at what it is based on.
+          - Read the bold words in the table. Which one is about studying?
         solution:
           - Scribes’ places were based on **education**. It was a real way up, but few families could afford the years of hard schooling.
       - type: mc
-        prompt: A noble’s grandchild will most likely still be near the top. A farmer’s grandchild will most likely still be farming. Why is that?
+        prompt: A noble’s grandchild will most likely still be near the top. A farmer’s grandchild will most likely still be farming. Look at the table again. Why is that?
         choices:
           - Wealth and family place pass down, and wealth can pay for schooling.
           - Children of nobles are born cleverer, so they earn the top places.
@@ -372,7 +388,7 @@ problems:
           - Each new ruler picks people for each class, based on who works hardest.
         answer: 0
         feedback:
-          '1': The pyramid says that the top places were based on heredity and wealth. Does it say anything about being born cleverer?
+          '1': The table says that the top places were based on heredity and wealth. Does it say anything about being born cleverer?
           '2': Priya wanted to move up. What actually stood in the way of a child like her?
           '3': The farmers in your game worked hardest, and they got the fewest cookies. Is hard work what decided a person’s class?
         hints:
@@ -494,10 +510,16 @@ problems:
     prompt: |-
       A museum sign says: **"Egypt had a woman pharaoh, Hatshepsut. So Egypt was a matriarchy."**
 
-      Use the lesson’s table. What is wrong with the thinking on the sign? Then write a better sign.
+      Here is what we know about gender in Egypt:
+
+      | Men in Egypt | Women in Egypt |
+      |---|---|
+      | Men held most high offices. | Women could own property, and a few, such as Hatshepsut, ruled as pharaoh. |
+
+      What is wrong with the thinking on the sign? Then write a better sign.
     hints:
       - What would have to be true of a whole society for it to be a matriarchy?
-      - Look at the Egypt row of the table. What else does it say about men and women?
+      - Look at the table. What else does it say about men and women?
     modelAnswer: |-
       One woman ruling doesn't mean that women held most of the power. The table says that men held most high
       offices in Egypt. A better sign: "In Egypt, men held most high offices. Women could own property, and a few,
@@ -513,9 +535,14 @@ problems:
     covers: [S1.4, K1.7]
     type: open
     prompt: |-
-      It is the day of the great public games in Rome. Use Rome’s pyramid. Write two short diary lines about this same day: one by a **senator**, and one by someone from the **bottom layer**. Show how different the day looks from each place in the pyramid.
+      It is the day of the great public games in Rome. Write two short diary lines about this same day: one by a **senator**, and one by someone from the **bottom layer** of Rome’s social pyramid. Show how different the day looks from each place in the pyramid.
+
+      | Layer | Opportunities and challenges |
+      |---|---|
+      | Senators and the rich | Held high office, owned land, and could afford a good education. Had to pay for public games and buildings to keep their standing. |
+      | Bottom layer: the poor and enslaved people | Poor citizen men could still vote. A few enslaved people bought their freedom. The poor paid high rents in crowded buildings. Enslaved people were treated as property. |
     hints:
-      - Tap both layers. What is an opportunity or a challenge for each?
+      - Read both rows. What is an opportunity or a challenge for each?
       - What would each person be doing or worrying about on the day of the games?
     modelAnswer: |-
       Senator: "These games cost me a fortune again, but the crowd cheered my family's name. It is worth it to keep

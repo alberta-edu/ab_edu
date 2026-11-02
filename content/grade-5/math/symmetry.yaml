@@ -229,11 +229,11 @@ problems:
     covers: [K1.2, S1.3, U1.1]
     type: mc
     figure: >-
-      <svg viewBox="0 0 300 180" class="fig-svg fig-svg--square" role="img" aria-label="A mug with a handle on its right side, seen from the side.">
-      <path d="M190 55 C 255 55, 255 130, 190 130" style="fill:none;stroke:var(--ink);stroke-width:9"/>
+      <svg viewBox="0 0 300 180" class="fig-svg fig-svg--square" role="img" aria-label="A mug seen from the side, with a handle on its right side, set higher than the middle of the mug.">
+      <path d="M190 40 C 255 40, 255 108, 190 108" style="fill:none;stroke:var(--ink);stroke-width:9"/>
       <rect class="fig-rect" x="70" y="25" width="120" height="135" rx="6"/>
       </svg>
-    prompt: A giant flat blade slices this mug into two halves that match like mirror images. Where does the blade go?
+    prompt: A giant flat blade slices this real mug, with its floor at the bottom and its open top, into two halves that match like mirror images. Where does the blade go?
     choices:
       - From top to bottom, right through the handle
       - From top to bottom, with the handle on one side
@@ -242,14 +242,14 @@ problems:
     answer: 0
     feedback:
       '1': 'Then one half gets the whole handle and the other half gets none. Would they match?'
-      '2': 'The bottom half has a floor to hold the coffee, and the top half is open. Would they match?'
+      '2': 'The bottom half has the floor, and the top half is open. The handle sits higher up too. Would they match?'
       '3': 'The handle only spoils the match if the blade misses it. Try splitting the handle too.'
     hints:
       - Which part of the mug is not the same all the way around?
       - What would have to happen to the handle for each half to get the same share?
     solution:
       - 'A flat cut through the middle of the handle gives each half the same half-handle. So that plane is a plane of symmetry.'
-      - The cut straight across fails, because only the bottom half has a floor.
+      - The cut straight across fails, because only the bottom half has a floor, and the handle sits above the middle.
 
   - id: b3
     level: 2

@@ -314,52 +314,55 @@ problems:
     covers: [S1.5, S1.4, K1.3]
     type: investigation
     prompt: |-
-      A squirrel wants the seeds at the top of a greased bird-feeder pole **2 m** tall.
-      Each try, she climbs up \(\frac{4}{5}\) m, then slides back down \(\frac{2}{5}\) m. As soon as she reaches the top, she stays there and eats.
+      Two squirrels share a tree. **Nutmeg** has \(3\frac{2}{5}\) kg of seeds and **Pecan** has \(1\frac{4}{5}\) kg. "Not fair," says Pecan. "Give me some, so that we have the same amount."
     parts:
       - type: fraction
-        prompt: How high is she after her **first climb and slide**?
-        answer: 2/5
-        verify: 4/5 - 2/5
+        prompt: How many kilograms more does Nutmeg have than Pecan?
+        answer: 1 3/5
+        verify: 17/5 - 9/5
         hints:
-          - Up 4 fifths, then down 2 fifths.
+          - You can’t take 4 fifths from 2 fifths straight away. What could you do to both numbers first?
+          - Try writing each amount as an improper fraction.
         solution:
-          - '\(\frac{4}{5} - \frac{2}{5} = \frac{2}{5}\) m.'
+          - '\(3\frac{2}{5} = \frac{17}{5}\) and \(1\frac{4}{5} = \frac{9}{5}\).'
+          - '\(\frac{17}{5} - \frac{9}{5} = \frac{8}{5}\), which is \(1\frac{3}{5}\) kg.'
       - type: fraction
-        prompt: How high is she at the very top of her **second climb**, before she slides?
-        answer: 6/5
-        verify: 2/5 + 4/5
+        prompt: 'Eli says, "Easy! Nutmeg is \(1\frac{3}{5}\) kg ahead, so Nutmeg should hand over \(1\frac{3}{5}\) kg." Try it. How much does **Pecan** have now?'
+        answer: 3 2/5
+        verify: 9/5 + 8/5
         hints:
-          - She starts this climb from where the last slide ended.
+          - Start with what Pecan had. What gets added?
         solution:
-          - '\(\frac{2}{5} + \frac{4}{5} = \frac{6}{5}\) m, which is \(1\frac{1}{5}\) m.'
-      - type: number
-        prompt: 'Eli says, "She gains \(\frac{2}{5}\) m on each try, and 2 m is \(\frac{10}{5}\) m, so she needs 5 climbs." Keep going, one climb at a time. On which climb does she really reach the top?'
-        answer: 4
-        verify: (10 - 4) / 2 + 1
+          - '\(\frac{9}{5} + \frac{8}{5} = \frac{17}{5}\), which is \(3\frac{2}{5}\) kg.'
+          - 'That is what Nutmeg had at the start! Nutmeg now has \(1\frac{4}{5}\) kg. The two squirrels have only swapped, and now it is Nutmeg who says, "Not fair."'
+      - type: fraction
+        prompt: Go back to the start. How much should Nutmeg **really** hand over, so that both squirrels have the same amount?
+        answer: 4/5
+        verify: 17/5 - 13/5
         hints:
-          - Write the top of each climb in fifths. You have 4 fifths, then 6 fifths. What comes next?
-          - How many fifths is 2 m?
+          - Count in fifths. How many fifths does each squirrel have at the start?
+          - 'Move just one fifth from Nutmeg to Pecan. Now how many fifths does each have? Keep going.'
         solution:
-          - 'The tops of her climbs are \(\frac{4}{5}\), \(\frac{6}{5}\), \(\frac{8}{5}\) and \(\frac{10}{5}\) m.'
-          - '\(\frac{10}{5} = 2\) m, so she reaches the top on climb **4**.'
+          - 'In fifths, Nutmeg has 17 and Pecan has 9. Move one fifth at a time: 16 and 10, then 15 and 11, then 14 and 12, then 13 and 13.'
+          - 'That is 4 moves, so Nutmeg hands over \(\frac{4}{5}\) kg. Now each squirrel has \(\frac{13}{5} = 2\frac{3}{5}\) kg.'
       - type: mc
-        prompt: Why did Eli’s reasoning give too many climbs?
+        prompt: Why was Eli’s handover too big?
         choices:
-          - On her last climb she goes up the full amount and never slides back.
-          - She gains more on each try, because the pole gets less greasy higher up.
-          - 'He counted the pole wrong, because 2 m is really \(\frac{8}{5}\) m.'
-          - 'Each try she really gains \(\frac{4}{5}\) m, because the slide doesn’t count.'
+          - What leaves one pile also joins the other, so the gap closes from both ends.
+          - Mixed numbers give wrong answers here, so he needed improper fractions.
+          - Nutmeg’s fifths are bigger than Pecan’s, because Nutmeg has the bigger pile.
+          - He worked out the gap wrongly, so the gap was smaller than he thought.
         answer: 0
         feedback:
-          '1': 'The story says each try is the same, and her climbs went up by the same amount each time.'
-          '2': '\(\frac{5}{5}\) is 1 m, so 2 m is \(\frac{10}{5}\). Eli got that part right.'
-          '3': 'Look at your answer for her first climb and slide: she ended at only \(\frac{2}{5}\) m. So the slide does count, except when?'
+          '1': 'Mixed numbers and improper fractions are two ways of writing the same amount. Either one gives the same answer here.'
+          '2': 'A fifth of a kilogram is the same size in any pile. The bottom number tells you the size of the piece.'
+          '3': 'The gap really was \(1\frac{3}{5}\) kg. So Eli’s subtraction was fine. What did he do with the answer?'
         hints:
-          - What happens right after climb 4? Is that the same as after the other climbs?
+          - Move \(\frac{1}{5}\) kg. What happens to Nutmeg’s pile? What happens to Pecan’s?
         solution:
-          - 'Eli’s gain of \(\frac{2}{5}\) m only counts when a slide follows. Her last climb gains the full \(\frac{4}{5}\) m, because she stays at the top.'
-    wrapUp: A shortcut is only safe when every step is the same. Picturing the story one step at a time showed that the last climb is different.
+          - 'Moving \(\frac{1}{5}\) kg makes Nutmeg’s pile \(\frac{1}{5}\) smaller and Pecan’s pile \(\frac{1}{5}\) bigger. So the gap shrinks by \(\frac{2}{5}\) kg with each move.'
+          - 'Eli treated the gap as if only one pile would change. His handover closed the gap, then opened it again the other way.'
+    wrapUp: Moving an amount from one pile to another changes **both** piles. Counting in fifths, one piece at a time, shows exactly where they meet.
 
   - id: d2
     level: 3
