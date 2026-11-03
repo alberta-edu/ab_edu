@@ -41,7 +41,7 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         </div>
         <div class="pgx-page pgx-split" data-pgx-page="hybrid" hidden>
           <div><span class="pgx-tag">Fiction</span><p>Little Kit peeked out of the lodge. “Today,” she told her brother, “I will cut down the tallest tree in the world!”</p></div>
-          <aside><span class="pgx-tag">Non-fiction</span><p><strong>Fact:</strong> A beaver’s front teeth never stop growing. Chewing wood keeps them from getting too long.</p></aside>
+          <div class="pgx-aside"><span class="pgx-tag">Non-fiction</span><p><strong>Fact:</strong> A beaver’s front teeth never stop growing. Chewing wood keeps them from getting too long.</p></div>
         </div>
         {FORMS.map((f, i) => <p class="pgx-note" data-pgx-note={f.id} hidden={i !== 0} set:html={strong(f.note)} />)}
       </>
@@ -60,8 +60,8 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
             <h4 class="pgx-f pgx-f--heading" data-pgx-part="heading">Homes for Other Animals</h4>
             <p>Ducks, frogs and moose can all use the new wetland, which holds water even in a dry summer.</p>
           </div>
-          <aside class="pgx-side pgx-f" data-pgx-part="sidebar"><strong>Did you know?</strong><br />Canada’s national animal is the beaver.</aside>
-          <aside class="pgx-gloss pgx-f" data-pgx-part="glossary"><strong>Glossary</strong><br /><em>dam:</em> a wall that holds back water<br /><em>wetland:</em> land covered by shallow water</aside>
+          <div class="pgx-side pgx-f" data-pgx-part="sidebar"><strong>Did you know?</strong><br />Canada’s national animal is the beaver.</div>
+          <div class="pgx-gloss pgx-f" data-pgx-part="glossary"><strong>Glossary</strong><br /><em>dam:</em> a wall that holds back water<br /><em>wetland:</em> land covered by shallow water</div>
         </div>
         <div class="pgx-feats" role="group" aria-label="What each feature does">
           {FEATURES.map((f) => <button type="button" class="pgx-feat" data-pgx-feat={f.id}><strong>{f.label}</strong></button>)}
@@ -83,7 +83,7 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .pgx-photos figure { margin: 0; font-size: var(--step--1); }
   .pgx-photo { display: grid; place-items: center; aspect-ratio: 4 / 3; font-size: clamp(1.8rem, 7vw, 3.2rem); border-radius: 6px; background: var(--accent-soft); margin-bottom: 0.25rem; }
   .pgx-split { display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pgx-split aside { padding: 0.6rem; border-radius: 6px; background: var(--surface-2); }
+  .pgx-aside { padding: 0.6rem; border-radius: 6px; background: var(--surface-2); }
   .pgx-tag { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
   .pgx-note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.8rem; }
   .pgx-article { display: grid; gap: 0.7rem; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }

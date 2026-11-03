@@ -210,13 +210,13 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as cons
 }
 {
   block.type === 'callout' && (
-    <aside class={`lb callout callout--${block.variant}`}>
+    <div class={`lb callout callout--${block.variant}`} role="note">
       <div class="callout__title">
         <span aria-hidden="true">{calloutIcon[block.variant]}</span>
         {block.title}
       </div>
       <div class="prose" set:html={md(block.body)} />
-    </aside>
+    </div>
   )
 }
 {

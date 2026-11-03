@@ -55,7 +55,7 @@ const current = (p: string) => (path.startsWith(p) ? 'page' : undefined);
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container site-header__row">
-        <a class="brand" href={href()}>
+        <a class="brand" href={href()} aria-label={SITE_NAME}>
           <svg class="brand__mark" viewBox="0 0 64 64" aria-hidden="true"
             ><rect width="64" height="64" rx="14" fill="#2550c4"></rect><circle cx="32" cy="38" r="13" fill="#f2b01e"
             ></circle><path d="M0 44c10-6 20-8 32-5s22 2 32-4v29H0z" fill="#187a50"></path><path

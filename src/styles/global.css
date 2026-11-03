@@ -25,7 +25,7 @@
   --math-soft: #e9effc;
   --science: #187a50;
   --science-soft: #e4f4ec;
-  --social: #b45f0e;
+  --social: #a35405;
   --social-soft: #fcefe0;
   --ela: #a63d66;
   --ela-soft: #f9e8ef;
@@ -574,6 +574,11 @@ a.concept-card:hover { border-color: var(--accent); }
 .problem__status { margin-left: auto; font-size: var(--step--1); font-weight: 700; }
 .problem__status--solved { color: var(--ok); }
 .problem__prompt { font-size: var(--step-1); line-height: 1.5; margin-bottom: 1rem; }
+.problem__prompt table { display: block; max-width: 100%; overflow-x: auto; font-size: var(--step-0); }
+@media (max-width: 30rem) {
+  .problem__prompt table { font-size: var(--step--1); }
+  .problem__prompt th, .problem__prompt td { padding: 0.3rem 0.4rem; }
+}
 .problem__move { margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
 .problem__story { padding: 0.9rem 1.1rem; border-left: 4px solid var(--l3); border-radius: var(--radius-sm); background: var(--surface-2); }
 .problem-parts { display: grid; gap: 1rem; }
@@ -581,7 +586,7 @@ a.concept-card:hover { border-color: var(--accent); }
 .problem-part[hidden] { display: none; }
 .problem-part__title { margin: 0; color: var(--l3); font-size: var(--step-0); }
 .problem__wrap-up { margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); background: var(--ok-soft); }
-.problem__wrap-up h5 { margin: 0 0 0.3rem; }
+.problem__wrap-up h4 { margin: 0 0 0.3rem; }
 .problem__figure { margin-bottom: 1rem; display: flex; justify-content: center; }
 .problem__figure svg { max-width: min(100%, 28rem); height: auto; }
 .problem__form { display: grid; gap: 0.9rem; }

@@ -17,7 +17,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
       <p class="page-hero__lede">A few quick questions on topics you have already learned, timed so they stick.</p>
     </header>
 
-    <div data-review-root data-src={href('data/grade-5/review.json')}>
+    <div class="rv-root" data-review-root data-src={href('data/grade-5/review.json')}>
       <p class="muted">Loading your review…</p>
     </div>
 
@@ -42,6 +42,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
 </script>
 
 <style is:global>
+  .rv-root { min-height: 18rem; }
   .rv-summary { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
   .rv-stat { padding: 0.8rem 1rem; min-width: 9rem; }
   .rv-stat strong { display: block; font-size: var(--step-2); line-height: 1.1; }

@@ -55,7 +55,7 @@ function choicesHtml(
       (orig, shown) => `
       <label class="choice">
         <input type="${type}" name="${esc(key)}" value="${shown}">
-        <span class="choice__mark" aria-hidden="true">${LETTERS[shown]}</span>
+        <span class="choice__mark">${LETTERS[shown]}</span>
         <span class="choice__text">${mdInline(choices[orig])}</span>
       </label>`,
     )
@@ -206,7 +206,7 @@ function workArea(p: { type: string; hints: string[]; solution: string[] }, body
       <ol>${p.hints.map((h) => `<li hidden>${md(h)}</li>`).join('')}</ol>
     </div>
     <div class="problem__solution" hidden>
-      <h5 class="problem__solution-title">Worked solution</h5>
+      <h4 class="problem__solution-title">Worked solution</h4>
       <ol class="steps">${p.solution.map((s) => `<li class="step">${md(s)}</li>`).join('')}</ol>
     </div>`;
 }
@@ -220,7 +220,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
 <problem-card class="problem${p.type === 'investigation' ? ' problem--investigation' : ''}" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">
   <article class="problem__inner" aria-labelledby="${esc(`${domId}-title`)}">
     <header class="problem__head">
-      <h4 class="problem__title" id="${esc(`${domId}-title`)}"><span class="problem__num">Problem ${number}</span></h4>
+      <h3 class="problem__title" id="${esc(`${domId}-title`)}"><span class="problem__num">Problem ${number}</span></h3>
       ${levelBadge(p.level)}
       <span class="problem__status" data-status></span>
     </header>
@@ -236,7 +236,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
         return `
     <problem-part class="problem-part" data-spec="${esc(JSON.stringify(spec))}">
       <header class="problem__head">
-        <h5 class="problem-part__title">Part ${LETTERS[i]}</h5>
+        <h4 class="problem-part__title">Part ${LETTERS[i]}</h4>
         <span class="problem__status" data-status></span>
       </header>
       ${part.figure ? `<div class="problem__figure">${renderFigure(part.figure)}</div>` : ''}
@@ -249,7 +249,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
       { type: 'investigation', parts: p.parts.length },
       `<div class="problem__prompt problem__story prose">${md(p.prompt)}</div>
     <div class="problem-parts">${parts}</div>
-    <div class="problem__wrap-up prose" data-wrap-up><h5>The big idea</h5>${md(p.wrapUp)}</div>
+    <div class="problem__wrap-up prose" data-wrap-up><h4>The big idea</h4>${md(p.wrapUp)}</div>
     ${moveHtml}`,
     );
   }
