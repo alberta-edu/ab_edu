@@ -56,7 +56,7 @@ const clipId = `tm-clip-${show}`;
   {
     TRADE_ROUTES.map((r) => (
       <div class="tm-card" data-tm-panel={r.id}>
-        <h4>{r.name} <span class="muted tm-kind">{r.kind === 'land' ? 'land route' : 'water route'}</span></h4>
+        <h3>{r.name} <span class="muted tm-kind">{r.kind === 'land' ? 'land route' : 'water route'}</span></h3>
         <p class="tm-connects"><strong>Connected:</strong> {r.connects}</p>
         <p>{r.about}</p>
         <div data-tm-list="goods"><strong>Goods that moved</strong><ul>{r.goods.map((g) => <li set:html={mdInline(g)} />)}</ul></div>
@@ -84,7 +84,7 @@ const clipId = `tm-clip-${show}`;
   .tm-traveller { font-size: 22px; }
   .tm-seg { margin-top: 0.7rem; }
   .tm-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-  .tm-card h4 { margin: 0 0 0.3rem; }
+  .tm-card h3 { margin: 0 0 0.3rem; }
   .tm-kind { font-size: var(--step--1); font-weight: 400; }
   .tm-card p { margin: 0 0 0.4rem; }
   .tm-card ul { margin: 0.2rem 0 0; padding-left: 1.2rem; }

@@ -168,7 +168,7 @@ h1, h2, h3, h4, h5 { line-height: 1.2; margin: 0 0 0.5em; text-wrap: balance; }
 h1 { font-size: var(--step-3); letter-spacing: -0.01em; }
 h2 { font-size: var(--step-2); }
 h3 { font-size: var(--step-1); }
-h4, h5 { font-size: var(--step-0); }
+h4, h5, :where(.step-body figure) h3, .example__title { font-size: var(--step-0); }
 p { margin: 0 0 1em; }
 a { color: var(--brand); text-underline-offset: 0.2em; }
 a:hover { text-decoration-thickness: 2px; }
@@ -208,7 +208,7 @@ kbd {
 .site-nav a {
   display: inline-flex; align-items: center; gap: 0.4rem;
   padding: 0.45rem 0.75rem; border-radius: 999px;
-  color: var(--ink-2); text-decoration: none; font-weight: 700; font-size: var(--step--1);
+  color: var(--ink-2); text-decoration: none; font-weight: 700; font-size: var(--step--1); white-space: nowrap;
 }
 .site-nav a:hover { background: var(--surface-2); color: var(--ink); }
 .site-nav a[aria-current='page'] { background: var(--brand-soft); color: var(--brand); }
@@ -220,7 +220,9 @@ kbd {
 .theme-toggle:hover { background: var(--surface-2); }
 @media (max-width: 30rem) {
   .brand__name { display: none; }
-  .site-nav a { padding: 0.45rem 0.55rem; }
+  .site-nav { gap: 0; }
+  .site-nav a { padding: 0.45rem 0.5rem; }
+  .site-nav a svg { display: none; }
 }
 
 .site-footer { margin-top: 4rem; border-top: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2); font-size: var(--step--1); }
@@ -629,7 +631,7 @@ a.concept-card:hover { border-color: var(--accent); }
 .answer-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
 .answer-row__label { font-weight: 700; font-size: var(--step--1); }
 .answer-row__input {
-  font: inherit; font-size: var(--step-1); padding: 0.5rem 0.75rem; min-height: 2.9rem; width: min(100%, 14rem);
+  font: inherit; font-size: var(--step-1); padding: 0.5rem 0.75rem; min-height: 2.9rem; flex: 1 1 5rem; min-width: 0; max-width: 14rem;
   border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink);
 }
 .answer-row__input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
@@ -860,6 +862,8 @@ a.concept-card:hover { border-color: var(--accent); }
 .ed-sections > * { min-width: 0; }
 .ed-card { padding: clamp(1rem, 2.5vw, 1.4rem); }
 .ed-card h2, .ed-card h3 { margin-top: 0; }
+.ed-note li { margin-block: 0.4rem; }
+.ed-note li a { display: inline-block; min-height: 24px; }
 .ed-card h2 { font-size: var(--step-2); }
 .ed-card h3 { font-size: var(--step-1); }
 .ed-card h3 small { color: var(--ink-3); font-size: var(--step--1); font-weight: 400; margin-left: 0.25rem; }

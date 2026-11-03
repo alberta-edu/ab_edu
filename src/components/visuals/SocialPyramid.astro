@@ -38,7 +38,7 @@ const half = (y: number) => 36 + ((y - TOP) / (H - TOP)) * (W / 2 - 36);
             <div class="py-card" data-py-card aria-live="polite">
               {p.classes.map((c) => (
                 <div class="py-detail" data-py-detail={c.id}>
-                  <h4>{c.name}</h4>
+                  <h3>{c.name}</h3>
                   <div class="py-meter"><span class="py-meter__key">People</span><span class="py-dots" aria-label={`${c.people} out of 5`}>{Array.from({ length: 5 }, (_, i) => <span class={i < c.people ? 'is-on' : ''}></span>)}</span></div>
                   <div class="py-meter"><span class="py-meter__key">Power</span><span class="py-dots py-dots--power" aria-label={`${c.power} out of 5`}>{Array.from({ length: 5 }, (_, i) => <span class={i < c.power ? 'is-on' : ''}></span>)}</span></div>
                   <p><strong>Place based on:</strong> {c.basedOn}</p>
@@ -67,7 +67,7 @@ const half = (y: number) => 36 + ((y - TOP) / (H - TOP)) * (W / 2 - 36);
   .py-layer.is-on text { fill: var(--surface); }
   .py-layer:focus-visible path { stroke: var(--focus); stroke-width: 3; }
   .py-card { padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 16rem; }
-  .py-card h4 { margin: 0 0 0.4rem; }
+  .py-card h3 { margin: 0 0 0.4rem; }
   .py-card p { margin: 0.35rem 0 0; font-size: var(--step--1); line-height: 1.4; }
   .py-meter { display: flex; align-items: center; gap: 0.5rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
   .py-meter__key { width: 3.2rem; }

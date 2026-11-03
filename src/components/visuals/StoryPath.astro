@@ -35,7 +35,7 @@ const leapTo = flash && [W - 60, 40];
     <circle class="stp-walker" data-stp="walker" r="8" cx={pts[0][0]} cy={pts[0][1] - 20}></circle>
   </svg>
   <div class="stp-card" aria-live="polite">
-    <h4 data-stp="label"></h4>
+    <h3 data-stp="label"></h3>
     <p data-stp="text"></p>
   </div>
   <div class="control-row">
@@ -58,7 +58,7 @@ const leapTo = flash && [W - 60, 40];
   .stp-walker { fill: var(--sun); stroke: var(--ink); stroke-width: 2; transition: cx 0.5s ease, cy 0.5s ease; }
   .stp-card { min-height: 6rem; margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
   .stp-card.is-flash { background: var(--accent-soft); }
-  .stp-card h4 { margin: 0 0 0.25rem; }
+  .stp-card h3 { margin: 0 0 0.25rem; }
   .stp-card p { margin: 0; }
   @media (prefers-reduced-motion: reduce) { .stp-walker { transition: none; } }
 </style>

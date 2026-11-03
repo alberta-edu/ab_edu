@@ -185,7 +185,7 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as cons
     <div class="lb compare" style={`--cols:${block.columns.length}`}>
       {block.columns.map((col) => (
         <section class="compare__col">
-          <h4 class="compare__title">{col.title}</h4>
+          <h3 class="compare__title">{col.title}</h3>
           {col.figure && <div class="compare__figure" set:html={renderFigure(col.figure)} />}
           <div class="prose" set:html={md(col.body)} />
         </section>
@@ -197,7 +197,7 @@ const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as cons
   block.type === 'example' && (
     <section class="lb card example">
       <div class="example__label">Worked example</div>
-      <h4 class="example__title">{block.title}</h4>
+      <h3 class="example__title">{block.title}</h3>
       <div class="example__problem prose" set:html={md(block.problem)} />
       <ol class="steps">
         {block.steps.map((s) => (

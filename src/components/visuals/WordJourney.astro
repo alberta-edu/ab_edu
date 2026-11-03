@@ -43,7 +43,7 @@ const origins = ORIGINS.map((o) => {
       {
         SHIFTS.map((s) => (
           <div class="wjy-shift">
-            <h4>{s.word}</h4>
+            <h3>{s.word}</h3>
             <ol>
               {s.stops.map((stop) => <li><span>{stop.when}</span> <b set:html={mdInline(stop.meaning)} /></li>)}
             </ol>
@@ -55,7 +55,7 @@ const origins = ORIGINS.map((o) => {
 
   <div data-wjy-panel="new" hidden>
     <div class="wjy-news">
-      {NEW_WORDS.map((w) => <div class="wjy-new"><span class="wjy-year">{w.year}</span><h4>{w.word}</h4><p set:html={mdInline(w.how)} /></div>)}
+      {NEW_WORDS.map((w) => <div class="wjy-new"><span class="wjy-year">{w.year}</span><h3>{w.word}</h3><p set:html={mdInline(w.how)} /></div>)}
     </div>
   </div>
 </word-journey>
@@ -70,7 +70,7 @@ const origins = ORIGINS.map((o) => {
   .wjy-card { margin: 0.6rem 0 0; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step-1); }
   .wjy-shifts, .wjy-news { display: grid; gap: 0.6rem; margin-top: 0.7rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
   .wjy-shift, .wjy-new { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-  .wjy-shift h4, .wjy-new h4 { margin: 0 0 0.3rem; font-size: var(--step-1); color: var(--accent); }
+  .wjy-shift h3, .wjy-new h3 { margin: 0 0 0.3rem; font-size: var(--step-1); color: var(--accent); }
   .wjy-shift ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.3rem; }
   .wjy-shift li { padding-left: 0.6rem; border-left: 3px solid var(--line-strong); }
   .wjy-shift li:last-child { border-left-color: var(--accent); }
