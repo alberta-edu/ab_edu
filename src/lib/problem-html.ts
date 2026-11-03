@@ -215,7 +215,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
   const key = problemKey(concept, p);
   const domId = `q-${key.replace(/\//g, '-')}`;
   const move = THINKING_MOVES[p.thinking];
-  const moveHtml = `<p class="problem__move" data-move hidden><strong>🧠 You just used: ${esc(move.name)}.</strong> ${esc(move.blurb)}</p>`;
+  const moveHtml = `<p class="problem__move" data-thinking-move hidden><strong>🧠 You just used: ${esc(move.name)}.</strong> ${esc(move.blurb)}</p>`;
   const card = (spec: CheckSpec, inner: string) => `
 <problem-card class="problem${p.type === 'investigation' ? ' problem--investigation' : ''}" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">
   <article class="problem__inner" aria-labelledby="${esc(`${domId}-title`)}">

@@ -146,6 +146,14 @@ describe('investigations', () => {
 });
 
 describe('thinking moves', () => {
+  it('have their own marker, which the move buttons of an order problem don\'t share', () => {
+    const concept = loadConcept('research-skills');
+    const order = concept.problems.find((p) => p.type === 'order')!;
+    const html = renderProblem(concept, order, 1);
+    expect(html.match(/data-thinking-move/g)).toHaveLength(1);
+    expect(html).toMatch(/<button[^>]*data-move=/);
+    expect(html).not.toMatch(/<p[^>]*data-move/);
+  });
   it('each has a student-facing name and an explanation', () => {
     for (const id of THINKING_MOVE_IDS) {
       expect(THINKING_MOVES[id].name.length).toBeGreaterThan(3);
