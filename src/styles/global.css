@@ -306,7 +306,10 @@ a.concept-card:hover { border-color: var(--accent); }
   font-size: var(--step-1);
 }
 .big-idea__label { font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.25rem; }
-.big-idea p:last-child { margin: 0; }
+.big-idea p:last-child, .big-idea > ul:last-child, .big-idea > ol:last-child { margin: 0; }
+.big-idea ul, .big-idea ol { padding-left: 1.3rem; }
+.big-idea li + li { margin-top: 0.35rem; }
+.big-idea li::marker { color: var(--accent); }
 
 .outcome { padding: 1rem 1.15rem; margin-bottom: 2rem; font-size: var(--step--1); color: var(--ink-2); }
 .outcome summary { cursor: pointer; font-weight: 700; color: var(--ink); }
