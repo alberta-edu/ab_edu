@@ -20,7 +20,7 @@ const sources = SUBJECTS.map((s) => {
     <header class="page-hero">
       <p class="page-hero__eyebrow">About</p>
       <h1>How {SITE_NAME} works</h1>
-      <p class="page-hero__lede">A free, independent learning site for Alberta students and families.</p>
+      <p class="page-hero__lede">Free, independent learning for Alberta students and families.</p>
     </header>
     <div class="prose stack">
       <h2>Matched to the curriculum</h2>
@@ -32,8 +32,8 @@ const sources = SUBJECTS.map((s) => {
           <ul>
             {sources.map((s) => (
               <li>
-                <strong>{s.name}</strong>{s.since && `, in use since ${s.since}`}
-                {s.name === 'Social Studies' && ' (new: ancient civilizations)'}
+                <strong>{s.name}</strong>{s.since && <>, in use since <span class="nowrap">{s.since}</span></>}
+                {s.name === 'Social Studies' && <>{' '}<span class="nowrap">(new: ancient civilizations)</span></>}
               </li>
             ))}
           </ul>
@@ -42,10 +42,10 @@ const sources = SUBJECTS.map((s) => {
 
       <h2>How it's checked</h2>
       <ul>
-        <li>A program recomputes every math answer.</li>
-        <li>Every wrong choice is a real student mistake, with an explanation.</li>
+        <li>A program checks every lesson and problem against its outcome.</li>
         <li>A second AI solved every problem blind, to check answers and grade level.</li>
-        <li>Reading passages are original.</li>
+        <li>Wrong choices are common mistakes, each with an explanation.</li>
+        <li>Lessons, passages and visuals are original.</li>
         <li>No AI runs while you use the site.</li>
       </ul>
 
