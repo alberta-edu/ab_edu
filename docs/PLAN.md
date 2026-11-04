@@ -40,8 +40,9 @@ pushed. The owner reviews them on `main`.**
 | `feature/educator-notes` | Phase 7: educators hub, 4 subject guides, notes for all 48 topics. Stacked on `feature/thinking-problems` | ✅ Merged into `main` |
 | `chore/phase-7-polish` | Phase 7: accessibility, keyboard, phone layout and review fixes, audits, these docs. Stacked on `feature/educator-notes` | ✅ Merged into `main` |
 | `fix/readability-and-practice-flow` | Owner review fixes: Lexend font (plain 0), About page (no repo links, Claude credit), practice Next waits for a correct answer and leads to the next level, clearer Thinking skill box, Key terms tab removed, educators page as short lists, every long paragraph in lessons and notes turned into lists, and a readability check in `npm run verify` | ✅ Merged into `main` and pushed. The owner reviews it after merge |
+| `fix/about-page` | About page: shorter bullets, Credits as a list, no internal testing notes, no repeat of the footer's not-affiliated line | 🔍 Waiting for owner review |
 
-Nothing is waiting for review as a branch. The owner is reviewing the review fixes on `main`, and will do the final manual review at the very end, after all phases.
+Waiting for review: `fix/about-page`. The owner will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 
