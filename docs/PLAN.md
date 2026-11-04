@@ -42,6 +42,8 @@ pushed. The owner reviews them on `main`.**
 | `fix/readability-and-practice-flow` | Owner review fixes: Lexend font (plain 0), About page (no repo links, Claude credit), practice Next waits for a correct answer and leads to the next level, clearer Thinking skill box, Key terms tab removed, educators page as short lists, every long paragraph in lessons and notes turned into lists, and a readability check in `npm run verify` | ✅ Merged into `main` and pushed. The owner reviews it after merge |
 | `fix/about-page` | About page: shorter bullets, Credits as a list, no internal testing notes, no repeat of the footer's not-affiliated line | ✅ Merged into `main` and pushed |
 | `fix/educators-page` | Educators page: no math-only lines, chips and tiles in even rows, one-line thinking-skill blurbs, “Already built into the site” removed, Home education shortened. Stacked on `fix/plan-status` | ✅ Merged into `main` and pushed |
+| `fix/text-wrapping` | No lone last words in paragraphs and lists, balanced ledes, one-line About lede, a `.nowrap` class for dates, a general "How it's checked" list | ✅ Merged into `main` and pushed |
+| `fix/plan-status` | Restores this status section after an older PLAN.md was committed by mistake | ✅ Merged into `main` and pushed |
 
 Nothing is waiting for review as a branch. The owner will do the final manual review at the very end, after all phases.
 
