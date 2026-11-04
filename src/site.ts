@@ -5,7 +5,6 @@ export const SITE_TAGLINE = 'Free practice that follows the Alberta curriculum';
 export const SITE_URL = 'https://alberta-edu.github.io';
 /** GitHub Pages project path. Change to '/' if the site moves to a custom domain. */
 export const BASE_PATH = '/ab_edu';
-export const REPO_URL = 'https://github.com/alberta-edu/ab_edu';
 
 export type SubjectSlug = 'math' | 'science' | 'social-studies' | 'english-language-arts';
 

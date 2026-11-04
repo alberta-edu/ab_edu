@@ -183,8 +183,8 @@ Every problem also names its thinking move, shown right after it is solved. See
   reading passages (wide line spacing, numbered paragraphs) and math solutions (step cards,
   equations aligned).
 - **Accessibility**: semantic HTML, keyboard support everywhere, visible focus, MathML for
-  screen readers, `prefers-reduced-motion` respected, dark mode, and the Atkinson
-  Hyperlegible font (designed for readability).
+  screen readers, `prefers-reduced-motion` respected, dark mode, and the Lexend
+  font (designed for reading fluency, with a plain, unslashed 0).
 - **SEO**: one URL per concept, e.g. `/grade-5/math/improper-fractions/`, with a
   descriptive title and meta description, canonical URLs, a sitemap, `robots.txt`, Open
   Graph tags, and JSON-LD (`LearningResource` with `educationalAlignment` to the Alberta

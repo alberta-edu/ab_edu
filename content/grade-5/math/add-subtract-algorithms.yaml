@@ -23,17 +23,11 @@ lesson:
         columns:
           - title: ❌ Lined up on the right
             body: |-
-              ```
-                12.5
-              + 3.75
-              ```
+              \[\begin{array}{rr} & 12.5 \\ + & 3.75 \end{array}\]
               The 5 tenths sits under 5 hundredths. Wrong!
           - title: ✅ Decimal points lined up
             body: |-
-              ```
-                12.50
-              +  3.75
-              ```
+              \[\begin{array}{rr@{.}l} & 12 & 50 \\ + & 3 & 75 \end{array}\]
               Tenths under tenths. An empty place gets a 0.
       - type: callout
         variant: remember
