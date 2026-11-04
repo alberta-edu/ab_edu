@@ -28,16 +28,12 @@ const sources = SUBJECTS.map((s) => {
         <li>
           It covers the four subjects on Alberta's Provincial Achievement Tests:
           <ul>
-            {sources.map((s) => <li><strong>{s.name}</strong>: {s.implemented}</li>)}
-            <li><strong>Social Studies</strong> (new K–6 curriculum): required for Grades 4–6 from September 2026. Grade 5 now studies ancient civilizations.</li>
+            {sources.map((s) => <li><strong>{s.name}</strong>: {s.implemented}{s.name === 'Social Studies' && ' The new K–6 curriculum: Grade 5 now studies ancient civilizations.'}</li>)}
           </ul>
         </li>
+        <li>Curriculum outcomes are © Government of Alberta, quoted for alignment only, from <a href="https://curriculum.learnalberta.ca/curriculum/en" rel="noopener">New LearnAlberta</a>.</li>
+        <li>{SITE_NAME} is independent, and not affiliated with or endorsed by the Government of Alberta or Alberta Education.</li>
       </ul>
-      <p>
-        Curriculum outcomes are © Government of Alberta, quoted for alignment only, from
-        <a href="https://curriculum.learnalberta.ca/curriculum/en" rel="noopener">New LearnAlberta</a>.
-        {SITE_NAME} is independent and not affiliated with or endorsed by the Government of Alberta or Alberta Education.
-      </p>
 
       <h2>How the content is made and checked</h2>
       <ul>
@@ -57,11 +53,11 @@ const sources = SUBJECTS.map((s) => {
       </p>
 
       <h2 id="privacy">Privacy</h2>
-      <p>
-        There are no accounts, ads, cookies or trackers. Your progress is saved only in your own browser
-        (localStorage) and never sent anywhere. Clearing your browser data erases it, so use
-        <a href={href('progress/#backup')}>Save backup file</a> if you want to keep it.
-      </p>
+      <ul>
+        <li>No accounts, ads, cookies or trackers.</li>
+        <li>Your progress is saved only in your own browser (localStorage), and never sent anywhere.</li>
+        <li>Clearing your browser data erases it. To keep it, use <a href={href('progress/#backup')}>Save backup file</a>.</li>
+      </ul>
     </div>
   </div>
 </Base>

@@ -10,10 +10,11 @@ the branch that deploys.
 
 ## Where we are now
 
-*Last updated: November 3, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 4, 2026. Update this section whenever a phase or batch finishes.*
 
 **Current phase: 7 (Polish, with the question rewrite and educator notes) is finished and merged into
-`main`, not pushed. The owner is reviewing it locally.**
+`main`, not pushed. Fixes from the owner's local review are on `fix/readability-and-practice-flow`,
+waiting for review.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
@@ -38,8 +39,9 @@ the branch that deploys.
 | `feature/thinking-problems` | Phase 7: all 48 problem sets rewritten to [QUESTION-STANDARD.md](QUESTION-STANDARD.md) (553 problems, was 623), `build` and `investigation` types, a thinking move on every problem, [grade-level audit](grade-level-audit.md) | ✅ Merged into `main` |
 | `feature/educator-notes` | Phase 7: educators hub, 4 subject guides, notes for all 48 topics. Stacked on `feature/thinking-problems` | ✅ Merged into `main` |
 | `chore/phase-7-polish` | Phase 7: accessibility, keyboard, phone layout and review fixes, audits, these docs. Stacked on `feature/educator-notes` | ✅ Merged into `main` |
+| `fix/readability-and-practice-flow` | Owner review fixes: Lexend font (plain 0), About page (no repo links, Claude credit), practice Next waits for a correct answer and leads to the next level, clearer Thinking skill box, Key terms tab removed, educators page as short lists, every long paragraph in lessons and notes turned into lists, and a readability check in `npm run verify` | ⏳ Waiting for review |
 
-Nothing is waiting for review as a branch. The owner is reviewing the merged site locally, and will do the final manual review at the very end, after all phases.
+**Waiting for review:** `fix/readability-and-practice-flow`. The owner will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 

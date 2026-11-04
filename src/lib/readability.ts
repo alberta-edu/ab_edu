@@ -90,7 +90,8 @@ export function blockProse(b: LessonBlock): string[] {
 /** Every too-long paragraph in a concept's lesson, labelled by step. */
 export function lessonBlobs(c: Concept): string[] {
   const out: string[] = [];
-  const big = blobIssue(c.bigIdea);
+  // The Big idea is the first thing a student reads, so it is a list: at most a one-sentence lead-in.
+  const big = blobIssue(c.bigIdea) ?? (proseParagraphs(c.bigIdea).some((p) => sentenceCount(p) > 1) ? 'more than one sentence of prose. Make it 3–4 bullets' : null);
   if (big) out.push(`big idea: ${big}`);
   c.lesson.forEach((s, i) =>
     s.blocks.forEach((b, j) => {
