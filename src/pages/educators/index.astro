@@ -23,34 +23,18 @@ const jsonLd = [
     audience: { '@type': 'EducationalAudience', educationalRole: 'teacher' },
   },
 ];
-const thinking = ['Working out the real question', 'Breaking a hard problem down', 'Noticing what doesn’t fit', 'Deciding what to believe', 'Imagining something new'];
+const thinking = ['Find the real question', 'Break it down', 'Spot what doesn’t fit', 'Decide what to believe', 'Imagine something new'];
 const stuck = [
-  { say: 'What do you know for sure?', why: 'Starts from what they can do.' },
-  { say: 'What is it really asking?', why: 'Most children are stuck on the question, not the math.' },
+  { say: 'What do you know for sure?', why: 'Start from what they can do.' },
+  { say: 'What is it really asking?', why: 'Often the question is the hard part.' },
   { say: 'Can you draw it?', why: 'A picture shows what words hide.' },
-  { say: 'What if the numbers were smaller?', why: 'The idea gets easier to see.' },
+  { say: 'Can you try an easier one?', why: 'The idea gets easier to see.' },
   { say: 'What have you tried?', why: 'A wrong try is information.' },
 ];
 const everyChild = [
-  {
-    title: 'Getting interested and staying with it',
-    icon: '💛',
-    items: [
-      'Start from what they love: a hockey card collection can carry almost any math idea.',
-      'Give real choices: which problem, what order, draw or explain.',
-      'Keep it short. Stop while it’s going well.',
-    ],
-  },
-  {
-    title: 'Taking in the ideas',
-    icon: '👁️',
-    items: ['Start with the animations, and replay them as often as needed.', 'Read problems aloud together, or use read-aloud.', 'Show an idea with real objects before symbols.'],
-  },
-  {
-    title: 'Showing what they know',
-    icon: '🎤',
-    items: ['Let them say, draw, build or act it out. You can write for them.', 'Explaining out loud counts as much as writing.', 'Tick the self-check on written problems together.'],
-  },
+  { title: 'Staying interested', icon: '💛', items: ['Start from what they love.', 'Let them choose what and how.', 'Stop while it’s going well.'] },
+  { title: 'Taking ideas in', icon: '👁️', items: ['Replay the animations often.', 'Read aloud together.', 'Show it with real objects first.'] },
+  { title: 'Showing learning', icon: '🎤', items: ['Let them say, draw or build it.', 'Talking counts as writing.', 'You can write for them.'] },
 ];
 ---
 <Base title="For teachers and parents" description={description} path="educators/" jsonLd={jsonLd}>
@@ -63,10 +47,10 @@ const everyChild = [
 
     <div class="ed-sections">
       <section class="card ed-card ed-card--hook">
-        <h2><span aria-hidden="true">🧠</span> Why thinking comes first</h2>
-        <p>Machines can now calculate and summarize faster than any of us. What stays valuable is the thinking:</p>
+        <h2><span aria-hidden="true">🧠</span> Thinking comes first</h2>
+        <p>Machines calculate and summarize faster than we do. The thinking is what stays valuable:</p>
         <ul class="ed-chips">{thinking.map((t) => <li>{t}</li>)}</ul>
-        <p>Facts still matter: they’re what we think <em>with</em>. So here, <strong>harder means more thinking, not bigger numbers.</strong></p>
+        <p>Facts still matter. They’re what we think <em>with</em>.</p>
       </section>
 
       <section>
@@ -82,7 +66,7 @@ const everyChild = [
           </article>
           <article class="card ed-card">
             <Fragment set:html={levelBadge(3)} />
-            <p>Investigate, design, find the flaw. Friendly numbers, real thinking. Struggle is the point.</p>
+            <p>Investigate, design, find the flaw. Struggle is the point.</p>
           </article>
         </div>
         <ul class="ed-checks">
@@ -109,7 +93,7 @@ const everyChild = [
 
       <section>
         <h2 class="ed-heading"><span aria-hidden="true">🗣️</span> The thinking skills children learn</h2>
-        <p class="ed-note">After each correct answer, children see the skill they used. Use the same words at home: “You worked backwards there!”</p>
+        <p class="ed-note">After each correct answer, children see the skill they used. Use the same words: “You worked backwards there!”</p>
         <div class="ed-moves">
           {
             MOVE_GROUPS.map((g) => (
@@ -136,29 +120,28 @@ const everyChild = [
 
       <section id="subjects">
         <h2 class="ed-heading"><span aria-hidden="true">📚</span> Guides by subject</h2>
-        <div class="grid">
+        <p class="ed-note">Class routines for each subject, and notes for every topic: a hook, activities, questions and ways to adapt.</p>
+        <div class="grid grid--2">
           {
             guides.map((s) => (
               <a class="card concept-card" href={href(`grade-5/${s.slug}/educators/`)}>
-                <span class="concept-card__body">
-                  <span class="concept-card__title">{s.name}</span>
-                  <span class="concept-card__sub">Routines, plus notes for every topic</span>
+                <span class="ed-subject-icon" aria-hidden="true">
+                  <Icon name={s.icon as 'book'} size={20} />
                 </span>
+                <span class="concept-card__body concept-card__title">{s.name}</span>
                 <Icon name="arrow" size={18} />
               </a>
             ))
           }
         </div>
-        <p class="ed-note">Each topic also has its own notes: a hook, activities, questions to ask, common mix-ups and ways to adapt.</p>
       </section>
 
       <section id="every-child">
         <h2 class="ed-heading"><span aria-hidden="true">🌱</span> A guide for every child</h2>
         <p class="ed-note">
-          Based on <a href="https://udlguidelines.cast.org/" rel="noopener">Universal Design for Learning</a>: build in choice from the start, so fewer
-          children are exceptions.
+          Based on <a href="https://udlguidelines.cast.org/" rel="noopener">Universal Design for Learning</a>: build in choice from the start.
         </p>
-        <div class="grid">
+        <div class="grid grid--3">
           {
             everyChild.map((g) => (
               <article class="card ed-card">
@@ -174,32 +157,18 @@ const everyChild = [
             ))
           }
         </div>
-        <div class="card ed-card ed-built-in">
-          <h3>Already built into the site</h3>
-          <ul>
-            <li>Works with a keyboard and at 400% zoom. Screen-reader users haven’t tried it yet.</li>
-            <li>Dark mode, an easy-to-read font, and reduced motion if your device asks.</li>
-            <li>No timers, accounts or public scores. Wrong answers get an explanation, not a penalty.</li>
-            <li>Hints and solutions are always there. Levels never fully lock.</li>
-          </ul>
-        </div>
-        <p class="muted ed-note">Ideas to try, not medical or professional advice. A child’s own team knows them best.</p>
+        <p class="muted ed-note">Ideas to try, not professional advice. A child’s own team knows them best.</p>
       </section>
 
       <section class="card ed-card" id="home">
         <h2><span aria-hidden="true">🏡</span> Home education in Alberta</h2>
+        <p>Parents can lead a program for Grades 1 to 12 in two ways:</p>
         <ul>
-          <li>
-            Parents can direct a home education program for Grades 1 to 12, in one of two ways:
-            <ul>
-              <li><strong>Supervised</strong> by a school authority: funding, and two evaluations a year.</li>
-              <li><strong>Notification only</strong>: no funding.</li>
-            </ul>
-          </li>
-          <li>The Association of Independent Schools and Colleges of Alberta helps families find resources, workshops and assessments.</li>
-          <li>For the current rules, see <a href="https://www.alberta.ca/home-education" rel="noopener">Alberta’s home education page</a>.</li>
-          <li>This site can support a program. It isn’t a full program, and it isn’t endorsed by Alberta Education.</li>
+          <li><strong>Supervised</strong> by a school authority: funding, two evaluations a year.</li>
+          <li><strong>Notification only</strong>: no funding.</li>
         </ul>
+        <p>Current rules: <a href="https://www.alberta.ca/home-education" rel="noopener">Alberta’s home education page</a>.</p>
+        <p class="muted ed-note">This site supports a program. It isn’t a full program, or endorsed by Alberta Education.</p>
       </section>
 
       <section class="ed-note">

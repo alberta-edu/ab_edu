@@ -274,6 +274,10 @@ kbd {
 .grid--4 { grid-template-columns: 1fr; }
 @media (min-width: 36rem) { .grid--4 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 64rem) { .grid--4 { grid-template-columns: repeat(4, 1fr); } }
+/* Two items a row, or three, with no uneven last row. */
+.grid--2, .grid--3 { grid-template-columns: 1fr; }
+@media (min-width: 36rem) { .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 56rem) { .grid--3 { grid-template-columns: repeat(3, 1fr); } }
 
 .subject-card { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.25rem; text-decoration: none; color: var(--ink); border-top: 6px solid var(--accent); transition: transform 0.15s, box-shadow 0.15s; }
 .subject-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
@@ -895,7 +899,14 @@ a.concept-card:hover { border-color: var(--accent); }
 .ed-stuck { display: grid; gap: 0.6rem; margin: 0.75rem 0 0; }
 .ed-stuck dt { font-weight: 700; }
 .ed-stuck dd { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
-.ed-chips { list-style: none; padding: 0 !important; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+@media (min-width: 40rem) {
+  .ed-stuck > div { display: grid; grid-template-columns: 17rem minmax(0, 1fr); gap: 1rem; align-items: baseline; }
+}
+/* One chip a row on phones, all in one row once they fit. */
+.ed-chips { list-style: none; padding: 0 !important; margin: 0 0 1rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
+@media (min-width: 56rem) { .ed-chips { flex-direction: row; } }
+.ed-subject-icon { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; flex: none; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+.ed li, .ed dd, .ed-card p, .ed-moves__blurb { text-wrap: pretty; }
 .ed-chips li { margin: 0; padding: 0.3rem 0.8rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 700; font-size: var(--step--1); }
 .ed-checks { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.35rem; font-size: var(--step--1); color: var(--ink-2); }
 .ed-checks li { display: flex; gap: 0.5rem; }
@@ -908,7 +919,6 @@ a.concept-card:hover { border-color: var(--accent); }
 .ed-moves__group li > span:last-child { display: grid; gap: 0.05rem; line-height: 1.35; }
 .ed-moves__icon { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--accent-soft); font-size: 1.05rem; }
 .ed-moves__blurb { font-size: var(--step--1); color: var(--ink-2); }
-.ed-built-in { margin-top: 1rem; }
 @media (max-width: 40rem) {
   .ed-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .ed-table__row--head { display: none; }
