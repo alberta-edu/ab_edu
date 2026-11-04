@@ -42,12 +42,26 @@ commands, and [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md) before writing any 
 - **UX matters.** Pick the best representation (a 3D globe over a flat map, an animation
   over a static diagram). Break long content into steps and tabs. Use formatted blocks, not
   walls of text.
+- **Short and scannable, everywhere.** This applies to lessons, educator notes and site pages
+  alike. Whenever a paragraph explains a process or holds several ideas, make it a numbered list
+  (for steps) or a bulleted list (for ideas), and cut every word that doesn't earn its place.
+  A Big idea is 3–4 bullets. A hook or routine is numbered steps. `npm run verify` fails on any
+  prose paragraph with 3+ sentences and 25+ words, any paragraph over 40 words, and any list
+  item over 40 words (`src/lib/readability.ts`). Reading passages and `>` quotes are exempt.
+- **Keep it simple.** Don't add a tab, label or panel that repeats what is already on the page.
+  Name things in plain words a Grade 5 child would use.
 
 ## Code
 
 - Astro static output with vanilla TypeScript custom elements. No backend, accounts or
   tracking. Progress is stored in the browser only.
 - Keep visuals lightweight and client-side. Lazy-load anything heavy.
+- The site font is Lexend, chosen for its plain, unslashed 0. Don't use a monospace font or a
+  font with a slashed or dotted 0 for anything a student reads. Typeset aligned sums with KaTeX
+  (`\begin{array}{rr}`), not code blocks.
+- Practice flow: Next stays disabled until the current problem is solved, and on a level's
+  last problem it leads on to the next level once that level is unlocked.
+- The repo is private. Don't link to the source code or to GitHub issues from the site.
 - Match the style of the surrounding code. Add tests in `tests/` for new logic.
 - Curriculum text is © Government of Alberta. Quote it only for alignment, with
   attribution, and don't edit the extracted files in `curriculum/` by hand.

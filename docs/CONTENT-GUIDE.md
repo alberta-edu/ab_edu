@@ -56,6 +56,21 @@ a sentence or two.
 | `text` | A short explanation. Use sparingly |
 | `passage` | A reading passage (original writing only) |
 
+### Short lists, not paragraphs
+
+Text that explains a process or holds several ideas is a list, never a paragraph:
+
+- **Steps** (how to round, how to use a visual, a hook, a routine) are a numbered list.
+- **Several ideas** (a Big idea, what an animation showed, a comparison) are a bulleted list,
+  one idea per bullet. A Big idea is 3–4 bullets.
+- **One idea** can stay a sentence or two.
+
+`npm run verify` fails on a prose paragraph with 3 or more sentences and 25 or more words, a
+paragraph over 40 words, or a list item over 40 words. It checks lesson blocks, Big ideas,
+educator notes and subject guides. Reading passages and `>` quotes (text read aloud as written)
+are exempt. Fields shown inline, such as activity steps and misconception cells, can't hold a
+list, so cut them to two short sentences instead.
+
 The best representation wins. If a concept would be clearer as an animation, a 3D view
 or a manipulative, build that visual (in `src/components/visuals/`, lazy-loaded if it is
 heavy) rather than describing the idea in words.
