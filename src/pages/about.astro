@@ -4,9 +4,11 @@ import { SUBJECTS, SITE_NAME } from '../site.ts';
 import { curriculum } from '../lib/content.ts';
 import { href } from '../lib/url.ts';
 
+// "Implemented September 2023." -> "September 2023"
 const sources = SUBJECTS.map((s) => {
   const c = curriculum(5, s.slug);
-  return { name: s.name, implemented: c.implemented, source: c.source };
+  const since = c.implemented?.replace(/^Implemented\s+/i, '').replace(/\.$/, '') ?? null;
+  return { name: s.name, since };
 });
 ---
 <Base
@@ -21,42 +23,44 @@ const sources = SUBJECTS.map((s) => {
       <p class="page-hero__lede">A free, independent learning site for Alberta students and families.</p>
     </header>
     <div class="prose stack">
-      <h2>Matched to the program of studies</h2>
+      <h2>Matched to the curriculum</h2>
       <ul>
-        <li>Every topic is built from one learning outcome in Alberta's program of studies.</li>
-        <li>Open <strong>“Alberta curriculum: what this page covers”</strong> on any topic to see the official outcome.</li>
+        <li>Every topic teaches one outcome from Alberta's program of studies.</li>
+        <li>Open <strong>“Alberta curriculum: what this page covers”</strong> on a topic to see it.</li>
         <li>
-          It covers the four subjects on Alberta's Provincial Achievement Tests:
+          The four subjects on the Provincial Achievement Tests:
           <ul>
-            {sources.map((s) => <li><strong>{s.name}</strong>: {s.implemented}{s.name === 'Social Studies' && ' The new K–6 curriculum: Grade 5 now studies ancient civilizations.'}</li>)}
+            {sources.map((s) => (
+              <li>
+                <strong>{s.name}</strong>{s.since && `, in use since ${s.since}`}
+                {s.name === 'Social Studies' && ' (new: ancient civilizations)'}
+              </li>
+            ))}
           </ul>
         </li>
-        <li>Curriculum outcomes are © Government of Alberta, quoted for alignment only, from <a href="https://curriculum.learnalberta.ca/curriculum/en" rel="noopener">New LearnAlberta</a>.</li>
-        <li>{SITE_NAME} is independent, and not affiliated with or endorsed by the Government of Alberta or Alberta Education.</li>
-      </ul>
+        <li>Outcomes are © Government of Alberta, quoted from <a href="https://curriculum.learnalberta.ca/curriculum/en" rel="noopener">New LearnAlberta</a>.</li>      </ul>
 
-      <h2>How the content is made and checked</h2>
+      <h2>How it's checked</h2>
       <ul>
-        <li>Lessons and problems are written with Claude, then checked before they are published.</li>
-        <li>No AI runs on this site while you use it.</li>
-        <li>A program recomputes every math answer with exact fractions.</li>
-        <li>Every wrong answer choice is a real student mistake, with an explanation.</li>
-        <li>A second AI model solved every problem without the answer key, and checked that none needs anything above Grade 5.</li>
-        <li>Reading passages are original, written for this site.</li>
-        <li>No child or teacher has tried the problems yet.</li>
+        <li>A program recomputes every math answer.</li>
+        <li>Every wrong choice is a real student mistake, with an explanation.</li>
+        <li>A second AI solved every problem blind, to check answers and grade level.</li>
+        <li>Reading passages are original.</li>
+        <li>No AI runs while you use the site.</li>
       </ul>
 
       <h2 id="credits">Credits</h2>
-      <p>
-        Built with <a href="https://www.anthropic.com/claude" rel="noopener">Claude</a>, an AI model made by
-        Anthropic. Claude wrote the lessons, problems, visuals and code, guided and reviewed by the site’s owner.
-      </p>
+      <ul>
+        <li>Built with <a href="https://www.anthropic.com/claude" rel="noopener">Claude</a>, an AI model by Anthropic.</li>
+        <li>Claude wrote the lessons, problems, visuals and code.</li>
+        <li>The site's owner guided and reviewed it.</li>
+      </ul>
 
       <h2 id="privacy">Privacy</h2>
       <ul>
         <li>No accounts, ads, cookies or trackers.</li>
-        <li>Your progress is saved only in your own browser (localStorage), and never sent anywhere.</li>
-        <li>Clearing your browser data erases it. To keep it, use <a href={href('progress/#backup')}>Save backup file</a>.</li>
+        <li>Progress stays in your browser only.</li>
+        <li>Clearing browser data erases it. Keep a copy with <a href={href('progress/#backup')}>Save backup file</a>.</li>
       </ul>
     </div>
   </div>
