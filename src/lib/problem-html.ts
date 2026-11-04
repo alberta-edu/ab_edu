@@ -217,7 +217,7 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
   const move = THINKING_MOVES[p.thinking];
   // Plain recall and use of an idea are the baseline, so only real thinking moves are named.
   const moveHtml = SHOWN_MOVES.has(p.thinking)
-    ? `<p class="problem__move" data-thinking-move hidden><span class="problem__move-label"><span aria-hidden="true">🧠</span> Thinking skill</span> <strong>${esc(move.name)}</strong><span class="problem__move-why">${esc(move.blurb)}</span></p>`
+    ? `<p class="problem__move" data-thinking-move hidden><span class="problem__move-label">Thinking skill</span> <strong><span aria-hidden="true">${move.icon}</span> ${esc(move.name)}</strong><span class="problem__move-why">${esc(move.blurb)}</span></p>`
     : '';
   const card = (spec: CheckSpec, inner: string) => `
 <problem-card class="problem${p.type === 'investigation' ? ' problem--investigation' : ''}" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">

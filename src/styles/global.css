@@ -892,9 +892,19 @@ a.concept-card:hover { border-color: var(--accent); }
 .ed-stuck { display: grid; gap: 0.6rem; margin: 0.75rem 0 0; }
 .ed-stuck dt { font-weight: 700; }
 .ed-stuck dd { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
-.ed-moves { list-style: none; padding: 0; display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
-.ed-moves li { display: grid; gap: 0.15rem; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-.ed-moves span { font-size: var(--step--1); color: var(--ink-2); }
+.ed-chips { list-style: none; padding: 0 !important; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.ed-chips li { margin: 0; padding: 0.3rem 0.8rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 700; font-size: var(--step--1); }
+.ed-checks { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.35rem; font-size: var(--step--1); color: var(--ink-2); }
+.ed-checks li { display: flex; gap: 0.5rem; }
+.ed-checks li::before { content: '✓'; color: var(--ok); font-weight: 700; }
+.ed-moves { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); margin-top: 0.75rem; }
+.ed-moves__group { padding: 1rem 1.1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ed-moves__group h3 { margin: 0 0 0.75rem; font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.ed-moves__group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.ed-moves__group li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: 0.65rem; align-items: start; }
+.ed-moves__group li > span:last-child { display: grid; gap: 0.05rem; line-height: 1.35; }
+.ed-moves__icon { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--accent-soft); font-size: 1.05rem; }
+.ed-moves__blurb { font-size: var(--step--1); color: var(--ink-2); }
 .ed-built-in { margin-top: 1rem; }
 @media (max-width: 40rem) {
   .ed-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
