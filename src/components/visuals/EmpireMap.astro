@@ -83,7 +83,7 @@ const pct = (y: number) => ((y - axis.from) / (axis.to - axis.from)) * 100;
               {e.stages.map((s, i) => <button type="button" data-ep-stage={i} aria-pressed={String(i === e.stages.length - 1)}>{s.label}</button>)}
             </div>
           )}
-          <h4>{e.name} <span class="muted ep-date">{e.stages.length === 1 ? e.stages[0].label : ''}</span></h4>
+          <h3>{e.name} <span class="muted ep-date">{e.stages.length === 1 ? e.stages[0].label : ''}</span></h3>
           <p>{e.how}</p>
         </div>
       ))
@@ -127,7 +127,7 @@ const pct = (y: number) => ((y - axis.from) / (axis.to - axis.from)) * 100;
   .ep-chain.is-on { opacity: 1; }
   .ep-arrow { fill: none; stroke: var(--social); stroke-width: 3; stroke-dasharray: 7 5; }
   .ep-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-  .ep-card h4 { margin: 0 0 0.3rem; }
+  .ep-card h3 { margin: 0 0 0.3rem; }
   .ep-card p { margin: 0.35rem 0 0; }
   .ep-date { font-size: var(--step--1); font-weight: 400; }
   .ep-stages { margin-bottom: 0.5rem; }

@@ -10,9 +10,10 @@ the branch that deploys.
 
 ## Where we are now
 
-*Last updated: October 30, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 3, 2026. Update this section whenever a phase or batch finishes.*
 
-**Current phase: 6 (ELAL) is done and merged into `main`. Phase 7 (Polish) is next.**
+**Current phase: 7 (Polish, with the question rewrite and educator notes) is finished and merged into
+`main`, not pushed. The owner is reviewing it locally.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
@@ -34,14 +35,30 @@ the branch that deploys.
 | `feature/grade5-social-studies` | Phase 5: the other 5 Social Studies lessons, 11 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 | `feature/grade5-elal` | Phase 6: the other 11 ELAL lessons (157 problems across all 12), 18 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 
-Nothing is waiting for review right now. The owner will do the manual review at the very end, after all phases.
+| `feature/thinking-problems` | Phase 7: all 48 problem sets rewritten to [QUESTION-STANDARD.md](QUESTION-STANDARD.md) (553 problems, was 623), `build` and `investigation` types, a thinking move on every problem, [grade-level audit](grade-level-audit.md) | ✅ Merged into `main` |
+| `feature/educator-notes` | Phase 7: educators hub, 4 subject guides, notes for all 48 topics. Stacked on `feature/thinking-problems` | ✅ Merged into `main` |
+| `chore/phase-7-polish` | Phase 7: accessibility, keyboard, phone layout and review fixes, audits, these docs. Stacked on `feature/educator-notes` | ✅ Merged into `main` |
+
+Nothing is waiting for review as a branch. The owner is reviewing the merged site locally, and will do the final manual review at the very end, after all phases.
+
+**Phase 7 results, on `chore/phase-7-polish`:**
+
+- 553 problems: 169 Warm-up, 218 Build, 166 Deep Think. The rewrite cut plain multiple choice from 417 to 246 and added 88 investigations and 14 build problems.
+- A second model solved every problem without the answer key: no wrong answers and nothing above Grade 5. Every near miss is listed in the [grade-level audit](grade-level-audit.md).
+- A browser script solved all 553 problems at phone width and saved progress for each.
+- axe finds nothing on all 108 pages in light and dark. Lighthouse was run on 8 sample pages: performance 94–100, accessibility 100, best practices 100, SEO 100 except Review, which is `noindex` on purpose.
+- No page scrolls sideways at 320, 390, 768 or 1024 px. All 9 single-answer types were solved with the keyboard alone. Investigations use the same controls.
+
+**What this can't promise:** all checks were done by AI models and scripts. No child, teacher or screen reader
+user has tried the problems or the notes yet. Only Claude models were available, so Opus 5.5 wrote everything
+and Sonnet 5.5 solved the problems blind.
 
 **Not published yet:** the repo stays private and the site is not published on GitHub Pages
 until all tasks are finished and people have reviewed it. Until then, the deploy job fails on
 each push to `main` because Pages is off. That is expected: the build still runs, and nothing
 goes public.
 
-**Next up:** Phase 7, Polish, on a new branch from `main`, in a new chat thread.
+**Next up:** fixes from the owner's local review, each on its own branch. Then Phase 8, Release, once the owner signs off.
 
 ## 1. Ground truth: the curriculum
 
@@ -110,6 +127,11 @@ choice is a real misconception and comes with an explanation.
 | `order` | ordering numbers, sequencing events or steps (accessible ↑/↓ buttons) |
 | `evidence` | ELA: tap the sentence(s) in the passage that prove an answer |
 | `open` | written responses: compare with a model answer, then self-check a rubric |
+| `build` | many right answers: the child designs something and rules check it with exact arithmetic |
+| `investigation` | a story with 2–4 linked parts, shown one at a time, ending in a wrap-up. Left out of review rounds |
+
+Every problem also names its thinking move, shown right after it is solved. See
+[QUESTION-STANDARD.md](QUESTION-STANDARD.md) for what makes a problem deep and what is above the grade.
 
 ### How we make sure the content is correct
 
@@ -207,7 +229,7 @@ research skills · grammar · spelling & punctuation
 | 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ✅ Done, merged into `main` |
 | 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline, empire maps, village-to-city, scroll-scan experiment) | ✅ Done, merged into `main` |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems), each with a visual you can play with (word builder, voice lab, poem reader, script stage, show-don't-tell dial, grammar lab, echo-room experiment) | ✅ Done, merged into `main` |
-| 7 | Polish | Review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | ⏭️ **Next** |
+| 7 | Polish | Question rewrite and grade-level audit, notes for educators, review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | ✅ Done, merged into `main` (not pushed) |
 | 8 | Release | Only after all other phases are finished and people have reviewed the whole site: enable GitHub Pages and publish | Not started, needs review and your sign-off |
 
 ## 6. Decisions for the owner

@@ -46,10 +46,8 @@ class ProblemCard extends HTMLElement {
     this.q('[data-action="retry"]').addEventListener('click', () => this.retry());
     this.setupOrder();
     this.setupEvidence();
-    if (problemRecord(this.key)?.s) {
-      this.setStatus('solved', '✓ Solved before');
-      this.showMove();
-    }
+    // A review round is a fresh try, so it doesn't show that the problem was solved before.
+    if (problemRecord(this.key)?.s && this.dataset.mode !== 'review') this.setStatus('solved', '✓ Solved before');
   }
 
   /** A part reports to its investigation. Only the whole investigation counts in the student's progress. */
@@ -58,7 +56,7 @@ class ProblemCard extends HTMLElement {
   }
 
   private showMove() {
-    this.querySelector<HTMLElement>('[data-move]')?.removeAttribute('hidden');
+    this.querySelector<HTMLElement>('[data-thinking-move]')?.removeAttribute('hidden');
   }
 
   // ------------------------------------------------------------ investigations
@@ -69,7 +67,6 @@ class ProblemCard extends HTMLElement {
     // Without JavaScript all parts show in order. A student who solved it before can read them all too.
     if (problemRecord(this.key)?.s) {
       this.setStatus('solved', '✓ Solved before');
-      this.showMove();
     } else {
       parts.slice(1).forEach((x) => (x.hidden = true));
       wrapUp.hidden = true;

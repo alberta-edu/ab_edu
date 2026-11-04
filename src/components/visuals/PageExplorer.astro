@@ -27,7 +27,7 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
           {FORMS.map((f, i) => <button type="button" data-pgx={f.id} aria-pressed={String(i === 0)}>{f.label}</button>)}
         </div>
         <div class="pgx-page" data-pgx-page="photo">
-          <h4 class="pgx-title">A Day at the Stampede Grounds</h4>
+          <h3 class="pgx-title">A Day at the Stampede Grounds</h3>
           <div class="pgx-photos">
             <figure><div class="pgx-photo" aria-hidden="true">🌅</div><figcaption>Dawn. The grounds are still quiet.</figcaption></figure>
             <figure><div class="pgx-photo" aria-hidden="true">🐎</div><figcaption>Noon. Horses wait for the parade.</figcaption></figure>
@@ -35,13 +35,13 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
           </div>
         </div>
         <div class="pgx-page" data-pgx-page="news" hidden>
-          <h4 class="pgx-title">Hail Damages Riverbend School Roof</h4>
+          <h3 class="pgx-title">Hail Damages Riverbend School Roof</h3>
           <p class="pgx-by">Riverbend Times · Tuesday (a made-up town)</p>
           <p>Golf-ball-sized hail damaged the roof of Riverbend School on Monday evening. No one was hurt. Classes will move to the community hall this week while crews make repairs.</p>
         </div>
         <div class="pgx-page pgx-split" data-pgx-page="hybrid" hidden>
           <div><span class="pgx-tag">Fiction</span><p>Little Kit peeked out of the lodge. “Today,” she told her brother, “I will cut down the tallest tree in the world!”</p></div>
-          <aside><span class="pgx-tag">Non-fiction</span><p><strong>Fact:</strong> A beaver’s front teeth never stop growing. Chewing wood keeps them from getting too long.</p></aside>
+          <div class="pgx-aside"><span class="pgx-tag">Non-fiction</span><p><strong>Fact:</strong> A beaver’s front teeth never stop growing. Chewing wood keeps them from getting too long.</p></div>
         </div>
         {FORMS.map((f, i) => <p class="pgx-note" data-pgx-note={f.id} hidden={i !== 0} set:html={strong(f.note)} />)}
       </>
@@ -55,13 +55,13 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
         </div>
         <div class="pgx-page pgx-article is-on">
           <div class="pgx-main">
-            <h4 class="pgx-f pgx-f--heading" data-pgx-part="heading">How Beavers Change the Land</h4>
+            <h3 class="pgx-f pgx-f--heading" data-pgx-part="heading">How Beavers Change the Land</h3>
             <p>Beavers build <strong class="pgx-f" data-pgx-part="bold">dams</strong> across streams. The water behind a dam spreads out into a <strong class="pgx-f" data-pgx-part="bold">pond</strong>.</p>
-            <h4 class="pgx-f pgx-f--heading" data-pgx-part="heading">Homes for Other Animals</h4>
+            <h3 class="pgx-f pgx-f--heading" data-pgx-part="heading">Homes for Other Animals</h3>
             <p>Ducks, frogs and moose can all use the new wetland, which holds water even in a dry summer.</p>
           </div>
-          <aside class="pgx-side pgx-f" data-pgx-part="sidebar"><strong>Did you know?</strong><br />Canada’s national animal is the beaver.</aside>
-          <aside class="pgx-gloss pgx-f" data-pgx-part="glossary"><strong>Glossary</strong><br /><em>dam:</em> a wall that holds back water<br /><em>wetland:</em> land covered by shallow water</aside>
+          <div class="pgx-side pgx-f" data-pgx-part="sidebar"><strong>Did you know?</strong><br />Canada’s national animal is the beaver.</div>
+          <div class="pgx-gloss pgx-f" data-pgx-part="glossary"><strong>Glossary</strong><br /><em>dam:</em> a wall that holds back water<br /><em>wetland:</em> land covered by shallow water</div>
         </div>
         <div class="pgx-feats" role="group" aria-label="What each feature does">
           {FEATURES.map((f) => <button type="button" class="pgx-feat" data-pgx-feat={f.id}><strong>{f.label}</strong></button>)}
@@ -83,20 +83,20 @@ const strong = (s: string) => s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
   .pgx-photos figure { margin: 0; font-size: var(--step--1); }
   .pgx-photo { display: grid; place-items: center; aspect-ratio: 4 / 3; font-size: clamp(1.8rem, 7vw, 3.2rem); border-radius: 6px; background: var(--accent-soft); margin-bottom: 0.25rem; }
   .pgx-split { display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pgx-split aside { padding: 0.6rem; border-radius: 6px; background: var(--surface-2); }
+  .pgx-aside { padding: 0.6rem; border-radius: 6px; background: var(--surface-2); }
   .pgx-tag { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent); }
   .pgx-note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.8rem; }
   .pgx-article { display: grid; gap: 0.7rem; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
   .pgx-main { grid-row: span 2; }
-  .pgx-main h4 { margin: 0.5rem 0 0.1rem; font-size: var(--step-0); }
+  .pgx-main h3 { margin: 0.5rem 0 0.1rem; font-size: var(--step-0); }
   .pgx-side, .pgx-gloss { padding: 0.6rem; border-radius: 6px; font-size: var(--step--1); }
   .pgx-side { background: var(--accent-soft); }
   .pgx-gloss { background: var(--surface-2); }
   .pgx-article:not(.is-on) { display: block; }
-  .pgx-article:not(.is-on) h4 { font-weight: 400; font-size: var(--step-0); margin: 0; display: inline; }
+  .pgx-article:not(.is-on) h3 { font-weight: 400; font-size: var(--step-0); margin: 0; display: inline; }
   .pgx-article:not(.is-on) .pgx-main p { display: inline; margin: 0; }
   /* The blocks run together as one paragraph here, so they need a space between them. */
-  .pgx-article:not(.is-on) .pgx-main h4::after, .pgx-article:not(.is-on) .pgx-main p::after { content: ' '; }
+  .pgx-article:not(.is-on) .pgx-main h3::after, .pgx-article:not(.is-on) .pgx-main p::after { content: ' '; }
   .pgx-article:not(.is-on) strong.pgx-f { font-weight: 400; }
   .pgx-article:not(.is-on) .pgx-side, .pgx-article:not(.is-on) .pgx-gloss { display: none; }
   .pgx-f.is-lit { outline: 3px solid var(--sun); outline-offset: 2px; border-radius: 3px; }

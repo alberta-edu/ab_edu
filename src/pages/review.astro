@@ -17,7 +17,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
       <p class="page-hero__lede">A few quick questions on topics you have already learned, timed so they stick.</p>
     </header>
 
-    <div data-review-root data-src={href('data/grade-5/review.json')}>
+    <div class="rv-root" data-review-root data-src={href('data/grade-5/review.json')}>
       <p class="muted">Loading your review…</p>
     </div>
 
@@ -42,6 +42,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
 </script>
 
 <style is:global>
+  .rv-root { min-height: 18rem; }
   .rv-summary { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem; }
   .rv-stat { padding: 0.8rem 1rem; min-width: 9rem; }
   .rv-stat strong { display: block; font-size: var(--step-2); line-height: 1.1; }
@@ -58,7 +59,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
   .rv-list { display: grid; gap: 0.5rem; padding: 0; list-style: none; }
   .rv-list li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; align-items: center; padding: 0.7rem 1rem; }
   .rv-result { padding: 1.25rem; margin-top: 1.25rem; text-align: center; }
-  .rv-result h3 { font-size: var(--step-2); }
+  .rv-result h2, .rv-result h3 { font-size: var(--step-2); }
   .boxes { display: inline-flex; gap: 4px; margin-left: 0.4rem; vertical-align: middle; }
   .boxes i { width: 10px; height: 10px; border-radius: 3px; background: var(--surface-3); }
   .boxes i.on { background: var(--accent); }

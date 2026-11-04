@@ -29,7 +29,7 @@ export async function initReview() {
     if (!entries.length) {
       root.innerHTML = `
         <div class="card rv-result">
-          <h3>Nothing to review yet</h3>
+          <h2>Nothing to review yet</h2>
           <p>Solve a few practice problems in any topic and it will show up here tomorrow.</p>
           <a class="btn btn--primary" href="${document.querySelector<HTMLAnchorElement>('.site-nav a')!.href}">Pick a topic</a>
         </div>`;
@@ -45,13 +45,13 @@ export async function initReview() {
       .join('');
     root.innerHTML = `
       <div class="rv-summary">
-        <div class="card rv-stat"><strong>${due.length}</strong><span>topics due today</span></div>
-        <div class="card rv-stat"><strong>${entries.length}</strong><span>topics in review</span></div>
+        <div class="card rv-stat"><strong>${due.length}</strong><span>topic${due.length === 1 ? '' : 's'} due today</span></div>
+        <div class="card rv-stat"><strong>${entries.length}</strong><span>topic${entries.length === 1 ? '' : 's'} in review</span></div>
       </div>
       ${
         due.length
           ? `<button type="button" class="btn btn--primary" data-start>Start review (${due.length} topic${due.length === 1 ? '' : 's'}, about ${due.length * 2} min)</button>`
-          : `<div class="card rv-result"><h3>🎉 All caught up!</h3><p>Nothing is due today. Come back ${when(Math.min(...entries.map(([, r]) => r.due)))}.</p></div>`
+          : `<div class="card rv-result"><h2>🎉 All caught up!</h2><p>Nothing is due today. Come back ${when(Math.min(...entries.map(([, r]) => r.due)))}.</p></div>`
       }
       ${upcoming ? `<h2 style="margin-top:2rem;font-size:var(--step-1)">Coming up</h2><ul class="rv-list">${upcoming}</ul>` : ''}`;
     root.querySelector('[data-start]')?.addEventListener('click', () => session(due.map(([k]) => k)));
@@ -62,7 +62,7 @@ export async function initReview() {
     let i = 0;
     const nextTopic = () => {
       if (i >= queue.length) {
-        root.innerHTML = `<div class="card rv-result"><h3>🌟 Review done!</h3><p>Great work. Every review makes these ideas stick a little longer.</p>
+        root.innerHTML = `<div class="card rv-result"><h2>🌟 Review done!</h2><p>Great work. Every review makes these ideas stick a little longer.</p>
           <button type="button" class="btn btn--primary" data-overview>See what's next</button></div>`;
         root.querySelector('[data-overview]')!.addEventListener('click', overview);
         root.scrollIntoView({ block: 'start' });

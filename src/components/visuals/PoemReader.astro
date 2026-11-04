@@ -11,7 +11,7 @@ const { title, stanzas, ideas = [] } = Astro.props;
 let n = 0;
 ---
 <poem-reader>
-  <h4 class="pmr-title">{title}</h4>
+  <h3 class="pmr-title">{title}</h3>
   <div class="pmr-poem">
     {
       stanzas.map((lines, s) => (

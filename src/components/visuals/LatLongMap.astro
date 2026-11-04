@@ -32,10 +32,11 @@ const box = VIEWS[view].box.join(' ');
       {Object.entries(VIEWS).map(([k, v]) => <button type="button" data-view={k} aria-pressed={String(k === view)}>{v.label}</button>)}
     </div>
     <p class="ll-readout" aria-live="off"><span class="muted">Pointer at</span> <strong data-ll="readout">move over the map</strong></p>
+    <p class="sr-only" aria-live="polite" data-ll="aim"></p>
   </div>
 
   <div class="ll-frame">
-    <svg class="ll-svg" viewBox={box} data-ll="svg" role="img" aria-label="World map with lines of latitude every 15 degrees and lines of longitude every 15 degrees. The equator and prime meridian are highlighted. Markers show ancient civilizations near rivers and coasts, and Edmonton, Alberta.">
+    <svg class="ll-svg" viewBox={box} data-ll="svg" role="application" tabindex="0" aria-label="World map with lines of latitude every 15 degrees and lines of longitude every 15 degrees. The equator and prime meridian are highlighted. Markers show ancient civilizations near rivers and coasts, and Edmonton, Alberta. Arrow keys move the crosshair. Enter drops a pin.">
       <rect class="ll-ocean" x="0" y="0" width={MAP_W} height={MAP_H}></rect>
       <path class="ll-land" d={landD}></path>
       <g class="ll-grid">
@@ -114,7 +115,7 @@ const box = VIEWS[view].box.join(' ');
   .ll-pin circle { fill: none; stroke: var(--ink); stroke-width: 3; vector-effect: non-scaling-stroke; }
   .ll-sites { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
   .ll-card { margin-top: 0.75rem; padding: 0.9rem 1rem; }
-  .ll-card h4 { margin: 0 0 0.25rem; }
+  .ll-card h3 { margin: 0 0 0.25rem; }
   .ll-card p { margin: 0.3rem 0 0; }
   .ll-card__coord { font-size: var(--step-1); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
   .ll-quest { margin-top: 1rem; padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--accent-soft); }
@@ -128,6 +129,7 @@ const box = VIEWS[view].box.join(' ');
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const QUEST_TOLERANCE = 6; // degrees
+  const KEY_STEP = 5; // degrees, small enough to always land within the tolerance
 
   class LatLongMap extends HTMLElement {
     private svg!: SVGSVGElement;
@@ -136,6 +138,7 @@ const box = VIEWS[view].box.join(' ');
     private quest: { target: Site; tries: number } | null = null;
     private questOrder: Site[] = [];
     private found = 0;
+    private aim: { lat: number; lon: number } | null = null;
 
     connectedCallback() {
       this.sites = JSON.parse(this.dataset.sites!);
@@ -147,6 +150,8 @@ const box = VIEWS[view].box.join(' ');
       this.svg.addEventListener('pointermove', (e) => this.hover(e));
       this.svg.addEventListener('pointerleave', () => this.part('cross').setAttribute('visibility', 'hidden'));
       this.svg.addEventListener('click', (e) => this.tap(e));
+      this.svg.addEventListener('keydown', (e) => this.key(e));
+      this.svg.addEventListener('blur', () => this.part('cross').setAttribute('visibility', 'hidden'));
       this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
         b.addEventListener('click', () => this.setView(b.dataset.view as keyof typeof VIEWS)),
       );
@@ -227,6 +232,10 @@ const box = VIEWS[view].box.join(' ');
       const [x, y] = this.toMap(e);
       const [lon, lat] = unproject(x, y);
       this.part<HTMLElement>('readout').textContent = formatCoord(lat, lon);
+      this.showCross(x, y);
+    }
+
+    private showCross(x: number, y: number) {
       const cross = this.part('cross');
       cross.setAttribute('visibility', 'visible');
       const cx = this.part('cx');
@@ -241,6 +250,33 @@ const box = VIEWS[view].box.join(' ');
       const hit = (e.target as Element).closest<SVGGElement>('.ll-site');
       if (hit && !this.quest) return this.select(hit.dataset.site!);
       const [x, y] = this.toMap(e);
+      this.drop(x, y);
+    }
+
+    /** The keyboard way to use the map: arrows move a crosshair, Enter drops the pin. */
+    private key(e: KeyboardEvent) {
+      const step = { ArrowUp: [KEY_STEP, 0], ArrowDown: [-KEY_STEP, 0], ArrowLeft: [0, -KEY_STEP], ArrowRight: [0, KEY_STEP] }[e.key];
+      if (!step && e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      if (!this.aim) {
+        const [x0, y0, w, h] = VIEWS[this.view].box;
+        const [lon, lat] = unproject(x0 + w / 2, y0 + h / 2);
+        this.aim = { lat: Math.round(lat / KEY_STEP) * KEY_STEP, lon: Math.round(lon / KEY_STEP) * KEY_STEP };
+      }
+      if (step) {
+        this.aim.lat = Math.max(-90, Math.min(90, this.aim.lat + step[0]));
+        this.aim.lon = Math.max(-180, Math.min(180, this.aim.lon + step[1]));
+      }
+      const [x, y] = project(this.aim.lon, this.aim.lat);
+      if (step) {
+        const text = formatCoord(this.aim.lat, this.aim.lon);
+        this.part<HTMLElement>('readout').textContent = text;
+        this.part<HTMLElement>('aim').textContent = text;
+        this.showCross(x, y);
+      } else this.drop(x, y);
+    }
+
+    private drop(x: number, y: number) {
       const [lon, lat] = unproject(x, y);
       this.part<HTMLElement>('readout').textContent = formatCoord(lat, lon);
       const pin = this.part('pin');
@@ -256,7 +292,7 @@ const box = VIEWS[view].box.join(' ');
       const card = this.part<HTMLElement>('card');
       card.hidden = false;
       card.innerHTML = `
-        <h4>${s.name} <span class="muted">· ${s.place}</span></h4>
+        <h3>${s.name} <span class="muted">· ${s.place}</span></h3>
         <div class="ll-card__coord">${formatCoord(s.lat, s.lon)}</div>
         <p><strong>Water and land:</strong> ${s.feature}</p>
         <p>${s.note}</p>`;

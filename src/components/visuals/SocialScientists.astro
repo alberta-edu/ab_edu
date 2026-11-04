@@ -78,7 +78,7 @@ const LENSES = [
   {
     LENSES.map((l) => (
       <div class="sl-card" data-sl-panel={l.id}>
-        <h4>{l.icon} {l.name}</h4>
+        <h3>{l.icon} {l.name}</h3>
         <dl>
           <dt>Studies</dt><dd>{l.studies}</dd>
           <dt>Evidence at Pompeii</dt><dd>{l.evidence}</dd>
@@ -115,7 +115,7 @@ const LENSES = [
   .sl-scroll { fill: color-mix(in srgb, var(--sun) 25%, var(--surface)); stroke: var(--ink-3); stroke-width: 2; }
   .sl-lines { stroke: var(--ink-2); stroke-width: 2.5; fill: none; }
   .sl-card { margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-  .sl-card h4 { margin: 0 0 0.3rem; }
+  .sl-card h3 { margin: 0 0 0.3rem; }
   .sl-card dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.2rem 0.75rem; }
   .sl-card dt { font-weight: 700; color: var(--ink-2); font-size: var(--step--1); padding-top: 0.1rem; }
   .sl-card dd { margin: 0; }

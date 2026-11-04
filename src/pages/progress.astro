@@ -100,11 +100,15 @@ const levelKeys = (c: (typeof concepts)[number]) => [1, 2, 3].map((l) => c.probl
   const render = () => {
     const p = load();
     const recs = Object.values(p.problems);
-    const set = (k: string, v: number) => (document.querySelector(`[data-stat="${k}"]`)!.textContent = String(v));
-    set('solved', recs.filter((r) => r.s).length);
+    const set = (k: string, v: number, one?: string) => {
+      const stat = document.querySelector(`[data-stat="${k}"]`)!;
+      stat.textContent = String(v);
+      if (one && v === 1) stat.nextElementSibling!.textContent = one;
+    };
+    set('solved', recs.filter((r) => r.s).length, 'problem solved');
     set('first', recs.filter((r) => r.f).length);
     set('streak', streak(p));
-    set('review', Object.keys(p.review).length);
+    set('review', Object.keys(p.review).length, 'topic in review');
 
     document.querySelectorAll<HTMLElement>('[data-pg-concept]').forEach((row) => {
       const key = row.dataset.pgConcept!;

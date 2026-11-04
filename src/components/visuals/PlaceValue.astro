@@ -46,7 +46,7 @@ const PLACES = [
           {PLACES.map((p) => <span role="columnheader" class={`pv-name${p.k === 0 ? ' pv-ones' : ''}`} data-k={p.k}>{p.name}</span>)}
         </div>
         <div role="row" class="pv-row pv-row--digits">
-          {PLACES.map((p) => <span role="cell" class={`pv-digit${p.k === 0 ? ' pv-ones' : ''}${digitAt(p.k) === undefined ? ' is-empty' : ''}`} data-k={p.k} data-pv-digit>{digitAt(p.k) ?? '0'}</span>)}
+          {PLACES.map((p) => <span role="cell" class={`pv-digit${p.k === 0 ? ' pv-ones' : ''}${digitAt(p.k) === undefined ? ' is-empty' : ''}`} data-k={p.k} data-pv-digit tabindex="0">{digitAt(p.k) ?? '0'}</span>)}
         </div>
       </div>
       <span class="pv-point" aria-hidden="true">.</span>
@@ -91,7 +91,15 @@ const PLACES = [
     connectedCallback() {
       const input = this.querySelector<HTMLInputElement>('[data-pv="input"]')!;
       input.addEventListener('input', () => this.set(input.value));
-      this.querySelectorAll<HTMLElement>('[data-pv-digit]').forEach((cell) => cell.addEventListener('click', () => this.pick(Number(cell.dataset.k))));
+      this.querySelectorAll<HTMLElement>('[data-pv-digit]').forEach((cell) => {
+        cell.addEventListener('click', () => this.pick(Number(cell.dataset.k)));
+        cell.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.pick(Number(cell.dataset.k));
+          }
+        });
+      });
       this.set(input.value);
     }
 

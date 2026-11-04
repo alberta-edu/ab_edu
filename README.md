@@ -8,6 +8,9 @@ Arts and Literature, Math, Science and Social Studies.
   animated virtual experiment.
 - Three levels of practice: ★ Warm-up, ★★ Build and ★★★ Deep Think. Every problem has
   hints, a worked solution, and feedback for each wrong answer.
+- Problems are written to make children think: stories, designs and investigations, with friendly
+  numbers. See [docs/QUESTION-STANDARD.md](docs/QUESTION-STANDARD.md).
+- Notes for teachers and parents on every subject and topic, at `/educators/`.
 - Spaced review on the Leitner system, with progress saved in the browser and
   export/import of a backup file.
 - No backend, no accounts, no tracking. Hosted on GitHub Pages.
@@ -43,12 +46,15 @@ npm run preview    # http://localhost:4321/ab_edu/
 ```
 curriculum/grade-*/     Official K-6 outcomes, extracted from New LearnAlberta (scripts/extract-curriculum.ts)
 content/grade-5/        One YAML file per concept, plus roadmap.yaml (every planned concept)
+content/educators/      Notes for teachers and parents: one file per concept, plus _subject.yaml per subject
 src/lib/                Build-time logic: schema, Markdown + KaTeX rendering, problem HTML, review schedule
 src/client/             Browser code: problem cards, practice levels, progress store, review session
 src/components/         Lesson blocks, visuals (fraction explorer, particle model, world map) and experiments
 src/pages/              Routes
 docs/PLAN.md            Plan and phases
 docs/CONTENT-GUIDE.md   How to write a concept
+docs/QUESTION-STANDARD.md  What makes a good problem, and what is above the grade
+docs/grade-level-audit.md  How problems were checked against the grade, and what was found
 ```
 
 ## Workflow

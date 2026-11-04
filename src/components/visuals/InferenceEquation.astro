@@ -18,7 +18,7 @@ if (!examples?.length) throw new Error('InferenceEquation needs examples');
   {
     examples.map((ex, i) => (
       <div class="ie-example" data-i={i} hidden={i !== 0}>
-        <div class="ie-row">
+        <div class="ie-row" aria-live="polite">
           <div class="ie-card ie-card--clue" data-part="0">
             <span class="ie-tag">🔍 Clue in the text</span>
             <p set:html={mdInline(ex.clue)} />
@@ -54,7 +54,7 @@ if (!examples?.length) throw new Error('InferenceEquation needs examples');
   .ie-card--know { background: var(--brand-soft); }
   .ie-card--inf { background: var(--accent-soft); border-color: var(--accent); }
   .ie-op { align-self: center; font-size: 2rem; font-weight: 700; color: var(--ink-3); transition: opacity 0.4s; }
-  .ie-example.is-building [data-part].is-waiting { opacity: 0.12; transform: translateY(6px); }
+  .ie-example.is-building [data-part].is-waiting { opacity: 0; visibility: hidden; transform: translateY(6px); }
   @media (prefers-reduced-motion: reduce) { .ie-card, .ie-op { transition: none; } }
 </style>
 
