@@ -294,11 +294,11 @@ in spaced review because they take a while, so every concept still needs other p
 
 | Move | Name the child sees |
 |---|---|
-| `recall` | Remember it |
-| `apply` | Use the idea |
+| `recall` | Remember it (not shown to the child) |
+| `apply` | Use the idea (not shown to the child) |
 | `notice` | Look closely |
 | `model` | Turn a story into a plan |
-| `estimate` | Does it make sense? |
+| `estimate` | Check it makes sense |
 | `backwards` | Work backwards |
 | `pattern` | Hunt for a pattern |
 | `flaw` | Find the flaw |
@@ -312,8 +312,9 @@ in spaced review because they take a while, so every concept still needs other p
 | `connect` | Connect ideas |
 | `breakdown` | Break it into parts |
 
-It appears after a child solves the problem ("You just used: Work backwards"), so children start
-to recognize the moves. It also powers the educator notes.
+It appears after a child solves the problem ("Thinking skill: **Work backwards**", then the one-line
+reason), so children start to recognize the moves. `recall` and `apply` are the baseline, so they
+are not shown. It also powers the educator notes.
 
 ## Self-check before you finish
 

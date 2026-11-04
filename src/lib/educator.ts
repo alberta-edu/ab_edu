@@ -121,6 +121,11 @@ export function notesText(n: EducatorNotes): string[] {
   ];
 }
 
+/** Every piece of Markdown in a subject guide. */
+export function guideText(g: SubjectGuide): string[] {
+  return [g.promise, ...g.shifts.flatMap((x) => [x.instead, x.tryThis]), ...g.routines.map((r) => r.how), ...g.assess];
+}
+
 /** The answer in a sentence, for the answer key on the notes page. */
 export function answerHtml(c: Concept, p: Problem): string {
   switch (p.type) {

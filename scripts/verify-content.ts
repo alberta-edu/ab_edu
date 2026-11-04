@@ -6,7 +6,8 @@ import { md } from '../src/lib/render.ts';
 import { evaluate, eq, holds, parseFractionAnswer, parseDecimal, type Rational } from '../src/lib/rational.ts';
 import { parseFieldInput } from '../src/lib/check.ts';
 import { mathCeilingIssues, qualityIssues } from '../src/lib/quality.ts';
-import { notesFor, notesText, orphanNotes, subjectGuide, type EducatorNotes } from '../src/lib/educator.ts';
+import { guideText, notesFor, notesText, orphanNotes, subjectGuide, type EducatorNotes } from '../src/lib/educator.ts';
+import { blobIssue, lessonBlobs } from '../src/lib/readability.ts';
 import { UNLOCK_AFTER } from '../src/site.ts';
 import type { Concept, InvestigationPart, Passage, Problem } from '../src/lib/schema.ts';
 
@@ -57,6 +58,8 @@ function verifyNotes(c: Concept, n: EducatorNotes) {
     } catch (e) {
       errors.push(`${label}: ${(e as Error).message}`);
     }
+    const blob = blobIssue(t);
+    if (blob) errors.push(`${label}: ${blob}`);
   }
 }
 
@@ -289,6 +292,8 @@ function verifyConcept(c: Concept) {
   }
 
   for (const issue of qualityIssues(c)) fail(undefined, issue);
+  // Readability: long paragraphs become short lists (CLAUDE.md, "Short and scannable").
+  for (const issue of lessonBlobs(c)) fail(undefined, issue);
 
   try {
     const notes = notesFor(c);
@@ -325,7 +330,9 @@ if (!only) {
   for (const f of orphanNotes(concepts)) errors.push(`educator notes for a concept that doesn't exist: ${f}`);
   for (const s of ['math', 'science', 'social-studies', 'english-language-arts'] as const) {
     try {
-      if (!subjectGuide(s)) errors.push(`${s}: no subject guide for educators`);
+      const g = subjectGuide(s);
+      if (!g) errors.push(`${s}: no subject guide for educators`);
+      else for (const t of guideText(g)) if (blobIssue(t)) errors.push(`${s} subject guide: ${blobIssue(t)}`);
     } catch (e) {
       errors.push((e as Error).message);
     }

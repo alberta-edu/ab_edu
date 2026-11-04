@@ -4,7 +4,7 @@ import { evaluate, holds, rat, mod, eq } from '../src/lib/rational.ts';
 import { isBareCalculation, mathCeilingIssues, nearDuplicates, qualityIssues } from '../src/lib/quality.ts';
 import { renderProblem } from '../src/lib/problem-html.ts';
 import { loadConcept } from '../src/lib/content.ts';
-import { THINKING_MOVES, THINKING_MOVE_IDS } from '../src/lib/thinking.ts';
+import { THINKING_MOVES, THINKING_MOVE_IDS, SHOWN_MOVES, MOVE_GROUPS } from '../src/lib/thinking.ts';
 import { problemSchema, type Concept, type Problem } from '../src/lib/schema.ts';
 
 const vars = { w: rat(9), h: rat(4) };
@@ -147,8 +147,8 @@ describe('investigations', () => {
 
 describe('thinking moves', () => {
   it('have their own marker, which the move buttons of an order problem don\'t share', () => {
-    const concept = loadConcept('research-skills');
-    const order = concept.problems.find((p) => p.type === 'order')!;
+    const concept = loadConcept('body-systems');
+    const order = concept.problems.find((p) => p.type === 'order' && SHOWN_MOVES.has(p.thinking))!;
     const html = renderProblem(concept, order, 1);
     expect(html.match(/data-thinking-move/g)).toHaveLength(1);
     expect(html).toMatch(/<button[^>]*data-move=/);
@@ -159,5 +159,19 @@ describe('thinking moves', () => {
       expect(THINKING_MOVES[id].name.length).toBeGreaterThan(3);
       expect(THINKING_MOVES[id].blurb).toMatch(/^You /);
     }
+  });
+  it('are named to the student, except plain recall and use of an idea', () => {
+    const concept = loadConcept('place-value-decimals');
+    for (const p of concept.problems) {
+      const html = renderProblem(concept, p, 1);
+      expect(html.includes('data-thinking-move')).toBe(SHOWN_MOVES.has(p.thinking));
+      if (SHOWN_MOVES.has(p.thinking)) expect(html).toContain('Thinking skill');
+    }
+    expect(SHOWN_MOVES.has('recall') || SHOWN_MOVES.has('apply')).toBe(false);
+  });
+  it('are each in exactly one group on the educators page', () => {
+    const grouped = MOVE_GROUPS.flatMap((g) => g.moves);
+    expect(new Set(grouped).size).toBe(grouped.length);
+    expect(new Set(grouped)).toEqual(new Set(SHOWN_MOVES));
   });
 });

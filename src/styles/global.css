@@ -1,6 +1,4 @@
-@import '@fontsource/atkinson-hyperlegible-next/latin-400.css';
-@import '@fontsource/atkinson-hyperlegible-next/latin-700.css';
-@import '@fontsource/atkinson-hyperlegible-next/latin-400-italic.css';
+@import '@fontsource-variable/lexend/wght.css';
 
 /* ------------------------------------------------------------------ tokens */
 :root {
@@ -49,7 +47,7 @@
   --shadow: 0 1px 2px rgb(20 18 30 / 6%), 0 4px 16px rgb(20 18 30 / 6%);
   --shadow-lg: 0 2px 4px rgb(20 18 30 / 6%), 0 12px 32px rgb(20 18 30 / 10%);
 
-  --font: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font: 'Lexend Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
   --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
   --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
@@ -308,7 +306,10 @@ a.concept-card:hover { border-color: var(--accent); }
   font-size: var(--step-1);
 }
 .big-idea__label { font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.25rem; }
-.big-idea p:last-child { margin: 0; }
+.big-idea p:last-child, .big-idea > ul:last-child, .big-idea > ol:last-child { margin: 0; }
+.big-idea ul, .big-idea ol { padding-left: 1.3rem; }
+.big-idea li + li { margin-top: 0.35rem; }
+.big-idea li::marker { color: var(--accent); }
 
 .outcome { padding: 1rem 1.15rem; margin-bottom: 2rem; font-size: var(--step--1); color: var(--ink-2); }
 .outcome summary { cursor: pointer; font-weight: 700; color: var(--ink); }
@@ -584,7 +585,9 @@ a.concept-card:hover { border-color: var(--accent); }
   .problem__prompt table { font-size: var(--step--1); }
   .problem__prompt th, .problem__prompt td { padding: 0.3rem 0.4rem; }
 }
-.problem__move { margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
+.problem__move { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.5rem; margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
+.problem__move-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+.problem__move-why { flex-basis: 100%; color: var(--ink-2); }
 .problem__story { padding: 0.9rem 1.1rem; border-left: 4px solid var(--l3); border-radius: var(--radius-sm); background: var(--surface-2); }
 .problem-parts { display: grid; gap: 1rem; }
 .problem-part { display: block; padding-top: 1rem; border-top: 1px dashed var(--line-strong); }
@@ -815,23 +818,6 @@ a.concept-card:hover { border-color: var(--accent); }
 .level-done__icon { font-size: 2.5rem; margin: 0; }
 .level-done h3 { font-size: var(--step-2); }
 
-/* ------------------------------------------------------------------ key terms: flip cards */
-.flip-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
-.flip {
-  position: relative; min-height: 9rem; padding: 1rem; border-radius: var(--radius); border: 2px solid var(--line);
-  background: var(--surface); box-shadow: var(--shadow); font: inherit; color: var(--ink); cursor: pointer; text-align: left;
-  display: grid; align-content: center;
-}
-.flip__front { font-size: var(--step-1); font-weight: 700; color: var(--accent); text-align: center; }
-.flip__back { display: none; gap: 0.3rem; color: var(--ink-2); font-size: var(--step--1); }
-.flip__back strong { color: var(--accent); font-size: var(--step-0); }
-.flip[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent); }
-.flip[aria-pressed='true'] .flip__front { display: none; }
-.flip[aria-pressed='true'] .flip__back { display: grid; }
-@media (prefers-reduced-motion: no-preference) {
-  .flip[aria-pressed='true'] { animation: flipIn 0.35s ease; }
-  @keyframes flipIn { from { transform: rotateY(90deg); } }
-}
 .concept-more { margin-top: 3rem; }
 
 /* shared bits used by several visuals */
@@ -909,9 +895,19 @@ a.concept-card:hover { border-color: var(--accent); }
 .ed-stuck { display: grid; gap: 0.6rem; margin: 0.75rem 0 0; }
 .ed-stuck dt { font-weight: 700; }
 .ed-stuck dd { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
-.ed-moves { list-style: none; padding: 0; display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
-.ed-moves li { display: grid; gap: 0.15rem; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); background: var(--surface-2); }
-.ed-moves span { font-size: var(--step--1); color: var(--ink-2); }
+.ed-chips { list-style: none; padding: 0 !important; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.ed-chips li { margin: 0; padding: 0.3rem 0.8rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); font-weight: 700; font-size: var(--step--1); }
+.ed-checks { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: 0.35rem; font-size: var(--step--1); color: var(--ink-2); }
+.ed-checks li { display: flex; gap: 0.5rem; }
+.ed-checks li::before { content: '✓'; color: var(--ok); font-weight: 700; }
+.ed-moves { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); margin-top: 0.75rem; }
+.ed-moves__group { padding: 1rem 1.1rem; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.ed-moves__group h3 { margin: 0 0 0.75rem; font-size: var(--step--1); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+.ed-moves__group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.ed-moves__group li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: 0.65rem; align-items: start; }
+.ed-moves__group li > span:last-child { display: grid; gap: 0.05rem; line-height: 1.35; }
+.ed-moves__icon { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--accent-soft); font-size: 1.05rem; }
+.ed-moves__blurb { font-size: var(--step--1); color: var(--ink-2); }
 .ed-built-in { margin-top: 1rem; }
 @media (max-width: 40rem) {
   .ed-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }

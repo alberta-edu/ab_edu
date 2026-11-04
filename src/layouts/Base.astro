@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
-import { SITE_NAME, SITE_TAGLINE, REPO_URL, SUBJECTS } from '../site.ts';
+import { SITE_NAME, SITE_TAGLINE, SUBJECTS } from '../site.ts';
 import { href, absolute } from '../lib/url.ts';
 
 interface Props {
@@ -102,7 +102,6 @@ const current = (p: string) => (path.startsWith(p) ? 'page' : undefined);
             <li><a href={href('educators/')}>For teachers and parents</a></li>
             <li><a href={href('about/')}>How this site follows the curriculum</a></li>
             <li><a href={href('about/#privacy')}>Privacy: progress stays on your device</a></li>
-            <li><a href={REPO_URL} rel="noopener">Source code</a></li>
           </ul>
         </div>
       </div>
