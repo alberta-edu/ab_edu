@@ -12,8 +12,8 @@ the branch that deploys.
 
 *Last updated: November 3, 2026. Update this section whenever a phase or batch finishes.*
 
-**Current phase: 7 (Polish, with the question rewrite and educator notes) is finished and waiting for the
-owner's review on three stacked branches.**
+**Current phase: 7 (Polish, with the question rewrite and educator notes) is finished and merged into
+`main`, not pushed. The owner is reviewing it locally.**
 
 | Subject | Concepts built | Grade 5 curriculum statements taught |
 |---|---|---|
@@ -35,12 +35,11 @@ owner's review on three stacked branches.**
 | `feature/grade5-social-studies` | Phase 5: the other 5 Social Studies lessons, 11 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 | `feature/grade5-elal` | Phase 6: the other 11 ELAL lessons (157 problems across all 12), 18 new visuals and 1 virtual experiment | ✅ Merged into `main` |
 
-| `feature/thinking-problems` | Phase 7: all 48 problem sets rewritten to [QUESTION-STANDARD.md](QUESTION-STANDARD.md) (553 problems, was 623), `build` and `investigation` types, a thinking move on every problem, [grade-level audit](grade-level-audit.md) | ⏳ Waiting for review |
-| `feature/educator-notes` | Phase 7: educators hub, 4 subject guides, notes for all 48 topics. Stacked on `feature/thinking-problems` | ⏳ Waiting for review |
-| `chore/phase-7-polish` | Phase 7: accessibility, keyboard, phone layout and review fixes, audits, these docs. Stacked on `feature/educator-notes` | ⏳ Waiting for review |
+| `feature/thinking-problems` | Phase 7: all 48 problem sets rewritten to [QUESTION-STANDARD.md](QUESTION-STANDARD.md) (553 problems, was 623), `build` and `investigation` types, a thinking move on every problem, [grade-level audit](grade-level-audit.md) | ✅ Merged into `main` |
+| `feature/educator-notes` | Phase 7: educators hub, 4 subject guides, notes for all 48 topics. Stacked on `feature/thinking-problems` | ✅ Merged into `main` |
+| `chore/phase-7-polish` | Phase 7: accessibility, keyboard, phone layout and review fixes, audits, these docs. Stacked on `feature/educator-notes` | ✅ Merged into `main` |
 
-**Waiting for review:** the three branches above, in that order. They build on each other, so they merge in
-that order. The owner will do the manual review at the very end, after all phases.
+Nothing is waiting for review as a branch. The owner is reviewing the merged site locally, and will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 
@@ -59,7 +58,7 @@ until all tasks are finished and people have reviewed it. Until then, the deploy
 each push to `main` because Pages is off. That is expected: the build still runs, and nothing
 goes public.
 
-**Next up:** the owner reviews the three branches. Then Phase 8, Release, once the owner signs off.
+**Next up:** fixes from the owner's local review, each on its own branch. Then Phase 8, Release, once the owner signs off.
 
 ## 1. Ground truth: the curriculum
 
@@ -230,7 +229,7 @@ research skills · grammar · spelling & punctuation
 | 4 | Science | Remaining 14 concepts, each with an animated virtual experiment (density column, sink/float lab, air vs. water compression, forces-of-flight arrows, seasons orbit, Moon phases, controlled-variable "fair test" lab, block-code loop puzzle) | ✅ Done, merged into `main` |
 | 5 | Social Studies | Remaining 5 concepts (trade route map, social pyramid, timeline, empire maps, village-to-city, scroll-scan experiment) | ✅ Done, merged into `main` |
 | 6 | ELAL | Remaining 11 concepts (original passages and poems), each with a visual you can play with (word builder, voice lab, poem reader, script stage, show-don't-tell dial, grammar lab, echo-room experiment) | ✅ Done, merged into `main` |
-| 7 | Polish | Question rewrite and grade-level audit, notes for educators, review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | ⏳ Done on 3 stacked branches, waiting for review |
+| 7 | Polish | Question rewrite and grade-level audit, notes for educators, review/progress UX, Lighthouse and accessibility audit, SEO audit, testing on phone, tablet and desktop | ✅ Done, merged into `main` (not pushed) |
 | 8 | Release | Only after all other phases are finished and people have reviewed the whole site: enable GitHub Pages and publish | Not started, needs review and your sign-off |
 
 ## 6. Decisions for the owner
