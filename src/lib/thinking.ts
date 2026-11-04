@@ -1,12 +1,13 @@
-// Thinking moves: the kind of thinking a problem trains. Every problem names one. The student
-// sees it after solving ("You just used: Work backwards"), and educators see it on the notes page.
+// Thinking moves: the kind of thinking a problem trains. Every problem names one. After solving,
+// the student sees it as "Thinking skill: Work backwards" (except recall and apply, which are the
+// baseline), and educators see it on the notes page.
 
 export const THINKING_MOVES = {
   recall: { name: 'Remember it', blurb: 'You pulled an idea from memory.' },
   apply: { name: 'Use the idea', blurb: 'You used an idea exactly the way you learned it.' },
   notice: { name: 'Look closely', blurb: 'You spotted the detail that matters and ignored the rest.' },
   model: { name: 'Turn a story into a plan', blurb: 'You worked out what the story was really asking, then chose how to solve it.' },
-  estimate: { name: 'Does it make sense?', blurb: 'You used a quick estimate to judge an answer.' },
+  estimate: { name: 'Check it makes sense', blurb: 'You used a quick estimate to judge an answer.' },
   backwards: { name: 'Work backwards', blurb: 'You started from the end and undid each step.' },
   pattern: { name: 'Hunt for a pattern', blurb: 'You found a rule that keeps working, then used it.' },
   flaw: { name: 'Find the flaw', blurb: 'You found exactly where someone’s thinking went wrong.' },
@@ -22,4 +23,8 @@ export const THINKING_MOVES = {
 } as const;
 
 export type ThinkingMove = keyof typeof THINKING_MOVES;
+/** Moves named to the student after solving. Remembering and using an idea are the baseline. */
+export const SHOWN_MOVES: ReadonlySet<ThinkingMove> = new Set(
+  (Object.keys(THINKING_MOVES) as ThinkingMove[]).filter((m) => m !== 'recall' && m !== 'apply'),
+);
 export const THINKING_MOVE_IDS = Object.keys(THINKING_MOVES) as [ThinkingMove, ...ThinkingMove[]];

@@ -6,7 +6,7 @@ import type { Concept, InvestigationPart, Passage, Problem } from './schema.ts';
 import { md, mdInline, splitSentences } from './render.ts';
 import { LEVELS } from '../site.ts';
 import { renderFigure } from './figures.ts';
-import { THINKING_MOVES } from './thinking.ts';
+import { THINKING_MOVES, SHOWN_MOVES } from './thinking.ts';
 
 export const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -215,7 +215,10 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
   const key = problemKey(concept, p);
   const domId = `q-${key.replace(/\//g, '-')}`;
   const move = THINKING_MOVES[p.thinking];
-  const moveHtml = `<p class="problem__move" data-thinking-move hidden><strong>🧠 You just used: ${esc(move.name)}.</strong> ${esc(move.blurb)}</p>`;
+  // Plain recall and use of an idea are the baseline, so only real thinking moves are named.
+  const moveHtml = SHOWN_MOVES.has(p.thinking)
+    ? `<p class="problem__move" data-thinking-move hidden><span class="problem__move-label"><span aria-hidden="true">🧠</span> Thinking skill</span> <strong>${esc(move.name)}</strong><span class="problem__move-why">${esc(move.blurb)}</span></p>`
+    : '';
   const card = (spec: CheckSpec, inner: string) => `
 <problem-card class="problem${p.type === 'investigation' ? ' problem--investigation' : ''}" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">
   <article class="problem__inner" aria-labelledby="${esc(`${domId}-title`)}">

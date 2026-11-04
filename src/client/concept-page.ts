@@ -1,4 +1,4 @@
-// Concept page: Learn / Practice / Key terms tabs, the lesson stepper, the practice
+// Concept page: Learn / Practice tabs, the lesson stepper, the practice
 // level tabs and the one-problem-at-a-time pager.
 // Without JavaScript everything is simply shown in order, so content stays crawlable.
 import { load, onChange } from './progress.ts';
@@ -6,7 +6,7 @@ import { UNLOCK_AFTER, LEVELS } from '../site.ts';
 import { ENTER_AFTER_SOLVED } from '../lib/srs.ts';
 import type { GradedDetail } from './problem-card.ts';
 
-type Tab = 'learn' | 'practice' | 'terms';
+type Tab = 'learn' | 'practice';
 
 const store = {
   get(k: string) {
@@ -152,10 +152,22 @@ export function initConceptPage() {
     });
     section.querySelector('[data-pager-count]')!.textContent = `Problem ${idx + 1} of ${cards.length}`;
     section.querySelector<HTMLButtonElement>('[data-pager-prev]')!.disabled = idx === 0;
+    // Next opens only once this problem is solved. On the last problem it leads on to the
+    // next level, if that level is unlocked.
     const next = section.querySelector<HTMLButtonElement>('[data-pager-next]')!;
-    next.disabled = idx === cards.length - 1;
-    next.classList.toggle('btn--primary', !!p[cards[idx].dataset.key!]?.s && idx < cards.length - 1);
-    next.classList.toggle('btn--ghost', !(p[cards[idx].dataset.key!]?.s && idx < cards.length - 1));
+    const target = nextTarget(section, idx);
+    const ready = !!p[cards[idx].dataset.key!]?.s && target !== null;
+    next.disabled = !ready;
+    next.textContent = target && 'level' in target ? `Next: ${LEVELS[target.level as 1 | 2 | 3].name} →` : 'Next problem →';
+    next.classList.toggle('btn--primary', ready);
+    next.classList.toggle('btn--ghost', !ready);
+  };
+
+  /** Where Next goes from problem idx: the next problem, the next level, or nowhere. */
+  const nextTarget = (section: HTMLElement, idx: number): { problem: number } | { level: number } | null => {
+    if (idx < cardsOf(section).length - 1) return { problem: idx + 1 };
+    const i = levelSections.indexOf(section);
+    return i + 1 < levelSections.length && isUnlocked(i + 1) ? { level: i + 2 } : null;
   };
 
   const firstUnsolved = (section: HTMLElement) => {
@@ -206,7 +218,15 @@ export function initConceptPage() {
     section.querySelector<HTMLElement>('[data-pager-nav]')!.hidden = false;
     section.querySelectorAll<HTMLButtonElement>('[data-goto]').forEach((d) => d.addEventListener('click', () => showProblem(section, Number(d.dataset.goto))));
     section.querySelector('[data-pager-prev]')!.addEventListener('click', () => showProblem(section, pagerIndex.get(section)! - 1));
-    section.querySelector('[data-pager-next]')!.addEventListener('click', () => showProblem(section, pagerIndex.get(section)! + 1));
+    section.querySelector('[data-pager-next]')!.addEventListener('click', () => {
+      const target = nextTarget(section, pagerIndex.get(section)!);
+      if (!target) return;
+      if ('level' in target) {
+        history.replaceState(null, '', `#level-${target.level}`);
+        showLevel(target.level);
+        scrollToTabs();
+      } else showProblem(section, target.problem);
+    });
     section.querySelector('[data-unlock]')?.addEventListener('click', () => {
       peeked.add(section.dataset.level!);
       store.set(peekKey, JSON.stringify([...peeked]));
@@ -236,19 +256,13 @@ export function initConceptPage() {
     else if (d.firstTry && d.level === 3) celebrate('🌟 First try on a Deep Think problem. Impressive reasoning!');
   });
 
-  // ------------------------------------------------------------------ key terms
-  root.querySelectorAll<HTMLButtonElement>('.flip').forEach((f) =>
-    f.addEventListener('click', () => f.setAttribute('aria-pressed', String(f.getAttribute('aria-pressed') !== 'true'))),
-  );
-
   // ------------------------------------------------------------------ route from the URL hash
   const route = () => {
     const h = location.hash.slice(1);
     if (h === 'practice' || h.startsWith('level-')) {
       showTab('practice');
       if (h.startsWith('level-')) showLevel(Number(h.slice(6)) || 1);
-    } else if (h === 'terms') showTab('terms');
-    else if (h.startsWith('step-')) {
+    } else if (h.startsWith('step-')) {
       showTab('learn');
       showStep(Number(h.slice(5)) || 1);
     } else if (h.startsWith('q-')) {

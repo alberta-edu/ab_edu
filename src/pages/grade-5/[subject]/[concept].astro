@@ -5,7 +5,7 @@ import LessonBlock from '../../../components/LessonBlock.astro';
 import Icon from '../../../components/Icon.astro';
 import { conceptsFor, findOutcome, conceptPath, curriculum, resolveRef, gradeRank, type Statement } from '../../../lib/content.ts';
 import { renderProblem, levelBadge, conceptKey } from '../../../lib/problem-html.ts';
-import { md, mdInline } from '../../../lib/render.ts';
+import { md } from '../../../lib/render.ts';
 import { SUBJECTS, LEVELS, UNLOCK_AFTER, SITE_NAME } from '../../../site.ts';
 import type { Concept } from '../../../lib/schema.ts';
 import { href, absolute } from '../../../lib/url.ts';
@@ -125,9 +125,6 @@ const jsonLd = [
       </a>
       <a role="tab" href="#practice" id="tab-practice" aria-controls="practice" data-tab="practice">
         <span aria-hidden="true">✏️</span> Practice <small data-practice-count>0/{c.problems.length}</small>
-      </a>
-      <a role="tab" href="#terms" id="tab-terms" aria-controls="terms" data-tab="terms">
-        <span aria-hidden="true">🗂️</span> Key terms <small>{c.keyTerms.length}</small>
       </a>
     </nav>
 
@@ -311,24 +308,6 @@ const jsonLd = [
           </section>
         ))
       }
-    </section>
-
-    <!-- ================================================================ KEY TERMS -->
-    <section class="tab-panel" id="terms" role="tabpanel" aria-labelledby="tab-terms">
-      <p class="muted">Tap a card to flip it. Try to say the meaning before you look!</p>
-      <div class="flip-grid">
-        {
-          c.keyTerms.map((t) => (
-            <button type="button" class="flip" aria-pressed="false">
-              <span class="flip__front">{t.term}</span>
-              <span class="flip__back">
-                <strong>{t.term}</strong>
-                <span set:html={mdInline(t.definition)} />
-              </span>
-            </button>
-          ))
-        }
-      </div>
     </section>
 
     <nav class="grid concept-more" aria-label="More topics">

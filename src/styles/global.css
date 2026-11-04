@@ -582,7 +582,9 @@ a.concept-card:hover { border-color: var(--accent); }
   .problem__prompt table { font-size: var(--step--1); }
   .problem__prompt th, .problem__prompt td { padding: 0.3rem 0.4rem; }
 }
-.problem__move { margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
+.problem__move { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.5rem; margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
+.problem__move-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+.problem__move-why { flex-basis: 100%; color: var(--ink-2); }
 .problem__story { padding: 0.9rem 1.1rem; border-left: 4px solid var(--l3); border-radius: var(--radius-sm); background: var(--surface-2); }
 .problem-parts { display: grid; gap: 1rem; }
 .problem-part { display: block; padding-top: 1rem; border-top: 1px dashed var(--line-strong); }
@@ -813,23 +815,6 @@ a.concept-card:hover { border-color: var(--accent); }
 .level-done__icon { font-size: 2.5rem; margin: 0; }
 .level-done h3 { font-size: var(--step-2); }
 
-/* ------------------------------------------------------------------ key terms: flip cards */
-.flip-grid { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
-.flip {
-  position: relative; min-height: 9rem; padding: 1rem; border-radius: var(--radius); border: 2px solid var(--line);
-  background: var(--surface); box-shadow: var(--shadow); font: inherit; color: var(--ink); cursor: pointer; text-align: left;
-  display: grid; align-content: center;
-}
-.flip__front { font-size: var(--step-1); font-weight: 700; color: var(--accent); text-align: center; }
-.flip__back { display: none; gap: 0.3rem; color: var(--ink-2); font-size: var(--step--1); }
-.flip__back strong { color: var(--accent); font-size: var(--step-0); }
-.flip[aria-pressed='true'] { background: var(--accent-soft); border-color: var(--accent); }
-.flip[aria-pressed='true'] .flip__front { display: none; }
-.flip[aria-pressed='true'] .flip__back { display: grid; }
-@media (prefers-reduced-motion: no-preference) {
-  .flip[aria-pressed='true'] { animation: flipIn 0.35s ease; }
-  @keyframes flipIn { from { transform: rotateY(90deg); } }
-}
 .concept-more { margin-top: 3rem; }
 
 /* shared bits used by several visuals */
