@@ -135,255 +135,419 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [K1.4]
     type: mc
-    prompt: '**Latitude** tells you how far a place is…'
-    choices:
-      - north or south of the equator.
-      - east or west of the prime meridian.
-      - above sea level.
-      - from the nearest river.
+    prompt: A sea turtle’s tracker beeps **20°S, 30°W**. Which dot is the turtle?
+    figure: |-
+      <svg viewBox="0 0 360 215" class="fig-svg" role="img" aria-label="A grid of latitude and longitude. The equator runs across the middle and the prime meridian runs down the middle. Dot A is at 20 degrees south, 30 degrees west. Dot B is at 20 degrees south, 30 degrees east. Dot C is at 20 degrees north, 30 degrees west. Dot D is at 20 degrees north, 30 degrees east.">
+        <g stroke="currentColor" opacity="0.3">
+          <line x1="90" y1="50" x2="270" y2="50"/><line x1="90" y1="80" x2="270" y2="80"/><line x1="90" y1="140" x2="270" y2="140"/><line x1="90" y1="170" x2="270" y2="170"/>
+          <line x1="90" y1="50" x2="90" y2="170"/><line x1="120" y1="50" x2="120" y2="170"/><line x1="150" y1="50" x2="150" y2="170"/><line x1="210" y1="50" x2="210" y2="170"/><line x1="240" y1="50" x2="240" y2="170"/><line x1="270" y1="50" x2="270" y2="170"/>
+        </g>
+        <g stroke="currentColor" stroke-width="2.5">
+          <line x1="90" y1="110" x2="270" y2="110"/>
+          <line x1="180" y1="50" x2="180" y2="170"/>
+        </g>
+        <g fill="currentColor" font-size="13">
+          <text x="80" y="55" text-anchor="end">20°N</text>
+          <text x="80" y="85" text-anchor="end">10°N</text>
+          <text x="80" y="115" text-anchor="end">0°</text>
+          <text x="80" y="145" text-anchor="end">10°S</text>
+          <text x="80" y="175" text-anchor="end">20°S</text>
+          <text x="90" y="38" text-anchor="middle">30°W</text>
+          <text x="180" y="38" text-anchor="middle">0°</text>
+          <text x="270" y="38" text-anchor="middle">30°E</text>
+          <text x="280" y="115">Equator</text>
+          <text x="180" y="192" text-anchor="middle">Prime meridian</text>
+          <circle cx="90" cy="170" r="6"/><text x="98" y="165" font-weight="700" font-size="15">A</text>
+          <circle cx="270" cy="170" r="6"/><text x="278" y="165" font-weight="700" font-size="15">B</text>
+          <circle cx="90" cy="50" r="6"/><text x="98" y="68" font-weight="700" font-size="15">C</text>
+          <circle cx="270" cy="50" r="6"/><text x="278" y="68" font-weight="700" font-size="15">D</text>
+        </g>
+      </svg>
+    choices: [A, B, C, D]
+    fixedOrder: true
     answer: 0
     feedback:
-      '1': That is **longitude**.
-      '2': Height above sea level is **elevation**.
-      '3': Latitude is measured from the equator.
+      '1': You found the right latitude. Which side of the prime meridian does W mean?
+      '2': You found the right longitude. Which side of the equator does S mean?
+      '3': Both letters are flipped here. Check what S and W tell you.
     hints:
-      - On the globe, which way does the glowing latitude line move when you slide it?
+      - The first part says how far from the equator. Is S above it or below it?
+      - Now use the W. Which side of the prime meridian is west?
     solution:
-      - Latitude measures how far **north or south** of the equator a place is.
+      - '20°**S** is 20° south of the equator, so look below the equator.'
+      - '30°**W** is 30° west of the prime meridian, so look to the left.'
+      - Below and to the left is dot **A**.
 
   - id: w2
     level: 1
+    thinking: notice
     covers: [K1.4]
-    type: mc
-    prompt: What is the latitude of the **equator**?
-    choices: ['0°', '45°', '90°', '180°']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 45° is halfway between the equator and a pole.
-      '2': 90° is the latitude of the North Pole (90°N) or the South Pole (90°S).
-      '3': Latitude never goes above 90°.
+    type: number
+    prompt: |-
+      Stuck on a tiny island, you throw a message in a bottle: **"Send snacks! I am at 20°, 40°!"**
+
+      Oops. You forgot the letters. How many different places on Earth could the snack boat have to check?
+    answer: 4
+    verify: 2 * 2
+    unit: places
     hints:
-      - Latitude is measured **from** the equator.
+      - What could the 20° be missing? What could the 40° be missing?
+      - Try writing out every way of adding the letters.
     solution:
-      - The equator is where latitude starts, so it is **0°**.
+      - The latitude could be 20°N or 20°S. The longitude could be 40°E or 40°W.
+      - 'That makes **4** places: 20°N 40°E, 20°N 40°W, 20°S 40°E and 20°S 40°W.'
+      - The letters are not extras. Without them, you have not said where you are.
 
   - id: w3
     level: 1
+    thinking: apply
     covers: [K1.4]
     type: mc
-    prompt: A city is at **30°N, 31°E**. Which is true?
+    prompt: On a day with no wind, a hot-air balloon rises straight up from a farmer’s field. What changes as it rises?
     choices:
-      - It is north of the equator and east of the prime meridian.
-      - It is north of the equator and west of the prime meridian.
-      - It is south of the equator and east of the prime meridian.
-      - It is south of the equator and west of the prime meridian.
-    fixedOrder: true
+      - Only its elevation
+      - Only its latitude
+      - Its latitude and its longitude
+      - Its elevation, latitude and longitude
     answer: 0
     feedback:
-      '1': E means **east** of the prime meridian.
-      '2': N means **north** of the equator.
-      '3': N means north and E means east.
+      '1': Latitude changes when you go north or south. The balloon is only going up.
+      '2': Those two change when you move north, south, east or west. Is the balloon doing that?
+      '3': Elevation does change. But is the balloon moving north, south, east or west?
     hints:
-      - N = north of the equator. E = east of the prime meridian.
+      - Look down from the balloon. Is the same field still right below you?
     solution:
-      - '30°**N** is north of the equator; 31°**E** is east of the prime meridian. This is Memphis, in ancient Egypt.'
+      - The balloon is still right above the same spot, so its latitude and longitude stay the same.
+      - It is getting higher above sea level, so only its **elevation** changes.
 
   - id: w4
     level: 1
+    thinking: recall
     covers: [K1.2]
-    type: mc
-    prompt: Which geographical features of river valleys supported **agriculture** in ancient civilizations?
+    type: multi
+    prompt: An ancient land seller is writing an ad for a farm plot in a river valley. Which selling points explain why crops grow well there? Choose all that apply.
     choices:
-      - Abundant water, fertile soil and a moderate climate
-      - Tall mountains, deep snow and strong winds
-      - Volcanoes and earthquakes
-      - Deserts with no water
-    answer: 0
+      - Abundant water
+      - Fertile soil
+      - Moderate climate
+      - A bay where ships can shelter
+    answer: [0, 1, 2]
     feedback:
-      '1': These make farming **harder**.
-      '2': These are natural disasters. They can make people adapt or move.
-      '3': Crops need water.
+      '3': Bays are a great feature, but they help travel and trade along coastlines. They don’t help crops grow.
     hints:
-      - What do crops need to grow?
+      - What does a crop need from the place where it grows?
     solution:
-      - River valleys had **abundant water**, **fertile soil** and a **moderate climate**, which supported agriculture.
+      - '**Abundant water**, **fertile soil** and a **moderate climate** are the river valley features that supported agriculture.'
+      - A bay supports travel and trade, so it belongs in an ad for a coastal town.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
+    thinking: notice
     covers: [S1.1, K1.4]
     type: mc
-    prompt: Use the table in the lesson. Which civilization grew closest to **36°N, 114°E**?
+    prompt: |-
+      Your ancient pen pal’s pigeon is old and grumpy. It will only fly the **shortest trip**. Which two cities are nearest each other?
+
+      | City | Latitude | Longitude |
+      |---|---|---|
+      | Athens | 38°N | 24°E |
+      | Anyang | 36°N | 114°E |
+      | Memphis | 30°N | 31°E |
+      | Mohenjo-daro | 27°N | 68°E |
+      | Petra | 30°N | 35°E |
+      | Rome | 42°N | 12°E |
     choices:
-      - Ancient China, on the Yellow River
-      - Ancient India, on the Indus River
-      - Ancient Greece, on the Aegean coast
-      - Ancient Egypt, on the Nile River
+      - Memphis and Petra
+      - Athens and Anyang
+      - Rome and Athens
+      - Memphis and Mohenjo-daro
     answer: 0
     feedback:
-      '1': Mohenjo-daro is near 27°N, 68°E. Its longitude is much smaller than 114°E.
-      '2': Athens is near 38°N, 24°E. The latitude is close, but the longitude is far off.
-      '3': Memphis is near 30°N, 31°E, far west of 114°E.
+      '1': Their latitudes are only 2° apart, so they are nearly level with each other. But check the longitudes. How far apart are those?
+      '2': These are fairly close, but they differ in both directions. Is there a pair that differs in only one?
+      '3': Their latitudes are only 3° apart, but compare the longitudes before you send the pigeon.
     hints:
-      - Match the **longitude** first. Which city is about 114° east?
+      - A pair is only close if **both** numbers are close. Why is one number not enough?
+      - For each pair, find the gap in latitude and the gap in longitude.
     solution:
-      - Anyang, in ancient China, is at about **36°N, 114°E**, in the Yellow River valley.
+      - Two places are near each other only when their latitudes **and** their longitudes are both close.
+      - 'Memphis and Petra: the same latitude, and only 4° apart in longitude.'
+      - 'Athens and Anyang look close if you read only the latitudes, but they are 90° apart in longitude: far across the world.'
 
   - id: b2
     level: 2
-    covers: [K1.4]
-    type: mc
-    prompt: Which coordinates are closest to **Edmonton, Alberta**?
-    choices:
-      - '54°N, 113°W'
-      - '54°N, 113°E'
-      - '54°S, 113°W'
-      - '113°N, 54°W'
-    answer: 0
-    feedback:
-      '1': 113°**E** is east of the prime meridian, in Asia. Alberta is **west** of the prime meridian.
-      '2': 54°**S** is far south of the equator. Alberta is **north** of the equator.
-      '3': Latitude can never be more than 90°, and latitude is written first.
+    thinking: connect
+    covers: [K1.5, K1.2]
+    type: order
+    prompt: Here is how a muddy river valley filled up with villages, but the story got scrambled. Put it back in order, so that each step causes the next.
+    items:
+      - The valley has water, fertile soil and a moderate climate.
+      - Farmers grow more and more crops.
+      - Families stop moving around, because the food is right here every year.
+      - Soon the valley holds many settled villages.
     hints:
-      - Is Alberta north or south of the equator? East or west of the prime meridian? Try the globe's Places tab.
+      - Which sentence could be true before any person arrived?
+      - For each sentence, ask "What had to happen first?"
     solution:
-      - Alberta is **north** of the equator and **west** of the prime meridian, so Edmonton is at about **54°N, 113°W**.
+      - The land comes first. Water, soil and climate were there before the farmers.
+      - Those features let farmers grow more. More food means families can stay in one place.
+      - So **increased agriculture led to more settled societies**.
 
   - id: b3
     level: 2
-    covers: [S1.1]
-    type: order
-    prompt: Put these ancient cities in order from **farthest south** to **farthest north**.
-    items:
-      - 'Mohenjo-daro (27°N)'
-      - 'Memphis (30°N)'
-      - 'Anyang (36°N)'
-      - 'Athens (38°N)'
-      - 'Rome (42°N)'
+    thinking: model
+    covers: [K1.6, S1.2]
+    type: number
+    prompt: |-
+      In a made-up port on a sheltered bay, Thalia has **180 jars** of olive oil to sell. One boat can carry them all at once. A donkey can carry **6 jars**.
+
+      To send the same load by land, how many donkeys would Thalia need?
+    answer: 30
+    verify: 180 / 6
+    unit: donkeys
     hints:
-      - North of the equator, a bigger latitude means farther north.
+      - Picture loading the donkeys one at a time. What happens to the pile of jars each time?
+      - How many groups of 6 jars are there in 180 jars?
     solution:
-      - 'Smaller °N = closer to the equator = farther south.'
-      - 'Mohenjo-daro (27°) → Memphis (30°) → Anyang (36°) → Athens (38°) → Rome (42°)'
+      - Each donkey takes 6 jars, so we need the number of 6s in 180. \(180 \div 6 = 30\).
+      - 'Picture it: one boat, or a line of **30 donkeys** that all need feeding.'
+      - That is one reason why oceans and bays supported trade and travel. A sheltered bay lets boats load safely, close to home.
 
   - id: b4
     level: 2
-    covers: [K1.6, S1.2]
+    thinking: evidence
+    covers: [K1.3, K1.8, U1.1]
     type: mc
-    prompt: Athens grew on a coastline with many bays. How did this geography help ancient Greece?
-    choices:
-      - The sea and bays supported travel and trade.
-      - The coast gave it the most fertile soil in the world.
-      - The sea protected it from all natural disasters.
-      - The coast kept Greeks from meeting other peoples.
-    answer: 0
-    feedback:
-      '1': Fertile soil is linked to **river valleys** in this lesson. Coastlines are linked to travel and trade.
-      '2': Coasts don't protect against all natural disasters.
-      '3': The opposite! The sea let Greeks travel and trade with other peoples.
-    hints:
-      - What can you do with boats on a sea full of bays?
-    solution:
-      - Oceans and bays along coastlines supported **travel and trade**.
+    prompt: |-
+      You are a tour guide in the desert city of Petra. A grumpy tourist says, "No river? No coast? Whoever built a city here must have been lost!"
 
-  - id: b5
-    level: 2
-    covers: [K1.8]
-    type: mc
-    prompt: The Romans built **aqueducts** to carry fresh water into their cities. This is an example of…
+      | City | Location | Water and land |
+      |---|---|---|
+      | Memphis (Ancient Egypt) | 30°N, 31°E | Nile River valley |
+      | Petra (Nabataeans) | 30°N, 35°E | Desert, on trade routes. No large river |
+
+      What is the best reply?
     choices:
-      - people changing the environment to meet their needs.
-      - a natural disaster changing the environment.
-      - people moving away because the environment changed.
-      - a river valley supporting agriculture.
+      - People can live in a dry place if they trade for what they need and find ways to save rain.
+      - This is so close to the equator that rain falls here nearly every day.
+      - This city shares the Nile’s fertile soil, just like nearby Memphis.
+      - Ships came up from a sheltered bay here and brought fresh water.
     answer: 0
     feedback:
-      '1': A natural disaster happens without people causing it. Aqueducts were built on purpose.
-      '2': The Romans didn't move. They brought the water to where they lived.
-      '3': Aqueducts were built, not a natural feature.
+      '1': Petra is at about 30°N, so it is far from the equator, and the table calls it desert. Check again.
+      '2': Petra is close to Memphis on the map, but it is not in the Nile valley. What does the table say about its land?
+      '3': The tourist is right that there is no coast here. How did people get water without one?
     hints:
-      - Who built the aqueducts, and why?
+      - The table says something about what Petra had **instead** of a river. What is it?
+      - How could people live in a dry place? Reread "When the environment changes".
     solution:
-      - People built aqueducts on purpose so cities had fresh water. This is **changing the environment to meet needs**.
+      - '**Many** ancient civilizations grew along rivers and coasts. Many does not mean all.'
+      - Petra was on trade routes, and its people **changed the environment** with channels and tanks to store rainwater.
+      - Where people settle and what the land offers are connected, but people can change that land too.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
+    thinking: breakdown
     covers: [K1.4]
-    type: mc
-    prompt: You start in Rome at **42°N, 12°E** and travel **10° due west**, staying on the same line of latitude. Where are you now?
-    choices: ['42°N, 2°E', '42°N, 22°E', '32°N, 12°E', '52°N, 12°E']
-    answer: 0
-    feedback:
-      '1': Rome is **east** of the prime meridian. Going west moves you **toward** 0°, so the number gets smaller.
-      '2': Going west changes your **longitude**, not your latitude.
-      '3': Going west changes your **longitude**, not your latitude.
-    hints:
-      - Which number changes when you move east or west?
-      - East of the prime meridian, moving west brings you closer to 0°.
-    solution:
-      - Moving west changes only the **longitude**. Latitude stays 42°N.
-      - 'Rome is 12° east of the prime meridian; going 10° west leaves \(12 - 10 = 2\): you are at **42°N, 2°E**.'
+    type: investigation
+    prompt: |-
+      Gertie is a very lost goose holding her map upside down. She takes off from **10°N, 20°E**. She flies **30° due south**. Then she flies **40° due west**.
+
+      Follow her, one flight at a time.
+    parts:
+      - type: mc
+        prompt: Where is Gertie after flying 30° due south?
+        choices: ['20°S, 20°E', '40°S, 20°E', '20°N, 20°E', '10°N, 10°W']
+        answer: 0
+        feedback:
+          '1': You added 10 and 30. But she started north of the equator. Is she flying toward it, or away from it?
+          '2': The 20 is right, but she flew past the equator. Which side is she on now?
+          '3': You moved her east or west. Which direction did she fly?
+        hints:
+          - How many degrees south does it take her to reach the equator?
+          - After the equator, how many degrees of her flight are left?
+        solution:
+          - 'South changes only latitude. 10° takes her down to the equator, and that leaves 20° more: **20°S**. Her longitude stays 20°E.'
+      - type: mc
+        prompt: Now she flies 40° due west. Where does she land?
+        choices: ['20°S, 20°W', '20°S, 60°E', '20°S, 60°W', '20°N, 20°W']
+        answer: 0
+        feedback:
+          '1': Going west from the east side takes you **toward** the prime meridian, so the number can’t grow right away.
+          '2': You added 20 and 40. What happens when she reaches the prime meridian?
+          '3': Flying west doesn’t change her latitude. Look at where she was before this flight.
+        hints:
+          - This works just like the equator. How far west to reach the prime meridian?
+        solution:
+          - 20° takes her to the prime meridian, and that leaves 20° more on the west side. She lands at **20°S, 20°W**.
+      - type: number
+        prompt: From there, Gertie flies due north and lands at **15°N**. How many degrees did she fly on this last flight?
+        answer: 35
+        verify: 20 + 15
+        unit: degrees
+        hints:
+          - Can you just subtract 15 from 20? Think about where 20°S and 15°N are.
+          - Split the flight at the equator.
+        solution:
+          - 20°S to the equator is 20°. The equator to 15°N is another 15°.
+          - \(20 + 15 = 35\) degrees. The 5 you get by subtracting would be right only if both places were on the same side.
+      - type: mc
+        prompt: On her first flight, Gertie kept going south, yet her latitude number went 10, then 0, then 20. What does the number really tell you?
+        choices:
+          - How far she is from the equator
+          - How far she has flown so far
+          - How far she is from where she began
+          - How far she is from the South Pole
+        answer: 0
+        feedback:
+          '1': If that were true, the number could only ever go up. But hers went down to 0.
+          '2': At takeoff she was 0° from where she began, yet the number said 10. So it can’t be counting that.
+          '3': As she flew south she kept getting closer to the South Pole, so that number would only go down.
+        hints:
+          - Where was she when the number was 0?
+        solution:
+          - The number was 0 on the equator, because latitude counts how far you are **from the equator**. Longitude does the same thing from the prime meridian.
+    wrapUp: Latitude and longitude don’t count your trip. They count how far you are from a zero line, so the numbers shrink as you fly toward that line and grow again after you cross it.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K1.8, S1.2]
+    thinking: why
+    covers: [K1.4]
     type: mc
-    prompt: Petra had **no large river**, yet people lived there for hundreds of years. Which is the **best** explanation?
+    prompt: |-
+      Milo finally reaches the North Pole. The screen says **90°N**. Milo wants a world record: **91°N**. So Milo takes one big step in a straight line, in the most northern way possible.
+
+      What does the screen show now?
     choices:
-      - People built channels and storage tanks to collect rainwater, changing their environment to meet their needs.
-      - Petra was near the equator, so it rained every day.
-      - The people of Petra did not need water.
-      - Petra was built beside the Nile River.
+      - A bit under 90°N, because every step from the Pole heads south
+      - 91°N, because north carries on for as far as you walk
+      - Exactly 90°N, because latitude is stuck once you are at the Pole
+      - A bit under 90°S, because stepping past the Pole lands you in the south
     answer: 0
     feedback:
-      '1': Petra is at about 30°N, far from the equator, in a desert.
-      '2': Every community needs water. The question is how Petra **got** it.
-      '3': Check the map. Petra is east of Egypt, away from the Nile.
+      '1': Latitude only goes up to 90°N. Where would a place at 91°N even be?
+      '2': Milo moved, so Milo is no longer exactly at the Pole. Would the screen stay the same?
+      '3': 90°S is the South Pole, at the other end of the Earth. Could one step take Milo there?
     hints:
-      - Look at Petra on the globe or map, and reread "When the environment changes".
+      - Put your finger on the very top of a ball, then slide it any way you like. Is it higher or lower than the top?
+      - On the globe, what happens to the latitude as you slide away from the North Pole?
     solution:
-      - With no river, people **changed their environment**, building channels and tanks to store rainwater.
+      - Latitude counts how far north of the equator you are, and the North Pole is as far north as anything can be.
+      - So any step away from the Pole brings you closer to the equator. It is a step **south**, in whichever way you face.
+      - The screen shows a bit under 90°N. There is no 91°N. Milo has already gone as far north as anyone can go.
 
   - id: d3
     level: 3
-    covers: [K1.7, K1.8, S1.3]
-    type: mc
+    thinking: whatif
+    covers: [K1.4, K1.2, K1.7, K1.8, S1.3, U1.1]
+    type: investigation
     prompt: |-
-      After Vesuvius erupted, Pompeii's survivors moved to other towns. In Rome, people built aqueducts.
-      How are these two responses **different**?
-    choices:
-      - The survivors moved because the environment changed; the aqueduct builders changed the environment to meet their needs.
-      - Both are examples of a natural disaster.
-      - Both are examples of people moving to a river valley.
-      - The survivors changed the environment; the aqueduct builders moved away.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Only the eruption was a natural disaster. Aqueducts were built by people.
-      '2': Neither response is about moving to a river valley.
-      '3': This has them the wrong way round.
-    hints:
-      - Which response came **after** a change in the environment? Which one **made** a change?
-    solution:
-      - 'Pompeii: the environment changed (a volcano), and people **moved**.'
-      - 'Rome: people **changed the environment** (aqueducts) to meet their needs.'
+      In a made-up valley, the River Sill sits at **elevation 10 m**. Each summer it rises to **15 m**, then falls back, leaving rich mud on all the land it covered. The hillside climbs up from the river. People carry drinking water up from the river in heavy jars.
+    figure: |-
+      <svg viewBox="0 0 360 225" class="fig-svg" role="img" aria-label="A side view of a hillside rising from a river. The river is at elevation 10 metres. A dashed line shows the yearly flood at 15 metres. Lines mark elevations of 20, 25 and 30 metres up the hill.">
+        <g stroke="currentColor" opacity="0.3">
+          <line x1="40" y1="130" x2="340" y2="130"/><line x1="40" y1="95" x2="340" y2="95"/><line x1="40" y1="60" x2="340" y2="60"/>
+        </g>
+        <line x1="40" y1="165" x2="145" y2="165" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+        <line x1="40" y1="200" x2="80" y2="200" stroke="currentColor" stroke-width="4"/>
+        <path d="M80 200 L340 60 L340 212 L80 212 Z" fill="currentColor" opacity="0.12"/>
+        <line x1="80" y1="200" x2="340" y2="60" stroke="currentColor" stroke-width="3"/>
+        <g fill="currentColor" font-size="13">
+          <text x="34" y="204" text-anchor="end">10 m</text>
+          <text x="34" y="169" text-anchor="end">15 m</text>
+          <text x="34" y="134" text-anchor="end">20 m</text>
+          <text x="34" y="99" text-anchor="end">25 m</text>
+          <text x="34" y="64" text-anchor="end">30 m</text>
+          <text x="44" y="218">River</text>
+          <text x="44" y="159">Flood</text>
+          <text x="280" y="170" text-anchor="middle">Hillside</text>
+        </g>
+      </svg>
+    parts:
+      - type: build
+        prompt: Choose an elevation for your **fields** and one for your **houses**. Fields need the rich mud. Houses must stay dry. And no one will carry jars higher than **20 m**.
+        fields:
+          - { name: f, label: 'Fields', unit: m }
+          - { name: h, label: 'Houses', unit: m }
+        rules:
+          - { test: 'f > 10', fail: 'Those fields are in the river. Look for land above 10 m.' }
+          - { test: 'f <= 15', fail: 'The flood never climbs that high. Where does the rich mud land?' }
+          - { test: 'h > 15', fail: 'A normal summer would put those houses under water. Check the dashed line.' }
+          - { test: 'h <= 20', fail: 'The houses are dry, but who will carry jars that high?' }
+        examples:
+          - { f: 12, h: 18 }
+          - { f: 15, h: 20 }
+        counterexamples:
+          - { f: 18, h: 19 }
+          - { f: 12, h: 14 }
+          - { f: 12, h: 26 }
+        hints:
+          - Find the dashed line on the picture. Which job needs to be below it, and which job needs to be above it?
+        solution:
+          - Fields must be under the flood line, so above 10 m and up to 15 m. Houses must be above 15 m, and up to 20 m.
+          - 'Fields at 12 m and houses at 18 m work. So do fields at 15 m and houses at 20 m. Both put the mud on the crops and keep the beds dry.'
+      - type: mc
+        prompt: One summer, the river climbs to **22 m**. Think about **every** village that followed the rules, not only yours. What happens?
+        choices:
+          - All the houses flood, because the rules kept every house at 20 m or lower.
+          - Only the fields flood, because all the houses were above the 15 m line.
+          - Only houses below 18 m flood, because those are the lowest ones.
+          - Nothing changes, because the fields have always taken in the flood.
+        answer: 0
+        feedback:
+          '1': The 15 m line was for an ordinary summer. Compare the houses with 22 m this time.
+          '2': What was the highest a house could be? Is that above 22 m?
+          '3': The fields were safe to flood. Look at how high the water is now, compared with the houses.
+        hints:
+          - What was the highest elevation anyone could have put a house?
+        solution:
+          - No house could be above 20 m, and the water reached 22 m. So every house in every village floods.
+          - The rule that made sense for years stops working when the environment changes.
+      - type: mc
+        prompt: The village moves its houses up to **28 m**. Now the jars are too heavy to carry so far. Which plan would bring water right to the houses?
+        choices:
+          - A stone channel from a spring at 35 m, sloping down to the houses
+          - A stone channel from the river at 10 m, sloping up to the houses
+          - A stone channel from a pond at 20 m, running over to the houses
+          - Moving the fields up to 28 m, right beside the new houses
+        answer: 0
+        feedback:
+          '1': Pour a cup of water on a slope. Which way does it run?
+          '2': 20 m sounds high, but compare it with 28 m. Which way would that water run?
+          '3': The flood doesn’t normally reach 28 m, so these fields lose their mud. And where is the water for drinking?
+        hints:
+          - Which way does water run without anyone pushing it?
+          - Compare the elevation of each water source with the houses at 28 m.
+        solution:
+          - Water runs downhill, so a channel has to start **higher** than the place it serves.
+          - Only the spring at 35 m is above the houses at 28 m. A channel like this is the same idea as a Roman aqueduct.
+    wrapUp: A change in the environment made this village move. Then the villagers changed the environment themselves. Where people live and the land around them keep shaping each other.
+    hints: []
+    solution: []
 
   - id: d4
     level: 3
-    covers: [S1.2, K1.2, K1.5]
+    thinking: decide
+    covers: [S1.2, K1.2, K1.6, K1.8]
     type: open
     prompt: |-
-      You are choosing where to start a farming village thousands of years ago: in a **river valley** or on a
-      **dry, rocky hilltop**. Make your choice and justify it using at least **two geographical features**.
+      You are leading 50 families across a made-up land to a new home. **Site A** is a quiet bay with a small stream. It is perfect for boats, but the soil is thin and stony. **Site B** is a river valley with rich soil, but you can’t reach the sea from there by boat.
+
+      Choose one and defend it with two geographical features. Then say what your site lacks and how you would get it.
     modelAnswer: |-
-      I would choose the river valley. The river gives abundant water for people and crops, and the valley has
-      fertile soil that is good for farming. A moderate climate would help too. With more farming, my village
-      could grow food for more people and settle there for good. The rocky hilltop has poor soil and no water.
+      I choose Site B. The river gives us abundant water, and the fertile soil means we can grow plenty of food, so
+      the families can stay in one place. My site lacks a way to reach the sea, so travel and trade will be harder.
+      I would trade our extra crops with people from the coast by bringing them overland. Site A would be a fair
+      choice too, because the bay supports travel and trade, and its people could trade for food.
     rubric:
-      - I made a clear choice.
-      - I used at least **two** geographical features (water, fertile soil, moderate climate).
-      - I connected the features to farming or to settling in one place.
+      - I made a clear choice of site.
+      - I named two geographical features and explained how each one helps (for farming, travel or trade).
+      - I said what my site lacks.
+      - I explained how we could get it, such as by trading or by building something.

@@ -72,217 +72,382 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [S1.2, K1.2]
-    type: mc
-    figure: { kind: coord-grid, size: 6, points: [{ x: 4, y: 2, label: A }] }
-    prompt: What are the coordinates of point **A**?
-    choices: ['(4, 2)', '(2, 4)', '(4, 4)', '(2, 2)']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'That swaps the order. Go **across** first (4), then **up** (2).'
-      '2': 'A is 4 across, but only 2 up.'
-      '3': 'A is 2 up, but 4 across.'
+    type: text
+    figure: { kind: coord-grid, size: 6, points: [{ x: 4, y: 2, label: Fly }] }
+    prompt: A fly has landed on this grid of ceiling tiles. What are its coordinates? Type them like this, **(1, 6)**.
+    accept: ['(4, 2)', '(4,2)', '4, 2', '4,2']
     hints:
-      - Count across from the vertical axis first, then count up.
+      - Which way do you count first, across or up?
+      - Start at 0. Count across along the bottom until you are under the fly. Then count up.
     solution:
-      - 'A is **4** across and **2** up: (4, 2).'
+      - 'The fly is **4** across from the vertical axis and **2** up from the horizontal axis.'
+      - 'Across comes first, so it is at **(4, 2)**.'
 
   - id: w2
     level: 1
-    covers: [K1.2]
+    thinking: notice
+    covers: [K1.2, K1.3, S1.3]
     type: mc
-    prompt: 'In the ordered pair **(3, 7)**, what does the **7** tell you?'
-    choices:
-      - How far up from the horizontal axis the point is
-      - How far across from the vertical axis the point is
-      - The total distance from (0, 0)
-      - The point's label
+    prompt: 'A spider sits at **(5, 2)**. It climbs **3 units straight up**. Where is it now?'
+    choices: ['(5, 5)', '(8, 2)', '(8, 5)', '(5, 3)']
     answer: 0
     feedback:
-      '1': 'That is the **first** number, 3.'
-      '2': It isn't a total. Each number tells one direction.
-      '3': 'A label is a letter, like A or B.'
+      '1': 'The first number tells how far **across**. Going straight up doesn''t move the spider across.'
+      '2': 'Did the spider move sideways at all? Only one of the numbers should change.'
+      '3': 'The 3 is how far it climbed, not where it stopped. It started 2 up, then climbed 3 more.'
     hints:
-      - The first number is across. What is the second?
+      - Which number tells how far up a point is?
+      - Straight up means no moving left or right. So one number stays the same.
     solution:
-      - 'The second number, 7, tells how far **up** from the horizontal axis.'
+      - 'Going up changes only the **second** number: 2 + 3 = 5.'
+      - 'The first number stays 5, so the spider is at **(5, 5)**.'
 
   - id: w3
     level: 1
-    covers: [S1.1]
+    thinking: apply
+    covers: [S1.1, K1.1]
     type: mc
     figure: { kind: coord-grid, size: 6, points: [{ x: 5, y: 1, label: P }, { x: 1, y: 5, label: Q }, { x: 3, y: 4, label: R }, { x: 4, y: 3, label: S }] }
-    prompt: Which point is at **(5, 1)**?
-    choices: [P, Q, R, S]
-    fixedOrder: true
+    prompt: Four pumpkins grow in this pumpkin patch. Which pumpkin is at **(1, 5)**?
+    choices: [Q, P, R, S]
     answer: 0
     feedback:
-      '1': 'Q is at (1, 5): 1 across and 5 up.'
-      '2': 'R is at (3, 4).'
-      '3': 'S is at (4, 3).'
+      '1': 'P is 5 across and 1 up. That uses the same numbers in the other order.'
+      '2': 'R is 3 across and 4 up. Start again from 0 and go only 1 across.'
+      '3': 'S is 4 across and 3 up. Start again from 0 and go only 1 across.'
     hints:
-      - Go 5 across, then 1 up.
+      - Put your finger on 0. What does the first number tell you to do?
+      - Go 1 across, then 5 up.
     solution:
-      - 'Across 5, up 1: that''s point **P**.'
+      - 'Across 1, then up 5. That crossing is pumpkin **Q**.'
 
   - id: w4
     level: 1
+    thinking: apply
     covers: [S1.3, K1.3]
     type: mc
-    prompt: 'Start at **(2, 2)**. Move **3 right** and **4 up**. Where are you?'
-    choices: ['(5, 6)', '(6, 5)', '(5, 2)', '(3, 4)']
+    prompt: 'The swings are at **(2, 6)** and the slide is at **(5, 2)**. How do you get from the swings to the slide?'
+    choices: ['3 right and 4 down', '3 left and 4 up', '5 right and 2 down', '4 right and 3 down']
     answer: 0
     feedback:
-      '1': 'Right changes the first number: 2 + 3 = 5. Up changes the second: 2 + 4 = 6.'
-      '2': 'You also moved up 4.'
-      '3': 'That is just the moves, not where you end up.'
+      '1': 'That would take you from the slide back to the swings. Is the first number getting bigger or smaller?'
+      '2': 'Those are the slide''s own coordinates. You aren''t starting at 0: how far is it from 2 to 5?'
+      '3': 'The first numbers tell you about right and left. How far is it from 2 to 5?'
     hints:
-      - Right changes the first number. Up changes the second number.
+      - Look at the first numbers, 2 and 5. Then look at the second numbers, 6 and 2.
+      - Is 5 to the right or the left of 2? Is 2 higher or lower than 6?
     solution:
-      - 'Across: 2 + 3 = 5. Up: 2 + 4 = 6. You are at **(5, 6)**.'
+      - 'Across: from 2 to 5 is **3 right**.'
+      - 'Up and down: from 6 to 2 is **4 down**.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.3, K1.3]
+    thinking: flaw
+    covers: [S1.2, K1.2]
     type: mc
-    prompt: 'How do you move from **(7, 6)** to **(3, 2)**?'
-    choices: ['4 left and 4 down', '4 right and 4 up', '3 left and 2 down', '4 left and 4 up']
+    figure: { kind: coord-grid, size: 6, points: [{ x: 3, y: 1, label: A }, { x: 5, y: 4, label: B }] }
+    prompt: 'Jia looks at this grid and writes **A(4, 2)** and **B(6, 5)**. Both answers are wrong, and wrong in the same way. What is Jia doing?'
+    choices:
+      - 'Counting the corner at 0 as "1", then carrying on counting from there'
+      - 'Swapping the order, so she counts up first and then across'
+      - 'Counting the squares she passes instead of the numbered lines'
+      - 'Counting down from the top of the grid instead of up from the bottom'
     answer: 0
     feedback:
-      '1': 'The numbers get smaller, so you move left and down.'
-      '2': 'Those are the coordinates of where you end, not the moves.'
-      '3': 'From 6 to 2 is down, not up.'
+      '1': 'If she swapped the order, A would be (1, 3). Compare that with what she wrote.'
+      '2': 'Try it: there are 3 squares from the vertical axis to A, and 1 square up. That gives the right answer, (3, 1).'
+      '3': 'Counting down from the top, A would be 5 down. She wrote a 2.'
     hints:
-      - 'Across: from 7 to 3. Up and down: from 6 to 2.'
+      - First work out the correct coordinates of A and B yourself.
+      - Put each of Jia's answers beside the correct one. What is the same about the difference?
+      - Both of her numbers are 1 too big, every time. What could make a careful counter do that?
     solution:
-      - '7 → 3 is 4 **left**. 6 → 2 is 4 **down**.'
+      - 'The correct points are A(3, 1) and B(5, 4). Jia wrote A(4, 2) and B(6, 5).'
+      - 'Every one of her numbers is exactly **1 too big**.'
+      - 'That happens if you say "1" at the corner, where the axes meet. That corner is **0**, so the first step away from it is 1.'
+      - 'What we learned: a wrong answer that is wrong the same way each time is a clue to how someone was thinking.'
 
   - id: b2
     level: 2
-    covers: [S1.5, S1.4]
-    type: mc
-    figure: { kind: coord-grid, size: 8, points: [{ x: 2, y: 2, label: A }, { x: 7, y: 2, label: B }, { x: 2, y: 6, label: C }], polygon: [[2, 2], [7, 2], [2, 6]] }
-    prompt: What are the vertices of triangle **ABC**?
-    choices: ['A(2, 2), B(7, 2), C(2, 6)', 'A(2, 2), B(2, 7), C(6, 2)', 'A(2, 2), B(7, 2), C(6, 2)', 'A(0, 0), B(5, 0), C(0, 4)']
-    answer: 0
-    feedback:
-      '1': 'B and C have their numbers swapped. Across first, then up.'
-      '2': 'C is up high on the left, at (2, 6), not (6, 2).'
-      '3': 'The triangle doesn''t start at (0, 0). Read where each vertex really is.'
+    thinking: backwards
+    covers: [S1.3, S1.1, K1.3]
+    type: text
+    prompt: |-
+      A robot vacuum gave a bored cat a ride around a kitchen floor grid. Its log says:
+
+      1. **2 right, 3 up**
+      2. **4 right, 1 down**
+      3. **1 left, 2 up**
+
+      It stopped at **(8, 6)**, with the cat still on top. Where did the ride start? Type it like **(1, 6)**.
+    accept: ['(3, 2)', '(3,2)', '3, 2', '3,2']
     hints:
-      - Read each vertex across first, then up.
+      - You know the end, not the start. Which move in the log should you undo first?
+      - To undo "1 left, 2 up", you go 1 right and 2 down. Keep undoing, from the last move to the first.
+      - After undoing the last move you are at (9, 4). Now undo "4 right, 1 down".
     solution:
-      - 'A(2, 2), B(7, 2), C(2, 6)'
+      - 'Start from the end and undo each move, last move first. Every direction flips.'
+      - 'Undo "1 left, 2 up": go 1 right and 2 down, from (8, 6) to (9, 4).'
+      - 'Undo "4 right, 1 down": go 4 left and 1 up, to (5, 5).'
+      - 'Undo "2 right, 3 up": go 2 left and 3 down, to **(3, 2)**.'
+      - 'Check by riding forward: (3, 2), (5, 5), (9, 4), (8, 6). It works!'
 
   - id: b3
     level: 2
-    covers: [S1.4]
-    type: mc
-    prompt: 'Three vertices of a **square** are (1, 1), (4, 1) and (4, 4). What is the fourth vertex?'
-    choices: ['(1, 4)', '(4, 1)', '(1, 1)', '(5, 5)']
-    answer: 0
-    feedback:
-      '1': (4, 1) is already one of the vertices.
-      '2': (1, 1) is already one of the vertices.
-      '3': (5, 5) is outside the square's corners.
+    thinking: ways
+    covers: [S1.4, S1.5, U1.1]
+    type: build
+    figure: { kind: coord-grid, size: 8, points: [{ x: 4, y: 2, label: 'Flag (4, 2)' }, { x: 4, y: 5, label: 'Flag (4, 5)' }] }
+    prompt: 'A Chinook blew away 2 of the 4 corner flags of a **square** play field. The flags at **(4, 2)** and **(4, 5)** are still there, along one side of the square. Where could the two missing flags go?'
+    fields:
+      - { name: a, label: 'Flag beside (4, 2): across' }
+      - { name: b, label: 'Flag beside (4, 2): up' }
+      - { name: c, label: 'Flag beside (4, 5): across' }
+      - { name: d, label: 'Flag beside (4, 5): up' }
+    rules:
+      - { test: 'b == 2', fail: 'A side of this square runs straight across from the flag at (4, 2). Which number stays the same when you go straight across?' }
+      - { test: 'd == 5', fail: 'A side of this square runs straight across from the flag at (4, 5). Which number stays the same when you go straight across?' }
+      - { test: 'a == c', fail: 'The two new flags make the far side of the square, so one must be straight above the other.' }
+      - { test: '(a - 1) * (a - 7) == 0', fail: 'All four sides of a square are the same length. How long is the side from (4, 2) to (4, 5)? Your new flags must be that far across.' }
+    examples:
+      - { a: 7, b: 2, c: 7, d: 5 }
+      - { a: 1, b: 2, c: 1, d: 5 }
+    counterexamples:
+      - { a: 6, b: 2, c: 6, d: 5 }
+      - { a: 7, b: 5, c: 7, d: 2 }
+      - { a: 7, b: 2, c: 1, d: 5 }
     hints:
-      - The sides go 3 units across and 3 units up. Sketch it on a grid.
+      - How long is the side you can already see?
+      - The side from (4, 2) to (4, 5) is 3 units long. So the other sides are 3 units long too.
+      - From a flag, you could go 3 units right. Could you also go another way?
     solution:
-      - 'The square goes from 1 to 4 across and from 1 to 4 up. The missing corner is **(1, 4)**.'
+      - 'The side from (4, 2) to (4, 5) goes from 2 to 5, so it is **3 units** long. Every side of the square must be 3 units.'
+      - 'Going **3 right**, the new flags are at **(7, 2)** and **(7, 5)**.'
+      - 'Going **3 left**, the new flags are at **(1, 2)** and **(1, 5)**.'
+      - 'Both work, because one side doesn''t tell you which way the square goes. Two corners weren''t enough to fix its location, but four corners are.'
 
   - id: b4
     level: 2
-    covers: [S1.3, S1.2]
+    thinking: notice
+    covers: [S1.4, S1.5, U1.1]
     type: mc
-    prompt: 'Point M is **3 units right** of (2, 5). What are its coordinates?'
-    choices: ['(5, 5)', '(2, 8)', '(5, 8)', '(3, 5)']
+    figure: { kind: coord-grid, size: 7, points: [{ x: 1, y: 1, label: A }, { x: 6, y: 4, label: B }, { x: 6, y: 1, label: C }, { x: 1, y: 4, label: D }], polygon: [[1, 1], [6, 4], [6, 1], [1, 4]] }
+    prompt: 'Hamid wanted to draw a rectangle hat for his snowman. He joined his four points in the order A, B, C, D and back to A. He got a bow tie. The snowman looks very fancy, but what order would have made the hat?'
+    choices: ['A, C, B, D', 'A, B, D, C', 'A, D, C, B', 'None. A point must move.']
     answer: 0
     feedback:
-      '1': 'Moving right changes the **first** number, not the second.'
-      '2': 'Moving right doesn''t change the second number.'
-      '3': 'Add 3 to 2, don''t replace it with 3.'
+      '1': 'Try it with your finger. A to B cuts right across the middle, so this still crosses over.'
+      '2': 'Try it with your finger. D to C cuts right across the middle, so this still crosses over.'
+      '3': 'A(1, 1), C(6, 1), B(6, 4) and D(1, 4) are already the corners of a rectangle. Only the joining order is wrong.'
     hints:
-      - Only the across number changes when you move right.
+      - Read the coordinates of the four points. Which points are side by side, with the same up number?
+      - A rectangle's sides run along the grid lines. So each line you draw should change only one number.
+      - 'Start at A(1, 1). Which point can you reach by going only right?'
     solution:
-      - '2 + 3 = 5 across, still 5 up: **(5, 5)**.'
-
-  - id: b5
-    level: 2
-    covers: [S1.4, U1.1]
-    type: mc
-    prompt: 'What shape do the points (2, 3), (2, 7), (6, 7) and (6, 3) make?'
-    choices: ['A square', 'A triangle', 'A rectangle that is not a square', 'A straight line']
-    answer: 0
-    feedback:
-      '1': There are 4 vertices, so it isn't a triangle.
-      '2': 'Check the side lengths: across is 6 − 2 = 4, and up is 7 − 3 = 4. They are equal!'
-      '3': The points aren't all on one line.
-    hints:
-      - Find how long the sides are across and up.
-    solution:
-      - 'Across: 2 to 6 is 4 units. Up: 3 to 7 is 4 units. All four sides are 4 units, so it''s a **square**.'
+      - 'The points are A(1, 1), B(6, 4), C(6, 1) and D(1, 4).'
+      - 'A rectangle here has sides along the grid lines, so each joining line should change only one number.'
+      - 'A to C goes across. C to B goes up. B to D goes across. D to A goes down. So the order is **A, C, B, D**.'
+      - 'What we learned: the same vertices can give a different drawing. A list of vertices also needs the order for joining them.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.4, U1.1]
-    type: mc
-    prompt: 'A(1, 2) and B(5, 2) are two vertices of a triangle. Point C should make a triangle with **two equal sides**, CA and CB. Which point works?'
-    choices: ['(3, 5)', '(5, 5)', '(1, 5)', '(4, 5)']
-    answer: 0
-    feedback:
-      '1': 'C would be straight above B, so CB is much shorter than CA.'
-      '2': 'C would be straight above A, so CA is much shorter than CB.'
-      '3': 'C is closer to B than to A, so the sides aren''t equal.'
-    hints:
-      - For CA and CB to be equal, C must be the same distance across from A as from B.
-    solution:
-      - 'Halfway between x = 1 and x = 5 is x = 3. A point straight above the middle, like **(3, 5)**, is the same distance from A and B.'
+    thinking: whatif
+    covers: [K1.2, S1.1, S1.2]
+    type: investigation
+    prompt: |-
+      Doug is a carrier pigeon. He flies notes between tree forts in a park laid out as a grid. Doug has one problem: he reads every address **backwards**. If a note says (3, 8), he flies to (8, 3).
+    parts:
+      - type: text
+        prompt: 'A note is addressed to **(6, 1)**. Where does Doug take it? Type it like **(2, 9)**.'
+        accept: ['(1, 6)', '(1,6)', '1, 6', '1,6']
+        hints:
+          - What does Doug do to the two numbers?
+        solution:
+          - 'Doug swaps the numbers, so he flies to **(1, 6)**: 1 across and 6 up. That is a different place from 6 across and 1 up.'
+      - type: mc
+        prompt: 'Tia’s fort is at **(2, 7)**. She sends a note to her friend at **(7, 2)**, and she gives it to Doug. What happens?'
+        choices:
+          - The note comes back to Tia’s own fort.
+          - The note reaches her friend at (7, 2).
+          - The note goes to a stranger at (7, 7).
+          - The note goes to a stranger at (2, 2).
+        answer: 0
+        feedback:
+          '1': 'The note says (7, 2), but Doug reads it backwards. Where does he actually go?'
+          '2': 'Doug only swaps the order of the numbers. He doesn''t make a number repeat.'
+          '3': 'Doug only swaps the order of the numbers. He doesn''t make a number repeat.'
+        hints:
+          - Write down the address on the note. Then read it backwards.
+        solution:
+          - 'The note says (7, 2). Doug reads it as (2, 7).'
+          - 'That is Tia’s own fort. Doug proudly delivers her own note back to her.'
+      - type: text
+        prompt: 'Tia gets clever. She wants Doug to land at **(7, 2)**. What address should she write on the note? Type it like **(2, 9)**.'
+        accept: ['(2, 7)', '(2,7)', '2, 7', '2,7']
+        hints:
+          - Doug will swap whatever she writes. So what must be written before the swap?
+        solution:
+          - 'Work backwards from where Doug should land. To land at (7, 2), the note must say the swap of that: **(2, 7)**.'
+          - 'It looks like she is writing to herself, but Doug’s mistake fixes it.'
+      - type: build
+        prompt: 'Some forts never have this problem. Doug reaches them even when the address is written the normal way. Give the address of a fort like that, with neither number 0.'
+        fields:
+          - { name: a, label: 'First number' }
+          - { name: b, label: 'Second number' }
+        rules:
+          - { test: 'a > 0 && b > 0', fail: 'Use a fort away from both axes, so neither number is 0.' }
+          - { test: 'a == b', fail: 'Read your address backwards. Is that the same place?' }
+        examples:
+          - { a: 3, b: 3 }
+          - { a: 8, b: 8 }
+        counterexamples:
+          - { a: 2, b: 5 }
+          - { a: 7, b: 2 }
+        hints:
+          - 'Doug is right only if the address is the same read forwards and backwards.'
+          - 'What must be true about the two numbers for swapping them to change nothing?'
+        solution:
+          - 'Swapping must change nothing, so the two numbers must be **the same**: (1, 1), (2, 2), (3, 3) and so on.'
+          - 'Only at those forts does swapping the numbers land Doug in the same place.'
+    wrapUp: 'An ordered pair is an address, and the order is part of it. Across first, then up. Swapping changes the place, unless both numbers match.'
 
   - id: d2
     level: 3
-    covers: [K1.2]
-    type: mc
-    prompt: 'Ava says the point **(0, 4)** is on the **horizontal** axis. Is she right?'
-    choices:
-      - 'No. 0 across means it is on the vertical axis, 4 units up.'
-      - Yes. It has a 0 in it.
-      - 'Yes. (0, 4) and (4, 0) are the same point.'
-      - 'No. (0, 4) is not on any axis.'
-    answer: 0
-    feedback:
-      '1': 'Having a 0 isn''t enough. Which number is 0?'
-      '2': 'Order matters. They are different points.'
-      '3': 'Points with a 0 coordinate are on an axis.'
-    hints:
-      - 'If the across number is 0, how far across from the vertical axis is the point?'
-    solution:
-      - '0 across means it is right on the **vertical** axis, 4 up. (4, 0) would be on the horizontal axis.'
+    thinking: breakdown
+    covers: [S1.3, K1.3, U1.2]
+    type: investigation
+    prompt: |-
+      Long ago, your school buried a time capsule at a crossing on this playground grid, which runs from 0 to 8. Nobody remembers where. Luckily, you have a rude talking metal detector.
+
+      Stand on any crossing and it tells you which way to go, then adds "obviously". It only says left or right if you need to go that way. It only says up or down if you need to go that way.
+    parts:
+      - type: multi
+        figure: { kind: coord-grid, size: 8, points: [{ x: 4, y: 4, label: You }] }
+        prompt: 'You stand at **(4, 4)**. It says, "Right and down, obviously." Which of these could be where the capsule is? Choose all that fit.'
+        choices: ['(6, 2)', '(5, 1)', '(2, 6)', '(6, 6)', '(4, 2)', '(7, 4)']
+        answer: [0, 1]
+        hints:
+          - 'Right means the first number is bigger than 4. What does down mean?'
+          - 'Both words must be true. If it were at (4, 2), would the detector have said "right"?'
+        solution:
+          - 'Right means the first number is **more than 4**. Down means the second number is **less than 4**.'
+          - '(6, 2) and (5, 1) fit both words.'
+          - '(4, 2) needs only "down", and (7, 4) needs only "right". (2, 6) and (6, 6) are too high.'
+      - type: number
+        figure: { kind: coord-grid, size: 8, points: [{ x: 4, y: 4, label: First }, { x: 7, y: 1, label: Now }] }
+        prompt: 'You walk to **(7, 1)**. It says, "Left and up, obviously." Use **both** answers. How many crossings could still hide the capsule?'
+        answer: 4
+        verify: 2 * 2
+        hints:
+          - 'Across: it is right of 4 and left of 7. Which first numbers does that leave?'
+          - 'Up: it is below 4 and above 1. Which second numbers does that leave?'
+        solution:
+          - 'First number: more than 4 and less than 7, so **5 or 6**.'
+          - 'Second number: less than 4 and more than 1, so **2 or 3**.'
+          - 'The crossings left are (5, 2), (5, 3), (6, 2) and (6, 3). That is **4** out of 81 crossings on the whole grid.'
+      - type: text
+        figure: { kind: coord-grid, size: 8, points: [{ x: 5, y: 2 }, { x: 5, y: 3, label: Now }, { x: 6, y: 2 }, { x: 6, y: 3 }] }
+        prompt: 'You stand at **(5, 3)**. It says only, "Right, obviously." Use **all** the clues so far. Where is the capsule? Type it like **(1, 6)**.'
+        accept: ['(6, 3)', '(6,3)', '6, 3', '6,3']
+        hints:
+          - The detector didn't say up or down. What does that tell you about the second number?
+        solution:
+          - 'It didn''t say up or down, so the capsule is at the same height: its second number is **3**.'
+          - 'Right of 5, among the crossings left, means the first number is 6. The capsule is at **(6, 3)**.'
+    wrapUp: 'Left and right talk about the first number. Up and down talk about the second. Each clue cuts away part of the grid, so three short clues can find one exact crossing.'
 
   - id: d3
     level: 3
-    covers: [S1.5]
-    type: number
-    prompt: 'A rectangle has vertices (2, 1), (9, 1), (9, 5) and (2, 5). What is its **perimeter**, in grid units?'
-    answer: 22
-    verify: 2 * ((9 - 2) + (5 - 1))
-    hints:
-      - 'Length across: 9 − 2. Height: 5 − 1.'
-    solution:
-      - 'Across: 9 − 2 = 7 units. Up: 5 − 1 = 4 units.'
-      - 'Perimeter: 7 + 4 + 7 + 4 = **22** units.'
+    thinking: model
+    covers: [S1.3, K1.3, S1.1]
+    type: investigation
+    figure: { kind: coord-grid, size: 8, points: [{ x: 1, y: 2, label: Ravi }, { x: 7, y: 4, label: Lena }] }
+    prompt: |-
+      Ravi lives at **(1, 2)** and Lena lives at **(7, 4)**. They are building the world's biggest snowman, at a street corner between their homes. Streets run along the grid lines, and one block is one unit.
+
+      Their deal: at a **fair corner**, both walk the same number of blocks, and nobody walks an extra block. Every block must take them closer to the other person's home.
+    parts:
+      - type: number
+        prompt: 'By the streets, how many blocks is it from Ravi''s home to Lena''s home?'
+        answer: 8
+        verify: (7 - 1) + (4 - 2)
+        hints:
+          - You can't cut through the middle. How many blocks right? How many blocks up?
+        solution:
+          - 'From 1 to 7 is 6 blocks right. From 2 to 4 is 2 blocks up. That is \(6 + 2 = 8\) blocks.'
+      - type: build
+        prompt: Find a fair corner for the snowman.
+        fields:
+          - { name: a, label: 'Across' }
+          - { name: u, label: 'Up' }
+        rules:
+          - { test: 'a >= 1 && a <= 7 && u >= 2 && u <= 4', fail: 'At that corner, somebody has to walk away from the other person''s home for a while. Stay between their homes.' }
+          - { test: '(a - 1) + (u - 2) == 4', fail: 'Count Ravi''s blocks to your corner, then Lena''s. They should match.' }
+        examples:
+          - { a: 4, u: 3 }
+          - { a: 5, u: 2 }
+          - { a: 3, u: 4 }
+        counterexamples:
+          - { a: 4, u: 4 }
+          - { a: 3, u: 5 }
+          - { a: 7, u: 2 }
+        hints:
+          - The trip is 8 blocks. How many blocks should each person walk?
+          - Each walks 4 blocks. Ravi can mix right and up in any way that adds up to 4.
+        solution:
+          - 'The trip is 8 blocks, so each walks **4**.'
+          - '(4, 3) works: Ravi goes 3 right and 1 up, and Lena goes 3 left and 1 down.'
+          - '(5, 2) works too: Ravi goes 4 right, and Lena goes 2 left and 2 down.'
+      - type: number
+        prompt: 'How many fair corners are there in all?'
+        answer: 3
+        verify: (4 - 2) + 1
+        hints:
+          - Ravi can go up 0 blocks, 1 block or 2 blocks. Try each one.
+          - For each choice, how many blocks right does he need to make 4?
+        solution:
+          - 'Ravi walks 4 blocks and can go up 0, 1 or 2 of them.'
+          - 'Up 0 and right 4: **(5, 2)**. Up 1 and right 3: **(4, 3)**. Up 2 and right 2: **(3, 4)**.'
+          - 'That is **3** fair corners. The "exact middle", (4, 3), is only one of them.'
+      - type: mc
+        prompt: 'What if Lena moves one block up, to **(7, 5)**? How many fair corners are there now?'
+        choices:
+          - 'None, since a 9-block trip can''t split into two equal walks of whole blocks.'
+          - 'One, since (4, 3) is still in the exact middle of their two homes.'
+          - 'Three, since moving by one block doesn''t change how many ways there are.'
+          - 'Four, since a longer trip gives Ravi more ways of mixing right and up.'
+        answer: 0
+        feedback:
+          '1': 'Count both walks to (4, 3) from the new home. Ravi walks 4 blocks. How many does Lena walk?'
+          '2': 'Find the new trip length first. How many blocks would each person have to walk?'
+          '3': 'More ways of mixing would help if each person could walk the same amount. Find the new trip length and split it.'
+        hints:
+          - How long is the trip now?
+          - Can that number of blocks be shared equally, if they must meet at a corner?
+        solution:
+          - 'The trip is now 6 right and 3 up, which is **9 blocks**.'
+          - 'Half of 9 is 4 and a half, but a corner is always a whole number of blocks away.'
+          - 'So there are **no fair corners**. One person would have to stop in the middle of a block.'
+    wrapUp: 'Reading two points tells you how to get between them: right or left from the first numbers, up or down from the second. Add those blocks up and you know the whole trip.'
 
   - id: d4
     level: 3
-    covers: [S1.3, K1.2]
+    thinking: design
+    covers: [U1.2, U1.1, S1.4, S1.5]
     type: open
-    prompt: 'Describe how to move from **(1, 8)** to **(6, 3)** using positional language. Then explain what each number in (6, 3) means.'
+    prompt: |-
+      Your cousin is on the phone with the same blank grid, from 0 to 8. You say, "Draw a house with a pointy roof near the middle." Your cousin's house comes out nothing like yours.
+
+      Invent your own polygon with **at least 4 corners**. Write exactly what you would say, including the order to join the corners, so your cousin's drawing lands in exactly the same place. Then say why "near the middle" wasn't good enough.
     modelAnswer: |-
-      From (1, 8), go 5 right (1 to 6) and 5 down (8 to 3). In (6, 3), the 6 means the point is 6 units across from the
-      vertical axis, and the 3 means it is 3 units up from the horizontal axis.
+      "Put dots at (2, 1), (6, 1), (6, 4), (4, 7) and (2, 4). Join them in that order, then go back to the first dot." That makes
+      a house with a pointy roof. "Near the middle" could mean lots of different places, but each ordered pair names exactly one crossing.
     rubric:
-      - I said 5 right and 5 down.
-      - I explained that the first number is the distance across from the vertical axis.
-      - I explained that the second number is the distance up from the horizontal axis.
+      - I gave an ordered pair for every corner of my polygon.
+      - I wrote each pair with across first and up second.
+      - I said what order to join the corners in.
+      - I explained that words like "near" leave many possible places, but coordinates give only one.

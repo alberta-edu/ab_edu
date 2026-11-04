@@ -574,6 +574,14 @@ a.concept-card:hover { border-color: var(--accent); }
 .problem__status { margin-left: auto; font-size: var(--step--1); font-weight: 700; }
 .problem__status--solved { color: var(--ok); }
 .problem__prompt { font-size: var(--step-1); line-height: 1.5; margin-bottom: 1rem; }
+.problem__move { margin: 0.9rem 0 0; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-size: var(--step--1); }
+.problem__story { padding: 0.9rem 1.1rem; border-left: 4px solid var(--l3); border-radius: var(--radius-sm); background: var(--surface-2); }
+.problem-parts { display: grid; gap: 1rem; }
+.problem-part { display: block; padding-top: 1rem; border-top: 1px dashed var(--line-strong); }
+.problem-part[hidden] { display: none; }
+.problem-part__title { margin: 0; color: var(--l3); font-size: var(--step-0); }
+.problem__wrap-up { margin-top: 1rem; padding: 0.9rem 1.1rem; border-radius: var(--radius-sm); background: var(--ok-soft); }
+.problem__wrap-up h5 { margin: 0 0 0.3rem; }
 .problem__figure { margin-bottom: 1rem; display: flex; justify-content: center; }
 .problem__figure svg { max-width: min(100%, 28rem); height: auto; }
 .problem__form { display: grid; gap: 0.9rem; }

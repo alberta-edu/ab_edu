@@ -103,205 +103,245 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.1, S1.1]
-    type: mc
-    prompt: A bag has **4 red** and **7 blue** marbles. What is the ratio of **red to blue**?
-    choices: ['4 : 7', '7 : 4', '4 : 11', '11 : 4']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'That is blue to red. Keep the order of the words: red first.'
-      '2': 'That is red to **all** the marbles, a part-whole ratio.'
-      '3': That compares all the marbles to the red ones.
+    thinking: apply
+    covers: [K1.1, K1.2, S1.1]
+    type: text
+    prompt: 'A pet shelter has **4 cats** and **9 dogs**. Write the ratio of **dogs to cats** with a colon.'
+    accept: ['9 : 4', '9:4']
     hints:
-      - Red comes first in the question, so it comes first in the ratio.
+      - Which animal comes first in the question? It comes first in the ratio.
     solution:
-      - 'Red to blue: **4 : 7**.'
+      - 'Dogs come first in the words, so they come first in the ratio: **9 : 4**.'
 
   - id: w2
     level: 1
-    covers: [K1.1, S1.1]
-    type: mc
-    prompt: The same bag has **4 red** and **7 blue** marbles. What is the ratio of **red to all** the marbles?
-    choices: ['4 : 11', '4 : 7', '7 : 11', '11 : 4']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'That compares red with blue, part to part.'
-      '2': 'That is blue to all.'
-      '3': That is all to red, the wrong order.
+    thinking: apply
+    covers: [K1.1, K1.2, S1.1]
+    type: fraction
+    prompt: 'At the same shelter, write the ratio of **cats to all the animals** as a fraction.'
+    answer: 4/13
+    verify: 4 / (4 + 9)
     hints:
-      - How many marbles are there altogether?
+      - How many animals are there altogether?
+      - The cats are the part. All the animals are the whole.
     solution:
-      - '4 + 7 = 11 marbles, so red to all is **4 : 11**.'
+      - '4 cats + 9 dogs = 13 animals altogether.'
+      - 'Cats to all the animals is 4 : 13, or \(\frac{4}{13}\).'
 
   - id: w3
     level: 1
-    covers: [K1.3]
+    thinking: notice
+    covers: [K1.3, S1.2]
     type: number
-    prompt: '**37** out of **100** squares are shaded. What percentage is shaded?'
+    figure: |-
+      <svg viewBox="-4 -4 208 208" class="fig-svg fig-svg--square" role="img" aria-label="A ten by ten grid. The top four rows and two more squares are shaded."><rect class="fig-rect" x="0" y="0" width="200" height="200"/><rect class="fig-hl" x="0" y="0" width="200" height="80"/><rect class="fig-hl" x="0" y="80" width="40" height="20"/><line class="fig-grid" x1="20" y1="0" x2="20" y2="200"/><line class="fig-grid" x1="0" y1="20" x2="200" y2="20"/><line class="fig-grid" x1="40" y1="0" x2="40" y2="200"/><line class="fig-grid" x1="0" y1="40" x2="200" y2="40"/><line class="fig-grid" x1="60" y1="0" x2="60" y2="200"/><line class="fig-grid" x1="0" y1="60" x2="200" y2="60"/><line class="fig-grid" x1="80" y1="0" x2="80" y2="200"/><line class="fig-grid" x1="0" y1="80" x2="200" y2="80"/><line class="fig-grid" x1="100" y1="0" x2="100" y2="200"/><line class="fig-grid" x1="0" y1="100" x2="200" y2="100"/><line class="fig-grid" x1="120" y1="0" x2="120" y2="200"/><line class="fig-grid" x1="0" y1="120" x2="200" y2="120"/><line class="fig-grid" x1="140" y1="0" x2="140" y2="200"/><line class="fig-grid" x1="0" y1="140" x2="200" y2="140"/><line class="fig-grid" x1="160" y1="0" x2="160" y2="200"/><line class="fig-grid" x1="0" y1="160" x2="200" y2="160"/><line class="fig-grid" x1="180" y1="0" x2="180" y2="200"/><line class="fig-grid" x1="0" y1="180" x2="200" y2="180"/></svg>
+    prompt: This grid has **100** equal squares. What **percentage** of the grid is shaded?
+    answer: 42
     unit: '%'
-    answer: 37
+    verify: 40 + 2
     hints:
-      - Percent means out of 100.
+      - How many squares are in each row? How many full rows are shaded?
     solution:
-      - '37 out of 100 = **37%**.'
+      - '4 full rows are 40 squares, and 2 more make 42 squares out of 100.'
+      - 'Percent means out of 100, so that is **42%**.'
 
   - id: w4
     level: 1
-    covers: [K1.1]
-    type: mc
-    prompt: Which of these is a **part-whole** ratio?
-    choices:
-      - The number of girls to the number of students in the class
-      - The number of girls to the number of boys
-      - The number of cats to the number of dogs
-      - The number of red cars to the number of blue cars
-    answer: 0
-    feedback:
-      '1': Girls and boys are both parts of the class. That's part to part.
-      '2': Cats and dogs are two parts. That's part to part.
-      '3': Red and blue cars are two parts. That's part to part.
+    thinking: apply
+    covers: [S1.2, U1.2]
+    type: number
+    prompt: 'Write \(0.7\) as a **percentage**.'
+    answer: 70
+    unit: '%'
+    verify: 7 * 10
     hints:
-      - Which one compares a part with the whole group it belongs to?
+      - '0.7 is 7 tenths. How many hundredths is that?'
     solution:
-      - 'Girls are part of the class; "students in the class" is the whole. **Part to whole.**'
+      - '\(0.7 = \frac{7}{10} = \frac{70}{100}\), so it is **70%**. It isn’t 7%, because 7% is only 0.07.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [U1.2, S1.2]
+    thinking: model
+    covers: [K1.3, S1.1, S1.2]
     type: number
-    prompt: Write **0.6** as a percentage.
+    prompt: 'A game character starts with **20** hearts. A very rude goose attacks, and she loses **7** of them. What **percentage** of her hearts does she still have?'
+    answer: 65
     unit: '%'
-    answer: 60
+    verify: 13 * 5
     hints:
-      - '0.6 = 0.60 = 60 hundredths.'
+      - The question is about the hearts she still has. How many is that?
+      - 'To get a percentage, you need a fraction out of 100. What can you multiply 20 by to get 100?'
     solution:
-      - '0.6 = \(\frac{60}{100}\) = **60%**'
+      - 'She still has \(20 - 7 = 13\) hearts, so the ratio is 13 : 20, or \(\frac{13}{20}\).'
+      - '\(\frac{13}{20} = \frac{65}{100}\), so she has **65%** of her hearts.'
+      - 'The 7 lost hearts are 35%. Together the two parts make 100%, which is all of the hearts.'
 
   - id: b2
     level: 2
-    covers: [S1.2, K1.2]
+    thinking: flaw
+    covers: [K1.1, S1.1, S1.2]
     type: number
-    prompt: 'The part-whole ratio **3 : 10** describes a part of a whole. Write it as a **decimal**.'
-    answer: 0.3
+    prompt: |-
+      Sami’s cereal bowl has **5** marshmallows and **20** oat bits. "This bowl is 25% marshmallows," says Sami, "because \(\frac{5}{20} = \frac{25}{100}\)."
+      The fractions are equal, but the claim is wrong. What percentage of the bowl is really marshmallows?
+    answer: 20
+    unit: '%'
+    verify: 5 * 4
     hints:
-      - '3 : 10 can be written as the fraction \(\frac{3}{10}\).'
+      - 'What does \(\frac{5}{20}\) compare: marshmallows to what?'
+      - A percentage is part to **whole**. How many pieces are in the whole bowl?
     solution:
-      - '3 : 10 = \(\frac{3}{10}\) = 3 tenths = **0.3**'
+      - '\(\frac{5}{20}\) compares marshmallows to oat bits. That is a part-part ratio.'
+      - 'The whole bowl has \(5 + 20 = 25\) pieces. So the part-whole ratio is 5 : 25, and \(\frac{5}{25} = \frac{20}{100}\), which is **20%**.'
 
   - id: b3
     level: 2
-    covers: [S1.2, U1.2]
-    type: mc
-    prompt: In a class of **25** students, **15** like soccer. What **percentage** of the class likes soccer?
-    choices: ['60%', '15%', '25%', '40%']
-    answer: 0
+    thinking: connect
+    covers: [S1.2, U1.2, K1.2]
+    type: multi
+    prompt: A game’s loading bar has **4** equal sections, and **3** are filled. Which of these describe the filled part of the **whole bar**? Choose all that do.
+    choices:
+      - '3 : 4'
+      - '0.75'
+      - '75%'
+      - '\(\frac{75}{100}\)'
+      - '0.34'
+      - '34%'
+      - '3 : 1'
+    answer: [0, 1, 2, 3]
     feedback:
-      '1': '15 is out of 25, not out of 100.'
-      '2': 25 is the number of students in the class.
-      '3': '40% is the part that does **not** like soccer (10 out of 25).'
+      '4': 'That just puts the digits 3 and 4 after a decimal point. Is 3 out of 4 really only about a third of the bar?'
+      '5': 'That just glues the digits together. Is the bar filled to about a third, or to much more?'
+      '6': 'That compares the filled part with the empty part. It’s a true ratio, but it’s part to part, not part to whole.'
     hints:
-      - '\(\frac{15}{25}\) = how many hundredths? Multiply the top and bottom by 4.'
+      - Start with the part-whole ratio. What is the part, and what is the whole?
+      - 'What fraction out of 100 is the same as \(\frac{3}{4}\)?'
     solution:
-      - '\(\frac{15}{25} = \frac{60}{100}\) = **60%**'
+      - 'Filled to the whole bar is 3 : 4, or \(\frac{3}{4}\).'
+      - '\(\frac{3}{4} = \frac{75}{100}\), which is 0.75 and 75%. All of these name the same part of the same whole.'
+      - '3 : 1 is also true of this bar, but it compares filled to empty.'
 
   - id: b4
     level: 2
-    covers: [U1.2, S1.2]
-    type: multi
-    prompt: 'Select **all** that show the same part-whole relationship as **4 : 5**.'
-    choices: ['\(\frac{4}{5}\)', '0.8', '80%', '5 : 4', '0.45', '45%']
-    answer: [0, 1, 2]
+    thinking: backwards
+    covers: [K1.1, S1.1, U1.1]
+    type: text
+    prompt: 'A sign on a tank of **8** fish says "goldfish : all fish = 3 : 8". The rest of the fish are guppies. Write the ratio of **goldfish to guppies** with a colon.'
+    accept: ['3 : 5', '3:5']
     hints:
-      - '\(\frac{4}{5} = \frac{?}{100}\)'
+      - How many goldfish are in the tank? How many fish are not goldfish?
     solution:
-      - '4 : 5 = \(\frac{4}{5} = \frac{80}{100}\) = 0.8 = 80% ✓'
-      - '5 : 4 is the reverse. 0.45 and 45% just use the digits 4 and 5.'
-
-  - id: b5
-    level: 2
-    covers: [S1.1, K1.1]
-    type: mc
-    prompt: A team played **12** games and won **7** of them. There were no ties. What is the ratio of **wins to losses**?
-    choices: ['7 : 5', '7 : 12', '5 : 7', '12 : 7']
-    answer: 0
-    feedback:
-      '1': '7 : 12 is wins to **all games**, a part-whole ratio.'
-      '2': That is losses to wins, the reverse order.
-      '3': That compares all games to wins.
-    hints:
-      - How many games did the team lose?
-    solution:
-      - '12 − 7 = 5 losses, so wins to losses is **7 : 5**.'
+      - 'The sign says 3 goldfish out of 8 fish.'
+      - 'So there are \(8 - 3 = 5\) guppies, and goldfish to guppies is **3 : 5**.'
+      - 'Both ratios describe the same tank, comparing different things.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.2, K1.3]
-    type: number
-    prompt: '**20** of the **50** students in Grade 5 take the bus. What **percentage** take the bus?'
-    unit: '%'
-    answer: 40
-    verify: 20 * 2
-    hints:
-      - '\(\frac{20}{50} = \frac{?}{100}\)'
-    solution:
-      - '\(\frac{20}{50} = \frac{40}{100}\) = **40%**'
+    thinking: whatif
+    covers: [S1.1, S1.2, K1.1, K1.3]
+    type: investigation
+    prompt: |-
+      Waffles the dog catches **6** of her first **10** frisbees. Then she falls asleep in the grass. Her owner doesn’t notice, and
+      throws **10** more frisbees, which all land beside her. Waffles misses all 10.
+    parts:
+      - type: number
+        prompt: What percentage of her first 10 throws did Waffles catch?
+        answer: 60
+        unit: '%'
+        verify: 6 * 10
+        hints:
+          - What fraction out of 100 is the same as 6 out of 10?
+        solution:
+          - '\(\frac{6}{10} = \frac{60}{100}\), which is **60%**.'
+      - type: number
+        prompt: Now count all 20 throws. What percentage did she catch?
+        answer: 30
+        unit: '%'
+        verify: 6 * 5
+        hints:
+          - How many catches does she have now? What is the new whole?
+        solution:
+          - 'She still has 6 catches, but the whole is now 20. \(\frac{6}{20} = \frac{30}{100}\), which is **30%**.'
+          - 'She didn’t lose a single catch. Her percentage fell because the whole grew.'
+      - type: text
+        prompt: Write the ratio of her **catches to her misses** so far, with a colon.
+        accept: ['6 : 14', '6:14']
+        hints:
+          - She missed some of the first 10 throws too.
+        solution:
+          - 'She missed 4 of the first 10 and all of the next 10, which is 14 misses. So catches to misses is **6 : 14**.'
+      - type: number
+        prompt: Waffles wakes up and catches every throw from now on. How many catches in a row does she need so that exactly **50%** of all her throws are catches?
+        answer: 8
+        unit: catches
+        verify: 14 - 6
+        hints:
+          - 'If 50% of her throws are catches, what must be true about her catches and her misses?'
+          - Does her number of misses change now? How many catches must she have to match it?
+        solution:
+          - '50% means half, so her catches must equal her misses.'
+          - 'She stays at 14 misses, so she needs 14 catches. She has 6, so she needs **8** more.'
+          - 'Check: 14 catches out of 28 throws is exactly half.'
+    wrapUp: A percentage depends on its whole. Waffles’ catches stayed the same, but the whole grew, so the percentage fell. And a part-part ratio can tell you about the part-whole one, because 50% happens exactly when the two parts are equal.
 
   - id: d2
     level: 3
-    covers: [S1.2, U1.2]
-    type: mc
-    prompt: 'In class A, **12 of 20** students walk to school. In class B, **14 of 25** walk. Which class has the **greater percentage** of walkers?'
-    choices:
-      - 'Class A (60%)'
-      - 'Class B (56%)'
-      - Class B, because 14 is more than 12.
-      - They are the same.
-    answer: 0
-    feedback:
-      '1': 'Check: \(\frac{14}{25} = \frac{56}{100}\), which is less than \(\frac{60}{100}\).'
-      '2': 'Class B is bigger, so comparing counts isn''t fair. Compare percentages.'
-      '3': '60% and 56% are different.'
+    thinking: design
+    covers: [S1.2, K1.3, U1.1]
+    type: build
+    prompt: |-
+      Two classes count their broccoli fans. Room A has **more** fans than Room B, but Room B has the **greater percentage** of fans.
+      Invent numbers that make this true. Class sizes like 10, 20, 25 or 50 are easiest to check.
+    fields:
+      - { name: a, label: 'Fans in Room A' }
+      - { name: x, label: 'Students in Room A' }
+      - { name: b, label: 'Fans in Room B' }
+      - { name: y, label: 'Students in Room B' }
+    rules:
+      - { test: 'a > 0 && b > 0 && a % 1 == 0 && b % 1 == 0 && x % 1 == 0 && y % 1 == 0', fail: 'Use whole numbers, with at least 1 fan in each room.' }
+      - { test: 'a <= x && b <= y', fail: 'A room can’t have more fans than students.' }
+      - { test: 'a > b', fail: 'Room A needs more fans than Room B.' }
+      - { test: 'a / x < b / y', fail: 'Room A has more fans, but check the percentages: Room B’s must be greater. Which room should be the bigger one?' }
+    examples:
+      - { a: 10, x: 50, b: 5, y: 10 }
+      - { a: 8, x: 20, b: 5, y: 10 }
+      - { a: 5, x: 25, b: 4, y: 10 }
+    counterexamples:
+      - { a: 8, x: 10, b: 5, y: 10 }
+      - { a: 5, x: 20, b: 8, y: 10 }
+      - { a: 12, x: 10, b: 5, y: 10 }
     hints:
-      - Change each fraction to hundredths.
+      - Can a small class have a big percentage with only a few fans?
+      - 'Make Room A big and Room B small. Try Room B with 5 fans out of 10.'
     solution:
-      - 'A: \(\frac{12}{20} = \frac{60}{100}\) = 60%. B: \(\frac{14}{25} = \frac{56}{100}\) = 56%.'
-      - '**Class A** has the greater percentage of walkers.'
+      - 'Room B: 5 fans out of 10 is 50%. Room A: 10 fans out of 50 is \(\frac{20}{100}\), which is 20%. Room A has more fans, but Room B has the greater percentage.'
+      - 'Room A with 8 out of 20 (40%) works too, against the same Room B.'
+      - 'A percentage compares a part to its **own** whole. So a percentage alone can’t tell you how many.'
 
   - id: d3
     level: 3
-    covers: [K1.1, U1.1]
+    thinking: evidence
+    covers: [K1.3, U1.1]
     type: mc
-    prompt: 'Leo says: "The ratio of boys to girls is 12 : 13, so \(\frac{12}{13}\) of the class are boys." What is wrong?'
+    prompt: |-
+      Every student in a class answers two polls. **Poll A:** "Pick your **one** favourite snack." It reports 60% chose popcorn and 50% chose grapes.
+      **Poll B:** "Tick **every** snack you like." It reports 60% ticked popcorn and 50% ticked grapes. One report must have a mistake. Which one?
     choices:
-      - '12 : 13 is part to part. Boys out of the whole class is 12 out of 25, so \(\frac{12}{25}\) are boys.'
-      - Nothing is wrong.
-      - 'It should be \(\frac{13}{12}\).'
-      - 'The ratio should be 13 : 12.'
+      - 'Poll A, because with one favourite each, the parts can’t add to more than 100%.'
+      - 'Poll B, because the same student can’t be counted two times in the same poll.'
+      - 'Both polls, because 60% and 50% add to more than 100% in each of the two polls.'
+      - 'Neither poll, because percentages from one class can add up to any number at all.'
     answer: 0
     feedback:
-      '1': 'A fraction of the class needs the **whole** class, 12 + 13 = 25, as the denominator.'
-      '2': That's girls compared to boys, and it is still part to part.
-      '3': 'The order 12 : 13 for boys to girls is right. The mix-up is part-part vs. part-whole.'
+      '1': 'Poll B lets a student tick both snacks. So what happens to a student who likes popcorn and grapes?'
+      '2': 'They add up the same, but do the two polls ask the same question? Can a student be in both groups in Poll B?'
+      '3': 'Think about Poll A. If every student is in only one group, what do all the groups add up to?'
     hints:
-      - How many students are in the whole class?
+      - In which poll can one student be in both groups?
+      - '100% means the whole class. What does 60% + 50% add up to?'
     solution:
-      - 'The class has 12 + 13 = 25 students.'
-      - 'Boys to the whole class is 12 : 25, so \(\frac{12}{25}\) of the class are boys.'
-
-  - id: d4
-    level: 3
-    covers: [S1.1, S1.2, U1.2]
-    type: open
-    prompt: 'A bag has **3 green** and **2 yellow** counters. Describe the bag using a **part-part ratio**, a **part-whole ratio**, a **fraction**, a **decimal** and a **percentage**.'
-    modelAnswer: |-
-      Green to yellow is 3 : 2 (part to part). Green to all counters is 3 : 5 (part to whole). As a fraction,
-      \(\frac{3}{5}\) of the counters are green. \(\frac{3}{5} = \frac{60}{100}\), so as a decimal that's 0.6 and as a
-      percentage 60%.
-    rubric:
-      - 'I wrote a correct part-part ratio (3 : 2 or 2 : 3, with words).'
-      - 'I wrote a correct part-whole ratio (3 : 5 or 2 : 5).'
-      - I matched it with the right fraction, decimal and percentage.
+      - '\(60 + 50 = 110\), which is more than 100%, the whole class.'
+      - 'In Poll A each student is in only one group, so the groups can’t add up to more than the whole class. That report has a mistake.'
+      - 'In Poll B a student can tick both, so some students are counted in both groups. Those parts can overlap, so the report could be true.'

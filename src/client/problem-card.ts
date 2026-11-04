@@ -30,7 +30,11 @@ class ProblemCard extends HTMLElement {
   connectedCallback() {
     if (this.spec) return;
     this.spec = JSON.parse(this.dataset.spec!);
-    this.key = this.dataset.key!;
+    this.key = this.dataset.key ?? '';
+    if (this.spec.type === 'investigation') {
+      this.setupInvestigation();
+      return;
+    }
     const form = this.q<HTMLFormElement>('.problem__form');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -42,7 +46,70 @@ class ProblemCard extends HTMLElement {
     this.q('[data-action="retry"]').addEventListener('click', () => this.retry());
     this.setupOrder();
     this.setupEvidence();
-    if (problemRecord(this.key)?.s) this.setStatus('solved', '✓ Solved before');
+    if (problemRecord(this.key)?.s) {
+      this.setStatus('solved', '✓ Solved before');
+      this.showMove();
+    }
+  }
+
+  /** A part reports to its investigation. Only the whole investigation counts in the student's progress. */
+  protected get isPart() {
+    return false;
+  }
+
+  private showMove() {
+    this.querySelector<HTMLElement>('[data-move]')?.removeAttribute('hidden');
+  }
+
+  // ------------------------------------------------------------ investigations
+
+  private setupInvestigation() {
+    const parts = [...this.querySelectorAll<HTMLElement>('problem-part')];
+    const wrapUp = this.q('[data-wrap-up]');
+    // Without JavaScript all parts show in order. A student who solved it before can read them all too.
+    if (problemRecord(this.key)?.s) {
+      this.setStatus('solved', '✓ Solved before');
+      this.showMove();
+    } else {
+      parts.slice(1).forEach((x) => (x.hidden = true));
+      wrapUp.hidden = true;
+    }
+    this.addEventListener('part-graded', (e) => {
+      e.stopPropagation();
+      const { correct } = (e as CustomEvent<{ correct: boolean }>).detail;
+      const part = (e.target as HTMLElement).closest<HTMLElement>('problem-part')!;
+      const next = parts[parts.indexOf(part) + 1];
+      if (correct && next) {
+        next.hidden = false;
+        next.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+        return;
+      }
+      // Report the first wrong answer and the finish: the two moments the pages care about.
+      if (correct || this.attempts === 0) {
+        const first = this.attempts === 0;
+        const firstTry = correct && first && !this.usedHelp && !problemRecord(this.key)?.a;
+        this.attempts++;
+        recordAttempt(this.key, correct);
+        this.dispatchEvent(
+          new CustomEvent<GradedDetail>('problem-graded', {
+            bubbles: true,
+            detail: { key: this.key, level: Number(this.dataset.level), correct, first, firstTry },
+          }),
+        );
+      }
+      if (correct) {
+        this.solved = true;
+        this.classList.add('problem--solved');
+        this.setStatus('solved', '✓ Solved');
+        wrapUp.hidden = false;
+        this.showMove();
+      }
+    });
+    this.addEventListener('part-help', (e) => {
+      e.stopPropagation();
+      this.usedHelp = true;
+      recordHelp(this.key, (e as CustomEvent<'hint' | 'solution'>).detail);
+    });
   }
 
   private get reviewMode() {
@@ -115,6 +182,13 @@ class ProblemCard extends HTMLElement {
         };
       case 'open':
         return { kind: 'rubric', checked: this.querySelectorAll('.rubric input:checked').length };
+      case 'build':
+        return {
+          kind: 'fields',
+          value: Object.fromEntries([...this.querySelectorAll<HTMLInputElement>('[data-field]')].map((x) => [x.dataset.field!, x.value])),
+        };
+      case 'investigation':
+        return null;
     }
   }
 
@@ -146,14 +220,17 @@ class ProblemCard extends HTMLElement {
     const first = this.attempts === 0;
     const firstTry = correct && first && !this.usedHelp && !problemRecord(this.key)?.a;
     this.attempts++;
-    recordAttempt(this.key, correct);
-
-    this.dispatchEvent(
-      new CustomEvent<GradedDetail>('problem-graded', {
-        bubbles: true,
-        detail: { key: this.key, level: Number(this.dataset.level), correct, first, firstTry },
-      }),
-    );
+    if (this.isPart) {
+      this.dispatchEvent(new CustomEvent('part-graded', { bubbles: true, detail: { correct } }));
+    } else {
+      recordAttempt(this.key, correct);
+      this.dispatchEvent(
+        new CustomEvent<GradedDetail>('problem-graded', {
+          bubbles: true,
+          detail: { key: this.key, level: Number(this.dataset.level), correct, first, firstTry },
+        }),
+      );
+    }
 
     if (correct) {
       this.solved = true;
@@ -161,6 +238,7 @@ class ProblemCard extends HTMLElement {
       this.markChoices(true);
       this.lock();
       this.setStatus('solved', firstTry ? '★ First try!' : '✓ Solved');
+      this.showMove();
       const extra = this.spec.type === 'open' ? ' Your answer covers the key ideas.' : '';
       this.showFeedback('correct', `${pick(PRAISE)}${extra}`);
       this.q('[data-action="solution"]').textContent = 'Compare with the worked solution';
@@ -247,11 +325,16 @@ class ProblemCard extends HTMLElement {
     this.q('.problem__hints').hidden = false;
     hidden.hidden = false;
     this.usedHelp = true;
-    recordHelp(this.key, 'hint');
+    this.noteHelp('hint');
     const left = this.querySelectorAll('.problem__hints li[hidden]').length;
     const btn = this.q<HTMLButtonElement>('[data-action="hint"]');
     btn.querySelector('.hint-count')!.textContent = `(${left})`;
     if (!left) btn.disabled = true;
+  }
+
+  private noteHelp(kind: 'hint' | 'solution') {
+    if (this.isPart) this.dispatchEvent(new CustomEvent('part-help', { bubbles: true, detail: kind }));
+    else recordHelp(this.key, kind);
   }
 
   private toggleSolution() {
@@ -261,7 +344,7 @@ class ProblemCard extends HTMLElement {
     if (!sol.hidden) {
       if (!this.solved) {
         this.usedHelp = true;
-        recordHelp(this.key, 'solution');
+        this.noteHelp('solution');
       }
       btn.textContent = 'Hide solution';
       sol.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
@@ -292,4 +375,12 @@ class ProblemCard extends HTMLElement {
   }
 }
 
+/** One part of an investigation: grades itself and reports to the card around it. */
+class ProblemPart extends ProblemCard {
+  protected override get isPart() {
+    return true;
+  }
+}
+
 if (!customElements.get('problem-card')) customElements.define('problem-card', ProblemCard);
+if (!customElements.get('problem-part')) customElements.define('problem-part', ProblemPart);

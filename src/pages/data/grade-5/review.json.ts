@@ -27,7 +27,8 @@ export const GET: APIRoute = () => {
       title: c.shortTitle,
       subject: SUBJECTS.find((s) => s.slug === c.subject)!.name,
       url: href(conceptPath(c)),
-      problems: c.problems.map((p, i) => ({ key: problemKey(c, p), level: p.level, html: renderProblem(c, p, i + 1) })),
+      // Investigations are long and teach as you go, so they stay out of the quick review rounds.
+      problems: c.problems.filter((p) => p.type !== 'investigation').map((p, i) => ({ key: problemKey(c, p), level: p.level, html: renderProblem(c, p, i + 1) })),
       terms: c.keyTerms.map((t) => ({ term: t.term, html: md(t.definition) })),
     };
   }

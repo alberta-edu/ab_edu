@@ -104,186 +104,403 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.2]
-    type: number
-    prompt: '\(214 \times 13\) = ?'
-    answer: 2782
-    verify: 214 * 13
+    thinking: notice
+    covers: [S1.1]
+    type: mc
+    figure: { kind: area-model, a: 238, b: 34 }
+    prompt: 'This picture shows \(238 \times 34\). The **top row** adds up to \(7\,140\). Which multiplication does the top row stand for?'
+    choices:
+      - '\(238 \times 30\)'
+      - '\(238 \times 3\)'
+      - '\(238 \times 4\)'
+      - '\(200 \times 34\)'
+    answer: 0
+    feedback:
+      '1': 'Look at the label beside the top row. The 3 in 34 is in the tens place, so it is worth more than 3.'
+      '2': 'That one is the bottom row. Check the label beside the top row.'
+      '3': 'That is the left column, going down. The question is about the row going across.'
     hints:
-      - 'First find 214 × 3, then 214 × 10.'
+      - Look at the number written at the left of the top row.
+      - Every box in that row is one part of 238 multiplied by that number.
     solution:
-      - '\(214 \times 3 = 642\) and \(214 \times 10 = 2\,140\).'
-      - '\(642 + 2\,140 = 2\,782\)'
+      - 'The top row is labelled 30, and its boxes are \(200 \times 30\), \(30 \times 30\) and \(8 \times 30\).'
+      - 'Together they make \(238 \times 30 = 7\,140\). That is the second row of the algorithm, the one with the 0 placeholder.'
 
   - id: w2
     level: 1
-    covers: [S1.3]
+    thinking: apply
+    covers: [S1.2]
     type: number
-    prompt: '\(856 \div 4\) = ?'
-    answer: 214
-    verify: 856 / 4
+    prompt: '\(406 \times 23\) = ?'
+    answer: 9338
+    verify: 406 * 23
     hints:
-      - 'Start with the hundreds: 8 ÷ 4.'
+      - 'Which two rows will you need? The 2 in 23 is worth 20.'
+      - 'First find \(406 \times 3\), then \(406 \times 20\). What does the 0 in 406 do?'
     solution:
-      - '8 hundreds ÷ 4 = 2 hundreds. 5 tens ÷ 4 = 1 ten R 1 ten. 16 ones ÷ 4 = 4 ones.'
-      - '\(856 \div 4 = 214\)'
+      - '\(406 \times 3 = 1\,218\)'
+      - '\(406 \times 20 = 8\,120\)'
+      - '\(1\,218 + 8\,120 = 9\,338\)'
 
   - id: w3
     level: 1
-    covers: [S1.2]
+    thinking: apply
+    covers: [S1.3]
     type: number
-    prompt: '\(375 \times 24\) = ?'
-    answer: 9000
-    verify: 375 * 24
+    prompt: '\(738 \div 6\) = ?'
+    answer: 123
+    verify: 738 / 6
     hints:
-      - '375 × 4, then 375 × 20.'
+      - 'Start with the hundreds. How many groups of 6 fit in 7?'
+      - 'After the hundreds, 1 is left. Bring down the 3 to make 13.'
     solution:
-      - '\(375 \times 4 = 1\,500\) and \(375 \times 20 = 7\,500\).'
-      - '\(1\,500 + 7\,500 = 9\,000\)'
+      - '7 hundreds ÷ 6 = 1 hundred, with 1 hundred left over.'
+      - '13 tens ÷ 6 = 2 tens, with 1 ten left over.'
+      - '18 ones ÷ 6 = 3 ones. So \(738 \div 6 = 123\).'
 
   - id: w4
     level: 1
-    covers: [S1.1]
+    thinking: estimate
+    covers: [S1.5]
     type: mc
-    prompt: In \(347 \times 26\), what is the **second** partial product, \(347 \times 20\)?
-    choices: ['6 940', '694', '2 082', '9 022']
+    prompt: 'Without doing the long division: about how big is the answer to \(478 \div 6\)?'
+    choices:
+      - about 80
+      - about 8
+      - about 800
+      - about 60
     answer: 0
     feedback:
-      '1': '694 is 347 × 2. The 2 is worth 20, so you need 347 × 20.'
-      '2': '2 082 is the first partial product, 347 × 6.'
-      '3': '9 022 is the final product, after adding both partial products.'
+      '1': 'Test it: \(8 \times 6\) is only 48. You need to reach nearly 480.'
+      '2': 'Test it: \(800 \times 6 = 4\,800\). That is ten times too big.'
+      '3': 'Test it: \(60 \times 6 = 360\). There is a closer friendly number.'
     hints:
-      - The 2 in 26 is in the tens place.
+      - Which number close to 478 divides easily by 6?
+      - 'Think of \(48 \div 6\).'
     solution:
-      - '\(347 \times 20 = 347 \times 2 \times 10 = 694 \times 10 = 6\,940\)'
+      - '478 is close to 480, and 480 divides easily by 6.'
+      - '\(480 \div 6 = 80\), so the answer is about **80**.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.3]
-    type: number
-    prompt: '\(917 \div 7\) = ?'
-    answer: 131
-    verify: 917 / 7
-    hints:
-      - '9 ÷ 7 = 1 R 2. Bring down the 1 to make 21.'
-    solution:
-      - '9 ÷ 7 = 1 R 2 → 21 ÷ 7 = 3 → 7 ÷ 7 = 1'
-      - '\(917 \div 7 = 131\)'
+    thinking: model
+    covers: [S1.4, S1.3, S1.6]
+    type: investigation
+    prompt: |-
+      A bakery bakes **230** cinnamon buns for the fall fair and packs them into boxes of **6**.
+      One division, three questions. Watch how the answers change.
+    parts:
+      - type: number
+        prompt: How many **full** boxes can go on the sale table?
+        answer: 38
+        verify: (230 - 2) / 6
+        hints:
+          - 'Work out \(230 \div 6\). What is the quotient, and what is the remainder?'
+        solution:
+          - '\(230 \div 6 = 38 \text{ R } 2\). Only full boxes count, so **38**.'
+      - type: number
+        prompt: The driver has to carry **every** bun to the fair in a box, even if a box isn’t full. How many boxes does the driver need?
+        answer: 39
+        verify: 38 + 1
+        hints:
+          - Where do the 2 leftover buns ride?
+        solution:
+          - 'The 2 extra buns still need a box, so 38 + 1 = **39**.'
+      - type: number
+        prompt: The baker gets to eat any buns that can’t make a full box. How many buns does the baker eat?
+        answer: 2
+        verify: 230 - 38 * 6
+        hints:
+          - Which part of the division answer is this question about?
+        solution:
+          - 'This question asks for the remainder itself: **2** buns.'
+    wrapUp: One division can give three different answers. The numbers don’t decide what the remainder means. The story does.
 
   - id: b2
     level: 2
-    covers: [S1.4, S1.6]
+    thinking: model
+    covers: [S1.2, S1.6]
     type: number
-    prompt: '**185** students are going on a trip. Each van holds **8** students. How many vans are needed?'
-    answer: 24
+    prompt: |-
+      The Centipede Hockey League has a team of **18** players. Each cartoon centipede has **134** legs and
+      wears one skate on every leg. Skates are sold only in **pairs**. How many pairs does the team need?
+    answer: 1206
+    unit: pairs
+    verify: 67 * 18
     hints:
-      - '185 ÷ 8 = ? R ?'
-      - What happens to the students in the remainder?
+      - Think about one centipede first. How many pairs does it need?
+      - 'A pair covers 2 legs. So 134 legs need 134 ÷ 2 pairs.'
+      - 'Now multiply that number of pairs by the number of players.'
     solution:
-      - '\(185 \div 8 = 23 \text{ R } 1\)'
-      - '23 vans leave 1 student behind, so **24** vans are needed.'
+      - 'One centipede has 134 legs, and each pair covers 2 legs, so it needs \(134 \div 2 = 67\) pairs.'
+      - 'The team needs \(67 \times 18\): \(67 \times 8 = 536\) and \(67 \times 10 = 670\), which add to **1 206** pairs.'
+      - 'You could count all the legs first, but then you would have to halve a much bigger number. Halving first keeps the numbers small.'
 
   - id: b3
     level: 2
-    covers: [S1.4, S1.6]
-    type: number
-    prompt: A farmer packs **653** eggs into cartons of **6**. How many cartons can be **completely** filled?
-    answer: 108
-    verify: (653 - 5) / 6
+    thinking: estimate
+    covers: [S1.5, S1.2]
+    type: mc
+    prompt: |-
+      Ayo’s calculator has a strange fault: it **never shows any zeros**. For \(405 \times 24\), its screen says **972**.
+      Use an estimate. Which of these could the real answer be?
+    choices:
+      - '9 720'
+      - '972'
+      - '97 200'
+      - '972 000'
+    answer: 0
+    feedback:
+      '1': 'That is what the screen shows, but the screen leaves out zeros. Round 405 and 24 to friendly numbers and see how big the answer should be.'
+      '2': 'Try \(400 \times 25\). Is the answer really close to 100 000?'
+      '3': 'Even \(1\,000 \times 100\) is only 100 000, and 405 and 24 are far smaller than those.'
     hints:
-      - '653 ÷ 6 = ? R ?'
+      - What friendly numbers are close to 405 and 24?
+      - 'Work out \(400 \times 25\). Which choice is closest?'
     solution:
-      - '\(653 \div 6 = 108 \text{ R } 5\)'
-      - The 5 extra eggs don't fill a carton, so **108** full cartons.
+      - '405 is about 400 and 24 is about 25, and \(400 \times 25 = 10\,000\).'
+      - 'Only **9 720** is close to 10 000. The real product is \(405 \times 24 = 9\,720\), so the calculator hid the last zero.'
+      - 'An estimate can’t tell you every digit, but it does tell you how big the answer must be.'
 
   - id: b4
     level: 2
-    covers: [S1.5]
+    thinking: notice
+    covers: [S1.3, S1.4]
     type: mc
-    prompt: Which is the **best** estimate for \(489 \times 31\)?
-    choices: ['500 × 30 = 15 000', '400 × 30 = 12 000', '500 × 3 = 1 500', '489 × 30 = 14 670']
+    prompt: |-
+      **7** raccoons share **236** grapes. Dee says, "32 grapes each, with 12 left over." She checks it:
+      \(32 \times 7 + 12 = 236\). It works! But all 7 raccoons are staring at the 12 leftover grapes. What is wrong with Dee’s answer?
+    choices:
+      - The 12 left over can still go around, so the sharing isn’t finished.
+      - The check is wrong, because 32 × 7 + 12 does not make 236.
+      - There should be nothing left over when you share things out fairly.
+      - Each raccoon should get 12 more grapes, so each one gets 44.
     answer: 0
     feedback:
-      '1': 489 is much closer to 500 than to 400.
-      '2': The 3 in 31 is worth 30, not 3.
-      '3': That is close, but it's not a quick estimate with friendly numbers.
+      '1': 'Work it out: \(32 \times 7 = 224\), and \(224 + 12 = 236\). The check is fine, so the trouble is somewhere else.'
+      '2': 'Leftovers are fine when there are too few to go around. Could these 12 grapes go around?'
+      '3': 'That would take \(12 \times 7 = 84\) grapes, and there are only 12 left.'
     hints:
-      - Round each number to a friendly number you can multiply in your head.
+      - Picture the 12 grapes and the 7 raccoons. What could happen next?
+      - Could every raccoon get one more grape?
+      - 'Compare the leftovers with the number of raccoons. Which is bigger?'
     solution:
-      - '489 ≈ 500 and 31 ≈ 30, so the answer is about **15 000** (exactly 15 159).'
+      - '12 grapes are enough to give all 7 raccoons one more, with 5 still left.'
+      - 'So the fair share is **33 grapes each, with 5 left over**: \(236 \div 7 = 33 \text{ R } 5\).'
+      - 'What we learned: a remainder must be smaller than the number you divide by. If it isn’t, keep sharing.'
 
   - id: b5
     level: 2
+    thinking: ways
     covers: [S1.2, S1.6]
     type: number
-    prompt: A theatre has **28** rows with **135** seats in each row. How many seats are there?
-    answer: 3780
-    verify: 135 * 28
+    prompt: |-
+      A sticker sheet should hold **200** stickers, but the printer missed one spot, so every sheet has **199**.
+      Oma has **23** sheets. She works out the total in her head: "First I picture full sheets. Then I think about what’s missing."
+      How many stickers does Oma have?
+    answer: 4577
+    verify: 200 * 23 - 23
     hints:
-      - '135 × 8, then 135 × 20.'
+      - 'If every sheet were full, how many stickers would there be?'
+      - 'How many stickers are missing altogether: one from each of how many sheets?'
     solution:
-      - '\(135 \times 8 = 1\,080\) and \(135 \times 20 = 2\,700\).'
-      - '\(1\,080 + 2\,700 = 3\,780\) seats.'
+      - 'Full sheets would hold \(200 \times 23 = 4\,600\) stickers.'
+      - 'Each of the 23 sheets is missing 1, so 23 are missing. \(4\,600 - 23 = 4\,577\).'
+      - 'The algorithm agrees: \(199 \times 3 = 597\) and \(199 \times 20 = 3\,980\), which add to \(4\,577\). It works for any numbers, but look at the numbers first. Sometimes there is a faster way.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.1]
-    type: mc
-    prompt: 'For \(347 \times 26\), Lee got **2 776**. Lee wrote 2 082 for the first row and **694** for the second row. What went wrong?'
-    choices:
-      - Lee forgot the 0 placeholder. The 2 is worth 20, so the second row should be 6 940.
-      - Lee should have multiplied 347 × 26 in one step.
-      - The first row is wrong. It should be 694.
-      - Nothing. 2 776 is correct.
-    answer: 0
-    feedback:
-      '1': The algorithm splits it into rows on purpose. The rows are fine; one is just missing a place value.
-      '2': '347 × 6 = 2 082 is correct.'
-      '3': 'Estimate: 350 × 25 = 8 750, so 2 776 is far too small.'
-    hints:
-      - What is the 2 in 26 really worth?
-    solution:
-      - 'The second row is 347 × **20** = 6 940, not 347 × 2.'
-      - '\(2\,082 + 6\,940 = 9\,022\)'
+    thinking: flaw
+    covers: [S1.1, S1.3, S1.5]
+    type: investigation
+    prompt: |-
+      A factory sends **824** socks to an octopus school. Every octopus wears **8** socks.
+      Milo works it out: "\(824 \div 8 = 13\). So there are enough socks for 13 octopuses."
+      The 13 octopuses get dressed, and a giant pile of socks is still on the floor.
+    parts:
+      - type: number
+        prompt: How many socks are the 13 octopuses wearing?
+        answer: 104
+        verify: 13 * 8
+        hints:
+          - 13 octopuses, 8 socks each.
+        solution:
+          - '\(13 \times 8 = 104\). That is nowhere near 824, so 13 can’t be right.'
+      - type: mc
+        prompt: |-
+          Here is what Milo did. 8 ÷ 8 = 1. Then he looked at the 2 and said, "8 doesn’t go into 2, so skip it." He brought down the 4 to make 24, and 24 ÷ 8 = 3. He wrote 1 and 3 side by side: 13. What went wrong?
+        choices:
+          - He needed a 0 in the tens place of his answer, because no tens could be shared.
+          - He should have rounded 13 up to 14, because some of the socks were left over.
+          - He should have started with the ones, because 4 is the digit easiest to look at.
+          - He should have written 10 instead of 1 for the first step, because 8 ÷ 8 is too small.
+        answer: 0
+        feedback:
+          '1': 'Rounding up deals with a small leftover. Here more than 700 socks are left, so something bigger went wrong.'
+          '2': 'Long division starts with the greatest place, as Milo did. His trouble came later.'
+          '3': 'The 1 is correct: 8 hundreds ÷ 8 is 1 **hundred**. But in the answer 13, what is that 1 worth?'
+        hints:
+          - In the answer 13, what is the 1 worth? What should it be worth?
+          - 'The 8 in 824 means 8 hundreds. What happens when the 2 tens are shared by 8?'
+        solution:
+          - '8 hundreds ÷ 8 = 1 hundred. 2 tens can’t be shared by 8, so that is **0 tens**, and the 0 must be written down.'
+          - 'Without the 0, the 1 slides over and looks like 1 ten instead of 1 hundred.'
+      - type: number
+        prompt: So how many octopuses can really get dressed?
+        answer: 103
+        verify: 824 / 8
+        hints:
+          - 1 hundred, 0 tens and how many ones?
+        solution:
+          - '1 hundred, 0 tens, 3 ones: **103** octopuses. Check: \(103 \times 8 = 824\).'
+      - type: build
+        prompt: Invent your own delivery. Choose a different 3-digit number of socks, so that nothing is left over and the number of octopuses also has a **0 in the tens place**.
+        fields:
+          - { name: n, label: 'Number of socks', unit: socks }
+        rules:
+          - { test: 'n >= 100 && n <= 999', fail: 'Choose a 3-digit number of socks.' }
+          - { test: 'n != 824', fail: 'That is the delivery Milo already had. Try a new number.' }
+          - { test: 'n % 8 == 0', fail: 'Some socks are left over. Try dividing by 8 again. How could you adjust your number?' }
+          - { test: 'n / 8 >= 100', fail: 'That dresses fewer than 100 octopuses, so the answer has no hundreds digit. How many socks do 100 octopuses need?' }
+          - { test: '(n / 8) % 100 < 10', fail: 'Nothing is left over, but the tens digit of the answer isn’t 0. Try something closer to the number of socks for 100 octopuses.' }
+        examples:
+          - { n: 816 }
+          - { n: 800 }
+          - { n: 872 }
+        counterexamples:
+          - { n: 824 }
+          - { n: 880 }
+          - { n: 792 }
+          - { n: 818 }
+        hints:
+          - How many socks do 100 octopuses need? Start there.
+          - Adding 8 more socks dresses 1 more octopus. How far can you go before the tens digit changes?
+        solution:
+          - '100 octopuses need 800 socks. Each extra octopus needs 8 more.'
+          - '**816** socks dress 102 octopuses, and **864** socks dress 108. Both work because the answer stays between 100 and 109.'
+    wrapUp: A 0 in an answer isn’t nothing. It holds a place, so every other digit keeps its value. An estimate is what warned us that something was missing.
 
   - id: d2
     level: 3
-    covers: [S1.3, S1.4]
-    type: number
-    prompt: What is the **remainder** when **803** is divided by **9**?
-    answer: 2
-    verify: 803 - 89 * 9
-    hints:
-      - '80 ÷ 9 = 8 R 8. Bring down the 3.'
-    solution:
-      - '80 ÷ 9 = 8 R 8 → 83 ÷ 9 = 9 R 2'
-      - '\(803 \div 9 = 89 \text{ R } 2\): the remainder is **2**.'
+    thinking: why
+    covers: [S1.1, S1.2, S1.5]
+    type: investigation
+    prompt: |-
+      Auntie Bea marks homework from across the kitchen. She only looks at the **last digit**.
+      For \(236 \times 47\), Nico writes **11 097**. "Wrong!" she calls, and she hasn’t multiplied a thing.
+    parts:
+      - type: number
+        prompt: What digit must the real answer end in?
+        answer: 2
+        verify: 6 * 7 - 40
+        hints:
+          - Which two digits make the very first step of the algorithm?
+          - 'Multiply them. Which digit of that answer gets written in the ones place?'
+        solution:
+          - 'The first step is \(6 \times 7 = 42\). The 2 goes in the ones place, so the answer must end in **2**.'
+      - type: open
+        prompt: Why can Auntie Bea ignore the 23 in 236, and the 4 in 47? Think about the rows of the algorithm.
+        modelAnswer: |-
+          The second row is 236 × 40, which ends in 0 because of the placeholder, so it adds nothing to the ones place. In the first row,
+          only 6 × 7 lands in the ones. The 3 and the 2 in 236 are worth tens and hundreds, so multiplying them can only make tens or more.
+        rubric:
+          - I said the second row ends in 0, so it can’t change the last digit.
+          - I said that in the first row only 6 × 7 reaches the ones place.
+          - I explained that the other digits are worth tens or hundreds, so they make tens or more.
+      - type: mc
+        prompt: 'Nico tries again: **1 092**. "It ends in 2," he says, "so it must be right!" What would you tell him?'
+        choices:
+          - It can’t be right, since 200 × 50 is 10 000, so 1 092 is far too small.
+          - It must be right, since the last digit is the digit that is hardest to get.
+          - It can’t be right, since the answer to a multiplication has to end in 0.
+          - It must be right, since 1 092 uses digits found in the real calculation.
+        answer: 0
+        feedback:
+          '1': 'A correct last digit only passes one test. Try a quick estimate as well.'
+          '2': 'Only the second row must end in 0. The first row can end in any digit, as this one does.'
+          '3': 'Digits appearing somewhere is no proof. How big should the answer be? Try a quick estimate.'
+        hints:
+          - Does the last digit tell you how big the answer is?
+          - 'Round 236 and 47 to friendly numbers.'
+        solution:
+          - 'The last digit is right, but the size is wrong. \(200 \times 50 = 10\,000\), and 1 092 is about ten times too small.'
+      - type: build
+        prompt: Now fool them both. Invent a **wrong** answer to \(236 \times 47\) that passes the last-digit test and also looks about right, between 10 000 and 13 000.
+        fields:
+          - { name: n, label: 'Your wrong answer' }
+        rules:
+          - { test: 'n >= 10000 && n <= 13000', fail: 'Someone doing a quick estimate would catch that. Stay between 10 000 and 13 000.' }
+          - { test: 'n % 10 == 2', fail: 'Auntie Bea would catch that from across the kitchen. Check the last digit.' }
+          - { test: 'n != 11092', fail: 'Oops, that is the real answer. It has to be wrong.' }
+        examples:
+          - { n: 11192 }
+          - { n: 12002 }
+        counterexamples:
+          - { n: 11092 }
+          - { n: 11095 }
+          - { n: 1092 }
+        hints:
+          - What must the last digit be? How big must the number be?
+          - 'The real answer is \(1\,652 + 9\,440\). Change a digit that isn’t the last one.'
+        solution:
+          - 'The real answer is \(1\,652 + 9\,440 = 11\,092\).'
+          - '**11 192** and **12 002** both fool the two tests. They end in 2 and they are the right size, but they are wrong.'
+    wrapUp: A quick check can catch a wrong answer, but it can never prove that an answer is right. Only the whole algorithm can do that.
 
   - id: d3
     level: 3
-    covers: [S1.1, S1.3]
-    type: number
-    prompt: A number divided by **7** gives **118 R 4**. What is the number?
-    answer: 830
-    verify: 118 * 7 + 4
-    hints:
-      - 'Undo the division: 118 groups of 7, plus the 4 left over.'
-    solution:
-      - '\(118 \times 7 = 826\), and \(826 + 4 = 830\).'
-      - 'Check: \(830 \div 7 = 118 \text{ R } 4\) ✓'
-
-  - id: d4
-    level: 3
-    covers: [S1.1, U1.1]
-    type: open
-    prompt: Explain why the second row of \(347 \times 26\) starts with a **0** in the ones place.
-    modelAnswer: |-
-      The 2 in 26 is in the tens place, so it is worth 20. The second row is 347 × 20, not 347 × 2. Multiplying by
-      20 makes tens, so there are no ones: the 0 holds the ones place, and the digits of 347 × 2 move one place
-      to the left. The row is 6 940.
-    rubric:
-      - I said the 2 in 26 is worth 20 (it is in the tens place).
-      - I explained that the 0 holds the ones place.
-      - I gave the correct value of the row, 6 940.
+    thinking: connect
+    covers: [S1.3, S1.4, S1.6]
+    type: investigation
+    prompt: |-
+      Your birthday is on a **Tuesday** this year. Next year it comes **365** days later.
+      The days of the week repeat every **7** days. So what will happen?
+    parts:
+      - type: number
+        prompt: Count 365 days in whole weeks. How many days are left over?
+        answer: 1
+        verify: 365 - 52 * 7
+        hints:
+          - 'Divide 365 by 7. Which part of the answer is the left over days?'
+        solution:
+          - '\(365 \div 7 = 52 \text{ R } 1\). That is 52 whole weeks and **1** extra day.'
+      - type: text
+        prompt: On which day of the week is your birthday next year?
+        accept: [Wednesday, Wed]
+        hints:
+          - After 52 whole weeks, it is Tuesday again. Then what does the 1 extra day do?
+        solution:
+          - 'Whole weeks land back on Tuesday. The 1 extra day moves it to **Wednesday**.'
+      - type: text
+        prompt: 'The Sloth Post promises delivery in exactly **500** days. You mail a letter on a **Monday**. On which day does it arrive?'
+        accept: [Thursday, Thu, Thurs]
+        hints:
+          - 'Do what you did for the birthday: find the whole weeks and the extra days.'
+          - Count forward from Monday, one step for each extra day.
+        solution:
+          - '\(500 \div 7 = 71 \text{ R } 3\). The 71 weeks land back on Monday.'
+          - 'Three extra days: Tuesday, Wednesday, **Thursday**.'
+      - type: multi
+        prompt: The Sloth Post now wants letters mailed on a Monday to arrive on a Monday too. Which delivery times would work? Choose all that do.
+        choices:
+          - 700 days
+          - 350 days
+          - 777 days
+          - 500 days
+          - 365 days
+          - 170 days
+        answer: [0, 1, 2]
+        feedback:
+          '3': 'You worked this one out already: 3 extra days. Which remainder keeps it on Monday?'
+          '4': 'A year has 1 extra day, as you found with the birthday.'
+          '5': 'Try \(170 \div 7\). What is the remainder?'
+        hints:
+          - What must the remainder be if the day stays the same?
+          - 'Look for numbers that split into groups of 7 easily: 7 × 100? 7 × 111?'
+        solution:
+          - 'The weekday stays the same only when the remainder is 0.'
+          - '\(700 = 7 \times 100\), \(350 = 7 \times 50\) and \(777 = 7 \times 111\) all work.'
+          - '500 has a remainder of 3, 365 has a remainder of 1, and 170 has a remainder of 2, so those three land on other days.'
+    wrapUp: Here the remainder is the whole answer. The number of weeks doesn’t matter at all, because only the extra days move the weekday.

@@ -222,233 +222,401 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.2, S1.1]
+    thinking: apply
+    covers: [K1.1, K1.2, S1.1]
     type: mc
-    prompt: A poster says, “Bring your own bag and save the river! Join us this Saturday.” What is its **main purpose**?
-    choices: [To persuade, To entertain, To tell a made-up story, To explain how rivers form]
+    prompt: |-
+      Your class watches a video. A hamster puppet falls into a compost bin, and everyone laughs. Then the hamster explains how worms turn scraps into soil.
+
+      Nia says, “It’s to entertain. It’s funny!” Sol says, “It’s to inform. It has facts!”
+
+      Who is right?
+    choices:
+      - Both of them, because one text can have more than one purpose.
+      - Nia, because a funny video can’t be teaching you facts as well.
+      - Sol, because jokes are only extras and never count as a purpose.
+      - Neither of them, because a video on a screen doesn’t count as a text.
     answer: 0
     feedback:
-      '1': It is not trying to amuse you. It wants you to do something.
-      '2': The poster isn’t a story. It asks you to act.
-      '3': It gives no explanation of rivers. Look at what it asks you to do.
+      '1': Think about what you would know after watching. Did the jokes stop you from learning about the worms?
+      '2': Why would someone put a falling hamster in the video at all? Making you laugh is a job, too.
+      '3': Texts can be digital or non-digital. A video on a screen counts.
     hints:
-      - What does the poster want you to **do**?
+      - Look at each part of the video. What is the puppet’s fall there to do? What are the worms there to do?
+      - Do the two friends really have to disagree?
     solution:
-      - It tries to change what people do this Saturday, so its main purpose is to **persuade**.
+      - Check the video one part at a time. The fall makes you laugh, so it entertains. The worms teach you something, so they inform.
+      - Each friend has noticed one purpose. A text can have **more than one** at the same time.
 
   - id: w2
     level: 1
-    covers: [K3.2, S3.1]
+    thinking: notice
+    covers: [K3.7, S3.3]
     type: mc
-    prompt: Which detail tells you that “Big Marie of the Peace” is a **tall tale**?
+    prompt: Which line comes from a story told in the **third person**?
     choices:
-      - Geese had to steer around her head.
-      - It takes place in Peace River country.
-      - It is about winter.
-      - It has four paragraphs.
+      - “I smell socks,” said Zeke, and he held his nose.
+      - I smelled socks, so I held my nose and said so.
+      - We smelled socks, so we all held our noses tight.
+      - My brother and I smelled socks and held our noses.
     answer: 0
     feedback:
-      '1': A real place can appear in any genre. What is **exaggerated** here?
-      '2': Any genre can happen in winter. Look for an extraordinary ability or feature.
-      '3': Length doesn’t tell you the genre.
+      '1': The person telling this story is also in it. A third-person narrator tells about the characters.
+      '2': The word *we* puts the storyteller inside the story. Who is telling this one?
+      '3': The words *my* and *I* show that the storyteller is one of the two people in the story.
     hints:
-      - A tall tale has a legendary character with extraordinary features or abilities.
+      - Cover up any words inside quotation marks. Those are a character talking. What is left?
+      - Who is telling what happened? Someone in the story, or someone telling about the characters?
     solution:
-      - No real person is tall enough to steer geese away. That **exaggeration** is the mark of a tall tale.
+      - Words in quotation marks are a character speaking, so the *I* in “I smell socks” belongs to Zeke.
+      - 'Now read what is left: *said Zeke, and he held his nose.* The narrator uses a name and a pronoun. That is **third person**.'
+      - In the other lines, the *I* or *we* is outside any quotation marks, so the storyteller is in the story.
 
   - id: w3
     level: 1
-    covers: [K3.9, K3.10]
+    thinking: apply
+    covers: [K1.4, K1.5, S1.3]
     type: mc
-    prompt: A character starts out selfish and learns to share by the end of the story. What type of character is this?
-    choices: [Round, Flat]
-    fixedOrder: true
+    prompt: A news article reports that a moose walked into a grocery store and ate all the carrots. The editor wants to turn the page into a **hybrid**. What should she add?
+    choices:
+      - An invented diary by the moose, printed beside the real report
+      - Five more true facts about how moose live in the wild
+      - A row of real photos of the moose, with short captions
+      - A stronger headline that makes more people want to read
     answer: 0
     feedback:
-      '1': A flat character does **not** change. This one does.
+      '1': More true facts are great, but the page would still be all non-fiction. What kind of writing is missing?
+      '2': Real photos are still non-fiction. That moves the page toward a photo essay. What does a hybrid mix?
+      '3': A headline is part of a news article already. It doesn’t change what kind of text this is.
     hints:
-      - Does this character change?
+      - The report is true. What kind of writing would have to join it?
+      - A hybrid includes both fiction and non-fiction. Which choice is made up?
     solution:
-      - The character changes during the story, so this is a **round** character.
-
-  - id: w4
-    level: 1
-    covers: [K2.1, S2.1]
-    type: mc
-    prompt: You meet a hard word in a science book and want its meaning. Which **text feature** should you check?
-    choices: [The glossary, The sidebar, The page number, The title]
-    answer: 0
-    feedback:
-      '1': A sidebar gives extra information about the topic. It isn’t a list of word meanings.
-      '2': A page number only tells you where you are.
-      '3': The title names the whole book, not the words inside it.
-    hints:
-      - Which feature is a short list of words and their meanings?
-    solution:
-      - The **glossary** lists important words and their meanings.
+      - The report is **non-fiction**. A hybrid includes both fiction and non-fiction, so the page needs something invented.
+      - A moose can’t really keep a diary, so that part is fiction. Side by side, the two make a **hybrid**.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K3.5, S3.2]
-    type: evidence
-    prompt: Tap the sentence where “The Greenhouse on Mars” uses a **flash-forward**.
-    passage: mars
-    paragraphs: [4, 5, 6]
-    answer: [p5s1]
+    thinking: flaw
+    covers: [K2.1, U2.1, S2.1, S2.2]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 400 270" class="fig-svg" role="img" aria-label="Aiko’s web page, Our Class Gecko. The large main text is headed The Great Boot Escape and tells how Pickle hid in the principal’s boot. A small sidebar on the right lists fun facts. Its last line says Feed: 2 crickets at 3:00. A small glossary at the bottom says gecko: a small lizard.">
+      <rect class="cg-axis" x="2" y="2" width="396" height="266" fill="none"/>
+      <text class="fig-label" x="16" y="28">Our Class Gecko</text>
+      <rect class="cg-axis" x="12" y="42" width="256" height="150" fill="none"/>
+      <text class="fig-label" x="22" y="68">The Great Boot Escape</text>
+      <text class="fig-small" x="22" y="96">One day, Pickle climbed out</text>
+      <text class="fig-small" x="22" y="118">and hid in the principal’s boot.</text>
+      <text class="fig-small" x="22" y="140">Then the whole school heard</text>
+      <text class="fig-small" x="22" y="162">a very loud scream!</text>
+      <rect class="cg-axis" x="280" y="42" width="108" height="150" fill="none"/>
+      <text class="fig-label" x="288" y="66">Sidebar</text>
+      <text class="fig-small" x="288" y="88">Age: 2</text>
+      <text class="fig-small" x="288" y="107">Naps on a rock</text>
+      <text class="fig-small" x="288" y="126">Hates loud bells</text>
+      <text class="fig-small" x="288" y="145">Likes the sun</text>
+      <text class="fig-small" x="288" y="164">Feed: 2 crickets</text>
+      <text class="fig-small" x="288" y="183">at 3:00</text>
+      <rect class="cg-axis" x="12" y="204" width="376" height="54" fill="none"/>
+      <text class="fig-label" x="22" y="226">Glossary</text>
+      <text class="fig-small" x="22" y="248">gecko: a small lizard</text>
+      </svg>
+    prompt: |-
+      Aiko made this page about the class gecko, Pickle. Tomorrow a substitute teacher will use it for one job: feeding Pickle on time. Right now, the feeding note is the last line of a sidebar of fun facts.
+
+      What is the best change to Aiko’s page?
+    choices:
+      - Move the feeding note into the main text, and the boot story into the sidebar.
+      - Move the feeding note into the glossary, where the important words are listed.
+      - Make the boot story longer, so that readers learn more details about Pickle.
+      - Remove the sidebar and the glossary, so that there is less on the page to read.
+    answer: 0
     feedback:
-      p4s1: This happens in the story’s present. Look for a jump into the future.
-      p5s2: This is part of the flash-forward. Find the sentence where the jump **starts**.
-      p5s3: This sentence comes back from the future. Find where the jump **starts**.
-      p6s1: The phrase “For now” brings us back to the present.
+      '1': A glossary is for the meanings of words. Would a teacher look there for what to do at 3:00?
+      '2': That makes the main text even bigger. Where would the substitute’s eyes go first, and what would they find?
+      '3': The sidebar is the only place that says what Pickle eats. What would the substitute do without it?
     hints:
-      - Look for words that tell how much later something happens.
+      - What is the most important thing on this page for the person using it?
+      - Where do your eyes go first on the page? What do they find there?
     solution:
-      - '“Ten years later, Ines would stand in this same dome…” The story jumps ahead in time, then returns.'
+      - Start with the reader. The substitute needs the feeding note, and fast.
+      - The biggest part of the page is the boot story. The feeding note is at the bottom of a small box, under the fun facts.
+      - A sidebar is for **extra** information. The boot story is a fun extra, so it belongs there. The feeding note is what matters most, so it goes in the main text.
+      - The glossary can stay. It does its own job.
 
   - id: b2
     level: 2
-    covers: [K3.11, S3.4]
-    type: evidence
-    prompt: We learn about Ines from what **another character says** about her. Tap that sentence.
-    passage: mars
-    paragraphs: [1, 3]
-    answer: [p3s1, p3s2]
+    thinking: connect
+    covers: [K3.6, S3.3]
+    type: mc
+    prompt: |-
+      The theme of “The Greenhouse on Mars” is that *a place can become home when you care for it.*
+
+      Which of these new stories has the **same theme**?
+    choices:
+      - Kofi hates his new town, until he starts fixing a broken park bench each Saturday.
+      - Lena hates her new town, so her family moves back, and she feels happy once more.
+      - Astronauts on Mars fight a robot that keeps tearing up the plants in their greenhouse.
+      - An old farmer grows the biggest beans in the county and wins first prize at the fair.
+    answer: 0
     feedback:
-      p1s1: The narrator tells us this. No character is speaking.
-      p1s2: The narrator tells us this. Look for another character’s words.
-      p1s3: Here, Ines is the one speaking.
+      '1': There is a new place here, as in Ines’s story. But does Lena ever come to care for it?
+      '2': It has Mars, plants and a robot. Those are the setting and the plot. What is the underlying message?
+      '3': It has beans, like Ines’s story. But what is this story saying about a place and home?
     hints:
-      - Who talks about Ines when she isn’t the one speaking?
+      - Forget where each story happens. What would each one be trying to tell you about life?
+      - Ines starts out hating Mars. What does she do, and how does she feel by the end? Which story follows that path?
     solution:
-      - Teo whispers, “Ines only pretends she doesn’t care.” Others’ words can reveal a character.
+      - A theme is an underlying message, so it can travel to a new setting. Mars and beans aren’t the theme.
+      - Ines hates a place, cares for something there, and comes to call it hers. Kofi does the same with a bench.
+      - 'What we learned: two stories can look nothing alike and share a theme, or look alike and have different themes.'
 
   - id: b3
     level: 2
-    covers: [K3.6, S3.3]
+    thinking: whatif
+    covers: [K3.4, K3.5, S3.2]
     type: mc
-    prompt: What is the best statement of the **theme** of “The Greenhouse on Mars”?
+    prompt: |-
+      Paragraph 5 of “The Greenhouse on Mars” is a flash-forward:
+
+      > Ten years later, Ines would stand in this same dome and show a class of children the first forest on Mars. She would tell them about this night. But that was still far away.
+
+      Suppose the author cut it. The plot would still make sense. What would readers lose?
     choices:
-      - A place can become home when you care for it.
-      - Mars has red dust.
-      - Robots always break down.
-      - Ines has a brother named Teo.
+      - Knowing that this one long night grows into something much bigger
+      - Knowing that the robot gardener broke and the beans began to droop
+      - Knowing that Ines ends up smiling at a green shoot in the red dust
+      - Knowing that Ines was homesick for Lethbridge when she first landed
     answer: 0
     feedback:
-      '1': That is a detail from the setting. A theme is an underlying message.
-      '2': This happens once in the story, and it isn’t the message of the whole text.
-      '3': That is a fact about the plot, not a message.
+      '1': That is true, but look at where it is told. Paragraph 4 would still be there.
+      '2': That is true, but look at where it is told. Paragraph 6 would still be there.
+      '3': That is true, but look at where it is told. Paragraph 1 would still be there.
     hints:
-      - How does Ines feel about Mars at the start, and at the end?
+      - Take each choice and find it in the story. Is it only in paragraph 5?
+      - Picture the green shoot in paragraph 6. Does it feel different once you know about the forest?
     solution:
-      - Ines goes from “Nothing grows here” to “This is my garden now.” Caring for the plants makes Mars feel like **home**.
+      - Check each choice against the story. The robot, the smile and the homesickness are all told in other paragraphs.
+      - Only paragraph 5 tells us about the forest, and that Ines would still talk about “this night” ten years later.
+      - 'What we learned: a flash-forward interrupts the plot to show the future. Here it makes one small green shoot feel huge.'
 
   - id: b4
     level: 2
-    covers: [K4.2, S4.1]
-    type: evidence
-    prompt: Tap the sentence in “Keep the Rink Open” that shows **cause and effect**.
-    passage: rink
-    paragraphs: [2, 3]
-    answer: [p2s2]
+    thinking: evidence
+    covers: [K4.1, K4.3, S4.2]
+    type: mc
+    prompt: |-
+      Imagine you learn something new about “Keep the Rink Open.” One of the editors who wrote it also owns the snack hut at the rink.
+
+      What should a careful reader do now?
+    choices:
+      - Still weigh the reasons, but look for other sources, since the writer gains if the rink stays.
+      - Throw out every reason, since someone who gains from the rink must be making them all up.
+      - Trust every reason, since the editors of a town newspaper must have checked all of them.
+      - Ignore the news, since only the reasons matter, and who wrote them makes no difference.
+    answer: 0
     feedback:
-      p2s1: This gives a benefit, but it doesn’t say what causes it. Look for the word that signals a cause.
-      p3s1: This names a subtopic. It doesn’t explain a cause and its effect.
-      p3s2: This describes a scene. Look for the word “because.”
+      '1': The rink may really be free, even if the writer sells snacks there. Gaining from something doesn’t make every reason false.
+      '2': An editorial gives the opinion of its editors. It argues one side, and this writer has a reason to want that side to win.
+      '3': The source is one of the three things to ask about. Would you read it the same way if the writer had nothing to gain?
     hints:
-      - Look for a signal word such as **because**.
+      - Before this news, what questions could you ask about an editorial? Which one does the news change?
+      - Is “the writer gains from this” the same as “the writer is lying”?
     solution:
-      - '“Because it is free, families who cannot pay for arena time can still skate.” Free rink (cause), so more families skate (effect).'
+      - Remember the three questions about structure, content and **source**. The news is about the source.
+      - It doesn’t make the reasons false. The rink may still be free, and neighbours may still meet there.
+      - But it gives you a reason to find out more from somebody else before you form your opinion.
 
   - id: b5
     level: 2
-    covers: [K1.4, K1.5, S1.3]
+    thinking: notice
+    covers: [K4.2, S4.1]
     type: mc
-    prompt: A book tells the invented adventures of a talking ant. Each chapter ends with a page of true ant facts. What form is it?
-    choices: [Hybrid, News article, Photo essay, Editorial]
+    prompt: |-
+      The editors want to add one sentence to “Keep the Rink Open”:
+
+      > Mr. Ostrowski, who is 82, has never skated here, but on that bench he has met every family on his street.
+
+      Where does it belong?
+    choices:
+      - Paragraph 3, about bringing neighbours together
+      - Paragraph 2, about keeping children active
+      - Paragraph 1, about what the council wants to do
+      - Paragraph 4, about what the council should do
     answer: 0
     feedback:
-      '1': A news article reports a real, recent event. A talking ant isn’t one.
-      '2': A photo essay is built mostly from photos with short captions.
-      '3': An editorial argues an opinion. This book mixes a story with facts.
+      '1': The sentence does mention skating. But is anyone getting active here? Look at what it is really about.
+      '2': The first paragraph sets up the topic. Does this sentence tell you about the council’s plan?
+      '3': The last paragraph tells the council what to do. Does this sentence do that?
     hints:
-      - The book has both an invented story and true facts.
+      - Ask what the sentence is really about. Is it the skating, or something else?
+      - Name the subtopic of each paragraph. Which one would this sentence be an example of?
     solution:
-      - It includes both fiction and non-fiction, so it is a **hybrid**.
+      - The larger topic is keeping the rink open. Paragraphs 2 and 3 each hold one subtopic.
+      - An older man meeting the families on his street is neighbours coming together, so it fits **paragraph 3**.
+      - Don’t be fooled by one word. *Skated* points to staying active, but he has never skated there at all.
+
+  - id: b6
+    level: 2
+    thinking: evidence
+    covers: [K3.9, K3.11, S3.4]
+    type: evidence
+    prompt: Teo says that Ines only pretends she doesn’t care. Don’t just take his word for it. Tap a sentence where what Ines **does** backs him up.
+    passage: mars
+    paragraphs: [1, 3, 4]
+    answer: [p4s2, p4s3]
+    feedback:
+      p1s1: This is how she feels about the dust. Does it back Teo up, or make him look wrong?
+      p1s2: This is a real feeling, but it’s about home in Lethbridge. Does it show her doing something for the garden?
+      p1s3: This is what she **says**, and she sounds as if she doesn’t care. Teo says that’s only pretending. What does she do?
+      p3s1: This is Teo’s claim, and that is what you are checking.
+      p3s2: This is still Teo talking. He may be right, but so far we only have his word. Find where the story shows her doing something.
+      p4s1: Something happens here, but Ines isn’t in this sentence. What does she do next?
+    hints:
+      - Who is speaking in each sentence? Is it the story showing you Ines, or someone telling you about her?
+      - Look for a moment when she has to act.
+    solution:
+      - 'Either of these works: “Ines ran to the greenhouse and mixed the water by hand.” or “She sat beside the plants all night, watching the sensors blink.”'
+      - Someone who didn’t care wouldn’t run to the greenhouse or sit up all night. Now we don’t need only Teo’s word.
+      - What she says, what she does and what someone else says about her show different sides of her. That is what makes her a round character.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K3.7, S3.3]
-    type: mc
+    thinking: flaw
+    covers: [K1.4, K3.1, K3.2, K3.3, S3.1]
+    type: investigation
     prompt: |-
-      Which sentence is written in the **third person**?
-    choices:
-      - Ines ran to the greenhouse and mixed the water by hand.
-      - I ran to the greenhouse and mixed the water by hand.
-      - We ran to the greenhouse and mixed the water by hand.
-      - Run to the greenhouse and mix the water by hand.
-    answer: 0
-    feedback:
-      '1': “I” shows that the character is telling the story. A third-person narrator is outside the story.
-      '2': “We” includes the speaker in the action. Third person uses names or pronouns such as *she* and *they*.
-      '3': This is a command to the reader. It isn’t telling a story about a character.
-    hints:
-      - Look for a character’s name, or a pronoun such as *she*, *he* or *they*.
-    solution:
-      - The narrator refers to Ines by name, so the sentence is in the **third person**.
+      The school library has a new sorting robot called Shelfie. Shelfie has two rules:
+
+      - **Robots in the book?** Science fiction shelf.
+      - **Someone very tall in the book?** Tall tale shelf.
+
+      Let’s see how Shelfie does.
+    parts:
+      - type: mc
+        prompt: Shelfie picks up *How Robots Build Cars*. It has real photos from a car factory, with short captions. Shelfie puts it on the science fiction shelf. What did Shelfie miss?
+        choices:
+          - Its robots are real and it gives true information, so it isn’t fiction.
+          - It has no spaceships in it, and science fiction must have a spaceship.
+          - Its robots don’t talk to anyone, and science fiction robots always talk.
+          - It has photos in it, and a book with photos can’t be about technology.
+        answer: 0
+        feedback:
+          '1': Science fiction can be about many kinds of technology and future situations. Look at something bigger first. Is this book made up?
+          '2': Plenty of story robots might never say a word. Look at something bigger first. Is this book made up?
+          '3': Photos can show technology very well. Look at what the photos are of. Is this book made up?
+        hints:
+          - Science fiction is a kind of fiction. What is this book?
+        solution:
+          - Science fiction is a sub-genre of **fiction**. This book shows real factories, so it is non-fiction.
+          - It is really a photo essay. Shelfie looked at one word and never asked if the book was invented.
+      - type: mc
+        prompt: Next is *Hana, the Tallest Kid in Room 6*. In this made-up story, Hana bumps her head on the bus door and learns to love basketball. Nothing impossible happens. Shelfie puts it on the tall tale shelf. What should Shelfie have checked?
+        choices:
+          - Whether her body or abilities are wildly beyond what could ever be real.
+          - Whether she is taller than all the other characters in the whole story.
+          - Whether the story is invented, since all made-up stories are tall tales.
+          - Whether she lives in a real place, since tall tales never name real ones.
+        answer: 0
+        feedback:
+          '1': Hana is the tallest in her room, and she is still an ordinary kid. How tall is “tall” in Big Marie’s story?
+          '2': Hana’s story is made up, and it still isn’t a tall tale. Fiction has many sub-genres.
+          '3': Big Marie lives in Peace River country, and that’s a real place. Look for something else.
+        hints:
+          - Compare Hana with Big Marie. How would geese deal with each of them?
+        solution:
+          - A tall tale has a legendary character with **extraordinary** features or abilities, told with lots of exaggeration.
+          - Hana is just tall. Marie makes geese steer around her head. The word *tall* in the name of the genre fooled Shelfie.
+      - type: open
+        prompt: |-
+          Now Shelfie gets stuck on *Tin Tess*:
+
+          > In the year 3000, a robot as tall as a grain elevator lassoes comets for fun. One day she ties a comet to a planet, and that, folks will tell you, is how Saturn got its rings.
+
+          Both rules say yes, and Shelfie freezes. **Choose a shelf and defend your choice with two details.** Then say what the other shelf has in its favour.
+        modelAnswer: |-
+          I would put it on the tall tale shelf. A robot “as tall as a grain elevator” is a legendary character with an extraordinary body, and “lassoes comets for fun” is huge exaggeration. It even explains how something real came to be, like the end of Big Marie.
+
+          The science fiction shelf has a point, too. It has a robot, and it happens in the year 3000, which is a futuristic situation.
+        rubric:
+          - I chose one shelf and said so clearly.
+          - I used two details from the description of the book.
+          - I explained how those details fit what the genre is.
+          - I said what the other shelf has in its favour.
+        hints:
+          - What makes a text a tall tale? What makes one science fiction? Check *Tin Tess* against both.
+          - Would either shelf be a silly choice? Look for what each one has going for it.
+    wrapUp: One word can’t tell you the genre. Shelfie looked for robots and tall people. Readers look at what the whole text does, and some texts really do fit in two places.
 
   - id: d2
     level: 3
-    covers: [K4.3, S4.2]
+    thinking: why
+    covers: [K3.8, K3.9, K3.10, S3.4]
     type: mc
     prompt: |-
-      “Keep the Rink Open” says nothing about what else the $8,000 could pay for. Why does a careful reader
-      notice that?
+      In paragraph 2 of “The Greenhouse on Mars,” Commander Bo says, “Schedule says water the beans at 0800.” In paragraph 6, he says it again, word for word.
+
+      Why might the author have kept this flat character’s line exactly the same?
     choices:
-      - It shows the editorial tells only one side, so the reader may want more information before deciding.
-      - It proves that the editorial is false.
-      - It proves that the town has no money.
-      - It doesn’t matter, because an editorial always gives every side.
+      - It gives us something steady, so that we can hear how much Ines has changed.
+      - It lets readers keep track of what time the beans are supposed to get watered.
+      - It proves that Bo is a poor commander, who cares only about the crew’s schedule.
+      - It shows that Bo is really the main character, because his words come first and last.
     answer: 0
     feedback:
-      '1': Leaving something out doesn’t make the rest false. It just means there is more to find out.
-      '2': The editorial never says that. Be careful not to read in what isn’t there.
-      '3': An editorial is an opinion piece. It argues one side.
+      '1': The time is the same both times, so why would we need to hear it twice? Look at what comes right after the line in paragraph 6.
+      '2': Flat doesn’t mean bad. It means he doesn’t change. The story never says he does his job poorly.
+      '3': Whose feelings does the story follow from start to end? Who has the very last words?
     hints:
-      - An editorial tries to persuade. What might it leave out to do that?
+      - Compare how Ines acts around that line in paragraph 1 and in paragraph 6.
+      - Suppose Bo’s words had changed at the end, too. Would it be easier or harder to notice what is different about Ines?
+      - 'Bo says the same words. What is different the second time?'
     solution:
-      - An editorial argues one side. Noticing what is left out helps you form **your own** opinion from its content and source.
+      - Look at what changes around the line. At the start, Ines says, “Nothing grows here.” At the end she answers Bo, “I know. This is my garden now.”
+      - Bo’s words haven’t moved at all. That makes the change in Ines easy to hear.
+      - 'What we learned: a flat character isn’t a mistake. A character who stays the same can show us how far a round character has come.'
 
   - id: d3
     level: 3
-    covers: [K1.2, S1.1, U2.1]
-    type: multi
-    prompt: A website about wolves has funny cartoons, true facts in sidebars, and a button asking you to donate to protect wolves. Which **purposes** does it have?
-    choices: [To entertain, To inform, To persuade, To sell wolves as pets]
-    fixedOrder: true
-    answer: [0, 1, 2]
-    feedback:
-      '3': Nothing here sells wolves. It asks people to help protect them.
+    thinking: design
+    covers: [K3.9, K3.10, K3.11, S3.4, U3.1]
+    type: open
+    prompt: |-
+      Mr. Grubb, the school caretaker, is a flat character. In every scene he shakes his mop and shouts, “Off my floor!” That is all we ever learn about him.
+
+      **Make him round.** Write two or three sentences for a new scene that show there is more to him. Use what he does, says or thinks, or what someone else says about him. You can’t just tell us, “He is kind.”
+    modelAnswer: |-
+      After the last bus left, Mr. Grubb took a lost mitten from the bin and sewed up the hole in its thumb. He put it back, right on top, where its owner would see it. “He yells at us all day,” whispered Dana, “but he’s the one who fixed my boot.”
+
+      Now we can see that he is more than his shouting.
+    rubric:
+      - My scene shows a side of Mr. Grubb that the shouting doesn’t show.
+      - I used what he does, says or thinks, or what someone else says about him.
+      - I showed the new side and didn’t just name it.
+      - My scene could fit a story about a school caretaker.
     hints:
-      - A text can have more than one purpose. Check each part of the website.
-    solution:
-      - Cartoons **entertain**, sidebars **inform**, and the donate button tries to **persuade**.
+      - Why might someone care so much about a clean floor? What might he do when nobody is watching?
+      - Think about how Teo’s whisper changes what we know about Ines. Who might say something surprising about Mr. Grubb?
 
   - id: d4
     level: 3
-    covers: [S3.4, K3.11, U3.1]
+    thinking: design
+    covers: [K3.2, S3.1]
     type: open
     prompt: |-
-      Is Ines a round character? Use **what she says or does** and **what someone else says about her** to
-      support your answer. What does her story help you understand about being far from home?
+      “Big Marie of the Peace” ends by explaining something real: “And that, folks will tell you, is how the Rocky Mountains got their snowy tops.”
+
+      Write the ending of your **own tall tale**, in two or three sentences. Invent a legendary character with an extraordinary body or ability. Then explain how something real came to be, such as why the prairies are so flat, or why the wind blows so hard in Lethbridge.
     modelAnswer: |-
-      Yes, Ines is a round character because she changes. At first she says, “Nothing grows here” (paragraph 1), but by
-      the end she says, “This is my garden now” (paragraph 6). Teo says she only pretends she doesn’t care (paragraph 3),
-      which shows there is more to her than we first see. Her story helps me see that someone far from home can feel lonely
-      and still come to care about a new place.
+      Rolling-Pin Rosa could roll out a pie crust the size of a county. One spring she ran out of table, so she kept on rolling, right across the land, and flattened every hill from Calgary to Regina. And that, folks will tell you, is why you can watch your dog run away on the prairies for three days.
     rubric:
-      - I said whether Ines is round and explained why.
-      - I used something Ines says or does.
-      - I used what another character says about her.
-      - I explained what her story helps me understand.
+      - My character has a body or ability that is far beyond anything real.
+      - My sentences exaggerate so much that nobody could believe them.
+      - My ending explains how something real came to be.
+      - My character is at the centre of what happens.
+    hints:
+      - Start with the real thing you want to explain. What giant action could have caused it?
+      - Who could do that? Give that person a body or an ability to match, and a name to remember.

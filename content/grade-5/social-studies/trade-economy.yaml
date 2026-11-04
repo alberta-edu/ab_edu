@@ -121,231 +121,528 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.1]
-    type: multi
-    prompt: Which advancements increased farm production, and meant that fewer workers were needed? Choose all that apply.
-    choices: [Irrigation, Oxen pulling ploughs, Coins, Written laws]
-    answer: [0, 1]
-    feedback:
-      '2': Coins help with buying and selling, but they don't grow more food.
-      '3': Laws help organize people, but they don't grow more food.
+    thinking: apply
+    covers: [K1.3]
+    type: number
+    prompt: A farm family grows **30 baskets** of grain this year. They need **22 baskets** to eat. How many baskets are their **surplus**, ready to trade?
+    answer: 8
+    unit: baskets
+    verify: 30 - 22
     hints:
-      - Which ones are used directly on a farm?
+      - What does the word surplus mean?
+      - Start with what they grew. Take away what they need.
     solution:
-      - '**Irrigation** and **animal labour** both grow more food with fewer people.'
+      - A surplus is what is left after your own needs are met.
+      - '\(30 - 22 = 8\) baskets. That is the grain they can exchange for pots or for a healer’s help.'
 
   - id: w2
     level: 1
-    covers: [K1.3]
+    thinking: apply
+    covers: [U1.2, K1.4]
     type: mc
-    prompt: A farmer grows more grain than the family needs. This extra grain is called a…
-    choices: [surplus, tax, market, route]
+    prompt: Every household in a town pays a little money. The town uses that money to run the fire department and fix the roads. What is this practice called?
+    choices:
+      - Taxation
+      - A market
+      - Currency
+      - A bank
     answer: 0
     feedback:
-      '1': A tax is what a government collects.
-      '2': A market is a place to exchange goods.
-      '3': A route is a path that traders follow.
+      '1': A market is where people exchange goods. Nobody in this story is buying or selling.
+      '2': Currency is the money itself. This question is about why everyone pays in, and what the money does.
+      '3': A bank keeps your own savings for you. This money pays for services that everyone shares.
     hints:
-      - It is the amount left over.
+      - Who collects the money here, and what does it pay for?
+      - Which practice supports government services?
     solution:
-      - Extra food beyond what you need is a **surplus**.
+      - Look at where the money goes. It pays for services that the whole town shares.
+      - Collecting money from citizens to protect communities and provide services is **taxation**.
 
   - id: w3
     level: 1
-    covers: [U1.2]
-    type: mc
-    prompt: Why do governments collect **taxes**?
-    choices:
-      - To protect communities and provide services
-      - To give leaders a way to punish farmers
-      - To stop people from trading
-      - To make everyone equally rich
-    answer: 0
-    feedback:
-      '1': Taxes pay for things that people share. They aren't meant as a punishment.
-      '2': Taxes don't stop trade. Many taxes are collected on trade.
-      '3': Taxes pay for government services. They don't make everyone equally rich.
-    hints:
-      - Think about what fire departments and roads need.
-    solution:
-      - Taxes are how a government collects money to **protect communities and provide services**.
-
-  - id: w4
-    level: 1
-    covers: [K1.6, S1.3]
+    thinking: notice
+    covers: [K1.8, S1.4]
     type: multi
-    prompt: Which of these are trade routes that connected ancient civilizations? Choose all that apply.
-    choices: [The Silk Road, The Royal Road, The trans-Saharan route, The Alaska Highway]
+    prompt: Traders carried more than goods. Some things fit in a saddlebag. Others travel only in a person’s head. Choose everything that moved as an **idea**.
+    choices:
+      - Buddhism
+      - How to make gunpowder
+      - Knowledge of healing plants
+      - Rolls of silk
+      - Pepper
+      - Horses
     answer: [0, 1, 2]
     feedback:
-      '3': The Alaska Highway was built in the 1940s, long after the ancient world.
+      '3': You can hold a roll of silk and hand it over, so it is a good.
+      '4': You can pack pepper in a bag and sell it, so it is a good.
+      '5': You can lead a horse on a rope and sell it, so it is a good.
     hints:
-      - Three of these are on the lesson's map.
+      - For each one, ask if you could pack it, or lead it on a rope.
+      - If a trader lost every bag on the way, which of these would still arrive?
     solution:
-      - The **Silk Road**, the **Royal Road** and the **trans-Saharan route** all connected ancient lands.
+      - Test each one. Silk, pepper and horses can be packed or led, so they are goods.
+      - A belief, a secret recipe and knowledge about healing travel in people’s heads, so they are ideas.
+      - 'Here is something to notice: when you sell your pepper, it is gone. When you teach an idea, you still have it.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.1, K1.2]
-    type: order
-    prompt: Put these changes in order to explain how a village grows into a city.
-    items:
-      - Farmers start using irrigation and oxen.
-      - Farms produce more food with fewer workers.
-      - Some people are free to take up other jobs.
-      - Potters, weavers and traders set up in one place.
-      - The settlement grows into a city.
+    thinking: model
+    covers: [K1.1, K1.2, S1.1]
+    type: number
+    prompt: A made-up village has **80 people**. Long ago, nearly all of them farmed. Now, with irrigation and oxen, only **20** farm. The other **60** are potters, weavers and traders. Everyone has enough to eat, and no food is left over. Each farmer grows the same amount. How many people’s food does each farmer grow?
+    answer: 4
+    unit: people
+    verify: 80 / (80 - 60)
     hints:
-      - What has to happen on the farm before anyone can leave it?
+      - Who eats in this village?
+      - Share out all the food that has to be grown among the farmers.
+      - How many groups of 20 are there in 80?
     solution:
-      - Better tools → more food with fewer workers → people free for other jobs → specialized workers gather → a city grows.
+      - Before dividing, ask who needs feeding. It is everyone, and that includes the farmers.
+      - 'So 20 farmers grow food for all 80 people. Count up by 20s: 20, 40, 60, 80. That makes 4 groups, so each farmer feeds 4 people.'
+      - Did you get 3? That feeds only the 60 people with other jobs, and leaves the farmers hungry.
+      - 'What we learned: when one farmer can feed 4 people, 3 out of every 4 people are free to do other work. That is how a village grows into a city.'
 
   - id: b2
     level: 2
-    covers: [K1.1, S1.1]
-    type: number
-    prompt: In a made-up village of 100 people, each farmer with better tools can feed 4 people. How many of the 100 need to farm to feed everyone?
-    answer: 25
-    unit: farmers
-    verify: 100 / 4
+    thinking: notice
+    covers: [K1.5]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 480 240" class="fig-svg" role="img" aria-label="A flood scale, from top to bottom. Above 16 cubits: too much, planting comes late. 16: delight. 15: security. 14: joy. 13: still hunger. 12 or less: hunger.">
+        <text class="fig-small" x="75" y="18" text-anchor="middle">Flood height (cubits)</text>
+        <text class="fig-small" x="150" y="18">What the height meant</text>
+        <rect class="fig-rect" x="20" y="28" width="110" height="34"/><text class="fig-label" x="75" y="51" text-anchor="middle">Above 16</text><text class="fig-label" x="150" y="51">Too much: planting comes late</text>
+        <rect class="fig-rect" x="20" y="62" width="110" height="34"/><text class="fig-label" x="75" y="85" text-anchor="middle">16</text><text class="fig-label" x="150" y="85">Delight</text>
+        <rect class="fig-rect" x="20" y="96" width="110" height="34"/><text class="fig-label" x="75" y="119" text-anchor="middle">15</text><text class="fig-label" x="150" y="119">Security</text>
+        <rect class="fig-rect" x="20" y="130" width="110" height="34"/><text class="fig-label" x="75" y="153" text-anchor="middle">14</text><text class="fig-label" x="150" y="153">Joy</text>
+        <rect class="fig-rect" x="20" y="164" width="110" height="34"/><text class="fig-label" x="75" y="187" text-anchor="middle">13</text><text class="fig-label" x="150" y="187">Still hunger</text>
+        <rect class="fig-rect" x="20" y="198" width="110" height="34"/><text class="fig-label" x="75" y="221" text-anchor="middle">12 or less</text><text class="fig-label" x="150" y="221">Hunger</text>
+      </svg>
+    prompt: |-
+      Imagine finding a scribe’s note from ancient Egypt: *“Poor harvest. Little grain came in as tax.”* It doesn’t say how high the flood was.
+
+      Yusuf says, “Then the flood must have been too low.” Use the flood scale. Is Yusuf right?
+    choices:
+      - We can’t tell. Too little water or too much could both leave a poor harvest.
+      - Yes. Only a flood that is too low can leave a poor harvest.
+      - No. It must have been too high, since low floods still water the fields.
+      - We can’t tell, because the flood had nothing to do with the harvest.
+    answer: 0
+    feedback:
+      '1': Too low does fit the note. But look at the very top of the scale as well.
+      '2': A flood that is too high does fit the note. But look at what the bottom of the scale says.
+      '3': You are right that we can’t tell, but not for that reason. The scale shows that the flood’s height changed the harvest a lot.
     hints:
-      - How many groups of 4 are there in 100?
+      - Which heights on the scale could leave a poor harvest? Find all of them, not only the first one you see.
+      - Check both ends of the scale.
+      - Yusuf found one part of the scale that fits the note. Is there another?
     solution:
-      - '\(100 \div 4 = 25\) farmers. The other 75 people are free to do other jobs.'
+      - Don’t start from Yusuf’s idea. Start from the note, and ask which floods could explain it.
+      - A flood of 13 cubits or less meant hunger. A flood above 16 meant late planting, which could bring hunger too.
+      - Both fit the note, so we can’t tell. To settle it, we would need that year’s reading from the nilometer.
+      - 'What we learned: sometimes the honest answer is “this source doesn’t tell us”.'
 
   - id: b3
     level: 2
-    covers: [K1.4, S1.2]
+    thinking: model
+    covers: [K1.6, S1.3]
     type: mc
-    prompt: You put your savings in an account to keep them safe. Which ancient practice is this most like?
+    figure: |-
+      <svg viewBox="0 0 480 304" class="fig-svg" role="img" aria-label="A simple route map, not to scale. The Silk Road runs from Chang'an through Samarkand to Antioch. The Royal Road runs from Susa to Sardis, and it crosses the Silk Road. The trans-Saharan route runs from Sijilmasa through Taghaza to Timbuktu. The dashed Red Sea and Indian Ocean route runs from Berenice to Muziris. These last two routes touch no other route.">
+        <polyline points="440,75 310,45 120,125" fill="none" stroke="currentColor" stroke-width="3"/>
+        <line x1="270" y1="150" x2="70" y2="40" stroke="currentColor" stroke-width="3"/>
+        <polyline points="40,170 40,215 40,260" fill="none" stroke="currentColor" stroke-width="3"/>
+        <line class="fig-arrow" x1="170" y1="205" x2="400" y2="255" style="stroke-width:3"/>
+        <circle class="fig-hl" cx="440" cy="75" r="6"/><text class="fig-label" x="440" y="99" text-anchor="middle">Chang’an</text>
+        <circle class="fig-hl" cx="310" cy="45" r="6"/><text class="fig-label" x="310" y="32" text-anchor="middle">Samarkand</text>
+        <circle class="fig-hl" cx="120" cy="125" r="6"/><text class="fig-label" x="120" y="149" text-anchor="middle">Antioch</text>
+        <circle class="fig-hl" cx="270" cy="150" r="6"/><text class="fig-label" x="270" y="174" text-anchor="middle">Susa</text>
+        <circle class="fig-hl" cx="70" cy="40" r="6"/><text class="fig-label" x="70" y="27" text-anchor="middle">Sardis</text>
+        <circle class="fig-hl" cx="40" cy="170" r="6"/><text class="fig-label" x="52" y="176">Sijilmasa</text>
+        <circle class="fig-hl" cx="40" cy="215" r="6"/><text class="fig-label" x="52" y="221">Taghaza</text>
+        <circle class="fig-hl" cx="40" cy="260" r="6"/><text class="fig-label" x="52" y="266">Timbuktu</text>
+        <circle class="fig-hl" cx="170" cy="205" r="6"/><text class="fig-label" x="170" y="229" text-anchor="middle">Berenice</text>
+        <circle class="fig-hl" cx="400" cy="255" r="6"/><text class="fig-label" x="400" y="279" text-anchor="middle">Muziris</text>
+        <text class="fig-small" x="235" y="60" text-anchor="middle" style="font-size:14px;font-style:italic">Silk Road</text>
+        <text class="fig-small" x="245" y="118" style="font-size:14px;font-style:italic">Royal Road</text>
+        <text class="fig-small" x="15" y="294" style="font-size:14px;font-style:italic">trans-Saharan route</text>
+        <text class="fig-small" x="305" y="203" text-anchor="middle" style="font-size:14px;font-style:italic">Red Sea and Indian Ocean route</text>
+        <text class="fig-small" x="470" y="298" text-anchor="end">Solid = land. Dashed = water. Not to scale.</text>
+      </svg>
+    prompt: A merchant in Chang’an has silk to sell. A buyer is waiting in Sardis. No single route on this map links them. Which plan gets the silk to Sardis?
     choices:
-      - People storing valuables in Greek temples
-      - People exchanging goods at the agora
-      - Farmers paying a share of grain to officials
-      - Caravans carrying salt across the Sahara
+      - The Silk Road, then the Royal Road
+      - The Royal Road, then the Silk Road
+      - The Silk Road, then the sea route
+      - The Silk Road the whole way
     answer: 0
     feedback:
-      '1': That is more like a market.
-      '2': That is more like paying taxes.
-      '3': That is more like shipping goods on a trade route.
+      '1': These are the right two routes, but check the start. Does the Royal Road reach Chang’an?
+      '2': Trace the dashed line. Does it ever touch the Silk Road?
+      '3': Follow the Silk Road to its end. Where does it stop?
     hints:
-      - Where did people in Greece keep their valuables safe?
+      - Put your finger on Chang’an. Which line can it follow?
+      - Look for a place where one line crosses another.
+      - The Silk Road crosses one other line. Where does that line lead?
     solution:
-      - Keeping valuables somewhere safe is what **banks** do. Greek temples did this long ago.
+      - Work from both ends. Chang’an is on the Silk Road, and Sardis is on the Royal Road.
+      - The two routes cross, so the silk can change routes there. Start on the Silk Road and finish on the Royal Road.
+      - 'What we learned: routes joined into **networks**, so goods could travel farther than any one route went.'
 
   - id: b4
     level: 2
-    covers: [K1.7, S1.3]
+    thinking: connect
+    covers: [S1.2, K1.4]
     type: mc
-    prompt: Use the trade map. West Africa had gold but needed salt. Which route helped solve this?
+    prompt: A merchant from a Greek agora time-travels to a Saturday farmers’ market in your town. Most of it feels just like home. Which sight would puzzle the merchant **most**?
     choices:
-      - The trans-Saharan route
-      - The Silk Road
-      - The Royal Road
-      - The Red Sea and Indian Ocean route
+      - A buyer taps a little plastic card and walks off with some tomatoes.
+      - A farmer sells extra vegetables at a stall in a long row of stalls.
+      - A buyer hands over a few small metal coins for a jar of honey.
+      - A group of shoppers wander between stalls to compare the goods.
     answer: 0
     feedback:
-      '1': The Silk Road linked China to the Mediterranean, far from West Africa.
-      '2': The Royal Road ran across Persia, far from West Africa.
-      '3': This route linked Egypt and India by sea.
+      '1': People came to the agora to exchange goods, and farmers had extra food to sell. Would this seem strange?
+      '2': Greece had metal coins. Would this seem strange to someone from Greece?
+      '3': An agora brought buyers and sellers together in one place. What would shoppers there do?
     hints:
-      - Which route on the map reaches West Africa?
+      - Picture the merchant walking in. What looks just like home?
+      - Now watch each payment. What moves from the buyer to the seller?
     solution:
-      - Camel caravans on the **trans-Saharan route** carried salt south and gold north.
+      - Sellers at stalls, and buyers walking around, are just what an agora was for. Coins would make sense too.
+      - But when someone taps a card, no coins move. So how did the seller get paid? Today, the money moves between bank accounts.
+      - 'What we learned: the idea of a market has lasted for thousands of years, and the way we pay has kept changing.'
 
   - id: b5
     level: 2
-    covers: [K1.8, S1.4]
+    thinking: evidence
+    covers: [K1.7, K1.8, S1.4]
     type: mc
-    prompt: Merchants and monks travelled from India to China on trade routes, and Buddhism spread to China. What does this show?
+    prompt: |-
+      Pliny the Elder, the Roman writer who recorded the Nile’s flood scale, also wrote about silk. He said that people far to the east comb a soft white fluff off the leaves of trees, and that the cloth made from it was worn in Rome.
+
+      He was wrong about the leaves: silk comes from silkworms. What can a historian still learn from what he wrote?
     choices:
-      - Trade increased contact, which spread ideas and beliefs.
-      - Trade routes carried only goods.
-      - People in China travelled to India only to buy silk.
-      - Beliefs can't move from one place to another.
+      - Silk reached Rome, but the true story of how it was made may not have.
+      - Nothing, because a source with a mistake in it can’t teach us anything.
+      - Romans and the people who made silk must have talked with each other often.
+      - The silk in Rome was probably a different cloth that was made from leaves.
     answer: 0
     feedback:
-      '1': This example shows that a belief system moved along the route too.
-      '2': Silk came **from** China, and this example is about a belief.
-      '3': Buddhism began in India and spread to China, so beliefs can move.
+      '1': Even a wrong sentence is evidence. Ask what the writer could see from where he lived, and what he never saw.
+      '2': If they had talked often, would he have got it so wrong?
+      '3': This trusts the very part that we know is wrong. Silk comes from silkworms.
     hints:
-      - What moved from India to China in this example?
+      - Split what Pliny says into two parts. Which part could he see for himself in Rome?
+      - Which part did he only hear about from far away?
+      - Remember that most Silk Road traders travelled only part of the way. What might happen to a story passed from trader to trader?
     solution:
-      - International trade increased contact, which allowed **religions and belief systems** to spread.
+      - Split the source in two. Silk being worn in Rome is something he could see. How it was made is something he could only hear about.
+      - So the cloth made the whole long trip, but the true story of how it was made didn’t reach him.
+      - That fits the Silk Road, where goods passed from trader to trader and few people travelled the whole way.
+      - 'What we learned: goods can travel farther than the true story about them.'
+
+  - id: b6
+    level: 2
+    thinking: evidence
+    covers: [K1.7, S1.3]
+    type: mc
+    prompt: |-
+      Imagine archaeologists dig near an old harbour town in India and find a pot of Roman gold coins. Callum says, “The Romans must have ruled this town.”
+
+      | Route | Joins | Some goods it carried |
+      |---|---|---|
+      | The Silk Road | China to the Mediterranean, by land | Silk, spices, glass, horses |
+      | The Royal Road | Susa to Sardis, in Persia | Cloth, metals, food |
+      | The trans-Saharan route | North Africa to West Africa | Gold, salt, cloth, copper |
+      | The Red Sea and Indian Ocean route | Roman Egypt to India, by sea | Pepper and other spices, gems, cotton |
+
+      What is a better explanation?
+    choices:
+      - Ships brought the coins to India to pay for goods such as pepper.
+      - Soldiers from Rome carried the coins to India along the Royal Road.
+      - Camel caravans carried the coins to India across the Sahara.
+      - Money works only in the land that made it, so Rome had to rule here.
+    answer: 0
+    feedback:
+      '1': The Royal Road ran from Susa to Sardis, so it never reached India. A coin also doesn’t show that soldiers came.
+      '2': The trans-Saharan route joined North Africa and West Africa. It didn’t go to India.
+      '3': This is the same jump that Callum made. A seller can take any money they trust, so a coin can travel without a ruler.
+    hints:
+      - Which route in the table reaches India from Rome’s lands?
+      - What did Rome want from India, and how could Romans pay for it?
+    solution:
+      - Coins are things that can travel, so ask how they could have got here without a ruler.
+      - The Red Sea and Indian Ocean route carried Roman coins to India, and pepper and other spices came back.
+      - The coins are good evidence of **trade**. They don’t tell us who ruled the town. For that, you would need other evidence, such as written records.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.5, U1.2]
-    type: mc
-    prompt: 'Pliny wrote that a flood of 12 cubits brought hunger, and 16 brought delight. Why might Egyptian officials expect a **bigger grain tax** at 16 cubits?'
-    choices:
-      - More land was watered, so a bigger harvest was expected.
-      - More water means that fewer people live in Egypt.
-      - The tax was paid in water, not in grain.
-      - High floods always destroyed the harvest.
-    answer: 0
-    feedback:
-      '1': The flood height is about water reaching the fields, not the number of people.
-      '2': Farmers paid in part of their harvest.
-      '3': Floods of **more than** 16 cubits could hurt the harvest, but 16 was the best level.
-    hints:
-      - What does the flood do for the fields?
-    solution:
-      - A good flood waters more land, which means a bigger harvest and more grain to tax.
+    thinking: breakdown
+    covers: [K1.3, K1.4]
+    type: investigation
+    prompt: |-
+      On a made-up island, nobody has money yet. People only swap. Three neighbours each want something:
+
+      - **Amara**, a farmer, has grain and wants sandals.
+      - **Bao**, a sandal maker, has sandals and wants a pot.
+      - **Cyrus**, a potter, has pots and wants grain.
+    parts:
+      - type: mc
+        prompt: Amara brings grain to Bao and asks for sandals. What goes wrong?
+        choices:
+          - Bao doesn’t want grain, so Bao has no reason to swap.
+          - Amara’s grain isn’t worth as much as a pair of sandals.
+          - Bao has no sandals left to give to Amara.
+          - People can only swap goods of the same kind.
+        answer: 0
+        feedback:
+          '1': The story doesn’t say what grain is worth. Look at what each person wants.
+          '2': Bao does have sandals. Look at what Bao wants in return.
+          '3': Trade is an exchange of different goods, like grain for pots.
+        hints:
+          - Read Bao’s line again. What does Bao want?
+        solution:
+          - Bao wants a pot, not grain. A swap only works when each person has what the other one wants.
+      - type: number
+        prompt: Amara can still end up with sandals, by accepting something just to pass it on. What is the **fewest swaps** it takes for all three neighbours to get what they want?
+        answer: 2
+        unit: swaps
+        verify: 1 + 1
+        hints:
+          - Who wants Amara’s grain?
+          - Act it out. What does Amara get from that swap, and who wants that?
+        solution:
+          - 'Swap 1: Amara gives Cyrus grain and gets a pot. Cyrus is happy.'
+          - 'Swap 2: Amara gives Bao the pot and gets sandals. Bao and Amara are happy.'
+          - That takes 2 swaps, but only because Amara worked out the whole chain first.
+      - type: mc
+        prompt: |-
+          As the island grows, these chains get longer and harder. People agree to use one thing as **currency**, which everyone accepts for anything. Test each idea with three questions:
+
+          - Could you save it for a whole year?
+          - Could you carry it to market to buy one egg?
+          - If anyone could get as much as they liked, would people still give you sandals for it?
+
+          Which idea passes all three?
+        choices:
+          - Small shells that come only from one far-off beach
+          - Fresh fish caught that morning in the harbour
+          - Large stones taken from the nearby hillside
+          - Sand scooped up from the beach near town
+        answer: 0
+        feedback:
+          '1': Everyone wants fish. But what happens to your savings after a week?
+          '2': Stones last for a long time. But how would you carry them to market to buy one egg?
+          '3': Sand lasts, and it is easy to carry in a bag. But why would anyone give you sandals for sand, when they could scoop up their own?
+        hints:
+          - Ask the first question about each idea, and cross out any that fail. Then ask the next one.
+        solution:
+          - Fish rots, so it fails the first question. Stones are too heavy, so they fail the second. Anyone can scoop up sand, so it fails the third.
+          - Small shells from a far-off beach last, fit in a pocket and are hard to get. Cowrie shells were a real currency in ancient China.
+      - type: open
+        prompt: Now invent a currency for your class or team. What is it? Why will it last, be easy to carry and be hard to copy? What could still go wrong with it?
+        modelAnswer: |-
+          I would use small wooden tokens, marked with a stamp that our teacher keeps. They last a long time and fit in a pocket, and nobody can copy them without the stamp.
+
+          One thing could still go wrong: someone could carve a stamp that looks the same. Then there would be fake tokens, and people might stop accepting them.
+        rubric:
+          - I named my currency.
+          - I gave reasons that it would last, be easy to carry and be hard to copy.
+          - I said what could still go wrong.
+        hints:
+          - What went wrong with the fish, the stones and the sand? Make sure your idea avoids each one.
+    wrapUp: Swapping only works when each person has what the other wants. As towns grew, people agreed on something everyone would accept, such as cowrie shells, bronze money or metal coins. A currency only works because people agree to accept it.
 
   - id: d2
     level: 3
-    covers: [S1.4, K1.7]
-    type: mc
-    prompt: 'When trade moved from desert caravans to sea routes, Petra began to lose wealth. Which is the **best** explanation of why this could happen?'
-    choices:
-      - Petra's wealth depended on caravans passing through, so fewer caravans meant less trade.
-      - Sea routes stopped people from wanting spices.
-      - Petra was built on the coast and flooded.
-      - Trade always makes every city poorer.
-    answer: 0
-    feedback:
-      '1': People still wanted spices. They just came by a different path.
-      '2': Petra was in the desert, not on the coast.
-      '3': Trade made many cities rich, including Petra for a long time.
-    hints:
-      - How did Petra grow rich in the first place?
-    solution:
-      - Petra grew rich from the caravans that passed through it. When the goods moved to the sea, its wealth moved too.
+    thinking: whatif
+    covers: [K1.7, S1.4]
+    type: investigation
+    prompt: |-
+      Here are two made-up diary pages from the trans-Saharan route.
+
+      **A trader from the north:** “I gave one sack of salt and got a pouch of gold. What a deal!”
+
+      **A trader from West Africa:** “I gave one pouch of gold, which we have plenty of, and got salt, which we can’t get here. What a deal!”
+    parts:
+      - type: mc
+        prompt: Each trader thinks they won. Who really got the better deal?
+        choices:
+          - Both did, because each swapped what they had plenty of for what they lacked.
+          - The northern trader, because gold is always worth more than salt is.
+          - The West African trader, because a sack is much bigger than a pouch.
+          - Neither did, because when one side wins a trade, the other side has to lose.
+        answer: 0
+        feedback:
+          '1': Read the West African trader’s page again. To that trader, gold was plentiful and salt was not. Would gold seem worth more?
+          '2': Size isn’t what the traders are talking about. Look at why each one was pleased.
+          '3': Many people think this about deals. But look at how each trader ended up. Is either one worse off than before?
+        hints:
+          - What did each trader have plenty of? What did each one need?
+          - After the trade, is either trader sorry about it?
+        solution:
+          - Read each page from that trader’s side. The northern trader gave salt and wanted gold. The West African trader gave gold and wanted salt.
+          - Each one ended up with something they wanted more than what they gave away. So both can be right.
+      - type: mc
+        prompt: Now imagine that a new salt mine opens right in West Africa. What will most likely happen to this trade?
+        choices:
+          - Northern salt will trade for less gold, since West Africa now has its own.
+          - Northern salt will trade for more gold, since now there is more salt around.
+          - Nothing will change, since a sack of salt always trades for the same gold.
+          - West Africa will stop trading its gold, since it now has all that it needs.
+        answer: 0
+        feedback:
+          '1': Check that idea against the diary. Did having little salt make it seem more or less valuable?
+          '2': Salt and gold have no fixed price. What a thing is worth depends on who needs it, and how much of it they have.
+          '3': West Africa would still have plenty of gold and might still want other things, such as cloth and copper.
+        hints:
+          - Why was the West African trader so pleased with the salt in the first place?
+          - What happens to that reason once the mine opens?
+        solution:
+          - The trader was pleased because salt couldn’t be had nearby. The mine takes that reason away.
+          - West African traders would no longer give up as much gold for a sack that travelled across the desert.
+    wrapUp: A good trade gives each side what it lacks for what it has plenty of. That means what a thing is worth depends on where you are and what you need. Change the place, and the deal changes too.
 
   - id: d3
     level: 3
-    covers: [U1.1, S1.4]
-    type: mc
-    prompt: 'Gunpowder, invented in China, spread west along trade routes. Over time, it changed how wars were fought and which rulers held power. Which **kind** of transformation is this mainly?'
-    choices:
-      - Political
-      - Environmental
-      - Agricultural
-      - None, since a technology can't change a civilization
-    answer: 0
-    feedback:
-      '1': Environmental change is about the land, water and air.
-      '2': Gunpowder wasn't about growing food.
-      '3': Technology and contact did change civilizations.
-    hints:
-      - Which kind of change is about who rules?
-    solution:
-      - It changed who held power, so it is mainly a **political** transformation.
+    thinking: decide
+    covers: [K1.5, U1.2, K1.4]
+    type: investigation
+    prompt: |-
+      In a made-up river kingdom, a farm family needs **12 sacks** of grain to eat each year. The queen’s officials suggest two tax plans:
+
+      - **Plan A:** pay **10 sacks** every year.
+      - **Plan B:** sort your harvest into groups of 5 sacks, and pay **1 sack for each group**.
+
+      In a **low-flood** year, the family harvests **15 sacks**. In a **high-flood** year, they harvest **50 sacks**.
+    parts:
+      - type: number
+        prompt: It is a low-flood year, under **Plan A**. How many sacks does the family have left after paying the tax?
+        answer: 5
+        unit: sacks
+        verify: 15 - 10
+        hints:
+          - What do they harvest, and what do they pay?
+        solution:
+          - '\(15 - 10 = 5\) sacks. They need 12, so they are 7 sacks short.'
+      - type: number
+        prompt: It is the same low-flood year, but under **Plan B**. How many sacks does the family have left after paying the tax?
+        answer: 12
+        unit: sacks
+        verify: 15 - 15 / 5
+        hints:
+          - Sort the 15 sacks into groups of 5. How many groups do you get?
+        solution:
+          - 15 sacks make 3 groups of 5, so the tax is 3 sacks.
+          - '\(15 - 3 = 12\) sacks. That is just enough to eat.'
+      - type: mc
+        prompt: Now it is a high-flood year. Under which plan does the family pay **more** tax?
+        choices:
+          - Neither one, because the tax is the same
+          - Plan A, because 10 sacks is a big tax
+          - Plan B, because a big harvest means a big tax
+          - It depends on how many people are in the family
+        answer: 0
+        feedback:
+          '1': Before you decide, work out what Plan B would cost this year.
+          '2': Plan B does grow with the harvest. But does it grow past Plan A? Work it out.
+          '3': Both plans depend only on the harvest, and not on the size of the family.
+        hints:
+          - How many groups of 5 are in 50?
+        solution:
+          - 50 sacks make 10 groups of 5, so Plan B costs 10 sacks. Plan A also costs 10 sacks.
+          - In a good year the family can’t tell the plans apart. The plans only differ when the flood is low.
+      - type: open
+        prompt: You advise the queen. Choose Plan A or Plan B, or invent your own Plan C. Defend your choice. Think about the family, and also about the kingdom, which needs grain to pay soldiers and to store for hungry years.
+        modelAnswer: |-
+          I choose Plan B. In a low-flood year, Plan A leaves the family with 5 sacks when they need 12, and Plan B leaves them with exactly 12. In a high-flood year, both plans cost 10 sacks.
+
+          The kingdom loses something, though. In a low-flood year it collects only 3 sacks from this family instead of 10, right when people might need stored food. So I would tell the queen to store extra grain in the high-flood years.
+        rubric:
+          - I chose a plan, or invented one.
+          - I used numbers from my work as evidence.
+          - I said how my choice helps or hurts the family.
+          - I said how my choice helps or hurts the kingdom.
+        hints:
+          - Who does each plan protect in a low-flood year, the family or the kingdom?
+    wrapUp: A tax has two sides. It has to be something families can pay, and it has to pay for protecting communities and providing services. When a tax is a share of the harvest, the flood decides how much comes in. That is why Egyptian officials measured the Nile so closely.
 
   - id: d4
     level: 3
-    covers: [S1.2, K1.4]
-    type: open
-    prompt: Pick one economic practice from ancient civilizations (markets, banks, currency or taxation). Explain how it was used then, and how it is used in your community today.
-    modelAnswer: |-
-      I picked markets. In ancient Greece, people exchanged goods at the agora, the central market of a city.
-      Today, my family buys vegetables at the farmers' market and orders things online. The idea is the
-      same, since buyers and sellers come together, but today we can pay with a card, or never meet in person.
-    rubric:
-      - I named one economic practice.
-      - I described how it was used in an ancient civilization.
-      - I described how it is used today.
-      - I said what has stayed the same or has changed.
+    thinking: perspective
+    covers: [S1.4, U1.1, K1.6, K1.7, U1.2]
+    type: investigation
+    prompt: |-
+      The made-up town of **Dunewell** sits where camel caravans stop on a desert route. Innkeepers and market sellers earn their living from the caravans. At the gate, the ruler collects a tax from each one.
+
+      Then sailors open a **sea route** that can carry far more than camels can. The port of **Bluehaven** fills with ships. Fewer and fewer caravans come to Dunewell.
+    parts:
+      - type: multi
+        prompt: Follow the ripples. Which of these are likely to happen? Choose all that apply.
+        choices:
+          - Innkeepers in Dunewell have fewer guests.
+          - The ruler of Dunewell collects less at the gate.
+          - Dunewell has less money for guards and road repairs.
+          - Faraway buyers stop wanting the goods.
+          - Bluehaven’s market gets smaller.
+        answer: [0, 1, 2]
+        feedback:
+          '3': People still want the goods. The goods are just taking a different path.
+          '4': The ships are landing at Bluehaven. What does that do to its market?
+        hints:
+          - Start with the caravans. Who was earning from them?
+          - The tax at the gate paid for things. If it shrinks, what gets harder to pay for?
+        solution:
+          - Fewer caravans means fewer guests and less tax at the gate. Less tax means less money for guards and roads.
+          - The goods haven’t stopped moving. They now go through Bluehaven, so its market grows.
+      - type: mc
+        prompt: A change in trade can transform a place in four ways. Which of these is a **political** change?
+        choices:
+          - Dunewell’s ruler can’t pay the guards, and loses control of the road.
+          - Market stalls in Dunewell close, because few goods arrive any more.
+          - Families leave Dunewell to look for new jobs in Bluehaven.
+          - Forests on the hills near Bluehaven are cut down to build ships.
+        answer: 0
+        feedback:
+          '1': This is about buying, selling and earning, so it is an economic change.
+          '2': This changes how people live together, so it is a social change.
+          '3': This changes the land itself, so it is an environmental change.
+        hints:
+          - Political changes are about who rules, and how well they can govern.
+        solution:
+          - A ruler losing control is about who governs, so it is **political**. Each of the other three is one of the other kinds of change.
+      - type: mc
+        prompt: Which of these events today is most like what happened to Dunewell?
+        choices:
+          - A new highway skips a small town, so its gas stations lose customers.
+          - A new bridge reaches a small town, so its diners get more customers.
+          - A family leaves a small town to live closer to their grandparents.
+          - A store in a small town raises its prices, and customers complain.
+        answer: 0
+        feedback:
+          '1': This town gains travellers. Dunewell lost them.
+          '2': This is one family’s choice. In Dunewell, the path of trade moved and hurt the whole town.
+          '3': Dunewell’s prices didn’t cause its trouble. Look for an event where the route itself moves away.
+        hints:
+          - What moved away from Dunewell? Find the same thing moving away today.
+        solution:
+          - In both, a route moves, travellers stop coming, and the businesses that served them lose money.
+      - type: open
+        prompt: Was the sea route a good thing? Answer first as someone from Dunewell, then as someone from Bluehaven. Then give your own view, with a reason.
+        modelAnswer: |-
+          As an innkeeper in Dunewell, I would say no. My guests are gone, and my town can’t pay for its guards.
+
+          As a sailor in Bluehaven, I would say yes. I have work, and the market is full of goods.
+
+          My own view is that it was good for trade, because more goods could reach more people, but it wasn’t free. The people of Dunewell paid for it, and a good ruler should help them find new work.
+        rubric:
+          - I answered as someone from Dunewell.
+          - I answered as someone from Bluehaven.
+          - I gave my own view with a reason.
+        hints:
+          - What did each person gain or lose? Use what you found in the earlier parts.
+    wrapUp: A new trade route doesn’t simply make things better or worse. It changes who gains and who loses, and one change can ripple through jobs, rulers and even the land.

@@ -117,247 +117,371 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [K1.3, S1.1]
     type: mc
-    prompt: Which technology lets you observe the **cells** in an onion skin?
-    choices: [Microscope, Telescope, X-ray, Thermometer]
+    prompt: It’s the day before your birthday. A big wrapped box is sitting on the table, and you’re not allowed to open it. Which technology could show you what’s inside without unwrapping it?
+    choices: [An X-ray machine, A microscope, A telescope, A thermometer]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': A telescope is for objects that are far away.
-      '2': An X-ray shows the inside of things, like bones.
-      '3': A thermometer measures temperature.
+      '1': A microscope shows things that are very small. It would give you a great view of the wrapping paper.
+      '2': A telescope shows things that are very far away. The box is right there.
+      '3': A thermometer tells you how warm something is. That won’t tell you what’s in the box.
     hints:
-      - Cells are very small.
+      - What is stopping you from seeing the present? Is it too small, too far away, or hidden?
+      - Which technology lets you observe the inside of something without opening it?
     solution:
-      - A **microscope** makes very small things look bigger.
+      - The present isn’t too small or too far away. It’s hidden inside something.
+      - An **X-ray** shows the inside of something without opening it. Now you just need to find an X-ray machine!
 
   - id: w2
     level: 1
-    covers: [K2.1]
-    type: mc
-    prompt: What is **bias** in an investigation?
+    thinking: apply
+    covers: [K1.4, K1.1]
+    type: multi
+    prompt: Select **all** the natural phenomena.
     choices:
-      - Personal thoughts, feelings or expectations that influence it
-      - A tool for measuring
-      - The variable you change
-      - A kind of graph
-    answer: 0
-    feedback:
-      '1': Bias is about the person, not a tool.
-      '2': That is the manipulated variable.
-      '3': Graphs show data. Bias is something that can affect the data.
+      - The northern lights over a lake
+      - Fireworks on Canada Day
+      - Lightning over the prairie
+      - A school bell ringing
+      - Hail falling on a field
+      - A smoke alarm beeping
+    fixedOrder: true
+    answer: [0, 2, 4]
     hints:
-      - It comes from the person doing the investigation.
+      - Natural phenomena happen without human input.
+      - For each one, ask, “Did people make this happen?”
     solution:
-      - '**Bias** is any personal thought, feeling or expectation that influences an investigation.'
+      - The northern lights, lightning and hail all happen with no human input, so they are **natural phenomena**.
+      - People made and set off the fireworks, the bell and the alarm. You can still observe them, but they aren’t natural.
 
   - id: w3
     level: 1
-    covers: [K1.4]
+    thinking: notice
+    covers: [K2.1, K2.2, S2.1]
     type: mc
-    prompt: Which is a **natural phenomenon**?
-    choices: [Lightning, A car engine starting, A light being switched on, A video playing]
+    prompt: Tanvi feels sure her team’s paper helicopter will stay up the longest. When she times it, she stops the stopwatch a little late, and she doesn’t even notice. What is this an example of?
+    choices: [Bias, A controlled variable, A natural phenomenon, A way of showing data]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': A person starts the engine.
-      '2': A person switches on the light.
-      '3': A person starts the video.
+      '1': A controlled variable is something kept the same on purpose. Here, something is changing without anyone meaning it to.
+      '2': A natural phenomenon happens with no human input. This comes from what Tanvi is expecting.
+      '3': Showing data is about graphs and tables. This happens earlier, while the data is being collected.
     hints:
-      - Natural phenomena happen without human input.
+      - What did Tanvi feel sure of before she started?
+      - Did that feeling change anything about the measurement?
     solution:
-      - '**Lightning** happens without any human input.'
+      - Tanvi’s **expectation** influenced her measurement. That is **bias**.
+      - She didn’t notice she was doing it, and that’s normal. People usually aren’t aware of their own biases.
 
   - id: w4
     level: 1
-    covers: [K5.2]
-    type: multi
-    prompt: Select **all** the ways to act ethically in a science investigation.
-    choices: [Not changing data, Minimizing harm to living things, Respecting people's privacy, Limiting personal bias, Leaving out results you don't like]
+    thinking: notice
+    covers: [K5.2, S5.1]
+    type: mc
+    prompt: A class surveys everyone about whether they’re afraid of geese. The poster in the hall lists every student’s name beside “yes” or “no”. Which rule of scientific ethics does this break?
+    choices: [Respecting the privacy of participants, Not changing data, Minimizing harm to animals, Limiting personal bias]
     fixedOrder: true
-    answer: [0, 1, 2, 3]
+    answer: 0
+    feedback:
+      '1': The answers on the poster are the real answers. Nothing has been changed.
+      '2': The geese have no idea this survey is happening.
+      '3': Nothing here says that anyone’s expectations changed the answers. Look at what the poster shows.
     hints:
-      - Leaving out results is a way of changing the data.
+      - Look at what the poster shows, and who can read it.
+      - Would everyone want the whole school to know their answer?
     solution:
-      - ✓ The first four are scientific ethics.
-      - ✗ Leaving out results hides the real evidence.
+      - People’s personal answers are up in the hall with their names on them. That breaks the rule of **respecting privacy**.
+      - The fix is easy. “7 out of 25 are afraid of geese” shows the same evidence with no names at all.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S4.2, K4.4]
-    type: mc
-    prompt: In the stretched bar graph, why does the 8-hour plant look so much taller than the 2-hour plant?
-    choices:
-      - The scale starts at 10 cm instead of 0, which exaggerates the difference.
-      - The 8-hour plant really was 3 times as tall.
-      - The data in the table was wrong.
-      - Bar graphs always exaggerate.
-    answer: 0
-    feedback:
-      '1': The table shows 16 cm and 12 cm. That is only 4 cm taller.
-      '2': The table and the graphs use the same data.
-      '3': A bar graph with a scale starting at 0 shows the data fairly.
-    hints:
-      - Look at the number where the scale starts.
-    solution:
-      - Starting the scale at 10 cm cuts off the bottom of every bar, so small differences look huge.
+    thinking: flaw
+    covers: [S4.2, K4.2, K4.4, S4.3]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 360 250" class="fig-svg" role="img" aria-label="Bar graph titled How high each grade jumps. The scale starts at 28 cm and goes up to 32 cm. The Grade 4 bar reaches 30 cm. The Grade 5 bar reaches 32 cm and looks twice as tall as the Grade 4 bar.">
+        <text class="fig-label" x="180" y="22" text-anchor="middle">How high each grade jumps</text>
+        <line class="fig-grid" x1="56" y1="60" x2="340" y2="60"/>
+        <line class="fig-grid" x1="56" y1="100" x2="340" y2="100"/>
+        <line class="fig-grid" x1="56" y1="140" x2="340" y2="140"/>
+        <line class="fig-grid" x1="56" y1="180" x2="340" y2="180"/>
+        <line class="fig-grid" x1="56" y1="220" x2="340" y2="220"/>
+        <text class="fig-small" x="50" y="65" text-anchor="end">32 cm</text>
+        <text class="fig-small" x="50" y="105" text-anchor="end">31 cm</text>
+        <text class="fig-small" x="50" y="145" text-anchor="end">30 cm</text>
+        <text class="fig-small" x="50" y="185" text-anchor="end">29 cm</text>
+        <text class="fig-small" x="50" y="225" text-anchor="end">28 cm</text>
+        <rect class="fig-rect" x="90" y="140" width="90" height="80"/>
+        <rect class="fig-hl" x="220" y="60" width="90" height="160"/>
+        <text class="fig-label" x="135" y="243" text-anchor="middle">Grade 4</text>
+        <text class="fig-label" x="265" y="243" text-anchor="middle">Grade 5</text>
+      </svg>
+    prompt: The Grade 5s measure how high each grade can jump. They put this graph on a poster, under the headline **“We jump TWICE as high as Grade 4!”**
+    parts:
+      - type: number
+        prompt: Read the scale on the side. How many centimetres higher do the Grade 5s really jump?
+        answer: 2
+        unit: cm
+        verify: 32 - 30
+        hints:
+          - Don’t look at the shape of the bars yet. Which number does the top of each bar line up with?
+          - Grade 4 reaches 30 cm, and Grade 5 reaches 32 cm.
+        solution:
+          - The Grade 5 bar reaches 32 cm, and the Grade 4 bar reaches 30 cm. \(32 - 30 = 2\), so the difference is 2 cm.
+      - type: mc
+        prompt: Only 2 cm! So why does the Grade 5 bar look twice as tall?
+        choices:
+          - The scale starts at 28 cm instead of 0, which cuts off the bottom of each bar.
+          - The Grade 5 bar was drawn much wider, which makes it look like much more jumping.
+          - The Grade 4 numbers were changed before the graph was made, to make them look bad.
+          - The Grade 5s jump 2 cm higher, and 2 cm always looks big when it’s drawn on a graph.
+        answer: 0
+        feedback:
+          '1': Both bars are the same width. Look at the bottom of the graph instead.
+          '2': The numbers can be true and the picture can still mislead. Nothing here shows that any data changed.
+          '3': On a scale starting at 0, 2 cm would be tiny next to bars more than 30 cm tall. Look at where this scale starts.
+        hints:
+          - What number is at the very bottom of the scale?
+          - What number would you expect at the bottom of a bar graph?
+          - Where did the first 28 cm of each bar go?
+        solution:
+          - The scale starts at 28 cm, so 28 cm is cut off the bottom of both bars. That leaves 2 cm of Grade 4 and 4 cm of Grade 5. So the bar looks twice as tall.
+          - With a scale starting at 0, the two bars would look almost the same height.
+    wrapUp: A graph can use true numbers and still give the wrong idea. Before you believe the picture, read the scale.
+    hints: []
+    solution: []
 
   - id: b2
     level: 2
-    covers: [S2.1, K2.1]
+    thinking: notice
+    covers: [K4.1, K4.3, S4.3]
     type: mc
     prompt: |-
-      Priya wants to show that her homemade bird feeder attracts the most birds. She watches her feeder for an hour,
-      but watches the store-bought feeder for only 10 minutes. What is the problem?
+      Mr. Belanger’s wall has 12 fishing photos. In every one, he’s holding a huge fish. “I catch a big one every trip!” he says.
+
+      To check his claim, which fact do you most need?
     choices:
-      - Her expectations biased the investigation. The feeders weren't watched the same way.
-      - She should have used three feeders.
-      - Birds can't be counted.
-      - There is no problem.
+      - How many fishing trips he went on in all
+      - How heavy the biggest fish in the photos was
+      - Which lakes the photos were all taken at
+      - What kind of bait he used on those trips
     answer: 0
     feedback:
-      '1': More feeders wouldn't fix the unequal watching times.
-      '2': Birds can be counted. The problem is how she counted.
-      '3': The unequal times favour her own feeder.
+      '1': That would tell you how big his best fish was. Does it tell you about **every** trip?
+      '2': That would tell you where he fishes. Does it tell you how often he catches something?
+      '3': That might help you catch more fish yourself. Does it check what he said?
     hints:
-      - Did both feeders get a fair chance?
+      - What does he claim happens on **every** trip?
+      - Would anyone take a photo of a day with no fish?
+      - Twelve photos out of how many?
     solution:
-      - Priya expected her feeder to win, and she watched it 6 times longer. That is **bias**. Both feeders should be watched for the same time.
+      - The wall shows some of the data, and only the good days. Nobody frames a photo of an empty bucket.
+      - If he went on 12 trips, his claim holds up. If he went on 60, then 48 trips are missing from the wall.
+      - 'What we learned: when you see evidence, ask what was left out.'
 
   - id: b3
     level: 2
-    covers: [K4.3, S4.3]
-    type: mc
+    thinking: evidence
+    covers: [K4.3, S4.2]
+    type: multi
     prompt: |-
-      A Grade 5 class makes a poster about their experiment for Grade 1 students. Which choice best helps the
-      evidence be understood by the intended audience?
+      Here is a student’s science report:
+
+      *“Our thing won by tons. The other team’s thing was dumb. We tested it and ours is obviously better.”*
+
+      Select **all** the problems with this report.
     choices:
-      - A simple, clearly labelled bar graph and short sentences
-      - Long paragraphs full of hard science words
-      - Only the raw numbers, with no labels
-      - A graph with no title or scale
-    answer: 0
-    feedback:
-      '1': Grade 1 students may not understand long paragraphs or hard words.
-      '2': Numbers without labels are hard for anyone to understand.
-      '3': Without a title or scale, readers can't tell what the graph shows.
+      - It doesn’t use correct science vocabulary.
+      - It leaves out the data from the test.
+      - It shows the writer’s personal bias.
+      - It has too many numbers in it to follow.
+      - It’s full of words only a scientist would know.
+    fixedOrder: true
+    answer: [0, 1, 2]
     hints:
-      - Who is going to read the poster?
+      - Go through the checklist for clear evidence. Does it have correct vocabulary? All the relevant data? No personal bias?
+      - What was the “thing”? What does “tons” mean?
+      - How many actual numbers can you find in this report?
     solution:
-      - Evidence should **be understood by the intended audience**. For young readers, a clear, labelled graph works best.
+      - “Thing” and “tons” aren’t correct vocabulary, and they don’t tell us what was tested or measured.
+      - There’s no data at all, so there are certainly not too many numbers.
+      - “Dumb” and “obviously better” show how the writer feels, and that is **personal bias**.
+      - Any reader could understand the words. But they wouldn’t learn anything from them.
 
   - id: b4
     level: 2
-    covers: [K5.2, S5.1]
+    thinking: why
+    covers: [K2.1, S2.1, U2.1, K5.2]
     type: mc
-    prompt: Sam's results don't match what he predicted. What is the **ethical** thing to do?
+    prompt: |-
+      A class asks, “Hands up if you floss every day.” **24 of 25** hands go up.
+
+      Later, the same class answers on paper slips with no names. This time, it’s **9 of 25**.
+
+      Which result should the class trust more, and why?
     choices:
-      - Report the real results and explain what he found.
-      - Change the numbers to match his prediction.
-      - Throw away the results and say the experiment didn't happen.
-      - Copy a friend's results.
+      - The slips, because people feel less pressure when nobody can see their answer.
+      - The hands, because you can see every answer and count them all for yourself.
+      - The hands, because 24 is the bigger number, and bigger numbers are better evidence.
+      - Neither one, because the results differ, and so they must both have gone wrong.
     answer: 0
     feedback:
-      '1': Changing data breaks the rules of scientific ethics.
-      '2': Hiding results is not honest.
-      '3': Copying someone else's results isn't real evidence.
+      '1': You can count every hand, that’s true. But does a raised hand always mean a true answer? Picture your friends watching you.
+      '2': A bigger number isn’t better evidence. 25 people were asked both times.
+      '3': The difference is a clue, not a failure. What was different about the way they were asked?
     hints:
-      - Scientific ethics include not changing data.
+      - The class is the same. What changed between the two times?
+      - Imagine you don’t floss, and all your friends’ hands are going up. What might you do?
+      - Which way of asking lets personal feelings get in the way?
     solution:
-      - Sam should **report what really happened**. Surprising results are still evidence.
+      - It’s the same people, so ask what changed. Everyone could see the hands, but nobody could see the slips.
+      - Feeling embarrassed can change an answer. A personal feeling that influences an investigation is **bias**.
+      - So respecting privacy isn’t only polite. It can also give you truer evidence.
 
   - id: b5
     level: 2
-    covers: [K1.2, K1.3, S1.1]
+    thinking: ways
+    covers: [K5.2, S5.2]
     type: mc
-    prompt: Which phenomenon can you observe **directly** with your senses, without any technology?
-    choices: [The colour of a leaf, The bones inside your arm, The craters on a planet's moon, The cells in your skin]
-    fixedOrder: true
+    prompt: A class wants to find out whether ants in the schoolyard go for sugar or for salt. Which plan gets the evidence while doing the least harm?
+    choices:
+      - Put a pinch of each beside their trail, count the visitors, then clean up.
+      - Dig up the nest, and keep the ants in a jar with some sugar and some salt.
+      - Scoop up 100 ants in a bag, take them inside, and let them choose a side.
+      - Pour sugar and salt all over the nest, and see which pile the ants walk on.
     answer: 0
     feedback:
-      '1': You need an X-ray to see bones inside your body.
-      '2': You need a telescope to see craters on another planet's moon.
-      '3': You need a microscope to see cells.
+      '1': That would answer the question, but it wrecks the ants’ home. You can get the same evidence and leave the nest alone.
+      '2': That would answer the question, but it takes ants away from their home. Do you need to move them at all?
+      '3': That buries their home. Could you offer food without burying anything?
     hints:
-      - Which one could you see just by looking?
+      - What do you actually need to see, to answer the question?
+      - Can you see it without moving any ants?
+      - Which plan leaves the schoolyard the way the class found it?
     solution:
-      - You can see the **colour of a leaf** with your eyes. The others need technology.
+      - All you need to see is where the ants go. You don’t need to move them to see that.
+      - So offer a small amount beside their trail, and count. Then clean up, so the schoolyard is left as you found it.
+      - 'What we learned: before you start, ask whether another way gets the same evidence with less harm.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.2, U2.1, S2.1]
-    type: mc
-    prompt: Why is a **blind test** a good way to limit bias in a taste test of two juices?
-    choices:
-      - Tasters don't know which juice is which, so their expectations can't affect their choices.
-      - The tasters close their eyes so they can taste better.
-      - It makes the juices taste the same.
-      - It means nobody records the results.
-    answer: 0
-    feedback:
-      '1': In a blind test, the tasters can keep their eyes open. The labels are hidden.
-      '2': The juices still taste different. Only the labels are hidden.
-      '3': Results must still be recorded.
-    hints:
-      - People usually aren't aware of their own biases.
-    solution:
-      - People usually don't notice their own biases. Hiding which juice is which stops **expectations** from influencing the results.
+    thinking: breakdown
+    covers: [K2.1, K2.2, U2.1, S2.1, K4.3, U5.1]
+    type: investigation
+    prompt: |-
+      Farmer Lou says his hen, Henrietta, can add. A visitor holds up two number cards, like 3 and 2. She pecks the ground 5 times, then stops! People pay $1 to watch.
+
+      One visitor runs a test, with the same hen, the same cards and the same barn.
+
+      | Test | Can Lou see the cards? | Right answers |
+      |---|---|---|
+      | A | Yes | 9 out of 10 |
+      | B | No (bag over his head) | 1 out of 10 |
+    parts:
+      - type: mc
+        prompt: What does this evidence suggest?
+        choices:
+          - She is reacting to something she notices from Lou, not adding.
+          - She can add, but the paper bag upset her and made her forget.
+          - The test is unfair, because only one thing changed between A and B.
+          - She can add, but she gets it right only when she feels like adding.
+        answer: 0
+        feedback:
+          '1': Maybe the bag bothers her, but she can still see the cards. And the only thing she needs for adding is the cards.
+          '2': Changing only one thing is exactly what makes a test fair.
+          '3': Her score changes by a lot, and it changes exactly when Lou can’t see. That’s more than a mood.
+        hints:
+          - What is the only thing that’s different between Test A and Test B?
+          - If she were really adding, would it matter whether Lou can see the cards?
+        solution:
+          - Only one thing changed, whether Lou could see the cards. Henrietta could see them both times.
+          - If she were adding, that wouldn’t matter. But her score fell from 9 to 1, so the right answers must somehow be coming from Lou.
+      - type: mc
+        prompt: A video shows Lou leaning forward while Henrietta pecks, then straightening up at the right number. Lou is amazed. He never knew he did this. What does this show?
+        choices:
+          - His expectations changed the results, and he wasn’t aware of it.
+          - He has been cheating his visitors on purpose, for all those dollars.
+          - Hens can learn to add, but they only learn it from one person.
+          - The video must be wrong, because Lou would know what he’s doing.
+        answer: 0
+        feedback:
+          '1': A cheater knows he’s cheating. Lou is truly surprised.
+          '2': The test showed she can’t get the right answer without Lou’s help. That’s not adding.
+          '3': People often don’t know they are doing things like this. That’s the tricky part.
+        hints:
+          - Did Lou mean to do this?
+          - What does the lesson say about whether people notice their own biases?
+        solution:
+          - Lou expected Henrietta to get it right, and that expectation showed in his body. The hen noticed. That is **bias**.
+          - He didn’t know about it, and that’s how bias usually works. Humans are not usually aware of their own biases.
+          - The bag worked like a blind test. Lou’s expectations couldn’t reach the hen.
+      - type: open
+        prompt: Lou is honest, so he takes down his sign, “THE ADDING HEN”. Write a new sign for the families who visit. It should tell them clearly and accurately what the test found.
+        modelAnswer: |-
+          Meet Henrietta, the hen who watches people! When Lou can see the number cards, she gets 9 out of 10 right. When he can’t, she gets only 1 out of 10. She isn’t adding. She’s noticing what Lou does.
+        rubric:
+          - My sign doesn’t claim that she can add.
+          - My sign gives the evidence from both tests.
+          - Young visitors could understand my sign.
+    wrapUp: Lou never meant to fool anyone, and that’s why bias is so tricky. We can’t just promise not to have it, so we design tests that keep it out.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K4.1, K4.3, S4.3]
+    thinking: decide
+    covers: [K5.2, S5.1, S5.2, U5.1, K4.3]
     type: mc
     prompt: |-
-      A class tests 6 paper towels. A company's ad shows only the 2 results where its towel did best, and leaves out
-      the other 4. What is the problem?
+      Soraya counts her hamster’s wheel turns each night: **200, 210, 190, 1500, 205**.
+
+      On the night of the 1500, she saw her little brother spinning the wheel by hand. She’s writing a report on how much her hamster runs. What is the most ethical thing to do with the 1500?
     choices:
-      - It doesn't include all the relevant data, so people could reach the wrong conclusion.
-      - It has too many results.
-      - Ads should never use graphs.
-      - There is no problem, because the 2 results are real.
+      - Keep it in her notes, say what happened, and leave it out of the hamster’s pattern.
+      - Erase it, and write nothing about it, because the hamster didn’t really do those turns.
+      - Change it to 200, because that is close to what the hamster would have done that night.
+      - Report it like all the others, with no note, because you must never leave out any data.
     answer: 0
     feedback:
-      '1': It shows too **few** results, not too many.
-      '2': Graphs can be fine if they are clear and accurate.
-      '3': Real results can still mislead if important ones are left out.
+      '1': She’s right that those turns weren’t the hamster’s. But if she erases it quietly, nobody can see what she did or why.
+      '2': She doesn’t know what the hamster did that night. 200 would be a made-up number, and that’s changing data.
+      '3': She’s right not to hide it. But with no note, readers will think the hamster ran 1500 turns. Is that accurate?
     hints:
-      - Clear and accurate evidence includes all the relevant data.
+      - What really happened that night? What would a reader need to know?
+      - Could a reader check her thinking if she erased the number?
+      - Which choice is honest about the number and also clear about what it means?
     solution:
-      - Showing only some of the data hides the full picture. People might think the towel always wins.
+      - There are two jobs here, being honest about what happened and being accurate about the hamster.
+      - Erasing or changing the number fails the first job. Reporting it with no explanation fails the second.
+      - So she keeps the number, says what happened, and explains why it doesn’t count as hamster running. Everything is out in the open, and a reader could disagree with her if they wanted to.
+      - 'What we learned: the problem isn’t leaving out one number that has a known cause. The problem is hiding that you did.'
 
   - id: d3
     level: 3
-    covers: [K5.2, S5.2]
-    type: mc
-    prompt: Your class is studying insects in the schoolyard. Which plan is **most ethical**?
-    choices:
-      - Observe the insects in a clear container for a short time, then release them where you found them.
-      - Keep the insects in a jar until the end of the year.
-      - Collect as many insects as possible to get more data.
-      - Move all the insects to another field.
-    answer: 0
-    feedback:
-      '1': Keeping them for months could harm them.
-      '2': More data isn't worth harming many living things.
-      '3': Moving them could harm them and their environment.
-    hints:
-      - Scientific ethics include minimizing harm to animals and the environment.
-    solution:
-      - Observing briefly and **releasing** them where you found them **minimizes harm**.
-
-  - id: d4
-    level: 3
-    covers: [S5.1, U5.1, K5.2]
+    thinking: why
+    covers: [K1.2, K1.3, S1.1, U1.1]
     type: open
-    prompt: Explain why scientific ethics are important. Give **two** examples of ethical behaviour in an investigation.
+    prompt: |-
+      Before lunch, Harlan looks at his hands. “They look clean, so there are no germs on them,” he says, and he picks up his sandwich. Germs are far too small to see with your eyes.
+
+      Explain what’s wrong with his reasoning. Then name a technology that could give better evidence, and say what you would do with it.
     modelAnswer: |-
-      Scientific ethics make sure evidence is honest and that no one gets hurt, so people can trust the results. For
-      example, a scientist should never change data, even when it doesn't match a prediction. Scientists should also
-      respect the privacy of people in a survey by not sharing their names.
+      Germs are far too small to see with your eyes, so looking at your hands can’t show whether germs are there. Not seeing something doesn’t mean it isn’t there. A microscope would give better evidence. I would wipe his hand with a swab, put what’s on the swab on a glass slide, and look at it under the microscope.
     rubric:
-      - I explained why ethics matter (for example, trust or avoiding harm).
-      - I gave a first example of ethical behaviour.
-      - I gave a second, different example.
+      - I explained that some things are too small for our senses to observe, so looking can’t settle it.
+      - I named a technology that fits, like a microscope.
+      - I said how I would use it to check Harlan’s hands.
+    hints:
+      - Harlan is using his eyes. What can his eyes tell him about germs?
+      - If you can’t see something, does that prove it isn’t there?
+      - Which technology from the lesson shows very small things?
+    solution:
+      - Harlan used his eyes to answer a question that his eyes can’t answer. Germs are too small to see.
+      - So “I can’t see any” doesn’t tell him anything. It would be like saying there are no moons around other planets because you can’t see them from your backyard.
+      - A **microscope** lets us observe what our senses can’t. Technology gives us evidence about things we would otherwise never know were there.

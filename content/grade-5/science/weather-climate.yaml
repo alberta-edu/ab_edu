@@ -146,256 +146,381 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.1, K1.1]
-    type: mc
-    prompt: '"It is raining in Red Deer this afternoon." Is this about weather or climate?'
-    choices: [Weather, Climate]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Climate is about patterns over at least 30 years. This is about one afternoon.
+    thinking: recall
+    covers: [S1.1, K1.1, K1.2]
+    type: multi
+    prompt: Which of these sentences are about **climate**, not weather? Select all that fit.
+    choices:
+      - Iqaluit is very cold for most of the year.
+      - Cairo gets very little rain, year after year.
+      - Hail is bouncing off our school field right now.
+      - Tomorrow will be windy in Banff.
+    answer: [0, 1]
     hints:
-      - Is this about a short time or a long time?
+      - Is each sentence about a short time or a long pattern?
     solution:
-      - It describes conditions over a **short time**, so it is **weather**.
+      - Climate is a long-term pattern. “For most of the year” and “year after year” are clues that a sentence describes a pattern.
+      - Hail right now and wind tomorrow are short-term conditions, so they are weather.
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [K1.2]
     type: number
-    prompt: Climate is the pattern of weather in a region over a period of at least how many **years**?
-    answer: 30
+    prompt: |-
+      Four years ago, a class started a daily weather diary. How many **more** years must the diary go on before it
+      covers enough time to describe the climate?
+    answer: 26
     unit: years
+    verify: 30 - 4
     hints:
-      - It is more than a few years. Think of three decades.
+      - How many years of patterns does climate need, at least?
     solution:
-      - Climate describes weather patterns over **at least 30 years**.
+      - Climate needs at least 30 years of weather patterns.
+      - '\(30 - 4 = 26\) more years. That diary will need a very patient class!'
 
   - id: w3
     level: 1
-    covers: [K2.1]
+    thinking: apply
+    covers: [K2.1, U2.1]
     type: mc
-    prompt: Which tool measures **wind speed**?
-    choices: [Anemometer, Thermometer, Barometer, Hygrometer]
+    prompt: Your socks on the clothesline are drying very slowly. You suspect there is a lot of water vapour in the air. Which tool could check?
+    choices: [Hygrometer, Barometer, Thermometer, Rain gauge]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': A thermometer measures temperature.
-      '2': A barometer measures air pressure.
-      '3': A hygrometer measures humidity.
+      '1': A barometer measures air pressure. Which tool is about water vapour?
+      '2': A thermometer tells you how warm the air is. Which tool is about water vapour?
+      '3': A rain gauge measures water falling from the sky. Is any rain falling on your socks?
     hints:
-      - This tool has cups that spin faster when the wind is stronger.
+      - The word for how much water vapour is in the air is “humidity”. Which tool measures that?
     solution:
-      - An **anemometer** measures wind speed.
-
-  - id: w4
-    level: 1
-    covers: [K2.1, K1.1]
-    type: mc
-    prompt: A **hygrometer** measures…
-    choices: [humidity, air pressure, temperature, precipitation]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Air pressure is measured with a barometer.
-      '2': Temperature is measured with a thermometer.
-      '3': Precipitation is measured with a rain or snow gauge.
-    hints:
-      - It is about water vapour in the air.
-    solution:
-      - A hygrometer measures **humidity**, the amount of water vapour in the air.
+      - A **hygrometer** measures humidity, the amount of water vapour in the air.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.5, S1.4, S1.3]
+    thinking: flaw
+    covers: [K2.1, S2.1, U2.1]
     type: mc
+    figure: >-
+      <svg viewBox="0 0 420 190" class="fig-svg" role="img" aria-label="A view from above, with north at the top. On the left, a wind vane with its arrow pointing north. On the right, a windsock with its wide open end to the north and its narrow tail streaming south.">
+      <text class="fig-label" x="210" y="20" text-anchor="middle">N</text><text class="fig-label" x="210" y="184" text-anchor="middle">S</text>
+      <line class="obj-line" x1="110" y1="140" x2="110" y2="48"/><line class="obj-line" x1="110" y1="48" x2="96" y2="66"/><line class="obj-line" x1="110" y1="48" x2="124" y2="66"/>
+      <text class="fig-small" x="110" y="166" text-anchor="middle">Wind vane</text>
+      <path class="fig-rect" d="M284 48 L336 48 L320 140 L300 140 Z"/>
+      <text class="fig-small" x="310" y="166" text-anchor="middle">Windsock</text>
+      </svg>
     prompt: |-
-      A place has an average January temperature of **−26 °C** and an average July temperature of **8 °C**. It gets
-      about 360 mm of precipitation a year. Which climate zone fits best?
-    choices: [Polar, Tropical, Dry, Temperate]
-    fixedOrder: true
+      This is a view from above a small airfield, with north at the top. Dov says, “The arrow points north but the
+      windsock’s tail points south. They disagree, so one of them must be broken!” What is true?
+    choices:
+      - Neither is broken. Wind from the north turns the arrow north and blows the tail south.
+      - The wind vane is broken. Its arrow should point the way the wind is blowing to.
+      - The windsock is broken. Its tail should point north, the same way as the arrow.
+      - Both are broken. Two tools at the same airfield should always point the same way.
     answer: 0
     feedback:
-      '1': Tropical places are hot all year.
-      '2': Dry places get very little precipitation, and many of them are hot. Here, the cold is the big clue.
-      '3': Temperate places have mild winters, not −26 °C.
+      '1': The arrow of a wind vane points to where the wind comes **from**. What does this one tell you?
+      '2': Imagine wind blowing into the open end of the sock. Which way would the tail be pushed?
+      '3': These two tools show the wind in different ways. Work out what each one says about the wind.
     hints:
-      - Even the warmest month is only 8 °C.
+      - Start with the vane. Where is the wind coming from?
+      - Now picture that same wind hitting a sock. Which way does the tail stream?
     solution:
-      - Very cold for most of the year, and cool even in summer → **polar**. (This is Iqaluit, Nunavut.)
+      - The arrow of a wind vane points to where the wind comes from, so this wind comes **from the north**.
+      - Wind from the north fills the sock’s open end and pushes the tail **south**.
+      - Both tools tell the same story. They only look as if they disagree because they show it in opposite ways.
 
   - id: b2
     level: 2
-    covers: [K1.4, S1.6, S1.5]
+    thinking: why
+    covers: [S2.2, K2.1, U2.1]
     type: mc
-    prompt: In the climate graphs, Vancouver's winters are much **warmer** than Edmonton's. Which factor best explains this?
+    prompt: |-
+      Yuna builds a simple anemometer from four paper cups on two crossed sticks. They spin in the wind. Then she
+      paints **just one cup** red. Why is that a smart idea?
     choices:
-      - Vancouver is next to the Pacific Ocean.
-      - Vancouver is much farther north.
-      - Vancouver has fewer weather tools.
-      - Vancouver gets less precipitation.
+      - She can count each time the red cup comes around.
+      - The red cup catches more of the wind than the others.
+      - The red cup shows which way the wind is coming from.
+      - The red cup warms in the Sun and shows the temperature.
     answer: 0
     feedback:
-      '1': Vancouver is actually farther **south** than Edmonton, but the ocean is the bigger reason.
-      '2': Tools measure the climate. They don't change it.
-      '3': Vancouver gets **more** precipitation than Edmonton.
+      '1': Paint doesn’t change the cup’s shape. What can your eyes do with a red cup that they can’t do with four white ones?
+      '2': Direction is the job of a wind vane or windsock. What does a spinning anemometer measure?
+      '3': Temperature is the job of a thermometer. What does a spinning anemometer measure?
     hints:
-      - Which climate factor is about bodies of water?
+      - Picture four white cups spinning fast. What would be hard to do?
+      - What must you do with the spins to compare today’s wind with yesterday’s?
     solution:
-      - Being close to a large body of water, the **Pacific Ocean**, keeps Vancouver's winters mild.
+      - An anemometer measures wind speed. The stronger the wind, the faster the cups spin.
+      - Four matching cups are a blur. With one red cup, you can count each trip around in, say, 30 seconds.
+      - That turns “pretty windy” into a number you can write down and compare.
 
   - id: b3
     level: 2
-    covers: [S2.3, S2.4]
-    type: number
+    thinking: flaw
+    covers: [S1.6, S1.4, K1.2, K1.4]
+    type: mc
     prompt: |-
-      Jaylen recorded the high temperature each school day for one week:
+      Ivo reads the July numbers below and says, “Same temperature! So Edmonton’s climate is just like Vancouver’s,
+      but rainier.” These are real 30-year averages. What did Ivo miss?
 
-      | Mon | Tue | Wed | Thu | Fri |
-      |---|---|---|---|---|
-      | 12 °C | 15 °C | 9 °C | 18 °C | 14 °C |
-
-      What is the difference between the **warmest** and **coldest** days?
-    answer: 9
-    unit: °C
+      | Average | Vancouver | Edmonton |
+      |---|---|---|
+      | July temperature | 18 °C | 18 °C |
+      | July precipitation | 34 mm | 83 mm |
+      | January temperature | 4 °C | −10 °C |
+      | January precipitation | 174 mm | 20 mm |
+    choices:
+      - One month isn’t a whole climate. January shows two very different places.
+      - The July numbers must be wrong, because Vancouver is rainier in every month.
+      - He needs to stay in each city for a few weeks to be sure about the numbers.
+      - Temperature isn’t part of climate, so the matching 18 °C doesn’t mean anything.
+    answer: 0
+    feedback:
+      '1': Surprising, isn’t it? But read the table. In which city is July wetter? Is that true in January?
+      '2': These numbers already cover 30 years. A few more weeks wouldn’t change them. Which rows did Ivo leave out?
+      '3': Temperature is one of the key things climate data shows. Which rows did Ivo leave out?
     hints:
-      - Find the highest and the lowest temperatures first.
+      - Which rows of the table did Ivo actually use?
+      - Compare the two cities again using the January rows.
     solution:
-      - Warmest is Thursday (18 °C). Coldest is Wednesday (9 °C).
-      - '18 − 9 = **9 °C**.'
-    verify: '18 - 9'
+      - Ivo used only the July rows. In January, Vancouver is much milder and much wetter than Edmonton.
+      - A climate is the pattern of the **whole year**, so one matching month can’t make two climates alike.
+      - The difference fits what you learned. Vancouver is beside the Pacific Ocean, and Edmonton is far from any ocean.
 
   - id: b4
     level: 2
-    covers: [K2.4, S2.7]
-    type: multi
-    prompt: Select **all** the methods used to predict the weather.
-    choices: [Computer modelling, Historical data, Satellite imaging, 'First Nations, Métis and Inuit traditional knowledge', Flipping a coin]
-    fixedOrder: true
-    answer: [0, 1, 2, 3]
+    thinking: connect
+    covers: [K1.5, S1.3, S1.4]
+    type: mc
+    prompt: |-
+      Pip the penguin runs a travel agency. A slug walks in, very slowly, and says, “I want a mild winter, a summer
+      that isn’t hot, and plenty of wet days.” These are real 30-year averages. Where should Pip send the slug?
+
+      | Place | January | July | Precipitation in a year |
+      |---|---|---|---|
+      | A | 27 °C | 28 °C | 2113 mm |
+      | B | 4 °C | 18 °C | 1160 mm |
+      | C | 14 °C | 29 °C | 24 mm |
+      | D | −26 °C | 8 °C | 362 mm |
+    choices:
+      - Place B, a temperate climate
+      - Place A, a tropical climate
+      - Place C, a dry climate
+      - Place D, a polar climate
+    answer: 0
+    feedback:
+      '1': There is plenty of rain here, but check the slug’s wish about summer. Is 28 °C “not hot”?
+      '2': The winter is mild here. But look at the precipitation. Would there be plenty of wet days?
+      '3': The summer isn’t hot, but check the slug’s wish about winter. Is −26 °C mild?
     hints:
-      - One choice is just a guess, not a method based on observations.
+      - The slug made three wishes. Test each place against one wish at a time.
+      - Cross out each place as soon as it breaks a wish.
     solution:
-      - ✓ Computer modelling, historical data, satellite imaging and traditional knowledge are all used to predict the weather.
-      - ✗ Flipping a coin is a guess.
+      - A has a hot summer. C has almost no precipitation. D has a very cold winter.
+      - That leaves **B**. Mild winters and summers that aren’t very hot describe a **temperate** climate.
+      - B is really Vancouver. A is Singapore, C is Cairo and D is Iqaluit.
 
   - id: b5
     level: 2
-    covers: [S2.6]
-    type: mc
-    prompt: Why would a farmer check the weather forecast before harvesting a crop?
-    choices:
-      - To plan the harvest before a storm could damage the crop.
-      - To find out the climate zone of the farm.
-      - To measure the humidity of the soil.
-      - Forecasts don't help farmers.
-    answer: 0
-    feedback:
-      '1': The climate zone doesn't change from day to day. A forecast is about the coming days.
-      '2': A forecast tells you about the weather, not the soil.
-      '3': Forecasts help many people plan, including farmers.
-    hints:
-      - A forecast tells you what the weather will be soon.
-    solution:
-      - Knowing a storm is coming lets the farmer **plan ahead** and protect the crop.
-
-  - id: b6
-    level: 2
-    covers: [S2.2, K2.1]
+    thinking: evidence
+    covers: [S2.3, S2.4, S2.2, U2.1]
     type: mc
     prompt: |-
-      Noor builds a simple weather tool from a straight-sided jar with a ruler taped to it, and sets it outside in an
-      open spot. Which tool did Noor make, and what does it measure?
+      Nia and Sol live side by side. Each made a jar rain gauge. Nia’s jar is in the open yard. Sol’s jar is under the
+      edge of the garage roof, where it drips. They recorded the same storms:
+
+      | Day | Nia’s jar | Sol’s jar |
+      |---|---|---|
+      | Mon | 4 mm | 12 mm |
+      | Wed | 7 mm | 18 mm |
+      | Fri | 2 mm | 9 mm |
+
+      Sol says, “Mine caught more, so mine is more accurate.” Whose record belongs on the class weather map?
     choices:
-      - A rain gauge, which measures precipitation
-      - A wind vane, which measures wind direction
-      - A barometer, which measures air pressure
-      - A thermometer, which measures temperature
+      - Nia’s, because her jar caught only what fell from the sky.
+      - Sol’s, because a jar with more rain in it gives a better measure.
+      - Both added together, because that counts all the rain that fell.
+      - Neither one, because two records that differ can’t tell you anything.
     answer: 0
     feedback:
-      '1': A wind vane needs a part that turns in the wind.
-      '2': A barometer responds to air pressure. An open jar catches rain.
-      '3': A thermometer shows how warm the air is. A ruler can't show that.
+      '1': More isn’t the same as more accurate. Where did the extra water in Sol’s jar come from?
+      '2': That would count some of the rain twice, and it would add the roof’s water too. What is a rain gauge meant to measure?
+      '3': The difference actually tells you something. Do the two jars sit in the same kind of spot?
     hints:
-      - What could collect in an open jar outside? What would the ruler measure?
+      - What is a rain gauge meant to measure?
+      - Where did the extra water in Sol’s jar come from?
     solution:
-      - Rain collects in the jar, and the ruler shows how deep it is. That is a simple **rain gauge**.
+      - A rain gauge should measure how much rain falls on one small spot. That needs an open place.
+      - Sol’s jar also collects water that landed on the roof, so its numbers are too high every time.
+      - Sol’s tool was built just fine. Where you put a tool is part of measuring accurately.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.1, S2.1]
-    type: mc
-    prompt: The arrow of a wind vane is pointing **north**. Which way is the wind blowing?
-    choices:
-      - From the north, toward the south
-      - From the south, toward the north
-      - From the east, toward the west
-      - You can't tell from a wind vane.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': A wind vane's arrow points to where the wind comes **from**, not where it goes.
-      '2': The arrow is pointing north, not east.
-      '3': A wind vane is the tool for wind direction.
-    hints:
-      - The wind pushes the wide tail away, so the arrow turns to face into the wind.
-    solution:
-      - The arrow points **into** the wind. Pointing north means the wind is coming **from the north**, blowing south.
+    thinking: whatif
+    covers: [K1.4, S1.5, U1.1]
+    type: investigation
+    prompt: |-
+      Big Olga is a friendly made-up giant who likes to rearrange Canada. Each morning she tries a new idea and checks
+      your predictions. Use what you know about what shapes a climate.
+    parts:
+      - type: mc
+        prompt: On Monday, Olga lifts the **whole Rocky Mountains** out of the way, and leaves everything else as it was. What happens to Alberta’s climate over the years?
+        choices:
+          - It gets wetter, because moist air from the Pacific can now reach it.
+          - It gets drier, because there are no mountains left to make the rain.
+          - It stays the same, because mountains are a landform and not a weather event.
+          - It gets colder, because the mountains were keeping Alberta warm like a blanket.
+        answer: 0
+        feedback:
+          '1': What were the mountains doing to the moist air on its way from the Pacific?
+          '2': Landforms are one of the factors climates depend on. What did this one do in Alberta?
+          '3': Which part of Alberta’s climate do the lesson’s Rocky Mountains explain? Is it temperature?
+        hints:
+          - Why is Alberta fairly dry today?
+          - If that reason disappears, what changes?
+        solution:
+          - Today the Rockies block moist air from the Pacific, and that is why Alberta is fairly dry.
+          - Take the block away and the moist air can reach Alberta, so it gets **wetter**.
+      - type: mc
+        prompt: |-
+          The mountains are back. Olga wants to make Edmonton’s winters much **milder** without moving it any farther
+          north or south. Which single move works best?
+        choices:
+          - Move Edmonton to the edge of a big ocean.
+          - Move Edmonton much higher, up a mountain.
+          - Move Edmonton behind a taller mountain range.
+          - Move Edmonton farther from any big body of water.
+        answer: 0
+        feedback:
+          '1': Higher places are usually cooler. Would that make winter milder?
+          '2': Mountains can block moist air. Which factor keeps temperatures mild?
+          '3': Alberta is already far from the oceans, and its temperatures change a lot. Would farther help?
+        hints:
+          - Go through the four factors. You can’t use location north or south. Which one keeps nearby places mild?
+        solution:
+          - Oceans and big lakes keep nearby places mild.
+          - So Edmonton should move to the ocean’s edge, like Vancouver. Its winters would be much milder.
+      - type: mc
+        prompt: On Friday, Olga builds an enormously tall mountain right on the **equator**. Could there be ice near the top all year?
+        choices:
+          - Yes, because higher places are cooler, and the top is very high.
+          - No, because the equator is hot everywhere, at any height at all.
+          - Only in the winter months, when the equator cools down a lot.
+          - Only if the mountain is next to a big ocean to keep it cool.
+        answer: 0
+        feedback:
+          '1': Location matters, but it is only one factor. What did you learn about the high peaks of the Rockies?
+          '2': Singapore is near the equator, and its January and July are almost the same. Would a high place have a much colder season?
+          '3': Oceans keep places mild, so that wouldn’t bring ice. Which factor is about height?
+        hints:
+          - Which two factors are pulling in opposite directions on this mountain?
+          - Why do the high peaks of the Rockies keep their snow all summer?
+        solution:
+          - Two factors pull against each other. Being near the equator makes it warm, and being high up makes it cold.
+          - At the very top, altitude can win, so ice can stay all year.
+          - This is real. Mount Kilimanjaro in Africa is very close to the equator, and it still has ice near its top.
+    wrapUp: A climate comes from several factors working together. Change one, and you can predict what changes next.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S1.5, K1.4]
-    type: mc
-    prompt: Alberta is fairly **dry** compared with the coast of British Columbia. Which factor best explains this?
-    choices:
-      - The Rocky Mountains block moist air from the Pacific Ocean.
-      - Alberta is at the equator.
-      - Alberta is next to a large ocean.
-      - Alberta has no altitude.
-    answer: 0
-    feedback:
-      '1': Alberta is far north of the equator.
-      '2': Alberta is far from any ocean.
-      '3': Every place has an altitude. This doesn't explain dryness.
-    hints:
-      - Which landform lies between Alberta and the Pacific Ocean?
-    solution:
-      - The **Rocky Mountains** (a landform) block much of the moist air coming from the Pacific Ocean.
+    thinking: breakdown
+    covers: [K2.4, S2.6, S2.7, U1.1, K2.2]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 440 190" class="fig-svg" role="img" aria-label="Two maps of four towns in a line from west to east: Aspen, Birch, Cedar and Dogwood. On Monday, the storm cloud is over Aspen. On Tuesday, the storm cloud is over Birch.">
+      <text class="fig-small" x="4" y="14">West</text><text class="fig-small" x="436" y="14" text-anchor="end">East</text>
+      <text class="fig-label" x="4" y="62">Mon</text>
+      <ellipse class="fig-hl" cx="120" cy="34" rx="34" ry="14"/>
+      <circle class="obj obj--dark" cx="120" cy="62" r="6"/><circle class="obj obj--dark" cx="210" cy="62" r="6"/><circle class="obj obj--dark" cx="300" cy="62" r="6"/><circle class="obj obj--dark" cx="390" cy="62" r="6"/>
+      <text class="fig-small" x="120" y="84" text-anchor="middle">Aspen</text><text class="fig-small" x="210" y="84" text-anchor="middle">Birch</text><text class="fig-small" x="300" y="84" text-anchor="middle">Cedar</text><text class="fig-small" x="390" y="84" text-anchor="middle">Dogwood</text>
+      <text class="fig-label" x="4" y="152">Tue</text>
+      <ellipse class="fig-hl" cx="210" cy="124" rx="34" ry="14"/>
+      <circle class="obj obj--dark" cx="120" cy="152" r="6"/><circle class="obj obj--dark" cx="210" cy="152" r="6"/><circle class="obj obj--dark" cx="300" cy="152" r="6"/><circle class="obj obj--dark" cx="390" cy="152" r="6"/>
+      <text class="fig-small" x="120" y="174" text-anchor="middle">Aspen</text><text class="fig-small" x="210" y="174" text-anchor="middle">Birch</text><text class="fig-small" x="300" y="174" text-anchor="middle">Cedar</text><text class="fig-small" x="390" y="174" text-anchor="middle">Dogwood</text>
+      </svg>
+    prompt: |-
+      These made-up towns sit in a line. Satellite images show the same storm on two days. The town of Dogwood has
+      planned its kite festival for **Thursday**. Suppose the storm keeps moving the same way, at the same pace.
+    parts:
+      - type: text
+        prompt: Which town will the storm be over on **Wednesday**?
+        accept: [Cedar]
+        hints:
+          - How far did the storm move from Monday to Tuesday?
+        solution:
+          - The storm moved one town east in one day. One more day takes it from Birch to **Cedar**.
+      - type: mc
+        prompt: It is Tuesday night. What is the best advice for the kite festival?
+        choices:
+          - Move it to Wednesday in Dogwood.
+          - Keep it on Thursday in Dogwood.
+          - Move it to Wednesday in Cedar.
+          - Move it to Tuesday in Dogwood.
+        answer: 0
+        feedback:
+          '1': Follow the storm one more day past Cedar. Where is it on Thursday?
+          '2': You just worked out where the storm will be on Wednesday. Would you fly kites there?
+          '3': Look at the clock in the question. Has Tuesday already gone by?
+        hints:
+          - Where is the storm on Wednesday? Where is it on Thursday?
+        solution:
+          - The storm reaches Dogwood on Thursday, so Thursday is the worst possible day.
+          - On Wednesday it is still over Cedar, so Dogwood is clear. That is why a forecast matters. It gives people time to plan.
+      - type: mc
+        prompt: |-
+          The kite club has two more questions.
+
+          **Question 1:** Is the storm still moving this way right now?
+          **Question 2:** Which month is usually the driest, for planning next year’s festival?
+
+          Which method suits each question best?
+        choices:
+          - 'Question 1: satellite images. Question 2: historical data.'
+          - 'Question 1: historical data. Question 2: satellite images.'
+          - 'Question 1: satellite images. Question 2: satellite images.'
+          - 'Question 1: historical data. Question 2: historical data.'
+        answer: 0
+        feedback:
+          '1': Could old records show where this storm is today? Could today’s picture show what is usual?
+          '2': A picture from space shows this week’s clouds. Does it tell you which month is usually dry?
+          '3': Records from past years show what is usual. Could they show where this storm is right now?
+        hints:
+          - Which question is about right now? Which one is about what usually happens?
+        solution:
+          - Satellite images show clouds and storms moving, so they answer questions about **right now**.
+          - Records from past years show what **usually** happens. They are what you need for next year, when no forecast can reach that far.
+    wrapUp: A forecast helps you plan the next few days. Years of records help you plan next year. The question decides which one you need.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S1.1, U1.1, K1.2]
-    type: mc
-    prompt: '"It snowed in Calgary last May, so Calgary''s climate must be getting colder." What is wrong with this conclusion?'
-    choices:
-      - One snowfall is weather. Climate is based on patterns over at least 30 years.
-      - Nothing. One snowfall proves it.
-      - It never snows in Calgary.
-      - Climate is only about rain, not snow.
-    answer: 0
-    feedback:
-      '1': One event can't show a long-term pattern.
-      '2': Calgary gets snow every winter, and sometimes in spring.
-      '3': Climate includes all kinds of precipitation, and temperature too.
-    hints:
-      - How long a time does climate describe?
-    solution:
-      - A single snowfall is **weather**. To say the climate is changing, you need patterns over **many years**.
-
-  - id: d4
-    level: 3
-    covers: [S1.6, S1.4]
+    thinking: evidence
+    covers: [S1.4, K1.3, K2.1, U2.1, U1.1]
     type: open
     prompt: |-
-      Use the climate graphs to compare **Edmonton** with **Vancouver**. Describe one difference in **temperature**
-      and one difference in **precipitation**.
+      You run a made-up rain gauge repair shop. A worker at a weather station in Cairo, Egypt, calls you. “Our gauge
+      has read 0 mm since May. It must be broken!” You check the real 30-year averages: Cairo gets 0 mm in each month
+      from May to September.
+
+      Does the empty gauge prove it is broken? Explain why or why not. Then invent a test the worker can do **today**,
+      without waiting for rain.
     modelAnswer: |-
-      Edmonton's winters are much colder than Vancouver's: Edmonton's January average is about −10 °C, but
-      Vancouver's is about 4 °C. Vancouver gets much more precipitation, especially from November to January, when it gets
-      over 150 mm a month. Edmonton gets most of its precipitation in summer, and much less in total.
+      The empty gauge doesn’t prove it is broken. Cairo has a dry climate, and 30 years of records show that it usually
+      gets no rain in these months, so an empty gauge is just what you would expect. To test it, the worker can pour a
+      measured amount of water into the gauge. If it shows the right amount, the gauge works. Then the worker can
+      check that no water leaks out.
     rubric:
-      - I compared the temperatures, using numbers or words from the graph.
-      - I compared the precipitation.
-      - I named which place was colder, and which was wetter.
+      - I said that an empty gauge doesn’t prove it is broken.
+      - I used the 30-year averages or Cairo’s dry climate to explain why.
+      - My test doesn’t need rain, and it could show whether the gauge measures water correctly.
+    hints:
+      - What reading would a working gauge show in Cairo in July?
+      - What does a gauge need, in order to show whether it works? How could you supply that without any rain?

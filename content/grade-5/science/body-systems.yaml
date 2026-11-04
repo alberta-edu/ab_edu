@@ -114,228 +114,296 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.6, S1.3]
+    thinking: notice
+    covers: [S1.3, K1.3, K1.4, K1.5]
     type: mc
-    prompt: The **heart** is part of which system?
-    choices: [Circulatory, Digestive, Respiratory, Musculoskeletal]
-    fixedOrder: true
+    prompt: |-
+      A prankster swapped **two labels** on the class poster. Which two?
+
+      | System | Labels on the poster |
+      |---|---|
+      | Digestive | mouth, stomach, intestines, liver, trachea |
+      | Respiratory | pancreas, lungs, diaphragm |
+      | Circulatory | heart, blood vessels |
+      | Musculoskeletal | muscles, bones |
+    choices:
+      - Trachea and pancreas
+      - Liver and lungs
+      - Stomach and diaphragm
+      - Heart and muscles
     answer: 0
     feedback:
-      '1': The digestive system breaks down food.
-      '2': The respiratory system includes the trachea, lungs and diaphragm.
-      '3': The heart is a muscle, but it belongs to the system that moves blood.
+      '1': Which system do lungs belong to? Look again at where they are on the poster.
+      '2': Which system does the diaphragm belong to? Look again at where it is on the poster.
+      '3': The heart moves blood, and muscles move the body. Are those two in the right rows already?
     hints:
-      - Which system moves blood around the body?
+      - Go row by row. Does anything look out of place?
     solution:
-      - The heart pumps blood, so it is part of the **circulatory** system.
+      - The trachea carries air, so it belongs with the **respiratory** system.
+      - The pancreas belongs with the **digestive** system. Swap those two, and every row is right.
 
   - id: w2
     level: 1
-    covers: [K1.5]
+    thinking: whatif
+    covers: [K1.7, S1.2]
     type: mc
-    prompt: What does the **respiratory system** do?
+    prompt: In a silly comic book, every bone in a hero’s body turns into cooked spaghetti. Which job of the body is in the most trouble?
     choices:
-      - Exchanges oxygen and carbon dioxide
-      - Breaks down food
-      - Moves blood around the body
-      - Supports the body
+      - Holding the body up
+      - Breaking down food
+      - Taking in oxygen
+      - Moving blood around
     answer: 0
     feedback:
-      '1': That is the digestive system.
-      '2': That is the circulatory system.
-      '3': That is the musculoskeletal system.
+      '1': That job belongs to the digestive system. Which system are bones part of?
+      '2': That job belongs to the respiratory system. Which system are bones part of?
+      '3': That job belongs to the circulatory system. Which system are bones part of?
     hints:
-      - Think about the lungs.
+      - Which system are bones part of, and what does it do?
     solution:
-      - The respiratory system **exchanges oxygen and carbon dioxide**.
+      - Bones are part of the musculoskeletal system, which **supports** and moves the body.
+      - Spaghetti can’t hold anything up. The hero becomes a puddle in a cape.
 
   - id: w3
     level: 1
-    covers: [K1.4, S1.3]
-    type: multi
-    prompt: Select **all** the parts of the **digestive system**.
-    choices: [Mouth, Stomach, Intestines, Liver, Pancreas, Lungs, Heart]
-    fixedOrder: true
-    answer: [0, 1, 2, 3, 4]
-    hints:
-      - The digestive system breaks down food and absorbs nutrients.
-    solution:
-      - ✓ Mouth, stomach, intestines, liver and pancreas.
-      - ✗ The lungs are respiratory. The heart is circulatory.
-
-  - id: w4
-    level: 1
-    covers: [K1.7]
+    thinking: apply
+    covers: [K1.2, S1.1, U1.1]
     type: mc
-    prompt: Which system **supports and moves** the body?
-    choices: [Musculoskeletal, Circulatory, Digestive, Respiratory]
+    prompt: Over one summer, a puppy gets much bigger and stronger. Which vital biological process does this show?
+    choices: [Growth, Reproduction, Respiration, Movement]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': The circulatory system moves **blood**, not the whole body.
-      '2': The digestive system breaks down food.
-      '3': The respiratory system exchanges gases.
+      '1': Reproduction means making offspring. Did the puppy have puppies of its own?
+      '2': Respiration means taking in oxygen and getting rid of carbon dioxide. What changed about this puppy?
+      '3': Movement means moving the body and its parts. Is that the change this story describes?
     hints:
-      - This system includes muscles and bones.
+      - What changed about the puppy over the summer?
     solution:
-      - The **musculoskeletal** system (muscles and bones) supports and moves the body.
+      - Getting bigger and stronger is **growth**. Dogs have the same kinds of body systems you do, and they carry out the same processes.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.5, S1.3]
-    type: mc
-    prompt: The **diaphragm** is a dome-shaped muscle under the lungs. Which system is it part of?
-    choices: [Respiratory, Musculoskeletal, Digestive, Circulatory]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': It is a muscle, but its job is to help you breathe.
-      '2': It sits near the stomach, but it doesn't break down food.
-      '3': It doesn't move blood.
+    thinking: breakdown
+    covers: [S1.4, K1.8, K1.4, K1.6]
+    type: order
+    prompt: You eat a bite of apple, and later your big toe muscle uses its nutrients. Put the trip in **order**.
+    items:
+      - Chewed in the mouth
+      - Broken down more in the stomach
+      - Nutrients absorbed from the intestines into the blood
+      - Blood pumped by the heart
+      - Carried through blood vessels to the toe
     hints:
-      - The diaphragm helps your lungs fill with air.
+      - Start where the food goes in. Which system does the work first?
+      - At what step do the nutrients change from the digestive system to the circulatory system?
     solution:
-      - The diaphragm is part of the **respiratory** system, with the trachea and lungs.
+      - The digestive system goes first. The mouth and stomach break the food down, and the intestines absorb the nutrients.
+      - Then the circulatory system takes over. The heart pumps the blood, and blood vessels carry it to the toe.
 
   - id: b2
     level: 2
-    covers: [K1.2, S1.1]
+    thinking: evidence
+    covers: [K1.8, S1.4, K1.5, K1.6]
     type: mc
-    prompt: Which vital biological process does the **digestive system** mainly carry out?
-    choices: [Nutrition, Movement, Respiration, Reproduction]
-    fixedOrder: true
+    prompt: |-
+      In this made-up example, Zuri counts for one minute, first sitting, then right after a jog.
+
+      | | Breaths | Heartbeats |
+      |---|---|---|
+      | Sitting | 18 | 75 |
+      | After jogging | 34 | 130 |
+
+      Why did **both** numbers go up? Which friend explains it best?
+    choices:
+      - 'Bell: “My legs need more oxygen. Lungs take it in, and the heart moves it in the blood.”'
+      - 'Lou: “My legs need more air. It rushes down special tubes from my lungs to my legs.”'
+      - 'Mia: “Only breathing really matters. The heartbeats just went up at the same time by chance.”'
+      - 'Jae: “My stomach needs more oxygen while I jog, to break down the lunch I ate.”'
     answer: 0
     feedback:
-      '1': Movement is mainly the musculoskeletal system.
-      '2': Respiration is mainly the respiratory system.
-      '3': The digestive system doesn't make offspring.
+      '1': Lots of people picture this, but where does air stop? What is it that passes into the blood?
+      '2': Think about the oxygen once it is in the blood. What would happen if the blood kept moving at the same slow pace?
+      '3': Which part of Zuri’s body was doing the extra work during the jog?
     hints:
-      - The digestive system gets nutrients from food.
+      - Which part of the body was working harder? What does it need?
+      - How does that thing get from the lungs to the legs?
     solution:
-      - Getting nutrients from food is **nutrition**.
+      - Working leg muscles need more oxygen, so Zuri breathes faster to bring more into her lungs.
+      - Air stays in the lungs. Oxygen passes into the blood, and a faster heart carries it to the legs more quickly.
+      - The two numbers rise together because the two systems are working as a team.
 
   - id: b3
     level: 2
-    covers: [K1.8, S1.4]
-    type: order
-    prompt: Put the steps in order to show how **oxygen** gets from the air to an arm muscle.
-    items:
-      - Air comes in through the mouth or nose.
-      - Air travels down the trachea.
-      - Air fills the lungs.
-      - Oxygen passes from the lungs into the blood.
-      - The heart pumps the blood through blood vessels to the arm muscle.
+    thinking: flaw
+    covers: [K1.4, S1.2, S1.3]
+    type: mc
+    prompt: |-
+      Food never passes through the liver or the pancreas. Instead, they make juices that help break food down. Asha
+      says, “No food goes through them, so they can’t be part of the digestive system.” What is wrong with her reasoning?
+    choices:
+      - A system includes any part that helps do its job, even if food never touches that part.
+      - They belong to the circulatory system instead, because juices are liquids like the blood.
+      - Nothing is wrong. Only the mouth, stomach and intestines are really in the digestive system.
+      - Food does really pass through both of them, but only after the intestines have finished.
+    answer: 0
+    feedback:
+      '1': What is the circulatory system’s job? Is making juice for food part of that?
+      '2': Think about the digestive system’s job. Do these juices help with it?
+      '3': The problem tells you that food never passes through them. Take that as true. Is it the real issue?
     hints:
-      - The respiratory system comes first, then the circulatory system.
+      - What is the digestive system’s job?
+      - Does a part need to touch the food to help with that job?
     solution:
-      - Mouth or nose → trachea → lungs → into the blood → the heart pumps it to the muscle.
+      - The digestive system’s job is to break down food and absorb nutrients.
+      - The liver and pancreas help break food down, so they are doing that system’s job.
+      - Asha was treating the system like a tube. A system is really a team working on one job.
 
   - id: b4
     level: 2
-    covers: [K1.7, S1.1, K1.3]
-    type: mc
-    prompt: A dog chases a ball. Which of the dog's systems moves its legs?
-    choices: [Musculoskeletal, Respiratory, Digestive, Dogs don't have body systems]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The respiratory system brings in oxygen, but it doesn't move the legs.
-      '2': The digestive system breaks down food.
-      '3': Many animals, including dogs, have these same systems.
+    thinking: connect
+    covers: [K1.1, K1.8, K1.7, U1.1]
+    type: number
+    prompt: Mateo waves hello to a friend. It looks like such a small thing. How many of the **four** body systems does this wave rely on?
+    answer: 4
+    unit: systems
+    verify: 2 + 2
     hints:
-      - Which system includes muscles and bones?
+      - Start with the arm. What moves it?
+      - What does that arm need delivered in order to keep working? Who brings it, and where does it come from?
     solution:
-      - The dog's **musculoskeletal** system moves its legs. Many animals have the same systems as humans.
+      - The **musculoskeletal** system moves the arm.
+      - That muscle needs oxygen from the **respiratory** system and nutrients from the **digestive** system.
+      - The **circulatory** system carries them there. So even a small wave relies on all **4**.
 
   - id: b5
     level: 2
-    covers: [K1.4, S1.3]
+    thinking: connect
+    covers: [K1.6, K1.8, S1.2, S1.4]
     type: mc
-    prompt: The **liver** and **pancreas** are part of which system?
-    choices: [Digestive, Circulatory, Respiratory, Musculoskeletal]
-    fixedOrder: true
+    prompt: |-
+      Ravi says, “The body is a city. Oxygen and nutrients are parcels. Blood vessels are roads. The heart is the
+      delivery truck.” One part of his idea doesn’t fit. Which change fixes it?
+    choices:
+      - Blood is the truck. The heart is what keeps the trucks moving.
+      - The lungs are the truck. The heart is where parcels are stored.
+      - Blood vessels are the trucks. The heart is the road they use.
+      - Oxygen is the truck. The nutrients are parcels that it carries.
     answer: 0
     feedback:
-      '1': The circulatory system is the heart and blood vessels.
-      '2': The respiratory system is the trachea, lungs and diaphragm.
-      '3': The musculoskeletal system is muscles and bones.
+      '1': Do the lungs travel around the body? Does the heart store things?
+      '2': Do blood vessels travel, or does something travel through them?
+      '3': Oxygen and nutrients are both being delivered. What carries both of them?
     hints:
-      - Look at the parts of each system in the table.
+      - Does the heart itself ever leave your chest?
+      - What actually travels along the blood vessels, carrying the oxygen and nutrients?
     solution:
-      - The liver and pancreas are part of the **digestive** system.
+      - A truck travels. The heart stays in one place, so it can’t be the truck.
+      - The blood is what travels and carries oxygen and nutrients, so **blood is the truck**.
+      - The heart pumps, and that pumping keeps the blood moving.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.1, K1.8, U1.1]
-    type: mc
-    prompt: If a person's heart stopped pumping, their muscles would soon run out of oxygen, even though the lungs still had air in them. What does this show?
-    choices:
-      - Body systems rely on each other.
-      - The lungs carry oxygen to the muscles.
-      - The heart makes oxygen.
-      - Muscles don't need oxygen.
-    answer: 0
-    feedback:
-      '1': Air stays in the lungs. The blood carries the oxygen.
-      '2': The heart pumps blood. Oxygen comes in through the lungs.
-      '3': Muscles need oxygen to work.
-    hints:
-      - Which system carries oxygen from the lungs to the muscles?
-    solution:
-      - The respiratory system brings oxygen in, but the **circulatory** system must carry it. The systems **rely on each other**.
+    thinking: backwards
+    covers: [K1.1, K1.8, S1.4, K1.5, K1.4, K1.6]
+    type: investigation
+    prompt: |-
+      A very grumpy big toe writes letters of complaint to Head Office. (In real life, toes can’t write. Go with it.)
+      Each letter says what is reaching its muscle. Your job is to work backward and find out which system isn’t
+      doing its job. Look at what **is** arriving as well as what isn’t.
+    parts:
+      - type: mc
+        prompt: '**Letter 1:** “Blood is arriving. It has nutrients in it, but no oxygen!” Which system isn’t doing its job?'
+        choices: [Respiratory, Digestive, Circulatory, Musculoskeletal]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': The toe says it is getting nutrients. Who supplies those? So is that system working?
+          '2': Blood is arriving. So is the system that moves blood working?
+          '3': That system supports and moves the body. Which system supplies the missing thing?
+        hints:
+          - What is missing, and which system brings it into the body?
+        solution:
+          - Oxygen is missing, and the respiratory system exchanges oxygen.
+          - The blood arrives, so the circulatory system works. It has nutrients, so the digestive system works too.
+      - type: mc
+        prompt: '**Letter 2:** “Now NO blood is arriving at all! Not one drop!” Which system would you check first?'
+        choices: [Circulatory, Respiratory, Digestive, Musculoskeletal]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': In Letter 1, the lungs had a problem. Did blood still arrive then?
+          '2': If the intestines had a problem, would the blood stop, or would it arrive with something missing?
+          '3': That system supports and moves the body. Which system moves the blood?
+        hints:
+          - Compare this letter with Letter 1. Was blood arriving then?
+        solution:
+          - This isn’t about what the blood carries. The blood itself has stopped arriving.
+          - Moving blood is the job of the **circulatory** system.
+      - type: multi
+        prompt: '**Letter 3:** “Blood is arriving again. But it has no oxygen and no nutrients in it!” Which systems aren’t doing their jobs? Select all that fit.'
+        choices: [Respiratory, Digestive, Circulatory, Musculoskeletal]
+        fixedOrder: true
+        answer: [0, 1]
+        hints:
+          - Is the blood arriving? What does that tell you about the circulatory system?
+          - The blood is an empty truck. Who was supposed to load each thing onto it?
+        solution:
+          - Blood is arriving, so the circulatory system is working. It is carrying an empty load.
+          - Oxygen comes from the respiratory system, and nutrients come from the digestive system. So **both** are not doing their jobs.
+          - Letters 2 and 3 can look alike, because the toe gets nothing useful either way. Only checking whether blood arrives tells them apart.
+    wrapUp: Each system has its own job, and each one relies on the others. That is why what arrives at a toe can tell you what has gone wrong far away.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K1.8, S1.4]
-    type: mc
-    prompt: When you run, you breathe faster and your heart beats faster. Why?
-    choices:
-      - Your muscles need more oxygen, so the respiratory and circulatory systems work harder together.
-      - Your stomach needs more air to digest food.
-      - Your bones need more blood to stay hard.
-      - Running makes the diaphragm part of the digestive system.
-    answer: 0
-    feedback:
-      '1': Air goes to the lungs, not the stomach.
-      '2': It is the working **muscles** that need more.
-      '3': The diaphragm is always part of the respiratory system.
+    thinking: perspective
+    covers: [K1.1, K1.8, U1.1, S1.2]
+    type: open
+    prompt: |-
+      In a comic book, the body’s systems hold a meeting. The heart stands up and says, “I move blood to every part of
+      the body. I’m the only one who matters. The rest of you can go home!”
+
+      Choose the **lungs** or the **intestines**, and write what they say back. Keep it in character. Be as cheeky as you like.
+    modelAnswer: |-
+      “Oh, really, Heart? I’m the intestines. I absorb the nutrients from food. Without me, that blood you are so proud
+      of has no nutrients to carry. You would be a delivery company with nothing to deliver! But I admit I need you too.
+      Without you, my nutrients would never get out to the muscles. So nobody goes home.”
+    rubric:
+      - I said what the lungs or the intestines do.
+      - I explained what the blood would be missing without them.
+      - I showed that they rely on the heart too, or that the systems rely on each other.
     hints:
-      - What do working muscles need from the blood?
-    solution:
-      - Working muscles need more **oxygen**. You breathe faster to take in more, and your heart pumps faster to deliver it.
+      - What would the blood be missing if your character went home?
+      - Could your character get its work out to the body without the heart?
 
   - id: d3
     level: 3
-    covers: [K1.8, K1.4, K1.6]
+    thinking: why
+    covers: [K1.3, K1.5, K1.6, K1.7, S1.1, S1.2]
     type: mc
-    prompt: 'Kai says: "The digestive system feeds my whole body by itself." What is missing from Kai''s idea?'
+    prompt: |-
+      At a science fair, students design made-up beasts. Other animals don’t always have the same parts as we do, so
+      the judge checks each **job** instead. Which beast has a part missing, so it can’t get oxygen to its tail muscle?
     choices:
-      - The circulatory system has to carry the nutrients to the rest of the body.
-      - Nothing. The digestive system works alone.
-      - The respiratory system breaks down the food.
-      - The bones absorb the nutrients.
+      - 'Grumph: lungs, stomach, intestines, blood vessels, muscles, bones.'
+      - 'Snorfle: gills (which take oxygen from water), stomach, intestines, heart, blood vessels, muscles, bones.'
+      - 'Tiffle: lungs, stomach, intestines, heart, blood vessels, muscles, a strong shell for support.'
+      - 'Wapple: lungs, gills (which take oxygen from water), stomach, intestines, heart, blood vessels, muscles, bones.'
     answer: 0
     feedback:
-      '1': The digestive system absorbs nutrients, but it can't deliver them everywhere.
-      '2': The respiratory system exchanges gases. It doesn't break down food.
-      '3': Nutrients are absorbed in the digestive system and carried by the blood.
+      '1': It has no lungs, but it does have gills. What job do the gills do? Does oxygen still get in?
+      '2': It has no bones, but it does have a shell. Bones are for support and movement. Does that stop oxygen from getting to the muscle?
+      '3': Having extra parts isn’t a problem. Go through the steps. How does oxygen get in, and how does it move?
     hints:
-      - In the experiment, how did the nutrients reach the arm muscle?
+      - Don’t look for what is different from a human. Think through the trip that oxygen has to make.
+      - What gets oxygen in? What gets it to the tail? Check for those in each beast.
+      - What makes the blood move through the blood vessels?
     solution:
-      - Nutrients pass into the blood, and the **circulatory** system carries them around the body.
-
-  - id: d4
-    level: 3
-    covers: [K1.8, S1.4]
-    type: open
-    prompt: Explain how **three** body systems work together to supply a leg muscle with oxygen and nutrients.
-    modelAnswer: |-
-      The respiratory system takes in air. Oxygen passes from the lungs into the blood. The digestive system breaks
-      down food, and nutrients pass from the intestines into the blood. The circulatory system's heart pumps the
-      blood through the blood vessels to the leg muscle, delivering the oxygen and nutrients.
-    rubric:
-      - I explained what the **respiratory** system does.
-      - I explained what the **digestive** system does.
-      - I explained how the **circulatory** system delivers both to the muscle.
+      - 'Oxygen’s trip has two steps: something has to take it in, and something has to carry it to the tail.'
+      - Snorfle uses gills and Tiffle uses lungs, and both have a heart and blood vessels. Wapple has both lungs and gills. Those all work.
+      - Grumph can take oxygen in, and it has blood vessels, but it has **no heart**. Nothing pumps the blood, so the oxygen never gets to the tail.
+      - 'What we learned: check whether each job gets done, not whether each part looks the way it does in a human.'

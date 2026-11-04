@@ -44,7 +44,8 @@ lesson:
         covers: [K1.8, S1.5, K1.7]
         body: |-
           Because the Moon's cycle is so predictable, many First Nations, including Cree and Anishinaabe peoples,
-          count the year in **13 moons**. The names differ from place to place, and many come from what is happening in
+          **name the moons of the year**. Anishinaabe teachings often count **13 moons**, and Cree calendars differ from
+          community to community. The names differ from place to place too, and many come from what is happening in
           nature at that time, such as geese returning or berries ripening. Métis calendars also mark the year by
           seasonal hunting, gathering and farming.
       - type: callout
@@ -141,231 +142,324 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K1.3]
-    type: mc
-    prompt: About how long does it take the Moon to go through all of its phases, from new Moon to new Moon?
-    choices: [About 29½ days, About 1 day, About 7 days, About 1 year]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': One day is how long Earth takes to spin once.
-      '2': Seven days takes the Moon only from new to first quarter.
-      '3': One year is how long Earth takes to travel around the Sun.
+    thinking: recall
+    covers: [K1.3, K1.2]
+    type: number
+    prompt: Tonight is a **new Moon**. About how many days will it be until the **full Moon**?
+    answer: 15
+    tolerance: 1
+    unit: days
+    verify: '15'
     hints:
-      - The cycle is about a month long.
+      - Look back at the table in the lesson. Which day is each phase on?
     solution:
-      - The Moon's phases repeat about every **29½ days**, about a month.
+      - The new Moon is about day 0 and the full Moon is about day **15**, about halfway through the cycle.
 
   - id: w2
     level: 1
-    covers: [K1.2]
+    thinking: recall
+    covers: [S1.3]
     type: mc
-    prompt: In which phase is the **whole face** of the Moon lit?
-    choices: [Full Moon, New Moon, First quarter, Waxing crescent]
+    prompt: A solar eclipse and a lunar eclipse are both on the calendar this year. Which one is safe to look straight at?
+    choices: [The lunar eclipse, The solar eclipse, Both of them, Neither of them]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': At new Moon, the lit half faces away from us.
-      '2': At first quarter, only half the face is lit.
-      '3': A crescent is a thin sliver.
+      '1': What are you looking toward in a solar eclipse? What can that do to your eyes?
+      '2': The Moon covers the Sun for a while in one of these. Does that make it safe to look at the Sun?
+      '3': One of them happens at night, when you are only looking at the Moon.
     hints:
-      - It is halfway through the cycle.
+      - Which eclipse has you looking toward the Sun?
     solution:
-      - At **full Moon**, we see the Moon's whole lit half.
+      - In a **lunar eclipse**, you are looking at the Moon at night, so it is safe.
+      - A solar eclipse has you looking toward the Sun, which can hurt your eyes, even when part of it is covered.
 
   - id: w3
     level: 1
-    covers: [K1.6]
+    thinking: notice
+    covers: [K1.3, S1.2]
     type: mc
-    prompt: In the northern hemisphere, auroras are called the…
-    choices: [northern lights, Milky Way, solar eclipse, midnight sun]
+    figure: { kind: moons, ages: [3.7], labels: [Tonight] }
+    prompt: Tonight the Moon looks like this. Over the next few nights, what will happen to the lit part?
+    choices: [It will grow., It will shrink., It will stay the same., It will be gone by tomorrow.]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': The Milky Way is our galaxy, a band of stars.
-      '2': A solar eclipse is when the Moon blocks the Sun.
-      '3': The midnight sun is the Sun staying up all night in summer.
+      '1': Which side is lit? Look at the drawings in the lesson. Which crescent comes just after the new Moon?
+      '2': The Moon’s look changes a little every night. What do the phases do over a month?
+      '3': The change is slow. It takes about a week for a crescent to become a half Moon.
     hints:
-      - Another name is aurora borealis.
+      - In the lesson, was the right side or the left side lit as the Moon was growing?
     solution:
-      - In the northern hemisphere, auroras are the **northern lights** (aurora borealis).
+      - The right side is lit, so this is the crescent just after the new Moon. The Moon is **waxing**, so the lit part will grow.
 
   - id: w4
     level: 1
-    covers: [S1.3]
+    thinking: recall
+    covers: [K1.6, S1.3]
     type: mc
-    prompt: During a **solar eclipse**, what blocks the Sun?
-    choices: [The Moon, Earth, Clouds, Another star]
+    prompt: On a dark, clear night in northern Alberta, green curtains of light ripple across the sky. What are you seeing?
+    choices: [Aurora borealis, A lunar eclipse, The midnight sun, A crescent Moon]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': When Earth is in the way, it is a **lunar** eclipse, and the Moon is darkened.
-      '2': Clouds can hide the Sun, but that is weather, not an eclipse.
-      '3': Other stars are much too far away.
+      '1': A lunar eclipse darkens the Moon. It doesn’t fill the sky with curtains of light.
+      '2': The midnight sun happens in summer, when the Sun stays up. Would that be a dark night?
+      '3': The Moon is one small bright shape. It doesn’t ripple.
     hints:
-      - In a solar eclipse, something passes between the Sun and Earth.
+      - Think of the rippling colours in the lesson’s visual.
     solution:
-      - In a solar eclipse, the **Moon** passes between the Sun and Earth and blocks the Sun.
+      - These are auroras. In the northern hemisphere they are the northern lights, or **aurora borealis**.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.2, K1.2]
+    thinking: pattern
+    covers: [S1.2, K1.3]
     type: mc
-    figure: { kind: moons, ages: [3.7, 7.4, 11, 14.8] }
-    prompt: Which drawing shows a **first quarter** Moon?
-    choices: [A, B, C, D]
+    figure: { kind: moons, ages: [7.4, 14.8, 3.7, 29.4], labels: [Week 1, Week 2, Week 3, Week 4] }
+    prompt: |-
+      Yara kept a Moon diary, drawing the Moon once a week. One night was cloudy, so she drew that week’s Moon from her
+      imagination. Which drawing did she make up?
+    choices: [Week 1, Week 2, Week 3, Week 4]
     fixedOrder: true
-    answer: 1
+    answer: 2
     feedback:
-      '0': A is a thin crescent.
-      '2': C is more than half lit. It is a waxing gibbous Moon.
-      '3': D is a full Moon.
+      '0': A half Moon with the right side lit is a fine place to start. What should come one week later?
+      '1': One week after a first quarter Moon is about a full Moon. So this one fits.
+      '3': Week 4 is about a new Moon. Count back three weeks from it. Does it fit with Week 1?
     hints:
-      - At first quarter, exactly half of the face is lit.
+      - Name the phase in Week 1. What day of the cycle is that?
+      - Add 7 days each week. Which phase should each week show?
     solution:
-      - '**B**: the right half is lit, so it is a first quarter Moon.'
+      - Week 1 is a first quarter Moon, about day 7. So Week 2 is about day 15, which is full. That fits.
+      - Week 3 should be about day 22, a **third quarter** Moon with the left half lit.
+      - Yara drew a thin crescent lit on the right. That crescent comes just after a new Moon, so **Week 3** is the made-up one.
 
   - id: b2
     level: 2
-    covers: [K1.3, S1.4]
-    type: order
-    prompt: Put the phases in order, starting from the **new Moon**.
-    items: [New Moon, Waxing crescent, First quarter, Waxing gibbous, Full Moon]
+    thinking: why
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: |-
+      Tova phones her cousin Emeka, who lives far away. “It’s the middle of the day and the sky just went dark! It’s a total solar
+      eclipse!” Emeka looks outside. “It’s bright and sunny here. You’re making it up.” Both are telling the truth. How can that be?
+    choices:
+      - The Moon blocks the Sun’s light from only part of Earth.
+      - The Moon blocks the Sun, but only in the northern hemisphere.
+      - Earth’s shadow has fallen on Tova’s town but not on Emeka’s.
+      - A big cloud moved over Tova’s town, and she thinks it is an eclipse.
+    answer: 0
+    feedback:
+      '1': Hemispheres matter for seasons. What in an eclipse would decide who stays in the light?
+      '2': Whose shadow is it in a solar eclipse? Look back at the line-up.
+      '3': The problem says that both are telling the truth. It is a real eclipse.
     hints:
-      - After a new Moon, the lit part grows (waxes) a little each night.
+      - Which object is in the way during a solar eclipse?
+      - Hold your hand up near a lamp, and picture its shadow. Does it cover the whole room?
     solution:
-      - New Moon → waxing crescent → first quarter → waxing gibbous → full Moon.
+      - In a solar eclipse, the Moon is the thing in the way, and the Moon is small compared with Earth.
+      - It can block the Sun’s light from only **part of Earth**. Tova is in that part, and Emeka isn’t.
 
   - id: b3
     level: 2
-    covers: [S1.2, K1.3]
+    thinking: connect
+    covers: [K1.8, S1.5, K1.3]
     type: mc
-    prompt: Tonight you see a **first quarter** Moon. About one week later, which phase will you see?
-    choices: [Full Moon, New Moon, Waxing crescent, First quarter again]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': New Moon comes about one week **before** first quarter, or three weeks after.
-      '2': The crescent comes **before** first quarter.
-      '3': The same phase comes back only after about 29½ days.
-    hints:
-      - First quarter is about day 7. Add 7 days.
-    solution:
-      - First quarter is about day 7, and full Moon is about day 15. One week later, you'll see a **full Moon**.
-
-  - id: b4
-    level: 2
-    covers: [S1.3]
-    type: mc
-    prompt: What can you observe during a total **lunar eclipse**?
+    prompt: |-
+      Many First Nations, including Cree and Anishinaabe peoples, name the moons of the year, and many of the names come from nature.
+      Imagine two communities, one far south of the other. Each has a moon named for the geese returning. In the south, that moon comes earlier in the year. Why?
     choices:
-      - The full Moon darkens and turns reddish.
-      - The Sun disappears in the middle of the day.
-      - The Moon gets brighter than usual.
-      - The Moon disappears and leaves a hole in the sky.
+      - Geese reach the south first, and the name follows what happens in each place.
+      - The Moon’s phases run on an earlier schedule in the south than in the north.
+      - One of the communities must have lost count of its moons during the winter.
+      - Geese travel only at full Moon, so they wait longer before going north.
     answer: 0
     feedback:
-      '1': That happens during a **solar** eclipse.
-      '2': "The Moon gets darker, because it is in Earth's shadow."
-      '3': You can still see the Moon. It turns dark and reddish.
+      '1': Do the phases change from place to place? Everyone sees the same Moon go through the same cycle.
+      '2': This isn’t a mistake. What is each name actually describing?
+      '3': The name comes from what people see in nature. Which way are the geese flying in spring?
     hints:
-      - "In a lunar eclipse, the Moon moves into Earth's shadow."
+      - What part of each moon’s name comes from the sky, and what part comes from the land?
+      - In spring, which community would see geese first?
     solution:
-      - "In Earth's shadow, the full Moon darkens and often turns **reddish**."
-
-  - id: b5
-    level: 2
-    covers: [S1.3, K1.6]
-    type: mc
-    prompt: Which description matches the **northern lights**?
-    choices:
-      - Ripples and curtains of coloured light, often green, across the night sky
-      - A bright white band that appears only at noon
-      - The Moon turning red
-      - The Sun staying up all night
-    answer: 0
-    feedback:
-      '1': Auroras are seen at night, on dark, clear nights.
-      '2': That is a lunar eclipse.
-      '3': That is the midnight sun.
-    hints:
-      - Think of the aurora animation.
-    solution:
-      - The northern lights are **moving curtains of coloured light**, often green, in the night sky.
+      - The Moon’s cycle is the same for both communities. It is the steady clock.
+      - The name comes from what is happening **in nature in that place**. Returning geese reach the south first.
+      - So neither is wrong. That is why moon names differ from place to place.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.2, S1.3]
-    type: mc
-    prompt: '"The Moon has phases because Earth''s shadow covers part of it." What is wrong with this idea?'
-    choices:
-      - The phase depends on how much of the Moon's lit half faces Earth. Earth's shadow only falls on the Moon during a lunar eclipse.
-      - Nothing. Earth's shadow makes the phases.
-      - The Moon makes its own light, so it has no phases.
-      - The Sun's shadow makes the phases.
-    answer: 0
-    feedback:
-      '1': If Earth's shadow made the phases, we would see eclipses every month.
-      '2': The Moon doesn't make its own light. It is lit by the Sun.
-      '3': The Sun is the light source. It doesn't cast a shadow on the Moon.
-    hints:
-      - When does Earth's shadow fall on the Moon?
-    solution:
-      - Half of the Moon is always lit by the Sun. As the Moon travels around Earth, we see **more or less of that lit half**.
-      - "Earth's shadow on the Moon is a **lunar eclipse**, which is much rarer."
+    thinking: breakdown
+    covers: [K1.2, S1.3, K1.3, S1.7]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 420 240" class="fig-svg" role="img" aria-label="A view from above. The Sun is at the far left. Earth is in the middle right, with a dashed circle around it showing the Moon's path. Four Moons sit on the circle. A is on the side toward the Sun, B is at the top, C is on the side away from the Sun, and D is at the bottom. The left half of Earth and the left half of each Moon are lit. The right half of each is dark.">
+      <circle class="fig-hl" cx="26" cy="120" r="38"/><text class="sci-text" x="24" y="125" text-anchor="middle">Sun</text>
+      <line class="obj-string" x1="72" y1="72" x2="112" y2="72"/><polygon class="obj-window" points="120,72 110,66 110,78"/>
+      <line class="obj-string" x1="72" y1="168" x2="112" y2="168"/><polygon class="obj-window" points="120,168 110,162 110,174"/>
+      <circle class="fig-arrow" cx="250" cy="120" r="90"/>
+      <circle class="obj" cx="250" cy="120" r="28"/><path class="obj obj--dark" d="M250 92 A28 28 0 0 1 250 148 Z"/>
+      <text class="sci-small" x="250" y="166" text-anchor="middle">Earth</text>
+      <circle class="obj" cx="160" cy="120" r="14"/><path class="obj obj--dark" d="M160 106 A14 14 0 0 1 160 134 Z"/><text class="sci-text" x="134" y="125" text-anchor="middle">A</text>
+      <circle class="obj" cx="250" cy="30" r="14"/><path class="obj obj--dark" d="M250 16 A14 14 0 0 1 250 44 Z"/><text class="sci-text" x="278" y="35" text-anchor="middle">B</text>
+      <circle class="obj" cx="340" cy="120" r="14"/><path class="obj obj--dark" d="M340 106 A14 14 0 0 1 340 134 Z"/><text class="sci-text" x="368" y="125" text-anchor="middle">C</text>
+      <circle class="obj" cx="250" cy="210" r="14"/><path class="obj obj--dark" d="M250 196 A14 14 0 0 1 250 224 Z"/><text class="sci-text" x="278" y="215" text-anchor="middle">D</text></svg>
+    prompt: |-
+      This map looks down from far above Earth, and it is not to scale. Sunlight comes from the left, so the left half of Earth and the left
+      half of the Moon are lit. The letters show four spots on the Moon’s trip around Earth.
+
+      Use the map to work out how phases and eclipses fit together.
+    parts:
+      - type: mc
+        prompt: Stand on Earth and look toward spot **C**. Which half of the Moon faces you, and what phase do you see?
+        choices:
+          - The lit half, so a full Moon
+          - The dark half, so a new Moon
+          - Half of each, so a quarter Moon
+        answer: 0
+        feedback:
+          '1': Spot C is to the right of Earth. Which side of the Moon at C is pointing back toward Earth, the left or the right?
+          '2': That happens at the spots above and below Earth. Where does the Moon at C point its lit side?
+        hints:
+          - Trace a line from Earth to the Moon at C. Which side of the Moon does your line touch?
+        solution:
+          - From Earth, you look to the right at C, and you see the Moon’s left side. That is its lit side, so the whole lit half faces you. It is a **full Moon**.
+      - type: mc
+        prompt: Earth’s shadow stretches away from the Sun. At which spot could the shadow fall on the Moon and make a **lunar eclipse**?
+        choices: [A, B, C, D]
+        fixedOrder: true
+        answer: 2
+        feedback:
+          '0': At A, the Moon is on the sunny side of Earth. Which way does Earth’s shadow go?
+          '1': Picture Earth with the Sun on its left. Does its shadow reach up to B?
+          '3': Picture Earth with the Sun on its left. Does its shadow reach down to D?
+        hints:
+          - Sunlight comes from the left. Which way does a shadow point when the light comes from the left?
+        solution:
+          - The shadow stretches to the right, toward **C**. That is the line-up Sun, Earth, Moon.
+          - You just found that C is the full Moon spot. This is why a lunar eclipse can only happen at a full Moon.
+      - type: number
+        prompt: Sometimes eclipses come in pairs. A **solar** eclipse happens with the Moon at spot A. About how many days later could a lunar eclipse happen?
+        answer: 15
+        tolerance: 1
+        unit: days
+        verify: '15'
+        hints:
+          - In a solar eclipse, the Moon is between the Sun and Earth. Is that a new Moon or a full Moon?
+          - How long does the Moon take to go from A to C? Use the table in the lesson.
+        solution:
+          - Spot A is the new Moon, about day 0. Spot C is the full Moon, about day 15. So the earliest is about **15 days** later.
+          - The line-up has to be very exact, so most trips around Earth don’t make an eclipse at all.
+      - type: mc
+        prompt: A friend says, “When the Moon is at spot B, it looks half lit because Earth’s shadow covers half of it.” Why can’t that be right?
+        choices:
+          - Earth’s shadow points toward C, so the Moon at B is nowhere near it.
+          - Earth’s shadow only appears when the Sun is on the other side of the Moon.
+          - Earth’s shadow is much too small to cover half of the Moon at any spot.
+        answer: 0
+        feedback:
+          '1': Look at the map. Which way does the Sun’s light travel past Earth, and which spot does it leave in shadow?
+          '2': The Moon does go into Earth’s shadow during a lunar eclipse. Where is the Moon then, compared with B?
+        hints:
+          - You have already found where Earth’s shadow goes. Is B in it?
+          - If it isn’t the shadow, why would we see half? Look at the Moon at B from Earth.
+        solution:
+          - The shadow points to C, so the Moon at B is in full sunlight, with its usual lit half.
+          - From Earth, we see half of that lit half and half of the dark half. So it looks half lit with no shadow at all.
+    wrapUp: One map explains it all. The phase is how much of the lit half faces us, and an eclipse only happens when the three line up exactly.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S1.3, K1.2]
-    type: mc
-    prompt: A lunar eclipse can only happen at **full Moon**. Why?
+    thinking: flaw
+    covers: [S1.3, K1.3, S1.2]
+    type: multi
+    prompt: You are the science checker for a film called *Eclipse at Gopher Creek*. Select **all** the scenes with a science mistake.
     choices:
-      - Earth has to be between the Sun and the Moon, and that is where the Moon is when it is full.
-      - The Moon is only round at full Moon.
-      - The Moon is closest to the Sun at full Moon.
-      - Lunar eclipses happen at every phase.
-    answer: 0
-    feedback:
-      '1': The Moon is always round. We just see different amounts of its lit half.
-      '2': At full Moon, the Moon is on the far side of Earth from the Sun.
-      '3': A lunar eclipse needs the line-up Sun → Earth → Moon.
+      - Midnight. The whole town watches a solar eclipse cover the Sun.
+      - A thin crescent Moon slowly turns red during a lunar eclipse.
+      - A full Moon on Monday. By the next Monday it is a new Moon.
+      - At noon, the sky goes dark like evening during a total solar eclipse.
+      - At night, a full Moon slowly turns a dark copper colour.
+    fixedOrder: true
+    answer: [0, 1, 2]
     hints:
-      - Where is the Moon in the line-up during a lunar eclipse?
+      - For each scene with an eclipse, ask where the Sun, Earth and Moon must be. Could the people see it at that time?
+      - For the Monday scene, count the days. What comes one week after a full Moon?
     solution:
-      - 'For a lunar eclipse, Earth must be **between** the Sun and the Moon. Then we see the Moon''s whole lit side: a **full Moon**.'
+      - ✓ A solar eclipse covers the **Sun**. At midnight, the Sun is on the other side of Earth, so there is nothing to cover.
+      - ✓ A lunar eclipse needs Earth between the Sun and the Moon, which is the **full** Moon spot. It can’t happen to a crescent.
+      - ✓ Going from full to new takes about 15 days. One week after a full Moon, you would see a third quarter Moon.
+      - ✗ Noon is when a solar eclipse could happen, and the sky really does go dark. That scene is fine.
+      - ✗ This is exactly what a lunar eclipse looks like. That scene is fine too.
 
   - id: d3
     level: 3
-    covers: [K1.3, K1.8, S1.5]
-    type: mc
-    prompt: Why does a calendar of **13 moons** work for counting the year?
-    choices:
-      - The Moon's phases repeat in a predictable cycle of about 29½ days, and 12 to 13 of those fit in a year.
-      - The Moon only appears 13 times a year.
-      - Every month has exactly 13 days.
-      - The Moon changes randomly.
-    answer: 0
-    feedback:
-      '1': The Moon can be seen in most of its phases all through the year.
-      '2': Months are much longer than 13 days.
-      '3': The phases follow a predictable cycle.
-    hints:
-      - How long is one Moon cycle? How many days are in a year?
-    solution:
-      - The phases repeat about every 29½ days, a cycle you can count on. A year of 365 days holds **12 to 13** of these cycles.
+    thinking: model
+    covers: [K1.3, S1.4, U1.1]
+    type: investigation
+    prompt: |-
+      Wally is a friendly werewolf. At each full Moon, he bursts out of his pants, so he has to buy one new pair for every
+      full Moon in the year.
+
+      Here is what he has worked out so far. A year has **365 days**. Twelve Moon cycles, from the first full Moon to the 13th, take **354 days**.
+    parts:
+      - type: number
+        prompt: This year, the first full Moon is on January 5, which is day 5 of the year. On what day of the year is the 13th full Moon?
+        answer: 359
+        verify: '5 + 354'
+        hints:
+          - The 13th full Moon comes 12 cycles after the first.
+        solution:
+          - 'Twelve cycles after day 5: \(5 + 354 = 359\). That is day **359**.'
+      - type: number
+        prompt: So how many pairs of pants does Wally need this year?
+        answer: 13
+        unit: pairs
+        verify: '12 + 1'
+        hints:
+          - Is day 359 still inside the year?
+        solution:
+          - Day 359 comes before day 365, so the 13th full Moon falls this year. Wally needs **13 pairs**.
+      - type: number
+        prompt: Next year, the first full Moon is on January 24, which is day 24. How many pairs does Wally need next year?
+        answer: 12
+        unit: pairs
+        verify: '13 - 1'
+        hints:
+          - Work out what day the 13th full Moon would land on. Is that day in the year?
+        solution:
+          - \(24 + 354 = 378\), which is past day 365. The 13th full Moon falls into the year after, so next year has only **12**.
+      - type: number
+        prompt: What is the **latest** day in January for the first full Moon, so that Wally still needs 13 pairs that year?
+        answer: 11
+        verify: '365 - 354'
+        hints:
+          - Twelve cycles have to fit in the days that are left.
+          - How many days does the year have beyond those 354 days?
+        solution:
+          - The 13th full Moon has to land on day 365 or sooner.
+          - \(365 - 354 = 11\). If the first full Moon comes on January 11 or sooner, Wally needs 13 pairs. Any later, and he needs 12.
+    wrapUp: The Moon’s cycle is so predictable that Wally can plan his shopping a year ahead. Twelve cycles don’t quite fill a year, which is why some years have a 13th full Moon.
+    hints: []
+    solution: []
 
   - id: d4
     level: 3
-    covers: [S1.3]
+    thinking: connect
+    covers: [K1.6, S1.3, K1.5, U1.1]
     type: open
-    prompt: Describe what you would **observe** during a total solar eclipse and during a total lunar eclipse. Explain the line-up for each.
+    prompt: |-
+      A tour company’s ad says, “**See the northern lights in Inuvik at midnight on June 21! Bring your camera!**” In Inuvik in June,
+      the Sun stays up all night. Write the company a short note. Explain why people on this tour will be disappointed, and say what
+      time of year would be better, and why.
     modelAnswer: |-
-      During a total solar eclipse, the Moon covers the Sun in the daytime and the sky goes dark like evening. The
-      Moon is between the Sun and Earth. During a total lunar eclipse, the full Moon slowly darkens and turns reddish
-      at night. Earth is between the Sun and the Moon, so Earth's shadow falls on the Moon.
+      Your tour will disappoint people, because Inuvik has the midnight sun on June 21. The north is tilted toward the Sun, so the
+      Sun stays up all night and the sky is bright. The northern lights are seen on dark, clear nights, so nobody will see them.
+      Come in winter instead, when the north is tilted away from the Sun and the nights are long and dark.
     rubric:
-      - I described what you see during a **solar** eclipse.
-      - I described what you see during a **lunar** eclipse.
-      - I gave the correct line-up for each.
+      - I said the Sun stays up at midnight in Inuvik in June (the midnight sun).
+      - I said the northern lights can only be seen in a dark night sky.
+      - I suggested a time of year with dark nights, such as winter, and said why.

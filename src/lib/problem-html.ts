@@ -2,10 +2,11 @@
 // problem looks and behaves the same everywhere. The <problem-card> element
 // (src/client/problem-card.ts) adds the interactivity.
 import type { CheckSpec } from './check.ts';
-import type { Concept, Passage, Problem } from './schema.ts';
+import type { Concept, InvestigationPart, Passage, Problem } from './schema.ts';
 import { md, mdInline, splitSentences } from './render.ts';
 import { LEVELS } from '../site.ts';
 import { renderFigure } from './figures.ts';
+import { THINKING_MOVES } from './thinking.ts';
 
 export const esc = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
@@ -76,9 +77,8 @@ function inputHtml(key: string, mode: 'decimal' | 'text', unit?: string, help?: 
     ${help ? `<p class="answer-help">${help}</p>` : ''}`;
 }
 
-export function renderProblem(concept: Concept, p: Problem, number: number): string {
-  const key = problemKey(concept, p);
-  const domId = `q-${key.replace(/\//g, '-')}`;
+/** The answer controls for a problem or an investigation part, and what grades them. */
+function answerArea(concept: Concept, p: Exclude<Problem, { type: 'investigation' }> | InvestigationPart, key: string): { body: string; spec: CheckSpec } {
   let body = '';
   let spec: CheckSpec;
 
@@ -165,19 +165,33 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
         </div>`;
       spec = { type: 'open', rubricCount: p.rubric.length };
       break;
+    case 'build': {
+      const fields = p.fields
+        .map((f) => {
+          const id = `in-${key.replace(/[^a-z0-9]/gi, '-')}-${f.name}`;
+          return `<div class="answer-row">
+            <label class="answer-row__label" for="${id}">${mdInline(f.label)}</label>
+            <input class="answer-row__input" id="${id}" data-field="${esc(f.name)}" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false">
+            ${f.unit ? `<span class="answer-row__unit">${esc(f.unit)}</span>` : ''}
+          </div>`;
+        })
+        .join('');
+      body = `<p class="answer-help">There is more than one right answer. Find one that follows every rule.</p>${fields}`;
+      spec = {
+        type: 'build',
+        fields: p.fields.map((f) => ({ name: f.name, unit: f.unit })),
+        rules: p.rules.map((r) => ({ test: r.test, fail: mdInline(r.fail) })),
+      };
+      break;
+    }
   }
+  return { body, spec };
+}
 
+/** The answer form, feedback, hints and solution that every gradable problem or part has. */
+function workArea(p: { type: string; hints: string[]; solution: string[] }, body: string): string {
   const checkLabel = p.type === 'open' ? 'Compare with a strong answer' : 'Check';
   return `
-<problem-card class="problem" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">
-  <article class="problem__inner" aria-labelledby="${esc(`${domId}-title`)}">
-    <header class="problem__head">
-      <h4 class="problem__title" id="${esc(`${domId}-title`)}"><span class="problem__num">Problem ${number}</span></h4>
-      ${levelBadge(p.level)}
-      <span class="problem__status" data-status></span>
-    </header>
-    ${p.figure ? `<div class="problem__figure">${renderFigure(p.figure)}</div>` : ''}
-    <div class="problem__prompt prose">${md(p.prompt)}</div>
     <form class="problem__form" novalidate>
       ${body}
       <div class="problem__actions">
@@ -194,7 +208,52 @@ export function renderProblem(concept: Concept, p: Problem, number: number): str
     <div class="problem__solution" hidden>
       <h5 class="problem__solution-title">Worked solution</h5>
       <ol class="steps">${p.solution.map((s) => `<li class="step">${md(s)}</li>`).join('')}</ol>
-    </div>
+    </div>`;
+}
+
+export function renderProblem(concept: Concept, p: Problem, number: number): string {
+  const key = problemKey(concept, p);
+  const domId = `q-${key.replace(/\//g, '-')}`;
+  const move = THINKING_MOVES[p.thinking];
+  const moveHtml = `<p class="problem__move" data-move hidden><strong>🧠 You just used: ${esc(move.name)}.</strong> ${esc(move.blurb)}</p>`;
+  const card = (spec: CheckSpec, inner: string) => `
+<problem-card class="problem${p.type === 'investigation' ? ' problem--investigation' : ''}" data-key="${esc(key)}" data-level="${p.level}" data-spec="${esc(JSON.stringify(spec))}" id="${esc(domId)}">
+  <article class="problem__inner" aria-labelledby="${esc(`${domId}-title`)}">
+    <header class="problem__head">
+      <h4 class="problem__title" id="${esc(`${domId}-title`)}"><span class="problem__num">Problem ${number}</span></h4>
+      ${levelBadge(p.level)}
+      <span class="problem__status" data-status></span>
+    </header>
+    ${p.figure ? `<div class="problem__figure">${renderFigure(p.figure)}</div>` : ''}
+    ${inner}
   </article>
 </problem-card>`;
+
+  if (p.type === 'investigation') {
+    const parts = p.parts
+      .map((part, i) => {
+        const { body, spec } = answerArea(concept, part, `${key}-p${i + 1}`);
+        return `
+    <problem-part class="problem-part" data-spec="${esc(JSON.stringify(spec))}">
+      <header class="problem__head">
+        <h5 class="problem-part__title">Part ${LETTERS[i]}</h5>
+        <span class="problem__status" data-status></span>
+      </header>
+      ${part.figure ? `<div class="problem__figure">${renderFigure(part.figure)}</div>` : ''}
+      <div class="problem__prompt prose">${md(part.prompt)}</div>
+      ${workArea(part, body)}
+    </problem-part>`;
+      })
+      .join('');
+    return card(
+      { type: 'investigation', parts: p.parts.length },
+      `<div class="problem__prompt problem__story prose">${md(p.prompt)}</div>
+    <div class="problem-parts">${parts}</div>
+    <div class="problem__wrap-up prose" data-wrap-up><h5>The big idea</h5>${md(p.wrapUp)}</div>
+    ${moveHtml}`,
+    );
+  }
+
+  const { body, spec } = answerArea(concept, p, key);
+  return card(spec, `<div class="problem__prompt prose">${md(p.prompt)}</div>${workArea(p, body)}${moveHtml}`);
 }

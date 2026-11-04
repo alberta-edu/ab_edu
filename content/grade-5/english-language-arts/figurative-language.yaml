@@ -149,221 +149,322 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S3.5]
+    thinking: recall
+    covers: [K3.2, S3.5]
     type: mc
-    prompt: '“The puck flew **like** a bullet.” What kind of comparison is this?'
-    choices: [Simile, Metaphor, Analogy]
-    fixedOrder: true
+    prompt: |-
+      “By three o’clock, my backpack was a sack of bricks.” What kind of comparison is this?
+    choices: [A metaphor, A simile, An analogy, 'It isn’t a comparison, it’s literal']
     answer: 0
     feedback:
-      '1': A metaphor compares **without** *like* or *as*. Check the bold word.
-      '2': An analogy shows how one relationship is like another. This just compares a puck and a bullet.
+      '1': A simile compares using *like* or *as*. Can you find either word here?
+      '2': An analogy shows how one relationship is like another. This just says one thing **was** another.
+      '3': Would there really be bricks in the backpack? It only feels that way.
     hints:
-      - Which comparison uses *like* or *as*?
+      - Look for *like* or *as*. Are they there?
     solution:
-      - It compares using **like**, so it is a **simile**.
+      - A backpack and a sack of bricks aren’t alike, but both feel very heavy. There is no *like* or *as*, so this is a **metaphor**.
 
   - id: w2
     level: 1
-    covers: [K3.2, S3.5]
+    thinking: apply
+    covers: [K3.1, S3.6]
     type: mc
-    prompt: Which sentence is a **metaphor**?
+    prompt: |-
+      Everyone says that Grandma Ruby has a **heart of gold**. What do they mean?
     choices:
-      - My backpack is a bag of bricks today.
-      - My backpack is as heavy as bricks.
-      - My backpack has a brick in it.
-      - I carried my backpack home.
+      - She is very kind to people.
+      - She owns a lot of gold.
+      - She is tough and hard.
+      - She likes shiny things.
     answer: 0
     feedback:
-      '1': This uses *as*, so it is a simile.
-      '2': This could be literally true, so it doesn’t compare two things.
-      '3': This is a plain, literal statement.
+      '1': That reads the words literally. It’s her *heart* that is golden here, so think about what a heart stands for.
+      '2': Gold is a hard metal, but when people say “heart of gold,” they are thinking of how precious gold is.
+      '3': That reads *gold* literally. What is a heart often used to talk about?
     hints:
-      - A metaphor says one thing **is** another, without *like* or *as*.
+      - People don’t mean a real heart or real gold. What does a person’s heart stand for? How do people feel about gold?
     solution:
-      - The backpack isn’t really bricks. It is **compared** to them without *like* or *as*.
+      - A heart often stands for how someone treats others. Gold is precious.
+      - So a heart of gold is a precious way of treating people. Grandma Ruby is **very kind**.
 
   - id: w3
     level: 1
-    covers: [K3.1, S3.6]
-    type: mc
-    prompt: '“Her words **cut** me.” What does this figurative phrase mean?'
-    choices:
-      - What she said hurt my feelings.
-      - She used scissors on me.
-      - She wrote the words on paper and cut them out.
-      - She spoke very quietly.
-    answer: 0
-    feedback:
-      '1': That is the literal reading. Words can’t really cut skin.
-      '2': That is still reading it literally. How do you feel when words “cut” you?
-      '3': The phrase isn’t about how loud she was. It’s about how the words felt.
+    thinking: apply
+    covers: [S3.5]
+    type: text
+    prompt: |-
+      Finish the analogy with one word: **A glove is to a hand as a sock is to a** ___.
+    accept: [foot, a foot, feet]
     hints:
-      - What does a cut feel like? How could words make you feel that way?
+      - What does a glove do for a hand? Now, what does a sock do that for?
     solution:
-      - Words can’t really cut. The phrase means that they **hurt my feelings**.
-
-  - id: w4
-    level: 1
-    covers: [S3.5, K3.2]
-    type: mc
-    prompt: What do **similes and metaphors** have in common?
-    choices:
-      - Both compare things that are different in order to show an idea.
-      - Both must use the word *like*.
-      - Both can only be used in poems.
-      - Both mean exactly what the words say.
-    answer: 0
-    feedback:
-      '1': Only similes use *like* or *as*. Metaphors do not.
-      '2': You can use them in stories, speeches and everyday talk.
-      '3': That would be literal language, not figurative language.
-    hints:
-      - Think about what both are doing with two different things.
-    solution:
-      - Both **compare different things**, which helps readers see an idea in a new way.
+      - A glove covers a hand. A sock covers a **foot**. An analogy keeps the same relationship and changes the things.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S3.5, S3.6]
-    type: evidence
-    prompt: Tap the sentence in paragraph 1 that uses a **metaphor**.
-    passage: storm
-    paragraphs: [1]
-    answer: [p1s1]
+    thinking: notice
+    covers: [K3.1, S3.6]
+    type: multi
+    prompt: |-
+      “When the bell rings, our hallway is a **river**, and my locker is always upstream.”
+
+      (*Upstream* means against the way the water flows.) A metaphor carries over only some things about a river. Which of these does the writer want you to picture?
+    choices:
+      - The floor of the hallway is wet.
+      - Students all stream along in one direction.
+      - Someone built a bridge over the hallway.
+      - It’s hard to walk the other way.
+      - Students are swimming to class.
+    fixedOrder: true
+    answer: [1, 3]
     feedback:
-      p1s2: Dad really did point at the sky. This is literal.
-      p1s3: They really did run. This is literal.
+      '0': A river is wet, but the writer isn’t talking about water. What about a river is like students moving?
+      '2': Rivers can have bridges, but what would that tell you about the bell ringing?
+      '4': That reads the metaphor literally. Your feet are still on the floor, so what does a river do that a crowd does too?
     hints:
-      - Which sentence says that one thing **is** another?
+      - Picture a river. Now picture the crowd when the bell rings. What do they do the same way?
+      - Try walking the wrong way in each one. What happens?
     solution:
-      - '“The storm was a grey giant…” The storm is compared to a giant, without *like* or *as*.'
+      - Think about what a river **does**. It flows along one way, and it pushes against you if you go the other way.
+      - A crowd of students does both of those things. The water, the bridges and the swimming don’t come along for the trip.
+      - 'What we learned: a metaphor picks out what the two things share and leaves the rest behind.'
 
   - id: b2
     level: 2
-    covers: [S3.5]
-    type: evidence
-    prompt: Tap a sentence in “Storm over the Foothills” that uses a **simile**.
-    passage: storm
-    paragraphs: [2, 3, 4]
-    answer: [p2s1, p2s2, p4s2]
+    thinking: notice
+    covers: [S3.4, S3.6]
+    type: mc
+    prompt: |-
+      **Story A:** It’s late March. Amir walks out on the pond, and the ice creaks. Dad calls, “Come back! You’re on thin ice!”
+
+      **Story B:** Priya has forgotten her homework for the third time this week. Her teacher looks over her glasses. “You’re on thin ice,” she says.
+
+      What does the teacher mean in Story B?
+    choices:
+      - One more mistake could get Priya into trouble.
+      - Priya has to go and stand far from the pond.
+      - Priya’s homework got wet and has to be redone.
+      - The classroom is much too cold for Priya today.
+    answer: 0
     feedback:
-      p3s1: They really did watch from the door. This is literal.
-      p3s2: Horses really do stamp and snort. This is literal.
-      p3s3: Dad really did check the latch. This is literal.
-      p4s1: This does use *as*, but it compares two speeds. It talks about how fast the storm left. The giant here is the metaphor from before.
+      '1': That would fit Story A. Where is Priya in Story B? Is there any ice there?
+      '2': Nothing in the story says the homework got wet. What has she been doing three times this week?
+      '3': That takes *ice* to be about temperature. What’s happening between Priya and her teacher?
     hints:
-      - Look for *like* or *as*, comparing two different things.
+      - Where is each person standing? In which story could the ice be real?
+      - What could happen on thin ice if you take one more step? How is Priya’s week like that?
     solution:
-      - '“as tightly as a burr on a sock,” “like empty barrels down a wooden ramp” and “like a jar of new coins” are all similes.'
+      - The words are the same. The stories around them are different.
+      - In Story A, the ice is real. Story B is set at school, so the words must be figurative.
+      - Thin ice can hold you for now, but one more step could go badly. Priya has **one mistake left before she’s in trouble**.
 
   - id: b3
     level: 2
-    covers: [S3.4]
+    thinking: whatif
+    covers: [S3.6, S3.5]
     type: mc
-    prompt: '“The new goalie is really **cool** under pressure.” In this context, what does *cool* mean?'
-    choices: [Calm, A little cold, Popular, Wearing cold clothing]
+    prompt: |-
+      In *Storm over the Foothills*, the writer describes the first rain.
+
+      > …the first rain came down in silver **needles**.
+
+      Suppose the writer changed one word, to “silver **threads**.” What would change for a reader?
+    choices:
+      - The rain would seem soft and not sharp.
+      - The rain would be a different colour.
+      - The words would become a simile.
+      - The rain would seem to last longer.
     answer: 0
     feedback:
-      '1': That is the temperature meaning. It wouldn’t make sense with “under pressure.”
-      '2': That can be a meaning of *cool*, but the words “under pressure” point to something else.
-      '3': Nothing in the sentence is about clothes.
+      '1': Both versions say “silver,” so the colour stays the same. What is different between needles and threads?
+      '2': Neither version has *like* or *as*, so both are still metaphors.
+      '3': Nothing in either word tells you how long it rained. How would each one feel on your skin?
     hints:
-      - How would a good goalie act when the game gets tense?
+      - Imagine each one landing on your arm. What does a needle feel like? A thread?
     solution:
-      - The words “under pressure” tell you that *cool* here means **calm**.
+      - Needles are thin, hard and sharp. Threads are thin and soft.
+      - Both show thin lines of rain, but *needles* makes the rain feel like it stings, which fits a frightening storm. *Threads* would make it gentle.
+      - One word can change how a whole moment feels.
 
   - id: b4
     level: 2
-    covers: [S3.5]
-    type: mc
-    prompt: Finish the **analogy**. *Bird is to nest as bee is to ___.*
-    choices: [hive, flower, honey, wing]
-    answer: 0
+    thinking: evidence
+    covers: [S3.6, S3.5]
+    type: evidence
+    prompt: A **burr** is a prickly seed case that clings to your clothes. No one in this story says that the little brother is scared, but a comparison shows it. Tap that sentence.
+    passage: storm
+    paragraphs: [1, 2, 4]
+    answer: [p2s1]
     feedback:
-      '1': Bees visit flowers, but a nest is a home. What is a bee’s home?
-      '2': Bees make honey, but a nest is where a bird lives.
-      '3': A wing is a body part. A nest is a home.
+      p1s1: This is a comparison, but it’s about the storm. Which one is about the brother?
+      p1s2: Nothing is being compared here. Look for a sentence about the brother.
+      p1s3: Nothing is being compared here. Look for a sentence about the brother.
+      p2s2: These comparisons are about the thunder and the rain. Which one is about the brother?
+      p4s1: This brings the giant back, but it’s about the storm leaving. Which comparison is about the brother?
+      p4s2: The end of this sentence is a good clue, because he finally lets go. But the comparison here is about the valley. Which comparison shows how he was holding on?
     hints:
-      - What is the relationship between a bird and a nest?
+      - Which sentences mention the brother?
+      - In each of those, what is being compared with what?
     solution:
-      - A nest is a bird’s **home**. A **hive** is a bee’s home.
-
-  - id: b5
-    level: 2
-    covers: [S3.6]
-    type: mc
-    prompt: '“The thunder rolled, like empty barrels down a wooden ramp.” What does this help you **hear**?'
-    choices:
-      - A deep, rumbling, tumbling sound
-      - A high, sweet sound
-      - Complete silence
-      - A short, sharp click
-    answer: 0
-    feedback:
-      '1': Big empty barrels don’t make high, sweet sounds.
-      '2': Barrels rolling down a ramp would be loud.
-      '3': The barrels keep rolling, so the sound keeps going.
-    hints:
-      - Imagine that sound. What would it be like?
-    solution:
-      - Empty barrels on wood make a **deep, tumbling rumble**, just like thunder.
+      - '“My little brother held my sleeve as tightly as a burr on a sock.”'
+      - A burr clings and won’t let go until you pull it off. Someone holding on that tightly is scared, and the writer never has to say so.
+      - That is what a simile can do. It lets you feel an idea that the words don’t state.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S3.5, K3.2]
-    type: mc
-    prompt: 'Which sentence is **not** figurative language?'
-    choices:
-      - I like my grandmother’s house.
-      - My grandmother’s house is a warm hug.
-      - My grandmother’s house is like a warm hug.
-      - Coming to Grandmother’s house is like coming back to harbour after a storm.
-    answer: 0
-    feedback:
-      '1': The house isn’t really a hug. That is a metaphor.
-      '2': This compares a house and a hug using *like*, so it is a simile.
-      '3': This compares two relationships, so it is an analogy.
-    hints:
-      - One sentence uses *like*, but doesn’t compare two things.
-    solution:
-      - '“I like” means “I enjoy.” No two things are compared, so this sentence is **literal**.'
+    thinking: flaw
+    covers: [K3.1, S3.5, S3.6, S3.7]
+    type: investigation
+    prompt: |-
+      Your class holds a **Worst Simile Contest**. Here are the three finalists:
+
+      - **A:** The gentle snow fell like a dropped piano.
+      - **B:** I like snow.
+      - **C:** My dog is as big as a dog.
+
+      Each one fails in a different way. Be the judge.
+    parts:
+      - type: mc
+        prompt: Entry **B** gets thrown out because it isn’t a simile at all. Why not?
+        choices:
+          - Here *like* means “enjoy,” so nothing is compared.
+          - A simile has to use *as*, and not *like*.
+          - A simile has to be a much longer sentence.
+          - A simile can’t be about weather or snow.
+        answer: 0
+        feedback:
+          '1': Similes can use either word. *She ran like the wind* is a simile.
+          '2': Short similes are fine. *Quiet as a mouse* is very short. What is B doing with the word *like*?
+          '3': Similes can be about anything. What is B comparing snow to?
+        hints:
+          - Finish this for B. “Snow is being compared to ___.” Can you?
+        solution:
+          - The word *like* doesn’t make a simile by itself. In B it means “enjoy,” and snow isn’t compared to anything.
+      - type: mc
+        prompt: Entry **C** does use *as*. Why does it tell a reader nothing?
+        choices:
+          - It compares the dog with a dog, so nothing new is shown.
+          - It uses *as*, and a real simile would need to use *like*.
+          - It should be a metaphor, since a dog is a living thing.
+          - It’s not possible for a simile to describe how big a thing is.
+        answer: 0
+        feedback:
+          '1': Similes can use *as*. *As flat as a plate* is a simile.
+          '2': A simile can describe a living thing. *She skates like a swallow in flight* does.
+          '3': It can. *As big as a barn* tells you plenty. What is C using for its comparison?
+        hints:
+          - After reading C, what do you know about the dog’s size that you didn’t know before?
+        solution:
+          - A simile compares two **different** things. C compares a dog with a dog, so the reader learns nothing.
+      - type: mc
+        prompt: Entry **A** is a real simile, and it’s a very funny one. What makes it so bad?
+        choices:
+          - A piano crashes, so it fights the word *gentle*.
+          - A simile can’t compare two things this different.
+          - A simile can’t compare something to a piano.
+          - A piano is not white, and snow is always white.
+        answer: 0
+        feedback:
+          '1': It’s supposed to compare different things. *Storm* and *giant* aren’t alike either. What did the writer want you to feel about the snow?
+          '2': You can compare things to a piano, if it fits. What idea is being compared here?
+          '3': A comparison only needs to share the quality the writer cares about. Which word tells you what that is?
+        hints:
+          - What word tells you how the snow fell? Now, how does a dropped piano fall?
+        solution:
+          - Snow and a piano are allowed to be different. That’s what similes do. The trouble is what they share.
+          - The writer wants you to feel *gentle*, but the comparison makes you hear a crash. The two ideas fight each other.
+      - type: open
+        prompt: Now rescue Entry A. Keep the snow gentle, and write your own simile that helps a reader see or feel that.
+        modelAnswer: The snow came down as softly as a cat stepping over a sleeping baby.
+        rubric:
+          - I used *like* or *as* to compare the snow with something that isn’t snow.
+          - The thing I chose really is gentle or soft, so it matches the snow.
+    wrapUp: A good simile compares two different things, and what they share is just what you want your reader to see or feel.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S3.6, S3.4]
+    thinking: why
+    covers: [K3.2, S3.6]
     type: mc
-    prompt: 'At the end of the story, “the giant was gone.” What does **the giant** refer to, and how do you know?'
+    prompt: |-
+      *Storm over the Foothills* begins like this:
+
+      > The storm was a grey giant, striding over the foothills toward our farm.
+
+      Near the end, it says:
+
+      > As fast as it had come, the **giant** was gone.
+
+      Suppose the writer had put “the **storm** was gone” there instead. What would we lose?
     choices:
-      - The storm. Paragraph 1 compared the storm to a grey giant.
-      - A real giant that walked away.
-      - Dad, who is the tallest person in the story.
-      - The barn, which is the biggest building.
+      - The feeling that something alive came and then walked away
+      - The clue that the family saw a real giant in the valley
+      - The fact that the storm went away faster than it arrived
+      - The comparison word that makes this sentence a simile
     answer: 0
     feedback:
-      '1': Nothing suggests a real giant. Go back to how the writer used the word in paragraph 1.
-      '2': Dad is in the barn with the children, and he doesn’t leave.
-      '3': The barn doesn’t go anywhere. What has gone away by the end?
+      '1': The family never sees a real giant. The first sentence told you the storm *was* one, and that’s a metaphor. So what is the word *giant* doing here?
+      '2': Both versions say “as fast as it had come,” so the speed stays the same. What does *giant* add that *storm* doesn’t?
+      '3': Neither version has *like* or *as*, so this isn’t a simile. What does the word *giant* make you picture?
     hints:
-      - Look back at the first sentence of the story.
+      - Read both versions aloud. Which one could walk off over the hills?
+      - The writer already told you what the giant is. Why go back to that word at the end?
     solution:
-      - The metaphor from paragraph 1 returns. The **context** tells you that the giant is the storm.
+      - A storm is just weather. A giant has a body, and it can come striding in and walk away.
+      - By using *giant* again, the writer keeps the first picture going to the very end. The storm feels like a living thing that visited and left.
+      - 'What we learned: a metaphor can stay with a story, and it doesn’t have to end after one sentence.'
 
   - id: d3
     level: 3
-    covers: [S3.7, S3.1]
+    thinking: evidence
+    covers: [S3.5, S3.6]
     type: open
     prompt: |-
-      Describe a time you felt nervous, using **one simile and one metaphor** of your own. Explain what each one
-      helps your reader feel.
+      Mr. Dhillon tells the class, “Our hamster is like a library book. Everybody gets a turn taking her home, and you
+      have to bring her back in good shape.”
+
+      Zara raises her hand. “So if I’m late, do I pay a fine?”
+
+      Name one way the analogy works and one way it stops working. Then say why Mr. Dhillon can still use it.
     modelAnswer: |-
-      Before my speech, my heart was a woodpecker on a hollow tree (metaphor). My hands shook like leaves in a chinook
-      (simile). The woodpecker helps you hear how fast and hard my heart was beating, and the leaves help you see that
-      I could not hold my hands still.
+      **It works** because a library book and the hamster are both shared, everyone gets a turn, and you have to return
+      them safely.
+
+      **It stops working** because a book can sit on a shelf all week, but a hamster has to be fed and looked after.
+
+      **He can still use it** because he only wants to explain taking turns and taking care. An analogy doesn’t have to
+      match in every way. It just has to make one idea clear.
     rubric:
-      - I wrote a simile that uses *like* or *as*.
-      - I wrote a metaphor, without *like* or *as*.
-      - My comparisons are my own, not ones I have heard a lot.
-      - I explained what each one helps the reader feel.
+      - I named one way the hamster and a library book are really alike.
+      - I named one way they aren’t alike that matters.
+      - I explained that an analogy can still be useful for the one idea it’s meant to explain.
+    hints:
+      - Make two lists, for what’s true of both of them and what’s true of only one.
+      - What was Mr. Dhillon trying to explain? Does the analogy help with that?
+
+  - id: d4
+    level: 3
+    thinking: design
+    covers: [S3.7, S3.1, K3.2, S3.5]
+    type: open
+    prompt: |-
+      Grandpa’s old pickup truck rattles, coughs out smoke and has never once broken down.
+
+      Write **one simile** that makes a reader love this truck. Then write **one metaphor** that makes a reader a little
+      nervous about getting in.
+    modelAnswer: |-
+      **Simile:** The old truck bounced down the lane like a happy dog that’s shaking itself dry.
+
+      **Metaphor:** At every stop sign, that truck is a tired dragon, coughing and deciding whether to keep going.
+    rubric:
+      - My first sentence uses *like* or *as*, and it makes the truck seem lovable.
+      - My second sentence compares without *like* or *as*, and it makes the truck seem a bit worrying.
+      - Each sentence compares the truck with something that isn’t a truck.
+    hints:
+      - The truck is the same both times. Only what you compare it to changes. What’s a rattling, smoky thing you’d love? What’s one you wouldn’t want to get close to?
+      - Say what you want the reader to feel first. Then choose the comparison.

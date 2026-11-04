@@ -99,249 +99,435 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K3.5]
+    thinking: notice
+    covers: [K3.3, S3.2]
     type: mc
-    prompt: What is a **controlled experiment**?
+    prompt: Anya drops the same ball from three different heights. Each time, she measures how high it bounces back up. What is her **responding** variable?
     choices:
-      - An investigation where one variable is changed and all others are kept the same
-      - An investigation where you change as many things as you can
-      - An investigation with no variables
-      - An investigation that only a scientist can do
+      - How high the ball bounces back up
+      - How high she drops the ball from
+      - Which ball she uses
+      - The floor she drops it on
     answer: 0
     feedback:
-      '1': Changing many things at once makes it impossible to tell what caused a result.
-      '2': Every experiment has variables. You control most of them.
-      '3': Anyone can plan and conduct a controlled experiment.
+      '1': There are two heights in this test, and this is the one Anya chooses on purpose. So it’s the manipulated variable.
+      '2': Anya uses the same ball every time, so the ball is controlled.
+      '3': The floor stays the same, so it’s controlled.
     hints:
-      - Think of the ramp lab's fair test.
+      - Two different heights are in this story. Which one does Anya choose?
+      - Which height can Anya only find out by watching and measuring?
     solution:
-      - In a controlled experiment, **one** variable is changed and **all the others** are kept the same.
+      - Anya chooses the drop height, so that is what she changes on purpose (manipulated).
+      - She can’t choose the bounce. She has to watch and measure it. It changes as a result, so it is the **responding** variable.
 
   - id: w2
     level: 1
-    covers: [K3.1]
-    type: mc
-    prompt: What is a **variable**?
+    thinking: apply
+    covers: [K3.4, S3.2]
+    type: multi
+    prompt: Does more dish soap in the mix make bigger bubbles? Select **all** the variables that should be **controlled** in this test.
     choices:
-      - A condition or factor that can influence the outcome of an experiment
-      - The answer to an experiment
-      - A tool for measuring
-      - A mistake in an experiment
-    answer: 0
-    feedback:
-      '1': The outcome is measured with the responding variable, but a variable is any factor that could affect it.
-      '2': A ruler is a tool. A variable is a condition.
-      '3': Variables aren't mistakes. Every experiment has them.
+      - How much water is in the mix
+      - The size of the bubble wand
+      - How hard you blow
+      - How much soap is in the mix
+      - How big the bubbles get
+    fixedOrder: true
+    answer: [0, 1, 2]
     hints:
-      - Ramp height and floor surface were examples.
+      - Controlled variables are kept the same. Which one is being changed on purpose?
+      - Which one are you waiting to measure?
     solution:
-      - A **variable** is any condition or factor that can influence the outcome.
+      - The soap is what you change on purpose (manipulated), and the bubble size is what you measure (responding).
+      - Everything else stays the same, so the water, the wand and how hard you blow are **controlled**.
 
   - id: w3
     level: 1
-    covers: [K3.2, S3.3]
+    thinking: recall
+    covers: [K3.2, K3.3, S3.3]
     type: mc
-    prompt: Which variable do you **change on purpose** in a controlled experiment?
-    choices: [Manipulated variable, Responding variable, Controlled variable]
-    fixedOrder: true
+    prompt: A science fair poster uses the words **independent variable** and **dependent variable**. What are other names for them?
+    choices:
+      - Independent means manipulated, and dependent means responding.
+      - Independent means responding, and dependent means manipulated.
+      - Independent means controlled, and dependent means manipulated.
+      - Independent means manipulated, and dependent means controlled.
     answer: 0
     feedback:
-      '1': The responding variable changes **as a result**. You measure it.
-      '2': Controlled variables are kept **the same**.
+      '1': You have them swapped. Which variable depends on something else?
+      '2': A controlled variable is kept the same. An independent variable gets changed on purpose.
+      '3': The first half is right. But a controlled variable stays the same, and a dependent variable changes.
     hints:
-      - You "manipulate" it, which means you handle or change it.
+      - Which variable depends on what you did?
+      - You choose the independent variable yourself.
     solution:
-      - The **manipulated** (independent) variable is the one you change on purpose.
+      - You choose the independent variable, so it is the **manipulated** variable.
+      - The dependent variable depends on what you chose, so it is the **responding** variable.
 
   - id: w4
     level: 1
-    covers: [K3.3, S3.3]
+    thinking: apply
+    covers: [K3.5, S3.1]
     type: mc
-    prompt: In the ramp lab, **how far the car rolls** is which kind of variable?
-    choices: [Responding variable, Manipulated variable, Controlled variable]
-    fixedOrder: true
+    prompt: |-
+      To test whether more sugar makes cocoa taste sweeter, Elias makes two cups.
+
+      **Cup 1:** 1 spoon of sugar, hot.
+
+      **Cup 2:** 2 spoons of sugar, cold.
+
+      What should he change so that this is a controlled experiment?
+    choices:
+      - Serve both cups at the same temperature.
+      - Put the same amount of sugar in both cups.
+      - Make a third cup with 3 spoons of sugar.
+      - Ask how sweet it tastes after one sip only.
     answer: 0
     feedback:
-      '1': You didn't set the distance. It changed because of what you set.
-      '2': The distance wasn't kept the same. It was what you measured.
+      '1': The sugar is the one thing he wants to change, so it has to stay different.
+      '2': A third cup could be useful, but the first two cups would still differ in two ways.
+      '3': That doesn’t fix it. How many things are different between the two cups?
     hints:
-      - Which variable changes as a result, and gets measured?
+      - List everything that is different between Cup 1 and Cup 2.
+      - He wants to test the sugar. So what else must stop being different?
     solution:
-      - The distance changes because of the ramp set-up, so it is the **responding** (dependent) variable.
+      - Two things differ between the cups, the sugar and the temperature.
+      - He’s testing the sugar, so the temperature has to be the same. Then only one variable changes.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S3.2, K3.2]
+    thinking: connect
+    covers: [K3.2, K3.4, S3.3]
     type: mc
-    prompt: Zoe gives four identical plants different amounts of water each day and measures how tall they grow. What is her **manipulated** variable?
-    choices: [The amount of water, How tall the plants grow, The kind of plant, The size of the pots]
-    fixedOrder: true
+    prompt: |-
+      Two teams share one popcorn kit.
+
+      **Team 1** asks, “Does cooking time change how many kernels pop?”
+
+      **Team 2** asks, “Does the kind of kernel change how many pop?”
+
+      What kind of variable is **cooking time** for each team?
+    choices:
+      - Manipulated for Team 1, and controlled for Team 2
+      - Manipulated for both teams, since it’s in both tests
+      - Controlled for both teams, since the kit is the same
+      - Responding for Team 1, and manipulated for Team 2
     answer: 0
     feedback:
-      '1': Height is what she measures, so it is the responding variable.
-      '2': The plants are identical, so the kind of plant is controlled.
-      '3': The pot size should be the same for every plant, so it is controlled.
+      '1': Team 2 is changing the kind of kernel. If it also changes the time, how could it tell which one mattered?
+      '2': Team 1’s question is about cooking time. It has to change the time to answer that.
+      '3': For Team 1, what gets counted at the end? Nobody has to count the cooking time. They set it.
     hints:
-      - What does Zoe change on purpose?
+      - What is each team changing on purpose? Look at each question.
+      - For Team 2, should the cooking time change or stay the same?
+      - Is the name of a variable fixed, or does it depend on the question?
     solution:
-      - Zoe changes the **amount of water** on purpose. That is the manipulated variable.
+      - Start from each team’s question. Team 1 is asking about time, so it changes the time. That makes time **manipulated**.
+      - Team 2 is asking about the kind of kernel, so the time must stay the same. That makes time **controlled**.
+      - 'What we learned: the question you ask decides what each variable’s job is.'
 
   - id: b2
     level: 2
-    covers: [S3.2, K3.4]
-    type: multi
-    prompt: In Zoe's plant experiment, select **all** the variables that should be **controlled**.
-    choices: [The kind of seed, The amount of sunlight, The type of soil, The amount of water, The height of the plants]
-    fixedOrder: true
-    answer: [0, 1, 2]
+    thinking: why
+    covers: [K3.3, S3.2, S3.4]
+    type: mc
+    prompt: |-
+      Ingrid and Talia test two slime recipes, and they do it carefully.
+
+      | Recipe | Stretch | Bounce |
+      |---|---|---|
+      | A | 40 cm | 5 cm |
+      | B | 15 cm | 20 cm |
+
+      Ingrid says, “A is best!” Talia says, “B is best!” Why don’t they agree?
+    choices:
+      - “Best” isn’t something you can measure, and each one is looking at a different responding variable.
+      - One of them must have changed the data, because a real test can only give one best recipe.
+      - They changed two manipulated variables at once, so nobody can tell which recipe caused what.
+      - They need to test a third recipe, because two recipes aren’t enough to be able to choose one.
+    answer: 0
+    feedback:
+      '1': The table has one set of data, and both of them can read it. Nothing has been changed.
+      '2': Only one thing is being changed on purpose, the recipe. Look at what got measured instead.
+      '3': A third recipe might stretch or bounce differently, but they would still argue about what “best” means.
     hints:
-      - Controlled variables are kept the same. Which two are not?
+      - Which column is Ingrid looking at? Which one is Talia looking at?
+      - Can you put a ruler on “best”?
+      - What would they have to agree on before they started?
     solution:
-      - ✓ Seed, sunlight and soil stay the same.
-      - ✗ Water is manipulated. Height is responding.
+      - A stretches farther, and B bounces higher. Both readings of the table are right.
+      - The trouble is the word “best”. You can’t measure it. You can only measure something like stretch or bounce.
+      - A better question names what is being measured, such as “Which recipe stretches the most?”
 
   - id: b3
     level: 2
-    covers: [S3.1, K3.5]
+    thinking: notice
+    covers: [S3.4, S3.5, U3.1]
     type: mc
     prompt: |-
-      To test whether ramp height matters, Ben uses a **low** ramp on **wood** for Test A and a **high** ramp on
-      **carpet** for Test B. What is wrong?
+      A class tests its model volcano, using the same amount of vinegar every time.
+
+      | Scoops of baking soda | Foam height |
+      |---|---|
+      | 1 | 10 cm |
+      | 2 | 20 cm |
+      | 3 | 30 cm |
+      | 4 | 30 cm |
+      | 5 | 30 cm |
+
+      Which conclusion fits **all** the evidence?
     choices:
-      - He changed two variables, so he can't tell which one caused any difference.
-      - He should have used three ramps.
-      - Nothing. It is a fair test.
-      - He should not measure the distance.
+      - More scoops made taller foam up to 3 scoops, and more than that made no difference.
+      - Each extra scoop of baking soda made the foam rise higher than the one before it.
+      - The amount of baking soda had no effect on how high the foam rose in the test.
+      - The vinegar made the foam stop rising, because vinegar was in every test they did.
     answer: 0
     feedback:
-      '1': The problem isn't the number of ramps. Two things changed.
-      '2': Both the height and the surface changed.
-      '3': Measuring the distance is how he gets evidence.
+      '1': That fits the first three rows. Check the last two.
+      '2': That fits the last three rows. Check the first three.
+      '3': That might be a good idea to test next. But vinegar was kept the same, so this test can’t show what it does.
     hints:
-      - Count how many variables are different between Test A and Test B.
+      - Read the table from top to bottom. What does the foam do?
+      - Does your conclusion fit the first row and the last row?
+      - Does the pattern change partway down?
     solution:
-      - Height **and** surface both changed. To test height, Ben must keep the surface the same.
+      - Read the whole table, not only one end of it.
+      - From 1 to 3 scoops, the foam goes up. From 3 to 5 scoops, it stays at 30 cm.
+      - A conclusion has to fit all the evidence, so it must describe both parts of the pattern.
 
   - id: b4
     level: 2
-    covers: [S3.3, K3.2, K3.3]
-    type: mc
-    prompt: Another name for the **manipulated** variable is the…
-    choices: [independent variable, dependent variable, controlled variable]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The dependent variable is the **responding** variable.
-      '2': Controlled variables are kept the same.
-    hints:
-      - The manipulated variable doesn't depend on anything. You choose it.
-    solution:
-      - The manipulated variable is also called the **independent** variable.
-
-  - id: b5
-    level: 2
-    covers: [S3.4, S3.5]
+    thinking: evidence
+    covers: [S3.5, U3.1]
     type: mc
     prompt: |-
-      A class tests whether the floor surface affects how far a car rolls. Everything else is kept the same.
+      A class puts 10 schoolyard worms in a tray, half damp soil and half dry soil. After 20 minutes, 9 are on the damp side. The worms then go back where they came from.
 
-      | Surface | Distance rolled |
-      |---|---|
-      | Wood | 160 cm |
-      | Carpet | 72 cm |
-
-      Which conclusion does the evidence support?
+      Which conclusion can the class defend?
     choices:
-      - The car rolls farther on wood than on carpet.
-      - The car rolls farther on carpet than on wood.
-      - The surface has no effect.
-      - Heavier cars roll farther.
+      - In this test, these worms went to the damp soil far more than to the dry soil.
+      - All kinds of animals like to live in damp soil more than they like dry soil.
+      - Damp soil makes worms grow longer and stronger than dry soil makes them grow.
+      - Worms everywhere in the world will always choose damp soil over any other soil.
     answer: 0
     feedback:
-      '1': Check the numbers again. Which surface has the bigger distance?
-      '2': The distances are very different, so the surface had an effect.
-      '3': The car load wasn't tested.
+      '1': Only worms were tested. Would you bet a gopher feels the same way?
+      '2': Nobody measured how long or strong the worms were. The class only saw where they went.
+      '3': These were 10 worms from one schoolyard, tested once, with only two kinds of soil. That’s a long way from “everywhere” and “always”.
     hints:
-      - Compare the two distances.
+      - What did the class actually test, and what did it actually measure?
+      - For each conclusion, ask, “Did the test show that?”
     solution:
-      - 160 cm on wood is much more than 72 cm on carpet, so the car **rolls farther on wood**.
+      - A conclusion can go only as far as the test went. This test used 10 worms, two kinds of soil, and watched where they went.
+      - So the class can defend what it saw. Saying more would need more tests.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S3.5, U3.1]
-    type: mc
+    thinking: breakdown
+    covers: [S3.4, S3.5, U3.1, K3.1, K3.2, K3.3]
+    type: investigation
     prompt: |-
-      Ali's two tests: a high ramp on wood, and a low ramp on carpet. The car went much farther in the first test.
-      Ali concludes, "Carpet makes cars slow down." Can Ali defend this conclusion?
-    choices:
-      - No. The ramp height also changed, so the carpet might not be the cause.
-      - Yes. The car went farther on wood.
-      - Yes. Carpet is always slower.
-      - No. Ali should have used a heavier car.
-    answer: 0
-    feedback:
-      '1': It went farther, but two things were different.
-      '2': Ali's own evidence can't show that, because it wasn't a fair test.
-      '3': Car load isn't the problem. Two variables changed.
-    hints:
-      - Was this a controlled experiment?
-    solution:
-      - Two variables changed. The difference could be from the **height**, the **surface**, or both, so Ali can't defend the conclusion.
+      Dimitri thinks his superhero cape makes him faster. He runs across the gym twice in a row, with the same shoes, in the same gym, and his friend times him.
+
+      | Run | Cape? | Time |
+      |---|---|---|
+      | First | Yes | 10 s |
+      | Second | No | 12 s |
+
+      “The cape works!” he shouts.
+    parts:
+      - type: mc
+        prompt: What are the manipulated and responding variables in Dimitri’s test?
+        choices:
+          - 'Manipulated: wearing the cape or not. Responding: his time.'
+          - 'Manipulated: his time. Responding: wearing the cape or not.'
+          - 'Manipulated: his shoes. Responding: wearing the cape or not.'
+          - 'Manipulated: the gym. Responding: his time.'
+        answer: 0
+        feedback:
+          '1': You have them swapped. Which of the two does Dimitri choose before he runs?
+          '2': The shoes stayed the same, so they are controlled.
+          '3': The gym stayed the same, so it’s controlled.
+        hints:
+          - What did Dimitri change on purpose? What did his friend measure?
+        solution:
+          - He chooses whether to wear the cape (**manipulated**), and his friend measures the time (**responding**).
+      - type: mc
+        prompt: Picture the second run. Besides the cape, what else is different from the first run?
+        choices:
+          - He has already run once, so he is more tired.
+          - His friend has to use a different stopwatch.
+          - The gym is a little longer the second time.
+          - His shoes are different for the second run.
+        answer: 0
+        feedback:
+          '1': The story doesn’t say so, and a stopwatch would be easy to keep the same anyway.
+          '2': It’s the same gym. It can’t have grown!
+          '3': The story says the shoes stayed the same.
+        hints:
+          - What has happened to Dimitri’s legs by the time he starts the second run?
+          - Imagine running as fast as you can, then going again right away.
+        solution:
+          - He ran across the gym just before the second run. **How tired he is** is a variable too, and nobody kept it the same.
+      - type: mc
+        prompt: |-
+          The next day he’s rested, and he swaps the order.
+
+          | Run | Cape? | Time |
+          |---|---|---|
+          | First | No | 10 s |
+          | Second | Yes | 12 s |
+
+          What do the two days show together?
+        choices:
+          - He was faster on each first run, with or without the cape.
+          - The cape helped him on one day and slowed him on the other.
+          - The cape slows him down, and the first day was a mistake.
+          - The two days disagree, so all of this evidence is useless.
+        answer: 0
+        feedback:
+          '1': That would be a strange cape! What else is the same about the 10 s runs on both days?
+          '2': The first day isn’t a mistake. Look at which runs got 10 s and which got 12 s.
+          '3': They seem to disagree only if you look at the cape. Sort the runs another way.
+        hints:
+          - Don’t look at the cape column yet. Find the two 10 s runs. What do they have in common?
+          - Now find the two 12 s runs.
+        solution:
+          - Both 10 s runs were first, and both 12 s runs were second.
+          - So the time follows the order of the runs, and it has nothing to do with the cape.
+      - type: open
+        prompt: Dimitri asks, “So does my cape make me faster?” Answer him, using the evidence from both days. Then tell him how to keep tiredness the same in his next test.
+        modelAnswer: |-
+          No, the evidence doesn’t show that it does. You ran 10 s on your first run both days, with the cape one day and without it the other. You ran 12 s on your second run both days. So the time changed with the order, not the cape. Next time, rest until you’re not tired before each run.
+        rubric:
+          - I answered Dimitri’s question.
+          - I used numbers from both days as evidence.
+          - I gave a way to keep tiredness the same, such as resting between runs.
+    wrapUp: A variable can hide where you didn’t think to look. Swapping the order showed that the order of the runs, and not the cape, explained the times.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S3.1, K3.4]
-    type: mc
-    prompt: You want to test whether the **temperature of water** affects how fast sugar dissolves. Which plan is a controlled experiment?
-    choices:
-      - Use the same amount of sugar and water in each cup, stir each the same way, and change only the water temperature.
-      - Use warm water with lots of sugar, and cold water with a little sugar.
-      - Stir the warm water but not the cold water.
-      - Use different kinds of sugar in each cup.
-    answer: 0
-    feedback:
-      '1': The amount of sugar changed as well as the temperature.
-      '2': Stirring changed as well as the temperature.
-      '3': The kind of sugar changed, not the temperature.
-    hints:
-      - Only the temperature should change.
-    solution:
-      - Keep the sugar, the amount of water and the stirring the same (**controlled**). Change only the **temperature** (manipulated).
+    thinking: evidence
+    covers: [S3.1, S3.2, S3.4, K3.5]
+    type: investigation
+    prompt: |-
+      Dad wants the tallest pancakes in Alberta. On Saturday, he makes four batches and measures them.
+
+      | Batch | Eggs | Liquid | Stove | Height |
+      |---|---|---|---|---|
+      | A | 1 | Milk | Low | 1 cm |
+      | B | 2 | Milk | Low | 2 cm |
+      | C | 2 | Water | Low | 1 cm |
+      | D | 2 | Water | High | 1 cm |
+    parts:
+      - type: mc
+        prompt: Which two batches can test whether the **number of eggs** makes a difference?
+        choices: [A and B, A and C, A and D, B and C]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': The eggs change, but so does the liquid. If the height changes, which one caused it?
+          '2': The eggs, the liquid and the stove all change. That’s three things at once!
+          '3': These two have the same number of eggs. What are they testing instead?
+        hints:
+          - You need two batches with different eggs. What has to be the same in them?
+          - Look for two rows that differ in the Eggs column and nowhere else.
+        solution:
+          - A and B differ in the number of eggs, and the liquid and stove are the same. So they test the eggs. In them, the batch with 2 eggs was taller.
+      - type: mc
+        prompt: Dad compares batches C and D. “Same height,” he groans. “I wasted a batch.” What does this comparison really tell him?
+        choices:
+          - With these ingredients, the stove setting made no difference to the height.
+          - The test failed, since nothing changed, and no evidence came out of it.
+          - The stove setting doesn’t matter for any food he will ever cook at all.
+          - The two batches are the same height because water is a controlled variable.
+        answer: 0
+        feedback:
+          '1': Something did change, the stove. The height didn’t. That is a real result.
+          '2': He tested one recipe, and only for height. That’s far too much to claim.
+          '3': Water was kept the same, and that made it a fair comparison. But it doesn’t tell you why the heights match.
+        hints:
+          - What is different between C and D?
+          - If you change something and the result stays the same, have you learned anything?
+        solution:
+          - C and D differ only in the stove setting, so this is a fair test. Height stayed at 1 cm.
+          - “No change” is still evidence. It tells Dad that he can stop trying to fix the height by changing the stove setting, at least with this recipe.
+      - type: mc
+        prompt: Dad now wonders whether a high stove matters when he uses **milk**. Which new batch should he make, to compare with batch B?
+        choices:
+          - 2 eggs, milk, high stove
+          - 1 egg, milk, high stove
+          - 2 eggs, water, high stove
+          - 2 eggs, milk, low stove
+        answer: 0
+        feedback:
+          '1': Compared with B, the eggs and the stove both change.
+          '2': That’s batch D, which he already made. Compared with B, the liquid and the stove both change.
+          '3': That’s batch B all over again. Nothing would be different, so nothing would be tested.
+        hints:
+          - Write down what is in batch B. Which one thing should be different in the new batch?
+        solution:
+          - Start with batch B (2 eggs, milk, low), and change only the thing being tested, the stove.
+          - That gives 2 eggs, milk, high stove. Any difference in height would come from the stove.
+    wrapUp: Even a messy pile of results can hold fair tests. Look for two rows that differ in only one way.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S3.4, U3.1]
+    thinking: flaw
+    covers: [K3.5, S3.5, U3.1, K3.1]
     type: mc
-    prompt: In the ramp lab, an empty car rolled 220 cm and the same car carrying clay rolled 227 cm. Nothing else changed. What is the best conclusion?
+    prompt: |-
+      **Test 1:** One child gives an empty wagon a big push down the hall. It rolls 10 m.
+
+      **Test 2:** Two children push the same wagon, now full of library books. It rolls 10 m.
+
+      Rosa says, “Same distance! So the books don’t matter, and the number of pushers doesn’t matter either.” Where did her thinking go wrong?
     choices:
-      - The car load had very little effect on how far the car rolled.
-      - Clay makes cars roll much farther.
-      - The test was unfair.
-      - The ramp height caused the difference.
+      - Two things changed, so they may have balanced each other out.
+      - The distances matched, so nothing went wrong, and she is right.
+      - Only the books changed, so she can’t say anything about pushers.
+      - She should have timed the wagon, as distance isn’t real evidence.
     answer: 0
     feedback:
-      '1': 7 cm is a very small difference compared with 220 cm.
-      '2': Only one variable changed, so it was fair.
-      '3': The ramp height didn't change.
+      '1': The distances do match. But picture the books alone, without a second pusher. Would it still roll 10 m?
+      '2': Count again. How many children pushed in each test?
+      '3': Distance is a fine thing to measure. The trouble is in how the two tests were set up.
     hints:
-      - How big is the difference compared with the distances?
+      - Imagine adding only the books, with one child pushing. What happens to the distance?
+      - Now imagine an empty wagon, with two children pushing. What happens?
+      - What if one of those changes helps by just as much as the other one hurts?
     solution:
-      - The distances were almost the same, so the **car load** had **very little effect** on the distance.
+      - Changing two things makes a test unfair when the results are **different**. It’s just as unfair when they are the **same**.
+      - The books could hold the wagon back, and the extra pusher could send it farther. The two effects might be hiding each other.
+      - To find out, change one at a time. Compare one child with the empty wagon against one child with the full wagon.
 
   - id: d4
     level: 3
-    covers: [S3.1, S3.2, S3.3]
+    thinking: design
+    covers: [S3.1, S3.2, S3.3, K3.4]
     type: open
     prompt: |-
-      Plan a controlled experiment to find out whether the **size of a paper airplane's wings** affects how far it
-      flies. Name the manipulated, responding and controlled variables.
+      Whenever someone calls “Pip!”, the family’s guinea pig squeaks and runs over. But they always shake his food box at the same time. Ida says, “He knows his name.” Dad says, “He only knows that box.”
+
+      Plan a controlled experiment to settle it. Name your variables. Then say what result would show that Ida is right.
     modelAnswer: |-
-      Manipulated variable: the size of the wings (small, medium, large). Responding variable: how far each airplane
-      flies, measured in metres. Controlled variables: the same kind of paper, the same body shape, the same person
-      throwing it the same way, from the same spot, indoors with no wind.
+      Manipulated variable: what Pip hears, either his name with no box, or the box with no name. Responding variable: whether he runs over, and how many seconds it takes. Controlled variables: the same person, the same spot in the room and the same time of day. If he runs over when he hears only his name, Ida is right. If he runs over only for the box, Dad is right.
     rubric:
-      - I named the **manipulated** variable (wing size).
-      - I named the **responding** variable (distance flown), and how to measure it.
-      - I listed at least three **controlled** variables.
+      - My manipulated variable keeps the name and the box apart, so Pip hears only one at a time.
+      - I named a responding variable that can be observed or measured.
+      - I named at least two controlled variables.
+      - I said what result would show that Ida is right.
+    hints:
+      - Right now the name and the box always come together. What has to happen so you can tell them apart?
+      - What would you watch for, to know that Pip has reacted?
+      - What could make Pip run over for some other reason, like the time of day? Keep those the same.
+    solution:
+      - Pip has been hearing two things at once, just like a test with two variables changed. So split them.
+      - Test the name with no box, and the box with no name. Keep the person, the place and the time of day the same.
+      - Decide ahead of time what each result would mean. That way, the evidence settles it, and not what anyone was hoping for.

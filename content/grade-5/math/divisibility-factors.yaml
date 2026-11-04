@@ -108,208 +108,348 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: notice
     covers: [S1.2]
-    type: mc
-    prompt: Which number is divisible by **5**?
-    choices: ['4 385', '5 551', '3 053', '1 507']
-    answer: 0
+    type: multi
+    prompt: Select **all** the numbers that are divisible by **5**.
+    choices: ['4 385', '1 050', '5 005', '5 551', '3 053']
+    answer: [0, 1, 2]
     feedback:
-      '1': 'Starting with 5 doesn''t matter. Look at the **ones** digit: 1.'
-      '2': 'The ones digit is 3, not 0 or 5.'
-      '3': 'The ones digit is 7, not 0 or 5.'
+      '3': 'This number starts with a 5, but the test doesn’t look there. What is its ones digit?'
+      '4': 'This number has a 5 in the middle, but the test doesn’t look there. What is its ones digit?'
     hints:
-      - Look only at the ones digit.
+      - Which digit does the test for 5 look at?
+      - The ones digit has to be 0 or 5. Any other 5s in the number don’t matter.
     solution:
-      - '4 38**5** ends in 5, so it is divisible by 5.'
+      - '4 38**5**, 1 05**0** and 5 00**5** end in 0 or 5, so they are divisible by 5.'
+      - '5 55**1** and 3 05**3** end in other digits, so they aren’t, even though they have 5s in them.'
 
   - id: w2
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: What is \(12 \div 0\)?
-    choices: ['It is not possible', '0', '12', '1']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'If 12 ÷ 0 were 0, then 0 × 0 would be 12. It isn''t.'
-      '2': 'If 12 ÷ 0 were 12, then 12 × 0 would be 12. It is 0.'
-      '3': 'If 12 ÷ 0 were 1, then 1 × 0 would be 12. It is 0.'
+    thinking: apply
+    covers: [U1.1]
+    type: number
+    prompt: '**30** players make teams of **4**. How many players are left without a team?'
+    unit: players
+    answer: 2
+    verify: 30 - 4 * 7
     hints:
-      - Check with multiplication. What number times 0 equals 12?
+      - How many full teams of 4 can you make from 30 players?
+      - 'Count by fours: 4, 8, 12 and so on. How close to 30 can you get?'
     solution:
-      - 'Any number times 0 is 0, never 12. So **division by 0 is not possible**.'
+      - '\(30 \div 4 = 7\) R 2, so there are 7 full teams and **2** players left.'
+      - 'The remainder isn’t 0, so 30 is **not** divisible by 4.'
 
   - id: w3
     level: 1
+    thinking: recall
     covers: [S1.2]
-    type: multi
-    prompt: Select **all** the numbers that are divisible by **2**.
-    choices: ['734', '1 000', '459', '2 226', '81']
-    answer: [0, 1, 3]
+    type: mc
+    prompt: Is **1 000 002** divisible by **3**?
+    choices:
+      - Yes. The sum of its digits is 3, which is divisible by 3.
+      - No. Its ones digit is 2, which is not divisible by 3.
+      - No. Numbers this big are almost never divisible by 3.
+      - We can’t tell. We would have to divide the whole thing.
+    answer: 0
+    feedback:
+      '1': 'The ones digit is what the tests for 2 and 5 use. What does the test for 3 use?'
+      '2': 'The size of a number doesn’t decide this. Numbers divisible by 3 go on forever, every third number.'
+      '3': 'The test saves you from dividing, and it works for any number. What does it ask you to add?'
     hints:
-      - Even ones digit means divisible by 2.
+      - The test for 3 uses all the digits. What do you do with them?
     solution:
-      - '73**4**, 1 00**0**, 2 22**6** end in even digits ✓'
-      - '45**9** and 8**1** end in odd digits ✗'
+      - 'Add the digits: 1 + 0 + 0 + 0 + 0 + 0 + 2 = 3.'
+      - '3 is divisible by 3, so 1 000 002 is too. A seven-digit number took one small sum.'
 
   - id: w4
     level: 1
-    covers: [S1.2, U1.1]
-    type: mc
-    prompt: Is **51** divisible by **3**?
-    choices:
-      - 'Yes. 5 + 1 = 6, and 6 is divisible by 3.'
-      - 'No. 51 is odd.'
-      - 'No. It doesn''t end in 3, 6 or 9.'
-      - 'Yes. 51 ends in 1.'
+    thinking: connect
+    covers: [S1.2]
+    type: number
+    prompt: A number passes the test for **2** and the test for **5**. What must its ones digit be?
     answer: 0
-    feedback:
-      '1': 'Odd numbers aren''t divisible by **2**. They can still be divisible by 3.'
-      '2': 'The test for 3 uses the **digit sum**, not the last digit.'
-      '3': 'The test for 3 uses the digit sum, not the last digit.'
+    verify: '0'
     hints:
-      - Add the digits of 51.
+      - Which ones digits pass the test for 2? Which pass the test for 5?
+      - Which digit is on both lists?
     solution:
-      - '5 + 1 = 6, which is divisible by 3. So 51 is divisible by 3: \(51 = 3 \times 17\).'
+      - 'The test for 2 allows 0, 2, 4, 6 and 8. The test for 5 allows 0 and 5.'
+      - 'Only **0** is on both lists.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.2]
-    type: mc
-    prompt: Is **4 728** divisible by **3**?
-    choices:
-      - 'Yes, because 4 + 7 + 2 + 8 = 21 and 21 is divisible by 3.'
-      - 'No, because 8 is not divisible by 3.'
-      - 'Yes, because it is even.'
-      - 'No, because 4 728 is too big.'
-    answer: 0
-    feedback:
-      '1': 'The test for 3 uses **all** the digits, not just the last one.'
-      '2': Being even is the test for **2**.
-      '3': Any number can be tested, no matter how big.
+    thinking: model
+    covers: [S1.2, K1.1]
+    type: build
+    prompt: Rain smudged the band’s list. The band has **1▢4** members, and it marches in rows of **3** with nobody left over. What digit could be under the smudge?
+    fields:
+      - { name: x, label: 'Digit under the smudge' }
+    rules:
+      - { test: 'x % 1 == 0 && x >= 0 && x <= 9', fail: 'Only one digit fits under the smudge, from 0 to 9.' }
+      - { test: '(1 + x + 4) % 3 == 0', fail: 'Add the digits of your number, 1 + your digit + 4. Is the sum divisible by 3?' }
+    examples:
+      - { x: 1 }
+      - { x: 4 }
+      - { x: 7 }
+    counterexamples:
+      - { x: 0 }
+      - { x: 2 }
+      - { x: 3 }
+      - { x: 10 }
     hints:
-      - Find the digit sum.
+      - Rows of 3 with nobody left over. Which test does that call for?
+      - The digits you can see add up to 5. What could you add to 5 to reach a number divisible by 3?
     solution:
-      - 'Digit sum: 4 + 7 + 2 + 8 = 21, and 21 = 3 × 7 ✓. So 4 728 is divisible by 3.'
+      - 'Rows of 3 with nobody left over means the number is divisible by 3, so its digit sum must be too.'
+      - 'The digit sum is 1 + 4 + ▢, or 5 + ▢. The digit can be 1 (sum 6), 4 (sum 9) or 7 (sum 12).'
+      - 'They all work for the same reason. 114, 144 and 174 each have a digit sum that is divisible by 3.'
 
   - id: b2
     level: 2
-    covers: [S1.3, K1.1]
+    thinking: model
+    covers: [S1.3, K1.1, S1.1]
     type: multi
-    prompt: Select **all** the factors of **45**.
-    choices: ['1', '3', '5', '9', '15', '6', '2']
+    prompt: The gym has **96 chairs** for a concert. They must go in equal rows with no chairs left over. Select **all** the row sizes that work.
+    choices: ['2 chairs', '3 chairs', '4 chairs', '6 chairs', '8 chairs', '5 chairs', '9 chairs', '10 chairs']
     answer: [0, 1, 2, 3, 4]
+    feedback:
+      '5': 'What is the ones digit of 96? Check the test for 5.'
+      '6': 'Divide to check. \(96 \div 9\) leaves a remainder.'
+      '7': 'What is the ones digit of 96? A number divisible by 10 ends in 0.'
     hints:
-      - 45 is odd, so is 2 a factor? Its ones digit is 5, and its digit sum is 9.
+      - What does "no chairs left over" tell you about the row size and 96?
+      - Use the tests for 2, 3 and 5 first. They are quick. Then divide to check the others.
+      - Now divide 96 by each size that is left, 4, 6, 8 and 9. Which ones leave no remainder?
     solution:
-      - '1 × 45, 3 × 15 (digit sum 9 ✓), 5 × 9 (ends in 5 ✓).'
-      - '45 is odd, so 2 and 6 are **not** factors.'
+      - 'No chairs left over means the row size is a **factor** of 96.'
+      - 'Tests: 96 is even, so 2 works. Its digit sum is 15, so 3 works. It doesn’t end in 0 or 5, so 5 and 10 don’t work.'
+      - 'Divide to check the rest: \(96 \div 4 = 24\), \(96 \div 6 = 16\) and \(96 \div 8 = 12\) all work. \(96 \div 9 = 10\) R 6 doesn’t.'
+      - 'So rows of **2, 3, 4, 6 or 8** chairs all work.'
 
   - id: b3
     level: 2
-    covers: [S1.2]
-    type: number
-    prompt: 'The number **4▢2** is divisible by 3. What is the **greatest** digit that can go in the box?'
-    answer: 9
+    thinking: evidence
+    covers: [U1.1, S1.1]
+    type: build
+    prompt: |-
+      Farah loves the test for 3, so she invents one for 4: "Add the digits. If the sum is divisible by 4, the number is divisible by 4." It works for 40 and 44.
+
+      Prove Farah’s test can fail. Find a two-digit number whose digit sum **is** divisible by 4, but the number **isn’t**.
+    fields:
+      - { name: t, label: 'Tens digit' }
+      - { name: o, label: 'Ones digit' }
+    rules:
+      - { test: 't % 1 == 0 && o % 1 == 0 && t > 0 && t <= 9 && o >= 0 && o <= 9', fail: 'Use a single digit in each box. The tens digit can’t be 0.' }
+      - { test: '(t + o) % 4 == 0', fail: 'Add your two digits. The sum has to be divisible by 4, or Farah’s test doesn’t even apply.' }
+      - { test: '(10 * t + o) % 4 != 0', fail: 'That number really is divisible by 4, so Farah’s test worked here. Try another number with the same kind of digit sum.' }
+    examples:
+      - { t: 1, o: 3 }
+      - { t: 2, o: 2 }
+      - { t: 3, o: 5 }
+    counterexamples:
+      - { t: 4, o: 0 }
+      - { t: 4, o: 4 }
+      - { t: 1, o: 2 }
+      - { t: 8, o: 8 }
     hints:
-      - 'The digit sum is 4 + ▢ + 2 = 6 + ▢. It must be divisible by 3.'
+      - Which two digits add up to 4? There are only a few choices.
+      - Try each one. Divide it by 4. Is the remainder 0?
     solution:
-      - '6 + ▢ must be 6, 9, 12 or 15, so ▢ can be 0, 3, 6 or 9.'
-      - 'The greatest is **9**: 492 ÷ 3 = 164 ✓'
+      - 'To break a test, you only need one number where it fails. So try numbers whose digits add up to 4 or 8.'
+      - '**13**: the digit sum is 4, but \(13 \div 4 = 3\) R 1. **22**: the digit sum is 4, but \(22 \div 4 = 5\) R 2.'
+      - 'They all work for the same reason: a number is divisible by 4 only if the remainder is 0, and these leave a remainder even though their digits add to 4 or 8. A test that works for 3 doesn’t have to work for 4.'
 
   - id: b4
     level: 2
-    covers: [S1.2]
+    thinking: why
+    covers: [K1.2]
     type: mc
-    prompt: Which number is divisible by **2, 3 and 5**?
-    choices: ['90', '75', '64', '45']
+    prompt: Two divisions are on the board, \(0 \div 8\) and \(8 \div 0\). Which is right? Check with multiplication.
+    choices:
+      - \(0 \div 8 = 0\), since \(0 \times 8 = 0\). But \(8 \div 0\) has no answer, since nothing \(\times\, 0\) makes 8.
+      - Both come out to 0, since a division with a zero in it always ends up as nothing at all.
+      - Neither one has an answer, since you can’t do any division when a zero is part of it.
+      - \(0 \div 8\) has no answer, but \(8 \div 0 = 8\), since zero friends leave all 8 cookies untouched.
     answer: 0
     feedback:
-      '1': '75 ends in 5, which is odd, so it isn''t divisible by 2.'
-      '2': '64 doesn''t end in 0 or 5, so it isn''t divisible by 5.'
-      '3': '45 is odd, so it isn''t divisible by 2.'
+      '1': 'Check \(8 \div 0 = 0\) with multiplication. Is \(0 \times 0\) equal to 8?'
+      '2': 'Try \(0 \div 8\). Zero cookies shared by 8 friends: how many does each one get? Is there a problem?'
+      '3': 'Check \(8 \div 0 = 8\) with multiplication. Is \(8 \times 0\) equal to 8?'
     hints:
-      - Divisible by 2 and by 5 means the ones digit must be 0.
+      - For each one, ask what number times the divisor gives the number being divided.
+      - For \(8 \div 0\), try some numbers. What is \(5 \times 0\)? What is \(100 \times 0\)?
     solution:
-      - '90 ends in 0 (✓ 2, ✓ 5) and 9 + 0 = 9 (✓ 3).'
-
-  - id: b5
-    level: 2
-    covers: [S1.3]
-    type: number
-    prompt: How many factors does **36** have?
-    answer: 9
-    hints:
-      - 'List factor pairs: 1 × 36, 2 × 18, …'
-      - 6 × 6 gives only one new factor.
-    solution:
-      - '1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6'
-      - 'Factors: 1, 2, 3, 4, 6, 9, 12, 18, 36. That''s **9** factors.'
+      - 'Turn each division into a multiplication. \(0 \div 8 = ?\) asks \(? \times 8 = 0\). The answer is 0, and that works.'
+      - '\(8 \div 0 = ?\) asks \(? \times 0 = 8\). Any number times 0 is 0, never 8, so **division by 0 is not possible**.'
+      - 'Which number sits where matters. Dividing zero is fine. Dividing **by** zero isn’t.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.2]
-    type: mc
-    prompt: A number is divisible by **both 2 and 5**. What must its ones digit be?
-    choices: ['0', '5', 'Any even digit', '2 or 5']
-    answer: 0
-    feedback:
-      '1': '5 is odd, so a number ending in 5 is not divisible by 2.'
-      '2': 'Only 0 is both even and one of 0 or 5.'
-      '3': 'A number ending in 2 isn''t divisible by 5, and one ending in 5 isn''t divisible by 2.'
+    thinking: design
+    covers: [S1.2, S1.3, K1.1]
+    type: build
+    prompt: |-
+      Captain Odalys counts her gold coins and smiles. Share them among **2, 3 or 5** pirates, and none are left over. Share them among **4** pirates, and some are left over for the parrot.
+
+      How many coins could she have? Invent a number.
+    fields:
+      - { name: n, label: 'Gold coins' }
+    rules:
+      - { test: 'n > 0 && n % 1 == 0', fail: 'She needs a whole number of coins, more than 0.' }
+      - { test: 'n % 2 == 0', fail: 'With 2 pirates, a coin is left over. Check the test for 2.' }
+      - { test: 'n % 5 == 0', fail: 'With 5 pirates, some coins are left over. Check the test for 5.' }
+      - { test: 'n % 3 == 0', fail: 'With 3 pirates, some coins are left over. Check the test for 3.' }
+      - { test: 'n % 4 != 0', fail: 'The pirates are happy, but 4 pirates share every coin, and the parrot gets nothing! Try the next number that passes the tests.' }
+    examples:
+      - { n: 30 }
+      - { n: 90 }
+      - { n: 150 }
+    counterexamples:
+      - { n: 60 }
+      - { n: 120 }
+      - { n: 15 }
+      - { n: 20 }
+      - { n: 45 }
     hints:
-      - Which digits pass the test for 2? Which pass the test for 5? Which digit is in both lists?
+      - Passing the tests for both 2 and 5 tells you something about the ones digit. What?
+      - With that ones digit, what must be true of the digit sum to pass the test for 3 as well?
+      - You should have a few numbers now. Divide each one by 4 and look for a remainder.
     solution:
-      - 'Test for 2: 0, 2, 4, 6, 8. Test for 5: 0, 5.'
-      - 'Only **0** is in both lists.'
+      - 'Start with the tests. Passing 2 and 5 means the ones digit is 0. Passing 3 means the digit sum is divisible by 3.'
+      - 'That gives 30, 60, 90, 120, 150, and so on.'
+      - 'Now look for the parrot. \(30 \div 4 = 7\) R 2, so 30 works. \(60 \div 4 = 15\), with nothing left, so 60 doesn’t. \(90 \div 4 = 22\) R 2, so 90 works, and so does 150.'
+      - 'They all work for the same reason: each passes the tests for 2, 3 and 5, but 4 isn’t one of its factors. Being divisible by 2 doesn’t promise being divisible by 4.'
 
   - id: d2
     level: 3
-    covers: [S1.2, U1.1]
-    type: mc
-    prompt: Is **1 000 001** divisible by **3**?
-    choices:
-      - 'No. Its digit sum is 2, which is not divisible by 3.'
-      - Yes. Every big number is divisible by 3.
-      - Yes. It is odd.
-      - You can't tell without dividing.
-    answer: 0
-    feedback:
-      '1': Size has nothing to do with it.
-      '2': Being odd is not a test for 3.
-      '3': The digit sum test works for any number.
-    hints:
-      - Add up the digits. Most of them are 0!
-    solution:
-      - '1 + 0 + 0 + 0 + 0 + 0 + 1 = **2**. 2 is not divisible by 3, so neither is 1 000 001.'
+    thinking: pattern
+    covers: [S1.3, U1.1]
+    type: investigation
+    prompt: |-
+      At the **Factor Dance**, the dancers are all the factors of **36**. Two dancers are partners if they multiply to make 36, so 2 dances with 18, and 1 dances with 36.
+    parts:
+      - type: number
+        prompt: How many dancers are there? Count every factor of 36.
+        unit: dancers
+        answer: 9
+        verify: 2 * 4 + 1
+        hints:
+          - Find the partners pair by pair. 1 and 36, 2 and 18, then what?
+          - 36 is divisible by 3, because its digit sum is 9. Who is 3’s partner?
+        solution:
+          - 'The pairs are 1 and 36, 2 and 18, 3 and 12, 4 and 9, and then just 6.'
+          - 'The factors are 1, 2, 3, 4, 6, 9, 12, 18 and 36, so there are **9** dancers.'
+      - type: number
+        prompt: With 9 dancers, someone can’t have a different partner. Which factor dances **alone**?
+        answer: 6
+        verify: 36 / 6
+        hints:
+          - Which factor’s partner is itself? What times itself makes 36?
+        solution:
+          - '\(6 \times 6 = 36\). The partner of 6 is 6, so **6** dances alone.'
+      - type: build
+        prompt: Find another number, from 20 to 100, that has a dancer alone at its dance. Then name that dancer.
+        fields:
+          - { name: n, label: 'The number' }
+          - { name: f, label: 'The dancer who is alone' }
+        rules:
+          - { test: 'n >= 20 && n <= 100 && n % 1 == 0 && n != 36', fail: 'Choose a different whole number from 20 to 100, not 36.' }
+          - { test: 'f > 0 && f * f == n', fail: 'Check your dancer. A dancer who is alone has to be their own partner, so that factor times itself should make your number.' }
+        examples:
+          - { n: 25, f: 5 }
+          - { n: 49, f: 7 }
+          - { n: 100, f: 10 }
+        counterexamples:
+          - { n: 30, f: 5 }
+          - { n: 36, f: 6 }
+          - { n: 16, f: 4 }
+          - { n: 50, f: 7 }
+        hints:
+          - 'Start with the dancer, not the number. Pick a factor. What number do you get if it partners itself?'
+          - 'Try \(5 \times 5\). Is the answer between 20 and 100?'
+        solution:
+          - 'Pick the dancer first, then multiply it by itself.'
+          - '25 has 5 alone, 49 has 7 alone, and 81 has 9 alone.'
+          - 'They all work for the same reason: the number can be drawn as a square, with equal sides. That side is the dancer who is alone.'
+      - type: mc
+        prompt: A different number’s dance has exactly **12 dancers**. What can you be sure of, without knowing the number?
+        choices:
+          - Everyone has a different partner, because 12 dancers pair up with nobody left.
+          - One dancer is alone, because every number’s dance has one dancer left over.
+          - The number has to be 12, because every number has as many factors as itself.
+          - Two dancers are alone, because a number with so many factors needs extra pairs.
+        answer: 0
+        feedback:
+          '1': 'Check with a small number. List the factors of 6: 1, 2, 3 and 6. Is anyone alone?'
+          '2': 'List the factors of 12. Are there 12 of them?'
+          '3': 'A number has only one factor that times itself makes that number, so two can’t be alone.'
+        hints:
+          - Why did 36 have someone alone? Think about pairing up 9 people, then 12 people.
+        solution:
+          - 'Every factor is in a pair with a different factor, except the one who is its own partner.'
+          - 'A dancer alone makes the count **odd**, as with 9. With 12 dancers, the count is even, so everyone is paired with someone else.'
+    wrapUp: Factors come in pairs. So most numbers have an even number of factors. The only ones with an odd number are square numbers, where one factor is its own partner.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [S1.3, K1.1]
-    type: number
+    thinking: why
+    covers: [S1.2, S1.1]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 380 96" class="fig-svg" role="img" aria-label="Aisha's cards: 2 boxes marked 100, 4 packs marked 10 and 6 single cards."><rect class="fig-rect" x="6" y="20" width="50" height="60"/><rect class="fig-rect" x="64" y="20" width="50" height="60"/><text class="fig-label" x="31" y="56" text-anchor="middle">100</text><text class="fig-label" x="89" y="56" text-anchor="middle">100</text><rect class="fig-hl" x="130" y="30" width="28" height="44"/><rect class="fig-hl" x="162" y="30" width="28" height="44"/><rect class="fig-hl" x="194" y="30" width="28" height="44"/><rect class="fig-hl" x="226" y="30" width="28" height="44"/><text class="fig-small" x="144" y="57" text-anchor="middle">10</text><text class="fig-small" x="176" y="57" text-anchor="middle">10</text><text class="fig-small" x="208" y="57" text-anchor="middle">10</text><text class="fig-small" x="240" y="57" text-anchor="middle">10</text><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="270" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="288" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="306" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="324" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="342" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="360" y="36" width="14" height="20"/></svg>
     prompt: |-
-      84 cookies are packed into bags with the **same number** in each bag and **none left over**. Each bag holds
-      **more than 1 but fewer than 10** cookies. How many different bag sizes are possible?
-    answer: 5
-    hints:
-      - Which numbers from 2 to 9 are factors of 84?
-      - '84 is even, its digit sum is 12, and it doesn''t end in 0 or 5.'
-    solution:
-      - '2 ✓ (even), 3 ✓ (8 + 4 = 12), 4 ✓ (84 ÷ 4 = 21), 5 ✗, 6 ✓ (passes 2 and 3), 7 ✓ (84 ÷ 7 = 12), 8 ✗ (84 ÷ 8 = 10 R 4), 9 ✗ (12 isn''t divisible by 9)'
-      - 'Bag sizes 2, 3, 4, 6 and 7: **5** sizes.'
-
-  - id: d4
-    level: 3
-    covers: [K1.2]
-    type: open
-    prompt: Use **multiplication** to explain why \(20 \div 0\) is not possible, but \(0 \div 20 = 0\).
-    modelAnswer: |-
-      Division asks what number times the divisor gives the dividend. For \(20 \div 0\), I need a number that
-      gives 20 when multiplied by 0, but any number times 0 is 0, so there is no answer. For \(0 \div 20\),
-      I need a number that gives 0 when multiplied by 20. \(0 \times 20 = 0\), so the answer is 0.
-    rubric:
-      - I used multiplication to check each division.
-      - I explained that any number times 0 is 0, so nothing works for \(20 \div 0\).
-      - 'I showed that \(0 \times 20 = 0\), so \(0 \div 20 = 0\).'
+      Aisha has **246** hockey cards: **2 boxes of 100**, **4 packs of 10** and **6 single cards**. Three friends want to share them equally, and they share each box and pack on its own.
+    parts:
+      - type: number
+        prompt: The friends share one **pack of 10**. How many cards are left over from the pack?
+        unit: cards
+        answer: 1
+        verify: 10 - 3 * 3
+        hints:
+          - How many can each friend get from 10 cards?
+        solution:
+          - 'Each friend gets 3 cards. That uses 9, so **1** card is left over.'
+      - type: number
+        prompt: A **box of 100** also leaves 1 card, because each friend gets 33. They share all the boxes and packs, then put the leftover cards with the 6 singles. How many cards are in that pile?
+        unit: cards
+        answer: 12
+        verify: 2 + 4 + 6
+        hints:
+          - How many boxes and packs are there? How many cards does each one leave?
+        solution:
+          - '2 boxes leave 2 cards, 4 packs leave 4 cards, and there are 6 singles: \(2 + 4 + 6 =\) **12**.'
+          - 'Look at that sum. It is the digit sum of 246! The pile can be shared by 3, so all 246 cards can be.'
+      - type: mc
+        prompt: Now **5** friends share the same cards. Each box and each pack is shared first. Which cards decide whether there will be any left over at the end?
+        choices:
+          - Only the single cards, because boxes and packs share evenly among 5.
+          - All of the cards, because each box and each pack leaves 1 card behind.
+          - Only the two boxes, because 100 is the biggest group of cards there.
+          - Only the packs, because the packs are the middle group of the cards.
+        answer: 0
+        feedback:
+          '1': 'That was true for 3 friends. Share a pack of 10 among 5 friends. What is left over?'
+          '2': 'Size doesn’t matter here. Share a box of 100 among 5 friends. What is left over?'
+          '3': 'Share a pack of 10 among 5 friends. What is left over?'
+        hints:
+          - Share a pack of 10 among 5 friends. Then share a box of 100.
+        solution:
+          - '10 and 100 both share evenly among 5, with nothing left. Only the single cards can cause a leftover.'
+      - type: open
+        prompt: Why does the test for **3** add up all the digits, but the test for **5** only looks at the ones digit? Use the cards to explain.
+        hints:
+          - What does a pack of 10 leave when 3 friends share it? What does it leave when 5 friends share it?
+        modelAnswer: |-
+          When 3 friends share, every box and pack leaves 1 card. So the leftovers are one card for each box, one for each pack and all the singles, which is the digit sum. That pile decides it. When 5 friends share, boxes and packs leave nothing, because 10 and 100 divide evenly by 5. Only the singles can be left over, and they are the ones digit.
+        rubric:
+          - I said that with 3 friends, each box and pack leaves 1 card, so every digit counts.
+          - I connected the leftover pile to the digit sum.
+          - I said that with 5 friends, boxes and packs leave nothing, so only the ones digit counts.
+    wrapUp: The tests aren’t magic. Each box and pack leaves 1 card for 3 friends, so the digit sum is the leftover pile. For 5 friends they leave nothing, so only the ones digit matters.
+    hints: []
+    solution: []

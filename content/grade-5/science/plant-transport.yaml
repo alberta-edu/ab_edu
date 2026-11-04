@@ -82,192 +82,338 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.3]
+    thinking: recall
+    covers: [K2.4, K2.1]
     type: mc
-    prompt: Which part of a plant carries **water** from the roots to the rest of the plant?
-    choices: [Xylem, Phloem, Leaves, Flowers]
+    prompt: A plant has two kinds of transport tubes. Which kind carries **sugars** away from the leaves?
+    choices: [Phloem, Xylem, Both kinds, Neither kind]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': Phloem carries **sugars** from the leaves.
-      '2': Leaves receive water. They don't carry it up from the roots.
-      '3': Flowers don't carry water through the plant.
+      '1': Xylem starts at the other end of the plant. What does it carry, and from where?
+      '2': Each kind of tube has its own cargo. Think back to the visual, where you switched between them.
+      '3': The sugars do travel. Leaves aren’t the only part of a plant that needs them.
     hints:
-      - In the celery experiment, which tubes turned blue?
+      - Remember the memory trick in the lesson. Which tube carries food?
     solution:
-      - '**Xylem** carries water and nutrients from the roots.'
+      - '**Phloem** carries sugars from the leaves to the rest of the plant.'
+      - Xylem has the other job. It carries water and nutrients from the roots.
 
   - id: w2
     level: 1
-    covers: [K2.4]
+    thinking: apply
+    covers: [K2.3, S2.1]
     type: mc
-    prompt: What does **phloem** carry?
-    choices: [Sugars from the leaves, Water from the roots, Blood, Air from the soil]
-    fixedOrder: true
+    figure: >-
+      <svg viewBox="0 0 300 130" class="fig-svg fig-svg--square" role="img" aria-label="A slice of celery seen from above, a curved shape with a row of five red dots inside it.">
+      <path class="obj" d="M40 45 Q150 5 260 45 Q270 95 225 110 Q150 80 75 110 Q30 95 40 45 Z"/>
+      <circle fill="#d32f2f" cx="72" cy="64" r="7"/><circle fill="#d32f2f" cx="110" cy="50" r="7"/><circle fill="#d32f2f" cx="150" cy="45" r="7"/><circle fill="#d32f2f" cx="190" cy="50" r="7"/><circle fill="#d32f2f" cx="228" cy="64" r="7"/></svg>
+    prompt: Farid stands a celery stalk in **red** water overnight, then cuts across it. He sees a row of red dots. What is each dot?
+    choices:
+      - A xylem tube that was cut across
+      - A phloem tube that was cut across
+      - A tiny blood vessel that was cut across
+      - A drop that soaked in from the outside
     answer: 0
     feedback:
-      '1': That is the job of the **xylem**.
-      '2': Plants don't have blood.
-      '3': Phloem carries sugars.
+      '1': Phloem carries sugars from the leaves. The red came from the water in the glass. Which tube carries water?
+      '2': The red colour is only food colouring. Blood vessels belong to animals.
+      '3': If the colour had soaked in from the outside, where would you expect to see most of it?
     hints:
-      - '"Phloem carries food."'
+      - Where did the red colour start, and what was it mixed into?
+      - Which tube carries water up from the bottom of a plant?
     solution:
-      - Phloem carries **sugars from the leaves** to the rest of the plant.
+      - The red colour was mixed into the water, so it travelled wherever the water went.
+      - Water climbs through the **xylem**, so each dot is a xylem tube, cut across like the end of a straw.
 
   - id: w3
     level: 1
-    covers: [K2.1]
-    type: multi
-    prompt: Select **all** the parts of a plant's transport system.
-    choices: [Xylem, Phloem, Heart, Lungs]
-    fixedOrder: true
-    answer: [0, 1]
+    thinking: recall
+    covers: [K2.2]
+    type: text
+    prompt: Xylem and phloem do a job like one of the systems in your body. Which system? Type its name.
+    accept: [circulatory, circulatory system, the circulatory system]
     hints:
-      - Plants don't have the same organs as animals.
+      - Which system in your body moves things around in tubes?
+      - Its tubes are called blood vessels.
     solution:
-      - ✓ Xylem and phloem.
-      - ✗ Hearts and lungs are animal organs.
-
-  - id: w4
-    level: 1
-    covers: [K2.3]
-    type: mc
-    prompt: In the xylem, which way does water move?
-    choices:
-      - Up, from the roots to the leaves
-      - Down, from the leaves to the roots
-      - It doesn't move.
-      - In a circle around the stem
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Water starts in the soil, so it enters at the roots.
-      '2': In the visual, the water dots kept moving.
-      '3': Xylem tubes run up and down the stem.
-    hints:
-      - Where does a plant get its water?
-    solution:
-      - Water enters at the roots and moves **up** through the xylem to the leaves.
+      - The **circulatory** system. It moves blood through blood vessels, and xylem and phloem are a plant’s tubes for moving materials.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K2.3, S2.1]
-    type: mc
-    prompt: In the celery experiment, why did the leaves turn a little blue?
-    choices:
-      - The xylem carried the coloured water up the stalk to the leaves.
-      - The phloem carried sugar down from the leaves.
-      - The blue colour soaked in through the leaves from the air.
-      - The leaves were already blue.
-    answer: 0
-    feedback:
-      '1': Phloem carries sugars, and the colour moved **up**, not down.
-      '2': Only the bottom of the stalk was in the coloured water.
-      '3': The leaves started out green.
+    thinking: notice
+    covers: [K2.4, K2.3, S2.1]
+    type: multi
+    figure: >-
+      <svg viewBox="0 0 420 262" class="fig-svg" role="img" aria-label="A plant with a carrot root under the ground, a stem, a leaf on each side and a fruit at the top. Arrow A goes from the right leaf down to the root and is labelled sugar. Arrow B goes from the right leaf up to the fruit and is labelled sugar. Arrow C goes from the root up to the left leaf and is labelled water. Arrow D goes from the soil into the root and is labelled sugar.">
+      <rect class="sci-ground" x="10" y="186" width="400" height="72"/>
+      <line class="obj-line" x1="210" y1="190" x2="210" y2="50"/>
+      <ellipse class="obj" cx="295" cy="112" rx="50" ry="17"/>
+      <ellipse class="obj" cx="125" cy="112" rx="50" ry="17"/>
+      <line class="obj-line" x1="210" y1="118" x2="248" y2="112"/>
+      <line class="obj-line" x1="210" y1="118" x2="172" y2="112"/>
+      <circle class="obj" cx="210" cy="36" r="16"/>
+      <path class="obj" d="M193 188 L227 188 L210 250 Z"/>
+      <line class="obj-string" x1="268" y1="128" x2="226" y2="196"/><polygon class="obj-window" points="222,204 232,198 222,191"/>
+      <line class="obj-string" x1="272" y1="96" x2="232" y2="46"/><polygon class="obj-window" points="226,38 238,44 229,52"/>
+      <line class="obj-string" x1="196" y1="200" x2="148" y2="132"/><polygon class="obj-window" points="142,124 155,131 145,138"/>
+      <line class="obj-string" x1="96" y1="226" x2="192" y2="226"/><polygon class="obj-window" points="200,226 190,220 190,232"/>
+      <text class="sci-text" x="262" y="172">A: sugar</text>
+      <text class="sci-text" x="262" y="68">B: sugar</text>
+      <text class="sci-text" x="82" y="172">C: water</text>
+      <text class="sci-text" x="26" y="231">D: sugar</text></svg>
+    prompt: Each arrow shows something moving in or into this plant. Select **all** the arrows that show the **phloem** at work.
+    choices: [Arrow A, Arrow B, Arrow C, Arrow D]
+    fixedOrder: true
+    answer: [0, 1]
     hints:
-      - Which tubes carry water up?
+      - For each arrow, ask two things. What is moving, and where did it start?
+      - Phloem carries sugars from the leaves to the **rest** of the plant. Does the rest of the plant only lie below the leaves?
     solution:
-      - The **xylem** carried the coloured water up from the glass to the leaves.
+      - ✓ **A** carries sugar from a leaf down to the root. That is how a carrot gets to be sweet.
+      - ✓ **B** carries sugar from a leaf up to the fruit. Phloem isn’t a one-way trip downward. It goes wherever the rest of the plant is.
+      - ✗ **C** is water going from the root to a leaf, which is the xylem’s job.
+      - ✗ **D** starts in the soil. A plant’s sugars come from its leaves, not from the ground.
 
   - id: b2
     level: 2
-    covers: [K2.2]
+    thinking: model
+    covers: [K2.3, U2.1]
     type: mc
-    prompt: The xylem and phloem in plants do a job similar to which system in animals?
-    choices: [Circulatory, Digestive, Respiratory, Musculoskeletal]
-    fixedOrder: true
+    prompt: |-
+      Mr. Fenn’s bean plant is drooping, so he waters it. It droops more. He waters it again, until the soil is soggy.
+      When he digs it up, he finds that grubs have eaten most of its roots. Why is the plant drooping in soggy soil?
+    choices:
+      - Without its roots, the plant can’t get water into its xylem.
+      - The wet stem has soaked up so much water that it is too heavy.
+      - The phloem is carrying all the extra water away from the leaves.
+      - The xylem is now pushing the extra water down from the leaves.
     answer: 0
     feedback:
-      '1': The digestive system breaks down food.
-      '2': The respiratory system exchanges gases.
-      '3': The musculoskeletal system supports and moves the body.
+      '1': There is plenty of water in the soil. But is it getting into the plant at all? Look at what the grubs ate.
+      '2': Phloem has a different cargo. Which tube carries water, and where does that tube start?
+      '3': Which way does xylem carry water? Where does the water get in?
     hints:
-      - Which animal system moves materials around the body in tubes?
+      - Is the plant short of water in the soil, or short of water inside it?
+      - Where does water have to enter a plant to reach the xylem?
     solution:
-      - Like the **circulatory** system, xylem and phloem move materials to every part of the organism.
+      - The soil has lots of water, so the problem must be getting it **into** the plant.
+      - Xylem carries water from the roots. With most of the roots gone, little water gets in, so little climbs to the leaves.
+      - What we learned is that a plant can go thirsty in wet soil, because water in the ground isn’t the same as water in the tubes.
 
   - id: b3
     level: 2
-    covers: [K2.4, S2.1]
+    thinking: notice
+    covers: [K2.3, S2.1]
     type: mc
-    prompt: A carrot stores sugar in its root, under the ground. How did the sugar get there?
+    figure: >-
+      <svg viewBox="0 0 420 96" class="fig-svg" role="img" aria-label="Five celery slices in a row, numbered 1 to 5 from the bottom of the stalk to the top. Slices 1, 2 and 3 each have three blue dots in the same three spots. Slices 4 and 5 have no dots.">
+      <ellipse class="obj" cx="50" cy="40" rx="36" ry="24"/><ellipse class="obj" cx="130" cy="40" rx="36" ry="24"/><ellipse class="obj" cx="210" cy="40" rx="36" ry="24"/><ellipse class="obj" cx="290" cy="40" rx="36" ry="24"/><ellipse class="obj" cx="370" cy="40" rx="36" ry="24"/>
+      <circle fill="#2563eb" cx="32" cy="46" r="6"/><circle fill="#2563eb" cx="50" cy="32" r="6"/><circle fill="#2563eb" cx="68" cy="46" r="6"/>
+      <circle fill="#2563eb" cx="112" cy="46" r="6"/><circle fill="#2563eb" cx="130" cy="32" r="6"/><circle fill="#2563eb" cx="148" cy="46" r="6"/>
+      <circle fill="#2563eb" cx="192" cy="46" r="6"/><circle fill="#2563eb" cx="210" cy="32" r="6"/><circle fill="#2563eb" cx="228" cy="46" r="6"/>
+      <text class="sci-small" x="50" y="86" text-anchor="middle">1 (bottom)</text><text class="sci-small" x="130" y="86" text-anchor="middle">2</text><text class="sci-small" x="210" y="86" text-anchor="middle">3</text><text class="sci-small" x="290" y="86" text-anchor="middle">4</text><text class="sci-small" x="370" y="86" text-anchor="middle">5 (top)</text></svg>
+    prompt: |-
+      Zofia stands a celery stalk in blue water for an hour. Then she cuts it into thin slices and lays them out in
+      order, from the bottom of the stalk to the top. Why are the blue dots in the **same spots** in slices 1, 2 and 3?
     choices:
-      - The phloem carried it down from the leaves.
-      - The xylem carried it up from the soil.
-      - The root takes in sugar from the soil.
-      - Rain carried it into the root.
+      - Each dot is one long tube, and it was cut in three places.
+      - Each slice took in its own blue water from the glass.
+      - The blue water fell from the leaves and landed in those spots.
+      - The knife dragged the blue colour from one slice to the next.
     answer: 0
     feedback:
-      '1': Xylem carries water and nutrients **up**. Sugars come from the leaves.
-      '2': Sugars travel from the leaves, not from the soil.
-      '3': Rainwater travels in the xylem, which carries water up.
+      '1': Only the bottom of the stalk stood in the glass. How could slice 3 reach the water by itself?
+      '2': Look at slices 4 and 5, nearest the leaves. Is there any blue up there?
+      '3': A knife might smear colour, but would it leave neat dots in the very same spots?
     hints:
-      - Where do a plant's sugars come from?
+      - Imagine a bundle of drinking straws. What do you see if you slice across the bundle in three places?
+      - What do slices 4 and 5 tell you about which way the colour was travelling?
     solution:
-      - The **phloem** carries sugars from the leaves to the rest of the plant, including down to the root.
+      - Picture a bundle of straws. Slice it anywhere, and the same round holes appear in the same places.
+      - So the three dots are **three long xylem tubes**, running up the stalk.
+      - Slices 4 and 5 add another clue. After one hour, the blue had climbed past slice 3 but hadn’t yet reached slice 4.
 
   - id: b4
     level: 2
-    covers: [K2.3]
-    type: order
-    prompt: Put the path of water through a plant in order.
-    items: [Water in the soil, Roots, Xylem in the stem, Leaves]
+    thinking: connect
+    covers: [K2.2, K2.4]
+    type: mc
+    prompt: Deep in the ground, the tip of a root grows in the dark. It is far from any leaf, yet sugars from the leaves still reach it. Which thing in **your** body is most like this?
+    choices:
+      - Blood bringing nutrients all the way to your toes
+      - Your stomach breaking down the food in your lunch
+      - Your lungs taking in oxygen from the air
+      - Your bones holding up your whole body
+    answer: 0
+    feedback:
+      '1': The stomach is more like a place where food gets broken down. Is anything being delivered far away?
+      '2': Lungs do take in something the body needs. But which system carries it from there to the far parts of you?
+      '3': Bones hold things up, but what is the root tip story about? Is anything travelling?
     hints:
-      - Water starts outside the plant.
+      - What is really happening to the root tip? Something is being delivered.
+      - Which part of you is farthest from your lunch, and how does food reach it?
     solution:
-      - Soil → roots → xylem in the stem → leaves.
+      - The root tip gets its sugars by **delivery**, through phloem tubes.
+      - Your toes get nutrients the same way, carried by blood through blood vessels. That is why xylem and phloem are compared to the circulatory system.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.4, U2.1]
-    type: mc
+    thinking: breakdown
+    covers: [K2.3, K2.4, U2.1, S2.1]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 300 250" class="fig-svg fig-svg--square" role="img" aria-label="A young tree. Green leaves are at the top. Partway down the trunk is a bare ring with no bark. Just above the ring the trunk has a fat bulge. Below the ring the trunk is thin, and roots spread out under the ground.">
+      <rect class="sci-ground" x="20" y="196" width="260" height="50"/>
+      <ellipse class="obj" cx="150" cy="44" rx="78" ry="36"/>
+      <path class="obj" d="M138 76 L162 76 L162 106 Q176 120 162 134 L138 134 Q124 120 138 106 Z"/>
+      <rect class="obj obj--dark" x="141" y="134" width="18" height="16"/>
+      <rect class="obj" x="138" y="150" width="24" height="46"/>
+      <path class="obj-string" d="M144 196 L112 232 M150 196 L150 240 M156 196 L188 232"/>
+      <text class="sci-small" x="176" y="118">bulge</text>
+      <text class="sci-small" x="170" y="147">bare ring</text></svg>
     prompt: |-
-      The phloem of a tree is just under its bark. Hungry deer chew off the bark, and the phloem under it, in a
-      ring all the way around a young tree's trunk. What will the roots stop getting?
-    choices: [Sugars from the leaves, Water from the soil, Air, Nothing changes]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Water moves **up** from the roots in the xylem, so the roots still have water.
-      '2': The phloem carries sugars, not air.
-      '3': With the phloem cut, sugars can't travel past the ring.
-    hints:
-      - What does the phloem carry, and from where?
-    solution:
-      - The phloem carries sugars **from the leaves**. Cut all the way around, it can't bring sugars down to the roots.
+      In winter, a hungry snowshoe hare chews the bark off a young birch tree, in a ring all the way around the trunk.
+      The phloem lies just under the bark, so that ring of phloem is gone too. The xylem is deeper, and it isn’t hurt.
+
+      By summer, the tree looks odd. Its leaves are still green, but a fat bulge has grown just **above** the ring.
+    parts:
+      - type: mc
+        prompt: The leaves are above the chewed ring. How are they still getting water?
+        choices:
+          - The xylem isn’t cut, so water still climbs past the ring.
+          - The phloem above the ring is bringing water to them.
+          - The leaves take in all the rain they need to live on.
+        answer: 0
+        feedback:
+          '1': What does phloem carry, and which way? Does it bring water from anywhere?
+          '2': Rain lands on leaves, but where does a plant’s water get in, and how does it travel?
+        hints:
+          - Which kind of tube carries water? Did the hare reach it?
+        solution:
+          - Water travels in the xylem, and the hare didn’t reach the xylem. The water road is still open.
+      - type: mc
+        prompt: What has piled up inside the bulge, just above the ring?
+        choices:
+          - Sugars from the leaves that can’t get past the ring
+          - Water from the roots that can’t get past the ring
+          - Nutrients from the soil that can’t get past the ring
+        answer: 0
+        feedback:
+          '1': Water comes from below, and its road isn’t blocked. If it were, which side of the ring would it pile up on?
+          '2': Nutrients travel with the water in the xylem. Was that road blocked?
+        hints:
+          - Which road did the hare cut? Which way does that road’s cargo come from?
+          - Think of a traffic jam at a broken bridge. On which side do the cars pile up?
+        solution:
+          - The phloem road is cut. Its cargo, sugars, comes **down from the leaves**.
+          - Like cars stopped at a broken bridge, the sugars pile up on the side they arrive from, which is just above the ring.
+      - type: mc
+        prompt: The leaves look healthy. Which part of the tree is really in the most danger right now?
+        choices:
+          - The roots, because no new sugars reach them
+          - The leaves, because no water can reach them
+          - The bulge, because it has too little sugar
+        answer: 0
+        feedback:
+          '1': You worked out that water still reaches the leaves. Which part is now cut off from its supply?
+          '2': You just worked out what is in the bulge. Is it short of sugar?
+        hints:
+          - Which part of the tree was getting something through the ring before the hare came?
+        solution:
+          - The roots live underground and get their sugars from the leaves. With the phloem cut, that delivery has stopped.
+      - type: mc
+        prompt: A neighbour looks up and says, “The leaves are green, so that tree will be fine.” What will most likely happen in the end if the ring doesn’t heal?
+        choices:
+          - The roots die, so water stops coming, and then the leaves die too.
+          - The leaves stay green for good, because the xylem was never cut.
+          - The roots stay healthy by taking in sugars from the soil instead.
+        answer: 0
+        feedback:
+          '1': The xylem isn’t cut, but where does xylem’s water get into the tree? What happens if that part dies?
+          '2': Where do a plant’s sugars come from?
+        hints:
+          - Follow the chain. What happens to roots with no sugars? What do healthy roots do for the leaves?
+        solution:
+          - With no sugars, the roots slowly die. Dead roots can’t take in water, so the xylem has nothing to carry.
+          - Then the leaves dry out, long after the hare has gone. The neighbour was looking at the wrong end of the tree.
+    wrapUp: The two kinds of tubes depend on each other. The leaves feed the roots, and the roots water the leaves, so cutting one road slowly closes the other.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K2.3, U2.1]
+    thinking: flaw
+    covers: [K2.3, S2.1]
     type: mc
-    prompt: A plant in very dry soil starts to droop. Which explanation fits best?
+    prompt: |-
+      Nell’s uncle grows a tomato plant **upside down**, in a bucket hanging from the porch. The roots are in the bucket
+      and the leaves hang down below it. Nell says, “That can’t work! Xylem carries water up, so water can’t get down to
+      the leaves.” What is wrong with Nell’s idea?
     choices:
-      - The xylem has very little water to carry up from the roots.
-      - The phloem is carrying too much sugar.
-      - The leaves are sending water down to the roots.
-      - Plants don't need water.
+      - Xylem carries water from the roots to the rest of the plant, whichever way that is.
+      - Upside down, the two tubes swap jobs, so now the phloem carries the water.
+      - The leaves catch the water that drips from the bucket, so they don’t need xylem.
+      - Nothing is wrong. With no way for water to reach its leaves, the plant will die.
     answer: 0
     feedback:
-      '1': Sugar isn't the problem here. Water is.
-      '2': Water moves **up** from the roots, not down from the leaves.
-      '3': Plants need water to survive.
+      '1': Do the tubes know which way up they are? What is each tube’s cargo, wherever the plant hangs?
+      '2': Would a few drips reach every leaf? And what does the xylem do in this plant, now that the roots are in the bucket?
+      '3': Nell’s idea sounds right, because we often say “up”. Why do we say it? Where are the roots on a plant in a garden?
     hints:
-      - What does the xylem carry, and where does it come from?
+      - In the lesson, xylem carries water “up”. Why up? Where do the roots happen to be?
+      - Try saying the xylem’s job without using the word “up”.
     solution:
-      - Dry soil means the roots can take in little water, so the **xylem** has little to carry up to the stem and leaves.
+      - Nell is remembering a true thing about ordinary plants. In a garden, the roots are at the bottom, so water going from the roots to the leaves goes up.
+      - The real job of xylem is to carry water **from the roots to the rest of the plant**. In the bucket, the rest of the plant is below the roots.
+      - The same goes for phloem. On this plant, sugars from the leaves travel upward to reach the roots.
 
   - id: d3
     level: 3
-    covers: [K2.2, K2.3, K2.4, S2.1]
+    thinking: evidence
+    covers: [K2.3, S2.1]
+    type: mc
+    prompt: |-
+      Arjun thinks a flower stem works like a **sponge**, with water spreading through all of it. Dee thinks it works like
+      a **bundle of straws**, with water staying in its own tubes. They split a white carnation’s stem into two halves, from the
+      bottom to just under the flower. One half stands in red water and the other half in blue. Which result would best
+      support Dee’s idea?
+    choices:
+      - One side of the flower turns red and the other side turns blue.
+      - The whole flower turns purple, with the two colours mixed evenly.
+      - The stem changes colour, but the whole flower stays white.
+      - The whole flower turns red, and all of the blue stays in the glass.
+    answer: 0
+    feedback:
+      '1': Purple means the colours met and mixed on the way up. Whose idea would predict that?
+      '2': This would tell you the colour stopped partway. Does it tell you anything about whether the colours stay apart?
+      '3': This would show that only one half of the stem was carrying water. Why would the two halves behave so differently?
+    hints:
+      - Before you choose, picture a sponge with red on one side and blue on the other. What happens in the middle?
+      - Now picture two bunches of straws, one in each glass. Do the colours ever meet?
+    solution:
+      - Start with what each idea predicts. In a sponge, the two colours would spread and mix. In straws, each colour stays in its own tubes.
+      - So a flower with a red side and a blue side supports Dee. Each half of the stem has its own xylem tubes, leading to its own side of the flower.
+      - This test really works. In a few hours you can see two colours in one flower, which is good evidence that water travels in separate tubes.
+
+  - id: d4
+    level: 3
+    thinking: why
+    covers: [K2.1, K2.2, K2.3, K2.4, U2.1]
     type: open
-    prompt: Explain how a plant's xylem and phloem are like the circulatory system in your body.
+    prompt: |-
+      Jovan presses a toy stethoscope against a sunflower and listens. Nothing. “No heartbeat!” Jovan announces. “So nothing moves
+      around inside this plant.” Write Jovan a friendly reply. Tell Jovan what is right and what is wrong in that idea. Then give
+      **one way** a plant’s transport system is like your circulatory system, and **one way** it is different.
     modelAnswer: |-
-      The circulatory system moves blood through blood vessels to every part of the body. A plant's xylem and phloem
-      are tubes that do a similar job. The xylem carries water and nutrients up from the roots, and the phloem carries
-      sugars from the leaves to the rest of the plant, so every part gets what it needs.
+      You are right that a sunflower has no heart, so there is nothing to hear. But things do move around inside it. Xylem
+      carries water and nutrients from the roots, and phloem carries sugars from the leaves. It is like your circulatory
+      system because tubes deliver what is needed to every part. It is different because you have one liquid, blood, in your
+      blood vessels, but a plant has two kinds of tubes with different cargo.
     rubric:
-      - I said what the circulatory system does.
-      - I said what the **xylem** carries, and from where.
-      - I said what the **phloem** carries, and from where.
+      - I agreed that a plant has no heart, or that there is no heartbeat to hear.
+      - I explained that materials still move inside the plant, in the xylem and phloem.
+      - I gave a way they are alike, such as tubes delivering what every part needs.
+      - I gave a way they are different, such as no heart, or two kinds of tubes with different cargo.

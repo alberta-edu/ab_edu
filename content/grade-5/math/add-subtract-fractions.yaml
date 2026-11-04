@@ -122,204 +122,329 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.4]
+    thinking: notice
+    covers: [S1.1, S1.2]
     type: fraction
-    prompt: '\(\frac{3}{8} + \frac{4}{8}\) = ?'
-    answer: 7/8
-    verify: 3/8 + 4/8
+    figure: { kind: fraction-bars, n: 5, d: 8, wholes: 1 }
+    prompt: This bar is **one whole**. What fraction of the bar still needs to be shaded to fill it?
+    answer: 3/8
+    verify: 1 - 5/8
     hints:
-      - Count the eighths. The denominator stays 8.
+      - How many equal parts does the bar have? How many are empty?
     solution:
-      - '3 eighths + 4 eighths = 7 eighths, so the answer is \(\frac{7}{8}\).'
+      - 'The bar has 8 equal parts, so each part is \(\frac{1}{8}\). 3 parts are empty.'
+      - '\(\frac{5}{8} + \frac{3}{8} = \frac{8}{8}\), which is one whole. The answer is \(\frac{3}{8}\).'
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [S1.4]
     type: fraction
-    prompt: '\(\frac{9}{10} - \frac{4}{10}\) = ?'
-    answer: 5/10
-    verify: 9/10 - 4/10
+    prompt: '\(\frac{7}{9} - \frac{2}{9}\) = ?'
+    answer: 5/9
+    verify: 7/9 - 2/9
     hints:
-      - 9 tenths take away 4 tenths.
+      - 'Say it in words: 7 ninths take away 2 ninths.'
     solution:
-      - '9 tenths − 4 tenths = 5 tenths: \(\frac{5}{10}\).'
+      - '7 ninths take away 2 ninths leaves 5 ninths. The pieces are still ninths: \(\frac{5}{9}\).'
 
   - id: w3
     level: 1
-    covers: [K1.2]
-    type: mc
-    prompt: '\(\frac{2}{5} + \frac{1}{5}\) = ?'
-    choices: ['\(\frac{3}{5}\)', '\(\frac{3}{10}\)', '\(\frac{2}{25}\)', '\(\frac{3}{0}\)']
-    answer: 0
-    feedback:
-      '1': 'That adds the denominators. The pieces are still **fifths**, so the denominator stays 5.'
-      '2': 'That multiplies. When you add fractions, you count the pieces.'
-      '3': 'A denominator can never be 0.'
+    thinking: apply
+    covers: [S1.4, K1.3]
+    type: fraction
+    prompt: '\(\frac{5}{6} + \frac{4}{6}\) = ? Write a **mixed number**.'
+    answer: 1 3/6
+    form: mixed
+    verify: 5/6 + 4/6
     hints:
-      - 2 fifths + 1 fifth = ? fifths
+      - Count the sixths first. Is that more than one whole?
+      - How many sixths make one whole? How many are left after that?
     solution:
-      - '2 fifths + 1 fifth = 3 fifths: \(\frac{3}{5}\).'
+      - '5 sixths + 4 sixths = 9 sixths, or \(\frac{9}{6}\).'
+      - '6 sixths make 1 whole, with 3 sixths left: \(1\frac{3}{6}\), which is the same as \(1\frac{1}{2}\).'
 
   - id: w4
     level: 1
-    covers: [S1.1, S1.2, K1.1]
+    thinking: recall
+    covers: [K1.1, U1.1]
     type: mc
-    prompt: 'Which sum is equal to \(\frac{4}{6}\)?'
+    prompt: 'Which sum shows \(\frac{3}{7}\) built from **unit fractions**?'
     choices:
-      - '\(\frac{1}{6} + \frac{1}{6} + \frac{2}{6}\)'
-      - '\(\frac{2}{3} + \frac{2}{3}\)'
-      - '\(\frac{1}{6} + \frac{4}{6}\)'
-      - '\(\frac{2}{6} + \frac{2}{3}\)'
+      - '\(\frac{1}{7} + \frac{1}{7} + \frac{1}{7}\)'
+      - '\(\frac{1}{3} + \frac{1}{7}\)'
+      - '\(\frac{3}{7} + \frac{3}{7} + \frac{3}{7}\)'
+      - '\(\frac{1}{7} + \frac{2}{7} + \frac{3}{7}\)'
     answer: 0
     feedback:
-      '1': 'Those are thirds, and they add to \(\frac{4}{3}\), which is more than 1.'
-      '2': '1 sixth + 4 sixths = 5 sixths, not 4.'
-      '3': 'The denominators are different, so the pieces aren''t the same size.'
+      '1': 'These pieces are different sizes, and \(\frac{3}{7}\) is three pieces that are all sevenths.'
+      '2': 'That is three lots of \(\frac{3}{7}\). A unit fraction has a numerator of 1.'
+      '3': 'Count the sevenths in this one. It makes 6 sevenths, and only one of its pieces is a unit fraction.'
     hints:
-      - Count the sixths in each sum.
+      - A unit fraction has a numerator of 1. What is the unit fraction for sevenths?
+      - 'How many of that piece make \(\frac{3}{7}\)?'
     solution:
-      - '1 sixth + 1 sixth + 2 sixths = 4 sixths = \(\frac{4}{6}\).'
+      - 'The unit fraction here is \(\frac{1}{7}\). Three of them make \(\frac{3}{7}\).'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.4, K1.3]
-    type: fraction
-    prompt: '\(2\frac{3}{4} + 1\frac{2}{4}\) = ? Write a **mixed number**.'
-    answer: 4 1/4
-    form: mixed
-    verify: 2 + 3/4 + 1 + 2/4
+    thinking: flaw
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: |-
+      You give Lou \(\frac{1}{2}\) of a sandwich to hold, then another \(\frac{1}{2}\). Lou adds: \(\frac{1}{2} + \frac{1}{2} = \frac{2}{4}\).
+      "That’s only half a sandwich," says Lou, "so the rest must be mine." What would you say?
+    choices:
+      - 'The pieces are still halves, so you are holding 2 halves, which is 1 sandwich.'
+      - 'You are right, because 1 + 1 = 2 and 2 + 2 = 4, so the sum is \(\frac{2}{4}\).'
+      - 'It should be \(\frac{1}{4}\), because each half gets cut smaller when you add.'
+      - 'It should be \(\frac{1}{2}\), because adding halves together only gives more halves.'
+    answer: 0
+    feedback:
+      '1': 'Picture Lou’s hands: two big halves, yet the sum says half a sandwich. If adding makes less, then something is wrong. What should the denominator do?'
+      '2': 'Nobody cut anything. Adding doesn’t change the size of the pieces.'
+      '3': 'Adding does give more halves, and that’s the point. How many halves is Lou holding? What do they make?'
     hints:
-      - 'Add the wholes, then add the fourths.'
-      - '\(\frac{3}{4} + \frac{2}{4} = \frac{5}{4}\). How many wholes is that?'
+      - Picture it. What is in Lou’s hands? Is it really half a sandwich?
+      - Say the sum in words. 1 half + 1 half = how many halves?
     solution:
-      - 'Wholes: \(2 + 1 = 3\). Fourths: \(\frac{3}{4} + \frac{2}{4} = \frac{5}{4} = 1\frac{1}{4}\).'
-      - '\(3 + 1\frac{1}{4} = 4\frac{1}{4}\)'
+      - 'Say it in words: 1 half + 1 half = 2 halves, and \(\frac{2}{2}\) is 1 whole sandwich.'
+      - 'Lou added the denominators, which pretends the pieces shrank into fourths. Adding only changes the count of pieces, never their size.'
 
   - id: b2
     level: 2
-    covers: [S1.4, K1.3]
+    thinking: model
+    covers: [S1.5, S1.4]
     type: fraction
-    prompt: '\(\frac{7}{3} + \frac{5}{3}\) = ?'
-    answer: '4'
-    verify: 7/3 + 5/3
+    prompt: |-
+      Two beavers build a dam across a stream **7 m** wide, one from each bank. One has built \(2\frac{3}{4}\) m so far, and the other has built \(1\frac{2}{4}\) m.
+      How wide is the gap still to fill? Write a **mixed number**.
+    answer: 2 3/4
+    form: mixed
+    verify: 7 - 11/4 - 6/4
     hints:
-      - Count the thirds. How many wholes is your answer?
+      - Draw the stream with both banks. Where is the gap?
+      - How much of the stream is already dammed?
+      - 'Take that amount away from 7. You may need to break a whole into fourths.'
     solution:
-      - '7 thirds + 5 thirds = 12 thirds = \(\frac{12}{3}\).'
-      - 'Every 3 thirds make 1 whole, so \(\frac{12}{3} = 4\).'
+      - 'Dam so far: \(2\frac{3}{4} + 1\frac{2}{4} = 3 + \frac{5}{4} = 4\frac{1}{4}\) m.'
+      - 'Gap: \(7 - 4\frac{1}{4}\). Change 7 to \(6\frac{4}{4}\), and \(6\frac{4}{4} - 4\frac{1}{4} = 2\frac{3}{4}\) m.'
+      - 'Another way is to start at 7 and take away each beaver’s part in turn. You get the same gap.'
 
   - id: b3
     level: 2
-    covers: [S1.4, S1.3]
-    type: fraction
-    prompt: '\(5\frac{1}{6} - 2\frac{4}{6}\) = ? Write a **mixed number**.'
-    answer: 2 3/6
-    form: mixed
-    verify: 5 + 1/6 - 2 - 4/6
+    thinking: design
+    covers: [S1.1, S1.2, K1.1]
+    type: build
+    prompt: |-
+      Three otters share a fish cut into **8** equal pieces. All the pieces get eaten, every otter gets at least one, and
+      **no two otters get the same number** of pieces. How many eighths does each otter get?
+    fields:
+      - { name: a, label: 'First otter (eighths)' }
+      - { name: b, label: 'Second otter (eighths)' }
+      - { name: c, label: 'Third otter (eighths)' }
+    rules:
+      - { test: 'a > 0 && b > 0 && c > 0 && a % 1 == 0 && b % 1 == 0 && c % 1 == 0', fail: 'Give each otter a whole number of pieces, at least 1.' }
+      - { test: 'a + b + c == 8', fail: 'Add the eighths up. Together the otters should finish the whole fish, which is 8 eighths.' }
+      - { test: 'a != b && b != c && a != c', fail: 'All the fish is gone, but two otters got the same number of pieces. They will fight about that.' }
+    examples:
+      - { a: 1, b: 2, c: 5 }
+      - { a: 4, b: 3, c: 1 }
+    counterexamples:
+      - { a: 2, b: 3, c: 3 }
+      - { a: 1, b: 2, c: 4 }
     hints:
-      - '\(\frac{1}{6}\) is less than \(\frac{4}{6}\). Regroup 1 whole as \(\frac{6}{6}\).'
+      - What must the three numbers add up to?
+      - Give the first otter the least it can have. What can the other two share?
     solution:
-      - 'Regroup: \(5\frac{1}{6} = 4\frac{7}{6}\).'
-      - '\(4\frac{7}{6} - 2\frac{4}{6} = 2\frac{3}{6}\)'
+      - 'The shares must add to \(\frac{8}{8}\), the whole fish.'
+      - '\(\frac{1}{8} + \frac{2}{8} + \frac{5}{8} = \frac{8}{8}\) works, and so does \(\frac{1}{8} + \frac{3}{8} + \frac{4}{8}\).'
+      - 'Both break the same whole into different parts. The order of the otters can change, but with these rules there are no other sets of three numbers.'
 
   - id: b4
     level: 2
-    covers: [S1.5]
+    thinking: backwards
+    covers: [S1.5, U1.2]
     type: fraction
-    prompt: 'A recipe needs \(1\frac{3}{4}\) cups of flour for bread and \(\frac{3}{4}\) cup for cookies. How much flour is that altogether? Write a **mixed number**.'
-    answer: 2 2/4
-    form: mixed
-    verify: 1 + 3/4 + 3/4
+    prompt: |-
+      A warm Chinook wind melts \(3\frac{2}{4}\) cm of the snow on a picnic table. Then \(1\frac{3}{4}\) cm of new snow falls. Now the snow is \(5\frac{1}{4}\) cm deep.
+      How many centimetres deep was it before the Chinook?
+    answer: '7'
+    verify: 5 + 1/4 - 7/4 + 14/4
     hints:
-      - '\(\frac{3}{4} + \frac{3}{4} = \frac{6}{4}\)'
+      - Start at the end of the story. What was the very last thing that happened?
+      - 'Undo the snowfall first. Then undo the melting.'
+      - 'Undoing the snowfall means subtracting, and undoing the melting means adding.'
     solution:
-      - '\(\frac{3}{4} + \frac{3}{4} = \frac{6}{4} = 1\frac{2}{4}\)'
-      - '\(1 + 1\frac{2}{4} = 2\frac{2}{4}\) cups (the same as \(2\frac{1}{2}\) cups).'
+      - 'Undo the snowfall: \(5\frac{1}{4} - 1\frac{3}{4} = \frac{21}{4} - \frac{7}{4} = \frac{14}{4} = 3\frac{2}{4}\) cm.'
+      - 'Undo the melting: \(3\frac{2}{4} + 3\frac{2}{4} = 6 + \frac{4}{4} = 7\) cm.'
+      - 'Subtraction undoes addition with fractions, just as it does with whole numbers.'
 
   - id: b5
     level: 2
-    covers: [S1.3]
+    thinking: decide
+    covers: [S1.3, K1.3]
     type: mc
-    prompt: 'To find \(3\frac{1}{5} - 1\frac{3}{5}\) using **mixed numbers**, what should you do first?'
+    prompt: |-
+      Asha and Lars race to find \(67\frac{1}{5} + 22\frac{3}{5}\). Asha changes both numbers to improper fractions first. Lars adds the wholes, then the fifths.
+      Both are careful and both get it right. Who most likely finishes first?
     choices:
-      - 'Regroup 1 whole as \(\frac{5}{5}\), so \(3\frac{1}{5}\) becomes \(2\frac{6}{5}\).'
-      - 'Subtract \(\frac{1}{5} - \frac{3}{5}\) to get \(\frac{2}{5}\).'
-      - Subtract the denominators.
-      - Add the two numbers.
+      - 'Lars, because 89 and 4 fifths come fast here, with no regrouping.'
+      - 'Asha, because improper fractions are the faster way for any sum.'
+      - 'Lars, because mixed numbers are the faster way for any sum at all.'
+      - 'Asha, because she adds only numerators, and that is just one step.'
     answer: 0
     feedback:
-      '1': 'You can''t take 3 fifths from 1 fifth. Flipping it to 3 − 1 gives the wrong answer.'
-      '2': 'The denominators stay 5. Only the pieces are counted.'
-      '3': This is a subtraction problem.
+      '1': 'Try her first step: \(67 \times 5 + 1\). What size of numbers does she have to work with?'
+      '2': 'Lars does win here, but not always. Look back at \(3\frac{1}{5} - 1\frac{3}{5}\) in the lesson. Which way avoided regrouping?'
+      '3': 'Her numerators are 336 and 113, and it takes work to get them. Then she has to change the answer back.'
     hints:
-      - 'Can you take \(\frac{3}{5}\) away from \(\frac{1}{5}\)?'
+      - 'Try the first step of each strategy. What numbers does each one have to work with?'
+      - 'Do the fifths add up to more than one whole? Will Lars have to regroup?'
     solution:
-      - '\(\frac{1}{5} < \frac{3}{5}\), so regroup a whole: \(3\frac{1}{5} = 2\frac{6}{5}\).'
-      - 'Then \(2\frac{6}{5} - 1\frac{3}{5} = 1\frac{3}{5}\).'
+      - 'Lars: \(67 + 22 = 89\), and \(\frac{1}{5} + \frac{3}{5} = \frac{4}{5}\). The answer is \(89\frac{4}{5}\), with no regrouping.'
+      - 'Asha: \(\frac{336}{5} + \frac{113}{5} = \frac{449}{5}\), then she must change it back to \(89\frac{4}{5}\).'
+      - 'Neither strategy always wins. Look at the numbers, then choose.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [U1.2, S1.4]
-    type: fraction
-    prompt: 'Find the missing fraction: \(\boxed{\phantom{0}} + \frac{3}{8} = 1\frac{1}{8}\)'
-    answer: 6/8
-    verify: 1 + 1/8 - 3/8
-    hints:
-      - 'Subtraction undoes addition: \(1\frac{1}{8} - \frac{3}{8}\).'
-      - '\(1\frac{1}{8} = \frac{9}{8}\)'
-    solution:
-      - '\(1\frac{1}{8} = \frac{9}{8}\), and \(\frac{9}{8} - \frac{3}{8} = \frac{6}{8}\).'
-      - 'Check: \(\frac{6}{8} + \frac{3}{8} = \frac{9}{8} = 1\frac{1}{8}\) ✓'
+    thinking: breakdown
+    covers: [S1.5, S1.4, K1.3]
+    type: investigation
+    prompt: |-
+      Two squirrels share a tree. **Nutmeg** has \(3\frac{2}{5}\) kg of seeds and **Pecan** has \(1\frac{4}{5}\) kg. "Not fair," says Pecan. "Give me some, so that we have the same amount."
+    parts:
+      - type: fraction
+        prompt: How many kilograms more does Nutmeg have than Pecan?
+        answer: 1 3/5
+        verify: 17/5 - 9/5
+        hints:
+          - You can’t take 4 fifths from 2 fifths straight away. What could you do to both numbers first?
+          - Try writing each amount as an improper fraction.
+        solution:
+          - '\(3\frac{2}{5} = \frac{17}{5}\) and \(1\frac{4}{5} = \frac{9}{5}\).'
+          - '\(\frac{17}{5} - \frac{9}{5} = \frac{8}{5}\), which is \(1\frac{3}{5}\) kg.'
+      - type: fraction
+        prompt: 'Eli says, "Easy! Nutmeg is \(1\frac{3}{5}\) kg ahead, so Nutmeg should hand over \(1\frac{3}{5}\) kg." Try it. How much does **Pecan** have now?'
+        answer: 3 2/5
+        verify: 9/5 + 8/5
+        hints:
+          - Start with what Pecan had. What gets added?
+        solution:
+          - '\(\frac{9}{5} + \frac{8}{5} = \frac{17}{5}\), which is \(3\frac{2}{5}\) kg.'
+          - 'That is what Nutmeg had at the start! Nutmeg now has \(1\frac{4}{5}\) kg. The two squirrels have only swapped, and now it is Nutmeg who says, "Not fair."'
+      - type: fraction
+        prompt: Go back to the start. How much should Nutmeg **really** hand over, so that both squirrels have the same amount?
+        answer: 4/5
+        verify: 17/5 - 13/5
+        hints:
+          - Count in fifths. How many fifths does each squirrel have at the start?
+          - 'Move just one fifth from Nutmeg to Pecan. Now how many fifths does each have? Keep going.'
+        solution:
+          - 'In fifths, Nutmeg has 17 and Pecan has 9. Move one fifth at a time: 16 and 10, then 15 and 11, then 14 and 12, then 13 and 13.'
+          - 'That is 4 moves, so Nutmeg hands over \(\frac{4}{5}\) kg. Now each squirrel has \(\frac{13}{5} = 2\frac{3}{5}\) kg.'
+      - type: mc
+        prompt: Why was Eli’s handover too big?
+        choices:
+          - What leaves one pile also joins the other, so the gap closes from both ends.
+          - Mixed numbers give wrong answers here, so he needed improper fractions.
+          - Nutmeg’s fifths are bigger than Pecan’s, because Nutmeg has the bigger pile.
+          - He worked out the gap wrongly, so the gap was smaller than he thought.
+        answer: 0
+        feedback:
+          '1': 'Mixed numbers and improper fractions are two ways of writing the same amount. Either one gives the same answer here.'
+          '2': 'A fifth of a kilogram is the same size in any pile. The bottom number tells you the size of the piece.'
+          '3': 'The gap really was \(1\frac{3}{5}\) kg. So Eli’s subtraction was fine. What did he do with the answer?'
+        hints:
+          - Move \(\frac{1}{5}\) kg. What happens to Nutmeg’s pile? What happens to Pecan’s?
+        solution:
+          - 'Moving \(\frac{1}{5}\) kg makes Nutmeg’s pile \(\frac{1}{5}\) smaller and Pecan’s pile \(\frac{1}{5}\) bigger. So the gap shrinks by \(\frac{2}{5}\) kg with each move.'
+          - 'Eli treated the gap as if only one pile would change. His handover closed the gap, then opened it again the other way.'
+    wrapUp: Moving an amount from one pile to another changes **both** piles. Counting in fifths, one piece at a time, shows exactly where they meet.
 
   - id: d2
     level: 3
-    covers: [K1.2, U1.1]
-    type: mc
-    prompt: 'Kai says \(\frac{4}{9} + \frac{3}{9} = \frac{7}{18}\). What is the best explanation of the mistake?'
-    choices:
-      - 'Kai added the denominators. Both fractions are counted in ninths, so the answer is \(\frac{7}{9}\).'
-      - 'Kai should have multiplied the numerators.'
-      - Kai is correct.
-      - 'Kai should have subtracted to get \(\frac{1}{9}\).'
-    answer: 0
-    feedback:
-      '1': 'Multiplying the numerators doesn''t add fractions.'
-      '2': '\(\frac{7}{18}\) is less than \(\frac{4}{9}\) alone. Adding can''t make it smaller!'
-      '3': The question asks for a sum.
-    hints:
-      - 'Is \(\frac{7}{18}\) bigger or smaller than \(\frac{4}{9}\)?'
-    solution:
-      - '4 ninths + 3 ninths = 7 ninths. The unit fraction stays \(\frac{1}{9}\).'
-      - 'The answer is \(\frac{7}{9}\), not \(\frac{7}{18}\).'
+    thinking: pattern
+    covers: [S1.4, U1.2, S1.5]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 340 110" class="fig-svg" role="img" aria-label="Eight jars in a row, filled to one ninth, two ninths, and so on up to eight ninths."><rect class="fig-rect" x="6" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="6" y="74" width="32" height="8"/><text class="fig-small" x="22" y="102" text-anchor="middle">1/9</text><rect class="fig-rect" x="48" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="48" y="66" width="32" height="16"/><text class="fig-small" x="64" y="102" text-anchor="middle">2/9</text><rect class="fig-rect" x="90" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="90" y="58" width="32" height="24"/><text class="fig-small" x="106" y="102" text-anchor="middle">3/9</text><rect class="fig-rect" x="132" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="132" y="50" width="32" height="32"/><text class="fig-small" x="148" y="102" text-anchor="middle">4/9</text><rect class="fig-rect" x="174" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="174" y="42" width="32" height="40"/><text class="fig-small" x="190" y="102" text-anchor="middle">5/9</text><rect class="fig-rect" x="216" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="216" y="34" width="32" height="48"/><text class="fig-small" x="232" y="102" text-anchor="middle">6/9</text><rect class="fig-rect" x="258" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="258" y="26" width="32" height="56"/><text class="fig-small" x="274" y="102" text-anchor="middle">7/9</text><rect class="fig-rect" x="300" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="300" y="18" width="32" height="64"/><text class="fig-small" x="316" y="102" text-anchor="middle">8/9</text></svg>
+    prompt: |-
+      Eight same-sized jars of lemonade stand in a row, filled to \(\frac{1}{9}\), \(\frac{2}{9}\), \(\frac{3}{9}\) and so on, up to \(\frac{8}{9}\).
+      You could add them in order, or you could be lazy and smart.
+    parts:
+      - type: fraction
+        prompt: Pour the \(\frac{1}{9}\) jar into the \(\frac{8}{9}\) jar. How full is that jar now?
+        answer: 9/9
+        verify: 1/9 + 8/9
+        hints:
+          - Count the ninths.
+        solution:
+          - '\(\frac{1}{9} + \frac{8}{9} = \frac{9}{9}\): exactly one full jar.'
+      - type: number
+        prompt: Keep pairing the jars like that. How many **full jars** do all eight jars make?
+        answer: 4
+        verify: (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8) / 9
+        hints:
+          - Which jar goes with the \(\frac{2}{9}\) jar? Which goes with the \(\frac{3}{9}\) jar?
+        solution:
+          - '1 and 8, 2 and 7, 3 and 6, 4 and 5. Each pair makes \(\frac{9}{9}\), and there are 4 pairs, so **4** full jars.'
+          - 'Adding in any order gives the same total, just as with whole numbers.'
+      - type: fraction
+        prompt: A new row has nine jars, filled to \(\frac{1}{10}\), \(\frac{2}{10}\) and so on, up to \(\frac{9}{10}\). How many jars’ worth is that? Write a mixed number.
+        answer: 4 5/10
+        form: mixed
+        verify: (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9) / 10
+        hints:
+          - Pair them to make tenths that fill a jar. Does every jar get a partner?
+        solution:
+          - '1 and 9, 2 and 8, 3 and 7, 4 and 6 make 4 full jars.'
+          - 'The \(\frac{5}{10}\) jar has no partner, so the total is \(4\frac{5}{10}\) jars.'
+      - type: fraction
+        prompt: 'A giant row goes from \(\frac{1}{100}\), \(\frac{2}{100}\) and so on, all the way up to \(\frac{99}{100}\). How many jars’ worth is that?'
+        answer: 49 50/100
+        verify: (99 * 50) / 100
+        hints:
+          - The first pair is 1 and 99. What is the last pair before a jar has no partner?
+          - Which jar is left over, the same way as the \(\frac{5}{10}\) jar was?
+        solution:
+          - 'The pairs are 1 and 99, 2 and 98, and so on up to 49 and 51. That makes 49 full jars.'
+          - 'The \(\frac{50}{100}\) jar has no partner, so the total is \(49\frac{50}{100}\) jars, which is \(49\frac{1}{2}\).'
+    wrapUp: Order doesn’t matter when you add, for fractions just as for whole numbers. So you can choose an order that makes wholes, and a huge sum turns into a tiny bit of thinking.
 
   - id: d3
     level: 3
-    covers: [S1.5]
-    type: fraction
-    prompt: 'A ribbon is **10 m** long. Mo cuts off \(2\frac{3}{4}\) m, then \(3\frac{2}{4}\) m. How much ribbon is left? Write a **mixed number**.'
-    answer: 3 3/4
-    form: mixed
-    verify: 10 - (2 + 3/4) - (3 + 2/4)
+    thinking: design
+    covers: [S1.3, S1.4, K1.3]
+    type: build
+    prompt: |-
+      Fern is writing a tricky quiz. A mixed-number subtraction is a **trap** when the first fraction is smaller than the second, so you can’t just subtract the numerators.
+      Make a trap in fifths, where the answer is exactly \(2\frac{3}{5}\): \(\boxed{A}\frac{\boxed{B}}{5} - \boxed{C}\frac{\boxed{D}}{5} = 2\frac{3}{5}\).
+    fields:
+      - { name: a, label: 'A (first whole number)' }
+      - { name: b, label: 'B (first numerator)' }
+      - { name: c, label: 'C (second whole number)' }
+      - { name: d, label: 'D (second numerator)' }
+    rules:
+      - { test: 'a > 0 && c > 0 && a % 1 == 0 && c % 1 == 0', fail: 'A and C should be whole numbers, at least 1.' }
+      - { test: 'b >= 0 && b < 5 && b % 1 == 0 && d > 0 && d < 5 && d % 1 == 0', fail: 'B can be 0 to 4, and D can be 1 to 4, so that each fractional part is less than one whole.' }
+      - { test: 'b < d', fail: 'That isn’t a trap yet. The first numerator has to be smaller than the second.' }
+      - { test: '(a * 5 + b) - (c * 5 + d) == 13', fail: 'It’s a trap, but the answer isn’t \(2\frac{3}{5}\). Try changing both numbers into fifths and subtracting.' }
+    examples:
+      - { a: 5, b: 1, c: 2, d: 3 }
+      - { a: 6, b: 2, c: 3, d: 4 }
+      - { a: 4, b: 0, c: 1, d: 2 }
+    counterexamples:
+      - { a: 3, b: 4, c: 1, d: 1 }
+      - { a: 5, b: 1, c: 2, d: 2 }
+      - { a: 5, b: 3, c: 3, d: 0 }
     hints:
-      - 'First find how much was cut off altogether.'
-      - '\(10 = 9\frac{4}{4}\)'
+      - 'How many fifths is \(2\frac{3}{5}\)? Your two numbers must be that many fifths apart.'
+      - 'Start with the second number, say \(1\frac{4}{5}\). Add \(2\frac{3}{5}\) to find the first.'
+      - 'Check it: is the first numerator smaller than the second?'
     solution:
-      - 'Cut off: \(2\frac{3}{4} + 3\frac{2}{4} = 5\frac{5}{4} = 6\frac{1}{4}\) m.'
-      - 'Left: \(10 - 6\frac{1}{4} = 9\frac{4}{4} - 6\frac{1}{4} = 3\frac{3}{4}\) m.'
-
-  - id: d4
-    level: 3
-    covers: [S1.3, K1.3]
-    type: open
-    prompt: 'Show **two ways** to find \(2\frac{3}{4} + 1\frac{2}{4}\): one with improper fractions and one with mixed numbers. Which way do you prefer, and why?'
-    modelAnswer: |-
-      Improper fractions: \(\frac{11}{4} + \frac{6}{4} = \frac{17}{4} = 4\frac{1}{4}\). Mixed numbers: add the wholes,
-      \(2 + 1 = 3\), then the fourths, \(\frac{3}{4} + \frac{2}{4} = \frac{5}{4} = 1\frac{1}{4}\), so \(3 + 1\frac{1}{4} = 4\frac{1}{4}\).
-      I prefer mixed numbers here because the numbers stay small, but improper fractions avoid regrouping.
-    rubric:
-      - I showed the improper fraction way correctly.
-      - I showed the mixed number way correctly.
-      - Both ways gave the same answer.
-      - I gave a reason for my choice.
+      - '\(2\frac{3}{5}\) is 13 fifths, so the first number must be 13 fifths more than the second. Choose the second number, then add back.'
+      - '\(5\frac{1}{5} - 2\frac{3}{5}\) is a trap. Regroup to \(4\frac{6}{5} - 2\frac{3}{5} = 2\frac{3}{5}\). In improper fractions, \(\frac{26}{5} - \frac{13}{5} = \frac{13}{5}\).'
+      - '\(6\frac{2}{5} - 3\frac{4}{5}\) works too, because \(\frac{32}{5} - \frac{19}{5} = \frac{13}{5}\). The improper-fraction way never falls into the trap, because there is nothing to regroup.'

@@ -114,213 +114,388 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.4, K1.1]
-    type: mc
-    figure: { kind: shape, shape: square }
-    prompt: How many lines of symmetry does a **square** have?
-    choices: ['4', '2', '1', '8']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'The vertical and horizontal lines work, but don''t forget the two **diagonals**.'
-      '2': 'A square has more than one way to fold into matching halves.'
-      '3': 'A square has 4 sides, and it has the same number of lines of symmetry.'
+    thinking: apply
+    covers: [S1.4, K1.1, K2.1]
+    type: number
+    figure: { kind: shape, shape: pentagon }
+    prompt: This is a **regular pentagon**. How many lines of symmetry does it have?
+    answer: 5
+    verify: '5'
     hints:
-      - Try folding across the middle, up and down, and from corner to corner.
+      - Picture a fold from one corner to the middle of the opposite side. How many corners could you start from?
     solution:
-      - 'Vertical, horizontal, and 2 diagonals: **4** lines of symmetry.'
+      - 'Each of the 5 corners has one line, going to the middle of the opposite side. That makes **5** lines.'
+      - 'It fits the regular polygon rule: 5 sides, 5 lines of symmetry.'
 
   - id: w2
     level: 1
-    covers: [S1.4, S2.2]
+    thinking: notice
+    covers: [S1.5, K1.3, K1.4]
     type: mc
-    prompt: Which shape has **exactly one** line of symmetry?
-    choices: [Isosceles triangle, Equilateral triangle, Rectangle, Circle]
-    fixedOrder: true
+    figure: { kind: shape, shape: rectangle }
+    prompt: 'What is the **order of rotation symmetry** of this rectangle? (It isn’t a square.)'
+    choices: ['2', '4', '1', '0']
     answer: 0
     feedback:
-      '1': An equilateral triangle has 3 lines of symmetry.
-      '2': A rectangle has 2 lines of symmetry.
-      '3': A circle has infinitely many lines of symmetry.
+      '1': 'A rectangle has 4 sides, but after a quarter turn, the long sides stand up. Does it match its outline then?'
+      '2': 'Order 1 means it matches only at the full turn. Try a half turn.'
+      '3': 'Every shape matches itself at least once, at the end of a full turn.'
     hints:
-      - Which triangle has only two equal sides?
+      - Imagine turning it slowly through one full turn. When does it land exactly on its outline?
     solution:
-      - An isosceles triangle has **one** line of symmetry, down the middle between its two equal sides.
+      - It matches after a half turn and again after the full turn. That is 2 matches, so its order is **2**.
 
   - id: w3
     level: 1
-    covers: [S1.5, K1.4]
-    type: mc
-    figure: { kind: shape, shape: triangle }
-    prompt: What is the **order of rotation symmetry** of an equilateral triangle?
-    choices: ['3', '1', '2', '6']
-    fixedOrder: true
-    answer: 0
+    thinking: recall
+    covers: [K1.5, S2.2]
+    type: multi
+    prompt: Which shapes have **central symmetry**? Select all that do.
+    choices:
+      - Square
+      - Rectangle
+      - Parallelogram
+      - Equilateral triangle
+      - Isosceles triangle
+    answer: [0, 1, 2]
     feedback:
-      '1': 'Order 1 means no rotation symmetry. An equilateral triangle matches itself more than once in a full turn.'
-      '2': 'A half turn (180°) does **not** make it match. Try thirds of a turn.'
-      '3': '6 is the order for a regular hexagon.'
+      '3': 'After a half turn, its point faces down. It matches at a third of a turn, but not at a half turn.'
+      '4': 'After a half turn, its point faces down, so it doesn’t land on its outline.'
     hints:
-      - How many times does it land on its outline in one full turn?
+      - Central symmetry means matching itself after a half turn (180°). Picture each shape upside down.
     solution:
-      - 'It matches at 120°, 240° and 360°: order **3**.'
+      - The square, the rectangle and the parallelogram all land on their outlines after a half turn.
+      - A triangle that has been given a half turn points the opposite way, so neither triangle matches.
 
   - id: w4
     level: 1
-    covers: [K2.1, S2.1]
-    type: number
-    prompt: How many lines of symmetry does a **regular hexagon** have?
-    answer: 6
+    thinking: recall
+    covers: [K2.2, S2.2]
+    type: mc
+    prompt: How many lines of symmetry does a **circle** have?
+    choices:
+      - Infinitely many
+      - '360'
+      - '1'
+      - None, because it has no sides
+    answer: 0
+    feedback:
+      '1': 'There is a line at every degree, but there are more lines between those. You can always fit in another one.'
+      '2': 'Try another line through the centre. Does it also make matching halves?'
+      '3': 'Lines of symmetry don’t need sides. Any fold through the centre makes matching halves.'
     hints:
-      - In a regular polygon, lines of symmetry = number of sides.
+      - How many different lines can you draw through the centre of a circle?
     solution:
-      - 'A regular hexagon has 6 equal sides, so it has **6** lines of symmetry.'
+      - Every line through the centre splits a circle into matching halves, and there is no end to those lines. So there are **infinitely many**.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.4, S1.5, K1.5]
+    thinking: model
+    covers: [U1.2, K1.1, S1.3]
     type: mc
-    figure: { kind: shape, shape: parallelogram }
-    prompt: Which describes the symmetry of this **parallelogram**?
+    figure: >-
+      <svg viewBox="0 0 400 130" class="fig-svg" role="img" aria-label="A square of paper, then the same paper folded in half, then folded in half again the other way into a small square with one round hole punched through it.">
+      <rect class="fig-rect" x="10" y="20" width="90" height="90"/>
+      <path class="fig-arrow" d="M108 65 L142 65"/>
+      <rect class="fig-rect" x="150" y="20" width="45" height="90"/>
+      <path class="fig-arrow" d="M203 65 L237 65"/>
+      <rect class="fig-rect" x="245" y="42" width="45" height="45"/>
+      <circle class="fig-hl" cx="267" cy="65" r="7"/>
+      </svg>
+    prompt: |-
+      Yasmin folds a square of paper in half, then in half the other way. She punches **one** hole through the
+      folded stack, away from the edges. What will she see when she unfolds it?
     choices:
-      - 'No lines of symmetry, but rotation symmetry of order 2'
-      - '2 lines of symmetry and order 2'
-      - '1 line of symmetry and no rotation symmetry'
-      - 'No symmetry at all'
+      - '4 holes, and each fold is a line of symmetry'
+      - '2 holes, and each fold is a line of symmetry'
+      - '4 holes, but no line of symmetry at all'
+      - '1 hole, right where the two folds meet'
     answer: 0
     feedback:
-      '1': 'Folding along either diagonal or across the middle doesn''t make the halves match.'
-      '2': 'No fold makes matching halves, but a half turn does make it match.'
-      '3': 'Try a half turn (180°). It lands exactly on its outline!'
+      '1': 'How many layers of paper did the hole punch go through?'
+      '2': 'Each hole has a partner on the other side of a fold. Fold the paper again, and where do they land?'
+      '3': 'The hole is away from the edges, so it isn’t on a fold. How many layers did it go through?'
     hints:
-      - Try folding it, then try turning it halfway.
+      - How many layers thick is the folded stack?
+      - When you fold the open paper along a fold line, do the holes land on each other?
     solution:
-      - No line makes two matching halves, so it has **no** lines of symmetry.
-      - It matches itself after a half turn and a full turn, so its order of rotation symmetry is **2** (central symmetry).
+      - 'Two folds make 4 layers, so one punch makes **4** holes.'
+      - 'Fold the open paper along either fold, and the holes land on each other. So each fold is a line of symmetry. Folding and cutting is one way to create symmetry.'
 
   - id: b2
     level: 2
-    covers: [K1.5, S2.2]
-    type: multi
-    prompt: Select **all** the shapes with **central symmetry** (they match themselves after a half turn).
-    choices: [Rectangle, Square, Regular hexagon, Parallelogram, Equilateral triangle, Isosceles triangle]
-    answer: [0, 1, 2, 3]
+    thinking: notice
+    covers: [K1.2, S1.3, U1.1]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 300 180" class="fig-svg fig-svg--square" role="img" aria-label="A mug seen from the side, with a handle on its right side, set higher than the middle of the mug.">
+      <path d="M190 40 C 255 40, 255 108, 190 108" style="fill:none;stroke:var(--ink);stroke-width:9"/>
+      <rect class="fig-rect" x="70" y="25" width="120" height="135" rx="6"/>
+      </svg>
+    prompt: A giant flat blade slices this real mug, with its floor at the bottom and its open top, into two halves that match like mirror images. Where does the blade go?
+    choices:
+      - From top to bottom, right through the handle
+      - From top to bottom, with the handle on one side
+      - Straight across, halfway up the mug
+      - Nowhere, because the handle gets in the way
+    answer: 0
+    feedback:
+      '1': 'Then one half gets the whole handle and the other half gets none. Would they match?'
+      '2': 'The bottom half has the floor, and the top half is open. The handle sits higher up too. Would they match?'
+      '3': 'The handle only spoils the match if the blade misses it. Try splitting the handle too.'
     hints:
-      - Shapes with an even order of rotation symmetry match after a half turn.
+      - Which part of the mug is not the same all the way around?
+      - What would have to happen to the handle for each half to get the same share?
     solution:
-      - 'Rectangle (order 2), square (4), regular hexagon (6), parallelogram (2) ✓'
-      - Triangles don't match after a half turn.
+      - 'A flat cut through the middle of the handle gives each half the same half-handle. So that plane is a plane of symmetry.'
+      - The cut straight across fails, because only the bottom half has a floor, and the handle sits above the middle.
 
   - id: b3
     level: 2
-    covers: [K2.1, S2.1]
+    thinking: connect
+    covers: [K1.7, S1.2, K1.4, S1.5]
     type: number
-    prompt: A stop sign is a **regular octagon** (8 equal sides). What is its **order of rotation symmetry**?
-    answer: 8
+    figure: { kind: shape, shape: star }
+    prompt: The eight-pointed star on star quilts made by many Plains First Nations has rotation symmetry of order **8**. What is the **smallest** turn, in degrees, that makes it land exactly on its outline?
+    answer: 45
+    unit: degrees
+    verify: 360 / 8
     hints:
-      - Use the regular polygon rule.
+      - How many degrees are in a full turn? How many times does the star match during that turn?
+      - The 8 matches are evenly spaced around the full turn.
     solution:
-      - 'A regular octagon has 8 sides, so its order of rotation symmetry is **8**.'
+      - 'One full turn is 360°, and the star matches itself 8 times on the way around.'
+      - 'The matches are evenly spaced, so the smallest turn is \(360 \div 8 = 45\) degrees: from one point to the next.'
 
   - id: b4
     level: 2
-    covers: [K1.7, S1.2]
+    thinking: notice
+    covers: [S1.4, S1.5, S2.2, U1.1]
     type: mc
-    figure: { kind: shape, shape: star, lines: true }
-    prompt: This eight-pointed star appears on **star quilts** made by many Plains First Nations. How many lines of symmetry does it have?
-    choices: ['8', '4', '16', '2']
+    figure: >-
+      <svg viewBox="-125 -125 250 250" class="fig-svg fig-svg--square" role="img" aria-label="A pinwheel with four identical triangular blades, all leaning the same way around the centre.">
+      <path class="sy-shape" d="M0 0 L0 -105 L52 -52 Z"/>
+      <path class="sy-shape" d="M0 0 L105 0 L52 52 Z"/>
+      <path class="sy-shape" d="M0 0 L0 105 L-52 52 Z"/>
+      <path class="sy-shape" d="M0 0 L-105 0 L-52 -52 Z"/>
+      </svg>
+    prompt: Describe the symmetry of this pinwheel.
+    choices:
+      - 'No lines of symmetry, and order 4'
+      - '4 lines of symmetry, and order 4'
+      - '2 lines of symmetry, and order 2'
+      - 'No lines of symmetry, and order 1'
     answer: 0
     feedback:
-      '1': 'Lines through the points work, but so do lines through the gaps between points.'
-      '2': 'It has 16 corners, but each line passes through 2 of them, so 16 corners make 8 lines.'
-      '3': 'Count the dashed lines in the picture.'
+      '1': 'It has order 4, yes. But picture folding it. All the blades lean the same way, so what happens to them in a mirror?'
+      '2': 'Try a quarter turn. Does it land on its outline? Then try folding it down the middle.'
+      '3': 'No fold works, that’s true. But try a quarter turn.'
     hints:
-      - Count the dashed lines.
+      - Do the fold test and the turn test separately.
+      - In a mirror, which way would the blades lean?
     solution:
-      - 4 lines pass through opposite points, and 4 pass between them. That's **8** lines.
-
-  - id: b5
-    level: 2
-    covers: [S2.2]
-    type: mc
-    prompt: A shape has **rotation symmetry of order 2** but **no lines of symmetry**. Which shape could it be?
-    choices: [Parallelogram, Rectangle, Square, Isosceles triangle]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': A rectangle has 2 lines of symmetry.
-      '2': A square has 4 lines of symmetry and order 4.
-      '3': An isosceles triangle has 1 line of symmetry and no rotation symmetry.
-    hints:
-      - Look back at the parallelogram in Step 2.
-    solution:
-      - 'A parallelogram: no lines of symmetry, order 2.'
+      - 'A quarter turn moves each blade onto the next one, so it matches 4 times in a full turn: order **4**.'
+      - 'In a mirror, the blades would lean the other way. So no fold works, and it has **no** lines of symmetry.'
+      - A shape can turn onto itself without having any line of symmetry.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K2.1, U2.1]
-    type: number
-    prompt: A **regular polygon** has **10** lines of symmetry. How many sides does it have?
-    answer: 10
-    hints:
-      - Use the regular polygon rule in reverse.
-    solution:
-      - 'In a regular polygon, sides = lines of symmetry. So it has **10** sides (a regular decagon).'
+    thinking: connect
+    covers: [K1.1, K1.5, U1.1, S2.2]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 300 100" class="fig-svg" role="img" aria-label="A banner with the word MOM in big capital letters.">
+      <rect class="fig-rect" x="10" y="10" width="280" height="80" rx="4"/>
+      <text class="fig-label" x="150" y="72" text-anchor="middle" style="font-size:60px">MOM</text>
+      </svg>
+    prompt: |-
+      The school hangs this banner for Mother’s Day, in plain block capitals. By mistake, a helper hangs it after
+      giving it a half turn.
+    parts:
+      - type: text
+        prompt: What does the banner say now?
+        accept: [WOW]
+        hints: [What does an M look like after a half turn? What about an O?]
+        solution: ['A half turn makes each M look like a W, and the O stays an O. It also swaps the left and right letters. The banner now says **WOW**.']
+      - type: multi
+        prompt: Which of these words would read **exactly the same** after a half turn? Select all that do.
+        choices: [NOON, SOS, TOOT, DAD, MOM]
+        answer: [0, 1]
+        feedback:
+          '2': 'A T given a half turn stands on its head.'
+          '3': 'An A given a half turn stands on its head.'
+          '4': 'That one just became WOW!'
+        hints: [Which letters look the same after a half turn? Does every letter in the word pass?]
+        solution: ['N, O and S all look the same after a half turn. So **NOON** and **SOS** still read the same.']
+      - type: multi
+        prompt: Now picture a line straight down the middle of each word. Which words have two halves that match like **mirror images**? Select all that do.
+        choices: [TOOT, MOM, NOON, SOS, DAD]
+        answer: [0, 1]
+        feedback:
+          '2': 'In a mirror, an N comes out backward.'
+          '3': 'In a mirror, an S comes out backward.'
+          '4': 'In a mirror, a D comes out backward.'
+        hints: [Which letters have a line of symmetry going straight up the middle?]
+        solution: ['T, O and M each have a line of symmetry going straight up the middle. So **TOOT** and **MOM** work.']
+      - type: mc
+        prompt: NOON passes the half-turn test but fails the mirror test. Which shape from the lesson acts just like it?
+        choices: [Parallelogram, Rectangle, Isosceles triangle, Equilateral triangle]
+        answer: 0
+        feedback:
+          '1': 'A rectangle passes **both** tests.'
+          '2': 'An isosceles triangle passes the mirror test and fails the half-turn test. That is the opposite.'
+          '3': 'An equilateral triangle passes the mirror test and fails the half-turn test. That is the opposite.'
+        hints: [Find a shape with no lines of symmetry that still matches after a half turn.]
+        solution: ['A parallelogram has central symmetry but no lines of symmetry, just like the word NOON.']
+    wrapUp: Reflection symmetry and rotation symmetry are two different tests. A shape, or even a word, can pass one and fail the other.
 
   - id: d2
     level: 3
-    covers: [K2.2, S2.1]
-    type: mc
-    prompt: Does a **circle** have more lines of symmetry than a **regular polygon with 100 sides**?
-    choices:
-      - Yes. A circle has infinitely many, and the polygon has 100.
-      - No. They both have 100.
-      - No. A circle has no lines of symmetry because it has no sides.
-      - They both have infinitely many.
-    answer: 0
-    feedback:
-      '1': Any line through the centre of a circle is a line of symmetry, so there are more than 100.
-      '2': Every line through the centre of a circle splits it into matching halves.
-      '3': 'The 100-sided polygon has exactly 100: one for each side.'
-    hints:
-      - How many different lines can you draw through the centre of a circle?
-    solution:
-      - Every line through the centre of a circle is a line of symmetry, so it has **infinitely many**.
-      - 'The regular 100-gon has exactly **100**.'
+    thinking: flaw
+    covers: [K1.1, K1.5, K1.6, S1.4]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 320 170" class="fig-svg" role="img" aria-label="A rectangle with a dashed diagonal from corner P at the bottom left to corner P prime at the top right. The centre is marked.">
+      <rect class="fig-rect" x="40" y="20" width="240" height="120"/>
+      <line class="sy-line" x1="40" y1="140" x2="280" y2="20"/>
+      <circle class="fig-hl" cx="160" cy="80" r="6"/>
+      <text class="fig-label" x="20" y="160">P</text>
+      <text class="fig-label" x="284" y="18">P′</text>
+      </svg>
+    prompt: |-
+      Nell draws a diagonal across a rectangle of paper that isn’t a square. "That makes two identical triangles,"
+      Nell says, "so the diagonal must be a line of symmetry." Then Nell folds along it.
+    parts:
+      - type: mc
+        prompt: What happens when the paper is folded along the diagonal?
+        choices:
+          - Two corners poke out, so the halves don’t match
+          - The halves match, edge to edge, all the way
+          - One triangle ends up bigger than the other one
+          - The fold turns the paper into a smaller rectangle
+        answer: 0
+        feedback:
+          '1': 'Picture the short side after the fold. Does it land along the other short side, or stick out?'
+          '2': 'The two triangles are the same size. So what’s stopping them from matching in a fold?'
+          '3': 'A diagonal fold gives a shape with slanted edges. Picture where the corners go.'
+        hints: [After the fold, where does the bottom right corner land? Is it on top of the paper?]
+        solution: ['The long side and the short side meet at each corner. A diagonal fold doesn’t lay the long side on the short side, so two corners poke out. The diagonal is not a line of symmetry.']
+      - type: mc
+        prompt: Nell is right that the two triangles are identical. So how **can** one triangle land exactly on the other?
+        choices:
+          - With a half turn around the centre
+          - With a fold along the short side
+          - With a fold along the long side
+          - With a quarter turn around the centre
+        answer: 0
+        feedback:
+          '1': 'That fold would carry the triangle off the paper.'
+          '2': 'That fold would carry the triangle off the paper.'
+          '3': 'After a quarter turn, the rectangle’s long side stands up, so the triangles can’t line up.'
+        hints: [Imagine cutting along the diagonal. Turn one triangle around the marked centre.]
+        solution: ['A half turn around the centre carries one triangle exactly onto the other. A rectangle has central symmetry.']
+      - type: mc
+        prompt: In that half turn, corner P lands on corner P′. Where does the straight line from P to P′ go?
+        choices:
+          - Through the centre of the rectangle
+          - Along the bottom edge, then up the side
+          - Past the centre, close to its left side
+          - Through the middle of the top edge
+        answer: 0
+        feedback:
+          '1': 'That path has a bend. Look for a straight line.'
+          '2': 'Look at the marked centre in the picture. Does the line miss it?'
+          '3': 'Follow the dashed line in the picture. Where does it go?'
+        hints: [Look at the dashed line and the centre dot.]
+        solution: ['The line joining a point to its image in a half turn always passes through the centre of rotation.']
+    wrapUp: 'Two identical halves are not enough for a line of symmetry. The halves have to match as mirror images. Here they match by a half turn instead, and that is central symmetry.'
 
   - id: d3
     level: 3
-    covers: [K1.6, K1.5]
-    type: mc
-    prompt: A shape has **central symmetry**. After a half turn, where does a point P on the shape go?
-    choices:
-      - On the straight line from P through the centre, the same distance away on the other side
-      - Straight up, the same distance above P
-      - 'Nowhere. P stays where it is.'
-      - To the nearest corner
-    answer: 0
-    feedback:
-      '1': 'A half turn moves P around the centre, not straight up.'
-      '2': 'Only the centre itself stays put during a turn.'
-      '3': A half turn sends each point through the centre to the opposite side, not to a corner.
-    hints:
-      - Look at the P and P′ figure in the lesson.
-    solution:
-      - 'In a half turn, P travels to the opposite side of the centre. The line joining P to its image passes through the centre of rotation.'
+    thinking: whatif
+    covers: [S1.1, U1.2, K1.1, K1.4, S2.2]
+    type: investigation
+    figure: >-
+      <svg viewBox="-135 -135 270 270" class="fig-svg fig-svg--square" role="img" aria-label="A snowflake with six identical arms, evenly spaced around its centre, labelled A to F going clockwise from the top.">
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95"/>
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95" transform="rotate(60)"/>
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95" transform="rotate(120)"/>
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95" transform="rotate(180)"/>
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95" transform="rotate(240)"/>
+      <rect class="sy-shape" x="-6" y="-95" width="12" height="95" transform="rotate(300)"/>
+      <circle class="fig-hl" cx="0" cy="0" r="12"/>
+      <text class="fig-label" x="0" y="-108" text-anchor="middle">A</text>
+      <text class="fig-label" x="100" y="-52" text-anchor="middle">B</text>
+      <text class="fig-label" x="100" y="64" text-anchor="middle">C</text>
+      <text class="fig-label" x="0" y="122" text-anchor="middle">D</text>
+      <text class="fig-label" x="-100" y="64" text-anchor="middle">E</text>
+      <text class="fig-label" x="-100" y="-52" text-anchor="middle">F</text>
+      </svg>
+    prompt: |-
+      This ideal snowflake has 6 identical arms, evenly spaced. Now picture it getting bumped on its way down.
+    parts:
+      - type: number
+        prompt: Arm **A** snaps off. How many lines of symmetry does the broken flake have now?
+        answer: 1
+        verify: '1'
+        hints:
+          - The flake had 6 lines. Which of them still work with A gone?
+          - The gap has to land on itself. Which fold keeps the gap in the same place?
+        solution:
+          - 'The perfect flake has 6 lines. Now a fold works only if the gap lands on itself.'
+          - 'Only the line through A and D does that: B lands on F, and C lands on E. So there is **1** line.'
+      - type: mc
+        prompt: A new perfect flake loses **three** arms, and what is left has rotation symmetry of order 3. Which three arms snapped off?
+        choices: ['A, C and E', 'A, B and C', 'A, B and D', 'A, C and D']
+        answer: 0
+        feedback:
+          '1': 'The arms D, E and F are left, all on one side. Would a turn make them land on themselves?'
+          '2': 'The arms C, E and F are left, and they aren’t evenly spaced. What would a third of a turn do?'
+          '3': 'The arms B, E and F are left, and they aren’t evenly spaced. What would a third of a turn do?'
+        hints:
+          - For order 3, a third of a turn has to carry the flake onto itself.
+          - What must the leftover arms look like, so that each one lands on the next?
+        solution: ['Arms B, D and F are left, evenly spaced. A third of a turn moves each one onto the next. So the flake matches itself 3 times in a full turn.']
+      - type: number
+        prompt: How many lines of symmetry does that three-armed flake have?
+        answer: 3
+        verify: '3'
+        hints: [Try a fold along each arm that is left.]
+        solution: ['A fold along arm B carries D onto F. The same thing works for arm D and arm F, so there are **3** lines. Those are the same counts as an equilateral triangle.']
+    wrapUp: Taking away one arm spoils almost all the symmetry. Taking away arms in a pattern can leave a smaller, simpler symmetry behind.
 
   - id: d4
     level: 3
-    covers: [U2.1, S2.1]
+    thinking: why
+    covers: [U2.1, S2.1, K2.1]
     type: open
-    prompt: A rectangle has **2** lines of symmetry, but a square has **4**. Explain why, using sides and angles.
+    figure: >-
+      <svg viewBox="0 0 420 165" class="fig-svg" role="img" aria-label="Three shapes. A rhombus with dashed lines of symmetry joining opposite corners. A rectangle with dashed lines of symmetry joining the middles of opposite sides. A square with no lines drawn.">
+      <path class="fig-rect" d="M70 30 L130 75 L70 120 L10 75 Z"/>
+      <line class="sy-line" x1="70" y1="20" x2="70" y2="130"/>
+      <line class="sy-line" x1="0" y1="75" x2="140" y2="75"/>
+      <rect class="fig-rect" x="165" y="45" width="90" height="60"/>
+      <line class="sy-line" x1="210" y1="35" x2="210" y2="115"/>
+      <line class="sy-line" x1="155" y1="75" x2="265" y2="75"/>
+      <rect class="fig-rect" x="310" y="35" width="80" height="80"/>
+      <text class="fig-small" x="70" y="155" text-anchor="middle">rhombus</text>
+      <text class="fig-small" x="210" y="155" text-anchor="middle">rectangle</text>
+      <text class="fig-small" x="350" y="155" text-anchor="middle">square</text>
+      </svg>
+    prompt: |-
+      A rhombus has 4 equal sides, and its 2 lines of symmetry join opposite **corners**. A rectangle has 4 equal
+      angles, and its 2 lines join the middles of opposite **sides**. A square has 4 equal sides **and** 4 equal
+      angles. Where do its 4 lines of symmetry come from?
+    hints:
+      - Draw the square’s 4 lines of symmetry. What does each one join?
+      - Is a square a kind of rhombus? Is it a kind of rectangle?
     modelAnswer: |-
-      Both shapes have 4 equal angles, and each has a vertical and a horizontal line of symmetry through the
-      middle of its sides. In a square all 4 sides are equal, so folding along a diagonal also makes the halves
-      match. That gives 2 more lines. In a rectangle the sides next to each other have different lengths, so a
-      diagonal fold doesn't match up.
+      A square has equal sides like a rhombus, so it gets the 2 lines that join opposite corners. It also has equal
+      angles like a rectangle, so it gets the 2 lines that join the middles of opposite sides. Those are different lines,
+      so 2 + 2 = 4 lines of symmetry. Having both equal sides and equal angles gives it the lines from both shapes.
     rubric:
-      - I said both have lines through the middles of their sides.
-      - I explained that a square's equal sides make the diagonals lines of symmetry too.
-      - I explained why a rectangle's diagonals are not lines of symmetry.
+      - I said that 2 of the square’s lines join opposite corners, as in the rhombus.
+      - I said that the other 2 lines join the middles of opposite sides, as in the rectangle.
+      - I connected the equal sides to the corner lines and the equal angles to the side lines.

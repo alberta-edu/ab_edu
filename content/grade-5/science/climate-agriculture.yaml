@@ -144,244 +144,367 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K3.1]
+    thinking: apply
+    covers: [K3.1, S3.1, U3.1]
     type: mc
-    prompt: People in Iqaluit, Nunavut wear heavy parkas for much of the year. Which part of human activity does this show climate affecting?
-    choices: [Clothing, Recreation, Transportation, Agriculture]
-    fixedOrder: true
+    prompt: A builder from Edmonton takes her usual house plans to Singapore, where it is hot all year. Which part of her plans is **no use** there?
+    choices:
+      - Burying the water pipes deep so they don’t freeze
+      - A roof that keeps the rain out of the house
+      - Windows that open to let the air through
+      - Water pipes that bring water into the kitchen
     answer: 0
     feedback:
-      '1': Recreation is about fun activities, like skiing or swimming.
-      '2': Transportation is about how people travel.
-      '3': Agriculture is about farming.
+      '1': Singapore gets a lot of rain. Would a house there still need a good roof?
+      '2': In a place that is hot all year, would moving air be useful?
+      '3': People need water in every climate. Is there something about how the pipes are placed that wouldn’t matter there?
     hints:
-      - What is a parka?
+      - Which of these is only there because of Edmonton’s cold winters?
     solution:
-      - A parka is **clothing** that suits a cold climate.
+      - Pipes are buried deep in Canada because winters are cold enough to freeze the ground.
+      - Singapore’s climate is hot all year, so nothing will freeze. Climate decides how we build.
 
   - id: w2
     level: 1
-    covers: [K3.2, K5.1]
+    thinking: notice
+    covers: [K3.2, S3.1, U3.1]
     type: mc
-    prompt: Every fall, Canada geese fly south, and they return in spring. What is this called?
-    choices: [Migration, Reproduction, Crop rotation, Drought]
+    prompt: Moose in Alberta have their calves in late spring, when the weather is warmer and food is easier to find. Which way that climate affects animals does this show?
+    choices: [Timing of reproduction, Migration, Accessing food]
     fixedOrder: true
     answer: 0
     feedback:
-      '1': Reproduction is having young.
-      '2': Crop rotation is a farming practice.
-      '3': A drought is a long dry time.
+      '1': Migration means moving from one region to another with the seasons. Did the story say the moose moved?
+      '2': Food is part of the reason, but what event is the story about? What is being timed?
     hints:
-      - It is a seasonal movement from one region to another.
+      - What is the moose doing at this time of year?
     solution:
-      - Moving with the seasons is **migration**.
+      - Having calves is reproduction, and the story says **when** it happens.
+      - Late spring gives the calves warmer weather and more food, so climate affects the timing.
 
   - id: w3
     level: 1
-    covers: [K4.5]
-    type: mc
-    prompt: Which is a **conservation agriculture** practice?
-    choices:
-      - Maintaining soil cover
-      - Leaving fields bare all winter
-      - Ploughing the soil as often as possible
-      - Using as much water as possible
-    answer: 0
-    feedback:
-      '1': Bare soil blows and washes away.
-      '2': Conservation agriculture **minimizes** soil disturbance.
-      '3': Conservation agriculture uses water **efficiently**.
-    hints:
-      - Think of the field that kept its soil in the windstorm.
-    solution:
-      - '**Maintaining soil cover** protects the soil from wind and water.'
-
-  - id: w4
-    level: 1
-    covers: [K4.6]
+    thinking: recall
+    covers: [K4.5, K4.2]
     type: multi
-    prompt: Select **all** the sustainable harvesting practices.
-    choices: [Crop rotation, Companion planting, Limiting hunting and trapping, Considering future harvests, Catching as many fish as possible]
-    fixedOrder: true
-    answer: [0, 1, 2, 3]
+    prompt: Which of these are **conservation agriculture** practices? Select all that fit.
+    choices:
+      - Leaving last year’s stubble on the field
+      - Planting seeds without ploughing the whole field
+      - Watering only as much as the crop needs
+      - Ploughing a field and leaving it bare all winter
+    answer: [0, 1, 2]
     hints:
-      - Sustainable practices keep populations stable over time.
+      - Ask of each one, “Does this protect the soil and the water, or use them up?”
     solution:
-      - ✓ The first four keep plant and animal populations stable.
-      - ✗ Catching as many fish as possible can empty a lake.
+      - Stubble keeps the soil covered, less ploughing disturbs the soil less, and careful watering uses water efficiently.
+      - A ploughed, bare field has loose soil with nothing to cover it, so wind can carry it away.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K4.5, S4.2, K4.4]
+    thinking: evidence
+    covers: [K4.5, K4.4, S4.3, S4.2]
     type: mc
-    prompt: In the virtual experiment, why did the field with stubble keep its soil during the windstorm?
+    prompt: |-
+      Two prairie fields lie side by side, one north of the other. One was ploughed bare in the fall. The other still has
+      its stubble. Late in fall, when only the ditches hold snow, a windstorm blows from the west for two days, along each
+      field and into the ditch at its east end. Afterwards, the **north field’s** ditch is clean and white. The **south
+      field’s** ditch is striped dark brown. Which field was ploughed?
     choices:
-      - The stubble covered the soil and held it in place.
-      - The wind was weaker on that field.
-      - Stubble makes soil heavier than rock.
-      - That field had no soil to lose.
+      - The south field, because the brown stripes are its soil, blown away.
+      - The north field, because ploughing kept its soil at home in the wind.
+      - The south field, because brown snow falls from the sky after windstorms.
+      - You can’t tell, because a windstorm blows the same on both of the fields.
     answer: 0
     feedback:
-      '1': The same windstorm blew across both fields.
-      '2': Stubble doesn't change what the soil is made of. It covers and protects it.
-      '3': Both fields had the same soil.
+      '1': In the experiment with two fields, which one lost its soil to the wind?
+      '2': The right field, but check the reason. If snow fell from the sky brown, why would only one ditch have it?
+      '3': The wind may be the same, but the fields aren’t. What does stubble do that bare soil can’t?
     hints:
-      - What was different between the two fields?
+      - What could be brown and able to blow across a field?
+      - Think back to the experiment. Which kind of field gives up its soil?
     solution:
-      - The stubble was **soil cover**. It held the soil down, and the field wasn't tilled, so the soil wasn't loose.
+      - The brown stripes must be something blown into the ditch. On a farm field, that is **soil**.
+      - Tilled, bare soil is loose, and nothing holds it down. Stubble covers soil and keeps it in place.
+      - So the south field was the ploughed one, and part of it is now in the ditch.
 
   - id: b2
     level: 2
-    covers: [K4.1, K4.4, S4.3]
-    type: mc
-    prompt: Southern Alberta has a **drought** all summer. Which is the most likely effect on farms there?
-    choices:
-      - Smaller crops and less water for animals
-      - Fields flood and wash away
-      - Crops grow bigger than usual
-      - Nothing changes for farms
-    answer: 0
-    feedback:
-      '1': Flooding comes from too much water, not too little.
-      '2': Crops need water to grow.
-      '3': Drought affects crop production and water access.
+    thinking: model
+    covers: [K4.5, K4.4, S4.2]
+    type: number
+    prompt: |-
+      A made-up vegetable field needs **30 mm** of water a week. Its sprinkler is on a timer and gives **30 mm** every
+      week, rain or shine. In week 1, the rain gauge shows 18 mm of rain. In week 2, it shows 35 mm, and the sprinkler
+      runs during a storm. How many mm of sprinkler water were not needed?
+    answer: 48
+    unit: mm
+    verify: (30 - (30 - 18)) + 30
     hints:
-      - A drought means much less precipitation than usual.
+      - Do one week at a time. How much did the field still need after the rain?
+      - In week 2, did the field need anything from the sprinkler at all?
     solution:
-      - Less **water access** means smaller **crop production** and less water for **animals**.
+      - 'Week 1: the rain gave 18 mm, so the field still needed \(30 - 18 = 12\) mm. The sprinkler gave 30 mm, so \(30 - 12 = 18\) mm was not needed.'
+      - 'Week 2: the rain alone gave more than 30 mm, so all 30 mm from the sprinkler was not needed.'
+      - '\(18 + 30 = 48\) mm. A cheap rain gauge and a look at the weather would have saved all of that. Using water efficiently starts with measuring.'
 
   - id: b3
     level: 2
-    covers: [K4.6, S4.4]
+    thinking: connect
+    covers: [K4.6, K4.5, S4.4]
     type: mc
-    prompt: In the lake simulator, which catch keeps the fish population **stable** for 30 years?
-    choices: [100 fish a year, 200 fish a year, 250 fish a year, 'The more you catch, the more stable it is']
+    prompt: |-
+      In a Three Sisters garden, grown by the Haudenosaunee and other Indigenous nations, corn, beans and squash grow
+      together. Beans climb the corn stalks. The big leaves of the squash spread out low over the ground. Which
+      conservation practice are the squash leaves also doing?
+    choices:
+      - Maintaining soil cover
+      - Crop rotation
+      - Minimizing soil disturbance
+      - Limiting the harvest
     fixedOrder: true
     answer: 0
     feedback:
-      '1': At 200 a year, the lake runs out of fish in about 11 years.
-      '2': At 250 a year, the lake runs out of fish quickly.
-      '3': Catching more than the fish can replace makes the population shrink.
+      '1': Crop rotation means growing different crops from one year to the next. These three grow together in the same year.
+      '2': Disturbing soil means breaking it up, as a plough does. What are the leaves doing to the ground?
+      '3': Limiting a harvest means taking less. Do the leaves have anything to do with how much is picked?
     hints:
-      - Try each number on the slider.
+      - Picture the ground under those big leaves. What can you see of the soil?
     solution:
-      - Catching **100** a year takes no more fish than the lake can replace, so the population stays stable.
+      - The leaves spread over the ground, so the soil isn’t left bare. That is **maintaining soil cover**.
+      - So this garden does two things at once. The plants are companions, and one of them protects the soil the way stubble does on a wheat field.
 
   - id: b4
     level: 2
-    covers: [K3.2, S3.1]
+    thinking: flaw
+    covers: [K4.6, S4.4]
     type: mc
-    prompt: Why do many animals in Alberta have their young in **spring**?
+    prompt: |-
+      In a made-up valley, trappers agreed long ago to limit how many snowshoe hares each person takes in a year. The
+      hare population has stayed steady for 20 years. Cora says, “We have plenty of hares now, so the limit did its
+      job. We can get rid of it.” What is the problem with Cora’s idea?
     choices:
-      - The weather is warmer and food is easier to find.
-      - Snow makes it easier to hide the young.
-      - Animals can only count to spring.
-      - There is less daylight in spring.
+      - The limit may be why the hares stay steady, so without it that could change.
+      - Nothing is wrong, because a limit is only needed while hares are hard to find.
+      - The limit is too weak, because a good limit makes the hares grow every year.
+      - Hares have young every year, so limits never really change how many there are.
     answer: 0
     feedback:
-      '1': Most snow melts in spring, and finding food matters more.
-      '2': Animals respond to the seasons, not to counting.
-      '3': Days get **longer** in spring.
+      '1': The population is steady **with** the limit in place. What do you know about what would happen without it?
+      '2': Sustainable harvesting aims for stable populations. Does a steady population sound like a failure?
+      '3': Having young helps, but what happens if more hares are taken than are born?
     hints:
-      - What do newborn animals need?
+      - What has been the same for all of those 20 years?
+      - Finish this sentence, “I wear mitts and my hands stay warm, so I can get rid of my mitts…”
     solution:
-      - Spring and summer bring warmer weather and more food, so the young are more likely to survive.
+      - The hares have stayed steady during all the years the limit was there. That is a clue the limit is **working**, not that it is finished.
+      - It is like saying, “My mitts keep my hands warm, so I don’t need mitts any more.”
+      - A limit leaves enough animals to have young. Taking it away removes the very thing that may be holding the population steady.
 
   - id: b5
     level: 2
-    covers: [K4.6]
+    thinking: whatif
+    covers: [K3.2, S3.1, U3.1]
     type: mc
-    prompt: A farmer grows canola in a field one year, wheat the next year, and peas the year after. What practice is this?
-    choices: [Crop rotation, Companion planting, Migration, Tilling]
-    fixedOrder: true
+    prompt: |-
+      Caribou dig through snow with their hooves to reach lichen to eat. One January, a warm spell brings rain onto the
+      snow. Then it freezes into a thick, hard layer of ice on top of the lichen. What is most likely that winter?
+    choices:
+      - Caribou have a harder time reaching food there.
+      - Caribou find food more easily, because ice is smooth.
+      - Nothing changes, because caribou eat only in summer.
+      - The lichen gets more water, so caribou eat better.
     answer: 0
     feedback:
-      '1': Companion planting means growing different plants **together** at the same time.
-      '2': Migration is a seasonal movement of animals.
-      '3': Tilling means ploughing the soil.
+      '1': Being smooth might help with walking. But where is the lichen? Could hooves get through?
+      '2': The lesson says caribou dig through **snow** to find food. When would that be?
+      '3': It may have water, but can a caribou reach it? Follow the hoof down through the layers.
     hints:
-      - The crop changes from year to year.
+      - Picture a hoof digging. What does it hit now that it didn’t hit before?
     solution:
-      - Growing a different crop in a field each year is **crop rotation**.
+      - Soft snow can be dug through. Thick ice is much harder, so the lichen is sealed away.
+      - This really happens. Winter ice has been linked to some drops in caribou numbers in Canada’s Arctic, because food becomes hard to reach.
+      - A single weather event can change how animals get their food.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K4.6]
-    type: mc
+    thinking: breakdown
+    covers: [K5.1, U5.1, S5.1, K3.2, K4.4]
+    type: investigation
     prompt: |-
-      The Haudenosaunee and other Indigenous nations plant corn, beans and squash together, called the Three Sisters. The corn stalk holds up
-      the bean vine, and the big squash leaves shade the soil. What kind of practice is this?
-    choices:
-      - Companion planting, because the plants help each other grow
-      - Crop rotation, because the crops change every year
-      - Tilling, because it disturbs the soil
-      - Migration, because the plants move
-    answer: 0
-    feedback:
-      '1': The three crops grow **together** at the same time, not one after another.
-      '2': Squash leaves cover and protect the soil.
-      '3': Plants don't migrate.
-    hints:
-      - Are the plants growing at the same time or in different years?
-    solution:
-      - Plants grown together that help each other is **companion planting**, a sustainable harvesting practice.
+      Great-Grandma Odile kept a notebook on her made-up farm for 45 years. Each fall, she wrote down two dates. Now
+      the family reads it.
+
+      | Year | Geese flew south | First hard frost |
+      |---|---|---|
+      | 1978 | Oct 3 | Oct 13 |
+      | 1990 | Oct 9 | Oct 19 |
+      | 2004 | Oct 1 | Oct 12 |
+      | 2016 | Oct 6 | Oct 15 |
+      | 2023 | Oct 8 | Oct 18 |
+    parts:
+      - type: mc
+        prompt: What pattern do you see in the notebook?
+        choices:
+          - The frost comes about 10 days after the geese fly south.
+          - The geese fly south on the very same day each year.
+          - The first hard frost comes on the same date each year.
+          - The frost comes first, and then the geese fly south.
+        answer: 0
+        feedback:
+          '1': Check the “Geese flew south” column. Do the dates match?
+          '2': Check the “First hard frost” column. Do the dates match?
+          '3': Pick one row. Which date comes first?
+        hints:
+          - The dates move around from year to year. Does anything stay about the same?
+          - For each row, find how many days there are between the two dates.
+        solution:
+          - 'The gaps are 10, 10, 11, 9 and 10 days. The dates change, but the gap stays about the same.'
+      - type: number
+        prompt: This year, the geese fly south on **October 5**. On about which day in October should the family expect the first hard frost? Type just the day number.
+        answer: 15
+        tolerance: 1
+        verify: 5 + 10
+        hints:
+          - Use the pattern you found.
+        solution:
+          - 'About 10 days after October 5 is around **October 15**. It is an estimate, so a day or so either way is fine.'
+          - That gives the family time to finish harvesting before the frost.
+      - type: mc
+        prompt: Why is Odile’s notebook better evidence than one person watching for one fall?
+        choices:
+          - Many years can show a pattern. One fall could be unusual.
+          - Older notes are more accurate, because they were written by hand.
+          - One person can’t see geese and frost in the same fall.
+          - A long notebook is better because it has more pages to read.
+        answer: 0
+        feedback:
+          '1': Handwriting doesn’t make something more accurate. What can 45 years show that one fall can’t?
+          '2': One person could see both. What couldn’t they see from a single fall?
+          '3': What matters is what the pages can show. What can you see across many years?
+        hints:
+          - Could you have found the 10-day gap from just one row? Would you trust it?
+        solution:
+          - One fall gives one gap, and it could be a strange year. Many years let you see what keeps happening.
+          - Observations passed along from one generation to the next can show patterns nobody could see in a single year.
+      - type: mc
+        prompt: |-
+          Uncle Stu has a plan. “Frost comes after the geese leave. So I’ll feed the geese a mountain of bread, they’ll
+          stay, and we’ll never get frost!” What is wrong with his plan?
+        choices:
+          - The geese leaving is a sign that cold is coming. It doesn’t bring the cold.
+          - It needs more bread, because frost stays away only if the geese are very full.
+          - It would work only if he could keep every single goose in Alberta on the farm.
+          - The geese would stay, but then frost would simply come before they had left.
+        answer: 0
+        feedback:
+          '1': Would any amount of bread change the weather? What do the geese have to do with the frost?
+          '2': Suppose he could keep every goose. Would that stop winter from coming?
+          '3': Think about what is causing what. Do the geese decide when the frost comes?
+        hints:
+          - Does one thing coming before another mean that the first thing **causes** the second?
+          - A rooster crows before sunrise. Could you stop the sunrise by keeping it quiet?
+        solution:
+          - The notebook shows that the two events go together. It doesn’t show that the geese cause the frost.
+          - Colder weather is coming either way. The geese are a **sign** of it, like a warning light.
+          - Uncle Stu would just have a very full goose and a frosty farm.
+    wrapUp: Watching animals and weather over many years reveals patterns. A pattern can warn you what is coming, even though the sign doesn’t cause it.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [K5.1, U5.1, S5.1]
-    type: mc
+    thinking: decide
+    covers: [K4.1, K4.3, S4.1, U4.1, K4.4]
+    type: investigation
     prompt: |-
-      Over many years, an Elder notices that when geese gather and fly south early, cold weather also comes early.
-      What does this show?
-    choices:
-      - Observations of animal behaviour and weather over many years can reveal patterns and cycles.
-      - Geese control the weather.
-      - One year of watching geese is enough to predict every winter.
-      - Animal behaviour has nothing to do with the seasons.
-    answer: 0
-    feedback:
-      '1': The geese respond to the seasons. They don't cause them.
-      '2': Patterns show up over **many** years of observing.
-      '3': Seasonal migration is a pattern linked to the seasons.
-    hints:
-      - The Elder noticed this over many years.
-    solution:
-      - Long-term observations of **weather and animal behaviour** reveal **patterns and cycles**, such as seasonal migration.
+      A made-up farm’s **growing season** is the number of days between the last spring frost and the first fall frost.
+      Here are the last 10 seasons, ending with last year:
+
+      **80, 95, 88, 102, 91, 76, 99, 84, 93, 113**
+
+      A seed seller arrives. “Slowpoke Squash needs just 110 days, and last year you had 113! It’s perfect for your farm!”
+
+      | Seed | Days it needs to ripen |
+      |---|---|
+      | Turbo Turnip | 70 |
+      | Bashful Barley | 90 |
+      | Slowpoke Squash | 110 |
+    parts:
+      - type: number
+        prompt: In how many of the 10 seasons would Slowpoke Squash have ripened?
+        answer: 1
+        unit: seasons
+        verify: 10 - 9
+        hints:
+          - The season has to be at least as long as the days the squash needs. Check each number against 110.
+        solution:
+          - Only 113 is at least 110. So the squash would have ripened in just **1** season out of 10.
+      - type: mc
+        prompt: What is the mistake in what the seller said?
+        choices:
+          - One long season is weather. A crop has to suit the pattern over many years.
+          - Squash can’t ever grow on a farm with frost in both spring and fall.
+          - A season of 113 days must be a mistake, so the farmer shouldn’t use it.
+          - Slowpoke Squash needs more than 113 days, so it wouldn’t have ripened last year.
+        answer: 0
+        feedback:
+          '1': It ripened last year, so it can grow here. How often would that happen?
+          '2': Nothing in the story says the number is wrong. Is it the usual length, though?
+          '3': Compare 110 and 113. Would it have ripened last year? So what else is wrong with the seller’s reasoning?
+        hints:
+          - Is last year a good picture of what usually happens on this farm?
+        solution:
+          - The seller is right about last year, but last year was the longest season of the 10.
+          - The crop type has to suit the climate, the pattern over many years, not one lucky summer.
+      - type: number
+        prompt: In how many of the 10 seasons would Bashful Barley have ripened?
+        answer: 6
+        unit: seasons
+        verify: 10 - 4
+        hints:
+          - It helps to cross off the seasons shorter than 90 days.
+        solution:
+          - 80, 88, 76 and 84 are too short. That leaves 95, 102, 91, 99, 93 and 113, so **6** seasons.
+      - type: open
+        prompt: |-
+          Turbo Turnip ripens in **all 10** seasons. Bashful Barley gives a much bigger harvest, but only when it
+          ripens. Which would you plant on this farm? Defend your choice using the numbers.
+        modelAnswer: |-
+          I would plant Turbo Turnip, because it ripened in all 10 seasons and the family would always have a harvest.
+          Barley gives more, but in 4 of the 10 seasons it wouldn’t ripen, and that is a lot of years with nothing. Someone
+          could also choose barley because 6 good harvests might be worth more than 10 small ones, as long as they had
+          food or money saved for the bad years.
+        rubric:
+          - I chose one crop.
+          - I used the numbers (10 out of 10, or 6 out of 10) in my reason.
+          - I said what the farm would give up by making this choice.
+    wrapUp: Farmers choose crops for the climate, the pattern over many years. A single good year can fool you.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [K3.1, S3.1]
-    type: mc
-    prompt: In Alberta, water pipes are buried deep underground. Which climate fact explains this?
-    choices:
-      - Winters are cold enough to freeze the ground near the surface.
-      - Summers are very hot.
-      - Alberta gets more rain than anywhere in Canada.
-      - Pipes are buried deep in every climate on Earth.
-    answer: 0
-    feedback:
-      '1': Hot summers wouldn't damage pipes.
-      '2': Alberta is fairly dry.
-      '3': Places with warm climates don't need to bury pipes as deep.
-    hints:
-      - What happens to water when it gets very cold?
-    solution:
-      - Cold winters freeze the ground near the surface. Burying pipes deep keeps the water from freezing. Climate affects **infrastructure**.
-
-  - id: d4
-    level: 3
-    covers: [S4.1, S4.2, S4.3]
+    thinking: design
+    covers: [K4.5, K4.2, K4.4, S4.2, S4.3]
     type: open
     prompt: |-
-      Describe one way Alberta's climate or weather events affect a farm. Then explain one conservation agriculture
-      practice that helps the farm respond.
+      You are a handful of soil on a bare, ploughed Alberta field. You have had a terrible year, and you are writing
+      to the farmer. In your letter, describe **one or two weather events** that nearly carried you off. Then ask for
+      **two conservation practices**, and explain how each one would help you.
+
+      Be as funny as you like, but keep the science true.
     modelAnswer: |-
-      Southern Alberta can have droughts, so there is less water for crops and cattle. The farmer can use water
-      efficiently, by watering only when the crops need it, and keep stubble on the fields to cover the soil, so it
-      holds moisture and doesn't blow away in windstorms.
+      Dear Farmer, last spring a windstorm blew half my family into a ditch. Then a flood tried to wash the rest of us
+      away. I am tired of being bare! Please leave your stubble on me after the harvest. It would cover me and hold me
+      down in the wind. Also, please plant your seeds without ploughing the whole field. Ploughing breaks me into
+      loose bits that blow away, so leaving me in place would help me stay put. Yours truly, Soil.
     rubric:
-      - I described a real effect of Alberta's climate or a weather event on a farm.
-      - I named a conservation agriculture practice.
-      - I explained how the practice helps.
+      - I described a weather event that can harm soil, such as a windstorm or a flood.
+      - I asked for two real conservation practices.
+      - I explained how each practice protects the soil.
+    hints:
+      - What did you see happen to the bare field in the experiment?
+      - Look back at the table of conservation practices. Which ones would a handful of soil beg for?

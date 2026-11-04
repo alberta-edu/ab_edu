@@ -115,243 +115,312 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.2, K2.3]
+    thinking: recall
+    covers: [K2.1, K2.2, K2.3]
     type: mc
-    prompt: Which is a **closed-list** question?
+    prompt: You want to find out what people in your class put on toast. Which of these is a **closed-list** question?
     choices:
-      - 'Which sport do you like best: soccer, hockey, basketball or swimming?'
-      - What is your favourite thing to do on weekends?
-      - Why do you like your favourite book?
-      - What would you invent if you could?
+      - 'What do you put on toast: butter, jam, honey or nothing?'
+      - What do you put on your toast in the morning at home?
+      - Can you describe the best piece of toast you ever had?
+      - Why do you think some people put jam on their toast?
     answer: 0
     feedback:
-      '1': This allows any answer, so it is open-ended.
-      '2': This allows any answer, so it is open-ended.
-      '3': This allows any answer, so it is open-ended.
+      '1': 'People could say anything here, so this is open-ended. It gives no list to choose from.'
+      '2': 'People could say anything here, so this is open-ended. It gives no list to choose from.'
+      '3': 'People could say anything here, so this is open-ended. It gives no list to choose from.'
     hints:
-      - A closed-list question gives a list of answers to choose from.
+      - In which question are the possible answers already written out?
     solution:
-      - The sports question lists the answers to choose from, so it's **closed-list**.
+      - 'A closed-list question gives a **list of answers to choose from**. Only the first question does that.'
 
   - id: w2
     level: 1
-    covers: [S1.2]
+    thinking: apply
+    covers: [S1.2, U1.1]
     type: number
-    prompt: 'Answers to "Favourite pet?": dog, cat, dog, fish, dog, cat, bird, dog. What is the **frequency** of **dog**?'
-    answer: 4
+    prompt: 'Ten cars are parked outside the school. Their colours are: black, white, red, black, grey, black, white, black, blue, black. What is the **frequency** of black?'
+    answer: 5
+    verify: 1 + 1 + 1 + 1 + 1
     hints:
-      - Count how many times "dog" appears.
+      - What does frequency count?
+      - Go along the list and make a tally mark for every black car.
     solution:
-      - 'dog, cat, **dog**, fish, **dog**, cat, bird, **dog**: dog appears **4** times.'
+      - 'Frequency is how many times a category appears. **Black**, white, red, **black**, grey, **black**, white, **black**, blue, **black**.'
+      - 'Black appears **5** times. Black is the data value, and 5 is its frequency.'
 
   - id: w3
     level: 1
-    covers: [S1.3, K1.2]
+    thinking: apply
+    covers: [S1.3, K1.2, U1.1]
     type: mc
     prompt: |-
-      What is the **mode**?
+      The class voted on a hat for Hat Day. What is the **mode**?
 
-      | Fruit | Frequency |
+      | Hat | Frequency |
       |---|---|
-      | Apple | 6 |
-      | Banana | 9 |
-      | Orange | 4 |
-    choices: ['Banana', '9', 'Apple', 'Orange']
+      | Cowboy hat | 6 |
+      | Toque | 9 |
+      | Top hat | 4 |
+    choices: ['Toque', '9', 'Cowboy hat', 'Top hat']
     answer: 0
     feedback:
-      '1': '9 is the frequency. The mode is the **category**.'
-      '2': 'Apple has 6, but Banana has more.'
-      '3': Orange has the lowest frequency.
+      '1': '9 is how many people chose it. The mode is the **category**, so which hat has that 9?'
+      '2': 'Cowboy hat is first in the table, but does it have the highest frequency?'
+      '3': 'Top hat has the lowest frequency. The mode has the highest.'
     hints:
-      - Find the highest frequency, then give its category.
+      - Find the highest number in the Frequency column. Then look across to its category.
     solution:
-      - 'Banana has the highest frequency, 9, so the mode is **Banana**.'
+      - 'The highest frequency is 9. It belongs to **Toque**, so the mode is Toque.'
 
   - id: w4
     level: 1
-    covers: [K1.2]
+    thinking: notice
+    covers: [S1.3, S1.4, K2.5]
     type: mc
-    prompt: What is the **mode** of a set of categorical data?
+    figure: |-
+      <svg viewBox="0 0 350 190" class="fig-svg" role="img" aria-label="Bar graph of favourite winter activities. Skiing 4, skating 7, sledding 7, hiking 2."><text class="cg-num" x="8" y="18">Students</text><line class="cg-line" x1="42" y1="160" x2="340" y2="160"/><text class="cg-num" x="34" y="165" text-anchor="end">0</text><line class="cg-line" x1="42" y1="128" x2="340" y2="128"/><text class="cg-num" x="34" y="133" text-anchor="end">2</text><line class="cg-line" x1="42" y1="96" x2="340" y2="96"/><text class="cg-num" x="34" y="101" text-anchor="end">4</text><line class="cg-line" x1="42" y1="64" x2="340" y2="64"/><text class="cg-num" x="34" y="69" text-anchor="end">6</text><line class="cg-line" x1="42" y1="32" x2="340" y2="32"/><text class="cg-num" x="34" y="37" text-anchor="end">8</text><rect class="cg-poly" x="56" y="96" width="52" height="64"/><text class="cg-num" x="82" y="180" text-anchor="middle">Skiing</text><rect class="cg-poly" x="128" y="48" width="52" height="112"/><text class="cg-num" x="154" y="180" text-anchor="middle">Skating</text><rect class="cg-poly" x="200" y="48" width="52" height="112"/><text class="cg-num" x="226" y="180" text-anchor="middle">Sledding</text><rect class="cg-poly" x="272" y="128" width="52" height="32"/><text class="cg-num" x="298" y="180" text-anchor="middle">Hiking</text><line class="cg-axis" x1="42" y1="160" x2="340" y2="160"/></svg>
+    prompt: This bar graph shows the winter activity that each student likes best. What can you say about the mode?
     choices:
-      - The category with the highest frequency
-      - The highest frequency number
-      - The category with the lowest frequency
-      - The total number of responses
+      - 'There are two modes: skating and sledding.'
+      - 'There is one mode: skating.'
+      - There is no mode, because the bars aren't all different.
+      - 'There are four modes: one for each bar.'
     answer: 0
     feedback:
-      '1': The mode is a category, not a number.
-      '2': That is the opposite.
-      '3': That is the total, not the mode.
+      '1': 'Check how tall the sledding bar is, beside the skating bar.'
+      '2': 'There is no mode only when all the categories tie. Skiing and hiking are shorter.'
+      '3': 'Only the categories with the highest frequency are modes. Which bars are tallest?'
     hints:
-      - Think "most often".
+      - Which bar is tallest? Is it alone?
     solution:
-      - The mode is the **category** that appears most often.
+      - 'Skating and sledding both reach 7, the highest frequency. So there are **two modes**.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.4]
-    type: mc
+    thinking: model
+    covers: [K2.3, K2.4, S2.4, U2.1, S1.3]
+    type: text
     prompt: |-
-      How many modes does this data set have?
+      A class answers an open-ended question: "What is the weirdest thing in your backpack?"
 
-      | Snack | Frequency |
-      |---|---|
-      | Popcorn | 7 |
-      | Pretzels | 4 |
-      | Fruit | 7 |
-      | Crackers | 2 |
-    choices: ['Two: popcorn and fruit', 'One: popcorn', 'None', 'Four']
-    answer: 0
-    feedback:
-      '1': Fruit is tied with popcorn for the highest frequency.
-      '2': 'There is a highest frequency, 7. It just belongs to two categories.'
-      '3': Only the categories with the highest frequency are modes.
+      Old banana, sock, ruler, sandwich crust, mitten, gym shoe, eraser, apple core, scarf.
+
+      Sort the answers into **Food**, **Clothes** and **School things**. Which category is the mode?
+    accept: ['Clothes', 'Clothing', 'The clothes']
     hints:
-      - Look for every category with the highest frequency.
+      - Make three headings. Where does each answer go?
+      - Count how many answers are under each heading.
     solution:
-      - Popcorn and fruit both have 7, the highest frequency, so there are **two modes**.
+      - 'Food: old banana, sandwich crust, apple core. That is **3**.'
+      - 'Clothes: sock, mitten, gym shoe, scarf. That is **4**.'
+      - 'School things: ruler, eraser. That is **2**.'
+      - 'The mode is **Clothes**. Before sorting, every answer appeared only once, so the list told us nothing. Sorting into categories gave us something to count.'
 
   - id: b2
     level: 2
-    covers: [S2.4, U2.2]
-    type: number
+    thinking: flaw
+    covers: [U1.1, K1.1, S1.5, K1.2]
+    type: mc
     prompt: |-
-      How many students answered the survey?
+      A bowling alley counts the shoe sizes people rented last week. It wants to order more of the size people need most.
 
-      | Lunch | Frequency |
+      | Shoe size | Frequency |
       |---|---|
-      | Pizza | 11 |
-      | Tacos | 8 |
-      | Soup | 5 |
-      | Salad | 3 |
-    answer: 27
-    verify: 11 + 8 + 5 + 3
+      | 3 | 4 |
+      | 4 | 9 |
+      | 5 | 7 |
+      | 6 | 2 |
+
+      Arjun says, "The mode is 9, so order size 9." Which size should it order most of?
+    choices: ['Size 4', 'Size 9', 'Size 6', 'Size 5']
+    answer: 0
+    feedback:
+      '1': 'Look for size 9 in the table. The 9 is in the Frequency column, so it is how many people rented a size.'
+      '2': 'Size 6 is the biggest size, but only 2 people rented it. Does the biggest size have the highest frequency?'
+      '3': 'Size 5 is popular, with 7 rentals. Is there a size with more?'
     hints:
-      - Add all the frequencies.
+      - Both columns are full of numbers. What does each column mean?
+      - Is the mode a category or a count? Which column holds the categories here?
     solution:
-      - '\(11 + 8 + 5 + 3 = 27\) students'
+      - 'Here the categories are numbers too, so it is easy to mix them up. The left column is the **category**, and the right column is the **count**.'
+      - 'The highest count is 9, and it belongs to size **4**. So the mode is size 4.'
+      - 'Arjun read the frequency as the mode. Nobody in this table rented size 9.'
 
   - id: b3
     level: 2
-    covers: [S1.4]
-    type: mc
-    prompt: Which data set has **no mode**?
-    choices:
-      - 'Red 5, Blue 5, Green 5'
-      - 'Red 5, Blue 6, Green 5'
-      - 'Red 2, Blue 6, Green 6'
-      - 'Red 9, Blue 1, Green 1'
-    answer: 0
-    feedback:
-      '1': 'Blue has the highest frequency, so Blue is the mode.'
-      '2': 'Blue and Green tie for the highest, so there are two modes.'
-      '3': 'Red is the mode.'
+    thinking: notice
+    covers: [K2.5, U2.3, S1.3, S1.1]
+    type: number
+    prompt: |-
+      Students stood on one foot with their eyes closed. This stem-and-leaf plot shows how many seconds each one lasted before wobbling.
+
+      | Stem (tens) | Leaves (ones) |
+      |---|---|
+      | 1 | 2 5 8 |
+      | 2 | 0 3 3 3 6 7 |
+      | 3 | 1 4 4 |
+
+      Which exact time, in seconds, is the **mode**?
+    answer: 23
+    verify: 20 + 3
+    unit: seconds
     hints:
-      - When every category has the same frequency, none is "most".
+      - What does one leaf stand for? Try reading the first leaf in the top row as a time.
+      - Which time appears more often than any other? Look for a leaf that repeats in its row.
     solution:
-      - All three have frequency 5, so there is **no mode**.
+      - 'Each leaf is one student. Stem 1 with leaf 2 means 12 seconds.'
+      - 'The times that repeat are 23 (three times) and 34 (two times).'
+      - '23 has the highest frequency, so the mode is **23 seconds**. Its row, the twenties, also has the most leaves: 6 students.'
 
   - id: b4
     level: 2
-    covers: [K2.4, S2.3, S2.1]
+    thinking: evidence
+    covers: [K2.2, S2.2, S1.5]
     type: mc
-    prompt: 'An open-ended question got these answers: soccer, painting, hockey, drawing, skating, music. Which categories fit best?'
-    choices: ['Sports and Arts', 'Summer and Winter', 'Indoor only', 'Long and short words']
+    prompt: 'The school cook asks everyone, "Is my soup delicious, very delicious or the best ever?" The mode is "delicious". The cook says, "So everyone loves my soup." What is wrong with the cook''s evidence?'
+    choices:
+      - The list gives nobody a way to say they don't like the soup.
+      - A mode should be a number, not a word such as "delicious".
+      - This question is open-ended, so its answers can't have a mode.
+      - Too few people chose "best ever" for this mode to count at all.
     answer: 0
     feedback:
-      '1': Painting, drawing and music aren't seasonal.
-      '2': Soccer is usually played outdoors.
-      '3': Categories should help answer the question, not sort spelling.
+      '1': 'A mode is a category, so a word is fine. Summer and Fall can be modes, and so can "delicious".'
+      '2': 'Check the question again. Does it give a list of answers to choose from?'
+      '3': 'A mode only needs the highest frequency. It doesn''t matter how few chose the other answers.'
     hints:
-      - Which answers are alike?
+      - Imagine that you hate the soup. Which answer on the list could you pick?
     solution:
-      - 'Sports: soccer, hockey, skating. Arts: painting, drawing, music.'
-
-  - id: b5
-    level: 2
-    covers: [K2.5, U2.3]
-    type: number
-    prompt: |-
-      This stem-and-leaf plot shows students' ages at a summer camp. How many campers are **in their teens (10 to 19)**?
-
-      | Stem | Leaves |
-      |---|---|
-      | 0 | 8 9 9 |
-      | 1 | 0 0 1 1 1 2 |
-    answer: 6
-    hints:
-      - The stem 1 means ages 10 to 19. Count its leaves.
-    solution:
-      - 'Stem 1 has leaves 0, 0, 1, 1, 1, 2, so **6** campers are 10 to 12 years old.'
+      - 'Every answer on the list says that the soup is good, so a student who dislikes it has nothing true to choose.'
+      - 'The mode can only be one of the answers on the list. So this question could never show that people dislike the soup.'
+      - 'A closed-list question is only as good as its list. It needs answers that people might really want to give.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [U1.1, K1.2]
-    type: mc
-    prompt: 'In a survey table, **Summer** has the highest frequency, **8**. Leo says "the mode is 8." What is correct?'
-    choices: ['The mode is Summer. 8 is its frequency.', 'Leo is correct.', 'The mode is 4, half of 8.', 'There is no mode.']
-    answer: 0
-    feedback:
-      '1': 'The mode is a **category**, not a count.'
-      '2': 'Halving the frequency has nothing to do with the mode.'
-      '3': 'Summer has the highest frequency, so it is the mode.'
-    hints:
-      - Is the mode a category or a number?
-    solution:
-      - 'The mode is the **category** with the highest frequency: **Summer**. The 8 is how many chose it.'
+    thinking: breakdown
+    covers: [U1.1, S1.1, S1.2, K2.5, K1.2]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 340 178" class="fig-svg" role="img" aria-label="Dot plot of teeth lost this year. 0 teeth: 3 dots. 1 tooth: 6 dots. 2 teeth: 5 dots. 3 teeth: 2 dots."><circle class="cg-pt" cx="50" cy="136" r="8"/><circle class="cg-pt" cx="50" cy="116" r="8"/><circle class="cg-pt" cx="50" cy="96" r="8"/><text class="cg-num" x="50" y="168" text-anchor="middle">0 teeth</text><circle class="cg-pt" cx="130" cy="136" r="8"/><circle class="cg-pt" cx="130" cy="116" r="8"/><circle class="cg-pt" cx="130" cy="96" r="8"/><circle class="cg-pt" cx="130" cy="76" r="8"/><circle class="cg-pt" cx="130" cy="56" r="8"/><circle class="cg-pt" cx="130" cy="36" r="8"/><text class="cg-num" x="130" y="168" text-anchor="middle">1 tooth</text><circle class="cg-pt" cx="210" cy="136" r="8"/><circle class="cg-pt" cx="210" cy="116" r="8"/><circle class="cg-pt" cx="210" cy="96" r="8"/><circle class="cg-pt" cx="210" cy="76" r="8"/><circle class="cg-pt" cx="210" cy="56" r="8"/><text class="cg-num" x="210" y="168" text-anchor="middle">2 teeth</text><circle class="cg-pt" cx="290" cy="136" r="8"/><circle class="cg-pt" cx="290" cy="116" r="8"/><text class="cg-num" x="290" y="168" text-anchor="middle">3 teeth</text><line class="cg-axis" x1="12" y1="146" x2="328" y2="146"/></svg>
+    prompt: |-
+      A tooth fairy is planning her budget. She asked one class, "How many teeth did you lose this year?" In this dot plot, **each dot is one child**.
+
+      She leaves **1 coin for each tooth**.
+    parts:
+      - type: number
+        prompt: How many children answered?
+        answer: 16
+        verify: 3 + 6 + 5 + 2
+        hints:
+          - What does each dot stand for?
+        solution:
+          - 'Each dot is one child, so count all the dots: \(3 + 6 + 5 + 2 = 16\) children.'
+      - type: number
+        prompt: How many coins does she need for this class?
+        answer: 22
+        verify: (0 * 3) + (1 * 6) + (2 * 5) + (3 * 2)
+        unit: coins
+        hints:
+          - Is the number of dots the same as the number of teeth? Look at a child in the "2 teeth" column.
+          - Work out the teeth for one column at a time. In the "2 teeth" column, 5 children lost 2 teeth each.
+        solution:
+          - 'A dot counts a **child**, not a tooth. So 16 can''t be the answer.'
+          - '0 teeth: 3 children, 0 coins. 1 tooth: 6 children, 6 coins.'
+          - '2 teeth: 5 children, 10 coins. 3 teeth: 2 children, 6 coins.'
+          - '\(0 + 6 + 10 + 6 = 22\) coins.'
+      - type: mc
+        prompt: 'The mode is "1 tooth". Her helper says, "So the 1-tooth column will cost the most coins." Is the helper right?'
+        choices:
+          - No. The 2-teeth column has fewer dots, but it costs more coins.
+          - Yes. The mode has the most dots, so it must cost the most coins.
+          - Yes. It costs 6 coins, and no other column costs more than 5 coins.
+          - No. The 3-teeth column costs the most, since 3 is the biggest number.
+        answer: 0
+        feedback:
+          '1': 'Check your coin count for each column. Which column needed the most coins?'
+          '2': 'The 5 is how many dots are in the 2-teeth column. How many coins do those 5 children get?'
+          '3': 'The 3-teeth column costs 6 coins, because it has only 2 dots. Which column costs more than that?'
+        hints:
+          - Look back at your coins for each column. Which column is the biggest?
+          - The mode tells you which column has the most children. Does it say anything about how many teeth each child lost?
+        solution:
+          - 'The 1-tooth column has the most dots, so it is the mode. It costs 6 coins.'
+          - 'The 2-teeth column has only 5 dots, but each child gets 2 coins. It costs **10 coins**.'
+          - 'The mode tells you the most common answer. It doesn''t tell you where the most coins go.'
+    wrapUp: 'A frequency counts how many times a category appears, which isn''t the same as the value of the category. Here, the dots counted children, while the categories counted teeth.'
 
   - id: d2
     level: 3
-    covers: [S1.5, K1.1]
-    type: mc
-    prompt: The class wants to choose a field trip that **the most students** will enjoy. What should they do?
-    choices:
-      - Ask a closed-list question with the trip choices, then pick the mode.
-      - Ask one student and do what they say.
-      - Pick the trip with the lowest frequency.
-      - Pick the trip that's first in alphabetical order.
-    answer: 0
-    feedback:
-      '1': One student's opinion doesn't show what most students want.
-      '2': The lowest frequency is what the **fewest** students chose.
-      '3': Alphabetical order has nothing to do with what students enjoy.
-    hints:
-      - Which statistic tells you the most popular choice?
-    solution:
-      - Survey everyone with a closed list of trips. The **mode** is the trip chosen most often.
+    thinking: decide
+    covers: [K2.4, S1.5, K1.1, S2.2, S2.1]
+    type: investigation
+    prompt: |-
+      Grade 5 votes for a team mascot.
+
+      | Mascot | Votes |
+      |---|---|
+      | Goose | 9 |
+      | Bear | 5 |
+      | Wolf | 4 |
+      | Fox | 4 |
+
+      The goose is announced as the winner. Then the bear, wolf and fox fans complain.
+    parts:
+      - type: number
+        prompt: How many students voted for a **furry** animal?
+        answer: 13
+        verify: 5 + 4 + 4
+        hints:
+          - Which of the mascots are furry?
+        solution:
+          - 'Bear, wolf and fox are furry: \(5 + 4 + 4 = 13\) students.'
+      - type: mc
+        prompt: The goose is the mode, but 13 students wanted a furry animal. How did the goose win?
+        choices:
+          - The furry votes were split among three animals, so none of them reached 9.
+          - More students wanted a goose than all of the furry animals put together.
+          - A mode needs over half of all the votes, and the goose got over half of them.
+          - The goose was at the top of the list, so everybody who was unsure picked it.
+        answer: 0
+        feedback:
+          '1': 'Compare the two numbers: 9 votes for the goose and 13 for the furry animals.'
+          '2': 'A mode only needs the highest frequency, not over half. Here, 9 is less than half of the 22 votes.'
+          '3': 'Nothing in the table tells us why anyone voted as they did. Look at how the votes are spread out.'
+        hints:
+          - If the same 13 students had all picked one furry animal, how many votes would it have?
+        solution:
+          - 'Each furry animal got only some of the 13 votes: 5, 4 and 4. The goose got all of the bird votes.'
+          - 'So the goose has the highest frequency when we sort by **animal**. When we sort by **bird or furry**, the mode is **furry**.'
+      - type: open
+        prompt: 'Help the school decide. Write a new **closed-list** question for a second vote that is fairer to everyone. Then say how you would use the answers to pick the mascot.'
+        modelAnswer: |-
+          First I would ask, "Which kind of mascot do you want: a bird or a furry animal?" I would count the votes for each answer. The answer
+          with the highest frequency, the mode, is the kind we choose. If it is furry, a second vote between bear, wolf and fox picks the animal.
+        rubric:
+          - My question gives a list of answers to choose from.
+          - My list stops the furry votes from being split among three animals.
+          - I said that I would count the votes for each answer and choose the mode.
+    wrapUp: 'The same answers can be sorted in different ways, and the mode can change when you do. Before you trust a mode, ask whether the categories fit your question.'
 
   - id: d3
     level: 3
-    covers: [S1.4, K1.2]
-    type: mc
-    prompt: 'Votes so far: Spring 3, Summer 5, Fall 5, Winter 2. One more student votes for **Fall**. What happens to the mode?'
-    choices:
-      - It changes from two modes (Summer and Fall) to one mode, Fall.
-      - It stays the same.
-      - Now there is no mode.
-      - Summer becomes the only mode.
-    answer: 0
-    feedback:
-      '1': Before, there was a tie between Summer and Fall. Now Fall has 6.
-      '2': A mode only disappears when all the categories tie.
-      '3': The new vote went to Fall, not Summer.
+    thinking: backwards
+    covers: [S1.4, K1.2, S1.2]
+    type: number
+    prompt: 'At Field Day, 20 students vote for a slushie flavour: grape, lime or cherry. Grape and lime tie for the most votes, and cherry is behind. Then the late bus arrives with **one more student**, who votes cherry. Now there is **no mode**. How many votes did cherry have before the bus came?'
+    answer: 6
+    verify: 21 / 3 - 1
+    unit: votes
     hints:
-      - What are the modes before the vote? After?
+      - What must be true about all three flavours when a data set has no mode?
+      - After the late vote, how many votes are there in all? How would they be shared out?
+      - There are 21 votes and three flavours with the same frequency. So how many did each get? Now go back one vote.
     solution:
-      - 'Before: Summer and Fall tie at 5, so there are two modes. After: Fall has 6, so **Fall** is the only mode.'
-
-  - id: d4
-    level: 3
-    covers: [S2.2, S1.5]
-    type: open
-    prompt: 'You want to know: "What is the most popular lunch in our class?" Write a **closed-list question** you could ask, and explain how you would use the answers.'
-    modelAnswer: |-
-      "Which lunch do you like best: pizza, tacos, soup or salad?" I would count how many students chose each lunch and
-      put the counts in a frequency table or bar graph. The lunch with the highest frequency, the mode, is the most
-      popular lunch.
-    rubric:
-      - My question gives a list of answers to choose from.
-      - I explained that I would count the frequency of each answer.
-      - I said the mode answers the question.
+      - 'Start at the end. No mode means that all three flavours tie.'
+      - 'There are now \(20 + 1 = 21\) votes, so each flavour has \(21 \div 3 = 7\).'
+      - 'Go back one vote. The late student voted cherry, so cherry had \(7 - 1 = 6\) before the bus came.'
+      - 'Check the start: grape 7, lime 7, cherry 6. That is 20 votes, with grape and lime tied for the most. It works!'
+      - 'What we learned: one vote can change two modes into no mode at all.'

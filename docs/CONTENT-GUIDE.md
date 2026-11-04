@@ -1,5 +1,8 @@
 # Writing a concept
 
+Practice problems are written to [QUESTION-STANDARD.md](QUESTION-STANDARD.md). Read it before writing
+any. It defines what makes a problem deep, what is above the grade, and when to use each type.
+
 One concept is one YAML file: `content/grade-5/<subject>/<id>.yaml`. The file name must
 match `id`, and the concept must already be listed in `content/grade-5/roadmap.yaml`.
 Schema: [`src/lib/schema.ts`](../src/lib/schema.ts). The four finished concepts are the
@@ -59,13 +62,16 @@ heavy) rather than describing the idea in words.
 
 ## Rule 3: quality over quantity
 
-About 4 Warm-up, 4–5 Build and 3–4 Deep Think problems per concept.
+About 10–12 problems per concept, never more than 13: 3–4 Warm-up, 4 Build and 3–4 Deep Think.
 
-- **Warm-up**: recall and direct one-step use of the idea.
-- **Build**: a new representation (figure, number line, map, excerpt), a word problem,
-  or two steps.
-- **Deep Think**: find the error, reverse the question, find the greatest or least,
-  explain, or apply to an unfamiliar case. Tricky, never unfair.
+- **Warm-up**: one idea, one step, a quick win.
+- **Build**: read a story, table, figure or map, then decide what to do.
+- **Deep Think**: real thinking with friendly numbers: investigate, design, find the flaw,
+  work backwards, defend a choice. Harder means deeper. It doesn't mean bigger numbers or more steps.
+
+Every problem names its `thinking:` move. `npm run verify` rejects a Deep Think level that is only
+multiple choice or uses a single move, bare calculations at Deep Think, near-duplicates and math above
+Grade 5. `npm run verify -- <concept-id>` checks one topic.
 
 Every wrong `mc` choice needs `feedback` that explains the misconception behind it.
 Every computed answer needs a `verify:` expression, which is checked with exact
@@ -92,6 +98,8 @@ money. Fractions always render full-size. In YAML, put math in single quotes
 | `order` | `items`, written in the correct order (they are shuffled at build time) |
 | `evidence` | `passage` (id), `paragraphs` (excerpt), `answer` (sentence ids `p9s1`…), `feedback` per sentence id |
 | `open` | `modelAnswer`, `rubric` (2–5 self-check items); hints and solution are optional |
+| `build` | Many right answers: `fields`, `rules` (`test`, `fail`), `examples`, `counterexamples` |
+| `investigation` | A story (`prompt`) with 2–4 linked `parts`, shown one at a time, and a `wrapUp`. Parts can be `mc`, `multi`, `number`, `fraction`, `text`, `build` or `open` |
 
 Figures (in problems, `figure` blocks and `compare` columns):
 - `{ kind: fraction-bars, n, d, wholes }`

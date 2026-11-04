@@ -146,220 +146,372 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.3]
+    thinking: apply
+    covers: [K1.4, S1.3]
     type: mc
-    prompt: Who digs up and studies **objects and buildings** left behind by people of the past?
-    choices: [An archaeologist, A geographer, A historian, An anthropologist]
+    prompt: Four social scientists arrive at a made-up ancient town, and each one hurries off in a different direction. Which one hurries to the **old river bank and the farm soil**?
+    choices:
+      - The geographer
+      - The historian
+      - The archaeologist
+      - The anthropologist
     answer: 0
     feedback:
-      '1': A geographer studies places, land and how people use them.
-      '2': A historian mainly studies written records.
-      '3': An anthropologist studies how people lived and what they valued.
+      '1': A historian hurries to the written records. Are rivers and soil written down?
+      '2': An archaeologist hurries to objects and buildings that people left behind. Did people make the river?
+      '3': An anthropologist hurries to clues about how people lived and what they valued. What are rivers and soil clues about?
     hints:
-      - Which social scientist worked at the dig in the Pompeii picture?
+      - What are a river bank and farm soil part of?
+      - Which social scientist studies places, and how people use the land?
     solution:
-      - An **archaeologist** studies objects and buildings that people left behind.
+      - Rivers and soil are part of the land. Studying places, and how people use them, is the work of a **geographer**.
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [S1.4]
-    type: mc
-    prompt: Which is a **primary** source about ancient Egypt?
+    type: multi
+    prompt: You are studying ancient Rome. Which of these are **primary** sources? Choose all that apply.
     choices:
-      - A clay pot made in ancient Egypt
-      - A library book about Egypt, published in 2020
-      - A documentary film about the pharaohs
-      - An encyclopedia article on the Nile
-    answer: 0
+      - A Roman soldier’s letter home, asking for more socks
+      - A coin made in Rome and dug up in a field
+      - A wall painting from a house in Rome
+      - A video game about Rome that came out last year
+      - A chapter on Rome in your textbook
+    answer: [0, 1, 2]
     feedback:
-      '1': This book was written long after the time of ancient Egypt, so it is secondary.
-      '2': This film was made long after, so it is secondary.
-      '3': This article explains the past from long after, so it is secondary.
+      '3': It shows Rome, but who made it, and when?
+      '4': Textbook writers study the evidence and explain it long after. When was this chapter written?
     hints:
-      - Which one was made at the time, by someone living then?
+      - For each one, ask when it was made.
+      - Remember that a primary source can be an object as well as writing.
     solution:
-      - The pot was made **at the time**, so it is a primary source. Objects count too.
+      - A primary source was made **at the time**. The letter, the coin and the painting all come from ancient Rome.
+      - The game and the textbook were made much later, so they are secondary.
 
   - id: w3
     level: 1
-    covers: [K1.4]
-    type: multi
-    prompt: Which of these are **social scientists** who study evidence of ancient civilizations? Choose all that apply.
-    choices: [Historians, Geographers, Anthropologists, Archaeologists, Astronauts]
-    answer: [0, 1, 2, 3]
-    feedback:
-      '4': Astronauts travel in space. The other four study evidence of the past.
-    hints:
-      - The lesson named four.
-    solution:
-      - Historians, archaeologists, anthropologists and geographers are all social scientists.
-
-  - id: w4
-    level: 1
+    thinking: notice
     covers: [K1.5]
     type: mc
-    prompt: Can our understanding of the past change?
+    prompt: Which made-up news headline shows an **interpretation of the past changing** because of new evidence?
     choices:
-      - Yes, when new evidence or new technology appears.
-      - No, once it is written in a book, it can never change.
-      - Yes, but only if a historian guesses differently.
-      - No, because the past is over.
+      - New dig shows that town’s walls are 500 years older than experts thought
+      - Museum moves its famous old statue to a bigger room upstairs
+      - Experts agree that the old king’s name is hard to remember
+      - Textbook about ancient Egypt gets a bright new cover
     answer: 0
     feedback:
-      '1': The eruption date at Pompeii is being rethought because of a new find.
-      '2': Interpretations change because of evidence, not because of guesses.
-      '3': The past is over, but what we **know** about it can still grow.
+      '1': The statue has moved, but has anyone learned something new about it?
+      '2': A hard name is annoying, but has anyone changed their mind about the past?
+      '3': A cover changes what the book looks like. Do the ideas inside change?
     hints:
-      - Think about the Rosetta Stone.
+      - Which headline has something newly found in it?
+      - In which headline do experts now think something different?
     solution:
-      - Interpretations can evolve as **new evidence and technology** appear.
+      - An interpretation is the best explanation of the evidence so far.
+      - In the first headline, a new dig gives new evidence, and experts change what they think about the walls.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [S1.3]
+    thinking: flaw
+    covers: [S1.4, K1.5]
     type: mc
-    prompt: 'A researcher asks: "Why did people settle near this volcano?" and studies the soil and the nearby bay. Who is this most likely to be?'
-    choices: [A geographer, A historian, An archaeologist, An anthropologist]
+    prompt: |-
+      At a yard sale, a seller offers an old letter “from a soldier who helped find the Rosetta Stone in 1799”. It says:
+
+      *Found a big stone today. Now scholars can read hieroglyphs at last!*
+
+      A museum worker laughs. “No soldier wrote that on that day.” She hasn’t even tested the paper. How can she tell?
+    choices:
+      - Scholars couldn’t read hieroglyphs until 1822, so no one knew this in 1799.
+      - The stone has only Greek on it, so it could never help with hieroglyphs.
+      - Soldiers in 1799 couldn’t read or write, so none of them could send a letter.
+      - Paper wears away in a few years, so no letter from 1799 could last until now.
     answer: 0
     feedback:
-      '1': A historian would mainly look to written records.
-      '2': An archaeologist would mainly dig for objects and buildings.
-      '3': An anthropologist would mainly ask how people lived and what they valued.
+      '1': The stone carries the same message in Greek and in hieroglyphs. That is why it helped.
+      '2': Plenty of people could write letters in 1799. Look at what this letter claims to know instead.
+      '3': She didn’t test the paper at all. Look at what the words say.
     hints:
-      - Soil and bays are features of what?
+      - Read the letter as if you were that soldier on that day. What do you know about the future?
+      - The stone was found in 1799. Scholars could read hieroglyphs by 1822. Put those two dates side by side.
+      - Could anyone looking at the stone on the day it was found know how the story would end?
     solution:
-      - Soil, bays and why people settled in a place are questions about land and place, so this is a **geographer**.
+      - Try being the soldier. The stone has just come out of the ground. You can see writing on it, and that is all.
+      - Scholars worked it out by 1822, more than 20 years later. No one in 1799 could know that yet.
+      - So the letter was written long after, by someone who already knew the ending. It isn’t a primary source from that day at all.
 
   - id: b2
     level: 2
-    covers: [S1.4, S1.5]
+    thinking: notice
+    covers: [S1.4]
     type: mc
-    prompt: 'Pliny the Younger was 17 when Vesuvius erupted. He wrote about it years later, watching from across the bay. Which is true of his letter?'
+    prompt: In an attic, you find a school textbook about ancient Egypt, printed in **1950**. Which of these is true?
     choices:
-      - It is a primary source, but it shows only what one person saw.
-      - It is a secondary source, because he wrote it down later.
-      - It is a primary source, so everything in it must be correct.
-      - It is not useful, because he was young.
+      - It’s secondary about ancient Egypt, and primary about what children read in 1950.
+      - It’s secondary about everything, because a textbook can never be a primary source.
+      - It’s primary about ancient Egypt, because a book from 1950 counts as very old.
+      - It’s of no use for anything, since people know much more now than they did in 1950.
     answer: 0
     feedback:
-      '1': He lived through the event himself, so it is primary even though he wrote it later.
-      '2': Primary sources can have mistakes and limits, like any other source.
-      '3': His age is a limit to think about, but an eyewitness account is very valuable.
+      '1': What could this book show someone who is studying schools in 1950? Was it made at that time?
+      '2': Being old isn’t what makes a source primary. Was it made at the time of ancient Egypt?
+      '3': It has limits as a book about Egypt. But is Egypt the only thing that someone could study with it?
     hints:
-      - Was he there? Could he have seen everything?
+      - Primary means made **at the time being studied**. So what is being studied?
+      - Try two different studies. First study ancient Egypt, then study schools in 1950.
     solution:
-      - Pliny was there, so the letter is **primary**. It still gives one person's view from one place, so we compare it with other sources.
+      - Whether a source is primary depends on your question. So ask what is being studied.
+      - For ancient Egypt, the book was written thousands of years later by people explaining the evidence, so it is secondary.
+      - For schools in 1950, the book was made at that very time, so it is primary.
 
   - id: b3
     level: 2
+    thinking: evidence
     covers: [S1.5]
     type: mc
-    prompt: You want to know **what the eruption looked like to someone there**, and **how much land the ash covered**. Which sources fit best?
+    prompt: |-
+      Ten years ago, a town’s hockey team lost a big game. You have two sources.
+
+      **A.** A player’s diary from that night: “We were robbed! Worst day of my life!”
+
+      **B.** A book about the league, written last year, with every score from every season.
+
+      Which source is best for each question? **1.** How did losing feel? **2.** Was that a good season for the team?
     choices:
-      - Pliny's letter for the first, and a modern study for the second
-      - A modern study for the first, and Pliny's letter for the second
-      - Pliny's letter for both
-      - Neither source can help
+      - A for question 1, and B for question 2
+      - B for question 1, and A for question 2
+      - A for both, because the player was there
+      - B for both, because the writer checked it
     answer: 0
     feedback:
-      '1': Only someone who was there can tell you how it looked to them. A modern study is best for measuring the ash.
-      '2': Pliny could see only part of the area. Mapping all the ash takes modern study.
-      '3': Each of these sources helps with one of the questions.
+      '1': Who could tell you how that night felt? Could the diary tell you every score of the season?
+      '2': The player knows that game well. But can one night’s diary show a whole season?
+      '3': The book has every score. But can a list of scores tell you how a person felt?
     hints:
-      - Which question needs an eyewitness? Which one needs a lot of measurements?
+      - Which question needs someone who was there?
+      - Which question needs a lot of information, gathered together afterward?
     solution:
-      - An eyewitness gives the first. A modern secondary source that combines many digs and measurements gives the second.
+      - The diary is a primary source. It brings you close to the event, so it is best for how losing felt.
+      - The book is a secondary source. It gives the bigger picture, so it is best for the whole season.
+      - The diary says “we were robbed”, but that is one upset person’s view. To check it, you would want other sources too.
 
   - id: b4
     level: 2
-    covers: [K1.5]
-    type: order
-    prompt: Put the story of reading hieroglyphs in order.
-    items:
-      - Egyptians carve hieroglyphs for thousands of years.
-      - People lose the ability to read hieroglyphs.
-      - The Rosetta Stone is found in 1799.
-      - Scholars compare the stone's Greek and hieroglyphs.
-      - By 1822, hieroglyphs can be read again.
+    thinking: connect
+    covers: [S1.3, K1.5]
+    type: mc
+    prompt: Imagine four social scientists studying ancient Egypt in the year **1800**. No one can read hieroglyphs yet. Whose work is **most** blocked?
+    choices:
+      - The historian
+      - The archaeologist
+      - The anthropologist
+      - The geographer
+    answer: 0
+    feedback:
+      '1': Can pots, tools and ruins still be dug up and studied, even if no one can read?
+      '2': Family shrines and art can still be looked at. Which kind of evidence can’t be used here?
+      '3': The Nile and the soil are still there to study. Do they need reading?
     hints:
-      - What had to happen before the stone could help?
+      - What can’t be used if no one can read hieroglyphs?
+      - Which social scientist mainly studies that kind of evidence?
     solution:
-      - Hieroglyphs were used, then forgotten. The stone was found and compared, and it opened up Egypt's own records.
+      - Hieroglyphs are writing, so Egypt’s own written records can’t be used yet.
+      - Written records are what a **historian** mainly studies. The other three can keep going with objects, art and land.
+      - So when the Rosetta Stone unlocked hieroglyphs, a huge pile of new evidence opened up, all at once. That changed the story of Egypt.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S1.4]
-    type: mc
-    prompt: 'A historian in ancient Rome writes about the Egyptian pyramids, which were already 2,000 years old. For someone studying **how the pyramids were built**, this writing is…'
-    choices:
-      - secondary, because the writer did not live when they were built.
-      - primary, because everything from ancient times is primary.
-      - primary, because the writer was a historian.
-      - useless, because it is too old.
-    answer: 0
-    feedback:
-      '1': Old does not always mean primary. What matters is whether it comes from the time being studied.
-      '2': Being a historian does not make writing primary. Timing matters.
-      '3': Old writing can still be useful. You just need to know what it can show.
-    hints:
-      - Primary means made **at the time being studied**. When were the pyramids built?
-    solution:
-      - The writer lived 2,000 years after the pyramids were built, so for this question the writing is **secondary**.
+    thinking: breakdown
+    covers: [S1.4, S1.5, K1.5]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 360 200" class="fig-svg" role="img" aria-label="A stone carving. A queen with a crown stands three times as tall as the three soldiers beside her.">
+        <rect class="fig-rect" x="4" y="4" width="352" height="192" rx="6"/>
+        <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M72 36 l-2 -16 l8 8 l8 -10 l8 10 l8 -8 l-2 16 Z"/>
+          <circle cx="86" cy="50" r="14"/>
+          <line x1="86" y1="64" x2="86" y2="130"/>
+          <line x1="86" y1="84" x2="54" y2="110"/>
+          <line x1="86" y1="84" x2="118" y2="110"/>
+          <line x1="86" y1="130" x2="66" y2="182"/>
+          <line x1="86" y1="130" x2="106" y2="182"/>
+          <circle cx="170" cy="137" r="5"/><line x1="170" y1="142" x2="170" y2="164"/><line x1="170" y1="150" x2="160" y2="158"/><line x1="170" y1="150" x2="180" y2="158"/><line x1="170" y1="164" x2="163" y2="182"/><line x1="170" y1="164" x2="177" y2="182"/>
+          <circle cx="230" cy="137" r="5"/><line x1="230" y1="142" x2="230" y2="164"/><line x1="230" y1="150" x2="220" y2="158"/><line x1="230" y1="150" x2="240" y2="158"/><line x1="230" y1="164" x2="223" y2="182"/><line x1="230" y1="164" x2="237" y2="182"/>
+          <circle cx="290" cy="137" r="5"/><line x1="290" y1="142" x2="290" y2="164"/><line x1="290" y1="150" x2="280" y2="158"/><line x1="290" y1="150" x2="300" y2="158"/><line x1="290" y1="164" x2="283" y2="182"/><line x1="290" y1="164" x2="297" y2="182"/>
+        </g>
+      </svg>
+    prompt: |-
+      A stone carving, made in Queen Tavi’s own time in the made-up land of Tesh, shows her three times as tall as her soldiers.
+
+      A book from 1890 says, “Queen Tavi was a giant.” Its writer had only the carving to go on.
+
+      Then, in 2020, diggers open her tomb. Her sandals are the same size as everyone else’s.
+    parts:
+      - type: multi
+        prompt: Sort the sources first. Which are **primary** sources about Queen Tavi? Choose all that apply.
+        choices:
+          - The carving
+          - The sandals
+          - The book from 1890
+        answer: [0, 1]
+        feedback:
+          '2': It’s old to us. But was it made in the queen’s own time?
+        hints:
+          - Which of these were made while Queen Tavi was alive, or soon after?
+        solution:
+          - The carving and the sandals come from her own time, so they are primary. An object counts too.
+          - The book came much later and explains older evidence, so it is secondary, even though it is old to us.
+      - type: mc
+        prompt: Why did the book from 1890 get it wrong?
+        choices:
+          - It explained the only evidence that was known when it was written.
+          - Its writer wanted to trick people into thinking that she was a giant.
+          - Any book written before about 1900 is too old to be correct at all.
+          - A secondary source can’t ever be trusted to explain any evidence.
+        answer: 0
+        feedback:
+          '1': The story gives no sign of a trick. What did the writer have to go on?
+          '2': Age isn’t the problem here. What couldn’t this writer have seen in 1890?
+          '3': Secondary sources are very useful, and they give the big picture. What was this writer missing?
+        hints:
+          - What had the writer seen by 1890? What hadn’t been found yet?
+        solution:
+          - The tomb wasn’t opened until 2020. In 1890, the carving was all there was to explain.
+          - A secondary source depends on what is known when it is written. That is why it can repeat a mistake.
+      - type: mc
+        prompt: The sandals show she wasn’t a giant. So what is the carving good for now?
+        choices:
+          - It can show how the queen wanted people to see her.
+          - It can show the real height of a queen in those days.
+          - It’s good for nothing now, as one mistake ruins a source.
+          - It’s proof that the sandals must belong to someone else.
+        answer: 0
+        feedback:
+          '1': Now that we have the sandals, is this a good way to learn how tall she was?
+          '2': Think about why someone would carve her so big. Could that still tell us something true?
+          '3': Should we throw out the new evidence to save the old idea? What else could explain the carving?
+        hints:
+          - Who wanted this carving made? Why would they want a queen to look so huge?
+        solution:
+          - The carving is poor evidence for her height. But it is good evidence for something else, which is how she wanted to be seen. Bigger meant more important.
+          - So a source can be wrong about one thing and still be true evidence about another.
+      - type: open
+        prompt: The museum in Tesh still has an old sign that says, “Queen Tavi, the giant.” Write a better sign in 2 or 3 sentences. Use all three sources.
+        modelAnswer: |-
+          Queen Tavi was probably the same size as her people, as her sandals show. This carving shows her huge because she wanted people to see her as powerful. A book from 1890 called her a giant, because its writer had only seen the carving.
+        rubric:
+          - My sign says what the sandals show.
+          - My sign says what the carving really shows.
+          - My sign explains why the 1890 book said what it did.
+        hints:
+          - Tell visitors what each source got right, or what it was missing.
+    wrapUp: An interpretation is the best explanation of the evidence so far. When new evidence came along, the story of Queen Tavi changed. The old sources were not thrown away. We just learned to ask them better questions.
 
   - id: d2
     level: 3
-    covers: [K1.5, S1.5]
-    type: mc
+    thinking: perspective
+    covers: [K1.4, K1.5]
+    type: investigation
     prompt: |-
-      Copies of Pliny's letter point to an eruption in August, but a charcoal note found on a wall in Pompeii
-      is dated October 17. Why do many experts now lean toward the fall?
-    choices:
-      - Faint charcoal would soon wear away, so the note was likely written just before the eruption.
-      - A charcoal note is always more correct than a letter.
-      - Pliny said that he had lied about the date.
-      - All the experts have agreed, and no one can question it now.
-    answer: 0
-    feedback:
-      '1': No kind of source is always correct. Each must be weighed.
-      '2': Nothing suggests that he lied. What we have are copies, made over many centuries.
-      '3': Experts are still discussing it, and that is how interpretations work.
-    hints:
-      - Why would it matter that the note was written in faint charcoal?
-    solution:
-      - Faint charcoal fades quickly, so a note this clear was likely written shortly before the ash buried it. That is new evidence for a later date.
+      It is the year 4000. Dr. Vee, an archaeologist, digs up a buried Grade 5 classroom. Her report says:
+
+      “We found 30 small chairs facing one big chair. A round object with numbers on it hangs high on the wall. I believe small people came here to worship the round object, led by a priest in the big chair.”
+    parts:
+      - type: mc
+        prompt: Which of these is **evidence**, rather than Dr. Vee’s interpretation?
+        choices:
+          - The 30 small chairs faced one big chair.
+          - Small people came here to worship.
+          - A priest sat in the big chair.
+          - The round object was holy to them.
+        answer: 0
+        feedback:
+          '1': Could she dig up the act of worship? Or is this what she thinks it all means?
+          '2': Did she dig up a priest? Or is she guessing who sat there?
+          '3': She found the round object. But did she find out how people felt about it?
+        hints:
+          - Evidence is what she could actually pick up and point to.
+        solution:
+          - She really did find the chairs. That is evidence.
+          - Worship, priests and holiness are her explanation of what the chairs mean. That is an interpretation, and it might be wrong.
+      - type: mc
+        prompt: Next, she finds a sealed jar with a paper in it. It says, “Math at 9. Recess at 10:15. Gym at 1.” What should a good archaeologist do?
+        choices:
+          - Change her mind. It was a room for learning, and the round object told the time.
+          - Keep the temple idea. Her report came first, so the newer paper must be wrong.
+          - Stop trusting the chairs. If the idea was wrong, then the chairs must be wrong too.
+          - Throw the paper away. An archaeologist studies objects, and it has writing on it.
+        answer: 0
+        feedback:
+          '1': Is an idea right because it came first? What does a good social scientist do with better evidence?
+          '2': The chairs are still real. Which part was wrong, the chairs or what she thought they meant?
+          '3': Social scientists share evidence. Who else would love to read this paper, and help her?
+        hints:
+          - What did the paper show that the chairs couldn’t show?
+          - What has to change, the evidence or the explanation?
+        solution:
+          - A timetable changes everything. People came here to learn, at set times, so the round object was probably a clock.
+          - The chairs didn’t change. Her explanation of them did. Changing an interpretation isn’t a failure, and it is how social scientists work.
+      - type: open
+        prompt: Now it’s your turn. Pick something from your home or school that an archaeologist in the year 4000 could get very wrong. What might they think it was? What source could set them straight?
+        modelAnswer: |-
+          I picked a hockey stick. An archaeologist might think it was a tool for sweeping floors, or a weapon, because it is long and has a flat end. A rule book for hockey would set them straight, or a photo of a game, since it shows people using sticks to hit a puck.
+        rubric:
+          - I picked one thing and said what it really is.
+          - I gave a wrong explanation that fits how the thing looks.
+          - I named a source, and I said how it would show the true story.
+        hints:
+          - What looks strange if you don’t know what it is for? Think about shape and size.
+          - Then ask what kind of writing or picture would explain it.
+    wrapUp: Objects can last for thousands of years, but they don’t explain themselves. Social scientists study the evidence and offer the best explanation they can, and new evidence can change it. Who knows? The Romans might laugh at some of what we think about them.
 
   - id: d3
     level: 3
-    covers: [S1.3]
+    thinking: notice
+    covers: [K1.5, S1.5]
     type: mc
-    prompt: 'A burial is found with pots, a written name and seeds from far away. Which pair of questions best shows how two social scientists might study it **differently**?'
+    prompt: |-
+      Copies of Pliny’s letter point to an eruption in August. The charcoal note found in Pompeii gives a date of **October 17**, but it gives **no year**.
+
+      Lucía says, “Nobody could write on a wall buried under ash. So August is wrong. Case closed!” What must experts know before they can be sure?
     choices:
-      - 'Anthropologist: "What does this burial show about what people believed?" Geographer: "Where did the seeds grow, and how did they get here?"'
-      - 'Anthropologist: "How deep is the soil layer?" Geographer: "What does the written name say?"'
-      - 'Anthropologist: "What does the written name say?" Geographer: "What does this burial show about beliefs?"'
-      - Both would ask exactly the same questions.
+      - Whether the note was written in the same year as the eruption
+      - Who wrote the note, and what kind of work that person did
+      - How far away the note’s wall stood from Mount Vesuvius
+      - Whether the note’s writer had ever read Pliny’s letter
     answer: 0
     feedback:
-      '1': Soil layers fit an archaeologist, and names fit a historian.
-      '2': These questions fit a historian and an anthropologist.
-      '3': They work together, but each one looks at the evidence through a different lens.
+      '1': That would be interesting. But would it change what the date tells us?
+      '2': Ash fell on the whole town. Does the distance change whether the note disproves August?
+      '3': Pliny wrote his letter about 25 years after the eruption. Could the note’s writer have read it?
     hints:
-      - Who studies beliefs? Who studies places?
+      - Lucía’s reasoning is good. But is there a gap in it? Read the date again.
+      - What if the note was written the October before the eruption? Would August still be wrong?
+      - What would you have to know for Lucía’s idea to work?
     solution:
-      - Anthropologists ask about beliefs and ways of life. Geographers ask about places, and how things moved between them.
+      - Lucía’s thinking works, but only if the note comes from the year of the eruption. Then the town wasn’t yet buried in October, so August can’t be right.
+      - If the note came from an earlier year, it wouldn’t tell us anything about August.
+      - Experts point out that charcoal fades quickly, so the note was probably fresh. That makes the fall likely, but not certain, so they are still discussing it. Sometimes the honest answer is “probably”.
 
   - id: d4
     level: 3
+    thinking: design
     covers: [S1.6, K1.5]
     type: open
-    prompt: Imagine a new technology that doesn't exist yet. How could it change what we know about one ancient civilization?
+    prompt: A museum will pay you to invent one machine that doesn’t exist yet, to study the ancient world. What does it do? Choose one ancient place. How could your machine change what we think about it? What would it **still** not be able to tell us?
     modelAnswer: |-
-      I imagine a drone that can see through sand. It could fly over the deserts of Egypt and find buried
-      villages where ordinary farmers lived. Most evidence we have is about pharaohs, since their tombs lasted.
-      Finding these villages could change our view of what daily life in Egypt was like.
+      My machine is a flying scanner that can see through deep sand. I would use it in Egypt to find the buried homes of ordinary farmers. So much of what we know comes from big tombs, so finding these homes could change what we think daily life was like.
+
+      It still couldn’t tell us what the farmers were thinking or feeling, unless they left writing behind.
     rubric:
-      - I described a new technology.
-      - I named a civilization, and said what evidence the technology could find.
-      - I explained how that evidence could change what we think about the past.
+      - I described a machine, and I chose one ancient place.
+      - I said what new evidence it could find, and how that could change what we think.
+      - I said something that it still couldn’t tell us.
+    hints:
+      - Think about what is hidden, buried, burned or too faded to read.
+      - Once you’ve found new evidence, what might people have to change their minds about?
+      - What kind of question could even the best machine never answer?

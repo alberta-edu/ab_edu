@@ -131,230 +131,401 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
+    thinking: apply
     covers: [K1.3, S1.4]
     type: mc
-    prompt: What does the prefix **sub-** mean in *subway* and *submarine*?
-    choices: [Under, Around, Across, Out]
+    prompt: |-
+      A silly sign at the park says **NO TRANSPUDDLING!** The word isn’t real, but its prefix is. What is the
+      sign banning?
+    choices:
+      - Going across the puddles
+      - Going around the puddles
+      - Going under the puddles
+      - Taking water out of the puddles
     answer: 0
     feedback:
-      '1': That is *circum-*.
-      '2': That is *trans-*.
-      '3': That is *ex-*.
+      '1': That would be *circum-*. Which prefix is on the sign?
+      '2': That would be *sub-*. Which prefix is on the sign?
+      '3': That would be *ex-*. Which prefix is on the sign?
     hints:
-      - Where does a subway train run? Where does a submarine go?
+      - Cover up “puddling.” Which prefix is left?
+      - Think of *transport*. Where does it carry things?
     solution:
-      - A subway runs **under** the ground, and a submarine travels **under** the sea.
+      - Find the prefix first. *Trans-* means “across.”
+      - So transpuddling is going **across** puddles. You can read a word you have never seen, even a made-up one.
 
   - id: w2
     level: 1
-    covers: [K1.3, S1.4]
+    thinking: notice
+    covers: [K1.1, S1.1, K2.2]
     type: mc
-    prompt: A **musician** is a person who makes music. Which part of the word tells you it is a person?
-    choices: ['-ian', 'music', 'mus', 'ci']
+    prompt: |-
+      A dictionary says: **pyjamas**. From Hindi and Urdu, from Persian *pā* “leg” + *jāma* “garment.”
+
+      Going by its origin, what does the word *pyjamas* name?
+    choices:
+      - Something you wear on your legs
+      - Something you wear to sleep
+      - Something you wear at home
+      - Something you wear in Persia
     answer: 0
     feedback:
-      '1': That is the base. It tells you what the person works with.
-      '2': That is only part of the base, and has no meaning here.
-      '3': Those letters aren’t a word part here. Look at the end of the word.
+      '1': That is how we use the word today. The question asks what its parts first said. Read the meanings in the entry.
+      '2': That fits how we use them today, but neither part of the word means home.
+      '3': Persian is the language the word came through. The word’s parts don’t name a place.
     hints:
-      - Think of *historian* and *musician*. What do they share?
+      - The entry gives you two parts. What does each part mean?
+      - Put the two meanings together.
     solution:
-      - The suffix **-ian** means “a person who does or knows.”
+      - '*Pā* means “leg” and *jāma* means “garment,” so the word names a **garment for the legs**.'
+      - A word’s origin can tell you something that its meaning today doesn’t. And your bedtime clothes have a word that came from Asia.
 
   - id: w3
     level: 1
-    covers: [K1.1, S1.1]
+    thinking: recall
+    covers: [S3.3, S3.2]
     type: mc
-    prompt: Which language did the word **kayak** come from?
-    choices: [Inuktitut, French, Latin, Japanese]
+    prompt: |-
+      Your friend says, “the distance all the way around the outside of the rectangle.” Which **tier 3** math
+      word says all of that at once?
+    choices: [perimeter, area, compare, predict]
     answer: 0
     feedback:
-      '1': French gave English *menu*, and it passed along *toboggan*.
-      '2': Latin gave English *video*.
-      '3': Japanese gave English *emoji*.
+      '1': Area is a tier 3 math word too, but it means the space inside a shape, not the distance around it.
+      '2': You compare things in every subject, so this is a tier 2 word. It doesn’t mean a distance either.
+      '3': You predict in science, reading and more, so this is a tier 2 word. It doesn’t mean a distance either.
     hints:
-      - Check the map in the first step. Where is its pin?
+      - A tier 3 word belongs to one subject. Which of these did you learn in math?
+      - Are you walking around the edge of the shape or covering the inside?
     solution:
-      - '*Kayak* comes from the Inuktitut word *qayaq*, “hunter’s boat.”'
+      - '**Perimeter** means the distance around a shape. It belongs to math, so it is a tier 3 word.'
+      - One exact word can do the work of a whole long phrase.
 
   - id: w4
     level: 1
-    covers: [K2.2, S2.3]
-    type: mc
-    prompt: You keep writing the word *happy* and want another word to use. Which tool should you open **first**?
-    choices: [A thesaurus, A map, A calculator, A glossary of science words]
-    answer: 0
-    feedback:
-      '1': A map shows places, not words.
-      '2': A calculator works with numbers, not words.
-      '3': A science glossary won’t list other words for *happy*.
+    thinking: apply
+    covers: [K1.3, S1.4]
+    type: text
+    prompt: |-
+      A *historian* knows history. A *musician* makes music. What do you call a person who does **magic**?
+      Use the same suffix.
+    accept: [magician, a magician]
     hints:
-      - Which tool gives other words with similar meanings?
+      - Which ending do *historian* and *musician* share?
+      - Add that ending to *magic*.
     solution:
-      - A **thesaurus** lists words with similar meanings, such as *joyful* or *cheerful*.
+      - The suffix **-ian** means “a person who does or knows.”
+      - '*Magic* + *-ian* = **magician**.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
+    thinking: notice
     covers: [K1.3, S1.4]
-    type: text
-    prompt: Join the base and the affix to make a word. **trans** + **port** = ?
-    accept: [transport]
+    type: multi
+    prompt: |-
+      Mina is writing a joke dictionary. “**Elephant:** a person who elephs.”
+
+      It’s funny because *-ant* is a real suffix, but not in *elephant*. Which of these words **really** have the
+      suffix *-ant*? Take off *-ant* and see if a real word with a linked meaning is left. A silent *e* may have
+      dropped when the suffix joined on.
+    choices: [pleasant, plant, giant, servant, ant]
+    fixedOrder: true
+    answer: [0, 3]
+    feedback:
+      '1': Take off *-ant* and you have *pl*. That isn’t a word, so these letters are not a suffix here.
+      '2': Take off *-ant* and you have *gi*. That isn’t a word, so these letters are not a suffix here.
+      '4': Take off *-ant* and nothing at all is left. An ant is not a person who does anything!
     hints:
-      - Just join the two parts. The spelling doesn’t change.
+      - Try the test on each word. What is left when you cover the last three letters?
+      - For *pleasant* and *servant*, try putting a silent *e* back on what is left.
+      - Is what you found linked to the whole word’s meaning?
     solution:
-      - '*trans* (across) + *port* (carry) = **transport**, to carry across.'
+      - '*Pleasant* leaves *please*: something pleasant is pleasing. *Servant* leaves *serve*: a servant is a person who serves.'
+      - '*Plant* and *giant* leave *pl* and *gi*, and *ant* leaves nothing. So in those words the last letters just happen to look like a suffix.'
+      - 'What we learned: letters that look like an affix aren’t always one. Test what is left.'
 
   - id: b2
     level: 2
-    covers: [K1.3, S1.4, U1.1]
+    thinking: connect
+    covers: [S1.4, K1.3, U1.1]
     type: mc
-    prompt: What does the word **export** most likely mean? (*ex-* = out, *port* = carry)
+    prompt: |-
+      In a video game, your character can **teleport**. That word was shortened from *teleportation*, which was
+      made by joining *tele* “far away,” the same part as in *telephone*, to the end of *transportation*. So the
+      *port* in it comes from *transport*. Going by those parts, what does your character do?
     choices:
-      - To send goods out of a country
-      - To carry something across a river
-      - To bring goods into a country
-      - To keep goods in a warehouse
+      - Gets carried far away
+      - Hears a voice from far away
+      - Sails to a far-off harbour
+      - Carries a far-off phone
     answer: 0
     feedback:
-      '1': “Across” would need *trans-*.
-      '2': That is the opposite. *ex-* means out, not in.
-      '3': That doesn’t carry anything out at all.
+      '1': That is *telephone*, where *tele* joins with a part meaning “voice.” What does *port* mean in *transport*?
+      '2': A *port* can also be a harbour, but that is a different word. Here the base is the one in *transport*. What does *transport* do?
+      '3': Nothing here is about a phone. *Tele* only means “far away,” and it joins many words.
     hints:
-      - Use each part’s meaning. Out + carry = ?
+      - What does *transport* do to goods? That tells you what *port* means.
+      - Now put “far away” and that meaning together.
     solution:
-      - Carry out. To **export** is to send goods **out** of a country.
+      - In *transport*, *port* means “carry.” *Tele* means “far away.”
+      - Far + carry = **carried far away**. The word tells you what the power does.
+      - Another way to check it is to ask whether it fits the game. Your character does vanish here and turn up far away ✓
 
   - id: b3
     level: 2
+    thinking: evidence
     covers: [K1.2, S1.2]
     type: mc
     prompt: |-
-      Long ago, people said the night sky was **awful**. They meant it was full of awe. If someone says that today,
-      what would most listeners think?
+      Imagine a letter written hundreds of years ago: “That winter we had little **meat**: only bread, apples and
+      a pot of beans.”
+
+      Judging from the letter, what did the word *meat* mean to the writer?
     choices:
-      - The sky looks very bad.
-      - The sky is full of awe.
-      - The sky is new.
-      - The sky is made of a material called awe.
+      - Any kind of food
+      - Only beef or pork
+      - Only bread and grains
+      - Only food for winter
     answer: 0
     feedback:
-      '1': That was the old meaning. The word has changed since then.
-      '2': The word doesn’t tell you anything about age.
-      '3': It describes how something seems, not what it is made of.
+      '1': That is close to what the word means today. But the writer lists bread, apples and beans as the meat they had.
+      '2': Then apples and beans wouldn’t be on the list. What do all three things have in common?
+      '3': The letter says “that winter,” but that tells you when, not what the word means. Look at the list after it.
     hints:
-      - What does *awful* mean when you say it about food today?
+      - What does the writer list as their “meat”?
+      - What do bread, apples and beans have in common?
     solution:
-      - 'Vocabulary changes over time. *Awful* once meant “awe-inspiring,” and today it means **very bad**.'
+      - Don’t use today’s meaning. Use the writer’s own clue, the list after the colon.
+      - Bread, apples and beans are all **food**, so *meat* must have meant food of any kind.
+      - The letter is made up, but the history is true. *Meat* comes from an Old English word for food, and vocabulary changes over time.
 
   - id: b4
     level: 2
-    covers: [S1.3, K1.2]
-    type: multi
-    prompt: Which of these words are **new** to English, from about the last 30 years?
-    choices: [selfie, podcast, blog, sky, menu]
-    fixedOrder: true
-    answer: [0, 1, 2]
-    feedback:
-      '3': '*Sky* came into English from Old Norse long ago.'
-      '4': '*Menu* came into English from French long before computers.'
-    hints:
-      - Three of these needed the internet or cell phones to exist.
-    solution:
-      - '*Selfie* (2002), *podcast* (2004) and *blog* (1999) are all new words. They reflect how we live now.'
+    thinking: notice
+    covers: [K2.2, S2.3]
+    type: text
+    prompt: |-
+      You write, “Grandma’s new sunglasses are **cool**.” You click your app’s *Make It Fancy* button. It looks in a
+      thesaurus, which lists *chilly*, *calm* and *stylish*, and it picks the first word:
 
-  - id: b5
-    level: 2
-    covers: [S3.2, S3.3]
-    type: mc
-    prompt: Which is a **tier 3** word?
-    choices: [latitude, compare, predict, explain]
-    answer: 0
-    feedback:
-      '1': You compare things in every subject, so this is a tier 2 word.
-      '2': You can predict in science, reading and more, so this is a tier 2 word.
-      '3': You explain in every subject, so this is a tier 2 word.
+      “Grandma’s new sunglasses are chilly.”
+
+      Which listed word did you really mean?
+    accept: [stylish]
     hints:
-      - A tier 3 word belongs to one subject.
+      - Picture the sunglasses. What were you saying about them?
+      - Try each listed word in your sentence.
     solution:
-      - '**Latitude** belongs to social studies, so it is a tier 3 word.'
+      - '*Cool* has more than one meaning, and each listed word matches only one of them. *Chilly* is about temperature, and *calm* is about staying relaxed.'
+      - You meant **stylish**. Words from a thesaurus aren’t exact matches, so choose by meaning, and look up any new word in a dictionary.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
+    thinking: breakdown
     covers: [K1.3, S1.4, U1.1]
-    type: mc
-    prompt: '*Transmit*, *permit* and *admit* all share the base **mit**. What does **mit** mean, and how can you tell?'
-    choices:
-      - Send, because each word is about sending or letting something go somewhere.
-      - Carry, because all three have to do with suitcases.
-      - Under, because all three have to do with going below.
-      - It has no meaning, because a base is only a group of letters.
-    answer: 0
-    feedback:
-      '1': '**port** is the base that means “carry.” And none of these words is about suitcases.'
-      '2': '**sub-** means under, and it isn’t in any of these words.'
-      '3': A base holds the main meaning of a word. That is what makes it so useful.
-    hints:
-      - To transmit is to send across. What does that leave for *mit*?
-    solution:
-      - Take away *trans-* (across), and **mit** must mean **send**.
+    type: investigation
+    prompt: |-
+      A **tractor** hauls a plow across a field. Your boot sinks in deep mud, and you **extract** it (*ex-* means
+      “out”). Both words hold the same base: **tract**. Let’s follow this base and see where it turns up.
+    parts:
+      - type: text
+        prompt: What do you think the base **tract** means? Answer in one word.
+        accept: [pull, pulls, pulling, to pull, drag, drags, dragging, to drag, draw, tug, haul, hauls, hauling, yank]
+        hints:
+          - What is the tractor doing to the plow?
+          - What are you doing to your boot, in the direction “out”?
+        solution:
+          - A tractor pulls a plow. To extract your boot is to pull it out of the mud. So **tract** means “pull.”
+      - type: mc
+        prompt: |-
+          The prefix *ad-* means “to, toward.” Its *d* sometimes changes to match the next letter, so *ad* + *tract*
+          is spelled **attract**. A fridge magnet *attracts* a paper clip. Going by the parts, what does the magnet do?
+        choices:
+          - It pulls the clip toward itself.
+          - It pulls the clip out and away.
+          - It pulls the clip down under it.
+          - It pulls the clip across the room.
+        answer: 0
+        feedback:
+          '1': That sounds like *ex-*. What does *ad-* mean?
+          '2': That sounds like *sub-*. What does *ad-* mean?
+          '3': That sounds like *trans-*. What does *ad-* mean?
+        hints:
+          - Put together “to, toward” and “pull.”
+        solution:
+          - Toward + pull = pull toward. A magnet pulls the clip **toward** itself.
+      - type: mc
+        prompt: |-
+          Here is a surprise from math: **subtract** is *sub-* (“under, below”) + *tract*. Long ago in Latin it meant
+          “to pull from beneath, to take away.” When you do \(12 - 5\), how does the base *tract* fit what you are doing?
+        choices:
+          - You pull 5 away from the 12.
+          - You pull 5 more into the 12.
+          - You write the 5 under the 12.
+          - You move the 12 across the 5.
+        answer: 0
+        feedback:
+          '1': Pulling more in is adding, and the answer would get bigger. What happens to the 12 here?
+          '2': You often do write it that way, and *sub-* does mean “under.” But how does that use *tract*? Which part of the word means “pull”?
+          '3': That sounds like *trans-*. Think about how many are left after you subtract.
+        hints:
+          - Picture 12 blocks. What do you physically do to find \(12 - 5\)?
+        solution:
+          - Picture 12 blocks and pull 5 away. You have fewer left, which is what subtraction does.
+      - type: mc
+        prompt: |-
+          Your dog is trotting straight home when a squirrel darts past. Now the dog is staring up a tree, and home is
+          forgotten. You say, “The squirrel **distracted** him.” Here *dis-* means “apart.” Which picture does the word
+          really paint?
+        choices:
+          - His attention got pulled off in another direction.
+          - His legs got too tired to carry on going home.
+          - His memory lost the way home for good.
+          - His owner pulled him toward the tree by the leash.
+        answer: 0
+        feedback:
+          '1': Nothing in the word or the story says he’s tired. What does *tract* mean, and what is being pulled?
+          '2': He hasn’t lost his way. He’s only looking at something else. What is being pulled apart?
+          '3': There is a pull here, but who or what is doing the pulling in the story?
+        hints:
+          - Use *dis-* “apart” and *tract* “pull.” What gets pulled apart from what?
+          - The dog’s body hasn’t been pulled. So what has?
+        solution:
+          - Apart + pull = pulled apart. Nobody touched the dog, but his **attention** was pulled away from going home.
+          - That is what a distraction feels like, and now you can see why the word fits.
+    wrapUp: A tractor, a magnet, a math sum and a distracted dog all share one base. A base keeps its meaning across a whole family of words, so learning one can unlock many.
+    hints: []
+    solution: []
 
   - id: d2
     level: 3
-    covers: [S2.3, K2.2]
-    type: mc
+    thinking: perspective
+    covers: [K1.2, S1.2, S1.3, S3.1]
+    type: investigation
     prompt: |-
-      Omar uses a thesaurus to replace *big* with *obese*. He writes, “We live in an obese house.”
-      What went wrong?
-    choices:
-      - He didn’t check how the new word is used. A dictionary would show it describes people’s bodies, not houses.
-      - Thesauruses always give wrong words.
-      - The word *big* is spelled incorrectly.
-      - Houses can never be described by adjectives.
-    answer: 0
-    feedback:
-      '1': A thesaurus gives useful options, but they aren’t exact matches. You have to choose carefully.
-      '2': '*Big* is spelled correctly. The problem is the new word.'
-      '3': Adjectives such as *spacious* describe houses well.
-    hints:
-      - What is the tool that tells you what a word really means?
-    solution:
-      - Words from a thesaurus are not exact matches. Check them in a **dictionary**. *Spacious* would fit here.
+      You leave this note on the fridge:
+
+      > *The mouse is broken. My selfies are safe in the cloud. Send Dad an emoji.*
+
+      Then your great-great-grandmother Edith steps out of a time machine from the year 1900 and reads it. She
+      has never seen a computer. Think like Edith.
+    parts:
+      - type: mc
+        prompt: Where does Edith think your selfies are, whatever selfies might be?
+        choices:
+          - Up in the sky, in a real cloud
+          - On a computer a long way off
+          - In a locked box called a cloud
+          - In a drawer in the kitchen
+        answer: 0
+        feedback:
+          '1': That’s what you meant, but Edith has never seen a computer. What did *cloud* mean in her time?
+          '2': In 1900, *cloud* wasn’t the name of a box. What did people picture when they heard it?
+          '3': Nothing in the note points to a drawer. Which word in the note says where they are?
+        hints:
+          - What did *cloud* mean before computers?
+        solution:
+          - Back then, a cloud was only water droplets in the sky. So poor Edith looks up.
+      - type: multi
+        prompt: Some words in the note fool Edith because she knows an older meaning. Other words she has **never met at all**. Which has she never met?
+        choices: [selfies, mouse, emoji, cloud, Dad]
+        fixedOrder: true
+        answer: [0, 2]
+        feedback:
+          '1': Edith knows this word well, but she pictures a small furry animal.
+          '3': Edith knows this word well. She just pictures the sky.
+          '4': Edith knows this word, and it means just what it means to you.
+        hints:
+          - Which of these words were made because of phones and the internet?
+        solution:
+          - '*Selfie* and *emoji* are new to English. Neither word existed in 1900.'
+          - '*Mouse* and *cloud* are old words with new jobs, and that’s why they’re the ones that fool her.'
+      - type: mc
+        prompt: |-
+          *Dad* means the same to Edith as it does to you. So why did *mouse* and *cloud* pick up new meanings
+          when *Dad* didn’t?
+        choices:
+          - People’s lives changed, and new things needed names.
+          - Longer words change much faster than shorter words.
+          - Words about nature change, and words about family don’t.
+          - Somebody changes a list of words every few years.
+        answer: 0
+        feedback:
+          '1': '*Mouse* is only a little longer than *Dad*, and many short words have changed. Is length really the reason? What was new in the world?'
+          '2': That fits these three words, but it’s a guess from a very small list. *Mouse* now names a computer tool. What new thing needed that name?
+          '3': Nobody is in charge of that. People change words simply by using them.
+        hints:
+          - What arrived in the world between 1900 and now?
+          - Did anything new turn up that needed a *dad* word?
+        solution:
+          - New machines arrived, and people needed names for them, so they gave old words new jobs.
+          - Vocabulary reflects how people are using words at that time. When life changes, words change too.
+      - type: open
+        prompt: |-
+          Rescue Edith! Rewrite **The mouse is broken** so that she understands it. You can’t use *mouse* or *computer*,
+          or any other word she wouldn’t know from 1900.
+        modelAnswer: |-
+          The small box that I slide around my desk with my hand is broken. It used to move an arrow on a glass
+          window that lights up and shows pictures and words.
+        rubric:
+          - I did not use *mouse* or *computer*, or any other word from after 1900.
+          - I described what the thing looks like or what it does, using everyday words.
+          - Someone from 1900 could picture the thing from what I wrote.
+    wrapUp: A word’s meaning belongs to its time. When you read something old, or explain something new, ask what the words meant to the people using them.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
-    covers: [K1.1, K1.2, S1.1]
-    type: mc
-    prompt: '*Sky* once meant “cloud” in Old Norse. *Nice* once meant “ignorant” in Latin. What do these two histories show?'
-    choices:
-      - Words come from other languages, and their meanings can change.
-      - Words never change once they enter English.
-      - All English words come from Old Norse.
-      - People used to be wrong about the weather.
-    answer: 0
-    feedback:
-      '1': These two words changed a lot. Compare the old meanings with today’s.
-      '2': English words come from a variety of origins, as the map showed.
-      '3': These are histories of words, not of weather science.
+    thinking: why
+    covers: [K1.1, S1.1, U1.1]
+    type: open
+    prompt: |-
+      English borrowed all of these words from Inuit and First Nations languages of North America.
+
+      | Word | Comes from | What it names |
+      |---|---|---|
+      | kayak | Inuktitut | a hunter’s boat |
+      | muskeg | Cree | a northern bog |
+      | saskatoon | Cree | a berry |
+      | moose | an Eastern Algonquian language | a large animal |
+
+      These languages were spoken on this land long before any English was. What do the things in the last column have in
+      common? Why do you think English speakers borrowed these words instead of making up their own?
+    modelAnswer: |-
+      They all name things that people came to know by living on this land: an animal, a berry, a kind of wet ground
+      and a boat for its waters. Inuit built kayaks, and Cree speakers knew muskeg and saskatoons, long before English
+      speakers arrived. They already had good words for these things, so it made sense to borrow those words.
+    rubric:
+      - I said what the things have in common, using the table.
+      - I explained that the people already living here, such as Inuit and Cree speakers, had words for these things first.
+      - I explained why that made borrowing make sense for the English speakers who arrived.
     hints:
-      - Compare each word’s old meaning with its meaning today.
-    solution:
-      - English has words from **a variety of origins**, and vocabulary **changes over time**.
+      - Look only at the last column. How would a person come to know all of these things?
+      - Who already knew these things well, and who was meeting them for the first time?
 
   - id: d4
     level: 3
-    covers: [S2.2, S2.1, S3.1]
+    thinking: design
+    covers: [K1.3, S1.3, S1.4, S3.1]
     type: open
     prompt: |-
-      Start your **word log**. Choose a word from a book, a show or a talk that you liked. Write the word, what it
-      means, where you found it, and a sentence of your own. Then explain how you will remember it.
+      New words get made whenever people need them. The world needs a word for **something that has vanished under
+      the sofa**, or for another thing you choose that has no name yet.
+
+      Invent the word, using at least one affix from this topic. Then write one sentence so clear that a friend who
+      has never seen your word could work out what it means.
     modelAnswer: |-
-      **Word:** spacious. **Meaning:** having plenty of room. **Found in:** a book about the Space Station.
-      **My sentence:** Our new tent is so spacious that the dog has her own corner. **To remember it:** I see the word
-      *space* inside it, and a spacious room has lots of space.
+      **Word:** subsofa. It uses *sub-*, “under,” plus *sofa*.
+      **My sentence:** “The remote, three socks and my good pencil have all gone subsofa, so I got the broom to fish them
+      back out from under there.”
+      A friend can spot *sub-* from *subway*, and the sentence shows that things have gone missing below the sofa.
     rubric:
-      - I chose a word that interested me and said where I found it.
-      - I wrote what it means.
-      - I used it in a sentence of my own.
-      - I described a way to remember it.
+      - My word uses at least one affix from this topic, and I said what that affix means.
+      - The meaning of my word comes from its parts.
+      - My sentence gives clues that would help a friend work out the word.
+    hints:
+      - Which affix gets you closest? Under? Around? Across? A person who does something?
+      - Say your word aloud. Would a friend be able to spot the parts?

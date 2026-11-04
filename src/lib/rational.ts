@@ -26,6 +26,11 @@ export const sub = (a: Rational, b: Rational) => rat(a.n * b.d - b.n * a.d, a.d 
 export const mul = (a: Rational, b: Rational) => rat(a.n * b.n, a.d * b.d);
 export const div = (a: Rational, b: Rational) => rat(a.n * b.d, a.d * b.n);
 export const eq = (a: Rational, b: Rational) => a.n === b.n && a.d === b.d;
+/** Remainder after dividing a by b: a - b × floor(a / b). "x % 3 == 0" reads "x is divisible by 3". */
+export const mod = (a: Rational, b: Rational) => {
+  const q = div(a, b);
+  return sub(a, mul(b, rat(Math.floor(q.n / q.d))));
+};
 export const toNumber = (r: Rational) => r.n / r.d;
 
 /** Parses "12", "2.375" or "-0.5" exactly. */
@@ -38,11 +43,11 @@ export function parseDecimal(s: string): Rational | null {
 }
 
 /**
- * Evaluates + - * / and parentheses with exact fractions. Accepts × and ÷.
- * Used by `verify:` fields in content, e.g. "(3 * 4 + 3) / 4".
+ * Evaluates + - * / % and parentheses with exact fractions. Accepts × and ÷.
+ * Used by `verify:` fields in content, e.g. "(3 * 4 + 3) / 4". Names like `w` are read from `vars`.
  */
-export function evaluate(expr: string): Rational {
-  const tokens = expr.replace(/×/g, '*').replace(/÷/g, '/').match(/\d+(?:\.\d+)?|\.\d+|[-+*/()]/g);
+export function evaluate(expr: string, vars: Record<string, Rational> = {}): Rational {
+  const tokens = expr.replace(/×/g, '*').replace(/÷/g, '/').match(/\d+(?:\.\d+)?|\.\d+|[a-zA-Z]\w*|[-+*/%()]/g);
   if (!tokens || tokens.join('') !== expr.replace(/×/g, '*').replace(/÷/g, '/').replace(/\s+/g, '')) {
     throw new Error(`Cannot parse expression: ${expr}`);
   }
@@ -58,13 +63,21 @@ export function evaluate(expr: string): Rational {
       return v;
     }
     if (t === '-') return mul(rat(-1), primary());
+    if (t !== undefined && /^[a-zA-Z]/.test(t)) {
+      if (!(t in vars)) throw new Error(`Unknown name "${t}" in: ${expr}`);
+      return vars[t];
+    }
     const v = t === undefined ? null : parseDecimal(t);
     if (!v) throw new Error(`Unexpected "${t}" in: ${expr}`);
     return v;
   }
   function product(): Rational {
     let v = primary();
-    while (peek() === '*' || peek() === '/') v = next() === '*' ? mul(v, primary()) : div(v, primary());
+    while (peek() === '*' || peek() === '/' || peek() === '%') {
+      const op = next();
+      const right = primary();
+      v = op === '*' ? mul(v, right) : op === '/' ? div(v, right) : mod(v, right);
+    }
     return v;
   }
   function sum(): Rational {
@@ -76,6 +89,32 @@ export function evaluate(expr: string): Rational {
   const v = sum();
   if (i !== tokens.length) throw new Error(`Unexpected "${peek()}" in: ${expr}`);
   return v;
+}
+
+/**
+ * Checks a rule such as "2 * (w + h) == 24 && w != h" with exact arithmetic.
+ * Clauses are joined with && and each one compares two expressions.
+ */
+export function holds(rule: string, vars: Record<string, Rational>): boolean {
+  return rule.split('&&').every((clause) => {
+    const m = /^(.+?)(==|!=|<=|>=|<|>)(.+)$/.exec(clause.trim());
+    if (!m) throw new Error(`A rule needs a comparison: ${clause}`);
+    const diff = sub(evaluate(m[1], vars), evaluate(m[3], vars)).n;
+    switch (m[2]) {
+      case '==':
+        return diff === 0;
+      case '!=':
+        return diff !== 0;
+      case '<':
+        return diff < 0;
+      case '>':
+        return diff > 0;
+      case '<=':
+        return diff <= 0;
+      default:
+        return diff >= 0;
+    }
+  });
 }
 
 export type FractionForm = 'whole' | 'proper' | 'improper' | 'mixed' | 'decimal';

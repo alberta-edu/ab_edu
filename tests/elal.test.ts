@@ -208,6 +208,7 @@ describe('ELAL lessons', () => {
     for (const c of concepts) {
       for (const p of c.problems) {
         if (p.type === 'open') expect(p.rubric.length, `${c.id}/${p.id}`).toBeGreaterThan(1);
+        else if (p.type === 'investigation') expect(p.wrapUp.length, `${c.id}/${p.id}`).toBeGreaterThan(0);
         else expect(p.solution.length, `${c.id}/${p.id}`).toBeGreaterThan(0);
       }
     }

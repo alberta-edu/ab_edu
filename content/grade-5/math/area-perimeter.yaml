@@ -104,202 +104,372 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [S1.5]
+    thinking: recall
+    covers: [K1.3, S1.2, S1.3]
     type: mc
-    prompt: Which unit is best for the area of a **postcard**?
-    choices: ['cm²', 'm²', 'km²', 'cm']
-    fixedOrder: true
+    prompt: Which of these has an area of exactly **1 m²**?
+    choices:
+      - A square 100 cm by 100 cm
+      - A square 10 cm by 10 cm
+      - A square 1 m around its edge
+      - A strip 100 cm by 1 cm
     answer: 0
     feedback:
-      '1': A postcard is much smaller than 1 m².
-      '2': km² is for huge areas, like cities.
-      '3': cm measures length. Area needs **square** units.
+      '1': '\(10 \times 10 = 100\), so this is only 100 cm². Your hand could cover it. How long is each side of a square metre?'
+      '2': 'Around the edge is the perimeter, not the area. With only 1 m around it, each side is just 25 cm.'
+      '3': '\(100 \times 1 = 100\), so this is only 100 cm². It is a single row of squares, and a square metre needs many rows.'
     hints:
-      - A postcard is smaller than your hand.
+      - Picture 1 m². What shape is it, and how long is each side?
+      - Now write that side length in centimetres.
     solution:
-      - 'A postcard is small, so **cm²** fits.'
+      - 'Start from the meaning: 1 m² is the area of a square with sides of 1 m.'
+      - '1 m is 100 cm, so that same square is **100 cm by 100 cm**.'
 
   - id: w2
     level: 1
+    thinking: apply
     covers: [S1.7]
     type: number
-    figure: { kind: rect, w: 9, h: 6, unit: cm }
-    prompt: What is the **area** of this rectangle?
-    unit: cm²
-    answer: 54
-    verify: 9 * 6
+    figure: { kind: rect, w: 8, h: 5, unit: m }
+    prompt: Anika wants new carpet to cover this whole floor. How much carpet does she need?
+    unit: m²
+    answer: 40
+    verify: 8 * 5
     hints:
-      - Multiply the side lengths.
+      - Does the carpet go around the floor, or cover it?
+      - Covering a surface means area. Area of a rectangle = length × width.
     solution:
-      - '\(9 \times 6 = 54\), so the area is **54 cm²**.'
+      - 'Carpet covers the surface, so this is an **area** question.'
+      - '\(8 \times 5 = 40\), so Anika needs **40 m²** of carpet.'
 
   - id: w3
     level: 1
-    covers: [S1.3, S1.4]
-    type: mc
-    prompt: 'How many square centimetres are in **1 square metre**?'
-    choices: ['10 000', '100', '1 000', '1 000 000']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': '1 m = 100 cm is a **length**. A square metre is 100 cm **by** 100 cm.'
-      '2': 'That would be a square about 32 cm on each side.'
-      '3': '1 000 000 is the number of m² in a km².'
+    thinking: notice
+    covers: [S1.10]
+    type: number
+    prompt: 'Mina glues ribbon all the way around the edge of a card. The card is **15 cm** long and **10 cm** wide. How much ribbon does Mina need?'
+    unit: cm
+    answer: 50
+    verify: 2 * (15 + 10)
     hints:
-      - '1 m² is a square 100 cm by 100 cm.'
+      - Does the ribbon cover the card, or go around it?
+      - Going around means adding all four sides.
     solution:
-      - '\(100 \times 100 = 10\,000\) cm²'
+      - 'The ribbon goes around the edge, so this is the **perimeter**.'
+      - '\(15 + 10 + 15 + 10 = 50\), so Mina needs **50 cm** of ribbon.'
+      - 'Multiplying would give 150 cm². That is the area, which tells you how much paper the card uses, not how much ribbon goes around it.'
 
   - id: w4
     level: 1
-    covers: [S1.10]
-    type: number
-    figure: { kind: rect, w: 12, h: 5, unit: m }
-    prompt: What is the **perimeter** of this rectangle?
-    unit: m
-    answer: 34
-    verify: 2 * (12 + 5)
+    thinking: recall
+    covers: [S1.5, U1.1, S1.4]
+    type: mc
+    prompt: A sign says a large park covers **5 km²**. Why would the sign use km² and not m²?
+    choices:
+      - In m², the number would be too long to picture.
+      - Square metres can only measure indoor spaces.
+      - A km² gives a more exact measure than a m².
+      - Square metres only work on straight edges.
+    answer: 0
+    feedback:
+      '1': 'A square metre works anywhere, indoors or out. A backyard garden is often measured in m². So this can’t be the reason.'
+      '2': 'It is the other way around. Small units measure more exactly, since many m² fit inside each km². What does a big unit do to the number instead?'
+      '3': 'Any surface can be measured in square units, even one with curvy edges. You count or estimate the squares.'
     hints:
-      - 'Add all four sides: 12 + 5 + 12 + 5.'
+      - How many m² fit in just 1 km²?
+      - What would 5 km² look like written in m²?
     solution:
-      - '\(12 + 5 + 12 + 5 = 34\), so the perimeter is **34 m**.'
+      - '1 km² is 1 000 000 m², so 5 km² is 5 000 000 m².'
+      - 'Both are true, but "5 km²" is far easier to read and picture. Big areas get big units.'
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K1.5, S1.9]
-    type: mc
-    prompt: All of these rectangles have an area of **36 cm²**. Which has the **least** perimeter?
-    choices: ['6 cm × 6 cm', '4 cm × 9 cm', '3 cm × 12 cm', '2 cm × 18 cm']
-    answer: 0
-    feedback:
-      '1': '4 × 9 has a perimeter of 26 cm. Can you find a smaller one?'
-      '2': '3 × 12 has a perimeter of 30 cm.'
-      '3': '2 × 18 has a perimeter of 40 cm.'
+    thinking: estimate
+    covers: [S1.6, S1.2]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 420 300" class="fig-svg" role="img" aria-label="A curvy backyard skating pond drawn on a grid. It covers many grid squares fully and many more partly."><path class="cg-poly" d="M90 58 C110.7 41.3 148.7 41.3 178 42 C207.3 42.7 239.3 52.7 266 62 C292.7 71.3 323.3 80.7 338 98 C352.7 115.3 360.7 145.3 354 166 C347.3 186.7 320.7 214.7 298 222 C275.3 229.3 242 206.7 218 210 C194 213.3 177.3 240.7 154 242 C130.7 243.3 94.7 234.7 78 218 C61.3 201.3 52 168.7 54 142 C56 115.3 69.3 74.7 90 58 Z"/><line class="fig-grid" x1="10" y1="10" x2="10" y2="290"/><line class="fig-grid" x1="50" y1="10" x2="50" y2="290"/><line class="fig-grid" x1="90" y1="10" x2="90" y2="290"/><line class="fig-grid" x1="130" y1="10" x2="130" y2="290"/><line class="fig-grid" x1="170" y1="10" x2="170" y2="290"/><line class="fig-grid" x1="210" y1="10" x2="210" y2="290"/><line class="fig-grid" x1="250" y1="10" x2="250" y2="290"/><line class="fig-grid" x1="290" y1="10" x2="290" y2="290"/><line class="fig-grid" x1="330" y1="10" x2="330" y2="290"/><line class="fig-grid" x1="370" y1="10" x2="370" y2="290"/><line class="fig-grid" x1="410" y1="10" x2="410" y2="290"/><line class="fig-grid" x1="10" y1="10" x2="410" y2="10"/><line class="fig-grid" x1="10" y1="50" x2="410" y2="50"/><line class="fig-grid" x1="10" y1="90" x2="410" y2="90"/><line class="fig-grid" x1="10" y1="130" x2="410" y2="130"/><line class="fig-grid" x1="10" y1="170" x2="410" y2="170"/><line class="fig-grid" x1="10" y1="210" x2="410" y2="210"/><line class="fig-grid" x1="10" y1="250" x2="410" y2="250"/><line class="fig-grid" x1="10" y1="290" x2="410" y2="290"/><rect class="fig-hl" x="370" y="250" width="40" height="40"/><text class="fig-small" x="362" y="275" text-anchor="end">1 m²</text></svg>
+    prompt: Amara’s family flooded part of the backyard to make a skating pond. Each grid square is **1 m by 1 m**. Estimate the area of the ice. A close estimate counts.
+    unit: m²
+    answer: 30
+    tolerance: 4
+    verify: 19 + 11
     hints:
-      - Find each perimeter, or remember which shape has the least.
+      - Which squares are completely ice? Count those first.
+      - The other squares are only part ice. Some are nearly full and some have just a sliver. How could you pair them up?
+      - Two part squares often make about one whole square. About how many whole squares do all the part squares make?
     solution:
-      - 'The square, 6 × 6, has a perimeter of **24 cm**, the least of all.'
+      - 'Use the 1 m² square as your benchmark, and count in two groups.'
+      - 'About **19** squares are all ice.'
+      - 'About **23** squares are part ice. Paired up, they make about **11** whole squares.'
+      - '\(19 + 11 = 30\), so the ice is about **30 m²**. Anything from 26 to 34 is a fair estimate.'
 
   - id: b2
     level: 2
-    covers: [S1.7, S1.10]
-    type: number
-    prompt: 'A rectangle has an area of **48 m²**. One side is **8 m**. How long is the other side?'
-    unit: m
-    answer: 6
-    verify: 48 / 8
+    thinking: estimate
+    covers: [S1.5, S1.6, S1.3]
+    type: mc
+    prompt: Sana made a poster listing four areas. One of them can’t be right. Which one?
+    choices:
+      - 'A dining table top: **150 cm²**'
+      - 'A classroom door: **20 000 cm²**'
+      - 'A bedroom floor: **12 m²**'
+      - 'A notebook cover: **500 cm²**'
+    answer: 0
+    feedback:
+      '1': 'The number looks huge, but cm² are tiny. A door about 1 m wide and 2 m tall is 2 m², and each m² is 10 000 cm². Does that match?'
+      '2': 'Picture a floor 3 m by 4 m. That is 12 m², a fine size for a bedroom.'
+      '3': 'Picture a cover 20 cm by 25 cm. That is 500 cm², a fine size for a notebook.'
     hints:
-      - '8 × ? = 48'
+      - Which number looks strange? Looking strange is not the same as being wrong.
+      - Turn each area into a rectangle you can picture. What side lengths would give that area?
+      - Try 150 cm² as a square about 12 cm by 12 cm. Try 20 000 cm² as 100 cm by 200 cm.
     solution:
-      - '\(48 \div 8 = 6\), so the other side is **6 m**.'
+      - 'Don’t judge by how big the number looks. Picture a rectangle with that area.'
+      - '20 000 cm² is 100 cm by 200 cm, which is 1 m by 2 m. That is just right for a door.'
+      - '150 cm² is about 12 cm by 12 cm, smaller than a dinner plate. A dining table can’t be that small, so **the table** is the mistake.'
+      - 'What we learned: a big number of small units can still be a small area, so always think about the unit too.'
 
   - id: b3
     level: 2
-    covers: [S1.5, U1.1]
-    type: mc
-    prompt: Which unit is best for the area of **Alberta**?
-    choices: ['km²', 'm²', 'cm²', 'km']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': 'Alberta is enormous. In m², the number would be far too big to use.'
-      '2': 'cm² is for small things, like stamps.'
-      '3': km measures length, not area.
+    thinking: connect
+    covers: [S1.1, S1.2, S1.3]
+    type: number
+    prompt: |-
+      Ruby cuts a sheet of paper **1 m by 1 m** into tiny squares, each **1 cm by 1 cm**, and lays them all edge to edge in one straight line. How long is the line, in **metres**?
+    unit: m
+    answer: 100
+    verify: 10000 / 100
     hints:
-      - Think about the biggest square unit.
+      - What two things do you need to know about the tiny squares to find the length of the line?
+      - How many tiny squares are there? How long is each one along the line?
+      - You will have a length in centimetres. How many centimetres make 1 m?
     solution:
-      - 'A whole province covers a huge area, so **km²** fits.'
+      - 'First, how many squares? 1 m² is 100 cm by 100 cm, so there are \(100 \times 100 = 10\,000\) squares.'
+      - 'Each square adds 1 cm to the line, so the line is 10 000 cm long.'
+      - '100 cm make 1 m, so \(10\,000 \div 100 = 100\). The line is **100 m** long.'
+      - 'What we learned: one square metre holds far more square centimetres than it looks like it should.'
 
   - id: b4
     level: 2
-    covers: [U1.2, S1.8]
+    thinking: connect
+    covers: [U1.2, S1.8, S1.9, S1.10]
     type: number
-    prompt: 'Rectangle A is **4 m × 5 m**. Rectangle B is **2 m × 10 m**. They have the same area. How much **longer** is B''s perimeter than A''s?'
-    unit: m
+    figure: |-
+      <svg viewBox="0 0 320 240" class="fig-svg fig-svg--square" role="img" aria-label="Four square tables pushed into a 2 by 2 square, with two seats along each of the four outside edges, 8 seats in all."><rect class="fig-rect" x="90" y="50" width="70" height="70"/><rect class="fig-rect" x="90" y="120" width="70" height="70"/><rect class="fig-rect" x="160" y="50" width="70" height="70"/><rect class="fig-rect" x="160" y="120" width="70" height="70"/><circle class="cg-pt" cx="125" cy="30" r="11"/><circle class="cg-pt" cx="125" cy="210" r="11"/><circle class="cg-pt" cx="70" cy="85" r="11"/><circle class="cg-pt" cx="250" cy="85" r="11"/><circle class="cg-pt" cx="195" cy="30" r="11"/><circle class="cg-pt" cx="195" cy="210" r="11"/><circle class="cg-pt" cx="70" cy="155" r="11"/><circle class="cg-pt" cx="250" cy="155" r="11"/><text class="fig-small" x="125" y="90" text-anchor="middle">1 m × 1 m</text></svg>
+    prompt: For a class party, square tables 1 m by 1 m are pushed together into one rectangle. One person sits at each metre of outside edge, as in the picture, where 4 tables seat 8. The class has **12 tables** and wants exactly **16 seats**. How many tables long is the longer side?
+    unit: tables
     answer: 6
-    verify: 2 * (2 + 10) - 2 * (4 + 5)
+    verify: 12 / 2
     hints:
-      - Find both perimeters, then subtract.
+      - What rectangles can 12 tables make?
+      - List them, starting with 1 by 12. For each one, how long is the outside edge?
+      - The rectangles are 1 by 12, 2 by 6 and 3 by 4. How many seats does each one have?
     solution:
-      - 'A: \(4 + 5 + 4 + 5 = 18\) m. B: \(2 + 10 + 2 + 10 = 24\) m.'
-      - '\(24 - 18 = 6\), so B''s perimeter is **6 m** longer.'
+      - 'Seats go along the outside edge, so the number of seats is the **perimeter**.'
+      - '1 by 12 seats 26 people. 2 by 6 seats 16 people. 3 by 4 seats 14 people.'
+      - 'So the rectangle is 2 tables by **6 tables**.'
+      - 'What we learned: all three have the same area, 12 m², but different perimeters. The long, thin one seats the most, and the one closest to a square seats the fewest.'
 
   - id: b5
     level: 2
-    covers: [S1.6]
-    type: mc
-    prompt: Which is the best **estimate** for the area of a classroom door?
-    choices: ['2 m²', '2 cm²', '200 m²', '2 km²']
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': '2 cm² is about the size of a fingernail or two.'
-      '2': '200 m² is bigger than a whole classroom floor.'
-      '3': '2 km² could hold a whole neighbourhood.'
+    thinking: flaw
+    covers: [S1.4, K1.4]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 420 300" class="fig-svg" role="img" aria-label="A square 1 kilometre on each side. One thin path, 1 metre wide and 1 kilometre long, runs up its left edge."><rect class="fig-rect" x="50" y="20" width="230" height="230"/><rect class="fig-hl" x="50" y="20" width="10" height="230"/><text class="fig-label" x="165" y="278" text-anchor="middle">1 km = 1 000 m</text><text class="fig-label" x="30" y="135" text-anchor="middle" transform="rotate(-90 30 135)">1 km = 1 000 m</text><path class="fig-arrow" d="M290 100 C 240 100 110 100 64 100"/><text class="fig-small" x="294" y="94">One path:</text><text class="fig-small" x="294" y="111">1 km long, 1 m wide</text><text class="fig-small" x="294" y="128">(drawn wider</text><text class="fig-small" x="294" y="145">to show it)</text></svg>
+    prompt: |-
+      Arjun says, "1 km is 1 000 m, so 1 km² must be 1 000 m²." Look at the picture before you agree.
+
+      How many square metres are really in 1 km²?
+    unit: m²
+    answer: 1000000
+    verify: 1000 * 1000
     hints:
-      - A door is about 1 m wide and 2 m tall.
+      - What is the area of the one thin path in the picture?
+      - Compare that with Arjun’s number. How much of the square does it fill?
+      - The square is 1 000 m wide and the path is 1 m wide. How many paths would fill the square?
     solution:
-      - 'About \(1 \times 2 = 2\) m².'
+      - 'Find the area of one path: \(1\,000 \times 1 = 1\,000\) m². That is exactly Arjun’s number, but it fills only one thin strip.'
+      - 'Arjun changed the **length** correctly, since 1 km is 1 000 m. But area goes in two directions, and he only used one.'
+      - 'The square is 1 000 m wide, so 1 000 paths fill it. \(1\,000 \times 1\,000 = 1\,000\,000\), so 1 km² is **1 000 000 m²**.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [K1.5, S1.9, S1.10]
-    type: number
-    prompt: 'A rectangular garden must have an area of **64 m²**. What is the **least** amount of fence that could go around it?'
-    unit: m
-    answer: 32
-    verify: 4 * 8
-    hints:
-      - Which rectangle with area 64 m² has the least perimeter?
-    solution:
-      - 'The square, 8 m × 8 m, has the least perimeter: \(8 \times 4 = 32\) m.'
+    thinking: whatif
+    covers: [S1.3, S1.7, S1.10]
+    type: investigation
+    figure: { kind: rect, w: 40, h: 30, unit: cm }
+    prompt: |-
+      Wren painted this poster. It used exactly **1 jar** of paint, and **140 cm** of ribbon went around the edge. Now the art club wants a giant poster with **each side twice as long**.
+    parts:
+      - type: number
+        prompt: How much ribbon goes around the giant poster?
+        unit: cm
+        answer: 280
+        verify: 2 * (80 + 60)
+        hints:
+          - How long is each side of the giant poster?
+        solution:
+          - 'The sides are now 80 cm and 60 cm. \(80 + 60 + 80 + 60 = 280\) cm, exactly twice the ribbon.'
+      - type: number
+        prompt: Wren buys **2 jars** of paint for the giant poster and runs out. How many jars does it really take?
+        unit: jars
+        answer: 4
+        verify: (80 * 60) / (40 * 30)
+        hints:
+          - Imagine laying copies of the first poster over the giant one. How many fit?
+          - How many fit along the long side? How many rows are there?
+        solution:
+          - 'Two first posters fit along the long side, and there are two rows. \(2 \times 2 = 4\), so it takes **4 jars**.'
+          - 'Check with areas: \(40 \times 30 = 1\,200\) cm² and \(80 \times 60 = 4\,800\) cm². Four of 1 200 make 4 800.'
+      - type: number
+        prompt: What if each side is **3 times** as long as on Wren’s first poster? How many jars would that take?
+        unit: jars
+        answer: 9
+        verify: 3 * 3
+        hints:
+          - Use the same picture. How many rows of first posters would there be, and how many in each row?
+        solution:
+          - 'There are 3 rows of 3 first posters. \(3 \times 3 = 9\) jars. The ribbon only takes 3 times as much.'
+    wrapUp: 'Make each side 2 times as long and the perimeter doubles, but the area grows \(2 \times 2 = 4\) times. It is also why 1 m² is 10 000 cm²: each side is 100 times as long, so the area is \(100 \times 100\) times as big.'
 
   - id: d2
     level: 3
-    covers: [U1.2, S1.8]
-    type: mc
-    prompt: 'Rectangle A is **3 cm × 12 cm**. Rectangle B is **6 cm × 6 cm**. Which statement is true?'
-    choices:
-      - 'They have the same area, but B has a smaller perimeter.'
-      - They have the same perimeter.
-      - A has a bigger area because it is longer.
-      - B has a bigger area because it is a square.
-    answer: 0
-    feedback:
-      '1': 'A: 3 + 12 + 3 + 12 = 30 cm. B: 6 × 4 = 24 cm. Different!'
-      '2': '3 × 12 = 36 and 6 × 6 = 36. Same area.'
-      '3': '3 × 12 = 36 and 6 × 6 = 36. Same area.'
-    hints:
-      - Find both areas, then both perimeters.
-    solution:
-      - 'Areas: 36 cm² and 36 cm². Perimeters: 30 cm and 24 cm.'
-      - Same area, but the square B has the smaller perimeter.
+    thinking: connect
+    covers: [K1.5, S1.9, S1.10]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 400 210" class="fig-svg" role="img" aria-label="A rectangular garden with its top side along the school wall. A dashed fence runs along the other three sides."><text class="fig-label" x="200" y="20" text-anchor="middle">School wall: no fence here</text><rect class="fig-hl" x="30" y="30" width="340" height="16"/><rect class="fig-rect" style="stroke:none" x="110" y="46" width="180" height="120"/><path class="fig-arrow" style="stroke-width:4" d="M110 46 L110 166 L290 166 L290 46"/><text class="fig-label" x="200" y="112" text-anchor="middle">Garden</text><text class="fig-small" x="102" y="110" text-anchor="end">fence</text><text class="fig-small" x="298" y="110">fence</text><text class="fig-small" x="200" y="188" text-anchor="middle">fence</text></svg>
+    prompt: |-
+      The Grade 5 class is planting a **36 m²** rectangular garden. You learned that a 6 m by 6 m square needs the least fence.
+
+      But this garden sits against the school wall, so **the side along the wall needs no fence**. All sides are whole metres.
+    parts:
+      - type: number
+        prompt: How much fence does the 6 m by 6 m garden need now?
+        unit: m
+        answer: 18
+        verify: 6 + 6 + 6
+        hints:
+          - Which sides still need fence?
+        solution:
+          - 'Three sides need fence: \(6 + 6 + 6 = 18\) m.'
+      - type: build
+        prompt: Can a different garden beat the square? Design a 36 m² garden that needs **less than 18 m** of fence.
+        fields:
+          - { name: a, label: 'Side along the wall', unit: m }
+          - { name: b, label: 'Side going out from the wall', unit: m }
+        rules:
+          - { test: 'a % 1 == 0 && b % 1 == 0 && a > 0 && b > 0', fail: 'Use whole metres for both sides.' }
+          - { test: 'a * b == 36', fail: 'Check the area. The garden has to be exactly 36 m².' }
+          - { test: 'a + 2 * b < 18', fail: 'That garden is 36 m², but it doesn’t beat 18 m of fence. Count only the three fenced sides. Which side would you like to lie along the wall?' }
+        examples:
+          - { a: 9, b: 4 }
+        counterexamples:
+          - { a: 6, b: 6 }
+          - { a: 4, b: 9 }
+          - { a: 12, b: 3 }
+          - { a: 8, b: 4.5 }
+        hints:
+          - The wall gives you one side for free. Would you rather that side were long or short?
+          - List the rectangles with an area of 36 m². Try each one both ways against the wall.
+          - 12 m along the wall and 3 m out uses 18 m, which is only a tie. What about the next rectangle on your list?
+        solution:
+          - 'The fence uses the wall side once and the side going out twice.'
+          - '\(12 + 3 + 3 = 18\) m, which ties. \(9 + 4 + 4 = 17\) m, which wins. \(6 + 6 + 6 = 18\) m, and \(4 + 9 + 9 = 22\) m.'
+          - '**9 m along the wall and 4 m out** uses only 17 m of fence.'
+      - type: mc
+        prompt: The square needs 18 m of fence and your garden needs 17 m. What is the best explanation?
+        choices:
+          - The free wall side saves more fence when that side is long.
+          - The 9 m by 4 m garden has a smaller perimeter than the square.
+          - The rule was wrong, and a square never has the least perimeter.
+          - Touching the wall makes the area of the garden smaller.
+        answer: 0
+        feedback:
+          '1': 'Check the whole way around: \(9 + 4 + 9 + 4 = 26\) m, and the square is \(6 + 6 + 6 + 6 = 24\) m.'
+          '2': 'All the way around, the square uses 24 m and the other garden uses 26 m, so the rule still holds. What is different about the fence in this story?'
+          '3': 'Both gardens are exactly 36 m², since \(9 \times 4\) and \(6 \times 6\) both make 36. What changed was not the area.'
+        hints:
+          - Find both full perimeters. Is the square still smaller?
+          - How much fence does the wall save in each garden?
+        solution:
+          - 'All the way around, the square still wins: 24 m against 26 m.'
+          - 'But the wall saves 6 m for the square and 9 m for the other garden. \(24 - 6 = 18\) and \(26 - 9 = 17\).'
+    wrapUp: The square still has the least perimeter. This garden just doesn’t need a whole perimeter of fence. Before you use a rule, check that your story matches what the rule is about.
+    hints: []
+    solution: []
 
   - id: d3
     level: 3
+    thinking: pattern
     covers: [S1.10, S1.7]
-    type: number
-    prompt: 'A **3 m by 2 m** rug lies on a **5 m by 4 m** floor. How much of the floor is **not** covered?'
-    unit: m²
-    answer: 14
-    verify: 5 * 4 - 3 * 2
-    hints:
-      - Find the floor's area and the rug's area.
-    solution:
-      - 'Floor: \(5 \times 4 = 20\) m². Rug: \(3 \times 2 = 6\) m².'
-      - '\(20 - 6 = 14\) m² is not covered.'
-
-  - id: d4
-    level: 3
-    covers: [S1.3, S1.4]
-    type: open
-    prompt: Explain why a square that is **1 m by 1 m** has an area of **10 000 cm²**, not 100 cm².
-    modelAnswer: |-
-      Each side is 1 m, which is 100 cm. So the square is 100 cm by 100 cm. To find its area, multiply the sides:
-      \(100 \times 100 = 10\,000\) cm². 100 cm² would only be a square 10 cm by 10 cm.
-    rubric:
-      - I changed 1 m to 100 cm.
-      - 'I multiplied 100 × 100 = 10 000.'
-      - I explained why 100 cm² is too small.
+    type: investigation
+    prompt: |-
+      Area is measured in cm² and perimeter in cm, so they aren’t the same kind of thing. But for some rectangles, the two **numbers** match.
+    parts:
+      - type: build
+        prompt: Hunt for one. Find a rectangle with whole-centimetre sides whose area number and perimeter number are the same.
+        fields:
+          - { name: w, label: 'Length', unit: cm }
+          - { name: h, label: 'Width', unit: cm }
+        rules:
+          - { test: 'w % 1 == 0 && h % 1 == 0 && w > 0 && h > 0', fail: 'Use whole centimetres for both sides.' }
+          - { test: 'w * h == 2 * (w + h)', fail: 'Not a match yet. Work out both numbers. Which one is bigger? How could you change the rectangle to bring them closer?' }
+        examples:
+          - { w: 4, h: 4 }
+          - { w: 6, h: 3 }
+          - { w: 3, h: 6 }
+        counterexamples:
+          - { w: 5, h: 5 }
+          - { w: 2, h: 5 }
+          - { w: 2.5, h: 10 }
+        hints:
+          - Try a small rectangle and work out both numbers. Which one is bigger?
+          - Keep one side at 3 cm and stretch the other. Watch both numbers change.
+          - '3 by 4 gives area 12 and perimeter 14. 3 by 5 gives 15 and 16. What comes next?'
+        solution:
+          - 'Start small and watch the numbers. A 3 by 3 square has area 9 and perimeter 12. A 5 by 5 square has area 25 and perimeter 20. So the numbers must cross somewhere between.'
+          - '**4 by 4** has area 16 and perimeter 16. **3 by 6** has area 18 and perimeter 18.'
+          - 'Both work because length × width lands on the same number as length + width + length + width.'
+      - type: number
+        prompt: Yuki only tries rectangles that are **2 cm** wide. Test 2 by 3, 2 by 10 and 2 by 50. Each time, how much bigger is the perimeter number than the area number?
+        answer: 4
+        verify: 2 * (2 + 50) - 2 * 50
+        hints:
+          - Find both numbers for 2 by 3. Then do the same for 2 by 10.
+        solution:
+          - '2 by 3 has perimeter 10 and area 6. 2 by 10 has perimeter 24 and area 20. 2 by 50 has perimeter 104 and area 100.'
+          - 'The gap is **4** every time.'
+      - type: number
+        prompt: Yuki stretches 2 by 50 into 2 by 51. How much does the **area** number grow?
+        answer: 2
+        verify: 102 - 100
+        hints:
+          - The rectangle has 2 rows of squares. Stretching it adds how many new squares?
+        solution:
+          - 'The area goes from 100 to 102, so it grows by **2**.'
+          - 'Now look at the perimeter. It goes from 104 to 106, so it also grows by 2.'
+      - type: mc
+        prompt: Yuki says a rectangle 2 cm wide can **never** have matching numbers, however long it is. Is Yuki right?
+        choices:
+          - Yes. Stretching adds 2 to both numbers, so the gap of 4 never shrinks.
+          - No. The area grows faster than the perimeter, so it catches up in the end.
+          - No. If you stretch it far enough, any two growing numbers will meet.
+          - Yes. One number is in cm and one is in cm², so they can never match.
+        answer: 0
+        feedback:
+          '1': 'Check your last answer. How much did each number grow when the rectangle got 1 cm longer?'
+          '2': 'Two numbers can grow forever and stay apart, if they grow by the same amount. How much does each one grow here?'
+          '3': 'The units are different, but your 4 by 4 rectangle had matching numbers. So why can’t a rectangle 2 cm wide?'
+        hints:
+          - The gap starts at 4. What does one stretch do to the gap?
+        solution:
+          - 'Every stretch adds 2 to the area number and 2 to the perimeter number, so the gap stays at 4.'
+          - 'It never closes, however long the rectangle gets. So **Yuki is right**.'
+    wrapUp: A pattern that works three times is a clue. Seeing why it happens, both numbers growing by 2 with every stretch, is what lets you be sure.
+    hints: []
+    solution: []

@@ -1,5 +1,5 @@
 // Answer checking. Runs in the browser; also unit tested in Node.
-import { eq, parseDecimal, parseFractionAnswer, parseFractionInput, toNumber, type FractionForm } from './rational.ts';
+import { eq, holds, parseDecimal, parseFractionAnswer, parseFractionInput, toNumber, type FractionForm, type Rational } from './rational.ts';
 
 /** What the browser needs to grade a problem. Choice indexes refer to the order shown on the page. */
 export type CheckSpec =
@@ -10,7 +10,11 @@ export type CheckSpec =
   | { type: 'text'; accept: string[]; caseSensitive: boolean }
   | { type: 'order'; count: number }
   | { type: 'evidence'; answer: string[] }
-  | { type: 'open'; rubricCount: number };
+  | { type: 'open'; rubricCount: number }
+  /** Many right answers: the student's values must pass every rule. `fail` is rendered HTML. */
+  | { type: 'build'; fields: { name: string; unit?: string }[]; rules: { test: string; fail: string }[] }
+  /** Graded part by part: see the <problem-part> elements inside the card. */
+  | { type: 'investigation'; parts: number };
 
 export type Response =
   | { kind: 'choice'; value: number }
@@ -19,7 +23,9 @@ export type Response =
   /** For order problems: the original (correct) index of each item, in the order the student arranged them. */
   | { kind: 'order'; value: number[] }
   | { kind: 'sentences'; value: string[] }
-  | { kind: 'rubric'; checked: number };
+  | { kind: 'rubric'; checked: number }
+  /** For build problems: what was typed in each field. */
+  | { kind: 'fields'; value: Record<string, string> };
 
 export type Verdict =
   | { status: 'correct' }
@@ -36,6 +42,13 @@ export function parseNumberInput(raw: string, unit?: string): number | null {
   s = s.replace(/^\$/, '').replace(/[\s  ,]/g, '');
   const r = parseDecimal(s);
   return r ? toNumber(r) : null;
+}
+
+/** Reads a build-problem field: a whole number, decimal, fraction or mixed number, with or without its unit. */
+export function parseFieldInput(raw: string, unit?: string): Rational | null {
+  const s = unit && raw.trim().toLowerCase().endsWith(unit.toLowerCase()) ? raw.trim().slice(0, -unit.length) : raw;
+  if (s.includes('/')) return parseFractionInput(s)?.value ?? null;
+  return parseDecimal(s.trim().replace(/−/g, '-').replace(/^\$/, '').replace(/[\s  ,]/g, ''));
 }
 
 export function normalizeText(s: string, caseSensitive = false): string {
@@ -125,5 +138,21 @@ export function check(spec: CheckSpec, res: Response): Verdict {
       if (res.kind !== 'rubric') return { status: 'invalid', message: 'Check your answer against the list first.' };
       return res.checked >= Math.ceil(spec.rubricCount * 0.66) ? { status: 'correct' } : { status: 'wrong' };
     }
+
+    case 'build': {
+      if (res.kind !== 'fields') return { status: 'invalid', message: 'Fill in every box first.' };
+      const vars: Record<string, Rational> = {};
+      for (const f of spec.fields) {
+        const v = parseFieldInput(res.value[f.name] ?? '', f.unit);
+        if (!v) return { status: 'invalid', message: 'Fill in every box with a number, like 12, 3.5 or 2 3/4.' };
+        vars[f.name] = v;
+      }
+      const failed = spec.rules.find((r) => !holds(r.test, vars));
+      return failed ? { status: 'wrong', message: failed.fail } : { status: 'correct' };
+    }
+
+    case 'investigation':
+      // Each part grades itself. The card is solved when the last part is.
+      return { status: 'invalid', message: 'Solve each part in turn.' };
   }
 }

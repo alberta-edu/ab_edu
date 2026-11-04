@@ -64,10 +64,13 @@ export function splitSentences(paragraph: string): string[] {
   const out: string[] = [];
   for (const p of parts) {
     const prev = out.at(-1);
-    if (prev && /[?!]["”]$/.test(prev) && SPEECH_TAG.test(p)) out[out.length - 1] = `${prev} ${p}`;
+    if (prev && ((/[?!]["”]$/.test(prev) && SPEECH_TAG.test(p)) || TITLE_END.test(prev))) out[out.length - 1] = `${prev} ${p}`;
     else out.push(p);
   }
   return out;
 }
+
+/** A title at the end of a piece means the split was wrong: "Mrs." and "Novak waved" are one sentence. */
+const TITLE_END = /\b(?:Mrs|Mr|Ms|Dr|St|Prof)\.$/;
 
 const SPEECH_TAG = /^(?:\S+\s){1,3}?(?:said|says|asked|called|shouted|whispered|replied|yelled|cried|answered|laughed|added)\b/i;

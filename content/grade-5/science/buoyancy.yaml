@@ -127,260 +127,440 @@ problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
   - id: w1
     level: 1
-    covers: [K2.1]
+    thinking: notice
+    covers: [K2.2, K2.3, S2.1]
     type: mc
-    prompt: In which direction does the **buoyant force** act?
-    choices: [Up, Down, Forward, Backward]
+    figure: >-
+      <svg viewBox="0 0 420 182" class="fig-svg" role="img" aria-label="Three blocks in water, each with an up arrow and a down arrow. Block A has a short up arrow and a long down arrow. Block B has up and down arrows of the same length. Block C has a long up arrow and a shorter down arrow.">
+      <rect class="sci-water" x="4" y="90" width="132" height="88"/><line class="sci-surface" x1="4" y1="90" x2="136" y2="90"/>
+      <rect class="sci-water" x="144" y="90" width="132" height="88"/><line class="sci-surface" x1="144" y1="90" x2="276" y2="90"/>
+      <rect class="sci-water" x="284" y="90" width="132" height="88"/><line class="sci-surface" x1="284" y1="90" x2="416" y2="90"/>
+      <rect class="obj" x="50" y="80" width="40" height="40" rx="4"/><rect class="obj" x="190" y="80" width="40" height="40" rx="4"/><rect class="obj" x="330" y="80" width="40" height="40" rx="4"/>
+      <g class="fa fa--buoyant"><line x1="70" y1="76" x2="70" y2="66"/><polygon points="70,56 63,68 77,68"/></g>
+      <g class="fa fa--weight"><line x1="70" y1="124" x2="70" y2="158"/><polygon points="70,168 63,156 77,156"/></g>
+      <g class="fa fa--buoyant"><line x1="210" y1="76" x2="210" y2="42"/><polygon points="210,32 203,44 217,44"/></g>
+      <g class="fa fa--weight"><line x1="210" y1="124" x2="210" y2="158"/><polygon points="210,168 203,156 217,156"/></g>
+      <g class="fa fa--buoyant"><line x1="350" y1="76" x2="350" y2="22"/><polygon points="350,12 343,24 357,24"/></g>
+      <g class="fa fa--weight"><line x1="350" y1="124" x2="350" y2="158"/><polygon points="350,168 343,156 357,156"/></g>
+      <text class="fig-label" x="10" y="26">A</text><text class="fig-label" x="150" y="26">B</text><text class="fig-label" x="290" y="26">C</text></svg>
+    prompt: |-
+      The **up** arrow is the buoyant force. The **down** arrow is the weight. A longer arrow means a bigger force.
+      Which block is floating **still**, not rising and not sinking?
+    choices: [Block A, Block B, Block C]
     fixedOrder: true
-    answer: 0
+    answer: 1
     feedback:
-      '1': '**Weight** acts down. The buoyant force opposes it.'
-      '2': Thrust can act forward. The buoyant force pushes up.
-      '3': Drag can act backward. The buoyant force pushes up.
+      '0': The up arrow on Block A is the shorter one. Which way would the bigger force move it?
+      '2': The up arrow on Block C is the longer one. Which way would the bigger force move it?
     hints:
-      - The buoyant force opposes weight.
+      - Look at the two arrows on each block. When would neither force win?
     solution:
-      - The buoyant force is an **upward** force from a fluid.
+      - A block stays still when neither force is bigger, so look for two arrows of the same length.
+      - Block **B** floats still. Block A is sinking, because its buoyant force is less than its weight. Block C is rising.
 
   - id: w2
     level: 1
-    covers: [K2.2]
-    type: mc
-    prompt: An object **floats** on the surface of water when the buoyant force is…
-    choices: [equal to its weight, less than its weight, zero, pointing down]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': When the buoyant force is less than the weight, the object **sinks**.
-      '2': Water always pushes up on objects placed in it.
-      '3': The buoyant force always points **up**.
-    hints:
-      - Think of the two arrows on the floating block. Were they the same length?
-    solution:
-      - An object floats when the buoyant force is **equal to** its weight.
-
-  - id: w3
-    level: 1
-    covers: [K2.3]
-    type: mc
-    prompt: A stone sinks to the bottom of a lake. Compare the buoyant force on the stone with its weight.
-    choices:
-      - The buoyant force is less than its weight.
-      - The buoyant force is equal to its weight.
-      - There is no buoyant force on the stone.
-      - The buoyant force is greater than its weight.
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Then the stone would float.
-      '2': The water still pushes up on the stone. The push is just smaller.
-      '3': Then the stone would rise, not sink.
-    hints:
-      - An object sinks when one force is smaller than the other.
-    solution:
-      - The stone sinks because the buoyant force is **less than** its weight.
-
-  - id: w4
-    level: 1
+    thinking: recall
     covers: [K2.4]
     type: multi
     prompt: Select **all** the fluids.
-    choices: [Water, Air, Vegetable oil, A wooden block, A rock]
-    fixedOrder: true
+    choices:
+      - Maple syrup
+      - 'Helium, the gas in party balloons'
+      - Air
+      - An ice cube
+      - A wooden spoon
     answer: [0, 1, 2]
+    feedback:
+      '3': Ice is made of water, but right now it is a solid. Is a solid a fluid?
+      '4': A spoon keeps its shape. Is it a liquid or a gas?
     hints:
-      - Fluids include liquids and gases.
+      - For each one, ask whether it is a liquid, a gas or a solid.
     solution:
-      - '✓ Water and vegetable oil are liquids. ✓ Air is a gas.'
-      - '✗ A wooden block and a rock are solids.'
+      - Fluids include liquids and gases.
+      - '✓ Maple syrup flows slowly, but it is a liquid. ✓ Helium and air are gases.'
+      - '✗ An ice cube and a wooden spoon are solids.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K2.1, K2.3]
+    type: mc
+    prompt: A coin rests on the bottom of a fountain. Which sentence is true?
+    choices:
+      - The water pushes up on the coin, but with less force than its weight.
+      - The water pushes up on the coin with a force equal to its weight.
+      - The water stopped pushing on the coin at the moment it sank.
+      - The water pushes down on the coin and holds it on the bottom.
+    answer: 0
+    feedback:
+      '1': If the two forces were equal, what would the coin do in water? Did it do that?
+      '2': A fluid pushes up on anything placed in it. Is the coin still in the water?
+      '3': Which way does the buoyant force from a fluid always point?
+    hints:
+      - The coin is still in a fluid. What does a fluid always do to things placed in it?
+      - The coin went down. Which force must have been bigger?
+    solution:
+      - The coin is in water, so the water still pushes **up** on it.
+      - The coin sank, so that push is **less than** its weight.
+
+  - id: w4
+    level: 1
+    thinking: notice
+    covers: [S2.4, S2.3]
+    type: multi
+    prompt: Your class is building small boats and testing them in tubs of water, all filled to the same level. Select every **safety problem** you should fix before testing starts.
+    choices:
+      - Water has dripped on the floor where people walk.
+      - A plugged-in hot glue gun is sitting beside a tub.
+      - Open scissors are lying at the edge of a table.
+      - The boats are painted different colours.
+      - The tubs are only half full.
+      - Two groups are sharing one roll of tape.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Colours can’t hurt anyone, and every boat can look different.
+      '4': A half-full tub is safer. It is less likely to slosh over.
+      '5': Sharing is fine, as long as nobody grabs or rushes.
+    hints:
+      - Picture someone walking past each thing. What could hurt them?
+      - Think about slipping, cutting, and water getting near electricity.
+    solution:
+      - Look at each one and ask, “Could someone get hurt?”
+      - A wet floor can make someone slip, so wipe it up.
+      - Electricity and water don’t mix, so move the glue gun away from the tub.
+      - Scissors should be closed and away from the edge, so nobody gets cut.
 
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
-    covers: [K2.3, S2.1]
+    thinking: flaw
+    covers: [K2.2, U2.1, S2.1]
     type: mc
-    figure: { kind: forces, object: block, water: true, forces: [{ kind: buoyant, size: 0.4 }, { kind: weight }] }
-    prompt: A block is placed in water. The diagram shows the forces on it. What will the block do?
-    choices: [Sink, Float, Rise out of the water, Stay exactly where it is]
-    fixedOrder: true
+    figure: { kind: forces, object: boat, water: true, forces: [{ kind: buoyant, size: 1.5 }, { kind: weight }] }
+    prompt: |-
+      A toy boat floats still on a pond. Hana draws these arrows and says, “The push must be bigger than the
+      weight. If they were only equal, the boat would start to sink.”
+
+      If Hana’s drawing were right, what would you see the boat doing?
+    choices:
+      - Moving up in the water, instead of staying still
+      - Sitting still, just as it does on the pond
+      - Slowly going down, because the push is so big
+      - Moving sideways across the pond
     answer: 0
     feedback:
-      '1': To float, the buoyant force arrow would be as long as the weight arrow.
-      '2': The buoyant force is the **smaller** force here.
-      '3': The forces are not equal, so the block won't stay put.
+      '1': That is what the boat really does. Would it do that if one force were bigger than the other?
+      '2': Which way does the buoyant force point? Would making it bigger send the boat that way?
+      '3': These two forces act up and down. Which way would the bigger one move the boat?
     hints:
-      - Which arrow is longer?
+      - Pretend Hana is right. What did the helium balloon do when the push was bigger than its weight?
+      - Compare what Hana’s arrows would make happen with what the boat really does.
     solution:
-      - The buoyant force is **less than** the weight, so the block **sinks**.
+      - 'Test Hana’s idea by imagining it. A helium balloon has a push bigger than its weight, and it **rises**.'
+      - So a boat with Hana’s arrows would be moving up. It isn’t. It stays still, so the push and the weight must be **equal**.
+      - 'Hana’s mistake: equal forces don’t make a boat sink. It sinks only when the push is **less than** the weight.'
 
   - id: b2
     level: 2
-    covers: [S2.1, S2.2, U2.1]
+    thinking: connect
+    covers: [K2.1, U2.1, S2.1]
     type: mc
-    prompt: In the virtual experiment, the egg sank in tap water but floated in salt water. What explains this?
+    prompt: |-
+      Ali finds a big rock on the bottom of a shallow lake and lifts it. Under the water, it feels quite light.
+      The moment it comes out of the water, it feels much heavier. What is the best explanation?
     choices:
-      - Salt water pushed up harder, so the buoyant force became equal to the egg's weight.
-      - The egg became lighter in salt water.
-      - Salt water has no buoyant force.
-      - The salt pulled the egg up.
+      - The water’s push was helping Ali hold it up while it was under.
+      - The rock’s weight grew as it came out into the air.
+      - The rock has no weight at all while it is under water.
+      - Air pushes the rock down, but water doesn’t push on it at all.
     answer: 0
     feedback:
-      '1': It was the same kind of egg, so its weight didn't change. The **fluid** changed.
-      '2': If salt water had no buoyant force, the egg would sink in it.
-      '3': The salt was dissolved in the water. The upward push came from the fluid.
+      '1': It is the same rock, with the same amount of matter. Why would its weight change?
+      '2': Weight comes from gravity. If the rock had no weight under water, why did it stay on the bottom?
+      '3': Air and water are both fluids. Which way does a fluid push on things placed in it?
     hints:
-      - Only one thing was different between the two glasses.
+      - The rock didn’t change. So what was different around it?
+      - List the forces on the rock while it is under water. Then list them when it is out.
     solution:
-      - The egg's weight stayed the same. Salt water gave a bigger buoyant force, **equal to** the egg's weight, so it floated.
+      - Start with what stayed the same. It is the same rock, so it has the same **weight**.
+      - Under water, the water pushes up on the rock. Ali only has to supply the rest of the force.
+      - Out of the water, that big push is gone, so Ali has to hold up nearly all the weight alone.
 
   - id: b3
     level: 2
-    covers: [S2.2]
+    thinking: whatif
+    covers: [K2.4, K2.1, S2.1]
     type: mc
-    prompt: You want to test whether the **kind of fluid** affects whether a cork floats. What should you keep the same?
-    choices: [The cork, The kind of fluid, Nothing, Both the cork and the fluid]
-    fixedOrder: true
+    figure: >-
+      <svg viewBox="0 0 420 200" class="fig-svg" role="img" aria-label="Three helium balloons with paper clips taped to their strings. The balloon with 2 clips rises. The balloon with 3 clips stays still. The balloon with 4 clips drifts down.">
+      <ellipse class="obj obj--balloon" cx="70" cy="52" rx="24" ry="30"/><line class="obj-string" x1="70" y1="82" x2="70" y2="112"/>
+      <rect class="fig-hl" x="60" y="112" width="8" height="16"/><rect class="fig-hl" x="72" y="112" width="8" height="16"/>
+      <line class="obj-line" x1="112" y1="70" x2="112" y2="30"/><line class="obj-line" x1="112" y1="30" x2="104" y2="40"/><line class="obj-line" x1="112" y1="30" x2="120" y2="40"/>
+      <text class="fig-label" x="70" y="158" text-anchor="middle">2 clips</text><text class="fig-small" x="70" y="182" text-anchor="middle">rises</text>
+      <ellipse class="obj obj--balloon" cx="210" cy="52" rx="24" ry="30"/><line class="obj-string" x1="210" y1="82" x2="210" y2="112"/>
+      <rect class="fig-hl" x="194" y="112" width="8" height="16"/><rect class="fig-hl" x="206" y="112" width="8" height="16"/><rect class="fig-hl" x="218" y="112" width="8" height="16"/>
+      <text class="fig-label" x="210" y="158" text-anchor="middle">3 clips</text><text class="fig-small" x="210" y="182" text-anchor="middle">stays still</text>
+      <ellipse class="obj obj--balloon" cx="350" cy="52" rx="24" ry="30"/><line class="obj-string" x1="350" y1="82" x2="350" y2="112"/>
+      <rect class="fig-hl" x="328" y="112" width="8" height="16"/><rect class="fig-hl" x="340" y="112" width="8" height="16"/><rect class="fig-hl" x="352" y="112" width="8" height="16"/><rect class="fig-hl" x="364" y="112" width="8" height="16"/>
+      <line class="obj-line" x1="392" y1="30" x2="392" y2="70"/><line class="obj-line" x1="392" y1="70" x2="384" y2="60"/><line class="obj-line" x1="392" y1="70" x2="400" y2="60"/>
+      <text class="fig-label" x="350" y="158" text-anchor="middle">4 clips</text><text class="fig-small" x="350" y="182" text-anchor="middle">drifts down</text>
+      </svg>
+    prompt: Sana is in the gym, taping paper clips to a helium balloon’s string, one at a time. Compare the **push from the air** with the **total weight** of the balloon and clips each time.
+    choices:
+      - '2 clips: push greater than weight. 3 clips: push equal to weight. 4 clips: push less than weight.'
+      - '2 clips: push less than weight. 3 clips: push equal to weight. 4 clips: push greater than weight.'
+      - '2 clips: push greater than weight. 3 clips: no forces at all. 4 clips: push less than weight.'
+      - '2 clips: push equal to weight. 3 clips: push greater than weight. 4 clips: push less than weight.'
     answer: 0
     feedback:
-      '1': The fluid is the thing you are testing, so it has to change.
-      '2': If you change everything, you can't tell what caused the result.
-      '3': If nothing changes, there is nothing to test.
+      '1': Which way does the push point? If it were the smaller force, which way would the balloon go?
+      '2': The balloon still has weight when it stays still, and the air still surrounds it. What does staying still tell you about two forces?
+      '3': If the two forces were equal, would the balloon be rising? Look at what each balloon is doing.
     hints:
-      - In a fair test, you change only the thing you are testing.
+      - The air is a fluid. Which way does it push on the balloon?
+      - For each balloon, ask which force is winning, if any.
+      - The balloon with 3 clips isn’t going up or down. What does that tell you about the two forces?
     solution:
-      - Change only the **fluid**, and use the same cork each time.
+      - Air is a fluid, so the same comparison works here as in water.
+      - Rising means the push is the bigger force. Staying still means the two are equal. Drifting down means the push is the smaller force.
+      - The clips add weight, while the air’s push stays about the same.
+      - 'Compare this with the clay boat: there the weight stayed the same and the push changed. Here the weight changes.'
 
   - id: b4
     level: 2
-    covers: [K2.4, K2.1]
+    thinking: flaw
+    covers: [K2.2, U2.1, S2.1]
     type: mc
-    prompt: A helium balloon floats up into the sky. Which fluid gives it a buoyant force?
-    choices: [Air, Water, The helium inside it, There is no fluid in the sky]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': The balloon isn't in water.
-      '2': The buoyant force comes from the fluid **around** the object.
-      '3': Air is a gas, and gases are fluids.
-    hints:
-      - Fluids include liquids and gases. What surrounds the balloon?
-    solution:
-      - The balloon is surrounded by **air**, a gas. Air pushes up on it.
-
-  - id: b5
-    level: 2
-    covers: [K2.2, U2.1]
-    type: mc
-    prompt: A wooden block is floating still on the surface of a pond. Which is true?
+    prompt: The same apple floats in tap water and in salt water. In salt water it sits a little higher. Which friend is right about the buoyant force on the apple?
     choices:
-      - The buoyant force on the block equals its weight.
-      - The buoyant force is greater than its weight.
-      - The block has no weight.
-      - Only the buoyant force acts on it.
+      - '**Sofia:** “It’s the same in both, because the apple’s weight is the same in both.”'
+      - '**Ana:** “It’s bigger in salt water, because salt water pushes up harder than tap water.”'
+      - '**Dee:** “It’s smaller in salt water, because less of the apple is under the water.”'
+      - '**Eli:** “You can’t compare them unless someone tells you how heavy the apple is.”'
     answer: 0
     feedback:
-      '1': Then the block would rise up, not float still.
-      '2': Gravity still pulls on the block. It has weight.
-      '3': Two forces act on it, and they are equal.
+      '1': This feels right, because salt water did push harder on the egg. But what does **floating** tell you about the two forces? And what would an apple do if the push were bigger than its weight?
+      '2': Sitting higher is a real clue, but it doesn’t mean a smaller push. If the push were less than the apple’s weight, what would the apple do?
+      '3': You don’t need a number. Whatever the apple weighs, did that weight change between the glasses?
     hints:
-      - A floating object isn't rising or sinking.
+      - What do you know for sure about the two forces on anything that floats?
+      - Say that rule once for the tap water glass, then once for the salt water glass.
+      - Did the apple’s weight change between the two glasses?
     solution:
-      - The block floats, so the buoyant force is **equal to** its weight.
-
-  - id: b6
-    level: 2
-    covers: [S2.3, S2.4]
-    type: mc
-    prompt: Your class is building small boats and testing them in tubs of water. Water has spilled on the floor. What should you do first?
-    choices:
-      - Wipe it up right away, so nobody slips.
-      - Keep testing and clean up at the end of the day.
-      - Walk around it and leave it for someone else.
-      - Pour more water in to see if your boat floats better.
-    answer: 0
-    feedback:
-      '1': Someone could slip before then.
-      '2': The next person might not see it.
-      '3': That makes the spill worse.
-    hints:
-      - What could happen on a wet floor?
-    solution:
-      - A wet floor is slippery. **Wipe up spills right away** so that everyone stays safe.
+      - Start with what floating means. A floating object has a buoyant force **equal to** its weight.
+      - That is true in both glasses, and the apple’s weight is the same in both. So the buoyant force is the same in both.
+      - Why does Ana’s idea seem right? The egg’s push really did grow, because in tap water it was less than the egg’s weight. The apple’s push already matched its weight.
+      - So why does the apple sit higher in salt water? Salt water holds things up better, so less of the apple needs to be under the water to get the same push.
+      - 'What we learned: when something floats, you already know the size of the buoyant force. It equals the weight, in any liquid.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
-    covers: [S2.3, K2.2, K2.3]
-    type: mc
+    thinking: breakdown
+    covers: [K2.2, K2.3, U2.1, S2.1]
+    type: investigation
+    figure: >-
+      <svg viewBox="0 0 420 150" class="fig-svg" role="img" aria-label="Two toy boats on water. The empty boat sits high, with only a little of it under the water. The boat holding 5 marbles sits low, with most of it under the water.">
+      <path class="obj" d="M30 44 L170 44 L150 84 L50 84 Z"/>
+      <path class="obj" d="M250 62 L390 62 L370 102 L270 102 Z"/>
+      <circle class="obj obj--dark" cx="290" cy="93" r="6"/><circle class="obj obj--dark" cx="305" cy="93" r="6"/><circle class="obj obj--dark" cx="320" cy="93" r="6"/><circle class="obj obj--dark" cx="335" cy="93" r="6"/><circle class="obj obj--dark" cx="350" cy="93" r="6"/>
+      <rect class="sci-water" x="4" y="72" width="192" height="58"/><line class="sci-surface" x1="4" y1="72" x2="196" y2="72"/>
+      <rect class="sci-water" x="224" y="72" width="192" height="58"/><line class="sci-surface" x1="224" y1="72" x2="416" y2="72"/>
+      <text class="fig-small" x="100" y="146" text-anchor="middle">Empty</text><text class="fig-small" x="320" y="146" text-anchor="middle">With 5 marbles</text></svg>
     prompt: |-
-      A ball of clay sinks. Jo shapes the **same clay** into a wide boat, and now it floats. What changed?
-    choices:
-      - The buoyant force got bigger, until it was equal to the clay's weight.
-      - The clay's weight got smaller.
-      - The water's weight got smaller.
-      - Nothing changed. Clay can always float.
-    answer: 0
-    feedback:
-      '1': It's the same amount of clay, so its weight didn't change.
-      '2': The water stayed the same. The **shape** of the clay changed.
-      '3': The ball sank, so clay doesn't always float.
-    hints:
-      - The weight stayed the same. Which force must have changed?
-    solution:
-      - Same clay → same weight.
-      - As a ball, the buoyant force was less than the weight. As a boat, it became **equal** to the weight, so it floats.
+      Priya’s toy boat floats on a tub of tap water. She adds marbles one at a time. With each marble, the boat sits
+      a little lower, but it still floats. At last, the water reaches the very top of the boat’s sides. One more
+      marble, and the boat sinks.
+    parts:
+      - type: mc
+        prompt: Compare the empty boat with the boat holding 5 marbles. On which one does the water push up **harder**?
+        choices:
+          - The boat with 5 marbles
+          - The empty boat
+          - The push is the same on both
+        answer: 0
+        feedback:
+          '1': The marbles do press the boat down. But both boats are floating. What does floating tell you about the push and the weight?
+          '2': It is the same boat in the same water, so this seems right. But did anything about the boat’s total weight change?
+        hints:
+          - Both boats are floating. What must be true of the push and the weight on each one?
+          - Which boat has more weight for the push to match?
+        solution:
+          - Both boats float, so on each one the push **equals** the weight.
+          - The marbles add weight, so the push on that boat must be bigger too.
+      - type: mc
+        prompt: It is the same water, yet the push got bigger. Look at the picture. Where does the extra push come from?
+        choices:
+          - More of the boat is under the water, taking up more space there.
+          - The marbles are pushing up on the boat from the inside.
+          - The marbles have made all the water in the tub heavier.
+          - The bottom of the tub is pushing the boat back up.
+        answer: 0
+        feedback:
+          '1': Marbles have weight. Which way does weight act?
+          '2': The marbles are in the boat, not in the water. Did the water change at all?
+          '3': Is the boat touching the bottom of the tub?
+        hints:
+          - What looks different between the two boats in the picture?
+          - Remember the clay ball and the clay boat. Why did the water push harder on the boat?
+        solution:
+          - The picture shows the loaded boat sitting lower, so more of it is under the water.
+          - As with the clay boat, taking up more space in the water means the water pushes up harder.
+      - type: mc
+        prompt: Why does that last marble sink the boat, when the other marbles didn’t?
+        choices:
+          - It can’t sit any lower, so the push can’t grow to match the weight.
+          - That last marble must weigh much more than each of the other marbles.
+          - The water reaches the top of the sides, so it stops pushing up.
+          - The boat has now become heavier than all of the water in the tub.
+        answer: 0
+        feedback:
+          '1': The story doesn’t say the marbles are different. Why might a same-sized marble do something new this time?
+          '2': A rock on the bottom of a pond still has water pushing up on it. Does the push really stop?
+          '3': The story never compares the boat with the water in the tub. Which two forces decide whether something sinks?
+        hints:
+          - Each marble so far made the boat sit lower. What can the boat no longer do now?
+          - Compare the push and the weight after the last marble goes in.
+        solution:
+          - Until now, each new marble made the boat sit lower, and the water pushed harder to match the new weight.
+          - With the water at the very top of the sides, there is no more boat to put under water. The weight goes up, but the push can’t keep up.
+          - Now the push is **less than** the weight, so the boat sinks.
+    wrapUp: |-
+      On a floating boat, the push always matches the weight. Add weight and the boat sits lower until the water
+      pushes just as hard. When it can’t sit any lower, it sinks.
 
   - id: d2
     level: 3
-    covers: [S2.2, U2.1]
-    type: mc
-    prompt: An apple floats in tap water. You put it in salt water. What will happen?
-    choices:
-      - It still floats.
-      - It sinks.
-      - It floats in salt water only if you cut it in half.
-      - You can't predict anything.
-    answer: 0
-    feedback:
-      '1': Salt water pushes up **harder** than tap water, not less.
-      '2': Cutting it isn't needed. Think about which fluid pushes up harder.
-      '3': The egg experiment gives you evidence to predict with.
-    hints:
-      - In the egg experiment, which fluid pushed up harder?
-    solution:
-      - Salt water gives a bigger buoyant force than tap water. If the apple floats in tap water, it will **still float** in salt water.
+    thinking: evidence
+    covers: [S2.2, U2.1, S2.1]
+    type: investigation
+    prompt: |-
+      Noor’s class tested four tiny plastic animals in three fluids, using the same animal in every glass. When Noor copied
+      the results from the class notes, she copied **one result wrong**.
+
+      | Animal | Vegetable oil | Tap water | Salt water |
+      |---|---|---|---|
+      | Frog | sinks | sinks | floats |
+      | Hippo | sinks | floats | sinks |
+      | Moose | sinks | floats | floats |
+      | Yak | floats | floats | floats |
+    parts:
+      - type: mc
+        prompt: |-
+          Remember the egg, which sank in tap water and floated in salt water. Salt water can hold up things that tap water
+          can’t. Which animal’s row holds Noor’s mistake?
+        choices:
+          - Hippo
+          - Frog
+          - Moose
+          - Yak
+        answer: 0
+        feedback:
+          '1': Frog sinks in tap water and floats in salt water. Did the egg do the same thing or the opposite?
+          '2': Moose floats in tap water. If tap water can hold it up, what should salt water do?
+          '3': Yak floats in tap water. If tap water can hold it up, what should salt water do?
+        hints:
+          - Look only at the Tap water and Salt water columns. If tap water can hold an animal up, what should salt water do?
+          - Which row has an animal doing the opposite of what the egg did?
+        solution:
+          - The egg shows that salt water holds things up better than tap water. So anything that floats in tap water must float in salt water too.
+          - Hippo floats in tap water but sinks in salt water. That can’t happen, so the mistake is in **Hippo’s** row.
+          - 'You needed the egg for this. Look at the table alone, and maybe salt water is the weaker fluid and Frog’s row is the wrong one. The egg is a separate test that settles it.'
+      - type: mc
+        prompt: Now leave Hippo out, since its row can’t be trusted. Which list goes from the fluid that holds things up **least** well to the one that holds things up **best**?
+        choices:
+          - 'Oil, then tap water, then salt water'
+          - 'Tap water, then oil, then salt water'
+          - 'Salt water, then tap water, then oil'
+          - 'Oil, then salt water, then tap water'
+        answer: 0
+        feedback:
+          '1': Check Moose. Which of oil and tap water managed to hold it up?
+          '2': An animal that floats in a fluid is being held up by it. Did you read it the other way around?
+          '3': What did the egg show about tap water and salt water?
+        hints:
+          - You already know about tap water and salt water. So where does oil fit?
+          - Find an animal you can trust that floats in one of those two fluids and sinks in oil.
+        solution:
+          - The egg already put tap water below salt water.
+          - Moose sinks in oil and floats in tap water. It is the same animal with the same weight, so tap water holds things up better than oil.
+          - That gives oil, then tap water, then salt water.
+      - type: multi
+        prompt: A new **Otter** floats in tap water. It hasn’t been tested in anything else. Which can you be **sure** of? Select **all** that are true.
+        choices:
+          - It will float in salt water.
+          - You must test it to find out what it does in oil.
+          - It will float in oil.
+          - It will sink in oil.
+          - It will sink in salt water.
+        answer: [0, 1]
+        feedback:
+          '2': Yak floats in tap water and in oil. Is there another animal you trust that floats in tap water? What did it do in oil?
+          '3': Moose floats in tap water and sinks in oil. Is there another animal that floats in tap water? What did it do in oil?
+          '4': Salt water holds things up better than tap water. If tap water holds Otter up, what will salt water do?
+        hints:
+          - Find every animal you trust that floats in tap water. What did those animals do in the other fluids?
+          - Did they all do the same thing in oil?
+        solution:
+          - Salt water holds things up better than tap water, so an animal that floats in tap water must float in salt water.
+          - Oil is weaker. Moose and Yak both float in tap water, but Moose sinks in oil and Yak floats. So you **can’t tell** without testing.
+    wrapUp: |-
+      One test tells you about one object in one fluid. Comparing tests lets you find a pattern, catch a mistake and know
+      when the honest answer is “we need to test it.”
 
   - id: d3
     level: 3
-    covers: [S2.2]
-    type: mc
+    thinking: design
+    covers: [S2.3, S2.2, U2.1]
+    type: open
     prompt: |-
-      Lee puts a cork in water, and it floats. Then Lee puts a steel bolt in oil, and it sinks. Lee concludes:
-      "Oil makes things sink." What is wrong with this test?
-    choices:
-      - Lee changed both the object and the fluid, so you can't tell which one caused the result.
-      - Lee should have used more oil.
-      - Nothing is wrong. The conclusion is correct.
-      - Lee should have used salt water instead of tap water.
-    answer: 0
-    feedback:
-      '1': The amount of oil isn't the problem. Two things changed at once.
-      '2': The bolt might sink in water too. Lee didn't test that.
-      '3': Changing the water wouldn't fix the main problem.
+      A clay ball sinks, but the same clay shaped as a boat floats.
+
+      **Zoe** says, “It floats because it’s wide. Wide things float.”
+
+      **Dev** says, “It floats because it holds air, so it takes up much more space.”
+
+      Imagine you have the same clay and a tub of water. Invent one test that could show who is right. What result would back up each person?
+    modelAnswer: |-
+      I would press the same clay into a flat pancake, as wide as the boat but with no walls. It’s the same clay, so the weight stays
+      the same. Zoe says it will float because it is wide. Dev says it will sink because it holds no air and takes up little space.
+      If it floats, that backs up Zoe. If it sinks, the buoyant force must still be less than the weight even though the clay is
+      wide, and that backs up Dev.
+    rubric:
+      - My test uses the same clay, so the weight stays the same and only the shape changes.
+      - My shape makes Zoe and Dev predict **different** results.
+      - I said which result would back up Zoe and which would back up Dev.
     hints:
-      - How many things were different between the two tests?
+      - Zoe and Dev agree that the boat floats, so testing the boat again won’t help. What shape would make them **disagree**?
+      - Try to think of a shape that is wide but holds no air, or one that holds air but isn’t wide.
+      - What would a flat pancake of clay do if Zoe is right? What would it do if Dev is right?
     solution:
-      - Lee changed the object **and** the fluid. To test the fluid, use the **same object** in both fluids.
+      - Begin with what each person predicts. A useful test is one where their predictions are different.
+      - 'One test: a flat pancake that is wide but holds no air. Zoe predicts it floats. Dev predicts it sinks.'
+      - 'Another test: a narrow cup that holds air. Zoe predicts it sinks. Dev predicts it floats. Both tests are fair, because the clay and its weight stay the same.'
+      - A clay pancake sinks. Being wide isn’t enough, because it takes up little space and the buoyant force stays less than its weight. This evidence backs up Dev.
 
   - id: d4
     level: 3
-    covers: [S2.1, U2.1]
+    thinking: design
+    covers: [S2.3, U2.1, K2.2]
     type: open
-    prompt: A steel bolt sinks in water, but a piece of cork floats. Use **buoyant force** and **weight** to explain the difference.
+    prompt: |-
+      A steel bolt sinks in tap water. **Invent** a way to make the same bolt float. You can’t change the bolt or the
+      water, but you can add things you’d find at home or at school. Describe your idea. Then use **weight** and
+      **buoyant force** to explain why it works.
+    hints:
+      - Why did the clay boat float when the clay ball didn’t? What did it have that the ball didn’t?
+      - Anything you add will add weight. So what else does it need to add, and a lot of it?
     modelAnswer: |-
-      Water pushes up on both objects with a buoyant force. For the cork, the buoyant force is equal to its weight,
-      so it floats on the surface. For the steel bolt, the buoyant force is less than its weight, so it sinks.
+      Tape the bolt to a large piece of cork. Now the total weight is a little more than the bolt alone. But the cork
+      takes up a lot of space and weighs very little, so the water pushes up much harder. The buoyant force can now
+      match the total weight, so the bolt and cork float together.
+
+      Other good ideas work the same way: sit the bolt in a wide foil boat, or tie it to a sealed, empty bottle.
     rubric:
-      - I said the water pushes **up** on both objects.
-      - I said the cork floats because the buoyant force **equals** its weight.
-      - I said the bolt sinks because the buoyant force is **less than** its weight.
+      - My idea leaves the bolt and the water unchanged.
+      - I said that what I added also adds some **weight**.
+      - I explained that my idea takes up more space in the water, so the **buoyant force** gets bigger.
+      - I said it floats because the buoyant force ends up **equal to** the total weight.
