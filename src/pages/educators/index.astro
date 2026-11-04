@@ -1,0 +1,204 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { SUBJECTS, UNLOCK_AFTER } from '../../site.ts';
+import { subjectGuide } from '../../lib/educator.ts';
+import { THINKING_MOVES, THINKING_MOVE_IDS } from '../../lib/thinking.ts';
+import { levelBadge } from '../../lib/problem-html.ts';
+import { href, absolute } from '../../lib/url.ts';
+
+const description =
+  'A guide for Alberta teachers and home-educating parents: how to use AB Edu to make learning fun, teach children to think, and adapt lessons for every child.';
+const guides = SUBJECTS.filter((s) => subjectGuide(s.slug));
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    name: 'AB Edu guide for educators',
+    description,
+    url: absolute('educators/'),
+    inLanguage: 'en-CA',
+    isAccessibleForFree: true,
+    learningResourceType: 'Teacher guide',
+    audience: { '@type': 'EducationalAudience', educationalRole: 'teacher' },
+  },
+];
+const stuck = [
+  { say: 'What do you know for sure?', why: 'Starts from what they can do.' },
+  { say: 'What is it really asking?', why: 'Most stuck children are stuck on the question, not the math.' },
+  { say: 'Can you draw it?', why: 'A picture often shows what words hide.' },
+  { say: 'What if the numbers were smaller?', why: 'Makes the idea easier to see.' },
+  { say: 'What have you tried? What did you notice?', why: 'A wrong try is information.' },
+];
+const everyChild = [
+  {
+    title: 'Getting interested and staying with it',
+    icon: '💛',
+    items: [
+      'Start from what your child loves. A hockey card collection can carry almost any math or data idea.',
+      'Give real choices: which problem, what order, draw or explain.',
+      'Keep sessions short, and stop while it’s still going well. One good Deep Think problem is a full day’s math.',
+    ],
+  },
+  {
+    title: 'Taking in the ideas',
+    icon: '👁️',
+    items: [
+      'Use the site’s animations and visuals first, and replay them as often as needed.',
+      'Read problems aloud together, or use your device’s read-aloud feature.',
+      'Use real objects to show an idea before any symbols.',
+    ],
+  },
+  {
+    title: 'Showing what they know',
+    icon: '🎤',
+    items: [
+      'Let them say it, draw it, build it or act it out. You can write for them.',
+      'An explanation out loud counts as much as one on paper.',
+      'Tick the self-check together on written problems. It’s a good talk, not a test.',
+    ],
+  },
+];
+---
+<Base title="For teachers and parents" description={description} path="educators/" jsonLd={jsonLd}>
+  <div class="container ed">
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">For educators</p>
+      <h1>You teach. We help.</h1>
+      <p class="page-hero__lede">
+        This site doesn’t replace a teacher. It gives teachers and parents, including families who home-educate
+        children with special needs, visuals, good problems and ideas that make learning something children want to do.
+      </p>
+    </header>
+
+    <div class="ed-sections">
+      <section class="card ed-card ed-card--hook">
+        <h2><span aria-hidden="true">🧠</span> Why we care about thinking</h2>
+        <p>
+          A machine can now do the calculation or write the summary faster than any of us. What stays valuable is what
+          comes before and after: working out what the question is, breaking a hard problem down, noticing what doesn’t
+          fit, deciding what to believe, and imagining something new. Facts and procedures still matter, because
+          they’re what we think <em>with</em>. But drilling them isn’t the goal, and it isn’t much fun.
+        </p>
+        <p>So on this site, hard doesn’t mean bigger numbers. It means more thinking.</p>
+      </section>
+
+      <section>
+        <h2 class="ed-heading"><span aria-hidden="true">🪜</span> How practice is built</h2>
+        <div class="grid">
+          <article class="card ed-card">
+            <Fragment set:html={levelBadge(1)} />
+            <p>One idea, one step, a quick win. Builds confidence and shows whether the lesson landed.</p>
+          </article>
+          <article class="card ed-card">
+            <Fragment set:html={levelBadge(2)} />
+            <p>Read a short story, table or map, then decide what to do. Solving {UNLOCK_AFTER} unlocks the next level, and anyone can peek ahead.</p>
+          </article>
+          <article class="card ed-card">
+            <Fragment set:html={levelBadge(3)} />
+            <p>Investigate, design, find the flaw, defend a choice. Friendly numbers, real thinking. Struggling here is the point.</p>
+          </article>
+        </div>
+        <p class="ed-note">Nothing needs knowledge above the grade. Every problem traces to Alberta’s program of studies, and every problem has hints, a worked solution and feedback that explains the thinking.</p>
+      </section>
+
+      <section class="card ed-card">
+        <h2><span aria-hidden="true">🛟</span> When a child is stuck, try not to rescue</h2>
+        <p>Being stuck is where the learning happens. Wait a little longer than feels comfortable, then ask one of these instead of explaining:</p>
+        <dl class="ed-stuck">
+          {
+            stuck.map((s) => (
+              <div>
+                <dt>“{s.say}”</dt>
+                <dd>{s.why}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+
+      <section>
+        <h2 class="ed-heading"><span aria-hidden="true">🗣️</span> The moves children learn</h2>
+        <p class="ed-note">After solving a problem, a child sees which thinking move they just used. Use the same words at the dinner table: “You worked backwards there!”</p>
+        <ul class="ed-moves">
+          {
+            THINKING_MOVE_IDS.filter((m) => m !== 'recall' && m !== 'apply').map((m) => (
+              <li>
+                <strong>{THINKING_MOVES[m].name}</strong>
+                <span>{THINKING_MOVES[m].blurb}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section id="subjects">
+        <h2 class="ed-heading"><span aria-hidden="true">📚</span> Guides by subject</h2>
+        <div class="grid">
+          {
+            guides.map((s) => (
+              <a class="card concept-card" href={href(`grade-5/${s.slug}/educators/`)}>
+                <span class="concept-card__body">
+                  <span class="concept-card__title">{s.name}</span>
+                  <span class="concept-card__sub">Routines, plus notes for every topic</span>
+                </span>
+                <Icon name="arrow" size={18} />
+              </a>
+            ))
+          }
+        </div>
+        <p class="ed-note">Every topic page also links to its own notes: a hook, off-screen activities, questions to ask, common ideas children have, and ways to adapt it.</p>
+      </section>
+
+      <section id="every-child">
+        <h2 class="ed-heading"><span aria-hidden="true">🌱</span> A guide for every child</h2>
+        <p class="ed-note">
+          These follow the three principles of <a href="https://udlguidelines.cast.org/" rel="noopener">Universal Design for Learning</a>: build in choice from
+          the start, so fewer children need to be treated as exceptions. Each topic’s notes add specifics.
+        </p>
+        <div class="grid">
+          {
+            everyChild.map((g) => (
+              <article class="card ed-card">
+                <h3><span aria-hidden="true">{g.icon}</span> {g.title}</h3>
+                <ul>{g.items.map((x) => <li>{x}</li>)}</ul>
+              </article>
+            ))
+          }
+        </div>
+        <div class="card ed-card ed-built-in">
+          <h3>Already built into the site</h3>
+          <ul>
+            <li>Everything works with a keyboard, with a screen reader and at any zoom level.</li>
+            <li>Dark mode, a font designed for readability, and reduced motion if your device asks for it.</li>
+            <li>No timers, no accounts and no scores for others to see. Wrong answers get an explanation, not a penalty.</li>
+            <li>Hints and solutions are always available, and levels never fully lock.</li>
+          </ul>
+        </div>
+        <p class="muted ed-note">These are ideas to try, not medical or professional advice. A child’s own team knows them best.</p>
+      </section>
+
+      <section class="card ed-card" id="home">
+        <h2><span aria-hidden="true">🏡</span> Home education in Alberta</h2>
+        <p>
+          Alberta parents can direct a home education program for Grades 1 to 12, either supervised by a school authority (which brings funding and two
+          evaluations a year) or as notification only (no funding). Some students have an identified need for additional supports, and the Association of
+          Independent Schools and Colleges of Alberta helps home education families find resources, workshops and assessments. See
+          <a href="https://www.alberta.ca/home-education" rel="noopener">Alberta’s home education page</a> for the current rules. This site can support a program,
+          but it isn’t a full program, and it isn’t endorsed by Alberta Education.
+        </p>
+      </section>
+
+      <section class="ed-note">
+        <h2 class="ed-heading ed-heading--small">Where these ideas come from</h2>
+        <ul class="muted">
+          <li><a href="https://udlguidelines.cast.org/" rel="noopener">CAST: Universal Design for Learning Guidelines 3.0</a></li>
+          <li><a href="https://open.alberta.ca/publications/9780778586012" rel="noopener">Alberta Education: Making a Difference, on differentiated instruction</a></li>
+          <li><a href="https://www.alberta.ca/inclusive-education" rel="noopener">Government of Alberta: inclusive education</a></li>
+          <li><a href="https://nrich.maths.org/7701" rel="noopener">NRICH: using low-threshold, high-ceiling tasks</a></li>
+          <li><a href="https://www.buildingthinkingclassrooms.com/about-btc" rel="noopener">Peter Liljedahl: Building Thinking Classrooms</a></li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</Base>

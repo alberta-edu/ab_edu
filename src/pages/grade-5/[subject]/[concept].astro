@@ -9,6 +9,7 @@ import { md, mdInline } from '../../../lib/render.ts';
 import { SUBJECTS, LEVELS, UNLOCK_AFTER, SITE_NAME } from '../../../site.ts';
 import type { Concept } from '../../../lib/schema.ts';
 import { href, absolute } from '../../../lib/url.ts';
+import { notesFor } from '../../../lib/educator.ts';
 
 export function getStaticPaths() {
   return SUBJECTS.flatMap((s) => {
@@ -61,6 +62,7 @@ const levelText = {
   3: 'Tricky problems that need careful reasoning. Take your time: this is where your brain grows.',
 } as const;
 const showCode = (code: string) => /-LO\d/.test(code);
+const hasNotes = !!notesFor(c);
 
 const title = `${c.title}: Grade 5 ${subject.shortName} (Alberta)`;
 const jsonLd = [
@@ -231,6 +233,11 @@ const jsonLd = [
           Source: Alberta Education, Program of Studies (New LearnAlberta). <a href={href('about/')}>How we align</a>.
         </p>
       </details>
+      {hasNotes && (
+        <p class="educator-link">
+          <span aria-hidden="true">🍎</span> <strong>Teaching this?</strong> <a href={href(`${path}educators/`)}>See the notes for teachers and parents</a>: a hook, activities and questions that make it fun.
+        </p>
+      )}
     </section>
 
     <!-- ================================================================ PRACTICE -->

@@ -1,0 +1,229 @@
+---
+import 'katex/dist/katex.min.css';
+import Base from '../../../../layouts/Base.astro';
+import { conceptsFor, conceptPath } from '../../../../lib/content.ts';
+import { notesFor, answerHtml, NEEDS, type EducatorNotes } from '../../../../lib/educator.ts';
+import { levelBadge } from '../../../../lib/problem-html.ts';
+import { THINKING_MOVES } from '../../../../lib/thinking.ts';
+import { md, mdInline } from '../../../../lib/render.ts';
+import { SUBJECTS, LEVELS } from '../../../../site.ts';
+import type { Concept } from '../../../../lib/schema.ts';
+import { href, absolute } from '../../../../lib/url.ts';
+
+export function getStaticPaths() {
+  return SUBJECTS.flatMap((s) =>
+    conceptsFor(s.slug).flatMap((c) => {
+      const notes = notesFor(c);
+      return notes ? [{ params: { subject: s.slug, concept: c.id }, props: { concept: c, notes } }] : [];
+    }),
+  );
+}
+
+const { concept: c, notes: n } = Astro.props as { concept: Concept; notes: EducatorNotes };
+const subject = SUBJECTS.find((s) => s.slug === c.subject)!;
+const path = `${conceptPath(c)}educators/`;
+const description = `Teaching notes for ${c.shortTitle}, Grade 5 ${subject.shortName} in Alberta: a hook, playful activities, questions to ask and ways to adapt it for every child.`.slice(0, 160);
+const problemById = new Map(c.problems.map((p) => [p.id, p]));
+const moves = [...new Set(c.problems.map((p) => p.thinking))].map((m) => THINKING_MOVES[m].name);
+const flow = [
+  { label: 'Hook', note: n.hook.time, anchor: '#hook' },
+  { label: 'See it', note: 'Learn tab', anchor: `${href(conceptPath(c))}#learn` },
+  { label: 'Play', note: 'Off screen', anchor: '#play' },
+  { label: 'Talk', note: 'Ask, don’t tell', anchor: '#talk' },
+  { label: 'Think', note: 'Practice tab', anchor: '#together' },
+];
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LearningResource',
+    name: `Teaching notes: ${c.title}`,
+    description,
+    url: absolute(path),
+    inLanguage: 'en-CA',
+    isAccessibleForFree: true,
+    educationalLevel: 'Grade 5',
+    learningResourceType: 'Teacher guide',
+    audience: { '@type': 'EducationalAudience', educationalRole: 'teacher' },
+    about: subject.name,
+    isPartOf: { '@type': 'LearningResource', name: c.title, url: absolute(conceptPath(c)) },
+  },
+];
+---
+<Base title={`Teaching notes: ${c.shortTitle} (Grade 5 ${subject.shortName})`} description={description} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
+  <div class="container ed">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={href('educators/')}>For educators</a></li>
+        <li><a href={href(`grade-5/${subject.slug}/educators/`)}>{subject.name}</a></li>
+        <li aria-current="page">{c.shortTitle}</li>
+      </ol>
+    </nav>
+
+    <header class="page-hero">
+      <p class="page-hero__eyebrow">Teaching notes · Grade 5 {subject.shortName}</p>
+      <h1>{c.title}</h1>
+      <div class="page-hero__lede" set:html={md(n.why)} />
+      <div class="control-row ed-no-print">
+        <a class="btn btn--primary" href={href(conceptPath(c))}>Open the student page</a>
+        <button type="button" class="btn btn--ghost" data-print>Print these notes</button>
+      </div>
+    </header>
+
+    <ol class="ed-flow" aria-label="One way to teach this topic">
+      {
+        flow.map((f) => (
+          <li>
+            <a href={f.anchor}>
+              <strong>{f.label}</strong>
+              <span>{f.note}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="ed-sections">
+      <section id="hook" class="card ed-card ed-card--hook">
+        <h2><span aria-hidden="true">✨</span> Start with a hook</h2>
+        <h3>{n.hook.title} <small>{n.hook.time}</small></h3>
+        <div class="prose" set:html={md(n.hook.body)} />
+      </section>
+
+      <section id="play">
+        <h2 class="ed-heading"><span aria-hidden="true">🎲</span> Play with it, away from the screen</h2>
+        <div class="grid">
+          {
+            n.activities.map((a) => (
+              <article class="card ed-card">
+                <h3>{a.title}</h3>
+                <p class="ed-meta">
+                  <span>⏱ {a.time}</span>
+                  <span>🧰 {a.materials}</span>
+                </p>
+                <ol class="ed-steps">
+                  {a.steps.map((s) => (
+                    <li set:html={mdInline(s)} />
+                  ))}
+                </ol>
+              </article>
+            ))
+          }
+        </div>
+        <p class="muted ed-note">Every activity is optional. The site’s lessons and animations teach the whole topic without them.</p>
+      </section>
+
+      <section id="talk" class="card ed-card">
+        <h2><span aria-hidden="true">💬</span> Ask instead of tell</h2>
+        <ul class="ed-questions">
+          {n.questions.map((q) => <li set:html={mdInline(q)} />)}
+        </ul>
+      </section>
+
+      <section id="ideas">
+        <h2 class="ed-heading"><span aria-hidden="true">🧩</span> What children often think</h2>
+        <div class="ed-table" role="table" aria-label="Common ideas children have, why they make sense, and what helps">
+          <div class="ed-table__row ed-table__row--head" role="row">
+            <span role="columnheader">A child might think</span>
+            <span role="columnheader">Why it makes sense to them</span>
+            <span role="columnheader">Try this</span>
+          </div>
+          {
+            n.misconceptions.map((m) => (
+              <div class="ed-table__row" role="row">
+                <span role="cell" data-label="A child might think" set:html={mdInline(m.thought)} />
+                <span role="cell" data-label="Why it makes sense" set:html={mdInline(m.why)} />
+                <span role="cell" data-label="Try this" set:html={mdInline(m.tryThis)} />
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <section id="together" class="card ed-card">
+        <h2><span aria-hidden="true">🤝</span> Problems worth doing together</h2>
+        <ul class="ed-together">
+          {
+            n.together.map((t) => {
+              const p = problemById.get(t.problem);
+              return (
+                p && (
+                  <li>
+                    <a href={`${href(conceptPath(c))}#q-g5-${c.id}-${p.id}`}>
+                      Problem {c.problems.indexOf(p) + 1} ({LEVELS[p.level].name})
+                    </a>
+                    <div set:html={md(t.how)} />
+                  </li>
+                )
+              );
+            })
+          }
+        </ul>
+      </section>
+
+      <section id="look" class="card ed-card">
+        <h2><span aria-hidden="true">👀</span> How you’ll know it’s working</h2>
+        <ul>
+          {n.lookFor.map((x) => <li set:html={mdInline(x)} />)}
+        </ul>
+      </section>
+
+      <section id="adapt">
+        <h2 class="ed-heading"><span aria-hidden="true">🌱</span> Adapt it for your child</h2>
+        <div class="grid">
+          <article class="card ed-card">
+            <h3>A gentler first step</h3>
+            <ul>{n.adapt.support.map((x) => <li set:html={mdInline(x)} />)}</ul>
+          </article>
+          <article class="card ed-card">
+            <h3>Ready for more</h3>
+            <ul>{n.adapt.stretch.map((x) => <li set:html={mdInline(x)} />)}</ul>
+          </article>
+        </div>
+        <div class="grid ed-access">
+          {
+            n.adapt.access.map((a) => (
+              <article class="card ed-card">
+                <h3>{NEEDS[a.need]}</h3>
+                <div set:html={md(a.tip)} />
+              </article>
+            ))
+          }
+        </div>
+        <p class="muted ed-note">
+          More on adapting learning is in the <a href={`${href('educators/')}#every-child`}>guide for every child</a>. These are ideas to try, not
+          medical or professional advice. A child’s own team knows them best.
+        </p>
+      </section>
+
+      <details class="card ed-card ed-key" id="answers">
+        <summary><h2><span aria-hidden="true">🔑</span> The practice set and its answers</h2></summary>
+        <p class="muted">This set trains: {moves.join(' · ')}.</p>
+        {
+          ([1, 2, 3] as const).map((level) => (
+            <div class="ed-key__level">
+              <Fragment set:html={levelBadge(level)} />
+              <ol start={c.problems.findIndex((p) => p.level === level) + 1}>
+                {c.problems
+                  .filter((p) => p.level === level)
+                  .map((p) => (
+                    <li>
+                      <div class="ed-key__prompt prose" set:html={md(p.prompt)} />
+                      <p class="ed-key__move">🧠 {THINKING_MOVES[p.thinking].name}</p>
+                      <div class="ed-key__answer"><strong>Answer:</strong> <Fragment set:html={answerHtml(c, p)} /></div>
+                    </li>
+                  ))}
+              </ol>
+            </div>
+          ))
+        }
+      </details>
+    </div>
+  </div>
+</Base>
+
+<script>
+  document.querySelector('[data-print]')?.addEventListener('click', () => {
+    document.querySelector<HTMLDetailsElement>('.ed-key')?.setAttribute('open', '');
+    window.print();
+  });
+</script>

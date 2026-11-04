@@ -6,6 +6,7 @@ import { md } from '../src/lib/render.ts';
 import { evaluate, eq, holds, parseFractionAnswer, parseDecimal, type Rational } from '../src/lib/rational.ts';
 import { parseFieldInput } from '../src/lib/check.ts';
 import { mathCeilingIssues, qualityIssues } from '../src/lib/quality.ts';
+import { notesFor, notesText, orphanNotes, subjectGuide, type EducatorNotes } from '../src/lib/educator.ts';
 import { UNLOCK_AFTER } from '../src/site.ts';
 import type { Concept, InvestigationPart, Passage, Problem } from '../src/lib/schema.ts';
 
@@ -33,6 +34,31 @@ function strayKeys(value: unknown, path = 'props'): string[] {
 
 /** Zero is a real answer when a rule says so, such as "z >= 0" for how many of something to pick. */
 const allowedZero = (p: { rules: { test: string }[] }, name: string, value: string) => value === '0' && p.rules.some((r) => new RegExp(`\\b${name}\\s*>=\\s*0\\b`).test(r.test));
+
+function verifyNotes(c: Concept, n: EducatorNotes) {
+  const label = `${c.subject}/${c.id} notes`;
+  for (const t of n.together) if (!c.problems.some((p) => p.id === t.problem)) errors.push(`${label}: problem "${t.problem}" doesn't exist`);
+  for (const [name, refs] of [['hook', n.hook.covers], ...n.activities.map((a) => [`activity "${a.title}"`, a.covers] as const)] as const) {
+    let current = 0;
+    for (const ref of refs) {
+      try {
+        const st = resolveRef(c, ref);
+        if (gradeRank(st.grade) > gradeRank(c.grade)) errors.push(`${label}: ${name}: ${ref} is later than Grade ${c.grade}`);
+        if (gradeRank(st.grade) === gradeRank(c.grade)) current++;
+      } catch (e) {
+        errors.push(`${label}: ${name}: ${(e as Error).message}`);
+      }
+    }
+    if (!current) errors.push(`${label}: ${name} must teach at least one Grade ${c.grade} statement`);
+  }
+  for (const t of notesText(n)) {
+    try {
+      md(t);
+    } catch (e) {
+      errors.push(`${label}: ${(e as Error).message}`);
+    }
+  }
+}
 
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
@@ -264,6 +290,15 @@ function verifyConcept(c: Concept) {
 
   for (const issue of qualityIssues(c)) fail(undefined, issue);
 
+  try {
+    const notes = notesFor(c);
+    if (notes) verifyNotes(c, notes);
+    else fail(undefined, 'no educator notes');
+  } catch (e) {
+    fail(undefined, (e as Error).message);
+  }
+
+
   if (c.summary.length < 110) warnings.push(`${where()}: summary is short for a meta description (${c.summary.length} chars)`);
 }
 
@@ -284,6 +319,17 @@ for (const c of concepts) {
   if (seen.has(c.id)) errors.push(`duplicate concept id ${c.id}`);
   seen.add(c.id);
   verifyConcept(c);
+}
+
+if (!only) {
+  for (const f of orphanNotes(concepts)) errors.push(`educator notes for a concept that doesn't exist: ${f}`);
+  for (const s of ['math', 'science', 'social-studies', 'english-language-arts'] as const) {
+    try {
+      if (!subjectGuide(s)) errors.push(`${s}: no subject guide for educators`);
+    } catch (e) {
+      errors.push((e as Error).message);
+    }
+  }
 }
 
 for (const w of warnings) console.warn(`warn  ${w}`);
