@@ -349,7 +349,17 @@ problems:
     thinking: evidence
     covers: [K1.7, S1.3]
     type: mc
-    prompt: Imagine archaeologists dig near an old harbour town in India and find a pot of Roman gold coins. Callum says, “The Romans must have ruled this town.” Think about the routes and goods on the lesson’s trade map. What is a better explanation?
+    prompt: |-
+      Imagine archaeologists dig near an old harbour town in India and find a pot of Roman gold coins. Callum says, “The Romans must have ruled this town.”
+
+      | Route | Joins | Some goods it carried |
+      |---|---|---|
+      | The Silk Road | China to the Mediterranean, by land | Silk, spices, glass, horses |
+      | The Royal Road | Susa to Sardis, in Persia | Cloth, metals, food |
+      | The trans-Saharan route | North Africa to West Africa | Gold, salt, cloth, copper |
+      | The Red Sea and Indian Ocean route | Roman Egypt to India, by sea | Pepper and other spices, gems, cotton |
+
+      What is a better explanation?
     choices:
       - Ships brought the coins to India to pay for goods such as pepper.
       - Soldiers from Rome carried the coins to India along the Royal Road.
@@ -361,7 +371,7 @@ problems:
       '2': The trans-Saharan route joined North Africa and West Africa. It didn’t go to India.
       '3': This is the same jump that Callum made. A seller can take any money they trust, so a coin can travel without a ruler.
     hints:
-      - Which route on the map reaches India from Rome’s lands?
+      - Which route in the table reaches India from Rome’s lands?
       - What did Rome want from India, and how could Romans pay for it?
     solution:
       - Coins are things that can travel, so ask how they could have got here without a ruler.
