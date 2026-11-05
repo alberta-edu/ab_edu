@@ -11,6 +11,59 @@ export const SYSTEMS: { id: SystemId; label: string; does: string; parts: string
   { id: 'musculoskeletal', label: 'Musculoskeletal', does: 'supports and moves the body', parts: ['muscles', 'bones'] },
 ];
 
+/** What each major part does (K1.4-K1.7, S1.2), in one short line. */
+export const PART_JOBS: Record<string, string> = {
+  mouth: 'Teeth chew food into small pieces, so it is easier to break down.',
+  stomach: 'Squeezes and mixes food with juices that break it down.',
+  intestines: 'Finish breaking food down. Nutrients pass through their walls into the blood.',
+  liver: 'Makes a juice that helps break food down. Food never passes through the liver.',
+  pancreas: 'Makes juices that help break food down. Food never passes through the pancreas.',
+  trachea: 'The windpipe. Carries air down to the lungs and back out again.',
+  lungs: 'Oxygen passes from the air into the blood. Carbon dioxide passes out and is breathed out.',
+  diaphragm: 'A muscle under the lungs. It pulls down to bring air in, then relaxes to let air out.',
+  heart: 'A strong muscle that squeezes again and again, pumping blood into the blood vessels.',
+  'blood vessels': 'Tubes that carry blood from the heart to every part of the body, and back to the heart.',
+  muscles: 'Pull on bones to move them. A muscle gets shorter and fatter when it pulls.',
+  bones: 'Hard and strong. They hold the body up and give it its shape.',
+};
+
+/** The class on each part's drawing in ORGANS, so one part can be picked out. */
+export const PART_CLASS: Record<string, string> = {
+  mouth: 'bd-mouth',
+  stomach: 'bd-stomach',
+  intestines: 'bd-intestine',
+  liver: 'bd-liver',
+  pancreas: 'bd-pancreas',
+  trachea: 'bd-trachea',
+  lungs: 'bd-lung',
+  diaphragm: 'bd-diaphragm',
+  heart: 'bd-heart',
+  'blood vessels': 'bd-vessel',
+  muscles: 'bd-muscle',
+  bones: 'bd-bone',
+};
+
+/**
+ * A bending arm, seen from the side, for the muscles-and-bones animation. `pull` runs from 0
+ * (relaxed, arm hanging straight) to 1 (arm bent). The muscle runs from the upper arm to just
+ * below the elbow, so it gets shorter as the arm bends. Returns the points to draw.
+ */
+export function armPose(pull: number) {
+  const p = Math.min(1, Math.max(0, pull));
+  const shoulder = { x: 120, y: 40 };
+  const elbow = { x: 120, y: 170 };
+  const angle = (p * 135 * Math.PI) / 180;
+  const along = (d: number) => ({ x: elbow.x + d * Math.sin(angle), y: elbow.y + d * Math.cos(angle) });
+  const hand = along(120);
+  const top = { x: 134, y: 64 };
+  const bottom = along(30);
+  const length = Math.hypot(bottom.x - top.x, bottom.y - top.y);
+  return { shoulder, elbow, hand, top, bottom, length, angle };
+}
+
+/** The relaxed muscle's length, for working out how fat it gets. */
+export const ARM_REST_LENGTH = armPose(0).length;
+
 export const VIEWBOX = '-90 0 470 470';
 
 export const OUTLINE =

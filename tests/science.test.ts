@@ -11,6 +11,7 @@ import { CHANGES, START, score } from '../src/components/visuals/design-lab.ts';
 import { PLACES, total } from '../src/components/visuals/climate-data.ts';
 import { REGIONS } from '../src/components/visuals/energy-data.ts';
 import { TOWNS, countCorrect, project } from '../src/components/visuals/weather-map.ts';
+import { SYSTEMS, PART_JOBS, PART_CLASS, ORGANS, armPose, ARM_REST_LENGTH } from '../src/components/visuals/body-svg.ts';
 
 describe('float or sink', () => {
   it('floats things less dense than the fluid, and sinks the rest', () => {
@@ -261,5 +262,25 @@ describe('science data', () => {
       expect(y).toBeGreaterThan(0);
       expect(y).toBeLessThan(450);
     }
+  });
+});
+
+describe('body systems', () => {
+  it('gives every major part a job and a drawing', () => {
+    for (const s of SYSTEMS) {
+      for (const part of s.parts) {
+        expect(PART_JOBS[part], part).toBeTruthy();
+        expect(ORGANS[s.id], part).toMatch(new RegExp(`class="[^"]*\\b${PART_CLASS[part]}\\b`));
+      }
+    }
+  });
+  it('shortens the muscle as the arm bends', () => {
+    const lengths = [0, 0.25, 0.5, 0.75, 1].map((p) => armPose(p).length);
+    expect(lengths[0]).toBeCloseTo(ARM_REST_LENGTH);
+    for (let i = 1; i < lengths.length; i++) expect(lengths[i]).toBeLessThan(lengths[i - 1]);
+    // The hand swings up from below the elbow to above it, and stays in the picture.
+    expect(armPose(0).hand.y).toBeGreaterThan(armPose(0).elbow.y);
+    expect(armPose(1).hand.y).toBeLessThan(armPose(1).elbow.y);
+    for (const p of [0, 0.5, 1]) expect(armPose(p).hand.x + 18).toBeLessThan(280);
   });
 });

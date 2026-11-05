@@ -1,0 +1,145 @@
+---
+// How two systems do their jobs (SCI5-OI4-GQ1-LO1, K1.6, K1.7, S1.2). Heart: blood leaves the
+// heart through blood vessels, reaches every part of the body and comes back. Muscles and bones:
+// drag the slider and a muscle shortens, pulling a bone so the arm bends.
+import { OUTLINE, VIEWBOX, armPose } from './body-svg.ts';
+
+// Each loop leaves the heart along one side of a vessel and returns along the other.
+const LOOPS = [
+  'M156,156 L154,96 L154,62 Q150,56 146,62 L146,96 L150,158',
+  'M152,158 Q110,124 82,144 L58,262 Q62,272 70,262 L92,152 Q114,138 152,166',
+  'M164,158 Q190,124 218,144 L242,262 Q238,272 230,262 L208,152 Q186,138 164,166',
+  'M154,172 L148,232 L126,292 L122,440 Q128,450 134,440 L138,294 L156,238 L160,176',
+  'M162,172 L158,234 L172,294 L174,440 Q172,450 166,440 L162,296 L152,238',
+];
+const HEART = 'M158,176 Q140,164 144,152 Q148,144 158,152 Q166,144 172,150 Q176,164 158,176 Z';
+const rest = armPose(0);
+---
+<body-motion>
+  <div class="sci-pick" role="group" aria-label="Choose what to watch">
+    <button type="button" data-bm-show="heart" aria-pressed="true">Heart and blood vessels</button>
+    <button type="button" data-bm-show="arm" aria-pressed="false">Muscles and bones</button>
+  </div>
+
+  <div data-bm-view="heart">
+    <svg class="sci-svg bm-svg" viewBox={VIEWBOX} role="img" aria-label="Blood leaves the heart through blood vessels, travels to the head, arms and legs, and comes back to the heart.">
+      <Fragment set:html={OUTLINE} />
+      {LOOPS.map((d) => <path class="bm-loop" data-bm-loop d={d} />)}
+      <g data-bm="dots"></g>
+      <path class="bd-heart" data-bm="heart" d={HEART} />
+    </svg>
+    <p class="sci-say">The heart squeezes and pushes blood into the blood vessels. The blood reaches every part of the body, then comes back to the heart.</p>
+  </div>
+
+  <div data-bm-view="arm" hidden>
+    <svg class="sci-svg bm-svg bm-arm" viewBox="0 0 280 320" role="img" aria-label="An arm seen from the side. As the muscle gets shorter, it pulls the lower arm bone and the arm bends." data-bm="arm">
+      <g class="bd-body"><rect x="24" y="8" width="84" height="300" rx="34" /></g>
+      <g class="bm-skin">
+        <line data-bm="skin-upper" x1={rest.shoulder.x} y1={rest.shoulder.y} x2={rest.elbow.x} y2={rest.elbow.y} />
+        <line data-bm="skin-lower" x1={rest.elbow.x} y1={rest.elbow.y} x2={rest.hand.x} y2={rest.hand.y} />
+        <circle data-bm="hand" cx={rest.hand.x} cy={rest.hand.y} r="18" />
+      </g>
+      <g class="bd-bone">
+        <line x1={rest.shoulder.x} y1={rest.shoulder.y} x2={rest.elbow.x} y2={rest.elbow.y} />
+        <line data-bm="bone-lower" x1={rest.elbow.x} y1={rest.elbow.y} x2={rest.hand.x} y2={rest.hand.y} />
+      </g>
+      <ellipse class="bd-muscle" data-bm="muscle" cx="0" cy="0" rx="10" ry="10" />
+    </svg>
+    <div class="bm-key" aria-hidden="true"><span><i class="bm-k bm-k--bone"></i>Bone</span><span><i class="bm-k bm-k--muscle"></i>Muscle</span></div>
+    <label class="bm-slider">
+      <span>Relax</span>
+      <input type="range" min="0" max="100" value="0" data-bm="pull" aria-label="How hard the muscle pulls" />
+      <span>Pull</span>
+    </label>
+    <p class="sci-say" aria-live="polite" data-bm="say"></p>
+  </div>
+</body-motion>
+
+<style is:global>
+  body-motion { display: block; }
+  body-motion .sci-pick { margin-bottom: 0.75rem; }
+  .bm-svg { background: var(--surface-2); max-width: 30rem; margin-inline: auto; }
+  .bm-arm { max-width: 22rem; }
+  .bm-loop { fill: none; stroke: #d23b2e; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.55; }
+  .bm-dot { fill: #d23b2e; stroke: var(--surface); stroke-width: 1; }
+  .bm-skin line { stroke: color-mix(in srgb, #e0a878 30%, var(--surface)); stroke-width: 44; stroke-linecap: round; }
+  .bm-skin circle { fill: color-mix(in srgb, #e0a878 30%, var(--surface)); }
+  .bm-arm .bd-bone line { stroke-width: 9; }
+  .bm-key { display: flex; justify-content: center; gap: 1.25rem; margin-top: 0.5rem; font-weight: 700; font-size: var(--step--1); }
+  .bm-key span { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .bm-k { display: inline-block; width: 1.1rem; height: 0.55rem; border-radius: 999px; }
+  .bm-k--bone { background: color-mix(in srgb, var(--ink) 35%, #f2ead8); }
+  .bm-k--muscle { background: #c25b4e; }
+  .bm-slider { display: flex; align-items: center; gap: 0.6rem; max-width: 22rem; margin: 0.75rem auto 0; font-weight: 700; font-size: var(--step--1); color: var(--ink-2); }
+  .bm-slider input { flex: 1; min-height: 2.4rem; accent-color: var(--accent); }
+</style>
+
+<script>
+  import { loopWhileVisible, reducedMotion } from '../experiments/anim.ts';
+  import { armPose, ARM_REST_LENGTH } from './body-svg.ts';
+
+  class BodyMotion extends HTMLElement {
+    private t = 0;
+    private loops: { el: SVGPathElement; len: number }[] = [];
+
+    connectedCallback() {
+      this.loops = [...this.querySelectorAll<SVGPathElement>('[data-bm-loop]')].map((el) => ({ el, len: el.getTotalLength() }));
+      this.querySelectorAll<HTMLButtonElement>('[data-bm-show]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-bm-show]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelectorAll<HTMLElement>('[data-bm-view]').forEach((v) => (v.hidden = v.dataset.bmView !== b.dataset.bmShow));
+        }),
+      );
+      const pull = this.q<HTMLInputElement>('[data-bm="pull"]');
+      pull.addEventListener('input', () => this.arm(Number(pull.value) / 100));
+      this.arm(0);
+      this.drawBlood();
+      if (!reducedMotion()) {
+        loopWhileVisible(this, (dt) => {
+          this.t += dt;
+          this.drawBlood();
+        });
+      }
+    }
+
+    private q<T extends Element>(sel: string) {
+      return this.querySelector<T>(sel)!;
+    }
+
+    /** Dots move out along each loop and back to the heart, while the heart beats. */
+    private drawBlood() {
+      const out: string[] = [];
+      for (const { el, len } of this.loops) {
+        for (let s = (this.t * 45) % 34; s < len; s += 34) {
+          const p = el.getPointAtLength(s);
+          out.push(`<circle class="bm-dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5"/>`);
+        }
+      }
+      this.q('[data-bm="dots"]').innerHTML = out.join('');
+      const beat = 1 + 0.12 * Math.max(0, Math.sin(this.t * Math.PI * 2.4)) ** 4;
+      this.q('[data-bm="heart"]').setAttribute('transform', `translate(158 162) scale(${beat.toFixed(3)}) translate(-158 -162)`);
+    }
+
+    private arm(pull: number) {
+      const a = armPose(pull);
+      const set = (sel: string, attrs: Record<string, number>) => {
+        const el = this.q(sel);
+        for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v.toFixed(1));
+      };
+      set('[data-bm="skin-lower"]', { x2: a.hand.x, y2: a.hand.y });
+      set('[data-bm="bone-lower"]', { x2: a.hand.x, y2: a.hand.y });
+      set('[data-bm="hand"]', { cx: a.hand.x, cy: a.hand.y });
+      // The muscle gets shorter and fatter as it pulls.
+      const fat = 10 + (ARM_REST_LENGTH - a.length) * 0.16;
+      const tilt = (Math.atan2(a.bottom.y - a.top.y, a.bottom.x - a.top.x) * 180) / Math.PI;
+      const muscle = this.q('[data-bm="muscle"]');
+      set('[data-bm="muscle"]', { cx: (a.top.x + a.bottom.x) / 2, cy: (a.top.y + a.bottom.y) / 2, rx: a.length / 2, ry: fat });
+      muscle.setAttribute('transform', `rotate(${tilt.toFixed(1)} ${((a.top.x + a.bottom.x) / 2).toFixed(1)} ${((a.top.y + a.bottom.y) / 2).toFixed(1)})`);
+      this.q('[data-bm="say"]').textContent =
+        pull < 0.05
+          ? 'The muscle is relaxed, and the arm hangs straight. Drag the slider to make the muscle pull.'
+          : 'The muscle gets shorter and fatter. It pulls on the bone below the elbow, and the arm bends.';
+    }
+  }
+  customElements.define('body-motion', BodyMotion);
+</script>
