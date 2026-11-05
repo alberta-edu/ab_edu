@@ -66,8 +66,16 @@ deploys. See [CLAUDE.md](CLAUDE.md) for the full rules.
 ## Deploying
 
 `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to
-`main`. Before the first push, set the repo's **Settings → Pages → Source** to
-**GitHub Actions**. The site URL and base path are set in `src/site.ts`.
+`main`. The site URL and base path are set in `src/site.ts`.
+
+One-time setup, or the deploy job fails with `404 Not Found`:
+
+1. Pages needs a public repo on GitHub's free plan. A private repo needs the org on the
+   Team plan.
+2. Set the repo's **Settings → Pages → Source** to **GitHub Actions**.
+3. Re-run the latest **Deploy to GitHub Pages** run, or push to `main`.
+
+The site is then at `https://alberta-edu.github.io/ab_edu/`.
 
 ## Curriculum and licence notes
 

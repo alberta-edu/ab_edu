@@ -44,8 +44,9 @@ pushed. The owner reviews them on `main`.**
 | `fix/educators-page` | Educators page: no math-only lines, chips and tiles in even rows, one-line thinking-skill blurbs, “Already built into the site” removed, Home education shortened. Stacked on `fix/plan-status` | ✅ Merged into `main` and pushed |
 | `fix/text-wrapping` | No lone last words in paragraphs and lists, balanced ledes, one-line About lede, a `.nowrap` class for dates, a general "How it's checked" list | ✅ Merged into `main` and pushed |
 | `fix/plan-status` | Restores this status section after an older PLAN.md was committed by mistake | ✅ Merged into `main` and pushed |
+| `fix/pages-deploy` | Deploy workflow on the current action versions (Node 24), and the Pages setup steps in the README | Waiting for review |
 
-Nothing is waiting for review as a branch. The owner will do the final manual review at the very end, after all phases.
+Waiting for review: `fix/pages-deploy`. The owner will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 
@@ -62,7 +63,9 @@ and Sonnet 5.5 solved the problems blind.
 **Not published yet:** the repo stays private and the site is not published on GitHub Pages
 until all tasks are finished and people have reviewed it. Until then, the deploy job fails on
 each push to `main` because Pages is off. That is expected: the build still runs, and nothing
-goes public.
+goes public. Pages can't be turned on while the repo is private, because the `alberta-edu` org is
+on GitHub's free plan. Publishing needs the repo made public or the org moved to Team (see the
+README's Deploying section).
 
 **Next up:** fixes from the owner's local review, each on its own branch. Then Phase 8, Release, once the owner signs off.
 
