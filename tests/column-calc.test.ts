@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { addSubFrames, multiplyFrames, divideFrames, type Frame } from '../src/components/visuals/column-calc.ts';
+import { shareSteps } from '../src/components/visuals/share-blocks.ts';
 
 /** Reads a frame row as text (blank cells become nothing). */
 const row = (f: Frame, r: number) => f.rows[r].map((c) => c.ch).join('');
@@ -77,5 +78,27 @@ describe('long division frames', () => {
   }
   it('refuses division by zero', () => {
     expect(() => divideFrames('120', '0')).toThrow(/not possible/);
+  });
+});
+
+describe('sharing blocks', () => {
+  const total = (p: { h: number; t: number; o: number }) => p.h * 100 + p.t * 10 + p.o;
+  it.each([
+    [745, 6, 124, 1],
+    [612, 6, 102, 0],
+    [245, 6, 40, 5],
+    [999, 9, 111, 0],
+  ])('shares %i among %i groups', (n, d, q, r) => {
+    const steps = shareSteps(n, d);
+    // Nothing is lost or made up at any step: the pile plus all the groups always make n.
+    for (const s of steps) expect(total(s.pile) + d * total(s.each)).toBe(n);
+    const end = steps[steps.length - 1];
+    expect(total(end.each)).toBe(q);
+    expect(end.pile).toEqual({ h: 0, t: 0, o: r });
+    expect(end.say).toContain(r ? `${n} ÷ ${d} = ${q} R ${r}` : `${n} ÷ ${d} = ${q}.`);
+  });
+  it('only accepts 3-digit by 1-digit', () => {
+    expect(() => shareSteps(1234, 6)).toThrow();
+    expect(() => shareSteps(745, 12)).toThrow();
   });
 });

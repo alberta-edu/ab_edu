@@ -45,7 +45,7 @@ const rest = armPose(0);
       </g>
       <ellipse class="bd-muscle" data-bm="muscle" cx="0" cy="0" rx="10" ry="10" />
     </svg>
-    <div class="bm-key" aria-hidden="true"><span><i class="bm-k bm-k--bone"></i>Bone</span><span><i class="bm-k bm-k--muscle"></i>Muscle</span></div>
+    <div class="bt-key" aria-hidden="true"><span><i class="bt-k bm-k--bone"></i>Bone</span><span><i class="bt-k bm-k--muscle"></i>Muscle</span></div>
     <label class="bm-slider">
       <span>Relax</span>
       <input type="range" min="0" max="100" value="0" data-bm="pull" aria-label="How hard the muscle pulls" />
@@ -65,9 +65,6 @@ const rest = armPose(0);
   .bm-skin line { stroke: color-mix(in srgb, #e0a878 30%, var(--surface)); stroke-width: 44; stroke-linecap: round; }
   .bm-skin circle { fill: color-mix(in srgb, #e0a878 30%, var(--surface)); }
   .bm-arm .bd-bone line { stroke-width: 9; }
-  .bm-key { display: flex; justify-content: center; gap: 1.25rem; margin-top: 0.5rem; font-weight: 700; font-size: var(--step--1); }
-  .bm-key span { display: inline-flex; align-items: center; gap: 0.4rem; }
-  .bm-k { display: inline-block; width: 1.1rem; height: 0.55rem; border-radius: 999px; }
   .bm-k--bone { background: color-mix(in srgb, var(--ink) 35%, #f2ead8); }
   .bm-k--muscle { background: #c25b4e; }
   .bm-slider { display: flex; align-items: center; gap: 0.6rem; max-width: 22rem; margin: 0.75rem auto 0; font-weight: 700; font-size: var(--step--1); color: var(--ink-2); }

@@ -12,6 +12,7 @@ import { PLACES, total } from '../src/components/visuals/climate-data.ts';
 import { REGIONS } from '../src/components/visuals/energy-data.ts';
 import { TOWNS, countCorrect, project } from '../src/components/visuals/weather-map.ts';
 import { SYSTEMS, PART_JOBS, PART_CLASS, ORGANS, armPose, ARM_REST_LENGTH } from '../src/components/visuals/body-svg.ts';
+import { PLANT_PARTS, PLANT_JOBS, PLANT_LABELS, stemBundles } from '../src/components/visuals/plant-svg.ts';
 
 describe('float or sink', () => {
   it('floats things less dense than the fluid, and sinks the rest', () => {
@@ -282,5 +283,18 @@ describe('body systems', () => {
     expect(armPose(0).hand.y).toBeGreaterThan(armPose(0).elbow.y);
     expect(armPose(1).hand.y).toBeLessThan(armPose(1).elbow.y);
     for (const p of [0, 0.5, 1]) expect(armPose(p).hand.x + 18).toBeLessThan(280);
+  });
+});
+
+describe('plant parts', () => {
+  it('gives every part a drawing, a name and a job', () => {
+    for (const p of Object.keys(PLANT_PARTS) as (keyof typeof PLANT_PARTS)[]) {
+      expect(PLANT_JOBS[p], p).toBeTruthy();
+      expect(PLANT_LABELS[p], p).toBeTruthy();
+    }
+  });
+  it('puts the xylem inside and the phloem outside in every bundle', () => {
+    const dist = (q: { x: number; y: number }) => Math.hypot(q.x - 150, q.y - 150);
+    for (const b of stemBundles()) expect(dist(b.xylem)).toBeLessThan(dist(b.phloem));
   });
 });
