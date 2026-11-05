@@ -1,67 +1,51 @@
 # CLAUDE.md
 
-Rules for working in this repo. AB Edu is a free, static learning site that follows
-Alberta's K–6 curriculum (Grade 5 first). See [README.md](README.md) for the layout and
-commands, and [docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md) before writing any content.
+Rules for this repo. See [README.md](README.md) for commands and layout, and
+[docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md) before writing content.
 
-## Git workflow
+## Git
 
-- **Never commit directly to `main`.** Every push to `main` deploys to GitHub Pages
-  (`.github/workflows/deploy.yml`), so `main` must only ever hold reviewed work.
-- Do all work on a feature branch: `feature/<topic>` for content and features,
-  `fix/<topic>` for bug fixes, `chore/<topic>` for tooling and docs.
-- Keep one topic per branch. When work depends on an unmerged branch, branch from it
-  (stack) and say so.
-- Commit freely on the feature branch, in small commits with clear messages.
-- **The owner reviews and verifies each branch before it is merged into `main`.** Don't
-  merge, push or open a PR without the owner's explicit go-ahead.
-- Commit as the repo-local identity `alberta-edu`. Don't change git config.
+- **Never commit to `main`.** Every push to `main` deploys to GitHub Pages.
+- Branch per topic: `feature/<topic>`, `fix/<topic>` or `chore/<topic>`. If work depends on an
+  unmerged branch, stack on it and say so.
+- Commit often, in small commits, as the repo-local identity `alberta-edu`. Don't change git config.
+- **The owner reviews every branch.** Don't merge, push or open a PR without their go-ahead.
 
 ## Before handing off a branch
 
-1. `npm run check` passes (content verification, unit tests and production build).
-2. `npm run audit` is re-run if content changed, so `docs/curriculum-audit.md` is current.
-3. The **Where we are now** section and the phase **Status** column in
-   [docs/PLAN.md](docs/PLAN.md) are up to date, including the list of branches waiting for
-   review.
-4. New or changed pages have been looked at in `npm run preview`, on both phone and
-   desktop widths.
-5. Tell the owner the branch name, what changed and what to check.
+1. `npm run check` passes.
+2. If content changed, re-run `npm run audit`.
+3. Update **Where we are now** and the phase **Status** in [docs/PLAN.md](docs/PLAN.md).
+4. Look at new or changed pages in `npm run preview`, at phone and desktop widths.
+5. Tell the owner the branch, what changed and what to check.
 
-## Content rules
+## Content
 
-- **Curriculum only.** Teach only what the Alberta program of studies lists for that grade
-  and outcome. Every lesson block, problem and key term has `covers:` references to the
-  exact statements in `curriculum/grade-*/`, and `npm run verify` enforces them. If a
-  sentence doesn't trace to a statement, it doesn't belong. Where the curriculum lists
-  examples, use those examples.
-- **Quality over quantity.** Fewer, excellent problems beat many average ones. No padding.
-- **Visual first.** Lessons open with something to look at or play with. Science
-  experiments are on-screen animations (predict → Run → watch → why), not instructions to
-  do at home. Text stays short and matches what the visual shows.
-- **UX matters.** Pick the best representation (a 3D globe over a flat map, an animation
-  over a static diagram). Break long content into steps and tabs. Use formatted blocks, not
-  walls of text.
-- **Short and scannable, everywhere.** This applies to lessons, educator notes and site pages
-  alike. Whenever a paragraph explains a process or holds several ideas, make it a numbered list
-  (for steps) or a bulleted list (for ideas), and cut every word that doesn't earn its place.
-  A Big idea is 3–4 bullets. A hook or routine is numbered steps. `npm run verify` fails on any
-  prose paragraph with 3+ sentences and 25+ words, any paragraph over 40 words, and any list
-  item over 40 words (`src/lib/readability.ts`). Reading passages and `>` quotes are exempt.
-- **Keep it simple.** Don't add a tab, label or panel that repeats what is already on the page.
-  Name things in plain words a Grade 5 child would use.
+- **Curriculum only.** Teach only what Alberta's program of studies lists for the grade and outcome.
+  - Every block, problem and key term has `covers:` references, enforced by `npm run verify`.
+  - A sentence that doesn't trace to a statement doesn't belong.
+  - Where the curriculum lists examples, use them.
+- **Quality over quantity.** Fewer, excellent problems. No padding.
+- **Visual first.** Lessons open with something to look at or play with. Experiments are on-screen
+  animations (predict → Run → watch → why), not things to do at home.
+- **Best representation.** A 3D globe over a flat map, an animation over a static diagram. Use steps,
+  tabs and formatted blocks, never walls of text.
+- **Short and scannable everywhere**, in lessons, notes and site pages.
+  - Steps are numbered lists, several ideas are bullets. A Big idea is 3–4 bullets.
+  - `npm run verify` fails on a 3+ sentence paragraph of 25+ words, or any paragraph or list item
+    over 40 words (`src/lib/readability.ts`). Passages and `>` quotes are exempt.
+- **Keep it simple.** No tab, label or panel that repeats the page. Use words a Grade 5 child uses.
 
 ## Code
 
-- Astro static output with vanilla TypeScript custom elements. No backend, accounts or
-  tracking. Progress is stored in the browser only.
-- Keep visuals lightweight and client-side. Lazy-load anything heavy.
-- The site font is Lexend, chosen for its plain, unslashed 0. Don't use a monospace font or a
-  font with a slashed or dotted 0 for anything a student reads. Typeset aligned sums with KaTeX
-  (`\begin{array}{rr}`), not code blocks.
-- Practice flow: Next stays disabled until the current problem is solved, and on a level's
-  last problem it leads on to the next level once that level is unlocked.
-- The repo is private. Don't link to the source code or to GitHub issues from the site.
-- Match the style of the surrounding code. Add tests in `tests/` for new logic.
-- Curriculum text is © Government of Alberta. Quote it only for alignment, with
-  attribution, and don't edit the extracted files in `curriculum/` by hand.
+- Astro static output with vanilla TypeScript custom elements. No backend, accounts or tracking.
+  Progress stays in the browser.
+- Keep visuals light and client-side. Lazy-load anything heavy.
+- Use Lexend (plain 0) for anything a student reads, never a monospace font. Typeset aligned sums with
+  KaTeX `\begin{array}{rr}`, not code blocks.
+- Practice: Next stays disabled until the problem is solved. On a level's last problem, it leads to
+  the next level once unlocked.
+- Don't link to the source code or GitHub issues from the site.
+- Match the surrounding style. Add tests in `tests/` for new logic.
+- Curriculum text is © Government of Alberta. Quote it only for alignment, with attribution. Don't
+  hand-edit `curriculum/`.
