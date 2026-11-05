@@ -26,6 +26,7 @@ and `main` deploys to GitHub Pages.**
 | `fix/lighter-practice` | 9 problems per topic (3, 4, 2), investigations at most 3 parts, Deep Think at most 5 steps, written answers only in 4 ELAL writing topics, limits checked by `npm run verify` |
 | `feature/body-systems-depth` | Tap a body part to see its job; animations of the heart pumping and a muscle bending the arm. No new parts or problems |
 | `chore/trim-docs` | All docs trimmed to short lists; stale facts fixed |
+| `feature/lesson-depth` | Depth audit of all 48 lessons. Plant transport: tap the roots, stem, leaves and leaf veins, and look inside the stem. Multiply and divide: shared base-ten blocks show why the division algorithm works. No new problems |
 
 Nothing is waiting for review. Older merges are in the git history.
 

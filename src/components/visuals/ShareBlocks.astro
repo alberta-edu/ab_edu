@@ -1,0 +1,118 @@
+---
+// Why the division algorithm works (MAT5-OI1, S1.1, S1.3): base-ten blocks are shared among equal
+// groups one place at a time, and leftovers are traded for ten of the next place down.
+const EXAMPLES: [number, number][] = [
+  [745, 6],
+  [612, 6],
+  [245, 6],
+];
+const groups = Array.from({ length: 6 }, (_, i) => ({ x: 4 + (i % 3) * 118, y: 138 + Math.floor(i / 3) * 96 }));
+---
+<share-blocks data-examples={JSON.stringify(EXAMPLES)}>
+  <div class="sci-pick" role="group" aria-label="Choose a division">
+    {EXAMPLES.map(([n, d], i) => <button type="button" data-sb-ex={i} aria-pressed={String(i === 0)}>{n} ÷ {d}</button>)}
+  </div>
+  <svg class="sci-svg sb-svg" viewBox="0 0 360 334" role="img" aria-label="Base-ten blocks shared among 6 equal groups" data-sb="svg">
+    <rect class="sb-panel" x="2" y="2" width="356" height="126" rx="10" />
+    <text class="sb-cap" x="12" y="20">Not shared yet</text>
+    <g data-sb="pile"></g>
+    {groups.map((g, i) => (
+      <g>
+        <rect class="sb-group" x={g.x} y={g.y} width="112" height="90" rx="10" />
+        <text class="sb-cap" x={g.x + 8} y={g.y + 16}>Group {i + 1}</text>
+      </g>
+    ))}
+    <g data-sb="groups"></g>
+  </svg>
+  <div class="bt-key" aria-hidden="true">
+    <span><i class="sb-k sb-h"></i>Hundred</span>
+    <span><i class="sb-k sb-t"></i>Ten</span>
+    <span><i class="sb-k sb-o"></i>One</span>
+  </div>
+  <p class="sci-say" aria-live="polite" data-sb="say"></p>
+  <div class="sb-controls">
+    <button type="button" class="btn btn--ghost btn--small" data-sb="reset">Start over</button>
+    <button type="button" class="btn btn--primary btn--small" data-sb="next">Next step ▶</button>
+  </div>
+  <span hidden data-sb-groups={JSON.stringify(groups)}></span>
+</share-blocks>
+
+<style is:global>
+  share-blocks { display: block; }
+  .sb-svg { max-width: 30rem; margin: 0.75rem auto 0; }
+  .sb-panel { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; }
+  .sb-group { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
+  .sb-cap { fill: var(--ink-3); font-size: 11px; font-weight: 700; }
+  .sb-h { fill: #f2c14e; background: #f2c14e; }
+  .sb-t { fill: #5aa9e6; background: #5aa9e6; }
+  .sb-o { fill: #e86a5a; background: #e86a5a; }
+  .sb-svg rect.sb-h, .sb-svg rect.sb-t, .sb-svg rect.sb-o { stroke: color-mix(in srgb, var(--ink) 55%, transparent); stroke-width: 1; }
+  .sb-svg rect.sb-focus { stroke: var(--accent); stroke-width: 2.5; }
+  .sb-k { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 3px; }
+  .sb-controls { display: flex; justify-content: center; gap: 0.5rem; margin-top: 0.6rem; }
+</style>
+
+<script>
+  import { shareSteps, type ShareState, type Places } from './share-blocks.ts';
+
+  type Box = { x: number; y: number };
+
+  /** Draws the blocks of one place in a row, wrapping after `perRow`. */
+  function row(kind: keyof Places, n: number, x: number, y: number, perRow: number, focus: boolean) {
+    const size = { h: [26, 26], t: [7, 26], o: [7, 7] }[kind];
+    const gap = { h: 30, t: 9.5, o: 10 }[kind];
+    const lineGap = kind === 'o' ? 10 : 30;
+    const cls = `sb-${kind}${focus ? ' sb-focus' : ''}`;
+    let out = '';
+    for (let i = 0; i < n; i++) {
+      const bx = x + (i % perRow) * gap;
+      const by = y + Math.floor(i / perRow) * lineGap;
+      out += `<rect class="${cls}" x="${bx}" y="${by}" width="${size[0]}" height="${size[1]}" rx="2"/>`;
+    }
+    return out;
+  }
+
+  class ShareBlocks extends HTMLElement {
+    private examples: [number, number][] = [];
+    private boxes: Box[] = [];
+    private states: ShareState[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.examples = JSON.parse(this.dataset.examples!);
+      this.boxes = JSON.parse(this.querySelector<HTMLElement>('[data-sb-groups]')!.dataset.sbGroups!);
+      this.querySelectorAll<HTMLButtonElement>('[data-sb-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-sb-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(Number(b.dataset.sbEx));
+        }),
+      );
+      this.q('[data-sb="next"]').addEventListener('click', () => this.show(this.at + 1));
+      this.q('[data-sb="reset"]').addEventListener('click', () => this.show(0));
+      this.load(0);
+    }
+
+    private q<T extends Element = HTMLElement>(sel: string) {
+      return this.querySelector<T>(sel)!;
+    }
+
+    private load(i: number) {
+      const [n, d] = this.examples[i];
+      this.states = shareSteps(n, d);
+      this.show(0);
+    }
+
+    private show(i: number) {
+      this.at = Math.min(i, this.states.length - 1);
+      const s = this.states[this.at];
+      const f = (p: keyof Places) => s.focus === p;
+      this.q('[data-sb="pile"]').innerHTML = row('h', s.pile.h, 12, 28, 10, f('h')) + row('t', s.pile.t, 12, 62, 30, f('t')) + row('o', s.pile.o, 12, 96, 30, f('o'));
+      this.q('[data-sb="groups"]').innerHTML = this.boxes
+        .map((b) => row('h', s.each.h, b.x + 8, b.y + 26, 1, f('h')) + row('t', s.each.t, b.x + 40, b.y + 26, 9, f('t')) + row('o', s.each.o, b.x + 40, b.y + 60, 6, f('o')))
+        .join('');
+      this.q('[data-sb="say"]').textContent = s.say;
+      this.q<HTMLButtonElement>('[data-sb="next"]').disabled = this.at === this.states.length - 1;
+    }
+  }
+  customElements.define('share-blocks', ShareBlocks);
+</script>
