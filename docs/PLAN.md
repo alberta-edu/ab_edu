@@ -7,8 +7,8 @@ Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
 
 *Last updated: November 4, 2026. Update this section whenever a phase or batch finishes.*
 
-**Phases 0–7 and the owner review fixes below are merged into `main`. Phase 8: the repo is public
-and `main` deploys to GitHub Pages.**
+**All phases are done. The site is live at https://alberta-edu.github.io/ab_edu/, and every push to
+`main` deploys it.**
 
 | Subject | Concepts | Grade 5 statements taught |
 |---|---|---|
@@ -45,8 +45,8 @@ Nothing is waiting for review. Older merges are in the git history.
 **What this can't promise:** AI models and scripts did every check. No child, teacher or screen reader
 user has tried the site yet.
 
-**Publishing:** the repo is public. Every push to `main` deploys to
-https://alberta-edu.github.io/ab_edu/ once Pages is set to GitHub Actions (see the README).
+**Publishing:** the repo is public and Pages builds from GitHub Actions. Merge only reviewed work,
+because every push to `main` goes live.
 
 ## 1. The curriculum
 
@@ -121,7 +121,7 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 5 | Social Studies | 6 concepts | ✅ Merged |
 | 6 | ELAL | 12 concepts, with original passages and poems | ✅ Merged |
 | 7 | Polish | Question rewrite, grade-level audit, educator notes, accessibility, SEO and device testing | ✅ Merged |
-| 8 | Release | Make the repo public, turn on Pages, publish | Repo public, branches merged; Pages being turned on |
+| 8 | Release | Make the repo public, turn on Pages, publish | ✅ Live since November 4, 2026 |
 
 ## 5. Decisions
 
