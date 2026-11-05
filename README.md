@@ -49,7 +49,7 @@ site URL and base path are in `src/site.ts`.
 
 One-time setup, or the deploy fails with `404 Not Found`:
 
-1. Make the repo public. On GitHub's free plan, Pages doesn't serve private repos.
+1. Keep the repo public. On GitHub's free plan, Pages doesn't serve private repos.
 2. Set **Settings → Pages → Source** to **GitHub Actions**.
 3. Re-run the latest deploy, or push to `main`.
 

@@ -7,8 +7,8 @@ Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
 
 *Last updated: November 4, 2026. Update this section whenever a phase or batch finishes.*
 
-**Phases 0–7 are merged into `main`. Owner review fixes are on the branches below. Next is Phase 8:
-the owner has chosen a public repo served on GitHub Pages.**
+**Phases 0–7 and the owner review fixes below are merged into `main`. Phase 8: the repo is public
+and `main` deploys to GitHub Pages.**
 
 | Subject | Concepts | Grade 5 statements taught |
 |---|---|---|
@@ -18,7 +18,7 @@ the owner has chosen a public repo served on GitHub Pages.**
 | ELAL | 12 of 12 ✅ | 243 of 243 ✅ |
 | **Total** | **48 of 48** ✅ | **674 of 674** ✅ ([curriculum-audit.md](curriculum-audit.md)) |
 
-**Waiting for review** (each stacked on the one above):
+**Latest merges** (November 4, 2026):
 
 | Branch | What changed |
 |---|---|
@@ -27,7 +27,7 @@ the owner has chosen a public repo served on GitHub Pages.**
 | `feature/body-systems-depth` | Tap a body part to see its job; animations of the heart pumping and a muscle bending the arm. No new parts or problems |
 | `chore/trim-docs` | All docs trimmed to short lists; stale facts fixed |
 
-Merged branches are in the git history.
+Nothing is waiting for review. Older merges are in the git history.
 
 **Checks so far:**
 
@@ -44,8 +44,8 @@ Merged branches are in the git history.
 **What this can't promise:** AI models and scripts did every check. No child, teacher or screen reader
 user has tried the site yet.
 
-**Publishing:** the deploy fails until the repo is public and Pages is set to GitHub Actions (see the
-README). The site will be at https://alberta-edu.github.io/ab_edu/.
+**Publishing:** the repo is public. Every push to `main` deploys to
+https://alberta-edu.github.io/ab_edu/ once Pages is set to GitHub Actions (see the README).
 
 ## 1. The curriculum
 
@@ -120,7 +120,7 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 5 | Social Studies | 6 concepts | ✅ Merged |
 | 6 | ELAL | 12 concepts, with original passages and poems | ✅ Merged |
 | 7 | Polish | Question rewrite, grade-level audit, educator notes, accessibility, SEO and device testing | ✅ Merged |
-| 8 | Release | Make the repo public, turn on Pages, publish | In progress: waiting for review of the branches above |
+| 8 | Release | Make the repo public, turn on Pages, publish | Repo public, branches merged; Pages being turned on |
 
 ## 5. Decisions
 
