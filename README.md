@@ -1,75 +1,63 @@
 # AB Edu
 
-Free, static learning site that follows Alberta's K–6 curriculum. The first edition is
-Grade 5, covering the four subjects on the Provincial Achievement Tests: English Language
-Arts and Literature, Math, Science and Social Studies.
+A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 comes first, with the
+four Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
 
-- A lesson for every learning outcome. Each one opens with an interactive visual or an
-  animated virtual experiment.
-- Three levels of practice: ★ Warm-up, ★★ Build and ★★★ Deep Think. Every problem has
-  hints, a worked solution, and feedback for each wrong answer.
-- Problems are written to make children think: stories, designs and investigations, with friendly
-  numbers. See [docs/QUESTION-STANDARD.md](docs/QUESTION-STANDARD.md).
-- Notes for teachers and parents on every subject and topic, at `/educators/`.
-- Spaced review on the Leitner system, with progress saved in the browser and
-  export/import of a backup file.
-- No backend, no accounts, no tracking. Hosted on GitHub Pages.
+- A lesson for every learning outcome, each opening with an interactive visual or virtual experiment.
+- Practice in three levels (★ Warm-up, ★★ Build, ★★★ Deep Think), with hints, worked solutions and
+  feedback on every wrong answer.
+- Notes for teachers and parents at `/educators/`.
+- Spaced review, with progress saved in the browser. No backend, accounts or tracking.
 
-## Run it locally
+## Run it
 
-Requires Node 22 or newer.
+Needs Node 22 or newer.
 
 ```sh
 npm install
 npm run dev        # http://localhost:4321/ab_edu/
-```
-
-Full check (content verification, unit tests, production build), then serve the built
-site:
-
-```sh
-npm run check
-npm run preview    # http://localhost:4321/ab_edu/
+npm run check      # verify content, run tests, build
+npm run preview    # serve the build
 ```
 
 | Command | What it does |
 |---|---|
-| `npm run verify` | Validates every content file: schema, answer indexes, machine-checked math (`verify:` expressions), LaTeX, passage references |
-| `npm run coverage` | Lists every Grade 5 learning outcome and whether it has content |
-| `npm run audit` | Writes `docs/curriculum-audit.md`: every Grade 5 curriculum statement and where it is taught |
-| `npm run statements -- <subject> <outcome>` | Lists an outcome's statements with the reference codes used in `covers:` |
-| `npm test` | Unit tests (answer checking, fraction math, review schedule, rendering) |
-| `npm run build` | Runs `verify`, then builds the static site into `dist/` |
+| `npm run verify` | Checks every content file: schema, answers, math, LaTeX, curriculum references, readability |
+| `npm run statements -- <subject> <outcome>` | Lists an outcome's statements and their `covers:` codes |
+| `npm run coverage` | Lists each Grade 5 outcome and whether it has content |
+| `npm run audit` | Writes `docs/curriculum-audit.md` |
+| `npm test` | Unit tests |
+| `npm run build` | Runs `verify`, then builds into `dist/` |
 
-## Where things live
+## Layout
 
 ```
-curriculum/grade-*/     Official K-6 outcomes, extracted from New LearnAlberta (scripts/extract-curriculum.ts)
-content/grade-5/        One YAML file per concept, plus roadmap.yaml (every planned concept)
-content/educators/      Notes for teachers and parents: one file per concept, plus _subject.yaml per subject
-src/lib/                Build-time logic: schema, Markdown + KaTeX rendering, problem HTML, review schedule
-src/client/             Browser code: problem cards, practice levels, progress store, review session
-src/components/         Lesson blocks, visuals (fraction explorer, particle model, world map) and experiments
-src/pages/              Routes
-docs/PLAN.md            Plan and phases
-docs/CONTENT-GUIDE.md   How to write a concept
-docs/QUESTION-STANDARD.md  What makes a good problem, and what is above the grade
-docs/grade-level-audit.md  How problems were checked against the grade, and what was found
+curriculum/grade-*/   Official K–6 outcomes, extracted from New LearnAlberta
+content/grade-5/      One YAML file per concept, plus roadmap.yaml
+content/educators/    Notes for teachers and parents
+src/lib/              Build-time logic: schema, rendering, checks, review schedule
+src/client/           Browser code: problems, practice, progress, review
+src/components/       Lesson blocks, visuals and experiments
+src/pages/            Routes
+docs/                 Plan, content guide, question standard, audits
 ```
-
-## Workflow
-
-All work happens on feature branches, never directly on `main`. Each branch is reviewed
-and verified by the owner before it is merged into `main`, which is the branch that
-deploys. See [CLAUDE.md](CLAUDE.md) for the full rules.
 
 ## Deploying
 
-`.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to
-`main`. Before the first push, set the repo's **Settings → Pages → Source** to
-**GitHub Actions**. The site URL and base path are set in `src/site.ts`.
+Every push to `main` builds and publishes to GitHub Pages (`.github/workflows/deploy.yml`). The
+site URL and base path are in `src/site.ts`.
 
-## Curriculum and licence notes
+One-time setup, or the deploy fails with `404 Not Found`:
 
-Curriculum outcome text is © Government of Alberta. It is quoted for alignment only, with
-attribution. This project is independent and not affiliated with Alberta Education.
+1. Make the repo public. On GitHub's free plan, Pages doesn't serve private repos.
+2. Set **Settings → Pages → Source** to **GitHub Actions**.
+3. Re-run the latest deploy, or push to `main`.
+
+The site is then at https://alberta-edu.github.io/ab_edu/.
+
+Work happens on feature branches, reviewed by the owner before merging. See [CLAUDE.md](CLAUDE.md).
+
+## Licence notes
+
+Curriculum text is © Government of Alberta, quoted with attribution for alignment only. This project
+is independent and not affiliated with Alberta Education.
