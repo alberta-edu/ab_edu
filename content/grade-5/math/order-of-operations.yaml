@@ -248,12 +248,6 @@ problems:
     prompt: |-
       Renata has **$30**. A comic book costs **$12**, and she has a coupon for **$5 off**.
     parts:
-      - type: number
-        prompt: How much money does Renata have left after buying the comic with the coupon?
-        answer: 23
-        verify: 30 - (12 - 5)
-        hints: [What does the comic really cost once the coupon is used?]
-        solution: ['The comic really costs \(12 - 5 = 7\) dollars. Then \(30 - 7 = 23\) dollars are left.']
       - type: mc
         prompt: Which expression tells that story?
         choices:
@@ -275,7 +269,7 @@ problems:
         hints: [With no parentheses, go left to right.]
         solution: ['\(30 - 12 = 18\), then \(18 - 5 = 13\) dollars.']
       - type: mc
-        prompt: 'Luca’s answer is **$10** too low, but the coupon is only worth $5. Why $10?'
+        prompt: 'Renata really has **$23** left. Luca’s answer is **$10** too low, but the coupon is only worth $5. Why $10?'
         choices:
           - 'She should save $5, but he made her pay $5 more.'
           - 'He took the $12 away two times, which is close.'
@@ -294,71 +288,6 @@ problems:
           - 'Luca made her $5 **worse** off than full price: $13. From $5 better to $5 worse is a gap of $10.'
     wrapUp: 'Parentheses keep a group together. Subtract the whole group \((12 - 5)\), and you don’t get the same thing as subtracting each number.'
 
-  - id: d2
-    level: 3
-    thinking: pattern
-    covers: [U1.2, K1.1, K1.2]
-    type: investigation
-    prompt: |-
-      Ms. Quill prints math books, and ink costs a lot. She deletes any pair of parentheses that doesn’t
-      change the value of its expression.
-    parts:
-      - type: multi
-        prompt: Which of these pairs can Ms. Quill **delete**? Select all that she can.
-        choices:
-          - '\(10 + (4 - 1)\)'
-          - '\((6 + 2) - 3\)'
-          - '\(5 + (2 + 6)\)'
-          - '\(10 - (4 - 1)\)'
-          - '\(2 \times (3 + 4)\)'
-          - '\((9 - 3) \div 3\)'
-        answer: [0, 1, 2]
-        feedback:
-          '3': 'With them: \(10 - 3 = 7\). Without them: \(6 - 1 = 5\). They must stay.'
-          '4': 'With them: \(2 \times 7 = 14\). Without them: \(6 + 4 = 10\). They must stay.'
-          '5': 'With them: \(6 \div 3 = 2\). Without them: \(9 - 1 = 8\). They must stay.'
-        hints:
-          - Find each value twice, with the parentheses and without them.
-        solution:
-          - 'The first three give 13, 5 and 13 either way, so those pairs are wasted ink.'
-          - 'The other three change value: 7 or 5, 14 or 10, 2 or 8.'
-      - type: mc
-        prompt: 'She keeps the pair in \(10 - (4 - 1)\) but deletes the pair in \(10 + (4 - 1)\). Why does the minus sign in front matter?'
-        choices:
-          - 'With the pair, you take away 3. Without it, you take away 4, then 1 more.'
-          - 'A minus sign in front makes parentheses go first, and a plus sign doesn’t.'
-          - 'Subtracting always comes before adding, so the plus sign has to wait.'
-          - 'Without the pair, the 1 gets added back on to the 10 at the end.'
-        answer: 0
-        feedback:
-          '1': 'Parentheses go first in both expressions. The question is whether going first changes the value.'
-          '2': 'Neither + nor − always goes first. They go in order from left to right.'
-          '3': 'Look again at \(10 - 4 - 1\). What happens to the 1?'
-        hints:
-          - 'Write out \(10 - 4 - 1\) and say what is happening to the 10 at each step.'
-        solution:
-          - '\(10 - (4 - 1)\) takes away one group worth 3, which leaves 7.'
-          - '\(10 - 4 - 1\) takes away 4, then 1 more, which is 5 in all. So it leaves 5.'
-      - type: mc
-        prompt: A new book has bigger numbers. Without working them all out, which pair **must stay**?
-        choices:
-          - '\(100 - (37 + 9)\)'
-          - '\(100 + (37 - 9)\)'
-          - '\((100 - 37) + 9\)'
-          - '\(100 + (37 + 9)\)'
-        answer: 0
-        feedback:
-          '1': 'A plus sign is in front, like \(10 + (4 - 1)\). Left to right gives the same value.'
-          '2': 'These parentheses are at the start, so left to right already does them first.'
-          '3': 'Everything is being added. The order can’t change the value.'
-        hints:
-          - Which expression looks most like the one she had to keep?
-          - Find the one where a whole group is being subtracted.
-        solution:
-          - '\(100 - (37 + 9)\) takes away 46. Without the pair, \(100 - 37 + 9\) takes away 37 and then adds 9 back. So the pair must stay.'
-          - 'In the other three, left to right gives the same value as doing the parentheses first.'
-    wrapUp: 'Parentheses matter when going left to right, or × and ÷ first, would give a different result. A minus sign in front of a group is one place to watch closely.'
-
   - id: d3
     level: 3
     thinking: connect
@@ -369,12 +298,6 @@ problems:
       each step right away, in the order you press the buttons. Press **2 + 3 × 4 =** and it does
       \(2 + 3 = 5\), then \(5 \times 4 = 20\).
     parts:
-      - type: number
-        prompt: 'What is the true value of \(2 + 3 \times 4\)?'
-        answer: 14
-        verify: 2 + 3 * 4
-        hints: [Which comes first, × or +?]
-        solution: ['Multiply first: \(3 \times 4 = 12\). Then \(2 + 12 = 14\). The calculator’s 20 is wrong.']
       - type: mc
         prompt: The calculator’s 20 is the right answer to a different expression. Which one?
         choices:
@@ -403,33 +326,4 @@ problems:
           '3': 'That finds \(6 \times 3 = 18\). The calculator adds first when you press + first.'
         hints: [Press the step that has to happen first, first.]
         solution: ['The multiplying has to happen first, so press it first: \(3 \times 4 = 12\), then \(12 + 2 = 14\).']
-      - type: mc
-        prompt: 'Now she needs \(30 - (4 + 2) \times 3\). She presses **4 + 2 × 3 =** and sees 18. What should she do next?'
-        choices:
-          - 'Clear it, then press 30 − 18 ='
-          - 'Keep going and press − 30 ='
-          - 'Keep going and press + 30 ='
-          - 'Stop, because 18 is the value'
-        answer: 0
-        feedback:
-          '1': 'That would be \(18 - 30\). The expression takes 18 away from 30, not 30 away from 18.'
-          '2': 'That gives 48. Should the expression add 30 and 18?'
-          '3': '18 is only \((4 + 2) \times 3\). The expression still has to take that away from something.'
-        hints: [What does the 18 stand for in the expression? What still has to happen to it?]
-        solution: ['18 is the value of \((4 + 2) \times 3\). The last step is \(30 - 18 = 12\). The 30 has to go first, so she has to start again.']
     wrapUp: The rules tell you which step comes first. This calculator can’t read the rules, so a person has to choose the order of the buttons. That part is thinking, not pressing.
-
-  - id: d4
-    level: 3
-    thinking: design
-    covers: [U1.1, U1.2, S1.1]
-    type: open
-    prompt: 'Invent a short, silly story in which \(5 \times (4 + 2)\) is the right way to find the answer. Find the answer. Then say what would go wrong in your story if someone wrote \(5 \times 4 + 2\).'
-    modelAnswer: |-
-      Five giants each order 4 tacos and 2 pickles for lunch. All together that is \(5 \times (4 + 2) = 5 \times 6 = 30\)
-      pieces of food. If someone wrote \(5 \times 4 + 2 = 22\), each giant would get 4 tacos, but only 2 pickles would
-      arrive for all five giants to share.
-    rubric:
-      - My story has 5 groups, and each group has both a 4 and a 2 in it.
-      - I found that the answer is 30.
-      - I explained that \(5 \times 4 + 2\) counts the 2 only once instead of once for each group.

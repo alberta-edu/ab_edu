@@ -302,31 +302,6 @@ problems:
       - It is like saying, “My mitts keep my hands warm, so I don’t need mitts any more.”
       - A limit leaves enough animals to have young. Taking it away removes the very thing that may be holding the population steady.
 
-  - id: b5
-    level: 2
-    thinking: whatif
-    covers: [K3.2, S3.1, U3.1]
-    type: mc
-    prompt: |-
-      Caribou dig through snow with their hooves to reach lichen to eat. One January, a warm spell brings rain onto the
-      snow. Then it freezes into a thick, hard layer of ice on top of the lichen. What is most likely that winter?
-    choices:
-      - Caribou have a harder time reaching food there.
-      - Caribou find food more easily, because ice is smooth.
-      - Nothing changes, because caribou eat only in summer.
-      - The lichen gets more water, so caribou eat better.
-    answer: 0
-    feedback:
-      '1': Being smooth might help with walking. But where is the lichen? Could hooves get through?
-      '2': The lesson says caribou dig through **snow** to find food. When would that be?
-      '3': It may have water, but can a caribou reach it? Follow the hoof down through the layers.
-    hints:
-      - Picture a hoof digging. What does it hit now that it didn’t hit before?
-    solution:
-      - Soft snow can be dug through. Thick ice is much harder, so the lichen is sealed away.
-      - This really happens. Winter ice has been linked to some drops in caribou numbers in Canada’s Arctic, because food becomes hard to reach.
-      - A single weather event can change how animals get their food.
-
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
@@ -372,23 +347,6 @@ problems:
         solution:
           - 'About 10 days after October 5 is around **October 15**. It is an estimate, so a day or so either way is fine.'
           - That gives the family time to finish harvesting before the frost.
-      - type: mc
-        prompt: Why is Odile’s notebook better evidence than one person watching for one fall?
-        choices:
-          - Many years can show a pattern. One fall could be unusual.
-          - Older notes are more accurate, because they were written by hand.
-          - One person can’t see geese and frost in the same fall.
-          - A long notebook is better because it has more pages to read.
-        answer: 0
-        feedback:
-          '1': Handwriting doesn’t make something more accurate. What can 45 years show that one fall can’t?
-          '2': One person could see both. What couldn’t they see from a single fall?
-          '3': What matters is what the pages can show. What can you see across many years?
-        hints:
-          - Could you have found the 10-day gap from just one row? Would you trust it?
-        solution:
-          - One fall gives one gap, and it could be a strange year. Many years let you see what keeps happening.
-          - Observations passed along from one generation to the next can show patterns nobody could see in a single year.
       - type: mc
         prompt: |-
           Uncle Stu has a plan. “Frost comes after the geese leave. So I’ll feed the geese a mountain of bread, they’ll
@@ -459,52 +417,6 @@ problems:
         solution:
           - The seller is right about last year, but last year was the longest season of the 10.
           - The crop type has to suit the climate, the pattern over many years, not one lucky summer.
-      - type: number
-        prompt: In how many of the 10 seasons would Bashful Barley have ripened?
-        answer: 6
-        unit: seasons
-        verify: 10 - 4
-        hints:
-          - It helps to cross off the seasons shorter than 90 days.
-        solution:
-          - 80, 88, 76 and 84 are too short. That leaves 95, 102, 91, 99, 93 and 113, so **6** seasons.
-      - type: open
-        prompt: |-
-          Turbo Turnip ripens in **all 10** seasons. Bashful Barley gives a much bigger harvest, but only when it
-          ripens. Which would you plant on this farm? Defend your choice using the numbers.
-        modelAnswer: |-
-          I would plant Turbo Turnip, because it ripened in all 10 seasons and the family would always have a harvest.
-          Barley gives more, but in 4 of the 10 seasons it wouldn’t ripen, and that is a lot of years with nothing. Someone
-          could also choose barley because 6 good harvests might be worth more than 10 small ones, as long as they had
-          food or money saved for the bad years.
-        rubric:
-          - I chose one crop.
-          - I used the numbers (10 out of 10, or 6 out of 10) in my reason.
-          - I said what the farm would give up by making this choice.
     wrapUp: Farmers choose crops for the climate, the pattern over many years. A single good year can fool you.
     hints: []
     solution: []
-
-  - id: d3
-    level: 3
-    thinking: design
-    covers: [K4.5, K4.2, K4.4, S4.2, S4.3]
-    type: open
-    prompt: |-
-      You are a handful of soil on a bare, ploughed Alberta field. You have had a terrible year, and you are writing
-      to the farmer. In your letter, describe **one or two weather events** that nearly carried you off. Then ask for
-      **two conservation practices**, and explain how each one would help you.
-
-      Be as funny as you like, but keep the science true.
-    modelAnswer: |-
-      Dear Farmer, last spring a windstorm blew half my family into a ditch. Then a flood tried to wash the rest of us
-      away. I am tired of being bare! Please leave your stubble on me after the harvest. It would cover me and hold me
-      down in the wind. Also, please plant your seeds without ploughing the whole field. Ploughing breaks me into
-      loose bits that blow away, so leaving me in place would help me stay put. Yours truly, Soil.
-    rubric:
-      - I described a weather event that can harm soil, such as a windstorm or a flood.
-      - I asked for two real conservation practices.
-      - I explained how each practice protects the soil.
-    hints:
-      - What did you see happen to the bare field in the experiment?
-      - Look back at the table of conservation practices. Which ones would a handful of soil beg for?

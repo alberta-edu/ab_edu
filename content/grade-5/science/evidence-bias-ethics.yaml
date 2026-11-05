@@ -117,26 +117,6 @@ keyTerms:
 
 problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
-  - id: w1
-    level: 1
-    thinking: apply
-    covers: [K1.3, S1.1]
-    type: mc
-    prompt: It’s the day before your birthday. A big wrapped box is sitting on the table, and you’re not allowed to open it. Which technology could show you what’s inside without unwrapping it?
-    choices: [An X-ray machine, A microscope, A telescope, A thermometer]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': A microscope shows things that are very small. It would give you a great view of the wrapping paper.
-      '2': A telescope shows things that are very far away. The box is right there.
-      '3': A thermometer tells you how warm something is. That won’t tell you what’s in the box.
-    hints:
-      - What is stopping you from seeing the present? Is it too small, too far away, or hidden?
-      - Which technology lets you observe the inside of something without opening it?
-    solution:
-      - The present isn’t too small or too far away. It’s hidden inside something.
-      - An **X-ray** shows the inside of something without opening it. Now you just need to find an X-ray machine!
-
   - id: w2
     level: 1
     thinking: apply
@@ -345,31 +325,6 @@ problems:
       - Feeling embarrassed can change an answer. A personal feeling that influences an investigation is **bias**.
       - So respecting privacy isn’t only polite. It can also give you truer evidence.
 
-  - id: b5
-    level: 2
-    thinking: ways
-    covers: [K5.2, S5.2]
-    type: mc
-    prompt: A class wants to find out whether ants in the schoolyard go for sugar or for salt. Which plan gets the evidence while doing the least harm?
-    choices:
-      - Put a pinch of each beside their trail, count the visitors, then clean up.
-      - Dig up the nest, and keep the ants in a jar with some sugar and some salt.
-      - Scoop up 100 ants in a bag, take them inside, and let them choose a side.
-      - Pour sugar and salt all over the nest, and see which pile the ants walk on.
-    answer: 0
-    feedback:
-      '1': That would answer the question, but it wrecks the ants’ home. You can get the same evidence and leave the nest alone.
-      '2': That would answer the question, but it takes ants away from their home. Do you need to move them at all?
-      '3': That buries their home. Could you offer food without burying anything?
-    hints:
-      - What do you actually need to see, to answer the question?
-      - Can you see it without moving any ants?
-      - Which plan leaves the schoolyard the way the class found it?
-    solution:
-      - All you need to see is where the ants go. You don’t need to move them to see that.
-      - So offer a small amount beside their trail, and count. Then clean up, so the schoolyard is left as you found it.
-      - 'What we learned: before you start, ask whether another way gets the same evidence with less harm.'
-
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
@@ -423,14 +378,6 @@ problems:
           - Lou expected Henrietta to get it right, and that expectation showed in his body. The hen noticed. That is **bias**.
           - He didn’t know about it, and that’s how bias usually works. Humans are not usually aware of their own biases.
           - The bag worked like a blind test. Lou’s expectations couldn’t reach the hen.
-      - type: open
-        prompt: Lou is honest, so he takes down his sign, “THE ADDING HEN”. Write a new sign for the families who visit. It should tell them clearly and accurately what the test found.
-        modelAnswer: |-
-          Meet Henrietta, the hen who watches people! When Lou can see the number cards, she gets 9 out of 10 right. When he can’t, she gets only 1 out of 10. She isn’t adding. She’s noticing what Lou does.
-        rubric:
-          - My sign doesn’t claim that she can add.
-          - My sign gives the evidence from both tests.
-          - Young visitors could understand my sign.
     wrapUp: Lou never meant to fool anyone, and that’s why bias is so tricky. We can’t just promise not to have it, so we design tests that keep it out.
     hints: []
     solution: []
@@ -463,27 +410,3 @@ problems:
       - Erasing or changing the number fails the first job. Reporting it with no explanation fails the second.
       - So she keeps the number, says what happened, and explains why it doesn’t count as hamster running. Everything is out in the open, and a reader could disagree with her if they wanted to.
       - 'What we learned: the problem isn’t leaving out one number that has a known cause. The problem is hiding that you did.'
-
-  - id: d3
-    level: 3
-    thinking: why
-    covers: [K1.2, K1.3, S1.1, U1.1]
-    type: open
-    prompt: |-
-      Before lunch, Harlan looks at his hands. “They look clean, so there are no germs on them,” he says, and he picks up his sandwich. Germs are far too small to see with your eyes.
-
-      Explain what’s wrong with his reasoning. Then name a technology that could give better evidence, and say what you would do with it.
-    modelAnswer: |-
-      Germs are far too small to see with your eyes, so looking at your hands can’t show whether germs are there. Not seeing something doesn’t mean it isn’t there. A microscope would give better evidence. I would wipe his hand with a swab, put what’s on the swab on a glass slide, and look at it under the microscope.
-    rubric:
-      - I explained that some things are too small for our senses to observe, so looking can’t settle it.
-      - I named a technology that fits, like a microscope.
-      - I said how I would use it to check Harlan’s hands.
-    hints:
-      - Harlan is using his eyes. What can his eyes tell him about germs?
-      - If you can’t see something, does that prove it isn’t there?
-      - Which technology from the lesson shows very small things?
-    solution:
-      - Harlan used his eyes to answer a question that his eyes can’t answer. Germs are too small to see.
-      - So “I can’t see any” doesn’t tell him anything. It would be like saying there are no moons around other planets because you can’t see them from your backyard.
-      - A **microscope** lets us observe what our senses can’t. Technology gives us evidence about things we would otherwise never know were there.

@@ -198,40 +198,6 @@ problems:
       - A **hygrometer** measures humidity, the amount of water vapour in the air.
 
   # ---------------------------------------------------------------- Level 2: Build
-  - id: b1
-    level: 2
-    thinking: flaw
-    covers: [K2.1, S2.1, U2.1]
-    type: mc
-    figure: >-
-      <svg viewBox="0 0 420 190" class="fig-svg" role="img" aria-label="A view from above, with north at the top. On the left, a wind vane with its arrow pointing north. On the right, a windsock with its wide open end to the north and its narrow tail streaming south.">
-      <text class="fig-label" x="210" y="20" text-anchor="middle">N</text><text class="fig-label" x="210" y="184" text-anchor="middle">S</text>
-      <line class="obj-line" x1="110" y1="140" x2="110" y2="48"/><line class="obj-line" x1="110" y1="48" x2="96" y2="66"/><line class="obj-line" x1="110" y1="48" x2="124" y2="66"/>
-      <text class="fig-small" x="110" y="166" text-anchor="middle">Wind vane</text>
-      <path class="fig-rect" d="M284 48 L336 48 L320 140 L300 140 Z"/>
-      <text class="fig-small" x="310" y="166" text-anchor="middle">Windsock</text>
-      </svg>
-    prompt: |-
-      This is a view from above a small airfield, with north at the top. Dov says, “The arrow points north but the
-      windsock’s tail points south. They disagree, so one of them must be broken!” What is true?
-    choices:
-      - Neither is broken. Wind from the north turns the arrow north and blows the tail south.
-      - The wind vane is broken. Its arrow should point the way the wind is blowing to.
-      - The windsock is broken. Its tail should point north, the same way as the arrow.
-      - Both are broken. Two tools at the same airfield should always point the same way.
-    answer: 0
-    feedback:
-      '1': The arrow of a wind vane points to where the wind comes **from**. What does this one tell you?
-      '2': Imagine wind blowing into the open end of the sock. Which way would the tail be pushed?
-      '3': These two tools show the wind in different ways. Work out what each one says about the wind.
-    hints:
-      - Start with the vane. Where is the wind coming from?
-      - Now picture that same wind hitting a sock. Which way does the tail stream?
-    solution:
-      - The arrow of a wind vane points to where the wind comes from, so this wind comes **from the north**.
-      - Wind from the north fills the sock’s open end and pushes the tail **south**.
-      - Both tools tell the same story. They only look as if they disagree because they show it in opposite ways.
-
   - id: b2
     level: 2
     thinking: why
@@ -405,25 +371,6 @@ problems:
         solution:
           - Oceans and big lakes keep nearby places mild.
           - So Edmonton should move to the ocean’s edge, like Vancouver. Its winters would be much milder.
-      - type: mc
-        prompt: On Friday, Olga builds an enormously tall mountain right on the **equator**. Could there be ice near the top all year?
-        choices:
-          - Yes, because higher places are cooler, and the top is very high.
-          - No, because the equator is hot everywhere, at any height at all.
-          - Only in the winter months, when the equator cools down a lot.
-          - Only if the mountain is next to a big ocean to keep it cool.
-        answer: 0
-        feedback:
-          '1': Location matters, but it is only one factor. What did you learn about the high peaks of the Rockies?
-          '2': Singapore is near the equator, and its January and July are almost the same. Would a high place have a much colder season?
-          '3': Oceans keep places mild, so that wouldn’t bring ice. Which factor is about height?
-        hints:
-          - Which two factors are pulling in opposite directions on this mountain?
-          - Why do the high peaks of the Rockies keep their snow all summer?
-        solution:
-          - Two factors pull against each other. Being near the equator makes it warm, and being high up makes it cold.
-          - At the very top, altitude can win, so ice can stay all year.
-          - This is real. Mount Kilimanjaro in Africa is very close to the equator, and it still has ice near its top.
     wrapUp: A climate comes from several factors working together. Change one, and you can predict what changes next.
     hints: []
     solution: []
@@ -499,28 +446,3 @@ problems:
     wrapUp: A forecast helps you plan the next few days. Years of records help you plan next year. The question decides which one you need.
     hints: []
     solution: []
-
-  - id: d3
-    level: 3
-    thinking: evidence
-    covers: [S1.4, K1.3, K2.1, U2.1, U1.1]
-    type: open
-    prompt: |-
-      You run a made-up rain gauge repair shop. A worker at a weather station in Cairo, Egypt, calls you. “Our gauge
-      has read 0 mm since May. It must be broken!” You check the real 30-year averages: Cairo gets 0 mm in each month
-      from May to September.
-
-      Does the empty gauge prove it is broken? Explain why or why not. Then invent a test the worker can do **today**,
-      without waiting for rain.
-    modelAnswer: |-
-      The empty gauge doesn’t prove it is broken. Cairo has a dry climate, and 30 years of records show that it usually
-      gets no rain in these months, so an empty gauge is just what you would expect. To test it, the worker can pour a
-      measured amount of water into the gauge. If it shows the right amount, the gauge works. Then the worker can
-      check that no water leaks out.
-    rubric:
-      - I said that an empty gauge doesn’t prove it is broken.
-      - I used the 30-year averages or Cairo’s dry climate to explain why.
-      - My test doesn’t need rain, and it could show whether the gauge measures water correctly.
-    hints:
-      - What reading would a working gauge show in Cairo in July?
-      - What does a gauge need, in order to show whether it works? How could you supply that without any rain?

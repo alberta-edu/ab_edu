@@ -114,21 +114,6 @@ problems:
     solution:
       - 'Dogs come first in the words, so they come first in the ratio: **9 : 4**.'
 
-  - id: w2
-    level: 1
-    thinking: apply
-    covers: [K1.1, K1.2, S1.1]
-    type: fraction
-    prompt: 'At the same shelter, write the ratio of **cats to all the animals** as a fraction.'
-    answer: 4/13
-    verify: 4 / (4 + 9)
-    hints:
-      - How many animals are there altogether?
-      - The cats are the part. All the animals are the whole.
-    solution:
-      - '4 cats + 9 dogs = 13 animals altogether.'
-      - 'Cats to all the animals is 4 : 13, or \(\frac{4}{13}\).'
-
   - id: w3
     level: 1
     thinking: notice
@@ -238,55 +223,6 @@ problems:
       - 'Both ratios describe the same tank, comparing different things.'
 
   # ---------------------------------------------------------------- Level 3: Deep Think
-  - id: d1
-    level: 3
-    thinking: whatif
-    covers: [S1.1, S1.2, K1.1, K1.3]
-    type: investigation
-    prompt: |-
-      Waffles the dog catches **6** of her first **10** frisbees. Then she falls asleep in the grass. Her owner doesn’t notice, and
-      throws **10** more frisbees, which all land beside her. Waffles misses all 10.
-    parts:
-      - type: number
-        prompt: What percentage of her first 10 throws did Waffles catch?
-        answer: 60
-        unit: '%'
-        verify: 6 * 10
-        hints:
-          - What fraction out of 100 is the same as 6 out of 10?
-        solution:
-          - '\(\frac{6}{10} = \frac{60}{100}\), which is **60%**.'
-      - type: number
-        prompt: Now count all 20 throws. What percentage did she catch?
-        answer: 30
-        unit: '%'
-        verify: 6 * 5
-        hints:
-          - How many catches does she have now? What is the new whole?
-        solution:
-          - 'She still has 6 catches, but the whole is now 20. \(\frac{6}{20} = \frac{30}{100}\), which is **30%**.'
-          - 'She didn’t lose a single catch. Her percentage fell because the whole grew.'
-      - type: text
-        prompt: Write the ratio of her **catches to her misses** so far, with a colon.
-        accept: ['6 : 14', '6:14']
-        hints:
-          - She missed some of the first 10 throws too.
-        solution:
-          - 'She missed 4 of the first 10 and all of the next 10, which is 14 misses. So catches to misses is **6 : 14**.'
-      - type: number
-        prompt: Waffles wakes up and catches every throw from now on. How many catches in a row does she need so that exactly **50%** of all her throws are catches?
-        answer: 8
-        unit: catches
-        verify: 14 - 6
-        hints:
-          - 'If 50% of her throws are catches, what must be true about her catches and her misses?'
-          - Does her number of misses change now? How many catches must she have to match it?
-        solution:
-          - '50% means half, so her catches must equal her misses.'
-          - 'She stays at 14 misses, so she needs 14 catches. She has 6, so she needs **8** more.'
-          - 'Check: 14 catches out of 28 throws is exactly half.'
-    wrapUp: A percentage depends on its whole. Waffles’ catches stayed the same, but the whole grew, so the percentage fell. And a part-part ratio can tell you about the part-whole one, because 50% happens exactly when the two parts are equal.
-
   - id: d2
     level: 3
     thinking: design

@@ -159,29 +159,6 @@ problems:
       - '13 tens ÷ 6 = 2 tens, with 1 ten left over.'
       - '18 ones ÷ 6 = 3 ones. So \(738 \div 6 = 123\).'
 
-  - id: w4
-    level: 1
-    thinking: estimate
-    covers: [S1.5]
-    type: mc
-    prompt: 'Without doing the long division: about how big is the answer to \(478 \div 6\)?'
-    choices:
-      - about 80
-      - about 8
-      - about 800
-      - about 60
-    answer: 0
-    feedback:
-      '1': 'Test it: \(8 \times 6\) is only 48. You need to reach nearly 480.'
-      '2': 'Test it: \(800 \times 6 = 4\,800\). That is ten times too big.'
-      '3': 'Test it: \(60 \times 6 = 360\). There is a closer friendly number.'
-    hints:
-      - Which number close to 478 divides easily by 6?
-      - 'Think of \(48 \div 6\).'
-    solution:
-      - '478 is close to 480, and 480 divides easily by 6.'
-      - '\(480 \div 6 = 80\), so the answer is about **80**.'
-
   # ---------------------------------------------------------------- Level 2: Build
   - id: b1
     level: 2
@@ -217,26 +194,6 @@ problems:
         solution:
           - 'This question asks for the remainder itself: **2** buns.'
     wrapUp: One division can give three different answers. The numbers don’t decide what the remainder means. The story does.
-
-  - id: b2
-    level: 2
-    thinking: model
-    covers: [S1.2, S1.6]
-    type: number
-    prompt: |-
-      The Centipede Hockey League has a team of **18** players. Each cartoon centipede has **134** legs and
-      wears one skate on every leg. Skates are sold only in **pairs**. How many pairs does the team need?
-    answer: 1206
-    unit: pairs
-    verify: 67 * 18
-    hints:
-      - Think about one centipede first. How many pairs does it need?
-      - 'A pair covers 2 legs. So 134 legs need 134 ÷ 2 pairs.'
-      - 'Now multiply that number of pairs by the number of players.'
-    solution:
-      - 'One centipede has 134 legs, and each pair covers 2 legs, so it needs \(134 \div 2 = 67\) pairs.'
-      - 'The team needs \(67 \times 18\): \(67 \times 8 = 536\) and \(67 \times 10 = 670\), which add to **1 206** pairs.'
-      - 'You could count all the legs first, but then you would have to halve a much bigger number. Halving first keeps the numbers small.'
 
   - id: b3
     level: 2
@@ -356,99 +313,7 @@ problems:
           - 1 hundred, 0 tens and how many ones?
         solution:
           - '1 hundred, 0 tens, 3 ones: **103** octopuses. Check: \(103 \times 8 = 824\).'
-      - type: build
-        prompt: Invent your own delivery. Choose a different 3-digit number of socks, so that nothing is left over and the number of octopuses also has a **0 in the tens place**.
-        fields:
-          - { name: n, label: 'Number of socks', unit: socks }
-        rules:
-          - { test: 'n >= 100 && n <= 999', fail: 'Choose a 3-digit number of socks.' }
-          - { test: 'n != 824', fail: 'That is the delivery Milo already had. Try a new number.' }
-          - { test: 'n % 8 == 0', fail: 'Some socks are left over. Try dividing by 8 again. How could you adjust your number?' }
-          - { test: 'n / 8 >= 100', fail: 'That dresses fewer than 100 octopuses, so the answer has no hundreds digit. How many socks do 100 octopuses need?' }
-          - { test: '(n / 8) % 100 < 10', fail: 'Nothing is left over, but the tens digit of the answer isn’t 0. Try something closer to the number of socks for 100 octopuses.' }
-        examples:
-          - { n: 816 }
-          - { n: 800 }
-          - { n: 872 }
-        counterexamples:
-          - { n: 824 }
-          - { n: 880 }
-          - { n: 792 }
-          - { n: 818 }
-        hints:
-          - How many socks do 100 octopuses need? Start there.
-          - Adding 8 more socks dresses 1 more octopus. How far can you go before the tens digit changes?
-        solution:
-          - '100 octopuses need 800 socks. Each extra octopus needs 8 more.'
-          - '**816** socks dress 102 octopuses, and **864** socks dress 108. Both work because the answer stays between 100 and 109.'
     wrapUp: A 0 in an answer isn’t nothing. It holds a place, so every other digit keeps its value. An estimate is what warned us that something was missing.
-
-  - id: d2
-    level: 3
-    thinking: why
-    covers: [S1.1, S1.2, S1.5]
-    type: investigation
-    prompt: |-
-      Auntie Bea marks homework from across the kitchen. She only looks at the **last digit**.
-      For \(236 \times 47\), Nico writes **11 097**. "Wrong!" she calls, and she hasn’t multiplied a thing.
-    parts:
-      - type: number
-        prompt: What digit must the real answer end in?
-        answer: 2
-        verify: 6 * 7 - 40
-        hints:
-          - Which two digits make the very first step of the algorithm?
-          - 'Multiply them. Which digit of that answer gets written in the ones place?'
-        solution:
-          - 'The first step is \(6 \times 7 = 42\). The 2 goes in the ones place, so the answer must end in **2**.'
-      - type: open
-        prompt: Why can Auntie Bea ignore the 23 in 236, and the 4 in 47? Think about the rows of the algorithm.
-        modelAnswer: |-
-          The second row is 236 × 40, which ends in 0 because of the placeholder, so it adds nothing to the ones place. In the first row,
-          only 6 × 7 lands in the ones. The 3 and the 2 in 236 are worth tens and hundreds, so multiplying them can only make tens or more.
-        rubric:
-          - I said the second row ends in 0, so it can’t change the last digit.
-          - I said that in the first row only 6 × 7 reaches the ones place.
-          - I explained that the other digits are worth tens or hundreds, so they make tens or more.
-      - type: mc
-        prompt: 'Nico tries again: **1 092**. "It ends in 2," he says, "so it must be right!" What would you tell him?'
-        choices:
-          - It can’t be right, since 200 × 50 is 10 000, so 1 092 is far too small.
-          - It must be right, since the last digit is the digit that is hardest to get.
-          - It can’t be right, since the answer to a multiplication has to end in 0.
-          - It must be right, since 1 092 uses digits found in the real calculation.
-        answer: 0
-        feedback:
-          '1': 'A correct last digit only passes one test. Try a quick estimate as well.'
-          '2': 'Only the second row must end in 0. The first row can end in any digit, as this one does.'
-          '3': 'Digits appearing somewhere is no proof. How big should the answer be? Try a quick estimate.'
-        hints:
-          - Does the last digit tell you how big the answer is?
-          - 'Round 236 and 47 to friendly numbers.'
-        solution:
-          - 'The last digit is right, but the size is wrong. \(200 \times 50 = 10\,000\), and 1 092 is about ten times too small.'
-      - type: build
-        prompt: Now fool them both. Invent a **wrong** answer to \(236 \times 47\) that passes the last-digit test and also looks about right, between 10 000 and 13 000.
-        fields:
-          - { name: n, label: 'Your wrong answer' }
-        rules:
-          - { test: 'n >= 10000 && n <= 13000', fail: 'Someone doing a quick estimate would catch that. Stay between 10 000 and 13 000.' }
-          - { test: 'n % 10 == 2', fail: 'Auntie Bea would catch that from across the kitchen. Check the last digit.' }
-          - { test: 'n != 11092', fail: 'Oops, that is the real answer. It has to be wrong.' }
-        examples:
-          - { n: 11192 }
-          - { n: 12002 }
-        counterexamples:
-          - { n: 11092 }
-          - { n: 11095 }
-          - { n: 1092 }
-        hints:
-          - What must the last digit be? How big must the number be?
-          - 'The real answer is \(1\,652 + 9\,440\). Change a digit that isn’t the last one.'
-        solution:
-          - 'The real answer is \(1\,652 + 9\,440 = 11\,092\).'
-          - '**11 192** and **12 002** both fool the two tests. They end in 2 and they are the right size, but they are wrong.'
-    wrapUp: A quick check can catch a wrong answer, but it can never prove that an answer is right. Only the whole algorithm can do that.
 
   - id: d3
     level: 3
@@ -459,20 +324,14 @@ problems:
       Your birthday is on a **Tuesday** this year. Next year it comes **365** days later.
       The days of the week repeat every **7** days. So what will happen?
     parts:
-      - type: number
-        prompt: Count 365 days in whole weeks. How many days are left over?
-        answer: 1
-        verify: 365 - 52 * 7
-        hints:
-          - 'Divide 365 by 7. Which part of the answer is the left over days?'
-        solution:
-          - '\(365 \div 7 = 52 \text{ R } 1\). That is 52 whole weeks and **1** extra day.'
       - type: text
         prompt: On which day of the week is your birthday next year?
         accept: [Wednesday, Wed]
         hints:
-          - After 52 whole weeks, it is Tuesday again. Then what does the 1 extra day do?
+          - Divide 365 by 7. How many days are left over after the whole weeks?
+          - A whole week always lands back on Tuesday. What do the left-over days do?
         solution:
+          - '\(365 \div 7 = 52\) R1, so 365 days are 52 whole weeks and 1 extra day.'
           - 'Whole weeks land back on Tuesday. The 1 extra day moves it to **Wednesday**.'
       - type: text
         prompt: 'The Sloth Post promises delivery in exactly **500** days. You mail a letter on a **Monday**. On which day does it arrive?'
@@ -483,25 +342,4 @@ problems:
         solution:
           - '\(500 \div 7 = 71 \text{ R } 3\). The 71 weeks land back on Monday.'
           - 'Three extra days: Tuesday, Wednesday, **Thursday**.'
-      - type: multi
-        prompt: The Sloth Post now wants letters mailed on a Monday to arrive on a Monday too. Which delivery times would work? Choose all that do.
-        choices:
-          - 700 days
-          - 350 days
-          - 777 days
-          - 500 days
-          - 365 days
-          - 170 days
-        answer: [0, 1, 2]
-        feedback:
-          '3': 'You worked this one out already: 3 extra days. Which remainder keeps it on Monday?'
-          '4': 'A year has 1 extra day, as you found with the birthday.'
-          '5': 'Try \(170 \div 7\). What is the remainder?'
-        hints:
-          - What must the remainder be if the day stays the same?
-          - 'Look for numbers that split into groups of 7 easily: 7 × 100? 7 × 111?'
-        solution:
-          - 'The weekday stays the same only when the remainder is 0.'
-          - '\(700 = 7 \times 100\), \(350 = 7 \times 50\) and \(777 = 7 \times 111\) all work.'
-          - '500 has a remainder of 3, 365 has a remainder of 1, and 170 has a remainder of 2, so those three land on other days.'
     wrapUp: Here the remainder is the whole answer. The number of weeks doesn’t matter at all, because only the extra days move the weekday.

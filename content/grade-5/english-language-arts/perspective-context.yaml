@@ -249,36 +249,6 @@ problems:
       - Context is the background to a person or event. Being new and knowing nobody helps explain the whisper. The other details don’t.
 
   # ---------------------------------------------------------------- Level 2: Build
-  - id: b1
-    level: 2
-    thinking: perspective
-    covers: [K4.3, S4.2]
-    type: mc
-    prompt: |-
-      Three characters in a funny story describe the same thing:
-
-      - **A:** “Every Saturday the roaring monster leaves its closet. I hide under the bed until it’s gone.”
-      - **B:** “Every Saturday it swallows the crumbs I saved behind the couch. Thief!”
-      - **C:** “Every Saturday it saves me an hour of sweeping. Best thing I ever bought.”
-
-      Who is each speaker?
-    choices:
-      - 'A: a dog. B: a mouse. C: a parent.'
-      - 'A: a parent. B: a dog. C: a mouse.'
-      - 'A: a mouse. B: a parent. C: a dog.'
-      - 'A: a dog. B: a parent. C: a mouse.'
-    answer: 0
-    feedback:
-      '1': Would a parent hide under the bed from a vacuum cleaner? Who is frightened by that noise?
-      '2': Would a parent save crumbs behind a couch? Who would want them?
-      '3': Would a parent call it a thief for taking crumbs? And who actually buys vacuum cleaners?
-    hints:
-      - What is the thing they’re all describing?
-      - What does each speaker want or care about?
-    solution:
-      - It’s a vacuum cleaner. Each speaker’s interests decide what they notice about it.
-      - The dog hates the noise, the mouse wants the crumbs and the parent cares about the time saved. One object, three perspectives.
-
   - id: b2
     level: 2
     thinking: evidence
@@ -384,28 +354,6 @@ problems:
       - Just before that line, Dad says, “That’s a whole corner of winter feed.” Paragraph 4 tells us about his fear of floods. He’s worried about water and hay, and he never says anything about hating animals.
       - A stronger summary has a main idea that fits the whole story, such as “People can see the same pond differently because of what they have lived through,” with evidence for it.
 
-  - id: b6
-    level: 2
-    thinking: evidence
-    covers: [S4.2, K4.2, S5.2]
-    type: evidence
-    prompt: Dad looks at the new water and sees a problem. Mrs. Novak looks at the same water and laughs. Tap the sentence that best shows **what in her life** makes her see it this way.
-    passage: pond
-    paragraphs: [3]
-    answer: [p3s4]
-    feedback:
-      p3s1: This tells you that she lives nearby. Does it tell you what she has lived through?
-      p3s2: This shows how she sees the water, and that is what you are trying to explain. What happened to her?
-      p3s3: You’re close. This tells you there were dry years. Which sentence tells you what they did to her?
-      p3s5: This is what she thinks now. Which sentence explains why she thinks it?
-    hints:
-      - Find what she **thinks** about the water. Then ask, “Why would she think that?”
-      - Look for something that happened to her.
-    solution:
-      - '“My well went dry, and the cattle stood around in the mud where this creek used to be.”'
-      - Someone who has watched a creek dry up sees a pond as stored water. Her experience shapes her perspective.
-      - Dad’s father lost a crop to a flood. It’s the same water, but they have lived different lives.
-
   # ---------------------------------------------------------------- Level 3: Deep Think
   - id: d1
     level: 3
@@ -467,15 +415,6 @@ problems:
           - What did you know after the second part that Imani doesn’t know?
         solution:
           - Imani sees just what you saw at the start. Without the context, she fills in a reason of her own.
-      - type: open
-        prompt: Write what Mrs. Kovacs is thinking as she waves at the bus. Write 2 or 3 sentences, as if she’s saying them to herself, and use what you know about her.
-        modelAnswer: |-
-          Forty years on this road, and Luis still takes that corner too fast. I’ll tell him tomorrow. Some mornings I just
-          need to hear those doors open.
-        rubric:
-          - I wrote from Mrs. Kovacs’s point of view, as if she’s thinking.
-          - I used something from her background, such as her 40 years of driving or training Luis.
-          - What I wrote fits what she does in the story.
     wrapUp: The same actions can mean very different things. Before you decide why someone does something, ask what you don’t know about their background.
     hints: []
     solution: []
@@ -526,35 +465,6 @@ problems:
         solution:
           - '“Licked her whole face” and “huge dog” are right there in the text.'
           - What the dog wanted and how Sadie felt aren’t in the text. Each reader added those. That’s fine, but it’s good to notice when you’re doing it.
-      - type: open
-        prompt: You are the author, and you want **both** readers to find this moment funny. Add one sentence to the story that would help.
-        modelAnswer: Sadie laughed so hard that she got the hiccups, and the dog seemed to think this was the best game ever.
-        rubric:
-          - My sentence shows how Sadie feels, or that the dog means no harm.
-          - It would help a reader who is nervous around dogs feel safe enough to laugh.
     wrapUp: Readers bring their own lives to every text, and writers can use their words to guide what readers feel.
     hints: []
     solution: []
-
-  - id: d3
-    level: 3
-    thinking: perspective
-    covers: [S4.4, S4.2, K5.4]
-    type: open
-    prompt: |-
-      Kiran writes to the beach manager: “That gull is a thief! It stole my sandwich off my towel while I was swimming.”
-
-      Now you find out three things. The gull has three hungry chicks on the rocks. Fish have been hard to find this week.
-      The sandwich sat alone on the towel for an hour.
-
-      Write the gull’s reply to the manager in 2 or 3 sentences.
-    modelAnswer: |-
-      I didn’t steal anything. Fish have been hard to find all week, and I have three chicks screaming at me on the rocks.
-      That sandwich sat alone on a towel for a whole hour, so as far as I could tell, nobody wanted it. I rescued it.
-    rubric:
-      - I wrote as the gull, using *I*.
-      - I used at least two of the three facts from the prompt.
-      - My gull sees what happened differently from Kiran, and says why.
-    hints:
-      - What does the gull care about most this week?
-      - Kiran calls it stealing. What would the gull call it?

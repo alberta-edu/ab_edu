@@ -197,8 +197,8 @@ class ProblemCard extends HTMLElement {
       const review = this.q('.open-review');
       if (review.hidden) {
         const text = this.q<HTMLTextAreaElement>('.open-answer').value.trim();
-        if (text.split(/\s+/).length < 5) {
-          this.showFeedback('info', 'Write your answer first: at least one full sentence.');
+        if (!text) {
+          this.showFeedback('info', 'Type your answer first.');
           return;
         }
         review.hidden = false;

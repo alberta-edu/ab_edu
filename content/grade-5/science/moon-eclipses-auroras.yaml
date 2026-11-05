@@ -162,25 +162,6 @@ problems:
     solution:
       - The new Moon is about day 0 and the full Moon is about day **15**, about halfway through the cycle.
 
-  - id: w2
-    level: 1
-    thinking: recall
-    covers: [S1.3]
-    type: mc
-    prompt: A solar eclipse and a lunar eclipse are both on the calendar this year. Which one is safe to look straight at?
-    choices: [The lunar eclipse, The solar eclipse, Both of them, Neither of them]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': What are you looking toward in a solar eclipse? What can that do to your eyes?
-      '2': The Moon covers the Sun for a while in one of these. Does that make it safe to look at the Sun?
-      '3': One of them happens at night, when you are only looking at the Moon.
-    hints:
-      - Which eclipse has you looking toward the Sun?
-    solution:
-      - In a **lunar eclipse**, you are looking at the Moon at night, so it is safe.
-      - A solar eclipse has you looking toward the Sun, which can hurt your eyes, even when part of it is covered.
-
   - id: w3
     level: 1
     thinking: notice
@@ -346,18 +327,6 @@ problems:
         solution:
           - The shadow stretches to the right, toward **C**. That is the line-up Sun, Earth, Moon.
           - You just found that C is the full Moon spot. This is why a lunar eclipse can only happen at a full Moon.
-      - type: number
-        prompt: Sometimes eclipses come in pairs. A **solar** eclipse happens with the Moon at spot A. About how many days later could a lunar eclipse happen?
-        answer: 15
-        tolerance: 1
-        unit: days
-        verify: '15'
-        hints:
-          - In a solar eclipse, the Moon is between the Sun and Earth. Is that a new Moon or a full Moon?
-          - How long does the Moon take to go from A to C? Use the table in the lesson.
-        solution:
-          - Spot A is the new Moon, about day 0. Spot C is the full Moon, about day 15. So the earliest is about **15 days** later.
-          - The line-up has to be very exact, so most trips around Earth don’t make an eclipse at all.
       - type: mc
         prompt: A friend says, “When the Moon is at spot B, it looks half lit because Earth’s shadow covers half of it.” Why can’t that be right?
         choices:
@@ -378,95 +347,28 @@ problems:
     hints: []
     solution: []
 
-  - id: d2
-    level: 3
-    thinking: flaw
-    covers: [S1.3, K1.3, S1.2]
-    type: multi
-    prompt: You are the science checker for a film called *Eclipse at Gopher Creek*. Select **all** the scenes with a science mistake.
-    choices:
-      - Midnight. The whole town watches a solar eclipse cover the Sun.
-      - A thin crescent Moon slowly turns red during a lunar eclipse.
-      - A full Moon on Monday. By the next Monday it is a new Moon.
-      - At noon, the sky goes dark like evening during a total solar eclipse.
-      - At night, a full Moon slowly turns a dark copper colour.
-    fixedOrder: true
-    answer: [0, 1, 2]
-    hints:
-      - For each scene with an eclipse, ask where the Sun, Earth and Moon must be. Could the people see it at that time?
-      - For the Monday scene, count the days. What comes one week after a full Moon?
-    solution:
-      - ✓ A solar eclipse covers the **Sun**. At midnight, the Sun is on the other side of Earth, so there is nothing to cover.
-      - ✓ A lunar eclipse needs Earth between the Sun and the Moon, which is the **full** Moon spot. It can’t happen to a crescent.
-      - ✓ Going from full to new takes about 15 days. One week after a full Moon, you would see a third quarter Moon.
-      - ✗ Noon is when a solar eclipse could happen, and the sky really does go dark. That scene is fine.
-      - ✗ This is exactly what a lunar eclipse looks like. That scene is fine too.
-
-  - id: d3
-    level: 3
-    thinking: model
-    covers: [K1.3, S1.4, U1.1]
-    type: investigation
-    prompt: |-
-      Wally is a friendly werewolf. At each full Moon, he bursts out of his pants, so he has to buy one new pair for every
-      full Moon in the year.
-
-      Here is what he has worked out so far. A year has **365 days**. Twelve Moon cycles, from the first full Moon to the 13th, take **354 days**.
-    parts:
-      - type: number
-        prompt: This year, the first full Moon is on January 5, which is day 5 of the year. On what day of the year is the 13th full Moon?
-        answer: 359
-        verify: '5 + 354'
-        hints:
-          - The 13th full Moon comes 12 cycles after the first.
-        solution:
-          - 'Twelve cycles after day 5: \(5 + 354 = 359\). That is day **359**.'
-      - type: number
-        prompt: So how many pairs of pants does Wally need this year?
-        answer: 13
-        unit: pairs
-        verify: '12 + 1'
-        hints:
-          - Is day 359 still inside the year?
-        solution:
-          - Day 359 comes before day 365, so the 13th full Moon falls this year. Wally needs **13 pairs**.
-      - type: number
-        prompt: Next year, the first full Moon is on January 24, which is day 24. How many pairs does Wally need next year?
-        answer: 12
-        unit: pairs
-        verify: '13 - 1'
-        hints:
-          - Work out what day the 13th full Moon would land on. Is that day in the year?
-        solution:
-          - \(24 + 354 = 378\), which is past day 365. The 13th full Moon falls into the year after, so next year has only **12**.
-      - type: number
-        prompt: What is the **latest** day in January for the first full Moon, so that Wally still needs 13 pairs that year?
-        answer: 11
-        verify: '365 - 354'
-        hints:
-          - Twelve cycles have to fit in the days that are left.
-          - How many days does the year have beyond those 354 days?
-        solution:
-          - The 13th full Moon has to land on day 365 or sooner.
-          - \(365 - 354 = 11\). If the first full Moon comes on January 11 or sooner, Wally needs 13 pairs. Any later, and he needs 12.
-    wrapUp: The Moon’s cycle is so predictable that Wally can plan his shopping a year ahead. Twelve cycles don’t quite fill a year, which is why some years have a 13th full Moon.
-    hints: []
-    solution: []
-
   - id: d4
     level: 3
     thinking: connect
     covers: [K1.6, S1.3, K1.5, U1.1]
-    type: open
+    type: mc
     prompt: |-
-      A tour company’s ad says, “**See the northern lights in Inuvik at midnight on June 21! Bring your camera!**” In Inuvik in June,
-      the Sun stays up all night. Write the company a short note. Explain why people on this tour will be disappointed, and say what
-      time of year would be better, and why.
-    modelAnswer: |-
-      Your tour will disappoint people, because Inuvik has the midnight sun on June 21. The north is tilted toward the Sun, so the
-      Sun stays up all night and the sky is bright. The northern lights are seen on dark, clear nights, so nobody will see them.
-      Come in winter instead, when the north is tilted away from the Sun and the nights are long and dark.
-    rubric:
-      - I said the Sun stays up at midnight in Inuvik in June (the midnight sun).
-      - I said the northern lights can only be seen in a dark night sky.
-      - I suggested a time of year with dark nights, such as winter, and said why.
+      A tour company’s ad says, “**See the northern lights in Inuvik at midnight on June 21! Bring your camera!**”
+      In Inuvik in June, the Sun stays up all night. What should you tell the company?
+    choices:
+      - The sky stays bright all night in June, so plan the tour for winter, when the nights are long and dark.
+      - The northern lights only happen in winter, because in June the Sun is too far away from Earth to make them.
+      - Midnight is the right time, but Inuvik is too far north, so the tour should go somewhere farther south.
+      - The plan is fine, because the northern lights are bright enough to see even when the Sun is up in the sky.
+    answer: 0
+    feedback:
+      '1': 'Earth isn’t farther from the Sun in June. What does the sky over Inuvik look like at midnight in June?'
+      '2': 'Northern Alberta and the North are good places to see the northern lights. What gets in the way at midnight in June?'
+      '3': 'The northern lights are faint next to the Sun. When can you see them?'
+    hints:
+      - When can you see the northern lights? In a bright sky or a dark one?
+      - In June, the north is tilted toward the Sun. What does that do to the nights in Inuvik?
+    solution:
+      - 'On June 21, the north is tilted toward the Sun, so Inuvik has the midnight sun. The sky stays bright all night.'
+      - 'The northern lights are seen on dark, clear nights. Nobody will see them in a bright sky.'
+      - 'In winter, the north is tilted away from the Sun, so the nights are long and dark. That is the time to go.'

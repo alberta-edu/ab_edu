@@ -160,28 +160,6 @@ problems:
       - The window, the pocket and the porch roof are new, so they are **enhancing**.
       - The zipper, the poles and the floor were already there and got better, so they are **refining**.
 
-  - id: w3
-    level: 1
-    thinking: apply
-    covers: [K2.1, S2.2]
-    type: mc
-    prompt: A toaster makes perfect toast every single time. But each slice takes **40 minutes**, and the whole kitchen gets hot. Which factor most needs work?
-    choices: [Efficiency, Reliability, Functionality, Aesthetics]
-    fixedOrder: true
-    answer: 0
-    feedback:
-      '1': Reliability asks whether it keeps working again and again. This toaster does, every single time.
-      '2': Functionality asks whether it does its job. It does make perfect toast.
-      '3': Aesthetics is about how it looks and feels. Nothing here says it looks bad.
-    hints:
-      - Which of the toaster’s good points can you cross off first?
-      - What is being wasted while the toast is made?
-      - Time and energy are both going somewhere they shouldn’t. Which factor is about that?
-    solution:
-      - The toast is perfect and it works every time, so its job and its reliability are fine.
-      - It wastes time (40 minutes a slice) and energy (a hot kitchen).
-      - Avoiding waste of materials, time or energy is **efficiency**.
-
   - id: w4
     level: 1
     thinking: apply
@@ -361,22 +339,6 @@ problems:
           - It must be at least 20 cm for Noodle, and less than 35 cm to stop Tank.
           - 20 cm, 25 cm and 30 cm all work, because each one fits Noodle and not Tank. Many answers are right.
       - type: mc
-        prompt: Is the change from version 1 to version 2 enhancing or refining?
-        choices:
-          - Refining, because the door was there already and was made to work better.
-          - Enhancing, because the door has a brand new width.
-          - Enhancing, because the door stops a dog for the first time.
-          - Refining, because the door is now smaller than it was.
-        answer: 0
-        feedback:
-          '1': Every door has a width. Is anything added that the door didn’t have before?
-          '2': It does a better job now. But did that take a new part, or a better version of the same part?
-          '3': That’s the right word for the wrong reason. Making a door bigger could be refining too.
-        hints:
-          - Did version 2 add any new part?
-        solution:
-          - No new part was added. The same door got better, so this is **refining**.
-      - type: mc
         prompt: |-
           A month later, two things have changed. A raccoon who needs **26 cm** has found the door. And Noodle, after a lot of treats, now needs **28 cm**.
 
@@ -452,65 +414,6 @@ problems:
         solution:
           - New doesn’t mean better. A version is only better if testing shows it meets the need better.
           - Olu counted the new things. He should have checked each one against the need. A radio doesn’t help a lunchbox fit in a backpack or open fast.
-      - type: open
-        prompt: You are the designer now. For version 6, say what stays and what goes. Then propose one **refinement**, and name the factor it helps.
-        modelAnswer: |-
-          I would keep the part that holds lunch and the fork holder, since a fork is useful at lunch. The radio, fan, wheels and horn go, so that it fits in a backpack again. My refinement is a lid latch that opens with one click, which helps usability.
-        rubric:
-          - What I kept and removed fits the job of fitting in a backpack and opening fast.
-          - My refinement improves something the lunchbox already has.
-          - I named the factor my refinement helps.
     wrapUp: Many iterations help a design only because each one gets tested against the need. Without that, they just pile up.
     hints: []
     solution: []
-
-  - id: d3
-    level: 3
-    thinking: why
-    covers: [K2.1, S2.2]
-    type: open
-    prompt: |-
-      Two reports land on a tester’s desk.
-
-      **Kazoo:** works 9 out of every 10 toots.
-
-      **Bicycle brake:** works 9 out of every 10 squeezes.
-
-      Both get the same reliability score, but only one of them is a real problem. Explain why. Then name one other thing where “9 out of 10” would be fine, and one where it wouldn’t.
-    modelAnswer: |-
-      If a kazoo fails, you just toot again, and nobody is hurt. If a brake fails, you could crash, so it has to work every time. How reliable something must be depends on what happens when it fails. A light-up party hat would be fine at 9 out of 10. A life jacket wouldn’t, because it has to work every single time.
-    rubric:
-      - I explained that what matters is what happens when it fails.
-      - I named something where 9 out of 10 would be fine, and it fits that idea.
-      - I named something where 9 out of 10 would not be fine, and it fits that idea.
-    hints:
-      - Picture the tenth toot. Then picture the tenth squeeze, at the bottom of a hill.
-      - What happens right after each one fails?
-      - Now think about a thing you own. If it failed once in a while, would you shrug, or would you be in trouble?
-    solution:
-      - Don’t start with the score. Start with the moment each one fails. A silent kazoo is a small joke. A brake that doesn’t work could hurt someone.
-      - So reliability and safety are connected here. A design’s scores only mean something once you ask what the design is for.
-
-  - id: d4
-    level: 3
-    thinking: design
-    covers: [S2.3, S2.4, K2.5, K2.4]
-    type: open
-    prompt: |-
-      Nasra and her brother Lev share a bedroom, and they both test a new night light. Nasra says, “Too dim! I can’t read my book.” Lev says, “Too bright! I can’t fall asleep.”
-
-      Both testers are right. Propose **version 2**, so that it meets both needs. Is your change enhancing or refining? How do you know?
-    modelAnswer: |-
-      I would put the light on a bendy neck with a small shade. Nasra points it at her book, and the shade keeps the light off Lev’s side of the room. This is enhancing, because the neck and the shade are new parts that version 1 didn’t have.
-    rubric:
-      - My version 2 helps Nasra read and helps Lev sleep.
-      - I said whether my change is enhancing or refining.
-      - My reason fits (new part means enhancing, better version of an existing part means refining).
-    hints:
-      - Does the light have to be one brightness for the whole room?
-      - Forget “brighter or dimmer”. What does each of them actually need?
-      - Think about where the light goes, and who gets to control it.
-    solution:
-      - Don’t pick a winner. Ask what each tester really needs. Nasra needs light on her book. Lev needs dark on his pillow.
-      - Those don’t have to fight. One answer is a bendy neck with a shade. Another is a small clip-on light that only lights up the page.
-      - Both work because they send the light only where it’s wanted. Two testers who disagree can lead to a better idea than either one alone.

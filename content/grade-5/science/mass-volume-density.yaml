@@ -409,27 +409,8 @@ problems:
         solution:
           - In a gas, the particles are separated by large spaces.
           - Pumping pushes them closer together, so more particles fit in the same volume. That is what **compressibility** means for air.
-      - type: mc
-        prompt: Now take a hard steel bottle, filled right to the top with water, and try to pump in more **water**. What happens?
-        choices:
-          - Almost no more goes in, because the water’s particles are already close together.
-          - Plenty more goes in, because water’s particles have spaces between them as air’s do.
-          - Plenty more goes in, because a liquid flows so easily into any space it can find.
-          - Almost no more goes in, because water particles are bigger than the air’s particles.
-        answer: 0
-        feedback:
-          '1': Liquid particles do have spaces. But how do those spaces compare with the large spaces in a gas?
-          '2': Water flows easily, but is there anywhere for it to flow to? Think about the sealed syringe of water.
-          '3': You got the result right. Are water particles really bigger, or is the difference about something else?
-        hints:
-          - Remember the two sealed syringes. What did the same push do to each one?
-          - Compare the spaces between particles in a liquid and in a gas.
-        solution:
-          - Water’s particles are already close together, so there is hardly any space to squeeze out.
-          - The bottle is full, and it can’t stretch, so almost no more water can go in. Water has very low compressibility.
     wrapUp: |-
       Air has mass, and its large spaces let you push more of it into the same volume. So squeezing air makes it denser.
-      Water’s particles are already close together, so it hardly squeezes at all.
 
   - id: d2
     level: 3
@@ -458,28 +439,3 @@ problems:
       - '**Syringe of air:** the same mass, in a smaller volume. Denser.'
       - '**Juice** and **clay:** the same mass and the same volume, in a new shape. No change.'
       - '**Two blocks:** twice the mass and twice the volume. No change.'
-
-  - id: d3
-    level: 3
-    thinking: design
-    covers: [S2.4, S2.1, S2.2, K2.10, S2.7]
-    type: open
-    prompt: |-
-      You have two jugs of mystery liquid, A and B. They look the same, and when you pour them together they just mix, so
-      they won’t make a tower. You have a balance, two identical cups and a measuring cylinder. And no tasting! **Invent** a
-      way to find out which liquid is denser. What result would tell you?
-    hints:
-      - You can’t watch one liquid sink through the other. What else can show which one is denser?
-      - The density balance compared cubes of the same size. How could you make your two liquids a fair match in the same way?
-      - Why might it matter that the two cups are identical?
-    modelAnswer: |-
-      Use the cylinder to measure 100 mL of liquid A and pour it into one cup. Measure 100 mL of liquid B and pour it into
-      the other cup. Put one cup on each pan of the balance.
-
-      The volumes are the same and the cups match, so any difference comes from the liquids. The side that goes lower has
-      more mass, so that liquid is denser. If the beam stays level, they have the same density.
-    rubric:
-      - I measured the **same volume** of each liquid.
-      - I used the identical cups, so the cups can’t change the result.
-      - I said the side that goes lower holds the liquid with **more mass**.
-      - I explained that with the same volume, more mass means **denser**.

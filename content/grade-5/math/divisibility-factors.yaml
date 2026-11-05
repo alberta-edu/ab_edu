@@ -124,22 +124,6 @@ problems:
       - '4 38**5**, 1 05**0** and 5 00**5** end in 0 or 5, so they are divisible by 5.'
       - '5 55**1** and 3 05**3** end in other digits, so they aren’t, even though they have 5s in them.'
 
-  - id: w2
-    level: 1
-    thinking: apply
-    covers: [U1.1]
-    type: number
-    prompt: '**30** players make teams of **4**. How many players are left without a team?'
-    unit: players
-    answer: 2
-    verify: 30 - 4 * 7
-    hints:
-      - How many full teams of 4 can you make from 30 players?
-      - 'Count by fours: 4, 8, 12 and so on. How close to 30 can you get?'
-    solution:
-      - '\(30 \div 4 = 7\) R 2, so there are 7 full teams and **2** players left.'
-      - 'The remainder isn’t 0, so 30 is **not** divisible by 4.'
-
   - id: w3
     level: 1
     thinking: recall
@@ -350,30 +334,6 @@ problems:
           - Which factor’s partner is itself? What times itself makes 36?
         solution:
           - '\(6 \times 6 = 36\). The partner of 6 is 6, so **6** dances alone.'
-      - type: build
-        prompt: Find another number, from 20 to 100, that has a dancer alone at its dance. Then name that dancer.
-        fields:
-          - { name: n, label: 'The number' }
-          - { name: f, label: 'The dancer who is alone' }
-        rules:
-          - { test: 'n >= 20 && n <= 100 && n % 1 == 0 && n != 36', fail: 'Choose a different whole number from 20 to 100, not 36.' }
-          - { test: 'f > 0 && f * f == n', fail: 'Check your dancer. A dancer who is alone has to be their own partner, so that factor times itself should make your number.' }
-        examples:
-          - { n: 25, f: 5 }
-          - { n: 49, f: 7 }
-          - { n: 100, f: 10 }
-        counterexamples:
-          - { n: 30, f: 5 }
-          - { n: 36, f: 6 }
-          - { n: 16, f: 4 }
-          - { n: 50, f: 7 }
-        hints:
-          - 'Start with the dancer, not the number. Pick a factor. What number do you get if it partners itself?'
-          - 'Try \(5 \times 5\). Is the answer between 20 and 100?'
-        solution:
-          - 'Pick the dancer first, then multiply it by itself.'
-          - '25 has 5 alone, 49 has 7 alone, and 81 has 9 alone.'
-          - 'They all work for the same reason: the number can be drawn as a square, with equal sides. That side is the dancer who is alone.'
       - type: mc
         prompt: A different number’s dance has exactly **12 dancers**. What can you be sure of, without knowing the number?
         choices:
@@ -392,64 +352,5 @@ problems:
           - 'Every factor is in a pair with a different factor, except the one who is its own partner.'
           - 'A dancer alone makes the count **odd**, as with 9. With 12 dancers, the count is even, so everyone is paired with someone else.'
     wrapUp: Factors come in pairs. So most numbers have an even number of factors. The only ones with an odd number are square numbers, where one factor is its own partner.
-    hints: []
-    solution: []
-
-  - id: d3
-    level: 3
-    thinking: why
-    covers: [S1.2, S1.1]
-    type: investigation
-    figure: |-
-      <svg viewBox="0 0 380 96" class="fig-svg" role="img" aria-label="Aisha's cards: 2 boxes marked 100, 4 packs marked 10 and 6 single cards."><rect class="fig-rect" x="6" y="20" width="50" height="60"/><rect class="fig-rect" x="64" y="20" width="50" height="60"/><text class="fig-label" x="31" y="56" text-anchor="middle">100</text><text class="fig-label" x="89" y="56" text-anchor="middle">100</text><rect class="fig-hl" x="130" y="30" width="28" height="44"/><rect class="fig-hl" x="162" y="30" width="28" height="44"/><rect class="fig-hl" x="194" y="30" width="28" height="44"/><rect class="fig-hl" x="226" y="30" width="28" height="44"/><text class="fig-small" x="144" y="57" text-anchor="middle">10</text><text class="fig-small" x="176" y="57" text-anchor="middle">10</text><text class="fig-small" x="208" y="57" text-anchor="middle">10</text><text class="fig-small" x="240" y="57" text-anchor="middle">10</text><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="270" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="288" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="306" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="324" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="342" y="36" width="14" height="20"/><rect class="fig-grid" style="fill:none;stroke:var(--ink)" x="360" y="36" width="14" height="20"/></svg>
-    prompt: |-
-      Aisha has **246** hockey cards: **2 boxes of 100**, **4 packs of 10** and **6 single cards**. Three friends want to share them equally, and they share each box and pack on its own.
-    parts:
-      - type: number
-        prompt: The friends share one **pack of 10**. How many cards are left over from the pack?
-        unit: cards
-        answer: 1
-        verify: 10 - 3 * 3
-        hints:
-          - How many can each friend get from 10 cards?
-        solution:
-          - 'Each friend gets 3 cards. That uses 9, so **1** card is left over.'
-      - type: number
-        prompt: A **box of 100** also leaves 1 card, because each friend gets 33. They share all the boxes and packs, then put the leftover cards with the 6 singles. How many cards are in that pile?
-        unit: cards
-        answer: 12
-        verify: 2 + 4 + 6
-        hints:
-          - How many boxes and packs are there? How many cards does each one leave?
-        solution:
-          - '2 boxes leave 2 cards, 4 packs leave 4 cards, and there are 6 singles: \(2 + 4 + 6 =\) **12**.'
-          - 'Look at that sum. It is the digit sum of 246! The pile can be shared by 3, so all 246 cards can be.'
-      - type: mc
-        prompt: Now **5** friends share the same cards. Each box and each pack is shared first. Which cards decide whether there will be any left over at the end?
-        choices:
-          - Only the single cards, because boxes and packs share evenly among 5.
-          - All of the cards, because each box and each pack leaves 1 card behind.
-          - Only the two boxes, because 100 is the biggest group of cards there.
-          - Only the packs, because the packs are the middle group of the cards.
-        answer: 0
-        feedback:
-          '1': 'That was true for 3 friends. Share a pack of 10 among 5 friends. What is left over?'
-          '2': 'Size doesn’t matter here. Share a box of 100 among 5 friends. What is left over?'
-          '3': 'Share a pack of 10 among 5 friends. What is left over?'
-        hints:
-          - Share a pack of 10 among 5 friends. Then share a box of 100.
-        solution:
-          - '10 and 100 both share evenly among 5, with nothing left. Only the single cards can cause a leftover.'
-      - type: open
-        prompt: Why does the test for **3** add up all the digits, but the test for **5** only looks at the ones digit? Use the cards to explain.
-        hints:
-          - What does a pack of 10 leave when 3 friends share it? What does it leave when 5 friends share it?
-        modelAnswer: |-
-          When 3 friends share, every box and pack leaves 1 card. So the leftovers are one card for each box, one for each pack and all the singles, which is the digit sum. That pile decides it. When 5 friends share, boxes and packs leave nothing, because 10 and 100 divide evenly by 5. Only the singles can be left over, and they are the ones digit.
-        rubric:
-          - I said that with 3 friends, each box and pack leaves 1 card, so every digit counts.
-          - I connected the leftover pile to the digit sum.
-          - I said that with 5 friends, boxes and packs leave nothing, so only the ones digit counts.
-    wrapUp: The tests aren’t magic. Each box and pack leaves 1 card for 3 friends, so the digit sum is the leftover pile. For 5 friends they leave nothing, so only the ones digit matters.
     hints: []
     solution: []

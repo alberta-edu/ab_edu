@@ -78,8 +78,13 @@ answer must hold for what it says.
 
 ## The ladder
 
-About **10–12 problems per concept** (never more than 13): roughly 3–4 Warm-up, 4 Build and
-3–4 Deep Think. Fewer excellent problems beat more average ones.
+At most **9 problems per concept**: 3 Warm-up, 4 Build and 2 Deep Think. Too many questions
+wear a child out, so fewer excellent problems beat more average ones. `npm run verify` checks:
+
+- each level's maximum;
+- at most 3 parts in an investigation;
+- at most 5 steps in Deep Think, counting each investigation part as a step. One investigation
+  and one single problem is the usual shape.
 
 ### ★ Warm-up: "I know what this is"
 
@@ -188,9 +193,11 @@ evidence for a reading is.
 - Questions that are funny, concrete and easy to picture beat ones that are sharp but dry.
 - Tables are at most 5 columns wide, so that they fit on a phone.
 - Rules in a `build` problem must exclude silly answers: a garden 0 m wide is not a garden.
-- At most 3 written answers per set (`open` problems and parts). Children grade these themselves,
-  so every rubric line must match something the prompt actually asked, and must be about the
-  answer, not an action like "I read it to someone".
+- Avoid written answers (`open`). Turn the idea into a choice or `build` problem instead. ELAL may
+  keep 1 per set, only where writing is the skill being taught, such as writing a simile or a stanza.
+  The site never counts words: any answer opens the strong answer and the checklist.
+- Children grade written answers themselves, so every rubric line must match something the
+  prompt actually asked, and must be about the answer, not an action like "I read it to someone".
 - Cut a question that splits hairs between two nearly equal wordings.
 
 **Multiple choice**

@@ -202,28 +202,6 @@ problems:
       - 'That makes **4** places: 20°N 40°E, 20°N 40°W, 20°S 40°E and 20°S 40°W.'
       - The letters are not extras. Without them, you have not said where you are.
 
-  - id: w3
-    level: 1
-    thinking: apply
-    covers: [K1.4]
-    type: mc
-    prompt: On a day with no wind, a hot-air balloon rises straight up from a farmer’s field. What changes as it rises?
-    choices:
-      - Only its elevation
-      - Only its latitude
-      - Its latitude and its longitude
-      - Its elevation, latitude and longitude
-    answer: 0
-    feedback:
-      '1': Latitude changes when you go north or south. The balloon is only going up.
-      '2': Those two change when you move north, south, east or west. Is the balloon doing that?
-      '3': Elevation does change. But is the balloon moving north, south, east or west?
-    hints:
-      - Look down from the balloon. Is the same field still right below you?
-    solution:
-      - The balloon is still right above the same spot, so its latitude and longitude stay the same.
-      - It is getting higher above sea level, so only its **elevation** changes.
-
   - id: w4
     level: 1
     thinking: recall
@@ -351,72 +329,6 @@ problems:
       - Where people settle and what the land offers are connected, but people can change that land too.
 
   # ---------------------------------------------------------------- Level 3: Deep Think
-  - id: d1
-    level: 3
-    thinking: breakdown
-    covers: [K1.4]
-    type: investigation
-    prompt: |-
-      Gertie is a very lost goose holding her map upside down. She takes off from **10°N, 20°E**. She flies **30° due south**. Then she flies **40° due west**.
-
-      Follow her, one flight at a time.
-    parts:
-      - type: mc
-        prompt: Where is Gertie after flying 30° due south?
-        choices: ['20°S, 20°E', '40°S, 20°E', '20°N, 20°E', '10°N, 10°W']
-        answer: 0
-        feedback:
-          '1': You added 10 and 30. But she started north of the equator. Is she flying toward it, or away from it?
-          '2': The 20 is right, but she flew past the equator. Which side is she on now?
-          '3': You moved her east or west. Which direction did she fly?
-        hints:
-          - How many degrees south does it take her to reach the equator?
-          - After the equator, how many degrees of her flight are left?
-        solution:
-          - 'South changes only latitude. 10° takes her down to the equator, and that leaves 20° more: **20°S**. Her longitude stays 20°E.'
-      - type: mc
-        prompt: Now she flies 40° due west. Where does she land?
-        choices: ['20°S, 20°W', '20°S, 60°E', '20°S, 60°W', '20°N, 20°W']
-        answer: 0
-        feedback:
-          '1': Going west from the east side takes you **toward** the prime meridian, so the number can’t grow right away.
-          '2': You added 20 and 40. What happens when she reaches the prime meridian?
-          '3': Flying west doesn’t change her latitude. Look at where she was before this flight.
-        hints:
-          - This works just like the equator. How far west to reach the prime meridian?
-        solution:
-          - 20° takes her to the prime meridian, and that leaves 20° more on the west side. She lands at **20°S, 20°W**.
-      - type: number
-        prompt: From there, Gertie flies due north and lands at **15°N**. How many degrees did she fly on this last flight?
-        answer: 35
-        verify: 20 + 15
-        unit: degrees
-        hints:
-          - Can you just subtract 15 from 20? Think about where 20°S and 15°N are.
-          - Split the flight at the equator.
-        solution:
-          - 20°S to the equator is 20°. The equator to 15°N is another 15°.
-          - \(20 + 15 = 35\) degrees. The 5 you get by subtracting would be right only if both places were on the same side.
-      - type: mc
-        prompt: On her first flight, Gertie kept going south, yet her latitude number went 10, then 0, then 20. What does the number really tell you?
-        choices:
-          - How far she is from the equator
-          - How far she has flown so far
-          - How far she is from where she began
-          - How far she is from the South Pole
-        answer: 0
-        feedback:
-          '1': If that were true, the number could only ever go up. But hers went down to 0.
-          '2': At takeoff she was 0° from where she began, yet the number said 10. So it can’t be counting that.
-          '3': As she flew south she kept getting closer to the South Pole, so that number would only go down.
-        hints:
-          - Where was she when the number was 0?
-        solution:
-          - The number was 0 on the equator, because latitude counts how far you are **from the equator**. Longitude does the same thing from the prime meridian.
-    wrapUp: Latitude and longitude don’t count your trip. They count how far you are from a zero line, so the numbers shrink as you fly toward that line and grow again after you cross it.
-    hints: []
-    solution: []
-
   - id: d2
     level: 3
     thinking: why
@@ -532,23 +444,3 @@ problems:
     wrapUp: A change in the environment made this village move. Then the villagers changed the environment themselves. Where people live and the land around them keep shaping each other.
     hints: []
     solution: []
-
-  - id: d4
-    level: 3
-    thinking: decide
-    covers: [S1.2, K1.2, K1.6, K1.8]
-    type: open
-    prompt: |-
-      You are leading 50 families across a made-up land to a new home. **Site A** is a quiet bay with a small stream. It is perfect for boats, but the soil is thin and stony. **Site B** is a river valley with rich soil, but you can’t reach the sea from there by boat.
-
-      Choose one and defend it with two geographical features. Then say what your site lacks and how you would get it.
-    modelAnswer: |-
-      I choose Site B. The river gives us abundant water, and the fertile soil means we can grow plenty of food, so
-      the families can stay in one place. My site lacks a way to reach the sea, so travel and trade will be harder.
-      I would trade our extra crops with people from the coast by bringing them overland. Site A would be a fair
-      choice too, because the bay supports travel and trade, and its people could trade for food.
-    rubric:
-      - I made a clear choice of site.
-      - I named two geographical features and explained how each one helps (for farming, travel or trade).
-      - I said what my site lacks.
-      - I explained how we could get it, such as by trading or by building something.
