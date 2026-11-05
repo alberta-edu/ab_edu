@@ -135,19 +135,6 @@ problems:
       - 'The bar has 8 equal parts, so each part is \(\frac{1}{8}\). 3 parts are empty.'
       - '\(\frac{5}{8} + \frac{3}{8} = \frac{8}{8}\), which is one whole. The answer is \(\frac{3}{8}\).'
 
-  - id: w2
-    level: 1
-    thinking: apply
-    covers: [S1.4]
-    type: fraction
-    prompt: '\(\frac{7}{9} - \frac{2}{9}\) = ?'
-    answer: 5/9
-    verify: 7/9 - 2/9
-    hints:
-      - 'Say it in words: 7 ninths take away 2 ninths.'
-    solution:
-      - '7 ninths take away 2 ninths leaves 5 ninths. The pieces are still ninths: \(\frac{5}{9}\).'
-
   - id: w3
     level: 1
     thinking: apply
@@ -262,25 +249,6 @@ problems:
       - '\(\frac{1}{8} + \frac{2}{8} + \frac{5}{8} = \frac{8}{8}\) works, and so does \(\frac{1}{8} + \frac{3}{8} + \frac{4}{8}\).'
       - 'Both break the same whole into different parts. The order of the otters can change, but with these rules there are no other sets of three numbers.'
 
-  - id: b4
-    level: 2
-    thinking: backwards
-    covers: [S1.5, U1.2]
-    type: fraction
-    prompt: |-
-      A warm Chinook wind melts \(3\frac{2}{4}\) cm of the snow on a picnic table. Then \(1\frac{3}{4}\) cm of new snow falls. Now the snow is \(5\frac{1}{4}\) cm deep.
-      How many centimetres deep was it before the Chinook?
-    answer: '7'
-    verify: 5 + 1/4 - 7/4 + 14/4
-    hints:
-      - Start at the end of the story. What was the very last thing that happened?
-      - 'Undo the snowfall first. Then undo the melting.'
-      - 'Undoing the snowfall means subtracting, and undoing the melting means adding.'
-    solution:
-      - 'Undo the snowfall: \(5\frac{1}{4} - 1\frac{3}{4} = \frac{21}{4} - \frac{7}{4} = \frac{14}{4} = 3\frac{2}{4}\) cm.'
-      - 'Undo the melting: \(3\frac{2}{4} + 3\frac{2}{4} = 6 + \frac{4}{4} = 7\) cm.'
-      - 'Subtraction undoes addition with fractions, just as it does with whole numbers.'
-
   - id: b5
     level: 2
     thinking: decide
@@ -345,74 +313,7 @@ problems:
         solution:
           - 'In fifths, Nutmeg has 17 and Pecan has 9. Move one fifth at a time: 16 and 10, then 15 and 11, then 14 and 12, then 13 and 13.'
           - 'That is 4 moves, so Nutmeg hands over \(\frac{4}{5}\) kg. Now each squirrel has \(\frac{13}{5} = 2\frac{3}{5}\) kg.'
-      - type: mc
-        prompt: Why was Eli’s handover too big?
-        choices:
-          - What leaves one pile also joins the other, so the gap closes from both ends.
-          - Mixed numbers give wrong answers here, so he needed improper fractions.
-          - Nutmeg’s fifths are bigger than Pecan’s, because Nutmeg has the bigger pile.
-          - He worked out the gap wrongly, so the gap was smaller than he thought.
-        answer: 0
-        feedback:
-          '1': 'Mixed numbers and improper fractions are two ways of writing the same amount. Either one gives the same answer here.'
-          '2': 'A fifth of a kilogram is the same size in any pile. The bottom number tells you the size of the piece.'
-          '3': 'The gap really was \(1\frac{3}{5}\) kg. So Eli’s subtraction was fine. What did he do with the answer?'
-        hints:
-          - Move \(\frac{1}{5}\) kg. What happens to Nutmeg’s pile? What happens to Pecan’s?
-        solution:
-          - 'Moving \(\frac{1}{5}\) kg makes Nutmeg’s pile \(\frac{1}{5}\) smaller and Pecan’s pile \(\frac{1}{5}\) bigger. So the gap shrinks by \(\frac{2}{5}\) kg with each move.'
-          - 'Eli treated the gap as if only one pile would change. His handover closed the gap, then opened it again the other way.'
     wrapUp: Moving an amount from one pile to another changes **both** piles. Counting in fifths, one piece at a time, shows exactly where they meet.
-
-  - id: d2
-    level: 3
-    thinking: pattern
-    covers: [S1.4, U1.2, S1.5]
-    type: investigation
-    figure: |-
-      <svg viewBox="0 0 340 110" class="fig-svg" role="img" aria-label="Eight jars in a row, filled to one ninth, two ninths, and so on up to eight ninths."><rect class="fig-rect" x="6" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="6" y="74" width="32" height="8"/><text class="fig-small" x="22" y="102" text-anchor="middle">1/9</text><rect class="fig-rect" x="48" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="48" y="66" width="32" height="16"/><text class="fig-small" x="64" y="102" text-anchor="middle">2/9</text><rect class="fig-rect" x="90" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="90" y="58" width="32" height="24"/><text class="fig-small" x="106" y="102" text-anchor="middle">3/9</text><rect class="fig-rect" x="132" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="132" y="50" width="32" height="32"/><text class="fig-small" x="148" y="102" text-anchor="middle">4/9</text><rect class="fig-rect" x="174" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="174" y="42" width="32" height="40"/><text class="fig-small" x="190" y="102" text-anchor="middle">5/9</text><rect class="fig-rect" x="216" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="216" y="34" width="32" height="48"/><text class="fig-small" x="232" y="102" text-anchor="middle">6/9</text><rect class="fig-rect" x="258" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="258" y="26" width="32" height="56"/><text class="fig-small" x="274" y="102" text-anchor="middle">7/9</text><rect class="fig-rect" x="300" y="10" width="32" height="72" rx="3"/><rect class="fig-hl" x="300" y="18" width="32" height="64"/><text class="fig-small" x="316" y="102" text-anchor="middle">8/9</text></svg>
-    prompt: |-
-      Eight same-sized jars of lemonade stand in a row, filled to \(\frac{1}{9}\), \(\frac{2}{9}\), \(\frac{3}{9}\) and so on, up to \(\frac{8}{9}\).
-      You could add them in order, or you could be lazy and smart.
-    parts:
-      - type: fraction
-        prompt: Pour the \(\frac{1}{9}\) jar into the \(\frac{8}{9}\) jar. How full is that jar now?
-        answer: 9/9
-        verify: 1/9 + 8/9
-        hints:
-          - Count the ninths.
-        solution:
-          - '\(\frac{1}{9} + \frac{8}{9} = \frac{9}{9}\): exactly one full jar.'
-      - type: number
-        prompt: Keep pairing the jars like that. How many **full jars** do all eight jars make?
-        answer: 4
-        verify: (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8) / 9
-        hints:
-          - Which jar goes with the \(\frac{2}{9}\) jar? Which goes with the \(\frac{3}{9}\) jar?
-        solution:
-          - '1 and 8, 2 and 7, 3 and 6, 4 and 5. Each pair makes \(\frac{9}{9}\), and there are 4 pairs, so **4** full jars.'
-          - 'Adding in any order gives the same total, just as with whole numbers.'
-      - type: fraction
-        prompt: A new row has nine jars, filled to \(\frac{1}{10}\), \(\frac{2}{10}\) and so on, up to \(\frac{9}{10}\). How many jars’ worth is that? Write a mixed number.
-        answer: 4 5/10
-        form: mixed
-        verify: (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9) / 10
-        hints:
-          - Pair them to make tenths that fill a jar. Does every jar get a partner?
-        solution:
-          - '1 and 9, 2 and 8, 3 and 7, 4 and 6 make 4 full jars.'
-          - 'The \(\frac{5}{10}\) jar has no partner, so the total is \(4\frac{5}{10}\) jars.'
-      - type: fraction
-        prompt: 'A giant row goes from \(\frac{1}{100}\), \(\frac{2}{100}\) and so on, all the way up to \(\frac{99}{100}\). How many jars’ worth is that?'
-        answer: 49 50/100
-        verify: (99 * 50) / 100
-        hints:
-          - The first pair is 1 and 99. What is the last pair before a jar has no partner?
-          - Which jar is left over, the same way as the \(\frac{5}{10}\) jar was?
-        solution:
-          - 'The pairs are 1 and 99, 2 and 98, and so on up to 49 and 51. That makes 49 full jars.'
-          - 'The \(\frac{50}{100}\) jar has no partner, so the total is \(49\frac{50}{100}\) jars, which is \(49\frac{1}{2}\).'
-    wrapUp: Order doesn’t matter when you add, for fractions just as for whole numbers. So you can choose an order that makes wholes, and a huge sum turns into a tiny bit of thinking.
 
   - id: d3
     level: 3

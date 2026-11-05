@@ -333,16 +333,7 @@ problems:
       | 5th | 30 | 60 |
     parts:
       - type: number
-        prompt: Bartholomew holds only the first 2 lands. How many sacks does he have left each year, after paying the guards?
-        answer: 35
-        unit: sacks
-        verify: 60 - 25
-        hints:
-          - What comes in from the 2 lands? What goes out?
-        solution:
-          - '2 lands pay \(30 + 30 = 60\) sacks. Guarding them costs \(10 + 15 = 25\) sacks. \(60 - 25 = 35\) sacks left.'
-      - type: number
-        prompt: He keeps on conquering, and he holds all 5 lands. His map is magnificent. How many sacks does he have left each year now?
+        prompt: He keeps on conquering until he holds all 5 lands. His map is magnificent. How many sacks does he have left each year now?
         answer: 0
         unit: sacks
         verify: 150 - (10 + 15 + 25 + 40 + 60)
@@ -380,85 +371,6 @@ problems:
           - Paying to guard the far lands was an **expense**, and that helped Vell decline. One factor played both parts.
     wrapUp: Growing bigger isn’t the same as growing stronger. Rome’s trained, paid soldiers won land all around the Mediterranean, and paying for that huge army later drained its treasury. The factor that lifts an empire can also help to bring it down.
 
-  - id: d2
-    level: 3
-    thinking: decide
-    covers: [K1.2, S1.1]
-    type: investigation
-    prompt: |-
-      Welcome to the made-up **Empire Clinic**, where sick empires come for help. Today’s patient is the Empire of Ostra, whose farmers pay part of their harvest as tax. The ruler lists the symptoms:
-
-      - Two generals both say they are emperor.
-      - Paying the huge army has emptied the treasury.
-      - Rains have weakened, so farms grow less food.
-      - Raiders from beyond the border keep attacking.
-
-      “Four separate problems,” says the ruler. “Can you fix them?”
-    parts:
-      - type: multi
-        prompt: Start the checkup. Which symptoms come from **outside** the empire? Choose all that apply.
-        choices:
-          - The raiders from beyond the border
-          - The weaker rains
-          - The two generals
-          - The empty treasury
-        answer: [0, 1]
-        feedback:
-          '2': These are Ostra’s own generals, fighting over who rules. Where is that fight coming from?
-          '3': Ostra chose to pay for this army. Whose spending is that?
-        hints:
-          - Could Ostra’s ruler have stopped this from starting by giving an order?
-        solution:
-          - Raiders come from beyond the border, and no ruler controls the rain. Those are external.
-          - The generals and the spending belong to Ostra itself. Those are internal.
-      - type: mc
-        prompt: Now follow the weaker rains, one step at a time. What else could they make worse?
-        choices:
-          - Smaller harvests mean less tax, so the treasury gets even emptier.
-          - Nothing, since weather comes from outside and can’t change what is inside.
-          - Smaller harvests mean a smaller army, so the army starts to cost less.
-          - Weaker rains give the generals less to fight about, so they will stop.
-        answer: 0
-        feedback:
-          '1': The rain starts outside, but where do the crops grow? Read how the farmers pay their tax.
-          '2': The soldiers are still there, and they still need pay. Does less food make them cheaper?
-          '3': Think about hungry people and an empty treasury. Would that make the fight over who rules go away?
-        hints:
-          - What do the farmers pay their tax with?
-        solution:
-          - Weaker rains mean smaller harvests. Farmers pay tax with part of their harvest, so less tax comes in.
-          - The treasury gets even emptier. An outside problem has made an inside problem worse.
-      - type: mc
-        prompt: The soldiers haven’t been paid. Each general promises to pay them if they fight for him. What is most likely to happen next?
-        choices:
-          - Soldiers fight each other, so fewer are guarding the border against raiders.
-          - Soldiers stop fighting at all, so the two generals give up their argument.
-          - Soldiers guard the border even harder, so the raiders soon give up and go home.
-          - Soldiers join the raiders, so the raiders stop attacking the rest of the empire.
-        answer: 0
-        feedback:
-          '1': The generals want to win, and they are offering pay. Would they just give up?
-          '2': Follow the soldiers. If they are fighting for a general, where are they standing?
-          '3': If the raiders got more soldiers, would they attack less?
-        hints:
-          - Each soldier can only be in one place. Where will the generals want them?
-        solution:
-          - Soldiers who follow a general are busy fighting the other general’s soldiers. So fewer soldiers guard the border, and the raiders get a free path.
-          - So these aren’t four separate problems. Rain, money, power and raiders all push on each other.
-      - type: open
-        prompt: You are the doctor, and you can treat only **one** symptom today. Which one do you choose? Say what else it would help, and what could still go wrong.
-        modelAnswer: |-
-          I would treat the two generals, and make them agree on one emperor. Then the soldiers would stop fighting each other and go back to guarding the border, so the raiders would have a harder time.
-
-          It could still go wrong because the rains are still weak and the treasury is still empty. If the soldiers don’t get paid, a new general could make the same promise.
-        rubric:
-          - I chose one symptom.
-          - I explained what else it would help, using a link between the symptoms.
-          - I said what could still go wrong.
-        hints:
-          - Which symptom pushes on the most other symptoms? Which one can a ruler do something about?
-    wrapUp: Civilizations rarely decline for one reason. Causes from inside and outside feed each other, and that is why Rome’s costs, fights over who should rule and wars all added up. To explain a fall, look for the links between the causes, not just the list.
-
   - id: d3
     level: 3
     thinking: why
@@ -492,21 +404,3 @@ problems:
       - All three facts are true, so none of them is simply wrong. The trouble must be in the question.
       - Mei is talking about the western emperors. Tariq is talking about the eastern half. Anouk is talking about Rome’s legacy.
       - A big question often hides smaller ones. Rome’s rule in the west ended, its eastern half lasted much longer, and its legacies continue today.
-
-  - id: d4
-    level: 3
-    thinking: design
-    covers: [K1.3, S1.2, U1.1]
-    type: open
-    prompt: Pick one trail from the lesson, such as writing, calendars or money. It’s the year 2126, and you get to add the **next stop**. What is it, and what problem does it fix? What has stayed the same at every stop on the trail, including yours?
-    modelAnswer: |-
-      I picked writing. The next stop is a pair of glasses that shows words in the air, and you write by saying them quietly. It fixes the problem that you can’t write and carry things at the same time.
-
-      What has stayed the same, from hieroglyphs to the Latin alphabet to my glasses, is the idea of marks that hold on to words, so that someone else can read them later.
-    rubric:
-      - I chose a trail and invented a next stop for it.
-      - I said what problem my new stop fixes.
-      - I named something that has stayed the same at every stop, including mine.
-    hints:
-      - Look at the stops on your trail. What did each stop fix about the one before it?
-      - Cover up the details. What job has this thing always done?

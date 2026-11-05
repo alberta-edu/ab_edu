@@ -172,39 +172,6 @@ problems:
       - Blocks are **prepared chunks of instructions**. You drag them into place, and they fit together like puzzle pieces to make a program.
 
   # ---------------------------------------------------------------- Level 2: Build
-  - id: b1
-    level: 2
-    thinking: apply
-    covers: [S1.3, S1.2, K1.7]
-    type: mc
-    figure: >-
-      <svg viewBox="0 0 300 240" class="fig-svg fig-svg--square" role="img" aria-label="A grid 5 squares wide and 4 squares tall. In the top left corner is a robot facing right. A is 2 squares to the right of the robot. B is in the top right corner, 4 squares to the right of the robot. C is 2 squares to the right and 2 squares down from the robot. D is 2 squares straight down from the robot.">
-      <path class="fig-grid" d="M25 20 H275 M25 70 H275 M25 120 H275 M25 170 H275 M25 220 H275 M25 20 V220 M75 20 V220 M125 20 V220 M175 20 V220 M225 20 V220 M275 20 V220"/>
-      <polygon class="fig-hl" points="36,30 36,60 66,45"/>
-      <text class="sci-text" x="150" y="50" text-anchor="middle">A</text>
-      <text class="sci-text" x="250" y="50" text-anchor="middle">B</text>
-      <text class="sci-text" x="150" y="150" text-anchor="middle">C</text>
-      <text class="sci-text" x="50" y="150" text-anchor="middle">D</text></svg>
-    prompt: |-
-      The robot is in the top left corner, facing right. It runs this code:
-
-      **repeat 2 times** [move forward, move forward, turn right]
-
-      On which lettered square does it stop?
-    choices: [A, B, C, D]
-    fixedOrder: true
-    answer: 2
-    feedback:
-      '0': That is where it gets to after one time through. How many times does the loop run?
-      '1': That would be four moves in a straight line. What happens between the moves?
-      '3': You would get there after one more time through the loop. Count how many times it runs.
-    hints:
-      - Put your finger on the robot, and follow the blocks one at a time.
-      - After the first **turn right**, which way is the robot facing?
-    solution:
-      - First time through, it moves 2 squares right to A. Then it turns right, so it now faces **down**.
-      - Second time through, it moves 2 squares down to **C**. Then it turns right again, but it doesn’t move any more.
-
   - id: b2
     level: 2
     thinking: flaw
@@ -365,57 +332,9 @@ problems:
         solution:
           - After 100 times through, it is on Start, facing up, like the very beginning.
           - Two more times through take it to P and then to **Q**.
-      - type: number
-        prompt: What is the **smallest number above 102** that puts the robot back on Start?
-        answer: 104
-        verify: '26 * 4'
-        hints:
-          - Which numbers bring the robot back to Start? What do they have in common?
-        solution:
-          - The robot is on Start after 4, 8, 12 and every other number you land on when you count by 4s. After 100 comes **104**.
     wrapUp: A computer does the same thing every time, so a loop makes a pattern. Find the pattern, and you can predict the end of a very long program without running it.
     hints: []
     solution: []
-
-  - id: d2
-    level: 3
-    thinking: design
-    covers: [S1.5, K1.7, K1.2, S1.3]
-    type: build
-    prompt: |-
-      A museum’s night guard robot must walk **exactly 24 squares** on patrol and finish on the square where it started. Its code uses one loop:
-
-      **repeat ___ times** [move forward ___ squares, turn right]
-
-      Fill in the two blanks with whole numbers.
-    fields:
-      - { name: r, label: 'Repeat', unit: times }
-      - { name: m, label: 'Move forward', unit: squares }
-    rules:
-      - { test: 'r >= 1 && m >= 1 && r % 1 == 0 && m % 1 == 0', fail: 'Use whole numbers, 1 or more. A robot can’t run a loop half a time.' }
-      - { test: 'r * m == 24', fail: 'Count the squares. How many does the robot walk altogether, with those numbers?' }
-      - { test: 'r % 4 == 0', fail: 'That is 24 squares, but trace the turns. Does the robot get back to where it started?' }
-    examples:
-      - { r: 4, m: 6 }
-      - { r: 8, m: 3 }
-      - { r: 12, m: 2 }
-      - { r: 24, m: 1 }
-    counterexamples:
-      - { r: 3, m: 8 }
-      - { r: 6, m: 4 }
-      - { r: 2, m: 12 }
-      - { r: 1, m: 24 }
-      - { r: 4, m: 5 }
-      - { r: 0, m: 24 }
-    hints:
-      - Two different things have to be true. Which number controls how far the robot walks? Which controls where it ends up?
-      - How many right turns does the robot need to make to face its first direction again?
-      - Which numbers can you use for the repeat, if the turns have to come out evenly?
-    solution:
-      - The robot walks repeat × move squares, so those two numbers must multiply to 24.
-      - It only gets back to the start after 4 turns, or 8, or 12 and so on, so the repeat number must be a multiple of 4.
-      - '**Repeat 4, move 6** walks one big square. **Repeat 8, move 3** walks around a smaller square two times.'
-      - '**Repeat 12, move 2** and **repeat 24, move 1** work too. All of them obey both rules, though the last robot only circles one tiny square, six times. Which would you hire?'
 
   - id: d3
     level: 3
@@ -453,21 +372,3 @@ problems:
       - Picture the saplings. **Five saplings have only four gaps** between them, so the robot needs 5 plants but only 4 moves.
       - The old loop made 5 of each, so the fifth move took it into the pond.
       - The fix is to repeat the pair 4 times, then plant one last sapling, with no move after it.
-
-  - id: d4
-    level: 3
-    thinking: design
-    covers: [S1.5, K1.2, S1.4, S1.1]
-    type: open
-    prompt: |-
-      Invent a chore for a robot at your home or school, like feeding the fish in a row of tanks. Write your algorithm as blocks with a **repeat** loop. At least one step must
-      happen **outside** the loop. Then explain why that step doesn’t belong inside the loop.
-    modelAnswer: |-
-      My robot waters 6 plants along a window. Pick up the watering can. Repeat 6 times [water the plant, move forward]. Put down the
-      watering can. Picking up the can stays outside the loop, because the robot only has to do it once. If it were inside, the robot would keep
-      trying to pick up a can that it is already holding.
-    rubric:
-      - My code has a **repeat** block with a number.
-      - The steps inside my loop are steps that really do repeat.
-      - At least one step is outside the loop.
-      - I explained what would go wrong if that step were inside the loop.

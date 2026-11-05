@@ -46,6 +46,13 @@ export function tableColumns(text: string): number {
   return Math.max(0, ...text.split('\n').filter((l) => /^\s*\|.*\|\s*$/.test(l)).map((l) => l.trim().split('|').length - 2));
 }
 
+/** Most problems a level may hold: 9 in all, so practice stays short. */
+export const MAX_PER_LEVEL = { 1: 3, 2: 4, 3: 2 } as const;
+/** Most parts an investigation may have. */
+export const MAX_PARTS = 3;
+/** Most steps Deep Think may take, counting each investigation part as a step. */
+export const MAX_DEEP_STEPS = 5;
+
 /** Checks one concept's practice set against the question standard. Returns what is wrong. */
 export function qualityIssues(c: Concept): string[] {
   const issues: string[] = [];
@@ -63,11 +70,26 @@ export function qualityIssues(c: Concept): string[] {
   if (build.filter((p) => p.thinking === 'recall').length > 1) issues.push('Build has more than one recall problem');
   if (build.length && build.every((p) => p.type !== 'investigation' && isBareCalculation(p.prompt))) issues.push('Build needs at least one story or context');
   if (new Set(c.problems.map((p) => p.thinking)).size < 4) issues.push('the set needs at least 4 different thinking moves');
-  if (c.problems.length > 13) issues.push(`${c.problems.length} problems is too many: keep the best 13 or fewer`);
+  for (const [level, name] of [[1, 'Warm-up'], [2, 'Build'], [3, 'Deep Think']] as const) {
+    const n = atLevel(level).length;
+    if (n > MAX_PER_LEVEL[level]) issues.push(`${n} ${name} problems is too many: keep the best ${MAX_PER_LEVEL[level]}`);
+  }
+  for (const p of c.problems) {
+    if (p.type === 'investigation' && p.parts.length > MAX_PARTS) issues.push(`${p.id}: ${p.parts.length} parts is too many: keep ${MAX_PARTS} or fewer`);
+  }
+  const deepSteps = deep.reduce((n, p) => n + (p.type === 'investigation' ? p.parts.length : 1), 0);
+  if (deepSteps > MAX_DEEP_STEPS) issues.push(`Deep Think has ${deepSteps} steps, counting each investigation part: keep ${MAX_DEEP_STEPS} or fewer`);
 
   const pieces: { id: string; type: string; prompt: string; verify?: string }[] = c.problems.flatMap<{ id: string; type: string; prompt: string; verify?: string }>((p) => (p.type === 'investigation' ? p.parts.map((part) => ({ ...part, id: p.id })) : [p]));
   const written = pieces.filter((p) => p.type === 'open').length;
-  if (written > 3) issues.push(`${written} written answers is too many: children grade these themselves, so keep at most 3`);
+  const maxWritten = c.subject === 'english-language-arts' ? 1 : 0;
+  if (written > maxWritten) {
+    issues.push(
+      maxWritten
+        ? `${written} written answers is too many: keep at most 1, where writing is the skill being taught`
+        : `${written} written answers: outside ELAL, use a choice or build problem instead`,
+    );
+  }
   for (const p of pieces) {
     if ((p.type === 'number' || p.type === 'fraction') && !p.verify) issues.push(`${p.id}: a computed answer needs verify`);
     const wide = tableColumns(p.prompt);

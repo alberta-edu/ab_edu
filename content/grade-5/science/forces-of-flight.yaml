@@ -211,32 +211,6 @@ problems:
       - Drag and weight keep acting until the spear lands.
 
   # ---------------------------------------------------------------- Level 2: Build
-  - id: b1
-    level: 2
-    thinking: flaw
-    covers: [K1.7, S1.2, U1.1]
-    type: mc
-    prompt: |-
-      On a family flight, the seat screen shows the same speed and the same altitude for a whole hour. Omar says, “The
-      engines must be pushing harder than the drag, or else we’d be slowing down.” What should his sister tell him?
-    choices:
-      - Equal thrust and drag keep the speed steady. We’d slow down only if drag were bigger.
-      - You’re right. Thrust always has to be bigger than drag for a plane to keep on flying.
-      - At this height there is no drag at all, so the engines don’t have to push against it.
-      - Drag is bigger than thrust right now. That’s what stops the plane from speeding up.
-    answer: 0
-    feedback:
-      '1': If thrust really were bigger than drag for a whole hour, what would the speed number on the screen be doing?
-      '2': The plane is moving, so what does drag do? Check the two arrows in the thrust and drag pair.
-      '3': If drag were the bigger force, which way would the speed number on the screen go?
-    hints:
-      - What would the speed on the screen do if thrust were bigger than drag?
-      - Look back at what happens when thrust equals drag.
-    solution:
-      - Test Omar’s idea against the screen. If thrust were bigger than drag, the plane would keep **speeding up**. The speed isn’t changing.
-      - So thrust and drag must be **equal**. Equal forces don’t stop the plane. They keep it at the same speed.
-      - It only slows down if drag becomes the bigger force.
-
   - id: b2
     level: 2
     thinking: model
@@ -402,46 +376,9 @@ problems:
         solution:
           - The pizza was part of what gravity was pulling down. Without it, Zippy’s **weight** is smaller.
           - The lift is the same as before, so now lift is greater than weight, and Zippy climbs.
-      - type: mc
-        prompt: In section D, Zippy is flying level again without the pizza. What must have happened at the end of section C?
-        choices:
-          - The propellers slowed so that lift got smaller, down to the new weight.
-          - Zippy’s weight went up, until it was the same as the weight it had before.
-          - The propellers sped up so that the lift got greater than the new weight.
-          - Thrust grew until it was the same as the lift from the propellers.
-        answer: 0
-        feedback:
-          '1': Nothing was added to Zippy. Can the weight go back up without the pizza?
-          '2': If lift got even greater than the weight, would the line on the graph go flat?
-          '3': Thrust is paired with drag, not lift. Which pair decides the altitude?
-        hints:
-          - What must be true of lift and weight in a flat section? Has the weight changed since the pizza dropped?
-        solution:
-          - Level flight needs lift to equal weight. Zippy’s weight is now smaller, and it stays that way.
-          - So the lift must have come down to match it. That happens when the propellers slow a little.
-      - type: mc
-        prompt: |-
-          The next day, Zippy tows a huge, flat banner that weighs **the same** as the pizza. Zippy must fly at the same
-          speed and altitude as in section B. What has to change, compared with carrying the pizza?
-        choices:
-          - More thrust, because the banner adds drag. The lift can stay the same.
-          - More lift, because the banner is so big. The thrust can stay the same.
-          - More lift and more thrust, because any big load needs more of each one.
-          - Nothing at all, because the banner has the same weight as the pizza.
-        answer: 0
-        feedback:
-          '1': The banner weighs the same as the pizza. So does lift need to change to hold it up?
-          '2': Look at each pair on its own. Did the weight change? Did the drag change?
-          '3': Weight is one of four forces. What would a huge, flat shape do as it moves through the air?
-        hints:
-          - Check each opposing pair on its own. Which force in the lift and weight pair has changed, if any?
-          - What does a huge, flat shape do as it moves through the air?
-        solution:
-          - 'Lift and weight: the weight is the same, so the same lift holds Zippy at that altitude.'
-          - 'Thrust and drag: a huge, flat banner has much more drag. To keep the same speed, thrust has to grow to match the new drag.'
     wrapUp: |-
-      Each opposing pair does its own job. Change the weight, and the altitude is affected. Change the drag, and the speed
-      is affected. To fix a flight, find out which pair has become uneven.
+      Each opposing pair does its own job. When the weight changes, lift and weight become uneven, and the altitude
+      changes. To fix a flight, find out which pair has become uneven.
 
   - id: d2
     level: 3
@@ -508,30 +445,3 @@ problems:
     wrapUp: |-
       Weight always points down, but drag points against the movement. So the same two forces can work together or against
       each other, depending on which way something is moving.
-
-  - id: d3
-    level: 3
-    thinking: design
-    covers: [S1.6, S1.7, S1.2, S1.3, K1.3, K1.4, K1.6]
-    type: open
-    prompt: |-
-      **Invent** a device that carries a paper note through the air, across your classroom. You can use things like paper,
-      tape, straws, rubber bands or paper clips. Describe your device. Say where its **thrust** comes from, what its
-      **drag** does, what holds it up against its **weight**, and one thing you’d do to keep everyone safe.
-    hints:
-      - How will it get moving? What keeps pushing it, and for how long?
-      - Picture it halfway across the room. What is slowing it down? What is pulling it down? What is stopping it from falling?
-      - Now picture testing it with the class around you. What could go wrong, and who could it hit?
-    modelAnswer: |-
-      I would fold a paper glider with wide wings and tape the note flat under it. A stretched rubber band launches it, and
-      that gives it **thrust**, but only at the start. **Drag** from the air slows it down, so I’d keep the glider thin and
-      smooth. **Lift** from its wings holds it up against its **weight**, so I’d keep the note small and light.
-
-      To keep everyone safe, I’d launch it only when nobody is in front of me or off to either side, because a test glider can veer.
-
-      Another idea is a small model plane with a propeller. The spinning propeller keeps giving thrust for as long as it spins.
-    rubric:
-      - I described what my device is made of and how it carries the note.
-      - I said where its **thrust** comes from, and that **drag** slows it down.
-      - I said what holds it up against its **weight**.
-      - I gave a safety step that fits my device.

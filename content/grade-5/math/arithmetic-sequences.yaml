@@ -130,19 +130,6 @@ problems:
       - 'Each spider brings 8 legs, so multiply by 8.'
       - '\(8 \times 1 = 8\), \(8 \times 2 = 16\), \(8 \times 3 = 24\). The expression is \(8n\).'
 
-  - id: w3
-    level: 1
-    thinking: apply
-    covers: [S1.5, S1.3]
-    type: number
-    prompt: 'In a board game, you start on square 6 and move exactly 1 square every turn. After turn \(n\), you are on square \(n + 6\). What square are you on after **turn 10**?'
-    answer: 16
-    verify: 10 + 6
-    hints:
-      - Which number goes in place of \(n\)?
-    solution:
-      - 'Turn 10 means \(n\) is 10, so \(10 + 6 = 16\). You are on **square 16**.'
-
   - id: w4
     level: 1
     thinking: apply
@@ -317,24 +304,6 @@ problems:
           - 'The two lines cross at (3, 9), where both beards are 9 cm.'
           - 'After that, Brak''s points are higher. His line goes up 3 each step and Hob''s goes up 1.'
           - 'Both are straight, so they can never bend to meet again. Brak stays ahead.'
-      - type: mc
-        prompt: '**What if** a magic comb makes both beards grow **3 cm** each week? Hob still starts at 6 cm, and Brak still starts shaved. When does Brak catch up?'
-        choices:
-          - Never, because Hob stays exactly 6 cm ahead every single week.
-          - In week 2, because that is when Brak's beard reaches 6 cm long.
-          - After a very long time, because the shorter beard keeps on catching up.
-          - Never, because the comb makes Hob's beard grow faster than Brak's.
-        answer: 0
-        feedback:
-          '1': 'Brak does reach 6 cm in week 2. But how long is Hob''s beard by then?'
-          '2': 'Work out the gap for a few weeks. Does it ever get smaller?'
-          '3': 'Each beard grows 3 cm a week, so neither grows faster.'
-        hints:
-          - Work out both beards for a few weeks. What happens to the gap?
-          - Picture their points on the graph. Would the two lines ever cross?
-        solution:
-          - 'After 1 week: Hob 9, Brak 3. After 2 weeks: Hob 12, Brak 6. After 3 weeks: Hob 15, Brak 9.'
-          - 'The gap is 6 cm every time. On a graph, the two lines would go up at the same steepness and **never cross**.'
     wrapUp: 'A rule tells you the whole story of a sequence. The steepness of its line shows how much is added at each step. Two lines can only meet if one is steeper than the other.'
 
   - id: d2
@@ -372,27 +341,3 @@ problems:
       - 'The numbers that go into both 24 and 40 are 1, 2, 4 and 8. Numbers 1 and 2 also go into 30, so those frogs wake the skunk.'
       - '**4 works** (rule \(4n\)): pad 24 at jump 6, pad 40 at jump 10, and it goes from 28 to 32 over the skunk.'
       - '**8 works** (rule \(8n\)): pad 24 at jump 3, pad 40 at jump 5, and it goes from 24 to 32 over the skunk.'
-
-  - id: d3
-    level: 3
-    thinking: why
-    covers: [K1.2, S1.2, S1.3, S1.4]
-    type: open
-    figure: |-
-      <svg viewBox="0 0 330 160" class="fig-svg" role="img" aria-label="Two rows of box stacks. Row A has 2, 4, 6 and 8 boxes. Row B has 1, 2, 4 and 8 boxes."><rect class="cg-poly" x="12" y="116" width="26" height="14"/><rect class="cg-poly" x="12" y="102" width="26" height="14"/><rect class="cg-poly" x="44" y="116" width="26" height="14"/><rect class="cg-poly" x="44" y="102" width="26" height="14"/><rect class="cg-poly" x="44" y="88" width="26" height="14"/><rect class="cg-poly" x="44" y="74" width="26" height="14"/><rect class="cg-poly" x="76" y="116" width="26" height="14"/><rect class="cg-poly" x="76" y="102" width="26" height="14"/><rect class="cg-poly" x="76" y="88" width="26" height="14"/><rect class="cg-poly" x="76" y="74" width="26" height="14"/><rect class="cg-poly" x="76" y="60" width="26" height="14"/><rect class="cg-poly" x="76" y="46" width="26" height="14"/><rect class="cg-poly" x="108" y="116" width="26" height="14"/><rect class="cg-poly" x="108" y="102" width="26" height="14"/><rect class="cg-poly" x="108" y="88" width="26" height="14"/><rect class="cg-poly" x="108" y="74" width="26" height="14"/><rect class="cg-poly" x="108" y="60" width="26" height="14"/><rect class="cg-poly" x="108" y="46" width="26" height="14"/><rect class="cg-poly" x="108" y="32" width="26" height="14"/><rect class="cg-poly" x="108" y="18" width="26" height="14"/><text class="cg-num" x="73" y="152" text-anchor="middle">Row A</text><rect class="cg-poly" x="188" y="116" width="26" height="14"/><rect class="cg-poly" x="220" y="116" width="26" height="14"/><rect class="cg-poly" x="220" y="102" width="26" height="14"/><rect class="cg-poly" x="252" y="116" width="26" height="14"/><rect class="cg-poly" x="252" y="102" width="26" height="14"/><rect class="cg-poly" x="252" y="88" width="26" height="14"/><rect class="cg-poly" x="252" y="74" width="26" height="14"/><rect class="cg-poly" x="284" y="116" width="26" height="14"/><rect class="cg-poly" x="284" y="102" width="26" height="14"/><rect class="cg-poly" x="284" y="88" width="26" height="14"/><rect class="cg-poly" x="284" y="74" width="26" height="14"/><rect class="cg-poly" x="284" y="60" width="26" height="14"/><rect class="cg-poly" x="284" y="46" width="26" height="14"/><rect class="cg-poly" x="284" y="32" width="26" height="14"/><rect class="cg-poly" x="284" y="18" width="26" height="14"/><text class="cg-num" x="249" y="152" text-anchor="middle">Row B</text></svg>
-    hints:
-      - How much taller is each stack than the one before it? Work that out for both rows.
-      - 'Think of the top of each stack as a point on a grid: (stack number, boxes). Would the points fit on a straight line?'
-    prompt: |-
-      You want a **straight** ramp for your toy car, resting on the top of all four stacks of boxes in a row. Row A has 2, 4, 6 and 8 boxes. Row B has 1, 2, 4 and 8 boxes.
-
-      Which row will work? Explain **why**, using how much each stack goes up from the one before. Then write an expression for the boxes in stack \(n\) of that row.
-    modelAnswer: |-
-      Row A works. Each stack is 2 boxes taller than the one before, so the tops go up by the same amount each step and a straight
-      ramp touches them all. In Row B the stacks go up by 1, then 2, then 4, so the tops bend more and more steeply. The rule for Row A
-      is \(2n\).
-    rubric:
-      - I chose Row A.
-      - I said that Row A goes up by the same amount, 2 boxes, at every step.
-      - I said that Row B goes up by different amounts (1, 2, then 4), so its tops can't fit on a straight line.
-      - I wrote the expression \(2n\).

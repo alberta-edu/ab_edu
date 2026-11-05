@@ -82,6 +82,32 @@ describe('quality rules', () => {
     expect(issues).toContain('Deep Think needs at least 2 different thinking moves');
     expect(issues).toContain('Deep Think needs a problem that is not multiple choice');
   });
+  it('keeps each level short', () => {
+    const warmUps = ['a', 'b', 'c', 'd'].map((id, i) => mc(id, 1, `Warm-up question number ${i} about something different from the others here?`, 'notice'));
+    expect(qualityIssues(concept(warmUps))).toContain('4 Warm-up problems is too many: keep the best 3');
+    expect(qualityIssues(concept(warmUps.slice(0, 3))).some((i) => i.includes('too many'))).toBe(false);
+  });
+  it('limits investigation parts and Deep Think steps', () => {
+    const part = (prompt: string) => ({ type: 'mc', prompt, choices: ['a', 'b'], answer: 0, feedback: { 1: 'no' }, hints: ['hint'], solution: ['because'] });
+    const inv = (id: string, parts: number) =>
+      problemSchema.parse({
+        id, level: 3, thinking: 'breakdown', covers: ['K1.1'], type: 'investigation', prompt: 'A long story about a garden and its fence.',
+        parts: Array.from({ length: parts }, (_, i) => part(`Part ${i}?`)), wrapUp: 'Done.', hints: [], solution: [],
+      });
+    const issues = qualityIssues(concept([inv('d1', 4), inv('d2', 3)]));
+    expect(issues).toContain('d1: 4 parts is too many: keep 3 or fewer');
+    expect(issues).toContain('Deep Think has 7 steps, counting each investigation part: keep 5 or fewer');
+    expect(qualityIssues(concept([inv('d1', 3), inv('d2', 2)])).some((i) => i.includes('steps'))).toBe(false);
+  });
+  it('allows written answers only in ELAL, and only one', () => {
+    const open = (id: string) =>
+      problemSchema.parse({ id, level: 3, thinking: 'design', covers: ['K1.1'], type: 'open', prompt: 'Write a short poem about your favourite place in town.', modelAnswer: 'A poem.', rubric: ['one', 'two'], hints: ['hint'], solution: ['because'] });
+    const science = concept([open('d1')]);
+    expect(qualityIssues(science).some((i) => i.includes('outside ELAL'))).toBe(true);
+    const elal = (problems: Problem[]) => ({ ...concept(problems), subject: 'english-language-arts' }) as Concept;
+    expect(qualityIssues(elal([open('d1')])).some((i) => i.includes('written'))).toBe(false);
+    expect(qualityIssues(elal([open('d1'), open('d2')])).some((i) => i.includes('keep at most 1'))).toBe(true);
+  });
   it('rejects bare calculations and plain recall at Deep Think', () => {
     const issues = qualityIssues(concept([mc('d1', 3, '\\(3 + 4\\) = ?', 'recall')]));
     expect(issues.some((i) => i.includes('bare calculation'))).toBe(true);

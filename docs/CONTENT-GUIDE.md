@@ -77,7 +77,7 @@ heavy) rather than describing the idea in words.
 
 ## Rule 3: quality over quantity
 
-About 10–12 problems per concept, never more than 13: 3–4 Warm-up, 4 Build and 3–4 Deep Think.
+9 problems per concept at most: 3 Warm-up, 4 Build and 2 Deep Think. `npm run verify` enforces it.
 
 - **Warm-up**: one idea, one step, a quick win.
 - **Build**: read a story, table, figure or map, then decide what to do.
@@ -112,9 +112,9 @@ money. Fractions always render full-size. In YAML, put math in single quotes
 | `text` | `accept` (list of accepted answers) |
 | `order` | `items`, written in the correct order (they are shuffled at build time) |
 | `evidence` | `passage` (id), `paragraphs` (excerpt), `answer` (sentence ids `p9s1`…), `feedback` per sentence id |
-| `open` | `modelAnswer`, `rubric` (2–5 self-check items); hints and solution are optional |
+| `open` | `modelAnswer`, `rubric` (2–5 self-check items); hints and solution are optional. ELAL only, at most 1 per set, where writing is the skill being taught |
 | `build` | Many right answers: `fields`, `rules` (`test`, `fail`), `examples`, `counterexamples` |
-| `investigation` | A story (`prompt`) with 2–4 linked `parts`, shown one at a time, and a `wrapUp`. Parts can be `mc`, `multi`, `number`, `fraction`, `text`, `build` or `open` |
+| `investigation` | A story (`prompt`) with 2–3 linked `parts`, shown one at a time, and a `wrapUp`. Parts can be `mc`, `multi`, `number`, `fraction`, `text`, `build` or `open` |
 
 Figures (in problems, `figure` blocks and `compare` columns):
 - `{ kind: fraction-bars, n, d, wholes }`

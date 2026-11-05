@@ -102,29 +102,6 @@ keyTerms:
 
 problems:
   # ---------------------------------------------------------------- Level 1: Warm-up
-  - id: w1
-    level: 1
-    thinking: recall
-    covers: [K1.3, S1.2, S1.3]
-    type: mc
-    prompt: Which of these has an area of exactly **1 m²**?
-    choices:
-      - A square 100 cm by 100 cm
-      - A square 10 cm by 10 cm
-      - A square 1 m around its edge
-      - A strip 100 cm by 1 cm
-    answer: 0
-    feedback:
-      '1': '\(10 \times 10 = 100\), so this is only 100 cm². Your hand could cover it. How long is each side of a square metre?'
-      '2': 'Around the edge is the perimeter, not the area. With only 1 m around it, each side is just 25 cm.'
-      '3': '\(100 \times 1 = 100\), so this is only 100 cm². It is a single row of squares, and a square metre needs many rows.'
-    hints:
-      - Picture 1 m². What shape is it, and how long is each side?
-      - Now write that side length in centimetres.
-    solution:
-      - 'Start from the meaning: 1 m² is the area of a square with sides of 1 m.'
-      - '1 m is 100 cm, so that same square is **100 cm by 100 cm**.'
-
   - id: w2
     level: 1
     thinking: apply
@@ -204,32 +181,6 @@ problems:
       - 'About **19** squares are all ice.'
       - 'About **23** squares are part ice. Paired up, they make about **11** whole squares.'
       - '\(19 + 11 = 30\), so the ice is about **30 m²**. Anything from 26 to 34 is a fair estimate.'
-
-  - id: b2
-    level: 2
-    thinking: estimate
-    covers: [S1.5, S1.6, S1.3]
-    type: mc
-    prompt: Sana made a poster listing four areas. One of them can’t be right. Which one?
-    choices:
-      - 'A dining table top: **150 cm²**'
-      - 'A classroom door: **20 000 cm²**'
-      - 'A bedroom floor: **12 m²**'
-      - 'A notebook cover: **500 cm²**'
-    answer: 0
-    feedback:
-      '1': 'The number looks huge, but cm² are tiny. A door about 1 m wide and 2 m tall is 2 m², and each m² is 10 000 cm². Does that match?'
-      '2': 'Picture a floor 3 m by 4 m. That is 12 m², a fine size for a bedroom.'
-      '3': 'Picture a cover 20 cm by 25 cm. That is 500 cm², a fine size for a notebook.'
-    hints:
-      - Which number looks strange? Looking strange is not the same as being wrong.
-      - Turn each area into a rectangle you can picture. What side lengths would give that area?
-      - Try 150 cm² as a square about 12 cm by 12 cm. Try 20 000 cm² as 100 cm by 200 cm.
-    solution:
-      - 'Don’t judge by how big the number looks. Picture a rectangle with that area.'
-      - '20 000 cm² is 100 cm by 200 cm, which is 1 m by 2 m. That is just right for a door.'
-      - '150 cm² is about 12 cm by 12 cm, smaller than a dinner plate. A dining table can’t be that small, so **the table** is the mistake.'
-      - 'What we learned: a big number of small units can still be a small area, so always think about the unit too.'
 
   - id: b3
     level: 2
@@ -325,15 +276,6 @@ problems:
         solution:
           - 'Two first posters fit along the long side, and there are two rows. \(2 \times 2 = 4\), so it takes **4 jars**.'
           - 'Check with areas: \(40 \times 30 = 1\,200\) cm² and \(80 \times 60 = 4\,800\) cm². Four of 1 200 make 4 800.'
-      - type: number
-        prompt: What if each side is **3 times** as long as on Wren’s first poster? How many jars would that take?
-        unit: jars
-        answer: 9
-        verify: 3 * 3
-        hints:
-          - Use the same picture. How many rows of first posters would there be, and how many in each row?
-        solution:
-          - 'There are 3 rows of 3 first posters. \(3 \times 3 = 9\) jars. The ribbon only takes 3 times as much.'
     wrapUp: 'Make each side 2 times as long and the perimeter doubles, but the area grows \(2 \times 2 = 4\) times. It is also why 1 m² is 10 000 cm²: each side is 100 times as long, so the area is \(100 \times 100\) times as big.'
 
   - id: d2
@@ -400,76 +342,5 @@ problems:
           - 'All the way around, the square still wins: 24 m against 26 m.'
           - 'But the wall saves 6 m for the square and 9 m for the other garden. \(24 - 6 = 18\) and \(26 - 9 = 17\).'
     wrapUp: The square still has the least perimeter. This garden just doesn’t need a whole perimeter of fence. Before you use a rule, check that your story matches what the rule is about.
-    hints: []
-    solution: []
-
-  - id: d3
-    level: 3
-    thinking: pattern
-    covers: [S1.10, S1.7]
-    type: investigation
-    prompt: |-
-      Area is measured in cm² and perimeter in cm, so they aren’t the same kind of thing. But for some rectangles, the two **numbers** match.
-    parts:
-      - type: build
-        prompt: Hunt for one. Find a rectangle with whole-centimetre sides whose area number and perimeter number are the same.
-        fields:
-          - { name: w, label: 'Length', unit: cm }
-          - { name: h, label: 'Width', unit: cm }
-        rules:
-          - { test: 'w % 1 == 0 && h % 1 == 0 && w > 0 && h > 0', fail: 'Use whole centimetres for both sides.' }
-          - { test: 'w * h == 2 * (w + h)', fail: 'Not a match yet. Work out both numbers. Which one is bigger? How could you change the rectangle to bring them closer?' }
-        examples:
-          - { w: 4, h: 4 }
-          - { w: 6, h: 3 }
-          - { w: 3, h: 6 }
-        counterexamples:
-          - { w: 5, h: 5 }
-          - { w: 2, h: 5 }
-          - { w: 2.5, h: 10 }
-        hints:
-          - Try a small rectangle and work out both numbers. Which one is bigger?
-          - Keep one side at 3 cm and stretch the other. Watch both numbers change.
-          - '3 by 4 gives area 12 and perimeter 14. 3 by 5 gives 15 and 16. What comes next?'
-        solution:
-          - 'Start small and watch the numbers. A 3 by 3 square has area 9 and perimeter 12. A 5 by 5 square has area 25 and perimeter 20. So the numbers must cross somewhere between.'
-          - '**4 by 4** has area 16 and perimeter 16. **3 by 6** has area 18 and perimeter 18.'
-          - 'Both work because length × width lands on the same number as length + width + length + width.'
-      - type: number
-        prompt: Yuki only tries rectangles that are **2 cm** wide. Test 2 by 3, 2 by 10 and 2 by 50. Each time, how much bigger is the perimeter number than the area number?
-        answer: 4
-        verify: 2 * (2 + 50) - 2 * 50
-        hints:
-          - Find both numbers for 2 by 3. Then do the same for 2 by 10.
-        solution:
-          - '2 by 3 has perimeter 10 and area 6. 2 by 10 has perimeter 24 and area 20. 2 by 50 has perimeter 104 and area 100.'
-          - 'The gap is **4** every time.'
-      - type: number
-        prompt: Yuki stretches 2 by 50 into 2 by 51. How much does the **area** number grow?
-        answer: 2
-        verify: 102 - 100
-        hints:
-          - The rectangle has 2 rows of squares. Stretching it adds how many new squares?
-        solution:
-          - 'The area goes from 100 to 102, so it grows by **2**.'
-          - 'Now look at the perimeter. It goes from 104 to 106, so it also grows by 2.'
-      - type: mc
-        prompt: Yuki says a rectangle 2 cm wide can **never** have matching numbers, however long it is. Is Yuki right?
-        choices:
-          - Yes. Stretching adds 2 to both numbers, so the gap of 4 never shrinks.
-          - No. The area grows faster than the perimeter, so it catches up in the end.
-          - No. If you stretch it far enough, any two growing numbers will meet.
-          - Yes. One number is in cm and one is in cm², so they can never match.
-        answer: 0
-        feedback:
-          '1': 'Check your last answer. How much did each number grow when the rectangle got 1 cm longer?'
-          '2': 'Two numbers can grow forever and stay apart, if they grow by the same amount. How much does each one grow here?'
-          '3': 'The units are different, but your 4 by 4 rectangle had matching numbers. So why can’t a rectangle 2 cm wide?'
-        hints:
-          - The gap starts at 4. What does one stretch do to the gap?
-        solution:
-          - 'Every stretch adds 2 to the area number and 2 to the perimeter number, so the gap stays at 4.'
-          - 'It never closes, however long the rectangle gets. So **Yuki is right**.'
-    wrapUp: A pattern that works three times is a clue. Seeing why it happens, both numbers growing by 2 with every stretch, is what lets you be sure.
     hints: []
     solution: []

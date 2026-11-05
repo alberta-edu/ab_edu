@@ -45,8 +45,9 @@ pushed. The owner reviews them on `main`.**
 | `fix/text-wrapping` | No lone last words in paragraphs and lists, balanced ledes, one-line About lede, a `.nowrap` class for dates, a general "How it's checked" list | ✅ Merged into `main` and pushed |
 | `fix/plan-status` | Restores this status section after an older PLAN.md was committed by mistake | ✅ Merged into `main` and pushed |
 | `fix/pages-deploy` | Deploy workflow on the current action versions (Node 24), and the Pages setup steps in the README | Waiting for review |
+| `fix/lighter-practice` | Owner review: 9 problems per topic (3 Warm-up, 4 Build, 2 Deep Think), investigations at most 3 parts, Deep Think at most 5 steps, written answers only in ELAL writing topics (4 left, was 73), no 5-word minimum, new limits checked by `npm run verify` | Waiting for review |
 
-Waiting for review: `fix/pages-deploy`. The owner will do the final manual review at the very end, after all phases.
+Waiting for review: `fix/pages-deploy`, `fix/lighter-practice`. The owner will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 
@@ -122,7 +123,7 @@ order:
    "peek ahead" option is always there, so nobody gets stuck behind a lock. Every problem
    has hints (from small to big), a worked solution, and targeted feedback on wrong answers.
 
-**Quality over quantity**: about 10–12 carefully written problems per concept. Every wrong
+**Quality over quantity**: at most 9 carefully written problems per concept (3 Warm-up, 4 Build, 2 Deep Think). Every wrong
 choice is a real misconception and comes with an explanation.
 
 ### Problem types
