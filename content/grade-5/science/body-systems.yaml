@@ -22,7 +22,7 @@ lesson:
         covers: [K1.3, S1.3, S1.2]
         component: body-systems
         props: { start: digestive }
-        caption: Choose a system to see its major parts. The picture shows a person facing you, so their right side is on your left.
+        caption: Choose a system, then tap a part to see its job. The person faces you, so their right side is on your left.
       - type: table
         covers: [K1.4, K1.5, K1.6, K1.7, S1.2, S1.3]
         headers: [System, What it does, Major parts]
@@ -31,6 +31,24 @@ lesson:
           - ['**Respiratory**', 'Exchanges oxygen and carbon dioxide', 'Trachea, lungs, diaphragm']
           - ['**Circulatory**', 'Moves blood around the body', 'Heart, blood vessels']
           - ['**Musculoskeletal**', 'Supports and moves the body', 'Muscles, bones']
+
+  - title: How the parts do their jobs
+    blocks:
+      - type: visual
+        covers: [K1.6, K1.7, S1.2]
+        component: body-motion
+        caption: Watch the heart pump blood around the body. Then switch to muscles and bones, and drag the slider.
+      - type: compare
+        covers: [K1.6, K1.7, S1.2]
+        columns:
+          - title: Heart and blood vessels
+            body: |-
+              - The **heart** is a muscle. It squeezes again and again to pump blood.
+              - **Blood vessels** are tubes. They carry blood out to every part of the body and back to the heart.
+          - title: Muscles and bones
+            body: |-
+              - **Bones** are hard. They hold the body up and give it its shape.
+              - Bones can't move on their own. **Muscles** pull on them to move them.
 
   - title: Vital biological processes
     blocks:

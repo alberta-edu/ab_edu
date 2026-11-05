@@ -46,8 +46,9 @@ pushed. The owner reviews them on `main`.**
 | `fix/plan-status` | Restores this status section after an older PLAN.md was committed by mistake | ✅ Merged into `main` and pushed |
 | `fix/pages-deploy` | Deploy workflow on the current action versions (Node 24), and the Pages setup steps in the README | Waiting for review |
 | `fix/lighter-practice` | Owner review: 9 problems per topic (3 Warm-up, 4 Build, 2 Deep Think), investigations at most 3 parts, Deep Think at most 5 steps, written answers only in ELAL writing topics (4 left, was 73), no 5-word minimum, new limits checked by `npm run verify` | Waiting for review |
+| `feature/body-systems-depth` | Owner review: body systems go deeper inside the curriculum. Tap any part to see its job, and a new step animates the heart pumping blood out and back, and a muscle pulling a bone to bend the arm. No new body parts or problems. Stacked on `fix/lighter-practice` | Waiting for review |
 
-Waiting for review: `fix/pages-deploy`, `fix/lighter-practice`. The owner will do the final manual review at the very end, after all phases.
+Waiting for review: `fix/pages-deploy`, `fix/lighter-practice`, `feature/body-systems-depth`. The owner will do the final manual review at the very end, after all phases.
 
 **Phase 7 results, on `chore/phase-7-polish`:**
 
