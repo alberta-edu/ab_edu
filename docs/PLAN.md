@@ -1,4 +1,4 @@
-# AB Edu: Plan
+# Alberta Edu: Plan
 
 A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 comes first, with the four
 Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
@@ -125,7 +125,7 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 
 ## 5. Decisions
 
-- **Name:** "AB Edu" (`src/site.ts`). It must not look like a Government of Alberta site. Every footer
+- **Name:** "Alberta Edu" (`src/site.ts`). It must not look like a Government of Alberta site. Every footer
   says it is independent.
 - **Curriculum text** is © Government of Alberta, quoted with attribution and a link for alignment only.
 - **Git identity:** `alberta-edu <alberta-edu@users.noreply.github.com>`.

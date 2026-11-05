@@ -65,7 +65,6 @@ const current = (p: string) => (path.startsWith(p) ? 'page' : undefined);
           <span class="brand__name">{SITE_NAME}</span>
         </a>
         <nav class="site-nav" aria-label="Main">
-          <a href={href('grade-5/')} aria-current={current('grade-5')}>Grade 5</a>
           <a href={href('review/')} aria-current={current('review')}>
             <Icon name="review" size={18} />Review<span class="nav-badge" data-due-badge hidden></span>
           </a>

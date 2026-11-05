@@ -8,13 +8,13 @@ import { levelBadge } from '../../lib/problem-html.ts';
 import { href, absolute } from '../../lib/url.ts';
 
 const description =
-  'A guide for Alberta teachers and home-educating parents: how to use AB Edu to make learning fun, teach children to think, and adapt lessons for every child.';
+  'A guide for Alberta teachers and home-educating parents: how to use Alberta Edu to make learning fun, teach children to think, and adapt lessons for every child.';
 const guides = SUBJECTS.filter((s) => subjectGuide(s.slug));
 const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'LearningResource',
-    name: 'AB Edu guide for educators',
+    name: 'Alberta Edu guide for educators',
     description,
     url: absolute('educators/'),
     inLanguage: 'en-CA',

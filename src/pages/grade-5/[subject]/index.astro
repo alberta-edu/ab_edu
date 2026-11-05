@@ -30,7 +30,7 @@ const jsonLd = [
     inLanguage: 'en-CA',
     isAccessibleForFree: true,
     educationalLevel: 'Grade 5',
-    provider: { '@type': 'Organization', name: 'AB Edu' },
+    provider: { '@type': 'Organization', name: 'Alberta Edu' },
     hasPart: [...built.values()].map((c) => ({ '@type': 'LearningResource', name: c.title, url: absolute(conceptPath(c)) })),
   },
 ];

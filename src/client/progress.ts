@@ -147,7 +147,7 @@ export function importJson(text: string): void {
   const data = JSON.parse(text);
   const p = data?.progress;
   if (data?.app !== 'ab-edu' || p?.v !== 1 || typeof p.problems !== 'object') {
-    throw new Error('This file is not an AB Edu progress file.');
+    throw new Error('This file is not an Alberta Edu progress file.');
   }
   save({ ...empty(), ...p });
 }

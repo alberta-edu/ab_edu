@@ -1,4 +1,4 @@
-# AB Edu
+# Alberta Edu
 
 A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 comes first, with the
 four Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.

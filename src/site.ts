@@ -1,6 +1,6 @@
 // Site-wide constants. Imported by astro.config.mjs, so keep this file free of Astro imports.
 
-export const SITE_NAME = 'AB Edu';
+export const SITE_NAME = 'Alberta Edu';
 export const SITE_TAGLINE = 'Free practice that follows the Alberta curriculum';
 export const SITE_URL = 'https://alberta-edu.github.io';
 /** GitHub Pages project path. Change to '/' if the site moves to a custom domain. */
