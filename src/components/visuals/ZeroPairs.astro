@@ -1,0 +1,123 @@
+---
+// Adding and subtracting integers with counters (MAT6-OI1-GQ1-LO1: K2.2-K2.5, K3.1, S2.1-S2.5,
+// S3.1). A positive and a negative counter make a zero pair. Subtracting becomes adding the
+// opposite, and every sum becomes zero plus what is left. Arrows on a number line show the same sum.
+import { lineSvg } from './g6-integers.ts';
+
+interface Props {
+  a?: number;
+  b?: number;
+  op?: '+' | '−';
+}
+const { a = 5, b = -3, op = '+' } = Astro.props;
+---
+<zero-pairs data-a={a} data-b={b} data-op={op}>
+  <div class="control-row">
+    <label class="control"><span>First</span><input type="range" min="-6" max="6" value={a} data-zp="a" /> <output data-zp="a-out"></output></label>
+    <div class="seg" role="group" aria-label="Add or subtract">
+      <button type="button" data-op="+" aria-pressed={String(op === '+')}>+ add</button>
+      <button type="button" data-op="−" aria-pressed={String(op === '−')}>− subtract</button>
+    </div>
+    <label class="control"><span>Second</span><input type="range" min="-6" max="6" value={b} data-zp="b" /> <output data-zp="b-out"></output></label>
+  </div>
+  <p class="g6m-zp-sum" data-zp="sum" aria-live="polite"></p>
+  <div class="g6m-zp-board" data-zp="board" aria-hidden="true">
+    <div class="g6m-zp-row" data-zp="top"></div>
+    <div class="g6m-zp-row" data-zp="bottom"></div>
+  </div>
+  <div class="g6m-zp-line" data-zp="line" set:html={lineSvg({ min: -12, max: 12, every: 2 })} />
+  <p class="g6m-zp-say" data-zp="say" aria-live="polite"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-zp="next">Next step ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-zp="reset">Start over</button>
+  </div>
+  <div class="g6m-zp-key" aria-hidden="true"><span class="g6m-ctr g6m-ctr--pos">+</span> is +1 <span class="g6m-ctr g6m-ctr--neg">−</span> is −1</div>
+</zero-pairs>
+
+<style is:global>
+  zero-pairs { display: block; }
+  .g6m-zp-sum { margin: 0.8rem 0 0.4rem; font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g6m-zp-board { display: grid; gap: 0.5rem; padding: 0.75rem; border-radius: var(--radius); background: var(--surface-2); min-height: 6.4rem; }
+  .g6m-zp-row { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 2.4rem; }
+  .g6m-ctr { display: inline-grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; font-weight: 800; font-size: 1.2rem; box-shadow: inset 0 -3px 0 rgb(0 0 0 / 20%); animation: g6m-pop 0.3s ease; transition: opacity 0.4s, transform 0.4s; }
+  .g6m-ctr--pos { background: var(--sun); color: #1c1b24; }
+  .g6m-ctr--neg { background: #c2362b; color: #fff; }
+  .g6m-ctr--paired { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .g6m-ctr--flip { animation: g6m-flip 0.6s ease; }
+  .g6m-zp-key { display: flex; gap: 0.5rem; align-items: center; margin-top: 0.6rem; color: var(--ink-2); font-size: var(--step--1); }
+  .g6m-zp-key .g6m-ctr { width: 1.6rem; height: 1.6rem; font-size: 0.95rem; animation: none; }
+  .g6m-zp-line { margin-top: 0.6rem; }
+  .g6m-zp-say { min-height: 3em; margin: 0.4rem 0 0.6rem; }
+  @keyframes g6m-pop { from { transform: scale(0); } }
+  @keyframes g6m-flip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .g6m-ctr { animation: none !important; transition: none; } }
+</style>
+
+<script>
+  import { zeroPairSteps, lineSvg, signed, term, type PairStep } from './g6-integers.ts';
+
+  class ZeroPairs extends HTMLElement {
+    private op: '+' | '−' = '+';
+    private steps: PairStep[] = [];
+    private i = 0;
+
+    connectedCallback() {
+      this.op = this.dataset.op as '+' | '−';
+      this.querySelectorAll<HTMLButtonElement>('[data-op]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.op = btn.dataset.op as '+' | '−';
+          this.querySelectorAll('[data-op]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.reset();
+        }),
+      );
+      this.querySelectorAll<HTMLInputElement>('input[type="range"]').forEach((el) => el.addEventListener('input', () => this.reset()));
+      this.q('next').addEventListener('click', () => this.next());
+      this.q('reset').addEventListener('click', () => this.reset());
+      this.reset();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-zp="${k}"]`) as HTMLElement;
+    }
+
+    private nums() {
+      return [Number((this.q('a') as HTMLInputElement).value), Number((this.q('b') as HTMLInputElement).value)];
+    }
+
+    private reset() {
+      const [a, b] = this.nums();
+      this.q('a-out').textContent = signed(a, false);
+      this.q('b-out').textContent = signed(b, false);
+      this.q('sum').textContent = `${term(a)} ${this.op} ${term(b)} = ?`;
+      this.steps = zeroPairSteps(a, this.op, b);
+      this.i = 0;
+      this.show();
+    }
+
+    private next() {
+      if (this.i < this.steps.length - 1) {
+        this.i++;
+        this.show();
+      }
+    }
+
+    private show() {
+      const st = this.steps[this.i];
+      const [a, b] = this.nums();
+      const add = this.op === '+' ? b : -b;
+      const done = this.i === this.steps.length - 1;
+      // Counters: in the pairing step the first `pairs` of each row are outlined.
+      const row = (list: number[], paired: number, flip: boolean) =>
+        list.map((s, k) => `<span class="g6m-ctr ${s > 0 ? 'g6m-ctr--pos' : 'g6m-ctr--neg'}${k < paired ? ' g6m-ctr--paired' : ''}${flip ? ' g6m-ctr--flip' : ''}">${s > 0 ? '+' : '−'}</span>`).join('');
+      this.q('top').innerHTML = row(st.top, st.pairs, false);
+      this.q('bottom').innerHTML = row(st.bottom, st.pairs, st.phase === 'flip');
+      const jumps = st.phase === 'first' ? [{ from: 0, to: a }] : done ? [{ from: 0, to: a }, { from: a, to: a + add }] : [{ from: 0, to: a }, { from: a, to: a + add }];
+      const points = done ? [{ v: a + add, label: signed(a + add, false) }] : [];
+      this.q('line').innerHTML = lineSvg({ min: -12, max: 12, every: 2, jumps, points });
+      this.q('say').textContent = st.caption;
+      if (done) this.q('sum').textContent = `${term(a)} ${this.op} ${term(b)} = ${signed(a + add, false)}`;
+      (this.q('next') as HTMLButtonElement).disabled = done;
+    }
+  }
+  customElements.define('zero-pairs', ZeroPairs);
+</script>

@@ -76,6 +76,8 @@ import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
+import IntegerLine from './visuals/IntegerLine.astro';
+import ZeroPairs from './visuals/ZeroPairs.astro';
 
 interface Props {
   block: LessonBlock;
@@ -155,6 +157,8 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'integer-line': IntegerLine,
+  'zero-pairs': ZeroPairs,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

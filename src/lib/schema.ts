@@ -48,6 +48,15 @@ export const figureSchema = z.union([
   z.strictObject({ kind: z.literal('balance'), left: z.array(z.string()).max(4), right: z.array(z.string()).max(6), down: z.enum(['left', 'right', 'none']) }),
   z.strictObject({ kind: z.literal('cylinder'), max: z.number().positive(), minor: z.number().positive(), major: z.number().positive(), level: z.number().min(0) }),
   z.strictObject({ kind: z.literal('particle-boxes'), boxes: z.array(z.enum(['solid', 'liquid', 'gas'])).min(1).max(4), labels: z.array(z.string()).optional() }),
+  /** Grade 6: a number line with negative numbers, sideways or upright. */
+  z.strictObject({
+    kind: z.literal('int-line'),
+    min: z.number().int(),
+    max: z.number().int(),
+    points: z.array(z.strictObject({ v: z.number(), label: z.string().optional() })).optional(),
+    view: z.enum(['line', 'thermometer', 'elevation', 'money']).optional(),
+    jumps: z.array(z.strictObject({ from: z.number(), to: z.number() })).optional(),
+  }),
 ]);
 
 const problemBase = {
@@ -198,7 +207,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['story-path', 'page-explorer', 'poem-reader', 'script-stage', 'voice-lab', 'voice-reach', 'talk-it-out', 'word-builder', 'word-journey', 'figure-lens', 'perspective-lens', 'writing-path', 'sentence-rhythm', 'show-dial', 'topic-funnel', 'sentence-lab', 'spell-builder', 'punct-lab', 'civ-timeline', 'rise-fall-city', 'then-now', 'card-sort', 'social-scientists', 'village-city', 'nilometer', 'trade-map', 'social-pyramid', 'empire-map', 'issue-investigator', 'fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'share-blocks', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'plant-parts', 'body-systems', 'body-motion', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map']),
+    component: z.enum(['story-path', 'page-explorer', 'poem-reader', 'script-stage', 'voice-lab', 'voice-reach', 'talk-it-out', 'word-builder', 'word-journey', 'figure-lens', 'perspective-lens', 'writing-path', 'sentence-rhythm', 'show-dial', 'topic-funnel', 'sentence-lab', 'spell-builder', 'punct-lab', 'civ-timeline', 'rise-fall-city', 'then-now', 'card-sort', 'social-scientists', 'village-city', 'nilometer', 'trade-map', 'social-pyramid', 'empire-map', 'issue-investigator', 'fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'share-blocks', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'plant-parts', 'body-systems', 'body-motion', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map', 'integer-line', 'zero-pairs']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
