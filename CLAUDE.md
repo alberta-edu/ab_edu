@@ -14,7 +14,7 @@ Rules for this repo. See [README.md](README.md) for commands and layout, and
 ## Before handing off a branch
 
 1. `npm run check` passes.
-2. If content changed, re-run `npm run audit`.
+2. If content changed, re-run `npm run audit` (or `npm run audit -- grade-N/<subject>`).
 3. Update **Where we are now** and the phase **Status** in [docs/PLAN.md](docs/PLAN.md).
 4. Look at new or changed pages in `npm run preview`, at phone and desktop widths.
 5. Tell the owner the branch, what changed and what to check.
@@ -22,6 +22,7 @@ Rules for this repo. See [README.md](README.md) for commands and layout, and
 ## Content
 
 - **Curriculum only.** Teach only what Alberta's program of studies lists for the grade and outcome.
+  - Grades 1 to 6. Kindergarten is not supported.
   - Every block, problem and key term has `covers:` references, enforced by `npm run verify`.
   - A sentence that doesn't trace to a statement doesn't belong.
   - Where the curriculum lists examples, use them.
@@ -34,7 +35,9 @@ Rules for this repo. See [README.md](README.md) for commands and layout, and
   - Steps are numbered lists, several ideas are bullets. A Big idea is 3–4 bullets.
   - `npm run verify` fails on a 3+ sentence paragraph of 25+ words, or any paragraph or list item
     over 40 words (`src/lib/readability.ts`). Passages and `>` quotes are exempt.
-- **Keep it simple.** No tab, label or panel that repeats the page. Use words a Grade 5 child uses.
+- **Keep it simple.** No tab, label or panel that repeats the page. Use words a child in that grade uses.
+- **Grades 1–2 read little.** Less text, more animation, 6 problems a topic. Limits are in
+  `gradeProfile` (`src/site.ts`) and the [content guide](docs/CONTENT-GUIDE.md#rule-0-write-for-the-grade).
 
 ## Code
 
