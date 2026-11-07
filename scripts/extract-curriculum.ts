@@ -60,6 +60,8 @@ const text = (n: Node) => toLines(en(n)).map((l) => l.text).join(' ');
 
 const [dir, grade] = process.argv.slice(2);
 if (!dir || !grade) throw new Error('usage: extract-curriculum.ts <dir> <grade>');
+// Kindergarten is not supported: the site covers Grades 1 to 6.
+if (!/^[1-6]$/.test(grade)) throw new Error(`grade must be 1 to 6, not "${grade}"`);
 const outDir = join('curriculum', `grade-${grade.toLowerCase()}`);
 mkdirSync(outDir, { recursive: true });
 
