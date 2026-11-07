@@ -76,6 +76,7 @@ import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
 import HeatParticles from './visuals/HeatParticles.astro';
+import ForceShapes from './visuals/ForceShapes.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -157,6 +158,7 @@ const visuals = {
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
   'g6-heat-particles': HeatParticles,
+  'g6-force-shapes': ForceShapes,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
