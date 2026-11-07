@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { resolveRef, gradeRank, loadConcepts, outcomeStatements } from '../src/lib/content.ts';
+import { resolveRef, gradeRank, loadAllConcepts, outcomeStatements } from '../src/lib/content.ts';
 
 const particle = { subject: 'science' as const, outcomes: ['SCI5-OI1-GQ1-LO1'] };
 
@@ -25,13 +25,13 @@ describe('curriculum references', () => {
     const refs = outcomeStatements(5, 'math', 'MAT5-OI1-GQ5-LO1').map((s) => s.ref);
     expect(refs).toEqual(['K1.1', 'K1.2', 'K1.3', 'K1.4', 'U1.1', 'U1.2', 'S1.1', 'S1.2', 'S1.3', 'S1.4', 'S1.5', 'S1.6']);
   });
-  it('every block and problem in the content references only Grade 5 or earlier', () => {
-    for (const c of loadConcepts(5)) {
+  it('every block and problem references only its own grade or earlier', () => {
+    for (const c of loadAllConcepts()) {
       const refs = [
         ...c.lesson.flatMap((s) => s.blocks.flatMap((b) => ('covers' in b ? b.covers : []))),
         ...c.problems.flatMap((p) => p.covers),
       ];
-      for (const r of refs) expect(gradeRank(resolveRef(c, r).grade), `${c.id}: ${r}`).toBeLessThanOrEqual(gradeRank('5'));
+      for (const r of refs) expect(gradeRank(resolveRef(c, r).grade), `${c.id}: ${r}`).toBeLessThanOrEqual(c.grade);
     }
   });
 });

@@ -1,14 +1,14 @@
 // Content quality gate, run before every build (npm run verify).
 // Fails on anything that would show a student a wrong answer or a broken page.
-import { loadConcept, loadConceptDraft, loadConcepts, roadmap, resolveRef, gradeRank } from '../src/lib/content.ts';
+import { loadConcept, loadConceptDraft, loadConcepts, roadmap, resolveRef, gradeRank, findOutcome, gradesWithContent } from '../src/lib/content.ts';
 import { renderProblem, passageSentences } from '../src/lib/problem-html.ts';
 import { md } from '../src/lib/render.ts';
 import { evaluate, eq, holds, parseFractionAnswer, parseDecimal, type Rational } from '../src/lib/rational.ts';
 import { parseFieldInput } from '../src/lib/check.ts';
 import { mathCeilingIssues, qualityIssues } from '../src/lib/quality.ts';
 import { guideText, notesFor, notesText, orphanNotes, subjectGuide, type EducatorNotes } from '../src/lib/educator.ts';
-import { blobIssue, lessonBlobs } from '../src/lib/readability.ts';
-import { UNLOCK_AFTER } from '../src/site.ts';
+import { blobIssue, lessonBlobs, limitsFor } from '../src/lib/readability.ts';
+import { GRADES, SUBJECTS, gradeProfile, type SubjectSlug } from '../src/site.ts';
 import type { Concept, InvestigationPart, Passage, Problem } from '../src/lib/schema.ts';
 
 const errors: string[] = [];
@@ -58,18 +58,19 @@ function verifyNotes(c: Concept, n: EducatorNotes) {
     } catch (e) {
       errors.push(`${label}: ${(e as Error).message}`);
     }
-    const blob = blobIssue(t);
+    const blob = blobIssue(t, limitsFor(c.grade));
     if (blob) errors.push(`${label}: ${blob}`);
   }
 }
 
 function verifyConcept(c: Concept) {
-  const where = (id?: string) => `${c.subject}/${c.id}${id ? `#${id}` : ''}`;
+  const where = (id?: string) => `grade-${c.grade}/${c.subject}/${c.id}${id ? `#${id}` : ''}`;
+  const UNLOCK_AFTER = gradeProfile(c.grade).unlockAfter;
   const fail = (id: string | undefined, msg: string) => errors.push(`${where(id)}: ${msg}`);
 
   // Roadmap
   const planned = roadmap(c.grade)[c.subject].find((r) => r.id === c.id);
-  if (!planned) fail(undefined, 'not listed in content/grade-5/roadmap.yaml');
+  if (!planned) fail(undefined, `not listed in content/grade-${c.grade}/${c.subject}/_roadmap.yaml`);
   else if (planned.outcomes.join() !== c.outcomes.join()) warnings.push(`${where()}: outcomes differ from roadmap`);
 
   // Problems per level: enough to unlock the next level
@@ -87,7 +88,7 @@ function verifyConcept(c: Concept) {
 
   /** Checks the answer data of a problem or an investigation part. */
   const checkAnswer = (p: Exclude<Problem, { type: 'investigation' }> | InvestigationPart, id: string) => {
-    if (c.subject === 'math') for (const issue of mathCeilingIssues({ id, prompt: p.prompt, verify: 'verify' in p ? p.verify : undefined, answer: 'answer' in p ? p.answer : undefined })) fail(id, `above Grade 5: ${issue}`);
+    if (c.subject === 'math') for (const issue of mathCeilingIssues({ id, prompt: p.prompt, verify: 'verify' in p ? p.verify : undefined, answer: 'answer' in p ? p.answer : undefined }, c.grade)) fail(id, `above Grade ${c.grade}: ${issue}`);
     switch (p.type) {
       case 'mc':
       case 'multi': {
@@ -308,36 +309,72 @@ function verifyConcept(c: Concept) {
 }
 
 /**
- * `npm run verify -- <concept-id>` checks one file, so someone writing it isn't blocked by other
- * files in progress. A path to a .yaml file checks a draft kept outside content/.
+ * `npm run verify` checks every grade. One argument narrows it, so someone writing one subject
+ * isn't blocked by files in progress elsewhere:
+ *   grade-6                 one grade
+ *   grade-6/math            one grade and subject
+ *   grade-6/ratios or ratios one concept (a bare id must be unique across grades)
+ *   path/to/draft.yaml      a draft kept outside content/
  */
 const only = process.argv[2];
+const scope = only && /^grade-(\d)(?:\/([a-z-]+))?$/.exec(only);
+const scopeSubject = scope && SUBJECTS.some((s) => s.slug === scope[2]) ? (scope[2] as SubjectSlug) : undefined;
+const scopedGrades: number[] = scope && (!scope[2] || scopeSubject) ? [Number(scope[1])] : only ? [] : [...GRADES];
 let concepts: Concept[] = [];
 try {
-  concepts = only ? [only.endsWith('.yaml') ? loadConceptDraft(only) : loadConcept(only, 5)] : loadConcepts(5);
+  if (only && !scopedGrades.length) concepts = [only.endsWith('.yaml') ? loadConceptDraft(only) : loadConcept(only)];
+  else concepts = scopedGrades.flatMap((g) => loadConcepts(g)).filter((c) => !scopeSubject || c.subject === scopeSubject);
 } catch (e) {
   console.error((e as Error).message);
   process.exit(1);
 }
 const seen = new Set<string>();
 for (const c of concepts) {
-  if (seen.has(c.id)) errors.push(`duplicate concept id ${c.id}`);
-  seen.add(c.id);
+  const key = `${c.grade}/${c.id}`;
+  if (seen.has(key)) errors.push(`duplicate concept id grade-${key}`);
+  seen.add(key);
   verifyConcept(c);
 }
 
-if (!only) {
-  for (const f of orphanNotes(concepts)) errors.push(`educator notes for a concept that doesn't exist: ${f}`);
-  for (const s of ['math', 'science', 'social-studies', 'english-language-arts'] as const) {
+// Roadmaps, subject guides and stray notes, for each grade being checked.
+for (const g of scopedGrades) {
+  if (!GRADES.includes(g as (typeof GRADES)[number])) {
+    errors.push(`grade ${g} is not supported`);
+    continue;
+  }
+  let plan: ReturnType<typeof roadmap>;
+  try {
+    plan = roadmap(g);
+  } catch (e) {
+    errors.push((e as Error).message);
+    continue;
+  }
+  const inGrade = loadConcepts(g);
+  for (const s of SUBJECTS.filter((x) => !scopeSubject || x.slug === scopeSubject)) {
+    const ids = new Set<string>();
+    for (const item of plan[s.slug]) {
+      if (ids.has(item.id)) errors.push(`grade-${g}/${s.slug} roadmap: ${item.id} is listed twice`);
+      ids.add(item.id);
+      for (const code of item.outcomes) {
+        try {
+          findOutcome(g, s.slug, code);
+        } catch (e) {
+          errors.push(`grade-${g}/${s.slug} roadmap: ${item.id}: ${(e as Error).message}`);
+        }
+      }
+    }
+    if (!inGrade.some((c) => c.subject === s.slug)) continue;
     try {
-      const g = subjectGuide(s);
-      if (!g) errors.push(`${s}: no subject guide for educators`);
-      else for (const t of guideText(g)) if (blobIssue(t)) errors.push(`${s} subject guide: ${blobIssue(t)}`);
+      const guide = subjectGuide(s.slug, g);
+      if (!guide) errors.push(`grade-${g}/${s.slug}: no subject guide for educators`);
+      else for (const t of guideText(guide)) if (blobIssue(t)) errors.push(`grade-${g}/${s.slug} subject guide: ${blobIssue(t)}`);
     } catch (e) {
       errors.push((e as Error).message);
     }
   }
+  for (const f of orphanNotes(inGrade, g)) if (!scopeSubject || f.includes(`/${scopeSubject}/`)) errors.push(`educator notes for a concept that doesn't exist: ${f}`);
 }
+if (!only && !gradesWithContent().length) errors.push('no content in any grade');
 
 for (const w of warnings) console.warn(`warn  ${w}`);
 for (const e of errors) console.error(`error ${e}`);

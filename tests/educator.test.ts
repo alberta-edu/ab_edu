@@ -60,11 +60,11 @@ describe('educator notes schema', () => {
 
 describe('orphan notes', () => {
   it('reports notes that no concept owns', () => {
-    const kept = orphanNotes(loadConcepts(5).filter((c) => c.id !== 'area-perimeter'));
-    expect(kept).toContain('math/area-perimeter.yaml');
+    const kept = orphanNotes(loadConcepts(5).filter((c) => c.id !== 'area-perimeter'), 5);
+    expect(kept).toContain('grade-5/math/area-perimeter.yaml');
   });
   it('finds none in the real content', () => {
-    expect(orphanNotes(loadConcepts(5))).toEqual([]);
+    expect(orphanNotes(loadConcepts(5), 5)).toEqual([]);
   });
 });
 
@@ -114,6 +114,6 @@ describe('the notes that ship', () => {
     }
   });
   it('every subject has a guide', () => {
-    for (const { slug } of SUBJECTS) expect(subjectGuide(slug), slug).not.toBeNull();
+    for (const { slug } of SUBJECTS) expect(subjectGuide(slug, 5), slug).not.toBeNull();
   });
 });

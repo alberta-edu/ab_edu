@@ -1,4 +1,4 @@
-// Notes for teachers and parents. They live in their own files, content/educators/grade-5/<subject>/,
+// Notes for teachers and parents. They live in their own files, content/educators/grade-N/<subject>/,
 // so a topic's notes can change without touching the lesson students see.
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -80,28 +80,29 @@ function parseFile<T>(schema: z.ZodType<T>, path: string): T {
 const notesCache = new Map<string, EducatorNotes | null>();
 
 /** A topic's notes, or null if they haven't been written. */
-export function notesFor(c: Pick<Concept, 'id' | 'subject'>, grade = 5): EducatorNotes | null {
-  if (notesCache.has(c.id)) return notesCache.get(c.id)!;
-  const path = join(dir(c.subject, grade), `${c.id}.yaml`);
+export function notesFor(c: Pick<Concept, 'id' | 'subject' | 'grade'>): EducatorNotes | null {
+  const key = `${c.grade}/${c.id}`;
+  if (notesCache.has(key)) return notesCache.get(key)!;
+  const path = join(dir(c.subject, c.grade), `${c.id}.yaml`);
   const notes = existsSync(path) ? parseFile(notesSchema, path) : null;
   if (notes && (notes.id !== c.id || notes.subject !== c.subject)) throw new Error(`${path}: id and subject must match the concept`);
-  notesCache.set(c.id, notes);
+  notesCache.set(key, notes);
   return notes;
 }
 
-export function subjectGuide(subject: SubjectSlug, grade = 5): SubjectGuide | null {
+export function subjectGuide(subject: SubjectSlug, grade: number): SubjectGuide | null {
   const path = join(dir(subject, grade), '_subject.yaml');
   return existsSync(path) ? parseFile(subjectGuideSchema, path) : null;
 }
 
 /** Files in the notes folders that don't belong to a concept: a renamed topic or a typo. */
-export function orphanNotes(concepts: Pick<Concept, 'id' | 'subject'>[], grade = 5): string[] {
+export function orphanNotes(concepts: Pick<Concept, 'id' | 'subject'>[], grade: number): string[] {
   return SUBJECTS.flatMap(({ slug }) => {
     if (!existsSync(dir(slug, grade))) return [];
     return readdirSync(dir(slug, grade))
       .filter((f) => f.endsWith('.yaml') && f !== '_subject.yaml')
       .filter((f) => !concepts.some((c) => c.subject === slug && `${c.id}.yaml` === f))
-      .map((f) => `${slug}/${f}`);
+      .map((f) => `grade-${grade}/${slug}/${f}`);
   });
 }
 

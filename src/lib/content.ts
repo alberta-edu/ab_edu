@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { parse } from 'yaml';
 import { z } from 'zod';
 import { conceptSchema, REF_PATTERN, type Concept } from './schema.ts';
-import { SUBJECTS, type SubjectSlug } from '../site.ts';
+import { GRADES, SUBJECTS, type SubjectSlug } from '../site.ts';
 
 const ROOT = process.cwd();
 
@@ -83,9 +83,10 @@ export function findOutcome(grade: number, subject: SubjectSlug, code: string): 
 //   S2.4 / U1.1                   skills-and-procedures / understanding lines the same way
 //   SCI3-OI1-GQ1-LO1#K3.2         a line from a named outcome (e.g. an earlier grade)
 
-/** Grades in teaching order; the index is the grade's rank (K = 0). */
-export const GRADE_ORDER = ['k', '1', '2', '3', '4', '5', '6'] as const;
-export const gradeRank = (g: string | number) => GRADE_ORDER.indexOf(String(g).toLowerCase() as (typeof GRADE_ORDER)[number]);
+/** Grades in teaching order. Kindergarten is not supported. */
+export const GRADE_ORDER = ['1', '2', '3', '4', '5', '6'] as const;
+/** A grade's place in teaching order: its number (Grade 1 = 1), or 0 if it isn't supported. */
+export const gradeRank = (g: string | number) => GRADE_ORDER.indexOf(String(g).toLowerCase() as (typeof GRADE_ORDER)[number]) + 1;
 
 export interface Statement {
   ref: string;
@@ -123,15 +124,15 @@ export function resolveRef(concept: Pick<Concept, 'subject' | 'outcomes'>, ref: 
   return { ref: canonical, grade: found.grade, outcome: found.lo.outcome, outcomeCode: code, kind, text: entry.text, items: entry.items };
 }
 
-/** Every statement line of an outcome, with its reference. */
-export function outcomeStatements(grade: number | string, subject: SubjectSlug, code: string): Statement[] {
+/** Every statement line of an outcome, with its reference. The grade comes from where the outcome is found. */
+export function outcomeStatements(_grade: number | string, subject: SubjectSlug, code: string): Statement[] {
   const found = locateOutcome(subject, code);
   if (!found) throw new Error(`Unknown outcome ${code}`);
   return found.lo.kusps.flatMap((group, gi) =>
     (['K', 'U', 'S'] as const).flatMap((kind) =>
       group[KIND_FIELD[kind]].map((entry, li) => ({
         ref: `${kind}${gi + 1}.${li + 1}`,
-        grade: String(grade),
+        grade: found.grade,
         outcome: found.lo.outcome,
         outcomeCode: code,
         kind,
@@ -143,32 +144,60 @@ export function outcomeStatements(grade: number | string, subject: SubjectSlug, 
 }
 
 // ---------------------------------------------------------------- roadmap
+//
+// Each subject plans its own concepts in content/grade-N/<subject>/_roadmap.yaml, so work on one
+// subject never touches another subject's files.
 
-const roadmapSchema = z.record(
-  z.string(),
-  z.array(
-    z.strictObject({
-      id: z.string(),
-      title: z.string(),
-      organizingIdea: z.string(),
-      outcomes: z.array(z.string()).min(1),
-    }),
-  ),
-);
-export type RoadmapItem = z.infer<typeof roadmapSchema>[string][number];
+const roadmapItem = z.strictObject({
+  id: z.string(),
+  title: z.string(),
+  organizingIdea: z.string(),
+  outcomes: z.array(z.string()).min(1),
+});
+const subjectRoadmapSchema = z.strictObject({
+  /** Short line under the subject name on the grade page. */
+  blurb: z.string().min(10).max(80),
+  concepts: z.array(roadmapItem).min(1),
+});
+export type RoadmapItem = z.infer<typeof roadmapItem>;
+type SubjectRoadmap = z.infer<typeof subjectRoadmapSchema>;
+
+const contentDir = (grade: number, slug?: SubjectSlug) => join(ROOT, 'content', `grade-${grade}`, ...(slug ? [slug] : []));
+const roadmapCache = new Map<string, SubjectRoadmap | null>();
+
+function subjectRoadmap(grade: number, slug: SubjectSlug): SubjectRoadmap | null {
+  const key = `${grade}/${slug}`;
+  if (!roadmapCache.has(key)) {
+    const path = join(contentDir(grade, slug), '_roadmap.yaml');
+    let value: SubjectRoadmap | null = null;
+    if (existsSync(path)) {
+      const result = subjectRoadmapSchema.safeParse(parse(readFileSync(path, 'utf8')));
+      if (!result.success) throw new Error(`${path}\n${z.prettifyError(result.error)}`);
+      value = result.data;
+    }
+    roadmapCache.set(key, value);
+  }
+  return roadmapCache.get(key)!;
+}
 
 /** Every planned concept per subject, in teaching order. Built concepts must appear here too. */
 export function roadmap(grade: number): Record<SubjectSlug, RoadmapItem[]> {
-  const raw = parse(readFileSync(join(ROOT, 'content', `grade-${grade}`, 'roadmap.yaml'), 'utf8'));
-  return roadmapSchema.parse(raw) as Record<SubjectSlug, RoadmapItem[]>;
+  return Object.fromEntries(SUBJECTS.map(({ slug }) => [slug, subjectRoadmap(grade, slug)?.concepts ?? []])) as Record<SubjectSlug, RoadmapItem[]>;
 }
+
+/** The line under a subject's name on a grade page. */
+export const subjectBlurb = (grade: number, slug: SubjectSlug) => subjectRoadmap(grade, slug)?.blurb ?? SUBJECTS.find((s) => s.slug === slug)!.blurb;
 
 // ---------------------------------------------------------------- concepts
 
-let conceptCache: Concept[] | null = null;
+/** Concept files in a subject folder. Files starting with "_" (the roadmap) aren't concepts. */
+const conceptFiles = (grade: number, slug: SubjectSlug) => {
+  const dir = contentDir(grade, slug);
+  return existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.yaml') && !f.startsWith('_')).sort() : [];
+};
 
 function loadConceptFile(grade: number, slug: SubjectSlug, file: string): Concept {
-  const path = join(ROOT, 'content', `grade-${grade}`, slug, file);
+  const path = join(contentDir(grade, slug), file);
   const result = conceptSchema.safeParse(parse(readFileSync(path, 'utf8')));
   if (!result.success) {
     throw new Error(`${path}\n${z.prettifyError(result.error)}`);
@@ -176,6 +205,7 @@ function loadConceptFile(grade: number, slug: SubjectSlug, file: string): Concep
   const c = result.data;
   if (`${c.id}.yaml` !== file) throw new Error(`${path}: id "${c.id}" must match the file name`);
   if (c.subject !== slug) throw new Error(`${path}: subject "${c.subject}" must match its folder`);
+  if (c.grade !== grade) throw new Error(`${path}: grade ${c.grade} must match its folder, grade-${grade}`);
   for (const code of c.outcomes) findOutcome(grade, slug, code);
   return c;
 }
@@ -187,29 +217,47 @@ export function loadConceptDraft(path: string): Concept {
   return result.data;
 }
 
-/** Loads one concept by id, without reading the other files. */
-export function loadConcept(id: string, grade = 5): Concept {
-  for (const { slug } of SUBJECTS) {
-    if (existsSync(join(ROOT, 'content', `grade-${grade}`, slug, `${id}.yaml`))) return loadConceptFile(grade, slug, `${id}.yaml`);
-  }
-  throw new Error(`No concept file for "${id}"`);
+/**
+ * Loads one concept without reading the other files. `id` is "grade-6/ratios" or a bare id; a
+ * bare id is looked up in `grade`, or in every grade when no grade is given.
+ */
+export function loadConcept(id: string, grade?: number): Concept {
+  const m = /^grade-(\d)\/(.+)$/.exec(id);
+  const [grades, bare] = m ? [[Number(m[1])], m[2]] : [grade ? [grade] : [...GRADES], id];
+  const found: Concept[] = [];
+  for (const g of grades)
+    for (const { slug } of SUBJECTS) if (existsSync(join(contentDir(g, slug), `${bare}.yaml`))) found.push(loadConceptFile(g, slug, `${bare}.yaml`));
+  if (found.length > 1) throw new Error(`"${bare}" exists in grades ${found.map((c) => c.grade).join(', ')}: write it as grade-N/${bare}`);
+  if (!found.length) throw new Error(`No concept file for "${id}"`);
+  return found[0];
 }
 
-export function loadConcepts(grade = 5): Concept[] {
-  if (conceptCache) return conceptCache;
-  const concepts: Concept[] = [];
-  for (const { slug } of SUBJECTS) {
-    const dir = join(ROOT, 'content', `grade-${grade}`, slug);
-    if (!existsSync(dir)) continue;
-    for (const file of readdirSync(dir).filter((f) => f.endsWith('.yaml')).sort()) concepts.push(loadConceptFile(grade, slug, file));
+const conceptCache = new Map<number, Concept[]>();
+
+export function loadConcepts(grade: number): Concept[] {
+  if (!conceptCache.has(grade)) {
+    conceptCache.set(
+      grade,
+      SUBJECTS.flatMap(({ slug }) => conceptFiles(grade, slug).map((f) => loadConceptFile(grade, slug, f))),
+    );
   }
-  conceptCache = concepts;
-  return concepts;
+  return conceptCache.get(grade)!;
 }
 
-export const conceptsFor = (subject: SubjectSlug, grade = 5) =>
+/** Grades with at least one concept, in order. Only these appear on the site. */
+export const gradesWithContent = (): number[] => GRADES.filter((g) => SUBJECTS.some(({ slug }) => conceptFiles(g, slug).length));
+
+/** Every concept in every grade. */
+export const loadAllConcepts = (): Concept[] => gradesWithContent().flatMap((g) => loadConcepts(g));
+
+export const conceptsFor = (subject: SubjectSlug, grade: number) =>
   loadConcepts(grade)
     .filter((c) => c.subject === subject)
     .sort((a, b) => a.order - b.order);
 
-export const conceptPath = (c: { subject: string; id: string }, grade = 5) => `grade-${grade}/${c.subject}/${c.id}/`;
+/** Subjects of a grade that have at least one concept. */
+export const subjectsFor = (grade: number) => SUBJECTS.filter((s) => conceptsFor(s.slug, grade).length);
+
+export const gradePath = (grade: number) => `grade-${grade}/`;
+export const subjectPath = (grade: number, subject: SubjectSlug) => `grade-${grade}/${subject}/`;
+export const conceptPath = (c: { grade: number; subject: string; id: string }) => `grade-${c.grade}/${c.subject}/${c.id}/`;
