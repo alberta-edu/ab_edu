@@ -22,7 +22,7 @@ const jurorX = (i: number) => 22 + i * 19.8;
         <h3 class="g6ss-aa-name">{b.name} <span class="muted">({b.english})</span></h3>
         {b.id === 'ecclesia' && (
           <svg class="sci-svg g6ss-aa-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Citizens sit in rows on a hillside, facing a speakers' platform.">
-            <path class="g6ss-aa-hill" d={`M0 ${H} L0 120 Q${W / 2} -10 ${W} 120 L${W} ${H} Z`}></path>
+            <path class="g6ss-aa-hill" d={`M0 ${H} L0 70 Q${W / 2} -50 ${W} 70 L${W} ${H} Z`}></path>
             <rect class="g6ss-aa-bema" x={W / 2 - 26} y="200" width="52" height="22" rx="3"></rect>
             <text class="g6ss-aa-label" x={W / 2} y="216" text-anchor="middle">Platform</text>
             {seats.map(([x, y], k) => <circle class="g6ss-aa-dot" data-seat={k} cx={x.toFixed(1)} cy={y.toFixed(1)} r="6"></circle>)}
@@ -47,7 +47,7 @@ const jurorX = (i: number) => 22 + i * 19.8;
           <svg class="sci-svg g6ss-aa-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="A row of jurors, each holding a bronze ballot, and an urn in front of them.">
             {Array.from({ length: JURORS }, (_, i) => (
               <g>
-                <circle class="g6ss-aa-dot" cx={jurorX(i).toFixed(1)} cy="34" r="7"></circle>
+                <circle class="g6ss-aa-head" cx={jurorX(i).toFixed(1)} cy="34" r="7"></circle>
                 <rect class="g6ss-aa-body" x={(jurorX(i) - 6).toFixed(1)} y="44" width="12" height="18" rx="5"></rect>
                 <circle class="g6ss-aa-ballot" data-ballot={i} cx={jurorX(i).toFixed(1)} cy="72" r="5"></circle>
               </g>
@@ -89,7 +89,7 @@ const jurorX = (i: number) => 22 + i * 19.8;
   .g6ss-aa-bubble rect { fill: var(--surface); stroke: var(--line-strong); }
   .g6ss-aa-bubble text { fill: var(--ink); font-size: 13px; font-weight: 700; }
   .g6ss-aa-bubble { transition: opacity 0.3s; }
-  .g6ss-aa-body { fill: var(--surface-3); }
+  .g6ss-aa-head, .g6ss-aa-body { fill: color-mix(in srgb, var(--ink-3) 55%, var(--surface)); }
   .g6ss-aa-ballot { fill: #b0793a; stroke: #6d4518; stroke-width: 1.5; transition: transform 0.6s ease-in, opacity 0.3s; }
   .g6ss-aa-ballot.is-hollow { fill: var(--surface); }
   .g6ss-aa-urn { fill: color-mix(in srgb, #b0793a 45%, var(--surface)); stroke: #6d4518; stroke-width: 2; }

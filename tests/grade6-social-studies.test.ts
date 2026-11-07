@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { GOV_SETS } from '../src/components/visuals/gov-branches.ts';
 import { BODIES, castVotes, drawLots, tally, assemblySeats, ASSEMBLY_ROWS, TRIBES, PER_TRIBE, TRIBE_POOL, JURORS } from '../src/components/visuals/athens-assembly.ts';
 import { STOPS } from '../src/components/visuals/democracy-stops.ts';
 import { ATTICA, ATTICA_KM2, CALGARY_KM2, CITY_STATES, GREECE_FRAME, MED_FRAME, MOUNTAINS, REPUBLIC_44BCE, ROME, kmPerDegLon } from '../src/components/visuals/democracy-map.ts';
@@ -65,5 +66,19 @@ describe('democracy map', () => {
     expect(Math.round(ATTICA_KM2 / CALGARY_KM2)).toBe(3);
     expect(kmPerDegLon(0)).toBeCloseTo(111.32);
     expect(kmPerDegLon(60)).toBeCloseTo(55.66);
+  });
+});
+
+describe('branches of government', () => {
+  it('gives Rome and Canada the same three branches, in order', () => {
+    for (const set of Object.values(GOV_SETS)) {
+      expect(set.branches.map((b) => b.id)).toEqual(['executive', 'legislative', 'judicial']);
+      for (const b of set.branches) expect(b.items.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('names all four Roman assemblies, as the curriculum lists them', () => {
+    const text = GOV_SETS.rome.branches[1].items.join(' ');
+    for (const a of ['Senate', 'Comitia centuriata', 'Comitia tributa', 'Comitia curiata', 'Concilium plebis']) expect(text).toContain(a);
   });
 });

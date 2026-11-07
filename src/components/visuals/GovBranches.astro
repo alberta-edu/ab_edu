@@ -1,0 +1,89 @@
+---
+// A government as a building: a constitution at the base and three columns, one per branch. Tap a
+// column to see who is in that branch and what it does. Sets: the Roman Republic and Canada.
+import { GOV_SETS } from './gov-branches.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  set?: 'rome' | 'canada';
+}
+const { set = 'rome' } = Astro.props;
+const G = GOV_SETS[set];
+const W = 420;
+const colX = [75, 210, 345];
+---
+<gov-branches>
+  <svg class="sci-svg g6ss-gb-svg" viewBox={`0 0 ${W} 250`} role="group" aria-label={`${G.roof}: three branches of government resting on ${G.base}`}>
+    <path class="g6ss-gb-roof" d={`M14 70 L${W / 2} 12 L${W - 14} 70 Z`}></path>
+    <text class="g6ss-gb-roof-text" x={W / 2} y="58" text-anchor="middle">{G.roof}</text>
+    <rect class="g6ss-gb-beam" x="20" y="72" width={W - 40} height="12" rx="2"></rect>
+    {
+      G.branches.map((b, i) => (
+        <g class="g6ss-gb-col" data-gb={b.id} tabindex="0" role="button" aria-label={`${b.name} branch: ${b.short}`} aria-pressed={String(i === 0)}>
+          <rect x={colX[i] - 55} y="88" width="110" height="118" rx="4"></rect>
+          <g class="g6ss-gb-flutes">{[-33, -11, 11, 33].map((d) => <line x1={colX[i] + d} y1="96" x2={colX[i] + d} y2="198"></line>)}</g>
+          <text class="g6ss-gb-icon" x={colX[i]} y="134" text-anchor="middle">{b.icon}</text>
+          <text class="g6ss-gb-name" x={colX[i]} y="166" text-anchor="middle">{b.name}</text>
+        </g>
+      ))
+    }
+    <rect class="g6ss-gb-base" x="8" y="210" width={W - 16} height="32" rx="3"></rect>
+    <text class="g6ss-gb-base-text" x={W / 2} y="231" text-anchor="middle">{G.base}</text>
+  </svg>
+  {
+    G.branches.map((b, i) => (
+      <div class="g6ss-gb-card" data-gb-card={b.id} hidden={i !== 0} aria-live="polite">
+        <h3><span aria-hidden="true">{b.icon}</span> {b.name}: {b.short}</h3>
+        <ul>{b.items.map((t) => <li set:html={mdInline(t)} />)}</ul>
+      </div>
+    ))
+  }
+  <p class="g6ss-gb-check" set:html={'🔒 ' + mdInline(G.check)} />
+</gov-branches>
+
+<style is:global>
+  gov-branches { display: block; }
+  .g6ss-gb-svg { max-width: 30rem; margin-inline: auto; }
+  .g6ss-gb-roof { fill: color-mix(in srgb, var(--social) 25%, var(--surface)); stroke: var(--social); stroke-width: 2; }
+  .g6ss-gb-roof-text { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .g6ss-gb-beam, .g6ss-gb-base { fill: color-mix(in srgb, var(--social) 18%, var(--surface)); stroke: var(--social); stroke-width: 1.5; }
+  .g6ss-gb-base-text { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g6ss-gb-col { cursor: pointer; outline: none; }
+  .g6ss-gb-col rect { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 2; transition: fill 0.2s; }
+  .g6ss-gb-flutes line { stroke: var(--line); stroke-width: 2; }
+  .g6ss-gb-icon { font-size: 26px; }
+  .g6ss-gb-name { fill: var(--ink); font-size: 15px; font-weight: 700; paint-order: stroke; stroke: var(--surface-2); stroke-width: 4px; }
+  .g6ss-gb-col:hover rect { fill: var(--accent-soft); }
+  .g6ss-gb-col[aria-pressed='true'] rect { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+  .g6ss-gb-col[aria-pressed='true'] .g6ss-gb-name { stroke: var(--accent-soft); }
+  .g6ss-gb-col:focus-visible rect { stroke: var(--focus); stroke-width: 4; }
+  .g6ss-gb-card { margin-top: 0.6rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-gb-card h3 { margin: 0 0 0.3rem; font-size: var(--step-0); }
+  .g6ss-gb-card ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.25rem; }
+  .g6ss-gb-check { margin: 0.6rem 0 0; font-weight: 700; }
+  @media (max-width: 40rem) {
+    svg .g6ss-gb-name { font-size: 18px; }
+  }
+</style>
+
+<script>
+  class GovBranches extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<SVGGElement>('[data-gb]').forEach((g) => {
+        g.addEventListener('click', () => this.pick(g.dataset.gb!));
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.pick(g.dataset.gb!);
+          }
+        });
+      });
+    }
+
+    private pick(id: string) {
+      this.querySelectorAll<SVGGElement>('[data-gb]').forEach((g) => g.setAttribute('aria-pressed', String(g.dataset.gb === id)));
+      this.querySelectorAll<HTMLElement>('[data-gb-card]').forEach((c) => (c.hidden = c.dataset.gbCard !== id));
+    }
+  }
+  customElements.define('gov-branches', GovBranches);
+</script>

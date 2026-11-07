@@ -79,6 +79,7 @@ import VirtualExperiment from './experiments/VirtualExperiment.astro';
 import DemocracyGlobe from './visuals/DemocracyGlobe.astro';
 import AthensAssembly from './visuals/AthensAssembly.astro';
 import DemocracyMap from './visuals/DemocracyMap.astro';
+import GovBranches from './visuals/GovBranches.astro';
 
 interface Props {
   block: LessonBlock;
@@ -161,6 +162,7 @@ const visuals = {
   'democracy-globe': DemocracyGlobe,
   'athens-assembly': AthensAssembly,
   'democracy-map': DemocracyMap,
+  'gov-branches': GovBranches,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

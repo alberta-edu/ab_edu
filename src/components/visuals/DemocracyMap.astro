@@ -28,7 +28,7 @@ const clipId = `g6ss-dm-clip-${view}`;
 const xy = (p: [number, number]) => toMap(F, p).map((v) => v.toFixed(1));
 const barKm = view === 'greece' ? 100 : 500;
 const barPx = (barKm / kmPerDegLon(38)) * F.scale;
-const times = Math.round(ATTICA_KM2 / CALGARY_KM2);
+const times = ['', 'one', 'two', 'three', 'four'][Math.round(ATTICA_KM2 / CALGARY_KM2)];
 ---
 <democracy-map data-view={view}>
   {

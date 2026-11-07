@@ -1,0 +1,366 @@
+id: roman-republic
+grade: 6
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [0LESAYIP8UKL5ECn4gOmiw]
+order: 2
+title: The Roman Republic and Representation
+shortTitle: The Roman Republic
+summary: >-
+  Compare tiny Athens with the huge Roman Republic, explore the Republic's three branches of government,
+  and weigh direct democracy against electing representatives.
+
+bigIdea: |-
+  - The Roman Republic used **representative democracy**: citizens elected magistrates to decide for them.
+  - Its constitution set up **three branches**: two consuls, the senate and assemblies, and judges.
+  - Both Athens and Rome let only **male citizens** vote, and your **social class** decided who was a citizen.
+  - Both systems had limits: they were slow to decide, and many people had no voice.
+
+lesson:
+  - title: Too big to meet in one place
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.8, K1.11]
+        component: democracy-map
+        props: { view: compare }
+        caption: Both lands are drawn at the same scale. Tap **Athens**, then **Roman Republic**.
+      - type: compare
+        covers: [K1.8, S1.3, K1.3]
+        columns:
+          - title: 🙋 Direct democracy (Athens)
+            body: Citizens vote on each law **themselves**.
+          - title: 🧑‍💼 Representative democracy (Rome)
+            body: Citizens **elect** people to make decisions for them. In Rome, these were called **magistrates**.
+      - type: callout
+        variant: tip
+        covers: [K1.8]
+        title: Republic
+        body: '**Republic** comes from the Latin words **rēs pūblica**, "the public thing". Government belongs to the people, not to a king.'
+
+  - title: Patricians and plebeians
+    blocks:
+      - type: compare
+        covers: [K1.6, K1.9]
+        columns:
+          - title: 🏺 Patricians
+            body: |-
+              A few old, rich families.
+
+              Men could vote and be elected.
+          - title: 🧺 Plebeians
+            body: |-
+              Most citizens: farmers, workers and traders.
+
+              Men could vote, and in time could be elected too.
+          - title: 🚫 No vote
+            body: |-
+              - Women
+              - Slaves
+              - People who were not Roman citizens
+      - type: callout
+        variant: tip
+        covers: [K1.9, K1.8]
+        title: How the voting worked
+        body: |-
+          1. Male citizens, patrician and plebeian, met in the **assemblies** in Rome.
+          2. They **elected magistrates** each year, such as the two consuls.
+          3. Most former magistrates went on to sit in the **senate**.
+
+  - title: Three branches of government
+    blocks:
+      - type: visual
+        covers: [K1.10]
+        component: gov-branches
+        props: { set: rome }
+        caption: The Republic’s government rested on its **constitution**, its laws and customs. Tap each column.
+      - type: callout
+        variant: tip
+        covers: [K1.10, K1.8]
+        title: Provinces far away
+        body: As Rome conquered new lands, it ruled them as **provinces** (in Latin, **provincia**). Each province was run by a magistrate the citizens had elected.
+
+  - title: Athens or Rome, or both?
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.6, K1.7, K1.10]
+        component: card-sort
+        props:
+          bins:
+            - { id: athens, label: Athens, icon: 🦉 }
+            - { id: both, label: Both, icon: 🤝 }
+            - { id: rome, label: Roman Republic, icon: 🦅 }
+          cards:
+            - { text: Only male citizens can vote., bin: both, why: 'In both, women, slaves and non-citizens had no vote.' }
+            - { text: Your social class decides whether you are a citizen., bin: both, why: 'Class defined citizens and non-citizens in both places.' }
+            - { text: Citizens vote on each law themselves., bin: athens, why: 'That is direct democracy.' }
+            - { text: Many officials and jurors are chosen by lottery., bin: athens, why: 'Rome elected its magistrates instead.' }
+            - { text: Citizens elect two consuls each year., bin: rome, why: 'Electing leaders to decide for you is representative democracy.' }
+            - { text: 'A senate of former officials gives advice.', bin: rome, why: 'Athens had a council, but its members were chosen by lottery for one year.' }
+            - { text: Government is split into separate bodies., bin: both, why: 'Athens had the Assembly, Council and courts. Rome had consuls, the senate, assemblies and judges.' }
+        caption: Sort each card. What did the two democracies share, and where did they differ?
+
+  - title: The limits of both
+    blocks:
+      - type: table
+        covers: [K1.11]
+        headers: ['', Athens, Roman Republic]
+        rows:
+          - ['⏳ **Efficiency**', 'Thousands of citizens debated every law, at dozens of meetings a year.', 'Two consuls could block each other, so nothing got done.']
+          - ['🙋 **Representation**', 'Women, metics and slaves had no say.', 'Women and slaves had no say. Votes were cast only in Rome, and rich citizens’ votes counted for more.']
+      - type: compare
+        covers: [U1.2, U1.3]
+        columns:
+          - title: 🦉 From Athens
+            body: The idea that every **citizen** should **take part**.
+          - title: 🦅 From Rome
+            body: The idea of **electing representatives**. Canadians elect MPs and MLAs. Canada even has a **senate**.
+
+keyTerms:
+  - term: Representative democracy
+    covers: [K1.8]
+    definition: A democracy in which citizens elect people to make decisions for them.
+  - term: Republic
+    covers: [K1.8]
+    definition: A government with no king, run by leaders that citizens elect. From the Latin rēs pūblica, "the public thing".
+  - term: Magistrate
+    covers: [K1.9]
+    definition: An elected official of the Roman Republic, such as a consul.
+  - term: Patrician
+    covers: [K1.9, K1.6]
+    definition: A member of one of the old, rich families of Rome.
+  - term: Plebeian
+    covers: [K1.9, K1.6]
+    definition: A Roman citizen who was not a patrician. Most citizens were plebeians.
+  - term: Consul
+    covers: [K1.10]
+    definition: One of the two leaders of the Roman Republic’s executive branch, elected for one year.
+  - term: Veto
+    covers: [K1.10]
+    definition: The power to block a decision. Latin for "I forbid".
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.3, K1.8]
+    type: mc
+    prompt: Each class at Prairie View School elects two students to the student council. The council meets and decides the rules for the school dance. What kind of democracy is this?
+    choices:
+      - Representative democracy
+      - Direct democracy
+      - Not a democracy at all
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': In a direct democracy, every student would vote on the dance rules. Who votes on them here?
+      '2': Students do get a voice. How do they use it?
+    hints:
+      - Who votes on the dance rules, every student or a few?
+    solution:
+      - Students **elect** representatives, who make the decision for them. That is **representative democracy**, as in the Roman Republic.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.10]
+    type: multi
+    prompt: Which were part of the Roman Republic’s **legislative** branch? Choose all that apply.
+    choices:
+      - The senate
+      - The comitia centuriata
+      - The concilium plebis
+      - The two consuls
+      - The judges
+    answer: [0, 1, 2]
+    feedback:
+      '3': The consuls led the army and ran the government. Which branch is that?
+      '4': Judges decided cases. Which branch is that?
+    hints:
+      - The legislative branch was the senate and the assemblies. Which choices are assemblies?
+    solution:
+      - The legislative branch was the **senate** and the **assemblies**, such as the comitia centuriata and the concilium plebis.
+      - The consuls were the **executive** branch, and the judges were the **judicial** branch.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.9, K1.6]
+    type: multi
+    prompt: Rome, 100 BCE. Who can vote to elect a consul? Choose all that apply.
+    choices:
+      - Marcus, a patrician man
+      - Gaius, a plebeian man who farms
+      - Julia, a patrician woman
+      - Tertius, an enslaved man
+    answer: [0, 1]
+    feedback:
+      '2': Julia comes from a powerful family. But could women vote in Rome?
+      '3': Tertius is a man, but is he a citizen?
+    hints:
+      - Two things decide who votes. Are they a citizen? Are they a man?
+    solution:
+      - Male citizens could vote, whether they were **patricians** like Marcus or **plebeians** like Gaius.
+      - Women like Julia and slaves like Tertius could not.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K1.11, K1.4]
+    type: number
+    prompt: |-
+      Lucius is a Roman citizen. He lives in a town **600 km** from Rome. Votes can only be cast in Rome, in person. Lucius can walk about **30 km a day**.
+
+      How many days would it take him to go to Rome to vote, and walk back home?
+    answer: 40
+    verify: 2 * 600 / 30
+    unit: days
+    hints:
+      - How many days to get there? Then remember the trip home.
+    solution:
+      - 'To Rome: \(600 \div 30 = 20\) days. Home again: another 20 days.'
+      - '\(20 + 20 = 40\) days, just to vote once.'
+      - So most citizens far from Rome hardly ever voted. A large republic and in-person voting meant a lack of **representation**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S1.2, K1.6]
+    type: mc
+    prompt: Which is true of **both** Athens’s democracy and the Roman Republic?
+    choices:
+      - Only male citizens could vote, and social class decided who was a citizen.
+      - Every citizen voted on every law at one big meeting on a hill.
+      - Leaders were chosen by lottery, so that everyone had the same chance.
+      - Two leaders were elected each year, and each could block the other.
+    answer: 0
+    feedback:
+      '1': That was Athens. Did Roman citizens vote on every law themselves?
+      '2': Athens used a lottery. How did Rome choose its magistrates?
+      '3': That was Rome’s two consuls. Did Athens have them?
+    hints:
+      - For each choice, ask "Athens?" and then "Rome?"
+    solution:
+      - In both, only **male citizens** voted, and **social class** decided who was a citizen.
+      - The other three each describe only one of them.
+
+  - id: b3
+    level: 2
+    thinking: whatif
+    covers: [K1.10, K1.11]
+    type: mc
+    prompt: 'Rome’s two consuls disagree. Consul Aulus wants to build a new road. Consul Quintus says, "**Veto!**" What happens next?'
+    choices:
+      - The road is not built, unless the consuls can agree.
+      - The road is built anyway, because Aulus asked first.
+      - The senate fires Quintus, because a consul can’t block a plan.
+      - The citizens of Rome must vote on the road that same day.
+    answer: 0
+    feedback:
+      '1': Does it matter who asked first? What does a veto do?
+      '2': A veto was the consuls’ own power. Would they be fired for using it?
+      '3': Nothing in the rules sends this to a vote right away. What did the veto do?
+    hints:
+      - '"Veto" is Latin for "I forbid". What does it mean for the plan?'
+    solution:
+      - A veto **blocks** the plan. With two consuls, neither one could act alone like a king.
+      - But it could also mean nothing got done. That is one way the Republic lacked **efficiency**.
+
+  - id: b4
+    level: 2
+    thinking: perspective
+    covers: [K1.8, K1.6, K1.11]
+    type: mc
+    prompt: 'After 241 BCE, Rome ruled the island of Sicily as its first **province**. Rome sends a magistrate to govern it. Dion, a farmer in Sicily, is not a Roman citizen. The magistrate raises his taxes. What can Dion do through Rome’s government?'
+    choices:
+      - Nothing. He is not a citizen, so he has no vote in Rome.
+      - Vote the magistrate out at the next assembly in Rome.
+      - Ask the two consuls to hold a lottery for a new governor.
+      - Speak against the tax in the Roman senate.
+    answer: 0
+    feedback:
+      '1': Who could vote in the assemblies? Is Dion one of them?
+      '2': Rome didn’t choose its magistrates by lottery. And who chose them?
+      '3': Who sat in the senate? Is a Sicilian farmer one of them?
+    hints:
+      - Who elected the magistrate? Was Dion one of the voters?
+    solution:
+      - Roman citizens elected the magistrate in Rome. Dion is not a citizen, so he had no say in choosing him.
+      - Representative democracy only represents the people who can vote. In a province, most people could not.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.11, K1.9, K1.2]
+    type: investigation
+    prompt: |-
+      In the early Republic, the **comitia centuriata** voted in **193 groups**. Each group got one vote, however many people were in it.
+
+      The richest citizens were few, but they filled **98** of the groups. The groups voted richest first, and voting stopped as soon as one side had a majority.
+    parts:
+      - type: number
+        prompt: How many group votes did one side need for a **majority** of 193?
+        answer: 97
+        verify: (193 + 1) / 2
+        unit: groups
+        hints: [A majority is more than half. What is half of 193?]
+        solution: ['Half of 193 is 96.5, so a majority is **97** groups.']
+      - type: mc
+        prompt: The 98 richest groups all vote for the same candidate. What happens to the poorer citizens’ groups?
+        choices:
+          - They never get to vote, because the result is already decided.
+          - They vote next, and their votes can still change the result.
+          - Their votes count twice, to make it fair.
+          - They vote first next time, to take turns.
+        answer: 0
+        feedback:
+          '1': 98 groups already voted the same way. Is 98 more than the 97 needed?
+          '2': Nothing in the story says that. Read the last sentence again.
+          '3': Nothing in the story says that. When did voting stop?
+        hints: [Compare 98 with the majority you found.]
+        solution: ['98 is more than 97, so the vote is over. The poorer groups never vote at all.']
+      - type: mc
+        prompt: Which principle of democracy does this system break most?
+        choices:
+          - Equality, because a rich citizen’s vote counted for more than a poor citizen’s.
+          - Freedom, because no one was allowed to speak at the assembly.
+          - Justice, because no judges were there to count the votes.
+          - Representation, because no one was elected at the assembly.
+        answer: 0
+        feedback:
+          '1': The story doesn’t say anyone was stopped from speaking. Whose votes mattered?
+          '2': Judges decide court cases. What was unfair about the counting?
+          '3': People were elected here. Think about whose vote decided it.
+        hints: [Every citizen could vote. Did every vote count the same?]
+        solution: ['A few rich citizens decided the election. A poor citizen’s vote was worth far less, so the law did not treat citizens as **equals**.']
+    wrapUp: Everyone could vote, but not every vote counted the same. A system can look like a democracy and still leave many people with almost no voice.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [S1.3, K1.11, K1.4]
+    type: mc
+    prompt: |-
+      A made-up hockey league has **600 players** on **40 teams** in towns all over Alberta. It must make new rules every month.
+
+      Which plan would work best?
+    choices:
+      - Each team elects one player. The 40 meet online each month and vote.
+      - All 600 players drive to Red Deer each month and vote on each rule.
+      - The league president decides every rule alone, to save time.
+      - A lottery picks 5 players from one town to decide for everyone.
+    answer: 0
+    feedback:
+      '1': That is direct democracy. Would 600 players drive to Red Deer every month?
+      '2': That is fast, but who has a voice? Is it still a democracy?
+      '3': A lottery can be fair, but all 5 are from one town. Who gets left out?
+    hints:
+      - Think about two limits, efficiency and representation. Which plan handles both?
+    solution:
+      - Direct democracy is fair, but for 600 players all over Alberta, it isn’t **efficient**.
+      - One president is fast, but no one else has a voice.
+      - Electing one player per team is both efficient and **representative**, which is why large places like Rome, and Canada, use representatives.

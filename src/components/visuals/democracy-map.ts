@@ -9,7 +9,7 @@
 // empire map's outline (ancient-map.ts).
 import { EMPIRES, makeFrame, type LonLat } from './ancient-map.ts';
 
-export const GREECE_FRAME = makeFrame(19.6, 28.4, 35.6, 41.4, 720);
+export const GREECE_FRAME = makeFrame(20.6, 24.5, 36.3, 39.1, 720);
 export const MED_FRAME = makeFrame(-11, 42, 28, 53, 720);
 
 export const ATTICA: LonLat[] = [
@@ -18,13 +18,12 @@ export const ATTICA: LonLat[] = [
 ];
 
 export const MOUNTAINS: { name: string; at: LonLat }[] = [
-  { name: 'Olympus', at: [22.36, 40.09] },
-  { name: 'Pindus', at: [21.2, 39.6] },
   { name: 'Parnassus', at: [22.62, 38.54] },
   { name: 'Taygetus', at: [22.36, 36.95] },
   { name: 'Kyllini', at: [22.4, 37.94] },
-  { name: '', at: [21.6, 38.9] },
+  { name: 'Pindus', at: [21.6, 38.85] },
   { name: '', at: [21.9, 37.55] },
+  { name: '', at: [22.0, 38.6] },
   { name: '', at: [23.4, 38.15] },
 ];
 

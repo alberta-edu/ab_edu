@@ -25,6 +25,7 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'punct-lab': { mode: ['capitals', 'effect'] },
   'democracy-map': { view: ['greece', 'compare'] },
   'democracy-globe': { focus: ['athens', 'rome', 'runnymede', 'westminster', 'onondaga', 'ottawa', 'edmonton'] },
+  'gov-branches': { set: ['rome', 'canada'] },
 };
 
 /** A comma in an unquoted `{ text: a, b }` splits the text and leaves `b` as a key with no value. */
