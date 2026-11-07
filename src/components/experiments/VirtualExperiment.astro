@@ -16,6 +16,8 @@ import EnergyRun from './EnergyRun.astro';
 import ScrollScan from './ScrollScan.astro';
 import EchoRoom from './EchoRoom.astro';
 import MeltScale from './MeltScale.astro';
+import BottleThermo from './BottleThermo.astro';
+import PondFreeze from './PondFreeze.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -37,6 +39,8 @@ const animations = {
   'egg-float': EggFloat,
   'energy-run': EnergyRun,
   'g6-melt-scale': MeltScale,
+  'g6-bottle-thermo': BottleThermo,
+  'g6-pond-freeze': PondFreeze,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
