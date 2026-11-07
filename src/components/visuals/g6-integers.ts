@@ -81,7 +81,9 @@ export function lineSvg(o: LineOptions): string {
     const [x, top] = xy(o.max);
     const [, bottom] = xy(o.min);
     s += `<rect x="${x - 34}" y="${top - 14}" width="24" height="${bottom - top + 28}" rx="12" class="g6m-tube"/>`;
-    const p = o.points?.find((q) => !q.ghost);
+    // A thermometer shows one temperature: draw the red line only when there is one point.
+    const solid = (o.points ?? []).filter((q) => !q.ghost);
+    const p = solid.length === 1 ? solid[0] : undefined;
     if (p) {
       const [, y] = xy(p.v);
       s += `<rect x="${x - 28}" y="${y}" width="12" height="${bottom + 10 - y}" rx="6" class="g6m-mercury"/>`;
@@ -103,7 +105,7 @@ export function lineSvg(o: LineOptions): string {
     const major = v === 0;
     const t = major ? 11 : 7;
     s += vertical ? `<line class="g6m-tick${major ? ' g6m-zero' : ''}" x1="${x - t}" y1="${y}" x2="${x + t}" y2="${y}"/>` : `<line class="g6m-tick${major ? ' g6m-zero' : ''}" x1="${x}" y1="${y - t}" x2="${x}" y2="${y + t}"/>`;
-    if ((v - o.min) % every === 0 || v === 0) {
+    if (v % every === 0) {
       const text = tickLabel(v, view);
       s += vertical
         ? `<text class="g6m-num${v < 0 ? ' g6m-neg' : ''}" x="${x + 18}" y="${y + 5}" font-size="${fs}">${text}${UNIT[view]}</text>`

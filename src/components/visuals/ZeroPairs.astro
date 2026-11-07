@@ -13,19 +13,19 @@ const { a = 5, b = -3, op = '+' } = Astro.props;
 ---
 <zero-pairs data-a={a} data-b={b} data-op={op}>
   <div class="control-row">
-    <label class="control"><span>First</span><input type="range" min="-6" max="6" value={a} data-zp="a" /> <output data-zp="a-out"></output></label>
+    <label class="control"><span>First</span><input type="range" min="-5" max="5" value={a} data-zp="a" /> <output data-zp="a-out"></output></label>
     <div class="seg" role="group" aria-label="Add or subtract">
       <button type="button" data-op="+" aria-pressed={String(op === '+')}>+ add</button>
       <button type="button" data-op="−" aria-pressed={String(op === '−')}>− subtract</button>
     </div>
-    <label class="control"><span>Second</span><input type="range" min="-6" max="6" value={b} data-zp="b" /> <output data-zp="b-out"></output></label>
+    <label class="control"><span>Second</span><input type="range" min="-5" max="5" value={b} data-zp="b" /> <output data-zp="b-out"></output></label>
   </div>
   <p class="g6m-zp-sum" data-zp="sum" aria-live="polite"></p>
   <div class="g6m-zp-board" data-zp="board" aria-hidden="true">
     <div class="g6m-zp-row" data-zp="top"></div>
     <div class="g6m-zp-row" data-zp="bottom"></div>
   </div>
-  <div class="g6m-zp-line" data-zp="line" set:html={lineSvg({ min: -12, max: 12, every: 2 })} />
+  <div class="g6m-zp-line" data-zp="line" set:html={lineSvg({ min: -10, max: 10, every: 2 })} />
   <p class="g6m-zp-say" data-zp="say" aria-live="polite"></p>
   <div class="control-row">
     <button type="button" class="btn btn--primary btn--small" data-zp="next">Next step ▶</button>
@@ -113,7 +113,7 @@ const { a = 5, b = -3, op = '+' } = Astro.props;
       this.q('bottom').innerHTML = row(st.bottom, st.pairs, st.phase === 'flip');
       const jumps = st.phase === 'first' ? [{ from: 0, to: a }] : done ? [{ from: 0, to: a }, { from: a, to: a + add }] : [{ from: 0, to: a }, { from: a, to: a + add }];
       const points = done ? [{ v: a + add, label: signed(a + add, false) }] : [];
-      this.q('line').innerHTML = lineSvg({ min: -12, max: 12, every: 2, jumps, points });
+      this.q('line').innerHTML = lineSvg({ min: -10, max: 10, every: 2, jumps, points });
       this.q('say').textContent = st.caption;
       if (done) this.q('sum').textContent = `${term(a)} ${this.op} ${term(b)} = ${signed(a + add, false)}`;
       (this.q('next') as HTMLButtonElement).disabled = done;
