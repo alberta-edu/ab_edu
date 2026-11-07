@@ -76,6 +76,7 @@ import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
 import TextXray from './visuals/TextXray.astro';
+import ConflictMap from './visuals/ConflictMap.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -157,6 +158,7 @@ const visuals = {
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
   'text-xray': TextXray,
+  'conflict-map': ConflictMap,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
