@@ -1,13 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import Icon from '../components/Icon.astro';
-import { SUBJECTS, SITE_NAME } from '../site.ts';
+import { GRADES, SITE_NAME, gradeName } from '../site.ts';
 import { href, absolute } from '../lib/url.ts';
 import { levelBadge } from '../lib/problem-html.ts';
+import { gradesWithContent, gradePath } from '../lib/content.ts';
 
-const grades = ['K', '1', '2', '3', '4', '5', '6'];
+const ready = new Set(gradesWithContent());
 const description =
-  'Free lessons, interactive visuals and practice problems that follow the Alberta K-6 curriculum. Start with Grade 5 ELA, Math, Science and Social Studies.';
+  'Free lessons, interactive visuals and practice problems that follow the Alberta Grade 1 to 6 curriculum: ELA, Math, Science and Social Studies.';
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -23,14 +24,14 @@ const jsonLd = [
   <section class="home-hero">
     <div class="container home-hero__grid">
       <div>
-      <p class="page-hero__eyebrow">Alberta K–6 curriculum · Free · No sign-up</p>
+      <p class="page-hero__eyebrow">Alberta Grades 1–6 · Free · No sign-up</p>
       <h1>See it. Try it. <span class="home-hero__accent">Remember it.</span></h1>
       <p class="page-hero__lede">
         Short visual lessons, animated experiments, and practice that grows from easy to tricky, all matched to what
         Alberta students learn in class.
       </p>
       <div class="control-row">
-        <a class="btn btn--primary" href={href('grade-5/')}>Start Grade 5 <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--primary" href="#grades">Choose your grade <Icon name="arrow" size={18} /></a>
         <a class="btn btn--ghost" href={href('review/')}><Icon name="review" size={18} /> Today's review</a>
       </div>
       </div>
@@ -67,36 +68,20 @@ const jsonLd = [
       <h2 id="grades">Choose a grade</h2>
       <div class="grade-row">
         {
-          grades.map((g) =>
-            g === '5' ? (
-              <a class="grade-pill grade-pill--on" href={href('grade-5/')}>
-                <span class="grade-pill__num">5</span>Grade 5
+          GRADES.map((g) =>
+            ready.has(g) ? (
+              <a class="grade-pill grade-pill--on" href={href(gradePath(g))}>
+                <span class="grade-pill__num">{g}</span>
+                {gradeName(g)}
               </a>
             ) : (
               <span class="grade-pill" aria-disabled="true">
                 <span class="grade-pill__num">{g}</span>
-                {g === 'K' ? 'Kindergarten' : `Grade ${g}`}
+                {gradeName(g)}
                 <small>Coming later</small>
               </span>
             ),
           )
-        }
-      </div>
-    </section>
-
-    <section class="home-section" aria-labelledby="subjects">
-      <h2 id="subjects">Grade 5 subjects</h2>
-      <div class="grid grid--4">
-        {
-          SUBJECTS.map((s) => (
-            <a class="card subject-card" href={href(`grade-5/${s.slug}/`)} data-subject={s.slug}>
-              <span class="subject-card__icon">
-                <Icon name={s.icon as 'book'} size={26} />
-              </span>
-              <h3>{s.name}</h3>
-              <p>{s.blurb}</p>
-            </a>
-          ))
         }
       </div>
     </section>
@@ -161,10 +146,11 @@ const jsonLd = [
   .home-hero h1 { font-size: clamp(2.1rem, 1.5rem + 3vw, 3.6rem); max-width: 16ch; }
   .home-hero__accent { color: var(--brand); }
   .home-section { margin-block: 2.75rem; }
-  .grade-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .grade-pill { display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.5rem 1rem 0.5rem 0.5rem; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); font-weight: 700; text-decoration: none; }
+  .grade-row { display: grid; gap: 0.6rem; grid-template-columns: repeat(3, 1fr); }
+  @media (min-width: 48rem) { .grade-row { grid-template-columns: repeat(6, 1fr); } }
+  .grade-pill { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0.9rem 0.5rem; border-radius: 18px; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); font-weight: 700; text-decoration: none; text-align: center; }
   .grade-pill small { font-weight: 400; font-size: 0.75rem; }
-  .grade-pill__num { width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); }
+  .grade-pill__num { width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); font-size: var(--step-1); }
   .grade-pill--on { color: var(--ink); border-color: var(--brand); box-shadow: var(--shadow); }
   .grade-pill--on .grade-pill__num { background: var(--brand); color: var(--brand-ink); }
   .how { padding: 1.25rem; }

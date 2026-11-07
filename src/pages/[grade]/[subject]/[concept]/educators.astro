@@ -1,28 +1,31 @@
 ---
 import 'katex/dist/katex.min.css';
 import Base from '../../../../layouts/Base.astro';
-import { conceptsFor, conceptPath } from '../../../../lib/content.ts';
+import { conceptsFor, conceptPath, gradesWithContent, subjectsFor, subjectPath } from '../../../../lib/content.ts';
 import { notesFor, answerHtml, NEEDS, type EducatorNotes } from '../../../../lib/educator.ts';
 import { levelBadge } from '../../../../lib/problem-html.ts';
 import { THINKING_MOVES } from '../../../../lib/thinking.ts';
 import { md, mdInline } from '../../../../lib/render.ts';
-import { SUBJECTS, LEVELS } from '../../../../site.ts';
+import { SUBJECTS, LEVELS, gradeName, gradeSlug } from '../../../../site.ts';
 import type { Concept } from '../../../../lib/schema.ts';
 import { href, absolute } from '../../../../lib/url.ts';
 
 export function getStaticPaths() {
-  return SUBJECTS.flatMap((s) =>
-    conceptsFor(s.slug).flatMap((c) => {
-      const notes = notesFor(c);
-      return notes ? [{ params: { subject: s.slug, concept: c.id }, props: { concept: c, notes } }] : [];
-    }),
+  return gradesWithContent().flatMap((grade) =>
+    subjectsFor(grade).flatMap((s) =>
+      conceptsFor(s.slug, grade).flatMap((c) => {
+        const notes = notesFor(c);
+        return notes ? [{ params: { grade: gradeSlug(grade), subject: s.slug, concept: c.id }, props: { concept: c, notes } }] : [];
+      }),
+    ),
   );
 }
 
 const { concept: c, notes: n } = Astro.props as { concept: Concept; notes: EducatorNotes };
 const subject = SUBJECTS.find((s) => s.slug === c.subject)!;
 const path = `${conceptPath(c)}educators/`;
-const description = `Teaching notes for ${c.shortTitle}, Grade 5 ${subject.shortName} in Alberta: a hook, playful activities, questions to ask and ways to adapt it for every child.`.slice(0, 160);
+const grade = gradeName(c.grade);
+const description = `Teaching notes for ${c.shortTitle}, ${grade} ${subject.shortName} in Alberta: a hook, playful activities, questions to ask and ways to adapt it for every child.`.slice(0, 160);
 const problemById = new Map(c.problems.map((p) => [p.id, p]));
 const moves = [...new Set(c.problems.map((p) => p.thinking))].map((m) => THINKING_MOVES[m].name);
 const flow = [
@@ -41,7 +44,7 @@ const jsonLd = [
     url: absolute(path),
     inLanguage: 'en-CA',
     isAccessibleForFree: true,
-    educationalLevel: 'Grade 5',
+    educationalLevel: grade,
     learningResourceType: 'Teacher guide',
     audience: { '@type': 'EducationalAudience', educationalRole: 'teacher' },
     about: subject.name,
@@ -49,18 +52,18 @@ const jsonLd = [
   },
 ];
 ---
-<Base title={`Teaching notes: ${c.shortTitle} (Grade 5 ${subject.shortName})`} description={description} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
+<Base title={`Teaching notes: ${c.shortTitle} (${grade} ${subject.shortName})`} description={description} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
   <div class="container ed">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
         <li><a href={href('educators/')}>For educators</a></li>
-        <li><a href={href(`grade-5/${subject.slug}/educators/`)}>{subject.name}</a></li>
+        <li><a href={href(`${subjectPath(c.grade, subject.slug)}educators/`)}>{grade} {subject.name}</a></li>
         <li aria-current="page">{c.shortTitle}</li>
       </ol>
     </nav>
 
     <header class="page-hero">
-      <p class="page-hero__eyebrow">Teaching notes · Grade 5 {subject.shortName}</p>
+      <p class="page-hero__eyebrow">Teaching notes · {grade} {subject.shortName}</p>
       <h1>{c.title}</h1>
       <div class="page-hero__lede" set:html={md(n.why)} />
       <div class="control-row ed-no-print">

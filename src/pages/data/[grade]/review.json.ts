@@ -1,10 +1,10 @@
-// Review data: every Grade 5 problem, pre-rendered to HTML (math included), plus key
-// terms for flashcards. Fetched only by the Review page.
+// Review data: every problem of one grade, pre-rendered to HTML (math included), plus key
+// terms for flashcards. Fetched only by the Review page, one file per grade.
 import type { APIRoute } from 'astro';
-import { loadConcepts, conceptPath } from '../../../lib/content.ts';
+import { loadConcepts, conceptPath, gradesWithContent } from '../../../lib/content.ts';
 import { renderProblem, conceptKey, problemKey } from '../../../lib/problem-html.ts';
 import { md } from '../../../lib/render.ts';
-import { SUBJECTS } from '../../../site.ts';
+import { SUBJECTS, gradeSlug } from '../../../site.ts';
 import { href } from '../../../lib/url.ts';
 
 export interface ReviewData {
@@ -20,11 +20,15 @@ export interface ReviewData {
   >;
 }
 
-export const GET: APIRoute = () => {
+export function getStaticPaths() {
+  return gradesWithContent().map((grade) => ({ params: { grade: gradeSlug(grade) }, props: { grade } }));
+}
+
+export const GET: APIRoute = ({ props }) => {
   const data: ReviewData = { concepts: {} };
-  for (const c of loadConcepts(5)) {
+  for (const c of loadConcepts((props as { grade: number }).grade)) {
     data.concepts[conceptKey(c)] = {
-      title: c.shortTitle,
+      title: `${c.shortTitle} (Grade ${c.grade})`,
       subject: SUBJECTS.find((s) => s.slug === c.subject)!.name,
       url: href(conceptPath(c)),
       // Investigations are long and teach as you go, so they stay out of the quick review rounds.

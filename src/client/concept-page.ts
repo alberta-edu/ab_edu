@@ -2,7 +2,7 @@
 // level tabs and the one-problem-at-a-time pager.
 // Without JavaScript everything is simply shown in order, so content stays crawlable.
 import { load, onChange } from './progress.ts';
-import { UNLOCK_AFTER, LEVELS } from '../site.ts';
+import { UNLOCK_AFTER as DEFAULT_UNLOCK, LEVELS } from '../site.ts';
 import { ENTER_AFTER_SOLVED } from '../lib/srs.ts';
 import type { GradedDetail } from './problem-card.ts';
 
@@ -28,6 +28,8 @@ export function initConceptPage() {
   if (!root) return;
   root.classList.add('js');
   const concept = root.dataset.concept!;
+  // Grades 1 and 2 unlock sooner (gradeProfile in src/site.ts); the page says how many.
+  const UNLOCK_AFTER = Number(root.dataset.unlockAfter) || DEFAULT_UNLOCK;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const toast = document.querySelector<HTMLElement>('[data-celebrate]');
   let toastTimer = 0;

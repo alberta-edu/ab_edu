@@ -6,7 +6,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
 ---
 <Base
   title="Today's review"
-  description="Spaced review of the Grade 5 topics you have practised. Topics return just before you would forget them."
+  description="Spaced review of the topics you have practised. Topics return just before you would forget them."
   path="review/"
   noindex
 >
@@ -17,7 +17,7 @@ import { INTERVALS, ENTER_AFTER_SOLVED, ROUND_SIZE, PASS_MARK } from '../lib/srs
       <p class="page-hero__lede">A few quick questions on topics you have already learned, timed so they stick.</p>
     </header>
 
-    <div class="rv-root" data-review-root data-src={href('data/grade-5/review.json')}>
+    <div class="rv-root" data-review-root data-src={href('data/{grade}/review.json')}>
       <p class="muted">Loading your review…</p>
     </div>
 

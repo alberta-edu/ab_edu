@@ -3,22 +3,24 @@ import 'katex/dist/katex.min.css';
 import Base from '../../../layouts/Base.astro';
 import LessonBlock from '../../../components/LessonBlock.astro';
 import Icon from '../../../components/Icon.astro';
-import { conceptsFor, findOutcome, conceptPath, curriculum, resolveRef, gradeRank, type Statement } from '../../../lib/content.ts';
+import { conceptsFor, findOutcome, conceptPath, curriculum, resolveRef, gradeRank, gradesWithContent, subjectsFor, gradePath, subjectPath, type Statement } from '../../../lib/content.ts';
 import { renderProblem, levelBadge, conceptKey } from '../../../lib/problem-html.ts';
 import { md } from '../../../lib/render.ts';
-import { SUBJECTS, LEVELS, UNLOCK_AFTER, SITE_NAME } from '../../../site.ts';
+import { SUBJECTS, LEVELS, SITE_NAME, gradeName, gradeProfile, gradeSlug } from '../../../site.ts';
 import type { Concept } from '../../../lib/schema.ts';
 import { href, absolute } from '../../../lib/url.ts';
 import { notesFor } from '../../../lib/educator.ts';
 
 export function getStaticPaths() {
-  return SUBJECTS.flatMap((s) => {
-    const list = conceptsFor(s.slug);
-    return list.map((c, i) => ({
-      params: { subject: s.slug, concept: c.id },
-      props: { concept: c, prev: list[i - 1] ?? null, next: list[i + 1] ?? null },
-    }));
-  });
+  return gradesWithContent().flatMap((grade) =>
+    subjectsFor(grade).flatMap((s) => {
+      const list = conceptsFor(s.slug, grade);
+      return list.map((c, i) => ({
+        params: { grade: gradeSlug(grade), subject: s.slug, concept: c.id },
+        props: { concept: c, prev: list[i - 1] ?? null, next: list[i + 1] ?? null },
+      }));
+    }),
+  );
 }
 
 interface Props {
@@ -32,6 +34,9 @@ const outcomes = c.outcomes.map((code) => findOutcome(c.grade, c.subject, code))
 const strand = curriculum(c.grade, c.subject).organizingIdeas.find((o) => o.code === c.organizingIdea)!;
 const path = conceptPath(c);
 const key = conceptKey(c);
+const grade = gradeName(c.grade);
+const UNLOCK_AFTER = gradeProfile(c.grade).unlockAfter;
+const solveWord = (n: number) => (n === 1 ? 'Solve 1' : `Solve ${n}`);
 
 // Every curriculum statement this page teaches (from the covers: of its blocks and problems).
 const allRefs = [
@@ -57,14 +62,14 @@ const levels = ([1, 2, 3] as const).map((level) => {
   return { level, info: LEVELS[level], list, html: list.map((p) => renderProblem(c, p, ++number)) };
 });
 const levelText = {
-  1: `Check the basics. Solve ${UNLOCK_AFTER} to unlock Build.`,
-  2: `Use the idea in new ways. Solve ${UNLOCK_AFTER} to unlock Deep Think.`,
+  1: `Check the basics. ${solveWord(UNLOCK_AFTER)} to unlock Build.`,
+  2: `Use the idea in new ways. ${solveWord(UNLOCK_AFTER)} to unlock Deep Think.`,
   3: 'Tricky problems that need careful reasoning. Take your time: this is where your brain grows.',
 } as const;
 const showCode = (code: string) => /-LO\d/.test(code);
 const hasNotes = !!notesFor(c);
 
-const title = `${c.title}: Grade 5 ${subject.shortName} (Alberta)`;
+const title = `${c.title}: ${grade} ${subject.shortName} (Alberta)`;
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -74,7 +79,7 @@ const jsonLd = [
     url: absolute(path),
     inLanguage: 'en-CA',
     isAccessibleForFree: true,
-    educationalLevel: 'Grade 5',
+    educationalLevel: grade,
     learningResourceType: ['Lesson', 'Practice problems'],
     audience: { '@type': 'EducationalAudience', educationalRole: 'student' },
     about: subject.name,
@@ -85,7 +90,7 @@ const jsonLd = [
       alignmentType: 'teaches',
       educationalFramework: 'Alberta Program of Studies',
       targetName: o.outcome,
-      targetDescription: `${subject.name}, Grade 5, ${o.organizingIdea.title}`,
+      targetDescription: `${subject.name}, ${grade}, ${o.organizingIdea.title}`,
       ...(showCode(o.code) ? { targetUrl: 'https://curriculum.learnalberta.ca/curriculum/en', alternateName: o.code } : {}),
     })),
   },
@@ -93,26 +98,26 @@ const jsonLd = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Grade 5', item: absolute('grade-5/') },
-      { '@type': 'ListItem', position: 2, name: subject.name, item: absolute(`grade-5/${subject.slug}/`) },
+      { '@type': 'ListItem', position: 1, name: grade, item: absolute(gradePath(c.grade)) },
+      { '@type': 'ListItem', position: 2, name: subject.name, item: absolute(subjectPath(c.grade, subject.slug)) },
       { '@type': 'ListItem', position: 3, name: c.shortTitle, item: absolute(path) },
     ],
   },
 ];
 ---
 <Base title={title} description={c.summary} path={path} subject={c.subject} jsonLd={jsonLd} ogType="article">
-  <div class="container concept" data-concept={key} id="concept">
+  <div class="container concept" data-concept={key} data-unlock-after={UNLOCK_AFTER} id="concept">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
-        <li><a href={href('grade-5/')}>Grade 5</a></li>
-        <li><a href={href(`grade-5/${subject.slug}/`)}>{subject.name}</a></li>
+        <li><a href={href(gradePath(c.grade))}>{grade}</a></li>
+        <li><a href={href(subjectPath(c.grade, subject.slug))}>{subject.name}</a></li>
         <li aria-current="page">{c.shortTitle}</li>
       </ol>
     </nav>
 
     <header class="concept-hero">
       <div>
-        <p class="page-hero__eyebrow">Grade 5 {subject.shortName} · {strand.title}</p>
+        <p class="page-hero__eyebrow">{grade} {subject.shortName} · {strand.title}</p>
         <h1>{c.title}</h1>
         <p class="page-hero__lede">{c.summary}</p>
       </div>
@@ -272,7 +277,7 @@ const jsonLd = [
               <div class="level-lock">
                 <Icon name="lock" />
                 <p>
-                  Solve {UNLOCK_AFTER} {LEVELS[(l.level - 1) as 1 | 2].name} problems to unlock this level. Feeling confident?
+                  Solve {UNLOCK_AFTER} {LEVELS[(l.level - 1) as 1 | 2].name} {UNLOCK_AFTER === 1 ? 'problem' : 'problems'} to unlock this level. Feeling confident?
                 </p>
                 <button type="button" class="btn btn--ghost btn--small" data-unlock>
                   Try it now
@@ -321,10 +326,10 @@ const jsonLd = [
           </a>
         )
       }
-      <a class="card concept-card" href={href(`grade-5/${subject.slug}/`)}>
+      <a class="card concept-card" href={href(subjectPath(c.grade, subject.slug))}>
         <span class="concept-card__body">
           <span class="concept-card__sub">All topics</span>
-          <span class="concept-card__title">Grade 5 {subject.shortName}</span>
+          <span class="concept-card__title">{grade} {subject.shortName}</span>
         </span>
       </a>
       {

@@ -2,7 +2,7 @@
 import { load, recordReview, problem } from './progress.ts';
 import { isDue, pickRound, INTERVALS, ROUND_SIZE, PASS_MARK, DAY } from '../lib/srs.ts';
 import type { GradedDetail } from './problem-card.ts';
-import type { ReviewData } from '../pages/data/grade-5/review.json.ts';
+import type { ReviewData } from '../pages/data/[grade]/review.json.ts';
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 const boxes = (box: number) =>
@@ -14,9 +14,15 @@ const when = (ts: number) => {
 
 export async function initReview() {
   const root = document.querySelector<HTMLElement>('[data-review-root]')!;
-  let data: ReviewData;
+  // One file per grade ("{grade}" in data-src). Only the grades with topics in review are fetched.
+  const data: ReviewData = { concepts: {} };
+  const grades = [...new Set(Object.keys(load().review).map((k) => /^g(\d)\//.exec(k)?.[1]).filter(Boolean))];
   try {
-    data = await (await fetch(root.dataset.src!)).json();
+    for (const g of grades) {
+      const res = await fetch(root.dataset.src!.replace('{grade}', `grade-${g}`));
+      // A grade that no longer exists has no file: skip its old topics.
+      if (res.ok) Object.assign(data.concepts, ((await res.json()) as ReviewData).concepts);
+    }
   } catch {
     root.innerHTML = '<p class="notice">Could not load the review questions. Check your connection and reload the page.</p>';
     return;
