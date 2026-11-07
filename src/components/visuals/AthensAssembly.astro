@@ -1,0 +1,231 @@
+---
+// Athens's three government bodies, each with something to run: the Assembly debates and votes by
+// majority, the Council of 500 is drawn by lottery, and a jury votes by secret ballot
+// (outcome 0LESAYIP8UKL5ECn4gOmiw K1.7). Every dot is a person, or a group of people where it says so.
+import { ASSEMBLY_ROWS, BODIES, JURORS, PER_TRIBE, TRIBES, TRIBE_POOL, assemblySeats } from './athens-assembly.ts';
+
+const W = 440;
+const H = 230;
+const seats = assemblySeats(ASSEMBLY_ROWS, W / 2, 212, 62, 27);
+const colX = (t: number) => 34 + t * 41;
+const rowY = (i: number) => 34 + i * 17;
+const jurorX = (i: number) => 22 + i * 19.8;
+---
+<athens-assembly>
+  <div class="sci-pick" role="group" aria-label="Choose a part of the government">
+    {BODIES.map((b, i) => <button type="button" data-aa={b.id} aria-pressed={String(i === 0)}><span aria-hidden="true">{b.icon}</span> {b.name}</button>)}
+  </div>
+
+  {
+    BODIES.map((b, i) => (
+      <div class="g6ss-aa-panel" data-aa-panel={b.id} hidden={i !== 0}>
+        <h3 class="g6ss-aa-name">{b.name} <span class="muted">({b.english})</span></h3>
+        {b.id === 'ecclesia' && (
+          <svg class="sci-svg g6ss-aa-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Citizens sit in rows on a hillside, facing a speakers' platform.">
+            <path class="g6ss-aa-hill" d={`M0 ${H} L0 120 Q${W / 2} -10 ${W} 120 L${W} ${H} Z`}></path>
+            <rect class="g6ss-aa-bema" x={W / 2 - 26} y="200" width="52" height="22" rx="3"></rect>
+            <text class="g6ss-aa-label" x={W / 2} y="216" text-anchor="middle">Platform</text>
+            {seats.map(([x, y], k) => <circle class="g6ss-aa-dot" data-seat={k} cx={x.toFixed(1)} cy={y.toFixed(1)} r="6"></circle>)}
+            <g class="g6ss-aa-bubble" data-aa="bubble" opacity="0">
+              <rect x={W / 2 - 96} y="146" width="192" height="30" rx="10"></rect>
+              <text x={W / 2} y="166" text-anchor="middle" data-aa="say">Who wishes to speak?</text>
+            </g>
+          </svg>
+        )}
+        {b.id === 'boule' && (
+          <svg class="sci-svg g6ss-aa-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Ten columns of dots, one column for each tribe of Athens. Each dot stands for 10 citizens.">
+            {Array.from({ length: TRIBES }, (_, t) => (
+              <g>
+                <text class="g6ss-aa-label" x={colX(t)} y="18" text-anchor="middle">{t + 1}</text>
+                {Array.from({ length: TRIBE_POOL }, (_, i) => <circle class="g6ss-aa-dot" data-lot={`${t}-${i}`} cx={colX(t)} cy={rowY(i)} r="6"></circle>)}
+              </g>
+            ))}
+            <text class="g6ss-aa-label" x={W / 2} y="222" text-anchor="middle">Tribes 1 to 10 · each dot stands for 10 citizens</text>
+          </svg>
+        )}
+        {b.id === 'dikasteria' && (
+          <svg class="sci-svg g6ss-aa-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="A row of jurors, each holding a bronze ballot, and an urn in front of them.">
+            {Array.from({ length: JURORS }, (_, i) => (
+              <g>
+                <circle class="g6ss-aa-dot" cx={jurorX(i).toFixed(1)} cy="34" r="7"></circle>
+                <rect class="g6ss-aa-body" x={(jurorX(i) - 6).toFixed(1)} y="44" width="12" height="18" rx="5"></rect>
+                <circle class="g6ss-aa-ballot" data-ballot={i} cx={jurorX(i).toFixed(1)} cy="72" r="5"></circle>
+              </g>
+            ))}
+            <path class="g6ss-aa-urn" d="M190 118 h60 l-6 10 q22 18 14 52 q-6 26 -38 30 q-32 -4 -38 -30 q-8 -34 14 -52 Z"></path>
+            <text class="g6ss-aa-label" x="220" y="174" text-anchor="middle">Urn</text>
+            <g class="g6ss-aa-piles" data-aa="piles" opacity="0">
+              <text class="g6ss-aa-label" x="70" y="140" text-anchor="middle">Hollow: guilty</text>
+              <text class="g6ss-aa-label" x="370" y="140" text-anchor="middle">Solid: not guilty</text>
+            </g>
+          </svg>
+        )}
+        <button type="button" class="btn btn--small g6ss-aa-run" data-aa-run={b.id}>{b.run}</button>
+        <p class="sci-say g6ss-aa-say" data-aa-say={b.id} aria-live="polite"></p>
+        <dl class="g6ss-aa-facts">
+          <div><dt>Who</dt><dd>{b.who}</dd></div>
+          <div><dt>Chosen</dt><dd>{b.chosen}</dd></div>
+          <div><dt>Job</dt><dd>{b.job}</dd></div>
+        </dl>
+      </div>
+    ))
+  }
+</athens-assembly>
+
+<style is:global>
+  athens-assembly { display: block; }
+  .g6ss-aa-panel { margin-top: 0.7rem; }
+  .g6ss-aa-name { margin: 0 0 0.4rem; font-size: var(--step-1); }
+  .g6ss-aa-name .muted { font-weight: 400; font-size: var(--step--1); }
+  .g6ss-aa-svg { background: color-mix(in srgb, var(--math) 10%, var(--surface)); }
+  .g6ss-aa-hill { fill: color-mix(in srgb, var(--sun) 18%, var(--surface)); }
+  .g6ss-aa-bema { fill: var(--surface-3); stroke: var(--line-strong); }
+  .g6ss-aa-label { fill: var(--ink-2); font-size: 12px; font-weight: 700; }
+  .g6ss-aa-dot { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.5; transition: fill 0.25s, transform 0.3s; transform-box: fill-box; transform-origin: center; }
+  .g6ss-aa-dot.is-yes { fill: var(--ok); stroke: var(--ok); transform: translateY(-4px); }
+  .g6ss-aa-dot.is-no { fill: var(--bad); stroke: var(--bad); }
+  .g6ss-aa-dot.is-picked { fill: var(--social); stroke: var(--social); transform: scale(1.25); }
+  .g6ss-aa-dot.is-out { opacity: 0.35; }
+  .g6ss-aa-bubble rect { fill: var(--surface); stroke: var(--line-strong); }
+  .g6ss-aa-bubble text { fill: var(--ink); font-size: 13px; font-weight: 700; }
+  .g6ss-aa-bubble { transition: opacity 0.3s; }
+  .g6ss-aa-body { fill: var(--surface-3); }
+  .g6ss-aa-ballot { fill: #b0793a; stroke: #6d4518; stroke-width: 1.5; transition: transform 0.6s ease-in, opacity 0.3s; }
+  .g6ss-aa-ballot.is-hollow { fill: var(--surface); }
+  .g6ss-aa-urn { fill: color-mix(in srgb, #b0793a 45%, var(--surface)); stroke: #6d4518; stroke-width: 2; }
+  .g6ss-aa-piles { transition: opacity 0.3s; }
+  .g6ss-aa-run { margin-top: 0.6rem; }
+  .g6ss-aa-say:empty { display: none; }
+  .g6ss-aa-facts { display: grid; gap: 0.4rem; margin: 0.7rem 0 0; }
+  .g6ss-aa-facts > div { display: grid; grid-template-columns: 4.5rem 1fr; gap: 0.5rem; padding: 0.4rem 0.7rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-aa-facts dt { font-weight: 700; color: var(--accent); }
+  .g6ss-aa-facts dd { margin: 0; }
+  @media (prefers-reduced-motion: reduce) {
+    .g6ss-aa-dot, .g6ss-aa-ballot, .g6ss-aa-bubble { transition: none; }
+  }
+</style>
+
+<script>
+  import { castVotes, drawLots, tally, PER_TRIBE, TRIBES, TRIBE_POOL, JURORS } from './athens-assembly.ts';
+
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : ms));
+
+  class AthensAssembly extends HTMLElement {
+    private runs = 0;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-aa]').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.aa!)));
+      this.querySelectorAll<HTMLButtonElement>('[data-aa-run]').forEach((b) => b.addEventListener('click', () => this.go(b)));
+    }
+
+    private pick(id: string) {
+      this.runs++;
+      this.querySelectorAll('[data-aa]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-aa') === id)));
+      this.querySelectorAll<HTMLElement>('[data-aa-panel]').forEach((p) => (p.hidden = p.dataset.aaPanel !== id));
+    }
+
+    private say(id: string, text: string) {
+      this.querySelector(`[data-aa-say="${id}"]`)!.textContent = text;
+    }
+
+    private async go(button: HTMLButtonElement) {
+      const id = button.dataset.aaRun!;
+      const run = ++this.runs;
+      button.disabled = true;
+      try {
+        if (id === 'ecclesia') await this.vote(run);
+        if (id === 'boule') await this.lottery(run);
+        if (id === 'dikasteria') await this.ballot(run);
+      } finally {
+        button.disabled = false;
+      }
+    }
+
+    private async vote(run: number) {
+      const panel = this.querySelector('[data-aa-panel="ecclesia"]')!;
+      const dots = [...panel.querySelectorAll<SVGCircleElement>('[data-seat]')];
+      const bubble = panel.querySelector<SVGGElement>('[data-aa="bubble"]')!;
+      const sayLine = panel.querySelector<SVGTextElement>('[data-aa="say"]')!;
+      dots.forEach((d) => d.classList.remove('is-yes', 'is-no'));
+      this.say('ecclesia', 'A proposed law: build new ships for the navy.');
+      sayLine.textContent = 'Who wishes to speak?';
+      bubble.setAttribute('opacity', '1');
+      await wait(1300);
+      for (const line of ['“Ships keep our grain coming!”', '“Ships cost too much!”']) {
+        if (run !== this.runs) return;
+        sayLine.textContent = line;
+        await wait(1300);
+      }
+      bubble.setAttribute('opacity', '0');
+      const votes = castVotes(dots.length, 0.42 + Math.random() * 0.2, Date.now());
+      this.say('ecclesia', 'Now everyone raises a hand for yes or no…');
+      for (let i = 0; i < dots.length; i++) {
+        if (run !== this.runs) return;
+        dots[i].classList.add(votes[i] ? 'is-yes' : 'is-no');
+        await wait(35);
+      }
+      const t = tally(votes);
+      this.say('ecclesia', `Yes ${t.yes}, no ${t.no}. Majority rule: the law ${t.passes ? 'passes' : 'fails'}. Run it again: the result can change.`);
+    }
+
+    private async lottery(run: number) {
+      const panel = this.querySelector('[data-aa-panel="boule"]')!;
+      const dots = [...panel.querySelectorAll<SVGCircleElement>('[data-lot]')];
+      dots.forEach((d) => d.classList.remove('is-picked', 'is-out'));
+      this.say('boule', 'Drawing lots, tribe by tribe…');
+      const lots = drawLots(TRIBES, TRIBE_POOL, PER_TRIBE, Date.now());
+      for (let t = 0; t < TRIBES; t++) {
+        if (run !== this.runs) return;
+        for (let i = 0; i < TRIBE_POOL; i++) {
+          const dot = panel.querySelector(`[data-lot="${t}-${i}"]`)!;
+          dot.classList.add(lots[t].includes(i) ? 'is-picked' : 'is-out');
+        }
+        await wait(260);
+      }
+      this.say('boule', `5 dots from each tribe, and each dot is 10 citizens: 50 per tribe. 10 tribes × 50 = ${TRIBES * PER_TRIBE * 10}. Draw again: different people serve.`);
+    }
+
+    private async ballot(run: number) {
+      const panel = this.querySelector('[data-aa-panel="dikasteria"]')!;
+      const balls = [...panel.querySelectorAll<SVGCircleElement>('[data-ballot]')];
+      const piles = panel.querySelector<SVGGElement>('[data-aa="piles"]')!;
+      piles.setAttribute('opacity', '0');
+      balls.forEach((b) => {
+        b.classList.remove('is-hollow');
+        b.style.transform = '';
+        b.style.opacity = '1';
+      });
+      await wait(50);
+      this.say('dikasteria', 'Each juror has a hollow ballot (guilty) and a solid one (not guilty). A thumb and finger hide the middle, so no one sees which goes in the urn…');
+      const guilty = castVotes(JURORS, 0.35 + Math.random() * 0.3, Date.now());
+      for (let i = 0; i < balls.length; i++) {
+        if (run !== this.runs) return;
+        const b = balls[i];
+        const dx = 220 - Number(b.getAttribute('cx'));
+        b.style.transform = `translate(${dx + (i % 5) * 3 - 6}px, ${100 + (i % 3) * 6}px)`;
+        await wait(120);
+      }
+      await wait(800);
+      this.say('dikasteria', 'Now the ballots are tipped out and counted.');
+      let g = 0;
+      let n = 0;
+      for (let i = 0; i < balls.length; i++) {
+        if (run !== this.runs) return;
+        const b = balls[i];
+        const x = Number(b.getAttribute('cx'));
+        if (guilty[i]) {
+          b.classList.add('is-hollow');
+          b.style.transform = `translate(${30 + (g % 5) * 14 - x}px, ${86 + Math.floor(g / 5) * 14}px)`;
+          g++;
+        } else {
+          b.style.transform = `translate(${330 + (n % 5) * 14 - x}px, ${86 + Math.floor(n / 5) * 14}px)`;
+          n++;
+        }
+        await wait(60);
+      }
+      piles.setAttribute('opacity', '1');
+      this.say('dikasteria', `Guilty ${g}, not guilty ${n}: ${g > n ? 'guilty' : 'not guilty'}. With an odd number of jurors, there can never be a tie.`);
+    }
+  }
+  customElements.define('athens-assembly', AthensAssembly);
+</script>

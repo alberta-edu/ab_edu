@@ -1,0 +1,171 @@
+---
+// The story of democracy on a 3D globe: Athens, Rome, England, the Haudenosaunee Grand Council,
+// Ottawa and Edmonton. Tap a stop and the globe turns to it, or play the whole journey in order.
+// The first paint is a static globe drawn at build time; the canvas globe loads when it scrolls
+// into view and reuses the Grade 5 globe renderer.
+import { feature } from 'topojson-client';
+import { geoOrthographic, geoPath, geoGraticule } from 'd3-geo';
+import land110 from 'world-atlas/land-110m.json';
+import { STOPS } from './democracy-stops.ts';
+import { href } from '../../lib/url.ts';
+
+interface Props {
+  /** The stop shown first. */
+  focus?: string;
+}
+const { focus = 'athens' } = Astro.props;
+const first = STOPS.find((s) => s.id === focus) ?? STOPS[0];
+
+const S = 400;
+const proj = geoOrthographic().scale(S / 2 - 6).translate([S / 2, S / 2]).rotate([-first.lon, -first.lat]).precision(0.5);
+const path = geoPath(proj).digits(1);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const landD = path(feature(land110 as any, (land110 as any).objects.land) as any) ?? '';
+const gratD = path(geoGraticule().step([15, 15])()) ?? '';
+const sphereD = path({ type: 'Sphere' }) ?? '';
+const sites = STOPS.map((s) => ({ id: s.id, name: s.title, place: s.place, lat: s.lat, lon: s.lon, feature: '', note: '', home: s.home }));
+---
+<democracy-globe data-src={href('data/land-110m.json')} data-sites={JSON.stringify(sites)} data-focus={first.id}>
+  <div class="g6ss-dg-layout">
+    <div class="g6ss-dg-stage">
+      <svg class="g6ss-dg-static" viewBox={`0 0 ${S} ${S}`} role="img" aria-label="A globe of the Earth.">
+        <defs>
+          <radialGradient id="g6ss-dg-ocean" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#9fd0f5"></stop><stop offset="1" stop-color="#2f6fb3"></stop></radialGradient>
+        </defs>
+        <path d={sphereD} fill="url(#g6ss-dg-ocean)"></path>
+        <path d={landD} fill="#7cc47f" stroke="rgba(30,80,40,.6)" stroke-width="0.8"></path>
+        <path d={gratD} fill="none" stroke="rgba(255,255,255,.45)" stroke-width="0.8"></path>
+      </svg>
+      <canvas class="g6ss-dg-canvas" aria-hidden="true" hidden></canvas>
+      <p class="g6ss-dg-hint">Drag to spin the globe.</p>
+    </div>
+
+    <div class="g6ss-dg-panel">
+      <button type="button" class="btn btn--small" data-dg="play">▶ Play the journey</button>
+      <ol class="g6ss-dg-stops" aria-label="Stops in the story of democracy">
+        {
+          STOPS.map((s) => (
+            <li>
+              <button type="button" class={`g6ss-dg-stop${s.home ? ' g6ss-dg-stop--home' : ''}`} data-stop={s.id} aria-pressed={String(s.id === first.id)}>
+                <span class="g6ss-dg-when">{s.when}</span>
+                <span class="g6ss-dg-title">{s.title}</span>
+              </button>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="g6ss-dg-card" aria-live="polite">
+        {
+          STOPS.map((s) => (
+            <div data-card={s.id} hidden={s.id !== first.id}>
+              <p class="g6ss-dg-place">📍 {s.place}</p>
+              <p>{s.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</democracy-globe>
+
+<style is:global>
+  democracy-globe { display: block; }
+  .g6ss-dg-layout { display: grid; gap: 1rem; align-items: start; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 46rem) { .g6ss-dg-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+  .g6ss-dg-stage { max-width: 22rem; width: 100%; margin-inline: auto; }
+  .g6ss-dg-static, .g6ss-dg-canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; touch-action: none; }
+  .g6ss-dg-canvas { cursor: grab; }
+  .g6ss-dg-hint { margin: 0.3rem 0 0; text-align: center; font-size: var(--step--1); color: var(--ink-3); }
+  .g6ss-dg-panel { display: grid; gap: 0.6rem; align-content: start; }
+  .g6ss-dg-panel > .btn { justify-self: start; }
+  .g6ss-dg-stops { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.25rem; }
+  .g6ss-dg-stop { display: grid; grid-template-columns: 7.2rem 1fr; gap: 0.5rem; align-items: center; width: 100%; padding: 0.35rem 0.6rem; border: 2px solid transparent; border-radius: var(--radius-sm); background: var(--surface-2); font: inherit; color: var(--ink); text-align: left; cursor: pointer; min-height: 2.4rem; }
+  .g6ss-dg-stop[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g6ss-dg-stop--home .g6ss-dg-title::after { content: ' 🏠'; }
+  .g6ss-dg-when { font-size: var(--step--1); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  .g6ss-dg-title { font-weight: 700; font-size: var(--step--1); }
+  .g6ss-dg-card { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 5.5rem; }
+  .g6ss-dg-card p { margin: 0.2rem 0 0; }
+  .g6ss-dg-place { font-weight: 700; color: var(--accent); }
+  @media (max-width: 40rem) {
+    .g6ss-dg-stop { grid-template-columns: 6rem 1fr; }
+  }
+</style>
+
+<script>
+  class DemocracyGlobe extends HTMLElement {
+    private globe: Awaited<ReturnType<typeof import('./globe-render.ts')['createGlobe']>> | null = null;
+    private sites: { id: string; lat: number; lon: number }[] = [];
+    private run = 0;
+
+    connectedCallback() {
+      this.sites = JSON.parse(this.dataset.sites!);
+      this.querySelectorAll<HTMLButtonElement>('[data-stop]').forEach((b) => b.addEventListener('click', () => {
+        this.run++;
+        this.show(b.dataset.stop!);
+      }));
+      this.querySelector('[data-dg="play"]')!.addEventListener('click', () => this.play());
+      const io = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          io.disconnect();
+          this.init();
+        }
+      }, { rootMargin: '200px' });
+      io.observe(this);
+    }
+
+    private async init() {
+      const [mod, land] = await Promise.all([import('./globe-render.ts'), fetch(this.dataset.src!).then((r) => r.json())]);
+      const canvas = this.querySelector<HTMLCanvasElement>('.g6ss-dg-canvas')!;
+      canvas.hidden = false;
+      this.querySelector('.g6ss-dg-static')?.remove();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.globe = mod.createGlobe(canvas, land, this.sites as any);
+      const site = this.sites.find((s) => s.id === this.dataset.focus)!;
+      this.globe.state.lon = site.lon;
+      this.globe.state.lat = site.lat;
+      this.globe.state.activeSite = site.id;
+      this.globe.resize();
+      new ResizeObserver(() => this.globe!.resize()).observe(canvas);
+      this.drag(canvas);
+    }
+
+    private drag(canvas: HTMLCanvasElement) {
+      const g = this.globe!;
+      let d: { x: number; y: number; lon: number; lat: number } | null = null;
+      canvas.addEventListener('pointerdown', (e) => {
+        this.run++;
+        canvas.setPointerCapture(e.pointerId);
+        d = { x: e.clientX, y: e.clientY, lon: g.state.lon, lat: g.state.lat };
+      });
+      canvas.addEventListener('pointermove', (e) => {
+        if (!d) return;
+        const k = 180 / canvas.getBoundingClientRect().width;
+        g.state.lon = d.lon - (e.clientX - d.x) * k;
+        g.state.lat = Math.max(-80, Math.min(80, d.lat + (e.clientY - d.y) * k));
+        g.draw();
+      });
+      canvas.addEventListener('pointerup', () => (d = null));
+    }
+
+    private async show(id: string) {
+      this.querySelectorAll('[data-stop]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.stop === id)));
+      this.querySelectorAll<HTMLElement>('[data-card]').forEach((c) => (c.hidden = c.dataset.card !== id));
+      if (!this.globe) return;
+      const site = this.sites.find((s) => s.id === id)!;
+      this.globe.state.activeSite = id;
+      await this.globe.flyTo(site.lon, site.lat, 1100);
+    }
+
+    private async play() {
+      const id = ++this.run;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      for (const s of this.sites) {
+        if (id !== this.run) return;
+        await this.show(s.id);
+        await new Promise((r) => setTimeout(r, reduce ? 1500 : 1800));
+      }
+    }
+  }
+  customElements.define('democracy-globe', DemocracyGlobe);
+</script>

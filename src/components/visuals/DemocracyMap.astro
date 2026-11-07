@@ -1,0 +1,153 @@
+---
+// Two maps about geography and government (outcome 0LESAYIP8UKL5ECn4gOmiw K1.4, K1.8, K1.11).
+// "greece": mountains split Greece into small city-states, and Athens's land, Attica, is small.
+// "compare": Athens and the Roman Republic at the same scale. The land is Natural Earth 1:50m,
+// projected at build time, so the browser gets plain SVG.
+import { feature } from 'topojson-client';
+import { geoEquirectangular, geoPath } from 'd3-geo';
+import land50 from 'world-atlas/land-50m.json';
+import { linePath, toMap, type MapFrame } from './ancient-map.ts';
+import { ATTICA, ATTICA_KM2, CALGARY_KM2, CITY_STATES, GREECE_FRAME, MED_FRAME, MOUNTAINS, REPUBLIC_44BCE, ROME, kmPerDegLon } from './democracy-map.ts';
+
+interface Props {
+  view?: 'greece' | 'compare';
+}
+const { view = 'greece' } = Astro.props;
+const F: MapFrame = view === 'greece' ? GREECE_FRAME : MED_FRAME;
+
+function land(f: MapFrame) {
+  const projection = geoEquirectangular()
+    .scale(f.scale * (180 / Math.PI))
+    .translate([-f.lon0 * f.scale, f.latN * f.scale])
+    .clipExtent([[-4, -4], [f.width + 4, f.height + 4]]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return geoPath(projection).digits(1)(feature(land50 as any, (land50 as any).objects.land) as any) ?? '';
+}
+const landD = land(F);
+const clipId = `g6ss-dm-clip-${view}`;
+const xy = (p: [number, number]) => toMap(F, p).map((v) => v.toFixed(1));
+const barKm = view === 'greece' ? 100 : 500;
+const barPx = (barKm / kmPerDegLon(38)) * F.scale;
+const times = Math.round(ATTICA_KM2 / CALGARY_KM2);
+---
+<democracy-map data-view={view}>
+  {
+    view === 'compare' && (
+      <div class="seg" role="group" aria-label="Choose what to show">
+        <button type="button" data-dm="athens" aria-pressed="true">Athens</button>
+        <button type="button" data-dm="rome" aria-pressed="false">Roman Republic</button>
+      </div>
+    )
+  }
+  <div class="g6ss-dm-frame">
+    <svg class="sci-svg g6ss-dm-svg" viewBox={`0 0 ${F.width} ${F.height}`} role="img" aria-label={view === 'greece' ? 'A map of Greece. Mountains cover much of the land, and the sea cuts deep into the coast. Athens, Sparta, Corinth, Thebes and Argos are marked. Attica, the land of Athens, is coloured in.' : 'A map from Spain to Syria at one scale. The tiny land of Athens and the huge Roman Republic of 44 BCE can each be coloured in.'}>
+      <defs><clipPath id={clipId}><path d={landD}></path></clipPath></defs>
+      <rect class="g6ss-dm-sea" width={F.width} height={F.height}></rect>
+      <path class="g6ss-dm-land" d={landD}></path>
+      <g clip-path={`url(#${clipId})`}>
+        {view === 'compare' && <path class="g6ss-dm-area" data-dm-area="rome" d={linePath(F, REPUBLIC_44BCE, true)}></path>}
+        <path class="g6ss-dm-area g6ss-dm-area--attica is-on" data-dm-area="athens" d={linePath(F, ATTICA, true)}></path>
+      </g>
+      {
+        view === 'greece' && (
+          <>
+            {MOUNTAINS.map((m) => {
+              const [x, y] = toMap(F, m.at);
+              return (
+                <g class="g6ss-dm-mtn">
+                  <path d={`M${(x - 16).toFixed(1)} ${(y + 10).toFixed(1)} L${x.toFixed(1)} ${(y - 14).toFixed(1)} L${(x + 16).toFixed(1)} ${(y + 10).toFixed(1)} Z`}></path>
+                  {m.name && <text x={x.toFixed(1)} y={(y + 26).toFixed(1)} text-anchor="middle">{m.name}</text>}
+                </g>
+              );
+            })}
+            {CITY_STATES.map((c) => {
+              const [x, y] = toMap(F, c.at);
+              return (
+                <g class={`g6ss-dm-city${c.home ? ' g6ss-dm-city--home' : ''}`}>
+                  <circle cx={x.toFixed(1)} cy={y.toFixed(1)} r="6"></circle>
+                  <text x={(x + (c.dx ?? 0)).toFixed(1)} y={(y + (c.dy ?? -12)).toFixed(1)} text-anchor="middle">{c.name}</text>
+                </g>
+              );
+            })}
+          </>
+        )
+      }
+      {
+        view === 'compare' && (
+          <g class="g6ss-dm-city g6ss-dm-city--home">
+            <circle cx={xy(ROME)[0]} cy={xy(ROME)[1]} r="5"></circle>
+            <text x={xy(ROME)[0]} y={Number(xy(ROME)[1]) - 10} text-anchor="middle">Rome</text>
+            <circle cx={xy([23.73, 37.98])[0]} cy={xy([23.73, 37.98])[1]} r="5"></circle>
+            <text x={xy([23.73, 37.98])[0]} y={Number(xy([23.73, 37.98])[1]) + 22} text-anchor="middle">Athens</text>
+          </g>
+        )
+      }
+      <g class="g6ss-dm-bar" transform={`translate(16 ${F.height - 18})`}>
+        <rect width={barPx.toFixed(1)} height="6"></rect>
+        <text x="0" y="-6">{barKm} km</text>
+      </g>
+    </svg>
+  </div>
+  {
+    view === 'greece' ? (
+      <ul class="g6ss-dm-notes">
+        <li>⛰️ <strong>Mountains</strong> and the sea split Greece into many small <strong>city-states</strong>. Each one ruled itself.</li>
+        <li>🟧 Athens and its farmland, <strong>Attica</strong>, covered about {ATTICA_KM2.toLocaleString('en-CA')} km². That’s about {times} times the size of the City of Calgary.</li>
+        <li>🚶 Small enough that citizens could walk to the Assembly and vote themselves.</li>
+      </ul>
+    ) : (
+      <>
+        <div class="g6ss-dm-card" data-dm-card="athens">
+          <p><strong>Athens:</strong> about {ATTICA_KM2.toLocaleString('en-CA')} km². Citizens could walk to the Assembly and vote on each law themselves.</p>
+        </div>
+        <div class="g6ss-dm-card" data-dm-card="rome" hidden>
+          <p><strong>Roman Republic, 44 BCE:</strong> lands all around the Mediterranean Sea. Votes were cast in person, in Rome, so many citizens who lived far away could hardly ever vote.</p>
+        </div>
+      </>
+    )
+  }
+  <p class="muted g6ss-dm-note">Outlines are approximate.</p>
+</democracy-map>
+
+<style is:global>
+  democracy-map { display: block; }
+  .g6ss-dm-frame { margin-top: 0.6rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .g6ss-dm-svg { border-radius: 0; }
+  .g6ss-dm-sea { fill: color-mix(in srgb, var(--math) 14%, var(--surface)); }
+  .g6ss-dm-land { fill: color-mix(in srgb, var(--sun) 14%, var(--surface)); stroke: var(--line-strong); stroke-width: 0.8; }
+  .g6ss-dm-area { fill: var(--social); fill-opacity: 0.6; opacity: 0; transition: opacity 0.35s; }
+  .g6ss-dm-area.is-on { opacity: 1; }
+  .g6ss-dm-area--attica { fill-opacity: 0.85; }
+  .g6ss-dm-mtn path { fill: color-mix(in srgb, var(--ink-3) 45%, var(--surface)); stroke: var(--ink-3); stroke-width: 1; }
+  .g6ss-dm-mtn text { fill: var(--ink-2); font-size: 13px; font-style: italic; }
+  .g6ss-dm-city circle { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .g6ss-dm-city--home circle { fill: var(--social); }
+  .g6ss-dm-city text { fill: var(--ink); font-size: 15px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+  .g6ss-dm-bar rect { fill: var(--ink); }
+  .g6ss-dm-bar text { fill: var(--ink); font-size: 13px; font-weight: 700; }
+  .g6ss-dm-notes { margin: 0.7rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
+  .g6ss-dm-notes li { padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-dm-card { margin-top: 0.6rem; padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-dm-card p { margin: 0; }
+  .g6ss-dm-note { margin: 0.4rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 40rem) {
+    svg .g6ss-dm-city text { font-size: 22px; stroke-width: 4px; }
+    svg .g6ss-dm-mtn text { font-size: 19px; }
+    svg .g6ss-dm-bar text { font-size: 19px; }
+  }
+</style>
+
+<script>
+  class DemocracyMap extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-dm]').forEach((b) => b.addEventListener('click', () => this.pick(b.dataset.dm!)));
+    }
+
+    private pick(id: string) {
+      this.querySelectorAll('[data-dm]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-dm') === id)));
+      this.querySelectorAll<SVGPathElement>('[data-dm-area]').forEach((a) => a.classList.toggle('is-on', a.dataset.dmArea === id));
+      this.querySelectorAll<HTMLElement>('[data-dm-card]').forEach((c) => (c.hidden = c.dataset.dmCard !== id));
+    }
+  }
+  customElements.define('democracy-map', DemocracyMap);
+</script>

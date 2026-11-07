@@ -76,6 +76,9 @@ import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
+import DemocracyGlobe from './visuals/DemocracyGlobe.astro';
+import AthensAssembly from './visuals/AthensAssembly.astro';
+import DemocracyMap from './visuals/DemocracyMap.astro';
 
 interface Props {
   block: LessonBlock;
@@ -155,6 +158,9 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'democracy-globe': DemocracyGlobe,
+  'athens-assembly': AthensAssembly,
+  'democracy-map': DemocracyMap,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
