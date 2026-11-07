@@ -1,0 +1,321 @@
+id: money-measurement-problems
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT6-OI1-GQ2-LO1]
+order: 3
+title: Solving Problems by Adding and Subtracting
+shortTitle: Money & measurement
+summary: >-
+  Solve money and metric measurement problems with the standard algorithms for adding and
+  subtracting: draw the story, pick the operation, line up units and check.
+
+bigIdea: |-
+  - The **standard algorithms** for adding and subtracting work every time, with whole numbers and decimals.
+  - The hard part is the **story**: what is being combined, compared or taken away?
+  - A **bar model** shows the parts and the whole before you calculate.
+  - Measurements must be in the **same unit** before you add or subtract them.
+
+lesson:
+  - title: Algorithms you can trust
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1, S1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '+', a: '14.85', b: '7.6' }
+            - { op: '-', a: '25.00', b: '12.38' }
+            - { op: '-', a: '3.5', b: '1.25' }
+        caption: Press **Next step**. Line up the decimal points, and the algorithm does the rest.
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI1-GQ2-LO1#S1.1, MAT5-OI1-GQ2-LO1#S1.2]
+        title: Remember from Grade 5
+        body: You added and subtracted decimals to thousandths. **Estimate first**, so you can tell if an answer makes sense.
+
+  - title: Draw the story
+    blocks:
+      - type: figure
+        covers: [K1.2, S1.1]
+        figure: |-
+          <svg viewBox="-6 -6 432 176" class="fig-svg" role="img" aria-label="Bar model. The top bar is the whole, 40 dollars. The bottom bar is split into a book for 12.95 dollars, a snack for 3.60 dollars, and the change, which is unknown."><rect class="fig-rect" x="0" y="0" width="420" height="52" rx="4"/><text class="fig-label" style="font-size:22px" x="210" y="34" text-anchor="middle">$40.00 card</text><rect class="fig-rect" x="0" y="72" width="136" height="52" rx="4"/><text class="fig-label" style="font-size:22px" x="68" y="106" text-anchor="middle">$12.95</text><rect class="fig-rect" x="136" y="72" width="38" height="52" rx="4"/><rect class="fig-hl" x="174" y="72" width="246" height="52" rx="4"/><text class="fig-label" style="font-size:22px" x="297" y="106" text-anchor="middle">change = ?</text><text class="fig-small" style="font-size:18px" x="68" y="152" text-anchor="middle">book</text><text class="fig-small" style="font-size:18px" x="155" y="152" text-anchor="middle">snack</text><text class="fig-small" style="font-size:18px" x="155" y="172" text-anchor="middle">$3.60</text></svg>
+        caption: The whole is on top. The parts are below. The missing part is the **change**.
+      - type: example
+        covers: [S1.1, K1.2]
+        title: Change from a gift card
+        problem: 'You have a **$40** gift card. You buy a book for **$12.95** and a snack for **$3.60**. How much is left?'
+        steps:
+          - 'Estimate: about \(13 + 4 = 17\) spent, so about \(40 - 17 = 23\) left.'
+          - 'Add the parts you spent: \(12.95 + 3.60 = 16.55\).'
+          - 'Subtract from the whole: \(40.00 - 16.55 = 23.45\). That is close to the estimate.'
+        answer: '**$23.45** is left on the card.'
+
+  - title: Same units first
+    blocks:
+      - type: table
+        covers: [K1.2, S1.1]
+        caption: Write every length in the same unit before you add or subtract.
+        headers: [Measurement, In metres]
+        rows:
+          - ['85 cm', '0.85 m']
+          - ['1 m 40 cm', '1.4 m']
+          - ['6 cm', '0.06 m']
+          - ['250 mm', '0.25 m']
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI5-GQ1-LO1#K1.2]
+        title: Remember from Grade 3
+        body: There are **100 centimetres** and **1000 millimetres** in one metre.
+      - type: example
+        covers: [S1.1, K1.2]
+        title: A ribbon for a project
+        problem: 'A ribbon is **3.5 m** long. You cut off **1.25 m** and then **80 cm**. How much ribbon is left?'
+        steps:
+          - '80 cm is 0.8 m, so both pieces are in metres.'
+          - 'Pieces cut: \(1.25 + 0.8 = 2.05\) m.'
+          - 'Left: \(3.5 - 2.05 = 1.45\) m.'
+        answer: '**1.45 m** of ribbon is left.'
+
+  - title: Add or subtract?
+    blocks:
+      - type: compare
+        covers: [S1.1, U1.1]
+        columns:
+          - title: Combine
+            body: |-
+              Parts join to make a whole.
+              **Add** the parts.
+          - title: Take away
+            body: |-
+              Some of the whole is used up.
+              **Subtract** from the whole.
+          - title: Compare
+            body: |-
+              How much more, or how much less?
+              **Subtract** the smaller from the bigger.
+      - type: callout
+        variant: mistake
+        covers: [S1.1]
+        title: Don’t grab the numbers too soon
+        body: Read the whole story first. Ask what is being **combined**, **used up** or **compared**. Then pick the operation.
+
+keyTerms:
+  - term: Standard algorithm
+    covers: [K1.1]
+    definition: A step-by-step method that always works, like adding in columns by place value.
+  - term: Bar model
+    covers: [S1.1]
+    definition: A drawing of a story with bars for the whole and its parts, so you can see what is missing.
+  - term: Estimate
+    covers: [S1.1]
+    definition: A quick, rounded answer that tells you about how big the real answer should be.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.1]
+    type: number
+    prompt: '\(52.3 - 18.75\) = ?'
+    answer: 33.55
+    verify: 52.3 - 18.75
+    hints:
+      - Line up the decimal points. 52.3 has fewer decimal places. Can you write it with two?
+    solution:
+      - 'Write 52.3 as 52.30, so both numbers have hundredths.'
+      - '\(52.30 - 18.75 = 33.55\). Check: \(33.55 + 18.75 = 52.30\) ✓'
+
+  - id: w2
+    level: 1
+    thinking: estimate
+    covers: [S1.1, K1.2]
+    type: mc
+    prompt: You pay with a **$50** bill for a game that costs **$19.85** and a book that costs **$8.10**. About how much change should you get?
+    choices: ['About $22', 'About $12', 'About $32', 'About $28']
+    answer: 0
+    feedback:
+      '1': 'Round the prices: about $20 and $8. Add them, then take that from $50.'
+      '2': 'That only takes away the game. You bought the book too.'
+      '3': 'That is about how much you spent, not how much you get back.'
+    hints:
+      - Round each price to the nearest dollar first.
+    solution:
+      - 'The game is about $20 and the book is about $8. That is about $28 spent.'
+      - '\(50 - 28 = 22\), so the change is about **$22**. The exact change is $22.05.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.2, S1.1]
+    type: number
+    prompt: A sunflower was **0.85 m** tall. Over a week, it grew **15 cm**. How tall is it now, in **metres**?
+    answer: 1
+    unit: m
+    verify: 0.85 + 0.15
+    hints:
+      - Are the two lengths in the same unit?
+      - 15 cm is how many hundredths of a metre?
+    solution:
+      - 'The lengths are in different units. 15 cm is 0.15 m.'
+      - '\(0.85 + 0.15 = 1.00\), so the sunflower is **1 m** tall.'
+      - 'Adding 0.85 + 15 = 15.85 m would make a sunflower taller than a house!'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.1, K1.2, U1.1]
+    type: number
+    prompt: The Grade 6 class has **$250** for a field trip. The bus costs **$137.50** and the museum tickets cost **$86.75**. How much money is left for snacks?
+    answer: 25.75
+    unit: $
+    verify: 250 - 137.5 - 86.75
+    hints:
+      - Draw a bar for the $250. Which parts are used up?
+      - Add what is spent, then subtract it from 250.
+    solution:
+      - 'Spent: \(137.50 + 86.75 = 224.25\).'
+      - 'Left: \(250.00 - 224.25 = 25.75\). There is **$25.75** for snacks.'
+      - 'Estimate check: about \(140 + 90 = 230\) spent, and \(250 - 230 = 20\). Close enough.'
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: Jo had **$120**. She bought skates for **$64.99** and a helmet. Now she has **$15.26** left. How much did the helmet cost?
+    answer: 39.75
+    unit: $
+    verify: 120 - 64.99 - 15.26
+    hints:
+      - The $120 is the whole. What are its three parts?
+      - 'Skates + helmet + what is left = 120. Which part is missing?'
+    solution:
+      - 'The $120 split into the skates, the helmet and the $15.26 left over.'
+      - 'Skates and money left: \(64.99 + 15.26 = 80.25\).'
+      - 'Helmet: \(120.00 - 80.25 = 39.75\). The helmet cost **$39.75**.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: |-
+      Ana adds two lengths of rope, **3.6 m** and **12.45 m**. She writes:
+
+      \[\begin{array}{rr} & 12.45 \\ + & 3.6 \\ \hline & 12.81 \end{array}\]
+
+      Her total is wrong. What did she do?
+    choices:
+      - She lined up the last digits, so the 3 landed in the tenths place.
+      - She forgot to carry a 1 into the ones place.
+      - She subtracted the lengths instead of adding them.
+      - She added 3.6 cm instead of 3.6 m.
+    answer: 0
+    feedback:
+      '1': 'Carrying would change the answer by 1 in one place. Her answer is off by much more. Look at where the 3 went.'
+      '2': 'Subtracting would give a smaller answer than 12.45. Hers is bigger.'
+      '3': 'Both lengths are in metres. Look at how she lined up the digits.'
+    hints:
+      - 'Her answer is only a little more than 12.45. Should adding 3.6 m give only a little more?'
+      - In her sum, where would the decimal point of 3.6 be?
+    solution:
+      - 'Her answer adds only 0.36 to 12.45. She lined up the **right-hand digits**, so 3.6 was treated like 0.36.'
+      - 'Line up the **decimal points**: \(12.45 + 3.60 = 16.05\) m.'
+      - 'Estimate check: about \(12 + 4 = 16\). Her 12.81 is too small.'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S1.1, K1.2]
+    type: number
+    figure: { kind: rect, w: 4.75, h: 3.2, unit: m }
+    prompt: A garden is a rectangle **4.75 m** long and **3.2 m** wide. Fencing comes in rolls of **10 m**. If you use one roll, how many more metres of fence do you need to go all the way around?
+    answer: 5.9
+    unit: m
+    verify: 4.75 + 3.2 + 4.75 + 3.2 - 10
+    hints:
+      - Going all the way around is the perimeter. Which sides do you add?
+    solution:
+      - 'The perimeter is \(4.75 + 3.2 + 4.75 + 3.2 = 15.9\) m.'
+      - 'One roll gives 10 m, so you need \(15.9 - 10 = 5.9\) m more.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.1, K1.2, U1.1]
+    type: investigation
+    prompt: |-
+      The class is sewing a stage banner from a **6 m** roll of fabric. They need three pieces: **1.75 m**, **2.4 m** and **90 cm**.
+      Whatever is left over will become a flag. A flag needs **at least 1 m**.
+    parts:
+      - type: number
+        prompt: How many metres of fabric do the three pieces use?
+        answer: 5.05
+        unit: m
+        verify: 1.75 + 2.4 + 0.9
+        hints:
+          - One piece is in centimetres. Change it to metres first.
+        solution:
+          - '90 cm is 0.9 m. Then \(1.75 + 2.4 + 0.9 = 5.05\) m.'
+      - type: number
+        prompt: How many **centimetres** are left for the flag?
+        answer: 95
+        unit: cm
+        verify: (6 - 5.05) * 100
+        hints:
+          - Subtract in metres first. Then change the answer to centimetres.
+        solution:
+          - '\(6.00 - 5.05 = 0.95\) m, which is **95 cm**. That is 5 cm short of a flag.'
+      - type: mc
+        prompt: Which **one** change would leave enough fabric for a flag?
+        choices:
+          - Cut the 2.4 m piece down to 2.3 m
+          - Cut the 90 cm piece down to 88 cm
+          - Make the 1.75 m piece 5 cm longer
+          - Change the 90 cm piece to 0.9 m
+        answer: 0
+        feedback:
+          '1': 'That saves only 2 cm. How many centimetres are you short?'
+          '2': 'Making a piece longer uses more fabric, not less.'
+          '3': '90 cm and 0.9 m are the same length, so nothing changes.'
+        hints:
+          - The flag is 5 cm short. Which change saves at least 5 cm?
+        solution:
+          - 'Cutting 2.4 m to 2.3 m saves 0.1 m, which is 10 cm. Then 105 cm is left, enough for the flag.'
+    wrapUp: 'Change every length to the same unit, and the standard algorithms do the rest. The thinking is deciding what to add, what to subtract and what the answer means.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.1, K1.2, K1.1]
+    type: build
+    prompt: |-
+      Mia has **$7.35 more** than Raj. Together they have **more than $25**, but each of them has **less than $20**. How much money could each one have?
+    fields:
+      - { name: m, label: 'Mia has ($)' }
+      - { name: r, label: 'Raj has ($)' }
+    rules:
+      - { test: 'r > 0 && (m * 100) % 1 == 0 && (r * 100) % 1 == 0', fail: 'Money amounts are dollars and cents, like 12.40, and both need some money.' }
+      - { test: 'm - r == 7.35', fail: 'Subtract: Mia’s amount minus Raj’s should be exactly 7.35.' }
+      - { test: 'm < 20 && r < 20', fail: 'Each of them has less than $20.' }
+      - { test: 'm + r > 25', fail: 'Add the two amounts. Together they need more than $25.' }
+    examples:
+      - { m: 18.2, r: 10.85 }
+      - { m: 19, r: 11.65 }
+      - { m: 16.5, r: 9.15 }
+    counterexamples:
+      - { m: 15, r: 7.65 }
+      - { m: 21, r: 13.65 }
+      - { m: 18, r: 11 }
+    hints:
+      - Pick an amount for Mia under $20. What does Raj have, then?
+      - Try Mia at $19. Raj has \(19.00 - 7.35\). Is the total more than $25?
+      - What is the least Mia could have? Try a few amounts and watch the total.
+    solution:
+      - 'Mia at $19.00 means Raj has \(19.00 - 7.35 = 11.65\). Together: \(19.00 + 11.65 = 30.65\). That works.'
+      - 'Mia at $16.50 and Raj at $9.15 make \(25.65\). That works too.'
+      - 'Mia at $15.00 fails: Raj has $7.65, and together they have only $22.65. Mia needs more than about $16.'
