@@ -24,6 +24,7 @@ import StretchTest from './StretchTest.astro';
 import WindTwoWays from './WindTwoWays.astro';
 import GreenhouseRun from './GreenhouseRun.astro';
 import SeaRise from './SeaRise.astro';
+import RadarSweep from './RadarSweep.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -53,6 +54,7 @@ const animations = {
   'g6-wind-two-ways': WindTwoWays,
   'g6-greenhouse': GreenhouseRun,
   'g6-sea-rise': SeaRise,
+  'g6-radar': RadarSweep,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

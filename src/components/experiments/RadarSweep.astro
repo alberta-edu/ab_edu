@@ -1,0 +1,97 @@
+---
+// Animated experiment: a weather radar sweeps around three times. Each sweep shows a storm a little
+// farther along the same path. Forecasters follow the pattern and warn the town in the storm's
+// path before it arrives (SCI6-OI3-GQ1-LO1, K3.4-K3.6, S3.3).
+---
+<g6-radar>
+  <svg class="sci-svg" viewBox="0 0 640 340" aria-hidden="true" data-rd="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-rd="live"></p>
+</g6-radar>
+
+<style is:global>
+  g6-radar { display: block; }
+  g6-radar svg { background: #0d1f17; }
+  .g6s-rd-ring { fill: none; stroke: #2f6a4c; stroke-width: 1.5; }
+  .g6s-rd-beam { fill: #4fdc8f; opacity: 0.22; }
+  .g6s-rd-storm { fill: #f2b01e; opacity: 0.85; }
+  .g6s-rd-core { fill: #e5484d; }
+  .g6s-rd-old { fill: #f2b01e; opacity: 0.3; }
+  .g6s-rd-town { fill: #e7f6ee; stroke: #0d1f17; stroke-width: 2; }
+  .g6s-rd-text { fill: #e7f6ee; font-size: 15px; font-weight: 700; }
+  .g6s-rd-small { fill: #b8dcc8; font-size: 13px; }
+  .g6s-rd-path { stroke: #f2b01e; stroke-width: 2.5; stroke-dasharray: 7 6; fill: none; }
+  .g6s-rd-warn { fill: #e5484d; font-size: 15px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-rd-text, .g6s-rd-warn { font-size: 22px; } .g6s-rd-small { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const CX = 320;
+  const CY = 170;
+  const R = 150;
+  const TOWNS = [
+    { id: 'A', x: 470, y: 90 },
+    { id: 'B', x: 450, y: 200 },
+    { id: 'C', x: 380, y: 285 },
+  ];
+  // The storm moves in a straight line from the west toward Town B.
+  const P0 = { x: 190, y: 120 };
+  const STEP = { x: 52, y: 16 };
+  const at = (n: number) => ({ x: P0.x + STEP.x * n, y: P0.y + STEP.y * n });
+
+  class RadarSweep extends HTMLElement {
+    private angle = -90;
+    private seen: number[] = [];
+    private now = 0; // storm position along its path, in sweeps
+    private predict = false;
+    private warned = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-rd="live"]')!;
+      live.textContent = '';
+      this.seen = []; this.predict = false; this.warned = false; this.now = 0;
+      for (let s = 0; s < 3; s++) {
+        await tween(1300, (t) => { this.angle = -90 + 360 * t; this.now = s + t; this.draw(); });
+        this.seen.push(s + 1);
+      }
+      this.predict = true;
+      this.warned = true;
+      this.draw();
+      await wait(900);
+      await tween(1800, (t) => { this.now = 3 + t * 2; this.angle = -90 + 360 * t; this.draw(); });
+      await wait(150);
+      live.textContent = 'Each sweep showed the storm farther along the same straight path. Following the pattern, forecasters warned Town B, and the storm reached Town B.';
+    }
+
+    private blob(x: number, y: number, cls: string) {
+      return `<ellipse class="${cls}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="34" ry="22"/>`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (const r of [50, 100, 150]) out.push(`<circle class="g6s-rd-ring" cx="${CX}" cy="${CY}" r="${r}"/>`);
+      const a = (this.angle * Math.PI) / 180;
+      const a2 = a - 0.5;
+      out.push(`<path class="g6s-rd-beam" d="M${CX} ${CY} L${(CX + Math.cos(a2) * R).toFixed(1)} ${(CY + Math.sin(a2) * R).toFixed(1)} A${R} ${R} 0 0 1 ${(CX + Math.cos(a) * R).toFixed(1)} ${(CY + Math.sin(a) * R).toFixed(1)} Z"/>`);
+      this.seen.forEach((n) => { const p = at(n); out.push(this.blob(p.x, p.y, 'g6s-rd-old')); });
+      if (this.predict) {
+        const p1 = at(1);
+        const p5 = at(5);
+        out.push(`<line class="g6s-rd-path" x1="${p1.x}" y1="${p1.y}" x2="${p5.x}" y2="${p5.y}"/>`);
+      }
+      const p = at(this.now);
+      out.push(this.blob(p.x, p.y, 'g6s-rd-storm'), `<ellipse class="g6s-rd-core" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" rx="12" ry="8"/>`);
+      for (const t of TOWNS) out.push(`<circle class="g6s-rd-town" cx="${t.x}" cy="${t.y}" r="8"/><text class="g6s-rd-text" x="${t.x + 14}" y="${t.y + 6}">Town ${t.id}</text>`);
+      out.push(`<circle cx="${CX}" cy="${CY}" r="5" fill="#4fdc8f"/><text class="g6s-rd-small" x="${CX}" y="${CY + 24}" text-anchor="middle">radar</text>`);
+      out.push(`<text class="g6s-rd-text" x="16" y="28">Sweeps: ${Math.min(3, this.seen.length)}</text>`);
+      if (this.warned) out.push(`<text class="g6s-rd-warn" x="16" y="320">⚠ Storm warning: Town B</text>`);
+      this.querySelector('[data-rd="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-radar', RadarSweep);
+</script>
