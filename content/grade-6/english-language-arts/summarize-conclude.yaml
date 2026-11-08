@@ -1,0 +1,411 @@
+id: summarize-conclude
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI7
+outcomes: [LANENG6-OI7-GQ1-LO1]
+order: 7
+title: Summarizing, Synthesizing and Drawing Conclusions
+shortTitle: Summarize & conclude
+summary: >-
+  See inside a reader’s head, read an article with a chart, tell stated from inferred, summarize with
+  evidence, synthesize two sources and draw conclusions you can defend.
+
+bigIdea: |-
+  - Good readers use many strategies: predict, infer, connect, summarize, synthesize and evaluate.
+  - A **summary** gives the main idea, backed by evidence from the text.
+  - **Synthesizing** puts ideas from different sources together into a new understanding.
+  - A **conclusion** is a judgement built on what is stated and what is inferred. Say how sure you are.
+
+lesson:
+  - title: Inside a reader’s head
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, U1.1, K2.1]
+        component: text-xray
+        props:
+          button: Show the reader’s thinking
+          pages:
+            - label: The Red Mittens
+              note: One reader, six strategies, in four sentences. Strong readers switch strategies all the time.
+              parts:
+                - { style: text, text: 'When Ana opened the lost-and-found box, a smell like wet dog drifted out.', tag: Predict, job: '“Something gross is in there, I bet.”' }
+                - { style: text, text: 'At the bottom, under a soggy toque, lay her grandmother’s red mittens.', tag: Connect, job: '“I lost my favourite mitts once too. Text to self.”' }
+                - { style: text, text: 'She had looked for them for three weeks.', tag: Infer, job: '“They really matter to her, maybe because Grandma made them.”' }
+                - { style: text, text: 'She pulled them on, damp and smelly, and smiled all the way home.', tag: Summarize, job: '“Ana finds Grandma’s mittens after three weeks, and she is overjoyed.”' }
+                - { style: box, text: '**After reading**', tag: Synthesize and evaluate, job: '“Things we love are worth more than how they look. The author never says she’s happy, and it works.”' }
+        caption: Read the tiny story. Then switch on the X-ray to see one reader’s thinking.
+
+  - title: Read an article and a chart
+    blocks:
+      - type: passage
+        id: bikebus
+        title: The Bike Bus of Maple Street
+        form: News feature, Cedar Hills Weekly (a made-up town)
+        paragraphs:
+          - Every Wednesday at 8:05, a bell rings on Maple Street. It isn’t a school bell. It is the bell on Ms. Lavoie’s bike, and it means the bike bus is leaving.
+          - The bike bus is a group of students who ride to school together. One adult rides at the front and another rides at the back. Riders join at “stops” along the way, just like passengers on a bus.
+          - The bike bus started in April with six riders. By June, it had thirty-one. Tariq Hassan, a Grade 6 rider, says his mom said no at first. Then she watched the group ride past, with an adult at each end. She told him he could go, as long as he wore his helmet.
+          - Not everyone was happy at first. Some drivers complained that the riders slowed traffic on Maple Street. So the school asked parents to count cars at the drop-off zone, before and after the bike bus began.
+          - Principal Grace Kwan says mornings are calmer now. “Kids arrive awake and smiling,” she says. “And the crosswalk is much less crowded.”
+          - In September, the bike bus will add a second route, along Birch Avenue. The organizers are looking for more adult riders.
+        note: An original article written for Alberta Edu. The town and people are made up. Paragraph numbers help you point to evidence.
+      - type: figure
+        covers: [K3.2, S3.3]
+        figure: >-
+          <svg viewBox="0 0 340 200" class="fig-svg" role="img" aria-label="Bar chart: cars at the drop-off zone on one Wednesday morning. March, before the bike bus: 84 cars. May: 61 cars. June: 49 cars.">
+          <line class="cg-axis" x1="50" y1="160" x2="320" y2="160" stroke="currentColor"/>
+          <rect x="70" y="34" width="56" height="126" fill="var(--accent)"/>
+          <rect x="156" y="68.5" width="56" height="91.5" fill="var(--accent)" opacity="0.75"/>
+          <rect x="242" y="86.5" width="56" height="73.5" fill="var(--accent)" opacity="0.55"/>
+          <text class="fig-label" x="98" y="26" text-anchor="middle">84</text>
+          <text class="fig-label" x="184" y="60" text-anchor="middle">61</text>
+          <text class="fig-label" x="270" y="78" text-anchor="middle">49</text>
+          <text class="fig-small" x="98" y="180" text-anchor="middle">March</text>
+          <text class="fig-small" x="98" y="196" text-anchor="middle">(before)</text>
+          <text class="fig-small" x="184" y="180" text-anchor="middle">May</text>
+          <text class="fig-small" x="270" y="180" text-anchor="middle">June</text>
+          </svg>
+        caption: 'Cars at the drop-off zone on one Wednesday morning, counted by parents. A chart is a source of clues too.'
+
+  - title: Stated or inferred?
+    blocks:
+      - type: visual
+        covers: [S3.4, K3.1, U3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: stated, label: Stated, icon: 📄 }
+            - { id: inferred, label: Inferred, icon: 💭 }
+          cards:
+            - { text: The bike bus had thirty-one riders by June., bin: stated, why: 'Paragraph 3 says it in those words.' }
+            - { text: Tariq’s mom was worried about his safety., bin: inferred, why: 'No sentence says “worried.” Her “no,” and her helmet rule, let you work it out.' }
+            - { text: Fewer cars came to drop-off in June than in March., bin: stated, why: 'The chart shows it: 49 cars, down from 84. A chart states facts too.' }
+            - { text: Some families now ride instead of driving., bin: inferred, why: 'Fewer cars and more riders together suggest it, but nobody says it.' }
+            - { text: The organizers need more adults for the new route., bin: stated, why: 'Paragraph 6 says they are looking for more adult riders.' }
+        caption: Sort each idea about “The Bike Bus of Maple Street.”
+      - type: table
+        covers: [K3.2, S3.2]
+        caption: Context clues come in many forms.
+        headers: [Clue, In the article, What it tells you]
+        rows:
+          - ['**Punctuation**', 'Riders join at “stops”', 'The quotation marks show these aren’t real bus stops.']
+          - ['**Dialogue**', '“Kids arrive awake and smiling.”', 'The principal thinks the bike bus is good for students.']
+          - ['**A phrase**', '“just like passengers on a bus”', 'Explains what a bike bus is.']
+          - ['**A chart**', '84 cars, then 49', 'Drop-off got less busy.']
+
+  - title: Summarize with evidence
+    blocks:
+      - type: example
+        covers: [S2.1, K2.2, S2.3, U2.1]
+        title: Summing up the article
+        problem: What is the main idea of “The Bike Bus of Maple Street,” and what supports it?
+        steps:
+          - '**Read each part closely, on its own.** Paragraph 3: it grew. Paragraph 4: drivers complained. Paragraph 5: mornings are calmer.'
+          - '**Then look at how the parts connect.** It grew, people worried, and the results won them over.'
+          - '**Main idea:** a bike bus on Maple Street grew quickly and made school mornings calmer.'
+          - '**Evidence:** six riders became thirty-one (paragraph 3). Drop-off cars fell from 84 to 49 (chart). The principal says mornings are calmer (paragraph 5).'
+        answer: A summary is short, gives the **main idea**, and backs it with **evidence**.
+
+  - title: Synthesize two sources
+    blocks:
+      - type: compare
+        covers: [S2.4, S2.2, K2.1]
+        columns:
+          - title: 📰 The article says
+            body: Drivers complained the bike bus slowed traffic.
+          - title: 📊 The chart shows
+            body: Cars at drop-off fell from 84 to 49.
+          - title: 🧩 Together, I now see
+            body: The bike bus may have slowed some drivers on the street, but it took cars away from the busiest spot, the drop-off zone.
+      - type: callout
+        variant: tip
+        covers: [S2.2, K2.1]
+        title: Link it to what you know
+        body: |-
+          - **Text to self:** “I bike to school.”
+          - **Text to text:** “I read about a walking school bus.”
+          - **Text to world:** “Traffic jams happen in every town.”
+
+  - title: Draw a conclusion
+    blocks:
+      - type: table
+        covers: [K3.1, S3.3, S3.5]
+        caption: A conclusion is a judgement. It rests on stated and inferred ideas.
+        headers: [Conclusion, Built on, How sure?]
+        rows:
+          - ['The bike bus is popular.', 'Stated: 6 riders grew to 31.', '**Very sure**']
+          - ['Parents came to trust it.', 'Inferred: Tariq’s mom changed her mind once she saw the adults.', '**Fairly sure**']
+          - ['The bike bus caused the drop in cars.', 'Stated: fewer cars. Inferred: some families switched.', '**Not sure yet.** Something else might also explain it.']
+
+  - title: Check your own reading
+    blocks:
+      - type: table
+        covers: [S3.1]
+        caption: One reader’s prediction, revised as new information arrives
+        headers: [After paragraph…, Prediction, Then…]
+        rows:
+          - ['4', 'Drivers are angry. The bike bus will be stopped.', 'Keep reading.']
+          - ['5', 'Hmm. The principal likes it.', '**Revise:** it may survive.']
+          - ['6', 'A second route is coming.', '**Confirmed:** it is growing, not stopping.']
+      - type: compare
+        covers: [K1.2, S1.3, S1.2]
+        columns:
+          - title: 🚦 Self-monitor
+            body: 'Notice when you’re lost: “Wait, why did drivers complain?” Then reread, slow down or check the chart.'
+          - title: 🔧 Did the strategy work?
+            body: 'After you try one, judge it. If summarizing paragraph by paragraph didn’t show the big picture, try synthesizing instead.'
+
+keyTerms:
+  - term: Summarizing
+    covers: [K1.1, S2.1]
+    definition: Giving the main idea of a text in a few words, with evidence.
+  - term: Synthesizing
+    covers: [K1.1, S2.4]
+    definition: Putting ideas from different places together to build a new or bigger understanding.
+  - term: Conclusion
+    covers: [K3.1]
+    definition: A judgement reached from information that is stated in a text or inferred from it.
+  - term: Stated
+    covers: [S3.4]
+    definition: Said directly in the words, or shown directly in a chart or picture.
+  - term: Inferred
+    covers: [S3.4]
+    definition: Worked out from clues, but not said directly.
+  - term: Self-monitoring
+    covers: [K1.2]
+    definition: Noticing when you stop understanding, and doing something about it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S3.4]
+    type: mc
+    prompt: Which idea is **stated** in “The Bike Bus of Maple Street”?
+    choices:
+      - The bike bus will add a route along Birch Avenue.
+      - Ms. Lavoie loves riding her bike.
+      - Tariq rides the bike bus every Wednesday.
+      - Drivers now like the bike bus.
+    answer: 0
+    feedback:
+      '1': She rides at 8:05 every Wednesday, so you might infer it. Does any sentence say she loves it?
+      '2': He is a rider, but does any sentence say how often he rides?
+      '3': Paragraph 4 says some drivers complained. Does the article ever say they changed their minds?
+    hints:
+      - For each idea, try to put your finger on one sentence that says it.
+    solution:
+      - Paragraph 6 says the bike bus “will add a second route, along Birch Avenue.” That is stated.
+      - The others might be true, but you’d have to infer them, and some go further than the clues.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K2.1, S2.2]
+    type: mc
+    prompt: 'While reading, Lena thinks, “Tariq’s mom is just like my dad. He said no to my skateboard at first.” What kind of connection is she making?'
+    choices: [Text to self, Text to text, Text to world]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Text to text links to another book, article or show. Is her dad from a text?
+      '2': Text to world links to big things happening in the world. Is this about the world, or about Lena?
+    hints:
+      - Who is Lena linking Tariq’s mom to?
+    solution:
+      - She links the article to her own life, her dad. That is a **text to self** connection.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K3.2, S3.2]
+    type: mc
+    prompt: 'Paragraph 2 says riders join at “stops” along the way. Why did the writer put **stops** in quotation marks?'
+    choices:
+      - To show they aren’t real bus stops, just places that work like them.
+      - To show that someone in the article said the word out loud.
+      - To show that the word is spelled in an unusual way.
+      - To show that the riders have to stop and wait for a long time.
+    answer: 0
+    feedback:
+      '1': Quotation marks often show speech. Is anyone speaking in this sentence?
+      '2': '*Stops* is spelled the usual way. What else could the marks be telling you?'
+      '3': Nothing says they wait long. What is special about these stops?
+    hints:
+      - Is a bike bus a real bus? So are its stops real bus stops?
+    solution:
+      - The bike bus isn’t a real bus, and its stops aren’t real bus stops. The quotation marks say, “I’m using this word in a special way.”
+      - Punctuation can be a **context clue**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K3.2, S3.3]
+    type: number
+    prompt: Look at the chart in the lesson. How many **fewer** cars came to drop-off in June than in March?
+    answer: 35
+    unit: cars
+    verify: 84 - 49
+    hints:
+      - Find March and June on the chart. Which is bigger?
+    solution:
+      - March had 84 cars and June had 49.
+      - '\(84 - 49 = 35\) fewer cars. The chart is a source of facts, just like the words.'
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S3.3, S3.5, S2.1]
+    type: evidence
+    prompt: A reader concludes, “Parents came to trust the bike bus.” Tap the sentence that gives the **best** support.
+    passage: bikebus
+    paragraphs: [2, 3]
+    answer: [p3s4, p3s5]
+    feedback:
+      p2s1: This explains what a bike bus is. Does it show a parent changing their mind?
+      p2s2: This explains why it’s safe. Does it show a parent trusting it?
+      p2s3: This explains how riders join. Look for a parent.
+      p3s1: This is how it started. Look for a parent’s view.
+      p3s2: More riders hints at it, but look for a sentence that shows a parent’s mind changing.
+      p3s3: This shows the opposite, at first. What happened next?
+    hints:
+      - Look for a parent who changes her mind. What made her change it?
+    solution:
+      - '“Then she watched the group ride past, with an adult at each end.” or “She told him he could go, as long as he wore his helmet.”'
+      - A worried parent saw the adults and said yes. That is the strongest support. The growth in riders helps too, but it doesn’t show **why**.
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [S2.1, K2.2]
+    type: mc
+    prompt: Which is the best **summary** of “The Bike Bus of Maple Street”?
+    choices:
+      - A bike bus on Maple Street grew from 6 to 31 riders, and mornings became calmer, with fewer cars at drop-off.
+      - Every Wednesday at 8:05, Ms. Lavoie rings her bike bell, and the bike bus leaves on Maple Street.
+      - Bike buses are the best way to get to school, and every town in Canada should start one.
+      - Tariq’s mom said no at first, then said yes, as long as he wore his helmet on every ride.
+    answer: 0
+    feedback:
+      '1': This is a true detail from paragraph 1. Is it what the whole article is about?
+      '2': That is an opinion, and the article never says it. A summary sticks to the text.
+      '3': This is one story from paragraph 3. Does it cover the whole article?
+    hints:
+      - Which choice could stand in for the whole article, not just one paragraph?
+    solution:
+      - A summary gives the **main idea** of the whole text, with a little evidence. The first choice does both.
+      - The others give a single detail, one person’s story, or an opinion the article doesn’t give.
+
+  - id: b4
+    level: 2
+    thinking: evidence
+    covers: [S3.1]
+    type: multi
+    prompt: After paragraph 4, Owen predicts, “Drivers are angry, so the bike bus will be stopped.” Which **new information** should make him revise his prediction? Choose every one.
+    choices:
+      - Drop-off cars fell from 84 to 49.
+      - The principal says mornings are calmer.
+      - A second route is starting in September.
+      - Some drivers said the riders slowed traffic.
+      - The bike bus leaves at 8:05.
+    answer: [0, 1, 2]
+    feedback:
+      '3': That is what made Owen predict it in the first place. Is it new?
+      '4': That is a detail about time. Does it change whether the bike bus will last?
+    hints:
+      - Which facts point toward the bike bus lasting, or growing?
+    solution:
+      - Fewer cars, a happy principal and a new route all point the other way. The bike bus is growing.
+      - Good readers **revise** when new information arrives. Owen’s first prediction was reasonable. Keeping it now wouldn’t be.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [K3.1, S3.3, S3.5, S2.4]
+    type: investigation
+    prompt: |-
+      Liam writes a conclusion:
+
+      > **The bike bus caused the drop in cars at drop-off.**
+
+      Is it as strong as it sounds?
+    parts:
+      - type: multi
+        prompt: Which facts **support** Liam’s conclusion? Choose every one.
+        choices:
+          - Cars fell from 84 to 49 while riders grew from 6 to 31.
+          - The principal says the crosswalk is less crowded.
+          - Some drivers complained about the bike bus.
+          - The bike bus will add a second route.
+        answer: [0, 1]
+        feedback:
+          '2': That is about traffic on the street, not the number of cars at drop-off.
+          '3': That is about the future. Does it explain why cars fell?
+        hints:
+          - Which facts connect the riders to the cars?
+        solution:
+          - As riders went up, cars went down. And the principal noticed less crowding. Both fit Liam’s idea.
+      - type: mc
+        prompt: The counts were taken in March, May and June. What **else** might help explain fewer cars by June?
+        choices:
+          - Warmer weather, so more students walk or bike anyway.
+          - The bell on Ms. Lavoie’s bike, which rings at 8:05.
+          - The new route on Birch Avenue, which starts in September.
+          - The quotation marks around the word “stops.”
+        answer: 0
+        feedback:
+          '1': The bell has rung since April. Could it change how many families drive?
+          '2': That route hasn’t started yet. It couldn’t change June’s count.
+          '3': That is about how the article was written, not about cars.
+        hints:
+          - What changes between March and June in Alberta, other than the bike bus?
+        solution:
+          - March is cold and June is warm. Some families might walk or bike in June anyway, bike bus or not.
+      - type: mc
+        prompt: So which conclusion is the **strongest** one a careful reader can make?
+        choices:
+          - The bike bus probably helped cut the number of cars, though other things, like warmer weather, may have helped too.
+          - The bike bus caused every single one of the 35 fewer cars at drop-off.
+          - The bike bus had nothing to do with it, and the warm weather did it all.
+          - We can’t conclude anything, because the article and the chart disagree.
+        answer: 0
+        feedback:
+          '1': Is that certain? What about the families who might have walked in June anyway?
+          '2': That ignores the evidence that the two changed together, and the principal’s view.
+          '3': They don’t disagree. They just don’t settle the question completely.
+        hints:
+          - A strong conclusion fits all the evidence, and admits what it can’t be sure of.
+        solution:
+          - Both the riders and the weather could have played a part. Saying **probably** shows exactly how sure you are.
+    wrapUp: A strong conclusion fits all the evidence, uses stated and inferred ideas, and says honestly how sure it is.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K1.1, S1.2, S2.4]
+    type: mc
+    prompt: |-
+      Your school council asks, “Should our school start a bike bus?” Two students read the article to help.
+
+      - **Ava** summarizes each paragraph, one at a time.
+      - **Ben** puts the article and the chart together, and thinks about our own streets.
+
+      Whose strategy fits the council’s question better?
+    choices:
+      - Ben’s, because the question needs synthesizing and connecting the article to our own school.
+      - Ava’s, because a summary of each paragraph will answer any question about a text.
+      - Ava’s, because Ben is bringing in ideas that aren’t in the article at all.
+      - Neither, because only predicting could tell us what would happen at our school.
+    answer: 0
+    feedback:
+      '1': Ava would know what the article says. But would she know whether it fits **our** school?
+      '2': Connecting a text to the world is a real strategy. The council’s question is about our world.
+      '3': Predicting helps, but it needs the synthesis first. What would you base the prediction on?
+    hints:
+      - The question isn’t “What does the article say?” What is it?
+    solution:
+      - The council needs a judgement about **our** school. That means combining sources and connecting them to our own streets.
+      - Ava’s summaries are useful, but they stop at the article. Choosing the right strategy for the question is part of reading well.
