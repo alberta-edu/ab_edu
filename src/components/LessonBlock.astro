@@ -78,6 +78,7 @@ import PunctLab from './visuals/PunctLab.astro';
 import TextXray from './visuals/TextXray.astro';
 import ConflictMap from './visuals/ConflictMap.astro';
 import LandGlobe from './visuals/LandGlobe.astro';
+import SharingCircle from './visuals/SharingCircle.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -161,6 +162,7 @@ const visuals = {
   'text-xray': TextXray,
   'conflict-map': ConflictMap,
   'land-globe': LandGlobe,
+  'sharing-circle': SharingCircle,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
