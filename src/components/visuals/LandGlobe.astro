@@ -1,7 +1,7 @@
 ---
 // Land as a text (LANENG6-OI1-GQ1-LO1, K7.1, K7.2, S7.1). A 3D globe holds the human-made structures the
 // curriculum lists. Tap one and the globe turns to it, then a card says who made it and what it can tell
-// a reader. Sites, facts and sources come from the lesson's YAML. The first paint is a static globe drawn
+// a reader. The same globe can hold word origins. Sites, facts and sources come from the lesson's YAML. The first paint is a static globe drawn
 // at build time.
 import { feature } from 'topojson-client';
 import { geoOrthographic, geoPath, geoGraticule } from 'd3-geo';
@@ -22,8 +22,12 @@ interface Site {
 }
 interface Props {
   sites: Site[];
+  /** Headings for the two groups of buttons, if not the default. */
+  groupLabels?: { fnmi: string; world: string };
+  /** Label before each site's meaning. */
+  readLabel?: string;
 }
-const { sites } = Astro.props;
+const { sites, groupLabels = { fnmi: 'First Nations, Métis and Inuit', world: 'Other parts of the world' }, readLabel = 'Read it:' } = Astro.props;
 const S = 400;
 const proj = geoOrthographic().scale(S / 2 - 4).translate([S / 2, S / 2]).rotate([60, -40]).precision(0.5);
 const path = geoPath(proj).digits(1);
@@ -33,8 +37,8 @@ const gratD = path(geoGraticule().step([20, 20])()) ?? '';
 const sphereD = path({ type: 'Sphere' }) ?? '';
 const data = sites.map((s) => ({ ...s, where: mdInline(s.where), what: mdInline(s.what), meaning: mdInline(s.meaning) }));
 const groups = [
-  { id: 'fnmi', label: 'First Nations, Métis and Inuit' },
-  { id: 'world', label: 'Other parts of the world' },
+  { id: 'fnmi', label: groupLabels.fnmi },
+  { id: 'world', label: groupLabels.world },
 ] as const;
 ---
 <land-globe data-src={href('data/land-110m.json')} data-sites={JSON.stringify(data)}>
@@ -70,7 +74,7 @@ const groups = [
         <h3 data-lg="name"></h3>
         <p class="g6e-lg-where" data-lg="where"></p>
         <p data-lg="what"></p>
-        <p class="g6e-lg-meaning"><strong>Read it:</strong> <span data-lg="meaning"></span></p>
+        <p class="g6e-lg-meaning"><strong>{readLabel}</strong> <span data-lg="meaning"></span></p>
       </div>
     </div>
   </div>
