@@ -1,0 +1,100 @@
+---
+// Land as a text (LANENG6-OI1-GQ1-LO1, K7.1, K7.2, S7.1). A 3D globe holds the human-made structures the
+// curriculum lists. Tap one and the globe turns to it, then a card says who made it and what it can tell
+// a reader. Sites, facts and sources come from the lesson's YAML. The first paint is a static globe drawn
+// at build time.
+import { feature } from 'topojson-client';
+import { geoOrthographic, geoPath, geoGraticule } from 'd3-geo';
+import land110 from 'world-atlas/land-110m.json';
+import { mdInline } from '../../lib/render.ts';
+import { href } from '../../lib/url.ts';
+
+interface Site {
+  id: string;
+  name: string;
+  icon: string;
+  group: 'fnmi' | 'world';
+  where: string;
+  lat: number;
+  lon: number;
+  what: string;
+  meaning: string;
+}
+interface Props {
+  sites: Site[];
+}
+const { sites } = Astro.props;
+const S = 400;
+const proj = geoOrthographic().scale(S / 2 - 4).translate([S / 2, S / 2]).rotate([60, -40]).precision(0.5);
+const path = geoPath(proj).digits(1);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const landD = path(feature(land110 as any, (land110 as any).objects.land) as any) ?? '';
+const gratD = path(geoGraticule().step([20, 20])()) ?? '';
+const sphereD = path({ type: 'Sphere' }) ?? '';
+const data = sites.map((s) => ({ ...s, where: mdInline(s.where), what: mdInline(s.what), meaning: mdInline(s.meaning) }));
+const groups = [
+  { id: 'fnmi', label: 'First Nations, Métis and Inuit' },
+  { id: 'world', label: 'Other parts of the world' },
+] as const;
+---
+<land-globe data-src={href('data/land-110m.json')} data-sites={JSON.stringify(data)}>
+  <div class="g6e-lg-layout">
+    <div class="g6e-lg-stage">
+      <svg class="g6e-lg-static" viewBox={`0 0 ${S} ${S}`} role="img" aria-label="A globe turned to show North America.">
+        <defs>
+          <radialGradient id="g6e-lg-ocean" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#9fd0f5"></stop><stop offset="1" stop-color="#2f6fb3"></stop></radialGradient>
+        </defs>
+        <path d={sphereD} fill="url(#g6e-lg-ocean)"></path>
+        <path d={landD} fill="#c9b48a" stroke="rgba(80,60,30,.6)" stroke-width="0.8"></path>
+        <path d={gratD} fill="none" stroke="rgba(255,255,255,.3)" stroke-width="0.7"></path>
+      </svg>
+      <canvas class="g6e-lg-canvas" aria-hidden="true" hidden></canvas>
+      <p class="g6e-lg-hint">Drag to spin. Tap a dot or a name.</p>
+    </div>
+    <div class="g6e-lg-panel">
+      {
+        groups.map((g) => (
+          <>
+            <p class="sci-pick-label">{g.label}</p>
+            <div class="sci-pick" role="group" aria-label={g.label}>
+              {sites.filter((s) => s.group === g.id).map((s) => (
+                <button type="button" data-lg-site={s.id} aria-pressed="false">
+                  <span aria-hidden="true">{s.icon}</span> {s.name}
+                </button>
+              ))}
+            </div>
+          </>
+        ))
+      }
+      <div class="g6e-lg-card" data-lg="card" aria-live="polite" hidden>
+        <h3 data-lg="name"></h3>
+        <p class="g6e-lg-where" data-lg="where"></p>
+        <p data-lg="what"></p>
+        <p class="g6e-lg-meaning"><strong>Read it:</strong> <span data-lg="meaning"></span></p>
+      </div>
+    </div>
+  </div>
+  <noscript>
+    <ul>{sites.map((s) => <li><strong>{s.name}</strong> (<span set:html={mdInline(s.where)} />): <span set:html={mdInline(s.what)} /> <span set:html={mdInline(s.meaning)} /></li>)}</ul>
+  </noscript>
+</land-globe>
+
+<style is:global>
+  land-globe { display: block; }
+  .g6e-lg-layout { display: grid; gap: 1rem; align-items: start; grid-template-columns: minmax(0, 1fr); }
+  @media (min-width: 46rem) { .g6e-lg-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+  .g6e-lg-stage { width: 100%; max-width: 22rem; margin-inline: auto; }
+  .g6e-lg-static, .g6e-lg-canvas { display: block; width: 100%; height: auto; aspect-ratio: 1; touch-action: none; }
+  .g6e-lg-canvas { cursor: grab; }
+  .g6e-lg-hint { margin: 0.3rem 0 0; text-align: center; font-size: var(--step--1); color: var(--ink-3); }
+  .g6e-lg-panel .sci-pick-label:first-child { margin-top: 0; }
+  .g6e-lg-card { margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6e-lg-card h3 { margin: 0; }
+  .g6e-lg-card p { margin: 0.35rem 0 0; }
+  .g6e-lg-where { font-size: var(--step--1); color: var(--ink-3); font-weight: 700; }
+  .g6e-lg-meaning { padding: 0.5rem 0.7rem; border-radius: 7px; background: var(--accent-soft); }
+</style>
+
+<script>
+  import './land-globe-el.ts';
+</script>
