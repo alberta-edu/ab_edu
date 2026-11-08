@@ -104,3 +104,36 @@ describe('Grade 6 prime factorization', () => {
     expect(commonFactors(8, 15)).toEqual([1]);
   });
 });
+
+import { decimalMultiplyFrames, decimalDivideFrames, quotientOf } from '../src/components/visuals/g6-decimal-calc.ts';
+import { framesFor } from '../src/components/visuals/column-calc.ts';
+
+describe('Grade 6 decimal algorithms', () => {
+  const lastRow = (fs: ReturnType<typeof decimalMultiplyFrames>) => fs.at(-1)!.rows.at(-1)!.map((c) => c.ch).join('');
+  it('multiplies a decimal by a 2-digit number and places the point', () => {
+    expect(lastRow(decimalMultiplyFrames('4.75', '12'))).toBe('57.00');
+    expect(lastRow(decimalMultiplyFrames('0.36', '25'))).toBe('9.00');
+    expect(lastRow(decimalMultiplyFrames('2.4', '15'))).toBe('36.0');
+    expect(decimalMultiplyFrames('4.75', '12')[0].caption).toContain('close to 60');
+  });
+  const cases: [string, string, string][] = [
+    ['85.2', '12', '7.1'],
+    ['245', '14', '17.5'],
+    ['750', '24', '31.25'],
+    ['9.6', '12', '0.8'],
+    ['6.54', '3', '2.18'],
+    ['100', '16', '6.25'],
+    ['10', '3', '3.333'],
+  ];
+  for (const [a, b, want] of cases) {
+    it(`${a} ÷ ${b} = ${want}`, () => {
+      const fs = decimalDivideFrames(a, b);
+      expect(quotientOf(fs).replace(/^0+(?=\d)/, '')).toBe(want);
+      for (const f of fs) expect(f.caption.length).toBeGreaterThan(10);
+    });
+  }
+  it('is reached through column-calc', () => {
+    expect(quotientOf(framesFor({ op: '÷', a: '245', b: '14', decimal: true }))).toBe('17.5');
+    expect(framesFor({ op: '÷', a: '612', b: '6' }).at(-1)!.caption).toContain('102');
+  });
+});
