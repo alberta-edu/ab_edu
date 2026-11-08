@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PEOPLE as CHARTER_PEOPLE, RIGHTS as CHARTER_RIGHTS } from '../src/components/visuals/charter-data.ts';
 import { PARTIES, RIDINGS, ridingWinner, runElection, tallySeats } from '../src/components/visuals/election.ts';
 import { BENCHES, councilSteps, totalChiefs } from '../src/components/visuals/grand-council.ts';
 import { STAGES as ENGLAND_STAGES } from '../src/components/visuals/england-rights.ts';
@@ -134,5 +135,15 @@ describe('made-up election', () => {
       for (const r of e.ridings) expect(ridingWinner(r.votes)).toBe(r.winner);
     }
     expect(PARTIES).toHaveLength(3);
+  });
+});
+
+describe('Charter check', () => {
+  it('protects everyone with the fundamental freedoms, and only citizens with the vote', () => {
+    const who = (id: string) => CHARTER_RIGHTS.find((r) => r.id === id)!.protects;
+    for (const id of ['religion', 'expression', 'assembly']) expect(who(id)).toEqual(['citizen', 'resident', 'visitor']);
+    expect(who('vote')).toEqual(['citizen']);
+    expect(who('move')).toEqual(['citizen', 'resident']);
+    expect(CHARTER_PEOPLE.map((p) => p.id)).toEqual(['citizen', 'resident', 'visitor']);
   });
 });
