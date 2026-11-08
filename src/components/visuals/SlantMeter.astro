@@ -1,0 +1,76 @@
+---
+// One event, told with a slant (LANENG6-OI7-GQ1-LO1, K4.3, K4.4, K5.7, S4.6, S5.5). Each tab is a text
+// about the same event. "Show the slant" marks the loaded words and says which side the text favours.
+// "Make it fair" swaps each loaded word for a neutral one, so students hear the difference.
+// In the YAML, write a loaded word as [[loaded|neutral]].
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  event: string;
+  reports: { label: string; source: string; text: string; leans: string }[];
+}
+const { event, reports } = Astro.props;
+const marked = (t: string) =>
+  mdInline(t).replace(/\[\[(.+?)\|(.*?)\]\]/g, (_, loaded: string, neutral: string) => `<span class="g6e-sm-w"><span class="g6e-sm-loaded">${loaded}</span><span class="g6e-sm-neutral">${neutral}</span></span>`);
+const count = (t: string) => (t.match(/\[\[/g) ?? []).length;
+---
+<slant-meter>
+  <p class="g6e-sm-event"><strong>What happened:</strong> <span set:html={mdInline(event)} /></p>
+  <div class="sci-pick" role="group" aria-label="Choose a text">
+    {reports.map((r, i) => <button type="button" data-sm-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>{r.label}</button>)}
+  </div>
+  {
+    reports.map((r, i) => (
+      <div class="g6e-sm-report" data-sm-report={i} hidden={i !== 0}>
+        <p class="g6e-sm-source">{r.source}</p>
+        <p class="g6e-sm-text" set:html={marked(r.text)} />
+        <p class="g6e-sm-leans">
+          <strong>{count(r.text) ? `${count(r.text)} loaded ${count(r.text) === 1 ? 'word' : 'words'}.` : 'No loaded words.'}</strong> <span set:html={mdInline(r.leans)} />
+        </p>
+      </div>
+    ))
+  }
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-sm="slant" aria-pressed="false">🔍 Show the slant</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sm="fair" aria-pressed="false">⚖️ Make it fair</button>
+  </div>
+</slant-meter>
+
+<style is:global>
+  slant-meter { display: block; }
+  .g6e-sm-event { margin: 0 0 0.6rem; }
+  .g6e-sm-report { margin-top: 0.7rem; padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .g6e-sm-source { margin: 0 0 0.3rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-3); }
+  .g6e-sm-text { margin: 0; font-size: var(--step-1); line-height: 1.55; }
+  .g6e-sm-neutral { display: none; }
+  .g6e-sm-leans { display: none; margin: 0.6rem 0 0; padding: 0.5rem 0.7rem; border-radius: 7px; background: var(--warn-soft); font-size: var(--step--1); }
+  slant-meter.is-slant .g6e-sm-w { padding: 0 0.15rem; border-radius: 4px; background: var(--warn-soft); box-shadow: inset 0 -3px 0 var(--warn); }
+  slant-meter.is-slant .g6e-sm-leans { display: block; }
+  slant-meter.is-fair .g6e-sm-loaded { display: none; }
+  slant-meter.is-fair .g6e-sm-neutral { display: inline; }
+  slant-meter.is-fair .g6e-sm-w { background: var(--ok-soft); box-shadow: inset 0 -3px 0 var(--ok); padding: 0 0.15rem; border-radius: 4px; }
+</style>
+
+<script>
+  class SlantMeter extends HTMLElement {
+    connectedCallback() {
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-sm-tab]')];
+      const reports = [...this.querySelectorAll<HTMLElement>('[data-sm-report]')];
+      tabs.forEach((t) =>
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.setAttribute('aria-pressed', String(b === t)));
+          reports.forEach((r) => (r.hidden = r.dataset.smReport !== t.dataset.smTab));
+        }),
+      );
+      for (const mode of ['slant', 'fair'] as const) {
+        const b = this.querySelector<HTMLButtonElement>(`[data-sm="${mode}"]`)!;
+        b.addEventListener('click', () => {
+          const on = !this.classList.contains(`is-${mode}`);
+          this.classList.toggle(`is-${mode}`, on);
+          b.setAttribute('aria-pressed', String(on));
+        });
+      }
+    }
+  }
+  customElements.define('slant-meter', SlantMeter);
+</script>
