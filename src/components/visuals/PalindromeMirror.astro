@@ -1,0 +1,122 @@
+---
+// Palindromes in a mirror (LANENG6-OI3-GQ1-LO1, K3.2). Pick a word or phrase, press Flip, and its letters
+// turn around one by one under the original. If the two rows match, it is a palindrome. Students can type
+// their own. Nothing typed here leaves the page.
+interface Props {
+  words: string[];
+}
+const { words } = Astro.props;
+---
+<palindrome-mirror data-words={JSON.stringify(words)}>
+  <div class="sci-pick" role="group" aria-label="Choose a word or phrase">
+    {words.map((w, i) => <button type="button" data-pm-word={i} aria-pressed={i === 0 ? 'true' : 'false'}>{w}</button>)}
+  </div>
+  <label class="g6e-pm-own">
+    <span>Or try your own:</span>
+    <input type="text" maxlength="30" data-pm="input" autocomplete="off" spellcheck="false" />
+  </label>
+  <div class="g6e-pm-stage" aria-hidden="true">
+    <div class="g6e-pm-row" data-pm="forward"></div>
+    <div class="g6e-pm-mirror"></div>
+    <div class="g6e-pm-row g6e-pm-row--back" data-pm="back"></div>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-pm="flip">🪞 Flip it</button>
+  </div>
+  <p class="g6e-pm-verdict" data-pm="verdict" aria-live="polite"></p>
+</palindrome-mirror>
+
+<style is:global>
+  palindrome-mirror { display: block; }
+  .g6e-pm-own { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.6rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .g6e-pm-own input { flex: 1; min-width: 9rem; padding: 0.4rem 0.6rem; font: inherit; font-size: var(--step-0); border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+  .g6e-pm-stage { margin-top: 0.7rem; padding: 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); display: grid; gap: 0.4rem; justify-items: center; }
+  .g6e-pm-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem; min-height: 2.6rem; }
+  .g6e-pm-mirror { width: 80%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+  .g6e-pm-tile { display: grid; place-items: center; width: 2.1rem; height: 2.4rem; border-radius: 7px; background: var(--surface); border: 2px solid var(--line-strong); font-size: var(--step-1); font-weight: 800; text-transform: uppercase; }
+  .g6e-pm-row--back .g6e-pm-tile { opacity: 0; transform: rotateY(90deg); transition: opacity 0.25s ease, transform 0.25s ease; }
+  .g6e-pm-row--back .g6e-pm-tile.is-in { opacity: 1; transform: none; }
+  .g6e-pm-tile.is-match { border-color: var(--ok); background: var(--ok-soft); }
+  .g6e-pm-tile.is-miss { border-color: var(--bad); background: var(--bad-soft); }
+  .g6e-pm-verdict { min-height: 1.5rem; margin: 0.5rem 0 0; font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .g6e-pm-row--back .g6e-pm-tile { transition: none; } }
+</style>
+
+<script>
+  import { letters, isPalindrome } from './palindrome.ts';
+
+  class PalindromeMirror extends HTMLElement {
+    private words: string[] = [];
+    private text = '';
+    private timers: number[] = [];
+
+    connectedCallback() {
+      this.words = JSON.parse(this.dataset.words!);
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-pm-word]')];
+      buttons.forEach((b) =>
+        b.addEventListener('click', () => {
+          buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.part<HTMLInputElement>('input').value = '';
+          this.show(this.words[Number(b.dataset.pmWord)]);
+        }),
+      );
+      this.part<HTMLInputElement>('input').addEventListener('input', (e) => {
+        buttons.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+        this.show((e.target as HTMLInputElement).value);
+      });
+      this.part('flip').addEventListener('click', () => this.flip());
+      this.show(this.words[0]);
+    }
+
+    private part<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector<T>(`[data-pm="${name}"]`)!;
+    }
+
+    private tiles(row: HTMLElement, chars: string[]) {
+      row.innerHTML = '';
+      for (const c of chars) {
+        const t = document.createElement('span');
+        t.className = 'g6e-pm-tile';
+        t.textContent = c;
+        row.appendChild(t);
+      }
+      return [...row.children] as HTMLElement[];
+    }
+
+    private show(text: string) {
+      this.timers.forEach(clearTimeout);
+      this.text = text;
+      this.tiles(this.part('forward'), letters(text));
+      this.tiles(this.part('back'), []);
+      this.part('verdict').textContent = letters(text).length ? `“${text}”` : '';
+    }
+
+    private flip() {
+      this.timers.forEach(clearTimeout);
+      const l = letters(this.text);
+      if (l.length < 2) return;
+      const back = this.tiles(this.part('back'), [...l].reverse());
+      const front = [...this.part('forward').children] as HTMLElement[];
+      const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const step = still ? 0 : 120;
+      back.forEach((t, i) =>
+        this.timers.push(
+          window.setTimeout(() => {
+            t.classList.add('is-in');
+            const ok = t.textContent === front[i].textContent;
+            t.classList.add(ok ? 'is-match' : 'is-miss');
+            front[i].classList.add(ok ? 'is-match' : 'is-miss');
+          }, i * step),
+        ),
+      );
+      this.timers.push(
+        window.setTimeout(() => {
+          this.part('verdict').textContent = isPalindrome(this.text)
+            ? `✓ “${this.text}” reads the same both ways. It is a palindrome!`
+            : `✗ “${this.text}” changes when you flip it. Not a palindrome.`;
+        }, l.length * step + 100),
+      );
+    }
+  }
+  customElements.define('palindrome-mirror', PalindromeMirror);
+</script>
