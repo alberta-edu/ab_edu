@@ -25,6 +25,7 @@ import WindTwoWays from './WindTwoWays.astro';
 import GreenhouseRun from './GreenhouseRun.astro';
 import SeaRise from './SeaRise.astro';
 import RadarSweep from './RadarSweep.astro';
+import WetlandDrought from './WetlandDrought.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -55,6 +56,7 @@ const animations = {
   'g6-greenhouse': GreenhouseRun,
   'g6-sea-rise': SeaRise,
   'g6-radar': RadarSweep,
+  'g6-wetland-drought': WetlandDrought,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

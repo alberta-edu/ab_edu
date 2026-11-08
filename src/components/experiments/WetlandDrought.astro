@@ -1,0 +1,91 @@
+---
+// Animated experiment: a dry year in a prairie wetland. Less water (abiotic) means fewer cattails
+// (biotic), and fewer cattails mean fewer ducks, which rely on the plants for food and shelter.
+// The chain shows components influencing each other directly and indirectly
+// (SCI6-OI4-GQ1-LO1, K1.1-K1.4, U1.1, S1.1, S1.6).
+---
+<g6-wetland-drought>
+  <svg class="sci-svg" viewBox="0 0 640 330" aria-hidden="true" data-wd="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-wd="live"></p>
+</g6-wetland-drought>
+
+<style is:global>
+  g6-wetland-drought { display: block; }
+  g6-wetland-drought svg { background: color-mix(in srgb, var(--math) 8%, var(--surface)); }
+  .g6s-wd-land { fill: color-mix(in srgb, #8b5a2b 35%, var(--surface)); }
+  .g6s-wd-mud { fill: color-mix(in srgb, #8b5a2b 55%, var(--surface)); }
+  .g6s-wd-stem { stroke: #3f9a40; stroke-width: 3.5; stroke-linecap: round; }
+  .g6s-wd-head { fill: #7a5232; }
+  .g6s-wd-duck { fill: #5b7d3a; stroke: var(--ink); stroke-width: 1.5; }
+  .g6s-wd-bill { fill: #e5a43a; }
+  .g6s-wd-sun { fill: var(--sun); }
+  .g6s-wd-chain { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
+  .g6s-wd-bad { fill: var(--bad); font-size: 14px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-wd-bad { font-size: 20px; } }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  const CATTAILS = [110, 140, 175, 205, 400, 430, 465, 500];
+  const KEEP_CATTAILS = [140, 430, 465];
+  const DUCKS = [[240, 0], [290, 1], [340, 0], [370, 1], [310, 2]];
+
+  class WetlandDrought extends HTMLElement {
+    private k = 0; // 0 = wet year, 1 = dry year
+    private t = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-wd="live"]')!;
+      live.textContent = '';
+      await tween(6500, (t) => { this.t = t * 50; this.k = ease(Math.min(1, t * 1.2)); this.draw(); });
+      await wait(150);
+      live.textContent = 'In the dry year, the water level dropped. Most of the cattails died back, and most of the ducks left. Only two ducks stayed.';
+    }
+
+    private duck(x: number, y: number, flyAway: number) {
+      const fx = x + flyAway * 420;
+      const fy = y - flyAway * 300;
+      return `<g transform="translate(${fx.toFixed(1)} ${fy.toFixed(1)})"><ellipse class="g6s-wd-duck" cx="0" cy="0" rx="16" ry="9"/><circle class="g6s-wd-duck" cx="12" cy="-9" r="6"/><path class="g6s-wd-bill" d="M17 -9 l8 2 l-8 2 Z"/></g>`;
+    }
+
+    private draw() {
+      const k = this.k;
+      const water = 70 + 150 * (1 - k); // width of the pond's half
+      const level = 230 + 20 * k;
+      const out: string[] = [
+        `<circle class="g6s-wd-sun" cx="590" cy="44" r="${(22 + 6 * k).toFixed(1)}"/>`,
+        `<rect class="g6s-wd-land" x="0" y="230" width="640" height="100"/>`,
+        `<ellipse class="g6s-wd-mud" cx="300" cy="250" rx="230" ry="40"/>`,
+        `<ellipse class="sci-water" cx="300" cy="${level.toFixed(1)}" rx="${water.toFixed(1)}" ry="${(36 - 14 * k).toFixed(1)}"/>`,
+      ];
+      for (const x of CATTAILS) {
+        const keep = KEEP_CATTAILS.includes(x);
+        const h = keep ? 70 : 70 * (1 - k);
+        if (h < 4) continue;
+        out.push(`<line class="g6s-wd-stem" x1="${x}" y1="236" x2="${x}" y2="${236 - h}"/><rect class="g6s-wd-head" x="${x - 4}" y="${236 - h}" width="8" height="${Math.min(20, h / 3)}" rx="4"/>`);
+      }
+      DUCKS.forEach(([x, i], n) => {
+        const leaves = n >= 2;
+        const fly = leaves ? Math.max(0, (k - 0.35) / 0.65) : 0;
+        const bob = Math.sin(this.t * 0.4 + n) * 2;
+        out.push(this.duck(x, 226 - i * 6 + bob + 10 * k * (leaves ? 0 : 1), fly));
+      });
+      out.push(`<text class="sci-text" x="20" y="34">${k > 0.98 ? 'A dry year' : k > 0 ? 'Months with little rain…' : 'A wet year'}</text>`);
+      // The chain of effects, appearing step by step.
+      const steps = ['Less water', 'Fewer cattails', 'Fewer ducks'];
+      steps.forEach((s, i) => {
+        if (k < 0.3 + i * 0.25) return;
+        const x = 20 + i * 205;
+        out.push(`<rect class="g6s-wd-chain" x="${x}" y="284" width="180" height="34" rx="8"/><text class="g6s-wd-bad" x="${x + 90}" y="306" text-anchor="middle">${s}</text>`);
+        if (i > 0) out.push(`<text class="sci-text" x="${x - 13}" y="307" text-anchor="middle">→</text>`);
+      });
+      this.querySelector('[data-wd="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-wetland-drought', WetlandDrought);
+</script>
