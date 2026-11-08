@@ -1,0 +1,83 @@
+---
+// Animated experiment: decades pass in a warming climate. Ice on land melts and runs into the
+// ocean, so the sea level rises. The beach shrinks and waves reach the houses on the shore
+// (SCI6-OI3-GQ1-LO1, K2.1, K2.3, S2.1, U2.1).
+---
+<g6-sea-rise>
+  <svg class="sci-svg" viewBox="0 0 640 320" aria-hidden="true" data-sr="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sr="live"></p>
+</g6-sea-rise>
+
+<style is:global>
+  g6-sea-rise { display: block; }
+  g6-sea-rise svg { background: color-mix(in srgb, var(--math) 8%, var(--surface)); }
+  .g6s-sr-land { fill: color-mix(in srgb, #8b5a2b 40%, var(--surface)); }
+  .g6s-sr-beach { fill: #e8d29c; }
+  .g6s-sr-ice { fill: #eef7ff; stroke: #9cc3e6; stroke-width: 2; }
+  .g6s-sr-melt { fill: none; stroke: #6aa9d8; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 6; }
+  .g6s-sr-house { fill: color-mix(in srgb, #c0563a 25%, var(--surface)); stroke: var(--ink); stroke-width: 2; }
+  .g6s-sr-roof { fill: #8a3b2a; stroke: var(--ink); stroke-width: 2; }
+  .g6s-sr-mark { stroke: var(--ink-2); stroke-width: 2; stroke-dasharray: 5 5; }
+  .g6s-sr-wave { fill: none; stroke: var(--math); stroke-width: 2.5; }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  const SEA0 = 230; // sea level at the start
+  const RISE = 34;
+  // The shore: land rises gently from the sea toward the houses, then up a hill with an ice cap.
+  const SHORE = 'M0 320 V250 L250 250 L330 222 L430 196 L520 150 L600 110 L640 100 V320 Z';
+  const shoreY = (x: number) => {
+    const pts = [[250, 250], [330, 222], [430, 196], [520, 150], [600, 110], [640, 100]];
+    for (let i = 1; i < pts.length; i++) if (x <= pts[i][0]) { const [x0, y0] = pts[i - 1]; const [x1, y1] = pts[i]; return y0 + ((y1 - y0) * (x - x0)) / (x1 - x0); }
+    return 100;
+  };
+
+  class SeaRise extends HTMLElement {
+    private k = 0; // 0 = start, 1 = decades later
+    private t = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-sr="live"]')!;
+      live.textContent = '';
+      await tween(6000, (t) => { this.t = t * 40; this.k = ease(t); this.draw(); });
+      await wait(150);
+      live.textContent = 'The ice on the hill melted and ran into the ocean. The sea level rose, the beach got smaller, and the waves reached the houses.';
+    }
+
+    private draw() {
+      const sea = SEA0 - RISE * this.k;
+      // Where the sea meets the sloping beach.
+      let edge = 250;
+      while (edge < 640 && shoreY(edge) > sea) edge += 1;
+      const ice = 1 - this.k * 0.85;
+      const out: string[] = [
+        `<path class="g6s-sr-land" d="${SHORE}"/>`,
+        `<path class="g6s-sr-beach" d="M250 250 L330 222 L360 213 L360 222 L250 252 Z"/>`,
+        `<path class="g6s-sr-ice" d="M${600 - 70 * ice} ${shoreY(600 - 70 * ice) + 1} Q600 ${110 - 36 * ice} ${640} ${100 - 20 * ice} V${shoreY(640) + 1} Z"/>`,
+        `<rect class="sci-water" x="0" y="${sea.toFixed(1)}" width="${edge}" height="${(320 - sea).toFixed(1)}"/>`,
+        `<line class="sci-surface" x1="0" x2="${edge}" y1="${sea.toFixed(1)}" y2="${sea.toFixed(1)}"/>`,
+        `<line class="g6s-sr-mark" x1="0" x2="300" y1="${SEA0}" y2="${SEA0}"/>`,
+        `<text class="sci-small" x="10" y="${SEA0 + 20}">sea level at the start</text>`,
+      ];
+      for (let i = 0; i < 4; i++) {
+        const x = ((this.t * 4 + i * 70) % 240) + 10;
+        out.push(`<path class="g6s-sr-wave" d="M${x.toFixed(1)} ${(sea - 2).toFixed(1)} q8 -6 16 0"/>`);
+      }
+      if (this.k > 0.05 && this.k < 0.98) out.push(`<path class="g6s-sr-melt" d="M560 135 Q480 ${170} 420 ${200} T ${edge} ${sea.toFixed(1)}" stroke-dashoffset="${(-this.t * 3).toFixed(1)}"/>`);
+      for (const hx of [400, 455]) {
+        const hy = shoreY(hx + 15);
+        out.push(`<rect class="g6s-sr-house" x="${hx}" y="${hy - 32}" width="30" height="32"/><path class="g6s-sr-roof" d="M${hx - 4} ${hy - 32} L${hx + 15} ${hy - 50} L${hx + 34} ${hy - 32} Z"/>`);
+      }
+      out.push(`<text class="sci-text" x="20" y="34">${this.k > 0.98 ? 'Decades later' : this.k > 0 ? 'Years passing…' : 'Today'}</text>`);
+      out.push(`<text class="sci-small" x="632" y="66" text-anchor="end">ice on land</text>`);
+      this.querySelector('[data-sr="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-sea-rise', SeaRise);
+</script>
