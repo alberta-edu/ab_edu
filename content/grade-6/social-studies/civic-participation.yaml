@@ -1,0 +1,363 @@
+id: civic-participation
+grade: 6
+subject: social-studies
+organizingIdea: mHPvaWAVOU-k7Fefv9hAWw
+outcomes: [nS2HJVcYAkWB2AKADN4EKg]
+order: 7
+title: Civic Participation
+shortTitle: Civic participation
+summary: >-
+  Sort formal and informal ways to take part in your community, then follow a class project through seven
+  planning steps, from finding an issue to reflecting on the result.
+
+bigIdea: |-
+  - In a democracy, being a citizen comes with the responsibility of **civic participation**.
+  - People take part **formally**, through official processes, and **informally**, in everyday life.
+  - A **project plan** turns a good idea into action, step by step.
+  - Without people who take part, democracy and strong communities can’t last.
+
+lesson:
+  - title: Taking part
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: formal, label: Formal, icon: 🏛️ }
+            - { id: informal, label: Informal, icon: 🏘️ }
+          cards:
+            - { text: Voting in an election, bin: formal, why: 'Voting is an official part of how governments are chosen.' }
+            - { text: Speaking at a town council meeting, bin: formal, why: 'Council meetings are an official process with set rules.' }
+            - { text: Writing a letter to your MLA, bin: formal, why: 'You are using an official way to reach your representative.' }
+            - { text: Running for student council, bin: formal, why: 'Student council is an official, elected body in your school.' }
+            - { text: Picking up litter along a creek, bin: informal, why: 'You don’t need an official process to care for your community.' }
+            - { text: Shovelling a neighbour’s walk, bin: informal, why: 'An everyday act that helps sustain your community.' }
+            - { text: Volunteering at a food bank, bin: informal, why: 'Giving your time helps people, without an official process.' }
+        caption: Sort each action. Does it use an official process, or is it an everyday action?
+      - type: compare
+        covers: [K1.3, K1.2]
+        columns:
+          - title: 🏛️ Formal
+            body: Uses **official processes**, such as elections, councils and petitions. Often aims to **influence change**.
+          - title: 🏘️ Informal
+            body: Everyday actions in your **community**. Often helps to **sustain** the community, so it stays strong.
+
+  - title: Why it matters
+    blocks:
+      - type: compare
+        covers: [K1.1, S1.1, U1.1]
+        columns:
+          - title: 🙋 When people take part
+            body: |-
+              - Leaders hear many voices.
+              - Decisions fit what people need.
+              - Communities stay strong over time.
+          - title: 🙈 When no one does
+            body: |-
+              - A few people decide for everyone.
+              - Problems go unnoticed.
+              - Communities wear down.
+      - type: callout
+        variant: remember
+        covers: ['T9D6ixz0A02x1TS5l6YV-A#K1.2']
+        title: Remember from Grade 4
+        body: Citizenship in Canada carries **responsibilities**, such as contributing to the community, respecting the rights of others and voting.
+
+  - title: Planning a project
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.2]
+        component: project-path
+        caption: Follow a made-up class from an idea to a finished project. Tap **Next step**, or any stop on the path.
+      - type: callout
+        variant: tip
+        covers: [K1.4, S1.2]
+        title: Seven steps
+        body: |-
+          1. Identify the issue and purpose
+          2. Conduct research
+          3. Set goals
+          4. Consider costs and resources
+          5. Decide the steps to complete the plan
+          6. Complete the plan
+          7. Reflect on the outcome
+
+  - title: Sustaining a community
+    blocks:
+      - type: table
+        covers: [K1.2, U1.1]
+        caption: Civic participation can do two jobs
+        headers: [Action, Influences change, Sustains the community]
+        rows:
+          - ['Asking council for a crosswalk near school', '✅ A new crosswalk', '✅ Safer walks for years']
+          - ['Planting and watering a community garden', '➖', '✅ Food and green space every summer']
+          - ['Voting in an election', '✅ Chooses who decides', '➖']
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.1]
+        title: Foundational
+        body: Democracy needs citizens who take part. Strong, lasting communities need them too. That is why civic participation is the **foundation** of both.
+
+keyTerms:
+  - term: Civic participation
+    covers: [K1.1, K1.2]
+    definition: Taking action to help your community or to influence decisions that affect it.
+  - term: Formal participation
+    covers: [K1.3]
+    definition: Taking part through official processes, such as voting or speaking at a council meeting.
+  - term: Informal participation
+    covers: [K1.3]
+    definition: Taking part through everyday actions in your community, such as volunteering.
+  - term: Sustain
+    covers: [K1.2]
+    definition: To keep something going and strong over time.
+  - term: Project plan
+    covers: [K1.4]
+    definition: A set of steps for turning an idea into action, from naming the issue to reflecting on the result.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: order
+    prompt: Put the steps of a project plan in order.
+    items:
+      - Identify the issue and purpose
+      - Conduct research
+      - Set goals
+      - Consider costs and resources
+      - Decide the steps to complete the plan
+      - Complete the plan
+      - Reflect on the outcome
+    hints:
+      - What do you need to know before you can set a goal? What can only happen at the very end?
+    solution:
+      - Name the issue, learn about it, set a goal, count the costs, plan the steps, do it, then look back.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3]
+    type: mc
+    prompt: Hana goes to a city council meeting and asks the council to fix the broken lights at the outdoor rink. What kind of civic participation is this?
+    choices:
+      - Formal
+      - Informal
+      - It isn’t civic participation.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Hana is using an official process. Where is she speaking?
+      '2': Hana is acting to influence a decision for her community. Isn’t that civic participation?
+    hints:
+      - Is a council meeting an official process?
+    solution:
+      - Speaking at a council meeting uses an official process, so it is **formal** civic participation.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.2]
+    type: mc
+    prompt: Which sentence best describes civic participation?
+    choices:
+      - Taking action to help your community or to influence decisions that affect it
+      - Following the news about other countries
+      - Doing your homework every night
+      - Staying out of other people’s problems
+    answer: 0
+    feedback:
+      '1': Being informed helps, but what does civic participation ask you to do?
+      '2': Homework is a good habit, but does it help your community or influence a decision?
+      '3': Civic participation means getting involved. Is this getting involved?
+    hints:
+      - Think of the actions you sorted. What did they all have in common?
+    solution:
+      - Civic participation is **taking action** that influences change or sustains your community.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K1.4]
+    type: number
+    prompt: |-
+      Room 6 is planning a creek clean-up with **15 volunteers**. Each volunteer needs a pair of gloves, and a pair costs **$4**. The town will lend them grabbers for free.
+
+      How much money do they need for supplies?
+    answer: 60
+    verify: 15 * 4
+    unit: dollars
+    hints:
+      - Which supplies cost money, and which are free?
+    solution:
+      - Only the gloves cost money. \(15 \times 4 = 60\), so they need **$60**.
+      - The free grabbers are a **resource**. Finding resources is part of considering costs.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K1.4, S1.2]
+    type: mc
+    prompt: |-
+      A Grade 6 class plans a "Read-a-thon" for the school library.
+
+      1. They decide the library needs more books.
+      2. They set a goal: raise $500 for new books.
+      3. They hold the Read-a-thon and raise $520.
+      4. The librarian says, "Thank you! But we have plenty of books. We needed beanbag chairs."
+
+      Which step did they skip?
+    choices:
+      - Conduct research
+      - Set goals
+      - Complete the plan
+      - Identify the issue
+    answer: 0
+    feedback:
+      '1': They did set a goal, in step 2. Was it the right goal?
+      '2': They did hold the Read-a-thon. What went wrong before that?
+      '3': They named an issue. How did they know it was the real one?
+    hints:
+      - Who could have told them what the library really needed?
+    solution:
+      - They guessed the issue and never **researched** it. A quick talk with the librarian would have pointed them to beanbag chairs.
+      - Research comes before goals for a reason. It makes sure you solve the real problem.
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: The made-up Town of Larkspur asks people what to build at the empty lot. Only 4 people come to the meeting. All 4 want a dog park, so the town builds one. Many teens wanted a skatepark. What is the best lesson here?
+    choices:
+      - Decisions reflect the people who take part, so the teens needed to speak up.
+      - The town was wrong to ask anyone, and should have decided alone.
+      - Meetings never matter, because towns do what they want anyway.
+      - The 4 people cheated, because they all wanted the same thing.
+    answer: 0
+    feedback:
+      '1': Asking people is how a democracy works. What went wrong with the asking?
+      '2': The meeting did matter. It decided the dog park. Who was missing from it?
+      '3': Wanting the same thing isn’t cheating. Who else could have come?
+    hints:
+      - Whose voices did the town hear? Whose did it miss?
+    solution:
+      - In a democracy, decisions follow the voices that are heard. The teens weren’t there, so their idea wasn’t counted.
+      - That is why civic participation is a **responsibility** of citizenship.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [K1.2, U1.1]
+    type: multi
+    prompt: Which actions help **sustain** a community, so it stays strong over time? Choose all that apply.
+    choices:
+      - Watering the community garden all summer
+      - Teaching younger kids the rules of the local rink
+      - Visiting a lonely neighbour every week
+      - Leaving your bike in the middle of the path
+    answer: [0, 1, 2]
+    feedback:
+      '3': Does this keep the community strong, or get in someone’s way?
+    hints:
+      - Sustain means to keep something going. Which actions keep the community going?
+    solution:
+      - The garden, the rink lessons and the visits all keep the community strong over time. That is civic participation too, even though none of it uses an official process.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.4, S1.2]
+    type: investigation
+    prompt: |-
+      Your class wants a pollinator garden for bees and butterflies beside the school. The school council gives you **$200**.
+
+      | Item | Cost |
+      |---|---|
+      | Bench for visitors | $120 |
+      | Packet of flower seeds | $5 |
+      | Bag of soil | $10 |
+    parts:
+      - type: mc
+        prompt: Which goal is the clearest?
+        choices:
+          - Plant a garden with at least 10 kinds of flowers by June 1.
+          - Help the bees.
+          - Make the school nicer somehow.
+          - Do as much as we can.
+        answer: 0
+        feedback:
+          '1': A good aim, but how will you know when you have done it?
+          '2': What exactly will you do, and by when?
+          '3': How would you check whether you reached it?
+        hints: [A good goal says what, how much and by when.]
+        solution: ['It says **what**, **how much** and **by when**, so you can check whether you reached it.']
+      - type: build
+        prompt: Plan your spending. You must buy the bench, at least **10** seed packets and at least **2** bags of soil. You can’t spend more than **$200**.
+        fields:
+          - { name: s, label: 'Seed packets' }
+          - { name: b, label: 'Bags of soil' }
+        rules:
+          - { test: 's >= 10', fail: 'Your goal needs at least 10 kinds of flowers.' }
+          - { test: 'b >= 2', fail: 'The seeds need somewhere to grow. Get at least 2 bags of soil.' }
+          - { test: '120 + 5 * s + 10 * b <= 200', fail: 'Add it up with the bench. Is it more than $200?' }
+        examples:
+          - { s: 10, b: 2 }
+          - { s: 10, b: 3 }
+          - { s: 12, b: 2 }
+        counterexamples:
+          - { s: 8, b: 3 }
+          - { s: 14, b: 2 }
+          - { s: 10, b: 1 }
+        hints: [Start with the bench. How much is left for seeds and soil?]
+        solution: ['After the bench, \(200 - 120 = 80\) dollars are left.', '10 packets cost $50, leaving $30 for up to 3 bags of soil. 12 packets and 2 bags also make exactly $80.']
+      - type: mc
+        prompt: In September, half the flowers have died. No one watered them in July. What is the best reflection?
+        choices:
+          - Next time, make a summer watering schedule with families who live nearby.
+          - The project failed, so the class should never try another one.
+          - It was bad luck, so do the same plan again next year.
+          - Buy more seeds, since flowers die anyway.
+        answer: 0
+        feedback:
+          '1': Reflecting means learning from what happened. What could fix the problem?
+          '2': It wasn’t luck. What was missing from the plan?
+          '3': New seeds would die the same way. What is the real cause?
+        hints: [What caused the problem? How could a plan prevent it?]
+        solution: ['Reflection finds the **cause** and improves the next plan. A watering schedule fixes what went wrong.']
+    wrapUp: A clear goal, a careful budget and an honest look back turned a good idea into a garden that can last.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K1.3, K1.2, S1.1]
+    type: mc
+    prompt: |-
+      Litter keeps piling up at Poplar Park.
+
+      - **Class A** picks up litter there every Friday.
+      - **Class B** asks town council for more garbage bins, and gets them.
+
+      Which statement is best?
+    choices:
+      - Both are civic participation. Class A helps sustain the park, and Class B influences a change. Together they work best.
+      - Only Class B took part, because only formal actions count.
+      - Only Class A took part, because it did the actual work.
+      - Neither class took part, because the litter will come back.
+    answer: 0
+    feedback:
+      '1': Informal actions count too. Is picking up litter taking action for your community?
+      '2': Asking council is action too. What did the bins change?
+      '3': Civic participation doesn’t need a perfect ending. Did each class act for the park?
+    hints:
+      - Which class used a formal process? Which used an informal one? Did both help?
+    solution:
+      - Class A’s **informal** action keeps the park clean week by week. Class B’s **formal** action changed the park for good.
+      - Both are civic participation, and they work best together.

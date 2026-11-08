@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PROJECT } from '../src/components/visuals/project-plan.ts';
 import { PEOPLE as CHARTER_PEOPLE, RIGHTS as CHARTER_RIGHTS } from '../src/components/visuals/charter-data.ts';
 import { PARTIES, RIDINGS, ridingWinner, runElection, tallySeats } from '../src/components/visuals/election.ts';
 import { BENCHES, councilSteps, totalChiefs } from '../src/components/visuals/grand-council.ts';
@@ -145,5 +146,19 @@ describe('Charter check', () => {
     expect(who('vote')).toEqual(['citizen']);
     expect(who('move')).toEqual(['citizen', 'resident']);
     expect(CHARTER_PEOPLE.map((p) => p.id)).toEqual(['citizen', 'resident', 'visitor']);
+  });
+});
+
+describe('project path', () => {
+  it('walks the seven project-planning steps in the curriculum’s order', () => {
+    expect(PROJECT.steps.map((s) => s.name)).toEqual([
+      'Identify the issue and purpose',
+      'Conduct research',
+      'Set goals',
+      'Consider costs and resources',
+      'Decide the steps',
+      'Complete the plan',
+      'Reflect on the outcome',
+    ]);
   });
 });

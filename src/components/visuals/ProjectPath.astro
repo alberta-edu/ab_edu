@@ -1,0 +1,75 @@
+---
+// Walk a made-up class project along the seven project-planning steps, one stop at a time
+// (outcome nS2HJVcYAkWB2AKADN4EKg K1.4, S1.2).
+import { PROJECT } from './project-plan.ts';
+const n = PROJECT.steps.length;
+---
+<project-path>
+  <h3 class="g6ss-pp-title">{PROJECT.title}</h3>
+  <ol class="g6ss-pp-path" style={`--n:${n}`}>
+    {
+      PROJECT.steps.map((s, i) => (
+        <li>
+          <button type="button" class="g6ss-pp-stop" data-pp={i} aria-pressed={String(i === 0)} aria-label={`Step ${i + 1}: ${s.name}`}>
+            <span aria-hidden="true">{s.icon}</span>
+          </button>
+        </li>
+      ))
+    }
+  </ol>
+  {
+    PROJECT.steps.map((s, i) => (
+      <div class="g6ss-pp-card" data-pp-card={i} hidden={i !== 0} aria-live="polite">
+        <p class="g6ss-pp-num">Step {i + 1} of {n}</p>
+        <h4>{s.name}</h4>
+        <p>{s.did}</p>
+      </div>
+    ))
+  }
+  <div class="g6ss-pp-nav">
+    <button type="button" class="btn btn--ghost btn--small" data-pp-go="-1" disabled>← Back</button>
+    <button type="button" class="btn btn--small" data-pp-go="1">Next step →</button>
+  </div>
+</project-path>
+
+<style is:global>
+  project-path { display: block; }
+  .g6ss-pp-title { margin: 0 0 0.6rem; font-size: var(--step-0); }
+  .g6ss-pp-path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); position: relative; }
+  .g6ss-pp-path::before { content: ''; position: absolute; left: calc(50% / var(--n)); right: calc(50% / var(--n)); top: 50%; height: 4px; transform: translateY(-50%); background: var(--line); border-radius: 2px; }
+  .g6ss-pp-path li { display: flex; justify-content: center; position: relative; }
+  .g6ss-pp-stop { width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 3px solid var(--line-strong); background: var(--surface); font-size: 1.15rem; cursor: pointer; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
+  .g6ss-pp-stop.is-done { border-color: var(--accent); background: var(--accent-soft); }
+  .g6ss-pp-stop[aria-pressed='true'] { border-color: var(--accent); background: var(--accent); transform: scale(1.15); }
+  .g6ss-pp-card { margin-top: 0.8rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 7.5rem; }
+  .g6ss-pp-card h4 { margin: 0 0 0.3rem; font-size: var(--step-1); }
+  .g6ss-pp-card p { margin: 0; }
+  .g6ss-pp-num { font-size: var(--step--1); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+  .g6ss-pp-nav { display: flex; justify-content: space-between; margin-top: 0.6rem; }
+  @media (max-width: 30rem) { .g6ss-pp-stop { width: 2.2rem; height: 2.2rem; font-size: 1rem; } }
+  @media (prefers-reduced-motion: reduce) { .g6ss-pp-stop { transition: none; } }
+</style>
+
+<script>
+  class ProjectPath extends HTMLElement {
+    private at = 0;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-pp]').forEach((b) => b.addEventListener('click', () => this.go(Number(b.dataset.pp))));
+      this.querySelectorAll<HTMLButtonElement>('[data-pp-go]').forEach((b) => b.addEventListener('click', () => this.go(this.at + Number(b.dataset.ppGo))));
+    }
+
+    private go(i: number) {
+      const stops = [...this.querySelectorAll<HTMLButtonElement>('[data-pp]')];
+      this.at = Math.max(0, Math.min(stops.length - 1, i));
+      stops.forEach((s, k) => {
+        s.setAttribute('aria-pressed', String(k === this.at));
+        s.classList.toggle('is-done', k < this.at);
+      });
+      this.querySelectorAll<HTMLElement>('[data-pp-card]').forEach((c) => (c.hidden = Number(c.dataset.ppCard) !== this.at));
+      this.querySelector<HTMLButtonElement>('[data-pp-go="-1"]')!.disabled = this.at === 0;
+      this.querySelector<HTMLButtonElement>('[data-pp-go="1"]')!.disabled = this.at === stops.length - 1;
+    }
+  }
+  customElements.define('project-path', ProjectPath);
+</script>

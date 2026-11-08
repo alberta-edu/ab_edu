@@ -84,6 +84,7 @@ import CrownBalance from './visuals/CrownBalance.astro';
 import GrandCouncil from './visuals/GrandCouncil.astro';
 import ElectionSim from './visuals/ElectionSim.astro';
 import CharterCheck from './visuals/CharterCheck.astro';
+import ProjectPath from './visuals/ProjectPath.astro';
 
 interface Props {
   block: LessonBlock;
@@ -171,6 +172,7 @@ const visuals = {
   'grand-council': GrandCouncil,
   'election-sim': ElectionSim,
   'charter-check': CharterCheck,
+  'project-path': ProjectPath,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
