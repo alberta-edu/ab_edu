@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { PARTIES, RIDINGS, ridingWinner, runElection, tallySeats } from '../src/components/visuals/election.ts';
 import { BENCHES, councilSteps, totalChiefs } from '../src/components/visuals/grand-council.ts';
 import { STAGES as ENGLAND_STAGES } from '../src/components/visuals/england-rights.ts';
 import { GOV_SETS } from '../src/components/visuals/gov-branches.ts';
@@ -110,5 +111,28 @@ describe('Haudenosaunee Grand Council', () => {
       expect(steps[1].at).toBe('elder');
     }
     expect(councilSteps(true).length).toBeGreaterThan(councilSteps(false).length);
+  });
+});
+
+describe('made-up election', () => {
+  it('gives each riding to the candidate with the most votes, and no one on a tie', () => {
+    expect(ridingWinner({ wheat: 300, river: 400, rose: 100 })).toBe('river');
+    expect(ridingWinner({ wheat: 400, river: 400, rose: 100 })).toBeNull();
+  });
+
+  it('gives the government to the most seats and the Official Opposition to the next', () => {
+    expect(tallySeats(['rose', 'rose', 'river', 'rose', 'wheat', 'river'])).toEqual({ seats: { wheat: 1, river: 2, rose: 3 }, government: 'rose', opposition: 'river' });
+    expect(tallySeats(['rose', 'river'])).toBeNull();
+  });
+
+  it('always produces a clear result for every riding', () => {
+    for (let seed = 1; seed < 200; seed++) {
+      const e = runElection(seed);
+      expect(e.ridings).toHaveLength(RIDINGS.length);
+      expect(Object.values(e.seats).reduce((a, b) => a + b, 0)).toBe(RIDINGS.length);
+      expect(e.seats[e.government]).toBeGreaterThan(e.seats[e.opposition]);
+      for (const r of e.ridings) expect(ridingWinner(r.votes)).toBe(r.winner);
+    }
+    expect(PARTIES).toHaveLength(3);
   });
 });

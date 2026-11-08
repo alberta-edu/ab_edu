@@ -82,6 +82,7 @@ import DemocracyMap from './visuals/DemocracyMap.astro';
 import GovBranches from './visuals/GovBranches.astro';
 import CrownBalance from './visuals/CrownBalance.astro';
 import GrandCouncil from './visuals/GrandCouncil.astro';
+import ElectionSim from './visuals/ElectionSim.astro';
 
 interface Props {
   block: LessonBlock;
@@ -167,6 +168,7 @@ const visuals = {
   'gov-branches': GovBranches,
   'crown-balance': CrownBalance,
   'grand-council': GrandCouncil,
+  'election-sim': ElectionSim,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
