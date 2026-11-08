@@ -198,3 +198,21 @@ describe('Grade 6 fractions times natural numbers', () => {
     expect(partSvg(3, 4, 12).match(/g6m-fx-part--on/g)?.length).toBe(3);
   });
 });
+
+import { equivalent, unitRate, percentOf, ratioPairs, percentPairs, doubleLineSvg, num } from '../src/components/visuals/g6-ratio.ts';
+
+describe('Grade 6 ratios, rates and percent', () => {
+  it('checks equivalent ratios, unit rates and percents', () => {
+    expect(equivalent(2, 3, 6, 9)).toBe(true);
+    expect(equivalent(2, 3, 4, 5)).toBe(false);
+    expect(unitRate(4, 6)).toBe(1.5);
+    expect(percentOf(35, 60)).toBe(21);
+    expect(num(0.1 + 0.2)).toBe('0.3');
+  });
+  it('lines up matching amounts', () => {
+    const pairs = ratioPairs(2, 150, 4, 0.5);
+    expect(pairs.find((p) => p.hi)).toMatchObject({ top: 1, bottom: 75 });
+    expect(percentPairs(25, 80).find((p) => p.hi)).toMatchObject({ top: 25, bottom: 20 });
+    expect(doubleLineSvg(ratioPairs(2, 3, 3, 2), 'cups', 'eggs')).toContain('g6m-dl-join--hi');
+  });
+});

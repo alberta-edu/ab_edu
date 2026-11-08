@@ -83,6 +83,7 @@ import FactorTree from './visuals/FactorTree.astro';
 import FairShare from './visuals/FairShare.astro';
 import CommonDenominators from './visuals/CommonDenominators.astro';
 import FractionTimes from './visuals/FractionTimes.astro';
+import DoubleLine from './visuals/DoubleLine.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -167,6 +168,7 @@ const visuals = {
   'fair-share': FairShare,
   'common-denominators': CommonDenominators,
   'fraction-times': FractionTimes,
+  'double-line': DoubleLine,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

@@ -1,0 +1,299 @@
+id: ratios-rates
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [a0drDciYDkWmZ8qt5-1K0A]
+order: 9
+title: Equivalent Ratios, Rates and Percent
+shortTitle: Ratios, rates & percent
+summary: >-
+  Make equivalent ratios, solve proportions, find unit rates such as unit price and speed, and find a
+  percent of a number on a double number line.
+
+bigIdea: |-
+  - **Equivalent ratios** come from multiplying or dividing **both** terms by the same number.
+  - A **proportion** says two ratios are equivalent: \(\frac{2}{3} = \frac{8}{12}\).
+  - A **unit rate** tells how much for **1**: $1.50 per apple, 75 km per hour.
+  - A **percent** is a ratio with 100. To find **35% of 60**, multiply by 35 and divide by 100.
+
+lesson:
+  - title: Ratios that grow together
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1]
+        component: double-line
+        props: { mode: ratio, a: 2, b: 3, labelA: cups of flour, labelB: eggs }
+        caption: |-
+          - A recipe uses **2 cups of flour for every 3 eggs**.
+          - Slide to make a bigger batch. Both amounts are multiplied by the same number.
+      - type: callout
+        variant: remember
+        covers: [_tTreLA_0Ey9KlNK1XSxIA#K1.2, _tTreLA_0Ey9KlNK1XSxIA#U1.1]
+        title: Remember from Grade 5
+        body: 'A ratio compares two quantities in a situation. You can write it with a colon, 2 : 3, or as a fraction, \(\frac{2}{3}\).'
+
+  - title: Are they equivalent?
+    blocks:
+      - type: table
+        covers: [S1.1, K1.2, K1.1]
+        caption: 'Is each ratio equivalent to 2 : 3?'
+        headers: [Ratio, Same factor for both?, Equivalent?]
+        rows:
+          - ['6 : 9', '\(2 \times 3 = 6\) and \(3 \times 3 = 9\)', 'yes']
+          - ['10 : 15', '\(2 \times 5 = 10\) and \(3 \times 5 = 15\)', 'yes']
+          - ['4 : 5', '\(2 \times 2 = 4\), but \(3 \times 2 = 6\)', 'no']
+          - ['5 : 6', '\(2 + 3 = 5\) and \(3 + 3 = 6\): adding, not multiplying', 'no']
+      - type: callout
+        variant: mistake
+        covers: [K1.2, U1.1]
+        title: Multiply, don’t add
+        body: 'Adding the same amount to both terms changes the relationship. 2 : 3 and 5 : 6 are **not** equivalent.'
+
+  - title: Proportions
+    blocks:
+      - type: example
+        covers: [K1.3, S1.2]
+        title: Find the missing term
+        problem: 'Solve the proportion \(\frac{2}{3} = \frac{x}{12}\).'
+        steps:
+          - 'What turns 3 into 12? \(3 \times 4 = 12\).'
+          - 'Do the same to the top: \(2 \times 4 = 8\).'
+          - 'Check: 8 : 12 divided by 4 is 2 : 3 ✓'
+        answer: '\(x = 8\), so \(\frac{2}{3} = \frac{8}{12}\).'
+
+  - title: Rates and unit rates
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.5, S1.3, U1.2]
+        component: double-line
+        props: { mode: ratio, a: 2, b: 150, labelA: hours, labelB: km, unit: true }
+        caption: |-
+          - A train goes **150 km every 2 hours**. That is a **rate**.
+          - Press **Per 1 hour** to find the **unit rate**, the speed.
+      - type: table
+        covers: [S1.3, K1.5, U1.2]
+        headers: [Rate, Divide both by, Unit rate]
+        rows:
+          - ['$6 for 4 apples', '4', '$1.50 per apple (unit price)']
+          - ['150 km in 2 hours', '2', '75 km per hour (speed)']
+          - ['36 pages in 3 days', '3', '12 pages per day']
+
+  - title: Percent of a number
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.4, S1.5]
+        component: double-line
+        props: { mode: percent, whole: 80, label: dollars, p: 25 }
+        caption: 'The top line is percent, from 0% to 100%. The bottom line is $0 to $80. Slide to find a percent of $80.'
+      - type: example
+        covers: [K1.7, S1.4, S1.5]
+        title: 35% of 60
+        problem: 'Find **35%** of **60**.'
+        steps:
+          - 'As a proportion: \(\frac{35}{100} = \frac{x}{60}\).'
+          - 'Multiply the number by the percent: \(60 \times 35 = 2100\).'
+          - 'Divide by 100: \(2100 \div 100 = 21\).'
+        answer: '35% of 60 is **21**.'
+
+keyTerms:
+  - term: Equivalent ratios
+    covers: [K1.2, U1.1]
+    definition: 'Ratios that express the same relationship, like 2 : 3 and 6 : 9.'
+  - term: Proportion
+    covers: [K1.3]
+    definition: 'A statement that two ratios are equivalent, like \(\frac{2}{3} = \frac{8}{12}\).'
+  - term: Rate
+    covers: [K1.4]
+    definition: 'A ratio that compares two different kinds of quantities, like 150 km in 2 hours.'
+  - term: Unit rate
+    covers: [K1.5, S1.3]
+    definition: 'A rate for 1 of something, like 75 km per hour, or $1.50 per apple.'
+  - term: Percent
+    covers: [K1.6]
+    definition: 'A ratio compared with 100. 35% means 35 for every 100.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.1, K1.2]
+    type: multi
+    prompt: 'Which ratios are **equivalent** to 3 : 4? Choose all of them.'
+    choices: ['6 : 8', '9 : 12', '4 : 5', '3 : 8', '30 : 40']
+    answer: [0, 1, 4]
+    feedback:
+      '2': 'That adds 1 to each term. Equivalent ratios multiply both terms by the same number.'
+      '3': 'Only the second term changed. Both terms must be multiplied by the same number.'
+    hints:
+      - Can you multiply 3 and 4 by the same number to get the ratio?
+    solution:
+      - '6 : 8 is ×2, 9 : 12 is ×3 and 30 : 40 is ×10.'
+      - '4 : 5 adds 1 to each, and 3 : 8 doubles only one term.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.3]
+    type: number
+    prompt: 'Solve the proportion \(\frac{2}{5} = \frac{x}{35}\). \(x\) = ?'
+    answer: 14
+    verify: 2 * 35 / 5
+    hints:
+      - What do you multiply 5 by to get 35?
+    solution:
+      - '\(5 \times 7 = 35\), so multiply the top by 7 too: \(2 \times 7 = 14\).'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.5, K1.7]
+    type: number
+    prompt: 'What is **30%** of **70**?'
+    answer: 21
+    verify: 70 * 30 / 100
+    hints:
+      - Multiply by the percent, then divide by 100.
+    solution:
+      - '\(70 \times 30 = 2100\), and \(2100 \div 100 = 21\).'
+      - 'Check: 10% of 70 is 7, so 30% is \(3 \times 7 = 21\) ✓'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.3, K1.5]
+    type: number
+    prompt: 'A pack of **6** yogurt cups costs **$4.50**. What is the **unit price**?'
+    answer: 0.75
+    unit: $
+    verify: 4.5 / 6
+    hints:
+      - The unit price is the cost of 1 cup. Divide both terms of the rate by 6.
+    solution:
+      - '\(4.50 \div 6 = 0.75\). Each cup costs **$0.75**, or 75¢.'
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [S1.3, S1.6]
+    type: mc
+    prompt: 'Store A sells **3 kg** of apples for **$7.50**. Store B sells **5 kg** for **$11.50**. Which is the better buy?'
+    choices: ['Store B', 'Store A', 'They cost the same per kilogram']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Store A’s total is lower, but you get less. Compare the price of 1 kg at each store.'
+      '2': 'Work out each unit price. Are they really the same?'
+    hints:
+      - Find the price of 1 kg at each store.
+    solution:
+      - 'Store A: \(7.50 \div 3 = 2.50\) per kg. Store B: \(11.50 \div 5 = 2.30\) per kg.'
+      - '**Store B** is cheaper per kilogram, so it is the better buy.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.1, K1.2, U1.1]
+    type: mc
+    prompt: 'A recipe uses **2 cups of flour** for every **3 eggs**. Sam makes a bigger batch with **6 cups** of flour, so he uses **7 eggs**: "I added 4 cups of flour, so I add 4 more eggs." What is wrong?'
+    choices:
+      - 'The flour was multiplied by 3, so the eggs should be too: 9 eggs.'
+      - 'He should have added 6 eggs, because he has 6 cups of flour.'
+      - 'He should use 3 eggs, because the recipe always uses 3 eggs.'
+      - 'Nothing. Adding the same amount to both keeps the ratio the same.'
+    answer: 0
+    feedback:
+      '1': '6 cups for 6 eggs would be 1 : 1. Is that the recipe?'
+      '2': 'Three times the flour with the same eggs would change the recipe a lot.'
+      '3': 'Adding changes the relationship. Is 6 : 7 the same as 2 : 3?'
+    hints:
+      - What was the flour multiplied by to get from 2 cups to 6 cups?
+    solution:
+      - '2 cups became 6 cups: that is \(\times 3\). So the eggs must be \(3 \times 3 = 9\).'
+      - '6 : 9 is equivalent to 2 : 3. Sam’s 6 : 7 is not.'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [U1.2, S1.3, S1.6]
+    type: number
+    prompt: 'A cyclist rides **45 km in 3 hours** at a steady speed. At the same speed, how far does she ride in **5 hours**?'
+    answer: 75
+    unit: km
+    verify: 45 / 3 * 5
+    hints:
+      - Find her speed first. How far does she ride in 1 hour?
+    solution:
+      - 'Unit rate: \(45 \div 3 = 15\) km per hour.'
+      - 'In 5 hours: \(15 \times 5 = 75\) km.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.6, S1.2, K1.6, S1.4]
+    type: investigation
+    prompt: |-
+      To mix **sunset orange** paint, use red and yellow in the ratio **2 : 3**.
+    parts:
+      - type: number
+        prompt: How many litres of yellow do you need for **12 L** of red?
+        answer: 18
+        unit: L
+        verify: 12 / 2 * 3
+        hints:
+          - 'Solve \(\frac{2}{3} = \frac{12}{x}\). What turns 2 into 12?'
+        solution:
+          - '\(2 \times 6 = 12\), so \(3 \times 6 = 18\) L of yellow.'
+      - type: number
+        prompt: 'Maria has **10 L** of red and **12 L** of yellow. She wants to use **all** her yellow. How many litres of sunset orange can she make?'
+        answer: 20
+        unit: L
+        verify: 12 / 3 * 2 + 12
+        hints:
+          - How much red goes with 12 L of yellow? Does she have enough?
+        solution:
+          - '12 L of yellow is \(3 \times 4\), so she needs \(2 \times 4 = 8\) L of red. She has 10 L, which is enough.'
+          - 'Orange paint: \(8 + 12 = 20\) L. She has 2 L of red left over.'
+      - type: number
+        prompt: What **percent** of sunset orange paint is red?
+        answer: 40
+        unit: '%'
+        verify: 8 / 20 * 100
+        hints:
+          - In 20 L of orange, how many litres are red? Write that as a ratio with 100.
+        solution:
+          - '8 L of the 20 L is red. \(\frac{8}{20} = \frac{40}{100}\), so it is **40%** red.'
+          - 'That works for any batch, because 2 out of every 5 parts are red.'
+    wrapUp: 'A ratio fixes the relationship, not the amounts. Scale it to fit what you have, and it can also become a percent.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.5, S1.4, K1.7]
+    type: build
+    prompt: |-
+      A store wants a sale where the discount is **exactly $12**. Choose a percent off (a multiple of 5, below 100%) and a price in whole dollars, **$100 or less**.
+    fields:
+      - { name: p, label: 'Percent off', unit: '%' }
+      - { name: c, label: 'Price ($)' }
+    rules:
+      - { test: 'p % 5 == 0 && p > 0 && p < 100', fail: 'Choose a percent that is a multiple of 5, between 0% and 100%.' }
+      - { test: 'c % 1 == 0 && c > 0 && c <= 100', fail: 'Choose a price in whole dollars, up to $100.' }
+      - { test: 'c * p / 100 == 12', fail: 'Find that percent of the price: multiply by the percent and divide by 100. The discount must be exactly $12.' }
+    examples:
+      - { p: 20, c: 60 }
+      - { p: 25, c: 48 }
+      - { p: 15, c: 80 }
+    counterexamples:
+      - { p: 10, c: 100 }
+      - { p: 12, c: 100 }
+      - { p: 50, c: 30 }
+    hints:
+      - 'The discount is price × percent ÷ 100. So price × percent must be 1200.'
+      - 'Try 20%: what price makes 20% equal to $12?'
+    solution:
+      - 'Price × percent must equal \(12 \times 100 = 1200\).'
+      - '20% of $60: \(60 \times 20 \div 100 = 12\) ✓. 25% of $48 and 15% of $80 work too.'
+      - '10% would need a $120 price, which is over $100.'

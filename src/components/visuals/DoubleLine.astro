@@ -1,0 +1,104 @@
+---
+// A double number line for equivalent ratios, rates and percent (a0drDciYDkWmZ8qt5-1K0A).
+// "ratio" mode: two quantities that grow together. Slide to find an equivalent ratio, or show the
+// unit rate (per 1). "percent" mode: 0% to 100% lined up with 0 to a whole amount.
+import { doubleLineSvg, ratioPairs, percentPairs } from './g6-ratio.ts';
+
+interface Props {
+  mode?: 'ratio' | 'percent';
+  a?: number;
+  b?: number;
+  labelA?: string;
+  labelB?: string;
+  /** Show a "per 1" button. */
+  unit?: boolean;
+  /** Percent mode: the whole amount and its label. */
+  whole?: number;
+  label?: string;
+  p?: number;
+}
+const { mode = 'ratio', a = 2, b = 3, labelA = 'cups of flour', labelB = 'eggs', unit = false, whole = 80, label = 'dollars', p = 25 } = Astro.props;
+const first = mode === 'ratio' ? doubleLineSvg(ratioPairs(a, b, 6, 1), labelA, labelB) : doubleLineSvg(percentPairs(p, whole), 'percent', label, 100);
+---
+<double-line data-mode={mode} data-a={a} data-b={b} data-label-a={labelA} data-label-b={labelB} data-whole={whole} data-label={label}>
+  {mode === 'ratio' ? (
+    <div class="control-row">
+      <label class="control"><span>Multiply both by</span><input type="range" min="1" max="6" value="1" data-dl="k" /> <output data-dl="k-out">1</output></label>
+      {unit && <button type="button" class="btn btn--ghost btn--small" data-dl="unit">Per 1 {labelA.replace(/s$/, '').replace(/^cups/, 'cup')}</button>}
+    </div>
+  ) : (
+    <div class="control-row">
+      <label class="control"><span>Percent</span><input type="range" min="0" max="100" step="5" value={p} data-dl="p" /> <output data-dl="p-out">{p}%</output></label>
+    </div>
+  )}
+  <div class="g6m-dl-stage" data-dl="svg" set:html={first} aria-hidden="true" />
+  <div class="g6m-dl-cards" data-dl="cards" aria-live="polite"></div>
+</double-line>
+
+<style is:global>
+  double-line { display: block; }
+  .g6m-dl-stage svg { display: block; width: 100%; max-width: 36rem; height: auto; margin: 0.6rem auto 0; font-family: var(--font); }
+  .g6m-dl-name { fill: var(--ink-2); font-size: 20px; font-weight: 700; }
+  .g6m-dl-num { fill: var(--ink); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g6m-dl-num--hi { fill: var(--accent); font-size: 26px; }
+  .g6m-dl-join { stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .g6m-dl-join--hi { stroke: var(--accent); stroke-width: 4; stroke-dasharray: none; }
+  .g6m-dl-cards { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); margin-top: 0.8rem; }
+  .g6m-dl-card { padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+  .g6m-dl-card small { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .g6m-dl-card strong { font-size: var(--step-2); color: var(--accent); font-variant-numeric: tabular-nums; }
+  .g6m-dl-card p { margin: 0.2rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+</style>
+
+<script>
+  import { doubleLineSvg, ratioPairs, percentPairs, num, percentOf } from './g6-ratio.ts';
+
+  class DoubleLine extends HTMLElement {
+    private perOne = false;
+
+    connectedCallback() {
+      this.querySelectorAll('input').forEach((i) =>
+        i.addEventListener('input', () => {
+          this.perOne = false;
+          this.render();
+        }),
+      );
+      this.querySelector('[data-dl="unit"]')?.addEventListener('click', () => {
+        this.perOne = true;
+        this.render();
+      });
+      this.render();
+    }
+
+    private render() {
+      const d = this.dataset;
+      const card = (k: string, v: string, p: string) => `<div class="g6m-dl-card"><small>${k}</small><strong>${v}</strong><p>${p}</p></div>`;
+      const svg = this.querySelector('[data-dl="svg"]')!;
+      const cards = this.querySelector('[data-dl="cards"]')!;
+      if (d.mode === 'ratio') {
+        const a = Number(d.a);
+        const b = Number(d.b);
+        const kIn = this.querySelector<HTMLInputElement>('[data-dl="k"]')!;
+        const k = this.perOne ? 1 / a : Number(kIn.value);
+        this.querySelector('[data-dl="k-out"]')!.textContent = this.perOne ? `1/${a}` : String(k);
+        svg.innerHTML = doubleLineSvg(ratioPairs(a, b, 6, k), d.labelA!, d.labelB!);
+        const one = d.labelA!.replace(/s$/, '').replace(/^cups/, 'cup');
+        cards.innerHTML =
+          card('Ratio', `${a} : ${b}`, `${a} ${d.labelA} for every ${b} ${d.labelB}`) +
+          (this.perOne
+            ? card('Unit rate', `${num(b / a)} per 1`, `Divide both by ${a}: 1 ${one} for every ${num(b / a)} ${d.labelB}.`)
+            : card('Equivalent ratio', `${num(a * k)} : ${num(b * k)}`, `Both terms × ${k}. The relationship stays the same.`));
+      } else {
+        const n = Number(d.whole);
+        const pIn = this.querySelector<HTMLInputElement>('[data-dl="p"]')!;
+        const p = Number(pIn.value);
+        this.querySelector('[data-dl="p-out"]')!.textContent = `${p}%`;
+        svg.innerHTML = doubleLineSvg(percentPairs(p, n), 'percent', d.label!, 100);
+        cards.innerHTML =
+          card(`${p}% of ${n}`, num(percentOf(p, n)), `${n} × ${p} ÷ 100 = ${num(percentOf(p, n))}`) +
+          card('As a proportion', `${p}/100 = ${num(percentOf(p, n))}/${n}`, `${p} out of 100 is the same as ${num(percentOf(p, n))} out of ${n}.`);
+      }
+    }
+  }
+  customElements.define('double-line', DoubleLine);
+</script>
