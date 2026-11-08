@@ -137,3 +137,23 @@ describe('Grade 6 decimal algorithms', () => {
     expect(framesFor({ op: '÷', a: '612', b: '6' }).at(-1)!.caption).toContain('102');
   });
 });
+
+import { share, divideToDecimal, sector } from '../src/components/visuals/g6-share.ts';
+
+describe('Grade 6 fractions as quotients', () => {
+  it('shares n things among k people', () => {
+    expect(share(3, 4)).toMatchObject({ whole: 0, rest: 3, decimal: '0.75', exact: true, simplest: null });
+    expect(share(5, 4)).toMatchObject({ whole: 1, rest: 1, decimal: '1.25' });
+    expect(share(6, 8).simplest).toEqual([3, 4]);
+    expect(share(2, 3)).toMatchObject({ decimal: '0.666', exact: false });
+  });
+  it('divides to a decimal', () => {
+    expect(divideToDecimal(3, 8).text).toBe('0.375');
+    expect(divideToDecimal(8, 4).text).toBe('2');
+    expect(divideToDecimal(7, 20).text).toBe('0.35');
+  });
+  it('draws whole circles and slices', () => {
+    expect(sector(0, 0, 10, 0, 1)).toContain('a10 10');
+    expect(sector(0, 0, 10, 0, 0.25)).toMatch(/^M0 0 L0.00 -10.00 A10 10 0 0 1 10.00 0.00 Z$/);
+  });
+});

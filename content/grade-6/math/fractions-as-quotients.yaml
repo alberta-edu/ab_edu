@@ -1,0 +1,302 @@
+id: fractions-as-quotients
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT6-OI1-GQ5-LO1]
+order: 6
+title: Fractions as Division
+shortTitle: Fractions as division
+summary: >-
+  Share things equally and write each share as a fraction, see every fraction as a division, and
+  divide the numerator by the denominator to get a decimal.
+
+bigIdea: |-
+  - Sharing **3** things equally among **4** people gives each person \(\frac{3}{4}\).
+  - The **numerator** is what is shared. The **denominator** is the number of shares.
+  - So a fraction **is** a division: \(\frac{3}{4} = 3 \div 4\).
+  - Divide the numerator by the denominator to get the **decimal**: \(3 \div 4 = 0.75\).
+
+lesson:
+  - title: Sharing makes a fraction
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1, S1.2]
+        component: fair-share
+        props: { items: 3, people: 4, mode: cut }
+        caption: |-
+          - Press **Cut**, then **Share**. How much does each person get?
+          - Change the pancakes and the people, and try again.
+
+  - title: Two ways to share
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1]
+        component: fair-share
+        props: { items: 5, people: 4, mode: wholes }
+        caption: |-
+          - **Wholes first**: hand out whole pancakes, then cut the leftover.
+          - Switch to **Cut every pancake**. Is the share the same?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI1-GQ5-LO1#U1.2]
+        title: Remember from Grade 5
+        body: '\(\frac{5}{4}\) and \(1\frac{1}{4}\) name the **same amount**. They sit at the same point on the number line.'
+
+  - title: A fraction is a division
+    blocks:
+      - type: table
+        covers: [S1.3, U1.1, S1.2]
+        headers: [Sharing story, Each share, Division]
+        rows:
+          - ['3 pancakes, 4 people', '\(\frac{3}{4}\)', '\(3 \div 4\)']
+          - ['7 m of rope, 2 equal pieces', '\(\frac{7}{2}\) m', '\(7 \div 2\)']
+          - ['2 pizzas, 5 friends', '\(\frac{2}{5}\)', '\(2 \div 5\)']
+          - ['12 cookies, 3 kids', '\(\frac{12}{3} = 4\)', '\(12 \div 3\)']
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: Which number goes on top?
+        body: What is being **shared** goes on top. The number of **shares** goes on the bottom.
+
+  - title: From a fraction to a decimal
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.4]
+        component: column-calc
+        props:
+          examples:
+            - { op: '÷', a: '3', b: '8', decimal: true }
+            - { op: '÷', a: '7', b: '20', decimal: true }
+            - { op: '÷', a: '5', b: '4', decimal: true }
+        caption: '\(\frac{3}{8} = 3 \div 8\). Press **Next step** to divide past the decimal point.'
+
+  - title: Same share, different fractions
+    blocks:
+      - type: compare
+        covers: [U1.2, S1.4]
+        columns:
+          - title: 6 pancakes, 8 people
+            figure: { kind: fraction-bars, n: 6, d: 8, wholes: 1 }
+            body: '\(\frac{6}{8} = 6 \div 8 = 0.75\)'
+          - title: 3 pancakes, 4 people
+            figure: { kind: fraction-bars, n: 3, d: 4, wholes: 1 }
+            body: '\(\frac{3}{4} = 3 \div 4 = 0.75\)'
+      - type: text
+        covers: [U1.2]
+        body: Double the pancakes **and** the people, and each person still gets the same amount. Equivalent fractions are the **same quotient**.
+
+keyTerms:
+  - term: Quotient
+    covers: [U1.1, K1.2]
+    definition: 'The answer to a division. \(\frac{3}{4}\) is the quotient of \(3 \div 4\).'
+  - term: Equal sharing
+    covers: [K1.1]
+    definition: Splitting an amount so that every share is the same size.
+  - term: Numerator and denominator
+    covers: [K1.1]
+    definition: 'In a sharing fraction, the numerator is the amount shared and the denominator is the number of shares.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, S1.2]
+    type: fraction
+    prompt: '**4** friends share **3** granola bars equally. What fraction of a bar does each friend get?'
+    answer: 3/4
+    verify: 3 / 4
+    hints:
+      - What is being shared? How many shares are there?
+    solution:
+      - 'The 3 bars are shared, so 3 goes on top. There are 4 shares, so 4 goes on the bottom.'
+      - 'Each friend gets \(\frac{3}{4}\) of a bar.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S1.3, U1.1]
+    type: mc
+    prompt: 'Which division has the same value as \(\frac{5}{8}\)?'
+    choices: ['\(5 \div 8\)', '\(8 \div 5\)', '\(5 \times 8\)', '\(8 - 5\)']
+    answer: 0
+    feedback:
+      '1': 'That shares 8 things among 5 people. Each would get more than 1.'
+      '2': 'A fraction is a division, not a multiplication.'
+      '3': 'A fraction compares the numerator with the denominator by dividing, not subtracting.'
+    hints:
+      - The numerator is shared among the denominator.
+    solution:
+      - '\(\frac{5}{8}\) means 5 shared among 8, so it is \(5 \div 8\).'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.3]
+    type: number
+    prompt: 'Write \(\frac{7}{20}\) as a decimal.'
+    answer: 0.35
+    verify: 7 / 20
+    hints:
+      - Divide the numerator by the denominator. 20 doesn’t go into 7, so start with 70 tenths.
+    solution:
+      - '\(7 \div 20\): 20 goes into 70 three times, with 10 left. 20 goes into 100 five times.'
+      - 'So \(\frac{7}{20} = 0.35\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.2, K1.1, S1.3]
+    type: mc
+    prompt: 'Which story matches \(6 \div 4 = \frac{6}{4}\)?'
+    choices:
+      - 6 pizzas are shared equally by 4 people.
+      - 4 pizzas are shared equally by 6 people.
+      - 6 people each eat 4 slices of pizza.
+      - A pizza is cut into 6 slices, and 4 are eaten.
+    answer: 0
+    feedback:
+      '1': 'Then each person gets less than a pizza, \(\frac{4}{6}\). Which number is being shared in \(6 \div 4\)?'
+      '2': 'That is a multiplication story, \(6 \times 4\) slices.'
+      '3': 'That describes \(\frac{4}{6}\) of one pizza. Nobody is sharing 6 things.'
+    hints:
+      - In \(6 \div 4\), what is shared, and how many shares are there?
+    solution:
+      - '6 is shared and 4 is the number of shares. So 6 pizzas are shared among 4 people.'
+      - 'Each person gets \(\frac{6}{4} = 1\frac{1}{2}\) pizzas.'
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [S1.4, U1.1, K1.2]
+    type: mc
+    prompt: 'At one table, **3** kids share **2** pizzas. At another table, **5** kids share **3** pizzas. At which table does each kid get **more**?'
+    choices: ['2 pizzas for 3 kids', '3 pizzas for 5 kids', 'They get the same']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Divide: \(3 \div 5 = 0.6\). What is \(2 \div 3\)?'
+      '2': 'Write each share as a decimal and compare them.'
+    hints:
+      - Write each share as a fraction, then divide to get a decimal.
+    solution:
+      - 'First table: \(\frac{2}{3} = 2 \div 3 = 0.666\ldots\)'
+      - 'Second table: \(\frac{3}{5} = 3 \div 5 = 0.6\)'
+      - '0.666… is more than 0.6, so kids at the table with **2 pizzas for 3 kids** get more.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.3, S1.3, S1.4]
+    type: mc
+    prompt: 'Ben writes \(\frac{3}{5}\) as a decimal. He divides \(5 \div 3\) and gets about **1.67**. What went wrong?'
+    choices:
+      - 'He divided the denominator by the numerator. \(\frac{3}{5}\) is \(3 \div 5\), which is 0.6.'
+      - 'He should have multiplied 3 by 5 to get 15.'
+      - 'He needed to round 1.67 to 2.'
+      - 'Nothing. \(\frac{3}{5}\) is about 1.67.'
+    answer: 0
+    feedback:
+      '1': 'A fraction is a division, not a multiplication.'
+      '2': 'Rounding doesn’t fix it. Is \(\frac{3}{5}\) more or less than 1 whole?'
+      '3': '\(\frac{3}{5}\) is less than 1 whole, so its decimal must be less than 1.'
+    hints:
+      - Is \(\frac{3}{5}\) more or less than 1? Is 1.67?
+    solution:
+      - '\(\frac{3}{5}\) is 3 shared among 5, so it is \(3 \div 5 = 0.6\).'
+      - 'Ben divided the other way. A quick check: \(\frac{3}{5}\) is less than 1, so its decimal must be too.'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [U1.2, S1.1]
+    type: multi
+    prompt: '**3** pizzas are shared equally by **4** people. Which of these give each person the **same** amount? Choose all of them.'
+    choices:
+      - 6 pizzas shared by 8 people
+      - 9 pizzas shared by 12 people
+      - 4 pizzas shared by 3 people
+      - 3 pizzas shared by 8 people
+      - 30 pizzas shared by 40 people
+    answer: [0, 1, 4]
+    feedback:
+      '2': 'That is \(\frac{4}{3}\), more than a whole pizza each.'
+      '3': 'Twice as many people share the same pizzas, so each gets half as much.'
+    hints:
+      - 'Each person gets \(\frac{3}{4} = 0.75\). Which shares are also 0.75?'
+    solution:
+      - '\(\frac{6}{8}\), \(\frac{9}{12}\) and \(\frac{30}{40}\) are all equal to \(\frac{3}{4}\), or 0.75.'
+      - 'When the pizzas and the people grow by the same factor, the share stays the same.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.2, S1.4, U1.1]
+    type: investigation
+    prompt: |-
+      At a class party, **10** kids sit at two tables. Table A has **4** kids and **3** pizzas. Table B has **6** kids and **4** pizzas. Each table shares its own pizzas equally.
+    parts:
+      - type: number
+        prompt: How much pizza does each kid at **Table A** get? Write it as a decimal.
+        answer: 0.75
+        verify: 3 / 4
+        hints:
+          - Write the share as a fraction, then divide.
+        solution:
+          - '\(\frac{3}{4} = 3 \div 4 = 0.75\) of a pizza.'
+      - type: fraction
+        prompt: How much pizza does each kid at **Table B** get? Write it as a fraction.
+        answer: 4/6
+        form: any
+        verify: 4 / 6
+        hints:
+          - What is shared at Table B, and among how many?
+        solution:
+          - '\(\frac{4}{6}\) of a pizza, which equals \(\frac{2}{3}\), or about 0.67.'
+      - type: mc
+        prompt: Suppose all **7** pizzas were shared by all **10** kids instead. Who would get **less** than they get now?
+        choices: ['The kids at Table A', 'The kids at Table B', 'Nobody', 'Everybody']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Table B kids get about 0.67 now. What is \(7 \div 10\)?'
+          '2': 'Compare \(\frac{7}{10}\) with 0.75 and with about 0.67.'
+          '3': 'Could everybody get less, when the same 7 pizzas are shared?'
+        hints:
+          - 'Each kid would get \(\frac{7}{10} = 0.7\). Compare it with each table’s share.'
+        solution:
+          - 'Sharing everything gives \(7 \div 10 = 0.7\) each.'
+          - 'Table A kids get 0.75 now, so they would get **less**. Table B kids get about 0.67 now, so they would get more.'
+    wrapUp: 'Every sharing is a division. Writing each share as a decimal makes them easy to compare.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, S1.4, K1.3]
+    type: build
+    prompt: |-
+      Invent a sharing: some muffins shared equally by some kids. Each kid must get **more than half** a muffin but **less than 0.6** of a muffin. Use **20 kids or fewer**.
+    fields:
+      - { name: m, label: 'Muffins' }
+      - { name: k, label: 'Kids' }
+    rules:
+      - { test: 'm % 1 == 0 && k % 1 == 0 && m >= 1 && k >= 2 && k <= 20', fail: 'Use whole numbers: at least 1 muffin, and from 2 to 20 kids.' }
+      - { test: 'm / k > 0.5', fail: 'Divide muffins by kids. Each kid needs more than 0.5 of a muffin.' }
+      - { test: 'm / k < 0.6', fail: 'Divide muffins by kids. That share is 0.6 or more. Try more kids, or fewer muffins.' }
+    examples:
+      - { m: 5, k: 9 }
+      - { m: 4, k: 7 }
+      - { m: 7, k: 12 }
+    counterexamples:
+      - { m: 1, k: 2 }
+      - { m: 3, k: 5 }
+      - { m: 2, k: 3 }
+    hints:
+      - Half means the muffins are half the kids. How can you have a little more than half?
+      - 'Try 5 muffins. 10 kids gives exactly half. What about 9 kids?'
+    solution:
+      - '5 muffins for 9 kids: \(5 \div 9 = 0.555\ldots\), between 0.5 and 0.6 ✓'
+      - '4 for 7 is about 0.57, and 7 for 12 is about 0.58. Both work too.'
+      - '3 for 5 is exactly 0.6, so it is not **less** than 0.6.'

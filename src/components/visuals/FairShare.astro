@@ -1,0 +1,143 @@
+---
+// Equal sharing as a fraction and a division (MAT6-OI1-GQ5-LO1: K1.1-K1.3, U1.1, U1.2, S1.1, S1.2,
+// S1.4). Some pancakes are shared among some people, two ways: cut every pancake into one piece per
+// person, or hand out whole pancakes first and cut only the leftovers. Both give n/k = n ÷ k each.
+interface Props {
+  items?: number;
+  people?: number;
+  mode?: 'cut' | 'wholes';
+}
+const { items = 3, people = 4, mode = 'cut' } = Astro.props;
+---
+<fair-share data-items={items} data-people={people} data-mode={mode}>
+  <div class="seg" role="group" aria-label="How to share">
+    <button type="button" data-mode="cut" aria-pressed={String(mode === 'cut')}>Cut every pancake</button>
+    <button type="button" data-mode="wholes" aria-pressed={String(mode === 'wholes')}>Wholes first</button>
+  </div>
+  <div class="control-row">
+    <label class="control"><span>Pancakes</span><input type="range" min="1" max="8" value={items} data-fs="n" /> <output data-fs="n-out">{items}</output></label>
+    <label class="control"><span>People</span><input type="range" min="2" max="8" value={people} data-fs="k" /> <output data-fs="k-out">{people}</output></label>
+  </div>
+  <div class="g6m-fs-stage" data-fs="svg" aria-hidden="true"></div>
+  <p class="g6m-fs-say" data-fs="say" aria-live="polite"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-fs="go">Cut ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-fs="reset">Start over</button>
+  </div>
+</fair-share>
+
+<style is:global>
+  fair-share { display: block; }
+  .g6m-fs-stage svg { display: block; width: 100%; max-width: 36rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g6m-fs-cake { fill: #e9b860; stroke: #8a5a1c; stroke-width: 2; }
+  .g6m-fs-cut { stroke: #8a5a1c; stroke-width: 2; }
+  .g6m-fs-plate { fill: var(--surface); stroke: var(--line-strong); stroke-width: 3; }
+  .g6m-fs-label { fill: var(--ink-2); font-size: 15px; font-weight: 700; }
+  .g6m-fs-piece { stroke: #8a5a1c; stroke-width: 1.5; animation: g6m-fs-in 0.5s ease both; transform-box: fill-box; transform-origin: center; }
+  .g6m-fs-gone { opacity: 0.18; transition: opacity 0.5s; }
+  .g6m-fs-say { min-height: 3.2em; margin: 0.6rem 0 0; font-size: var(--step-0); }
+  .g6m-fs-say strong { color: var(--accent); }
+  @keyframes g6m-fs-in { from { opacity: 0; transform: translateY(-30px) scale(0.6); } }
+  @media (prefers-reduced-motion: reduce) { .g6m-fs-piece { animation: none; } .g6m-fs-gone { transition: none; } }
+</style>
+
+<script>
+  import { share, sector } from './g6-share.ts';
+
+  // A colour per pancake, so you can see where each piece came from.
+  const TINTS = ['#e9b860', '#d99a3d', '#f1cd85', '#c98a32', '#e2a94e', '#f5d79a', '#d4923a', '#ecc073'];
+
+  class FairShare extends HTMLElement {
+    private mode: 'cut' | 'wholes' = 'cut';
+    private stage = 0; // 0 whole, 1 cut, 2 shared
+
+    connectedCallback() {
+      this.mode = this.dataset.mode as 'cut' | 'wholes';
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.mode = b.dataset.mode as 'cut' | 'wholes';
+          this.querySelectorAll('[data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.reset();
+        }),
+      );
+      this.querySelectorAll('input').forEach((i) => i.addEventListener('input', () => this.reset()));
+      this.q('go').addEventListener('click', () => {
+        if (this.stage < 2) this.stage++;
+        this.draw();
+      });
+      this.q('reset').addEventListener('click', () => this.reset());
+      this.reset();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-fs="${k}"]`) as HTMLElement;
+    }
+
+    private nums() {
+      return [Number((this.q('n') as HTMLInputElement).value), Number((this.q('k') as HTMLInputElement).value)];
+    }
+
+    private reset() {
+      const [n, k] = this.nums();
+      this.q('n-out').textContent = String(n);
+      this.q('k-out').textContent = String(k);
+      this.stage = 0;
+      this.draw();
+    }
+
+    private draw() {
+      const [n, k] = this.nums();
+      const s = share(n, k);
+      const R = 26;
+      const W = Math.max(n, k) * 68 + 20;
+      const topY = 46;
+      const plateY = 170;
+      const cakeX = (i: number) => W / 2 + (i - (n - 1) / 2) * 64;
+      const plateX = (j: number) => W / 2 + (j - (k - 1) / 2) * 64;
+      const wholesGiven = this.mode === 'wholes' ? s.whole * k : 0; // pancakes handed out whole
+      let svg = `<text class="g6m-fs-label" x="10" y="16">${n} pancake${n === 1 ? '' : 's'}</text>`;
+      for (let i = 0; i < n; i++) {
+        const cut = this.stage >= 1 && i >= wholesGiven;
+        const gone = this.stage === 2 ? ' g6m-fs-gone' : '';
+        svg += `<g class="${gone}"><circle class="g6m-fs-cake" cx="${cakeX(i)}" cy="${topY}" r="${R}" style="fill:${TINTS[i % 8]}"/>`;
+        if (cut) for (let p = 0; p < k; p++) {
+          const t = p / k;
+          svg += `<line class="g6m-fs-cut" x1="${cakeX(i)}" y1="${topY}" x2="${(cakeX(i) + R * Math.sin(2 * Math.PI * t)).toFixed(1)}" y2="${(topY - R * Math.cos(2 * Math.PI * t)).toFixed(1)}"/>`;
+        }
+        svg += '</g>';
+      }
+      svg += `<text class="g6m-fs-label" x="10" y="${plateY - 48}">${k} people</text>`;
+      for (let j = 0; j < k; j++) {
+        svg += `<circle class="g6m-fs-plate" cx="${plateX(j)}" cy="${plateY}" r="${R + 4}"/>`;
+        if (this.stage === 2) {
+          // Each plate: whole pancakes stacked behind, then n (or rest) pieces of 1/k laid round the plate.
+          const wholes = this.mode === 'wholes' ? s.whole : 0;
+          const pieces = this.mode === 'wholes' ? s.rest : n;
+          for (let w = 0; w < wholes; w++) svg += `<path class="g6m-fs-piece" style="fill:${TINTS[(j * wholes + w) % 8]};animation-delay:${w * 0.1}s" d="${sector(plateX(j) + w * 5, plateY - w * 5, R, 0, 1)}"/>`;
+          for (let p = 0; p < pieces; p++) {
+            const lap = Math.floor(p / k);
+            const t0 = (p % k) / k;
+            const src = this.mode === 'wholes' ? wholesGiven + p : p;
+            svg += `<path class="g6m-fs-piece" style="fill:${TINTS[src % 8]};animation-delay:${0.2 + p * 0.12}s" d="${sector(plateX(j) + (wholes + lap) * 5, plateY - (wholes + lap) * 5, R, t0, t0 + 1 / k)}"/>`;
+          }
+        }
+      }
+      this.q('svg').innerHTML = `<svg viewBox="0 0 ${W} ${plateY + 44}">${svg}</svg>`;
+      const go = this.q('go') as HTMLButtonElement;
+      go.textContent = this.stage === 0 ? 'Cut ▶' : 'Share ▶';
+      go.disabled = this.stage === 2;
+      const frac = `${n}/${k}`;
+      const say = this.q('say');
+      if (this.stage === 0) say.textContent = `Share ${n} pancake${n === 1 ? '' : 's'} equally among ${k} people. Press Cut.`;
+      else if (this.stage === 1) {
+        if (this.mode === 'cut') say.textContent = `Cut every pancake into ${k} equal pieces, one for each person. Each piece is 1/${k} of a pancake.`;
+        else say.textContent = s.whole ? `Hand out ${s.whole} whole pancake${s.whole === 1 ? '' : 's'} each. ${s.rest ? `Cut the ${s.rest} left over into ${k} pieces each.` : 'Nothing is left over.'}` : `There aren’t enough to give everyone a whole one, so cut all ${n} into ${k} pieces.`;
+      } else {
+        const each = this.mode === 'cut' ? `${n} piece${n === 1 ? '' : 's'} of 1/${k}` : s.whole ? `${s.whole} whole${s.rest ? ` and ${s.rest} piece${s.rest === 1 ? '' : 's'} of 1/${k}` : ''}` : `${n} piece${n === 1 ? '' : 's'} of 1/${k}`;
+        const same = s.simplest ? ` That is the same share as ${s.simplest[0]}/${s.simplest[1]}.` : '';
+        say.innerHTML = `Each person gets ${each}: <strong>${frac} of a pancake</strong>. As a division, ${n} ÷ ${k} = <strong>${s.exact ? s.decimal : `${s.decimal}…`}</strong>.${same}`;
+      }
+    }
+  }
+  customElements.define('fair-share', FairShare);
+</script>
