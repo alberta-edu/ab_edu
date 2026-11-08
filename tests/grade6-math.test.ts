@@ -157,3 +157,25 @@ describe('Grade 6 fractions as quotients', () => {
     expect(sector(0, 0, 10, 0, 0.25)).toMatch(/^M0 0 L0.00 -10.00 A10 10 0 0 1 10.00 0.00 Z$/);
   });
 });
+
+import { plan, steps as cdSteps, barsSvg, units } from '../src/components/visuals/g6-common-denom.ts';
+
+describe('Grade 6 common denominators', () => {
+  it('uses the bigger denominator when they are related, else the product', () => {
+    expect(plan({ n: 1, d: 3 }, { n: 1, d: 6 })).toEqual({ related: true, fa: 2, fb: 1, D: 6 });
+    expect(plan({ n: 3, d: 8 }, { n: 1, d: 4 })).toEqual({ related: true, fa: 1, fb: 2, D: 8 });
+    expect(plan({ n: 2, d: 3 }, { n: 1, d: 4 })).toEqual({ related: false, fa: 4, fb: 3, D: 12 });
+  });
+  it('ends each example with the right answer', () => {
+    expect(cdSteps('1/3', '+', '1/6').at(-1)!.rows[2]).toMatchObject({ n: 3, d: 6 });
+    expect(cdSteps('2/3', '+', '1/4').at(-1)!.rows[2]).toMatchObject({ n: 11, d: 12 });
+    expect(cdSteps('3/4', '−', '1/6').at(-1)!.rows[2]).toMatchObject({ n: 14, d: 24 });
+    expect(cdSteps('1/2', '+', '1/2')).toHaveLength(2);
+    expect(() => cdSteps('1/4', '−', '1/2')).toThrow();
+    expect(units(6)).toBe('sixths');
+  });
+  it('draws a second bar for an amount over one whole', () => {
+    const svg = barsSvg([{ n: 7, d: 6, label: '7/6', tone: 'sum' }]);
+    expect(svg.match(/g6m-cd-bar/g)?.length).toBe(2);
+  });
+});

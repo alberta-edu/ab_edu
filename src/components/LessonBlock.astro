@@ -81,6 +81,7 @@ import ZeroPairs from './visuals/ZeroPairs.astro';
 
 import FactorTree from './visuals/FactorTree.astro';
 import FairShare from './visuals/FairShare.astro';
+import CommonDenominators from './visuals/CommonDenominators.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -163,6 +164,7 @@ const visuals = {
   'zero-pairs': ZeroPairs,
   'factor-tree': FactorTree,
   'fair-share': FairShare,
+  'common-denominators': CommonDenominators,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
