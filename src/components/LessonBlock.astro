@@ -80,6 +80,7 @@ import DemocracyGlobe from './visuals/DemocracyGlobe.astro';
 import AthensAssembly from './visuals/AthensAssembly.astro';
 import DemocracyMap from './visuals/DemocracyMap.astro';
 import GovBranches from './visuals/GovBranches.astro';
+import CrownBalance from './visuals/CrownBalance.astro';
 
 interface Props {
   block: LessonBlock;
@@ -163,6 +164,7 @@ const visuals = {
   'athens-assembly': AthensAssembly,
   'democracy-map': DemocracyMap,
   'gov-branches': GovBranches,
+  'crown-balance': CrownBalance,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

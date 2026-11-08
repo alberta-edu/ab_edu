@@ -1,0 +1,112 @@
+---
+// A balance of power between the monarch and Parliament. Each English document lands on
+// Parliament's side and the beam tips a little further (outcome 0LESAYIP8UKL5ECn4gOmiw K1.12-K1.16).
+import { PRINCIPLE_LABELS, STAGES } from './england-rights.ts';
+
+const W = 440;
+const H = 230;
+const cx = W / 2;
+const beamY = 92;
+const arm = 145;
+---
+<crown-balance>
+  <div class="sci-pick" role="group" aria-label="Choose a moment in time">
+    {STAGES.map((s, i) => <button type="button" data-cb={i} aria-pressed={String(i === 0)}>{s.year}{i > 0 ? ` · ${s.name}` : ''}</button>)}
+  </div>
+  <svg class="sci-svg g6ss-cb-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="A balance. The monarch sits on the left pan, and Parliament and the people on the right. The beam tips toward whichever side holds more power.">
+    <path class="g6ss-cb-stand" d={`M${cx} ${beamY} L${cx - 34} ${H - 16} L${cx + 34} ${H - 16} Z`}></path>
+    <rect class="g6ss-cb-stand" x={cx - 70} y={H - 18} width="140" height="10" rx="3"></rect>
+    <g class="g6ss-cb-beam" data-cb="beam" style={`transform: rotate(${STAGES[0].tilt}deg)`}>
+      <rect x={cx - arm} y={beamY - 4} width={arm * 2} height="8" rx="4"></rect>
+      <circle cx={cx} cy={beamY} r="7"></circle>
+      {[-1, 1].map((side) => (
+        <g class="g6ss-cb-pan" style={`transform-origin: ${cx + side * arm}px ${beamY}px`}>
+          <line x1={cx + side * arm} y1={beamY} x2={cx + side * arm - 40} y2={beamY + 52}></line>
+          <line x1={cx + side * arm} y1={beamY} x2={cx + side * arm + 40} y2={beamY + 52}></line>
+          <path d={`M${cx + side * arm - 52} ${beamY + 52} h104 q-8 18 -52 18 q-44 0 -52 -18 Z`}></path>
+        </g>
+      ))}
+    </g>
+    <g class="g6ss-cb-load" data-cb="left">
+      <text class="g6ss-cb-emoji" x={cx - arm} y={beamY + 46} text-anchor="middle">👑</text>
+      <text class="g6ss-cb-label" x={cx - arm} y={beamY + 94} text-anchor="middle">Monarch</text>
+    </g>
+    <g class="g6ss-cb-load" data-cb="right">
+      {STAGES.slice(1).map((s, i) => <text class="g6ss-cb-scroll" data-cb-scroll={i + 1} x={cx + arm - 30 + i * 30} y={beamY + 46} text-anchor="middle">📜</text>)}
+      <text class="g6ss-cb-label" x={cx + arm} y={beamY + 94} text-anchor="middle">Parliament<tspan x={cx + arm} dy="17">and the people</tspan></text>
+    </g>
+  </svg>
+  {
+    STAGES.map((s, i) => (
+      <div class="g6ss-cb-card" data-cb-card={i} hidden={i !== 0} aria-live="polite">
+        <h3>{s.year}: {s.name}</h3>
+        <p>{s.what}</p>
+        {s.points.length > 0 && <ul>{s.points.map((p) => <li>{p}</li>)}</ul>}
+        {s.principles.length > 0 && (
+          <p class="g6ss-cb-principles">
+            <span>Principles it moved forward:</span>
+            {s.principles.map((p) => <span class="chip">{PRINCIPLE_LABELS[p]}</span>)}
+          </p>
+        )}
+      </div>
+    ))
+  }
+</crown-balance>
+
+<style is:global>
+  crown-balance { display: block; }
+  .g6ss-cb-svg { max-width: 30rem; margin: 0.6rem auto 0; }
+  .g6ss-cb-stand { fill: color-mix(in srgb, var(--ink-3) 35%, var(--surface)); }
+  .g6ss-cb-beam { transform-box: view-box; transform-origin: 220px 92px; transition: transform 0.9s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .g6ss-cb-beam rect { fill: #b0793a; }
+  .g6ss-cb-beam circle { fill: var(--ink-2); }
+  .g6ss-cb-pan line { stroke: var(--ink-3); stroke-width: 2; }
+  .g6ss-cb-pan path { fill: color-mix(in srgb, #b0793a 35%, var(--surface)); stroke: #6d4518; stroke-width: 1.5; }
+  .g6ss-cb-load { transition: transform 0.9s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .g6ss-cb-emoji { font-size: 34px; }
+  .g6ss-cb-scroll { font-size: 26px; opacity: 0; transition: opacity 0.4s; }
+  .g6ss-cb-scroll.is-on { opacity: 1; }
+  .g6ss-cb-label { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .g6ss-cb-card { margin-top: 0.4rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-cb-card h3 { margin: 0 0 0.3rem; font-size: var(--step-0); }
+  .g6ss-cb-card p { margin: 0.3rem 0 0; }
+  .g6ss-cb-card ul { margin: 0.4rem 0 0; padding-left: 1.2rem; display: grid; gap: 0.2rem; }
+  .g6ss-cb-principles { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) {
+    .g6ss-cb-beam, .g6ss-cb-load, .g6ss-cb-scroll { transition: none; }
+  }
+  @media (max-width: 40rem) {
+    svg .g6ss-cb-label { font-size: 17px; }
+  }
+</style>
+
+<script>
+  import { STAGES } from './england-rights.ts';
+
+  const ARM = 145;
+
+  class CrownBalance extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-cb]').forEach((b) => {
+        if (b.tagName === 'BUTTON') b.addEventListener('click', () => this.pick(Number(b.dataset.cb)));
+      });
+      this.pick(0);
+    }
+
+    private pick(i: number) {
+      this.querySelectorAll<HTMLButtonElement>('button[data-cb]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.cb) === i)));
+      this.querySelectorAll<HTMLElement>('[data-cb-card]').forEach((c) => (c.hidden = Number(c.dataset.cbCard) !== i));
+      this.querySelectorAll('[data-cb-scroll]').forEach((s) => s.classList.toggle('is-on', Number((s as HTMLElement).dataset.cbScroll) <= i));
+      // Positive tilt means Parliament is heavier, so its (right) end goes down.
+      const deg = STAGES[i].tilt;
+      const rad = (deg * Math.PI) / 180;
+      const dy = Math.sin(rad) * ARM;
+      const dx = ARM * (1 - Math.cos(rad));
+      (this.querySelector('[data-cb="beam"]') as SVGGElement).style.transform = `rotate(${deg}deg)`;
+      (this.querySelector('[data-cb="left"]') as SVGGElement).style.transform = `translate(${dx}px, ${-dy}px)`;
+      (this.querySelector('[data-cb="right"]') as SVGGElement).style.transform = `translate(${-dx}px, ${dy}px)`;
+      this.querySelectorAll<SVGGElement>('.g6ss-cb-pan').forEach((p) => (p.style.transform = `rotate(${-deg}deg)`));
+    }
+  }
+  customElements.define('crown-balance', CrownBalance);
+</script>

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { STAGES as ENGLAND_STAGES } from '../src/components/visuals/england-rights.ts';
 import { GOV_SETS } from '../src/components/visuals/gov-branches.ts';
 import { BODIES, castVotes, drawLots, tally, assemblySeats, ASSEMBLY_ROWS, TRIBES, PER_TRIBE, TRIBE_POOL, JURORS } from '../src/components/visuals/athens-assembly.ts';
 import { STOPS } from '../src/components/visuals/democracy-stops.ts';
@@ -80,5 +81,16 @@ describe('branches of government', () => {
   it('names all four Roman assemblies, as the curriculum lists them', () => {
     const text = GOV_SETS.rome.branches[1].items.join(' ');
     for (const a of ['Senate', 'Comitia centuriata', 'Comitia tributa', 'Comitia curiata', 'Concilium plebis']) expect(text).toContain(a);
+  });
+});
+
+describe('English rights balance', () => {
+  it('tips steadily from the monarch toward Parliament, in date order', () => {
+    const tilts = ENGLAND_STAGES.map((s) => s.tilt);
+    for (let i = 1; i < tilts.length; i++) expect(tilts[i]).toBeGreaterThan(tilts[i - 1]);
+    expect(tilts[0]).toBeLessThan(0);
+    expect(tilts.at(-1)).toBeGreaterThan(0);
+    expect(ENGLAND_STAGES.map((s) => s.year)).toEqual(['Before 1215', '1215', '1679', '1689']);
+    for (const s of ENGLAND_STAGES.slice(1)) expect(s.principles.length).toBeGreaterThan(0);
   });
 });
