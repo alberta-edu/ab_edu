@@ -1,0 +1,95 @@
+---
+// Multiplying a natural number and a fraction two ways (sAJrul14WkyWyL8gNRW3rw): "Groups of" jumps
+// n times by a/b on a number line (repeated addition), and "Part of" splits a quantity into b
+// equal parts and takes a of them (U1.1-U1.3, K1.1-K1.6, S1.1-S1.6).
+import { jumpsSvg, partSvg } from './g6-frac-times.ts';
+
+interface Props {
+  mode?: 'groups' | 'part';
+  n?: number;
+  a?: number;
+  b?: number;
+}
+const { mode = 'groups', n = 4, a = 2, b = 3 } = Astro.props;
+---
+<fraction-times data-mode={mode}>
+  <div class="seg" role="group" aria-label="Choose a model">
+    <button type="button" data-mode="groups" aria-pressed={String(mode === 'groups')}>Groups of a fraction</button>
+    <button type="button" data-mode="part" aria-pressed={String(mode === 'part')}>Fraction of a number</button>
+  </div>
+  <p class="g6m-fx-sum" data-fx="sum" aria-live="polite"></p>
+  <div class="control-row">
+    <label class="control"><span data-fx="n-label">Groups</span><input type="range" min="1" max="12" value={n} data-fx="n" /> <output data-fx="n-out">{n}</output></label>
+    <label class="control"><span>Numerator</span><input type="range" min="1" max="8" value={a} data-fx="a" /> <output data-fx="a-out">{a}</output></label>
+    <label class="control"><span>Denominator</span><input type="range" min="2" max="8" value={b} data-fx="b" /> <output data-fx="b-out">{b}</output></label>
+  </div>
+  <div class="g6m-fx-stage" data-fx="svg" set:html={mode === 'groups' ? jumpsSvg(n, a, b) : partSvg(a, b, n)} aria-hidden="true" />
+  <p class="g6m-fx-say" data-fx="say" aria-live="polite"></p>
+</fraction-times>
+
+<style is:global>
+  fraction-times { display: block; }
+  .g6m-fx-sum { margin: 0.8rem 0 0; font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g6m-fx-stage svg { display: block; width: 100%; max-width: 34rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g6m-ft-arc { fill: none; stroke: var(--accent); stroke-width: 3.5; }
+  .g6m-ft-arc-label { fill: var(--accent); font-size: 15px; font-weight: 700; }
+  .g6m-fx-part { fill: var(--surface); }
+  .g6m-fx-part--on { fill: color-mix(in srgb, var(--sun) 75%, var(--surface)); }
+  .g6m-fx-unit { stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 4 4; }
+  .g6m-fx-cut { stroke: var(--ink); stroke-width: 3.5; }
+  .g6m-fx-frame { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .g6m-fx-each { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g6m-fx-say { min-height: 3em; margin: 0.4rem 0 0; }
+</style>
+
+<script>
+  import { jumpsSvg, partSvg, fracText, groupsSum } from './g6-frac-times.ts';
+
+  class FractionTimes extends HTMLElement {
+    private mode = 'groups';
+
+    connectedCallback() {
+      this.mode = this.dataset.mode!;
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.mode = btn.dataset.mode!;
+          this.querySelectorAll('[data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.render();
+        }),
+      );
+      this.querySelectorAll('input').forEach((i) => i.addEventListener('input', () => this.render()));
+      this.render();
+    }
+
+    private v(k: string) {
+      return Number(this.querySelector<HTMLInputElement>(`[data-fx="${k}"]`)!.value);
+    }
+
+    private render() {
+      const n = this.v('n');
+      let a = this.v('a');
+      const b = this.v('b');
+      // Keep the fraction proper in "part of" so the parts make sense; allow up to 8/b in "groups".
+      if (a > b) {
+        a = b;
+        this.querySelector<HTMLInputElement>('[data-fx="a"]')!.value = String(b);
+      }
+      for (const [k, val] of [['n', n], ['a', a], ['b', b]] as const) this.querySelector(`[data-fx="${k}-out"]`)!.textContent = String(val);
+      this.querySelector('[data-fx="n-label"]')!.textContent = this.mode === 'groups' ? 'Groups' : 'Number';
+      const sum = this.querySelector('[data-fx="sum"]')!;
+      const say = this.querySelector('[data-fx="say"]')!;
+      const svg = this.querySelector('[data-fx="svg"]')!;
+      if (this.mode === 'groups') {
+        svg.innerHTML = jumpsSvg(n, a, b);
+        sum.textContent = `${n} × ${a}/${b} = ${fracText(n * a, b)}`;
+        say.textContent = `${n} jump${n === 1 ? '' : 's'} of ${a}/${b}: ${n <= 6 ? groupsSum(n, a, b) : `${n} × ${a} = ${n * a} pieces of 1/${b}`}. Multiply the numerator by ${n}. The denominator stays ${b}.`;
+      } else {
+        svg.innerHTML = partSvg(a, b, n);
+        const each = n % b === 0 ? String(n / b) : `${n}/${b}`;
+        sum.textContent = `${a}/${b} of ${n} = ${a}/${b} × ${n} = ${fracText(a * n, b)}`;
+        say.textContent = `Split ${n} into ${b} equal parts: ${n} ÷ ${b} = ${each} in each part. Take ${a} part${a === 1 ? '' : 's'}: ${a} × ${each} = ${fracText(a * n, b).split(' = ').pop()}.${a < b ? ` That is less than ${n}.` : ''}`;
+      }
+    }
+  }
+  customElements.define('fraction-times', FractionTimes);
+</script>

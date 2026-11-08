@@ -179,3 +179,22 @@ describe('Grade 6 common denominators', () => {
     expect(svg.match(/g6m-cd-bar/g)?.length).toBe(2);
   });
 });
+
+import { fracText, groupJumps, groupsSum, partOf, jumpsSvg, partSvg } from '../src/components/visuals/g6-frac-times.ts';
+
+describe('Grade 6 fractions times natural numbers', () => {
+  it('writes products as fractions and mixed numbers', () => {
+    expect(fracText(8, 3)).toBe('8/3 = 2 2/3');
+    expect(fracText(6, 3)).toBe('6/3 = 2');
+    expect(fracText(3, 4)).toBe('3/4');
+  });
+  it('models n × a/b as repeated jumps', () => {
+    expect(groupJumps(4, 2, 3).at(-1)).toEqual({ from: 6, to: 8 });
+    expect(groupsSum(3, 2, 5)).toBe('2/5 + 2/5 + 2/5 = 6/5');
+    expect(jumpsSvg(4, 2, 3).match(/g6m-ft-arc"/g)?.length).toBe(4);
+  });
+  it('models a/b of c as equal parts', () => {
+    expect(partOf(3, 4, 12)).toEqual({ part: [12, 4], total: [36, 4] });
+    expect(partSvg(3, 4, 12).match(/g6m-fx-part--on/g)?.length).toBe(3);
+  });
+});
