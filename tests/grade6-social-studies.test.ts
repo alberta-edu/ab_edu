@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { BENCHES, councilSteps, totalChiefs } from '../src/components/visuals/grand-council.ts';
 import { STAGES as ENGLAND_STAGES } from '../src/components/visuals/england-rights.ts';
 import { GOV_SETS } from '../src/components/visuals/gov-branches.ts';
 import { BODIES, castVotes, drawLots, tally, assemblySeats, ASSEMBLY_ROWS, TRIBES, PER_TRIBE, TRIBE_POOL, JURORS } from '../src/components/visuals/athens-assembly.ts';
@@ -92,5 +93,22 @@ describe('English rights balance', () => {
     expect(tilts.at(-1)).toBeGreaterThan(0);
     expect(ENGLAND_STAGES.map((s) => s.year)).toEqual(['Before 1215', '1215', '1679', '1689']);
     for (const s of ENGLAND_STAGES.slice(1)) expect(s.principles.length).toBeGreaterThan(0);
+  });
+});
+
+describe('Haudenosaunee Grand Council', () => {
+  it('seats 50 Chiefs from the five founding Nations, as the Onondaga Nation lists them', () => {
+    expect(totalChiefs()).toBe(50);
+    expect(BENCHES.flatMap((b) => b.nations.map((n) => n.name)).sort()).toEqual(['Cayuga', 'Mohawk', 'Oneida', 'Onondaga', 'Seneca']);
+  });
+
+  it('starts and ends a matter with the Firekeepers, and goes back when the Younger Brothers disagree', () => {
+    for (const disagree of [false, true]) {
+      const steps = councilSteps(disagree);
+      expect(steps[0].at).toBe('fire');
+      expect(steps.at(-1)!.at).toBe('fire');
+      expect(steps[1].at).toBe('elder');
+    }
+    expect(councilSteps(true).length).toBeGreaterThan(councilSteps(false).length);
   });
 });

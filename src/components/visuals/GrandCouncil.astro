@@ -1,0 +1,101 @@
+---
+// The Haudenosaunee Grand Council around its fire. Run a matter across the fire and watch it pass
+// between the benches until the whole council is of one mind (consensus).
+import { BENCHES, totalChiefs } from './grand-council.ts';
+
+const W = 440;
+const H = 300;
+const pos = { fire: [220, 62], elder: [92, 196], younger: [348, 196] } as const;
+const dots = (n: number, x0: number, y0: number) =>
+  Array.from({ length: n }, (_, i) => [x0 + (i % 7) * 13, y0 + Math.floor(i / 7) * 13] as const);
+---
+<grand-council>
+  <svg class="sci-svg g6ss-gc-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`The Grand Council: ${totalChiefs()} Chiefs on three benches around a fire. The Onondaga Firekeepers sit at the top, the Mohawk and Seneca Elder Brothers on the left, and the Oneida and Cayuga Younger Brothers on the right.`}>
+    <circle class="g6ss-gc-ring" cx="220" cy="168" r="44"></circle>
+    <text class="g6ss-gc-fire" x="220" y="182" text-anchor="middle">🔥</text>
+    {
+      BENCHES.map((b) => {
+        const [x, y] = pos[b.id];
+        const n = b.nations.length;
+        const w = n === 1 ? 128 : 150;
+        return (
+          <g class="g6ss-gc-bench" data-gc-bench={b.id}>
+            <rect x={x - w / 2} y={y - 44} width={w} height={b.nations.length === 1 ? 92 : 112} rx="12"></rect>
+            <text class="g6ss-gc-name" x={x} y={y - 24} text-anchor="middle">{b.name}</text>
+            {b.nations.map((nation, k) => {
+              const ny = y - 6 + k * 40;
+              return (
+                <g>
+                  <text class="g6ss-gc-nation" x={x - w / 2 + 10} y={ny}>{nation.name} · {nation.chiefs}</text>
+                  {dots(nation.chiefs, x - w / 2 + 16, ny + 10).map(([dx, dy]) => <circle class="g6ss-gc-chief" cx={dx} cy={dy} r="4.5"></circle>)}
+                </g>
+              );
+            })}
+          </g>
+        );
+      })
+    }
+    <circle class="g6ss-gc-matter" data-gc="matter" cx={pos.fire[0]} cy={pos.fire[1] + 58} r="11"></circle>
+  </svg>
+  <label class="g6ss-gc-toggle"><input type="checkbox" data-gc="disagree" /> The Younger Brothers disagree at first</label>
+  <button type="button" class="btn btn--small" data-gc="run">▶ Pass a matter across the fire</button>
+  <p class="sci-say g6ss-gc-say" data-gc="say" aria-live="polite"></p>
+  <p class="muted g6ss-gc-note">Each dot is one Chief: {totalChiefs()} in all. {BENCHES[2].note} As described by the Onondaga Nation and the Haudenosaunee Confederacy.</p>
+</grand-council>
+
+<style is:global>
+  grand-council { display: block; }
+  .g6ss-gc-svg { max-width: 30rem; margin-inline: auto; }
+  .g6ss-gc-ring { fill: color-mix(in srgb, var(--sun) 25%, var(--surface)); stroke: var(--sun); stroke-width: 2; }
+  .g6ss-gc-fire { font-size: 40px; }
+  .g6ss-gc-bench rect { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 2; transition: fill 0.3s, stroke 0.3s; }
+  .g6ss-gc-bench.is-on rect { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; }
+  .g6ss-gc-name { fill: var(--accent); font-size: 15px; font-weight: 700; }
+  .g6ss-gc-nation { fill: var(--ink); font-size: 13px; font-weight: 700; }
+  .g6ss-gc-chief { fill: var(--ink-3); }
+  .g6ss-gc-bench.is-on .g6ss-gc-chief { fill: var(--accent); }
+  .g6ss-gc-matter { fill: #7a4fb5; stroke: var(--surface); stroke-width: 3; opacity: 0; transition: cx 0.9s ease-in-out, cy 0.9s ease-in-out, opacity 0.3s; }
+  .g6ss-gc-matter.is-on { opacity: 1; }
+  .g6ss-gc-toggle { display: flex; align-items: center; gap: 0.5rem; margin: 0.6rem 0; font-weight: 700; }
+  .g6ss-gc-toggle input { width: 1.2rem; height: 1.2rem; accent-color: var(--accent); }
+  .g6ss-gc-say:empty { display: none; }
+  .g6ss-gc-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (prefers-reduced-motion: reduce) { .g6ss-gc-matter, .g6ss-gc-bench rect { transition: none; } }
+</style>
+
+<script>
+  import { councilSteps } from './grand-council.ts';
+
+  const AT = { fire: [220, 120], elder: [168, 168], younger: [272, 168] } as const;
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, matchMedia('(prefers-reduced-motion: reduce)').matches ? Math.min(ms, 900) : ms));
+
+  class GrandCouncil extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      this.querySelector('[data-gc="run"]')!.addEventListener('click', () => this.go());
+    }
+
+    private async go() {
+      const id = ++this.run;
+      const button = this.querySelector<HTMLButtonElement>('[data-gc="run"]')!;
+      const matter = this.querySelector<SVGCircleElement>('[data-gc="matter"]')!;
+      const say = this.querySelector('[data-gc="say"]')!;
+      const disagree = this.querySelector<HTMLInputElement>('[data-gc="disagree"]')!.checked;
+      button.disabled = true;
+      matter.classList.add('is-on');
+      for (const step of councilSteps(disagree)) {
+        if (id !== this.run) return;
+        const [x, y] = AT[step.at];
+        matter.style.cx = `${x}px`;
+        matter.style.cy = `${y}px`;
+        this.querySelectorAll<SVGGElement>('[data-gc-bench]').forEach((g) => g.classList.toggle('is-on', g.dataset.gcBench === step.at));
+        say.textContent = step.say;
+        await wait(2200);
+      }
+      this.querySelectorAll('[data-gc-bench]').forEach((g) => g.classList.add('is-on'));
+      button.disabled = false;
+    }
+  }
+  customElements.define('grand-council', GrandCouncil);
+</script>

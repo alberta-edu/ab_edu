@@ -4,7 +4,7 @@
 import { PRINCIPLE_LABELS, STAGES } from './england-rights.ts';
 
 const W = 440;
-const H = 230;
+const H = 262;
 const cx = W / 2;
 const beamY = 92;
 const arm = 145;
@@ -14,8 +14,8 @@ const arm = 145;
     {STAGES.map((s, i) => <button type="button" data-cb={i} aria-pressed={String(i === 0)}>{s.year}{i > 0 ? ` · ${s.name}` : ''}</button>)}
   </div>
   <svg class="sci-svg g6ss-cb-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="A balance. The monarch sits on the left pan, and Parliament and the people on the right. The beam tips toward whichever side holds more power.">
-    <path class="g6ss-cb-stand" d={`M${cx} ${beamY} L${cx - 34} ${H - 16} L${cx + 34} ${H - 16} Z`}></path>
-    <rect class="g6ss-cb-stand" x={cx - 70} y={H - 18} width="140" height="10" rx="3"></rect>
+    <path class="g6ss-cb-stand" d={`M${cx} ${beamY} L${cx - 34} 214 L${cx + 34} 214 Z`}></path>
+    <rect class="g6ss-cb-stand" x={cx - 70} y="212" width="140" height="10" rx="3"></rect>
     <g class="g6ss-cb-beam" data-cb="beam" style={`transform: rotate(${STAGES[0].tilt}deg)`}>
       <rect x={cx - arm} y={beamY - 4} width={arm * 2} height="8" rx="4"></rect>
       <circle cx={cx} cy={beamY} r="7"></circle>
@@ -67,6 +67,7 @@ const arm = 145;
   .g6ss-cb-scroll { font-size: 26px; opacity: 0; transition: opacity 0.4s; }
   .g6ss-cb-scroll.is-on { opacity: 1; }
   .g6ss-cb-label { fill: var(--ink); font-size: 14px; font-weight: 700; }
+  .g6ss-cb-principles .chip { background: var(--surface); }
   .g6ss-cb-card { margin-top: 0.4rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
   .g6ss-cb-card h3 { margin: 0 0 0.3rem; font-size: var(--step-0); }
   .g6ss-cb-card p { margin: 0.3rem 0 0; }
