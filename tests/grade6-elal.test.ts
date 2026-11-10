@@ -27,3 +27,30 @@ describe('land globe', () => {
     expect(centreOn(-68.5, 75)).toEqual([68.5, -60]);
   });
 });
+
+import { join, sentenceText } from '../src/components/visuals/clause.ts';
+
+describe('clause builder', () => {
+  const a = { s: 'the bell', v: 'rang' };
+  const b = { s: 'we', v: 'ran', rest: 'outside' };
+
+  it('keeps two independent clauses as two simple sentences', () => {
+    const r = join(a, b, '.');
+    expect(r.type).toBe('simple');
+    expect(r.sentences.map(sentenceText)).toEqual(['The bell rang.', 'We ran outside.']);
+  });
+
+  it('joins with a comma and a conjunction to make a compound sentence', () => {
+    const r = join(a, b, 'so');
+    expect(r.type).toBe('compound');
+    expect(sentenceText(r.sentences[0])).toBe('The bell rang, so we ran outside.');
+    expect(r.sentences[0].filter((p) => p.role === 'independent')).toHaveLength(2);
+  });
+
+  it('turns the second clause into a dependent clause for a complex sentence', () => {
+    const r = join(b, a, 'when');
+    expect(r.type).toBe('complex');
+    expect(sentenceText(r.sentences[0])).toBe('We ran outside when the bell rang.');
+    expect(r.sentences[0].map((p) => p.role)).toEqual(['independent', 'dependent']);
+  });
+});

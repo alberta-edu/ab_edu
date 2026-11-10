@@ -23,6 +23,7 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'page-explorer': { set: ['forms', 'features'] },
   'sentence-lab': { mode: ['roles', 'tense', 'adverb', 'join'] },
   'punct-lab': { mode: ['capitals', 'effect'] },
+  'clause-builder': { mode: ['join', 'agree'] },
 };
 
 /** A comma in an unquoted `{ text: a, b }` splits the text and leaves `b` as a key with no value. */
