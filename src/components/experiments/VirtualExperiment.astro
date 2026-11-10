@@ -29,6 +29,7 @@ import WetlandDrought from './WetlandDrought.astro';
 import Pondweed from './Pondweed.astro';
 import SealedJars from './SealedJars.astro';
 import ScaleWalk from './ScaleWalk.astro';
+import OrbitDay from './OrbitDay.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -63,6 +64,7 @@ const animations = {
   'g6-pondweed': Pondweed,
   'g6-sealed-jars': SealedJars,
   'g6-scale-walk': ScaleWalk,
+  'g6-orbit-day': OrbitDay,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
