@@ -1,0 +1,131 @@
+---
+// Solar system explorer (SCI6-OI5-GQ1-LO1, K1.2-K1.7, S1.1-S1.4, S1.6): the Sun, the planets in
+// order, the main asteroid belt, Pluto, a comet and more. Tap a body to read its characteristics.
+// Sizes and distances in the picture are not to scale; the scale model experiment shows those.
+import { BODIES, timesEarth, gravityText } from './solar-data.ts';
+interface Props {
+  start?: string;
+}
+const { start = 'earth' } = Astro.props;
+const cards = Object.fromEntries(
+  BODIES.map((b) => [
+    b.id,
+    {
+      name: b.name,
+      rows: [
+        ['Type', b.kind === 'star' ? 'Star' : b.kind[0].toUpperCase() + b.kind.slice(1)],
+        ['Light', b.emits ? 'Emits its own light' : 'Reflects light from the Sun'],
+        ['Size', timesEarth(b)],
+        ['Shape', b.shape === 'round' ? 'Round' : 'Irregular (lumpy)'],
+        ['Made of', b.madeOf],
+        ['Atmosphere', b.atmosphere],
+        ...(b.temp !== undefined ? [['Temperature', `About ${String(b.temp).replace('-', '−')} °C${['jupiter', 'saturn', 'uranus', 'neptune'].includes(b.id) ? ' at the cloud tops' : b.id === 'sun' ? ' at the surface' : ' on average'}`]] : []),
+        ...(b.gravity !== undefined ? [['Gravity', gravityText(b)]] : []),
+      ],
+      note: b.note,
+    },
+  ]),
+);
+// Picture positions (not to scale).
+const POS: Record<string, { x: number; y: number; r: number; fill: string }> = {
+  sun: { x: -40, y: 110, r: 95, fill: '#f2b01e' },
+  mercury: { x: 82, y: 110, r: 5, fill: '#a7a29a' },
+  venus: { x: 108, y: 110, r: 9, fill: '#e3c27a' },
+  earth: { x: 140, y: 110, r: 10, fill: '#3f7fd6' },
+  moon: { x: 140, y: 82, r: 4, fill: '#cfcac0' },
+  mars: { x: 172, y: 110, r: 7, fill: '#c1502e' },
+  ceres: { x: 214, y: 140, r: 4, fill: '#9a948a' },
+  asteroid: { x: 206, y: 82, r: 4, fill: '#8a8278' },
+  jupiter: { x: 270, y: 110, r: 30, fill: '#d6a46b' },
+  saturn: { x: 355, y: 110, r: 25, fill: '#e6cf8f' },
+  uranus: { x: 430, y: 110, r: 16, fill: '#8fd3dc' },
+  neptune: { x: 485, y: 110, r: 16, fill: '#3f63d6' },
+  pluto: { x: 528, y: 132, r: 4, fill: '#c8b39b' },
+  comet: { x: 540, y: 45, r: 5, fill: '#dff1ff' },
+  meteoroid: { x: 110, y: 160, r: 3, fill: '#8a8278' },
+};
+const belt = Array.from({ length: 34 }, (_, i) => ({ x: 192 + ((i * 37) % 44), y: 60 + ((i * 53) % 100), r: 1.5 + (i % 3) * 0.6 }));
+---
+<g6-solar-system data-start={start} data-cards={JSON.stringify(cards)}>
+  <svg class="sci-svg g6s-ss-svg" viewBox="0 0 580 220" role="group" aria-label="The solar system, not to scale">
+    <rect width="580" height="220" fill="#0f1830" />
+    {belt.map((d) => <circle cx={d.x} cy={d.y} r={d.r} fill="#6d675f" />)}
+    <text class="g6s-ss-lbl" x="214" y="178" text-anchor="middle">main asteroid belt</text>
+    <path d="M540 45 L590 10" stroke="#dff1ff" stroke-width="4" opacity="0.5" />
+    <ellipse cx="355" cy="110" rx="42" ry="9" fill="none" stroke="#e6cf8f" stroke-width="3" opacity="0.8" />
+    {
+      BODIES.map((b) => (
+        <g class="g6s-ss-body" data-id={b.id} tabindex="0" role="button" aria-label={b.name}>
+          <circle cx={POS[b.id].x} cy={POS[b.id].y} r={POS[b.id].r} fill={POS[b.id].fill} />
+          <circle class="g6s-ss-ring" cx={POS[b.id].x} cy={POS[b.id].y} r={Math.max(POS[b.id].r + 6, 11)} />
+        </g>
+      ))
+    }
+    <text class="g6s-ss-lbl" x="10" y="210">Sun</text>
+    <text class="g6s-ss-lbl" x="570" y="210" text-anchor="end">Not to scale</text>
+  </svg>
+  <div class="sci-pick" role="group" aria-label="Choose a celestial body">
+    {BODIES.map((b) => <button type="button" data-pick={b.id} aria-pressed={String(b.id === start)}>{b.name.replace(/^(The|An|A) /, '').replace(/^./, (c) => c.toUpperCase())}</button>)}
+  </div>
+  <div class="g6s-ss-card" aria-live="polite">
+    <h3 data-ss="name"></h3>
+    <dl data-ss="rows"></dl>
+    <p data-ss="note"></p>
+  </div>
+</g6-solar-system>
+
+<style is:global>
+  g6-solar-system { display: grid; gap: 0.7rem; }
+  .g6s-ss-body { cursor: pointer; outline: none; }
+  .g6s-ss-ring { fill: none; stroke: transparent; stroke-width: 2.5; }
+  .g6s-ss-body:hover .g6s-ss-ring, .g6s-ss-body:focus-visible .g6s-ss-ring { stroke: #8fb0ff; }
+  .g6s-ss-body.is-on .g6s-ss-ring { stroke: #ffd84d; }
+  .g6s-ss-lbl { fill: #dfe7ff; font-size: 12px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-ss-lbl { font-size: 18px; } }
+  .g6s-ss-card { padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6s-ss-card h3 { margin: 0 0 0.4rem; color: var(--accent); }
+  .g6s-ss-card dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 0.8rem; font-size: var(--step--1); }
+  .g6s-ss-card dt { font-weight: 700; color: var(--ink-3); }
+  .g6s-ss-card dd { margin: 0; }
+  .g6s-ss-card p { margin: 0.6rem 0 0; }
+</style>
+
+<script>
+  class SolarSystem extends HTMLElement {
+    private cards!: Record<string, { name: string; rows: [string, string][]; note: string }>;
+
+    connectedCallback() {
+      this.cards = JSON.parse(this.dataset.cards!);
+      this.querySelectorAll<HTMLButtonElement>('[data-pick]').forEach((b) => b.addEventListener('click', () => this.show(b.dataset.pick!)));
+      this.querySelectorAll<SVGGElement>('.g6s-ss-body').forEach((g) => {
+        g.addEventListener('click', () => this.show(g.dataset.id!));
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.show(g.dataset.id!);
+          }
+        });
+      });
+      this.show(this.dataset.start!);
+    }
+
+    private show(id: string) {
+      const c = this.cards[id];
+      this.querySelector('[data-ss="name"]')!.textContent = c.name;
+      const dl = this.querySelector('[data-ss="rows"]')!;
+      dl.replaceChildren(
+        ...c.rows.flatMap(([k, v]) => {
+          const dt = document.createElement('dt');
+          dt.textContent = k;
+          const dd = document.createElement('dd');
+          dd.textContent = v;
+          return [dt, dd];
+        }),
+      );
+      this.querySelector('[data-ss="note"]')!.textContent = c.note;
+      this.querySelectorAll('[data-pick]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.pick === id)));
+      this.querySelectorAll('.g6s-ss-body').forEach((g) => g.classList.toggle('is-on', (g as SVGGElement).dataset.id === id));
+    }
+  }
+  customElements.define('g6-solar-system', SolarSystem);
+</script>

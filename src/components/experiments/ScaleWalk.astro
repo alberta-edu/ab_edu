@@ -1,0 +1,104 @@
+---
+// Animated experiment: shrink the Sun to a ball 1 m wide and walk out to the planets, all to the
+// same scale. A tape measure unrolls to Earth (a 9 mm pea, 107 m away), then the view zooms out
+// to Jupiter (560 m) and Neptune (3.2 km) (SCI6-OI5-GQ1-LO1, K1.8, S1.6, K1.4).
+// Numbers come from scaleModel() in ../visuals/solar-data.ts.
+import { BODIES, scaleModel } from '../visuals/solar-data.ts';
+const pick = ['earth', 'jupiter', 'neptune'].map((id) => {
+  const b = BODIES.find((x) => x.id === id)!;
+  const m = scaleModel(b, 1);
+  return { id, name: b.name, size: m.size, distance: m.distance };
+});
+---
+<g6-scale-walk data-bodies={JSON.stringify(pick)}>
+  <svg class="sci-svg" viewBox="0 0 640 300" aria-hidden="true" data-sw="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sw="live"></p>
+</g6-scale-walk>
+
+<style is:global>
+  g6-scale-walk { display: block; }
+  g6-scale-walk svg { background: color-mix(in srgb, var(--science) 10%, var(--surface)); }
+  .g6s-sw-ground { fill: color-mix(in srgb, var(--science) 30%, var(--surface-2)); }
+  .g6s-sw-sun { fill: #f2b01e; stroke: var(--ink); stroke-width: 1.5; }
+  .g6s-sw-tape { stroke: #e5793a; stroke-width: 3; }
+  .g6s-sw-dot { fill: var(--math); stroke: var(--ink); stroke-width: 1.5; }
+  .g6s-sw-kid { fill: var(--ink-3); }
+  .g6s-sw-tick { stroke: var(--ink-2); stroke-width: 1.5; }
+</style>
+
+<script>
+  import { tween, wait, ease, lerp } from './anim.ts';
+
+  type B = { id: string; name: string; size: number; distance: number };
+  const X0 = 40; // where the Sun's centre sits
+  const XW = 590; // right edge of the walk
+  const GROUND = 220;
+
+  class ScaleWalk extends HTMLElement {
+    private bodies: B[] = [];
+    private view = 130; // metres shown across the scene
+    private tape = 0; // metres of tape unrolled
+    private shown = 0; // how many bodies are placed
+
+    connectedCallback() {
+      this.bodies = JSON.parse(this.dataset.bodies!);
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-sw="live"]')!;
+      live.textContent = '';
+      this.view = 130; this.tape = 0; this.shown = 0;
+      const earth = this.bodies[0];
+      await tween(2600, (t) => { this.tape = earth.distance * ease(t); this.draw(); });
+      this.shown = 1;
+      this.draw();
+      await wait(1200);
+      const far = this.bodies[2].distance * 1.08;
+      await tween(3200, (t) => { const e = ease(t); this.view = lerp(130, far, e); this.tape = lerp(earth.distance, this.bodies[2].distance, e); this.shown = 1 + (this.tape >= this.bodies[1].distance ? 1 : 0); this.draw(); });
+      this.shown = 3;
+      this.draw();
+      await wait(150);
+      live.textContent = 'With the Sun shrunk to a ball one metre wide, Earth is a 9 millimetre pea about 107 metres away. Jupiter is a 10 centimetre ball about 560 metres away, and Neptune is about 3.2 kilometres away.';
+    }
+
+    private x(m: number) {
+      return X0 + (m / this.view) * (XW - X0);
+    }
+
+    private label(b: B) {
+      const size = b.size < 0.02 ? `${Math.round(b.size * 1000)} mm` : `${Math.round(b.size * 100)} cm`;
+      const dist = b.distance < 1000 ? `${Math.round(b.distance)} m` : `${(Math.round(b.distance / 100) / 10).toLocaleString('en-CA')} km`;
+      return { size, dist };
+    }
+
+    private draw() {
+      const out: string[] = [`<rect class="g6s-sw-ground" x="0" y="${GROUND}" width="640" height="80"/>`];
+      // The Sun: 1 m wide, drawn at least big enough to see.
+      const sunR = Math.max(9, ((XW - X0) / this.view) * 0.5);
+      out.push(`<circle class="g6s-sw-sun" cx="${X0}" cy="${GROUND - sunR}" r="${sunR.toFixed(1)}"/>`);
+      out.push(`<text class="sci-small" x="${X0}" y="${GROUND + 24}" text-anchor="middle">Sun, 1 m</text>`);
+      if (this.view < 200) {
+        // A child for scale, about 1.4 m tall.
+        const h = ((XW - X0) / this.view) * 1.4;
+        out.push(`<rect class="g6s-sw-kid" x="${X0 + sunR + 6}" y="${GROUND - h}" width="${(h / 4).toFixed(1)}" height="${h.toFixed(1)}" rx="3"/>`);
+      }
+      // Tape measure and distance markers.
+      out.push(`<line class="g6s-sw-tape" x1="${X0}" y1="${GROUND + 4}" x2="${this.x(this.tape).toFixed(1)}" y2="${GROUND + 4}"/>`);
+      const step = this.view < 200 ? 25 : 1000;
+      for (let m = step; m < this.view; m += step) out.push(`<line class="g6s-sw-tick" x1="${this.x(m).toFixed(1)}" y1="${GROUND}" x2="${this.x(m).toFixed(1)}" y2="${GROUND + 10}"/><text class="sci-small" x="${this.x(m).toFixed(1)}" y="${GROUND + 44}" text-anchor="middle">${step >= 1000 ? `${m / 1000} km` : `${m} m`}</text>`);
+      out.push(`<text class="sci-text" x="320" y="30" text-anchor="middle">Tape: ${this.tape < 1000 ? `${Math.round(this.tape)} m` : `${(Math.round(this.tape / 100) / 10).toLocaleString('en-CA')} km`}</text>`);
+      this.bodies.slice(0, this.shown).forEach((b, i) => {
+        const x = this.x(b.distance);
+        const { size, dist } = this.label(b);
+        const y = GROUND - 30 - i * 46;
+        out.push(`<circle class="g6s-sw-dot" cx="${x.toFixed(1)}" cy="${GROUND - 6}" r="${i === 0 ? 4 : 6}"/>`);
+        out.push(`<line class="g6s-sw-tick" x1="${x.toFixed(1)}" y1="${GROUND - 12}" x2="${x.toFixed(1)}" y2="${y + 6}"/>`);
+        const anchor = x > 470 ? 'end' : x < 160 ? 'start' : 'middle';
+        out.push(`<text class="sci-small" x="${x.toFixed(1)}" y="${y}" text-anchor="${anchor}" dx="${anchor === 'start' ? -8 : 0}">${b.name}: ${size}, ${dist}</text>`);
+      });
+      this.querySelector('[data-sw="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-scale-walk', ScaleWalk);
+</script>

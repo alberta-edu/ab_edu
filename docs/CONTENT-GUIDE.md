@@ -82,7 +82,7 @@ Visuals:
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,
-  `data-views`, `g6-heat-particles`, `g6-force-shapes`
+  `data-views`, `g6-heat-particles`, `g6-force-shapes`, `g6-solar-system`
 - **Social Studies:** `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`,
   `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`,
   `issue-investigator`
@@ -94,7 +94,7 @@ Visuals:
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
-`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`.
+`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`, `g6-scale-walk`.
 
 If an idea would be clearer as an animation, 3D view or manipulative, build it in
 `src/components/visuals/` (lazy-loaded if heavy) instead of describing it.
