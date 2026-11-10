@@ -1,0 +1,367 @@
+id: abstraction
+grade: 6
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI6-OI6-GQ1-LO1]
+order: 14
+title: Abstraction and Computational Artifacts
+shortTitle: Abstraction
+summary: >-
+  Strip a busy neighbourhood down to a simple bus map, spot abstractions that make daily life easier, and
+  see how designed computer tools meet people’s needs.
+
+bigIdea: |-
+  - An **abstraction** is a simplified version of something complex.
+  - To abstract, **keep** the important information, **remove** unnecessary details and **generalize** patterns.
+  - **Information** is data organized to be more useful.
+  - Abstractions make daily life easier, and computational artifacts are designed to meet society’s needs and wants.
+
+lesson:
+  - title: 'Virtual experiment: make a bus map'
+    blocks:
+      - type: experiment
+        covers: [K1.1, K1.3, U1.1, S1.1]
+        title: Turn a neighbourhood into a bus route map
+        question: |-
+          - A bus visits four stops in a busy neighbourhood.
+          - The map maker wants a simple map for riders, and starts removing details.
+        animation: g6-map-abstract
+        predict:
+          choices:
+            - It keeps the stops, their order and the route.
+            - It keeps every house and tree, so nothing is missing.
+            - It keeps the trees and cars, and removes the stops.
+          answer: 0
+        observe: |-
+          - **Trees**, **cars**, **houses** and **side streets** disappeared.
+          - The **four stops**, their **order** and the **route** stayed.
+          - The bendy road became a **straight line**.
+        explain: |-
+          - A rider needs to know the stops and their order. Everything else was an **unnecessary detail**.
+          - Turning the bendy road into a straight line **generalizes** it. Riders don’t need every curve.
+          - The result is an **abstraction**, a simplified version that is easier to use.
+
+  - title: The process of abstraction
+    blocks:
+      - type: table
+        covers: [K1.1, S1.1]
+        headers: [Step, In the bus map]
+        rows:
+          - ['🤔 **Decide what to keep and what to ignore**', 'Keep what riders need. Ignore what they don’t.']
+          - ['✂️ **Remove unnecessary details**', 'Trees, cars and houses come out.']
+          - ['⭐ **Identify important information**', 'The stops and the order they come in.']
+          - ['📏 **Generalize patterns**', 'Every bendy road becomes a straight line.']
+      - type: example
+        covers: [S1.1, K1.1, U1.1]
+        title: Abstraction while designing an app
+        problem: Kai is designing a simple app to remind his family to water their plants.
+        steps:
+          - '**Important:** each plant’s name and how often it needs water.'
+          - '**Ignore:** the colour of the pot and where the plant was bought.'
+          - '**Generalize:** every plant gets the same kind of reminder, with only its name and timing changed.'
+        answer: Abstraction makes the problem easier to think about, so Kai can focus on what matters.
+      - type: callout
+        variant: remember
+        covers: [SCI4-OI6-GQ1-LO1#K1.1]
+        title: Remember from Grade 4
+        body: Design processes include understanding the problem, ideating, planning, creating, analyzing, testing and troubleshooting.
+
+  - title: Data and information
+    blocks:
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: Data
+            body: |-
+              Arena 8:15, School 8:00, Park 8:25, Library 8:05
+
+              Facts, but in a jumble.
+          - title: Information
+            body: |-
+              | Stop | Time |
+              |---|---|
+              | School | 8:00 |
+              | Library | 8:05 |
+              | Arena | 8:15 |
+              | Park | 8:25 |
+
+              The same data, **organized** so it is useful.
+
+  - title: Abstractions in daily life
+    blocks:
+      - type: table
+        covers: [K1.4, S1.2]
+        headers: [Abstraction, The complex part it hides]
+        rows:
+          - ['🍿 A **Popcorn** button on a microwave', 'The power level and time needed, worked out for you.']
+          - ['💡 A **light switch**', 'Wires, circuits and the electricity flowing to the bulb.']
+          - ['🚗 A **steering wheel**', 'The rods and gears that turn the car’s wheels.']
+          - ['📱 An **app** button', 'Thousands of lines of code that run when you tap.']
+      - type: callout
+        variant: tip
+        covers: [K1.4, U1.1]
+        title: You use abstractions all the time
+        body: You don’t need to understand every wire to turn on a light. The switch keeps only what you need, on or off.
+
+  - title: Designed to meet needs
+    blocks:
+      - type: table
+        covers: [K1.5, S1.3]
+        caption: Computational artifacts can be designed to address society’s needs and wants.
+        headers: [Computational artifact, Need it meets]
+        rows:
+          - ['🌦️ **Weather modelling**', 'Forecasts that warn people about storms.']
+          - ['📞 **Communications**', 'Video calls and texts to family far away.']
+          - ['🚙 **Automotive controls**', 'Cars that beep or brake before a crash.']
+          - ['🔬 **Medical research**', 'Computers that help scientists study diseases and test ideas for treatments.']
+          - ['📱 **Apps**', 'Bus apps that show when the next bus is coming.']
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI6-GQ1-LO1#K1.1]
+        title: Remember from Grade 5
+        body: A **computational artifact** is anything created by a human using a computer, such as programs, images, audio, video or web pages.
+
+keyTerms:
+  - term: Abstraction
+    covers: [K1.3]
+    definition: A simplified version of something complex that keeps only what is important.
+  - term: Information
+    covers: [K1.2]
+    definition: Data that is organized to be more useful.
+  - term: Generalize
+    covers: [K1.1]
+    definition: To find a pattern that works for many cases, so each one can be treated the same way.
+  - term: Computational artifact
+    covers: [K1.5]
+    definition: Anything a person creates using a computer, such as an app or a weather model.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3]
+    type: mc
+    prompt: What is an **abstraction**?
+    choices:
+      - A simplified version of something complex
+      - An exact copy of something, with every detail
+      - A list of data in no particular order
+      - A drawing that makes something look more complicated
+    answer: 0
+    feedback:
+      '1': An exact copy keeps everything. What does abstraction do to details?
+      '2': That is jumbled data. Is it simplified?
+      '3': Does abstraction add complexity or remove it?
+    hints:
+      - Think of the bus map. Did it get simpler or more detailed?
+    solution:
+      - An abstraction is a **simplified version** of something complex, like the bus map made from the busy neighbourhood.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.4, S1.2]
+    type: multi
+    prompt: Select **all** the abstractions that make daily life easier.
+    choices:
+      - A volume button on a tablet
+      - A light switch
+      - The steering wheel in a car
+      - A page of every wire inside a toaster
+      - A jumbled pile of receipts
+    answer: [0, 1, 2]
+    feedback:
+      '3': Does every wire make the toaster simpler to use?
+      '4': A jumbled pile is just data. Does it simplify anything?
+    hints:
+      - An abstraction hides the complex parts and keeps only what you need.
+    solution:
+      - The volume button, light switch and steering wheel each give you one simple control for something complex.
+      - A wiring page shows every detail, and a pile of receipts is unorganized data.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.2]
+    type: mc
+    prompt: Which of these is **information**, not just data?
+    choices:
+      - A class list sorted by birthday month, with a heading for each month
+      - The birthdays of 25 students written in random order on scraps of paper
+      - The numbers 4, 12, 9, 30 and 2 with no labels
+      - A photo of a messy pile of birthday cards
+    answer: 0
+    feedback:
+      '1': The birthdays are there, but are they organized?
+      '2': What do the numbers mean? Without labels, is it useful?
+      '3': Is a messy pile organized?
+    hints:
+      - Information is data that is **organized** to be more useful.
+    solution:
+      - The sorted list with headings is organized, so it is useful. That makes it **information**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: decide
+    covers: [K1.1, S1.1]
+    type: multi
+    prompt: |-
+      Mia is making a simple map to help a new student get from the front door to the gym. Select **all** the
+      details she should **keep**.
+    choices:
+      - Where to turn at each hallway
+      - The gym doors
+      - The colour of every locker
+      - The names on every classroom door
+      - The front door, where the trip starts
+    answer: [0, 1, 4]
+    feedback:
+      '2': Would the new student need locker colours to find the gym?
+      '3': Would every name help, or just make the map crowded?
+    hints:
+      - Ask, for each detail, "Does the new student need this to reach the gym?"
+    solution:
+      - The start, the turns and the gym doors are the **important information**.
+      - Locker colours and every classroom name are **unnecessary details** for this job.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.5, S1.3]
+    type: mc
+    prompt: A computer program uses years of temperature, wind and pressure data to predict tomorrow’s storms. Which need does this computational artifact meet?
+    choices:
+      - Warning people about dangerous weather
+      - Helping cars brake before a crash
+      - Letting families make video calls
+      - Helping scientists study diseases
+    answer: 0
+    feedback:
+      '1': That is automotive controls. What is this program predicting?
+      '2': That is communications. What is this program about?
+      '3': That is medical research. What does this program use data about?
+    hints:
+      - What is the program predicting?
+    solution:
+      - This is **weather modelling**. It helps forecasters warn people before storms.
+
+  - id: b3
+    level: 2
+    thinking: pattern
+    covers: [K1.1, K1.3]
+    type: mc
+    prompt: |-
+      A game designer has 50 kinds of animals. Each one moves, eats and sleeps, but at different speeds and times.
+      Instead of writing 50 separate plans, she writes one plan for “an animal” with blanks for speed and times.
+      Which step of abstraction is this?
+    choices:
+      - Generalizing a pattern
+      - Removing every detail
+      - Copying each animal exactly
+      - Ignoring the animals completely
+    answer: 0
+    feedback:
+      '1': The blanks for speed and times are still there. Were all details removed?
+      '2': She wrote one plan, not 50. Is that copying each one?
+      '3': The animals are still in the game. What did she notice they had in common?
+    hints:
+      - What do all 50 animals have in common?
+    solution:
+      - All the animals share the same pattern, moving, eating and sleeping.
+      - Writing one plan that works for all of them is **generalizing a pattern**. The blanks keep what is different.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K1.1, K1.3, U1.1]
+    type: mc
+    prompt: |-
+      Leo makes a map for a hike. To “simplify” it, he removes the trails, the river and the campsite, and keeps the
+      shapes of the clouds. What went wrong?
+    choices:
+      - He removed the important information and kept unnecessary details.
+      - He kept too much, so the map is still too complex.
+      - Nothing. Any map with fewer details is a good abstraction.
+      - He should have kept every detail, because maps can’t be abstractions.
+    answer: 0
+    feedback:
+      '1': How much is left on the map? Is the problem too much, or the wrong things?
+      '2': Fewer details isn’t enough. Which details matter for a hike?
+      '3': The bus map was an abstraction. Can a hiking map be one too?
+    hints:
+      - What does a hiker need from a map?
+    solution:
+      - An abstraction keeps the **important** information. For a hike, that is trails, the river and the campsite.
+      - Leo did the opposite. Simpler isn’t always better. It has to be simpler in the right way.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S1.1, K1.1, K1.2, K1.3]
+    type: investigation
+    prompt: |-
+      Your class is designing a simple app that tells students when the school bus will arrive. You have lots of
+      data: the bus’s colour, the driver’s name, every stop, the time at each stop and the number of seats.
+    parts:
+      - type: multi
+        prompt: Select **all** the data the app needs.
+        choices: [Every stop, The time at each stop, The bus’s colour, The driver’s name, The number of seats]
+        answer: [0, 1]
+        feedback:
+          '2': Does a student need the colour to know when the bus is coming?
+          '3': Does the driver’s name tell you when to be at the stop?
+          '4': Does the seat count tell you the arrival time?
+        hints:
+          - What question does the app answer?
+        solution:
+          - The app answers "When will the bus get to my stop?" So it needs **the stops** and **the times**.
+      - type: mc
+        prompt: How should the app show that data so it becomes **information**?
+        choices:
+          - A list of stops in route order, each with its time
+          - All the times in one long line with no stop names
+          - A picture of the bus with every seat numbered
+        answer: 0
+        feedback:
+          '1': Without stop names, can a student find their stop?
+          '2': Does a seat picture answer when the bus is coming?
+        hints:
+          - Information is data organized to be useful. What order would a rider want?
+        solution:
+          - Listing stops in route order with their times **organizes** the data, so it is useful information.
+      - type: text
+        prompt: Every stop works the same way, a name and a time. What step of abstraction lets you design one screen that works for every stop?
+        accept: [generalizing, generalize, generalizing a pattern, generalize a pattern, generalizing patterns, generalization, pattern]
+        hints:
+          - The same layout works for all stops, with only the name and time changed.
+        solution:
+          - That is **generalizing a pattern**. One design works for every stop.
+    wrapUp: Abstraction turns a pile of data into a simple tool. Keep what matters, remove the rest, and look for patterns.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.4, U1.1, K1.3]
+    type: mc
+    prompt: |-
+      An old radio had six knobs for tuning, volume, bass and more. A new speaker has one button: “Play my
+      music.” Why is the new design an abstraction, and what is the trade-off?
+    choices:
+      - It hides the complex parts behind one simple control, but you have less control over the details.
+      - It has more features, so it is harder to use but more powerful.
+      - It isn’t an abstraction, because it still plays music.
+      - It removes the music, because abstractions always remove the important part.
+    answer: 0
+    feedback:
+      '1': Does one button have more features than six knobs?
+      '2': The bus map still showed the route. Can an abstraction still do the main job?
+      '3': It still plays music. What did the designers remove?
+    hints:
+      - What did the designers keep, and what did they hide?
+      - Is there anything you can’t do with one button?
+    solution:
+      - The button keeps the important part, playing music, and hides the complicated settings. That is an **abstraction**.
+      - The trade-off is that you can’t adjust every detail. Good designers decide what to keep for the people who will use it.
