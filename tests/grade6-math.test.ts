@@ -216,3 +216,30 @@ describe('Grade 6 ratios, rates and percent', () => {
     expect(doubleLineSvg(ratioPairs(2, 3, 3, 2), 'cups', 'eggs')).toContain('g6m-dl-join--hi');
   });
 });
+
+import { parseTerms, text as termText, combine, sortTerms, tileSteps } from '../src/components/visuals/g6-algebra.ts';
+import { evaluateSteps, pretty } from '../src/components/visuals/expression-steps.ts';
+
+describe('Grade 6 expressions', () => {
+  it('evaluates powers after parentheses and before × and ÷', () => {
+    const last = (e: string) => evaluateSteps(e).at(-1)!.caption;
+    expect(last('2^3 + 4 × 5')).toContain('value 28');
+    expect(last('(3 + 2)^2 − 10')).toContain('value 15');
+    expect(last('36 ÷ (2 + 1)^2')).toContain('value 4');
+    expect(evaluateSteps('2^3 + 1')[0].caption).toContain('2³ = 2 × 2 × 2 = 8');
+    expect(pretty('5^2 × 2')).toBe('5² × 2');
+  });
+  it('reads, sorts and combines like terms', () => {
+    expect(parseTerms('2x + 3 − x + 1')).toEqual([{ c: 2, v: 'x' }, { c: 3, v: '' }, { c: -1, v: 'x' }, { c: 1, v: '' }]);
+    expect(termText(sortTerms(parseTerms('3 + 2y + x + y')))).toBe('x + 2y + y + 3');
+    expect(termText(combine(parseTerms('2x + 3 − x + 1')))).toBe('x + 4');
+    expect(termText(combine(parseTerms('4y + 2x + y + 3x')))).toBe('5x + 5y');
+    expect(termText(combine(parseTerms('5x − 5x + 2')))).toBe('2');
+  });
+  it('expands with the distributive property', () => {
+    const st = tileSteps('3(x + 2)');
+    expect(st[0].groups).toHaveLength(3);
+    expect(st.at(-1)!.expr).toBe('3x + 6');
+    expect(tileSteps('2x + 3 + x + 1').at(-1)!.expr).toBe('3x + 4');
+  });
+});

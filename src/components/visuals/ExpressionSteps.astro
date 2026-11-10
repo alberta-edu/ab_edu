@@ -1,6 +1,6 @@
 ---
 // An expression collapses one operation at a time, following the order of operations.
-import { evaluateSteps, stepHtml } from './expression-steps.ts';
+import { evaluateSteps, stepHtml, pretty } from './expression-steps.ts';
 
 interface Props {
   examples: string[];
@@ -10,7 +10,7 @@ const first = evaluateSteps(examples[0]);
 ---
 <expression-steps data-examples={JSON.stringify(examples)}>
   <div class="seg cc-examples" role="group" aria-label="Choose an expression">
-    {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{e}</button>)}
+    {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{pretty(e)}</button>)}
   </div>
   <div class="es-board">
     <div class="es-expr" data-es="expr" set:html={stepHtml(first[0])} />
