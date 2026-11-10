@@ -27,6 +27,7 @@ import SeaRise from './SeaRise.astro';
 import RadarSweep from './RadarSweep.astro';
 import WetlandDrought from './WetlandDrought.astro';
 import Pondweed from './Pondweed.astro';
+import SealedJars from './SealedJars.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -59,6 +60,7 @@ const animations = {
   'g6-radar': RadarSweep,
   'g6-wetland-drought': WetlandDrought,
   'g6-pondweed': Pondweed,
+  'g6-sealed-jars': SealedJars,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
