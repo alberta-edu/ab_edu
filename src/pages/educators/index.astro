@@ -1,15 +1,19 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import { SUBJECTS, UNLOCK_AFTER } from '../../site.ts';
+import { UNLOCK_AFTER, gradeName, gradeProfile } from '../../site.ts';
 import { subjectGuide } from '../../lib/educator.ts';
+import { gradesWithContent, subjectsFor, subjectPath } from '../../lib/content.ts';
 import { THINKING_MOVES, MOVE_GROUPS } from '../../lib/thinking.ts';
 import { levelBadge } from '../../lib/problem-html.ts';
 import { href, absolute } from '../../lib/url.ts';
 
 const description =
   'A guide for Alberta teachers and home-educating parents: how to use Alberta Edu to make learning fun, teach children to think, and adapt lessons for every child.';
-const guides = SUBJECTS.filter((s) => subjectGuide(s.slug));
+const guides = gradesWithContent()
+  .map((grade) => ({ grade, subjects: subjectsFor(grade).filter((s) => subjectGuide(s.slug, grade)) }))
+  .filter((g) => g.subjects.length);
+const young = gradeProfile(1);
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -62,7 +66,7 @@ const everyChild = [
           </article>
           <article class="card ed-card">
             <Fragment set:html={levelBadge(2)} />
-            <p>Read a story, table or map, then decide what to do. Solving {UNLOCK_AFTER} unlocks the next level.</p>
+            <p>Read a story, table or map, then decide what to do. Solving {UNLOCK_AFTER} unlocks the next level ({young.unlockAfter} in Grades 1 and 2).</p>
           </article>
           <article class="card ed-card">
             <Fragment set:html={levelBadge(3)} />
@@ -72,6 +76,7 @@ const everyChild = [
         <ul class="ed-checks">
           <li>Every problem traces to Alberta’s program of studies.</li>
           <li>Nothing needs knowledge above the grade.</li>
+          <li>Grades 1 and 2 have less to read, more to watch, and {young.maxPerLevel[1] + young.maxPerLevel[2] + young.maxPerLevel[3]} problems per topic.</li>
           <li>Every problem has hints, a worked solution and feedback on wrong answers.</li>
         </ul>
       </section>
@@ -121,19 +126,24 @@ const everyChild = [
       <section id="subjects">
         <h2 class="ed-heading"><span aria-hidden="true">📚</span> Guides by subject</h2>
         <p class="ed-note">Class routines for each subject, and notes for every topic: a hook, activities, questions and ways to adapt.</p>
-        <div class="grid grid--2">
-          {
-            guides.map((s) => (
-              <a class="card concept-card" href={href(`grade-5/${s.slug}/educators/`)}>
-                <span class="ed-subject-icon" aria-hidden="true">
-                  <Icon name={s.icon as 'book'} size={20} />
-                </span>
-                <span class="concept-card__body concept-card__title">{s.name}</span>
-                <Icon name="arrow" size={18} />
-              </a>
-            ))
-          }
-        </div>
+        {
+          guides.map((g) => (
+            <>
+              <h3 class="ed-grade">{gradeName(g.grade)}</h3>
+              <div class="grid grid--2">
+                {g.subjects.map((s) => (
+                  <a class="card concept-card" href={href(`${subjectPath(g.grade, s.slug)}educators/`)}>
+                    <span class="ed-subject-icon" aria-hidden="true">
+                      <Icon name={s.icon as 'book'} size={20} />
+                    </span>
+                    <span class="concept-card__body concept-card__title">{s.name}</span>
+                    <Icon name="arrow" size={18} />
+                  </a>
+                ))}
+              </div>
+            </>
+          ))
+        }
       </section>
 
       <section id="every-child">

@@ -1,14 +1,39 @@
 # Writing a concept
 
-- One concept is one file: `content/grade-5/<subject>/<id>.yaml`. The file name matches `id`, and
-  the concept is listed in `content/grade-5/roadmap.yaml`.
+- One concept is one file: `content/grade-N/<subject>/<id>.yaml`. The file name matches `id`, `grade`
+  matches the folder, and the concept is listed in `content/grade-N/<subject>/_roadmap.yaml` (with the
+  subject's `blurb` for the grade page).
+- Educator notes: `content/educators/grade-N/<subject>/<id>.yaml`, plus `_subject.yaml` for the guide.
 - Schema: [`src/lib/schema.ts`](../src/lib/schema.ts). Copy the shape of an existing concept.
 - Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). Read it first.
 
 Commands:
 - `npm run statements -- <subject> <outcome-code>` lists the statements and their codes.
-- `npm run verify` (or `npm run verify -- <concept-id>`) checks your file.
-- `npm run audit` regenerates [curriculum-audit.md](curriculum-audit.md).
+- `npm run verify` checks every grade. Narrow it with `-- grade-6`, `-- grade-6/math` or
+  `-- grade-6/<concept-id>`.
+- `npm run audit` (or `-- grade-6/math`) regenerates
+  [`curriculum-audit/grade-N-<subject>.md`](curriculum-audit/).
+
+## Rule 0: write for the grade
+
+`gradeProfile` in [`src/site.ts`](../src/site.ts) sets the limits, and `npm run verify` enforces them.
+
+| | Grades 1–2 | Grades 3–6 |
+|---|---|---|
+| Problems | 6: 2 Warm-up, 2 Build, 2 Deep Think | 9: 3, 4, 2 |
+| Unlock the next level after | 1 solved | 2 solved |
+| Investigation parts / Deep Think steps | 2 / 3 | 3 / 5 |
+| Different thinking moves | 3 | 4 |
+| Longest paragraph or list item | 20 words | 40 words |
+| Big idea | at most 3 bullets | 3–4 bullets |
+| Lesson steps | at most 5 | 4–6 |
+| A visual, experiment or figure | in every step | leads each step |
+| Problem prompt | under 30 words | |
+
+- Grades 1–2: show, don't tell. Let the animation carry the idea, with a few words as labels.
+- Use words a child in that grade uses, and that grade's curriculum examples.
+- Math Deep Think in Grades 1–2 needs a non-choice problem (`order`, `number`, `build`), not
+  necessarily an investigation.
 
 ## Rule 1: only what the curriculum lists
 
@@ -28,6 +53,9 @@ Every block, problem and key term has a `covers:` list of the statements it teac
 
 Find the statement before you write the sentence. Where a statement lists examples, use them: the
 Grade 5 civilizations are Egypt, Greece, Rome, China, India and Arab civilizations, so Mesopotamia is out.
+
+Earlier grades: a `remember` callout may recall Grade 1 up to the grade below. Kindergarten isn't
+supported, so Grade 1 has no recalls.
 
 ## Rule 2: visual first, never a wall of text
 
@@ -83,12 +111,12 @@ Inline fields, such as activity steps, can't hold a list: keep them to two short
 
 ## Rule 3: quality over quantity
 
-- At most 9 problems: 3 Warm-up, 4 Build, 2 Deep Think. Levels and depth are in
+- At most 9 problems (6 in Grades 1–2), as in Rule 0. Levels and depth are in
   [QUESTION-STANDARD.md](QUESTION-STANDARD.md).
 - Every problem names its `thinking:` move.
 - Every wrong `mc` choice has `feedback` explaining the misconception.
 - Every computed answer has a `verify:` expression, checked with exact fractions.
-- Grade 5 reading level, Canadian spelling (colour, centre, metres).
+- The grade's reading level, Canadian spelling (colour, centre, metres).
 
 ## Problem types
 

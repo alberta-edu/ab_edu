@@ -4,7 +4,7 @@ import { SUBJECTS, SITE_NAME } from '../site.ts';
 import { curriculum } from '../lib/content.ts';
 import { href } from '../lib/url.ts';
 
-// "Implemented September 2023." -> "September 2023"
+// "Implemented September 2023." -> "September 2023". The dates are the same in every grade.
 const sources = SUBJECTS.map((s) => {
   const c = curriculum(5, s.slug);
   const since = c.implemented?.replace(/^Implemented\s+/i, '').replace(/\.$/, '') ?? null;
@@ -13,7 +13,7 @@ const sources = SUBJECTS.map((s) => {
 ---
 <Base
   title="About: how Alberta Edu follows the Alberta curriculum"
-  description="How Alberta Edu lessons and practice are matched to Alberta's K-6 program of studies, how content is checked, and how your privacy is protected."
+  description="How Alberta Edu lessons and practice are matched to Alberta's Grade 1 to 6 program of studies, how content is checked, and how your privacy is protected."
   path="about/"
 >
   <div class="container container--narrow">
@@ -28,12 +28,11 @@ const sources = SUBJECTS.map((s) => {
         <li>Every topic teaches one outcome from Alberta's program of studies.</li>
         <li>Open <strong>“Alberta curriculum: what this page covers”</strong> on a topic to see it.</li>
         <li>
-          The four subjects on the Provincial Achievement Tests:
+          Grades 1 to 6, in four subjects. Each follows the current program of studies:
           <ul>
             {sources.map((s) => (
               <li>
                 <strong>{s.name}</strong>{s.since && <>, in use since <span class="nowrap">{s.since}</span></>}
-                {s.name === 'Social Studies' && <>{' '}<span class="nowrap">(new: ancient civilizations)</span></>}
               </li>
             ))}
           </ul>

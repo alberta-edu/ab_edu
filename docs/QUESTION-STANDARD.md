@@ -14,10 +14,15 @@ keep the better one.
 
 ## Hard limit 1: nothing above the grade
 
-A Grade 5 child must be able to solve it with only what Alberta teaches up to Grade 5. Check the
+A child must be able to solve it with only what Alberta teaches up to their grade. Check the
 knowledge needed to solve it, not only the `covers:` tag.
 
-Off limits in Math, even in Deep Think:
+- **What's off limits** is what the next grade's outcomes add: read `curriculum/grade-N+1/`. For
+  Grade 6, it is anything the Grade 6 outcomes don't list.
+- Lower grades have lower ceilings: number ranges, operations and words all shrink. Read the grade's
+  own math outcomes for its number range before writing a single number.
+
+Grade 5, as a worked example. Off limits in Math, even in Deep Think:
 
 | Off limits (Grade 6+) | Grade 5 instead |
 |---|---|
@@ -36,8 +41,8 @@ Off limits in Math, even in Deep Think:
 | Mean, median, range, probability | Frequency, mode, categorical data |
 
 Other subjects:
-- Every fact a problem needs traces to a Grade 5-or-below statement. Read the outcome with
-  `npm run statements -- <subject> <outcome-code>`, and `curriculum/grade-6/` for what is off limits.
+- Every fact a problem needs traces to a statement of the grade or below. Read the outcome with
+  `npm run statements -- <subject> <outcome-code>`, and the next grade's file for what is off limits.
 - Example: "heating makes particles move faster" is Grade 6, so not even as a hint.
 - Explain or avoid any word a child doesn't know.
 
@@ -47,8 +52,8 @@ Rules for every subject:
 - **Reasoning beyond the lesson is fine; needing an untaught fact is not.** If a fact is needed and
   wasn't taught, the problem states it.
 - **Math truths need their conditions.** If the answer assumes whole-number sides, the problem says so.
-- **Write the Grade 5 solution.** `npm run verify` catches only some math above the grade. If you
-  can't solve it as a Grade 5 child would, the problem goes.
+- **Write the solution a child in that grade would.** `npm run verify` catches only some math above
+  the grade. If you can't solve it as that child would, the problem goes.
 
 ## Hard limit 2: everything is checked
 
@@ -136,7 +141,8 @@ cause and consequence, perspectives, ethics.
 ## Craft rules
 
 **Stories**
-- At most about 60 words (120 for an investigation). Grade 5 reading level. Works on a phone.
+- At most about 60 words (120 for an investigation), or under 30 in Grades 1–2. The grade's reading
+  level. Works on a phone.
 - Every detail earns its place, unless it's extra information to ignore on purpose.
 - Real to a child: school, games, pets, a Chinook, a rink, a road trip. Mix names and families.
 - First Nations, Métis and Inuit content only with care and named, sourced facts. No stereotypes.
@@ -268,7 +274,7 @@ also feeds the educator notes. `recall` and `apply` are not shown.
 
 ## Self-check
 
-1. Solve every problem as a Grade 5 child. Anything above the grade?
+1. Solve every problem as a child in that grade. Anything above the grade?
 2. Delete any problem whose thinking repeats another's.
 3. Is Deep Think hard because of the *thinking*? Would it be as hard with small numbers?
 4. Cover the choices. Could the answer be guessed from length or tone?

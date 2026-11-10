@@ -1,52 +1,55 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import Icon from '../../../components/Icon.astro';
-import { conceptsFor, conceptPath } from '../../../lib/content.ts';
+import { conceptsFor, conceptPath, gradesWithContent, subjectsFor, subjectPath } from '../../../lib/content.ts';
 import { notesFor, subjectGuide, type SubjectGuide } from '../../../lib/educator.ts';
 import { md, mdInline } from '../../../lib/render.ts';
-import { SUBJECTS, type SubjectInfo } from '../../../site.ts';
+import { gradeName, gradeSlug, type SubjectInfo } from '../../../site.ts';
 import { href, absolute } from '../../../lib/url.ts';
 
 export function getStaticPaths() {
-  return SUBJECTS.flatMap((s) => {
-    const guide = subjectGuide(s.slug);
-    return guide ? [{ params: { subject: s.slug }, props: { subject: s, guide } }] : [];
-  });
+  return gradesWithContent().flatMap((grade) =>
+    subjectsFor(grade).flatMap((s) => {
+      const guide = subjectGuide(s.slug, grade);
+      return guide ? [{ params: { grade: gradeSlug(grade), subject: s.slug }, props: { grade, subject: s, guide } }] : [];
+    }),
+  );
 }
-const { subject, guide: g } = Astro.props as { subject: SubjectInfo; guide: SubjectGuide };
-const topics = conceptsFor(subject.slug).filter((c) => notesFor(c));
-const path = `grade-5/${subject.slug}/educators/`;
-const description = `How to teach Grade 5 ${subject.name} in a fun and engaging way: small shifts, routines and teaching notes for every Alberta curriculum topic.`.slice(0, 160);
+const { grade, subject, guide: g } = Astro.props as { grade: number; subject: SubjectInfo; guide: SubjectGuide };
+const name = gradeName(grade);
+const topics = conceptsFor(subject.slug, grade).filter((c) => notesFor(c));
+const path = `${subjectPath(grade, subject.slug)}educators/`;
+const description = `How to teach ${name} ${subject.name} in a fun and engaging way: small shifts, routines and teaching notes for every Alberta curriculum topic.`.slice(0, 160);
 const jsonLd = [
   {
     '@context': 'https://schema.org',
     '@type': 'LearningResource',
-    name: `Teaching Grade 5 ${subject.name}`,
+    name: `Teaching ${name} ${subject.name}`,
     description,
     url: absolute(path),
     inLanguage: 'en-CA',
     isAccessibleForFree: true,
-    educationalLevel: 'Grade 5',
+    educationalLevel: name,
     learningResourceType: 'Teacher guide',
     audience: { '@type': 'EducationalAudience', educationalRole: 'teacher' },
     about: subject.name,
   },
 ];
 ---
-<Base title={`Teaching Grade 5 ${subject.name}`} description={description} path={path} subject={subject.slug} jsonLd={jsonLd}>
+<Base title={`Teaching ${name} ${subject.name}`} description={description} path={path} subject={subject.slug} jsonLd={jsonLd}>
   <div class="container ed">
     <nav class="crumbs" aria-label="Breadcrumb">
       <ol>
         <li><a href={href('educators/')}>For educators</a></li>
-        <li aria-current="page">{subject.name}</li>
+        <li aria-current="page">{name} {subject.name}</li>
       </ol>
     </nav>
     <header class="page-hero">
-      <p class="page-hero__eyebrow">For teachers and parents · Grade 5</p>
+      <p class="page-hero__eyebrow">For teachers and parents · {name}</p>
       <h1>Teaching {subject.name}</h1>
       <div class="page-hero__lede" set:html={md(g.promise)} />
       <div class="control-row">
-        <a class="btn btn--ghost" href={href(`grade-5/${subject.slug}/`)}>See the student topics</a>
+        <a class="btn btn--ghost" href={href(subjectPath(grade, subject.slug))}>See the student topics</a>
       </div>
     </header>
 

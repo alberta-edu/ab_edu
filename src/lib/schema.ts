@@ -276,7 +276,8 @@ const step = z.strictObject({
 export const conceptSchema = z.strictObject({
   /** URL slug. */
   id: z.string().regex(/^[a-z0-9-]+$/),
-  grade: z.literal(5),
+  /** Grade 1 to 6. Must match the folder, content/grade-N/. */
+  grade: z.number().int().min(1).max(6),
   subject: z.enum(['math', 'science', 'social-studies', 'english-language-arts']),
   /** Organizing idea code from curriculum/grade-N/<subject>.json, e.g. "MAT-OI1". */
   organizingIdea: z.string(),

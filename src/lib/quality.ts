@@ -2,6 +2,8 @@
 // docs/QUESTION-STANDARD.md and are reviewed by people and models; these catch the obvious misses:
 // a "Deep Think" that is really a long sum, near-duplicates, and math from a later grade.
 import type { Concept, Problem } from './schema.ts';
+import { gradeProfile } from '../site.ts';
+import { wordCount } from './readability.ts';
 
 /** Prompt text with math, Markdown and punctuation removed. */
 export function plainWords(text: string): string[] {
@@ -46,16 +48,22 @@ export function tableColumns(text: string): number {
   return Math.max(0, ...text.split('\n').filter((l) => /^\s*\|.*\|\s*$/.test(l)).map((l) => l.trim().split('|').length - 2));
 }
 
-/** Most problems a level may hold: 9 in all, so practice stays short. */
-export const MAX_PER_LEVEL = { 1: 3, 2: 4, 3: 2 } as const;
-/** Most parts an investigation may have. */
-export const MAX_PARTS = 3;
-/** Most steps Deep Think may take, counting each investigation part as a step. */
-export const MAX_DEEP_STEPS = 5;
+/** Prompt words a young child reads: tables and display math don't count. */
+const promptWords = (prompt: string) =>
+  wordCount(
+    prompt
+      .split('\n')
+      .filter((l) => !/^\s*\|/.test(l))
+      .join('\n')
+      .replace(/\\\[[\s\S]*?\\\]/g, ' '),
+  );
 
 /** Checks one concept's practice set against the question standard. Returns what is wrong. */
 export function qualityIssues(c: Concept): string[] {
   const issues: string[] = [];
+  // Limits by grade: 9 problems for Grades 3–6, 6 for Grades 1 and 2 (gradeProfile in src/site.ts).
+  const { maxPerLevel: MAX_PER_LEVEL, maxParts: MAX_PARTS, maxDeepSteps: MAX_DEEP_STEPS, minMoves, maxPromptWords } = gradeProfile(c.grade);
+  const young = c.grade <= 2;
   const atLevel = (l: number) => c.problems.filter((p) => p.level === l);
   const deep = atLevel(3);
   const build = atLevel(2);
@@ -66,10 +74,10 @@ export function qualityIssues(c: Concept): string[] {
   }
   if (new Set(deep.map((p) => p.thinking)).size < 2) issues.push('Deep Think needs at least 2 different thinking moves');
   if (!deep.some((p) => p.type !== 'mc' && p.type !== 'multi')) issues.push('Deep Think needs a problem that is not multiple choice');
-  if (c.subject === 'math' && !deep.some((p) => p.type === 'investigation' || p.type === 'build')) issues.push('Math Deep Think needs an investigation or a build problem');
+  if (c.subject === 'math' && !young && !deep.some((p) => p.type === 'investigation' || p.type === 'build')) issues.push('Math Deep Think needs an investigation or a build problem');
   if (build.filter((p) => p.thinking === 'recall').length > 1) issues.push('Build has more than one recall problem');
   if (build.length && build.every((p) => p.type !== 'investigation' && isBareCalculation(p.prompt))) issues.push('Build needs at least one story or context');
-  if (new Set(c.problems.map((p) => p.thinking)).size < 4) issues.push('the set needs at least 4 different thinking moves');
+  if (new Set(c.problems.map((p) => p.thinking)).size < minMoves) issues.push(`the set needs at least ${minMoves} different thinking moves`);
   for (const [level, name] of [[1, 'Warm-up'], [2, 'Build'], [3, 'Deep Think']] as const) {
     const n = atLevel(level).length;
     if (n > MAX_PER_LEVEL[level]) issues.push(`${n} ${name} problems is too many: keep the best ${MAX_PER_LEVEL[level]}`);
@@ -90,6 +98,12 @@ export function qualityIssues(c: Concept): string[] {
         : `${written} written answers: outside ELAL, use a choice or build problem instead`,
     );
   }
+  if (maxPromptWords) {
+    for (const p of c.problems) {
+      const w = promptWords(p.prompt);
+      if (w > maxPromptWords) issues.push(`${p.id}: a ${w}-word prompt is too long for Grade ${c.grade}: keep it under ${maxPromptWords}, and let a picture carry the rest`);
+    }
+  }
   for (const p of pieces) {
     if ((p.type === 'number' || p.type === 'fraction') && !p.verify) issues.push(`${p.id}: a computed answer needs verify`);
     const wide = tableColumns(p.prompt);
@@ -100,13 +114,16 @@ export function qualityIssues(c: Concept): string[] {
 }
 
 /**
- * Math that Grade 5 stops short of, read from `verify:` expressions and prompts. The outcomes say:
+ * Math that Grade 5 stops short of, read from `verify:` expressions and prompts. Grades 1–4 stop
+ * lower still, so these are upper bounds for them too (their own limits are checked by the
+ * grade-level audit). Grade 6 has no automatic ceiling. The Grade 5 outcomes say:
  * natural numbers multiply up to 3-digit by 2-digit and divide 3-digit by 1-digit; decimals only
  * add and subtract; fractions only with common denominators; no negative numbers or powers.
  * Each hit is either a real problem or needs a person's eye, so it is reported, not silently fixed.
  */
-export function mathCeilingIssues(p: { id: string; prompt: string; verify?: string; answer?: unknown }): string[] {
+export function mathCeilingIssues(p: { id: string; prompt: string; verify?: string; answer?: unknown }, grade = 5): string[] {
   const issues: string[] = [];
+  if (grade >= 6) return issues;
   const v = p.verify ?? '';
   // A product or quotient of two plain numbers: "1.5 * 4", "1234 / 7".
   for (const m of v.matchAll(/(\d+(?:\.\d+)?)\s*([*/×÷])\s*(\d+(?:\.\d+)?)/g)) {

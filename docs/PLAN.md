@@ -1,14 +1,28 @@
 # Alberta Edu: Plan
 
-A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 comes first, with the four
-Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
+A free, static learning site that follows Alberta's Grade 1–6 curriculum in ELAL, Math, Science and
+Social Studies. Grade 5 came first; Grades 6, 4, 3, 2 and 1 follow. Kindergarten is not supported.
 
 ## Where we are now
 
-*Last updated: November 4, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 7, 2026. Update this section whenever a phase or batch finishes.*
 
-**All phases are done. The site is live at https://alberta-edu.github.io/ab_edu/, and every push to
-`main` deploys it.**
+**Grade 5 is live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 6 to 1 (Phases 9–14).**
+
+**Waiting for review:** `feature/multi-grade` (Phase 9). Every page, check and script works for any
+grade from 1 to 6, and Kindergarten is removed. No Grade 5 content changed; the site still builds the
+same 112 pages.
+
+| Grade | Outcomes | Statements | Status |
+|---|---|---|---|
+| 5 | 32 | 674 | ✅ Live |
+| 6 | 33 | 763 | Next (Phase 10) |
+| 4 | 32 | 651 | Phase 11 |
+| 3 | 30 | 749 | Phase 12 |
+| 2 | 28 | 596 | Phase 13 |
+| 1 | 28 | 565 | Phase 14 |
+
+Grade 5 detail:
 
 | Subject | Concepts | Grade 5 statements taught |
 |---|---|---|
@@ -16,7 +30,7 @@ Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
 | Science | 15 of 15 ✅ | 204 of 204 ✅ |
 | Social Studies | 6 of 6 ✅ | 62 of 62 ✅ |
 | ELAL | 12 of 12 ✅ | 243 of 243 ✅ |
-| **Total** | **48 of 48** ✅ | **674 of 674** ✅ ([curriculum-audit.md](curriculum-audit.md)) |
+| **Total** | **48 of 48** ✅ | **674 of 674** ✅ ([curriculum-audit/](curriculum-audit/)) |
 
 **Latest merges** (November 4, 2026):
 
@@ -51,7 +65,7 @@ because every push to `main` goes live.
 ## 1. The curriculum
 
 - **Source:** New LearnAlberta's published data, extracted by `scripts/extract-curriculum.ts` into
-  [`curriculum/`](../curriculum/) for Grades K–6.
+  [`curriculum/`](../curriculum/) for Grades 1–6. Kindergarten was removed on November 7, 2026.
 - **In force for Grade 5 in 2026–27:**
   - Math and ELAL (Sept 2023), Science (Sept 2024).
   - Social Studies (Sept 2026): Grade 5 is now *ancient civilizations*.
@@ -122,6 +136,23 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 6 | ELAL | 12 concepts, with original passages and poems | ✅ Merged |
 | 7 | Polish | Question rewrite, grade-level audit, educator notes, accessibility, SEO and device testing | ✅ Merged |
 | 8 | Release | Make the repo public, turn on Pages, publish | ✅ Live since November 4, 2026 |
+| 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | 🔍 `feature/multi-grade`, waiting for review |
+| 10 | Grade 6 | 4 subjects, one branch each, stacked on Phase 9 | Planned |
+| 11 | Grade 4 | 4 subjects | Planned |
+| 12 | Grade 3 | 4 subjects | Planned |
+| 13 | Grade 2 | 4 subjects, Grades 1–2 profile: less text, more animation, 6 problems | Planned |
+| 14 | Grade 1 | 4 subjects, Grades 1–2 profile | Planned |
+
+### How Grades 6 to 1 are built
+
+- One branch per grade and subject (`feature/g6-math` and so on), stacked on `feature/multi-grade`.
+  Each has its own `_roadmap.yaml`, notes folder and audit file, so the branches don't conflict.
+- Writing agents run about 4 at a time, then a second model blind-solves each subject for wrong keys
+  and above-grade content, as in Phase 7.
+- Grade 5's standards hold: `covers:` on everything, visual first, notes for educators.
+- **Grades 1–2** (`gradeProfile` in `src/site.ts`): 6 problems a topic (2, 2, 2), unlock after 1,
+  paragraphs up to 20 words, prompts under 30 words, a visual in every lesson step. A read-aloud button
+  is not planned for now.
 
 ## 5. Decisions
 

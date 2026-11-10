@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import Icon from '../components/Icon.astro';
-import { SITE_NAME, SITE_TAGLINE, SUBJECTS } from '../site.ts';
+import { SITE_NAME, SITE_TAGLINE, gradeName } from '../site.ts';
+import { gradesWithContent, gradePath } from '../lib/content.ts';
 import { href, absolute } from '../lib/url.ts';
 
 interface Props {
@@ -90,9 +91,9 @@ const current = (p: string) => (path.startsWith(p) ? 'page' : undefined);
           </p>
         </div>
         <div>
-          <h2>Grade 5</h2>
+          <h2>Grades</h2>
           <ul>
-            {SUBJECTS.map((s) => <li><a href={href(`grade-5/${s.slug}/`)}>{s.name}</a></li>)}
+            {gradesWithContent().map((g) => <li><a href={href(gradePath(g))}>{gradeName(g)}</a></li>)}
           </ul>
         </div>
         <div>

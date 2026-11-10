@@ -1,14 +1,28 @@
 // Readability gate: long paragraphs of prose are hard for children (and busy adults) to read.
 // A paragraph that explains a process or lists several ideas belongs in a numbered or bulleted
 // list. npm run verify uses this on lesson text and educator notes.
+// The limits depend on the grade (gradeProfile in src/site.ts): Grades 1 and 2 read much less.
 import type { Concept, LessonBlock } from './schema.ts';
+import { gradeProfile } from '../site.ts';
 
-/** A paragraph with more sentences than this is a blob once it reaches MIN_BLOB_WORDS. */
+/** Grades 3–6. A paragraph with more sentences than this is a blob once it reaches MIN_BLOB_WORDS. */
 export const MAX_SENTENCES = 2;
 /** Three short sentences ("Who wrote it? Why? Is it up to date?") still read easily. */
 export const MIN_BLOB_WORDS = 25;
 /** No prose paragraph may be longer than this, however many sentences it has. */
 export const MAX_WORDS = 40;
+
+export interface ProseLimits {
+  maxWords: number;
+  maxSentences: number;
+  minBlobWords: number;
+}
+const DEFAULT_LIMITS: ProseLimits = { maxWords: MAX_WORDS, maxSentences: MAX_SENTENCES, minBlobWords: MIN_BLOB_WORDS };
+/** The prose limits for a grade. */
+export const limitsFor = (grade: number): ProseLimits => {
+  const p = gradeProfile(grade);
+  return { maxWords: p.maxWords, maxSentences: p.maxSentences, minBlobWords: p.minBlobWords };
+};
 
 const MATH = /\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)/g;
 const LIST_LINE = /^\s*(?:[-*+]|\d+[.)])\s/;
@@ -50,15 +64,16 @@ export function listItems(src: string): string[] {
 }
 
 /** Why a piece of prose is too long to read comfortably, or null if it is fine. */
-export function blobIssue(src: string): string | null {
+export function blobIssue(src: string, limits: ProseLimits = DEFAULT_LIMITS): string | null {
+  const { maxWords, maxSentences, minBlobWords } = limits;
   for (const item of listItems(src)) {
     const w = wordCount(item);
-    if (w > MAX_WORDS) return `a list item of ${w} words ("${item.slice(0, 60)}…"). Split it, or cut it`;
+    if (w > maxWords) return `a list item of ${w} words ("${item.slice(0, 60)}…"). Split it, or cut it`;
   }
   for (const p of proseParagraphs(src)) {
     const s = sentenceCount(p);
     const w = wordCount(p);
-    if ((s > MAX_SENTENCES && w >= MIN_BLOB_WORDS) || w > MAX_WORDS) {
+    if ((s > maxSentences && w >= minBlobWords) || w > maxWords) {
       const start = p.replace(/\s+/g, ' ').slice(0, 60);
       return `${s} sentences, ${w} words in one paragraph ("${start}…"). Make it a list, or cut it`;
     }
@@ -87,19 +102,29 @@ export function blockProse(b: LessonBlock): string[] {
   }
 }
 
-/** Every too-long paragraph in a concept's lesson, labelled by step. */
+/** Blocks that give a young child something to watch or play with. */
+const LOOK_AT = new Set(['visual', 'experiment', 'figure']);
+
+/** Every too-long paragraph in a concept's lesson, labelled by step, plus the grade's lesson-shape rules. */
 export function lessonBlobs(c: Concept): string[] {
   const out: string[] = [];
+  const profile = gradeProfile(c.grade);
+  const limits = limitsFor(c.grade);
   // The Big idea is the first thing a student reads, so it is a list: at most a one-sentence lead-in.
-  const big = blobIssue(c.bigIdea) ?? (proseParagraphs(c.bigIdea).some((p) => sentenceCount(p) > 1) ? 'more than one sentence of prose. Make it 3–4 bullets' : null);
+  const big = blobIssue(c.bigIdea, limits) ?? (proseParagraphs(c.bigIdea).some((p) => sentenceCount(p) > 1) ? 'more than one sentence of prose. Make it 3–4 bullets' : null);
   if (big) out.push(`big idea: ${big}`);
-  c.lesson.forEach((s, i) =>
+  const bullets = listItems(c.bigIdea).length;
+  if (profile.maxBigIdeaBullets && bullets > profile.maxBigIdeaBullets) out.push(`big idea: ${bullets} bullets is too many for Grade ${c.grade}: keep ${profile.maxBigIdeaBullets}`);
+  if (c.lesson.length > profile.maxSteps) out.push(`${c.lesson.length} lesson steps is too many for Grade ${c.grade}: keep ${profile.maxSteps} or fewer`);
+  c.lesson.forEach((s, i) => {
+    if (profile.visualEveryStep && !s.blocks.some((b) => LOOK_AT.has(b.type)))
+      out.push(`step ${i + 1} "${s.title}": Grade ${c.grade} needs a visual, experiment or figure in every step`);
     s.blocks.forEach((b, j) => {
       for (const t of blockProse(b)) {
-        const issue = blobIssue(t);
+        const issue = blobIssue(t, limits);
         if (issue) out.push(`step ${i + 1} "${s.title}", block ${j + 1} (${b.type}): ${issue}`);
       }
-    }),
-  );
+    });
+  });
   return out;
 }

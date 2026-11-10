@@ -1,7 +1,8 @@
 # Alberta Edu
 
-A free, static learning site that follows Alberta's K–6 curriculum. Grade 5 comes first, with the
-four Provincial Achievement Test subjects: ELAL, Math, Science and Social Studies.
+A free, static learning site that follows Alberta's Grade 1–6 curriculum in ELAL, Math, Science and
+Social Studies. Grade 5 is done; Grades 6, 4, 3, 2 and 1 follow, in that order. Kindergarten is not
+supported.
 
 - A lesson for every learning outcome, each opening with an interactive visual or virtual experiment.
 - Practice in three levels (★ Warm-up, ★★ Build, ★★★ Deep Think), with hints, worked solutions and
@@ -22,23 +23,23 @@ npm run preview    # serve the build
 
 | Command | What it does |
 |---|---|
-| `npm run verify` | Checks every content file: schema, answers, math, LaTeX, curriculum references, readability |
+| `npm run verify` | Checks every content file: schema, answers, math, LaTeX, curriculum references, readability. `-- grade-6/math` narrows it |
 | `npm run statements -- <subject> <outcome>` | Lists an outcome's statements and their `covers:` codes |
-| `npm run coverage` | Lists each Grade 5 outcome and whether it has content |
-| `npm run audit` | Writes `docs/curriculum-audit.md` |
+| `npm run coverage` | Lists each outcome and whether it has content. `-- grade-6` narrows it |
+| `npm run audit` | Writes `docs/curriculum-audit/grade-N-<subject>.md` |
 | `npm test` | Unit tests |
 | `npm run build` | Runs `verify`, then builds into `dist/` |
 
 ## Layout
 
 ```
-curriculum/grade-*/   Official K–6 outcomes, extracted from New LearnAlberta
-content/grade-5/      One YAML file per concept, plus roadmap.yaml
-content/educators/    Notes for teachers and parents
+curriculum/grade-*/   Official Grade 1–6 outcomes, extracted from New LearnAlberta
+content/grade-N/      One YAML file per concept, plus <subject>/_roadmap.yaml
+content/educators/    Notes for teachers and parents, by grade
 src/lib/              Build-time logic: schema, rendering, checks, review schedule
 src/client/           Browser code: problems, practice, progress, review
 src/components/       Lesson blocks, visuals and experiments
-src/pages/            Routes
+src/pages/            Routes ([grade]/[subject]/[concept] for every grade with content)
 docs/                 Plan, content guide, question standard, audits
 ```
 

@@ -1,18 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
-import { loadConcepts, conceptPath } from '../lib/content.ts';
+import { conceptPath, gradesWithContent, conceptsFor, subjectsFor } from '../lib/content.ts';
 import { conceptKey, problemKey } from '../lib/problem-html.ts';
-import { SUBJECTS } from '../site.ts';
+import { gradeName } from '../site.ts';
 import { href } from '../lib/url.ts';
+import type { Concept } from '../lib/schema.ts';
 
-const concepts = loadConcepts(5);
-const bySubject = SUBJECTS.map((s) => ({ ...s, concepts: concepts.filter((c) => c.subject === s.slug).sort((a, b) => a.order - b.order) })).filter(
-  (s) => s.concepts.length,
+/** Grades and subjects, each shown only once a topic in it has progress. */
+const bySubject = gradesWithContent().flatMap((grade) =>
+  subjectsFor(grade).map((s) => ({ ...s, grade, concepts: conceptsFor(s.slug, grade) })),
 );
+/** With several grades, only subjects the student has started are listed. */
+const filtered = gradesWithContent().length > 1;
 /** Problem keys per level, so the browser can count solved problems at each level. */
-const levelKeys = (c: (typeof concepts)[number]) => [1, 2, 3].map((l) => c.problems.filter((p) => p.level === l).map((p) => problemKey(c, p)));
+const levelKeys = (c: Concept) => [1, 2, 3].map((l) => c.problems.filter((p) => p.level === l).map((p) => problemKey(c, p)));
 ---
-<Base title="My progress" description="Your Grade 5 progress, saved only in this browser." path="progress/" noindex>
+<Base title="My progress" description="Your progress, saved only in this browser." path="progress/" noindex>
   <div class="container">
     <header class="page-hero">
       <p class="page-hero__eyebrow">Saved on this device</p>
@@ -27,11 +30,12 @@ const levelKeys = (c: (typeof concepts)[number]) => [1, 2, 3].map((l) => c.probl
       <div class="card rv-stat"><strong data-stat="review">0</strong><span>topics in review</span></div>
     </div>
 
+    {filtered && <p class="muted" data-pg-empty>Topics appear here once you solve a problem in them.</p>}
     {
       bySubject.map((s) => (
-        <section class="strand" data-subject={s.slug}>
+        <section class="strand" data-subject={s.slug} data-pg-section hidden={filtered}>
           <div class="strand__head">
-            <h2>{s.name}</h2>
+            <h2>{gradeName(s.grade)} {s.name}</h2>
           </div>
           <div class="table-wrap">
             <table class="data-table">
@@ -126,6 +130,20 @@ const levelKeys = (c: (typeof concepts)[number]) => [1, 2, 3].map((l) => c.probl
         ? `Box ${r.box + 1} of ${INTERVALS.length} · ${days <= 0 ? 'due today' : `next in ${days} day${days === 1 ? '' : 's'}`}`
         : 'Not yet';
     });
+
+    // With several grades, show only the subjects that have progress (the page starts with them hidden).
+    const empty = document.querySelector<HTMLElement>('[data-pg-empty]');
+    if (empty) {
+      let any = false;
+      document.querySelectorAll<HTMLElement>('[data-pg-section]').forEach((section) => {
+        const started = [...section.querySelectorAll<HTMLElement>('[data-pg-concept]')].some((row) =>
+          (JSON.parse(row.dataset.levels!) as string[][]).flat().some((k) => p.problems[k]),
+        );
+        section.hidden = !started;
+        any ||= started;
+      });
+      empty.hidden = any;
+    }
   };
 
   render();
