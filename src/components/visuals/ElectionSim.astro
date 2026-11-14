@@ -1,0 +1,131 @@
+---
+// A made-up provincial election. Each riding counts its votes and elects one MLA; the seats fill
+// the legislature; the party with the most seats forms the government and the next is the Official
+// Opposition. Tap any riding afterwards to see its vote count.
+import { PARTIES, RIDINGS } from './election.ts';
+
+const SEATS = RIDINGS.length;
+---
+<election-sim data-seats={SEATS}>
+  <ul class="g6ss-el-key" aria-label="Parties">
+    {PARTIES.map((p) => <li><span class="g6ss-el-swatch" style={`background:${p.colour}`}></span>{p.icon} {p.name}</li>)}
+  </ul>
+  <div class="g6ss-el-map" role="group" aria-label="The 15 ridings of a made-up province">
+    {RIDINGS.map((r, i) => <button type="button" class="g6ss-el-riding" data-el-riding={i} disabled><span>{r}</span></button>)}
+  </div>
+  <svg class="sci-svg g6ss-el-house" viewBox="0 0 440 150" role="img" aria-label="The legislature. The government sits on one side and the opposition faces it.">
+    <rect class="g6ss-el-floor" x="150" y="20" width="140" height="120" rx="6"></rect>
+    <text class="g6ss-el-label" x="220" y="16" text-anchor="middle">Speaker</text>
+    <text class="g6ss-el-label" x="75" y="145" text-anchor="middle">Government</text>
+    <text class="g6ss-el-label" x="365" y="145" text-anchor="middle">Opposition</text>
+    {Array.from({ length: SEATS }, (_, i) => <circle class="g6ss-el-seat" data-el-seat={i} cx="220" cy="80" r="9"></circle>)}
+  </svg>
+  <button type="button" class="btn btn--small" data-el="run">🗳️ Hold the election</button>
+  <p class="sci-say g6ss-el-say" data-el="say" aria-live="polite"></p>
+  <p class="g6ss-el-detail" data-el="detail" aria-live="polite" hidden></p>
+  <p class="muted g6ss-el-note">A made-up province, with made-up parties.</p>
+</election-sim>
+
+<style is:global>
+  election-sim { display: block; }
+  .g6ss-el-key { list-style: none; margin: 0 0 0.6rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-weight: 700; font-size: var(--step--1); }
+  .g6ss-el-key li { display: flex; align-items: center; gap: 0.35rem; }
+  .g6ss-el-swatch { width: 0.9rem; height: 0.9rem; border-radius: 3px; }
+  .g6ss-el-map { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.3rem; }
+  .g6ss-el-riding { min-height: 2.6rem; padding: 0.2rem; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); font: inherit; font-size: 0.72rem; font-weight: 700; color: var(--ink-2); line-height: 1.15; transition: background 0.3s, color 0.3s; }
+  .g6ss-el-riding:not(:disabled) { cursor: pointer; }
+  .g6ss-el-riding.is-won { color: #fff; border-color: transparent; }
+  .g6ss-el-riding[aria-pressed='true'] { outline: 3px solid var(--ink); outline-offset: 1px; }
+  .g6ss-el-house { max-width: 28rem; margin: 0.8rem auto 0; }
+  .g6ss-el-floor { fill: color-mix(in srgb, var(--ok) 14%, var(--surface)); stroke: var(--line-strong); }
+  .g6ss-el-label { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+  .g6ss-el-seat { fill: var(--surface-3); opacity: 0; transition: cx 0.7s ease, cy 0.7s ease, opacity 0.3s; }
+  .g6ss-el-seat.is-on { opacity: 1; }
+  .g6ss-el-say:empty { display: none; }
+  .g6ss-el-detail { margin: 0.5rem 0 0; padding: 0.5rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6ss-el-note { margin: 0.4rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 40rem) { .g6ss-el-map { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (prefers-reduced-motion: reduce) { .g6ss-el-seat, .g6ss-el-riding { transition: none; } }
+</style>
+
+<script>
+  import { PARTIES, runElection, type ElectionResult, type Party } from './election.ts';
+
+  const colour = (id: Party['id']) => PARTIES.find((p) => p.id === id)!.colour;
+  const name = (id: Party['id']) => PARTIES.find((p) => p.id === id)!.name;
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : ms));
+
+  class ElectionSim extends HTMLElement {
+    private result: ElectionResult | null = null;
+    private count = 0;
+
+    connectedCallback() {
+      this.querySelector('[data-el="run"]')!.addEventListener('click', () => this.run());
+      this.querySelectorAll<HTMLButtonElement>('[data-el-riding]').forEach((b) => b.addEventListener('click', () => this.show(Number(b.dataset.elRiding))));
+    }
+
+    private async run() {
+      const button = this.querySelector<HTMLButtonElement>('[data-el="run"]')!;
+      const say = this.querySelector('[data-el="say"]')!;
+      const tiles = [...this.querySelectorAll<HTMLButtonElement>('[data-el-riding]')];
+      const seats = [...this.querySelectorAll<SVGCircleElement>('[data-el-seat]')];
+      button.disabled = true;
+      this.querySelector<HTMLElement>('[data-el="detail"]')!.hidden = true;
+      const res = runElection(Date.now() + ++this.count);
+      this.result = res;
+      tiles.forEach((t) => {
+        t.disabled = true;
+        t.classList.remove('is-won');
+        t.style.background = '';
+        t.removeAttribute('aria-pressed');
+      });
+      seats.forEach((s) => {
+        s.classList.remove('is-on');
+        s.style.cx = '220px';
+        s.style.cy = '80px';
+      });
+      say.textContent = 'Voters in each riding mark a secret ballot. Counting…';
+      for (let i = 0; i < tiles.length; i++) {
+        await wait(170);
+        tiles[i].classList.add('is-won');
+        tiles[i].style.background = colour(res.ridings[i].winner);
+      }
+      await wait(400);
+      say.textContent = 'Each riding’s winner becomes an MLA and takes a seat.';
+      // Government on the left, everyone else facing them on the right, Official Opposition first.
+      const others = PARTIES.map((p) => p.id).filter((id) => id !== res.government).sort((a, b) => (a === res.opposition ? -1 : b === res.opposition ? 1 : 0));
+      const order: Party['id'][] = [...Array(res.seats[res.government]).fill(res.government), ...others.flatMap((id) => Array(res.seats[id]).fill(id))];
+      let left = 0;
+      let right = 0;
+      order.forEach((party, k) => {
+        const s = seats[k];
+        const gov = party === res.government;
+        const n = gov ? left++ : right++;
+        const col = Math.floor(n / 4);
+        const row = n % 4;
+        s.style.fill = colour(party);
+        s.style.cx = `${gov ? 130 - col * 22 : 310 + col * 22}px`;
+        s.style.cy = `${38 + row * 24}px`;
+        s.classList.add('is-on');
+      });
+      await wait(900);
+      const g = res.government;
+      const o = res.opposition;
+      say.textContent = `The ${name(g)} won ${res.seats[g]} seats, the most. It forms the government, and its leader becomes premier. The ${name(o)}, with ${res.seats[o]}, is the Official Opposition. Tap a riding to see its votes.`;
+      tiles.forEach((t) => (t.disabled = false));
+      button.textContent = '🗳️ Hold another election';
+      button.disabled = false;
+    }
+
+    private show(i: number) {
+      if (!this.result) return;
+      const r = this.result.ridings[i];
+      this.querySelectorAll('[data-el-riding]').forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+      const detail = this.querySelector<HTMLElement>('[data-el="detail"]')!;
+      const lines = PARTIES.map((p) => `${p.icon} ${p.name}: ${r.votes[p.id].toLocaleString('en-CA')}`).join(' · ');
+      detail.textContent = `${r.name}: ${lines}. The ${name(r.winner)} candidate has the most votes, so wins the seat.`;
+      detail.hidden = false;
+    }
+  }
+  customElements.define('election-sim', ElectionSim);
+</script>

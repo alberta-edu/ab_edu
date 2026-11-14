@@ -1,0 +1,65 @@
+---
+// Pick a Charter right and see who it protects: a citizen, a permanent resident or a visitor
+// (outcome CYaAx2qY8U6xcG-pEKyXhA K1.2, K1.3).
+import { PEOPLE, RIGHTS } from './charter-data.ts';
+---
+<charter-check data-rights={JSON.stringify(RIGHTS)}>
+  <p class="sci-pick-label">Choose a right</p>
+  <div class="sci-pick" role="group" aria-label="Choose a right">
+    {RIGHTS.map((r, i) => <button type="button" data-cc={r.id} aria-pressed={String(i === 0)}>{r.name}</button>)}
+  </div>
+  <p class="g6ss-cc-kind" data-cc="kind">{RIGHTS[0].kind}</p>
+  <div class="g6ss-cc-people" aria-live="polite">
+    {
+      PEOPLE.map((p) => (
+        <div class="g6ss-cc-person is-yes" data-cc-person={p.id}>
+          <span class="g6ss-cc-face" aria-hidden="true">{p.icon}</span>
+          <strong>{p.name}</strong>
+          <span class="muted">{p.who}</span>
+          <span class="g6ss-cc-mark" data-cc-mark>✅ Protected</span>
+        </div>
+      ))
+    }
+  </div>
+  <p class="g6ss-cc-words" data-cc="words">{RIGHTS[0].words}</p>
+</charter-check>
+
+<style is:global>
+  charter-check { display: block; }
+  .g6ss-cc-kind { margin: 0.8rem 0 0; font-size: var(--step--1); font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+  .g6ss-cc-people { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.4rem; }
+  .g6ss-cc-person { display: grid; justify-items: center; gap: 0.15rem; padding: 0.7rem 0.4rem; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface-2); text-align: center; transition: border-color 0.25s, background 0.25s, opacity 0.25s; }
+  .g6ss-cc-person.is-yes { border-color: var(--ok); background: var(--ok-soft); }
+  .g6ss-cc-person:not(.is-yes) { opacity: 0.75; }
+  .g6ss-cc-face { font-size: 2rem; line-height: 1.1; }
+  .g6ss-cc-person .muted { font-size: var(--step--1); }
+  .g6ss-cc-mark { margin-top: 0.3rem; font-weight: 700; font-size: var(--step--1); }
+  .g6ss-cc-words { margin: 0.6rem 0 0; font-weight: 700; }
+  @media (max-width: 30rem) { .g6ss-cc-people { grid-template-columns: 1fr; } .g6ss-cc-person { grid-template-columns: auto 1fr auto; text-align: left; justify-items: start; align-items: center; column-gap: 0.6rem; } .g6ss-cc-person .muted { grid-column: 2; } .g6ss-cc-face { grid-row: span 2; } .g6ss-cc-mark { grid-column: 3; grid-row: 1 / span 2; margin: 0; } }
+  @media (prefers-reduced-motion: reduce) { .g6ss-cc-person { transition: none; } }
+</style>
+
+<script>
+  import type { CharterRight } from './charter-data.ts';
+
+  class CharterCheck extends HTMLElement {
+    connectedCallback() {
+      const rights: CharterRight[] = JSON.parse(this.dataset.rights!);
+      this.querySelectorAll<HTMLButtonElement>('[data-cc]').forEach((b) => {
+        if (b.tagName !== 'BUTTON') return;
+        b.addEventListener('click', () => {
+          const r = rights.find((x) => x.id === b.dataset.cc)!;
+          this.querySelectorAll('button[data-cc]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.querySelector('[data-cc="kind"]')!.textContent = r.kind;
+          this.querySelector('[data-cc="words"]')!.textContent = r.words;
+          this.querySelectorAll<HTMLElement>('[data-cc-person]').forEach((p) => {
+            const yes = r.protects.includes(p.dataset.ccPerson as CharterRight['protects'][number]);
+            p.classList.toggle('is-yes', yes);
+            p.querySelector('[data-cc-mark]')!.textContent = yes ? '✅ Protected' : '➖ Not this right';
+          });
+        });
+      });
+    }
+  }
+  customElements.define('charter-check', CharterCheck);
+</script>
