@@ -88,6 +88,7 @@ import AlgebraTiles from './visuals/AlgebraTiles.astro';
 import ShapeMapper from './visuals/ShapeMapper.astro';
 import Tessellation from './visuals/Tessellation.astro';
 import CartesianPlane from './visuals/CartesianPlane.astro';
+import TransformLab from './visuals/TransformLab.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -177,6 +178,7 @@ const visuals = {
   'shape-mapper': ShapeMapper,
   'tessellation': Tessellation,
   'cartesian-plane': CartesianPlane,
+  'transform-lab': TransformLab,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
