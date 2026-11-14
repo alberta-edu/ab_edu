@@ -87,6 +87,7 @@ import DoubleLine from './visuals/DoubleLine.astro';
 import AlgebraTiles from './visuals/AlgebraTiles.astro';
 import ShapeMapper from './visuals/ShapeMapper.astro';
 import Tessellation from './visuals/Tessellation.astro';
+import CartesianPlane from './visuals/CartesianPlane.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -175,6 +176,7 @@ const visuals = {
   'algebra-tiles': AlgebraTiles,
   'shape-mapper': ShapeMapper,
   'tessellation': Tessellation,
+  'cartesian-plane': CartesianPlane,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

@@ -1,0 +1,144 @@
+---
+// The four-quadrant Cartesian plane (MAT6-OI4-GQ1-LO1: K1.2-K1.6, U1.1, U1.2, S1.1-S1.5).
+// Explore: tap a crossing to read its ordered pair and see its distances from the axes.
+// Find: tap the point you're given. Draw: plot a polygon's vertices in order.
+import { planeSvg } from './g6-plane.ts';
+
+interface Props {
+  r?: number;
+  polygon?: { label: string; x: number; y: number }[];
+}
+const { r = 6, polygon = [{ label: 'A', x: -4, y: 1 }, { label: 'B', x: 2, y: 3 }, { label: 'C', x: 3, y: -2 }, { label: 'D', x: -3, y: -4 }] } = Astro.props;
+---
+<cartesian-plane data-r={r} data-polygon={JSON.stringify(polygon)}>
+  <div class="seg" role="group" aria-label="Choose an activity">
+    <button type="button" data-mode="explore" aria-pressed="true">Explore</button>
+    <button type="button" data-mode="find" aria-pressed="false">Find the point</button>
+    <button type="button" data-mode="draw" aria-pressed="false">Draw a polygon</button>
+  </div>
+  <div class="g6m-cp-layout">
+    <div data-cp="svg" set:html={planeSvg({ r, interactive: true })} />
+    <div>
+      <p class="g6m-cp-task" data-cp="task">Tap any point where the grid lines cross.</p>
+      <p class="g6m-cp-say" data-cp="say" aria-live="polite"></p>
+    </div>
+  </div>
+</cartesian-plane>
+
+<style is:global>
+  cartesian-plane { display: block; }
+  .g6m-cp-layout { display: grid; gap: 1rem; align-items: start; margin-top: 0.8rem; }
+  @media (min-width: 44rem) { .g6m-cp-layout { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  .g6m-cp-guide { stroke: var(--sun); stroke-width: 3; stroke-dasharray: 6 4; }
+  .g6m-cp-path { fill: none; stroke: var(--accent); stroke-width: 3; }
+  .g6m-cp-task { margin: 0; font-weight: 700; font-size: var(--step-1); }
+  .g6m-cp-say { margin: 0.5rem 0 0; min-height: 3em; }
+  .g6m-cp-say .ok { color: var(--ok); font-weight: 700; }
+  .g6m-cp-say .no { color: var(--bad); font-weight: 700; }
+</style>
+
+<script>
+  import { at, coord, where, CELL, PAD, type P } from './g6-plane.ts';
+
+  type Mode = 'explore' | 'find' | 'draw';
+  const dirs = (from: P, to: P) => {
+    const parts: string[] = [];
+    if (to[0] !== from[0]) parts.push(`${Math.abs(to[0] - from[0])} ${to[0] > from[0] ? 'right' : 'left'}`);
+    if (to[1] !== from[1]) parts.push(`${Math.abs(to[1] - from[1])} ${to[1] > from[1] ? 'up' : 'down'}`);
+    return parts.join(' and ') || 'nowhere';
+  };
+
+  class CartesianPlane extends HTMLElement {
+    private r = 6;
+    private mode: Mode = 'explore';
+    private target: P = [0, 0];
+    private poly: { label: string; x: number; y: number }[] = [];
+    private placed: P[] = [];
+
+    connectedCallback() {
+      this.r = Number(this.dataset.r);
+      this.poly = JSON.parse(this.dataset.polygon!);
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) => b.addEventListener('click', () => this.setMode(b.dataset.mode as Mode)));
+      this.querySelector('svg')!.addEventListener('click', (e) => this.tap(e as MouseEvent));
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-cp="${k}"]`) as HTMLElement;
+    }
+    private layer() {
+      return this.querySelector('[data-pl="layer"]') as SVGGElement;
+    }
+
+    private setMode(m: Mode) {
+      this.mode = m;
+      this.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.mode === m)));
+      this.layer().innerHTML = '';
+      this.q('say').innerHTML = '';
+      this.placed = [];
+      if (m === 'explore') this.q('task').textContent = 'Tap any point where the grid lines cross.';
+      if (m === 'find') this.newTarget();
+      if (m === 'draw') this.q('task').textContent = `Plot the vertices in order: ${this.poly.map((p) => `${p.label}${coord([p.x, p.y])}`).join(', ')}.`;
+    }
+
+    private newTarget() {
+      const pick = () => Math.floor(Math.random() * (2 * this.r - 1)) - (this.r - 1);
+      let t: P;
+      do t = [pick(), pick()];
+      while (!t[0] || !t[1]);
+      this.target = t;
+      this.q('task').textContent = `Find the point ${coord(t)}.`;
+    }
+
+    private toPlane(e: MouseEvent): P | null {
+      const svg = this.querySelector('svg')!;
+      const pt = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM()!.inverse());
+      const x = Math.round((pt.x - PAD) / CELL) - this.r;
+      const y = this.r - Math.round((pt.y - PAD) / CELL);
+      if (Math.abs(x) > this.r || Math.abs(y) > this.r) return null;
+      return [x, y];
+    }
+
+    private dot(p: P, label = '') {
+      const [x, y] = at(this.r, p);
+      this.layer().insertAdjacentHTML('beforeend', `<circle class="g6m-pl-pt" cx="${x}" cy="${y}" r="7"/>${label ? `<text class="g6m-pl-label" x="${x + 9}" y="${y - 9}">${label}</text>` : ''}`);
+    }
+
+    private tap(e: MouseEvent) {
+      const p = this.toPlane(e);
+      if (!p) return;
+      const say = this.q('say');
+      if (this.mode === 'explore') {
+        const [x, y] = at(this.r, p);
+        const [ox, oy] = at(this.r, [0, 0]);
+        this.layer().innerHTML = `<line class="g6m-cp-guide" x1="${x}" y1="${y}" x2="${x}" y2="${oy}"/><line class="g6m-cp-guide" x1="${x}" y1="${y}" x2="${ox}" y2="${y}"/>`;
+        this.dot(p);
+        const [a, b] = p;
+        const on = a && b ? '' : ` It is on ${where(p)}.`;
+        say.innerHTML = `<strong>${coord(p)}</strong>: ${Math.abs(a)} ${a < 0 ? 'left of' : 'right of'} the y-axis, then ${Math.abs(b)} ${b < 0 ? 'below' : 'above'} the x-axis.${on}`;
+      } else if (this.mode === 'find') {
+        if (p[0] === this.target[0] && p[1] === this.target[1]) {
+          this.layer().innerHTML = '';
+          this.dot(p);
+          say.innerHTML = `<span class="ok">✓ Yes, that’s ${coord(p)}.</span> Here’s another.`;
+          setTimeout(() => {
+            this.layer().innerHTML = '';
+            this.newTarget();
+          }, 1300);
+        } else say.innerHTML = `<span class="no">You tapped ${coord(p)}.</span> From there, go ${dirs(p, this.target)}.`;
+      } else {
+        const next = this.poly[this.placed.length];
+        if (!next) return;
+        if (p[0] === next.x && p[1] === next.y) {
+          this.placed.push(p);
+          this.dot(p, next.label);
+          const pts = this.placed.map((q) => at(this.r, q).join(',')).join(' ');
+          this.layer().querySelector('.g6m-cp-path')?.remove();
+          const done = this.placed.length === this.poly.length;
+          this.layer().insertAdjacentHTML('afterbegin', done ? `<polygon class="g6m-pl-poly g6m-pl-poly--a g6m-cp-path" points="${pts}"/>` : `<polyline class="g6m-cp-path" points="${pts}"/>`);
+          say.innerHTML = done ? `<span class="ok">✓ Polygon complete!</span> Its vertices are ${this.poly.map((v) => `${v.label}${coord([v.x, v.y])}`).join(', ')}.` : `<span class="ok">✓ ${next.label} is at ${coord(p)}.</span>`;
+        } else say.innerHTML = `<span class="no">That’s ${coord(p)}.</span> ${next.label} is at ${coord([next.x, next.y])}: go ${dirs(p, [next.x, next.y])}.`;
+      }
+    }
+  }
+  customElements.define('cartesian-plane', CartesianPlane);
+</script>

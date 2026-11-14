@@ -78,7 +78,7 @@ Visuals:
 - **Math:** `place-value`, `decimal-zoom`, `column-calc`, `divisibility`, `fraction-explorer`,
   `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`,
   `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`,
-  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`
+  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,
@@ -151,6 +151,7 @@ Used in problems, `figure` blocks and `compare` columns:
 - `{ kind: moons, ages: [3.7, 7.4], labels: [A, B] }`: `ages` in days into the cycle
 - `{ kind: code, blocks: [move, { repeat: 4, body: [move, right] }] }`: block code
 - `{ kind: int-line, min: -10, max: 10, points: [{ v: -4, label: A }], view: thermometer }`: Grade 6 negative numbers
+- `{ kind: plane, r: 6, points: [{ x: -3, y: 2, label: A }], polys: [{ pts: [[1, 1], [4, 1], [1, 3]], labels: [A, B, C] }], centre: [1, 1] }`: Grade 6 four quadrants (`tone: b` for an image)
 - Raw inline SVG for a one-off. Use the site's CSS classes so dark mode works.
 
 ## Math and YAML pitfalls

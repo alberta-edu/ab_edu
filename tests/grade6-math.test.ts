@@ -272,3 +272,24 @@ describe('Grade 6 symmetry and congruence', () => {
     for (const t of star) expect(side(t)).toBeCloseTo(side(star[0]), 1);
   });
 });
+
+import { coord, planeSvg, where, translateP, reflectP, rotateP } from '../src/components/visuals/g6-plane.ts';
+
+describe('Grade 6 Cartesian plane', () => {
+  it('writes coordinates and finds axes', () => {
+    expect(coord([-3, 4])).toBe('(−3, 4)');
+    expect(where([0, 0])).toBe('the origin');
+    expect(where([4, 0])).toBe('the x-axis');
+    expect(planeSvg({ r: 5, points: [{ x: -3, y: 2, label: 'P' }] })).toContain('P (−3, 2)');
+  });
+  it('translates, reflects and rotates polygons', () => {
+    const tri: [number, number][] = [[1, 1], [4, 1], [1, 3]];
+    expect(translateP(tri, -5, 2)).toEqual([[-4, 3], [-1, 3], [-4, 5]]);
+    expect(reflectP(tri, 'x')).toEqual([[1, -1], [4, -1], [1, -3]]);
+    expect(reflectP(tri, 'y')).toEqual([[-1, 1], [-4, 1], [-1, 3]]);
+    expect(rotateP(tri, 90, 'cw', [1, 1])).toEqual([[1, 1], [1, -2], [3, 1]]);
+    expect(rotateP(tri, 90, 'ccw', [1, 1])).toEqual([[1, 1], [1, 4], [-1, 1]]);
+    expect(rotateP(tri, 270, 'cw', [1, 1])).toEqual(rotateP(tri, 90, 'ccw', [1, 1]));
+    expect(rotateP(tri, 180, 'cw', [1, 1])).toEqual([[1, 1], [-2, 1], [1, -1]]);
+  });
+});

@@ -57,6 +57,14 @@ export const figureSchema = z.union([
     view: z.enum(['line', 'thermometer', 'elevation', 'money']).optional(),
     jumps: z.array(z.strictObject({ from: z.number(), to: z.number() })).optional(),
   }),
+  /** Grade 6: a four-quadrant Cartesian plane, from −r to r, with points and polygons. */
+  z.strictObject({
+    kind: z.literal('plane'),
+    r: z.number().int().min(3).max(10),
+    points: z.array(z.strictObject({ x: z.number().int(), y: z.number().int(), label: z.string().optional() })).optional(),
+    polys: z.array(z.strictObject({ pts: z.array(z.tuple([z.number().int(), z.number().int()])).min(2), tone: z.enum(['a', 'b']).optional(), labels: z.array(z.string()).optional() })).optional(),
+    centre: z.tuple([z.number().int(), z.number().int()]).optional(),
+  }),
 ]);
 
 const problemBase = {
@@ -207,7 +215,7 @@ const block = z.discriminatedUnion('type', [
   z.strictObject({
     type: z.literal('visual'),
     covers,
-    component: z.enum(['story-path', 'page-explorer', 'poem-reader', 'script-stage', 'voice-lab', 'voice-reach', 'talk-it-out', 'word-builder', 'word-journey', 'figure-lens', 'perspective-lens', 'writing-path', 'sentence-rhythm', 'show-dial', 'topic-funnel', 'sentence-lab', 'spell-builder', 'punct-lab', 'civ-timeline', 'rise-fall-city', 'then-now', 'card-sort', 'social-scientists', 'village-city', 'nilometer', 'trade-map', 'social-pyramid', 'empire-map', 'issue-investigator', 'fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'share-blocks', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'plant-parts', 'body-systems', 'body-motion', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map', 'integer-line', 'zero-pairs', 'factor-tree', 'fair-share', 'common-denominators', 'fraction-times', 'double-line', 'algebra-tiles', 'shape-mapper', 'tessellation']),
+    component: z.enum(['story-path', 'page-explorer', 'poem-reader', 'script-stage', 'voice-lab', 'voice-reach', 'talk-it-out', 'word-builder', 'word-journey', 'figure-lens', 'perspective-lens', 'writing-path', 'sentence-rhythm', 'show-dial', 'topic-funnel', 'sentence-lab', 'spell-builder', 'punct-lab', 'civ-timeline', 'rise-fall-city', 'then-now', 'card-sort', 'social-scientists', 'village-city', 'nilometer', 'trade-map', 'social-pyramid', 'empire-map', 'issue-investigator', 'fraction-explorer', 'fraction-regroup', 'particle-model', 'globe', 'latlong-map', 'inference-equation', 'column-calc', 'share-blocks', 'place-value', 'decimal-zoom', 'divisibility', 'fraction-add', 'ratio-explorer', 'expression-steps', 'mystery-bags', 'balance-scale', 'symmetry-explorer', 'coordinate-grid', 'rectangle-builder', 'sequence-builder', 'data-sorter', 'weather-map', 'data-views', 'fair-test', 'design-lab', 'block-code', 'aurora', 'moon-phases', 'seasons-orbit', 'plant-transport', 'plant-parts', 'body-systems', 'body-motion', 'harvest-sim', 'climate-graph', 'weather-station', 'measure-tools', 'density-balance', 'flight-forces', 'float-lab', 'energy-map', 'integer-line', 'zero-pairs', 'factor-tree', 'fair-share', 'common-denominators', 'fraction-times', 'double-line', 'algebra-tiles', 'shape-mapper', 'tessellation', 'cartesian-plane']),
     props: z.record(z.string(), z.unknown()).default({}),
     caption: md.optional(),
   }),
