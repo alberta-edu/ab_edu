@@ -1,0 +1,108 @@
+---
+// A sharing circle, one turn at a time (LANENG6-OI2-GQ1-LO1, K1.1, K1.2, S1.1). A talking stone passes
+// around the circle. Only the person holding it speaks, and everyone else listens. Anyone may pass.
+// After the last turn, the group's agreement appears.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  question: string;
+  people: { name: string; says: string }[];
+  ending: string;
+}
+const { question, people, ending } = Astro.props;
+const n = people.length;
+const R = 92;
+const seats = people.map((_, i) => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
+  return [Math.round(150 + R * Math.cos(a)), Math.round(130 + R * Math.sin(a))];
+});
+const data = { seats, people: people.map((p) => ({ name: p.name, says: mdInline(p.says) })), ending: mdInline(ending) };
+---
+<sharing-circle data-circle={JSON.stringify(data)}>
+  <p class="g6e-sc-q"><strong>The question:</strong> <span set:html={mdInline(question)} /></p>
+  <svg class="sci-svg g6e-sc-svg" viewBox="0 0 300 260" aria-hidden="true">
+    <circle class="g6e-sc-ring" cx="150" cy="130" r={R}></circle>
+    {
+      seats.map(([x, y], i) => (
+        <g class="g6e-sc-seat" data-sc-seat={i}>
+          <circle cx={x} cy={y} r="20"></circle>
+          <text x={x} y={y + 5} text-anchor="middle">{people[i].name.slice(0, 1)}</text>
+        </g>
+      ))
+    }
+    <circle class="g6e-sc-stone" data-sc="stone" r="9" cx={seats[0][0]} cy={seats[0][1] - 30}></circle>
+  </svg>
+  <div class="g6e-sc-card" aria-live="polite">
+    <p class="g6e-sc-who" data-sc="who"></p>
+    <p data-sc="says"></p>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-sc="next">Pass the stone ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sc="again" hidden>↺ Start again</button>
+  </div>
+  <noscript><ul>{people.map((p) => <li><strong>{p.name}:</strong> <span set:html={mdInline(p.says)} /></li>)}</ul></noscript>
+</sharing-circle>
+
+<style is:global>
+  sharing-circle { display: block; }
+  .g6e-sc-q { margin: 0 0 0.4rem; }
+  .g6e-sc-svg { max-width: 20rem; margin-inline: auto; }
+  .g6e-sc-ring { fill: color-mix(in srgb, var(--sun) 12%, var(--surface)); stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 4 6; }
+  .g6e-sc-seat circle { fill: var(--surface); stroke: var(--line-strong); stroke-width: 3; transition: fill 0.3s ease; }
+  .g6e-sc-seat text { fill: var(--ink-2); font-size: 15px; font-weight: 700; }
+  .g6e-sc-seat.is-speaking circle { fill: var(--accent); stroke: var(--accent); }
+  .g6e-sc-seat.is-speaking text { fill: var(--brand-ink); }
+  .g6e-sc-seat.is-listening circle { stroke: var(--accent); }
+  .g6e-sc-stone { fill: #8a94a3; stroke: var(--ink); stroke-width: 2; transition: cx 0.6s ease, cy 0.6s ease; }
+  .g6e-sc-card { min-height: 5.5rem; margin-top: 0.5rem; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6e-sc-card.is-end { background: var(--ok-soft); }
+  .g6e-sc-card p { margin: 0; }
+  .g6e-sc-who { font-weight: 700; color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) { .g6e-sc-stone, .g6e-sc-seat circle { transition: none; } }
+</style>
+
+<script>
+  type Data = { seats: number[][]; people: { name: string; says: string }[]; ending: string };
+
+  class SharingCircle extends HTMLElement {
+    private d!: Data;
+    private at = 0;
+
+    connectedCallback() {
+      this.d = JSON.parse(this.dataset.circle!);
+      this.part('next').addEventListener('click', () => this.go(this.at + 1));
+      this.part('again').addEventListener('click', () => this.go(0));
+      this.go(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-sc="${name}"]`)!;
+    }
+
+    private go(i: number) {
+      this.at = i;
+      const end = i >= this.d.people.length;
+      const card = this.querySelector('.g6e-sc-card')!;
+      card.classList.toggle('is-end', end);
+      this.querySelectorAll<SVGGElement>('[data-sc-seat]').forEach((g) => {
+        const k = Number(g.dataset.scSeat);
+        g.classList.toggle('is-speaking', !end && k === i);
+        g.classList.toggle('is-listening', !end && k !== i);
+      });
+      this.part('next').hidden = end;
+      this.part('again').hidden = !end;
+      if (end) {
+        this.part('who').textContent = 'Together';
+        this.part('says').innerHTML = this.d.ending;
+        return;
+      }
+      const [x, y] = this.d.seats[i];
+      const stone = this.part('stone');
+      stone.setAttribute('cx', String(x));
+      stone.setAttribute('cy', String(y - 30));
+      this.part('who').textContent = `${this.d.people[i].name} holds the stone. Everyone else listens.`;
+      this.part('says').innerHTML = this.d.people[i].says;
+    }
+  }
+  customElements.define('sharing-circle', SharingCircle);
+</script>

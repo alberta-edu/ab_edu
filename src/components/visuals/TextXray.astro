@@ -1,0 +1,106 @@
+---
+// Mock pages to look inside (LANENG6-OI1-GQ1-LO1, K1.4, K2.1, K4.2). Each tab is one text: an article,
+// a speech, a hybrid, a page of text features. "X-ray" outlines every part and names its job, so the
+// structure and features that are usually invisible show up on the page.
+import { md, mdInline } from '../../lib/render.ts';
+
+type Style = 'kicker' | 'title' | 'lead' | 'text' | 'heading' | 'quote' | 'story' | 'box' | 'caption' | 'figure';
+interface Part {
+  style: Style;
+  text: string;
+  /** Name of the part, shown in X-ray: "Headline", "Problem", "Caption". */
+  tag?: string;
+  /** What the part does for the reader, shown in X-ray. */
+  job?: string;
+  /** For style figure: a small inline SVG drawn above the text. */
+  svg?: string;
+}
+interface Props {
+  pages: { label: string; icon?: string; parts: Part[]; note?: string }[];
+  /** The X-ray button's words, such as "Show the structure". */
+  button?: string;
+}
+const { pages, button = 'X-ray: show the parts' } = Astro.props;
+---
+<text-xray>
+  {
+    pages.length > 1 && (
+      <div class="sci-pick" role="group" aria-label="Choose a text">
+        {pages.map((p, i) => (
+          <button type="button" data-xr-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+            {p.icon && <span aria-hidden="true">{p.icon} </span>}
+            {p.label}
+          </button>
+        ))}
+      </div>
+    )
+  }
+  {
+    pages.map((p, i) => (
+      <div class="g6e-xr-wrap" data-xr-page={i} hidden={i !== 0}>
+        <article class="g6e-xr-page" aria-label={p.label}>
+          {p.parts.map((part) => (
+            <div class={`g6e-xr-part g6e-xr--${part.style}${part.tag ? ' has-tag' : ''}`}>
+              {part.tag && <span class="g6e-xr-tag">{part.tag}</span>}
+              {part.svg && <div class="g6e-xr-art" set:html={part.svg} />}
+              <div class="g6e-xr-body" set:html={part.style === 'title' || part.style === 'kicker' || part.style === 'heading' ? mdInline(part.text) : md(part.text)} />
+              {part.job && <p class="g6e-xr-job" set:html={mdInline(part.job)} />}
+            </div>
+          ))}
+        </article>
+        {p.note && <p class="g6e-xr-note" set:html={mdInline(p.note)} />}
+      </div>
+    ))
+  }
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-xr="toggle" aria-pressed="false">🔍 {button}</button>
+  </div>
+</text-xray>
+
+<style is:global>
+  text-xray { display: block; }
+  .g6e-xr-wrap { margin-top: 0.7rem; }
+  .g6e-xr-page { display: grid; gap: 0.55rem; padding: 1rem 1.1rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .g6e-xr-part { position: relative; border-radius: 7px; transition: outline-color 0.2s ease, background 0.2s ease; outline: 2px dashed transparent; outline-offset: 3px; }
+  .g6e-xr-body > :first-child { margin-top: 0; }
+  .g6e-xr-body > :last-child { margin-bottom: 0; }
+  .g6e-xr--kicker .g6e-xr-body { font-size: var(--step--1); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .g6e-xr--title .g6e-xr-body { font-size: var(--step-2); font-weight: 800; line-height: 1.15; }
+  .g6e-xr--heading .g6e-xr-body { font-size: var(--step-1); font-weight: 700; color: var(--accent); }
+  .g6e-xr--lead .g6e-xr-body { font-weight: 600; }
+  .g6e-xr--quote .g6e-xr-body { padding-left: 0.8rem; border-left: 4px solid var(--line-strong); font-style: italic; }
+  .g6e-xr--story .g6e-xr-body { padding: 0.6rem 0.8rem; border-radius: 7px; background: var(--accent-soft); font-style: italic; }
+  .g6e-xr--box .g6e-xr-body { padding: 0.6rem 0.8rem; border-radius: 7px; background: var(--surface-2); border: 1px solid var(--line); font-size: var(--step--1); }
+  .g6e-xr--caption .g6e-xr-body { font-size: var(--step--1); color: var(--ink-2); }
+  .g6e-xr--figure { text-align: center; }
+  .g6e-xr--figure .g6e-xr-body { font-size: var(--step--1); color: var(--ink-2); }
+  .g6e-xr-art svg { width: 100%; max-width: 24rem; height: auto; }
+  .g6e-xr-tag, .g6e-xr-job { display: none; }
+  .g6e-xr-note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  text-xray.is-xray .g6e-xr-part.has-tag { outline-color: var(--accent); background: color-mix(in srgb, var(--accent-soft) 45%, transparent); padding: 1.5rem 0.45rem 0.35rem; }
+  text-xray.is-xray .g6e-xr-tag { display: inline-block; position: absolute; top: 0; left: 0; padding: 0.05rem 0.5rem; border-radius: 6px; background: var(--accent); color: var(--brand-ink); font-size: 0.75rem; font-weight: 700; font-style: normal; letter-spacing: 0.02em; }
+  text-xray.is-xray .g6e-xr-job { display: block; margin: 0.3rem 0 0.1rem; font-size: var(--step--1); font-weight: 700; color: var(--accent); font-style: normal; }
+  @media (prefers-reduced-motion: reduce) { .g6e-xr-part { transition: none; } }
+</style>
+
+<script>
+  class TextXray extends HTMLElement {
+    connectedCallback() {
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-xr-tab]')];
+      const pages = [...this.querySelectorAll<HTMLElement>('[data-xr-page]')];
+      tabs.forEach((t) =>
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.setAttribute('aria-pressed', String(b === t)));
+          pages.forEach((p) => (p.hidden = p.dataset.xrPage !== t.dataset.xrTab));
+        }),
+      );
+      const toggle = this.querySelector<HTMLButtonElement>('[data-xr="toggle"]')!;
+      toggle.addEventListener('click', () => {
+        const on = !this.classList.contains('is-xray');
+        this.classList.toggle('is-xray', on);
+        toggle.setAttribute('aria-pressed', String(on));
+      });
+    }
+  }
+  customElements.define('text-xray', TextXray);
+</script>

@@ -1,0 +1,147 @@
+---
+// A clause workbench (LANENG6-OI9-GQ1-LO1). "join": two clauses, each with a subject and a verb, and a
+// choice of joiners. A full stop gives two simple sentences, and, but or so give a compound sentence, and
+// because, when or although turn the second clause dependent, making a complex sentence (K2.2 to K2.6).
+// "agree": switch the subject between one and many, and watch the verb change to agree with it (S2.2).
+import type { Clause } from './clause.ts';
+import { JOINERS } from './clause.ts';
+
+interface Props {
+  mode: 'join' | 'agree';
+  pairs?: { a: Clause; b: Clause }[];
+  items?: { one: { s: string; v: string }; many: { s: string; v: string }; rest: string }[];
+}
+const { mode, pairs = [], items = [] } = Astro.props;
+const label = (j: string) => (j === '.' ? 'full stop .' : j);
+---
+<clause-builder data-mode={mode} data-pairs={JSON.stringify(pairs)} data-items={JSON.stringify(items)}>
+  {
+    mode === 'join' && (
+      <>
+        {pairs.length > 1 && (
+          <div class="sci-pick" role="group" aria-label="Choose two clauses">
+            {pairs.map((_, i) => <button type="button" data-cb-pair={i} aria-pressed={i === 0 ? 'true' : 'false'}>Pair {i + 1}</button>)}
+          </div>
+        )}
+        <div class="g6e-cb-clauses" data-cb="clauses"></div>
+        <p class="sci-pick-label">Join them with…</p>
+        <div class="sci-pick" role="group" aria-label="Choose a joiner">
+          {JOINERS.map((j, i) => <button type="button" data-cb-join={j} aria-pressed={i === 0 ? 'true' : 'false'}>{label(j)}</button>)}
+        </div>
+        <div class="g6e-cb-out" aria-live="polite">
+          <p class="g6e-cb-sentence" data-cb="sentence"></p>
+          <p class="g6e-cb-type" data-cb="type"></p>
+        </div>
+        <p class="g6e-cb-key"><span class="g6e-cb-k g6e-cb-k--ind"></span> independent clause <span class="g6e-cb-k g6e-cb-k--dep"></span> dependent clause</p>
+      </>
+    )
+  }
+  {
+    mode === 'agree' && (
+      <>
+        <div class="seg" role="group" aria-label="How many?">
+          <button type="button" data-cb-num="one" aria-pressed="true">One</button>
+          <button type="button" data-cb-num="many" aria-pressed="false">More than one</button>
+        </div>
+        <ul class="g6e-cb-agree" data-cb="agree" aria-live="polite"></ul>
+      </>
+    )
+  }
+</clause-builder>
+
+<style is:global>
+  clause-builder { display: block; }
+  .g6e-cb-clauses { display: grid; gap: 0.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 0.6rem; }
+  @media (max-width: 34rem) { .g6e-cb-clauses { grid-template-columns: minmax(0, 1fr); } }
+  .g6e-cb-clause { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line-strong); font-size: var(--step-1); }
+  .g6e-cb-clause small { display: block; font-size: 0.75rem; color: var(--ink-3); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .g6e-cb-s { text-decoration: underline; text-decoration-thickness: 3px; text-decoration-color: var(--math); text-underline-offset: 4px; }
+  .g6e-cb-v { font-weight: 800; color: var(--accent); }
+  .g6e-cb-out { margin-top: 0.7rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 6rem; }
+  .g6e-cb-sentence { margin: 0; font-size: var(--step-1); line-height: 1.9; }
+  .g6e-cb-sentence span { padding: 0.1rem 0.2rem; border-radius: 6px; }
+  .g6e-cb-ind { background: var(--ok-soft); box-shadow: inset 0 0 0 2px var(--ok); }
+  .g6e-cb-dep { background: var(--warn-soft); box-shadow: inset 0 0 0 2px var(--warn); }
+  .g6e-cb-type { margin: 0.5rem 0 0; }
+  .g6e-cb-key { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.5rem 0 0; font-size: var(--step--1); color: var(--ink-2); }
+  .g6e-cb-k { display: inline-block; width: 1rem; height: 1rem; border-radius: 4px; margin-left: 0.4rem; }
+  .g6e-cb-k--ind { background: var(--ok-soft); box-shadow: inset 0 0 0 2px var(--ok); }
+  .g6e-cb-k--dep { background: var(--warn-soft); box-shadow: inset 0 0 0 2px var(--warn); }
+  .g6e-cb-agree { list-style: none; margin: 0.7rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+  .g6e-cb-agree li { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); font-size: var(--step-1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .g6e-cb-v.is-new { animation: g6e-cb-pop 0.35s ease; }
+    @keyframes g6e-cb-pop { 50% { transform: scale(1.2); } }
+  }
+</style>
+
+<script>
+  import { join, type Clause, type Joiner } from './clause.ts';
+
+  type Item = { one: { s: string; v: string }; many: { s: string; v: string }; rest: string };
+  const TYPE = {
+    simple: '**Two simple sentences.** Each has one independent clause.',
+    compound: '**A compound sentence.** Two independent clauses, joined by a comma and a conjunction.',
+    complex: '**A complex sentence.** The joining word makes the second clause **dependent**. It can’t stand alone now.',
+  };
+  const esc = (t: string) => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+  const bold = (t: string) => t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+  class ClauseBuilder extends HTMLElement {
+    private pair = 0;
+    private joiner: Joiner = '.';
+    private pairs: { a: Clause; b: Clause }[] = [];
+
+    connectedCallback() {
+      if (this.dataset.mode === 'agree') return this.initAgree();
+      this.pairs = JSON.parse(this.dataset.pairs!);
+      this.group('[data-cb-pair]', (b) => {
+        this.pair = Number(b.dataset.cbPair);
+        this.draw();
+      });
+      this.group('[data-cb-join]', (b) => {
+        this.joiner = b.dataset.cbJoin as Joiner;
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private group(sel: string, on: (b: HTMLButtonElement) => void) {
+      const bs = [...this.querySelectorAll<HTMLButtonElement>(sel)];
+      bs.forEach((b) =>
+        b.addEventListener('click', () => {
+          bs.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          on(b);
+        }),
+      );
+    }
+
+    private clauseHtml(c: Clause, n: number) {
+      return `<div class="g6e-cb-clause"><small>Clause ${n}</small><span class="g6e-cb-s">${esc(c.s)}</span> <span class="g6e-cb-v">${esc(c.v)}</span>${c.rest ? ' ' + esc(c.rest) : ''}</div>`;
+    }
+
+    private draw() {
+      const { a, b } = this.pairs[this.pair];
+      this.querySelector('[data-cb="clauses"]')!.innerHTML = this.clauseHtml(a, 1) + this.clauseHtml(b, 2);
+      const r = join(a, b, this.joiner);
+      const cls = { independent: 'g6e-cb-ind', dependent: 'g6e-cb-dep', joiner: '' } as const;
+      this.querySelector('[data-cb="sentence"]')!.innerHTML = r.sentences
+        .map((s) => s.map((p) => (p.role === 'joiner' ? `<strong>${esc(p.text)}</strong>` : `<span class="${cls[p.role]}">${esc(p.text)}</span>`)).join(''))
+        .join(' ');
+      this.querySelector('[data-cb="type"]')!.innerHTML = bold(TYPE[r.type]);
+    }
+
+    private initAgree() {
+      const items: Item[] = JSON.parse(this.dataset.items!);
+      const list = this.querySelector('[data-cb="agree"]')!;
+      const draw = (k: 'one' | 'many', fresh: boolean) => {
+        list.innerHTML = items
+          .map((it) => `<li><span class="g6e-cb-s">${esc(it[k].s)}</span> <span class="g6e-cb-v${fresh ? ' is-new' : ''}">${esc(it[k].v)}</span> ${esc(it.rest)}</li>`)
+          .join('');
+      };
+      this.group('[data-cb-num]', (b) => draw(b.dataset.cbNum as 'one' | 'many', true));
+      draw('one', false);
+    }
+  }
+  customElements.define('clause-builder', ClauseBuilder);
+</script>

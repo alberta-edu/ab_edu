@@ -1,0 +1,377 @@
+id: clauses-sentences
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG6-OI9-GQ1-LO1]
+order: 12
+title: Clauses, Sentences and Agreement
+shortTitle: Clauses & sentences
+summary: >-
+  Build simple, compound and complex sentences from clauses, tell independent from dependent
+  clauses, keep verbs in one tense, and make subjects and verbs agree.
+
+bigIdea: |-
+  - A **clause** has a subject and a verb. An **independent** clause can stand alone. A **dependent** clause can’t.
+  - A **simple** sentence has one independent clause. A **compound** sentence joins two with a conjunction.
+  - A dependent clause joined to an independent one makes a **complex** sentence.
+  - Keep your **tense** steady, and make every verb **agree** with its subject.
+
+lesson:
+  - title: Build sentences from clauses
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, K2.4, K2.5, K2.6, S2.3, S2.4]
+        component: clause-builder
+        props:
+          mode: join
+          pairs:
+            - a: { s: the bell, v: rang }
+              b: { s: we, v: ran, rest: outside }
+            - a: { s: Marco, v: practised, rest: his free throws }
+              b: { s: his team, v: lost, rest: the game }
+            - a: { s: the puppy, v: slept, rest: all afternoon }
+              b: { s: it, v: was, rest: tired from the park }
+        caption: The **subject** is underlined and the **verb** is in colour. Try every joiner. What happens to clause 2?
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI9-GQ1-LO1#K2.3]
+        title: Remember from Grade 5
+        body: Conjunctions are connecting words. They join ideas together in sentences.
+
+  - title: Independent or dependent?
+    blocks:
+      - type: compare
+        covers: [K2.3, K2.4, K2.5]
+        columns:
+          - title: 🟩 Independent clause
+            body: |-
+              Has a subject and a verb, and makes sense **on its own**.
+
+              > we ran outside
+          - title: 🟧 Dependent clause
+            body: |-
+              Has a subject and a verb, but **leaves you waiting**.
+
+              > when the bell rang…
+
+              Then what?
+      - type: callout
+        variant: mistake
+        covers: [K2.3, K2.5, S2.3]
+        title: A clause isn’t always a sentence
+        body: '“Because it was raining.” has a subject and a verb, but it is a dependent clause. Join it to an independent clause: “We stayed in **because it was raining**.”'
+
+  - title: Simple or compound?
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.6, S2.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: simple, label: Simple, icon: 1️⃣ }
+            - { id: compound, label: Compound, icon: 2️⃣ }
+          cards:
+            - { text: The geese flew south in a long V., bin: simple, why: 'One subject, *the geese*, and one verb, *flew*. One independent clause.' }
+            - { text: 'The geese flew south, and the pond froze over.', bin: compound, why: 'Two independent clauses, joined by a comma and *and*.' }
+            - { text: Nadia and her brother built a snow fort., bin: simple, why: 'Two people, but they share **one** verb, *built*. Still one clause.' }
+            - { text: 'We waited for the bus, but it never came.', bin: compound, why: 'Two independent clauses, joined by *but*.' }
+            - { text: 'It was minus thirty, so school stayed open with indoor recess.', bin: compound, why: 'Each side could be its own sentence. *So* joins them.' }
+            - { text: Leo ran and jumped over the puddle., bin: simple, why: 'Two verbs, but one subject, *Leo*. One clause.' }
+        caption: Sort each sentence. Watch out for sentences with two subjects or two verbs. Count the **clauses**.
+
+  - title: Keep the tense steady
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: text-xray
+        props:
+          button: Show the verbs
+          pages:
+            - label: Jumpy tense
+              note: The story jumps from past to present and back. The reader can’t tell when things happen.
+              parts:
+                - { style: text, text: 'Yesterday we hiked to the lake. The water is freezing, so I jump in fast. Then I climbed out shivering.', tag: 'past → present → past', job: 'hiked (past), is (present), jump (present), climbed (past)' }
+            - label: Steady tense
+              note: Every verb is in the past, so the time is clear.
+              parts:
+                - { style: text, text: 'Yesterday we hiked to the lake. The water was freezing, so I jumped in fast. Then I climbed out shivering.', tag: 'past all the way', job: 'hiked, was, jumped, climbed' }
+        caption: Verb tenses tell the reader **when** actions happen. Switch on the X-ray and compare the verbs.
+
+  - title: Subjects and verbs agree
+    blocks:
+      - type: visual
+        covers: [S2.2, U2.1]
+        component: clause-builder
+        props:
+          mode: agree
+          items:
+            - { one: { s: The dog, v: barks }, many: { s: The dogs, v: bark }, rest: at the mail carrier. }
+            - { one: { s: My sister, v: is }, many: { s: My sisters, v: are }, rest: on the hockey team. }
+            - { one: { s: The box of crayons, v: sits }, many: { s: The boxes of crayons, v: sit }, rest: on the shelf. }
+        caption: Switch between one and more than one. The verb changes to **agree** with its subject.
+      - type: callout
+        variant: mistake
+        covers: [S2.2]
+        title: Find the real subject
+        body: 'In “The box of crayons sits on the shelf,” the subject is *box*, not *crayons*. One box, so the verb is *sits*.'
+
+keyTerms:
+  - term: Clause
+    covers: [K2.3]
+    definition: A group of words with a subject and a verb. It is not always a complete sentence.
+  - term: Independent clause
+    covers: [K2.4]
+    definition: A clause that expresses a complete thought and can stand on its own as a sentence.
+  - term: Dependent clause
+    covers: [K2.5]
+    definition: A clause that can’t stand alone, often starting with a word like because, when or although.
+  - term: Simple sentence
+    covers: [K2.2]
+    definition: A sentence with one independent clause.
+  - term: Compound sentence
+    covers: [K2.6]
+    definition: A sentence with two or more independent clauses, usually joined by a conjunction.
+  - term: Complex sentence
+    covers: [K2.5]
+    definition: A sentence with an independent clause and a dependent clause.
+  - term: Subject-verb agreement
+    covers: [S2.2]
+    definition: A singular subject takes a singular verb, and a plural subject takes a plural verb.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.6, S2.4]
+    type: mc
+    prompt: Which sentence is **compound**?
+    choices:
+      - The power went out, so we played cards by candlelight.
+      - We played cards by candlelight all evening.
+      - My grandma and I played cards by candlelight.
+      - When the power went out, we played cards.
+    answer: 0
+    feedback:
+      '1': One subject and one verb. How many clauses?
+      '2': Two people share one verb, *played*. That is one clause.
+      '3': '*When the power went out* can’t stand alone. That makes it complex, not compound.'
+    hints:
+      - Look for two clauses that could each be a sentence, joined by *and*, *but* or *so*.
+    solution:
+      - '“The power went out” and “we played cards by candlelight” could each stand alone. *So* joins them. That is a **compound** sentence.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.3, K2.5, S2.3]
+    type: mc
+    prompt: Which group of words is a **dependent clause**?
+    choices:
+      - because the river was too high
+      - the river was too high
+      - the high river
+      - too high to cross
+    answer: 0
+    feedback:
+      '1': This could stand alone as a sentence. That makes it independent.
+      '2': There is no verb here. Is it a clause at all?
+      '3': There is no subject doing anything. Is it a clause?
+    hints:
+      - A clause has a subject and a verb. Which one has both, but leaves you waiting?
+    solution:
+      - '“because the river was too high” has a subject (*the river*) and a verb (*was*), but it leaves you waiting. It is **dependent**.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S2.2]
+    type: mc
+    prompt: 'Choose the verb that agrees: “The kittens ___ under the porch.”'
+    choices: [hide, hides]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': How many kittens are there? Does *hides* go with one or with many?
+    hints:
+      - Is the subject one kitten or more than one?
+    solution:
+      - '*Kittens* is plural, so the verb is **hide**. “The kitten hides,” but “The kittens hide.”'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: |-
+      > Last Saturday, we drove to Drumheller. We see huge dinosaur skeletons at the museum. Then we ate lunch by the hoodoos.
+
+      What is wrong with this paragraph?
+    choices:
+      - The tense jumps. *See* is present, but the rest is past, so it should be *saw*.
+      - Nothing. Each sentence is correct on its own.
+      - It should all be in the present tense, because dinosaurs are interesting.
+      - '*Drove* should be *drive*, because the trip is being described now.'
+    answer: 0
+    feedback:
+      '1': Each sentence alone may be fine, but together the time jumps. Which verb is out of step?
+      '2': Being interesting doesn’t change when it happened. When was the trip?
+      '3': '*Last Saturday* means the past. Which verb doesn’t fit that?'
+    hints:
+      - When did the trip happen? Check every verb against that.
+    solution:
+      - '*Last Saturday* sets the past. *Drove* and *ate* fit, but *see* jumps to the present.'
+      - Change it to **saw**, so the tense is consistent.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S2.2]
+    type: mc
+    prompt: 'Which sentence has correct **subject-verb agreement**?'
+    choices:
+      - The team of players runs onto the ice.
+      - The team of players run onto the ice.
+      - The players on the team runs onto the ice.
+      - The player on the team run onto the ice.
+    answer: 0
+    feedback:
+      '1': What is the subject, *team* or *players*? How many teams are there?
+      '2': The subject is *players*. Is that one or many?
+      '3': The subject is *player*. Is that one or many?
+    hints:
+      - Cover the words after *of* or *on*. What is the real subject?
+    solution:
+      - In “The team of players runs,” the subject is **team**. One team, so the verb is **runs**.
+      - Words like *of players* sit between the subject and the verb. Don’t let them fool you.
+
+  - id: b3
+    level: 2
+    thinking: design
+    covers: [K2.5, S2.3]
+    type: text
+    prompt: |-
+      Two simple sentences:
+
+      > We stayed inside. It was minus thirty-five.
+
+      Join them into **one complex sentence**, using the word **because**.
+    accept:
+      - We stayed inside because it was minus thirty-five.
+      - We stayed inside because it was minus thirty-five
+      - we stayed inside because it was minus thirty-five.
+      - Because it was minus thirty-five, we stayed inside.
+      - Because it was minus thirty-five we stayed inside.
+      - We stayed inside because it was -35.
+    hints:
+      - Which sentence explains the reason? Put *because* in front of it.
+    solution:
+      - '“We stayed inside **because it was minus thirty-five**.”'
+      - '*Because* turns “it was minus thirty-five” into a **dependent clause**. It can also go first, with a comma: “Because it was minus thirty-five, we stayed inside.”'
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [K2.6, S2.4, K2.2]
+    type: mc
+    prompt: 'Sam says, “*Priya and Owen skated and laughed* is a compound sentence, because it has two *and*s.” Is he right?'
+    choices:
+      - No. It has two subjects and two verbs, but they make one clause, so it is simple.
+      - Yes. Any sentence with *and* in it is a compound sentence.
+      - Yes. Two people doing two things always makes two clauses.
+      - No. It is complex, because it has more than one person in it.
+    answer: 0
+    feedback:
+      '1': '*And* can join words, not just clauses. What does it join here?'
+      '2': Try splitting it into two sentences that each stand alone. Can you?
+      '3': Complex sentences need a dependent clause. Is there one?
+    hints:
+      - Could you split it into two sentences that each make sense alone?
+    solution:
+      - '*Priya and Owen* is one subject. *Skated and laughed* is one verb part. Together they make **one** independent clause, so the sentence is **simple**.'
+      - A compound sentence joins two **clauses**, like “Priya skated, and Owen laughed.”
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.4, K2.5, K2.6, S2.3]
+    type: investigation
+    prompt: |-
+      Aiden wrote this in his story:
+
+      > When the lights went out in the gym. Everyone screamed. The coach found a flashlight, and the game went on.
+    parts:
+      - type: mc
+        prompt: Which group of words is **not** a complete sentence?
+        choices:
+          - When the lights went out in the gym.
+          - Everyone screamed.
+          - The coach found a flashlight, and the game went on.
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '*Everyone* is the subject and *screamed* is the verb. Does it make sense alone?'
+          '2': Both halves could stand alone. Is something missing?
+        hints:
+          - Which one leaves you asking, “Then what?”
+        solution:
+          - '“When the lights went out in the gym” is a **dependent clause**. It leaves you waiting.'
+      - type: mc
+        prompt: What is the best fix?
+        choices:
+          - When the lights went out in the gym, everyone screamed.
+          - When the lights went out. In the gym. Everyone screamed.
+          - The lights went out in the gym when.
+          - When the lights went out in the gym, and everyone screamed.
+        answer: 0
+        feedback:
+          '1': Cutting it into more pieces makes more fragments.
+          '2': '*When* needs a clause after it.'
+          '3': With *and*, you still have no complete thought after *When…*. Read it aloud.
+        hints:
+          - Join the dependent clause to an independent one.
+        solution:
+          - Joining it to “everyone screamed” makes a **complex sentence**. The comma goes after the dependent clause.
+      - type: mc
+        prompt: What kind of sentence is “The coach found a flashlight, and the game went on.”?
+        choices: [Compound, Simple, Complex]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Count the subjects and verbs. How many clauses?
+          '2': Could both halves stand alone? Then neither is dependent.
+        hints:
+          - Can each half stand on its own?
+        solution:
+          - Two independent clauses, joined by a comma and *and*. It is **compound**.
+    wrapUp: A complete sentence needs at least one independent clause. Dependent clauses must hold on to one.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K2.5, K2.6, S2.3, S2.4]
+    type: mc
+    prompt: |-
+      Two sentences:
+
+      > (1) The game was cancelled, but we practised anyway.
+      > (2) Although the game was cancelled, we practised anyway.
+
+      What changes when *although* replaces *but*?
+    choices:
+      - The first clause becomes dependent, so the sentence changes from compound to complex.
+      - Nothing changes, because the two words mean exactly the same thing.
+      - Both clauses become dependent, so it is no longer a sentence.
+      - The second clause becomes dependent, and the sentence becomes simple.
+    answer: 0
+    feedback:
+      '1': The meaning is close. But try reading “although the game was cancelled” on its own.
+      '2': “We practised anyway” can still stand alone.
+      '3': Which clause starts with *although*? And can a sentence with two clauses be simple?
+    hints:
+      - Read each clause of sentence 2 on its own. Which one can’t stand alone?
+    solution:
+      - '*Although the game was cancelled* can’t stand alone now. It is **dependent**, so sentence 2 is **complex**.'
+      - Sentence 1 joins two independent clauses with *but*, so it is **compound**. One small word changes the structure.

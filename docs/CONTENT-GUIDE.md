@@ -93,7 +93,9 @@ Visuals:
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),
   `sentence-rhythm`, `show-dial`, `topic-funnel`, `sentence-lab` (`mode: roles`, `tense`, `adverb`,
-  `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`)
+  `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`), `text-xray` (mock pages with an X-ray of
+  their parts), `conflict-map`, `land-globe` (also word origins), `sharing-circle`, `affix-lab`,
+  `palindrome-mirror`, `slant-meter` (`[[loaded|neutral]]`), `clause-builder` (`mode: join` or `agree`)
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,

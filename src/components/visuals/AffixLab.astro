@@ -1,0 +1,114 @@
+---
+// Affixes on bases, for any list of affixes in the lesson's YAML (LANENG6-OI3-GQ1-LO1, K1.6, K1.7, S1.7,
+// S1.8). Tap an affix and each base slides together with it into a new word, with what each part means
+// and what the whole word means.
+import { mdInline } from '../../lib/render.ts';
+
+interface Word {
+  base: string;
+  baseMeaning: string;
+  word: string;
+  meaning: string;
+}
+interface Affix {
+  affix: string;
+  kind: 'prefix' | 'suffix';
+  meaning: string;
+  note?: string;
+  words: Word[];
+}
+interface Props {
+  affixes: Affix[];
+}
+const { affixes } = Astro.props;
+const label = (a: Affix) => (a.kind === 'prefix' ? `${a.affix}-` : `-${a.affix}`);
+const groups = [
+  { kind: 'prefix', title: 'Prefixes: go before a base' },
+  { kind: 'suffix', title: 'Suffixes: go after a base' },
+] as const;
+---
+<affix-lab>
+  {
+    groups.map((g) =>
+      affixes.some((a) => a.kind === g.kind) && (
+        <>
+          <p class="sci-pick-label">{g.title}</p>
+          <div class="sci-pick" role="group" aria-label={g.title}>
+            {affixes.map((a, i) => a.kind === g.kind && <button type="button" data-al={i} aria-pressed="false">{label(a)}</button>)}
+          </div>
+        </>
+      ),
+    )
+  }
+  {
+    affixes.map((a, i) => (
+      <div class="g6e-al-panel" data-al-panel={i} hidden>
+        <p class="g6e-al-mean"><strong>{label(a)}</strong> means <em>{a.meaning}</em>.</p>
+        {a.note && <p class="g6e-al-note" set:html={mdInline(a.note)} />}
+        <div class="g6e-al-words">
+          {a.words.map((w) => {
+            const affixTile = <span class={`g6e-al-tile g6e-al-tile--affix g6e-al-tile--${a.kind}`}><b>{label(a)}</b><small>{a.meaning}</small></span>;
+            const baseTile = <span class="g6e-al-tile"><b>{w.base}</b><small>{w.baseMeaning}</small></span>;
+            return (
+              <div class="g6e-al-word">
+                <div class="g6e-al-tiles">
+                  {a.kind === 'prefix' ? [affixTile, baseTile] : [baseTile, affixTile]}
+                  <span class="g6e-al-eq" aria-hidden="true">=</span>
+                  <span class="g6e-al-new">{w.word}</span>
+                </div>
+                <p class="g6e-al-def" set:html={mdInline(w.meaning)} />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))
+  }
+  <p class="muted g6e-al-help" data-al="help">Tap an affix to build words with it.</p>
+  <noscript>
+    <ul>{affixes.map((a) => <li><strong>{label(a)}</strong> ({a.meaning}): {a.words.map((w) => w.word).join(', ')}</li>)}</ul>
+  </noscript>
+</affix-lab>
+
+<style is:global>
+  affix-lab { display: block; }
+  .g6e-al-panel { margin-top: 0.8rem; }
+  .g6e-al-mean { margin: 0 0 0.4rem; font-size: var(--step-1); }
+  .g6e-al-note { margin: 0 0 0.5rem; font-size: var(--step--1); color: var(--ink-2); }
+  .g6e-al-words { display: grid; gap: 0.6rem; }
+  .g6e-al-word { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6e-al-tiles { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.3rem; }
+  .g6e-al-tile { display: grid; align-content: center; justify-items: center; padding: 0.3rem 0.6rem; min-width: 3.4rem; border-radius: 7px; background: var(--surface); border: 2px solid var(--line-strong); text-align: center; line-height: 1.2; }
+  .g6e-al-tile b { font-size: var(--step-1); }
+  .g6e-al-tile small { font-size: 0.75rem; color: var(--ink-3); }
+  .g6e-al-tile--affix { border-color: var(--accent); background: var(--accent-soft); }
+  .g6e-al-eq { align-self: center; font-weight: 700; color: var(--ink-3); }
+  .g6e-al-new { align-self: center; font-size: var(--step-1); font-weight: 800; color: var(--accent); }
+  .g6e-al-def { margin: 0.35rem 0 0; font-size: var(--step--1); }
+  .g6e-al-help { margin: 0.6rem 0 0; font-size: var(--step--1); }
+  @media (prefers-reduced-motion: no-preference) {
+    .g6e-al-panel:not([hidden]) .g6e-al-tile--prefix { animation: g6e-al-in-left 0.5s ease both; }
+    .g6e-al-panel:not([hidden]) .g6e-al-tile--suffix { animation: g6e-al-in-right 0.5s ease both; }
+    .g6e-al-panel:not([hidden]) .g6e-al-new { animation: g6e-al-pop 0.4s 0.45s ease both; }
+    @keyframes g6e-al-in-left { from { transform: translateX(-1.5rem); opacity: 0; } }
+    @keyframes g6e-al-in-right { from { transform: translateX(1.5rem); opacity: 0; } }
+    @keyframes g6e-al-pop { from { transform: scale(0.6); opacity: 0; } }
+  }
+</style>
+
+<script>
+  class AffixLab extends HTMLElement {
+    connectedCallback() {
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-al]')];
+      const panels = [...this.querySelectorAll<HTMLElement>('[data-al-panel]')];
+      buttons.forEach((b) =>
+        b.addEventListener('click', () => {
+          buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          panels.forEach((p) => (p.hidden = p.dataset.alPanel !== b.dataset.al));
+          this.querySelector<HTMLElement>('[data-al="help"]')!.hidden = true;
+        }),
+      );
+    }
+  }
+  customElements.define('affix-lab', AffixLab);
+</script>
