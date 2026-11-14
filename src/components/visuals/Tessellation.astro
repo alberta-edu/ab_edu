@@ -1,0 +1,79 @@
+---
+// Tessellations: congruent tiles cover the plane with no gaps or overlaps, each tile a reflection,
+// rotation or slide of its neighbour. The star pattern is pieced from small congruent diamonds, the
+// way a star blanket can be (MAT6-OI3-GQ1-LO1: K1.2, K1.3, S1.4, S1.5).
+import { tessellation, points, type TileKind } from './g6-symmetry.ts';
+
+interface Props {
+  kinds?: TileKind[];
+}
+const { kinds = ['squares', 'triangles', 'hexagons', 'star'] } = Astro.props;
+const NAMES: Record<TileKind, string> = { squares: 'Squares', triangles: 'Triangles', hexagons: 'Hexagons', star: 'Star' };
+---
+<tess-ellation data-kinds={JSON.stringify(kinds)}>
+  {kinds.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose a tile">
+      {kinds.map((k, i) => <button type="button" data-kind={k} aria-pressed={String(i === 0)}>{NAMES[k]}</button>)}
+    </div>
+  )}
+  <div class="g6m-ts-stage" data-ts="svg" aria-hidden="true"></div>
+  <p class="g6m-ts-say" data-ts="say" aria-live="polite"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-ts="go">Tile it ▶</button>
+  </div>
+</tess-ellation>
+
+<style is:global>
+  tess-ellation { display: block; }
+  .g6m-ts-stage svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.8rem auto 0; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6m-ts-tile { stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; animation: g6m-ts-in 0.35s ease both; transform-box: fill-box; transform-origin: center; }
+  .g6m-ts-b0 { fill: color-mix(in srgb, var(--accent) 70%, var(--surface)); }
+  .g6m-ts-b1 { fill: var(--sun); }
+  .g6m-ts-b2 { fill: color-mix(in srgb, var(--bad) 60%, var(--surface)); }
+  .g6m-ts-say { min-height: 3em; margin: 0.6rem 0 0; }
+  @keyframes g6m-ts-in { from { opacity: 0; transform: scale(0.3) rotate(-60deg); } }
+  @media (prefers-reduced-motion: reduce) { .g6m-ts-tile { animation: none; } }
+</style>
+
+<script>
+  import { tessellation, points, type TileKind } from './g6-symmetry.ts';
+
+  const SAY: Record<TileKind, [string, string]> = {
+    squares: ['One square tile. Can copies of it cover the whole page with no gaps and no overlaps?', 'Every square is a slide of its neighbour, and a reflection across their shared side. The tiling has reflection symmetry.'],
+    triangles: ['One triangle with three equal sides. Will copies of it fit together?', 'Each triangle is its neighbour turned a half turn about the middle of their shared side. Six triangles meet at every corner point.'],
+    hexagons: ['One hexagon with six equal sides. Like a honeycomb, do copies fit with no gaps?', 'Three hexagons meet at every corner. Turn the pattern a third of a turn about a corner, and it lands on itself.'],
+    star: ['One small diamond. All the diamonds in the star are congruent.', 'Nine diamonds make a large diamond, and the large diamond turns 45° about the centre, 8 times, to make an eight-point star. Each large diamond is also a reflection of its neighbour.'],
+  };
+
+  class Tessellation extends HTMLElement {
+    private kind: TileKind = 'squares';
+    private timer = 0;
+
+    connectedCallback() {
+      const kinds: TileKind[] = JSON.parse(this.dataset.kinds!);
+      this.querySelectorAll<HTMLButtonElement>('[data-kind]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-kind]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.show(b.dataset.kind as TileKind, false);
+        }),
+      );
+      this.querySelector('[data-ts="go"]')!.addEventListener('click', () => this.show(this.kind, true));
+      this.show(kinds[0], false);
+    }
+
+    private show(kind: TileKind, all: boolean) {
+      this.kind = kind;
+      clearTimeout(this.timer);
+      const tiles = tessellation(kind);
+      // Before tiling, show only the first tile (or the first large diamond of the star).
+      const shown = all ? tiles : tiles.slice(0, 1);
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const step = Math.max(8, 1200 / tiles.length);
+      const body = shown.map((t, i) => `<polygon class="g6m-ts-tile g6m-ts-b${t.band % 3}" style="animation-delay:${reduce || !all ? 0 : (i * step) / 1000}s" points="${points(t.pts)}"/>`).join('');
+      this.querySelector('[data-ts="svg"]')!.innerHTML = `<svg viewBox="0 0 360 240">${body}</svg>`;
+      this.querySelector('[data-ts="say"]')!.textContent = SAY[kind][all ? 1 : 0];
+      (this.querySelector('[data-ts="go"]') as HTMLButtonElement).disabled = all;
+    }
+  }
+  customElements.define('tess-ellation', Tessellation);
+</script>

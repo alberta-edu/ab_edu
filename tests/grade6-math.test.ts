@@ -243,3 +243,32 @@ describe('Grade 6 expressions', () => {
     expect(tileSteps('2x + 3 + x + 1').at(-1)!.expr).toBe('3x + 4');
   });
 });
+
+import { PAIRS, ID, compose, matches, reflectV, rotate, apply, tessellation } from '../src/components/visuals/g6-symmetry.ts';
+
+describe('Grade 6 symmetry and congruence', () => {
+  const pair = (id: string) => PAIRS.find((p) => p.id === id)!;
+  const [flip, turn] = [pair('reflect').moves[0].m, pair('reflect').moves[1].m];
+  it('maps each pair with the moves the lesson describes', () => {
+    expect(matches(flip, pair('reflect').a, pair('reflect').b)).toBe(true);
+    expect(matches(turn, pair('reflect').a, pair('reflect').b)).toBe(false);
+    expect(matches(turn, pair('rotate').a, pair('rotate').b)).toBe(true);
+    expect(matches(compose(flip, turn), pair('two').a, pair('two').b)).toBe(true);
+    expect(matches(flip, pair('two').a, pair('two').b)).toBe(false);
+  });
+  it('finds no reflection or rotation for the slid pair, but laying on top works', () => {
+    const p = pair('slide');
+    for (const m of [ID, flip, turn, compose(flip, turn), compose(turn, flip)]) expect(matches(m, p.a, p.b)).toBe(false);
+    expect(matches(p.lay, p.a, p.b)).toBe(true);
+  });
+  it('reflects and rotates points exactly', () => {
+    expect(apply(reflectV(6), [1, 1])).toEqual([11, 1]);
+    expect(apply(rotate(90, 0, 0), [1, 0]).map((v) => Math.round(v))).toEqual([0, 1]);
+  });
+  it('builds the star from 72 congruent diamonds', () => {
+    const star = tessellation('star');
+    expect(star).toHaveLength(72);
+    const side = (t: (typeof star)[number]) => Math.hypot(t.pts[1][0] - t.pts[0][0], t.pts[1][1] - t.pts[0][1]);
+    for (const t of star) expect(side(t)).toBeCloseTo(side(star[0]), 1);
+  });
+});

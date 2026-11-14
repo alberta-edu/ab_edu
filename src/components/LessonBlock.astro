@@ -85,6 +85,8 @@ import CommonDenominators from './visuals/CommonDenominators.astro';
 import FractionTimes from './visuals/FractionTimes.astro';
 import DoubleLine from './visuals/DoubleLine.astro';
 import AlgebraTiles from './visuals/AlgebraTiles.astro';
+import ShapeMapper from './visuals/ShapeMapper.astro';
+import Tessellation from './visuals/Tessellation.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -171,6 +173,8 @@ const visuals = {
   'fraction-times': FractionTimes,
   'double-line': DoubleLine,
   'algebra-tiles': AlgebraTiles,
+  'shape-mapper': ShapeMapper,
+  'tessellation': Tessellation,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
