@@ -1,0 +1,388 @@
+id: sharing-refining
+grade: 6
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI6-OI7-GQ1-LO1]
+order: 17
+title: Sharing and Refining Explanations
+shortTitle: Sharing and refining explanations
+summary: >-
+  Test the old idea that eyes give off light, see how new evidence refines explanations, and share science
+  with clear graphs and the right words for each audience.
+
+bigIdea: |-
+  - Explanations of natural phenomena are shared in many ways, from stories and visual forms to graphs and research papers.
+  - Good communication fits the **audience**: the words, the detail and the method.
+  - Evidence and explanations keep being **checked**. New evidence has refined explanations that were wrong.
+  - **One conflicting study** isn’t enough to change a scientific explanation. Science corrects itself over time.
+
+lesson:
+  - title: 'Virtual experiment: do eyes give off light?'
+    blocks:
+      - type: experiment
+        covers: [K4.3, U4.1, S4.2, K2.1]
+        title: 'Test an old explanation: eyes are a source of light'
+        question: |-
+          - Long ago, some people explained sight by saying the **eyes send out light**.
+          - A person sits in a sealed room with a red ball. First the lamp is off, then it turns on.
+        animation: g6-dark-room
+        predict:
+          choices:
+            - With the lamp off, the person can’t see the ball.
+            - With the lamp off, the person can see the ball, because eyes give off light.
+            - The person can never see the ball, even with the lamp on.
+          answer: 0
+        observe: |-
+          - With the lamp **off**, the person saw **nothing**.
+          - With the lamp **on**, light travelled from the lamp, **bounced off the ball** and went into the person’s eyes. Then they saw the ball.
+        explain: |-
+          - If eyes gave off light, the person could see in a sealed, dark room. They couldn’t.
+          - The evidence **contradicts** the old explanation. We see when light from a source **enters** our eyes.
+
+  - title: Explanations that new evidence refined
+    blocks:
+      - type: table
+        covers: [K4.3, S4.2, U4.1]
+        headers: [Old explanation, New evidence, Refined explanation]
+        rows:
+          - ['☀️ The Sun revolves around Earth.', 'In 1610, Galileo’s telescope showed moons orbiting Jupiter and phases of Venus.', 'Earth and the other planets orbit the Sun.']
+          - ['👅 Different tastes are detected in different areas of the tongue.', 'Careful tests showed every area can taste sweet, salty, sour and bitter.', 'Taste buds all over the tongue detect all the tastes.']
+          - ['👁️ The eyes are a source of light.', 'In the dark, nobody can see, and light from objects can be traced into the eye.', 'We see when light enters our eyes.']
+      - type: callout
+        variant: tip
+        covers: [U4.1, K4.1]
+        title: Science corrects itself
+        body: These ideas weren’t silly. They fit what people knew then. New evidence led to better explanations.
+
+  - title: How science checks itself
+    blocks:
+      - type: table
+        covers: [K4.1, K4.2, S4.1]
+        headers: [Process, Example]
+        rows:
+          - ['📅 **Collecting evidence over time**', 'Weather stations recording temperature every day for decades.']
+          - ['🗣️ **Discussion and debate** in the scientific community', 'Scientists read each other’s work and point out problems.']
+          - ['🔁 **Many investigations over long periods**', 'Different teams repeat an experiment to see if they get the same result.']
+          - ['🔭 **New technologies and methods**', 'Telescopes, satellites and microscopes reveal things no one could see before.']
+      - type: callout
+        variant: mistake
+        covers: [K4.4, S4.1]
+        title: One study isn’t enough
+        body: If hundreds of studies agree and one disagrees, scientists don’t throw out the explanation. They investigate the new study, repeat it and look for more evidence.
+
+  - title: Many ways to share explanations
+    blocks:
+      - type: compare
+        covers: [K3.1, S3.1]
+        columns:
+          - title: First Nations, Métis and Inuit
+            body: |-
+              - **Stories, legends and verbal presentations**, passed from Elders to younger generations.
+              - **Written texts**: Wilfred Buck, of Opaskwayak Cree Nation, wrote *Tipiskawi Kisik: Night Sky Star Stories* (2018) about Cree star knowledge.
+              - **Visual forms and traditional knowledge**: Buck also teaches with a portable dome planetarium.
+          - title: Scientific explanations
+            body: |-
+              - **Visual forms**: graphs, tables, flow charts, diagrams and models.
+              - **Written texts**: research papers.
+              - **Verbal presentations**: stories and discussions.
+      - type: callout
+        variant: tip
+        covers: [K3.1, K3.2, U3.1]
+        title: More than one way
+        body: The same phenomenon, like the Moon’s monthly cycle, can be explained through a star story, a diagram or a model. Each helps different people understand.
+
+  - title: Graphs and tables done right
+    blocks:
+      - type: figure
+        covers: [S3.3, K3.2]
+        figure: >-
+          <svg viewBox="0 0 440 280" class="fig-svg" role="img" aria-label="A bar graph titled Average precipitation in June and February. The vertical axis is labelled precipitation in millimetres, with a scale from 0 to 120. Pairs of bars for Edmonton, 70 and 12, Calgary, 113 and 12, and Vancouver, 51 and 91. A legend shows dark bars for June and light bars for February.">
+          <text class="fig-label" x="230" y="20" text-anchor="middle">Average precipitation in June and February</text>
+          <line class="sci-tick" x1="70" y1="40" x2="70" y2="220"/><line class="sci-tick" x1="70" y1="220" x2="420" y2="220"/>
+          <text class="fig-small" x="62" y="224" text-anchor="end">0</text><text class="fig-small" x="62" y="168" text-anchor="end">40</text><text class="fig-small" x="62" y="112" text-anchor="end">80</text><text class="fig-small" x="62" y="56" text-anchor="end">120</text>
+          <text class="fig-small" x="18" y="130" transform="rotate(-90 18 130)" text-anchor="middle">Precipitation (mm)</text>
+          <rect x="95" y="122" width="30" height="98" fill="#2f5fd0"/><rect x="127" y="203.2" width="30" height="16.8" fill="#9db7ef"/>
+          <rect x="205" y="61.8" width="30" height="158.2" fill="#2f5fd0"/><rect x="237" y="203.2" width="30" height="16.8" fill="#9db7ef"/>
+          <rect x="315" y="148.6" width="30" height="71.4" fill="#2f5fd0"/><rect x="347" y="92.6" width="30" height="127.4" fill="#9db7ef"/>
+          <text class="fig-small" x="126" y="240" text-anchor="middle">Edmonton</text><text class="fig-small" x="236" y="240" text-anchor="middle">Calgary</text><text class="fig-small" x="346" y="240" text-anchor="middle">Vancouver</text>
+          <rect x="130" y="256" width="14" height="14" fill="#2f5fd0"/><text class="fig-small" x="150" y="268">June</text><rect x="210" y="256" width="14" height="14" fill="#9db7ef"/><text class="fig-small" x="230" y="268">February</text>
+          </svg>
+        caption: 'Data: Environment and Climate Change Canada, Canadian Climate Normals 1991–2020.'
+      - type: table
+        covers: [S3.3]
+        headers: [Part, Its job, In this graph]
+        rows:
+          - ['**Title**', 'Says what the graph is about.', 'Average precipitation in June and February']
+          - ['**Labels**', 'Name what each axis shows, with units.', 'Precipitation (mm), and the three cities']
+          - ['**Scale**', 'Even steps of numbers, starting at 0.', '0 to 120, in steps of 40']
+          - ['**Legend**', 'Explains colours or symbols.', 'Dark for June, light for February']
+
+  - title: Know your audience
+    blocks:
+      - type: compare
+        covers: [K3.3, K3.4, S3.2, S3.4]
+        columns:
+          - title: For a Grade 1 class
+            body: |-
+              - **Vocabulary:** everyday words, like “the lit-up side”.
+              - **Detail:** just the big idea.
+              - **Method:** act it out with a lamp and a ball.
+          - title: For science fair judges
+            body: |-
+              - **Vocabulary:** science words, like “orbit” and “phase”.
+              - **Detail:** your evidence and how you measured it.
+              - **Method:** a poster with a labelled diagram and a graph.
+      - type: callout
+        variant: tip
+        covers: [K3.3, S3.2]
+        title: Pick the right tool
+        body: You might share an explanation with a slideshow, a video, a poster, a model or a conversation. Choose the one your audience can use best.
+
+keyTerms:
+  - term: Audience
+    covers: [K3.3, K3.4]
+    definition: The people an explanation is shared with.
+  - term: Legend
+    covers: [S3.3]
+    definition: The part of a graph that explains what each colour or symbol means.
+  - term: Scale
+    covers: [S3.3]
+    definition: The evenly spaced numbers along a graph’s axis.
+  - term: Research paper
+    covers: [K3.2]
+    definition: A written text in which scientists share their investigation and evidence.
+  - term: Refine
+    covers: [K4.3, U4.1]
+    definition: To improve an explanation so it fits new evidence better.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.3, S4.2]
+    type: multi
+    prompt: Select **all** the explanations that new evidence has **refined** because they were inaccurate.
+    choices:
+      - The Sun revolves around Earth.
+      - Different tastes are detected in different areas of the tongue.
+      - The eyes are a source of light that lets us see.
+      - Earth orbits the Sun.
+    answer: [0, 1, 2]
+    feedback:
+      '3': This is the refined explanation, the one the evidence supports today.
+    hints:
+      - Which explanations did the lesson’s table call old?
+    solution:
+      - The first three are old explanations that new evidence corrected.
+      - “Earth orbits the Sun” is the refined explanation that replaced the first one.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S3.3]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 360 220" class="fig-svg" role="img" aria-label="A bar graph titled Hours of daylight in Edmonton. The vertical axis is labelled hours. There are no numbers on the vertical axis. Bars for March, June, September and December.">
+      <text class="fig-label" x="190" y="20" text-anchor="middle">Hours of daylight in Edmonton</text>
+      <line class="sci-tick" x1="60" y1="35" x2="60" y2="180"/><line class="sci-tick" x1="60" y1="180" x2="340" y2="180"/>
+      <text class="fig-small" x="22" y="110" transform="rotate(-90 22 110)" text-anchor="middle">Hours</text>
+      <rect class="fig-rect" x="80" y="83" width="40" height="97"/><rect class="fig-rect" x="145" y="44" width="40" height="136"/><rect class="fig-rect" x="210" y="80" width="40" height="100"/><rect class="fig-rect" x="275" y="122" width="40" height="58"/>
+      <text class="fig-small" x="100" y="198" text-anchor="middle">Mar</text><text class="fig-small" x="165" y="198" text-anchor="middle">Jun</text><text class="fig-small" x="230" y="198" text-anchor="middle">Sep</text><text class="fig-small" x="295" y="198" text-anchor="middle">Dec</text>
+      </svg>
+    prompt: What is this graph missing?
+    choices: [A scale, A title, Axis labels, The months]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Read the top of the graph. Is there a title?
+      '2': Look at the side and bottom. Are the axes labelled?
+      '3': Read under each bar.
+    hints:
+      - Use the four parts from the lesson. Check each one.
+    solution:
+      - It has a title, labels and the months, but **no numbers** on the side.
+      - Without a **scale**, you can’t tell how many hours each bar shows.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K3.3, K3.4, S3.4]
+    type: mc
+    prompt: You will explain why we have day and night to a **kindergarten class**. Which plan fits your audience best?
+    choices:
+      - Spin a ball in front of a flashlight and use everyday words.
+      - Hand out a research paper about Earth’s rotation.
+      - Show a detailed graph of sunrise times for a whole year.
+      - Give a long talk full of science words.
+    answer: 0
+    feedback:
+      '1': Can kindergarten children read a research paper?
+      '2': Would a detailed graph make sense to them yet?
+      '3': Which words do five-year-olds know?
+    hints:
+      - Think about the vocabulary, detail and method that young children need.
+    solution:
+      - A model with a ball and a flashlight shows the idea, and everyday words fit young children.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K4.4, K4.1, S4.1]
+    type: mc
+    prompt: |-
+      Hundreds of studies over many years show that sunscreen helps protect skin from sunburn. A new small study finds
+      no difference. Jay says, “So scientists were wrong all along!” What is the flaw in Jay’s thinking?
+    choices:
+      - One conflicting study isn’t enough. Scientists investigate it and look for more evidence first.
+      - New studies are always wrong, so this one can be ignored.
+      - Old studies are always right, so this one must have cheated.
+      - Jay is right. One study can always overturn hundreds of others.
+    answer: 0
+    feedback:
+      '1': Ignoring new evidence isn’t how science works either. What do scientists do with it?
+      '2': Saying it cheated is a guess. What would scientists do to find out what happened?
+      '3': Look at the lesson’s mistake callout. How many studies does it take?
+    hints:
+      - How many studies support the explanation, and how many go against it?
+    solution:
+      - One conflicting study is **not enough** to refine an explanation supported by hundreds of others.
+      - Scientists would check the new study, repeat it and look for more evidence. If many new studies agreed with it, then the explanation might change.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K4.2, S4.1, K4.1]
+    type: multi
+    prompt: A scientist gets a surprising result. Select **all** the processes that would help check whether it is valid.
+    choices:
+      - Other teams repeat the investigation.
+      - Scientists discuss and debate it at a conference.
+      - She collects more evidence over a longer time.
+      - She keeps the result secret so nobody can argue.
+      - She changes the numbers to match what she expected.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Can anyone check a result that is kept secret?
+      '4': Changing data breaks the rules of scientific ethics. Does it check anything?
+    hints:
+      - Look at the table of ways science checks itself.
+    solution:
+      - Repeating, discussing and collecting more evidence over time all help check a result.
+      - Hiding results or changing data does the opposite.
+
+  - id: b3
+    level: 2
+    thinking: perspective
+    covers: [K3.1, S3.1, K4.1]
+    type: mc
+    prompt: |-
+      For generations, some Blackfoot families kept **winter counts**: one drawing for each year, showing that year’s
+      most important event. Some drawings recorded very hard winters. What could these records add to science?
+    choices:
+      - Long-term observations, in visual form, of when hard winters happened
+      - Exact daily temperatures, measured with thermometers
+      - Nothing, because drawings can’t share knowledge
+      - Proof that every winter was the same
+    answer: 0
+    feedback:
+      '1': The counts are drawings of events, not thermometer readings. What kind of information are they?
+      '2': A drawing is a visual form. Can visual forms share knowledge?
+      '3': Some winters were recorded as very hard. Does that sound like every winter was the same?
+    hints:
+      - What kind of form are the winter counts, and how many years do they cover?
+    solution:
+      - Winter counts are a **visual form** that shares knowledge across many years.
+      - They can show which years had hard winters, information that can work alongside written records.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S3.3]
+    type: mc
+    prompt: Mo measured rainfall each week. His smallest amount was **2 mm** and his largest was **85 mm**. Which scale works best for his graph?
+    choices:
+      - 0 to 90, in steps of 10
+      - 2 to 85, in steps of 1
+      - 0 to 10, in steps of 1
+      - 50 to 90, in steps of 10
+    answer: 0
+    feedback:
+      '1': That is 83 tiny steps. Would the numbers fit on a phone screen?
+      '2': Where would the 85 mm bar go?
+      '3': Starting at 50 makes small bars disappear and changes how big the differences look. Where should a bar graph start?
+    hints:
+      - A scale should start at 0, use even steps and reach past the biggest value.
+    solution:
+      - 0 to 90 in steps of 10 starts at 0, uses even steps and fits 85 mm.
+      - Remember from Grade 5 that a scale that doesn’t start at zero can make differences look bigger than they are.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K4.3, K4.2, K4.4, S4.2, U4.1]
+    type: investigation
+    prompt: |-
+      An old diagram claims the **tip** of the tongue tastes only sweet and the **sides** taste only salty. Your class
+      decides to test it.
+    parts:
+      - type: mc
+        prompt: Lin puts a tiny bit of salt on the **tip** of her tongue, and it tastes salty. What does this do to the old diagram?
+        choices: [It contradicts it., It supports it., It has nothing to do with it.]
+        answer: 0
+        feedback:
+          '1': The diagram says the tip tastes only sweet. Did Lin taste sweet?
+          '2': The test is about the tip and salt, exactly what the diagram describes. Is it related?
+        hints:
+          - What did the diagram predict the tip would taste?
+        solution:
+          - The diagram said the tip tastes only sweet. Lin tasted salt there, so the evidence **contradicts** it.
+      - type: mc
+        prompt: Before deciding the diagram is wrong, what should the class do?
+        choices:
+          - Repeat the test with many students and other tastes.
+          - Stop, because one test proves everything.
+          - Ignore the result, because the diagram is old and famous.
+        answer: 0
+        feedback:
+          '1': Is one test by one person enough to refine an explanation?
+          '2': Being old or famous doesn’t make an explanation right. What would make the evidence stronger?
+        hints:
+          - How do scientists check a surprising result?
+        solution:
+          - Repeat the investigation with many people and many tastes. More evidence makes the conclusion trustworthy.
+      - type: text
+        prompt: Many tests show every area tastes salt, sweet, sour and bitter. Which part of the tongue can detect sweet?
+        accept: [all of it, every part, all parts, everywhere, all areas, the whole tongue, all, every area, any part]
+        hints:
+          - Look at the refined explanation in the lesson’s table.
+        solution:
+          - '**Every part.** Taste buds all over the tongue detect all the tastes. The old diagram was refined by new evidence.'
+    wrapUp: An explanation that many tests contradict gets refined. That is science correcting itself.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [S3.4, K3.3, K3.4, S3.2]
+    type: mc
+    prompt: |-
+      A scientist will explain why winter days are short on a **radio show** that people listen to while driving.
+      Which plan suits this audience best?
+    choices:
+      - A short spoken story in everyday words, comparing Earth to a tilted spinning top
+      - A detailed graph of sunrise times, shown on screen
+      - A 20-page research paper with tables, read aloud word for word
+      - A labelled diagram handed out to every listener
+    answer: 0
+    feedback:
+      '1': Drivers listening to the radio can’t look at a screen. What can they use?
+      '2': Would drivers follow 20 pages of tables by ear?
+      '3': How would a diagram reach radio listeners?
+    hints:
+      - Think about the method of communication first. What can radio listeners do?
+      - Then think about vocabulary and detail for a general audience.
+    solution:
+      - Radio is **verbal**, and drivers can’t look at visuals. So the method must be spoken.
+      - A general audience needs everyday words and just enough detail. A comparison, like a tilted spinning top, helps listeners picture it.
