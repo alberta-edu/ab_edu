@@ -31,6 +31,7 @@ import SealedJars from './SealedJars.astro';
 import ScaleWalk from './ScaleWalk.astro';
 import OrbitDay from './OrbitDay.astro';
 import MapAbstract from './MapAbstract.astro';
+import IfRobot from './IfRobot.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -67,6 +68,7 @@ const animations = {
   'g6-scale-walk': ScaleWalk,
   'g6-orbit-day': OrbitDay,
   'g6-map-abstract': MapAbstract,
+  'g6-if-robot': IfRobot,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

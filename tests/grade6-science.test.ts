@@ -46,3 +46,13 @@ describe('Grade 6 solar system', () => {
     expect(gravityText(b('earth'))).toBe('About the same as Earth');
   });
 });
+
+import { IF_ROBOT_POTS, runIfRobot } from '../src/components/visuals/if-robot.ts';
+
+describe('Grade 6 conditionals', () => {
+  it('waters only the dry pots, as the lesson says: 3 of 5', () => {
+    const steps = runIfRobot(IF_ROBOT_POTS);
+    expect(steps).toHaveLength(5);
+    expect(steps.filter((s) => s.water).map((s) => s.pot)).toEqual([0, 2, 3]);
+  });
+});

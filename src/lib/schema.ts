@@ -255,7 +255,7 @@ const block = z.discriminatedUnion('type', [
     covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['echo-room', 'scroll-scan', 'container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run', 'g6-melt-scale', 'g6-bottle-thermo', 'g6-pond-freeze', 'g6-friction-slide', 'g6-skate-push', 'g6-stretch-test', 'g6-wind-two-ways', 'g6-greenhouse', 'g6-sea-rise', 'g6-radar', 'g6-wetland-drought', 'g6-pondweed', 'g6-sealed-jars', 'g6-scale-walk', 'g6-orbit-day', 'g6-map-abstract']),
+    animation: z.enum(['echo-room', 'scroll-scan', 'container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run', 'g6-melt-scale', 'g6-bottle-thermo', 'g6-pond-freeze', 'g6-friction-slide', 'g6-skate-push', 'g6-stretch-test', 'g6-wind-two-ways', 'g6-greenhouse', 'g6-sea-rise', 'g6-radar', 'g6-wetland-drought', 'g6-pondweed', 'g6-sealed-jars', 'g6-scale-walk', 'g6-orbit-day', 'g6-map-abstract', 'g6-if-robot']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),

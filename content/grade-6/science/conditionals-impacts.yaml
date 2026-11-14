@@ -1,0 +1,349 @@
+id: conditionals-impacts
+grade: 6
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI6-OI6-GQ1-LO1]
+order: 15
+title: Conditionals, Code and Its Impacts
+shortTitle: Conditionals and impacts
+summary: >-
+  Run a garden robot’s code with an if-then-else, use sequences, conditionals and loops, and predict the
+  impacts, good and bad, of computers and technology.
+
+bigIdea: |-
+  - Code is built from **sequences**, **conditionals** and **loops**.
+  - A **conditional**, such as **if-then-else**, tells a computer to do different things in different situations.
+  - Computers, coding and technology have **personal**, **social**, **environmental** and **economic** impacts.
+  - Impacts can be **positive or negative**, and **intentional or unintentional**.
+
+lesson:
+  - title: 'Virtual experiment: the watering robot'
+    blocks:
+      - type: experiment
+        covers: [K1.6, K1.7, K1.8, S1.4]
+        title: Run the garden robot’s code
+        question: |-
+          - A robot runs the code on the left. It visits five pots in a row.
+          - Pots 1, 3 and 4 are **dry**. Pots 2 and 5 are **wet**.
+        animation: g6-if-robot
+        predict:
+          choices:
+            - It waters 3 pots.
+            - It waters all 5 pots.
+            - It waters 2 pots.
+            - It waters no pots.
+          answer: 0
+        observe: |-
+          - The robot moved to each pot in turn, **five times**.
+          - At each pot it checked the soil. It **watered** the 3 dry pots and **skipped** the 2 wet ones.
+        explain: |-
+          - **Repeat 5 times** is a loop. **Move, then check** is a sequence, in order.
+          - **If soil is dry, then water it, else skip it** is a conditional. The robot did different things in different situations.
+
+  - title: Three structures in code
+    blocks:
+      - type: compare
+        covers: [K1.6, K1.7, K1.8]
+        columns:
+          - title: ➡️ Sequence
+            body: An **ordered set** of instructions. The computer follows them one after another, in order.
+          - title: 🔀 Conditional
+            body: Tells the computer to do **different actions** in **different situations**. If-then-else is one kind.
+          - title: 🔁 Loop
+            body: Repeats a set of instructions, like **repeat 5 times**.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI6-GQ1-LO1#K1.6, SCI5-OI6-GQ1-LO1#K1.7]
+        title: Remember from Grade 5
+        body: A computer can’t think for itself. It relies on code for everything it does. A **loop** repeats instructions.
+
+  - title: Conditionals all around you
+    blocks:
+      - type: table
+        covers: [K1.8, S1.4]
+        headers: [Device, If…, Then…, Else…]
+        rows:
+          - ['🚪 Automatic door', 'someone is near', 'open', 'stay closed']
+          - ['🌡️ Thermostat', 'the room is below 20 °C', 'turn on the heat', 'turn it off']
+          - ['🎮 Game', 'your score reaches 100', 'go to the next level', 'keep playing this level']
+      - type: example
+        covers: [S1.4, K1.6, K1.7, K1.8]
+        title: Design code for a night light
+        problem: A night light should be on when the room is dark and off when it is bright, all night long.
+        steps:
+          - '**Loop:** repeat forever, so it keeps checking.'
+          - '**Conditional:** if the room is dark, then turn the light on.'
+          - '**Else:** turn the light off.'
+          - '**Sequence:** after each check, wait 1 second, then check again.'
+        answer: Three structures, working together in one small program.
+
+  - title: Impacts of technology
+    blocks:
+      - type: table
+        covers: [K2.1, S2.1, U2.1]
+        headers: [Kind of impact, Positive example, Negative example]
+        rows:
+          - ['🙂 **Personal**', 'A map app helps you find a new friend’s house.', 'Too much screen time can cut into sleep.']
+          - ['👥 **Social**', 'Video calls connect families far apart.', 'Mean messages online can hurt people.']
+          - ['🌍 **Environmental**', 'Weather models help warn of storms and floods.', 'Old devices thrown away become electronic waste.']
+          - ['💲 **Economic**', 'Coding creates new jobs.', 'Online shopping can take business from local stores.']
+      - type: visual
+        covers: [K2.2, S2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: on, label: Intentional (planned), icon: '🎯' }
+            - { id: off, label: Unintentional (not planned), icon: '🎲' }
+          cards:
+            - { text: A reading app is designed to help kids practise reading., bin: on, why: That was the designers’ goal. }
+            - { text: Kids stay up late playing a game made to be fun., bin: off, why: The designers wanted fun. Losing sleep was not the plan. }
+            - { text: A bus app shows when the next bus is coming., bin: on, why: That is what it was built to do. }
+            - { text: Phones get replaced so often that piles of old ones build up., bin: off, why: Nobody designed phones to create waste. It happened anyway. }
+        caption: Was each impact planned, or not?
+
+  - title: Predicting impacts
+    blocks:
+      - type: example
+        covers: [S2.2, K2.1, K2.2, U2.1]
+        title: A town plans self-driving shuttle buses
+        problem: Before deciding, the town tries to predict the impacts.
+        steps:
+          - '**Personal:** people who can’t drive, such as some Elders, can get around more easily.'
+          - '**Social:** riders may meet fewer people, with no driver to chat with.'
+          - '**Environmental:** electric shuttles give off no exhaust in town.'
+          - '**Economic:** bus drivers may need new jobs. New jobs fixing and coding shuttles may appear.'
+        answer: Predicting impacts, including unintentional ones, helps people plan before a technology arrives.
+
+keyTerms:
+  - term: Sequence
+    covers: [K1.7]
+    definition: An ordered set of instructions in code.
+  - term: Conditional
+    covers: [K1.8]
+    definition: A statement that tells a computer to do different actions in different situations, such as if-then-else.
+  - term: Loop
+    covers: [K1.6]
+    definition: A structure that repeats instructions.
+  - term: Intentional impact
+    covers: [K2.2]
+    definition: An effect that was planned.
+  - term: Unintentional impact
+    covers: [K2.2]
+    definition: An effect that was not planned, which can be positive or negative.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.8, K1.6]
+    type: mc
+    prompt: '“**If** the light is red, **then** stop, **else** go.” Which coding structure is this?'
+    choices: [A conditional, A loop, A sequence]
+    answer: 0
+    feedback:
+      '1': Does anything repeat a number of times?
+      '2': Does it always do the same steps in order, or does it choose?
+    hints:
+      - Does the instruction choose between actions?
+    solution:
+      - It does different actions in different situations, so it is a **conditional**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.8, S1.4, K1.6]
+    type: number
+    prompt: |-
+      The watering robot runs the same code on a row of **6** pots: dry, wet, dry, wet, dry, dry. How many pots
+      does it water?
+    answer: 4
+    verify: '1 + 1 + 1 + 1'
+    hints:
+      - The robot waters a pot only **if** its soil is dry.
+    solution:
+      - It checks each pot and waters only the dry ones.
+      - Pots 1, 3, 5 and 6 are dry, so it waters **4** pots.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.1]
+    type: multi
+    prompt: Select **all** the **environmental** impacts of technology.
+    choices:
+      - Old tablets thrown in the garbage add to electronic waste.
+      - Computer models help warn people before a flood.
+      - A video call lets you talk with your grandparents.
+      - A new app company hires 50 people.
+    answer: [0, 1]
+    feedback:
+      '2': That is about people connecting. Which kind of impact is it?
+      '3': That is about jobs and money. Which kind of impact is it?
+    hints:
+      - Environmental impacts affect nature, land, water or air.
+    solution:
+      - Electronic waste and flood warnings both involve the environment, one negative and one positive.
+      - The video call is social, and the new jobs are economic.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K1.7, S1.4]
+    type: order
+    prompt: Put these blocks in order to make a **sequence** for a toaster.
+    items:
+      - Wait for bread to be put in.
+      - Wait for the lever to be pushed down.
+      - Heat for 2 minutes.
+      - Pop the toast up.
+    hints:
+      - What has to happen before the toaster can start heating?
+    solution:
+      - A sequence is an **ordered** set of instructions. The toaster can’t heat until the bread is in and the lever is down.
+      - It pops up last, after heating.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K1.8, S1.4]
+    type: mc
+    prompt: |-
+      Ana codes a clothing helper: “**If** the temperature is below 0 °C, **then** say *Wear shorts*, **else** say
+      *Wear a winter coat*.” What is wrong?
+    choices:
+      - The two actions are swapped, so it gives cold-weather advice on warm days.
+      - A conditional can’t check temperature, so the code won’t run.
+      - It needs a loop, or it will never say anything.
+      - Nothing. Computers know what to wear, so they will fix it.
+    answer: 0
+    feedback:
+      '1': Devices like thermostats check temperature all the time. What is the real problem?
+      '2': It will run once and say something. Is what it says right?
+      '3': Can a computer think for itself, or does it follow the code exactly?
+    hints:
+      - Test the code. What does it say on a −10 °C day?
+    solution:
+      - On a −10 °C day, the condition is true, so it says *Wear shorts*. The actions are in the wrong branches.
+      - A computer follows code exactly. It can’t notice the mistake for you.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K2.2, K2.1, U2.1]
+    type: mc
+    prompt: |-
+      A step-counting app was designed to help people walk more. Some users started walking so much they hurt their
+      knees. What kind of impact is the sore knees?
+    choices:
+      - Unintentional and negative
+      - Intentional and positive
+      - Intentional and negative
+      - Unintentional and positive
+    answer: 0
+    feedback:
+      '1': Was hurting knees the goal? Is it good?
+      '2': Did the designers plan for sore knees?
+      '3': Is a sore knee a good result?
+    hints:
+      - Ask two questions. Was it planned? Is it good?
+    solution:
+      - The designers wanted people to walk more. Sore knees weren’t planned, so it is **unintentional**.
+      - Hurting knees is a **negative** impact.
+
+  - id: b4
+    level: 2
+    thinking: perspective
+    covers: [S2.1, K2.1, U2.1]
+    type: mc
+    prompt: |-
+      A family in a small northern town can now order almost anything online. How might the owner of the town’s
+      only clothing store see this change?
+    choices:
+      - As a negative economic impact, since fewer people may shop at her store
+      - As a positive environmental impact, since less clothing is made
+      - As no impact at all, since online stores are far away
+      - As a positive social impact, since she gets more customers
+    answer: 0
+    feedback:
+      '1': Does ordering online mean less clothing is made?
+      '2': Online stores are far away, but where do the family’s dollars go now?
+      '3': Would online shopping bring her more customers?
+    hints:
+      - Think about where the family’s money goes now.
+    solution:
+      - For the family, online shopping may be a positive personal impact.
+      - For the store owner, fewer customers is a **negative economic** impact. The same technology affects people differently.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S1.4, K1.6, K1.7, K1.8]
+    type: investigation
+    prompt: |-
+      You are designing block code for an automatic pet feeder. It should fill the bowl only when the bowl is empty,
+      and keep checking all day.
+    parts:
+      - type: mc
+        prompt: Which conditional should the code use?
+        choices:
+          - If the bowl is empty, then add food.
+          - If the bowl has food, then add more food.
+          - If it is daytime, then add food.
+        answer: 0
+        feedback:
+          '1': That would overfill the bowl. When should it add food?
+          '2': It might add food to a full bowl. What should it check?
+        hints:
+          - What situation should trigger adding food?
+        solution:
+          - Add food only when the bowl is **empty**. That is the situation that matters.
+      - type: mc
+        prompt: What should the **else** branch do?
+        choices:
+          - Do nothing, and wait.
+          - Add food anyway.
+          - Turn the feeder off forever.
+        answer: 0
+        feedback:
+          '1': Then the conditional wouldn’t matter. What should happen if the bowl still has food?
+          '2': Then it couldn’t check again later. What should it do instead?
+        hints:
+          - The else branch runs when the bowl is **not** empty.
+        solution:
+          - If the bowl has food, the feeder should do nothing and wait.
+      - type: text
+        prompt: Which coding structure makes the feeder **keep checking** all day?
+        accept: [loop, a loop, repeat, repeat forever, loops]
+        hints:
+          - Which structure repeats instructions?
+        solution:
+          - A **loop**. It repeats the check, for example every hour, all day long.
+    wrapUp: A loop, a conditional and a sequence together make a small program that responds to the world.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [S2.2, K2.1, K2.2]
+    type: multi
+    prompt: |-
+      A city replaces paper bus tickets with a phone app. Predict the impacts. Select **all** that are **likely**.
+    choices:
+      - Less paper is used for tickets.
+      - People without phones may find it harder to ride the bus.
+      - Riders can buy a ticket without lining up.
+      - Every rider will get to school faster because of the app.
+      - The bus will no longer need a driver.
+    answer: [0, 1, 2]
+    feedback:
+      '3': The app changes how you pay. Does it change how fast the bus drives?
+      '4': The app is for tickets. Does it drive the bus?
+    hints:
+      - Think about what the app actually changes, the tickets, and who uses them.
+      - Look for an unintentional impact too.
+    solution:
+      - Less paper is an environmental impact, and skipping the line is a personal one. Both were likely planned.
+      - People without phones having a harder time is **unintentional** and negative. Predicting it lets the city keep another way to pay.
+      - The app doesn’t change the bus’s speed or who drives it.
