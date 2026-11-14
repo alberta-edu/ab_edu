@@ -293,3 +293,20 @@ describe('Grade 6 Cartesian plane', () => {
     expect(rotateP(tri, 180, 'cw', [1, 1])).toEqual([[1, 1], [-2, 1], [1, -1]]);
   });
 });
+
+import { parallelogram, endTriangle, polygonArea, parallelogramArea, triangleArea } from '../src/components/visuals/g6-area.ts';
+
+describe('Grade 6 area', () => {
+  it('keeps the area when the slant changes', () => {
+    for (const s of [0, 1, 3, 6]) expect(polygonArea(parallelogram(6, 4, s))).toBe(parallelogramArea(6, 4));
+  });
+  it('moves the end triangle to make a rectangle', () => {
+    const tri = endTriangle(4, 2).map(([x, y]) => [x + 6, y] as [number, number]);
+    const rect = polygonArea([[2, 0], [8, 0], [8, 4], [2, 4]]);
+    expect(polygonArea([[2, 0], [6, 0], [8, 4], [2, 4]]) + polygonArea(tri)).toBe(rect);
+  });
+  it('makes a triangle half of the parallelogram', () => {
+    const p = parallelogram(6, 4, 2);
+    expect(polygonArea([p[0], p[1], p[2]])).toBe(triangleArea(6, 4));
+  });
+});
