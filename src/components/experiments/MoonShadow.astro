@@ -1,0 +1,80 @@
+---
+// Animated experiment: testing a hypothesis. "The Moon's phases are caused by Earth's shadow."
+// A top-down model shows sunlight from the left, Earth's shadow pointing away from the Sun, and the
+// Moon going around Earth. A second panel shows the Moon as seen from Earth. At first quarter the
+// Moon is far from Earth's shadow but looks half dark, so the evidence contradicts the hypothesis
+// (SCI6-OI7-GQ1-LO1, K1.2, K1.3, K2.1, K2.2, S1.2). Uses the Grade 5 moon-phase drawing.
+---
+<g6-moon-shadow>
+  <svg class="sci-svg" viewBox="0 0 640 320" aria-hidden="true" data-ms6="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ms6="live"></p>
+</g6-moon-shadow>
+
+<style is:global>
+  g6-moon-shadow { display: block; }
+  g6-moon-shadow svg { background: #0f1830; }
+  .g6s-mn-ray { stroke: #ffcf3d; stroke-width: 2; opacity: 0.5; }
+  .g6s-mn-shadow { fill: #000; opacity: 0.55; }
+  .g6s-mn-earth { fill: #3f7fd6; }
+  .g6s-mn-path { fill: none; stroke: #5b6890; stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .g6s-mn-lit { fill: #f1ecd8; }
+  .g6s-mn-dark { fill: #2a3352; }
+  .g6s-mn-text { fill: #f1eff7; font-size: 15px; font-weight: 700; }
+  .g6s-mn-small { fill: #dfe7ff; font-size: 13px; }
+  .g6s-mn-panel { fill: #18223f; stroke: #5b6890; stroke-width: 1.5; }
+  @media (max-width: 40rem) { .g6s-mn-text { font-size: 22px; } .g6s-mn-small { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { moonFace, MONTH } from '../visuals/moon.ts';
+
+  const EX = 230;
+  const EY = 160;
+  const OR = 105;
+
+  class MoonShadow extends HTMLElement {
+    private age = 0; // days since new Moon
+    private stopAtQuarter = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-ms6="live"]')!;
+      live.textContent = '';
+      this.stopAtQuarter = false;
+      // New Moon to full Moon and back, then pause at first quarter.
+      await tween(6000, (t) => { this.age = t * MONTH; this.draw(); });
+      await tween(1200, (t) => { this.age = (MONTH / 4) * t; this.draw(); });
+      this.stopAtQuarter = true;
+      this.draw();
+      await wait(150);
+      live.textContent = 'The Moon went all the way around Earth and showed every phase. At first quarter it was far from Earth’s shadow, but it still looked half dark. The evidence contradicts the hypothesis.';
+    }
+
+    private draw() {
+      // Day 0 (new Moon) is between Earth and the Sun, on the left. The Moon travels counterclockwise in the picture.
+      const a = Math.PI + (2 * Math.PI * this.age) / MONTH;
+      const mx = EX + Math.cos(a) * OR;
+      const my = EY - Math.sin(a) * OR;
+      const out: string[] = [];
+      for (let y = 30; y <= 290; y += 26) out.push(`<line class="g6s-mn-ray" x1="0" y1="${y}" x2="40" y2="${y}"/>`);
+      out.push(`<text class="g6s-mn-small" x="8" y="20">sunlight →</text>`);
+      out.push(`<path class="g6s-mn-shadow" d="M${EX} ${EY - 22} L${EX + 190} ${EY - 10} L${EX + 190} ${EY + 10} L${EX} ${EY + 22} Z"/>`);
+      out.push(`<text class="g6s-mn-small" x="${EX + 30}" y="${EY + 44}">Earth’s shadow</text>`);
+      out.push(`<circle class="g6s-mn-path" cx="${EX}" cy="${EY}" r="${OR}"/>`);
+      out.push(`<circle class="g6s-mn-earth" cx="${EX}" cy="${EY}" r="22"/>`);
+      // Top-down Moon: the half facing the Sun (left) is always lit.
+      out.push(`<circle class="g6s-mn-dark" cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="12"/><path class="g6s-mn-lit" d="M${mx.toFixed(1)} ${(my - 12).toFixed(1)} A12 12 0 0 0 ${mx.toFixed(1)} ${(my + 12).toFixed(1)} Z"/>`);
+      // What we see from Earth.
+      out.push(`<rect class="g6s-mn-panel" x="430" y="40" width="190" height="200" rx="10"/>`);
+      out.push(`<text class="g6s-mn-text" x="525" y="70" text-anchor="middle">Seen from Earth</text>`);
+      out.push(moonFace(this.age, 525, 150, 55));
+      if (this.stopAtQuarter) out.push(`<text class="g6s-mn-text" x="320" y="306" text-anchor="middle">Half dark, but far from the shadow</text>`);
+      this.querySelector('[data-ms6="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-moon-shadow', MoonShadow);
+</script>

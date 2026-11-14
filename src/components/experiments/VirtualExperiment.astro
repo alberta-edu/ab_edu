@@ -32,6 +32,7 @@ import ScaleWalk from './ScaleWalk.astro';
 import OrbitDay from './OrbitDay.astro';
 import MapAbstract from './MapAbstract.astro';
 import IfRobot from './IfRobot.astro';
+import MoonShadow from './MoonShadow.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -69,6 +70,7 @@ const animations = {
   'g6-orbit-day': OrbitDay,
   'g6-map-abstract': MapAbstract,
   'g6-if-robot': IfRobot,
+  'g6-moon-shadow': MoonShadow,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
