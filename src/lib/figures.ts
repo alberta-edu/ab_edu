@@ -8,6 +8,7 @@ import { balanceSvg, cylinderSvg } from '../components/visuals/measure-svg.ts';
 import { forceDiagram, type ForceSpec, type ObjectKind } from '../components/visuals/force-arrows.ts';
 import { lineSvg, type LineView } from '../components/visuals/g6-integers.ts';
 import { planeSvg, type PlanePoly } from '../components/visuals/g6-plane.ts';
+import { prismSvg } from '../components/visuals/g6-prism.ts';
 
 export type Figure =
   | string
@@ -25,7 +26,8 @@ export type Figure =
   | { kind: 'moons'; ages: number[]; labels?: string[] }
   | { kind: 'code'; blocks: Block[] }
   | { kind: 'int-line'; min: number; max: number; points?: { v: number; label?: string }[]; view?: LineView; jumps?: { from: number; to: number }[] }
-  | { kind: 'plane'; r: number; points?: { x: number; y: number; label?: string }[]; polys?: PlanePoly[]; centre?: [number, number] };
+  | { kind: 'plane'; r: number; points?: { x: number; y: number; label?: string }[]; polys?: PlanePoly[]; centre?: [number, number] }
+  | { kind: 'prism'; l: number; w: number; h: number; layers?: number; unit?: string; labels?: boolean };
 
 /** Small deterministic random generator so figures are identical on every build. */
 function rng(seed: number) {
@@ -169,5 +171,7 @@ export function renderFigure(f: Figure): string {
       return lineSvg({ min: f.min, max: f.max, points: f.points, view: f.view, jumps: f.jumps });
     case 'plane':
       return planeSvg({ r: f.r, points: f.points, polys: f.polys, centre: f.centre });
+    case 'prism':
+      return prismSvg({ l: f.l, w: f.w, h: f.h }, { layers: f.layers, unit: f.unit, labels: f.labels ?? true });
   }
 }

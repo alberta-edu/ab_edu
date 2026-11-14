@@ -979,3 +979,12 @@ a.concept-card:hover { border-color: var(--accent); }
 .g6m-pl-label { fill: var(--accent); font-size: 16px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
 .g6m-pl-label--b { fill: var(--warn); }
 .g6m-pl-centre { fill: none; stroke: var(--bad); stroke-width: 3; }
+.g6m-prism { display: block; width: 100%; max-width: 22rem; height: auto; margin-inline: auto; font-family: var(--font); overflow: visible; }
+.g6m-pr-top { fill: color-mix(in srgb, var(--sun) 80%, #fff); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-left { fill: color-mix(in srgb, var(--sun) 75%, #6b4d00); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-right { fill: color-mix(in srgb, var(--sun) 90%, #3d2c00); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-ghost { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.g6m-pr-label { fill: var(--ink); font-size: 18px; font-weight: 700; }
+.g6m-pr-new { animation: g6m-pr-drop 0.45s ease both; }
+@keyframes g6m-pr-drop { from { opacity: 0; transform: translateY(-30px); } }
+@media (prefers-reduced-motion: reduce) { .g6m-pr-new { animation: none; } }

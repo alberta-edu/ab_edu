@@ -310,3 +310,18 @@ describe('Grade 6 area', () => {
     expect(polygonArea([p[0], p[1], p[2]])).toBe(triangleArea(6, 4));
   });
 });
+
+import { cubes, volume, prismSvg } from '../src/components/visuals/g6-prism.ts';
+
+describe('Grade 6 volume', () => {
+  it('counts unit cubes layer by layer', () => {
+    expect(cubes({ l: 4, w: 3, h: 2 })).toHaveLength(24);
+    expect(cubes({ l: 4, w: 3, h: 2 }, 1)).toHaveLength(12);
+    expect(volume({ l: 4, w: 3, h: 2 })).toBe(24);
+  });
+  it('draws one group per cube, with a ghost while layers are missing', () => {
+    const svg = prismSvg({ l: 2, w: 2, h: 3 }, { layers: 2 });
+    expect(svg.match(/g6m-pr-cube/g)).toHaveLength(8);
+    expect(svg).toContain('g6m-pr-ghost');
+  });
+});
