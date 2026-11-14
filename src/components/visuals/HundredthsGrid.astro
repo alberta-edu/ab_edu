@@ -1,0 +1,85 @@
+---
+// A hundred grid: one whole split into 10 tenths (columns) and 100 hundredths (squares). The same
+// shaded part reads as a fraction, a decimal and, with `percent`, a percentage
+// (MAT4-OI1-GQ1-LO1 U1.2; MAT4-OI1-GQ5-LO1 K2.1, K2.2, U2.1, S2.2; MAT4 percentages K1.1-K1.4, U1.1, S1.3).
+interface Props {
+  shaded?: number;
+  percent?: boolean;
+}
+const { shaded = 35, percent = false } = Astro.props;
+const cells = Array.from({ length: 100 }, (_, i) => ({ i, x: 8 + Math.floor(i / 10) * 30, y: 8 + (i % 10) * 30 }));
+---
+<g4m-hundredths-grid data-shaded={shaded} data-percent={String(percent)}>
+  <div class="g4m-hg-layout">
+    <svg class="g4m-hg-svg" viewBox="0 0 316 316" role="img" aria-label="A square split into 100 small squares, 10 columns of 10" data-hg="svg">
+      {cells.map((c) => <rect class="g4m-hg-cell" data-i={c.i} x={c.x} y={c.y} width="28" height="28" rx="3" />)}
+      {Array.from({ length: 9 }, (_, k) => <line class="g4m-hg-tenth" x1={37 + k * 30} y1="6" x2={37 + k * 30} y2="310" />)}
+      <rect class="g4m-hg-frame" x="6" y="6" width="304" height="304" rx="4" />
+    </svg>
+    <div class="g4m-hg-panel">
+      <div class="g4m-hg-reads" aria-live="polite">
+        <span class="g4m-hg-read"><small>Fraction</small><span class="frac"><span data-hg="num">{shaded}</span><span>100</span></span></span>
+        <span class="g4m-hg-eq">=</span>
+        <span class="g4m-hg-read"><small>Decimal</small><b data-hg="dec"></b></span>
+        {percent && <span class="g4m-hg-eq">=</span>}
+        {percent && <span class="g4m-hg-read"><small>Percent</small><b data-hg="pct"></b></span>}
+      </div>
+      <p class="g4m-hg-say" data-hg="say"></p>
+      <div class="control-row">
+        <div class="control">
+          <button type="button" class="icon-btn" data-hg-step="-10" aria-label="Take away one tenth">−10</button>
+          <button type="button" class="icon-btn" data-hg-step="-1" aria-label="Take away one hundredth">−1</button>
+          <button type="button" class="icon-btn" data-hg-step="1" aria-label="Shade one more hundredth">+1</button>
+          <button type="button" class="icon-btn" data-hg-step="10" aria-label="Shade one more tenth">+10</button>
+        </div>
+      </div>
+      <p class="g4m-hg-tip">Tap a square, or use the buttons. Each column is one tenth.</p>
+    </div>
+  </div>
+</g4m-hundredths-grid>
+
+<style is:global>
+  g4m-hundredths-grid { display: block; }
+  .g4m-hg-layout { display: grid; gap: 1rem; align-items: center; }
+  @media (min-width: 44rem) { .g4m-hg-layout { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); } }
+  .g4m-hg-svg { display: block; width: 100%; max-width: 20rem; height: auto; touch-action: manipulation; }
+  .g4m-hg-cell { fill: var(--surface-2); stroke: var(--line); cursor: pointer; transition: fill 0.2s; }
+  .g4m-hg-cell.is-on { fill: var(--math); }
+  .g4m-hg-tenth { stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 3 3; pointer-events: none; }
+  .g4m-hg-frame { fill: none; stroke: var(--ink); stroke-width: 3; pointer-events: none; }
+  .g4m-hg-reads { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.8rem; }
+  .g4m-hg-read { display: inline-grid; justify-items: center; gap: 0.15rem; }
+  .g4m-hg-read small { font-size: var(--step--1); font-weight: 700; color: var(--ink-3); }
+  .g4m-hg-read b { font-size: 1.6rem; color: var(--accent, var(--math)); font-variant-numeric: tabular-nums; }
+  .g4m-hg-eq { font-size: 1.6rem; color: var(--ink-3); }
+  .g4m-hg-say { margin: 0.6rem 0 0; font-weight: 700; }
+  .g4m-hg-tip { margin: 0; color: var(--ink-2); font-size: var(--step--1); }
+  @media (prefers-reduced-motion: reduce) { .g4m-hg-cell { transition: none; } }
+</style>
+
+<script>
+  import { hundredthsText } from './hundredths.ts';
+
+  class HundredthsGrid extends HTMLElement {
+    private n = 0;
+
+    connectedCallback() {
+      this.querySelectorAll<SVGRectElement>('.g4m-hg-cell').forEach((c) => c.addEventListener('click', () => this.set(Number(c.dataset.i) + 1 === this.n ? this.n - 1 : Number(c.dataset.i) + 1)));
+      this.querySelectorAll<HTMLButtonElement>('[data-hg-step]').forEach((b) => b.addEventListener('click', () => this.set(this.n + Number(b.dataset.hgStep))));
+      this.set(Number(this.dataset.shaded));
+    }
+
+    private set(n: number) {
+      this.n = Math.max(0, Math.min(100, n));
+      this.querySelectorAll<SVGRectElement>('.g4m-hg-cell').forEach((c) => c.classList.toggle('is-on', Number(c.dataset.i) < this.n));
+      const t = hundredthsText(this.n);
+      this.querySelector('[data-hg="num"]')!.textContent = String(this.n);
+      this.querySelector('[data-hg="dec"]')!.textContent = t.decimal;
+      const pct = this.querySelector('[data-hg="pct"]');
+      if (pct) pct.textContent = `${this.n}%`;
+      this.querySelector('[data-hg="say"]')!.textContent = t.say;
+      this.querySelector('svg')!.setAttribute('aria-label', `${this.n} of 100 small squares shaded`);
+    }
+  }
+  customElements.define('g4m-hundredths-grid', HundredthsGrid);
+</script>

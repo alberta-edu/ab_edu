@@ -1,0 +1,353 @@
+id: decimal-place-value
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ1-LO1]
+order: 1
+title: Place Value with Tenths and Hundredths
+shortTitle: Tenths & hundredths
+summary: >-
+  Use place value with tenths and hundredths: what each digit is worth, times 10 and divided by 10,
+  dollars and cents, reading decimals, comparing and rounding.
+
+bigIdea: |-
+  - Each place is worth **one-tenth** of the place to its left.
+  - Decimals are numbers **between** whole numbers. They show **parts** of a whole, like cents of a dollar.
+  - Times 10 moves every digit **one place left**. Divided by 10 moves every digit **one place right**.
+
+lesson:
+  - title: Tenths and hundredths
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.2, S1.3, U1.4]
+        component: tenths-shift
+        props: { value: '352.74' }
+        caption: Tap each digit to see what it is worth. Then type your own number.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI1-GQ1-LO1#K1.1]
+        title: Remember from Grade 3
+        body: Each place is worth **10 times** the place to its right.
+      - type: compare
+        covers: [K1.1, S1.2]
+        columns:
+          - title: 1 one
+            body: Split 1 into **10** equal parts. Each part is **1 tenth**, or 0.1.
+          - title: 1 tenth
+            body: Split 1 tenth into **10** equal parts. Each part is **1 hundredth**, or 0.01.
+
+  - title: Times 10 and divided by 10
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.2]
+        component: tenths-shift
+        props: { value: '4.7' }
+        caption: |-
+          1. Press **× 10** and watch every digit slide one place left.
+          2. Press **÷ 10** to slide them back to the right.
+      - type: table
+        covers: [K1.2]
+        headers: [Start, Do this, Get, The digits moved]
+        rows:
+          - ['4.7', '× 10', '47', 'one place left']
+          - ['47', '× 10', '470', 'one place left']
+          - ['470', '÷ 10', '47', 'one place right']
+          - ['47', '÷ 10', '4.7', 'one place right']
+
+  - title: Between whole numbers
+    blocks:
+      - type: visual
+        covers: [U1.2, S1.3]
+        component: hundredths-grid
+        props: { shaded: 36 }
+        caption: The big square is **1 whole**. Shade some squares and watch the fraction and the decimal change together.
+      - type: figure
+        covers: [U1.1]
+        figure: |-
+          <svg viewBox="0 0 380 96" class="fig-svg" role="img" aria-label="A number line from 2 to 3 split into 10 equal steps. A dot marks 2.4, the fourth step after 2."><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="50" x2="350" y2="50"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="38" x2="30" y2="62"/><line class="fig-grid" style="stroke:var(--ink)" x1="62" y1="44" x2="62" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="94" y1="44" x2="94" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="126" y1="44" x2="126" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="158" y1="44" x2="158" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="190" y1="44" x2="190" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="222" y1="44" x2="222" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="254" y1="44" x2="254" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="286" y1="44" x2="286" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="318" y1="44" x2="318" y2="56"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="350" y1="38" x2="350" y2="62"/><circle class="cg-pt" cx="158" cy="50" r="7"/><text class="fig-label" x="158" y="28" text-anchor="middle">2.4</text><text class="fig-label" x="30" y="86" text-anchor="middle">2</text><text class="fig-label" x="350" y="86" text-anchor="middle">3</text></svg>
+        caption: '**2.4** is between 2 and 3. It is 2 wholes and 4 tenths of the way to 3.'
+
+  - title: Reading and writing decimals
+    blocks:
+      - type: table
+        covers: [S1.4, K1.6]
+        headers: [Numeral, Words]
+        rows:
+          - ['0.8', 'eight tenths']
+          - ['0.08', 'eight hundredths']
+          - ['5.3', 'five **and** three tenths']
+          - ['1 204.65', 'one thousand two hundred four **and** sixty-five hundredths']
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: Say "and" only at the point
+        body: The word **and** tells you where the decimal point goes. Say 204 as "two hundred four", with no "and".
+      - type: compare
+        covers: [K1.3, S1.6]
+        columns:
+          - title: In English
+            body: |-
+              **3.75**
+              A **point** separates the wholes from the parts.
+          - title: En français
+            body: |-
+              **3,75**
+              A **comma** separates the wholes from the parts. The number is the same.
+
+  - title: Dollars and cents
+    blocks:
+      - type: table
+        covers: [S1.10, U1.3]
+        caption: 100 cents make 1 dollar, so each cent is one hundredth of a dollar.
+        headers: [Cents, Dollars and cents, Dollars]
+        rows:
+          - ['5¢', '0 dollars and 5 cents', '$0.05']
+          - ['75¢', '0 dollars and 75 cents', '$0.75']
+          - ['250¢', '2 dollars and 50 cents', '$2.50']
+          - ['1 309¢', '13 dollars and 9 cents', '$13.09']
+      - type: example
+        covers: [K1.4, S1.5]
+        title: One number, many ways
+        problem: Show **2.36** in different ways, using place value.
+        steps:
+          - '2 ones + 3 tenths + 6 hundredths'
+          - '23 tenths + 6 hundredths'
+          - '236 hundredths, like 236 cents in $2.36'
+        answer: All three name the same number, **2.36**.
+
+  - title: Compare, order and round
+    blocks:
+      - type: example
+        covers: [S1.8, S1.9, K1.5]
+        title: Which is greater, 3.4 or 3.38?
+        problem: Compare **3.4** and **3.38**.
+        steps:
+          - 'Write 3.4 as **3.40**. A zero on the right end doesn’t change the value.'
+          - 'Ones: 3 and 3, the same. Tenths: **4** and **3**. 4 tenths is more.'
+        answer: '\(3.4 > 3.38\)'
+      - type: table
+        covers: [S1.7]
+        headers: [Number, Round to the nearest, Look at, Rounded]
+        rows:
+          - ['6.47', 'tenth', 'the 7 hundredths: 5 or more, so round up', '6.5']
+          - ['6.42', 'tenth', 'the 2 hundredths: less than 5', '6.4']
+          - ['6.47', 'one', 'the 4 tenths: less than 5', '6']
+          - ['2 851', 'hundred', 'the 5 tens: 5 or more, so round up', '2 900']
+
+keyTerms:
+  - term: Tenth
+    covers: [S1.1, K1.1]
+    definition: 'One of 10 equal parts of a whole. One tenth is written 0.1.'
+  - term: Hundredth
+    covers: [S1.1, K1.1]
+    definition: 'One of 100 equal parts of a whole. One hundredth is written 0.01.'
+  - term: Decimal point
+    covers: [K1.3, K1.6]
+    definition: The point between the ones and the tenths. In words it is "and". French uses a comma.
+  - term: Round
+    covers: [S1.7]
+    definition: To change a number to a nearby, simpler number, to a place you choose.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.1, S1.3]
+    type: mc
+    prompt: In **4 806.53**, what is the digit **5** worth?
+    choices: ['5 tenths, or 0.5', '5 hundredths, or 0.05', '5 tens, or 50', '5 ones, or 5']
+    answer: 0
+    feedback:
+      '1': 'Hundredths is the second place after the point. Which place is the 5 in?'
+      '2': 'Tens is to the **left** of the ones. The 5 is to the right of the point.'
+      '3': 'The ones digit is 6, just before the point. Look one place to the right of the point.'
+    hints:
+      - Find the decimal point. Which place comes right after it?
+    solution:
+      - 'The first place after the point is the **tenths**.'
+      - 'The 5 is there, so it is worth **5 tenths**, or 0.5.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.6]
+    type: number
+    prompt: Write **two hundred six and nine hundredths** as a numeral.
+    answer: 206.09
+    verify: 206 + 0.09
+    hints:
+      - The word **and** marks the decimal point. What comes before it?
+      - Nine hundredths needs two places after the point. What goes in the tenths place?
+    solution:
+      - 'Before "and": two hundred six is **206**.'
+      - 'After "and": nine hundredths has its 9 in the hundredths place, and 0 in the tenths place: **0.09**.'
+      - 'Together: **206.09**.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.10, U1.3]
+    type: number
+    prompt: Noor’s piggy bank holds **1 375 cents**. How much is that in dollars?
+    unit: $
+    answer: 13.75
+    verify: 13 + 0.75
+    hints:
+      - How many cents make 1 dollar?
+      - How many hundreds are in 1 375? What is left over?
+    solution:
+      - '100 cents make 1 dollar, so each cent is a hundredth of a dollar.'
+      - '1 375 cents is 13 hundreds and 75 left over: **13 dollars and 75 cents**.'
+      - 'In dollars, that is **$13.75**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K1.2, K1.5]
+    type: number
+    prompt: |-
+      A bean sprout is **4.6 cm** tall. Owen says a plant 10 times as tall would be **4.60 cm**, "because times 10 adds a zero."
+
+      Check his rule. How tall is a plant 10 times as tall as the sprout?
+    unit: cm
+    answer: 46
+    verify: 4 * 10 + 6
+    hints:
+      - Is 4.60 really bigger than 4.6? What does a zero on the right end do?
+      - When you multiply by 10, where does each digit move?
+    solution:
+      - '4.60 = 4.6. A zero on the right end of a decimal doesn’t change its value, so Owen’s plant would be the same size.'
+      - 'Times 10 moves every digit one place left. The 4 ones become 4 tens, and the 6 tenths become 6 ones.'
+      - 'So the plant is **46 cm** tall. "Add a zero" only works for whole numbers.'
+
+  - id: b2
+    level: 2
+    thinking: ways
+    covers: [S1.5, K1.4]
+    type: multi
+    prompt: Lena writes **2.36** as 2 ones, 3 tenths and 6 hundredths. Select **all** the other ways that also make 2.36.
+    choices:
+      - '23 tenths and 6 hundredths'
+      - '236 hundredths'
+      - '2 ones and 36 hundredths'
+      - '2 ones, 6 tenths and 3 hundredths'
+      - '23 hundredths and 6 tenths'
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'Count up: 6 tenths is 0.6, so this is more than 2.6. The 3 and the 6 have swapped places.'
+      '4': '23 hundredths is only 0.23. This doesn’t even make 1 whole.'
+    hints:
+      - How many tenths are in 2 ones?
+      - Think of money. How many cents are in $2.36?
+    solution:
+      - '2 ones is 20 tenths, so 2 ones and 3 tenths is **23 tenths**. Add the 6 hundredths.'
+      - '$2.36 is **236 cents**, so 2.36 is 236 hundredths.'
+      - '3 tenths and 6 hundredths is **36 hundredths**, so 2 ones and 36 hundredths works too.'
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [S1.8, K1.5]
+    type: order
+    prompt: Five paper frogs hopped these distances. Put them in order from **shortest** to **longest**.
+    items: ['0.9 m', '0.95 m', '1.05 m', '1.1 m', '1.5 m']
+    hints:
+      - Which frogs hopped less than 1 m? Start with those.
+      - Write each distance with two places after the point, such as 0.90.
+    solution:
+      - 'Two frogs hopped less than 1 m: 0.90 and 0.95. 90 hundredths is less than 95 hundredths.'
+      - 'The other three hopped 1 m and some more: 1.05, 1.10 and 1.50.'
+      - 'So the order is 0.9, 0.95, 1.05, 1.1, 1.5. More digits doesn’t mean a longer hop.'
+
+  - id: b4
+    level: 2
+    thinking: apply
+    covers: [S1.7]
+    type: number
+    prompt: Marie rode her bike **12.68 km** on a trail. Her app rounds every trip to the nearest **tenth** of a kilometre. What does the app show?
+    unit: km
+    answer: 12.7
+    verify: 12 + 0.7
+    hints:
+      - Which digit is in the tenths place?
+      - Look at the digit just to its right. Is it 5 or more?
+    solution:
+      - 'The tenths digit is 6. The digit to its right is 8, which is 5 or more.'
+      - 'So the 6 rounds up to 7. The app shows **12.7 km**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.3, S1.6, S1.10, S1.9]
+    type: investigation
+    prompt: |-
+      Jaya in Calgary and her cousin Élise in Montréal buy the same storybook. Jaya’s receipt says **$14.57**. Élise’s receipt is in French. It says **14,75 $**.
+    parts:
+      - type: mc
+        prompt: How would Élise’s price be written in English?
+        choices: ['$14.75', '$1 475', '$14.57', '$1.475']
+        answer: 0
+        feedback:
+          '1': 'The comma is not a space between thousands here. In French, the comma separates dollars from cents.'
+          '2': 'That is Jaya’s price. Look at the digits after Élise’s comma.'
+          '3': 'There are 14 dollars before the comma, not 1.'
+        hints:
+          - In French, what does the comma do?
+        solution:
+          - 'In French, the comma separates the wholes from the parts, and the $ goes after the number.'
+          - 'So 14,75 $ is **$14.75**.'
+      - type: number
+        prompt: How many **cents** is Élise’s price?
+        unit: cents
+        answer: 1475
+        verify: 14 * 100 + 75
+        hints:
+          - How many cents are in 14 dollars?
+        solution:
+          - '14 dollars is 1 400 cents. Add 75 cents: **1 475 cents**.'
+      - type: number
+        prompt: Whose book cost more, and by how many cents?
+        unit: cents
+        answer: 18
+        verify: 1475 - 1457
+        hints:
+          - Write Jaya’s price in cents too. Then compare.
+        solution:
+          - 'Jaya paid 1 457 cents. Élise paid 1 475 cents, so \(14.75 > 14.57\).'
+          - '\(1\,475 - 1\,457 = 18\). Élise paid **18 cents** more.'
+    wrapUp: The digits 1, 4, 5 and 7 are in both prices, but their places are different. A point in English and a comma in French do the same job.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.7, S1.8]
+    type: build
+    prompt: |-
+      Invent a number with **two places after the point**. It must round to **4.5** to the nearest tenth, but to **4** to the nearest one.
+    fields:
+      - { name: x, label: 'Your number' }
+    rules:
+      - { test: 'x * 100 % 1 == 0 && x * 10 % 1 != 0', fail: 'Use exactly two places after the point, such as 3.27.' }
+      - { test: 'x >= 4.45 && x < 4.55', fail: 'Round your number to the nearest tenth. Does it become 4.5?' }
+      - { test: 'x < 4.5', fail: 'That rounds to 4.5, but to the nearest one it becomes 5. Look at the tenths digit.' }
+    examples:
+      - { x: 4.47 }
+      - { x: 4.45 }
+    counterexamples:
+      - { x: 4.52 }
+      - { x: 4.44 }
+      - { x: 4.5 }
+      - { x: 4.56 }
+    hints:
+      - Which numbers with two decimal places round to 4.5? List a few.
+      - To round to the nearest one, look at the tenths digit. When does 4.something round down to 4?
+      - The tenths digit has to be 4. What hundredths digit makes 4.4▢ round up to 4.5?
+    solution:
+      - 'Rounding to the nearest one keeps the 4 only if the tenths digit is less than 5. So the number starts with **4.4**.'
+      - 'To round **up** to 4.5, the hundredths digit must be 5 or more.'
+      - '**4.45, 4.46, 4.47, 4.48 and 4.49** all work. Each one is closer to 4.5 than to 4.4, but its tenths digit is only 4.'
