@@ -123,33 +123,23 @@ lesson:
     blocks:
       - type: visual
         covers: [S2.4, S2.3]
-        component: show-dial
+        component: text-xray
         props:
-          moods:
-            - id: calm
-              label: Calm
-              tell: Mina waited backstage for the talent show to start.
-              details:
-                - { sense: sight, text: 'Through the curtain, she could see her family waving.' }
-                - { sense: sound, text: 'Someone in the crowd laughed, and the piano played softly.' }
-                - { sense: touch, text: 'Her violin felt light and familiar in her hands.' }
-            - id: suspense
-              label: Suspense
-              tell: Mina was nervous backstage.
-              details:
-                - { sense: sight, text: 'The curtain twitched. Then it went still.' }
-                - { sense: sound, text: 'Silence. Then the announcer’s voice: “Our next performer…”' }
-                - { sense: touch, text: 'Her violin bow trembled. Was a string loose? There was no time to check.' }
-        caption: Slide the dial, then switch the mood. Which details slow time down and make you wait?
-      - type: table
-        covers: [S2.4, S2.3]
-        caption: Tools for suspense in a narrative
-        headers: [Tool, Example]
-        rows:
-          - ['**Short sentences**', 'The curtain twitched. Then it went still.']
-          - ['**A question**', 'Was a string loose?']
-          - ['**Dialogue** that stops partway', '“Our next performer…”']
-          - ['**Setting** details that slow time', 'Silence.']
+          button: Show the suspense tools
+          pages:
+            - label: Calm
+              icon: 🙂
+              note: The same setting and character, told calmly. Nothing makes you wait.
+              parts:
+                - { style: text, text: 'Mina waited backstage for the talent show to start. Through the curtain, she could see her family waving. Her violin felt light in her hands.', tag: Setting and character, job: 'Clear and pleasant, but no tension.' }
+            - label: Suspense
+              icon: 😬
+              note: The same moment, slowed down. Now you want to know what happens.
+              parts:
+                - { style: text, text: 'The curtain twitched. Then it went still.', tag: Short sentences, job: 'Quick, short sentences make the reader hold their breath.' }
+                - { style: text, text: 'Silence. Then the announcer’s voice: “Our next performer…”', tag: Dialogue that stops partway, job: 'The reader has to wait for the rest.' }
+                - { style: text, text: 'Mina’s bow trembled. Was a string loose? There was no time to check.', tag: A question, job: 'A worry the reader can’t answer yet.' }
+        caption: Read both versions of the moment, then switch on the X-ray. Which details slow time down?
 
   - title: The creative process
     blocks:
@@ -163,15 +153,15 @@ lesson:
               job: Decide what effect you want, and for whom.
               page: 'I want my poster to make **Grade 2s** excited about our reading buddy program.'
             - icon: 🧪
-              label: Experiment
-              job: Try many versions. Play with words and details.
+              label: Try
+              job: Experiment with many versions. Play with words and details.
               page: |-
                 - Reading Buddies Program: sign up now.
                 - Got a story? Get a buddy!
                 - Big kids + little kids + books = fun!
             - icon: ⚖️
-              label: Evaluate
-              job: Judge each version against your intent.
+              label: Judge
+              job: Evaluate each version against your intent.
               page: 'The first is clear but dull. The second **rhymes** and is short. Grade 2s will remember it.'
             - icon: 🔄
               label: Adapt
