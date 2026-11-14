@@ -75,6 +75,8 @@ import TopicFunnel from './visuals/TopicFunnel.astro';
 import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
+import CanadaMap from './visuals/CanadaMap.astro';
+import TwoRow from './visuals/TwoRow.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -155,6 +157,8 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'canada-map': CanadaMap,
+  'two-row': TwoRow,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

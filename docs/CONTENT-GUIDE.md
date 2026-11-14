@@ -85,7 +85,8 @@ Visuals:
   `data-views`
 - **Social Studies:** `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`,
   `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`,
-  `issue-investigator`
+  `issue-investigator`, `canada-map` (`mode: explorers`, `colonies`, `borders` with optional `eras`,
+  or `dots` with `set: settlements` or `posts`), `two-row`
 - **ELAL:** `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`),
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),

@@ -1,0 +1,418 @@
+---
+// Grade 4 map of North America, projected at build time (canada-geo.ts). Four modes:
+//   explorers: pick an explorer and watch the ship sail the route (XiuhdUoB8EacTXvZQi9Djw S1.3)
+//   colonies: France's and Britain's first colonies (0wljZtRYSEWZJy95aOsmxg K1.3)
+//   borders: step or play through the borders of 1713 to 1867 (XiuhdUoB8EacTXvZQi9Djw S1.4, S2.1)
+//   dots: drag through the years as settlements or fur-trade posts appear (`set: settlements|posts`)
+import { COLONIES, DOT_SETS, ERAS, EXPLORERS, OWNER_LABEL, type LonLat, type Owner } from './canada-map-data.ts';
+import { project } from './canada-geo.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  mode?: 'explorers' | 'colonies' | 'borders' | 'dots';
+  /** For dots: which set. */
+  set?: 'settlements' | 'posts';
+  /** For borders: which eras to offer, by year. Defaults to all. */
+  eras?: string[];
+  /** For borders: the era to open on. Defaults to the first. */
+  start?: string;
+}
+const { mode = 'borders', set = 'settlements', eras: only, start } = Astro.props;
+const frameId = mode === 'colonies' ? 'colonies' : mode === 'dots' ? DOT_SETS[set].frame : mode === 'explorers' ? 'sea' : 'east';
+const P = project(frameId);
+const uid = `g4ss-${mode}-${mode === 'dots' ? set : (only ?? []).join('-') || 'all'}`;
+const eras = only ? ERAS.filter((e) => only.includes(e.id)) : ERAS;
+const first = start && eras.some((e) => e.id === start) ? start : eras[0]?.id;
+const dots = DOT_SETS[set];
+
+const pt = (p: LonLat) => P.xy(p).map((v) => v.toFixed(1));
+/** Where a label goes beside a dot. */
+const labelAt = (p: LonLat, side: string = 'above') => {
+  const [x, y] = P.xy(p);
+  const d = { above: [0, -11, 'middle'], below: [0, 21, 'middle'], left: [-9, 5, 'end'], right: [9, 5, 'start'] }[side] as [number, number, string];
+  return { x: (x + d[0]).toFixed(1), y: (y + d[1]).toFixed(1), anchor: d[2] };
+};
+/** How far along a route (0 to 1) each stop is, measured on the projected line. */
+const along = (route: LonLat[], at: LonLat) => {
+  const xy = route.map((p) => P.xy(p));
+  const seg = xy.slice(1).map((p, i) => Math.hypot(p[0] - xy[i][0], p[1] - xy[i][1]));
+  const total = seg.reduce((a, b) => a + b, 0);
+  const [tx, ty] = P.xy(at);
+  let best = 0;
+  let bestD = Infinity;
+  xy.forEach(([x, y], i) => {
+    const d = Math.hypot(x - tx, y - ty);
+    if (d < bestD) { bestD = d; best = i; }
+  });
+  return (seg.slice(0, best).reduce((a, b) => a + b, 0) / total).toFixed(3);
+};
+const ownersOf = (regions: { owner: Owner; name: string }[]) => [...new Set(regions.map((r) => r.owner))];
+const aria = {
+  explorers: 'A map of eastern North America. The route of the chosen explorer is drawn on it.',
+  colonies: 'A map of eastern North America showing New France, Acadia and Louisiana, which were French, and the Thirteen Colonies, which were British.',
+  borders: 'A map of eastern North America. The colonies and their borders change with the year you choose.',
+  dots: set === 'posts' ? 'A map from Hudson Bay and Montreal west to what is now Alberta. Fur-trade posts appear as the years pass.' : 'A map of the St. Lawrence River and Acadia. French settlements appear as the years pass.',
+}[mode];
+---
+<canada-map data-mode={mode} data-first={first} data-from={dots.from} data-to={dots.to}>
+  {
+    mode === 'explorers' && (
+      <div class="sci-pick" role="group" aria-label="Choose an explorer">
+        {EXPLORERS.map((e, i) => <button type="button" data-cm-pick={e.id} aria-pressed={String(i === 0)}>⛵ {e.short}</button>)}
+      </div>
+    )
+  }
+  {
+    mode === 'colonies' && (
+      <div class="sci-pick" role="group" aria-label="Choose a colony">
+        {COLONIES.map((c) => <button type="button" data-cm-pick={c.id} aria-pressed="false"><span class={`g4ss-swatch g4ss-o-${c.owner}`} aria-hidden="true"></span> {c.name}</button>)}
+      </div>
+    )
+  }
+  {
+    mode === 'borders' && (
+      <div class="g4ss-bar">
+        <div class="seg g4ss-years" role="group" aria-label="Choose a year">
+          {eras.map((e) => <button type="button" data-cm-pick={e.id} aria-pressed={String(e.id === first)}>{e.year}</button>)}
+        </div>
+        {eras.length > 1 && <button type="button" class="btn btn--small" data-cm="play">▶ Play</button>}
+      </div>
+    )
+  }
+  {
+    mode === 'dots' && (
+      <div class="g4ss-bar">
+        <label class="g4ss-slider">
+          <span class="g4ss-year" data-cm="year">{dots.from}</span>
+          <input type="range" min={dots.from} max={dots.to} step={dots.step} value={dots.from} data-cm="range" aria-label="Year" />
+        </label>
+        <button type="button" class="btn btn--small" data-cm="play">▶ Play</button>
+      </div>
+    )
+  }
+
+  <div class="g4ss-frame">
+    <svg class="sci-svg g4ss-svg" viewBox={`0 0 ${P.width} ${P.height}`} role="img" aria-label={aria}>
+      <defs>
+        <path id={`${uid}-coast`} d={P.land}></path>
+        <clipPath id={`${uid}-land`}><use href={`#${uid}-coast`}></use></clipPath>
+        <clipPath id={`${uid}-box`}><rect width={P.width} height={P.height}></rect></clipPath>
+      </defs>
+      <rect class="g4ss-sea" width={P.width} height={P.height}></rect>
+      <use class="g4ss-land" href={`#${uid}-coast`}></use>
+      <g clip-path={`url(#${uid}-land)`}>
+        {
+          mode === 'colonies' &&
+            COLONIES.map((c) => <path class={`g4ss-area g4ss-o-${c.owner}`} data-cm-area={c.id} d={P.path(c.area, true)}></path>)
+        }
+        {
+          mode === 'borders' &&
+            eras.map((e) => (
+              <g class="g4ss-era" data-cm-era={e.id}>
+                {e.regions.map((r) => <path class={`g4ss-area g4ss-o-${r.owner}`} d={P.path(r.area, true)}></path>)}
+              </g>
+            ))
+        }
+      </g>
+      <g clip-path={`url(#${uid}-box)`}>
+        <path class="g4ss-lakes" d={P.lakes}></path>
+        <path class="g4ss-rivers" d={P.rivers}></path>
+      </g>
+      {
+        mode === 'colonies' &&
+          COLONIES.map((c) => {
+            const [x, y] = pt(c.label);
+            return <text class="g4ss-region" data-cm-label={c.id} x={x} y={y} text-anchor="middle">{c.name}</text>;
+          })
+      }
+      {
+        mode === 'borders' &&
+          eras.map((e) => (
+            <g class="g4ss-era g4ss-era--labels" data-cm-era={e.id}>
+              {e.regions.filter((r) => r.label && r.name).map((r) => {
+                const [x, y] = pt(r.label!);
+                return <text class="g4ss-region" x={x} y={y} text-anchor="middle">{r.name}</text>;
+              })}
+            </g>
+          ))
+      }
+      {
+        mode === 'explorers' &&
+          EXPLORERS.map((e) => (
+            <g class="g4ss-voyage" data-cm-voyage={e.id}>
+              <path class="g4ss-route" d={P.path(e.route)}></path>
+              {e.stops.map((s) => {
+                const [x, y] = pt(s.at);
+                const l = labelAt(s.at, s.side);
+                return (
+                  <g class="g4ss-stop" data-cm-at={along(e.route, s.at)}>
+                    <circle cx={x} cy={y} r="5"></circle>
+                    <text x={l.x} y={l.y} text-anchor={l.anchor}>{s.name} {s.year}</text>
+                  </g>
+                );
+              })}
+            </g>
+          ))
+      }
+      {
+        mode === 'dots' && (
+          <>
+            {(dots.routes ?? []).map((r) => <path class={`g4ss-trail g4ss-g-${r.group}`} d={P.path(r.points)}></path>)}
+            {dots.dots.map((d) => {
+              const [x, y] = pt(d.at);
+              const l = labelAt(d.at, d.side);
+              return (
+                <g class={`g4ss-dot g4ss-g-${d.group}`} data-cm-year={d.year}>
+                  <circle cx={x} cy={y} r="6"></circle>
+                  <text x={l.x} y={l.y} text-anchor={l.anchor}>{d.name}</text>
+                </g>
+              );
+            })}
+          </>
+        )
+      }
+      {mode === 'explorers' && <text class="g4ss-ship" data-cm="ship" text-anchor="middle" dominant-baseline="middle">⛵</text>}
+    </svg>
+  </div>
+
+  {
+    mode === 'borders' && (
+      <>
+        {eras.map((e) => (
+          <ul class="g4ss-legend" data-cm-panel={e.id}>
+            {ownersOf(e.regions).map((o) => <li><span class={`g4ss-swatch g4ss-o-${o}`} aria-hidden="true"></span>{OWNER_LABEL[o]}</li>)}
+          </ul>
+        ))}
+        {eras.map((e) => (
+          <div class="g4ss-card" data-cm-panel={e.id} aria-live="polite">
+            <h3><span class="g4ss-when">{e.year}</span> {e.title}</h3>
+            <p>{e.what}</p>
+          </div>
+        ))}
+      </>
+    )
+  }
+  {
+    mode === 'colonies' && (
+      <>
+        <ul class="g4ss-legend">
+          <li><span class="g4ss-swatch g4ss-o-fr" aria-hidden="true"></span>Founded by France</li>
+          <li><span class="g4ss-swatch g4ss-o-br" aria-hidden="true"></span>Founded by Britain</li>
+        </ul>
+        <p class="g4ss-card" data-cm-panel="" aria-live="polite">Tap a colony.</p>
+        {COLONIES.map((c) => <p class="g4ss-card" data-cm-panel={c.id} hidden><strong>{c.name}.</strong> {c.about}</p>)}
+      </>
+    )
+  }
+  {
+    mode === 'explorers' &&
+      EXPLORERS.map((e) => (
+        <div class="g4ss-card" data-cm-panel={e.id}>
+          <h3>{e.name} <span class="g4ss-when">{e.when}</span></h3>
+          <p class="g4ss-sent">Sent by {e.sentBy}, sailing {e.from}.</p>
+          <ul class="g4ss-why">
+            {e.why.territory && <li><strong>🗺️ Territory:</strong> {e.why.territory}</li>}
+            {e.why.resources && <li><strong>💰 Resources:</strong> {e.why.resources}</li>}
+            {e.why.prestige && <li><strong>👑 Prestige:</strong> {e.why.prestige}</li>}
+          </ul>
+          <ol class="g4ss-stops">
+            {e.stops.map((s) => <li><strong>{s.name}, {s.year}.</strong> <span set:html={mdInline(s.note)} /></li>)}
+          </ol>
+          <button type="button" class="btn btn--small" data-cm="again">↺ Sail again</button>
+        </div>
+      ))
+  }
+  {
+    mode === 'dots' && (
+      <>
+        {dots.groups.length > 1 && (
+          <ul class="g4ss-legend">
+            {dots.groups.map((g) => <li><span class={`g4ss-swatch g4ss-g-${g.id}`} aria-hidden="true"></span>{g.label}</li>)}
+          </ul>
+        )}
+        <ol class="g4ss-card g4ss-founded" aria-live="polite">
+          {dots.dots.map((d) => <li data-cm-year={d.year} hidden><strong>{d.year}, {d.name}.</strong> {d.note}</li>)}
+          <li class="muted" data-cm="none">Drag the slider or press Play.</li>
+        </ol>
+      </>
+    )
+  }
+  <p class="muted g4ss-note">
+    {mode === 'explorers' ? 'Routes are simplified.' : mode === 'dots' ? `${set === 'posts' ? 'Routes are simplified. ' : ''}Every place on this map was already home to First Nations.` : 'Borders are approximate. All of this land was already home to First Nations and Inuit.'}
+  </p>
+</canada-map>
+
+<style is:global>
+  canada-map { display: block; }
+  .g4ss-bar { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+  .g4ss-years { flex-wrap: wrap; border-radius: var(--radius-sm); }
+  .g4ss-slider { display: flex; align-items: center; gap: 0.6rem; flex: 1 1 14rem; }
+  .g4ss-slider input { flex: 1; accent-color: var(--social); }
+  .g4ss-year { font-weight: 700; font-size: var(--step-1); min-width: 3.2rem; font-variant-numeric: tabular-nums; }
+  .g4ss-frame { margin-top: 0.6rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .g4ss-svg { border-radius: 0; display: block; }
+  .g4ss-sea, .g4ss-lakes { fill: color-mix(in srgb, var(--math) 16%, var(--surface)); }
+  .g4ss-lakes { stroke: color-mix(in srgb, var(--math) 35%, var(--surface)); stroke-width: 0.5; }
+  .g4ss-land { fill: color-mix(in srgb, var(--sun) 12%, var(--surface)); stroke: var(--line-strong); stroke-width: 0.6; }
+  .g4ss-rivers { fill: none; stroke: color-mix(in srgb, var(--math) 50%, var(--surface)); stroke-width: 1.2; }
+  .g4ss-area { stroke: var(--surface); stroke-width: 1.6; stroke-linejoin: round; transition: opacity 0.3s; }
+  .g4ss-o-fr { fill: color-mix(in srgb, var(--math) 55%, var(--surface)); background: color-mix(in srgb, var(--math) 55%, var(--surface)); }
+  .g4ss-o-br { fill: color-mix(in srgb, var(--bad) 52%, var(--surface)); background: color-mix(in srgb, var(--bad) 52%, var(--surface)); }
+  .g4ss-o-hbc { fill: color-mix(in srgb, var(--bad) 20%, var(--surface)); background: color-mix(in srgb, var(--bad) 20%, var(--surface)); }
+  .g4ss-o-fn { fill: color-mix(in srgb, var(--science) 42%, var(--surface)); background: color-mix(in srgb, var(--science) 42%, var(--surface)); }
+  .g4ss-o-us { fill: color-mix(in srgb, var(--ink) 20%, var(--surface)); background: color-mix(in srgb, var(--ink) 20%, var(--surface)); }
+  .g4ss-o-ca { fill: color-mix(in srgb, var(--social) 62%, var(--surface)); background: color-mix(in srgb, var(--social) 62%, var(--surface)); }
+  .g4ss-era { opacity: 0; transition: opacity 0.5s; }
+  .g4ss-era.is-on { opacity: 1; }
+  canada-map[data-mode='colonies'].is-picked .g4ss-area:not(.is-on) { opacity: 0.3; }
+  .g4ss-region, .g4ss-stop text, .g4ss-dot text { fill: var(--ink); font-size: 13px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+  .g4ss-voyage { display: none; }
+  .g4ss-voyage.is-on { display: inline; }
+  .g4ss-route { fill: none; stroke: var(--social); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .g4ss-stop { opacity: 0; transition: opacity 0.3s; }
+  .g4ss-stop.is-on { opacity: 1; }
+  .g4ss-stop circle, .g4ss-dot circle { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .g4ss-ship { font-size: 22px; }
+  .g4ss-trail { fill: none; stroke-width: 2.5; stroke-dasharray: 6 5; opacity: 0.7; }
+  .g4ss-trail.g4ss-g-hbc { stroke: var(--bad); }
+  .g4ss-trail.g4ss-g-nwc { stroke: var(--math); }
+  .g4ss-dot { opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity 0.3s; }
+  .g4ss-dot.is-on { opacity: 1; }
+  .g4ss-dot.g4ss-g-fr circle { fill: var(--math); }
+  .g4ss-dot.g4ss-g-hbc circle { fill: var(--bad); }
+  .g4ss-dot.g4ss-g-nwc circle { fill: var(--math); }
+  .g4ss-swatch { display: inline-block; width: 1rem; height: 1rem; border-radius: 4px; vertical-align: -0.15rem; margin-right: 0.35rem; border: 1px solid var(--line-strong); }
+  .g4ss-swatch.g4ss-g-hbc { background: var(--bad); }
+  .g4ss-swatch.g4ss-g-nwc, .g4ss-swatch.g4ss-g-fr { background: var(--math); }
+  .g4ss-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; margin: 0.5rem 0 0; padding: 0; font-size: var(--step--1); font-weight: 700; }
+  .g4ss-card { margin: 0.6rem 0 0; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4ss-card h3 { margin: 0 0 0.3rem; }
+  .g4ss-card p { margin: 0.3rem 0 0; }
+  .g4ss-when { color: var(--social); }
+  .g4ss-sent { font-size: var(--step--1); }
+  .g4ss-why, .g4ss-stops { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+  .g4ss-why { list-style: none; padding-left: 0; }
+  .g4ss-card .btn { margin-top: 0.6rem; }
+  .g4ss-founded { padding-left: 2rem; }
+  .g4ss-founded li + li { margin-top: 0.3rem; }
+  .g4ss-founded li.is-new { font-weight: 700; }
+  .g4ss-note { margin: 0.5rem 0 0; font-size: var(--step--1); }
+  @media (max-width: 40rem) {
+    svg .g4ss-region, svg .g4ss-stop text, svg .g4ss-dot text { font-size: 21px; stroke-width: 4px; }
+    svg .g4ss-ship { font-size: 34px; }
+    svg .g4ss-stop circle, svg .g4ss-dot circle { r: 8; }
+    .g4ss-frame { margin-inline: -0.4rem; }
+  }
+</style>
+
+<script>
+  import { reducedMotion, tween, wait } from '../experiments/anim.ts';
+
+  class CanadaMap extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      const mode = this.dataset.mode!;
+      this.querySelectorAll<HTMLButtonElement>('[data-cm-pick]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.run++;
+          this.pick(b.dataset.cmPick!, true);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-cm="again"]').forEach((b) => b.addEventListener('click', () => this.sail(b.closest<HTMLElement>('[data-cm-panel]')!.dataset.cmPanel!)));
+      this.querySelector('[data-cm="play"]')?.addEventListener('click', () => this.play());
+      const range = this.querySelector<HTMLInputElement>('[data-cm="range"]');
+      range?.addEventListener('input', () => {
+        this.run++;
+        this.year(Number(range.value));
+      });
+      if (mode === 'explorers') {
+        const id = this.querySelector<HTMLElement>('[data-cm-pick]')!.dataset.cmPick!;
+        this.pick(id, false);
+        // Sail once the map is on screen, unless the child already picked someone.
+        new IntersectionObserver((entries, io) => {
+          if (entries[0].isIntersecting) {
+            io.disconnect();
+            if (!this.run) this.sail(id);
+          }
+        }).observe(this.querySelector('.g4ss-frame')!);
+      } else if (mode === 'borders') this.pick(this.dataset.first!, false);
+      else if (mode === 'dots') this.year(Number(this.dataset.from));
+    }
+
+    private pick(id: string, animate: boolean) {
+      const mode = this.dataset.mode;
+      this.querySelectorAll('[data-cm-pick]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-cm-pick') === id)));
+      this.querySelectorAll<HTMLElement>('[data-cm-panel]').forEach((p) => (p.hidden = p.dataset.cmPanel !== id));
+      if (mode === 'borders') this.querySelectorAll<SVGGElement>('[data-cm-era]').forEach((g) => g.classList.toggle('is-on', g.dataset.cmEra === id));
+      if (mode === 'colonies') {
+        this.classList.add('is-picked');
+        this.querySelectorAll<SVGPathElement>('[data-cm-area]').forEach((a) => a.classList.toggle('is-on', a.dataset.cmArea === id));
+      }
+      if (mode === 'explorers') {
+        this.querySelectorAll<SVGGElement>('[data-cm-voyage]').forEach((g) => g.classList.toggle('is-on', g.dataset.cmVoyage === id));
+        if (animate) this.sail(id);
+        else this.draw(id, 1);
+      }
+    }
+
+    /** Draws the route up to fraction f, moves the ship there and shows the stops it has passed. */
+    private draw(id: string, f: number) {
+      const g = this.querySelector<SVGGElement>(`[data-cm-voyage="${id}"]`)!;
+      const line = g.querySelector<SVGPathElement>('.g4ss-route')!;
+      const len = line.getTotalLength();
+      line.style.strokeDasharray = `${len}`;
+      line.style.strokeDashoffset = `${len * (1 - f)}`;
+      const p = line.getPointAtLength(f * len);
+      const ship = this.querySelector<SVGTextElement>('[data-cm="ship"]')!;
+      ship.setAttribute('x', p.x.toFixed(1));
+      ship.setAttribute('y', (p.y - 4).toFixed(1));
+      g.querySelectorAll<SVGGElement>('.g4ss-stop').forEach((s) => s.classList.toggle('is-on', Number(s.dataset.cmAt) <= f + 0.001));
+    }
+
+    private async sail(id: string) {
+      const token = ++this.run;
+      if (reducedMotion()) return this.draw(id, 1);
+      await tween(5000, (f) => {
+        if (token === this.run) this.draw(id, f);
+      });
+    }
+
+    private year(y: number) {
+      const label = this.querySelector('[data-cm="year"]');
+      if (label) label.textContent = String(y);
+      const range = this.querySelector<HTMLInputElement>('[data-cm="range"]');
+      if (range) range.value = String(y);
+      let newest = 0;
+      this.querySelectorAll<SVGGElement>('g[data-cm-year]').forEach((d) => {
+        const on = Number(d.dataset.cmYear) <= y;
+        d.classList.toggle('is-on', on);
+        if (on) newest = Math.max(newest, Number(d.dataset.cmYear));
+      });
+      this.querySelectorAll<HTMLElement>('li[data-cm-year]').forEach((li) => {
+        li.hidden = Number(li.dataset.cmYear) > y;
+        li.classList.toggle('is-new', Number(li.dataset.cmYear) === newest);
+      });
+      this.querySelector<HTMLElement>('[data-cm="none"]')!.hidden = newest > 0;
+    }
+
+    private async play() {
+      const token = ++this.run;
+      if (this.dataset.mode === 'borders') {
+        const ids = [...this.querySelectorAll<HTMLElement>('[data-cm-pick]')].map((b) => b.dataset.cmPick!);
+        for (const id of ids) {
+          if (token !== this.run) return;
+          this.pick(id, false);
+          await wait(2200);
+        }
+        return;
+      }
+      const from = Number(this.dataset.from);
+      const to = Number(this.dataset.to);
+      await tween(reducedMotion() ? 0 : 6000, (f) => {
+        if (token === this.run) this.year(Math.round(from + (to - from) * f));
+      });
+    }
+  }
+  customElements.define('canada-map', CanadaMap);
+</script>
