@@ -1,0 +1,112 @@
+---
+// Animated experiment: the same wind is used two ways. Before processing, it pushes a sailboat
+// across a lake. After processing, a wind turbine turns it into electricity, which travels along
+// power lines to light a lamp in a house far away (SCI6-OI2-GQ2-LO1, K2.2-K2.5, S2.2, S2.3).
+---
+<g6-wind-two-ways>
+  <svg class="sci-svg" viewBox="0 0 640 320" aria-hidden="true" data-wt="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-wt="live"></p>
+</g6-wind-two-ways>
+
+<style is:global>
+  g6-wind-two-ways { display: block; }
+  g6-wind-two-ways svg { background: var(--surface-2); }
+  .g6s-wt-gust { fill: none; stroke: #6aa9d8; stroke-width: 3; stroke-linecap: round; }
+  .g6s-wt-hull { fill: #a8743d; stroke: var(--ink); stroke-width: 2; }
+  .g6s-wt-sail { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+  .g6s-wt-mast { stroke: var(--ink); stroke-width: 3; }
+  .g6s-wt-tower { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-wt-blade { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+  .g6s-wt-wire { fill: none; stroke: var(--ink-3); stroke-width: 2; }
+  .g6s-wt-spark { fill: var(--sun); stroke: var(--ink); stroke-width: 1; }
+  .g6s-wt-house { fill: color-mix(in srgb, #c0563a 25%, var(--surface)); stroke: var(--ink); stroke-width: 2.5; }
+  .g6s-wt-roof { fill: #8a3b2a; stroke: var(--ink); stroke-width: 2.5; }
+  .g6s-wt-win { fill: #2a3352; stroke: var(--ink); stroke-width: 2; }
+  .g6s-wt-win--on { fill: #ffd84d; }
+  .g6s-wt-glow { fill: #ffd84d; opacity: 0.35; }
+  .g6s-wt-land { fill: color-mix(in srgb, var(--science) 30%, var(--surface-2)); }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const LAKE = { x: 20, w: 250, y: 230 };
+
+  class WindTwoWays extends HTMLElement {
+    private t = 0;
+    private boat = 0; // 0 to 1 across the lake
+    private power = 0; // 0 to 1 along the wire
+    private on = false;
+    private blowing = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-wt="live"]')!;
+      live.textContent = '';
+      this.boat = 0; this.power = 0; this.on = false; this.blowing = true;
+      await tween(5200, (t) => {
+        this.t = t * 60;
+        this.boat = Math.min(1, t * 1.15);
+        this.power = Math.max(0, Math.min(1, (t - 0.15) / 0.6));
+        this.on = this.power >= 1;
+        this.draw();
+      });
+      this.blowing = false;
+      this.draw();
+      await wait(150);
+      live.textContent = 'The wind pushed the sailboat across the lake. The wind turbine turned the wind into electricity, which travelled along the wires and lit the lamp in the house far away.';
+    }
+
+    private draw() {
+      const out: string[] = [
+        `<rect class="g6s-wt-land" x="0" y="${LAKE.y}" width="640" height="90"/>`,
+        `<rect class="sci-water" x="${LAKE.x}" y="${LAKE.y}" width="${LAKE.w}" height="40" rx="10"/>`,
+        `<text class="sci-text" x="145" y="30" text-anchor="middle">Before processing</text>`,
+        `<text class="sci-text" x="470" y="30" text-anchor="middle">After processing</text>`,
+      ];
+      // Wind gusts drifting right across the top of the scene.
+      if (this.blowing) {
+        for (let i = 0; i < 6; i++) {
+          const x = ((this.t * 9 + i * 110) % 700) - 40;
+          const y = 70 + (i % 3) * 40;
+          out.push(`<path class="g6s-wt-gust" d="M${x.toFixed(1)} ${y} q15 -8 30 0 t30 0"/>`);
+        }
+      }
+      // Sailboat
+      const bx = 60 + this.boat * 160;
+      out.push(`<line class="g6s-wt-mast" x1="${bx}" y1="${LAKE.y - 2}" x2="${bx}" y2="${LAKE.y - 82}"/>`);
+      out.push(`<path class="g6s-wt-sail" d="M${bx + 3} ${LAKE.y - 80} Q${bx + (this.blowing ? 46 : 30)} ${LAKE.y - 46} ${bx + 3} ${LAKE.y - 12} Z"/>`);
+      out.push(`<path class="g6s-wt-hull" d="M${bx - 34} ${LAKE.y - 6} H${bx + 36} L${bx + 24} ${LAKE.y + 10} H${bx - 24} Z"/>`);
+      // Wind turbine
+      const tx = 340;
+      const ty = 110;
+      out.push(`<path class="g6s-wt-tower" d="M${tx - 6} ${LAKE.y} L${tx - 3} ${ty} H${tx + 3} L${tx + 6} ${LAKE.y} Z"/>`);
+      const ang = this.blowing ? this.t * 40 : 0;
+      for (const a of [0, 120, 240]) out.push(`<path class="g6s-wt-blade" transform="rotate(${(ang + a).toFixed(1)} ${tx} ${ty})" d="M${tx} ${ty} L${tx - 5} ${ty - 62} Q${tx} ${ty - 70} ${tx + 5} ${ty - 62} Z"/>`);
+      out.push(`<circle class="g6s-wt-tower" cx="${tx}" cy="${ty}" r="6"/>`);
+      // Power lines from the turbine to a house far away.
+      const wire = `M${tx + 8} ${LAKE.y - 30} Q420 ${LAKE.y - 10} 480 ${LAKE.y - 40} Q520 ${LAKE.y - 60} 560 ${LAKE.y - 50}`;
+      out.push(`<path class="g6s-wt-wire" d="${wire}"/>`);
+      if (this.power > 0 && this.power < 1) {
+        // A spark travelling along the wire, placed on a simple straight-line estimate.
+        const px = tx + 8 + (560 - tx - 8) * this.power;
+        const py = LAKE.y - 30 - 20 * this.power + Math.sin(this.power * Math.PI) * 6;
+        out.push(`<circle class="g6s-wt-spark" cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="7"/>`);
+      }
+      // House with a lamp
+      const hx = 560;
+      out.push(`<rect class="g6s-wt-house" x="${hx - 10}" y="${LAKE.y - 70}" width="80" height="70"/>`);
+      out.push(`<path class="g6s-wt-roof" d="M${hx - 20} ${LAKE.y - 70} L${hx + 30} ${LAKE.y - 112} L${hx + 80} ${LAKE.y - 70} Z"/>`);
+      if (this.on) out.push(`<circle class="g6s-wt-glow" cx="${hx + 30}" cy="${LAKE.y - 40}" r="30"/>`);
+      out.push(`<rect class="g6s-wt-win ${this.on ? 'g6s-wt-win--on' : ''}" x="${hx + 15}" y="${LAKE.y - 55}" width="30" height="28"/>`);
+      if (this.on) out.push(`<text class="sci-small" x="${hx + 30}" y="${LAKE.y + 30}" text-anchor="middle">lamp on</text>`);
+      out.push(`<text class="sci-small" x="145" y="${LAKE.y + 66}" text-anchor="middle">wind pushes the sail</text>`);
+      out.push(`<text class="sci-small" x="460" y="${LAKE.y + 66}" text-anchor="middle">wind → electricity → light</text>`);
+      this.querySelector('[data-wt="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-wind-two-ways', WindTwoWays);
+</script>

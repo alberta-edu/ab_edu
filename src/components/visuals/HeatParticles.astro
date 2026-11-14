@@ -1,0 +1,276 @@
+---
+// Heating and cooling water's particles (SCI6-OI1-GQ1-LO1, K1.1-K1.5, S1.1, S1.2, K2.3, S2.3).
+// Drag the temperature from -30 °C to 130 °C. The particles move faster and spread apart as the
+// water warms, and the state changes at 0 °C and 100 °C, the two points the Celsius scale uses.
+import { HP_MIN, HP_MAX, hpFacts } from './heat-particles.ts';
+interface Props {
+  start?: number;
+}
+const { start = -20 } = Astro.props;
+const facts = hpFacts(start);
+---
+<g6-heat-particles data-start={start}>
+  <div class="g6s-hp-layout">
+    <div class="g6s-hp-stage">
+      <canvas width="420" height="300" aria-hidden="true"></canvas>
+      <svg class="g6s-hp-therm" viewBox="0 0 76 300" aria-hidden="true">
+        <rect class="g6s-hp-tube" x="10" y="14" width="18" height="236" rx="9" />
+        <circle class="g6s-hp-bulb" cx="19" cy="268" r="20" />
+        <rect class="g6s-hp-fill" data-hp="fill" x="14" y="150" width="10" height="110" rx="5" />
+        <line class="g6s-hp-mark" x1="4" x2="34" data-hp="m100" />
+        <line class="g6s-hp-mark" x1="4" x2="34" data-hp="m0" />
+        <text class="g6s-hp-num" x="38" data-hp="t100">100</text>
+        <text class="g6s-hp-num" x="38" data-hp="t0">0</text>
+      </svg>
+    </div>
+    <dl class="g6s-hp-facts">
+      <div class="g6s-hp-big">
+        <dt class="sr-only">Temperature</dt>
+        <dd><strong data-hp="temp">{String(start).replace('-', '−')} °C</strong> <span data-hp="state">{facts.label}</span></dd>
+      </div>
+      <div>
+        <dt>Particle speed</dt>
+        <dd><span class="g6s-hp-meter" aria-hidden="true"><span data-hp="speed"></span></span></dd>
+      </div>
+      <div><dt>Attractive forces</dt><dd data-hp="forces">{facts.forces}</dd></div>
+      <div><dt>Space between particles</dt><dd data-hp="space">{facts.space}</dd></div>
+      <div><dt>Movement</dt><dd data-hp="move">{facts.move}</dd></div>
+    </dl>
+  </div>
+  <div class="g6s-hp-controls">
+    <label class="g6s-hp-slider">
+      <span>Temperature of the water</span>
+      <input type="range" min={HP_MIN} max={HP_MAX} step="1" value={start} data-hp="range" aria-valuetext={`${start} degrees Celsius, ${facts.label}`} />
+    </label>
+    <div class="sci-pick" role="group" aria-label="Jump to a temperature">
+      <button type="button" data-jump="-20">−20 °C</button>
+      <button type="button" data-jump="0">0 °C</button>
+      <button type="button" data-jump="25">25 °C</button>
+      <button type="button" data-jump="100">100 °C</button>
+      <button type="button" data-jump="120">120 °C</button>
+    </div>
+  </div>
+  <p class="sr-only" aria-live="polite" data-hp="live"></p>
+</g6-heat-particles>
+
+<style is:global>
+  g6-heat-particles { display: block; }
+  .g6s-hp-layout { display: grid; gap: 1rem; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; }
+  @media (max-width: 40rem) { .g6s-hp-layout { grid-template-columns: 1fr; } }
+  .g6s-hp-stage { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem; align-items: stretch; }
+  .g6s-hp-stage canvas { width: 100%; height: auto; display: block; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g6s-hp-therm { width: 3.6rem; height: 100%; max-height: 16rem; font-family: var(--font); }
+  .g6s-hp-tube { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-hp-bulb { fill: #d23b2e; stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-hp-fill { fill: #d23b2e; }
+  .g6s-hp-mark { stroke: var(--ink); stroke-width: 2; }
+  .g6s-hp-num { fill: var(--ink); font-size: 13px; font-weight: 700; }
+  .g6s-hp-facts { margin: 0; display: grid; gap: 0.6rem; font-size: var(--step--1); }
+  .g6s-hp-facts dt { font-weight: 700; color: var(--ink-3); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+  .g6s-hp-facts dd { margin: 0; }
+  .g6s-hp-big dd { font-size: var(--step-1); }
+  .g6s-hp-big strong { color: var(--accent); }
+  .g6s-hp-meter { display: block; height: 10px; margin-top: 0.3rem; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+  .g6s-hp-meter > span { display: block; height: 100%; width: 10%; background: #d23b2e; border-radius: inherit; }
+  .g6s-hp-controls { display: grid; gap: 0.6rem; margin-top: 0.8rem; }
+  .g6s-hp-slider { display: grid; gap: 0.3rem; font-weight: 700; font-size: var(--step--1); color: var(--ink-2); }
+  .g6s-hp-slider input { width: 100%; accent-color: var(--accent); min-height: 2rem; }
+</style>
+
+<script>
+  import { HP_MIN, HP_MAX, hpState, hpFacts, hpSpeed, type HpState } from './heat-particles.ts';
+  import { reducedMotion } from '../experiments/anim.ts';
+
+  interface P { x: number; y: number; vx: number; vy: number; hx: number; hy: number }
+  const W = 420;
+  const H = 300;
+  const PAD = 14;
+  const R = 8;
+  const COLS = 8;
+  const ROWS = 5;
+
+  class HeatParticles extends HTMLElement {
+    private ps: P[] = [];
+    private temp = -20;
+    private state: HpState = 'solid';
+    private ctx!: CanvasRenderingContext2D;
+    private raf = 0;
+    private colors = { dot: '#187a50', wall: '#4a4858' };
+
+    connectedCallback() {
+      const canvas = this.querySelector('canvas')!;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = W * dpr;
+      canvas.height = H * dpr;
+      this.ctx = canvas.getContext('2d')!;
+      this.ctx.scale(dpr, dpr);
+      this.readColors();
+      new MutationObserver(() => this.readColors()).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => this.readColors());
+
+      this.temp = Number(this.dataset.start);
+      this.state = hpState(this.temp);
+      this.ps = this.spots().map((s) => ({ ...s, vx: 0, vy: 0, hx: s.x, hy: s.y }));
+      if (this.state !== 'solid') for (let i = 0; i < 150; i++) this.step();
+      const range = this.querySelector<HTMLInputElement>('[data-hp="range"]')!;
+      range.addEventListener('input', () => this.setTemp(Number(range.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-jump]').forEach((b) =>
+        b.addEventListener('click', () => {
+          range.value = b.dataset.jump!;
+          this.setTemp(Number(b.dataset.jump));
+        }),
+      );
+      this.setTemp(this.temp);
+      new IntersectionObserver(([e]) => {
+        cancelAnimationFrame(this.raf);
+        if (e.isIntersecting) this.loop();
+      }).observe(canvas);
+      this.draw();
+    }
+
+    private readColors() {
+      const cs = getComputedStyle(this);
+      this.colors = { dot: cs.getPropertyValue('--accent').trim() || '#187a50', wall: cs.getPropertyValue('--ink-2').trim() || '#4a4858' };
+    }
+
+    /** Lattice spots for the solid. Warmer ice sits a little further apart. */
+    private spots() {
+      const s = 2 * R + 3 + Math.max(0, this.temp + 30) / 30;
+      const out: { x: number; y: number }[] = [];
+      const left = W / 2 - ((COLS - 1) * s) / 2;
+      for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) out.push({ x: left + c * s + (r % 2 ? s / 2 : 0) - s / 4, y: H - PAD - R - 2 - r * s * 0.9 });
+      return out;
+    }
+
+    private setTemp(t: number) {
+      this.temp = Math.max(HP_MIN, Math.min(HP_MAX, t));
+      const s = hpState(this.temp);
+      if (s === 'solid') {
+        // Each particle claims the nearest free spot, lowest particles first.
+        const spots = this.spots();
+        const taken = new Set<number>();
+        [...this.ps].sort((a, b) => b.y - a.y).forEach((p) => {
+          let best = 0;
+          let bestD = Infinity;
+          spots.forEach((sp, i) => {
+            const d = (sp.x - p.x) ** 2 + (sp.y - p.y) ** 2;
+            if (!taken.has(i) && d < bestD) [best, bestD] = [i, d];
+          });
+          taken.add(best);
+          p.hx = spots[best].x;
+          p.hy = spots[best].y;
+        });
+      }
+      const changed = s !== this.state;
+      this.state = s;
+      const f = hpFacts(this.temp);
+      const set = (k: string, v: string) => (this.querySelector(`[data-hp="${k}"]`)!.textContent = v);
+      set('temp', `${String(this.temp).replace('-', '−')} °C`);
+      set('state', f.label);
+      set('forces', f.forces);
+      set('space', f.space);
+      set('move', f.move);
+      this.querySelector<HTMLElement>('[data-hp="speed"]')!.style.width = `${Math.round(hpSpeed(this.temp) * 100)}%`;
+      this.querySelector<HTMLInputElement>('[data-hp="range"]')!.setAttribute('aria-valuetext', `${this.temp} degrees Celsius, ${f.label}`);
+      this.drawThermometer();
+      if (changed) set('live', `${this.temp} degrees Celsius. ${f.label}. ${f.move}.`);
+      if (reducedMotion()) {
+        for (let i = 0; i < 90; i++) this.step();
+        this.draw();
+      }
+    }
+
+    private drawThermometer() {
+      // The column runs from -30 °C (y = 250) up to 130 °C (y = 22).
+      const y = (t: number) => 250 - ((t - HP_MIN) / (HP_MAX - HP_MIN)) * 228;
+      const fill = this.querySelector('[data-hp="fill"]')!;
+      fill.setAttribute('y', String(y(this.temp)));
+      fill.setAttribute('height', String(262 - y(this.temp)));
+      for (const t of [0, 100]) {
+        this.querySelector(`[data-hp="m${t}"]`)!.setAttribute('y1', String(y(t)));
+        this.querySelector(`[data-hp="m${t}"]`)!.setAttribute('y2', String(y(t)));
+        this.querySelector(`[data-hp="t${t}"]`)!.setAttribute('y', String(y(t) + 4));
+      }
+    }
+
+    private step() {
+      const sp = hpSpeed(this.temp);
+      const s = this.state;
+      const ps = this.ps;
+      const left = PAD + R;
+      const right = W - PAD - R;
+      const top = PAD + R;
+      const bottom = H - PAD - R;
+      for (const p of ps) {
+        if (s === 'solid') {
+          const kick = 0.4 + 2.6 * sp;
+          p.vx = (p.vx + (p.hx - p.x) * 0.09 + (Math.random() - 0.5) * kick) * 0.7;
+          p.vy = (p.vy + (p.hy - p.y) * 0.09 + (Math.random() - 0.5) * kick) * 0.7;
+        } else if (s === 'liquid') {
+          p.vy += 0.16;
+          p.vx += (Math.random() - 0.5) * (0.5 + 2.4 * sp);
+          p.vy += (Math.random() - 0.5) * (0.3 + 1.6 * sp);
+          p.vx *= 0.9;
+          p.vy *= 0.9;
+        } else {
+          const target = 1 + 7 * sp;
+          const v = Math.hypot(p.vx, p.vy) || 0.01;
+          const k = 1 + (target / v - 1) * 0.08;
+          p.vx = p.vx * k + (Math.random() - 0.5) * 0.3;
+          p.vy = p.vy * k + (Math.random() - 0.5) * 0.3;
+        }
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < left) { p.x = left; p.vx = Math.abs(p.vx); }
+        if (p.x > right) { p.x = right; p.vx = -Math.abs(p.vx); }
+        if (p.y < top) { p.y = top; p.vy = Math.abs(p.vy); }
+        if (p.y > bottom) { p.y = bottom; p.vy = -Math.abs(p.vy) * (s === 'gas' ? 1 : 0.3); }
+      }
+      // A warmer liquid keeps a little more space between its particles.
+      const gap = s === 'liquid' ? 1 + 3 * sp : 0.5;
+      for (let pass = 0; pass < 3; pass++)
+        for (let i = 0; i < ps.length; i++)
+          for (let j = i + 1; j < ps.length; j++) {
+            const a = ps[i];
+            const b = ps[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const d = Math.hypot(dx, dy) || 0.01;
+            const o = 2 * R + gap - d;
+            if (o <= 0) continue;
+            const ox = (dx / d) * (o / 2);
+            const oy = (dy / d) * (o / 2);
+            a.x -= ox; a.y -= oy; b.x += ox; b.y += oy;
+            if (s === 'gas') { [a.vx, b.vx] = [b.vx, a.vx]; [a.vy, b.vy] = [b.vy, a.vy]; }
+          }
+      for (const p of ps) {
+        p.x = Math.min(right, Math.max(left, p.x));
+        p.y = Math.min(bottom, Math.max(top, p.y));
+      }
+    }
+
+    private draw() {
+      const c = this.ctx;
+      c.clearRect(0, 0, W, H);
+      c.strokeStyle = this.colors.wall;
+      c.lineWidth = 3;
+      c.strokeRect(PAD - 2, PAD - 2, W - 2 * PAD + 4, H - 2 * PAD + 4);
+      c.fillStyle = this.colors.dot;
+      for (const p of this.ps) {
+        c.beginPath();
+        c.arc(p.x, p.y, R, 0, Math.PI * 2);
+        c.fill();
+      }
+    }
+
+    private loop = () => {
+      // With reduced motion the particles move only when the temperature changes.
+      if (!reducedMotion()) {
+        this.step();
+        this.draw();
+      }
+      this.raf = requestAnimationFrame(this.loop);
+    };
+  }
+  customElements.define('g6-heat-particles', HeatParticles);
+</script>

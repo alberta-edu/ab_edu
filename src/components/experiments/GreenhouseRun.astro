@@ -1,0 +1,126 @@
+---
+// Animated experiment: sunlight reaches Earth. A cloud and an ice sheet reflect some of it back to
+// space. The ground gives off heat, and greenhouse gases in the air trap some of that heat. When
+// more greenhouse gases are added, more heat is trapped and the thermometer rises
+// (SCI6-OI3-GQ1-LO1, K1.1, K1.2, K1.6, S1.1, U1.1).
+---
+<g6-greenhouse>
+  <svg class="sci-svg" viewBox="0 0 640 340" aria-hidden="true" data-gh="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-gh="live"></p>
+</g6-greenhouse>
+
+<style is:global>
+  g6-greenhouse { display: block; }
+  g6-greenhouse svg { background: #0f1830; }
+  .g6s-gh-air { fill: #2b4f86; opacity: 0.45; }
+  .g6s-gh-ground { fill: #4f8a43; }
+  .g6s-gh-ice { fill: #eef7ff; stroke: #9cc3e6; stroke-width: 1.5; }
+  .g6s-gh-sun { fill: #ffcf3d; }
+  .g6s-gh-ray { stroke: #ffcf3d; stroke-width: 4; stroke-linecap: round; }
+  .g6s-gh-rayh { fill: #ffcf3d; }
+  .g6s-gh-heat { fill: none; stroke: #ff7a45; stroke-width: 3.5; stroke-linecap: round; }
+  .g6s-gh-heath { fill: #ff7a45; }
+  .g6s-gh-gas { fill: #b9a7ff; }
+  .g6s-gh-cloud { fill: #f4f6fb; }
+  .g6s-gh-text { fill: #f1eff7; font-size: 15px; font-weight: 700; }
+  .g6s-gh-small { fill: #dfe7ff; font-size: 13px; }
+  .g6s-gh-tube { fill: #1c2540; stroke: #dfe7ff; stroke-width: 2; }
+  .g6s-gh-fill { fill: #d23b2e; }
+  @media (max-width: 40rem) { .g6s-gh-text { font-size: 22px; } .g6s-gh-small { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  const GROUND = 280;
+  const AIR_TOP = 120;
+  // Fixed gas particle spots; the first `gas` of them are shown.
+  let seed = 7;
+  const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+  const SPOTS = Array.from({ length: 36 }, () => [30 + rnd() * 470, AIR_TOP + 16 + rnd() * 120]);
+
+  class Greenhouse extends HTMLElement {
+    private t = 0;
+    private gas = 8;
+    private warm = 0.35; // 0 to 1, thermometer level
+    private trapped = 1; // how many heat arrows bounce back down
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-gh="live"]')!;
+      live.textContent = '';
+      this.gas = 8; this.warm = 0.35; this.trapped = 1;
+      await tween(2200, (t) => { this.t = t * 3; this.draw(); });
+      await tween(4200, (t) => {
+        this.t = 3 + t * 5.8;
+        const e = ease(t);
+        this.gas = Math.round(8 + 28 * e);
+        this.trapped = 1 + Math.round(2 * e);
+        this.warm = 0.35 + 0.4 * Math.max(0, (t - 0.2) / 0.8);
+        this.draw();
+      });
+      await wait(150);
+      live.textContent = 'The cloud and the ice reflected some sunlight back to space. As more greenhouse gases were added, more heat was trapped and the thermometer rose.';
+    }
+
+    private arrow(x1: number, y1: number, x2: number, y2: number, cls: string) {
+      const a = Math.atan2(y2 - y1, x2 - x1);
+      const h = (d: number) => `${(x2 + Math.cos(a + d) * 12).toFixed(1)},${(y2 + Math.sin(a + d) * 12).toFixed(1)}`;
+      return `<line class="${cls}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><path class="${cls}h" d="M${(x2 + Math.cos(a) * 4).toFixed(1)},${(y2 + Math.sin(a) * 4).toFixed(1)} L${h(2.6)} L${h(-2.6)} Z"/>`;
+    }
+
+    private draw() {
+      const ph = (this.t % 1);
+      const out: string[] = [
+        `<rect class="g6s-gh-air" x="0" y="${AIR_TOP}" width="520" height="${GROUND - AIR_TOP}"/>`,
+        `<rect class="g6s-gh-ground" x="0" y="${GROUND}" width="520" height="60"/>`,
+        `<rect class="g6s-gh-ice" x="370" y="${GROUND - 8}" width="150" height="16" rx="4"/>`,
+        `<circle class="g6s-gh-sun" cx="40" cy="40" r="26"/>`,
+        `<text class="g6s-gh-text" x="78" y="34">Sun</text>`,
+        `<text class="g6s-gh-small" x="10" y="${AIR_TOP - 8}">space</text>`,
+        `<text class="g6s-gh-small" x="10" y="${GROUND + 30}">ground</text>`,
+        `<text class="g6s-gh-small" x="445" y="${GROUND + 30}" text-anchor="middle">ice</text>`,
+      ];
+      for (let i = 0; i < this.gas; i++) out.push(`<circle class="g6s-gh-gas" cx="${SPOTS[i][0].toFixed(1)}" cy="${SPOTS[i][1].toFixed(1)}" r="5"/>`);
+      // A cloud reflecting one ray back to space.
+      out.push(`<g class="g6s-gh-cloud"><ellipse cx="250" cy="150" rx="46" ry="18"/><ellipse cx="225" cy="140" rx="26" ry="16"/><ellipse cx="272" cy="138" rx="22" ry="14"/></g>`);
+      // Sunlight in: one ray to the cloud and back, one to the ground, one to the ice and back.
+      const s = ease(ph);
+      out.push(this.arrow(90, 60, 90 + 120 * Math.min(1, s * 1.4), 60 + 70 * Math.min(1, s * 1.4), 'g6s-gh-ray'));
+      out.push(this.arrow(100, 70, 100 + 30 * s + 60, 70 + 190 * s + 10, 'g6s-gh-ray'));
+      out.push(this.arrow(130, 50, 130 + 250 * s, 50 + 210 * s, 'g6s-gh-ray'));
+      if (ph > 0.6) {
+        const b = (ph - 0.6) / 0.4;
+        out.push(this.arrow(225, 132, 225 + 50 * b, 132 - 90 * b, 'g6s-gh-ray'));
+        out.push(this.arrow(400, GROUND - 14, 400 + 50 * b, GROUND - 14 - 200 * b, 'g6s-gh-ray'));
+      }
+      // Heat rising from the ground. Some escapes; some is sent back down by the gases.
+      const hx = [120, 175, 300, 340];
+      hx.forEach((x, i) => {
+        const up = ((this.t * 0.8 + i * 0.25) % 1);
+        const y = GROUND - 10 - up * 150;
+        const back = i < this.trapped;
+        if (back && up > 0.55) {
+          const d = (up - 0.55) / 0.45;
+          const yy = AIR_TOP + 30 + d * 110;
+          out.push(`<path class="g6s-gh-heat" d="M${x + 10} ${yy - 30} q6 7 0 15 q-6 7 0 15"/><path class="g6s-gh-heath" d="M${x + 10} ${yy + 10} l-6 -10 h12 Z"/>`);
+        } else {
+          out.push(`<path class="g6s-gh-heat" d="M${x} ${y + 30} q6 -7 0 -15 q-6 -7 0 -15"/><path class="g6s-gh-heath" d="M${x} ${y - 10} l-6 10 h12 Z"/>`);
+        }
+      });
+      // Thermometer
+      const top = 70;
+      const bottom = 290;
+      const lvl = bottom - (bottom - top) * this.warm;
+      out.push(`<rect class="g6s-gh-tube" x="578" y="${top}" width="20" height="${bottom - top + 10}" rx="10"/><circle class="g6s-gh-fill" cx="588" cy="${bottom + 14}" r="16"/>`);
+      out.push(`<rect class="g6s-gh-fill" x="583" y="${lvl.toFixed(1)}" width="10" height="${(bottom + 6 - lvl).toFixed(1)}" rx="5"/>`);
+      out.push(`<text class="g6s-gh-text" x="588" y="${top - 14}" text-anchor="middle">${this.warm > 0.6 ? 'Warmer' : 'Air'}</text>`);
+      out.push(`<text class="g6s-gh-small" x="300" y="${AIR_TOP - 8}">● greenhouse gases: ${this.gas > 20 ? 'more' : 'some'}</text>`);
+      this.querySelector('[data-gh="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-greenhouse', Greenhouse);
+</script>

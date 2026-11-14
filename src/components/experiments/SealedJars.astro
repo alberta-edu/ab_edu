@@ -1,0 +1,88 @@
+---
+// Animated experiment: three sealed jars sit in the light for a day: a snail alone, a water plant
+// alone, and a snail with a water plant. Meters show oxygen and carbon dioxide. The snail uses
+// oxygen and gives off carbon dioxide; the plant in the light uses carbon dioxide and releases
+// oxygen; together, the gases stay balanced (SCI6-OI4-GQ1-LO1, K3.2, K3.4, U3.1, S3.1, K2.1, K2.3).
+---
+<g6-sealed-jars>
+  <svg class="sci-svg" viewBox="0 0 640 340" aria-hidden="true" data-sj="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sj="live"></p>
+</g6-sealed-jars>
+
+<style is:global>
+  g6-sealed-jars { display: block; }
+  g6-sealed-jars svg { background: var(--surface-2); }
+  .g6s-sj-lid { fill: var(--ink-3); }
+  .g6s-sj-plant { fill: none; stroke: #2f8f3a; stroke-width: 4; stroke-linecap: round; }
+  .g6s-sj-leaf { fill: #4fae4f; }
+  .g6s-sj-shell { fill: #c99a5b; stroke: var(--ink); stroke-width: 1.5; }
+  .g6s-sj-body { fill: #b8a37a; stroke: var(--ink); stroke-width: 1.5; }
+  .g6s-sj-o2 { fill: #4f9ad6; }
+  .g6s-sj-co2 { fill: #9b8a7a; }
+  .g6s-sj-track { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
+  .g6s-sj-key { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-sj-key { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  const JARS = [
+    { x: 110, label: 'Snail', snail: true, plant: false },
+    { x: 320, label: 'Plant', snail: false, plant: true },
+    { x: 530, label: 'Snail and plant', snail: true, plant: true },
+  ];
+  const START = 0.5;
+
+  class SealedJars extends HTMLElement {
+    private k = 0; // 0 = start of the day, 1 = end of the day
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-sj="live"]')!;
+      live.textContent = '';
+      await tween(5500, (t) => { this.k = ease(t); this.draw(); });
+      await wait(150);
+      live.textContent = 'After a day in the light: in the snail jar, oxygen went down and carbon dioxide went up. In the plant jar, oxygen went up and carbon dioxide went down. In the jar with both, the gases stayed about the same.';
+    }
+
+    /** Oxygen and carbon dioxide levels, 0 to 1, for a jar after k of the day. */
+    private gases(j: (typeof JARS)[number]) {
+      const change = (j.plant ? 0.38 : 0) - (j.snail ? 0.38 : 0);
+      return { o2: START + change * this.k, co2: START - change * this.k };
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (const j of JARS) {
+        const x = j.x;
+        out.push(`<rect class="sci-water" x="${x - 60}" y="150" width="120" height="120"/>`);
+        if (j.plant) {
+          const px = j.snail ? x - 22 : x;
+          out.push(`<path class="g6s-sj-plant" d="M${px} 268 Q${px - 8} 220 ${px + 4} 170"/>`);
+          for (let i = 0; i < 5; i++) {
+            const y = 255 - i * 18;
+            out.push(`<ellipse class="g6s-sj-leaf" cx="${px - 10}" cy="${y}" rx="9" ry="4" transform="rotate(-25 ${px - 10} ${y})"/><ellipse class="g6s-sj-leaf" cx="${px + 10}" cy="${y - 6}" rx="9" ry="4" transform="rotate(25 ${px + 10} ${y - 6})"/>`);
+          }
+        }
+        if (j.snail) {
+          const sx = j.plant ? x + 22 : x;
+          out.push(`<path class="g6s-sj-body" d="M${sx - 22} 268 h40 q6 0 6 -6 l-4 -2 h-42 Z"/><circle class="g6s-sj-shell" cx="${sx - 4}" cy="254" r="12"/>`);
+        }
+        out.push(`<path class="sci-glass" d="M${x - 60} 120 V270 H${x + 60} V120"/><rect class="g6s-sj-lid" x="${x - 66}" y="110" width="132" height="12" rx="3"/>`);
+        out.push(`<text class="sci-text" x="${x}" y="300" text-anchor="middle">${j.label}</text>`);
+        // Two meters above each jar.
+        const g = this.gases(j);
+        const bar = (y: number, v: number, cls: string, name: string) =>
+          `<text class="g6s-sj-key" x="${x - 60}" y="${y - 4}">${name}</text><rect class="g6s-sj-track" x="${x - 60}" y="${y}" width="120" height="12" rx="6"/><rect class="${cls}" x="${x - 60}" y="${y}" width="${(120 * v).toFixed(1)}" height="12" rx="6"/>`;
+        out.push(bar(42, g.o2, 'g6s-sj-o2', 'oxygen'), bar(84, g.co2, 'g6s-sj-co2', 'carbon dioxide'));
+      }
+      out.push(`<text class="sci-small" x="320" y="330" text-anchor="middle">${this.k >= 1 ? 'After one day in the light' : this.k > 0 ? 'The day goes by…' : 'Start: all jars sealed, in the light'}</text>`);
+      this.querySelector('[data-sj="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-sealed-jars', SealedJars);
+</script>

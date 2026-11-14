@@ -1,0 +1,398 @@
+id: climate-causes
+grade: 6
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI6-OI3-GQ1-LO1]
+order: 6
+title: What Shapes and Changes Climate
+shortTitle: What shapes and changes climate
+summary: >-
+  Add greenhouse gases to a model Earth and watch the heat build, see how place shapes climate, and sort
+  natural and human causes of climate change.
+
+bigIdea: |-
+  - Earth’s systems and the Sun work together to give us a **climate we can live in**.
+  - Clouds and ice **reflect** sunlight. **Greenhouse gases** trap heat.
+  - Climate can change from **natural causes**, like volcanoes, and **human causes**, like pollution from industry.
+  - Releasing more greenhouse gases warms Earth. **Clean energy** and **personal actions** can help.
+
+lesson:
+  - title: 'Virtual experiment: add greenhouse gases'
+    blocks:
+      - type: experiment
+        covers: [K1.1, K1.6, S1.1, U1.1, K1.2]
+        title: Sunlight, heat and greenhouse gases
+        question: |-
+          - Sunlight reaches the ground. The ground gives off heat, shown as orange wavy arrows.
+          - Partway through, more **greenhouse gases**, the purple dots, are added to the air.
+        animation: g6-greenhouse
+        predict:
+          choices:
+            - The air gets warmer.
+            - The air gets cooler.
+            - The temperature stays the same.
+          answer: 0
+        observe: |-
+          - The **cloud** and the **ice** reflected some sunlight back to space.
+          - Some heat escaped to space, and the greenhouse gases sent some back down.
+          - As more gases were added, **more heat was trapped**, and the thermometer rose.
+        explain: |-
+          - Greenhouse gases **trap heat from the Sun** in the air, like a blanket.
+          - More greenhouse gases trap more heat, so Earth gets **warmer**.
+
+  - title: The Sun and Earth’s systems
+    blocks:
+      - type: table
+        covers: [K1.1, S1.1]
+        headers: [Interaction, What it does, Effect on climate]
+        rows:
+          - ['☁️ **Clouds** reflect sunlight into space', 'Less sunlight reaches the ground.', 'Cooler']
+          - ['🧊 **Ice** reflects light from the Sun', 'Bright ice sends sunlight back out.', 'Cooler']
+          - ['🟣 **Greenhouse gases** trap heat from the Sun', 'Heat stays in the air longer.', 'Warmer']
+      - type: callout
+        variant: tip
+        covers: [K1.2, U1.1]
+        title: We need the Sun, and the blanket
+        body: Without any greenhouse gases, Earth’s average temperature would be about **−18 °C** instead of about **15 °C** (NASA). Humans rely on the Sun and Earth’s systems for a climate we can live in.
+      - type: callout
+        variant: remember
+        covers: [SCI4-OI3-GQ1-LO1#K1.1, SCI4-OI3-GQ1-LO1#K1.3]
+        title: Remember from Grade 4
+        body: Earth’s systems include the **atmosphere**, a layer of gas around Earth that warms its surface.
+
+  - title: Where you are shapes your climate
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.1]
+        component: climate-graph
+        props: { start: vancouver }
+        caption: |-
+          - Vancouver sits beside the Pacific Ocean. Its winters are much milder than Edmonton’s.
+          - Try **Iqaluit** too. It is much farther north.
+      - type: table
+        covers: [K1.3]
+        caption: Four location factors
+        headers: [Factor, Effect, Example]
+        rows:
+          - ['🧭 **Latitude**', 'Places farther from the equator get less direct sunlight, so they are colder.', 'Iqaluit’s January average is −26 °C. Edmonton’s is −10 °C.']
+          - ['🌊 **A large body of water nearby**', 'Water warms and cools slowly, so it keeps winters milder and summers cooler.', 'Vancouver’s January average is 4 °C.']
+          - ['⛰️ **Elevation**', 'Higher places are colder.', 'Snow stays on high peaks in the Rockies all summer.']
+          - ['🏙️ **Urban or rural**', 'Pavement and buildings hold heat, so cities are often warmer than the countryside.', 'A city street on a summer night stays warmer than a field.']
+      - type: callout
+        variant: remember
+        covers: [SCI4-OI3-GQ1-LO1#K2.2, SCI4-OI3-GQ1-LO1#K2.3]
+        title: Remember from Grade 4
+        body: Sunlight is more direct at the equator than at the poles, so the equator is warmer.
+
+  - title: Natural causes of climate change
+    blocks:
+      - type: table
+        covers: [K1.4, S1.2]
+        headers: [Natural process, How it can change climate]
+        rows:
+          - ['🌋 **Volcanic eruptions**', 'Ash and gases can block sunlight. After Mount Pinatubo erupted in 1991, Earth cooled by about 0.5 °C for a year or two.']
+          - ['☄️ **Meteorites**', 'A huge impact can throw dust high into the air and block sunlight for years.']
+          - ['☀️ **Changes in the Sun’s output**', 'The Sun gives off a little more or a little less energy over time.']
+          - ['🔄 **Changes in orbits**', 'Over tens of thousands of years, small changes in Earth’s orbit have helped cause ice ages.']
+
+  - title: Human causes of climate change
+    blocks:
+      - type: compare
+        covers: [K1.5, K1.6, S1.2]
+        columns:
+          - title: Industrialization and pollution
+            body: |-
+              - Factories, cars and power plants that **burn fossil fuels** release **greenhouse gases**.
+              - More greenhouse gases in the air warm Earth.
+          - title: Clean energy
+            body: |-
+              - Wind, solar and hydro make electricity **without burning** anything.
+              - They have the **potential to reduce** the greenhouse gases we release overall.
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI3-GQ1-LO1#K2.4]
+        title: Remember from Grade 3
+        body: Earth is warming up from **natural and human causes**, which is speeding up the melting of glaciers.
+      - type: callout
+        variant: mistake
+        covers: [K1.4, K1.5, U1.1]
+        title: Watch out for this
+        body: Natural causes are real, but they don’t cancel out human ones. Both can change climate at the same time.
+
+  - title: What you can do
+    blocks:
+      - type: visual
+        covers: [K1.8, S1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: waste, label: Reduce consumption and waste, icon: '♻️' }
+            - { id: local, label: Grow or buy local food, icon: '🥕' }
+            - { id: energy, label: Use clean energy responsibly, icon: '💡' }
+          cards:
+            - { text: Fix a bike instead of buying a new one, bin: waste, why: Making fewer new things means less pollution from factories. }
+            - { text: Plant beans in a backyard garden, bin: local, why: Food grown at home doesn’t need trucks or planes to reach you. }
+            - { text: Turn off lights in empty rooms, bin: energy, why: Using less electricity means less is needed from any source. }
+            - { text: Buy carrots from a nearby farmers’ market, bin: local, why: Local food travels a shorter distance to your table. }
+            - { text: Take a reusable water bottle to school, bin: waste, why: Fewer throwaway bottles are made and thrown out. }
+            - { text: Hang clothes to dry on a sunny day, bin: energy, why: The Sun dries them without using the dryer. }
+        caption: Sort each action. Which kind of personal action is it?
+
+keyTerms:
+  - term: Climate
+    covers: [K1.2, SCI5-OI3-GQ1-LO1#K1.2]
+    definition: The long-term weather patterns of a region, over at least 30 years.
+  - term: Greenhouse gases
+    covers: [K1.1, K1.6]
+    definition: Gases in the air that trap heat from the Sun. More of them warm Earth.
+  - term: Latitude
+    covers: [K1.3]
+    definition: How far north or south of the equator a place is.
+  - term: Elevation
+    covers: [K1.3]
+    definition: How high a place is above sea level.
+  - term: Industrialization
+    covers: [K1.5]
+    definition: The growth of factories and machines, many of which burn fossil fuels.
+  - term: Clean energy
+    covers: [K1.7]
+    definition: Energy made without releasing greenhouse gases while it is produced, such as wind or solar.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: multi
+    prompt: Select **all** the interactions that make Earth **cooler**.
+    choices:
+      - Clouds reflecting sunlight into space
+      - Ice reflecting light from the Sun
+      - Greenhouse gases trapping heat from the Sun
+      - More sunlight reaching the ground
+    answer: [0, 1]
+    feedback:
+      '2': Trapping heat keeps more of it here. Is that cooling?
+      '3': What happens when more sunlight reaches the ground?
+    hints:
+      - Which of these send sunlight **away** before it can warm the ground?
+    solution:
+      - Clouds and ice reflect sunlight back to space, so less of it warms Earth. They make it **cooler**.
+      - Greenhouse gases and more sunlight both make it warmer.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.4, K1.5, S1.2]
+    type: mc
+    prompt: Which of these is a **human** cause of climate change?
+    choices:
+      - Factories burning coal and oil
+      - A volcano erupting
+      - The Sun giving off a little more energy
+      - A slow change in Earth’s orbit
+    answer: 0
+    feedback:
+      '1': Do people make volcanoes erupt?
+      '2': Do people control the Sun?
+      '3': Do people change Earth’s orbit?
+    hints:
+      - Which one do people do?
+    solution:
+      - Factories burning fossil fuels release greenhouse gases. That is **industrialization and pollution**, a human cause.
+      - The other three are natural causes.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.3]
+    type: mc
+    prompt: Two towns are at the same latitude and the same elevation. One sits on the ocean and one is far inland. Which has **milder winters**?
+    choices:
+      - The town on the ocean
+      - The town far inland
+      - They have the same winters, because latitude decides everything.
+    answer: 0
+    feedback:
+      '1': Think of Vancouver and Edmonton. Which has milder winters?
+      '2': Latitude matters, but it isn’t the only location factor. What else is different here?
+    hints:
+      - Which location factor is different between the two towns?
+    solution:
+      - The only difference is a **large body of water**. Water cools slowly, so it keeps the nearby town warmer in winter.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.1, S1.1, U1.1]
+    type: mc
+    prompt: |-
+      In the Arctic, bright sea ice is melting and leaving dark ocean water. Dark water reflects less sunlight than
+      ice. What could that do to the climate there?
+    choices:
+      - More sunlight is soaked up instead of reflected, so the area warms even more.
+      - More sunlight is reflected, so the area cools down again.
+      - Nothing changes, because the ocean and the ice are both made of water.
+      - The ocean makes more clouds, so all the ice grows back.
+    answer: 0
+    feedback:
+      '1': The question says dark water reflects **less** than ice. What does that mean for reflection?
+      '2': They are both water, but one is bright and one is dark. What does that change?
+      '3': Is there anything in the story about clouds? Follow the sunlight.
+    hints:
+      - Follow the sunlight. Where does it go when it hits ice? When it hits dark water?
+    solution:
+      - Ice reflects sunlight back to space. Dark water reflects less, so more of the Sun’s energy stays.
+      - That warms the area, which melts more ice. One change in an Earth system can lead to more change.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.4, S1.2, K1.3]
+    type: mc
+    prompt: |-
+      A newspaper headline from 1992 says, “World cools after Mount Pinatubo eruption.” Ella says, “So volcanoes are
+      why the world is warming now!” Which fact shows Ella’s idea doesn’t fit?
+    choices:
+      - Pinatubo’s eruption made Earth **cooler**, not warmer, by blocking sunlight.
+      - Volcanoes only erupt near oceans, so they can’t affect the whole world.
+      - Pinatubo is not a real volcano, so the headline is made up.
+      - Volcanoes stopped erupting a long time ago, so they can’t cause anything now.
+    answer: 0
+    feedback:
+      '1': Volcanoes erupt in many places, including far from oceans. What did the headline say happened?
+      '2': Read the lesson’s table about volcanic eruptions. What did it say about Pinatubo?
+      '3': Pinatubo erupted in 1991. Do volcanoes still erupt today?
+    hints:
+      - What did the eruption do to Earth’s temperature?
+    solution:
+      - The eruption’s ash and gases blocked sunlight, and Earth **cooled** by about 0.5 °C for a year or two.
+      - So this evidence shows a volcano cooling the world. It doesn’t explain warming.
+
+  - id: b3
+    level: 2
+    thinking: model
+    covers: [K1.3, S1.1]
+    type: mc
+    prompt: |-
+      Two weather stations are at the same latitude, far from any ocean. Station A is in a city. Station B is high on
+      a mountain. On a summer night, which station is likely warmer, and why?
+    choices:
+      - Station A, because the city is lower and its pavement and buildings hold heat.
+      - Station B, because it is closer to the Sun.
+      - Station B, because mountains are away from the city’s pollution.
+      - They read the same, because they are at the same latitude.
+    answer: 0
+    feedback:
+      '1': A mountain top is closer to the Sun by a tiny amount. Is it warmer or colder up high?
+      '2': Clean air doesn’t make a place warmer. Which two location factors are different?
+      '3': Latitude is the same, but which location factors are different?
+    hints:
+      - Find the two location factors that are different between the stations.
+    solution:
+      - Two factors differ, **elevation** and **urban or rural**.
+      - Higher places are colder, and cities hold heat in their pavement and buildings. Both point to **Station A** being warmer.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [K1.7, K1.6, S1.2]
+    type: mc
+    prompt: A city replaces its coal power plant with wind turbines. Why could this **reduce** the greenhouse gases the city releases?
+    choices:
+      - Wind turbines make electricity without burning fuel, so they release no greenhouse gases while running.
+      - Wind turbines blow greenhouse gases away from the city.
+      - Wind turbines pull greenhouse gases out of the air as they spin.
+      - Wind is a greenhouse gas, so using it up removes it.
+    answer: 0
+    feedback:
+      '1': Moving gases somewhere else doesn’t remove them from the air. How does a turbine make electricity?
+      '2': Turbines don’t collect gases. What do they replace in this story?
+      '3': Wind is moving air. What does a coal plant do that a turbine doesn’t?
+    hints:
+      - What does a coal plant do to make electricity that a wind turbine doesn’t?
+    solution:
+      - A coal plant **burns** a fossil fuel, which releases greenhouse gases.
+      - A wind turbine makes electricity from moving air, with no burning. Switching lowers the greenhouse gases released.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, K1.6, S1.1, U1.1, K1.2]
+    type: investigation
+    prompt: |-
+      In a computer model, scientists build a planet just like Earth. They can change one thing at a time and watch
+      the planet’s average temperature.
+    parts:
+      - type: mc
+        prompt: They remove **all** the greenhouse gases. What happens?
+        choices:
+          - The planet becomes much colder, because heat escapes to space.
+          - The planet becomes much warmer, because the air is cleaner.
+          - Nothing changes, because the Sun still shines on it.
+        answer: 0
+        feedback:
+          '1': What job do greenhouse gases do? What happens without them?
+          '2': The Sun still shines, but where does the heat go after it reaches the ground?
+        hints:
+          - Remember the tip about Earth with no greenhouse gases at all.
+        solution:
+          - Without greenhouse gases, the heat from the ground escapes to space.
+          - On Earth, that would drop the average from about 15 °C to about −18 °C. Some greenhouse gas keeps us alive.
+      - type: mc
+        prompt: Next they put the greenhouse gases back, but cover the whole planet with **thick cloud**. What happens?
+        choices:
+          - It gets colder, because clouds reflect sunlight into space.
+          - It gets warmer, because clouds are a blanket of greenhouse gas.
+          - Nothing changes, because clouds are just water.
+        answer: 0
+        feedback:
+          '1': In the lesson table, what do clouds do to sunlight?
+          '2': They are water, but what do they do to sunlight before it reaches the ground?
+        hints:
+          - What did the cloud do in the virtual experiment?
+        solution:
+          - Clouds reflect sunlight back into space, so less reaches the ground to warm it.
+      - type: text
+        prompt: The planet is too cold. Name **one** change they could make in the model to warm it back up.
+        accept: [more greenhouse gases, add greenhouse gases, greenhouse gases, less cloud, fewer clouds, remove clouds, less ice, melt ice, remove ice, more greenhouse gas, add greenhouse gas]
+        hints:
+          - Think of the three interactions. Which ones could you turn up or down?
+        solution:
+          - Add more **greenhouse gases**, which trap heat. Or remove some **cloud** or **ice**, which reflect sunlight away.
+          - Any of these lets the planet keep more of the Sun’s energy.
+    wrapUp: Climate depends on how much sunlight is reflected and how much heat is trapped. Change either one, and the temperature changes.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K1.8, S1.3, K1.5]
+    type: mc
+    prompt: |-
+      Three friends want to help with climate change.
+
+      - Ana: “I’ll buy a new reusable bottle every week so I never use plastic.”
+      - Ben: “I’ll grow lettuce on our balcony and keep using the same bottle.”
+      - Cy: “It’s too big a problem. What one kid does can’t matter.”
+
+      Whose plan best fits the personal actions in the lesson?
+    choices:
+      - Ben’s, because it grows local food and reduces consumption.
+      - Ana’s, because reusable bottles are always good for the climate.
+      - Cy’s, because only governments and factories can make a difference.
+      - Nobody’s, because personal actions don’t affect climate at all.
+    answer: 0
+    feedback:
+      '1': Ana means well. But buying a new bottle every week is more consumption, not less. What does the lesson say about consumption?
+      '2': The lesson lists actions a person can take. Do they count for nothing?
+      '3': The lesson names personal actions that can help. Which friend is doing two of them?
+    hints:
+      - Check each plan against the three kinds of personal action.
+      - Does Ana’s plan **reduce** consumption?
+    solution:
+      - Ben grows food at home and keeps using what he has. That is buying local and **reducing consumption**.
+      - Ana’s idea seems right because reusable bottles help, but buying a new one every week means making more things.
+      - Cy’s doubt is common. Small personal actions add up when many people do them.

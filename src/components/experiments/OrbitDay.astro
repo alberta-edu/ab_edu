@@ -1,0 +1,77 @@
+---
+// Animated experiment: one day of orbits around Earth (not to scale). The International Space
+// Station, an artificial satellite about 400 km up, circles Earth more than 15 times. The Moon, a natural
+// satellite about 384 400 km away, moves only a small part of its 27-day orbit
+// (SCI6-OI5-GQ1-LO1, K2.2-K2.5, K2.7, S2.2). Sources: NASA (ISS orbit about 90 minutes; Moon 27.3 days).
+---
+<g6-orbit-day>
+  <svg class="sci-svg" viewBox="0 0 640 340" aria-hidden="true" data-od="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-od="live"></p>
+</g6-orbit-day>
+
+<style is:global>
+  g6-orbit-day { display: block; }
+  g6-orbit-day svg { background: #0f1830; }
+  .g6s-od-earth { fill: #3f7fd6; }
+  .g6s-od-land { fill: #4fae4f; }
+  .g6s-od-path { fill: none; stroke: #5b6890; stroke-width: 1.5; stroke-dasharray: 4 5; }
+  .g6s-od-moon { fill: #cfcac0; }
+  .g6s-od-iss { fill: #ffd84d; }
+  .g6s-od-text { fill: #f1eff7; font-size: 15px; font-weight: 700; }
+  .g6s-od-small { fill: #dfe7ff; font-size: 13px; }
+  .g6s-od-trail { fill: none; stroke: #cfcac0; stroke-width: 4; opacity: 0.6; }
+  @media (max-width: 40rem) { .g6s-od-text { font-size: 22px; } .g6s-od-small { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const CX = 175;
+  const CY = 175;
+  const ISS_R = 72;
+  const MOON_R = 150;
+  const ISS_PER_DAY = 24 * 60 / 92; // about 15.65 orbits in a day
+  const MOON_DAYS = 27.3;
+
+  class OrbitDay extends HTMLElement {
+    private day = 0; // 0 to 1
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-od="live"]')!;
+      live.textContent = '';
+      await tween(7000, (t) => { this.day = t; this.draw(); });
+      await wait(150);
+      live.textContent = 'In one day, the International Space Station circled Earth more than 15 times. The Moon moved only a small part of the way around its orbit.';
+    }
+
+    private draw() {
+      const issA = -Math.PI / 2 + this.day * ISS_PER_DAY * 2 * Math.PI;
+      const moonA0 = -Math.PI / 6;
+      const moonA = moonA0 + (this.day / MOON_DAYS) * 2 * Math.PI;
+      const laps = Math.floor(this.day * ISS_PER_DAY + 1e-6);
+      const hours = Math.round(this.day * 24);
+      const pt = (r: number, a: number) => `${(CX + Math.cos(a) * r).toFixed(1)},${(CY + Math.sin(a) * r).toFixed(1)}`;
+      const out = [
+        `<circle class="g6s-od-path" cx="${CX}" cy="${CY}" r="${ISS_R}"/>`,
+        `<circle class="g6s-od-path" cx="${CX}" cy="${CY}" r="${MOON_R}"/>`,
+        `<circle class="g6s-od-earth" cx="${CX}" cy="${CY}" r="44"/>`,
+        `<path class="g6s-od-land" d="M${CX - 20} ${CY - 26} q18 -8 26 6 q-4 16 -20 14 q-14 -6 -6 -20 Z M${CX + 6} ${CY + 8} q16 -2 18 12 q-10 14 -22 4 Z"/>`,
+        this.day > 0 ? `<path class="g6s-od-trail" d="M${pt(MOON_R, moonA0)} A${MOON_R} ${MOON_R} 0 0 1 ${pt(MOON_R, moonA)}"/>` : '',
+        `<circle class="g6s-od-moon" cx="${(CX + Math.cos(moonA) * MOON_R).toFixed(1)}" cy="${(CY + Math.sin(moonA) * MOON_R).toFixed(1)}" r="14"/>`,
+        `<rect class="g6s-od-iss" x="${(CX + Math.cos(issA) * ISS_R - 9).toFixed(1)}" y="${(CY + Math.sin(issA) * ISS_R - 3).toFixed(1)}" width="18" height="6" rx="1"/>`,
+        `<text class="g6s-od-text" x="355" y="60">Time: ${hours} h</text>`,
+        `<text class="g6s-od-text" x="355" y="110">Station laps: ${laps}</text>`,
+        `<text class="g6s-od-text" x="355" y="160">Moon laps: 0</text>`,
+        `<text class="g6s-od-small" x="355" y="210">■ Space station</text>`,
+        `<text class="g6s-od-small" x="355" y="240">● The Moon</text>`,
+        `<text class="g6s-od-small" x="355" y="320">Not to scale</text>`,
+      ];
+      this.querySelector('[data-od="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-orbit-day', OrbitDay);
+</script>

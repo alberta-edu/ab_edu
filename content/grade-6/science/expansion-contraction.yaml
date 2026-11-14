@@ -1,0 +1,424 @@
+id: expansion-contraction
+grade: 6
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI6-OI1-GQ1-LO1]
+order: 2
+title: Expansion, Contraction and Thermometers
+shortTitle: Expansion, contraction and thermometers
+summary: >-
+  Build a thermometer from a bottle and a straw, see why ice floats and protects pond life, and find out how
+  builders plan sidewalks, bridges and roads for heat and cold.
+
+bigIdea: |-
+  - Most matter **expands** when heated and **contracts** when cooled.
+  - A **liquid thermometer** uses that expansion and contraction to measure temperature on a scale.
+  - **Water is unusual.** It takes up more space as a solid, so ice is less dense than liquid water and floats.
+  - Builders plan for expansion and contraction in **sidewalks**, **bridges** and **roads**.
+
+lesson:
+  - title: 'Virtual experiment: a bottle thermometer'
+    blocks:
+      - type: experiment
+        covers: [K2.1, U2.1, S2.1, S2.2, K3.1, K3.2, U3.1]
+        title: Move a bottle thermometer from warm water to ice water
+        question: |-
+          - A bottle is full of coloured water. A clear straw goes through its sealed cap.
+          - The dashed line marks where the water in the straw starts.
+        animation: g6-bottle-thermo
+        predict:
+          choices:
+            - In warm water it rises. In ice water it falls.
+            - In warm water it falls. In ice water it rises.
+            - It stays at the line in both bowls.
+          answer: 0
+        observe: |-
+          - In the **warm water**, the coloured water **rose** up the straw.
+          - In the **ice water**, it **fell** below where it started.
+        explain: |-
+          - **Heating:** the particles move faster and the spaces between them grow, so the water **expands**. The only place it can go is up the straw.
+          - **Cooling:** the particles slow down and the spaces shrink, so the water **contracts** and the level drops.
+
+  - title: How a liquid thermometer works
+    blocks:
+      - type: figure
+        covers: [K2.1, S2.1, K2.2]
+        figure: >-
+          <svg viewBox="0 0 380 250" class="fig-svg" role="img" aria-label="A liquid thermometer with three labels: a scale in degrees Celsius beside the tube, a very narrow tube, and a bulb at the bottom that holds the liquid.">
+          <rect class="fig-rect" x="60" y="14" width="24" height="196" rx="12"/><rect fill="#d23b2e" x="67" y="96" width="10" height="120" rx="5"/><circle fill="#d23b2e" cx="72" cy="222" r="19"/>
+          <line class="sci-tick" x1="50" y1="40" x2="60" y2="40"/><line class="sci-tick" x1="50" y1="80" x2="60" y2="80"/><line class="sci-tick" x1="50" y1="120" x2="60" y2="120"/><line class="sci-tick" x1="50" y1="160" x2="60" y2="160"/>
+          <text class="fig-small" x="46" y="44" text-anchor="end">30</text><text class="fig-small" x="46" y="84" text-anchor="end">20</text><text class="fig-small" x="46" y="124" text-anchor="end">10</text><text class="fig-small" x="46" y="164" text-anchor="end">0</text>
+          <line class="fig-arrow" x1="105" y1="60" x2="150" y2="60"/><text class="fig-label" x="156" y="66">Scale in °C</text>
+          <line class="fig-arrow" x1="84" y1="130" x2="150" y2="130"/><text class="fig-label" x="156" y="136">Very narrow tube</text>
+          <line class="fig-arrow" x1="94" y1="222" x2="150" y2="222"/><text class="fig-label" x="156" y="228">Bulb of liquid</text>
+          </svg>
+        caption: A liquid thermometer works just like the bottle and straw, but much smaller.
+      - type: example
+        covers: [S2.1, K2.1, U2.1]
+        title: What happens when it warms up
+        problem: A thermometer is carried from a cool basement to a sunny deck.
+        steps:
+          - The warm air heats the liquid in the bulb. Its particles move faster and spread apart.
+          - The liquid **expands**. The tube is very narrow, so even a small expansion pushes the liquid a long way up.
+          - You read the temperature on the **scale** in °C, beside the top of the liquid.
+        answer: When it cools, the liquid **contracts** and slides back down the tube.
+      - type: table
+        covers: [S2.2, K2.3, S2.3]
+        caption: Make your own scale for a bottle thermometer
+        headers: ['#', Step]
+        rows:
+          - ['1', 'Stand it in **ice water** and wait. Mark the level **0 °C**, the melting point of ice.']
+          - ['2', 'Stand it beside a real thermometer in warmer water. Mark that level with the temperature it reads.']
+          - ['3', 'Space more marks evenly between them. Now your tool measures temperature.']
+
+  - title: Safety with thermometers and hot water
+    blocks:
+      - type: table
+        covers: [S2.4]
+        headers: [Do this, Because]
+        rows:
+          - ['🧤 Let an adult handle **hot water**, and keep it away from table edges.', 'Hot water can burn skin.']
+          - ['🌡️ **Carry** a glass thermometer carefully, and **never stir** with it.', 'Glass breaks easily and leaves sharp pieces.']
+          - ['📏 Use a thermometer only for temperatures **on its scale**.', 'Too hot, and the liquid can push so far that the glass cracks.']
+          - ['🛑 If a thermometer breaks, **don’t touch it**. Tell an adult.', 'The glass is sharp, and the liquid inside may not be safe.']
+
+  - title: Most matter expands and contracts
+    blocks:
+      - type: compare
+        covers: [K3.1, K3.2, U3.1]
+        columns:
+          - title: Expansion 🔥
+            figure: { kind: particle-boxes, boxes: [liquid], labels: [Heated] }
+            body: |-
+              The typical response to **heating**. Particles move faster and spread apart, so the matter takes up
+              more space.
+          - title: Contraction ❄️
+            figure: { kind: particle-boxes, boxes: [solid], labels: [Cooled] }
+            body: |-
+              The typical response to **cooling**. Particles slow down and move closer, so the matter takes up less
+              space.
+      - type: table
+        covers: [K3.1, K3.2, U3.1, S3.3]
+        caption: You can see it happen
+        headers: [What you see, Why]
+        rows:
+          - ['A stuck metal jar lid loosens under hot water.', 'The metal lid expands more than the glass jar.']
+          - ['A balloon carried out into −20 °C air looks smaller.', 'The air inside contracts as it cools.']
+          - ['Power lines sag lower on a hot summer day.', 'The wires expand and get a little longer.']
+
+  - title: Water is unusual
+    blocks:
+      - type: compare
+        covers: [K3.3, K3.4, S3.1]
+        columns:
+          - title: Liquid water
+            body: Takes up **less** space. It is **denser** than ice.
+          - title: Solid ice
+            body: |-
+              Takes up **more** space, so it is **less dense**. A bottle filled to the top and frozen pushes its ice
+              up and out.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI1-GQ1-LO1#K2.11]
+        title: Remember from Grade 5
+        body: Something less dense than the fluid it is placed in will **float**. That is why ice floats on water.
+      - type: experiment
+        covers: [K3.5, K3.6, K3.4, S3.2]
+        title: A cold week at the pond
+        question: |-
+          - It is late fall. The pond is liquid water, and two fish swim in it.
+          - Over seven days, the air drops to −15 °C.
+        animation: g6-pond-freeze
+        predict:
+          choices:
+            - Ice forms at the top first.
+            - Ice forms at the bottom first.
+            - The whole pond freezes at once.
+          answer: 0
+        observe: |-
+          - Ice formed on the **surface** first, then grew thicker downward.
+          - **Liquid water** stayed below the ice, and the fish kept swimming.
+        explain: |-
+          - The surface touches the cold air, so it freezes when the water there drops below 0 °C.
+          - Ice is less dense than liquid water, so it **stays on top** instead of sinking.
+          - The sheet of ice **insulates** the water below. It keeps the cold air away, which protects the fish and other aquatic life.
+
+  - title: Building for heat and cold
+    blocks:
+      - type: table
+        covers: [K3.7, S3.3, U3.1]
+        caption: Alberta has hot summers and cold winters, so builders plan for expansion and contraction.
+        headers: [Structure, What builders do, Why]
+        rows:
+          - ['**Sidewalks**', 'Cut lines into the concrete every few metres.', 'The concrete expands and contracts. The lines let it crack neatly there, not across the middle.']
+          - ['**Bridges**', 'Leave **expansion joints**, gaps that often look like metal teeth.', 'The bridge gets a little longer in summer and shorter in winter. The gap leaves room.']
+          - ['**Roads**', 'Seal cracks quickly.', 'Water in a crack freezes and expands, pushing the crack wider. That can start a pothole.']
+      - type: callout
+        variant: mistake
+        covers: [K3.3, K3.1, U3.1]
+        title: Watch out for this
+        body: |-
+          - **Most** matter expands when heated, but water is the odd one out when it freezes. It expands as it turns to ice.
+          - Ice floats because it is **less dense**, not because it is lighter or full of air.
+
+keyTerms:
+  - term: Expansion
+    covers: [K3.1]
+    definition: When matter takes up more space. The typical response to heating.
+  - term: Contraction
+    covers: [K3.2]
+    definition: When matter takes up less space. The typical response to cooling.
+  - term: Liquid thermometer
+    covers: [K2.1, S2.1]
+    definition: A tool that measures temperature from how far a liquid expands or contracts up a narrow tube.
+  - term: Expansion joint
+    covers: [K3.7]
+    definition: A gap left in a bridge or other structure so it has room to expand and contract.
+  - term: Insulate
+    covers: [K3.6]
+    definition: To slow down heating or cooling. A sheet of ice insulates the water under it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: The red liquid in a thermometer on the window creeps **down** the tube during the evening. What is happening?
+    choices:
+      - The air is cooling, so the liquid contracts.
+      - The air is warming, so the liquid contracts.
+      - The air is cooling, so the liquid expands.
+      - Some liquid is leaking out of the bulb.
+    answer: 0
+    feedback:
+      '1': When the liquid contracts, it takes up less space. Is that what heating does?
+      '2': If the liquid expanded, it would take up more space. Which way would it move in the tube?
+      '3': The bulb and tube are sealed. What could make the same liquid take up less space?
+    hints:
+      - Going down the tube means the liquid takes up less space. What is that called?
+    solution:
+      - The liquid takes up less space, so it is **contracting**.
+      - Matter contracts when it cools, so the evening air is getting cooler.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K3.2, U3.1]
+    type: multi
+    prompt: Select **all** the examples of **contraction**.
+    choices:
+      - A balloon looks smaller after you carry it out into −20 °C air.
+      - A long bridge gets a little shorter on a cold night.
+      - The liquid in a thermometer moves down the tube as the room cools.
+      - A sidewalk gets a little longer on a hot afternoon.
+      - A balloon gets bigger as you blow more air into it.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Longer means it takes up more space. Is that contraction?
+      '4': The balloon got bigger because more air went in. Did anything get cooled?
+    hints:
+      - Contraction is taking up less space because of **cooling**. Check both parts for each one.
+    solution:
+      - The balloon, the bridge and the thermometer liquid all take up less space because they cooled. That is contraction.
+      - The sidewalk expanded. The balloon you blew into got bigger because more air was added, not because of a temperature change.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K3.3, K3.4, S3.1]
+    type: mc
+    prompt: Why does an ice cube float in a glass of water?
+    choices:
+      - Water takes up more space when it freezes, so ice is less dense than liquid water.
+      - Ice is colder than the water around it, and cold things always float.
+      - Ice is full of tiny bubbles of air, and the air holds it up.
+      - Freezing removes some of the water’s mass, so ice is lighter.
+    answer: 0
+    feedback:
+      '1': A cold metal spoon sinks in warm water. Is being cold enough to float?
+      '2': Clear ice with no bubbles floats too. What is different about ice itself?
+      '3': Remember the melting jar. Did the mass change when the state changed?
+    hints:
+      - What happens to water’s volume when it freezes? What does that do to its density?
+    solution:
+      - Water is unusual. It takes up **more** space as a solid than as a liquid.
+      - The same mass in more space means ice is **less dense** than liquid water, so it floats.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K3.1, U3.1, S3.3]
+    type: mc
+    prompt: |-
+      A big steel bridge has gaps at each end, covered by metal teeth that fit together like fingers. On a hot
+      July afternoon, what happens to the gaps?
+    choices:
+      - They get narrower, because the bridge expands into them.
+      - They get wider, because the bridge expands away from them.
+      - They stay the same, because steel is too strong to expand.
+      - They get wider, because the bridge contracts in the heat.
+    answer: 0
+    feedback:
+      '1': If the bridge gets longer, its ends move outward. Toward the gaps, or away?
+      '2': Strength doesn’t stop particles moving faster when they are heated. What does most matter do?
+      '3': What is the typical response of matter to heating?
+    hints:
+      - What does the bridge do when it is heated?
+      - If the bridge gets longer, where do its ends go?
+    solution:
+      - Heating makes the steel **expand**, so the bridge gets a little longer.
+      - Its ends push into the gaps, so the gaps get narrower. In winter the bridge contracts and the gaps get wider.
+      - That is why the gaps are there. Without them, the bridge would push against the land at each end.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S3.1, K3.4]
+    type: mc
+    prompt: Your class wants to show that **liquid water is denser than ice**. Which investigation shows it?
+    choices:
+      - Drop an ice cube into a glass of water and see whether it floats or sinks.
+      - Weigh one ice cube and then weigh a whole glass of water.
+      - Put a thermometer in ice water and read the temperature.
+      - Melt an ice cube in a sealed bag and weigh it before and after.
+    answer: 0
+    feedback:
+      '1': The glass of water is much bigger than the cube, so of course it is heavier. What has to be the same to compare densities by mass?
+      '2': That shows the temperature, which is useful, but does it compare how dense ice and water are?
+      '3': That shows mass stays the same during melting. Does it compare their densities?
+    hints:
+      - Think back to Grade 5. What are the ways to compare densities directly?
+    solution:
+      - Something less dense than the liquid it is placed in will float.
+      - So if ice floats in water, liquid water must be denser than ice.
+      - Weighing would work only if the ice and the water had the **same volume**.
+
+  - id: b3
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.1, K2.3]
+    type: number
+    prompt: |-
+      Leo builds a bottle thermometer. In **ice water**, the liquid reaches **3 cm** up the straw. Beside a real
+      thermometer reading **20 °C**, it reaches **9 cm**. It rises the same amount for each degree.
+
+      Where should Leo mark **10 °C**?
+    answer: 6
+    unit: cm
+    verify: (3 + 9) / 2
+    hints:
+      - What temperature is ice water? Mark that first.
+      - 10 °C is exactly halfway between which two marks?
+    solution:
+      - Ice water is at the melting point of ice, **0 °C**. So 0 °C is at 3 cm and 20 °C is at 9 cm.
+      - 10 °C is halfway between 0 °C and 20 °C, so its mark is halfway between 3 cm and 9 cm.
+      - That is **6 cm**.
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [S2.4]
+    type: multi
+    prompt: |-
+      Sam’s group is testing bottle thermometers. Select **all** the things they should change to be safe.
+    choices:
+      - Sam stirs the warm water with a glass thermometer.
+      - Mia leaves the kettle of hot water near the edge of the table.
+      - Ari puts a thermometer marked up to 50 °C into boiling water.
+      - Jo carries the glass thermometer carefully with both hands.
+      - Lee asks an adult to pour the hot water.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Carrying glass carefully is exactly what to do. Is anything unsafe here?
+      '4': Letting an adult handle hot water is a safe choice. Look for actions that could hurt someone.
+    hints:
+      - For each action, ask what could break, spill or burn.
+    solution:
+      - Stirring with a glass thermometer can snap it. A kettle near the edge can be knocked over.
+      - Boiling water is 100 °C, far past the top of a 50 °C scale, so the liquid could crack the glass.
+      - Jo and Lee are doing the safe thing.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [S3.2, K3.4, K3.5, K3.6]
+    type: investigation
+    prompt: |-
+      Imagine a strange world where water is like most matter: **solid water is denser than liquid water**.
+      Everything else is the same. Winter comes to a pond full of fish.
+    parts:
+      - type: mc
+        prompt: The surface still freezes first, because it touches the cold air. What does that new ice do?
+        choices:
+          - It sinks to the bottom of the pond.
+          - It floats on top, as ice does on Earth.
+          - It hangs in the middle of the pond.
+        answer: 0
+        feedback:
+          '1': On Earth ice floats because it is less dense than liquid water. Is that true in this world?
+          '2': Something denser than the fluid around it doesn’t stay put. Where does it go?
+        hints:
+          - Is this ice more or less dense than the water around it?
+        solution:
+          - In this world the ice is denser than the liquid water, so it **sinks**.
+      - type: mc
+        prompt: The cold weather goes on for weeks. Where does the ice build up?
+        choices:
+          - From the bottom up, as each new layer sinks
+          - As a thick sheet across the top
+          - Only around the edges of the pond
+        answer: 0
+        feedback:
+          '1': A thick sheet would need the ice to stay on top. What did you find in part 1?
+          '2': New ice keeps forming across the whole surface. Where does each layer end up?
+        hints:
+          - Each new layer of surface ice does the same thing as the first one.
+        solution:
+          - Each new layer forms at the surface and sinks, so the ice piles up **from the bottom**.
+          - The surface keeps meeting the cold air, so it never gets an ice sheet to protect it.
+      - type: mc
+        prompt: What happens to the fish by the end of a long, cold winter?
+        choices:
+          - They may run out of liquid water, because the pond can freeze solid.
+          - They are fine, because the ice at the bottom keeps them warm.
+          - They are fine, because the water at the top never freezes.
+        answer: 0
+        feedback:
+          '1': Fish need liquid water to swim in. Is the ice on the bottom making more room for them, or less?
+          '2': What did part 2 say about the surface meeting the cold air?
+        hints:
+          - On Earth, what protects the water under a frozen pond?
+        solution:
+          - With no ice sheet on top, nothing insulates the water from the cold air.
+          - The ice grows up from the bottom until the pond can freeze solid, leaving no liquid water for fish.
+    wrapUp: Water’s unusual property, being less dense as a solid, is what lets a frozen pond keep liquid water, and life, underneath.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [S2.1, K2.1, S2.2]
+    type: mc
+    prompt: |-
+      Ravi builds a thermometer from a jar of coloured water. Instead of a straw, he pushes a **wide** tube through
+      the lid. He moves it from ice water to warm water, but the level **hardly moves**. Why?
+    choices:
+      - The water expands the same small amount, but a wide tube spreads it out, so the level barely rises.
+      - The wide tube lets the heat escape out of the top, so the water inside never gets warm.
+      - Water can only expand inside a very narrow tube, so in a wide tube it stays the same size.
+      - The wide tube holds a lot of air, and the air pushes the water back down into the jar.
+    answer: 0
+    feedback:
+      '1': The jar is sitting in the warm water. Where is the heat coming from?
+      '2': The water expands in the jar, not in the tube. Does a wide tube stop the particles moving faster?
+      '3': The same amount of air would be in a straw too. What is different about where the expanded water goes?
+    hints:
+      - The jar of water expands by the same amount either way. Where does that extra water go?
+      - Picture pouring one spoonful of water into a straw, and one into a wide cup. Which rises higher?
+    solution:
+      - Heating makes the water in the jar expand by a small amount, whatever tube is on top.
+      - That extra water has to go up the tube. In a narrow straw, a little extra climbs a long way. In a wide tube, it spreads out and barely rises.
+      - That is why real thermometers use a **very narrow** tube.

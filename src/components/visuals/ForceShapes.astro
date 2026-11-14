@@ -1,0 +1,138 @@
+---
+// Internal forces in a foam bar (SCI6-OI2-GQ1-LO1, K1.1, K1.3, K1.4, K1.6, K1.8-K1.10, U1.1):
+// choose how two hands apply force from outside, and watch the internal force change the bar's
+// shape. Tension stretches, compression squashes, shear pushes parts opposite ways, torsion twists.
+import { mdInline } from '../../lib/render.ts';
+const MODES = {
+  tension: { label: 'Tension', say: 'Hands **pull** the ends apart. Inside the bar, **tension** stretches it longer and thinner.' },
+  compression: { label: 'Compression', say: 'Hands **push** the ends together. Inside the bar, **compression** squashes it shorter and fatter.' },
+  shear: { label: 'Shear', say: 'Hands push the top one way and the bottom the other way. **Shear** pushes the parts in opposite directions, so the bar bends. Push harder and it would break.' },
+  torsion: { label: 'Torsion', say: 'Hands turn the ends in **opposite** directions. Inside the bar, **torsion** twists it.' },
+};
+interface Props {
+  start?: keyof typeof MODES;
+}
+const { start = 'tension' } = Astro.props;
+const data = Object.fromEntries(Object.entries(MODES).map(([k, m]) => [k, { label: m.label, say: mdInline(m.say) }]));
+---
+<g6-force-shapes data-start={start} data-modes={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a force">
+    {Object.entries(MODES).map(([k, m]) => <button type="button" data-mode={k} aria-pressed={String(k === start)}>{m.label}</button>)}
+  </div>
+  <svg class="sci-svg g6s-fsh-svg" viewBox="0 0 600 260" role="img" aria-label="A foam bar changing shape" data-fsh="svg"></svg>
+  <p class="sci-say" aria-live="polite" data-fsh="say" set:html={data[start].say}></p>
+  <button type="button" class="btn btn--ghost btn--small" data-fsh="again">↺ Apply it again</button>
+</g6-force-shapes>
+
+<style is:global>
+  g6-force-shapes { display: grid; gap: 0.6rem; }
+  .g6s-fsh-svg { background: var(--surface-2); }
+  .g6s-fsh-bar { fill: #f2c94c; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+  .g6s-fsh-back { fill: #c99a1e; }
+  .g6s-fsh-grid { fill: none; stroke: color-mix(in srgb, var(--ink) 45%, transparent); stroke-width: 1.5; }
+  .g6s-fsh-edge { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+  .g6s-fsh-ghost { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 5; }
+  .g6s-fsh-arrow { fill: none; stroke: var(--math); stroke-width: 5; stroke-linecap: round; }
+  .g6s-fsh-head { fill: var(--math); }
+  .g6s-fsh-label { fill: var(--math); font-size: 15px; font-weight: 700; }
+  g6-force-shapes [data-fsh="again"] { justify-self: start; }
+  @media (max-width: 40rem) { .g6s-fsh-label { font-size: 22px; } }
+</style>
+
+<script>
+  import { tween } from '../experiments/anim.ts';
+
+  type Mode = 'tension' | 'compression' | 'shear' | 'torsion';
+  const CX = 300;
+  const CY = 120;
+  const W = 280;
+  const H = 80;
+
+  /** Where a point (u across, v down, both 0 to 1) of the bar goes when a force of amount k acts. */
+  function at(mode: Mode, u: number, v: number, k: number): [number, number] {
+    let x = CX + (u - 0.5) * W;
+    let y = CY + (v - 0.5) * H;
+    if (mode === 'tension') { x = CX + (u - 0.5) * W * (1 + 0.3 * k); y = CY + (v - 0.5) * H * (1 - 0.25 * k); }
+    if (mode === 'compression') { x = CX + (u - 0.5) * W * (1 - 0.28 * k); y = CY + (v - 0.5) * H * (1 + 0.3 * k); }
+    if (mode === 'shear') x += (0.5 - v) * 90 * k;
+    if (mode === 'torsion') y = CY + (v - 0.5) * H * Math.cos(Math.PI * u * k);
+    return [x, y];
+  }
+
+  const pt = (p: [number, number]) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+
+  const arrow = (x1: number, y1: number, x2: number, y2: number) => {
+    const a = Math.atan2(y2 - y1, x2 - x1);
+    const h = (d: number) => `${(x2 + Math.cos(a + d) * 14).toFixed(1)},${(y2 + Math.sin(a + d) * 14).toFixed(1)}`;
+    return `<line class="g6s-fsh-arrow" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><path class="g6s-fsh-head" d="M${(x2 + Math.cos(a) * 6).toFixed(1)},${(y2 + Math.sin(a) * 6).toFixed(1)} L${h(2.6)} L${h(-2.6)} Z"/>`;
+  };
+
+  class ForceShapes extends HTMLElement {
+    private mode: Mode = 'tension';
+    private k = 0;
+    private modes!: Record<Mode, { label: string; say: string }>;
+
+    connectedCallback() {
+      this.modes = JSON.parse(this.dataset.modes!);
+      this.mode = this.dataset.start as Mode;
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) => b.addEventListener('click', () => this.choose(b.dataset.mode as Mode)));
+      this.querySelector('[data-fsh="again"]')!.addEventListener('click', () => this.choose(this.mode));
+      this.k = 1;
+      this.draw();
+    }
+
+    private async choose(m: Mode) {
+      this.mode = m;
+      this.querySelectorAll('[data-mode]').forEach((b) => b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.mode === m)));
+      this.querySelector('[data-fsh="say"]')!.innerHTML = this.modes[m].say;
+      this.querySelector('[data-fsh="svg"]')!.setAttribute('aria-label', `A foam bar under ${this.modes[m].label.toLowerCase()}`);
+      await tween(1200, (t) => {
+        this.k = t < 0.15 ? 0 : (t - 0.15) / 0.85;
+        this.draw();
+      });
+    }
+
+    private draw() {
+      const m = this.mode;
+      const k = this.k;
+      const out: string[] = [`<rect class="g6s-fsh-ghost" x="${CX - W / 2}" y="${CY - H / 2}" width="${W}" height="${H}" rx="4"/>`];
+      const N = 24;
+      const line = (v: number) => Array.from({ length: N + 1 }, (_, i) => pt(at(m, i / N, v, k))).join(' L');
+      if (m === 'torsion') {
+        // A twisted ribbon: each slice shows its front (light) or back (dark) face.
+        for (let i = 0; i < N; i++) {
+          const u0 = i / N;
+          const u1 = (i + 1) / N;
+          const front = Math.cos(Math.PI * ((u0 + u1) / 2) * k) >= 0;
+          out.push(`<path class="${front ? 'g6s-fsh-bar' : 'g6s-fsh-back'}" style="stroke-width:0" d="M${pt(at(m, u0, 0, k))} L${pt(at(m, u1, 0, k))} L${pt(at(m, u1, 1, k))} L${pt(at(m, u0, 1, k))} Z"/>`);
+        }
+        out.push(`<path class="g6s-fsh-edge" d="M${line(0)}"/>`, `<path class="g6s-fsh-edge" d="M${line(1)}"/>`, `<path class="g6s-fsh-grid" d="M${line(0.5)}"/>`);
+        // Curved arrows: the ends turn in opposite directions.
+        const L = CX - W / 2 - 30;
+        const R = CX + W / 2 + 30;
+        out.push(`<path class="g6s-fsh-arrow" d="M${L} ${CY + 46} A 22 46 0 0 1 ${L} ${CY - 46}"/><path class="g6s-fsh-head" d="M${L + 4} ${CY - 54} l-14 4 l10 11 Z"/>`);
+        out.push(`<path class="g6s-fsh-arrow" d="M${R} ${CY + 46} A 22 46 0 0 0 ${R} ${CY - 46}"/><path class="g6s-fsh-head" d="M${R - 4} ${CY - 54} l14 4 l-10 11 Z"/>`);
+      } else {
+        const back = Array.from({ length: N + 1 }, (_, i) => pt(at(m, 1 - i / N, 1, k))).join(' L');
+        out.push(`<path class="g6s-fsh-bar" d="M${line(0)} L${back} Z"/>`);
+        for (let c = 1; c < 6; c++) {
+          const [p, q] = [at(m, c / 6, 0, k), at(m, c / 6, 1, k)];
+          out.push(`<line class="g6s-fsh-grid" x1="${p[0].toFixed(1)}" y1="${p[1].toFixed(1)}" x2="${q[0].toFixed(1)}" y2="${q[1].toFixed(1)}"/>`);
+        }
+        out.push(`<path class="g6s-fsh-grid" d="M${line(0.5)}"/>`);
+        const [lx] = at(m, 0, 0.5, k);
+        const [rx] = at(m, 1, 0.5, k);
+        if (m === 'tension') out.push(arrow(lx - 10, CY, lx - 70, CY), arrow(rx + 10, CY, rx + 70, CY));
+        if (m === 'compression') out.push(arrow(lx - 80, CY, lx - 18, CY), arrow(rx + 80, CY, rx + 18, CY));
+        if (m === 'shear') {
+          const [tx, ty] = at(m, 0.5, 0, k);
+          const [bx, by] = at(m, 0.5, 1, k);
+          out.push(arrow(tx - 60, ty - 24, tx + 40, ty - 24), arrow(bx + 60, by + 24, bx - 40, by + 24));
+        }
+      }
+      out.push(`<text class="g6s-fsh-label" x="${CX}" y="${CY + 125}" text-anchor="middle">Blue arrows: applied forces from outside</text>`);
+      this.querySelector('[data-fsh="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-force-shapes', ForceShapes);
+</script>

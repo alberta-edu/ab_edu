@@ -1,0 +1,102 @@
+---
+// Animated experiment: two tubes of pondweed in water. One sits under a lamp, the other in a dark
+// box; everything else is the same. Only the lit pondweed gives off bubbles of gas, which collect
+// at the top of its tube. A glowing splint placed in the gas bursts into flame, showing it is
+// oxygen (SCI6-OI4-GQ1-LO1, K2.1, K2.4, K2.5, S2.2, S2.3).
+---
+<g6-pondweed>
+  <svg class="sci-svg" viewBox="0 0 640 340" aria-hidden="true" data-pw="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-pw="live"></p>
+</g6-pondweed>
+
+<style is:global>
+  g6-pondweed { display: block; }
+  g6-pondweed svg { background: var(--surface-2); }
+  .g6s-pw-weed { fill: none; stroke: #2f8f3a; stroke-width: 4; stroke-linecap: round; }
+  .g6s-pw-leaf { fill: #4fae4f; }
+  .g6s-pw-bubble { fill: var(--surface); stroke: var(--math); stroke-width: 1.5; }
+  .g6s-pw-gas { fill: color-mix(in srgb, var(--surface) 80%, transparent); stroke: var(--math); stroke-width: 1; }
+  .g6s-pw-lamp { fill: var(--ink-3); }
+  .g6s-pw-light { fill: #ffd84d; opacity: 0.35; }
+  .g6s-pw-bulb { fill: #ffd84d; }
+  .g6s-pw-box { fill: #2a2a33; opacity: 0.85; }
+  .g6s-pw-splint { stroke: #a8743d; stroke-width: 5; stroke-linecap: round; }
+  .g6s-pw-ember { fill: #e5484d; }
+  .g6s-pw-flame { fill: #f2b01e; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const TUBES = [{ x: 180, lit: true }, { x: 460, lit: false }];
+  const TOP = 70;
+  const BOTTOM = 270;
+
+  class Pondweed extends HTMLElement {
+    private t = 0;
+    private gas = 0; // height of the gas pocket in the lit tube
+    private splint = -1; // -1 = no splint; 0..1 = moving in; 1 = in the gas
+    private seeds = Array.from({ length: 10 }, (_, i) => [Math.random() * 30 - 15, i / 10]);
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-pw="live"]')!;
+      live.textContent = '';
+      this.gas = 0; this.splint = -1;
+      await tween(5000, (t) => { this.t = t * 5; this.gas = 36 * t; this.draw(); });
+      await tween(1200, (t) => { this.splint = t; this.draw(); });
+      await wait(800);
+      live.textContent = 'Bubbles of gas rose only from the pondweed in the light and collected at the top of its tube. The pondweed in the dark gave off no bubbles. A glowing splint burst into flame in the collected gas, so the gas is oxygen.';
+    }
+
+    private weed(x: number) {
+      const out = [`<path class="g6s-pw-weed" d="M${x} ${BOTTOM - 6} Q${x - 10} ${BOTTOM - 70} ${x + 4} ${BOTTOM - 130}"/>`];
+      for (let i = 0; i < 6; i++) {
+        const y = BOTTOM - 20 - i * 20;
+        out.push(`<ellipse class="g6s-pw-leaf" cx="${x - 12}" cy="${y}" rx="10" ry="4" transform="rotate(-25 ${x - 12} ${y})"/><ellipse class="g6s-pw-leaf" cx="${x + 12}" cy="${y - 6}" rx="10" ry="4" transform="rotate(25 ${x + 12} ${y - 6})"/>`);
+      }
+      return out.join('');
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (const tb of TUBES) {
+        const x = tb.x;
+        if (tb.lit) {
+          out.push(`<path class="g6s-pw-light" d="M${x - 130} 30 L${x - 30} ${TOP} L${x - 30} ${BOTTOM} Z"/>`);
+          out.push(`<rect class="g6s-pw-lamp" x="${x - 170}" y="16" width="40" height="22" rx="4"/><circle class="g6s-pw-bulb" cx="${x - 130}" cy="34" r="10"/>`);
+          out.push(`<text class="sci-text" x="${x}" y="${BOTTOM + 50}" text-anchor="middle">In the light</text>`);
+        } else {
+          out.push(`<text class="sci-text" x="${x}" y="${BOTTOM + 50}" text-anchor="middle">In a dark box</text>`);
+        }
+        out.push(`<rect class="sci-water" x="${x - 40}" y="${TOP}" width="80" height="${BOTTOM - TOP}"/>`);
+        if (tb.lit && this.gas > 0.5) out.push(`<rect class="g6s-pw-gas" x="${x - 39}" y="${TOP}" width="78" height="${this.gas.toFixed(1)}"/>`);
+        out.push(this.weed(x));
+        if (tb.lit && this.t > 0) {
+          for (const [dx, ph] of this.seeds) {
+            const p = (this.t * 0.9 + ph) % 1;
+            const y = BOTTOM - 130 - p * (BOTTOM - 130 - TOP - this.gas);
+            out.push(`<circle class="g6s-pw-bubble" cx="${(x + dx + Math.sin(p * 9) * 3).toFixed(1)}" cy="${y.toFixed(1)}" r="${(3 + p * 2).toFixed(1)}"/>`);
+          }
+        }
+        out.push(`<path class="sci-glass" d="M${x - 40} ${BOTTOM} V${TOP} H${x + 40} V${BOTTOM}"/>`);
+        out.push(`<path class="sci-glass" d="M${x - 70} ${BOTTOM - 40} V${BOTTOM + 14} H${x + 70} V${BOTTOM - 40}"/>`);
+        if (!tb.lit) out.push(`<rect class="g6s-pw-box" x="${x - 90}" y="${TOP - 30}" width="180" height="${BOTTOM - TOP + 60}" rx="6" opacity="${this.t > 0 ? 0.55 : 0.85}"/>`);
+      }
+      if (this.gas > 30) out.push(`<text class="sci-small" x="${TUBES[0].x - 46}" y="${TOP + 22}" text-anchor="end">gas</text>`);
+      if (this.splint >= 0) {
+        // A glowing splint comes in from the right, toward the top of the lit tube.
+        const x = TUBES[0].x;
+        const tip = x + 200 - 190 * this.splint;
+        out.push(`<line class="g6s-pw-splint" x1="${tip + 90}" y1="${TOP + 16}" x2="${tip}" y2="${TOP + 16}"/>`);
+        if (this.splint < 1) out.push(`<circle class="g6s-pw-ember" cx="${tip}" cy="${TOP + 16}" r="5"/>`);
+        else out.push(`<path class="g6s-pw-flame" d="M${tip} ${TOP + 22} q-12 -10 0 -30 q12 20 0 30 Z"/><text class="sci-text" x="${x}" y="${TOP - 22}" text-anchor="middle">bursts into flame!</text>`);
+      }
+      this.querySelector('[data-pw="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-pondweed', Pondweed);
+</script>

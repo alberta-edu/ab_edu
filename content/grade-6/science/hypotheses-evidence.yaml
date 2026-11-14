@@ -1,0 +1,379 @@
+id: hypotheses-evidence
+grade: 6
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI6-OI7-GQ1-LO1]
+order: 16
+title: Hypotheses, Evidence and Explanations
+shortTitle: Hypotheses and evidence
+summary: >-
+  Test a hypothesis about the Moon’s phases with a model, sort testable ideas from untestable ones, and judge
+  which evidence you can trust.
+
+bigIdea: |-
+  - A **hypothesis** is a proposed scientific explanation, made **before** an investigation and based on what you already know.
+  - A scientific explanation must be **testable**: an investigation could support it or contradict it.
+  - **Evidence** supports or contradicts a hypothesis.
+  - Investigations done with **objectivity** and **accuracy** give trustworthy evidence.
+
+lesson:
+  - title: From question to explanation
+    blocks:
+      - type: table
+        covers: [K1.1, K1.3, K1.4, S1.1, U1.1]
+        headers: ['#', Step, Example]
+        rows:
+          - ['1', '**Notice** a natural phenomenon and ask a question.', 'Why does the Moon change shape?']
+          - ['2', 'Make a **hypothesis** using what you already know.', 'Maybe Earth’s shadow covers part of it.']
+          - ['3', '**Investigate** to collect evidence.', 'Use a model of the Sun, Earth and Moon.']
+          - ['4', 'Does the evidence **support** or **contradict** it?', 'Look at the model’s results.']
+          - ['5', 'Build a **scientific explanation** that fits the evidence.', 'We see different amounts of the Moon’s sunlit half.']
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI7-GQ1-LO1#K1.1]
+        title: Remember from Grade 5
+        body: '**Phenomena** are facts or events that can be observed.'
+
+  - title: 'Virtual experiment: test a hypothesis'
+    blocks:
+      - type: experiment
+        covers: [K1.2, K1.3, K2.1, K2.2, S1.2]
+        title: 'Hypothesis: Earth’s shadow causes the Moon’s phases'
+        question: |-
+          - If the hypothesis is right, the Moon should look partly dark **only** when it is in Earth’s shadow.
+          - The model shows the Sun, Earth, its shadow and the Moon from above. The right panel shows the Moon as seen from Earth.
+        animation: g6-moon-shadow
+        predict:
+          choices:
+            - The Moon looks half dark even when it is far from the shadow.
+            - The Moon looks dark only when it is inside the shadow.
+            - The Moon looks full all the way around.
+          answer: 0
+        observe: |-
+          - The Moon showed **every phase** as it went around Earth.
+          - At **first quarter**, it was far from Earth’s shadow, but it still looked **half dark**.
+        explain: |-
+          - The evidence **contradicts** the hypothesis. Something else must cause the phases.
+          - The Sun always lights half of the Moon. The phase is how much of that **sunlit half** we can see from Earth.
+          - The hypothesis was useful because it was **testable**. A test could prove it wrong, and it did.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI5-GQ1-LO1#K1.3, SCI5-OI5-GQ1-LO1#K1.2]
+        title: Remember from Grade 5
+        body: Moon phases have a predictable pattern. When the Moon does pass through Earth’s shadow, we see a **lunar eclipse**, not a phase.
+
+  - title: Testable or not?
+    blocks:
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: ✅ Testable
+            body: |-
+              - “Bean plants grow taller with more light.”
+              - Grow plants with more and less light, and measure them. The result could support it or contradict it.
+          - title: ❌ Not testable
+            body: |-
+              - “Invisible fairies help the plants, but they vanish if anyone looks.”
+              - No investigation could ever contradict it.
+      - type: visual
+        covers: [K1.2, S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Testable, icon: '✅' }
+            - { id: no, label: Not testable, icon: '❌' }
+          cards:
+            - { text: Salt makes ice melt faster., bin: yes, why: Put salt on one ice cube and not another and time them. }
+            - { text: My dog dreams about chasing squirrels., bin: no, why: Nobody can see or measure a dog’s dream. }
+            - { text: A ball dropped from higher bounces higher., bin: yes, why: Drop it from different heights and measure. }
+            - { text: Snowflakes are happy when they land., bin: no, why: There is no way to observe a snowflake’s feelings. }
+            - { text: Seeds sprout faster in warm soil than cold soil., bin: yes, why: Plant seeds in warm and cold soil and count the days. }
+        caption: Could an investigation support or contradict it?
+
+  - title: Explaining natural phenomena
+    blocks:
+      - type: table
+        covers: [K2.2, S2.1, S2.2]
+        headers: [Phenomenon, Observations and measurements, Scientific explanation]
+        rows:
+          - ['🌗 **Phases of the Moon**', 'The Moon’s shape each night for many months.', 'We see different amounts of the Moon’s sunlit half as it orbits Earth.']
+          - ['☀️ **Hours of daylight**', 'Sunrise and sunset times all year.', 'Earth’s tilt points each hemisphere toward the Sun for part of the year.']
+          - ['🌧️ **Amount of precipitation**', 'Rain gauge and snow measurements every day for years.', 'Precipitation depends on the water cycle and the climate where you live.']
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI5-GQ1-LO1#K1.5]
+        title: Remember from Grade 5
+        body: Longer and shorter days happen at different times of year in each hemisphere because of the way Earth tilts toward or away from the Sun.
+
+  - title: Evidence you can trust
+    blocks:
+      - type: compare
+        covers: [K2.3, U2.1]
+        columns:
+          - title: 🎯 Objectivity
+            body: Record what you **really observe**, not what you hope or expect. Your favourite plant doesn’t get extra centimetres.
+          - title: 📏 Accuracy
+            body: Use good tools carefully. **Measure** with a ruler instead of guessing, and repeat the measurement.
+      - type: table
+        covers: [S2.3, K2.3]
+        caption: Questions to ask about any evidence
+        headers: ['#', Question]
+        rows:
+          - ['1', 'Was it **measured** or just guessed?']
+          - ['2', 'How **many** observations, and over how long?']
+          - ['3', 'Who collected it, and could they have a **bias**?']
+          - ['4', 'Does other evidence from different sources **agree**?']
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI7-GQ1-LO1#K2.1]
+        title: Remember from Grade 5
+        body: '**Biases** are personal thoughts, feelings or expectations that influence an investigation.'
+
+keyTerms:
+  - term: Hypothesis
+    covers: [K1.3, K1.4]
+    definition: A proposed scientific explanation made before an investigation, based on what you already know.
+  - term: Testable
+    covers: [K1.2]
+    definition: Able to be checked by an investigation that could support or contradict it.
+  - term: Evidence
+    covers: [K2.1]
+    definition: Observations and measurements that support or contradict a hypothesis.
+  - term: Scientific explanation
+    covers: [K1.1]
+    definition: An explanation of a natural phenomenon that is based on investigation.
+  - term: Objectivity
+    covers: [K2.3]
+    definition: Recording what really happened, without letting your hopes or feelings change it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3]
+    type: mc
+    prompt: What is a **hypothesis**?
+    choices:
+      - A proposed explanation, made before an investigation
+      - The final answer, written after every test is done
+      - A list of the materials for an experiment
+      - A fact that has already been proven true forever
+    answer: 0
+    feedback:
+      '1': A hypothesis comes before the investigation. What is it at that point?
+      '2': Materials are part of planning. What does a hypothesis explain?
+      '3': A hypothesis hasn’t been tested yet. Can it be proven at that point?
+    hints:
+      - When in an investigation do you make a hypothesis?
+    solution:
+      - A hypothesis is a **proposed** scientific explanation, made **before** you investigate.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.2]
+    type: multi
+    prompt: Select **all** the ideas that are **testable**.
+    choices:
+      - Pucks slide farther on ice than on carpet.
+      - Bean plants grow faster with more light.
+      - The Moon secretly wants to be a planet.
+      - Hot water melts an ice cube faster than cold water.
+      - Unicorns exist, but they hide whenever anyone looks.
+    answer: [0, 1, 3]
+    feedback:
+      '2': How could you ever observe what the Moon wants?
+      '4': If they always hide, could any investigation contradict this idea?
+    hints:
+      - For each idea, ask if you could do an investigation that might prove it wrong.
+    solution:
+      - Pucks, plants and ice cubes can all be tested and measured.
+      - Wishes and creatures that always hide can’t be checked, so those ideas aren’t testable.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K2.1]
+    type: mc
+    prompt: |-
+      **Hypothesis:** Sugar dissolves faster in warm water than in cold water. **Result:** sugar disappeared in
+      30 seconds in warm water and in 2 minutes in cold water. What does the evidence do?
+    choices:
+      - It supports the hypothesis.
+      - It contradicts the hypothesis.
+      - It has nothing to do with the hypothesis.
+    answer: 0
+    feedback:
+      '1': Which water dissolved the sugar faster? Is that what the hypothesis said?
+      '2': The result is about sugar in warm and cold water. Is that the hypothesis?
+    hints:
+      - Compare the result with what the hypothesis predicted.
+    solution:
+      - The sugar dissolved faster in warm water, just as the hypothesis said. The evidence **supports** it.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S2.3, K2.3, K2.2]
+    type: mc
+    prompt: Which source gives the most trustworthy evidence about how much rain Calgary usually gets in June?
+    choices:
+      - Environment Canada’s rain gauge measurements, averaged over 30 years
+      - A neighbour who says, “It always pours in June”
+      - One photo of a puddle posted online last June
+      - A guess from someone who has never been to Calgary
+    answer: 0
+    feedback:
+      '1': Is that measured? How many years does one person’s feeling cover?
+      '2': One photo shows one day. How much of the picture does it give you?
+      '3': Is a guess an observation?
+    hints:
+      - Use the four questions. Measured? How many observations? Who collected it?
+    solution:
+      - The 30-year averages are **measured**, cover **many** years, and come from careful tools.
+      - The others are feelings, one moment, or a guess.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K2.3, U2.1]
+    type: mc
+    prompt: |-
+      Rosa grows two bean plants. She hopes the one she named Sprout will win. Each day she looks at both and
+      writes down which seems taller. She records Sprout as taller almost every day. What is the problem?
+    choices:
+      - Her evidence isn’t objective or accurate. She guessed by eye and her hopes could change what she wrote.
+      - She should have grown three plants, because two is never enough.
+      - She should have named both plants, so it would be fair.
+      - Nothing. Looking at plants every day is the best way to compare them.
+    answer: 0
+    feedback:
+      '1': More plants can help, but what is wrong with how she recorded them?
+      '2': Names don’t change how plants grow. What is the real problem with her records?
+      '3': Is “seems taller” a measurement?
+    hints:
+      - Did Rosa measure? And could her hopes affect what she wrote?
+    solution:
+      - She didn’t measure, so her records aren’t **accurate**. She wanted Sprout to win, so they may not be **objective**.
+      - Measuring both plants with a ruler each day would give trustworthy evidence.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K1.4, K2.2, S1.2]
+    type: mc
+    prompt: |-
+      Ali remembers from Grade 5 that Earth’s tilt points the northern hemisphere toward the Sun in June. Which
+      hypothesis is **based on** that knowledge?
+    choices:
+      - Edmonton gets more hours of daylight on June 21 than on December 21.
+      - Edmonton gets more snow in June than in December.
+      - The Moon is full every June 21.
+      - It rains in Edmonton every December 21.
+    answer: 0
+    feedback:
+      '1': Does tilt toward the Sun suggest more snow?
+      '2': Is Moon phase about Earth’s tilt?
+      '3': Does Ali’s knowledge say anything about rain on one day?
+    hints:
+      - What does tilting toward the Sun do to the length of the day?
+    solution:
+      - Tilting toward the Sun gives longer days. So Ali predicts more daylight in June.
+      - A good hypothesis builds on prior scientific knowledge, and it is testable with sunrise and sunset times.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: Jen’s idea is “Plants like music.” Which version turns it into a **testable** hypothesis?
+    choices:
+      - Bean plants that hear music for an hour a day grow taller in two weeks than the same kind of plants kept in silence.
+      - Plants enjoy music, but you can’t tell by looking at them.
+      - Some plants probably like some music sometimes.
+      - Plants like music because music is nice.
+    answer: 0
+    feedback:
+      '1': If you can’t tell, could any investigation contradict it?
+      '2': How would you know if this were wrong?
+      '3': This gives a reason, but what would you measure?
+    hints:
+      - A testable hypothesis says what to change and what to measure.
+    solution:
+      - The first version names what changes (music or silence) and what to measure (height after two weeks).
+      - An investigation could support it or contradict it, so it is **testable**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [K2.1, K2.2, S1.2, K1.2, S2.1]
+    type: investigation
+    prompt: |-
+      Max offers a hypothesis: “Summer days are longer because Earth is **closer to the Sun** in summer.” Let’s test it
+      with evidence.
+    parts:
+      - type: mc
+        prompt: If Max’s hypothesis is right, when should Earth be closest to the Sun, for Canada’s long summer days?
+        choices: [In June or July, In December or January, The distance never changes]
+        answer: 0
+        feedback:
+          '1': Canada’s longest days are in June. When would Max say Earth is closest?
+          '2': If the distance never changed, could it explain any change in daylight?
+        hints:
+          - Canada’s longest days are around June 21.
+        solution:
+          - Max’s idea predicts Earth is closest in **June or July**, when Canada has its longest days.
+      - type: mc
+        prompt: Astronomers measure that Earth is closest to the Sun in **early January**. What does this evidence do?
+        choices:
+          - It contradicts Max’s hypothesis.
+          - It supports Max’s hypothesis.
+          - It has nothing to do with it.
+        answer: 0
+        feedback:
+          '1': Max predicted June or July. Is early January the same?
+          '2': The evidence is about the distance Max talked about. Is it related?
+        hints:
+          - Compare the measurement with Max’s prediction.
+        solution:
+          - Max’s idea predicted June or July. The measurement says January, when Canada has its shortest days. The evidence **contradicts** it.
+      - type: text
+        prompt: Which scientific explanation from Grade 5 fits the evidence for longer summer days?
+        accept: [tilt, earth's tilt, earth’s tilt, the tilt, earths tilt, tilted, earth is tilted, axis, earth's axis, the tilt of earth]
+        hints:
+          - What does Earth do toward the Sun in June, for the northern hemisphere?
+        solution:
+          - Earth’s **tilt**. In June, the northern hemisphere is tilted toward the Sun, so days are longer.
+    wrapUp: A testable hypothesis can be contradicted by evidence. When it is, scientists look for an explanation that fits all the evidence.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K2.3, S2.3, S2.2, U2.1]
+    type: mc
+    prompt: |-
+      Two students test the hypothesis “Calgary gets more precipitation in June than in February.”
+
+      - **Sam** puts a rain gauge in his backyard for one June and one February.
+      - **Tia** uses Environment Canada’s averages, measured with standard gauges over 30 years.
+
+      Whose evidence is more trustworthy, and why?
+    choices:
+      - Tia’s, because it covers many years of accurate, objective measurements.
+      - Sam’s, because he collected it himself and saw it with his own eyes.
+      - Sam’s, because the newest evidence is always the most trustworthy.
+      - Neither, because precipitation can’t be measured.
+    answer: 0
+    feedback:
+      '1': Collecting it yourself is great practice. But how many Junes and Februaries did Sam measure?
+      '2': Is newer always better? What if this June was unusual?
+      '3': Rain gauges and snow measurements measure precipitation. Can it be measured?
+    hints:
+      - How many years does each student’s evidence cover?
+      - One unusual month could fool you. Which evidence would that affect more?
+    solution:
+      - Tia’s evidence covers **30 years**, measured carefully with standard tools. One odd month barely changes an average.
+      - Sam’s test is a good start, but one June and one February could be unusual. Repeating it for many years would make it stronger.

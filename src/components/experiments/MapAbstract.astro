@@ -1,0 +1,88 @@
+---
+// Animated experiment: abstraction. A busy picture of a neighbourhood becomes a simple bus route
+// map. Unneeded details (trees, cars, houses, side streets) are removed, the important information
+// (the stops, their order, the route) is kept, and the bendy road is generalized into a straight
+// line (SCI6-OI6-GQ1-LO1, K1.1, K1.3, U1.1, S1.1).
+---
+<g6-map-abstract>
+  <svg class="sci-svg" viewBox="0 0 640 320" aria-hidden="true" data-ma="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ma="live"></p>
+</g6-map-abstract>
+
+<style is:global>
+  g6-map-abstract { display: block; }
+  g6-map-abstract svg { background: color-mix(in srgb, var(--science) 12%, var(--surface)); }
+  .g6s-ma-street { fill: none; stroke: #b9b4a8; stroke-width: 14; stroke-linecap: round; stroke-linejoin: round; }
+  .g6s-ma-house { fill: #d9a58b; stroke: #8a5a44; stroke-width: 1.5; }
+  .g6s-ma-tree { fill: #3f9a40; }
+  .g6s-ma-car { fill: #4f7fd6; }
+  .g6s-ma-car2 { fill: #e5484d; }
+  .g6s-ma-park { fill: #8fd18a; }
+  .g6s-ma-route { fill: none; stroke: #e5793a; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+  .g6s-ma-stop { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
+  .g6s-ma-name { fill: var(--ink); font-size: 14px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+  @media (max-width: 40rem) { .g6s-ma-name { font-size: 20px; } }
+</style>
+
+<script>
+  import { tween, wait, ease, lerp } from './anim.ts';
+
+  // The bus route through the neighbourhood, and the same route as a straight line diagram.
+  const CURVY = [[70, 260], [110, 230], [160, 215], [215, 165], [270, 140], [330, 160], [400, 200], [450, 180], [500, 120], [560, 70]];
+  const STOP_AT = [0, 3, 6, 9];
+  const NAMES = ['School', 'Library', 'Arena', 'Park'];
+  const LINE = CURVY.map((_, i) => [80 + (i * 480) / (CURVY.length - 1), 175]);
+
+  // Houses, trees and cars, placed with a fixed pattern so the picture looks the same each time.
+  let seed = 11;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const HOUSES = Array.from({ length: 26 }, () => [20 + rnd() * 600, 20 + rnd() * 280]);
+  const TREES = Array.from({ length: 30 }, () => [20 + rnd() * 600, 20 + rnd() * 280]);
+  const CARS = [[140, 223], [300, 150], [470, 160], [380, 60], [250, 280]];
+  const SIDE = ['M20 100 Q200 80 380 60 T620 40', 'M250 320 Q260 200 300 20', 'M600 300 Q480 260 430 330', 'M20 300 Q120 300 250 280'];
+
+  class MapAbstract extends HTMLElement {
+    private t = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-ma="live"]')!;
+      live.textContent = '';
+      await tween(7000, (t) => { this.t = t; this.draw(); });
+      await wait(150);
+      live.textContent = 'Trees, cars, houses and side streets disappeared. The four stops, their order and the route stayed. The bendy road became a straight line.';
+    }
+
+    private draw() {
+      const fade = (a: number, b: number) => 1 - Math.min(1, Math.max(0, (this.t - a) / (b - a)));
+      const leafy = fade(0.05, 0.25);
+      const houses = fade(0.25, 0.45);
+      const streets = fade(0.45, 0.62);
+      const straight = ease(Math.min(1, Math.max(0, (this.t - 0.65) / 0.3)));
+      const pts = CURVY.map(([x, y], i) => [lerp(x, LINE[i][0], straight), lerp(y, LINE[i][1], straight)]);
+      const out: string[] = [];
+      if (streets > 0) {
+        out.push(`<g opacity="${streets.toFixed(2)}"><rect class="g6s-ma-park" x="470" y="230" width="120" height="70" rx="10"/>`);
+        for (const d of SIDE) out.push(`<path class="g6s-ma-street" d="${d}"/>`);
+        out.push(`<path class="g6s-ma-street" d="M${CURVY.map((p) => p.join(' ')).join(' L')}"/></g>`);
+      }
+      if (houses > 0) out.push(`<g opacity="${houses.toFixed(2)}">${HOUSES.map(([x, y]) => `<rect class="g6s-ma-house" x="${x.toFixed(0)}" y="${y.toFixed(0)}" width="16" height="13"/>`).join('')}</g>`);
+      if (leafy > 0) {
+        out.push(`<g opacity="${leafy.toFixed(2)}">${TREES.map(([x, y]) => `<circle class="g6s-ma-tree" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="7"/>`).join('')}`);
+        out.push(CARS.map(([x, y], i) => `<rect class="${i % 2 ? 'g6s-ma-car2' : 'g6s-ma-car'}" x="${x - 7}" y="${y - 4}" width="14" height="8" rx="2"/>`).join('') + '</g>');
+      }
+      out.push(`<path class="g6s-ma-route" d="M${pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(' L')}"/>`);
+      STOP_AT.forEach((i, n) => {
+        const [x, y] = pts[i];
+        out.push(`<circle class="g6s-ma-stop" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10"/>`);
+        out.push(`<text class="g6s-ma-name" x="${x.toFixed(1)}" y="${(y + (straight > 0.5 ? 34 : -16)).toFixed(1)}" text-anchor="middle">${n + 1}. ${NAMES[n]}</text>`);
+      });
+      out.push(`<text class="sci-text" x="320" y="${straight > 0.5 ? 70 : 316}" text-anchor="middle">${this.t >= 1 ? 'Bus route map' : this.t > 0 ? 'Removing details…' : 'The neighbourhood'}</text>`);
+      this.querySelector('[data-ma="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-map-abstract', MapAbstract);
+</script>

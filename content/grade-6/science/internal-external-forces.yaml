@@ -1,0 +1,366 @@
+id: internal-external-forces
+grade: 6
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI6-OI2-GQ1-LO1]
+order: 3
+title: External and Internal Forces
+shortTitle: External and internal forces
+summary: >-
+  Push blocks across ice, wood and carpet to see friction at work, then stretch, squash, shear and twist a
+  foam bar to see how outside forces cause forces inside an object.
+
+bigIdea: |-
+  - **External forces** act on an object from outside: **applied force**, **friction** and **elastic or spring force**.
+  - **Internal forces** act within an object: **tension**, **compression**, **shear** and **torsion**.
+  - External forces cause internal forces, and both can change an object’s **shape, size or position**.
+
+lesson:
+  - title: Forces from outside
+    blocks:
+      - type: table
+        covers: [K1.2, K1.4, K1.5, K1.7]
+        caption: Three external forces
+        headers: [External force, What it is, Example]
+        rows:
+          - ['✋ **Applied force**', 'A push or pull by a person or another object.', 'Your foot kicks a soccer ball.']
+          - ['🧱 **Friction**', 'Opposes movement when an object touches another object or a surface.', 'A sled slows down on a patch of gravel.']
+          - ['🌀 **Elastic or spring force**', 'Exerted by a stretched or squashed elastic object or spring.', 'A trampoline pushes you back up.']
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI2-GQ1-LO1#K1.1, SCI3-OI2-GQ1-LO1#K1.4]
+        title: Remember from Grade 3
+        body: A **force** is a push or a pull. Applied, friction, tension and elastic forces are all **contact forces**, between things that touch.
+
+  - title: 'Virtual experiment: the same push on three surfaces'
+    blocks:
+      - type: experiment
+        covers: [K1.2, K1.4, K1.5, S1.1, S1.2, U1.1]
+        title: Push three blocks across ice, wood and carpet
+        question: |-
+          - Three identical blocks each get the **same push**, an applied force.
+          - One slides on ice, one on a wood floor and one on carpet.
+        animation: g6-friction-slide
+        predict:
+          choices:
+            - The block on ice slides farthest.
+            - The block on carpet slides farthest.
+            - All three slide the same distance.
+          answer: 0
+        observe: |-
+          - The block on **ice** slid farthest.
+          - The block on the **wood floor** slid less far.
+          - The block on **carpet** stopped soonest.
+          - On every surface, **friction** pointed the opposite way to the movement.
+        explain: |-
+          - The push started each block moving. Then **friction** opposed the movement until the block stopped.
+          - The carpet gave the most friction, so it stopped its block soonest. Ice gave the least.
+
+  - title: Forces inside an object
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.3, K1.6, K1.8, K1.9, K1.10, U1.1]
+        component: g6-force-shapes
+        props: { start: tension }
+        caption: Choose a force. Hands push or pull from outside, and the bar changes shape because of the force inside it.
+      - type: table
+        covers: [K1.1, K1.6, K1.8, K1.9, K1.10]
+        caption: Four internal forces
+        headers: [Internal force, What it does, Example]
+        rows:
+          - ['**Tension**', 'Pulls and stretches. It is the force in a pulled string or rope.', 'The rope in a tug-of-war.']
+          - ['**Compression**', 'Squeezes, squashes or compacts.', 'A sponge squeezed in your fist.']
+          - ['**Shear**', 'Pushes parts of an object in opposite directions, so it bends or breaks.', 'Scissors cutting paper.']
+          - ['**Torsion**', 'Twists.', 'Wringing out a wet cloth.']
+
+  - title: Outside forces cause inside forces
+    blocks:
+      - type: example
+        covers: [K1.3, S1.2, K1.4, K1.5, K1.6, U1.1]
+        title: Pulling a sled
+        problem: Maya pulls her little brother across the snow on a sled, using a rope tied to the front.
+        steps:
+          - '**Applied force** (external): Maya’s hands pull on the rope.'
+          - '**Tension** (internal): that pull stretches the rope tight. The tension pulls the sled forward.'
+          - '**Friction** (external): the snow rubs on the sled’s bottom and opposes its movement.'
+        answer: Maya’s outside pull caused the tension inside the rope. Forces can change an object’s **position**, too.
+      - type: compare
+        covers: [K1.3, U1.1, K1.8, K1.10]
+        columns:
+          - title: Sitting on a stool
+            body: Your weight pushes down from outside. Inside the legs, **compression** squeezes them a tiny bit.
+          - title: Opening a jar
+            body: Your hands turn the lid and the jar opposite ways. Inside, **torsion** twists them.
+
+  - title: Testing forces safely
+    blocks:
+      - type: table
+        covers: [S1.3, S1.1]
+        headers: [Do this, Because]
+        rows:
+          - ['🥽 Wear **safety glasses** when stretching elastics or springs.', 'A stretched elastic or spring can snap or fly loose.']
+          - ['👉 Point stretched things **away** from people.', 'An elastic force can send them flying.']
+          - ['🐢 Add force **slowly**, a little at a time.', 'You can stop before something breaks.']
+          - ['✋ Keep fingers out of the way when **squashing** or **shearing**.', 'Compression and shear can pinch or cut.']
+      - type: callout
+        variant: mistake
+        covers: [K1.5, K1.2]
+        title: Watch out for this
+        body: Friction doesn’t only slow things down. It opposes **movement**, so it is also what lets your shoes grip the ground when you walk.
+
+keyTerms:
+  - term: External force
+    covers: [K1.2]
+    definition: A force that acts on an object from outside, such as an applied force, friction or a spring force.
+  - term: Internal force
+    covers: [K1.1]
+    definition: A force within an object, such as tension, compression, shear or torsion.
+  - term: Applied force
+    covers: [K1.4]
+    definition: A force exerted on an object by a person or another object.
+  - term: Friction
+    covers: [K1.5]
+    definition: A force that opposes the movement of objects that touch each other or a surface.
+  - term: Elastic or spring force
+    covers: [K1.7]
+    definition: The force from a stretched or squashed elastic object or spring.
+  - term: Tension
+    covers: [K1.6, K1.1]
+    definition: A pulling force that stretches, like the force in a pulled rope.
+  - term: Compression
+    covers: [K1.8]
+    definition: A force that squeezes, squashes or compacts an object.
+  - term: Shear
+    covers: [K1.9]
+    definition: A force that pushes parts of an object in opposite directions, so it bends or breaks.
+  - term: Torsion
+    covers: [K1.10]
+    definition: A force that twists an object.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.10, K1.1]
+    type: text
+    prompt: You wring out a wet cloth by turning its two ends in **opposite directions**. Which internal force is this?
+    accept: [torsion]
+    hints:
+      - Which internal force twists an object?
+    solution:
+      - Turning the ends opposite ways **twists** the cloth.
+      - A twisting force inside an object is **torsion**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.9]
+    type: mc
+    prompt: Which of these is mostly **shear**?
+    choices:
+      - Scissors cutting a strip of paper
+      - Squeezing a sponge in your fist
+      - Pulling a rope tight in tug-of-war
+      - Twisting the cap off a water bottle
+    answer: 0
+    feedback:
+      '1': The sponge gets squashed together from all sides. Which force squeezes?
+      '2': The rope gets stretched tight. Which force stretches?
+      '3': The cap gets twisted. Which force twists?
+    hints:
+      - Shear pushes parts of an object in **opposite directions**. Where does that happen?
+    solution:
+      - One scissor blade pushes the paper up while the other pushes it down, right beside it.
+      - Pushing parts of the paper in opposite directions until it breaks is **shear**.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.2, K1.4, K1.5, S1.2]
+    type: multi
+    prompt: A hockey stick hits a puck, and the puck slides across the ice and slows down. Select **all** the **external** forces on the puck.
+    choices:
+      - Applied force from the stick
+      - Friction from the ice
+      - Torsion
+      - Compression
+    answer: [0, 1]
+    feedback:
+      '2': Torsion is a twisting force inside an object. Is anything twisting the puck?
+      '3': Compression is an internal force. The question asks about forces from outside.
+    hints:
+      - External forces come from outside the puck. What touches the puck?
+    solution:
+      - The stick touches the puck and pushes it. That is an **applied force**.
+      - The ice touches the puck as it slides, and **friction** opposes its movement, so it slows down.
+      - Torsion and compression are internal forces.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.3, K1.6, U1.1]
+    type: mc
+    prompt: |-
+      In a tug-of-war, both teams pull harder and harder, and **snap**! The rope breaks in the middle. Which
+      explanation is best?
+    choices:
+      - The teams’ applied forces caused tension inside the rope, and the tension got too big.
+      - The teams’ applied forces caused torsion inside the rope, and the rope twisted apart.
+      - The rope had friction inside it, and the friction rubbed it in half.
+      - The teams’ pulling caused compression, and the rope got squashed thin.
+    answer: 0
+    feedback:
+      '1': Torsion twists. Were the teams twisting the rope, or pulling it?
+      '2': Friction is an external force where two things rub. What force is inside a pulled rope?
+      '3': Compression squeezes things together. Were the ends being pushed together or pulled apart?
+    hints:
+      - Start outside the rope. What were the teams doing to it?
+      - What internal force does that cause in a rope?
+    solution:
+      - The teams pulled on the rope from outside, with **applied forces**.
+      - Those external forces caused **tension**, a stretching force inside the rope.
+      - When the tension got bigger than the rope could hold, it broke.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.2, K1.4, K1.5, K1.6, K1.7]
+    type: multi
+    prompt: |-
+      Noor pulls a wagon full of library books by its handle. Halfway, the wagon bumps into a soft foam pad at the
+      door, which squashes and pushes the wagon back a little. Select **all** the forces in this story.
+    choices:
+      - An applied force from Noor
+      - Friction between the wheels and the ground
+      - An elastic force from the foam pad
+      - Torsion in the wagon’s handle
+    answer: [0, 1, 2]
+    feedback:
+      '3': Is Noor twisting the handle, or pulling it?
+    hints:
+      - Go through the story one moment at a time. What touches the wagon at each moment?
+    solution:
+      - Noor pulls the handle, an **applied force**.
+      - The wheels touch the ground, so **friction** opposes the movement.
+      - The squashed foam pad pushes back, an **elastic force**. Nothing twists the handle, so there is no torsion.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [S1.1, K1.5]
+    type: mc
+    prompt: |-
+      Kai tests friction. He gives a block a **gentle** push on tile, and it slides 120 cm. He gives it a **hard**
+      push on carpet, and it slides 80 cm. He says, “Tile and carpet have about the same friction.” What is wrong?
+    choices:
+      - He changed the push and the surface, so he can’t tell which one caused the difference.
+      - He should have used a heavier block, so it would slide farther on both.
+      - Carpet always has less friction than tile, so the numbers must be wrong.
+      - He should have measured in metres instead of centimetres.
+    answer: 0
+    feedback:
+      '1': A heavier block changes something else. Would that fix the problem with his test?
+      '2': In the virtual experiment, which surface stopped its block soonest?
+      '3': Changing the unit changes the numbers, not the result. Look at what he changed between tests.
+    hints:
+      - List everything that was different between the two tests.
+    solution:
+      - Kai changed **two** things, the push and the surface.
+      - A hard push on carpet could make up for its extra friction, so the distances look closer than they should.
+      - For a fair test, give the **same push** on each surface, as in the virtual experiment.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [S1.3, K1.7]
+    type: mc
+    prompt: Jess wants to find out how far a big spring can stretch before it stops springing back. Which plan is the safest?
+    choices:
+      - Wear safety glasses, point the spring away from people, and stretch it a little more each time.
+      - Stretch it as far as possible in one quick pull, so the test is over fast.
+      - Hold one end in her teeth so both hands can pull on the other end.
+      - Ask a friend to hold the other end close to their face to watch it closely.
+    answer: 0
+    feedback:
+      '1': A sudden pull can make the spring slip and fly. What would let her stop in time?
+      '2': If the spring slips, where would it snap back to?
+      '3': If the spring slips or snaps, where would it go?
+    hints:
+      - Think about what could go wrong if the spring slips. Who could it hit?
+    solution:
+      - A stretched spring exerts an elastic force. If it slips, it can fly back fast.
+      - Safety glasses protect eyes, pointing it away protects other people, and stretching a little at a time lets her stop before anything snaps.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.3, K1.6, K1.8, U1.1, S1.1]
+    type: investigation
+    prompt: |-
+      Ty draws evenly spaced lines along both sides of a straight foam pool noodle. Then he holds the ends and
+      bends it into a **U** shape.
+    parts:
+      - type: mc
+        prompt: On the **inside** of the U, the lines end up closer together. Which internal force squeezed them together?
+        choices: [Compression, Tension, Torsion]
+        answer: 0
+        feedback:
+          '1': Tension stretches. Did the lines move apart or closer together here?
+          '2': Torsion twists. Did Ty twist the noodle, or bend it?
+        hints:
+          - Closer together means the foam got squashed.
+        solution:
+          - The foam on the inside got squashed, so the lines moved closer. That is **compression**.
+      - type: mc
+        prompt: What happens to the lines on the **outside** of the U?
+        choices:
+          - They spread farther apart, because tension stretches that side.
+          - They also move closer together, because the whole noodle is squashed.
+          - They stay exactly the same, because only the inside changes.
+        answer: 0
+        feedback:
+          '1': The outside of the U is a longer curve than the inside. Could its foam be squashed shorter?
+          '2': The outside goes around a bigger curve. Can it stay the same length?
+        hints:
+          - Trace the outside curve with your finger. Is it longer or shorter than the straight noodle?
+        solution:
+          - The outside of the U is stretched into a longer curve, so its lines spread apart.
+          - Stretching inside an object is **tension**. One bend makes compression and tension at the same time.
+      - type: text
+        prompt: Ty caused both of those internal forces. What **external** force did he use?
+        accept: [applied, applied force, an applied force, push, pushing, pull, pulling, push and pull]
+        hints:
+          - What did Ty do with his hands, from outside the noodle?
+        solution:
+          - Ty’s hands pushed and pulled on the ends from outside. That is an **applied force**.
+          - His external force caused two internal forces, compression on the inside and tension on the outside.
+    wrapUp: One external force can cause more than one internal force. A single bend squashes one side and stretches the other.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.5, U1.1]
+    type: multi
+    prompt: |-
+      In a cartoon, a wizard switches **friction** off everywhere. Gravity still works, and everything else is the
+      same. Select **all** the things that would happen.
+    choices:
+      - A puck pushed across a flat rink would keep sliding without slowing down.
+      - Your shoes would slip out from under you when you tried to walk.
+      - Bike brakes would stop working, because the pads couldn’t grip the wheel.
+      - A ball dropped from your hand would float in the air.
+      - Rubber bands would stop springing back when stretched.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Gravity still works. Does dropping a ball need friction?
+      '4': That is an elastic force, not friction. Does a rubber band need to rub against anything to spring back?
+    hints:
+      - For each one, ask whether it depends on two things **rubbing** or touching as they move.
+      - Remember that friction opposes movement. What does that do for walking?
+    solution:
+      - With no friction, nothing opposes the puck’s movement, so it keeps sliding.
+      - Walking and braking both need friction. Your shoe pushes back on the ground and needs grip, and brake pads need grip on the wheel.
+      - Falling is caused by gravity, and springing back is an elastic force. Neither one needs friction.

@@ -1,0 +1,374 @@
+id: tracking-climate
+grade: 6
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI6-OI3-GQ1-LO1]
+order: 8
+title: Tracking Climate and Extreme Weather
+shortTitle: Tracking climate and extreme weather
+summary: >-
+  Follow a storm on weather radar, compare old and new measurements to spot climate change, and see how
+  Elders, Knowledge Keepers and scientists work together.
+
+bigIdea: |-
+  - Climate change is found by **observing and measuring** weather and the environment over **many years**.
+  - Climate evidence comes from **records**, **oral narratives** and **layers of ice** and earth.
+  - **Radar**, **weather satellites** and **computer modelling** help predict extreme weather.
+  - Elders, Knowledge Keepers and scientists **collaborate** to understand local climate.
+
+lesson:
+  - title: 'Virtual experiment: follow the storm'
+    blocks:
+      - type: experiment
+        covers: [K3.6, S3.3, K3.5]
+        title: Watch a storm on weather radar
+        question: |-
+          - A weather radar sweeps around and around, like a lighthouse beam.
+          - A storm appears west of three towns. Watch three sweeps.
+        animation: g6-radar
+        predict:
+          choices:
+            - The storm will reach Town B.
+            - The storm will reach Town A.
+            - The storm will reach Town C.
+            - You can’t tell where it will go.
+          answer: 0
+        observe: |-
+          - Each sweep showed the storm a little **farther along the same straight path**.
+          - Forecasters followed the pattern and **warned Town B**.
+          - The storm reached Town B.
+        explain: |-
+          - Radar finds storms and shows where they are moving.
+          - Comparing sweeps shows the pattern, so forecasters can **predict** and warn people before a storm arrives.
+
+  - title: Measuring change over many years
+    blocks:
+      - type: figure
+        covers: [K3.2, S3.1, U3.1]
+        figure: >-
+          <svg viewBox="0 0 420 240" class="fig-svg" role="img" aria-label="Bar graph of the smallest area of Arctic sea ice each September. 1979: about 7 million square kilometres. 2012: about 3.4. 2024: about 4.3.">
+          <line class="sci-tick" x1="70" y1="20" x2="70" y2="190"/><line class="sci-tick" x1="70" y1="190" x2="400" y2="190"/>
+          <text class="fig-small" x="62" y="194" text-anchor="end">0</text><text class="fig-small" x="62" y="124" text-anchor="end">4</text><text class="fig-small" x="62" y="54" text-anchor="end">8</text>
+          <rect class="fig-rect" x="100" y="67.5" width="70" height="122.5"/><rect class="fig-rect" x="200" y="130.5" width="70" height="59.5"/><rect class="fig-rect" x="300" y="114.75" width="70" height="75.25"/>
+          <text class="fig-label" x="135" y="60" text-anchor="middle">7.0</text><text class="fig-label" x="235" y="123" text-anchor="middle">3.4</text><text class="fig-label" x="335" y="107" text-anchor="middle">4.3</text>
+          <text class="fig-label" x="135" y="214" text-anchor="middle">1979</text><text class="fig-label" x="235" y="214" text-anchor="middle">2012</text><text class="fig-label" x="335" y="214" text-anchor="middle">2024</text>
+          <text class="fig-small" x="16" y="110" transform="rotate(-90 16 110)" text-anchor="middle">million km²</text>
+          </svg>
+        caption: 'Smallest area of Arctic sea ice each September, measured by satellite. Source: U.S. National Snow and Ice Data Center.'
+      - type: table
+        covers: [K3.1, K3.2, S3.1, U3.1]
+        caption: What scientists measure, year after year
+        headers: [Measurement, Kind]
+        rows:
+          - ['🌡️ **Temperature**. Canada’s average yearly temperature rose about 1.7 °C from 1948 to 2016.', 'Weather']
+          - ['🌧️ **Amount of precipitation** and ⛈️ **number of extreme weather events**', 'Weather']
+          - ['🌊 **Sea and ocean levels** and 🧊 **thickness and duration of sea ice**', 'Environment']
+          - ['🏔️ **Permafrost**, ground that stays frozen all year, and 🔥 **number of forest fires**', 'Environment']
+      - type: callout
+        variant: mistake
+        covers: [U3.1, K3.1]
+        title: One year isn’t a trend
+        body: The 2024 bar is taller than the 2012 bar, but both are far below 1979. Climate change shows up in measurements from **many points in time**, not just two.
+
+  - title: Where climate evidence comes from
+    blocks:
+      - type: compare
+        covers: [K3.3, K4.1]
+        columns:
+          - title: 📒 Recorded information
+            body: Weather stations write down temperature and precipitation every day. Toronto’s records go back to 1840.
+          - title: 🗣️ Oral narratives
+            body: Elders and Knowledge Keepers pass down what they and their families have seen on the land over generations.
+          - title: 🧊 Surface layers
+            body: Ice builds up in yearly layers. Ice drilled from Antarctica holds tiny bubbles of air from hundreds of thousands of years ago.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI3-GQ1-LO1#K1.6, SCI5-OI3-GQ1-LO1#K1.2]
+        title: Remember from Grade 5
+        body: Climate is the weather pattern over **at least 30 years**. First Nations, Métis and Inuit can provide long-term observations of climate for local context.
+
+  - title: Extreme weather around the world
+    blocks:
+      - type: table
+        covers: [K3.4, K3.5, S3.2]
+        headers: [Extreme weather event, Where, For example]
+        rows:
+          - ['🥵 **Heat wave**', 'On Earth', 'Lytton, British Columbia, reached 49.6 °C on June 29, 2021, Canada’s highest temperature on record.']
+          - ['🌀 **Hurricane**', 'On Earth', 'Forms over warm ocean water. Fiona reached Atlantic Canada in 2022 as a powerful storm.']
+          - ['🌧️ **Monsoon**', 'On Earth', 'India gets most of its year’s rain in the summer monsoon season.']
+          - ['🌪️ **Tornado**', 'In Canada', 'A tornado struck Edmonton on July 31, 1987.']
+          - ['❄️ **Blizzard**', 'In Canada', 'Strong winds and blowing snow on the Prairies can make it impossible to see.']
+          - ['🌊 **Torrential rain**', 'In Canada', 'Days of heavy rain in June 2013 flooded Calgary and much of southern Alberta.']
+          - ['🔥 **Wildfire**', 'In Canada', 'In May 2016, a wildfire forced everyone in Fort McMurray to leave.']
+      - type: table
+        covers: [K3.6, S3.3]
+        caption: Tools that predict extreme weather
+        headers: [Technology, What it does]
+        rows:
+          - ['📡 **Radar**', 'Finds rain, snow and storms nearby and shows where they are moving.']
+          - ['🛰️ **Weather satellites**', 'Take pictures of clouds and storms from space, even far out over the ocean.']
+          - ['💻 **Computer modelling**', 'Uses measurements to work out what the weather is likely to do next.']
+
+  - title: Working together
+    blocks:
+      - type: example
+        covers: [K4.1, K4.2, U4.1, S4.1]
+        title: 'SmartICE: knowledge and technology on the sea ice'
+        problem: In Nain, Nunatsiavut, Inuit travel on sea ice to hunt and fish. A run of dangerous winters made people look for new ways to stay safe.
+        steps:
+          - '**Inuit hunters** share where the ice is often risky, from years of travel on it.'
+          - '**Sensors** placed at those spots measure how thick the ice is.'
+          - The two kinds of knowledge go into **maps** that show thick and thin ice, so travellers can choose safer routes.
+        answer: Traditional knowledge chose **where** to measure. Technology added **how thick**. Together they show more than either alone.
+      - type: table
+        covers: [S4.2, K4.2, U4.1]
+        caption: Ideas for working together in your community
+        headers: ['#', Idea]
+        rows:
+          - ['1', 'Invite an Elder or Knowledge Keeper to share how the seasons have changed in their lifetime.']
+          - ['2', 'Compare their account with the weather records for the same place and years.']
+          - ['3', 'Share what you learn in a way that respects whose knowledge it is.']
+
+keyTerms:
+  - term: Extreme weather event
+    covers: [K3.4, K3.5]
+    definition: Weather far stronger than usual, such as a heat wave, tornado or wildfire.
+  - term: Permafrost
+    covers: [K3.2]
+    definition: Ground that stays frozen all year round.
+  - term: Oral narrative
+    covers: [K3.3]
+    definition: Knowledge and history shared by speaking, passed from one generation to the next.
+  - term: Radar
+    covers: [K3.6]
+    definition: A technology that finds rain, snow and storms and shows where they are moving.
+  - term: Computer modelling
+    covers: [K3.6]
+    definition: Using computers and measurements to work out what is likely to happen next.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K3.6, S3.3]
+    type: multi
+    prompt: Select **all** the technologies used to predict extreme weather.
+    choices: [Radar, Weather satellites, Computer modelling, Microscopes, Telescopes]
+    answer: [0, 1, 2]
+    feedback:
+      '3': Microscopes make tiny things look bigger. Do storms need that?
+      '4': Telescopes look at faraway objects in space. Do they track storms on Earth?
+    hints:
+      - Which tools look at the sky and the weather around Earth?
+    solution:
+      - Radar, weather satellites and computer modelling all help forecasters predict extreme weather.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K3.1, U3.1, S3.1]
+    type: mc
+    prompt: Which observation would best show that a town’s climate is changing?
+    choices:
+      - The date of the first fall frost, recorded every year for 60 years
+      - The temperature at noon today and at noon yesterday
+      - How hot it felt during one heat wave last summer
+      - The amount of rain from one big storm
+    answer: 0
+    feedback:
+      '1': Two days are weather. How long do you need to see climate?
+      '2': One heat wave is a single event. Does it show a pattern over time?
+      '3': One storm is weather. What would show a long-term pattern?
+    hints:
+      - Climate is about patterns over many years. Which choice covers the most time?
+    solution:
+      - Climate change is found through **long-term** observation. Sixty years of frost dates shows a pattern.
+      - The others are single days or single events, which are weather.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K3.3, K4.1]
+    type: multi
+    prompt: Select **all** the sources of climate observations.
+    choices:
+      - Daily records from weather stations
+      - An Elder’s account of how the lake froze when she was young
+      - Layers of ice drilled from Antarctica
+      - A guess about next winter
+    answer: [0, 1, 2]
+    feedback:
+      '3': A guess isn’t an observation. Has anyone seen next winter yet?
+    hints:
+      - An observation is something someone actually saw or measured.
+    solution:
+      - Recorded information, oral narratives and layers of ice are all real observations of the past.
+      - A guess about the future isn’t an observation.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S3.1, K3.2, U3.1]
+    type: mc
+    prompt: |-
+      Jo looks at the sea ice graph. “The ice was 3.4 million km² in 2012 and 4.3 in 2024. It’s growing back, so the
+      Arctic is fine now!” What is wrong with Jo’s thinking?
+    choices:
+      - Jo compared only two years. Both are far below 1979, and climate change shows over many years.
+      - Jo read the graph wrong. The 2024 bar is shorter than the 2012 bar.
+      - Sea ice can never grow back, so the 2024 number must be a mistake.
+      - Jo should have compared the ice in winter instead of September.
+    answer: 0
+    feedback:
+      '1': Check the graph again. Which number is bigger, 3.4 or 4.3?
+      '2': Sea ice freezes again every winter. Why would 2024 be wrong?
+      '3': Winter data would tell us something too, but what is the problem with Jo’s comparison?
+    hints:
+      - How many years did Jo compare? Where is 1979?
+    solution:
+      - Jo is right that 4.3 is more than 3.4. But two years can’t show a pattern.
+      - Both are far below the 7.0 in 1979. Changes in climate are found by comparing measurements from **many points in time**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S3.2, K3.4, K3.5]
+    type: mc
+    prompt: A student’s project says each place below had an extreme weather event. Which pair is **correct**?
+    choices:
+      - Fort McMurray, Alberta, and a wildfire
+      - Edmonton, Alberta, and a monsoon
+      - India and a blizzard every summer
+      - Calgary, Alberta, and a hurricane in 2013
+    answer: 0
+    feedback:
+      '1': Monsoons bring a season of heavy rain. Where in the lesson do they happen?
+      '2': A blizzard needs snow and cold. What does India’s summer bring instead?
+      '3': Calgary is far from any ocean. What flooded Calgary in 2013?
+    hints:
+      - Check each place against the extreme weather table.
+    solution:
+      - In May 2016, a wildfire forced everyone in Fort McMurray to leave.
+      - India’s summer brings the monsoon, and Calgary’s 2013 flood came from torrential rain.
+
+  - id: b3
+    level: 2
+    thinking: model
+    covers: [K3.6, S3.3]
+    type: number
+    prompt: |-
+      Radar shows a storm moving straight toward a town. On each sweep, 10 minutes apart, it is **20 km** closer.
+      Right now it is **60 km** away. How many minutes until it reaches the town, if it keeps the same pattern?
+    answer: 30
+    unit: minutes
+    verify: 60 / 20 * 10
+    hints:
+      - How many 20 km jumps fit into 60 km?
+      - Each jump takes 10 minutes.
+    solution:
+      - 60 km is three jumps of 20 km.
+      - Three jumps of 10 minutes each is **30 minutes**. That is time to warn people.
+
+  - id: b4
+    level: 2
+    thinking: perspective
+    covers: [S4.1, K4.2, U4.1]
+    type: mc
+    prompt: |-
+      An Elder says the creek near her community freezes about a month later than when she was a girl. A scientist
+      has 15 years of temperature data from a station 200 km away. How can they help each other most?
+    choices:
+      - Her memories reach further back and are from this exact place. His data adds measured numbers. Together they show more.
+      - The scientist’s data is a number, so it is right and her account can be ignored.
+      - Her account is from her own life, so the data can be ignored.
+      - They can’t help each other, because they used different methods.
+    answer: 0
+    feedback:
+      '1': Do his numbers come from the creek itself? How far back do they go?
+      '2': Her account covers this place over a long time. What could numbers add?
+      '3': Look at SmartICE. Did different methods help or get in the way?
+    hints:
+      - What does each person know that the other doesn’t?
+    solution:
+      - Her observations cover many decades at this exact creek. His measurements are precise, but shorter and from farther away.
+      - Each fills a gap in the other, like SmartICE’s hunters and sensors.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K3.1, K3.3, K4.1, K4.2, S4.2, U3.1]
+    type: investigation
+    prompt: |-
+      Your class wants to find out whether **spring is coming earlier** to your town. The town has written weather
+      records only from the last 20 years.
+    parts:
+      - type: mc
+        prompt: Which measurement would answer the question best?
+        choices:
+          - The date the river ice breaks up each spring
+          - The temperature on one day in April this year
+          - How many people go to the park in May
+        answer: 0
+        feedback:
+          '1': One day is weather. Can it show whether spring is coming earlier?
+          '2': Park visits depend on lots of things besides the season. What measures spring directly?
+        hints:
+          - You need something that marks the start of spring, every year.
+        solution:
+          - Ice break-up happens once each spring. Comparing the date over many years shows whether spring is coming earlier.
+      - type: mc
+        prompt: Twenty years isn’t very long. Where could you find observations from further back?
+        choices:
+          - Ask local Elders and Knowledge Keepers about break-up when they were young.
+          - Guess what the dates probably were before the records started.
+          - Use the dates from a town on the other side of the world.
+        answer: 0
+        feedback:
+          '1': A guess isn’t evidence. Who might remember?
+          '2': Would another place’s river tell you about yours?
+        hints:
+          - Climate observations come from records, oral narratives and surface layers. Which fits a river?
+        solution:
+          - Oral narratives from Elders and Knowledge Keepers can reach back many decades for this exact river.
+      - type: mc
+        prompt: An Elder remembers break-up in mid-May. The records show late April for most recent years. What is the best next step?
+        choices:
+          - Put both together, and ask more people and check other records, to see if the pattern holds.
+          - Throw out the Elder’s memory, because it isn’t written down.
+          - Throw out the records, because they are too new.
+        answer: 0
+        feedback:
+          '1': Oral narratives are a real source of climate observations. Why ignore them?
+          '2': The records are real measurements. Why ignore them?
+        hints:
+          - Look again at how SmartICE combined two kinds of knowledge.
+        solution:
+          - The two sources together suggest spring is coming earlier.
+          - Collecting more observations from both sources makes the evidence stronger.
+    wrapUp: To spot a change in climate, you need observations from different points in time, and the best picture often comes from many sources together.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K3.6, S3.3, K3.4]
+    type: multi
+    prompt: |-
+      A hurricane is forming far out over the Atlantic Ocean. Forecasters want to know whether it will reach Nova
+      Scotia in four days. Radar can only see storms within a few hundred kilometres. Select **all** the technologies
+      that will help most right now.
+    choices:
+      - Weather satellites, to see the storm far out over the ocean
+      - Computer modelling, to work out where it is likely to go
+      - Radar on the Nova Scotia coast, to see the storm today
+    answer: [0, 1]
+    feedback:
+      '2': Is the storm within a few hundred kilometres yet? When would radar be useful?
+    hints:
+      - Where is the storm now? Which tools can reach that far?
+      - Which tool can look days ahead?
+    solution:
+      - Satellites can see the storm from space, even far out over the ocean. Computer models use that information to predict its path days ahead.
+      - Radar becomes useful later, once the storm comes within range of the coast.

@@ -1,0 +1,369 @@
+id: photosynthesis
+grade: 6
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI6-OI4-GQ1-LO1]
+order: 10
+title: Photosynthesis
+shortTitle: Photosynthesis
+summary: >-
+  Shine a lamp on pondweed and collect the gas it gives off, see how plants use light to make sugar, and
+  find the starch that proves a leaf has been at work.
+
+bigIdea: |-
+  - In **photosynthesis**, plants use **light**, **water** and **carbon dioxide** to make **sugar** (glucose) and **oxygen**.
+  - **Chlorophyll** in plants collects the light.
+  - Plants and animals use the sugar for food and the oxygen for respiration.
+  - Released oxygen and stored **starch** show that a plant has been photosynthesizing.
+
+lesson:
+  - title: 'Virtual experiment: pondweed in the light and dark'
+    blocks:
+      - type: experiment
+        covers: [K2.1, K2.5, S2.2, S2.3, K2.4]
+        title: Pondweed under a lamp and in a dark box
+        question: |-
+          - Two tubes hold the same kind of pondweed in the same water, at the same temperature.
+          - One tube sits under a lamp. The other sits in a dark box.
+        animation: g6-pondweed
+        predict:
+          choices:
+            - Only the pondweed in the light gives off bubbles.
+            - Only the pondweed in the dark gives off bubbles.
+            - Both give off the same amount of bubbles.
+            - Neither gives off any bubbles.
+          answer: 0
+        observe: |-
+          - Bubbles rose **only** from the pondweed **in the light**. They collected as a gas at the top of the tube.
+          - The pondweed in the dark gave off **no bubbles**.
+          - A glowing splint **burst into flame** in the collected gas.
+        explain: |-
+          - The pondweed in the light was **photosynthesizing**. It released **oxygen** as bubbles.
+          - A glowing splint bursts into flame in oxygen, so that test showed the gas was oxygen.
+          - Only the light was different, so this **controlled experiment** shows plants need **light** for photosynthesis.
+
+  - title: How photosynthesis works
+    blocks:
+      - type: figure
+        covers: [K2.1, K2.4, S2.1]
+        figure: >-
+          <svg viewBox="0 0 440 230" class="fig-svg" role="img" aria-label="A leaf in the middle. Arrows go into it from light from the Sun, water from the roots, and carbon dioxide from the air. Arrows come out for sugar, the plant's food, and oxygen into the air.">
+          <circle cx="40" cy="40" r="22" fill="#f2b01e"/><text class="fig-small" x="40" y="80" text-anchor="middle">light</text>
+          <path d="M220 60 Q300 110 220 170 Q140 110 220 60 Z" fill="#4fae4f" stroke="#2f6f2a" stroke-width="3"/><line x1="220" y1="64" x2="220" y2="166" stroke="#2f6f2a" stroke-width="2"/>
+          <text class="fig-label" x="220" y="200" text-anchor="middle">Leaf (chlorophyll)</text>
+          <line class="fig-arrow" x1="64" y1="50" x2="170" y2="100"/><line class="fig-arrow" x1="60" y1="150" x2="170" y2="125"/><line class="fig-arrow" x1="60" y1="110" x2="170" y2="112"/>
+          <text class="fig-label" x="10" y="160">water</text><text class="fig-label" x="10" y="116">carbon dioxide</text>
+          <line class="fig-arrow" x1="270" y1="95" x2="370" y2="70"/><line class="fig-arrow" x1="270" y1="130" x2="370" y2="150"/>
+          <text class="fig-label" x="376" y="74">oxygen</text><text class="fig-label" x="376" y="155">sugar</text>
+          </svg>
+        caption: Light, water and carbon dioxide go in. Sugar and oxygen come out.
+      - type: table
+        covers: [K2.1, K2.4, S2.1]
+        headers: [Part, Where it comes from]
+        rows:
+          - ['☀️ **Light**', 'The Sun. **Chlorophyll**, the green substance in leaves, collects it.']
+          - ['💧 **Water**', 'The soil, pulled up through the roots and stem.']
+          - ['💨 **Carbon dioxide**', 'The air, through tiny openings in the leaves.']
+          - ['🍬 **Sugar (glucose)**', 'Made in the leaf. It is the plant’s food.']
+          - ['🫧 **Oxygen**', 'Made in the leaf and released into the air or water.']
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI4-GQ1-LO1#K2.3, SCI5-OI4-GQ1-LO1#K2.4]
+        title: Remember from Grade 5
+        body: '**Xylem** carries water from the roots to the rest of the plant. **Phloem** carries sugars from the leaves to the rest of the plant.'
+
+  - title: What happens to the sugar and oxygen
+    blocks:
+      - type: compare
+        covers: [K2.2, K2.3, K2.6, U2.1]
+        columns:
+          - title: Sugar
+            body: |-
+              - Plants use it to **grow** and stay alive.
+              - Animals get it by **eating** plants, or by eating animals that ate plants.
+              - Plants often **store** it as **starch**, like in a potato.
+          - title: Oxygen
+            body: |-
+              - Plants and animals use it for **respiration**.
+              - You breathe in oxygen that plants released.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI4-GQ1-LO1#K1.5]
+        title: Remember from Grade 5
+        body: The **respiratory system** exchanges oxygen and carbon dioxide.
+
+  - title: Proof that a leaf has been at work
+    blocks:
+      - type: figure
+        covers: [K2.5, K2.6, S2.2]
+        figure: >-
+          <svg viewBox="0 0 440 200" class="fig-svg" role="img" aria-label="Two drawings of the same leaf. Left: a strip of foil covers the middle of a leaf on a plant in sunlight. Right: after the starch test, the parts that got light are dark blue-black, and the strip that was covered is pale.">
+          <path d="M110 30 Q190 100 110 170 Q30 100 110 30 Z" fill="#4fae4f" stroke="#2f6f2a" stroke-width="3"/><rect x="40" y="84" width="140" height="30" fill="#c0c6cf" stroke="#6d7684" stroke-width="2"/>
+          <text class="fig-small" x="110" y="104" text-anchor="middle">foil</text><text class="fig-label" x="110" y="194" text-anchor="middle">2 days in sunlight</text>
+          <path d="M330 30 Q410 100 330 170 Q250 100 330 30 Z" fill="#1f2340" stroke="#2f6f2a" stroke-width="3"/><rect x="262" y="84" width="136" height="30" fill="#e8c77a"/>
+          <text class="fig-label" x="330" y="194" text-anchor="middle">After the starch test</text>
+          </svg>
+        caption: |-
+          - A starch test turns parts with **starch** dark blue-black.
+          - The covered strip got no light, so it made no sugar to store as starch.
+      - type: callout
+        variant: mistake
+        covers: [K2.1, K2.2, S2.1]
+        title: Watch out for this
+        body: Plants don’t get their food from the soil. They **make** their food, sugar, by photosynthesis. The soil gives them water and nutrients.
+
+keyTerms:
+  - term: Photosynthesis
+    covers: [K2.1]
+    definition: The process plants use to make sugar and oxygen from light, water and carbon dioxide.
+  - term: Chlorophyll
+    covers: [K2.4]
+    definition: The green substance in plants that collects the light needed for photosynthesis.
+  - term: Glucose
+    covers: [K2.1]
+    definition: A kind of sugar that plants make by photosynthesis. It is their food.
+  - term: Starch
+    covers: [K2.6]
+    definition: The form plants often store their sugar in.
+  - term: Respiration
+    covers: [K2.3]
+    definition: The process plants and animals use oxygen for.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: multi
+    prompt: Select **all** the things a plant **uses** in photosynthesis.
+    choices: [Light, Water, Carbon dioxide, Oxygen, Sugar]
+    answer: [0, 1, 2]
+    feedback:
+      '3': Look at the leaf diagram. Does oxygen go in or come out?
+      '4': Sugar is what the plant makes. Is it used to start photosynthesis?
+    hints:
+      - Three things go **in** and two come **out**.
+    solution:
+      - Plants use **light**, **water** and **carbon dioxide**.
+      - They produce sugar and oxygen.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.4]
+    type: mc
+    prompt: What job does **chlorophyll** do in a leaf?
+    choices:
+      - It collects the light needed for photosynthesis.
+      - It pulls water up from the roots.
+      - It stores sugar as starch for later.
+      - It lets oxygen into the leaf for the plant to use.
+    answer: 0
+    feedback:
+      '1': Which part of the plant carries water up? Remember Grade 5.
+      '2': Starch is stored sugar. Which substance collects light to make the sugar in the first place?
+      '3': What is chlorophyll’s connection to light?
+    hints:
+      - Chlorophyll is green and found in leaves. Which ingredient does a leaf catch from the Sun?
+    solution:
+      - Chlorophyll is the green substance in plants that **collects light** for photosynthesis.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.5, K2.6]
+    type: mc
+    prompt: In the starch test picture, which part of the leaf turned **dark blue-black**?
+    choices:
+      - The parts that got light, because they made sugar and stored it as starch
+      - The strip under the foil, because it was kept warm
+      - The whole leaf, because every leaf is full of starch
+      - None of it, because starch can only be found in potatoes
+    answer: 0
+    feedback:
+      '1': Look at the picture again. Which part is pale?
+      '2': Look at the picture. Is the whole leaf the same colour?
+      '3': Potatoes are full of starch, but the picture shows starch in a leaf too. Where?
+    hints:
+      - Which parts of the leaf could photosynthesize?
+    solution:
+      - Only the parts that got light could make sugar, and the plant stored some as **starch**.
+      - The test turns starch dark, so those parts turned dark. The covered strip stayed pale.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S2.3, K2.5]
+    type: mc
+    prompt: |-
+      In the pondweed experiment, bubbles collected at the top of the tube. How did the experiment show that the gas
+      was **oxygen**, and not just air from the water?
+    choices:
+      - A glowing splint burst into flame in the gas, which is a test for oxygen.
+      - The bubbles were round, and oxygen bubbles are always round.
+      - The gas was invisible, so it had to be oxygen.
+      - The gas rose to the top, and only oxygen rises in water.
+    answer: 0
+    feedback:
+      '1': Bubbles of any gas are round in water. What was the special test?
+      '2': Many gases are invisible, like carbon dioxide. What test was done?
+      '3': Bubbles of any gas rise in water. What happened to the splint?
+    hints:
+      - What did the glowing splint do?
+    solution:
+      - A glowing splint **bursts into flame** in oxygen. That is how the experiment identified the gas.
+      - The release of oxygen is evidence that the plant was photosynthesizing.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S2.2, K2.1]
+    type: mc
+    prompt: |-
+      Nia puts one bean plant on a sunny windowsill and waters it every day. She puts another in a dark closet and
+      doesn’t water it. After a week the closet plant is dying. Nia says, “This proves plants need light.” What is
+      the flaw?
+    choices:
+      - She changed light and water at the same time, so either one could be the cause.
+      - She should have used more than one week, because plants grow slowly.
+      - Bean plants don’t photosynthesize, so the test can’t work.
+      - The closet plant should have been given more water than the other.
+    answer: 0
+    feedback:
+      '1': More time might help, but what is the bigger problem with what she changed?
+      '2': Bean plants are green and have chlorophyll. Do they photosynthesize?
+      '3': That would still change two things. How many should change in a fair test?
+    hints:
+      - In a controlled experiment, how many things should be different?
+      - List everything that was different between the two plants.
+    solution:
+      - Nia changed **two** variables, light and water.
+      - The closet plant might be dying from no water, no light, or both. To test light, water both plants the same and change only the light.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K2.2, K2.3, U2.1]
+    type: mc
+    prompt: A wolf never eats plants. Why does the wolf still depend on photosynthesis?
+    choices:
+      - The animals it eats got their food from plants, and it breathes oxygen that plants released.
+      - Wolves photosynthesize through their fur in the sunlight.
+      - It doesn’t depend on photosynthesis, because it is a carnivore.
+      - Wolves need chlorophyll to digest meat.
+    answer: 0
+    feedback:
+      '1': Do animals have chlorophyll?
+      '2': What do the animals it eats eat? And where does the oxygen it breathes come from?
+      '3': Chlorophyll is found in plants. What does a wolf get from plants indirectly?
+    hints:
+      - Follow the wolf’s food back. What did its prey eat?
+      - What gas does the wolf breathe in?
+    solution:
+      - The deer or rabbit a wolf eats got its food from plants, which made it by photosynthesis.
+      - The wolf also uses oxygen for respiration, and plants release that oxygen. So every animal depends on photosynthesis.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [K2.6, K2.1, K2.2]
+    type: mc
+    prompt: A potato grows underground, in the dark. So where did all the **starch** in it come from?
+    choices:
+      - Leaves above ground made sugar in the light, and it was carried down and stored as starch.
+      - The potato made the starch itself, in the dark soil.
+      - The potato soaked the starch up from the soil.
+      - The rain carried starch down into the potato.
+    answer: 0
+    feedback:
+      '1': What do plants need to make sugar? Does the potato have it underground?
+      '2': Do plants get their food from the soil?
+      '3': Is there starch in rainwater?
+    hints:
+      - Starch is stored sugar. Where does a plant make sugar?
+      - Remember from Grade 5 how sugar moves through a plant.
+    solution:
+      - The leaves photosynthesize in the light and make sugar.
+      - Phloem carries the sugar down, and the plant stores it as **starch** in the potato.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S2.2, K2.1, K2.5]
+    type: investigation
+    prompt: |-
+      Ravi wants to test whether **more light** makes pondweed photosynthesize faster. He will put a lamp at different
+      distances from the pondweed and count the bubbles in one minute.
+    parts:
+      - type: mc
+        prompt: What is his **manipulated** variable, the one he changes on purpose?
+        choices: [How far the lamp is from the pondweed, The number of bubbles in a minute, The kind of pondweed]
+        answer: 0
+        feedback:
+          '1': He counts the bubbles to see what happened. Is that what he changes, or what he measures?
+          '2': If he changed the kind of pondweed, would the test be about light?
+        hints:
+          - What does Ravi change on purpose?
+        solution:
+          - He changes the **distance of the lamp**, which changes how much light reaches the pondweed.
+      - type: multi
+        prompt: Select **all** the things he must keep the same.
+        choices:
+          - The same piece of pondweed
+          - The same water at the same temperature
+          - Counting for exactly one minute each time
+          - The distance of the lamp
+        answer: [0, 1, 2]
+        feedback:
+          '3': That is what he is changing on purpose. Should it stay the same?
+        hints:
+          - Everything except the lamp’s distance should stay the same.
+        solution:
+          - The pondweed, the water and its temperature, and the counting time all stay the same. Only the lamp’s distance changes.
+      - type: mc
+        prompt: |-
+          His results: lamp at **10 cm**, 30 bubbles. At **20 cm**, 18 bubbles. At **40 cm**, 6 bubbles. Which
+          conclusion does the evidence support?
+        choices:
+          - The closer the lamp, the more bubbles, so more light means faster photosynthesis.
+          - The farther the lamp, the more bubbles, so less light is better.
+          - The lamp makes no difference, because there were bubbles every time.
+        answer: 0
+        feedback:
+          '1': Check the numbers. At 40 cm, were there more bubbles or fewer?
+          '2': There were bubbles every time, but did the number change?
+        hints:
+          - Read the results from the closest lamp to the farthest. What happens to the bubbles?
+        solution:
+          - As the lamp moves closer, the bubbles go from 6 to 18 to 30.
+          - More bubbles mean more oxygen released, so **more light** made the pondweed photosynthesize faster.
+    wrapUp: A controlled experiment changes one variable, keeps the rest the same, and lets the evidence answer the question.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [K2.1, K2.2, U2.1, S2.1]
+    type: mc
+    prompt: |-
+      About 400 years ago, a scientist named Jan Baptist van Helmont planted a small willow tree of about **2 kg** in
+      a pot of about **90 kg** of soil. He gave it only rainwater. Five years later, the tree weighed about **77 kg**.
+      The soil had lost only about **57 g**. Which conclusion fits this evidence?
+    choices:
+      - Almost none of the tree’s new mass came from the soil.
+      - The tree’s new mass came mostly from the soil.
+      - The tree didn’t really grow, because the soil barely changed.
+      - The scale must have been broken, because trees eat soil.
+    answer: 0
+    feedback:
+      '1': How much did the soil lose? How much did the tree gain?
+      '2': The tree gained about 75 kg. Did it grow?
+      '3': A broken scale is possible, but which idea about trees is being tested here?
+    hints:
+      - Compare what the tree gained with what the soil lost.
+      - If the soil lost only 57 g, where could the other mass have come from?
+    solution:
+      - The tree gained about 75 kg, but the soil lost only about 57 g. So almost none of it came from the soil.
+      - We now know the tree made its own food by **photosynthesis**, from water and carbon dioxide in the air, and used it to grow.

@@ -1,0 +1,113 @@
+---
+// Animated experiment: four objects get stretched or bent, then let go. The rubber band and the
+// spring are elastic and go back to their shape (a temporary change). The paper clip and the
+// modelling clay are plastic and stay changed (a permanent change)
+// (SCI6-OI2-GQ1-LO1, K2.1, K2.2, U2.1, S2.1, S2.2, K1.7).
+---
+<g6-stretch-test>
+  <svg class="sci-svg" viewBox="0 0 640 360" aria-hidden="true" data-st6="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-st6="live"></p>
+</g6-stretch-test>
+
+<style is:global>
+  g6-stretch-test { display: block; }
+  g6-stretch-test svg { background: var(--surface-2); }
+  .g6s-st-cell { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; }
+  .g6s-st-band { fill: none; stroke: #c0563a; stroke-width: 7; }
+  .g6s-st-spring { fill: none; stroke: #6d7684; stroke-width: 4; stroke-linejoin: round; }
+  .g6s-st-clip { fill: none; stroke: #8a94a3; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+  .g6s-st-clay { fill: #4f9ad6; stroke: var(--ink); stroke-width: 2; }
+  .g6s-st-ghost { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; }
+  .g6s-st-pull { stroke: var(--math); stroke-width: 5; stroke-linecap: round; }
+  .g6s-st-pullh { fill: var(--math); }
+  .g6s-st-ok { fill: var(--ok); font-size: 15px; font-weight: 700; }
+  .g6s-st-perm { fill: var(--bad); font-size: 15px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-st-ok, .g6s-st-perm { font-size: 22px; } }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  type Phase = 'start' | 'pull' | 'let-go';
+  const CELLS = [
+    { id: 'band', label: 'Rubber band', x: 0, y: 0, elastic: true },
+    { id: 'spring', label: 'Spring', x: 320, y: 0, elastic: true },
+    { id: 'clip', label: 'Paper clip', x: 0, y: 180, elastic: false },
+    { id: 'clay', label: 'Modelling clay', x: 320, y: 180, elastic: false },
+  ];
+
+  // The paper clip as one wire, and the same wire bent open. Both have the same number of points.
+  const CLIP = [[-60, 14], [50, 14], [60, 4], [60, -6], [50, -16], [-50, -16], [-60, -6], [-60, 2], [-50, 8], [36, 8], [42, 2], [42, -4], [36, -10], [-30, -10]];
+  const OPEN = [[-60, 14], [50, 14], [60, 4], [60, -6], [50, -16], [-50, -16], [-60, -6], [-62, -12], [-66, -20], [-70, -28], [-74, -36], [-78, -44], [-82, -52], [-86, -60]];
+
+  class StretchTest extends HTMLElement {
+    private s = 0; // how far each object is stretched or bent right now, 0 to 1
+    private phase: Phase = 'start';
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-st6="live"]')!;
+      live.textContent = '';
+      this.phase = 'pull';
+      this.s = 0;
+      await tween(1500, (t) => { this.s = ease(t); this.draw(); });
+      await wait(400);
+      this.phase = 'let-go';
+      await tween(800, (t) => { this.s = 1 - t; this.draw(); });
+      this.draw();
+      await wait(150);
+      live.textContent = 'After letting go, the rubber band and the spring went back to their shape. The paper clip stayed bent and the clay stayed stretched.';
+    }
+
+    /** How changed an object looks: elastic ones follow s back down, plastic ones keep their change. */
+    private amount(elastic: boolean) {
+      if (this.phase === 'let-go' && !elastic) return 1;
+      return this.s;
+    }
+
+    private object(id: string, cx: number, cy: number, a: number) {
+      if (id === 'band') {
+        const rx = 50 + 50 * a;
+        const ry = 16 - 9 * a;
+        return `<ellipse class="g6s-st-ghost" cx="${cx}" cy="${cy}" rx="50" ry="16"/><ellipse class="g6s-st-band" cx="${cx}" cy="${cy}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}"/>`;
+      }
+      if (id === 'spring') {
+        const len = 100 + 90 * a;
+        const n = 10;
+        const pts = Array.from({ length: n + 1 }, (_, i) => `${(cx - len / 2 + (i * len) / n).toFixed(1)},${cy + (i === 0 || i === n ? 0 : i % 2 ? -16 : 16)}`);
+        return `<polyline class="g6s-st-spring" points="${pts.join(' ')}"/>`;
+      }
+      if (id === 'clip') {
+        const pts = CLIP.map(([x, y], i) => `${(cx + x + (OPEN[i][0] - x) * a).toFixed(1)},${(cy + 30 + y + (OPEN[i][1] - y) * a).toFixed(1)}`);
+        return `<polyline class="g6s-st-clip" points="${pts.join(' ')}"/>`;
+      }
+      const rx = 34 + 56 * a;
+      const ry = 26 - 13 * a;
+      return `<ellipse class="g6s-st-ghost" cx="${cx}" cy="${cy}" rx="34" ry="26"/><ellipse class="g6s-st-clay" cx="${cx}" cy="${cy}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}"/>`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (const c of CELLS) {
+        const cx = c.x + 160;
+        const cy = c.y + 92;
+        const a = this.amount(c.elastic);
+        out.push(`<rect class="g6s-st-cell" x="${c.x + 8}" y="${c.y + 8}" width="304" height="164" rx="10"/>`);
+        out.push(`<text class="sci-text" x="${c.x + 24}" y="${c.y + 36}">${c.label}</text>`);
+        out.push(this.object(c.id, cx, cy, a));
+        if (this.phase === 'pull' && this.s > 0.05) {
+          const verb = c.id === 'clip' ? 'bend' : 'pull';
+          out.push(`<text class="sci-small" x="${c.x + 296}" y="${c.y + 36}" text-anchor="end">${verb}</text>`);
+        }
+        if (this.phase === 'let-go' && this.s < 0.02) {
+          out.push(`<text class="${c.elastic ? 'g6s-st-ok' : 'g6s-st-perm'}" x="${cx}" y="${c.y + 158}" text-anchor="middle">${c.elastic ? '✓ back to its shape' : '✗ stayed changed'}</text>`);
+        }
+      }
+      this.querySelector('[data-st6="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-stretch-test', StretchTest);
+</script>
