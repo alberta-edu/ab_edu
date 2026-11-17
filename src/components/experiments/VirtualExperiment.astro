@@ -15,6 +15,7 @@ import EggFloat from './EggFloat.astro';
 import EnergyRun from './EnergyRun.astro';
 import ScrollScan from './ScrollScan.astro';
 import EchoRoom from './EchoRoom.astro';
+import G4CompostBin from './G4CompostBin.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -35,6 +36,7 @@ const animations = {
   'arrow-flight': ArrowFlight,
   'egg-float': EggFloat,
   'energy-run': EnergyRun,
+  'g4-compost-bin': G4CompostBin,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

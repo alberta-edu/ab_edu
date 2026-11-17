@@ -255,7 +255,7 @@ const block = z.discriminatedUnion('type', [
     covers,
     title: z.string(),
     question: md,
-    animation: z.enum(['echo-room', 'scroll-scan', 'container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run']),
+    animation: z.enum(['echo-room', 'scroll-scan', 'container-swap', 'eclipses', 'sun-path', 'celery-dye', 'body-trip', 'soil-storm', 'liquid-layers', 'syringe-squeeze', 'arrow-flight', 'egg-float', 'energy-run', 'g4-compost-bin']),
     props: z.record(z.string(), z.unknown()).default({}),
     predict: z.strictObject({
       choices: z.array(md).min(2).max(4),

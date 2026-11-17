@@ -1,0 +1,444 @@
+id: waste-management
+grade: 4
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI4-OI1-GQ1-LO1]
+order: 1
+title: Waste and How We Manage It
+shortTitle: Waste
+summary: >-
+  Sort waste into solids, liquids and gases, watch a compost bin over six months, follow a can
+  through recycling, and plan ways to make less waste.
+
+bigIdea: |-
+  - Waste can be a **solid**, a **liquid** or a **gas**.
+  - Landfills and burning can harm the land, water and air.
+  - Reducing, reusing, recycling, repurposing, repairing and composting **cut down** that harm.
+  - The more things we make and use, the more waste we make.
+
+lesson:
+  - title: Solid, liquid or gas?
+    blocks:
+      - type: visual
+        covers: [K1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: solid, label: Solid, icon: 🧱 }
+            - { id: liquid, label: Liquid, icon: 💧 }
+            - { id: gas, label: Gas, icon: 💨 }
+          cards:
+            - { text: A banana peel, bin: solid, why: It keeps its own shape. }
+            - { text: Used cooking oil, bin: liquid, why: It flows and takes the shape of its container. }
+            - { text: Smoke from burning garbage, bin: gas, why: It spreads out to fill the air around it. }
+            - { text: A broken plastic toy, bin: solid, why: It keeps its own shape. }
+            - { text: Soapy water from washing dishes, bin: liquid, why: It flows down the drain. }
+            - { text: Exhaust from a car, bin: gas, why: It comes out of the tailpipe and spreads into the air. }
+        caption: Tap a bin for each piece of waste. Waste is not only the things in a garbage can.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI1-GQ1-LO1#K2.2', 'SCI3-OI1-GQ1-LO1#K3.1']
+        title: From Grade 3
+        body: Matter can be a solid, a liquid or a gas. A solid keeps its own shape.
+
+  - title: Where waste can go
+    blocks:
+      - type: compare
+        covers: [K1.1, S1.1]
+        columns:
+          - title: Landfill
+            figure: >-
+              <svg viewBox="0 0 200 110" class="fig-svg" role="img" aria-label="A landfill: a big mound of garbage buried under soil.">
+              <rect class="sci-ground" x="0" y="80" width="200" height="30"/>
+              <path d="M20,80 Q100,10 180,80 Z" style="fill:#8b6a45;stroke:var(--ink);stroke-width:2"/>
+              <rect x="70" y="52" width="14" height="14" style="fill:#4a7fb5"/><rect x="100" y="44" width="16" height="10" style="fill:#d23b2e"/><circle cx="130" cy="62" r="7" style="fill:#f2cf3a"/>
+              </svg>
+            body: |-
+              - Garbage is buried in a huge pit.
+              - It takes up land for a very long time.
+              - Liquids can leak into soil and water. Rotting food gives off gases.
+          - title: Burning
+            figure: >-
+              <svg viewBox="0 0 200 110" class="fig-svg" role="img" aria-label="Garbage burning, with grey smoke rising into the air.">
+              <rect class="sci-ground" x="0" y="80" width="200" height="30"/>
+              <path d="M70,80 Q80,40 100,30 Q95,55 115,45 Q130,60 130,80 Z" style="fill:#f28b1e;stroke:#b3540d;stroke-width:2"/>
+              <circle cx="110" cy="22" r="14" style="fill:#9a9aa5;opacity:.7"/><circle cx="128" cy="12" r="10" style="fill:#9a9aa5;opacity:.6"/><circle cx="92" cy="14" r="9" style="fill:#9a9aa5;opacity:.6"/>
+              </svg>
+            body: |-
+              - Garbage is burned.
+              - Smoke and gases go into the air.
+              - Ash is left behind.
+      - type: callout
+        variant: mistake
+        covers: [K1.1, K1.4]
+        title: Burned waste doesn’t disappear
+        body: Burning turns much of the waste into **gases and smoke**. It is still waste, now in the air.
+      - type: text
+        covers: [K1.3]
+        body: The **more** things people make and use, the **more** waste there is. Every new thing comes in packaging, and wears out one day.
+
+  - title: Six ways to waste less
+    blocks:
+      - type: table
+        covers: [K1.2, U1.1]
+        headers: [Way, What it means, Example]
+        rows:
+          - ['📉 **Reducing**', 'Making less waste in the first place', 'Packing lunch in a reusable box, not plastic wrap']
+          - ['🔁 **Reusing**', 'Using something again for the same job', 'Refilling the same water bottle every day']
+          - ['♻️ **Recycling**', 'Breaking something down to make new things', 'Old cans are melted and made into new cans']
+          - ['✂️ **Repurposing**', 'Giving something a new job', 'An empty jam jar becomes a pencil holder']
+          - ['🪡 **Repairing**', 'Fixing something so it works again', 'Patching a hole in a bike tire']
+          - ['🍂 **Composting**', 'Letting food and plant waste break down into rich soil', 'Apple cores and leaves go in a compost bin']
+
+  - title: 'Virtual experiment: the compost bin'
+    blocks:
+      - type: experiment
+        covers: [K1.2, S1.1, U1.1]
+        title: Leave five things in a compost bin for six months
+        question: |-
+          These go into a compost bin with some soil:
+
+          - an apple core, a banana peel and some leaves
+          - a plastic bag and a metal can
+        animation: g4-compost-bin
+        predict:
+          choices:
+            - The food and leaves break down. The bag and can stay.
+            - All five things break down into soil.
+            - The bag and can break down. The food stays.
+            - Nothing changes in only six months.
+          answer: 0
+        observe: |-
+          - Month by month, the apple core, banana peel and leaves got smaller and darker. Worms moved in.
+          - By month 6 they had become dark, crumbly **compost**.
+          - The plastic bag and the can looked the same as on day one.
+        explain: |-
+          - Food and leaves came from living things. Worms and other tiny living things eat them and break them down.
+          - Plastic and metal don’t break down in a compost bin. The can should be **recycled** instead.
+          - Compost feeds garden soil, and that food waste stays **out of the landfill**.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI3-GQ1-LO1#K5.1', 'SCI3-OI3-GQ1-LO1#K5.4']
+        title: From Grade 3
+        body: Soil holds decaying plants and animals. Worms tunnel through it and eat dead matter.
+
+  - title: How a can gets recycled
+    blocks:
+      - type: figure
+        covers: [S1.4, K1.2]
+        figure: >-
+          <svg viewBox="0 0 440 280" class="fig-svg" role="img" aria-label="The recycling loop for a can, in six steps. 1, rinse it and put it in recycling. 2, a truck takes it to a recycling plant. 3, machines sort it from paper, plastic and glass. 4, it is pressed into blocks and melted. 5, the metal is made into new cans. 6, you buy a drink in a new can. Then the loop starts again.">
+          <defs><marker id="g4s-rec-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" style="fill:var(--ink-2)"/></marker></defs>
+          <g style="fill:var(--science-soft);stroke:var(--science);stroke-width:2">
+          <rect x="6" y="10" width="128" height="86" rx="10"/><rect x="156" y="10" width="128" height="86" rx="10"/><rect x="306" y="10" width="128" height="86" rx="10"/>
+          <rect x="6" y="184" width="128" height="86" rx="10"/><rect x="156" y="184" width="128" height="86" rx="10"/><rect x="306" y="184" width="128" height="86" rx="10"/></g>
+          <g style="stroke:var(--ink-2);stroke-width:2.5;fill:none" marker-end="url(#g4s-rec-arrow)">
+          <line x1="136" y1="53" x2="152" y2="53"/><line x1="286" y1="53" x2="302" y2="53"/><line x1="370" y1="98" x2="370" y2="180"/>
+          <line x1="304" y1="227" x2="288" y2="227"/><line x1="154" y1="227" x2="138" y2="227"/><line x1="70" y1="182" x2="70" y2="100"/></g>
+          <g class="fig-small" text-anchor="middle" style="fill:var(--ink)">
+          <text x="70" y="34" class="fig-label">1 🥫</text><text x="70" y="58">Rinse it. Put it</text><text x="70" y="76">in recycling.</text>
+          <text x="220" y="34" class="fig-label">2 🚛</text><text x="220" y="58">A truck takes it to</text><text x="220" y="76">a recycling plant.</text>
+          <text x="370" y="34" class="fig-label">3 ⚙️</text><text x="370" y="58">Machines sort it from</text><text x="370" y="76">paper, plastic, glass.</text>
+          <text x="370" y="208" class="fig-label">4 🔥</text><text x="370" y="232">It is pressed into</text><text x="370" y="250">blocks and melted.</text>
+          <text x="220" y="208" class="fig-label">5 🏭</text><text x="220" y="232">The metal is made</text><text x="220" y="250">into new cans.</text>
+          <text x="70" y="208" class="fig-label">6 🛒</text><text x="70" y="232">You buy a drink</text><text x="70" y="250">in a new can.</text></g>
+          <text x="220" y="146" text-anchor="middle" class="fig-label" style="fill:var(--science)">The loop starts again</text>
+          </svg>
+        caption: Recycling is a **loop**. The same metal can be used again and again.
+      - type: callout
+        variant: tip
+        covers: [S1.4]
+        title: Draw your own
+        body: A diagram with **numbered steps and arrows** shows a process clearly. Try one for paper or glass.
+
+  - title: Programs near you, and your plan
+    blocks:
+      - type: table
+        covers: [S1.3, K1.2]
+        caption: Two Alberta cities sort household waste three ways. Your town may do it differently.
+        headers: [City, Recycling, Food scraps for compost, Garbage for the landfill]
+        rows:
+          - ['**Calgary**', 'Blue cart', 'Green cart (also yard waste)', 'Black cart']
+          - ['**Edmonton**', 'Blue bags', 'Green cart', 'Black cart']
+      - type: example
+        covers: [S1.2, U1.1, K1.2]
+        title: A personal plan to reduce waste
+        problem: 'Maya notices that her lunch makes **4 pieces of garbage** every day.'
+        steps:
+          - '**Look.** Juice box, plastic wrap, granola bar wrapper, apple core.'
+          - '**Reduce.** A refillable bottle and a reusable box replace the juice box and the wrap.'
+          - '**Compost.** The apple core goes in the green cart.'
+          - '**Check.** One wrapper is left. Next week, Maya counts again.'
+        answer: Her lunch garbage drops from 4 pieces to 1.
+
+keyTerms:
+  - term: Waste
+    covers: [K1.4]
+    definition: Anything people throw away or no longer need. It can be a solid, a liquid or a gas.
+  - term: Landfill
+    covers: [K1.1]
+    definition: A place where garbage is buried in the ground.
+  - term: Recycling
+    covers: [K1.2, S1.4]
+    definition: Breaking down used materials, like cans or paper, to make new things.
+  - term: Repurposing
+    covers: [K1.2]
+    definition: Giving an old thing a new job, like using a jam jar to hold pencils.
+  - term: Compost
+    covers: [K1.2]
+    definition: Dark, rich soil made when food and plant waste break down.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: mc
+    prompt: Which of these wastes is a **gas**?
+    choices:
+      - Smoke from a pile of burning leaves
+      - Old paint at the bottom of a can
+      - A broken crayon
+      - Muddy water from washing boots
+    answer: 0
+    feedback:
+      '1': Paint can be poured, so it flows. Which state of matter flows but isn’t a gas?
+      '2': A crayon keeps its own shape. Which state is that?
+      '3': Muddy water flows and takes the shape of its container. Which state is that?
+    hints:
+      - A gas spreads out to fill all the space around it. Which one would drift away into the air?
+    solution:
+      - Smoke spreads out into the air, so it is a **gas**.
+      - The paint and the muddy water are liquids. The crayon is a solid.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.2]
+    type: mc
+    prompt: The zipper on Nia’s backpack breaks. She sews on a new zipper and keeps using the same backpack. Which way of wasting less is this?
+    choices: [Repairing, Recycling, Repurposing, Composting]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Recycling breaks a thing down to make new things. Was the backpack broken down?
+      '2': Repurposing gives a thing a new job. Is the backpack doing a new job?
+      '3': Composting is for food and plant waste. Is a backpack food or plant waste?
+    hints:
+      - What did Nia do to the backpack so it worked again?
+    solution:
+      - Nia fixed the backpack so it works again. That is **repairing**.
+      - It does the same job as before, so it never became waste.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.1, K1.2, S1.1]
+    type: multi
+    prompt: Select **every** way of handling waste that can **harm** the environment.
+    choices:
+      - Burying garbage in a landfill
+      - Burning garbage
+      - Composting food scraps
+      - Repairing a broken chair
+      - Reusing a gift bag
+    answer: [0, 1]
+    feedback:
+      '2': Composting turns food scraps into soil for gardens. Is that harming the land?
+      '3': A repaired chair never becomes waste at all.
+      '4': A gift bag used again is one less bag in the garbage.
+    hints:
+      - Where does the waste end up each time? In the ground, in the air, or nowhere at all?
+    solution:
+      - A **landfill** takes up land, and liquids can leak into soil and water.
+      - '**Burning** sends smoke and gases into the air.'
+      - The other three cut down waste instead.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.2]
+    type: multi
+    prompt: '**Reusing** uses a thing again for the **same** job. **Repurposing** gives it a **new** job. Select every example of **repurposing**.'
+    choices:
+      - An old T-shirt is cut up into cleaning rags.
+      - Liam refills his water bottle every morning.
+      - A tin can becomes a pot for a small plant.
+      - Ana gives her too-small skates to her cousin.
+      - Old cans are melted into new cans.
+    answer: [0, 2]
+    feedback:
+      '1': The bottle still holds water, the same job as before. Which word is that?
+      '3': The skates are still skates, doing the same job for someone new. Which word is that?
+      '4': Melting breaks the cans down to make new ones. Which way of wasting less is that?
+    hints:
+      - For each one, ask, “Is it doing the same job, or a new job?”
+    solution:
+      - 'A T-shirt that becomes rags has a **new job**: cleaning, not wearing.'
+      - A can that holds a plant has a **new job** too.
+      - The water bottle and the skates are reused. The melted cans are recycled.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.4, K1.2]
+    type: order
+    prompt: Put the steps of recycling a **glass jar** in order, from the kitchen to a new jar.
+    items:
+      - Rinse the jar and put it in the recycling.
+      - A truck takes it to a recycling plant.
+      - Machines and workers sort the glass from the cans and paper.
+      - The glass is crushed and melted.
+      - The melted glass is shaped into new jars.
+    hints:
+      - Start in your kitchen. Where does the jar go first?
+      - Before glass can be melted, it has to be picked out from everything else.
+    solution:
+      - It starts at home, in the recycling.
+      - It rides to a recycling plant, where it is **sorted** from other materials.
+      - Only then is it crushed, melted and made into something new, just like the can.
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K1.3, S1.1]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 420 170" class="fig-svg" role="img" aria-label="Bar graph of garbage bags at one home. A normal week: 2 bags. The week of a birthday party with paper plates and lots of wrapped gifts: 5 bags.">
+      <line x1="40" y1="140" x2="400" y2="140" class="sci-tick"/>
+      <rect x="80" y="100" width="90" height="40" class="fig-hl"/><rect x="250" y="40" width="90" height="100" class="fig-hl"/>
+      <text x="125" y="92" text-anchor="middle" class="fig-label">2 bags</text><text x="295" y="32" text-anchor="middle" class="fig-label">5 bags</text>
+      <text x="125" y="160" text-anchor="middle" class="fig-small">A normal week</text><text x="295" y="160" text-anchor="middle" class="fig-small">Birthday party week</text>
+      </svg>
+    prompt: |-
+      Omar’s family counts their garbage bags. During the birthday party week, they used paper plates and bought lots
+      of wrapped gifts and treats. Which idea best explains the graph?
+    choices:
+      - They bought and used more things, so they made more waste.
+      - Garbage bags hold less during a party week.
+      - The garbage truck didn’t come, so bags piled up.
+      - Parties make more waste because people stay up later.
+    answer: 0
+    feedback:
+      '1': The bags are the same size every week. What went into them that was different?
+      '2': The story doesn’t say the truck missed a week. Look for a reason the story gives you.
+      '3': Staying up late doesn’t make garbage. What did the family use more of?
+    hints:
+      - Read the story again. What did the family buy and use that week?
+    solution:
+      - The story tells us they used paper plates and bought more gifts and treats.
+      - More things made and used means **more waste**, so the bags went from 2 to 5.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.2, K1.2, U1.1]
+    type: number
+    prompt: |-
+      Grade 4 counts what goes in their classroom garbage in one day: **20 items**.
+
+      - **8** are food scraps.
+      - **6** are clean paper.
+      - The rest are wrappers that can’t be recycled.
+
+      Their plan: compost the food and recycle the paper. How many items will still go to the landfill each day?
+    answer: 6
+    verify: 20 - 8 - 6
+    unit: items
+    hints:
+      - Which items have somewhere new to go?
+      - Take those away from the 20.
+    solution:
+      - Food scraps go to compost and paper goes to recycling. That is \(8 + 6 = 14\) items.
+      - \(20 - 14 = 6\) wrappers still go to the landfill.
+      - 'Next step for the plan: could they **reduce** the wrappers, by packing snacks in reusable containers?'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, K1.2, K1.4, S1.1, U1.1]
+    type: investigation
+    prompt: |-
+      After Halloween, a town has a mountain of old pumpkins. The town council has three choices:
+
+      1. Send them to the landfill.
+      2. Burn them.
+      3. Compost them.
+    parts:
+      - type: mc
+        prompt: What happens to the pumpkins if they are **composted**?
+        choices:
+          - They break down into rich soil for gardens and farms.
+          - They stay the same in the compost for many years.
+          - They turn into smoke and float away.
+        answer: 0
+        feedback:
+          '1': Think of the apple core in the compost bin. What happened to it?
+          '2': That happens with burning. What does a compost bin do instead?
+        hints:
+          - Pumpkins are food waste, like the apple core in the experiment.
+        solution:
+          - Like the apple core and the banana peel, pumpkins break down into **compost**.
+      - type: mc
+        prompt: 'Leo says, “Burning them is just as good. They disappear!” What is wrong with Leo’s idea?'
+        choices:
+          - The pumpkins become smoke and gases, so the waste goes into the air.
+          - Pumpkins are too wet to burn, so nothing would happen.
+          - Burning makes the pumpkins turn into a liquid that leaks.
+        answer: 0
+        feedback:
+          '1': Leo’s mistake isn’t about whether they burn. Where does burned waste go?
+          '2': What does burning give off into the air?
+        hints:
+          - Waste can be a solid, a liquid or a gas. What does burning turn it into?
+        solution:
+          - Burned waste doesn’t disappear. Much of it becomes **smoke and gases** in the air, with ash left behind.
+      - type: mc
+        prompt: Which choice is best for the land, the water **and** the air?
+        choices:
+          - Compost them
+          - Send them to the landfill
+          - Burn them
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': In a landfill, rotting pumpkins give off gases, and liquids can leak into the soil. Is there a choice that avoids that?
+          '2': You just showed that burning puts the waste into the air.
+        hints:
+          - Which choice turns the pumpkins into something useful, instead of waste in the ground or the air?
+        solution:
+          - Composting turns the pumpkins into soil, so they help the land instead of harming it.
+    wrapUp: Waste never just disappears. It goes into the ground, the water or the air, unless we turn it into something useful.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.2, K1.3, U1.1, S1.1]
+    type: mc
+    prompt: |-
+      Two classes try to cut down waste for one month.
+
+      - **Class A** recycled **30** juice boxes.
+      - **Class B** recycled **0** juice boxes. Everyone brought a refillable bottle instead.
+
+      Jordan says, “Class A did better. They recycled 30 and Class B recycled 0!” What did Jordan miss?
+    choices:
+      - Class B didn’t make juice-box waste in the first place.
+      - Class B should have recycled their bottles too.
+      - Recycling doesn’t help at all, so both classes did badly.
+      - Class A had more students, so it isn’t fair to compare.
+    answer: 0
+    feedback:
+      '1': The bottles are refilled and kept. Do they ever become waste?
+      '2': Recycling does help. But is there anything even better than recycling 30 boxes?
+      '3': The story doesn’t say anything about class size. Look at what each class did.
+    hints:
+      - Count the juice boxes each class threw out, not just the ones it recycled.
+      - Which way of wasting less means there is nothing to throw away?
+    solution:
+      - Class A still used 30 juice boxes. Recycling them was good, but they were still waste.
+      - Class B **reduced**. With refillable bottles, there were no juice boxes to deal with at all.
+      - Jordan looked only at the recycling count. Class B made the least waste.
