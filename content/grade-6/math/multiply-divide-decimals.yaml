@@ -244,17 +244,17 @@ problems:
     covers: [S1.4, S1.2, K1.1]
     type: investigation
     prompt: |-
-      For a garden fundraiser, the class buys **24** seed packets for **$18.96** in total. They sell each packet for **$1.25**. By the end of the day, they have sold **22** packets.
+      For a garden fundraiser, the class buys **24** seed packets for **$9.36** in total. They sell each packet for **$1.25**. By the end of the day, they have sold **22** packets.
     parts:
       - type: number
         prompt: How much did the class pay for **one** packet?
-        answer: 0.79
+        answer: 0.39
         unit: $
-        verify: 18.96 / 24
+        verify: 9.36 / 24
         hints:
-          - 'Share $18.96 equally among 24 packets.'
+          - 'Share $9.36 equally among 24 packets.'
         solution:
-          - '\(18.96 \div 24 = 0.79\). Each packet cost the class 79¢.'
+          - '\(9.36 \div 24 = 0.39\). Each packet cost the class 39¢.'
       - type: number
         prompt: How much money did they take in from the 22 packets they sold?
         answer: 27.5
@@ -266,14 +266,14 @@ problems:
           - '\(1.25 \times 22 = 27.50\).'
       - type: number
         prompt: How much money did the class **make** for the garden, after paying for the seeds?
-        answer: 8.54
+        answer: 18.14
         unit: $
-        verify: 1.25 * 22 - 18.96
+        verify: 1.25 * 22 - 9.36
         hints:
           - Did they pay for 22 packets, or for all 24?
         solution:
-          - 'They paid $18.96 for all 24 packets, even the 2 they didn’t sell.'
-          - '\(27.50 - 18.96 = 8.54\). The garden gets **$8.54**.'
+          - 'They paid $9.36 for all 24 packets, even the 2 they didn’t sell.'
+          - '\(27.50 - 9.36 = 18.14\). The garden gets **$18.14**.'
     wrapUp: 'Division found the cost of one packet, and multiplication found the money in. The last step needed the story: the class paid for every packet, sold or not.'
 
   - id: d2
