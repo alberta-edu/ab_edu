@@ -1,0 +1,120 @@
+---
+// Factor lab (MAT4-OI1-GQ3-LO1). "arrays": a number of tiles makes every rectangle it can; each
+// rectangle is a factor pair, and a prime makes only one. It also lists the first five multiples.
+// "common": the factors of two numbers side by side, with the common factors and the greatest
+// common factor lit up.
+import { factorPairs, kindText, multiples } from './factors.ts';
+
+interface Props {
+  mode?: 'arrays' | 'common';
+  number?: number;
+  other?: number;
+}
+const { mode = 'arrays', number = 12, other = 18 } = Astro.props;
+---
+<g4m-factor-lab data-mode={mode} data-a={number} data-b={other}>
+  {
+    mode === 'arrays' ? (
+      <>
+        <div class="control-row">
+          <div class="control">
+            <span id="g4m-fl-label">Tiles</span>
+            <button type="button" class="icon-btn" data-fl="minus" aria-label="One tile fewer">−</button>
+            <input type="range" min="1" max="100" value={number} data-fl="range" aria-labelledby="g4m-fl-label" />
+            <button type="button" class="icon-btn" data-fl="plus" aria-label="One more tile">+</button>
+            <b class="g4m-fl-n" data-fl="n">{number}</b>
+          </div>
+        </div>
+        <p class="g4m-fl-kind" data-fl="kind" aria-live="polite">{kindText(number)}</p>
+        <div class="g4m-fl-arrays" data-fl="arrays" aria-hidden="true"></div>
+        <p class="g4m-fl-pairs" data-fl="pairs">{factorPairs(number).map(([a, b]) => `${a} × ${b}`).join(' · ')}</p>
+        <p class="g4m-fl-mult" data-fl="mult">First five multiples: {multiples(number).join(', ')}</p>
+      </>
+    ) : (
+      <>
+        <div class="control-row">
+          <label class="control">First number <input class="g4m-fl-in" type="number" min="1" max="100" value={number} data-fl="a" /></label>
+          <label class="control">Second number <input class="g4m-fl-in" type="number" min="1" max="100" value={other} data-fl="b" /></label>
+        </div>
+        <div class="g4m-fl-lists" data-fl="lists" aria-live="polite"></div>
+        <p class="g4m-fl-kind" data-fl="say"></p>
+      </>
+    )
+  }
+</g4m-factor-lab>
+
+<style is:global>
+  g4m-factor-lab { display: block; }
+  .g4m-fl-n { font-size: var(--step-1); min-width: 2.2em; }
+  .g4m-fl-kind { margin: 0.2rem 0 0.6rem; font-weight: 700; }
+  .g4m-fl-arrays { display: flex; flex-wrap: wrap; gap: 0.8rem 1.2rem; align-items: flex-end; padding: 0.6rem; border-radius: var(--radius); background: var(--surface-2); min-height: 4rem; }
+  .g4m-fl-arr { display: grid; justify-items: start; gap: 0.25rem; }
+  .g4m-fl-arr svg { display: block; max-width: 100%; height: auto; }
+  .g4m-fl-arr rect { fill: color-mix(in srgb, var(--math) 75%, var(--surface)); stroke: var(--surface); stroke-width: 1.5; }
+  .g4m-fl-arr span { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .g4m-fl-pairs, .g4m-fl-mult { margin: 0.5rem 0 0; color: var(--ink-2); font-weight: 700; }
+  .g4m-fl-in { width: 4.5rem; font: inherit; font-size: var(--step-0); padding: 0.25rem 0.4rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+  .g4m-fl-lists { display: grid; gap: 0.6rem; }
+  .g4m-fl-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+  .g4m-fl-row b { min-width: 6.5rem; }
+  .g4m-fl-chip { display: inline-grid; place-items: center; min-width: 2.3rem; height: 2.3rem; padding: 0 0.4rem; border-radius: 999px; border: 2px solid var(--line-strong); font-weight: 700; color: var(--ink-2); background: var(--surface); }
+  .g4m-fl-chip.is-common { background: var(--math-soft); border-color: var(--math); color: var(--ink); }
+  .g4m-fl-chip.is-gcf { background: var(--math); border-color: var(--math); color: var(--surface); box-shadow: 0 0 0 3px var(--sun); }
+</style>
+
+<script>
+  import { factorPairs, kindText, multiples, factors, commonFactors, gcf } from './factors.ts';
+
+  class FactorLab extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.mode === 'arrays') {
+        const range = this.q<HTMLInputElement>('range');
+        range.addEventListener('input', () => this.arrays(Number(range.value)));
+        this.q('minus').addEventListener('click', () => this.arrays(Number(range.value) - 1));
+        this.q('plus').addEventListener('click', () => this.arrays(Number(range.value) + 1));
+        this.arrays(Number(this.dataset.a));
+      } else {
+        for (const k of ['a', 'b']) this.q<HTMLInputElement>(k).addEventListener('input', () => this.common());
+        this.common();
+      }
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-fl="${name}"]`) as T;
+    }
+
+    private arrays(n: number) {
+      n = Math.max(1, Math.min(100, n));
+      this.q<HTMLInputElement>('range').value = String(n);
+      this.q('n').textContent = String(n);
+      const pairs = factorPairs(n);
+      const longest = Math.max(...pairs.map(([, l]) => l));
+      const cell = Math.max(3, Math.min(16, Math.floor(300 / longest)));
+      this.q('arrays').innerHTML = pairs
+        .map(([w, l]) => {
+          let rects = '';
+          for (let r = 0; r < w; r++) for (let c = 0; c < l; c++) rects += `<rect x="${c * cell}" y="${r * cell}" width="${cell}" height="${cell}" rx="${cell > 6 ? 2 : 0}"/>`;
+          return `<div class="g4m-fl-arr"><svg viewBox="0 0 ${l * cell} ${w * cell}" width="${l * cell}" height="${w * cell}">${rects}</svg><span>${w} × ${l}</span></div>`;
+        })
+        .join('');
+      this.q('kind').textContent = kindText(n);
+      this.q('pairs').textContent = `Factor pairs: ${pairs.map(([a, b]) => `${a} × ${b}`).join(' · ')}`;
+      this.q('mult').textContent = `First five multiples: ${multiples(n).join(', ')}`;
+    }
+
+    private common() {
+      const read = (k: string) => Math.max(1, Math.min(100, Math.round(Number(this.q<HTMLInputElement>(k).value) || 1)));
+      const a = read('a');
+      const b = read('b');
+      const shared = commonFactors(a, b);
+      const g = gcf(a, b);
+      const row = (n: number) =>
+        `<div class="g4m-fl-row"><b>Factors of ${n}</b>${factors(n)
+          .map((k) => `<span class="g4m-fl-chip${k === g ? ' is-gcf' : shared.includes(k) ? ' is-common' : ''}">${k}</span>`)
+          .join('')}</div>`;
+      this.q('lists').innerHTML = row(a) + row(b);
+      this.q('say').textContent = `Common factors: ${shared.join(', ')}. The greatest common factor of ${a} and ${b} is ${g}.`;
+    }
+  }
+  customElements.define('g4m-factor-lab', FactorLab);
+</script>
