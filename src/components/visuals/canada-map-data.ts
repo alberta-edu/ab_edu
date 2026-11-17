@@ -158,6 +158,7 @@ export const FRAMES: Record<string, FrameSpec> = {
   east: { id: 'east', rotate: -74, parallels: [42, 54], fit: [[-91, 38], [-52.5, 46.5], [-55, 53], [-91, 50], [-76, 37.5]], width: 720, height: 540 },
   colonies: { id: 'colonies', rotate: -78, parallels: [35, 50], fit: [[-97, 29], [-54, 45], [-56, 53], [-97, 49], [-80, 28.5]], width: 720, height: 620 },
   st: { id: 'st', rotate: -68, parallels: [44, 48], fit: [[-74.5, 44], [-63.5, 43.6], [-63.5, 49.3], [-74.5, 48.6]], width: 720, height: 460 },
+  lakes: { id: 'lakes', rotate: -81, parallels: [42, 44], fit: [[-84.2, 41.5], [-78.3, 41.5], [-78.3, 44.2], [-84.2, 44.2]], width: 720, height: 460 },
   west: { id: 'west', rotate: -92, parallels: [45, 58], fit: [[-118, 50], [-70, 44], [-70, 50], [-114, 60], [-90, 42]], width: 720, height: 520 },
 };
 
@@ -412,6 +413,41 @@ export const DOT_SETS: Record<string, DotSet> = {
       { name: 'Quebec', at: [-71.21, 46.81], year: 1608, group: 'fr', note: 'Founded by Champlain where the St. Lawrence River narrows.', side: 'right' },
       { name: 'Trois-Rivières', at: [-72.55, 46.35], year: 1634, group: 'fr', note: 'A fur-trading post where the Saint-Maurice River meets the St. Lawrence.', side: 'below' },
       { name: 'Montreal', at: [-73.57, 45.5], year: 1642, group: 'fr', note: 'Founded as Ville-Marie by Paul de Chomedey de Maisonneuve and Jeanne Mance.', side: 'below' },
+    ],
+  },
+  loyalists: {
+    frame: 'east',
+    from: 1782,
+    to: 1785,
+    step: 1,
+    groups: [{ id: 'br', label: 'Loyalist settlement' }],
+    dots: [
+      { name: 'Shelburne', at: [-65.32, 43.76], year: 1783, group: 'br', note: 'Thousands of Loyalists landed here. Black Loyalists built nearby Birchtown.', side: 'below' },
+      { name: 'Saint John', at: [-66.06, 45.27], year: 1783, group: 'br', note: 'So many Loyalists came that in 1784 Britain made a new colony for them: New Brunswick.', side: 'above' },
+      { name: 'Kingston', at: [-76.48, 44.23], year: 1784, group: 'br', note: 'About 7,500 Loyalists settled along the upper St. Lawrence and Lake Ontario.', side: 'right' },
+      { name: 'Grand River', at: [-80.26, 43.14], year: 1784, group: 'br', note: 'Haudenosaunee who had fought for Britain, many led by Joseph Brant (Thayendanegea), were given land here.', side: 'below' },
+    ],
+    routes: [
+      { group: 'br', points: [[-74.0, 40.7], [-70.5, 41.3], [-66.0, 42.5], [-65.32, 43.76]] },
+      { group: 'br', points: [[-74.0, 40.7], [-70.5, 41.3], [-67.0, 43.8], [-66.06, 45.27]] },
+      { group: 'br', points: [[-74.0, 40.7], [-73.9, 42.7], [-75.5, 43.6], [-76.48, 44.23]] },
+      { group: 'br', points: [[-74.0, 40.7], [-75.9, 42.1], [-78.9, 42.9], [-80.26, 43.14]] },
+    ],
+  },
+  railroad: {
+    frame: 'lakes',
+    from: 1833,
+    to: 1860,
+    step: 1,
+    groups: [{ id: 'fr', label: 'A story of freedom' }],
+    dots: [
+      { name: 'Dawn Settlement', at: [-82.16, 42.58], year: 1841, group: 'fr', note: 'Josiah Henson escaped slavery and came to Upper Canada. He helped start Dawn, a settlement with a school, near today’s Dresden.', side: 'above' },
+      { name: 'Windsor', at: [-83.04, 42.31], year: 1851, group: 'fr', note: 'Mary Ann Shadd moved here and opened a school. She later started a newspaper, The Provincial Freeman.', side: 'below' },
+      { name: 'St. Catharines', at: [-79.24, 43.16], year: 1851, group: 'fr', note: 'Harriet Tubman lived here for several years. She guided freedom seekers here from the United States.', side: 'left' },
+    ],
+    routes: [
+      { group: 'fr', points: [[-84.5, 39.1], [-83.6, 41.6], [-83.04, 42.31]] },
+      { group: 'fr', points: [[-77.0, 39.0], [-77.6, 42.9], [-79.05, 43.1], [-79.24, 43.16]] },
     ],
   },
   posts: {

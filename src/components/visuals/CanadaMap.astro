@@ -11,7 +11,7 @@ import { mdInline } from '../../lib/render.ts';
 interface Props {
   mode?: 'explorers' | 'colonies' | 'borders' | 'dots';
   /** For dots: which set. */
-  set?: 'settlements' | 'posts';
+  set?: 'settlements' | 'posts' | 'loyalists' | 'railroad';
   /** For borders: which eras to offer, by year. Defaults to all. */
   eras?: string[];
   /** For borders: the era to open on. Defaults to the first. */
@@ -51,7 +51,12 @@ const aria = {
   explorers: 'A map of eastern North America. The route of the chosen explorer is drawn on it.',
   colonies: 'A map of eastern North America showing New France, Acadia and Louisiana, which were French, and the Thirteen Colonies, which were British.',
   borders: 'A map of eastern North America. The colonies and their borders change with the year you choose.',
-  dots: set === 'posts' ? 'A map from Hudson Bay and Montreal west to what is now Alberta. Fur-trade posts appear as the years pass.' : 'A map of the St. Lawrence River and Acadia. French settlements appear as the years pass.',
+  dots: {
+    posts: 'A map from Hudson Bay and Montreal west to what is now Alberta. Fur-trade posts appear as the years pass.',
+    settlements: 'A map of the St. Lawrence River and Acadia. French settlements appear as the years pass.',
+    loyalists: 'A map of eastern North America. Routes lead from New York to the places where Loyalists settled.',
+    railroad: 'A map of the Great Lakes. Routes lead north from the United States to places in Upper Canada where freedom seekers settled.',
+  }[set],
 }[mode];
 ---
 <canada-map data-mode={mode} data-first={first} data-from={dots.from} data-to={dots.to}>
@@ -238,7 +243,7 @@ const aria = {
     )
   }
   <p class="muted g4ss-note">
-    {mode === 'explorers' ? 'Routes are simplified.' : mode === 'dots' ? `${set === 'posts' ? 'Routes are simplified. ' : ''}Every place on this map was already home to First Nations.` : 'Borders are approximate. All of this land was already home to First Nations and Inuit.'}
+    {mode === 'explorers' ? 'Routes are simplified.' : mode === 'dots' ? `${set === 'settlements' ? '' : 'Routes are simplified. '}Every place on this map was already home to First Nations.` : 'Borders are approximate. All of this land was already home to First Nations and Inuit.'}
   </p>
 </canada-map>
 
@@ -275,14 +280,16 @@ const aria = {
   .g4ss-ship { font-size: 22px; }
   .g4ss-trail { fill: none; stroke-width: 2.5; stroke-dasharray: 6 5; opacity: 0.7; }
   .g4ss-trail.g4ss-g-hbc { stroke: var(--bad); }
-  .g4ss-trail.g4ss-g-nwc { stroke: var(--math); }
+  .g4ss-trail.g4ss-g-nwc, .g4ss-trail.g4ss-g-fr { stroke: var(--math); }
+  .g4ss-trail.g4ss-g-br { stroke: var(--bad); }
   .g4ss-dot { opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity 0.3s; }
   .g4ss-dot.is-on { opacity: 1; }
   .g4ss-dot.g4ss-g-fr circle { fill: var(--math); }
   .g4ss-dot.g4ss-g-hbc circle { fill: var(--bad); }
   .g4ss-dot.g4ss-g-nwc circle { fill: var(--math); }
+  .g4ss-dot.g4ss-g-br circle { fill: var(--bad); }
   .g4ss-swatch { display: inline-block; width: 1rem; height: 1rem; border-radius: 4px; vertical-align: -0.15rem; margin-right: 0.35rem; border: 1px solid var(--line-strong); }
-  .g4ss-swatch.g4ss-g-hbc { background: var(--bad); }
+  .g4ss-swatch.g4ss-g-hbc, .g4ss-swatch.g4ss-g-br { background: var(--bad); }
   .g4ss-swatch.g4ss-g-nwc, .g4ss-swatch.g4ss-g-fr { background: var(--math); }
   .g4ss-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; margin: 0.5rem 0 0; padding: 0; font-size: var(--step--1); font-weight: 700; }
   .g4ss-card { margin: 0.6rem 0 0; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
