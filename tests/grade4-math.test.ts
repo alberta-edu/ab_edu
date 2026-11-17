@@ -69,3 +69,24 @@ describe('fraction split', () => {
     expect(simplestText(12, 18)).toMatch(/greatest common factor 6, so it simplifies to 2\/3/);
   });
 });
+
+import { solveFrames, applyMove, moveEquation, tilt } from '../src/components/visuals/equal-balance.ts';
+
+describe('equal balance', () => {
+  it('solves one-operation equations step by step', () => {
+    const add = solveFrames({ op: '+', k: 5, total: 12 });
+    expect(add.map((f) => f.equation)).toEqual(['□ + 5 = 12', '□ + 5 − 5 = 12 − 5', '□ = 7', '7 + 5 = 12 ✓']);
+    const times = solveFrames({ op: '×', k: 3, total: 12 });
+    expect(times[2].equation).toBe('□ = 4');
+    expect(() => solveFrames({ op: '×', k: 5, total: 12 })).toThrow();
+  });
+  it('keeps both sides equal only when both change', () => {
+    expect(applyMove(8, 8, { op: '+', k: 2, side: 'both' })).toEqual([10, 10]);
+    expect(applyMove(8, 8, { op: '+', k: 2, side: 'left' })).toEqual([10, 8]);
+    expect(applyMove(9, 9, { op: '÷', k: 2, side: 'both' })).toBeNull();
+    expect(applyMove(2, 2, { op: '−', k: 3, side: 'both' })).toBeNull();
+    expect(moveEquation(8, 8, { op: '×', k: 2, side: 'both' })).toBe('8 × 2 = 8 × 2   →   16 = 16');
+    expect(tilt(10, 8)).toBeLessThan(0);
+    expect(tilt(8, 8)).toBe(0);
+  });
+});

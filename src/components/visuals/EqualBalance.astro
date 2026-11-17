@@ -1,0 +1,174 @@
+---
+// Equality on a pan balance (MAT4-OI2-GQ1-LO1: K2.1, U2.1, S2.2-S2.4). "keep": an equation with no
+// unknown, such as 5 + 3 = 8. Do the same thing to both sides and it stays level; do it to one side
+// and it tips. "solve": find the mystery box in □ + k = n or k × □ = n, one step at a time.
+import { balanceSvg, solveFrames, type SolveSpec } from './equal-balance.ts';
+
+interface Props {
+  mode?: 'keep' | 'solve';
+  /** keep: the two numbers added on the left; the right side is their sum. */
+  left?: [number, number];
+  /** solve: the equations to choose from. */
+  examples?: SolveSpec[];
+}
+const { mode = 'keep', left = [5, 3], examples = [{ op: '+', k: 5, total: 12 }, { op: '×', k: 3, total: 12 }] } = Astro.props;
+const sum = left[0] + left[1];
+const first = mode === 'solve' ? solveFrames(examples[0])[0] : null;
+const label = (e: SolveSpec) => (e.op === '+' ? `□ + ${e.k} = ${e.total}` : `${e.k} × □ = ${e.total}`);
+const moves = [
+  { op: '+', k: 2, side: 'both', text: 'Add 2 to both sides' },
+  { op: '−', k: 3, side: 'both', text: 'Take 3 from both sides' },
+  { op: '×', k: 2, side: 'both', text: 'Double both sides' },
+  { op: '÷', k: 2, side: 'both', text: 'Halve both sides' },
+  { op: '+', k: 2, side: 'left', text: 'Add 2 to the left only' },
+];
+---
+<g4m-equal-balance data-mode={mode} data-left={JSON.stringify(left)} data-examples={JSON.stringify(examples)}>
+  {
+    mode === 'solve' && (
+      <div class="seg g4m-eb-pick" role="group" aria-label="Choose an equation">
+        {examples.map((e, i) => <button type="button" data-eb-ex={i} aria-pressed={String(i === 0)}>{label(e)}</button>)}
+      </div>
+    )
+  }
+  <p class="g4m-eb-eq" data-eb="eq" aria-live="polite">{mode === 'solve' ? first!.equation : `${left[0]} + ${left[1]} = ${sum}`}</p>
+  <svg class="g4m-eb-svg" viewBox="0 0 400 244" role="img" aria-label="A pan balance" data-eb="svg" set:html={mode === 'solve' ? balanceSvg(first!.left, first!.right, 0) : balanceSvg({ boxes: 0, cubes: sum }, { boxes: 0, cubes: sum }, 0)} />
+  <p class="g4m-eb-say" data-eb="say">{mode === 'solve' ? first!.caption : `${left[0]} + ${left[1]} and ${sum} name the same number, so the balance is level.`}</p>
+  {
+    mode === 'solve' ? (
+      <div class="control-row">
+        <button type="button" class="btn btn--ghost btn--small" data-eb="back" disabled>Back</button>
+        <button type="button" class="btn btn--primary btn--small" data-eb="next">Next step</button>
+        <span class="g4m-eb-count" data-eb="count">Step 1 of 4</span>
+      </div>
+    ) : (
+      <div class="g4m-eb-moves">
+        {moves.map((m) => <button type="button" class={`btn btn--small ${m.side === 'left' ? 'btn--ghost g4m-eb-oneside' : 'btn--ghost'}`} data-op={m.op} data-k={m.k} data-side={m.side}>{m.text}</button>)}
+        <button type="button" class="btn btn--small btn--ghost" data-eb="reset">Start again</button>
+      </div>
+    )
+  }
+</g4m-equal-balance>
+
+<style is:global>
+  g4m-equal-balance { display: block; }
+  .g4m-eb-pick { margin-bottom: 0.4rem; flex-wrap: wrap; }
+  .g4m-eb-eq { margin: 0.2rem 0; font-size: var(--step-1); font-weight: 700; font-variant-numeric: tabular-nums; white-space: pre-wrap; }
+  .g4m-eb-svg { display: block; width: 100%; max-width: 30rem; height: auto; font-family: var(--font); }
+  .g4m-eb-stand { fill: var(--surface-3); stroke: var(--ink-3); stroke-width: 2; }
+  .g4m-eb-beam { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+  .g4m-eb-pivot { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .g4m-eb-string { stroke: var(--ink-3); stroke-width: 1.5; }
+  .g4m-eb-plate { fill: var(--ink-2); }
+  .g4m-eb-cube { fill: var(--math); stroke: var(--surface); stroke-width: 1; }
+  .g4m-eb-box rect { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .g4m-eb-box text { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4m-eb-say { margin: 0.3rem 0 0; font-weight: 700; min-height: 2.6em; }
+  .g4m-eb-say.is-tipped { color: var(--bad); }
+  .g4m-eb-moves { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+  .g4m-eb-oneside { border-style: dashed; }
+  .g4m-eb-count { color: var(--ink-2); font-size: var(--step--1); font-weight: 700; }
+</style>
+
+<script>
+  import { balanceSvg, solveFrames, applyMove, moveEquation, tilt, type Frame, type Move, type SolveSpec } from './equal-balance.ts';
+
+  class EqualBalance extends HTMLElement {
+    private l = 0;
+    private r = 0;
+    private angle = 0;
+    private frames: Frame[] = [];
+    private i = 0;
+
+    connectedCallback() {
+      if (this.dataset.mode === 'solve') {
+        const examples: SolveSpec[] = JSON.parse(this.dataset.examples!);
+        this.querySelectorAll<HTMLButtonElement>('[data-eb-ex]').forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll('[data-eb-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.frames = solveFrames(examples[Number(b.dataset.ebEx)]);
+            this.go(0);
+          }),
+        );
+        this.q('next').addEventListener('click', () => this.go(this.i + 1));
+        this.q('back').addEventListener('click', () => this.go(this.i - 1));
+        this.frames = solveFrames(examples[0]);
+        this.go(0);
+      } else {
+        const [a, b] = JSON.parse(this.dataset.left!) as [number, number];
+        const reset = () => {
+          this.l = this.r = a + b;
+          this.angle = 0;
+          this.drawKeep();
+          this.q('eq').textContent = `${a} + ${b} = ${a + b}`;
+          this.say(`${a} + ${b} and ${a + b} name the same number, so the balance is level.`, false);
+        };
+        this.querySelectorAll<HTMLButtonElement>('[data-op]').forEach((btn) =>
+          btn.addEventListener('click', () => {
+            const m: Move = { op: btn.dataset.op as Move['op'], k: Number(btn.dataset.k), side: btn.dataset.side as Move['side'] };
+            const next = applyMove(this.l, this.r, m);
+            if (!next) {
+              this.say(m.op === '÷' ? 'One side can’t be split into 2 equal halves of whole cubes. Try another move.' : 'There aren’t enough cubes for that, or too many to fit. Try another move.', false);
+              return;
+            }
+            this.q('eq').textContent = moveEquation(this.l, this.r, m);
+            [this.l, this.r] = next;
+            this.drawKeep();
+            if (this.l === this.r) this.say('The same change on both sides: still equal, still level.', false);
+            else this.say('Only one side changed, so the two sides are not equal. The balance tips.', true);
+          }),
+        );
+        this.q('reset').addEventListener('click', reset);
+        reset();
+      }
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-eb="${name}"]`) as T;
+    }
+
+    private say(text: string, tipped: boolean) {
+      const el = this.q('say');
+      el.textContent = text;
+      el.classList.toggle('is-tipped', tipped);
+    }
+
+    private drawKeep() {
+      this.animate(tilt(this.l, this.r), (a) => balanceSvg({ boxes: 0, cubes: this.l }, { boxes: 0, cubes: this.r }, a));
+      this.querySelectorAll<HTMLButtonElement>('[data-op]').forEach((btn) => {
+        const m: Move = { op: btn.dataset.op as Move['op'], k: Number(btn.dataset.k), side: btn.dataset.side as Move['side'] };
+        btn.disabled = this.l !== this.r && m.side === 'left';
+      });
+    }
+
+    private go(i: number) {
+      this.i = Math.max(0, Math.min(this.frames.length - 1, i));
+      const f = this.frames[this.i];
+      this.animate(0, (a) => balanceSvg(f.left, f.right, a, f.reveal));
+      this.q('eq').textContent = f.equation;
+      this.say(f.caption, false);
+      this.q('count').textContent = `Step ${this.i + 1} of ${this.frames.length}`;
+      this.q<HTMLButtonElement>('back').disabled = this.i === 0;
+      this.q<HTMLButtonElement>('next').disabled = this.i === this.frames.length - 1;
+    }
+
+    private animate(to: number, draw: (angle: number) => string) {
+      const svg = this.q('svg');
+      const from = this.angle;
+      this.angle = to;
+      if (from === to || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        svg.innerHTML = draw(to);
+        return;
+      }
+      const t0 = performance.now();
+      const step = (t: number) => {
+        const p = Math.min(1, (t - t0) / 450);
+        const e = 1 - (1 - p) ** 3;
+        svg.innerHTML = draw(from + (to - from) * e);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }
+  }
+  customElements.define('g4m-equal-balance', EqualBalance);
+</script>
