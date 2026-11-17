@@ -10,39 +10,40 @@
 <style is:global>
   g4-compost-bin { display: block; }
   g4-compost-bin svg { background: var(--surface-2); }
-  .g4s-bin { fill: none; stroke: var(--ink-2); stroke-width: 4; stroke-linejoin: round; }
-  .g4s-compost { fill: #5b3a1f; }
-  .g4s-crumb { fill: #3e2714; }
-  .g4s-apple { fill: #e8d7a8; stroke: #8a6d3b; stroke-width: 2; }
-  .g4s-peel { fill: #f2cf3a; stroke: #a07d10; stroke-width: 2; }
-  .g4s-leaf { fill: #d98b2b; stroke: #8a4f12; stroke-width: 2; }
-  .g4s-bag { fill: color-mix(in srgb, var(--surface) 70%, #9fc4e8); stroke: #4a7fb5; stroke-width: 2; }
-  .g4s-can { fill: #b8c0cc; stroke: #5a6270; stroke-width: 2; }
-  .g4s-worm { fill: none; stroke: #d17a7a; stroke-width: 5; stroke-linecap: round; }
-  .g4s-month { fill: var(--ink); font-size: 20px; font-weight: 700; }
-  .g4s-ok { fill: var(--ok); font-size: 14px; font-weight: 700; }
-  .g4s-same { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+  .g4s-cb-bin { fill: none; stroke: var(--ink-2); stroke-width: 4; stroke-linejoin: round; }
+  .g4s-cb-compost { fill: #5b3a1f; }
+  .g4s-cb-crumb { fill: #3e2714; }
+  .g4s-cb-apple { fill: #e8d7a8; stroke: #8a6d3b; stroke-width: 2; }
+  .g4s-cb-peel { fill: #f2cf3a; stroke: #a07d10; stroke-width: 2; }
+  .g4s-cb-leaf { fill: #d98b2b; stroke: #8a4f12; stroke-width: 2; }
+  .g4s-cb-bag { fill: color-mix(in srgb, var(--surface) 70%, #9fc4e8); stroke: #4a7fb5; stroke-width: 2; }
+  .g4s-cb-can { fill: #b8c0cc; stroke: #5a6270; stroke-width: 2; }
+  .g4s-cb-worm { fill: none; stroke: #d17a7a; stroke-width: 5; stroke-linecap: round; }
+  .g4s-cb-month { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4s-cb-name { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .g4s-cb-ok { fill: var(--ok); font-size: 16px; font-weight: 700; }
+  .g4s-cb-same { fill: var(--ink-2); font-size: 16px; font-weight: 700; }
 </style>
 
 <script>
   import { tween, wait } from './anim.ts';
 
-  const FLOOR = 250;
+  const FLOOR = 228;
   const ITEMS = [
-    { id: 'apple', label: 'Apple core', x: 120, breaks: true },
-    { id: 'peel', label: 'Banana peel', x: 225, breaks: true },
+    { id: 'apple', label: 'Apple|core', x: 120, breaks: true },
+    { id: 'peel', label: 'Banana|peel', x: 225, breaks: true },
     { id: 'leaf', label: 'Leaves', x: 330, breaks: true },
-    { id: 'bag', label: 'Plastic bag', x: 435, breaks: false },
-    { id: 'can', label: 'Metal can', x: 540, breaks: false },
+    { id: 'bag', label: 'Plastic|bag', x: 435, breaks: false },
+    { id: 'can', label: 'Metal|can', x: 540, breaks: false },
   ];
 
   /** Each item drawn around (0, 0), about 60 px wide. */
   const SHAPES: Record<string, string> = {
-    apple: '<path class="g4s-apple" d="M-12,-26 Q0,-18 12,-26 Q6,-10 10,0 Q6,10 12,24 Q0,18 -12,24 Q-6,10 -10,0 Q-6,-10 -12,-26 Z"/><line x1="0" y1="-26" x2="2" y2="-36" stroke="#6b4a2a" stroke-width="3"/>',
-    peel: '<path class="g4s-peel" d="M0,-26 Q-26,0 -22,24 Q-10,6 0,4 Q10,6 22,24 Q26,0 0,-26 Z"/>',
-    leaf: '<path class="g4s-leaf" d="M-26,8 Q-10,-24 18,-18 Q12,10 -26,8 Z"/><path class="g4s-leaf" d="M-6,22 Q4,-6 28,0 Q18,24 -6,22 Z"/>',
-    bag: '<path class="g4s-bag" d="M-24,-22 L-14,-22 Q-12,-32 -4,-22 L4,-22 Q12,-32 14,-22 L24,-22 L20,24 L-20,24 Z"/>',
-    can: '<rect class="g4s-can" x="-15" y="-24" width="30" height="48" rx="4"/><line x1="-15" y1="-14" x2="15" y2="-14" stroke="#5a6270" stroke-width="2"/>',
+    apple: '<path class="g4s-cb-apple" d="M-12,-26 Q0,-18 12,-26 Q6,-10 10,0 Q6,10 12,24 Q0,18 -12,24 Q-6,10 -10,0 Q-6,-10 -12,-26 Z"/><line x1="0" y1="-26" x2="2" y2="-36" stroke="#6b4a2a" stroke-width="3"/>',
+    peel: '<path class="g4s-cb-peel" d="M0,-26 Q-26,0 -22,24 Q-10,6 0,4 Q10,6 22,24 Q26,0 0,-26 Z"/>',
+    leaf: '<path class="g4s-cb-leaf" d="M-26,8 Q-10,-24 18,-18 Q12,10 -26,8 Z"/><path class="g4s-cb-leaf" d="M-6,22 Q4,-6 28,0 Q18,24 -6,22 Z"/>',
+    bag: '<path class="g4s-cb-bag" d="M-24,-22 L-14,-22 Q-12,-32 -4,-22 L4,-22 Q12,-32 14,-22 L24,-22 L20,24 L-20,24 Z"/>',
+    can: '<rect class="g4s-cb-can" x="-15" y="-24" width="30" height="48" rx="4"/><line x1="-15" y1="-14" x2="15" y2="-14" stroke="#5a6270" stroke-width="2"/>',
   };
 
   class G4CompostBin extends HTMLElement {
@@ -73,21 +74,21 @@
       const t = this.t;
       const out: string[] = [];
       const month = Math.min(6, Math.floor(t * 6.999));
-      out.push(`<text class="g4s-month" x="330" y="34" text-anchor="middle">${month === 0 ? 'Day 1' : `Month ${month}`}</text>`);
+      out.push(`<text class="g4s-cb-month" x="330" y="34" text-anchor="middle">${month === 0 ? 'Day 1' : `Month ${month}`}</text>`);
       // The compost layer grows as food and leaves break down.
       const layer = 14 + 40 * t;
-      out.push(`<rect class="g4s-compost" x="64" y="${(FLOOR - layer).toFixed(1)}" width="532" height="${layer.toFixed(1)}"/>`);
+      out.push(`<rect class="g4s-cb-compost" x="64" y="${(FLOOR - layer).toFixed(1)}" width="532" height="${layer.toFixed(1)}"/>`);
       for (let k = 0; k < 40; k++) {
         const x = 70 + ((k * 53) % 520);
         const y = FLOOR - 4 - ((k * 17) % Math.max(4, layer - 6));
-        out.push(`<circle class="g4s-crumb" cx="${x}" cy="${y.toFixed(1)}" r="3"/>`);
+        out.push(`<circle class="g4s-cb-crumb" cx="${x}" cy="${y.toFixed(1)}" r="3"/>`);
       }
       // Worms move in once the food starts to soften.
       if (t > 0.15)
         for (let w = 0; w < 3; w++) {
           const x = 130 + w * 110 + Math.sin(t * 20 + w) * 12;
           const y = FLOOR - 10 - w * 6;
-          out.push(`<path class="g4s-worm" d="M${x.toFixed(1)},${y} q8,-8 16,0 t16,0 t16,0"/>`);
+          out.push(`<path class="g4s-cb-worm" d="M${x.toFixed(1)},${y} q8,-8 16,0 t16,0 t16,0"/>`);
         }
       for (const it of ITEMS) {
         const y = FLOOR - layer - 30;
@@ -98,10 +99,10 @@
         } else {
           out.push(`<g transform="translate(${it.x} ${y.toFixed(1)})">${SHAPES[it.id]}</g>`);
         }
-        out.push(`<text class="sci-text" x="${it.x}" y="${FLOOR + 22}" text-anchor="middle">${it.label}</text>`);
-        if (this.done) out.push(it.breaks ? `<text class="g4s-ok" x="${it.x}" y="${FLOOR + 42}" text-anchor="middle">now compost</text>` : `<text class="g4s-same" x="${it.x}" y="${FLOOR + 42}" text-anchor="middle">still the same</text>`);
+        it.label.split('|').forEach((line, k) => out.push(`<text class="g4s-cb-name" x="${it.x}" y="${FLOOR + 24 + k * 19}" text-anchor="middle">${line}</text>`));
+        if (this.done) out.push(it.breaks ? `<text class="g4s-cb-ok" x="${it.x}" y="${FLOOR + 66}" text-anchor="middle">compost ✓</text>` : `<text class="g4s-cb-same" x="${it.x}" y="${FLOOR + 66}" text-anchor="middle">the same</text>`);
       }
-      out.push('<path class="g4s-bin" d="M60,60 L60,252 L600,252 L600,60"/>');
+      out.push('<path class="g4s-cb-bin" d="M60,50 L60,230 L600,230 L600,50"/>');
       this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
     }
   }

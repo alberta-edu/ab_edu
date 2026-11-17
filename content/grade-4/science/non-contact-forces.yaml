@@ -1,0 +1,389 @@
+id: non-contact-forces
+grade: 4
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI4-OI2-GQ1-LO1]
+order: 3
+title: Gravity and Other Non-contact Forces
+shortTitle: Non-contact forces
+summary: >-
+  Drop, toss and roll a ball to see gravity at work, then test whether a magnet can pull a paper clip
+  through cardboard from near and far.
+
+bigIdea: |-
+  - A **non-contact force** pushes or pulls on an object without touching it.
+  - **Gravity** pulls objects toward the ground. A **magnet’s pull** is another non-contact force.
+  - Non-contact forces are invisible, but we can see what they do.
+  - They get **weaker** farther away, and they can act **through** some materials.
+
+lesson:
+  - title: Forces without touching
+    blocks:
+      - type: compare
+        covers: [K1.1, U1.1]
+        columns:
+          - title: Contact force
+            figure: >-
+              <svg viewBox="0 0 200 110" class="fig-svg" role="img" aria-label="A foot kicking a ball. The foot touches the ball.">
+              <rect class="sci-ground" x="0" y="92" width="200" height="18"/>
+              <path d="M30,40 L70,40 L78,70 L100,72 Q108,74 106,84 L56,86 Z" style="fill:#4a7fb5;stroke:var(--ink);stroke-width:2"/>
+              <circle cx="128" cy="72" r="20" style="fill:var(--surface);stroke:var(--ink);stroke-width:2.5"/>
+              <path d="M120,62 l8,-4 l8,4 l-3,9 l-10,0 Z" style="fill:var(--ink)"/>
+              </svg>
+            body: The two objects **touch**, like a foot kicking a ball.
+          - title: Non-contact force
+            figure: >-
+              <svg viewBox="0 0 200 110" class="fig-svg" role="img" aria-label="A magnet pulling a paper clip toward it across a small gap. They don’t touch.">
+              <rect class="sci-ground" x="0" y="92" width="200" height="18"/>
+              <rect x="30" y="56" width="36" height="34" style="fill:#d23b2e"/><rect x="66" y="56" width="36" height="34" style="fill:#2f5fd0"/>
+              <text x="48" y="78" text-anchor="middle" style="fill:#fff;font-size:15px;font-weight:700">N</text><text x="84" y="78" text-anchor="middle" style="fill:#fff;font-size:15px;font-weight:700">S</text>
+              <path d="M136,80 L158,80 A4,4 0 0 1 158,88 L140,88 A3,3 0 0 1 140,83 L154,83" style="fill:none;stroke:#5a6270;stroke-width:3"/>
+              <path d="M130,70 L110,70" style="stroke:var(--l3);stroke-width:3;stroke-dasharray:4 4"/><path d="M112,65 L104,70 L112,75" style="fill:none;stroke:var(--l3);stroke-width:3"/>
+              </svg>
+            body: The objects **don’t touch**, like a magnet pulling a paper clip across a gap.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI2-GQ1-LO1#K1.1', 'SCI3-OI2-GQ1-LO1#K1.3']
+        title: From Grade 3
+        body: A force is a push or a pull. Contact forces happen between objects that touch.
+
+  - title: Gravity pulls things down
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.2, S1.1]
+        component: g4-gravity-drop
+        caption: Try all three. Watch the **gravity** arrow. Does it ever point any way but down?
+      - type: callout
+        variant: mistake
+        covers: [K1.2, U1.1]
+        title: Gravity never takes a break
+        body: Gravity pulls on the ball on the way **up** too. That’s why the ball slows down, stops and comes back.
+
+  - title: 'Virtual experiment: through the cardboard'
+    blocks:
+      - type: experiment
+        covers: [K1.5, K1.6, K1.3, S1.1]
+        title: Can a magnet pull a paper clip through cardboard?
+        question: |-
+          A magnet slides onto a cardboard shelf. A steel paper clip sits on the table under the shelf.
+
+          - In one setup, the shelf is **2 cm** above the clip.
+          - In the other, it is **8 cm** above the clip.
+        animation: g4-magnet-reach
+        predict:
+          choices:
+            - The clip is pulled up only when the shelf is 2 cm high.
+            - The clip is pulled up in both setups.
+            - The cardboard blocks the magnet, so neither clip moves.
+            - The clip is pulled up only when the shelf is 8 cm high.
+          answer: 0
+        observe: |-
+          - With the shelf **2 cm** above it, the clip jumped up and stuck under the cardboard.
+          - With the shelf **8 cm** above it, the clip didn’t move.
+        explain: |-
+          - The magnet pulled the clip **through** the cardboard, without touching it.
+          - The pull is strong up close and **weaker farther away**. At 8 cm it was too weak to lift the clip.
+
+  - title: Through some materials
+    blocks:
+      - type: table
+        covers: [K1.6, K1.3]
+        caption: Can a magnet pull a paper clip through a thin sheet of it?
+        headers: [Material between, Does the pull get through?]
+        rows:
+          - ['📄 Paper or cardboard', 'Yes']
+          - ['🥤 Plastic', 'Yes']
+          - ['🪟 Glass', 'Yes']
+          - ['💧 Water', 'Yes']
+          - ['🔩 A thick steel plate', 'Hardly at all. The magnet pulls on the steel itself.']
+      - type: callout
+        variant: tip
+        covers: [K1.6, K1.2]
+        title: Gravity gets through everything
+        body: Nothing blocks gravity. Holding a book over a ball won’t stop the ball from falling.
+
+  - title: Invisible, but you can see what they do
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: contact, label: Contact force, icon: ✋ }
+            - { id: non, label: Non-contact force, icon: 🧲 }
+          cards:
+            - { text: An apple falls from a tree to the ground., bin: non, why: Gravity pulls the apple down. Nothing touches it as it falls. }
+            - { text: You push open a door., bin: contact, why: Your hand touches the door. }
+            - { text: Two magnets push apart before they touch., bin: non, why: The magnets push on each other across the gap. }
+            - { text: A dog pulls on its leash., bin: contact, why: The leash connects the dog to your hand. }
+            - { text: A dropped mitten lands in the snow., bin: non, why: Gravity pulls it down through the air. }
+            - { text: A magnet tugs a steel washer across a table from 1 cm away., bin: non, why: The magnet pulls the washer without touching it. }
+        caption: Sort each push or pull. Ask yourself, “Are the two things touching?”
+
+keyTerms:
+  - term: Non-contact force
+    covers: [K1.1, U1.1]
+    definition: A push or pull between objects that are not touching.
+  - term: Gravity
+    covers: [K1.2]
+    definition: The non-contact force that pulls objects on Earth toward the ground.
+  - term: Magnetic force
+    covers: [K1.3]
+    definition: The non-contact force a magnet uses to pull or push on magnetic materials and other magnets.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: mc
+    prompt: Which of these is a **non-contact** force?
+    choices:
+      - A magnet pulling a pin toward it across a gap
+      - A hockey stick hitting a puck
+      - Your hands squeezing a sponge
+      - A rope pulling a sled
+    answer: 0
+    feedback:
+      '1': The stick touches the puck. Is that contact or non-contact?
+      '2': Your hands touch the sponge. Is that contact or non-contact?
+      '3': The rope is tied to the sled, so they touch. Which one acts across a gap?
+    hints:
+      - In which one do the two objects **not** touch?
+    solution:
+      - The magnet pulls the pin **without touching it**, so it is a non-contact force.
+      - In the others, the objects touch, so they are contact forces.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: Rosa tosses a beanbag straight up. While it is still **going up**, what is gravity doing?
+    choices:
+      - Pulling it down toward the ground
+      - Nothing, until it starts to fall
+      - Pushing it up into the air
+      - Holding it still at the top
+    answer: 0
+    feedback:
+      '1': If gravity did nothing on the way up, what would stop the beanbag from going up forever?
+      '2': Rosa’s throw sent it up. Which way does gravity always pull?
+      '3': The beanbag stops for only a moment at the top. What makes it come back down?
+    hints:
+      - Why does the beanbag slow down as it rises?
+    solution:
+      - Gravity pulls down **the whole time**, even on the way up.
+      - That pull slows the beanbag down, stops it, and brings it back.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.5, K1.3]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 420 130" class="fig-svg" role="img" aria-label="A magnet on the left. Three paper clips to its right: clip A is 1 cm away, clip B is 4 cm away and clip C is 8 cm away.">
+      <rect x="10" y="44" width="36" height="40" style="fill:#d23b2e"/><rect x="46" y="44" width="36" height="40" style="fill:#2f5fd0"/>
+      <text x="28" y="70" text-anchor="middle" style="fill:#fff;font-size:15px;font-weight:700">N</text><text x="64" y="70" text-anchor="middle" style="fill:#fff;font-size:15px;font-weight:700">S</text>
+      <g style="fill:none;stroke:#5a6270;stroke-width:3"><path d="M106,60 L128,60 A4,4 0 0 1 128,68 L110,68 A3,3 0 0 1 110,63 L124,63"/><path d="M196,60 L218,60 A4,4 0 0 1 218,68 L200,68 A3,3 0 0 1 200,63 L214,63"/><path d="M346,60 L368,60 A4,4 0 0 1 368,68 L350,68 A3,3 0 0 1 350,63 L364,63"/></g>
+      <text class="fig-label" x="116" y="40">A</text><text class="fig-label" x="206" y="40">B</text><text class="fig-label" x="356" y="40">C</text>
+      <text class="fig-small" x="116" y="100" text-anchor="middle">1 cm</text><text class="fig-small" x="206" y="100" text-anchor="middle">4 cm</text><text class="fig-small" x="356" y="100" text-anchor="middle">8 cm</text>
+      </svg>
+    prompt: The magnet pulls on all three paper clips. On which clip is the pull **strongest**?
+    choices: [Clip A, Clip B, Clip C]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': B is in the middle. Is there a clip even closer to the magnet?
+      '2': C is the farthest away. What happens to a magnet’s pull as you move away?
+    hints:
+      - Does a magnet’s pull get stronger or weaker as things get farther away?
+    solution:
+      - The pull is strongest **up close** and weaker farther away.
+      - Clip A is closest, so the pull on it is strongest.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K1.6, S1.1, K1.3]
+    type: mc
+    prompt: |-
+      Theo holds a magnet against one side of a sheet. A paper clip is on the other side. Here is what happened.
+
+      | Sheet | Clip pulled through? |
+      |---|---|
+      | Paper | Yes |
+      | Plastic lid | Yes |
+      | Glass dish | Yes |
+      | Thick steel plate | No |
+
+      What can Theo conclude?
+    choices:
+      - Magnetic force can act through some materials, but not all.
+      - Magnetic force can act through every material.
+      - Magnetic force can’t act through anything solid.
+      - Magnetic force only works through paper.
+    answer: 0
+    feedback:
+      '1': Look at the last row. Did the pull get through every sheet?
+      '2': Plastic and glass are solids. Did the pull get through them?
+      '3': Check the plastic and glass rows. Was paper the only one that worked?
+    hints:
+      - Count the yes rows and the no rows. Do they all say the same thing?
+    solution:
+      - The pull got through paper, plastic and glass, but not the thick steel plate.
+      - So magnetic force acts through **some** materials, not all of them.
+
+  - id: b2
+    level: 2
+    thinking: whatif
+    covers: [K1.5, S1.1]
+    type: mc
+    prompt: A fridge magnet holds up one sheet of paper easily. Aisha puts **10 sheets** under it instead. What will most likely happen?
+    choices:
+      - It slides down, because the fridge is now farther from the magnet.
+      - It holds even better, because there is more paper to grip.
+      - It holds just the same, because paper doesn’t matter.
+      - It gets stronger, because paper makes magnets stronger.
+    answer: 0
+    feedback:
+      '1': The paper doesn’t grip anything. What is the magnet really pulling on?
+      '2': The paper doesn’t block the pull. But what did adding sheets change?
+      '3': Paper isn’t a magnetic material. What does a thick stack do to the distance?
+    hints:
+      - The magnet pulls on the steel fridge door, not on the paper.
+      - How far is the magnet from the door with 10 sheets, compared with 1?
+    solution:
+      - The magnet is pulling on the **fridge door**. The paper is just in between.
+      - Ten sheets push the magnet farther from the door, so the pull is **weaker**. It may slide down.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K1.2, S1.2, S1.1]
+    type: mc
+    prompt: A marble rolls along a desk and off the edge. Why does it land on the floor instead of rolling on through the air in a straight line?
+    choices:
+      - Gravity pulls it toward the ground the whole time it is in the air.
+      - The desk gives it a push down as it leaves.
+      - The air pushes it down from above.
+      - Marbles are heavy, and heavy things don’t need a force to fall.
+    answer: 0
+    feedback:
+      '1': Once the marble is past the edge, is the desk still touching it?
+      '2': Think of the gravity visual. Which force pulled the ball down there?
+      '3': Every change in movement needs a force. Which force pulls things toward the ground?
+    hints:
+      - Once the marble leaves the desk, nothing touches it. What force acts without touching?
+    solution:
+      - After the edge, nothing is touching the marble.
+      - '**Gravity**, a non-contact force, pulls it toward the ground, so its path bends down to the floor.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [U1.1, K1.1, K1.3]
+    type: mc
+    prompt: 'A paper clip hangs in the air just below a magnet, not touching it. Mia says, “There’s no force on the clip, because nothing is touching it.” What is wrong?'
+    choices:
+      - The magnet is pulling the clip without touching it.
+      - Mia is right. Forces only happen when things touch.
+      - The air is holding the clip up.
+      - The clip is holding itself up.
+    answer: 0
+    feedback:
+      '1': If there were no force at all, what would gravity do to the clip?
+      '2': Air doesn’t hold up a paper clip anywhere else. What is different here?
+      '3': A clip can’t push on itself. What object nearby could be pulling it?
+    hints:
+      - What would the clip do if you took the magnet away?
+    solution:
+      - Without the magnet, gravity would pull the clip down to the floor.
+      - It stays up because the magnet **pulls on it without touching**. That is a non-contact force.
+      - 'Mia’s mistake: she thought forces must be seen or felt to be there. Non-contact forces are invisible.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.5, K1.6, S1.1]
+    type: investigation
+    prompt: |-
+      Ari makes a fishing game. Each paper fish has a steel paper clip on its nose. The fish lie under a cover made
+      of cardboard sheets, and Ari fishes with a magnet on top of the cover.
+
+      | Sheets of cardboard | What happened |
+      |---|---|
+      | 1 | Fish jumped up |
+      | 2 | Fish jumped up |
+      | 3 | Fish jumped up |
+      | 4 | Fish slid a little |
+      | 5 | Nothing |
+    parts:
+      - type: number
+        prompt: What is the **most** sheets the magnet can lift a fish through?
+        answer: 3
+        verify: '3'
+        unit: sheets
+        hints:
+          - Find the last row where the fish jumped up.
+        solution:
+          - The fish jumped up with 1, 2 and 3 sheets. With 4 they only slid. So **3** sheets is the most.
+      - type: mc
+        prompt: 'Ben says, “Cardboard blocks magnets. That’s why it stopped working.” What do you say?'
+        choices:
+          - No. It worked through 3 sheets. More sheets made the gap bigger, so the pull got weaker.
+          - Yes. Each sheet blocks some of the magnet, until it is all blocked.
+          - No. The fish got heavier as more sheets were added.
+        answer: 0
+        feedback:
+          '1': If cardboard blocked magnets, could the fish have jumped through 3 sheets?
+          '2': The fish didn’t change. What did change as Ari added sheets?
+        hints:
+          - Did the magnet work through cardboard at all?
+          - Each sheet has a thickness. What happens to the distance as you add sheets?
+        solution:
+          - The pull got through 1, 2 and 3 sheets, so cardboard doesn’t block it.
+          - Each sheet moves the magnet **farther** from the fish, and the pull gets **weaker** with distance.
+      - type: mc
+        prompt: Ari swaps the cardboard for sheets of **plastic**, each just as thick. Predict how many sheets the magnet can lift a fish through now.
+        choices:
+          - About 3, because the distance is what matters
+          - None, because plastic blocks magnets
+          - Many more, because plastic helps magnets
+        answer: 0
+        feedback:
+          '1': A magnet’s pull goes through plastic, just like the lid in Theo’s test. What really changes things?
+          '2': Plastic isn’t a magnetic material. Would it change the pull?
+        hints:
+          - The pull passes through both cardboard and plastic. So what is left that could change it?
+        solution:
+          - The pull goes through plastic and through cardboard.
+          - The sheets are just as thick, so the **distance** is the same. Expect about **3** sheets again.
+    wrapUp: A magnet’s pull goes through many materials. What weakens it is distance.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.2, U1.1]
+    type: mc
+    prompt: 'Kofi looks at a globe. “People in Australia are on the bottom of Earth,” he says. “Why don’t they fall off into space?”'
+    choices:
+      - Gravity pulls them toward the ground under their feet, just as it pulls us.
+      - They hold on to the ground with special shoes.
+      - Gravity only works in the top half of Earth, so they are lucky.
+      - The air above them pushes them down hard enough.
+    answer: 0
+    feedback:
+      '1': People in Australia walk around just like you do. What pulls you to the ground?
+      '2': If gravity didn’t work there, what would happen to every dropped ball in Australia?
+      '3': Air is all around us, yet when you jump, what brings you back down?
+    hints:
+      - When someone in Australia drops a ball, where does it go?
+      - Gravity on Earth pulls objects toward the ground. Where is the ground for someone in Australia?
+    solution:
+      - Earth is a ball. There is no real top or bottom.
+      - Everywhere on Earth, gravity pulls objects **toward the ground** under them.
+      - So a ball dropped in Australia falls to Australia’s ground, just as one dropped in Alberta falls to ours.
