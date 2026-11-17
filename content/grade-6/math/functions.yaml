@@ -1,0 +1,301 @@
+id: functions
+grade: 6
+subject: math
+organizingIdea: MAT-OI6
+outcomes: [MAT6-OI6-GQ1-LO1]
+order: 17
+title: Functions and Tables of Values
+shortTitle: Functions
+summary: >-
+  Find the independent and dependent variables in a changing situation, and show a function as a
+  rule, a table of values, points on a plane and an equation.
+
+bigIdea: |-
+  - A **function** connects two changing quantities: each input gives **exactly one** output.
+  - The **independent** variable is the one you choose or that just passes, like time. The **dependent** variable changes because of it.
+  - A function can be shown as a **rule**, a **table of values**, **points** or an **equation**.
+  - Independent values are **x-coordinates**. Dependent values are **y-coordinates**.
+
+lesson:
+  - title: Input and output
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1, U1.2, S1.1, S1.2, S1.6]
+        component: function-machine
+        caption: |-
+          - Slide the input. Watch the machine, the table and the point all change together.
+          - Try each situation. What is the rule?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI6-GQ1-LO1#U1.1]
+        title: Remember from Grade 5
+        body: In a sequence, each term matched a position number. A function matches each input to one output in the same way.
+
+  - title: Which variable depends?
+    blocks:
+      - type: table
+        covers: [S1.1, K1.2, K1.1]
+        headers: [Situation, Independent, Dependent]
+        rows:
+          - ['A plant grows each week', 'weeks', 'height of the plant']
+          - ['Water warms on a stove', 'minutes', 'temperature']
+          - ['A family drives to Banff', 'hours of driving', 'distance travelled']
+          - ['A child grows up', 'age', 'height of the person']
+      - type: callout
+        variant: tip
+        covers: [S1.1, U1.1]
+        title: Ask "What depends on what?"
+        body: The height depends on how many weeks have passed. The weeks don’t depend on the height. So weeks are independent.
+
+  - title: Four ways to show one function
+    blocks:
+      - type: compare
+        covers: [K1.3, K1.4, K1.5, S1.3, S1.4, S1.5]
+        columns:
+          - title: Rule
+            body: Multiply the weeks by 2, then add 3.
+          - title: Table
+            body: '\(t\): 0, 1, 2, 3. \(h\): 3, 5, 7, 9. Independent values go in the first column.'
+          - title: Points
+            body: '(0, 3), (1, 5), (2, 7), (3, 9). x is the independent value, y the dependent value.'
+          - title: Equation
+            body: '\(h = 2t + 3\)'
+
+  - title: Working backwards
+    blocks:
+      - type: example
+        covers: [S1.7, S1.8]
+        title: When is the plant 15 cm tall?
+        problem: 'The plant follows \(h = 2t + 3\). After how many weeks is it **15 cm** tall?'
+        steps:
+          - 'Strategy 1, undo the rule: take away 3, then divide by 2. \(15 - 3 = 12\), and \(12 \div 2 = 6\).'
+          - 'Strategy 2, extend the table: 3, 5, 7, 9, 11, 13, **15**. That is week 6.'
+          - 'Strategy 3, solve the equation: \(2t + 3 = 15\), so \(2t = 12\) and \(t = 6\).'
+        answer: 'After **6 weeks**. Check: \(2 \times 6 + 3 = 15\) ✓'
+
+keyTerms:
+  - term: Function
+    covers: [U1.1, U1.2]
+    definition: A rule that matches each value of one quantity with exactly one value of another.
+  - term: Independent variable
+    covers: [S1.1, K1.4]
+    definition: 'The input, like time. It goes in the first column of a table and on the x-axis.'
+  - term: Dependent variable
+    covers: [S1.1, K1.5]
+    definition: 'The output, which changes because of the input. It goes in the second column and on the y-axis.'
+  - term: Table of values
+    covers: [K1.3]
+    definition: A table that lists matching values of the independent and dependent variables.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.6, S1.2]
+    type: number
+    prompt: 'A hiker walks at a steady pace, so \(d = 5t\), where \(d\) is the distance in kilometres and \(t\) is the time in hours. How far does she walk in **7 hours**?'
+    answer: 35
+    unit: km
+    verify: 5 * 7
+    hints:
+      - Put 7 in place of \(t\).
+    solution:
+      - '\(d = 5 \times 7 = 35\) km.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S1.1, K1.2]
+    type: mc
+    prompt: A cup of cocoa cools down as the minutes go by. Which is the **independent** variable?
+    choices: ['The number of minutes', 'The temperature of the cocoa', 'The size of the cup', 'There isn’t one']
+    answer: 0
+    feedback:
+      '1': 'The temperature changes because time passes. It depends on the minutes.'
+      '2': 'The cup stays the same size. It isn’t a changing quantity here.'
+      '3': 'Two quantities are changing. Which one depends on the other?'
+    hints:
+      - Which quantity changes because of the other one?
+    solution:
+      - 'The temperature depends on how many minutes have passed. So the **minutes** are independent.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.2, S1.4, S1.5]
+    type: mc
+    prompt: |-
+      Which equation matches this table?
+
+      | \(x\) | 0 | 1 | 2 | 3 |
+      |---|---|---|---|---|
+      | \(y\) | 4 | 7 | 10 | 13 |
+    choices: ['\(y = 3x + 4\)', '\(y = x + 3\)', '\(y = 4x + 3\)', '\(y = 3x\)']
+    answer: 0
+    feedback:
+      '1': 'Try \(x = 0\): this gives 3, but the table says 4.'
+      '2': 'Try \(x = 1\): this gives 7, which works. Now try \(x = 2\).'
+      '3': 'Try \(x = 0\): this gives 0, but the table says 4.'
+    hints:
+      - How much does \(y\) grow each time \(x\) grows by 1? What is \(y\) when \(x\) is 0?
+    solution:
+      - '\(y\) grows by 3 each step, and starts at 4 when \(x = 0\). So \(y = 3x + 4\).'
+      - 'Check: \(3 \times 3 + 4 = 13\) ✓'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.4, S1.8, S1.1]
+    type: mc
+    prompt: 'A bike rental costs **$4** to start, plus **$2** for every hour. Which equation gives the cost, \(c\), for \(n\) hours?'
+    choices: ['\(c = 2n + 4\)', '\(c = 4n + 2\)', '\(c = 6n\)', '\(c = n + 6\)']
+    answer: 0
+    feedback:
+      '1': 'That charges $4 for every hour. Which amount is charged once, and which is charged each hour?'
+      '2': 'Try 1 hour: $6 is right. Now try 2 hours. Is it $12?'
+      '3': 'Try 2 hours: the real cost is \(4 + 2 + 2 = 8\). Does this give 8?'
+    hints:
+      - Which part is paid once? Which part grows with each hour?
+    solution:
+      - 'The $2 is paid for every hour, so it multiplies \(n\). The $4 is paid once, so it is added.'
+      - '\(c = 2n + 4\). Check with 3 hours: \(2 \times 3 + 4 = 10\), and \(4 + 2 + 2 + 2 = 10\) ✓'
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [S1.7, S1.8]
+    type: number
+    prompt: 'A plant’s height follows \(h = 2t + 3\), where \(h\) is in centimetres and \(t\) is in weeks. After how many weeks is it **21 cm** tall?'
+    answer: 9
+    unit: weeks
+    verify: (21 - 3) / 2
+    hints:
+      - Undo the rule, last step first.
+    solution:
+      - 'Undo + 3: \(21 - 3 = 18\). Undo × 2: \(18 \div 2 = 9\).'
+      - 'Check: \(2 \times 9 + 3 = 21\) ✓'
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [U1.2, U1.1, K1.3]
+    type: mc
+    prompt: |-
+      Kai says this table shows a function.
+
+      | \(x\) | 1 | 2 | 2 | 3 |
+      |---|---|---|---|---|
+      | \(y\) | 5 | 7 | 9 | 11 |
+
+      Is he right?
+    choices:
+      - 'No. The input 2 has two different outputs, 7 and 9.'
+      - 'Yes. Every \(y\) is different.'
+      - 'No. A function must start at \(x = 0\).'
+      - 'Yes. The \(y\) values go up by 2 each time.'
+    answer: 0
+    feedback:
+      '1': 'Different outputs aren’t the problem. Look at the inputs.'
+      '2': 'A table can start at any input.'
+      '3': 'A pattern in \(y\) isn’t enough. What does a function need for each input?'
+    hints:
+      - In a function, how many outputs can each input have?
+    solution:
+      - 'Each input of a function has **exactly one** output.'
+      - 'Here \(x = 2\) gives both 7 and 9, so this table is not a function.'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [K1.4, K1.5, S1.3, S1.5]
+    type: mc
+    prompt: 'Which point is on the graph of \(y = 2x + 1\)?'
+    choices: ['(3, 7)', '(7, 3)', '(2, 4)', '(0, 0)']
+    answer: 0
+    feedback:
+      '1': 'The x-coordinate comes first. If \(x = 7\), what is \(y\)?'
+      '2': 'If \(x = 2\), then \(y = 2 \times 2 + 1\). Is that 4?'
+      '3': 'If \(x = 0\), then \(y = 1\).'
+    hints:
+      - Put each x-coordinate into the rule. Does it give the y-coordinate?
+    solution:
+      - 'For \(x = 3\): \(y = 2 \times 3 + 1 = 7\). So **(3, 7)** is on the graph.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.8, S1.7, S1.3, K1.2]
+    type: investigation
+    prompt: |-
+      Two bean plants grow in a classroom. Plant A follows \(h = 2t + 3\). Plant B follows \(h = 3t\). Heights are in centimetres, and \(t\) is the number of weeks.
+    parts:
+      - type: mc
+        prompt: After **2 weeks**, which plant is taller?
+        choices: ['Plant A', 'Plant B', 'They are the same height']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Plant B: \(3 \times 2 = 6\). Plant A: \(2 \times 2 + 3\)?'
+          '2': 'Work out both heights for \(t = 2\).'
+        hints:
+          - Put \(t = 2\) into both equations.
+        solution:
+          - 'A: \(2 \times 2 + 3 = 7\) cm. B: \(3 \times 2 = 6\) cm. **Plant A** is taller.'
+      - type: number
+        prompt: After how many weeks are the two plants the **same height**?
+        answer: 3
+        unit: weeks
+        verify: '3'
+        hints:
+          - Make a table for both plants, for weeks 0 to 5.
+        solution:
+          - 'A: 3, 5, 7, 9, 11. B: 0, 3, 6, 9, 12. At week **3**, both are 9 cm.'
+      - type: mc
+        prompt: Which plant is taller after week 3, and why?
+        choices:
+          - 'Plant B, because it grows 3 cm a week and A grows only 2 cm.'
+          - 'Plant A, because it started taller.'
+          - 'Neither. They stay the same height from then on.'
+          - 'Plant A, because its equation has more numbers in it.'
+        answer: 0
+        feedback:
+          '1': 'A started taller, but which one grows faster each week?'
+          '2': 'Check week 4: A is 11 and B is 12.'
+          '3': 'The number of terms doesn’t tell you how fast a plant grows.'
+        hints:
+          - How much does each plant grow each week?
+        solution:
+          - 'Plant B grows 3 cm a week and Plant A grows 2 cm. After they meet, B pulls ahead: at week 4, B is 12 and A is 11.'
+    wrapUp: 'A table of values shows how two functions compare over time. The starting value matters at first, but the amount added each step wins in the end.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.4, S1.3, K1.4, K1.5]
+    type: build
+    prompt: |-
+      Design a function rule \(y = ax + b\), using whole numbers, so that its graph passes through the point **(2, 11)**. Make \(a\) at least 2.
+    fields:
+      - { name: a, label: 'a (multiply by)' }
+      - { name: b, label: 'b (then add)' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && b >= 0', fail: 'Use whole numbers for a and b.' }
+      - { test: 'a >= 2', fail: 'Make a at least 2.' }
+      - { test: 'a * 2 + b == 11', fail: 'Check: put x = 2 into your rule. You should get y = 11.' }
+    examples:
+      - { a: 3, b: 5 }
+      - { a: 4, b: 3 }
+      - { a: 5, b: 1 }
+    counterexamples:
+      - { a: 3, b: 4 }
+      - { a: 1, b: 9 }
+      - { a: 6, b: 0 }
+    hints:
+      - 'When \(x = 2\), \(y\) must be 11. So \(a \times 2 + b = 11\).'
+      - Choose \(a\) first. How much is left for \(b\)?
+    solution:
+      - '\(a = 3\): \(3 \times 2 = 6\), so \(b = 5\). The rule \(y = 3x + 5\) gives (2, 11).'
+      - '\(y = 2x + 7\), \(y = 4x + 3\) and \(y = 5x + 1\) work too. Many lines pass through one point.'

@@ -325,3 +325,22 @@ describe('Grade 6 volume', () => {
     expect(svg).toContain('g6m-pr-ghost');
   });
 });
+
+import { value, equation, ruleWords, inputFor, graphSvg } from '../src/components/visuals/g6-function.ts';
+
+describe('Grade 6 functions', () => {
+  const plant = { a: 2, b: 3, x: 't', y: 'h', xName: 'weeks', yName: 'cm' };
+  it('applies and writes the rule', () => {
+    expect(value(plant, 4)).toBe(11);
+    expect(equation(plant)).toBe('h = 2t + 3');
+    expect(equation({ ...plant, a: 5, b: 0, y: 'd' })).toBe('d = 5t');
+    expect(ruleWords(plant)).toBe('multiply by 2, then add 3');
+  });
+  it('works backwards from an output', () => {
+    expect(inputFor(plant, 15)).toBe(6);
+    expect(inputFor(plant, 10)).toBeNull();
+  });
+  it('plots one point for each input', () => {
+    expect(graphSvg(plant, 5).match(/<circle/g)).toHaveLength(6);
+  });
+});
