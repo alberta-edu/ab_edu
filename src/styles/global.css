@@ -395,7 +395,8 @@ a.concept-card:hover { border-color: var(--accent); }
 .control-row { display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; align-items: center; margin-block: 0.75rem; }
 .control { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--step--1); font-weight: 700; max-width: 100%; }
 .control input[type='range'] { flex: 1 1 8rem; min-width: 6rem; max-width: 16rem; accent-color: var(--accent); }
-.seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px; gap: 2px; background: var(--surface-2); }
+/* Wraps on a narrow screen instead of running out of its card; 1.4rem still reads as a pill on one row. */
+.seg { display: inline-flex; flex-wrap: wrap; max-width: 100%; border: 1px solid var(--line-strong); border-radius: 1.4rem; padding: 3px; gap: 2px; background: var(--surface-2); }
 .seg button { border: 0; background: transparent; padding: 0.35rem 0.8rem; border-radius: 999px; font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); cursor: pointer; min-height: 2.25rem; }
 .seg button[aria-pressed='true'] { background: var(--surface); color: var(--accent); box-shadow: var(--shadow); }
 
