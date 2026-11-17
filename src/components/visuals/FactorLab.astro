@@ -2,11 +2,12 @@
 // Factor lab (MAT4-OI1-GQ3-LO1). "arrays": a number of tiles makes every rectangle it can; each
 // rectangle is a factor pair, and a prime makes only one. It also lists the first five multiples.
 // "common": the factors of two numbers side by side, with the common factors and the greatest
-// common factor lit up.
+// common factor lit up. "facts": a 12 × 12 multiplication table; tap a fact to see its array and
+// its fact family (MAT4-OI1-GQ4-LO1 K1.1, S1.1).
 import { factorPairs, kindText, multiples } from './factors.ts';
 
 interface Props {
-  mode?: 'arrays' | 'common';
+  mode?: 'arrays' | 'common' | 'facts';
   number?: number;
   other?: number;
 }
@@ -29,6 +30,20 @@ const { mode = 'arrays', number = 12, other = 18 } = Astro.props;
         <div class="g4m-fl-arrays" data-fl="arrays" aria-hidden="true"></div>
         <p class="g4m-fl-pairs" data-fl="pairs">{factorPairs(number).map(([a, b]) => `${a} × ${b}`).join(' · ')}</p>
         <p class="g4m-fl-mult" data-fl="mult">First five multiples: {multiples(number).join(', ')}</p>
+      </>
+    ) : mode === 'facts' ? (
+      <>
+        <div class="g4m-fl-table" role="grid" aria-label="Multiplication table to 12 by 12">
+          <span class="g4m-fl-head">×</span>
+          {Array.from({ length: 12 }, (_, c) => <span class="g4m-fl-head">{c + 1}</span>)}
+          {Array.from({ length: 12 }, (_, r) => (
+            <>
+              <span class="g4m-fl-head">{r + 1}</span>
+              {Array.from({ length: 12 }, (_, c) => <button type="button" class="g4m-fl-cell" data-r={r + 1} data-c={c + 1} aria-label={`${r + 1} times ${c + 1}`}>{(r + 1) * (c + 1)}</button>)}
+            </>
+          ))}
+        </div>
+        <div class="g4m-fl-fact" data-fl="fact" aria-live="polite"></div>
       </>
     ) : (
       <>
@@ -53,6 +68,14 @@ const { mode = 'arrays', number = 12, other = 18 } = Astro.props;
   .g4m-fl-arr rect { fill: color-mix(in srgb, var(--math) 75%, var(--surface)); stroke: var(--surface); stroke-width: 1.5; }
   .g4m-fl-arr span { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
   .g4m-fl-pairs, .g4m-fl-mult { margin: 0.5rem 0 0; color: var(--ink-2); font-weight: 700; }
+  .g4m-fl-table { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 2px; font-variant-numeric: tabular-nums; }
+  .g4m-fl-head { display: grid; place-items: center; font-size: clamp(0.6rem, 0.5rem + 0.6vw, 0.9rem); font-weight: 700; color: var(--ink); background: var(--surface-3); border-radius: 3px; min-height: 1.9rem; }
+  .g4m-fl-cell { font: inherit; font-size: clamp(0.55rem, 0.45rem + 0.6vw, 0.9rem); padding: 0; min-height: 1.9rem; border: 0; border-radius: 3px; background: var(--surface-2); color: var(--ink-2); cursor: pointer; }
+  .g4m-fl-cell.is-band { background: var(--math-soft); color: var(--ink); }
+  .g4m-fl-cell.is-on { background: var(--math); color: var(--surface); font-weight: 700; }
+  .g4m-fl-fact { display: grid; gap: 0.6rem; margin-top: 0.8rem; }
+  @media (min-width: 40rem) { .g4m-fl-fact { grid-template-columns: auto 1fr; align-items: center; } }
+  .g4m-fl-fact ul { margin: 0; padding-left: 1.1rem; font-weight: 700; }
   .g4m-fl-in { width: 4.5rem; font: inherit; font-size: var(--step-0); padding: 0.25rem 0.4rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
   .g4m-fl-lists { display: grid; gap: 0.6rem; }
   .g4m-fl-row { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
@@ -67,7 +90,10 @@ const { mode = 'arrays', number = 12, other = 18 } = Astro.props;
 
   class FactorLab extends HTMLElement {
     connectedCallback() {
-      if (this.dataset.mode === 'arrays') {
+      if (this.dataset.mode === 'facts') {
+        this.querySelectorAll<HTMLButtonElement>('.g4m-fl-cell').forEach((b) => b.addEventListener('click', () => this.fact(Number(b.dataset.r), Number(b.dataset.c))));
+        this.fact(Math.min(12, Number(this.dataset.a)), Math.min(12, Number(this.dataset.b)));
+      } else if (this.dataset.mode === 'arrays') {
         const range = this.q<HTMLInputElement>('range');
         range.addEventListener('input', () => this.arrays(Number(range.value)));
         this.q('minus').addEventListener('click', () => this.arrays(Number(range.value) - 1));
@@ -100,6 +126,21 @@ const { mode = 'arrays', number = 12, other = 18 } = Astro.props;
       this.q('kind').textContent = kindText(n);
       this.q('pairs').textContent = `Factor pairs: ${pairs.map(([a, b]) => `${a} × ${b}`).join(' · ')}`;
       this.q('mult').textContent = `First five multiples: ${multiples(n).join(', ')}`;
+    }
+
+    private fact(r: number, c: number) {
+      this.querySelectorAll<HTMLElement>('.g4m-fl-cell').forEach((b) => {
+        const br = Number(b.dataset.r);
+        const bc = Number(b.dataset.c);
+        b.classList.toggle('is-on', br === r && bc === c);
+        b.classList.toggle('is-band', (br === r && bc < c) || (bc === c && br < r));
+      });
+      const p = r * c;
+      const cell = Math.max(6, Math.min(16, Math.floor(200 / c)));
+      let rects = '';
+      for (let i = 0; i < r; i++) for (let j = 0; j < c; j++) rects += `<rect x="${j * cell}" y="${i * cell}" width="${cell}" height="${cell}" rx="2"/>`;
+      const family = r === c ? [`${r} × ${c} = ${p}`, `${p} ÷ ${r} = ${c}`] : [`${r} × ${c} = ${p}`, `${c} × ${r} = ${p}`, `${p} ÷ ${r} = ${c}`, `${p} ÷ ${c} = ${r}`];
+      this.q('fact').innerHTML = `<div class="g4m-fl-arr"><svg viewBox="0 0 ${c * cell} ${r * cell}" width="${c * cell}" height="${r * cell}">${rects}</svg><span>${r} rows of ${c}</span></div><div><b>Fact family</b><ul>${family.map((f) => `<li>${f}</li>`).join('')}</ul></div>`;
     }
 
     private common() {

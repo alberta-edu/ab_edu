@@ -1,0 +1,320 @@
+id: multiply-divide
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ4-LO1]
+order: 4
+title: Multiplying and Dividing within 10 000
+shortTitle: Multiplying & dividing
+summary: >-
+  Know multiplication facts to 12 × 12, find patterns with 10, 100 and 1 000, and multiply and divide
+  3-digit numbers by 1-digit numbers. Estimate to check.
+
+bigIdea: |-
+  - Facts to **12 × 12** are the building blocks for bigger multiplications and divisions.
+  - Times 10, 100 or 1 000 moves digits **1, 2 or 3 places** left.
+  - A 3-digit number is multiplied or divided **one place at a time**. Choose a strategy that fits the numbers.
+  - An **estimate** tells you whether a product or quotient is reasonable.
+
+lesson:
+  - title: Facts to 12 × 12
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: factor-lab
+        props: { mode: facts, number: 7, other: 12 }
+        caption: Tap any fact to see its array and its **fact family**. Find the 11 and 12 rows. What patterns do you see?
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI1-GQ3-LO1#S3.3, MAT3-OI1-GQ3-LO1#K3.2]
+        title: Remember from Grade 3
+        body: You learned facts with factors to 10. Each multiplication fact has **related division facts**.
+
+  - title: Times 10, 100 and 1 000
+    blocks:
+      - type: visual
+        covers: [S1.2]
+        component: tenths-shift
+        props: { value: '7', decimals: false }
+        caption: Press **× 10** again and again. Each press slides the digits one place left. Then press **÷ 10**.
+      - type: table
+        covers: [S1.2]
+        headers: [Multiply, Product, Divide, Quotient]
+        rows:
+          - ['8 × 10', '80', '8 000 ÷ 10', '800']
+          - ['8 × 100', '800', '8 000 ÷ 100', '80']
+          - ['8 × 1 000', '8 000', '8 000 ÷ 1 000', '8']
+          - ['45 × 100', '4 500', '4 500 ÷ 100', '45']
+
+  - title: Choose a strategy
+    blocks:
+      - type: figure
+        covers: [S1.3, U1.1]
+        figure: { kind: area-model, a: 247, b: 6 }
+        caption: '**Split by place value.** \(247 \times 6\) is \(200 \times 6 + 40 \times 6 + 7 \times 6 = 1\,200 + 240 + 42 = 1\,482\).'
+      - type: compare
+        covers: [U1.1, S1.3]
+        columns:
+          - title: Round and adjust
+            body: |-
+              \(199 \times 4\) is close to \(200 \times 4 = 800\).
+              Take away one 4: \(800 - 4 = 796\).
+          - title: Split the dividend
+            body: |-
+              \(156 \div 3\) is \(150 \div 3 + 6 \div 3\).
+              \(50 + 2 = 52\).
+
+  - title: The standard algorithms
+    blocks:
+      - type: visual
+        covers: [S1.4, S1.5, K1.2]
+        component: column-calc
+        props:
+          examples:
+            - { op: '×', a: '347', b: '6' }
+            - { op: '×', a: '508', b: '7' }
+            - { op: '÷', a: '852', b: '4' }
+        caption: Press **Next step**. The algorithm does the same place value steps as your own strategy, in a short form.
+      - type: visual
+        covers: [S1.4, S1.6]
+        component: share-blocks
+        caption: Press **Next step** to share the blocks among 6 groups, starting with the hundreds.
+
+  - title: Remainders and estimates
+    blocks:
+      - type: compare
+        covers: [S1.6]
+        columns:
+          - title: No remainder
+            body: |-
+              \[852 \div 4 = 213\]
+              Check: \(213 \times 4 = 852\).
+          - title: With a remainder
+            body: |-
+              \[745 \div 6 = 124 \text{ R } 1\]
+              Check: \(124 \times 6 + 1 = 745\).
+      - type: table
+        covers: [K1.3, S1.7, S1.8]
+        caption: Round to a friendly number, then compare.
+        headers: [Calculation, Estimate, Answer, Reasonable?]
+        rows:
+          - ['347 × 6', '350 × 6 = 2 100', '2 082', '✅ close']
+          - ['745 ÷ 6', '720 ÷ 6 = 120', '124 R 1', '✅ close']
+          - ['508 × 7', '500 × 7 = 3 500', '356', '❌ far off, so check again']
+
+keyTerms:
+  - term: Fact family
+    covers: [K1.1, S1.1]
+    definition: 'A multiplication fact and its related facts, such as 7 × 12 = 84, 12 × 7 = 84, 84 ÷ 7 = 12 and 84 ÷ 12 = 7.'
+  - term: Quotient
+    covers: [S1.6]
+    definition: The answer to a division.
+  - term: Remainder
+    covers: [S1.6]
+    definition: The amount left over when a number doesn’t divide exactly.
+  - term: Standard algorithm
+    covers: [K1.2, S1.4]
+    definition: A short, step-by-step way to calculate by place value.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: '\(9 \times 12 = 108\). Which fact is in the **same fact family**?'
+    choices: ['\(108 \div 9 = 12\)', '\(108 \div 12 = 8\)', '\(12 \div 9 = 108\)', '\(108 - 9 = 12\)']
+    answer: 0
+    feedback:
+      '1': 'Check it: \(8 \times 12 = 96\), not 108. What times 12 makes 108?'
+      '2': 'Dividing a small number by a bigger one can’t give 108. Which number should be divided?'
+      '3': 'Fact families use multiplication and division. \(108 - 9\) is 99.'
+    hints:
+      - In a fact family, the product is divided by one factor. What do you get?
+    solution:
+      - 'The family of \(9 \times 12 = 108\) is \(12 \times 9 = 108\), \(108 \div 9 = 12\) and \(108 \div 12 = 9\).'
+      - 'So **\(108 \div 9 = 12\)** is in the family.'
+
+  - id: w2
+    level: 1
+    thinking: pattern
+    covers: [S1.2]
+    type: number
+    prompt: A box holds **100** pencils. How many boxes does the school need for **3 000** pencils?
+    unit: boxes
+    answer: 30
+    verify: 3000 / 100
+    hints:
+      - How many hundreds are in 3 000?
+      - Dividing by 100 moves every digit two places right.
+    solution:
+      - '\(3\,000 \div 100\): every digit moves two places right, so the answer is **30**.'
+      - 'Check: \(30 \times 100 = 3\,000\) ✓'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.5]
+    type: number
+    prompt: Multiply. \(238 \times 4\)
+    answer: 952
+    verify: 238 * 4
+    hints:
+      - Start with the ones. What is \(8 \times 4\)?
+      - Write 2 and carry 3 tens. Then multiply the tens.
+    solution:
+      - 'Ones: \(8 \times 4 = 32\). Write 2, carry 3.'
+      - 'Tens: \(3 \times 4 = 12\), plus 3 is 15. Write 5, carry 1.'
+      - 'Hundreds: \(2 \times 4 = 8\), plus 1 is 9. The product is **952**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.6, S1.9]
+    type: number
+    prompt: A baker makes **250** muffins and packs them in boxes of **6**. How many boxes can she **fill**?
+    unit: boxes
+    answer: 41
+    verify: (250 - 4) / 6
+    hints:
+      - Which operation shares muffins into groups of 6?
+      - Divide. What do you do with the muffins that are left?
+    solution:
+      - '\(250 \div 6 = 41\) R 4.'
+      - 'She fills **41** boxes. The 4 muffins left over don’t fill a box.'
+      - 'Check: \(41 \times 6 + 4 = 246 + 4 = 250\) ✓'
+
+  - id: b2
+    level: 2
+    thinking: estimate
+    covers: [S1.8, K1.3]
+    type: mc
+    prompt: Ms. Lee’s calculator says \(632 \div 8 = 709\). Without dividing, how can you tell it is wrong?
+    choices:
+      - '\(8 \times 80 = 640\), so the answer should be close to 80.'
+      - 'The answer should end in 2, just like 632.'
+      - 'Any answer under 1 000 could be right.'
+      - '632 is even, so the quotient has to be odd.'
+    answer: 0
+    feedback:
+      '1': 'Check: \(632 \div 8\) doesn’t have to end in 2. \(16 \div 8 = 2\), for example. Is there a better check?'
+      '2': 'Try multiplying back: what is \(709 \times 8\)? Is it anywhere near 632?'
+      '3': 'Even numbers can divide to give even or odd answers, like \(16 \div 8 = 2\) and \(24 \div 8 = 3\).'
+    hints:
+      - Think of a friendly number close to 632 that 8 divides easily.
+      - What is \(8 \times 80\)?
+    solution:
+      - '\(8 \times 80 = 640\), which is close to 632, so the quotient should be a little less than 80.'
+      - '709 is far too big. The real answer is \(632 \div 8 = 79\).'
+
+  - id: b3
+    level: 2
+    thinking: ways
+    covers: [S1.3, U1.1]
+    type: number
+    prompt: The school buys **5** bikes for the bike club. Each bike costs **$199**. What is the total cost? Look for a quick way.
+    unit: $
+    answer: 995
+    verify: 199 * 5
+    hints:
+      - 199 is very close to a friendly number. Which one?
+      - Work out 200 × 5. Then fix it, since each bike is $1 less.
+    solution:
+      - 'Round and adjust: \(200 \times 5 = 1\,000\).'
+      - 'Each bike costs $1 less than $200, so take away 5 dollars: \(1\,000 - 5 = 995\).'
+      - 'The total is **$995**. The standard algorithm gives the same answer, with more steps.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.9, S1.5]
+    type: number
+    prompt: A theatre has **9 rows** of **112 seats**. For tonight’s show, **875** tickets have been sold. How many seats are still empty?
+    unit: seats
+    answer: 133
+    verify: 9 * 112 - 875
+    hints:
+      - How many seats are there in all?
+      - Then compare with the tickets sold.
+    solution:
+      - 'Total seats: \(112 \times 9 = 1\,008\).'
+      - 'Empty seats: \(1\,008 - 875 = 133\).'
+      - 'There are **133** empty seats.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: connect
+    covers: [S1.6, S1.9, S1.5]
+    type: investigation
+    prompt: |-
+      A year that isn’t a leap year has **365 days**. A week has **7 days**. Arlo’s birthday is on a **Tuesday** this year.
+    parts:
+      - type: number
+        prompt: How many **full weeks** are in 365 days?
+        unit: weeks
+        answer: 52
+        verify: (365 - 1) / 7
+        hints:
+          - Divide 365 by 7.
+        solution:
+          - '\(365 \div 7 = 52\) R 1, so there are **52** full weeks.'
+      - type: number
+        prompt: How many days are left over after the full weeks?
+        unit: days
+        answer: 1
+        verify: 365 - 52 * 7
+        hints:
+          - 'Multiply back: how many days are in 52 weeks?'
+        solution:
+          - '\(52 \times 7 = 364\), and \(365 - 364 = 1\). The remainder is **1** day.'
+      - type: mc
+        prompt: Next year is not a leap year either. On what day of the week is Arlo’s next birthday?
+        choices: ['Wednesday', 'Tuesday', 'Monday', 'Thursday']
+        answer: 0
+        feedback:
+          '1': '52 full weeks would bring you back to Tuesday. But a year is a little longer than 52 weeks.'
+          '2': 'The extra day moves the birthday forward in the week, not back.'
+          '3': 'Only 1 day is left over, not 2.'
+        hints:
+          - After 52 full weeks, it is Tuesday again. How many days are still to go?
+        solution:
+          - 'After 52 weeks it is Tuesday again. One more day makes it **Wednesday**.'
+    wrapUp: The remainder tells the story. Each year is 52 weeks and 1 day, so a birthday moves forward one day of the week each year, unless a leap year adds another day.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.5, S1.7, S1.8]
+    type: build
+    prompt: |-
+      Design a multiplication: a **3-digit number** times a **1-digit number**. The product must be **more than 2 000** but **less than 2 100**.
+    fields:
+      - { name: a, label: '3-digit number' }
+      - { name: b, label: '1-digit number' }
+    rules:
+      - { test: 'a % 1 == 0 && a >= 100 && a <= 999', fail: 'The first number needs exactly 3 digits.' }
+      - { test: 'b % 1 == 0 && b >= 2 && b <= 9', fail: 'Choose a 1-digit number from 2 to 9.' }
+      - { test: 'a * b > 2000', fail: 'Your product is 2 000 or less. Try a bigger number.' }
+      - { test: 'a * b < 2100', fail: 'Your product is 2 100 or more. Try a smaller number.' }
+    examples:
+      - { a: 412, b: 5 }
+      - { a: 299, b: 7 }
+      - { a: 255, b: 8 }
+    counterexamples:
+      - { a: 500, b: 4 }
+      - { a: 300, b: 7 }
+      - { a: 999, b: 3 }
+      - { a: 1050, b: 2 }
+    hints:
+      - Pick the 1-digit number first. Then estimate. About what number times it makes 2 000?
+      - 'For 5: \(400 \times 5 = 2\,000\) exactly. Go a little higher.'
+      - 'For 7: \(300 \times 7 = 2\,100\), which is too much. Go a little lower.'
+    solution:
+      - 'Use an estimate to aim, then check exactly.'
+      - '\(412 \times 5 = 2\,060\), \(299 \times 7 = 2\,093\) and \(255 \times 8 = 2\,040\) all work.'
+      - 'They work for the same reason: each first number is a little more than \(2\,000 \div b\), but not by much.'
