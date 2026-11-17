@@ -271,7 +271,7 @@ export interface Era {
 }
 
 const hbc: Region = { name: 'Rupert’s Land', owner: 'hbc', area: RUPERTS_LAND, label: [-84, 52.6] };
-const nfld: Region = { name: 'Newfoundland', owner: 'br', area: NEWFOUNDLAND, label: [-56.2, 48.6] };
+const nfld: Region = { name: 'Newfoundland', owner: 'br', area: NEWFOUNDLAND, label: [-58.0, 49.9] };
 const thirteen: Region = { name: 'Thirteen Colonies', owner: 'br', area: THIRTEEN, label: [-75.6, 41.4] };
 const usa: Region = { name: 'United States', owner: 'us', area: USA_1783, label: [-82.5, 40.3] };
 const ns: Region = { name: 'Nova Scotia', owner: 'br', area: NOVA_SCOTIA, label: [-63.6, 44.9] };
