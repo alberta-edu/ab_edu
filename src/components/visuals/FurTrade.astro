@@ -1,0 +1,301 @@
+---
+// Models of the fur trade (outcome 62cWIAWFL0yWuJLj3f202w). Three modes:
+//   ocean: furs sail to Europe, where they were scarce; goods sail back, where they were wanted (K1.1)
+//   post: barter furs for goods at a made-up post priced in made beaver, alone or with a rival (S1.1, K1.2)
+//   fort: tap the parts of a trading post to see what each was for (K1.3)
+// The made beaver was the Hudson's Bay Company's unit of value: one prime beaver skin (Canadian
+// Encyclopedia). The prices here are made up, and the page says so.
+import { POST_GOODS, START_PELTS, FORT_PARTS } from './fur-trade-data.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  mode?: 'ocean' | 'post' | 'fort';
+}
+const { mode = 'ocean' } = Astro.props;
+const furs = 6;
+---
+<fur-trade data-mode={mode} data-pelts={START_PELTS}>
+  {
+    mode === 'ocean' && (
+      <>
+        <div class="g4ss-ft-frame">
+          <svg class="sci-svg g4ss-ft-svg" viewBox="0 0 480 300" role="img" aria-label="Europe on the left with many metal goods and one fur. North America on the right with many furs and one metal good. A ship carries furs to Europe and goods to North America.">
+            <rect class="g4ss-ft-sea" x="0" y="0" width="480" height="300"></rect>
+            <rect class="g4ss-ft-land" x="0" y="0" width="170" height="300"></rect>
+            <rect class="g4ss-ft-land" x="310" y="0" width="170" height="300"></rect>
+            <text class="g4ss-ft-title" x="85" y="32" text-anchor="middle">Europe</text>
+            <text class="g4ss-ft-title" x="395" y="32" text-anchor="middle">North America</text>
+            <text class="g4ss-ft-small" x="85" y="70" text-anchor="middle">Furs</text>
+            <text class="g4ss-ft-small" x="85" y="170" text-anchor="middle">Metal goods</text>
+            <text class="g4ss-ft-small" x="395" y="70" text-anchor="middle">Furs</text>
+            <text class="g4ss-ft-small" x="395" y="170" text-anchor="middle">Metal goods</text>
+            <text class="g4ss-ft-tag" data-ft-tag="eu-fur" x="85" y="140" text-anchor="middle">Scarce: wanted!</text>
+            <text class="g4ss-ft-tag" data-ft-tag="na-goods" x="395" y="240" text-anchor="middle">Scarce: wanted!</text>
+            {Array.from({ length: furs }, (_, i) => <text class="g4ss-ft-item" data-ft-fur={i} x="0" y="108" text-anchor="middle">🦫</text>)}
+            {Array.from({ length: furs }, (_, i) => <text class="g4ss-ft-item" data-ft-good={i} x="0" y="208" text-anchor="middle">{['🪓', '🔪', '🪓', '🔪', '🪡', '🔪'][i]}</text>)}
+            <text class="g4ss-ft-ship" data-ft="ship" x="290" y="150" text-anchor="middle" dominant-baseline="middle">⛵</text>
+          </svg>
+        </div>
+        <div class="g4ss-bar g4ss-ft-bar">
+          <button type="button" class="btn btn--small" data-ft="sail">▶ Sail</button>
+          <button type="button" class="btn btn--small" data-ft="reset" hidden>↺ Start again</button>
+        </div>
+        <p class="sci-say" data-ft="say" aria-live="polite">Few beavers were left in Europe. North America had many.</p>
+      </>
+    )
+  }
+  {
+    mode === 'post' && (
+      <>
+        <div class="seg" role="group" aria-label="How many posts">
+          <button type="button" data-ft-rival="0" aria-pressed="true">🏠 One post</button>
+          <button type="button" data-ft-rival="1" aria-pressed="false">🏠🏠 Two rival posts</button>
+        </div>
+        <div class="g4ss-ft-pelts" aria-live="polite">
+          <span class="g4ss-ft-label">Your furs:</span>
+          <span class="g4ss-ft-pile" data-ft="pile">{'🦫'.repeat(START_PELTS)}</span>
+          <strong data-ft="left">{START_PELTS} made beaver</strong>
+        </div>
+        <div class="g4ss-ft-board" role="group" aria-label="Price list">
+          {POST_GOODS.map((g) => (
+            <button type="button" class="g4ss-ft-good" data-ft-buy={g.id} data-price={g.price} data-rival={g.rival}>
+              <span class="g4ss-ft-icon" aria-hidden="true">{g.icon}</span>
+              <span>{g.name}</span>
+              <span class="g4ss-ft-price"><span data-ft-price>{g.price}</span> made beaver</span>
+            </button>
+          ))}
+        </div>
+        <p class="g4ss-ft-canoe"><span class="g4ss-ft-label">In your canoe:</span> <span data-ft="canoe">nothing yet</span></p>
+        <p class="sci-say" data-ft="say" aria-live="polite">Tap the goods you want. Your furs pay for them.</p>
+        <button type="button" class="btn btn--small" data-ft="reset">↺ Start again</button>
+        <p class="muted g4ss-note">A made-up price list. Real posts priced every good in made beaver, and prices changed from post to post.</p>
+      </>
+    )
+  }
+  {
+    mode === 'fort' && (
+      <>
+        <div class="g4ss-ft-frame">
+          <svg class="sci-svg g4ss-ft-svg" viewBox="0 0 720 360" role="img" aria-label="A trading post inside a wooden wall, with a gate, a trading room, a warehouse and living quarters around a yard.">
+            <rect class="g4ss-ft-grass" width="720" height="360"></rect>
+            <rect class="g4ss-ft-wall" x="60" y="40" width="600" height="290" rx="6"></rect>
+            <rect class="g4ss-ft-yard" x="80" y="60" width="560" height="250"></rect>
+            {FORT_PARTS.map((p) => (
+              <g class="g4ss-ft-part" data-ft-part={p.id} tabindex="0" role="button" aria-label={p.name}>
+                <rect x={p.x} y={p.y} width={p.w} height={p.h} rx="6"></rect>
+                <text x={p.x + p.w / 2} y={p.y + p.h / 2 - 6} text-anchor="middle" class="g4ss-ft-icon2">{p.icon}</text>
+                <text x={p.x + p.w / 2} y={p.y + p.h / 2 + 24} text-anchor="middle" class="g4ss-ft-name">{p.name}</text>
+              </g>
+            ))}
+          </svg>
+        </div>
+        <p class="g4ss-card" data-ft-panel="" aria-live="polite">Tap a part of the post.</p>
+        {FORT_PARTS.map((p) => <p class="g4ss-card" data-ft-panel={p.id} hidden><strong>{p.icon} {p.name}.</strong> <span set:html={mdInline(p.about)} /></p>)}
+      </>
+    )
+  }
+</fur-trade>
+
+<style is:global>
+  fur-trade { display: block; }
+  .g4ss-ft-frame { max-width: 36rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .g4ss-ft-svg { display: block; border-radius: 0; }
+  .g4ss-ft-sea { fill: color-mix(in srgb, var(--math) 18%, var(--surface)); }
+  .g4ss-ft-land { fill: color-mix(in srgb, var(--sun) 16%, var(--surface)); }
+  .g4ss-ft-title { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4ss-ft-small { fill: var(--ink-2); font-size: 16px; font-weight: 700; }
+  .g4ss-ft-tag { fill: var(--bad); font-size: 16px; font-weight: 700; transition: opacity 0.3s; }
+  .g4ss-ft-tag.is-off { opacity: 0; }
+  .g4ss-ft-item { font-size: 26px; }
+  .g4ss-ft-ship { font-size: 40px; }
+  .g4ss-ft-bar { margin-top: 0.6rem; }
+  .g4ss-ft-pelts { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin-top: 0.7rem; }
+  .g4ss-ft-pile { font-size: 1.4rem; letter-spacing: 0.1rem; min-height: 1.8rem; }
+  .g4ss-ft-label { font-weight: 700; color: var(--ink-2); }
+  .g4ss-ft-board { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.2rem, 1fr)); gap: 0.5rem; margin-top: 0.6rem; }
+  .g4ss-ft-good { display: grid; justify-items: center; gap: 0.15rem; padding: 0.6rem 0.4rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); font: inherit; font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g4ss-ft-good:hover:not(:disabled) { border-color: var(--accent); }
+  .g4ss-ft-good:disabled { opacity: 0.45; cursor: default; }
+  .g4ss-ft-icon { font-size: 1.8rem; }
+  .g4ss-ft-price { font-size: var(--step--1); font-weight: 400; color: var(--ink-2); }
+  .g4ss-ft-price.is-cut { color: var(--ok); font-weight: 700; }
+  .g4ss-ft-canoe { margin: 0.7rem 0 0; }
+  fur-trade > .btn { margin-top: 0.5rem; }
+  .g4ss-ft-grass { fill: color-mix(in srgb, var(--science) 18%, var(--surface)); }
+  .g4ss-ft-wall { fill: color-mix(in srgb, var(--social) 55%, var(--surface)); }
+  .g4ss-ft-yard { fill: color-mix(in srgb, var(--sun) 14%, var(--surface)); }
+  .g4ss-ft-part { cursor: pointer; }
+  .g4ss-ft-part rect { fill: var(--surface); stroke: var(--line-strong); stroke-width: 3; }
+  .g4ss-ft-part:hover rect, .g4ss-ft-part:focus-visible rect { stroke: var(--accent); }
+  .g4ss-ft-part.is-on rect { stroke: var(--accent); stroke-width: 5; fill: var(--accent-soft); }
+  .g4ss-ft-part:focus { outline: none; }
+  .g4ss-ft-icon2 { font-size: 36px; }
+  .g4ss-ft-name { fill: var(--ink); font-size: 18px; font-weight: 700; }
+  @media (max-width: 40rem) {
+    svg .g4ss-ft-name { font-size: 24px; }
+    svg .g4ss-ft-title { font-size: 24px; }
+    svg .g4ss-ft-small, svg .g4ss-ft-tag { font-size: 19px; }
+  }
+</style>
+
+<script>
+  import { reducedMotion, tween } from '../experiments/anim.ts';
+
+  class FurTrade extends HTMLElement {
+    private run = 0;
+    private left = 0;
+    private bought: string[] = [];
+
+    connectedCallback() {
+      const mode = this.dataset.mode;
+      if (mode === 'ocean') {
+        this.q('[data-ft="sail"]').addEventListener('click', () => this.sail());
+        this.q('[data-ft="reset"]').addEventListener('click', () => this.dock());
+        this.dock();
+      }
+      if (mode === 'post') {
+        this.querySelectorAll<HTMLButtonElement>('[data-ft-buy]').forEach((b) => b.addEventListener('click', () => this.buy(b)));
+        this.querySelectorAll<HTMLButtonElement>('[data-ft-rival]').forEach((b) => b.addEventListener('click', () => this.rival(b.dataset.ftRival === '1')));
+        this.q('[data-ft="reset"]').addEventListener('click', () => this.restock());
+        this.restock();
+      }
+      if (mode === 'fort') {
+        this.querySelectorAll<SVGGElement>('[data-ft-part]').forEach((g) => {
+          g.addEventListener('click', () => this.part(g.dataset.ftPart!));
+          g.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.part(g.dataset.ftPart!);
+            }
+          });
+        });
+      }
+    }
+
+    private q<T extends Element = HTMLElement>(sel: string) {
+      return this.querySelector(sel) as unknown as T;
+    }
+
+    private say(t: string) {
+      this.q('[data-ft="say"]').textContent = t;
+    }
+
+    // ---------------------------------------------------------------- ocean
+
+    // Where each icon sits before and after the voyage. Items 1 to 4 cross the ocean.
+    private static readonly AT = {
+      fur: { start: [85, 335, 365, 395, 425, 455], end: [85, 25, 55, 115, 145, 455], y: 108 },
+      good: { start: [395, 25, 55, 85, 115, 145], end: [395, 335, 365, 425, 455, 145], y: 208 },
+    };
+
+    private spot(kind: 'fur' | 'good', i: number, side: 'start' | 'end') {
+      const a = FurTrade.AT[kind];
+      return { x: a[side][i], y: a.y };
+    }
+
+    private set(kind: 'fur' | 'good', i: number, x: number, y: number) {
+      const t = this.q<SVGTextElement>(`[data-ft-${kind}="${i}"]`);
+      t.setAttribute('x', x.toFixed(1));
+      t.setAttribute('y', y.toFixed(1));
+    }
+
+    private dock() {
+      this.run++;
+      for (let i = 0; i < 6; i++) {
+        const f = this.spot('fur', i, 'start');
+        const g = this.spot('good', i, 'start');
+        this.set('fur', i, f.x, f.y);
+        this.set('good', i, g.x, g.y);
+      }
+      this.querySelectorAll('.g4ss-ft-tag').forEach((t) => t.classList.remove('is-off'));
+      const ship = this.q<SVGTextElement>('[data-ft="ship"]');
+      ship.setAttribute('x', '290');
+      this.q('[data-ft="sail"]').hidden = false;
+      this.q('[data-ft="reset"]').hidden = true;
+      this.say('Few beavers were left in Europe. North America had many.');
+    }
+
+    private async sail() {
+      const token = ++this.run;
+      this.q('[data-ft="sail"]').hidden = true;
+      const ship = this.q<SVGTextElement>('[data-ft="ship"]');
+      const leg = async (kind: 'fur' | 'good', from: number, to: number, msg: string) => {
+        this.say(msg);
+        await tween(2600, (f) => {
+          if (token !== this.run) return;
+          const sx = from + (to - from) * f;
+          ship.setAttribute('x', sx.toFixed(1));
+          for (let i = 1; i < 5; i++) {
+            const a = this.spot(kind, i, 'start');
+            const b = this.spot(kind, i, 'end');
+            // Items ride the ship across the ocean, then step off onto land.
+            const t = f < 0.15 ? f / 0.15 : f > 0.85 ? (f - 0.85) / 0.15 : -1;
+            if (t >= 0 && f < 0.15) this.set(kind, i, a.x + (from - a.x) * t, a.y + (150 - a.y) * t);
+            else if (t >= 0) this.set(kind, i, to + (b.x - to) * t, 150 + (b.y - 150) * t);
+            else this.set(kind, i, sx + (i - 2.5) * 12, 122);
+          }
+        });
+      };
+      await leg('fur', 290, 190, 'The ship carries furs to Europe, where they are scarce.');
+      if (token !== this.run) return;
+      this.q('[data-ft-tag="eu-fur"]').classList.add('is-off');
+      await leg('good', 190, 290, 'It brings back metal goods made in Europe, which First Nations wanted.');
+      if (token !== this.run) return;
+      this.q('[data-ft-tag="na-goods"]').classList.add('is-off');
+      this.say('Each side got what it was short of. That is why the trade kept going.');
+      this.q('[data-ft="reset"]').hidden = false;
+      if (reducedMotion()) ship.setAttribute('x', '290');
+    }
+
+    // ---------------------------------------------------------------- post
+
+    private isRival = false;
+
+    private price(b: HTMLElement) {
+      return Number(this.isRival ? b.dataset.rival : b.dataset.price);
+    }
+
+    private refresh() {
+      this.q('[data-ft="pile"]').textContent = '🦫'.repeat(this.left);
+      this.q('[data-ft="left"]').textContent = `${this.left} made beaver`;
+      this.q('[data-ft="canoe"]').textContent = this.bought.length ? this.bought.join(', ') : 'nothing yet';
+      this.querySelectorAll<HTMLButtonElement>('[data-ft-buy]').forEach((b) => {
+        const p = this.price(b);
+        b.disabled = p > this.left;
+        const tag = b.querySelector<HTMLElement>('[data-ft-price]')!;
+        tag.textContent = String(p);
+        tag.parentElement!.classList.toggle('is-cut', this.isRival && p < Number(b.dataset.price));
+      });
+    }
+
+    private restock() {
+      this.left = Number(this.dataset.pelts);
+      this.bought = [];
+      this.refresh();
+      this.say(this.isRival ? 'A rival post opened next door. To keep your furs, this post lowered some prices.' : 'Tap the goods you want. Your furs pay for them.');
+    }
+
+    private rival(on: boolean) {
+      this.isRival = on;
+      this.querySelectorAll('[data-ft-rival]').forEach((b) => b.setAttribute('aria-pressed', String((b.getAttribute('data-ft-rival') === '1') === on)));
+      this.restock();
+    }
+
+    private buy(b: HTMLButtonElement) {
+      const p = this.price(b);
+      if (p > this.left) return;
+      this.left -= p;
+      this.bought.push(b.querySelector('span:nth-child(2)')!.textContent!.toLowerCase());
+      this.refresh();
+      this.say(this.left ? `That cost ${p} made beaver. You have ${this.left} left.` : 'All your furs are traded. Look at what is in your canoe.');
+    }
+
+    // ---------------------------------------------------------------- fort
+
+    private part(id: string) {
+      this.querySelectorAll<SVGGElement>('[data-ft-part]').forEach((g) => g.classList.toggle('is-on', g.dataset.ftPart === id));
+      this.querySelectorAll<HTMLElement>('[data-ft-panel]').forEach((p) => (p.hidden = p.dataset.ftPanel !== id));
+    }
+  }
+  customElements.define('fur-trade', FurTrade);
+</script>
