@@ -1,0 +1,69 @@
+---
+// Hazard symbol explorer (SCI4-OI1-GQ1-LO1, K2.2, K2.3, S2.1): tap one of Canada's four hazard
+// symbols to read what it warns about, what its frame means and where you might see it.
+import { HAZARDS, FRAME_MEANING, hazardSvg } from './g4-hazard.ts';
+const cards = HAZARDS.map((h) => ({ ...h, frameText: FRAME_MEANING[h.frame] }));
+---
+<g4-hazard-symbols data-hazards={JSON.stringify(cards)}>
+  <div class="g4s-hz-grid" role="group" aria-label="Choose a hazard symbol">
+    {
+      cards.map((h, i) => (
+        <button type="button" class="g4s-hz-btn" data-hz={h.id} aria-pressed={String(i === 0)}>
+          <Fragment set:html={hazardSvg(h.id)} />
+          <span>{h.name}</span>
+        </button>
+      ))
+    }
+  </div>
+  <div class="g4s-hz-info" aria-live="polite" data-hz="info">
+    <h4 data-hz="name">{cards[0].name}</h4>
+    <dl>
+      <dt>The picture</dt><dd data-hz="picture">{cards[0].picture}</dd>
+      <dt>The danger</dt><dd data-hz="danger">{cards[0].danger}</dd>
+      <dt>The frame</dt><dd data-hz="frame">{cards[0].frameText}</dd>
+      <dt>You might see it on</dt><dd data-hz="found">{cards[0].found}</dd>
+    </dl>
+  </div>
+</g4-hazard-symbols>
+
+<style is:global>
+  g4-hazard-symbols { display: block; }
+  .g4s-hz-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+  .g4s-hz-btn { display: grid; justify-items: center; gap: 0.3rem; padding: 0.5rem 0.3rem; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g4s-hz-btn[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g4s-hz { width: 100%; max-width: 5.5rem; height: auto; }
+  .g4s-hz-info { margin-top: 0.75rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4s-hz-info h4 { margin: 0 0 0.4rem; font-size: var(--step-1); }
+  .g4s-hz-info dl { margin: 0; display: grid; gap: 0.15rem 0.75rem; grid-template-columns: max-content 1fr; }
+  .g4s-hz-info dt { font-weight: 700; color: var(--ink-2); }
+  .g4s-hz-info dd { margin: 0; }
+  @media (max-width: 30rem) {
+    .g4s-hz-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .g4s-hz-info dl { grid-template-columns: 1fr; }
+    .g4s-hz-info dd { margin-bottom: 0.4rem; }
+  }
+</style>
+
+<script>
+  interface Card { id: string; name: string; picture: string; danger: string; frameText: string; found: string }
+
+  class G4HazardSymbols extends HTMLElement {
+    connectedCallback() {
+      const cards = JSON.parse(this.dataset.hazards!) as Card[];
+      const set = (k: string, v: string) => (this.querySelector(`[data-hz="${k}"]`)!.textContent = v);
+      this.querySelectorAll<HTMLButtonElement>('[data-hz]').forEach((btn) => {
+        if (btn.tagName !== 'BUTTON') return;
+        btn.addEventListener('click', () => {
+          const c = cards.find((x) => x.id === btn.dataset.hz)!;
+          this.querySelectorAll('.g4s-hz-btn').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          set('name', c.name);
+          set('picture', c.picture);
+          set('danger', c.danger);
+          set('frame', c.frameText);
+          set('found', c.found);
+        });
+      });
+    }
+  }
+  customElements.define('g4-hazard-symbols', G4HazardSymbols);
+</script>

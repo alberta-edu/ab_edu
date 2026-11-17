@@ -75,6 +75,7 @@ import TopicFunnel from './visuals/TopicFunnel.astro';
 import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
+import G4HazardSymbols from './visuals/G4HazardSymbols.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -155,6 +156,7 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'g4-hazard-symbols': G4HazardSymbols,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
