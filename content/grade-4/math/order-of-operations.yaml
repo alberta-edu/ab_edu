@@ -1,0 +1,275 @@
+id: order-of-operations
+grade: 4
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT4-OI2-GQ1-LO1]
+order: 8
+title: Expressions and the Order of Operations
+shortTitle: Order of operations
+summary: >-
+  Evaluate expressions with more than one operation using the order of operations, see how the order
+  changes the answer, and write many expressions for one number.
+
+bigIdea: |-
+  - An **expression** can have more than one operation.
+  - The **order of operations**: multiply and divide first, from left to right. Then add and subtract, from left to right.
+  - The order you work in can **change the value**.
+  - There are **endless** expressions for the same number.
+
+lesson:
+  - title: Watch an expression shrink
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: expression-steps
+        props:
+          examples: ['3 + 4 × 2', '20 − 12 ÷ 4', '18 ÷ 3 × 2', '15 − 6 + 2', '5 + 3 × 4 − 6 ÷ 2']
+        caption: Press **Next step**. The highlighted part is done first, then it shrinks into one number.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI2-GQ1-LO1#K1.1, MAT3-OI2-GQ1-LO1#U1.1]
+        title: Remember from Grade 3
+        body: 'The equal sign shows that two sides name the **same number**, like \(4 \times 5 = 20\).'
+
+  - title: The rules
+    blocks:
+      - type: table
+        covers: [K1.2]
+        headers: ['Order', 'Do this', 'Example']
+        rows:
+          - ['1st', '**Multiply and divide**, from left to right', '\(6 + 4 \times 5 = 6 + 20\)']
+          - ['2nd', '**Add and subtract**, from left to right', '\(20 - 8 + 3 = 12 + 3\)']
+
+  - title: The order changes the answer
+    blocks:
+      - type: compare
+        covers: [U1.2, K1.2]
+        columns:
+          - title: ✅ Order of operations
+            body: |-
+              \[3 + 4 \times 2 = 3 + 8 = 11\]
+              Multiply first, then add.
+          - title: ❌ Just left to right
+            body: |-
+              \[3 + 4 \times 2 \;\to\; 7 \times 2 = 14\]
+              Same numbers, different answer.
+      - type: callout
+        variant: mistake
+        covers: [K1.2, U1.2]
+        title: Left to right, inside each step
+        body: 'In \(18 \div 3 \times 2\), go left to right: \(6 \times 2 = 12\). Doing \(3 \times 2\) first gives 3, which is wrong.'
+
+  - title: Many names for one number
+    blocks:
+      - type: visual
+        covers: [U1.1, S1.2, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: twelve, label: 'Equals 12', icon: '🟦' }
+            - { id: twenty, label: 'Equals 20', icon: '🟧' }
+          cards:
+            - { text: '2 + 5 × 2', bin: twelve, why: 'Multiply first: 2 + 10 = 12.' }
+            - { text: '4 × 5', bin: twenty, why: 'One multiplication: 4 × 5 = 20.' }
+            - { text: '30 − 3 × 6', bin: twelve, why: 'Multiply first: 30 − 18 = 12.' }
+            - { text: '24 − 8 ÷ 2', bin: twenty, why: 'Divide first: 24 − 4 = 20.' }
+            - { text: '36 ÷ 6 × 2', bin: twelve, why: 'Left to right: 6 × 2 = 12.' }
+            - { text: '2 × 6 + 4 × 2', bin: twenty, why: 'Both multiplications first: 12 + 8 = 20.' }
+        caption: Sort each expression by its value. Every card is a different name for 12 or 20.
+
+keyTerms:
+  - term: Expression
+    covers: [K1.1, U1.1]
+    definition: 'Numbers and operations that name a value, like \(3 + 4 \times 2\).'
+  - term: Order of operations
+    covers: [K1.2]
+    definition: The rules for which operation to do first. Multiply and divide, then add and subtract, each from left to right.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: 'Find the value. \(6 + 3 \times 5\)'
+    answer: 21
+    verify: 6 + 3 * 5
+    hints:
+      - Which operation comes first?
+    solution:
+      - 'Multiply first: \(3 \times 5 = 15\).'
+      - 'Then add: \(6 + 15 = 21\).'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.2, K1.1]
+    type: mc
+    prompt: 'In \(40 - 8 \div 2 + 1\), which operation do you do **first**?'
+    choices: ['\(8 \div 2\)', '\(40 - 8\)', '\(2 + 1\)']
+    answer: 0
+    feedback:
+      '1': 'Subtraction is first from the left, but one operation comes before any adding or subtracting.'
+      '2': 'Adding comes after dividing, and it goes from left to right too.'
+    hints:
+      - Is there any multiplying or dividing?
+    solution:
+      - 'Divide first: \(8 \div 2 = 4\).'
+      - 'Then go left to right: \(40 - 4 = 36\), and \(36 + 1 = 37\).'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: 'Two friends work out \(30 - 10 + 5\). One gets 15 and the other gets 25. What is the correct value?'
+    answer: 25
+    verify: 30 - 10 + 5
+    hints:
+      - There is no multiplying or dividing. Which way do you go?
+    solution:
+      - 'Add and subtract from left to right: \(30 - 10 = 20\).'
+      - 'Then \(20 + 5 = 25\). Getting 15 means adding \(10 + 5\) first, which is out of order.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [U1.2, S1.1]
+    type: number
+    prompt: 'Leo works out \(10 - 2 \times 3\) from left to right: \(10 - 2 = 8\), then \(8 \times 3 = 24\). What is the correct value?'
+    answer: 4
+    verify: 10 - 2 * 3
+    hints:
+      - Which operation should Leo have done first?
+    solution:
+      - 'Multiplication comes before subtraction: \(2 \times 3 = 6\).'
+      - 'Then \(10 - 6 = 4\). Leo’s order gave a different value, 24.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Ava buys **3** packs of **4** stickers and **5** loose stickers. Which expression shows how many stickers she gets?
+    choices: ['\(3 \times 4 + 5\)', '\(3 + 4 \times 5\)', '\(3 \times 4 \times 5\)', '\(5 \times 3 + 4\)']
+    answer: 0
+    feedback:
+      '1': 'Work it out: \(3 + 4 \times 5 = 23\). That would be 3 loose stickers and 4 packs of 5.'
+      '2': 'Multiplying by 5 makes 5 copies of all the packs. The 5 stickers are just added on.'
+      '3': 'This is 5 packs of 3 and 4 loose stickers. Check the story again.'
+    hints:
+      - How many stickers are in the packs? How do you write that?
+      - Then add the loose stickers.
+    solution:
+      - '3 packs of 4 is \(3 \times 4\). The 5 loose stickers are added: \(3 \times 4 + 5\).'
+      - 'Multiply first: \(12 + 5 = 17\) stickers.'
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [U1.1, S1.1, U1.2]
+    type: multi
+    prompt: Select **all** the expressions with a value of **18**.
+    choices: ['\(2 + 4 \times 4\)', '\(20 - 6 \div 3\)', '\(3 \times 4 + 2 \times 3\)', '\(5 + 4 \times 2\)', '\(9 + 9 \div 3\)', '\(28 - 4 \times 3\)']
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'Left to right gives 18, but multiply first: \(5 + 8 = 13\).'
+      '4': 'Divide first: \(9 \div 3 = 3\), so \(9 + 3 = 12\).'
+      '5': 'Multiply first: \(28 - 12 = 16\).'
+    hints:
+      - For each one, do the multiplying and dividing first.
+    solution:
+      - '\(2 + 16 = 18\), \(20 - 2 = 18\) and \(12 + 6 = 18\). Three different names for 18.'
+      - 'The others are 13, 12 and 16. Two of them would give 18 only in the wrong order.'
+
+  - id: b4
+    level: 2
+    thinking: backwards
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: 'Find the missing number. \(5 + \Box \times 3 = 26\)'
+    answer: 7
+    verify: (26 - 5) / 3
+    hints:
+      - The multiplication is done first. What must \(\Box \times 3\) equal?
+      - 5 plus what makes 26?
+    solution:
+      - '\(5 + 21 = 26\), so \(\Box \times 3\) must be 21.'
+      - '\(7 \times 3 = 21\), so the missing number is **7**.'
+      - 'Check: \(5 + 7 \times 3 = 5 + 21 = 26\) ✓'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [U1.2, K1.2, S1.1]
+    type: investigation
+    prompt: |-
+      Rory’s old calculator does each operation **as soon as** you press the next key. So it always works from left to right.
+
+      Rory types **5 + 3 × 4 =**.
+    parts:
+      - type: number
+        prompt: What does the calculator show?
+        answer: 32
+        verify: (5 + 3) * 4
+        hints:
+          - The calculator adds 5 + 3 first, then multiplies.
+        solution:
+          - '\(5 + 3 = 8\), then \(8 \times 4 = 32\). The calculator shows **32**.'
+      - type: number
+        prompt: What is the correct value of \(5 + 3 \times 4\)?
+        answer: 17
+        verify: 5 + 3 * 4
+        hints:
+          - Use the order of operations.
+        solution:
+          - 'Multiply first: \(3 \times 4 = 12\). Then \(5 + 12 = 17\).'
+      - type: mc
+        prompt: How could Rory type it so his calculator shows the **correct** value?
+        choices: ['3 × 4 + 5 =', '5 × 3 + 4 =', '5 + 4 × 3 =', '4 + 5 × 3 =']
+        answer: 0
+        feedback:
+          '1': 'Left to right, that is \(15 + 4 = 19\). It is a different expression.'
+          '2': 'Left to right, that is \(9 \times 3 = 27\).'
+          '3': 'Left to right, that is \(9 \times 3 = 27\).'
+        hints:
+          - The calculator always does the first operation first. Which part should come first?
+        solution:
+          - 'Put the multiplication first: **3 × 4 + 5 =**. Left to right, \(12 + 5 = 17\).'
+    wrapUp: The order of operations is a rule everyone agrees on, so an expression has one value. A calculator that ignores it can give a different answer, so you need to know the rule yourself.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, U1.1]
+    type: build
+    prompt: |-
+      Make the expression \(\Box \times \Box - \Box\) equal to **20**. Use three **different** whole numbers, each greater than 1.
+    fields:
+      - { name: a, label: 'First number' }
+      - { name: b, label: 'Second number' }
+      - { name: c, label: 'Number taken away' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && a > 1 && b > 1 && c > 1', fail: 'Use whole numbers greater than 1.' }
+      - { test: 'a != b && a != c && b != c', fail: 'All three numbers must be different.' }
+      - { test: 'a * b - c == 20', fail: 'Multiply first, then subtract. Does it make 20?' }
+    examples:
+      - { a: 3, b: 8, c: 4 }
+      - { a: 3, b: 9, c: 7 }
+      - { a: 2, b: 12, c: 4 }
+    counterexamples:
+      - { a: 5, b: 5, c: 5 }
+      - { a: 4, b: 5, c: 1 }
+      - { a: 6, b: 4, c: 3 }
+    hints:
+      - The product has to be a bit more than 20. Which products are just over 20?
+      - 'Try \(3 \times 8 = 24\). What do you take away to get 20?'
+    solution:
+      - 'Pick a product more than 20, then take away the difference.'
+      - '\(3 \times 8 - 4 = 20\), \(3 \times 9 - 7 = 20\) and \(2 \times 12 - 4 = 20\) all work.'
+      - 'There are many more. Every one is just another name for 20.'
