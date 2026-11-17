@@ -1,0 +1,430 @@
+id: text-forms-features
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG4-OI1-GQ1-LO1]
+order: 1
+title: Text Purposes, Forms and Features
+shortTitle: Purposes, forms & features
+summary: >-
+  Work out why a text was written, explore novels, journal entries and media texts, follow how a story
+  moves, and use an index and pictures to find information fast.
+
+bigIdea: |-
+  - Every text is written for a **purpose**: to inform, to persuade or to give enjoyment.
+  - Texts come in different **forms**, such as novels, journal entries and media texts.
+  - The way a text is built, and its **text features**, help you find and enjoy what is inside.
+
+lesson:
+  - title: Why was it written?
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: inform, label: To inform, icon: 📘 }
+            - { id: persuade, label: To persuade, icon: 📣 }
+            - { id: enjoy, label: For enjoyment, icon: 🎉 }
+          cards:
+            - { text: A sign at the pool that lists the times for swimming lessons, bin: inform, why: 'It gives facts that people need.' }
+            - { text: A web page that explains how a beaver builds a dam, bin: inform, why: 'It teaches you how something works.' }
+            - { text: A poster that says “Buy a cookie and help our library!”, bin: persuade, why: 'It wants you to do something: buy a cookie.' }
+            - { text: A letter asking the principal for a longer recess, bin: persuade, why: 'It tries to change the principal’s mind.' }
+            - { text: A comic about a cat who thinks she is a queen, bin: enjoy, why: 'It is there to make you smile.' }
+            - { text: A story about a dragon who is scared of the dark, bin: enjoy, why: 'You read it for the fun of the story.' }
+        caption: Read each text. What did the writer want it to do?
+      - type: callout
+        variant: tip
+        covers: [S1.1]
+        title: Check the words
+        body: |-
+          To **confirm** a purpose, look for proof in the text.
+
+          - Facts and steps point to *inform*.
+          - “You should” and “Don’t miss it!” point to *persuade*.
+
+  - title: Reading for fun
+    blocks:
+      - type: compare
+        covers: [K1.2, S1.2]
+        columns:
+          - title: ✨ It can inspire you
+            body: A true story about a girl who trained for years to make the national ski team. *Maybe I could do hard things, too.*
+          - title: 🤩 It can fascinate you
+            body: A book that shows how honeybees dance to tell each other where the flowers are. *Wow, bees can do that?*
+          - title: 🌍 It can expand what you understand
+            body: A novel about a boy who moves to Canada and learns English. *Now I know how hard that could feel.*
+      - type: callout
+        variant: tip
+        covers: [S1.2]
+        title: What do you like, and why?
+        body: Think of a book you loved. What did it do for you? Naming the reason helps you find more books like it.
+
+  - title: Genres and forms
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI1-GQ1-LO1#K1.4', 'LANENG3-OI1-GQ1-LO1#K1.5']
+        title: Remember from Grade 3
+        body: '**Fiction** uses imagination to tell a story. **Non-fiction** gives information and facts.'
+      - type: compare
+        covers: [K1.3, K1.4, K1.5, S1.3]
+        columns:
+          - title: 📕 Novel
+            body: A long story in chapters. You meet the characters slowly and follow them for a long time.
+          - title: 📓 Journal entry
+            body: A dated page where a writer tells what happened, and what they **thought** and **felt** about it.
+          - title: 🎬 Media text
+            body: A text that can mix **sounds, words, images and graphics**. It can be digital, like a video, or not, like a printed poster.
+      - type: text
+        covers: [K1.3]
+        body: A **genre** is a group of texts with the same kind of content or style. Fiction and non-fiction are the two biggest genres.
+      - type: passage
+        id: hail
+        title: Hail Day
+        form: Journal entry
+        paragraphs:
+          - June 14. Today started hot and sunny. By lunch, dark clouds were piling up behind the barn.
+          - At 3:00, hail started bouncing off the deck like popcorn. Some pieces were as big as grapes. Our dog, Biscuit, hid under my bed and would not come out.
+          - Dad and I watched from the kitchen window. The noise on the roof was so loud that we had to shout.
+          - After ten minutes, it stopped. The garden looked as if someone had stepped on every plant. I felt sad about Mom’s tomatoes.
+          - Then Dad handed me a bowl, and we filled it with hailstones for the freezer. I want to show them to my class on Monday. I still can’t believe ice fell from the sky in June!
+        note: An original journal entry written for Alberta Edu. Paragraph numbers help you point to evidence.
+
+  - title: How a story moves
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.4]
+        component: story-path
+        props:
+          stages:
+            - { label: Beginning, text: 'Priya’s family visits a giant corn maze on a sunny fall day.' }
+            - { label: Problem, text: 'Her little brother, Dev, wanders off. Nobody can see him.' }
+            - { label: Events, text: 'They call his name. They climb the lookout tower. Priya spots a red hat moving between the rows.' }
+            - { label: Solution, text: 'They follow the paths and find Dev at a dead end, eating popcorn.' }
+            - { label: Ending, text: 'The whole family holds hands for the rest of the maze.' }
+        caption: Walk through the story one part at a time. What does each part do?
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: True stories have this shape too
+        body: A **narrative** can be fiction or non-fiction. A true story about a rescue has a problem and a solution, just like a made-up one.
+
+  - title: Text features help you find things
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.1]
+        component: book-index
+        props:
+          title: Animals of the Alberta Prairie
+          pages:
+            - { n: 2, heading: Pronghorn, text: 'Pronghorn are the fastest runners in North America. They live on open grassland, where they can see far.', image: 🦌, caption: 'A pronghorn has a white rump and short, curved horns.' }
+            - { n: 4, heading: Ground squirrels, text: 'Richardson’s ground squirrels dig long burrows under the grass. They sleep through the winter in their burrows. This is called hibernation.', image: 🐿️, caption: 'A ground squirrel stands up tall to watch for danger.' }
+            - { n: 6, heading: Badgers, text: 'A badger has strong claws for digging. It digs into burrows to catch ground squirrels to eat.', image: 🦡, caption: 'A badger’s claws are long, like little shovels.' }
+            - { n: 8, heading: Burrowing owls, text: 'Burrowing owls do not dig their own homes. They nest underground, in old burrows dug by ground squirrels or badgers.', image: 🦉, caption: 'A burrowing owl stands guard by the door of its burrow.' }
+          index:
+            - { term: badgers, pages: [6, 8] }
+            - { term: burrows, pages: [4, 6, 8] }
+            - { term: hibernation, pages: [4] }
+            - { term: 'owls, burrowing', pages: [8] }
+            - { term: pronghorn, pages: [2] }
+        caption: |-
+          The **index** is an ABC list at the back of a book.
+
+          1. Tap a word to jump to its page.
+          2. Switch the images and graphics off. What do you lose?
+      - type: callout
+        variant: tip
+        covers: [S2.2, K2.1]
+        title: Use them in your own writing
+        body: When you write to inform, add a picture with a caption, a labelled diagram, or an index for a longer book. Features help your reader find and understand the main text.
+
+  - title: The shape fits the job
+    blocks:
+      - type: compare
+        covers: [S1.5, U1.1]
+        columns:
+          - title: 📄 A lost-cat poster
+            body: |-
+              **LOST CAT: Pumpkin**
+
+              🐈 *Photo of an orange cat*
+
+              Call 403-555-0199.
+
+              The big heading, the photo and the phone number help a neighbour **at a glance**.
+          - title: 📖 A story about a lost cat
+            body: Pumpkin squeezed through the gate on Tuesday night. The next morning, Sam searched every yard on the street… A story keeps you **reading to find out** what happens.
+      - type: callout
+        variant: tip
+        covers: [S1.5, U1.1]
+        title: Ask, “Why is it built this way?”
+        body: How a text is organized helps it do its job. Information is easy to find. A story is easy to follow and enjoy.
+
+keyTerms:
+  - term: Purpose
+    covers: [K1.1]
+    definition: The reason a text was made, such as to inform, to persuade or to give enjoyment.
+  - term: Genre
+    covers: [K1.3]
+    definition: A category of texts with the same kind of content or style. It includes fiction and non-fiction.
+  - term: Journal entry
+    covers: [K1.4]
+    definition: A dated piece of writing where someone tells what happened and what they thought or felt.
+  - term: Media text
+    covers: [K1.5]
+    definition: A digital or non-digital text that can combine sounds, words, images and graphics.
+  - term: Narrative
+    covers: [K1.6]
+    definition: A text that tells a story. It can be fiction or non-fiction.
+  - term: Index
+    covers: [K2.1]
+    definition: An ABC list at the back of a book that shows which pages talk about each topic.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: |-
+      A poster in the school hall says:
+
+      > **Come to the Bake Sale on Friday!** Every cookie helps buy new library books. Don’t miss out!
+
+      What is the poster’s main purpose?
+    choices:
+      - To persuade people to come and buy cookies
+      - To inform people about how cookies are baked
+      - To give people the enjoyment of a funny story
+    answer: 0
+    feedback:
+      '1': The poster does give some facts, like the day. But does it tell you anything about baking? What does it want you to do?
+      '2': Is there a story or a joke in it? Look at the words *Don’t miss out!*
+    hints:
+      - Look at the last three words. What do they ask you to do?
+    solution:
+      - The poster tells you the day, but its words push you to act. *Every cookie helps* and *Don’t miss out!* give you reasons to come.
+      - A text that tries to get you to do something is written to **persuade**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: You have a 60-page book about Canada’s animals. You want to find **every page** that talks about beavers. Where should you look?
+    choices:
+      - The index at the back of the book
+      - The table of contents at the front of the book
+      - The picture on the front cover
+      - The first page of the first chapter
+    answer: 0
+    feedback:
+      '1': A table of contents lists the chapters in order. If beavers are in three different chapters, would it show you all three pages?
+      '2': The cover tells you what the whole book is about. Does it tell you any page numbers?
+      '3': You might find beavers there, but what about the other pages? Is there a quicker way than reading the whole book?
+    hints:
+      - Which feature is in ABC order, with page numbers for small topics?
+    solution:
+      - The **index** lists topics in ABC order, with every page where each one appears. Look under *B* for *beavers*.
+      - The table of contents only shows the big chapters, in the order they come.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.6, S1.4]
+    type: order
+    prompt: Put the parts of Ava’s story in order, from the **beginning** to the **ending**.
+    items:
+      - Ava gets a kite for her birthday.
+      - Her kite gets stuck high up in a tall tree.
+      - She tries a broom, then a ladder, but neither one reaches.
+      - A big gust of wind shakes the kite loose.
+      - Ava flies it in the open field, far away from the trees.
+    hints:
+      - Which sentence is the problem? What has to come before it?
+      - The solution fixes the problem. Which sentence does that?
+    solution:
+      - '**Beginning:** Ava gets a kite. **Problem:** it gets stuck.'
+      - '**Events:** she tries a broom and a ladder. **Solution:** the wind shakes it loose.'
+      - '**Ending:** she flies it far from the trees. The ending shows what she learned.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K1.4, S1.3]
+    type: evidence
+    prompt: The writer of “Hail Day” is in the story, telling what she **thought and felt**. A news report about the storm would stick to the facts. Tap a sentence that a news report would probably **leave out**.
+    passage: hail
+    paragraphs: [2, 4]
+    answer: [p2s3, p4s3]
+    feedback:
+      p2s1: When the hail started is a fact that a news report would want. Look for something only this writer would care about.
+      p2s2: The size of the hail is news. Reporters often say “as big as grapes” or “as big as golf balls.”
+      p4s1: How long a storm lasted is a fact that a news report would include.
+      p4s2: A news report could tell about damage to gardens too. Look for a sentence about the writer’s own life.
+    hints:
+      - Which sentences are about the storm, and which are about the writer’s own family and feelings?
+    solution:
+      - '“Our dog, Biscuit, hid under my bed” and “I felt sad about Mom’s tomatoes” are about the writer’s own home and feelings.'
+      - A news report tells facts that many people need. A **journal entry** also tells what the writer thought and felt.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.5, K1.4, S1.3]
+    type: mc
+    prompt: The writer of “Hail Day” wants to share her day with her class as a **media text** that combines sounds, words and images. Which plan does that?
+    choices:
+      - A short video with her voice telling the story, photos of the hail, and a title on the screen
+      - A recording of her reading the journal entry aloud, with no pictures at all
+      - A neat copy of her journal entry, written out again in her best printing
+      - One big drawing of the hail falling on the farm, with nothing written on it
+    answer: 0
+    feedback:
+      '1': A recording has sounds and words. Which of the three is missing?
+      '2': A neat copy has words. Where are the sounds and the images?
+      '3': A drawing is an image. Where are the words and the sounds?
+    hints:
+      - Check each plan for all three things. Sounds? Words? Images?
+    solution:
+      - The video has **sounds** (her voice), **images** (the photos) and **words** (the title and her story).
+      - Media texts can be digital, like this video, or non-digital, like a printed poster.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K2.1, U2.1, S2.1]
+    type: mc
+    prompt: |-
+      In a book about animals, the index says:
+
+      > coyotes, 6, 9
+
+      Page 9 has no sentences about coyotes. It only has a photo of a coyote pup, with a caption: *Coyote pups are born in a den in spring.* Leo says, “The index made a mistake.” What is wrong with Leo’s thinking?
+    choices:
+      - The photo and caption give information about coyotes, so page 9 belongs in the index.
+      - The index lists every single word in the book, so it doesn’t matter what page 9 says.
+      - The index should only show the first page where an animal is named, which is page 6.
+      - A book’s index is always wrong about pictures, so Leo should just skip page 9.
+    answer: 0
+    feedback:
+      '1': An index lists the important topics, not every word. *The* and *and* are not in an index.
+      '2': An index shows **every** page about a topic, so a reader can find all of it.
+      '3': Is the information on page 9 really missing? Read the caption again.
+    hints:
+      - Read the caption. Does it teach you something about coyotes?
+    solution:
+      - Images, graphics and captions are text features. They hold information too.
+      - The caption tells you where coyote pups are born, so a reader looking up coyotes would want page 9.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [S2.2, K2.1, U2.1]
+    type: mc
+    prompt: Omar writes instructions for planting bean seeds in a cup. His classmates keep pushing the seeds in **much too deep**, even though his steps say “not too deep.” Which text feature would help most?
+    choices:
+      - A labelled diagram that shows how deep the seed should sit in the soil
+      - An index at the bottom of the page that lists the words *bean* and *cup*
+      - A bigger title at the top of the page, in bright green letters
+      - A photo of Omar holding up his finished bean plant and smiling
+    answer: 0
+    feedback:
+      '1': An index helps you find things in a long book. Omar’s page is short, and the problem is the depth.
+      '2': A bigger title helps people notice the page. Would it show them how deep to plant?
+      '3': A photo of the plant is nice. Does it show what happens under the soil?
+    hints:
+      - What exactly are his classmates getting wrong? Which feature could **show** it?
+    solution:
+      - The words “not too deep” don’t say how deep. A **diagram** can show it at a glance.
+      - Choose a feature that fixes the reader’s real problem. Here, a picture makes the main text clearer.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.6, S1.4, S1.5]
+    type: investigation
+    prompt: |-
+      Jun planned a story, but his teacher says something is missing.
+
+      - **Beginning:** Jun gets a puppy named Pepper.
+      - **Events:** Jun looks under the porch. He asks the neighbours. He hears barking from the shed.
+      - **Ending:** Pepper falls asleep on Jun’s bed.
+    parts:
+      - type: mc
+        prompt: Which part of a story did Jun forget to write down before the events?
+        choices:
+          - 'The problem: Pepper goes missing.'
+          - 'A second beginning: Jun meets a cat.'
+          - 'More events: Jun eats his lunch.'
+          - 'A new ending: Jun goes to school.'
+        answer: 0
+        feedback:
+          '1': A story only needs one beginning. Why is Jun looking under the porch?
+          '2': Eating lunch doesn’t explain the other events. Why would anyone look under a porch?
+          '3': He already has an ending. What happens between the beginning and the events?
+        hints:
+          - Why would Jun look under a porch and ask the neighbours?
+        solution:
+          - Jun is searching, so something must be lost. The **problem** is that Pepper goes missing.
+      - type: mc
+        prompt: 'Jun adds one more line: *He opens the shed door, and there is Pepper, tangled in a garden hose.* Which part of the story is this?'
+        choices:
+          - The solution, between the events and the ending
+          - The beginning, before Jun gets his puppy
+          - The problem, because Pepper is stuck in a hose
+          - The ending, because Pepper is safe now
+        answer: 0
+        feedback:
+          '1': Jun already has his puppy at the start. Can he find Pepper before he has her?
+          '2': Being tangled is a small trouble, but the big problem was that Pepper was missing. What does this line fix?
+          '3': The ending is Pepper asleep on the bed. What has to happen just before that?
+        hints:
+          - Does this line fix the problem? Where does a fix go?
+        solution:
+          - Finding Pepper fixes the problem, so it is the **solution**. It comes after the events and before the ending.
+      - type: mc
+        prompt: What if Jun changed the problem to *Pepper keeps chewing Jun’s shoes*? What else would have to change?
+        choices:
+          - The events, because looking under the porch no longer helps
+          - Nothing, because the events would still work just as well
+          - Only the beginning, because Jun would need a different pet
+          - Only the title, because the story is now about shoes
+        answer: 0
+        feedback:
+          '1': Would asking the neighbours help with chewed shoes? Check each event against the new problem.
+          '2': The puppy can still chew shoes. Which parts of the plan were about searching?
+          '3': The title might change. But what about the parts in the middle?
+        hints:
+          - Each event was a try at solving the old problem. Do those tries fit the new one?
+        solution:
+          - The events were all about searching. With a new problem, Jun needs new events, such as hiding his shoes or buying a chew toy.
+    wrapUp: The problem drives a story. The events are tries at solving it, and the solution fixes it. Change the problem, and the middle of the story changes too.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [S1.5, U1.1, K2.1, K1.4]
+    type: mc
+    prompt: Most books about animals have an **index**. Most novels don’t. Why might that be?
+    choices:
+      - People read a novel from start to end, but they look up one topic in an information book.
+      - Novels are too long to have an index, and animal books are always short.
+      - Novels have no important words in them, so there is nothing to put in an index.
+      - An index can only be made for books that have pictures and graphics in them.
+    answer: 0
+    feedback:
+      '1': Some animal books are very long, and some novels are short. Is length really the reason?
+      '2': Novels are full of important words. But would a reader of a novel jump to page 87 to find the word *dragon*?
+      '3': The index in an animal book lists words, not only pictures. Look at **how** people read each kind of book.
+    hints:
+      - Think about how you read a story. Then think about how you use a book when you need one fact.
+    solution:
+      - A novel is built to be followed from the first page to the last. Jumping around would spoil it.
+      - An information book is often used to look things up. The index helps a reader jump straight to a topic.
+      - Text features fit the way a text is read.

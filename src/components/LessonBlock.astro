@@ -76,6 +76,7 @@ import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
+import BookIndex from './visuals/BookIndex.astro';
 
 interface Props {
   block: LessonBlock;
@@ -155,6 +156,7 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'book-index': BookIndex,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
