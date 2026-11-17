@@ -1,0 +1,98 @@
+---
+// A virtual chance experiment (MAT6-OI8-GQ1-LO1: K1.1, K1.2, U1.1, S1.1, S1.2, K2.1-K2.3,
+// U2.1-U2.4, S2.1-S2.6). Toss a coin, roll a die or spin a spinner 10, 100 or 1000 times. The table
+// shows each outcome’s frequency and relative frequency, and the chart shows the event’s relative
+// frequency settling near its likelihood as the trials grow.
+import { EXPERIMENTS } from './g6-chance.ts';
+
+interface Props {
+  start?: 'coin' | 'die' | 'spinner';
+}
+const { start = 'coin' } = Astro.props;
+---
+<chance-lab data-start={start}>
+  <div class="seg" role="group" aria-label="Choose an experiment">
+    {EXPERIMENTS.map((e) => <button type="button" data-exp={e.id} aria-pressed={String(e.id === start)}>{e.name}</button>)}
+  </div>
+  <p class="g6m-ch-predict" data-ch="predict"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-run="10">Run 10</button>
+    <button type="button" class="btn btn--primary btn--small" data-run="100">Run 100</button>
+    <button type="button" class="btn btn--primary btn--small" data-run="1000">Run 1000</button>
+    <button type="button" class="btn btn--ghost btn--small" data-ch="reset">Start over</button>
+  </div>
+  <div class="g6m-ch-layout">
+    <div class="table-wrap"><table class="data-table" data-ch="table"></table></div>
+    <div class="g6m-ch-chart" data-ch="chart" aria-hidden="true"></div>
+  </div>
+  <p class="g6m-ch-say" data-ch="say" aria-live="polite"></p>
+</chance-lab>
+
+<style is:global>
+  chance-lab { display: block; }
+  .g6m-ch-predict { margin: 0.8rem 0 0; font-weight: 700; }
+  .g6m-ch-layout { display: grid; gap: 1rem; align-items: start; }
+  @media (min-width: 44rem) { .g6m-ch-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); } }
+  .g6m-ch-chart svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .g6m-ch-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+  .g6m-ch-expect { stroke: var(--warn); stroke-width: 2.5; stroke-dasharray: 7 5; }
+  .g6m-ch-say { min-height: 3em; margin: 0.6rem 0 0; }
+  .data-table tr.g6m-ch-event th, .data-table tr.g6m-ch-event td { background: color-mix(in srgb, var(--sun) 30%, transparent); }
+</style>
+
+<script>
+  import { EXPERIMENTS, likelihood, trial, relative, running, chartSvg, type Experiment } from './g6-chance.ts';
+
+  class ChanceLab extends HTMLElement {
+    private e!: Experiment;
+    private results: number[] = [];
+
+    connectedCallback() {
+      this.load(this.dataset.start!);
+      this.querySelectorAll<HTMLButtonElement>('[data-exp]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-exp]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(b.dataset.exp!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-run]').forEach((b) =>
+        b.addEventListener('click', () => {
+          for (let i = 0; i < Number(b.dataset.run); i++) this.results.push(trial(this.e, Math.random()));
+          this.render();
+        }),
+      );
+      this.q('reset').addEventListener('click', () => this.load(this.e.id));
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-ch="${k}"]`) as HTMLElement;
+    }
+
+    private load(id: string) {
+      this.e = EXPERIMENTS.find((x) => x.id === id)!;
+      this.results = [];
+      const [a, b] = likelihood(this.e);
+      this.q('predict').textContent = `${this.e.outcomes.length} equally likely outcomes: ${this.e.outcomes.join(', ')}. The event “${this.e.eventName}” has ${a} of them, so expect it about ${a}/${b} of the time.`;
+      this.render();
+    }
+
+    private render() {
+      const e = this.e;
+      const n = this.results.length;
+      const counts = e.outcomes.map((_, i) => this.results.filter((r) => r === i).length);
+      const hit = counts.reduce((s, c, i) => s + (e.event.includes(e.outcomes[i]) ? c : 0), 0);
+      const row = (name: string, c: number, cls = '') => {
+        const r = relative(c, n);
+        return `<tr${cls}><th scope="row">${name}</th><td>${c}</td><td>${r.fraction}</td><td>${r.percent}</td></tr>`;
+      };
+      this.q('table').innerHTML = `<thead><tr><th scope="col">Outcome</th><th scope="col">Frequency</th><th scope="col">Relative</th><th scope="col">%</th></tr></thead><tbody>${e.outcomes.map((o, i) => row(o, counts[i], e.event.includes(o) ? ' class="g6m-ch-event"' : '')).join('')}${e.event.length > 1 ? row(`<em>${e.eventName}</em>`, hit, ' class="g6m-ch-event"') : ''}</tbody>`;
+      const [a, b] = likelihood(e);
+      this.q('chart').innerHTML = chartSvg(running(this.results, e), a / b);
+      const r = relative(hit, n);
+      this.q('say').textContent = n
+        ? `After ${n} trials, ${e.eventName} came up ${hit} times: a relative frequency of ${r.fraction} = ${r.decimal} = ${r.percent}. The dashed line is ${Math.round((a / b) * 100)}%. ${n < 100 ? 'Run more trials. Does the line settle down?' : 'With more trials, the relative frequency usually lands closer to the dashed line.'}`
+        : 'Predict first, then press Run.';
+    }
+  }
+  customElements.define('chance-lab', ChanceLab);
+</script>

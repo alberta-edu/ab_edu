@@ -78,7 +78,7 @@ Visuals:
 - **Math:** `place-value`, `decimal-zoom`, `column-calc`, `divisibility`, `fraction-explorer`,
   `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`,
   `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`,
-  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`, `transform-lab` (`move: translate`, `reflect` or `rotate`), `parallelogram-area` (`mode: parallelogram` or `triangle`), `prism-builder`, `function-machine`
+  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`, `transform-lab` (`move: translate`, `reflect` or `rotate`), `parallelogram-area` (`mode: parallelogram` or `triangle`), `prism-builder`, `function-machine`, `chance-lab` (`start: coin`, `die` or `spinner`)
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,

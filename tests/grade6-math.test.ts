@@ -344,3 +344,27 @@ describe('Grade 6 functions', () => {
     expect(graphSvg(plant, 5).match(/<circle/g)).toHaveLength(6);
   });
 });
+
+import { EXPERIMENTS, likelihood, trial, relative, running, chartSvg } from '../src/components/visuals/g6-chance.ts';
+
+describe('Grade 6 relative frequency', () => {
+  const die = EXPERIMENTS.find((e) => e.id === 'die')!;
+  it('uses the curriculum’s events', () => {
+    expect(EXPERIMENTS.map((e) => e.eventName)).toEqual(['a head', 'an even number', 'blue']);
+    expect(likelihood(die)).toEqual([3, 6]);
+  });
+  it('maps random numbers to equally likely outcomes', () => {
+    expect(trial(die, 0)).toBe(0);
+    expect(trial(die, 0.999)).toBe(5);
+    const seen = new Set(Array.from({ length: 600 }, (_, i) => trial(die, i / 600)));
+    expect(seen.size).toBe(6);
+  });
+  it('writes relative frequency three ways', () => {
+    expect(relative(7, 20)).toEqual({ fraction: '7/20', decimal: '0.35', percent: '35%' });
+    expect(relative(0, 0).percent).toBe('0%');
+  });
+  it('tracks the running relative frequency of the event', () => {
+    expect(running([1, 0, 3], die)).toEqual([1, 0.5, 2 / 3]);
+    expect(chartSvg(running([1, 0, 3], die), 0.5)).toContain('g6m-ch-expect');
+  });
+});

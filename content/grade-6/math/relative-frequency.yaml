@@ -1,0 +1,284 @@
+id: relative-frequency
+grade: 6
+subject: math
+organizingIdea: MAT-OI8
+outcomes: [MAT6-OI8-GQ1-LO1]
+order: 18
+title: Relative Frequency and Chance
+shortTitle: Relative frequency
+summary: >-
+  Turn frequencies into relative frequencies, compare data sets of different sizes, and run coin,
+  die and spinner experiments to estimate how likely an event is.
+
+bigIdea: |-
+  - **Relative frequency** is a frequency out of the total: 7 heads in 20 tosses is \(\frac{7}{20}\) = 0.35 = 35%.
+  - It lets you compare data sets of **different sizes**.
+  - With **equally likely** outcomes, you can predict how often an event should happen.
+  - **More trials** give a better estimate of how likely an event is.
+
+lesson:
+  - title: Run the experiment
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, S2.1, S2.2, S2.3, S2.4, K2.3, U2.4, S2.6]
+        component: chance-lab
+        props: { start: coin }
+        caption: |-
+          - Predict first. Then press **Run 10** a few times. How much does the result jump around?
+          - Now press **Run 1000**. Where does the line settle?
+
+  - title: Frequency out of the total
+    blocks:
+      - type: table
+        covers: [U1.1, S1.1, S1.2, K1.2]
+        caption: Favourite winter activity, 25 students
+        headers: [Activity, Frequency, Fraction, Decimal, Percent]
+        rows:
+          - ['Skating', '10', '\(\frac{10}{25}\)', '0.4', '40%']
+          - ['Sledding', '8', '\(\frac{8}{25}\)', '0.32', '32%']
+          - ['Skiing', '7', '\(\frac{7}{25}\)', '0.28', '28%']
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI8-GQ1-LO1#U1.1]
+        title: Remember from Grade 5
+        body: '**Frequency** is a count: how many times a category came up.'
+
+  - title: Comparing data sets
+    blocks:
+      - type: compare
+        covers: [K1.1, S1.1]
+        columns:
+          - title: Class A, 30 students
+            body: '12 walk to school. \(\frac{12}{30} = 0.4\), or 40%.'
+          - title: Class B, 20 students
+            body: '10 walk to school. \(\frac{10}{20} = 0.5\), or 50%.'
+      - type: text
+        covers: [K1.1]
+        body: Class A has more walkers, but Class B has a **greater share** of walkers. Relative frequency compares the same category fairly when the totals are different.
+
+  - title: Every run is different
+    blocks:
+      - type: table
+        covers: [U2.3, U2.2, S2.5, S2.6, K2.3]
+        caption: One class’s coin tosses. The likelihood of a head is \(\frac{1}{2}\), or 50%.
+        headers: [Run, Heads, Relative frequency]
+        rows:
+          - ['20 tosses', '9', '45%']
+          - ['20 more tosses', '13', '65%']
+          - ['1000 tosses', '507', '50.7%']
+      - type: callout
+        variant: tip
+        covers: [K2.3, U2.4]
+        title: More data, better estimate
+        body: Small runs jump around. The more trials you do, the closer the relative frequency usually gets to the likelihood.
+
+keyTerms:
+  - term: Relative frequency
+    covers: [U1.1, S1.2]
+    definition: 'A frequency divided by the total, written as a fraction, decimal or percent.'
+  - term: Equally likely
+    covers: [K2.1]
+    definition: Outcomes with the same chance of happening, like heads and tails on a fair coin.
+  - term: Event
+    covers: [K2.2]
+    definition: 'One or more outcomes of an experiment, like rolling an even number: 2, 4 or 6.'
+  - term: Law of large numbers
+    covers: [K2.3]
+    definition: More trials of an experiment give a better estimate of how likely an event is.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2, S2.1]
+    type: multi
+    prompt: 'You roll a die numbered 1 to 6. Which outcomes make the event **an even number**? Choose all of them.'
+    choices: ['1', '2', '3', '4', '5', '6']
+    fixedOrder: true
+    answer: [1, 3, 5]
+    hints:
+      - Even numbers can be split into two equal groups.
+    solution:
+      - 'The even outcomes are **2, 4 and 6**. That is 3 of the 6 equally likely outcomes.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.4, S1.2]
+    type: number
+    prompt: 'In **40** spins, a spinner landed on blue **12** times. What is the relative frequency of blue, as a decimal?'
+    answer: 0.3
+    verify: 12 / 40
+    hints:
+      - 'Write blue out of the total, \(\frac{12}{40}\), then divide.'
+    solution:
+      - '\(\frac{12}{40} = 12 \div 40 = 0.3\), which is 30%.'
+
+  - id: w3
+    level: 1
+    thinking: estimate
+    covers: [S2.3, K2.1]
+    type: mc
+    prompt: 'A spinner has **4 equal sections**: blue, red, yellow and green. About how many times should it land on blue in **100** spins?'
+    choices: ['About 25', 'About 50', 'About 4', 'Exactly 25']
+    answer: 0
+    feedback:
+      '1': 'Blue is only 1 of the 4 equally likely sections.'
+      '2': '4 is the number of sections. Out of 100 spins, how many is 1 out of every 4?'
+      '3': 'Chance doesn’t promise an exact count. Each run of 100 spins comes out a bit different.'
+    hints:
+      - Blue is 1 of 4 equally likely outcomes. What is \(\frac{1}{4}\) of 100?
+    solution:
+      - 'Blue should come up about \(\frac{1}{4}\) of the time. \(\frac{1}{4}\) of 100 is 25, so **about 25**, but not exactly.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: decide
+    covers: [K1.1, S1.1, S1.2]
+    type: mc
+    prompt: 'In Ms. Lee’s class, **9 of 18** students play an instrument. In Mr. Roy’s class, **12 of 30** do. Which class has the **greater relative frequency** of players?'
+    choices: ['Ms. Lee’s class', 'Mr. Roy’s class', 'They are the same']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Mr. Roy’s class has more players, but out of a bigger class. Compare each as a percent.'
+      '2': 'Write both as decimals: \(9 \div 18\) and \(12 \div 30\).'
+    hints:
+      - Compare the fractions out of each class’s total.
+    solution:
+      - 'Ms. Lee: \(\frac{9}{18} = 0.5\), or 50%. Mr. Roy: \(\frac{12}{30} = 0.4\), or 40%.'
+      - '**Ms. Lee’s class** has the greater relative frequency, even though Mr. Roy’s has more players.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [U2.3, U2.4, K2.3]
+    type: mc
+    prompt: 'Ava tosses a coin **10** times and gets **7** heads. She says, "70% isn’t 50%, so this coin must be unfair." What is the problem with her thinking?'
+    choices:
+      - '10 tosses is a small sample. Results jump around, so she needs many more tosses.'
+      - 'She worked out the percent wrong. 7 out of 10 is 7%.'
+      - 'A coin always gives exactly 5 heads in 10 tosses.'
+      - 'There is no problem. 7 heads proves the coin is unfair.'
+    answer: 0
+    feedback:
+      '1': '7 out of 10 is \(\frac{7}{10} = 0.7\), which is 70%.'
+      '2': 'Chance doesn’t promise exact results. Fair coins often give 6 or 7 heads in 10 tosses.'
+      '3': 'One small run can’t prove much. What would more tosses show?'
+    hints:
+      - In the lesson, how much did runs of 10 jump around?
+    solution:
+      - 'Relative frequency varies a lot in small samples. 7 heads in 10 tosses happens often with a fair coin.'
+      - 'With hundreds of tosses, a fair coin’s heads should settle near 50%.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S1.2, U1.1, S1.1]
+    type: number
+    prompt: 'A survey asked **80** students for their favourite sport. **28** chose soccer. What percent of the students chose soccer?'
+    answer: 35
+    unit: '%'
+    verify: 28 / 80 * 100
+    hints:
+      - 'Write the relative frequency as a fraction, \(\frac{28}{80}\). Then turn it into a percent.'
+    solution:
+      - '\(28 \div 80 = 0.35\), so **35%** chose soccer.'
+
+  - id: b4
+    level: 2
+    thinking: evidence
+    covers: [S2.6, K2.3, S2.5]
+    type: mc
+    prompt: 'Tom rolled a die **12** times and got a 6 four times (33%). Pia rolled the same die **600** times and got a 6 ninety-eight times (16%). Whose result is the better estimate of how likely a 6 is?'
+    choices: ['Pia’s, because she did many more trials', 'Tom’s, because his percent is bigger', 'Both are equally good', 'Neither tells you anything']
+    answer: 0
+    feedback:
+      '1': 'A bigger percent doesn’t make an estimate better. Which result comes from more data?'
+      '2': 'Small runs jump around more. Is 12 rolls as reliable as 600?'
+      '3': 'Relative frequency does estimate likelihood, especially with lots of trials.'
+    hints:
+      - Which result came from more trials?
+    solution:
+      - 'Pia’s 600 rolls give the better estimate. More trials usually land closer to the true likelihood.'
+      - 'A 6 is 1 of 6 equally likely outcomes, about 17%. Pia’s 16% is close.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.5, U2.2, S2.6, S2.4]
+    type: investigation
+    prompt: |-
+      A spinner has **5 equal sections**, but some are covered, so you can’t see how many are blue. You spin it **200** times, and it lands on blue **121** times.
+    parts:
+      - type: number
+        prompt: What is the relative frequency of blue, as a decimal?
+        answer: 0.605
+        verify: 121 / 200
+        hints:
+          - Blue out of the total, then divide.
+        solution:
+          - '\(\frac{121}{200} = 0.605\), or 60.5%.'
+      - type: mc
+        prompt: How many of the 5 sections are most likely blue?
+        choices: ['3', '1', '2', '4']
+        answer: 0
+        feedback:
+          '1': '1 blue section would give about \(\frac{1}{5} = 0.2\). Is 0.605 close to that?'
+          '2': '2 sections would give about 0.4. Which is closest to 0.605?'
+          '3': '4 sections would give about 0.8. Which is closest to 0.605?'
+        hints:
+          - 'Each section is \(\frac{1}{5} = 0.2\). Which number of sections gives about 0.6?'
+        solution:
+          - '3 sections give \(\frac{3}{5} = 0.6\), the closest to 0.605. So 3 sections are most likely blue.'
+      - type: mc
+        prompt: 'Leo spins the same spinner **10** times and gets **2** blues. He says only 1 section is blue. Should you change your answer?'
+        choices:
+          - 'No. 10 spins is too few to trust. 200 spins is better evidence.'
+          - 'Yes. The newest result is always the right one.'
+          - 'Yes. 2 blues out of 10 is 0.2, so it must be 1 section.'
+          - 'No, because spinners always give the same result.'
+        answer: 0
+        feedback:
+          '1': 'Newer isn’t better. Which result comes from more spins?'
+          '2': '0.2 fits 1 section, but small runs jump around a lot.'
+          '3': 'Spinners don’t always give the same result. That is why each run is different.'
+        hints:
+          - Which run had more trials?
+        solution:
+          - 'Leo’s 10 spins are a small sample, and small samples vary a lot. The 200 spins are much better evidence.'
+    wrapUp: 'Relative frequency from many trials is a good estimate of likelihood, good enough to work out what you can’t see.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K2.1, S2.3, K2.2]
+    type: build
+    prompt: |-
+      Design a spinner with equal sections, some blue. Landing on blue must be **exactly as likely** as rolling an **even number** on a die. Use from 6 to 12 sections.
+    fields:
+      - { name: b, label: 'Blue sections' }
+      - { name: n, label: 'Sections in all' }
+    rules:
+      - { test: 'b % 1 == 0 && n % 1 == 0 && b >= 1', fail: 'Use whole numbers, with at least 1 blue section.' }
+      - { test: 'n >= 6 && n <= 12', fail: 'Use from 6 to 12 sections in all.' }
+      - { test: 'b < n', fail: 'Some sections need to be another colour.' }
+      - { test: 'b * 2 == n', fail: 'An even number on a die is 3 of 6 outcomes, or half. Is blue exactly half of your spinner?' }
+    examples:
+      - { b: 3, n: 6 }
+      - { b: 4, n: 8 }
+      - { b: 6, n: 12 }
+    counterexamples:
+      - { b: 2, n: 6 }
+      - { b: 1, n: 2 }
+      - { b: 5, n: 9 }
+    hints:
+      - How likely is an even number on a die? Write it as a fraction.
+      - 'Even numbers are 3 of 6 outcomes, which is \(\frac{1}{2}\).'
+    solution:
+      - 'Rolling an even number is 3 out of 6 equally likely outcomes, which is \(\frac{1}{2}\).'
+      - 'So blue must be half of the sections: 3 of 6, 4 of 8, 5 of 10 or 6 of 12.'
+      - 'With an odd number of sections, like 9, blue can never be exactly half.'
