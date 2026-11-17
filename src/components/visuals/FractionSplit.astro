@@ -1,0 +1,113 @@
+---
+// Equivalent fractions (MAT4-OI1-GQ5-LO1: K1.1-K1.6, U1.1, U1.2, S1.1-S1.6). Split every part of a
+// fraction bar into 2, 3 or 4, or join equal groups of parts. The shaded amount and the point on
+// the number line never move, while the numerator and denominator change together.
+import { splitSvg, splitHeight, simplestText } from './fraction-split.ts';
+
+interface Props {
+  numerator?: number;
+  denominator?: number;
+}
+const { numerator = 2, denominator = 3 } = Astro.props;
+---
+<g4m-fraction-split data-n={numerator} data-d={denominator}>
+  <div class="g4m-fs-read" aria-live="polite">
+    <span class="frac"><span>{numerator}</span><span>{denominator}</span></span>
+    <span class="g4m-fs-eq" data-fs="eq" hidden>=</span>
+    <span class="frac" data-fs="now" hidden><span>{numerator}</span><span>{denominator}</span></span>
+  </div>
+  <svg class="g4m-fs-svg" viewBox={`0 0 680 ${splitHeight(true)}`} role="img" aria-label="Two fraction bars, the starting fraction and the new one, above a number line" data-fs="svg" set:html={splitSvg(numerator, denominator, [numerator, denominator])} />
+  <div class="control-row">
+    <div class="control">
+      <span id="g4m-fs-split">Split each part into</span>
+      <div class="seg" role="group" aria-labelledby="g4m-fs-split">
+        {[2, 3, 4].map((k) => <button type="button" data-split={k}>{k}</button>)}
+      </div>
+    </div>
+    <div class="control">
+      <span id="g4m-fs-join">Join groups of</span>
+      <div class="seg" role="group" aria-labelledby="g4m-fs-join">
+        {[2, 3, 4, 5, 6].map((k) => <button type="button" data-join={k}>{k}</button>)}
+      </div>
+    </div>
+    <button type="button" class="btn btn--ghost btn--small" data-fs="reset">Start again</button>
+  </div>
+  <p class="g4m-fs-say" data-fs="say">Split the parts, or join them. Watch the shaded amount.</p>
+  <p class="g4m-fs-simple" data-fs="simple">{simplestText(numerator, denominator)}</p>
+</g4m-fraction-split>
+
+<style is:global>
+  g4m-fraction-split { display: block; }
+  .g4m-fs-read { display: flex; align-items: center; gap: 0.6rem; min-height: 3.6rem; }
+  .g4m-fs-eq { font-size: 1.8rem; color: var(--ink-3); }
+  .g4m-fs-svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .g4m-fs-cell { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.5; transition: fill 0.3s; }
+  .g4m-fs-cell.is-on { fill: var(--math); }
+  .g4m-fs-ghost { opacity: 0.55; }
+  .g4m-fs-frame { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .g4m-fs-lab { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4m-fs-axis, .g4m-fs-tick { stroke: var(--ink); stroke-width: 2; }
+  .g4m-fs-num { fill: var(--ink); font-size: 18px; font-weight: 700; }
+  .g4m-fs-drop { stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 4 4; }
+  .g4m-fs-dot { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .g4m-fs-new { animation: g4m-fs-in 0.5s ease-out; }
+  @keyframes g4m-fs-in { from { opacity: 0.2; } to { opacity: 1; } }
+  g4m-fraction-split .seg button:disabled { opacity: 0.35; cursor: not-allowed; }
+  .g4m-fs-say { margin: 0.2rem 0 0; font-weight: 700; }
+  .g4m-fs-simple { margin: 0.3rem 0 0; color: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) { .g4m-fs-cell { transition: none; } .g4m-fs-new { animation: none; } }
+</style>
+
+<script>
+  import { splitSvg, canSplit, canJoin, splitText, joinText, simplestText } from './fraction-split.ts';
+
+  class FractionSplit extends HTMLElement {
+    private start: [number, number] = [2, 3];
+    private n = 2;
+    private d = 3;
+
+    connectedCallback() {
+      this.start = [Number(this.dataset.n), Number(this.dataset.d)];
+      [this.n, this.d] = this.start;
+      this.querySelectorAll<HTMLButtonElement>('[data-split]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const k = Number(b.dataset.split);
+          if (!canSplit(this.d, k)) return;
+          this.show(splitText(this.n, this.d, k), this.n * k, this.d * k);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-join]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const k = Number(b.dataset.join);
+          if (!canJoin(this.n, this.d, k)) return;
+          this.show(joinText(this.n, this.d, k), this.n / k, this.d / k);
+        }),
+      );
+      this.querySelector('[data-fs="reset"]')!.addEventListener('click', () => this.show('Split the parts, or join them. Watch the shaded amount.', ...this.start));
+      this.show(this.q('say').textContent!, this.n, this.d);
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-fs="${name}"]`) as HTMLElement;
+    }
+
+    private show(say: string, n: number, d: number) {
+      this.n = n;
+      this.d = d;
+      const svg = this.q('svg');
+      svg.innerHTML = splitSvg(n, d, this.start);
+      svg.setAttribute('aria-label', `${this.start[0]}/${this.start[1]} and ${n}/${d}: the same amount is shaded, at the same point on the number line`);
+      svg.querySelectorAll('.g4m-fs-cell:not(.g4m-fs-ghost)').forEach((c) => c.classList.add('g4m-fs-new'));
+      const same = n === this.start[0] && d === this.start[1];
+      this.q('eq').hidden = same;
+      const now = this.q('now');
+      now.hidden = same;
+      now.innerHTML = `<span>${n}</span><span>${d}</span>`;
+      this.q('say').textContent = say;
+      this.q('simple').textContent = simplestText(n, d);
+      this.querySelectorAll<HTMLButtonElement>('[data-split]').forEach((b) => (b.disabled = !canSplit(d, Number(b.dataset.split))));
+      this.querySelectorAll<HTMLButtonElement>('[data-join]').forEach((b) => (b.disabled = !canJoin(n, d, Number(b.dataset.join))));
+    }
+  }
+  customElements.define('g4m-fraction-split', FractionSplit);
+</script>

@@ -52,3 +52,20 @@ describe('factors', () => {
     expect(gcf(24, 36)).toBe(12);
   });
 });
+
+import { canSplit, canJoin, splitText, joinText, simplestText } from '../src/components/visuals/fraction-split.ts';
+
+describe('fraction split', () => {
+  it('splits and joins equal parts', () => {
+    expect(splitText(2, 3, 4)).toBe('Split every part into 4: 2/3 = (2 × 4)/(3 × 4) = 8/12.');
+    expect(joinText(6, 8, 2)).toBe('Join every 2 parts into one: 6/8 = (6 ÷ 2)/(8 ÷ 2) = 3/4.');
+    expect(canSplit(12, 2)).toBe(true);
+    expect(canSplit(12, 3)).toBe(false);
+    expect(canJoin(6, 8, 2)).toBe(true);
+    expect(canJoin(6, 8, 3)).toBe(false);
+  });
+  it('knows simplest form', () => {
+    expect(simplestText(5, 8)).toMatch(/is in simplest form/);
+    expect(simplestText(12, 18)).toMatch(/greatest common factor 6, so it simplifies to 2\/3/);
+  });
+});
