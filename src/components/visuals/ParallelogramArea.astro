@@ -1,0 +1,128 @@
+---
+// Parallelogram and triangle area (MAT6-OI5-GQ1-LO1: K1.1-K1.5, U1.1, U1.2, S1.1, S1.2, S1.4-S1.6).
+// "Parallelogram": cut the end triangle off and slide it across to make a rectangle, base × height.
+// "Triangle": a diagonal splits the parallelogram into two congruent triangles, so a triangle is half.
+// The slant slider changes the shape but not the base or height, so the area stays the same.
+interface Props {
+  mode?: 'parallelogram' | 'triangle';
+  b?: number;
+  h?: number;
+  s?: number;
+}
+const { mode = 'parallelogram', b = 6, h = 4, s = 2 } = Astro.props;
+---
+<parallelogram-area data-mode={mode} data-b={b} data-h={h}>
+  <div class="seg" role="group" aria-label="Choose a shape">
+    <button type="button" data-mode="parallelogram" aria-pressed={String(mode === 'parallelogram')}>Parallelogram</button>
+    <button type="button" data-mode="triangle" aria-pressed={String(mode === 'triangle')}>Triangle</button>
+  </div>
+  <div class="control-row">
+    <label class="control"><span>Slant</span><input type="range" min="0" max={b} value={s} data-pa="s" /></label>
+    <button type="button" class="btn btn--primary btn--small" data-pa="go">Cut and move ▶</button>
+  </div>
+  <div class="g6m-pa-stage" data-pa="svg" aria-hidden="true"></div>
+  <p class="g6m-pa-say" data-pa="say" aria-live="polite"></p>
+</parallelogram-area>
+
+<style is:global>
+  parallelogram-area { display: block; }
+  .g6m-pa-stage svg { display: block; width: 100%; max-width: 32rem; height: auto; margin: 0.6rem auto 0; font-family: var(--font); overflow: visible; }
+  .g6m-pa-grid { stroke: var(--line); stroke-width: 1; }
+  .g6m-pa-main { fill: color-mix(in srgb, var(--accent) 30%, transparent); stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
+  .g6m-pa-cut { fill: color-mix(in srgb, var(--sun) 70%, transparent); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; transition: transform 1s ease; }
+  .g6m-pa-other { fill: color-mix(in srgb, var(--ok) 25%, transparent); stroke: var(--ok); stroke-width: 2.5; stroke-dasharray: 6 4; transition: transform 1s ease, opacity 0.6s; }
+  .g6m-pa-h { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 6 5; }
+  .g6m-pa-label { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g6m-pa-hl { fill: var(--bad); font-size: 20px; font-weight: 700; }
+  .g6m-pa-say { min-height: 3em; margin: 0.6rem 0 0; }
+  @media (prefers-reduced-motion: reduce) { .g6m-pa-cut, .g6m-pa-other { transition: none; } }
+</style>
+
+<script>
+  import { parallelogram, endTriangle, type Q } from './g6-area.ts';
+
+  const U = 40;
+  class ParallelogramArea extends HTMLElement {
+    private mode = 'parallelogram';
+    private moved = false;
+
+    connectedCallback() {
+      this.mode = this.dataset.mode!;
+      this.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.mode = b.dataset.mode!;
+          this.querySelectorAll('[data-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.moved = false;
+          this.draw();
+        }),
+      );
+      this.q('s').addEventListener('input', () => {
+        this.moved = false;
+        this.draw();
+      });
+      this.q('go').addEventListener('click', () => {
+        this.moved = true;
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-pa="${k}"]`) as HTMLElement;
+    }
+
+    private draw() {
+      const b = Number(this.dataset.b);
+      const h = Number(this.dataset.h);
+      const s = Number((this.q('s') as HTMLInputElement).value);
+      const W = (2 * b + 1) * U;
+      const H = (h + 1.6) * U;
+      const X = (x: number) => 20 + x * U;
+      const Y = (y: number) => 20 + (h - y) * U;
+      const pts = (p: Q[]) => p.map(([x, y]) => `${X(x)},${Y(y)}`).join(' ');
+      let g = '';
+      for (let x = 0; x <= 2 * b; x++) g += `<line class="g6m-pa-grid" x1="${X(x)}" y1="${Y(0)}" x2="${X(x)}" y2="${Y(h)}"/>`;
+      for (let y = 0; y <= h; y++) g += `<line class="g6m-pa-grid" x1="${X(0)}" y1="${Y(y)}" x2="${X(2 * b)}" y2="${Y(y)}"/>`;
+      const go = this.q('go') as HTMLButtonElement;
+      const say = this.q('say');
+      if (this.mode === 'parallelogram') {
+        go.textContent = 'Cut and move ▶';
+        const tri = endTriangle(h, s);
+        const rest: Q[] = [[s, 0], [b, 0], [b + s, h], [s, h]];
+        g += `<polygon class="g6m-pa-main" points="${pts(rest)}"/>`;
+        if (s) g += `<polygon class="g6m-pa-cut" points="${pts(tri)}" data-to="translateX(${b * U}px)"/>`;
+        g += `<line class="g6m-pa-h" x1="${X(s)}" y1="${Y(0)}" x2="${X(s)}" y2="${Y(h)}"/>`;
+        g += `<text class="g6m-pa-label" x="${X(b / 2)}" y="${Y(0) + 28}" text-anchor="middle">base ${b}</text><text class="g6m-pa-hl" x="${X(s) - 8}" y="${Y(h / 2)}" text-anchor="end">height ${h}</text>`;
+        say.textContent = this.moved
+          ? `The triangle fits on the other end. Now it is a rectangle, ${b} by ${h}. Area = base × height = ${b} × ${h} = ${b * h} square units.`
+          : s
+            ? `A parallelogram with base ${b} and height ${h}. The height is straight up from the base, not along the slanted side. Press Cut and move.`
+            : `With no slant, the parallelogram is a rectangle: ${b} × ${h} = ${b * h} square units. Move the slider.`;
+        go.disabled = this.moved || !s;
+      } else {
+        go.textContent = 'Split ▶';
+        const para = parallelogram(b, h, s);
+        const t1: Q[] = [para[0], para[1], para[2]];
+        const t2: Q[] = [para[0], para[2], para[3]];
+        g += `<polygon class="g6m-pa-cut" points="${pts(t1)}"/>`;
+        g += `<polygon class="g6m-pa-other" points="${pts(t2)}" data-fade="1"/>`;
+        g += `<line class="g6m-pa-h" x1="${X(b + s)}" y1="${Y(0)}" x2="${X(b + s)}" y2="${Y(h)}"/><line class="g6m-pa-h" x1="${X(b)}" y1="${Y(0)}" x2="${X(b + s)}" y2="${Y(0)}" style="stroke-dasharray:2 4"/>`;
+        g += `<text class="g6m-pa-label" x="${X(b / 2)}" y="${Y(0) + 28}" text-anchor="middle">base ${b}</text><text class="g6m-pa-hl" x="${X(b + s) + 8}" y="${Y(h / 2)}">height ${h}</text>`;
+        say.textContent = this.moved
+          ? `The diagonal cuts the parallelogram into two congruent triangles. Each is half: ${b} × ${h} ÷ 2 = ${(b * h) / 2} square units. Move the slider: the triangle changes shape, but its area doesn’t.`
+          : `The gold triangle has base ${b} and height ${h}. Together with the green one, it makes a parallelogram. Press Split.`;
+        go.disabled = this.moved;
+      }
+      this.q('svg').innerHTML = `<svg viewBox="0 0 ${W} ${H}">${g}</svg>`;
+      // Draw the start, then move on the next frame so the change animates.
+      if (this.moved)
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => {
+            this.querySelectorAll<SVGElement>('[data-to]').forEach((el) => (el.style.transform = el.dataset.to!));
+            this.querySelectorAll<SVGElement>('[data-fade]').forEach((el) => (el.style.opacity = '0.25'));
+          }),
+        );
+    }
+  }
+  customElements.define('parallelogram-area', ParallelogramArea);
+</script>

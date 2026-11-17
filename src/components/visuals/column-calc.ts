@@ -3,6 +3,8 @@
 // list of frames; a frame is a grid of cells plus a one-line caption. Pure functions, so
 // the steps are unit tested and the same code renders at build time and in the browser.
 
+import { decimalMultiplyFrames, decimalDivideFrames } from './g6-decimal-calc.ts';
+
 export type CellKind = 'digit' | 'pad' | 'carry' | 'op' | 'point' | 'hl' | 'new' | 'cross' | 'dim' | 'blank';
 export interface Cell {
   ch: string;
@@ -342,10 +344,13 @@ export function frameHtml(f: Frame): string {
   return html + '</div>';
 }
 
-export type CalcExample = { op: '+' | '-' | '×' | '÷'; a: string; b: string };
+export type CalcExample = { op: '+' | '-' | '×' | '÷'; a: string; b: string; /** Grade 6: keep dividing past the decimal point. */ decimal?: boolean };
 
 export function framesFor(e: CalcExample): Frame[] {
   if (e.op === '+' || e.op === '-') return addSubFrames(e.op, e.a, e.b);
+  // Grade 6: decimals times or divided by a natural number, and remainders written as decimals.
+  if (e.op === '×' && (e.a.includes('.') || e.b.includes('.'))) return decimalMultiplyFrames(e.a, e.b);
+  if (e.op === '÷' && (e.a.includes('.') || e.decimal)) return decimalDivideFrames(e.a, e.b);
   if (e.op === '×') return multiplyFrames(e.a, e.b);
   return divideFrames(e.a, e.b);
 }

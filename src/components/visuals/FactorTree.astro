@@ -1,0 +1,156 @@
+---
+// A factor tree grows one level at a time until every branch ends in a prime. Starting with a
+// different factor pair gives a different tree but the same primes. The panel writes the prime
+// factorization with powers and tests divisibility from it (MAT6-OI1-GQ3-LO1: K1.2-K1.4, U1.1,
+// U1.2, S1.1, S1.2, S1.4, K2.1-K2.3, S2.2, S2.3).
+import { factorPairs } from './g6-factors.ts';
+
+interface Props {
+  numbers?: number[];
+  /** A divisor to test first. */
+  test?: number;
+}
+const { numbers = [60, 72, 36, 90, 84], test = 12 } = Astro.props;
+for (const n of numbers) if (!factorPairs(n).length) throw new Error(`FactorTree: ${n} is prime`);
+---
+<factor-tree data-numbers={JSON.stringify(numbers)} data-test={test}>
+  <div class="seg" role="group" aria-label="Choose a number">
+    {numbers.map((n, i) => <button type="button" data-n={n} aria-pressed={String(i === 0)}>{n}</button>)}
+  </div>
+  <div class="g6m-ft-layout">
+    <div>
+      <div class="g6m-ft-stage" data-ft="svg" aria-hidden="true"></div>
+      <p class="g6m-ft-say" data-ft="say" aria-live="polite"></p>
+      <div class="control-row">
+        <button type="button" class="btn btn--primary btn--small" data-ft="next">Split ▶</button>
+        <button type="button" class="btn btn--ghost btn--small" data-ft="other">Start with a different pair</button>
+      </div>
+    </div>
+    <div class="g6m-ft-panel">
+      <div class="g6m-ft-card">
+        <small>Prime factorization</small>
+        <strong data-ft="expanded">?</strong>
+        <small>With powers</small>
+        <strong data-ft="powers">?</strong>
+        <p data-ft="power-note"></p>
+      </div>
+      <div class="g6m-ft-card">
+        <label class="control"><span>Is it divisible by</span><input type="number" min="2" max="100" value={test} data-ft="d" class="g6m-ft-input" /> ?</label>
+        <p data-ft="why" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</factor-tree>
+
+<style is:global>
+  factor-tree { display: block; }
+  .g6m-ft-layout { display: grid; gap: 1rem; margin-top: 0.8rem; align-items: start; }
+  @media (min-width: 44rem) { .g6m-ft-layout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .g6m-ft-stage svg { display: block; width: 100%; max-width: 26rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g6m-ft-branch { stroke: var(--ink-3); stroke-width: 3; }
+  .g6m-ft-node { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2.5; }
+  .g6m-ft-node--prime { fill: var(--sun); stroke: var(--ink); }
+  .g6m-ft-node--new { animation: g6m-ft-in 0.35s ease; transform-box: fill-box; transform-origin: center; }
+  .g6m-ft-num { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g6m-ft-say { min-height: 3em; margin: 0.6rem 0 0; }
+  .g6m-ft-card { padding: 0.75rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); margin-bottom: 0.6rem; }
+  .g6m-ft-card small { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .g6m-ft-card strong { display: block; font-size: var(--step-2); color: var(--accent); margin-bottom: 0.3rem; font-variant-numeric: tabular-nums; }
+  .g6m-ft-card p { margin: 0.3rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .g6m-ft-input { width: 4.5rem; font: inherit; padding: 0.3rem 0.5rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+  .g6m-yes { color: var(--ok); font-weight: 700; }
+  .g6m-no { color: var(--bad); font-weight: 700; }
+  @keyframes g6m-ft-in { from { transform: scale(0); } }
+  @media (prefers-reduced-motion: reduce) { .g6m-ft-node--new { animation: none; } }
+</style>
+
+<script>
+  import { factorTree, factorPairs, prune, depthOf, layout, leaves, isPrime, expanded, powerHtml, primePowers, divisibleBy, type TreeNode } from './g6-factors.ts';
+
+  class FactorTree extends HTMLElement {
+    private n = 60;
+    private pairIndex = 0;
+    private tree: TreeNode = { n: 60 };
+    private depth = 0;
+
+    connectedCallback() {
+      const nums: number[] = JSON.parse(this.dataset.numbers!);
+      this.querySelectorAll<HTMLButtonElement>('[data-n]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-n]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.start(Number(b.dataset.n), 0);
+        }),
+      );
+      this.q('next').addEventListener('click', () => {
+        if (this.depth < depthOf(this.tree)) this.depth++;
+        this.draw(true);
+      });
+      this.q('other').addEventListener('click', () => this.start(this.n, this.pairIndex + 1));
+      this.q('d').addEventListener('input', () => this.test());
+      this.start(nums[0], 0);
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(k: string) {
+      return this.querySelector(`[data-ft="${k}"]`) as T;
+    }
+
+    private start(n: number, pairIndex: number) {
+      const pairs = factorPairs(n);
+      this.n = n;
+      this.pairIndex = pairIndex % pairs.length;
+      this.tree = factorTree(n, pairs[this.pairIndex]);
+      this.depth = 0;
+      this.q('expanded').textContent = '?';
+      this.q('powers').textContent = '?';
+      this.q('power-note').textContent = 'Split until every branch ends in a prime.';
+      this.draw(false);
+      this.test();
+    }
+
+    private draw(grew: boolean) {
+      const shown = prune(this.tree, this.depth);
+      const nodes = layout(shown);
+      const cols = Math.max(...nodes.map((p) => p.x)) + 1;
+      const rows = depthOf(shown) + 1;
+      const W = Math.max(260, cols * 70);
+      const H = rows * 78 + 10;
+      const X = (x: number) => (W / cols) * (x + 0.5);
+      const Y = (y: number) => 40 + y * 78;
+      let s = '';
+      for (const p of nodes) if (p.parent) s += `<line class="g6m-ft-branch" x1="${X(p.parent.x)}" y1="${Y(p.parent.y)}" x2="${X(p.x)}" y2="${Y(p.y)}"/>`;
+      for (const p of nodes) {
+        const prime = isPrime(p.n);
+        const fresh = grew && p.y === this.depth;
+        s += `<circle class="g6m-ft-node${prime ? ' g6m-ft-node--prime' : ''}${fresh ? ' g6m-ft-node--new' : ''}" cx="${X(p.x)}" cy="${Y(p.y)}" r="26"/><text class="g6m-ft-num" x="${X(p.x)}" y="${Y(p.y) + 7}" text-anchor="middle">${p.n}</text>`;
+      }
+      this.q('svg').innerHTML = `<svg viewBox="0 0 ${W} ${H}">${s}</svg>`;
+      const done = this.depth >= depthOf(this.tree);
+      (this.q('next') as HTMLButtonElement).disabled = done;
+      const ls = leaves(shown);
+      const say = this.q('say');
+      if (this.depth === 0) say.textContent = `${this.n} is composite: it has factors other than 1 and itself. Press Split.`;
+      else if (!done) say.textContent = `${this.n} = ${ls.join(' × ')}. Some branches are still composite, so keep splitting.`;
+      else {
+        say.innerHTML = `Every branch ends in a <strong>prime</strong> (gold): a number with exactly two factors, 1 and itself. ${this.n} = ${ls.join(' × ')}.`;
+        this.q('expanded').textContent = expanded(this.n);
+        this.q('powers').innerHTML = powerHtml(this.n);
+        const rep = primePowers(this.n).find(([, k]) => k > 1);
+        this.q('power-note').textContent = rep
+          ? `${Array(rep[1]).fill(rep[0]).join(' × ')} is a power: base ${rep[0]}, exponent ${rep[1]}. The exponent counts the repeated factors.`
+          : 'No prime repeats, so there are no powers to write.';
+      }
+    }
+
+    private test() {
+      const d = Math.round(Number(this.q<HTMLInputElement>('d').value));
+      const why = this.q('why');
+      if (!(d >= 2 && d <= 100)) {
+        why.textContent = 'Type a number from 2 to 100.';
+        return;
+      }
+      const r = divisibleBy(this.n, d);
+      why.innerHTML = `<span class="${r.yes ? 'g6m-yes' : 'g6m-no'}">${r.yes ? 'Yes.' : 'No.'}</span> ${r.why}`;
+    }
+  }
+  customElements.define('factor-tree', FactorTree);
+</script>

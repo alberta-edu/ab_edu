@@ -1,0 +1,312 @@
+id: area-parallelograms-triangles
+grade: 6
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT6-OI5-GQ1-LO1]
+order: 15
+title: Area of Parallelograms and Triangles
+shortTitle: Parallelograms & triangles
+summary: >-
+  Rearrange a parallelogram into a rectangle to find its area, see a triangle as half a
+  parallelogram, and split composite shapes into triangles and parallelograms.
+
+bigIdea: |-
+  - A **parallelogram** can be cut and rearranged into a rectangle, so its area is **base × height**.
+  - The **height** is the straight-up distance from the base, not the slanted side.
+  - A **triangle** is half of a parallelogram with the same base and height: **base × height ÷ 2**.
+  - A **composite shape** can be split into triangles and parallelograms in many ways. The area is the sum.
+
+lesson:
+  - title: Cut and move
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.1, S1.2, K1.3]
+        component: parallelogram-area
+        props: { mode: parallelogram, b: 6, h: 4, s: 2 }
+        caption: |-
+          - Press **Cut and move**. Where does the triangle go?
+          - Change the slant. Does the area change?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI5-GQ1-LO1#K1.2]
+        title: Remember from Grade 5
+        body: Area is measured in **square units**, like square centimetres (cm²). A rectangle’s area is length × width.
+
+  - title: Base and height
+    blocks:
+      - type: figure
+        covers: [K1.1, K1.2, K1.3]
+        figure: |-
+          <svg viewBox="-20 -20 420 200" class="fig-svg" role="img" aria-label="A parallelogram. The bottom side is the base, 9 centimetres. A dashed line straight down from the top side shows the height, 5 centimetres. The slanted side is 6 centimetres."><polygon class="fig-rect" points="0,150 270,150 330,0 60,0"/><line x1="60" y1="0" x2="60" y2="150" style="stroke:var(--bad);stroke-width:3;stroke-dasharray:7 5"/><rect x="60" y="136" width="14" height="14" style="fill:none;stroke:var(--bad);stroke-width:2"/><text class="fig-label" x="135" y="178" text-anchor="middle">base 9 cm</text><text class="fig-label" x="70" y="84" style="fill:var(--bad)">height 5 cm</text><text class="fig-label" x="312" y="90">6 cm</text></svg>
+        caption: |-
+          - A **parallelogram** has two pairs of parallel, equal sides.
+          - Area = **9 × 5 = 45 cm²**. The slanted 6 cm side is not the height.
+      - type: callout
+        variant: tip
+        covers: [K1.2, K1.3]
+        title: Any side can be the base
+        body: Choose any side as the base. The height is then the **perpendicular** distance from that base to the opposite side.
+
+  - title: Half a parallelogram
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.4, S1.5, U1.2]
+        component: parallelogram-area
+        props: { mode: triangle, b: 6, h: 4, s: 2 }
+        caption: |-
+          - Press **Split**. The diagonal makes two congruent triangles.
+          - Move the slider. The triangle changes shape. Does its area?
+
+  - title: Same base, same height
+    blocks:
+      - type: table
+        covers: [K1.5, S1.6]
+        caption: Every triangle with base 6 and height 4
+        headers: [Triangle, Base × height ÷ 2, Area]
+        rows:
+          - ['Right triangle', '\(6 \times 4 \div 2\)', '12 square units']
+          - ['Tall and thin, leaning left', '\(6 \times 4 \div 2\)', '12 square units']
+          - ['Wide, leaning far right', '\(6 \times 4 \div 2\)', '12 square units']
+      - type: example
+        covers: [S1.3, S1.7]
+        title: Find the height
+        problem: 'A parallelogram has an area of **48 cm²** and a base of **8 cm**. What is its height?'
+        steps:
+          - 'Area = base × height, so \(8 \times \text{height} = 48\).'
+          - 'Divide: \(48 \div 8 = 6\).'
+        answer: 'The height is **6 cm**.'
+
+  - title: Composite shapes
+    blocks:
+      - type: compare
+        covers: [K2.1, U2.1, S2.1, S2.2]
+        columns:
+          - title: One way
+            figure: |-
+              <svg viewBox="-10 -10 320 150" class="fig-svg" role="img" aria-label="A house shape split into a rectangle and a triangle on top."><polygon class="fig-rect" points="0,130 180,130 180,60 0,60"/><polygon class="fig-hl" points="0,60 180,60 90,0"/><text class="fig-label" x="90" y="104" text-anchor="middle">6 × 3 = 18</text><text class="fig-small" style="font-size:16px" x="90" y="48" text-anchor="middle">6 × 2 ÷ 2 = 6</text></svg>
+            body: 'A rectangle and a triangle: \(18 + 6 = 24\) square units.'
+          - title: Another way
+            figure: |-
+              <svg viewBox="-10 -10 320 150" class="fig-svg" role="img" aria-label="The same house shape split down the middle into two halves, each a rectangle with a triangle."><polygon class="fig-rect" points="0,130 90,130 90,0 0,60"/><polygon class="fig-hl" points="90,130 180,130 180,60 90,0"/><text class="fig-label" x="45" y="104" text-anchor="middle">12</text><text class="fig-label" x="135" y="104" text-anchor="middle">12</text></svg>
+            body: 'Two congruent halves: \(12 + 12 = 24\) square units. Same area.'
+      - type: text
+        covers: [U2.1, K2.1]
+        body: There are endless ways to split a shape. Choose pieces whose base and height you can find. Every way gives the same total.
+
+keyTerms:
+  - term: Parallelogram
+    covers: [K1.1]
+    definition: A quadrilateral with two pairs of parallel, equal sides. Rectangles are parallelograms too.
+  - term: Base and height
+    covers: [K1.2, K1.3]
+    definition: 'Any side can be the base. The height is the perpendicular distance from the base to the opposite side or corner.'
+  - term: Composite shape
+    covers: [K2.1]
+    definition: A shape made of simpler shapes. Its area is the sum of their areas.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.3]
+    type: number
+    figure: |-
+      <svg viewBox="-20 -20 420 200" class="fig-svg" role="img" aria-label="A parallelogram with base 12 metres, a dashed height of 5 metres, and a slanted side of 7 metres."><polygon class="fig-rect" points="0,150 270,150 330,0 60,0"/><line x1="60" y1="0" x2="60" y2="150" style="stroke:var(--bad);stroke-width:3;stroke-dasharray:7 5"/><text class="fig-label" x="135" y="178" text-anchor="middle">12 m</text><text class="fig-label" x="70" y="84" style="fill:var(--bad)">5 m</text><text class="fig-label" x="312" y="90">7 m</text></svg>
+    prompt: What is the area of this parallelogram?
+    answer: 60
+    unit: m²
+    verify: 12 * 5
+    hints:
+      - Which measurement is the height? It meets the base at a square corner.
+    solution:
+      - 'The height is the dashed line, 5 m. The 7 m side is slanted, so it isn’t the height.'
+      - 'Area = base × height = \(12 \times 5 = 60\) m².'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.6, K1.4]
+    type: number
+    prompt: 'A triangle has a base of **10 m** and a height of **7 m**. What is its area?'
+    answer: 35
+    unit: m²
+    verify: 10 * 7 / 2
+    hints:
+      - A triangle is half of a parallelogram with the same base and height.
+    solution:
+      - 'Parallelogram: \(10 \times 7 = 70\). Half of that is **35 m²**.'
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.2, K1.3]
+    type: multi
+    prompt: Which statements about a parallelogram are **true**? Choose all of them.
+    choices:
+      - Any side can be the base.
+      - The height is the length of the slanted side.
+      - Opposite sides are parallel and equal.
+      - Area = base × slanted side.
+    answer: [0, 2]
+    feedback:
+      '1': 'The height is the perpendicular distance, straight up from the base.'
+      '3': 'Area uses the height, not the slanted side.'
+    hints:
+      - How is the height measured, compared with the base?
+    solution:
+      - 'Any side can be the base, and opposite sides are parallel and equal.'
+      - 'The height is perpendicular to the base, so area = base × height.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: backwards
+    covers: [S1.3, S1.7]
+    type: number
+    prompt: 'A garden shaped like a parallelogram has an area of **72 m²**. Its base is **9 m**. What is its height?'
+    answer: 8
+    unit: m
+    verify: 72 / 9
+    hints:
+      - 'base × height = area. What times 9 is 72?'
+    solution:
+      - '\(9 \times \text{height} = 72\), so height = \(72 \div 9 = 8\) m.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.5, K1.4, S1.6]
+    type: mc
+    prompt: 'Sara finds the area of a triangle with base **8 cm** and height **6 cm**. She says, "\(8 \times 6 = 48\), so it is 48 cm²." What is wrong?'
+    choices:
+      - 'She found the area of a parallelogram with that base and height. The triangle is half: 24 cm².'
+      - 'She should have added: \(8 + 6 = 14\) cm².'
+      - 'She should have doubled it: 96 cm².'
+      - 'Nothing. A triangle’s area is base × height.'
+    answer: 0
+    feedback:
+      '1': 'Area counts square units inside the shape. Adding the sides doesn’t do that.'
+      '2': 'Two copies of the triangle make a parallelogram. Is the triangle bigger or smaller than the parallelogram?'
+      '3': 'Draw the triangle inside an 8 × 6 rectangle. Does it fill all of it?'
+    hints:
+      - Two copies of a triangle make which shape?
+    solution:
+      - '48 cm² is the parallelogram with the same base and height. The triangle is half of it.'
+      - '\(48 \div 2 = 24\) cm².'
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K1.5, S1.6, U1.2]
+    type: mc
+    figure: |-
+      <svg viewBox="-10 -30 440 170" class="fig-svg" role="img" aria-label="Three triangles on the same base line, between two parallel lines. A is a right triangle, B leans left, C leans far right. Each has base 4 units and height 3 units."><line x1="-10" y1="0" x2="430" y2="0" style="stroke:var(--line-strong);stroke-dasharray:4 4"/><line x1="-10" y1="120" x2="430" y2="120" style="stroke:var(--line-strong)"/><polygon class="fig-rect" points="0,120 100,120 0,0"/><polygon class="fig-rect" points="140,120 240,120 120,0"/><polygon class="fig-rect" points="280,120 380,120 420,0"/><text class="fig-label" x="25" y="100">A</text><text class="fig-label" x="165" y="100">B</text><text class="fig-label" x="330" y="100">C</text><text class="fig-small" style="font-size:16px" x="210" y="-12" text-anchor="middle">every base is 4 units, every height is 3 units</text></svg>
+    prompt: Which triangle has the **greatest** area?
+    choices: ['They all have the same area', 'Triangle C, because it is the widest', 'Triangle A, because it has a square corner', 'Triangle B, because it leans the most']
+    answer: 0
+    feedback:
+      '1': 'C looks wider, but its base is still 4. What about its height?'
+      '2': 'A square corner makes the height easy to see, but the other heights are the same.'
+      '3': 'Leaning doesn’t change the base or the height.'
+    hints:
+      - What are the base and the height of each triangle?
+    solution:
+      - 'Each triangle has base 4 and height 3, so each area is \(4 \times 3 \div 2 = 6\) square units.'
+      - 'Triangles with the same base and height have the same area, whatever their shape.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.1, S1.7]
+    type: number
+    figure: |-
+      <svg viewBox="-60 -20 360 220" class="fig-svg" role="img" aria-label="A sign shaped like a house. The bottom is a rectangle 6 decimetres wide and 4 decimetres tall. The roof is a triangle 3 decimetres tall."><polygon class="fig-rect" points="0,190 180,190 180,70 0,70"/><polygon class="fig-hl" points="0,70 180,70 90,-20"/><text class="fig-label" x="90" y="216" text-anchor="middle">6 dm</text><text class="fig-label" x="-10" y="136" text-anchor="end">4 dm</text><line x1="90" y1="-20" x2="90" y2="70" style="stroke:var(--bad);stroke-width:2.5;stroke-dasharray:6 4"/><text class="fig-label" x="100" y="40" style="fill:var(--bad)">3 dm</text></svg>
+    prompt: 'A sign is shaped like a house: a rectangle with a triangle roof. What is its total area?'
+    answer: 33
+    unit: dm²
+    verify: 6 * 4 + 6 * 3 / 2
+    hints:
+      - Split it into a rectangle and a triangle. What is the base of the triangle?
+    solution:
+      - 'Rectangle: \(6 \times 4 = 24\) dm². Triangle: base 6, height 3, so \(6 \times 3 \div 2 = 9\) dm².'
+      - 'Total: \(24 + 9 = 33\) dm².'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.1, S2.2, U2.1, K2.1]
+    type: investigation
+    figure: |-
+      <svg viewBox="-20 -30 440 200" class="fig-svg" role="img" aria-label="A shape with a bottom side of 10 units and a top side of 6 units, 4 units tall. The top side is centred above the bottom side."><polygon class="fig-rect" points="0,160 400,160 320,0 80,0"/><text class="fig-label" x="200" y="186" text-anchor="middle">10 units</text><text class="fig-label" x="200" y="-10" text-anchor="middle">6 units</text><line x1="80" y1="0" x2="80" y2="160" style="stroke:var(--bad);stroke-width:2.5;stroke-dasharray:6 4"/><text class="fig-label" x="90" y="90" style="fill:var(--bad)">4</text></svg>
+    prompt: |-
+      This shape has a bottom side of **10 units** and a top side of **6 units**, centred above it. It is **4 units** tall. Find its area two different ways.
+    parts:
+      - type: number
+        prompt: 'Way 1: cut straight down from both top corners. You get a rectangle in the middle and a triangle at each end. What is the total area?'
+        answer: 32
+        unit: square units
+        verify: 6 * 4 + 2 * (2 * 4 / 2)
+        hints:
+          - The rectangle is 6 by 4. How wide is each end triangle?
+          - '\(10 - 6 = 4\) is shared by the two triangles, so each base is 2.'
+        solution:
+          - 'Rectangle: \(6 \times 4 = 24\). Each triangle: \(2 \times 4 \div 2 = 4\).'
+          - 'Total: \(24 + 4 + 4 = 32\) square units.'
+      - type: number
+        prompt: 'Way 2: cut along a diagonal, from the bottom-left corner to the top-right corner. Two triangles are left. What is the total area now?'
+        answer: 32
+        unit: square units
+        verify: 10 * 4 / 2 + 6 * 4 / 2
+        hints:
+          - One triangle has the bottom side as its base. The other has the top side as its base. Both have height 4.
+        solution:
+          - 'Bottom triangle: \(10 \times 4 \div 2 = 20\). Top triangle: \(6 \times 4 \div 2 = 12\).'
+          - 'Total: \(20 + 12 = 32\) square units.'
+      - type: mc
+        prompt: Why did both ways give the same area?
+        choices:
+          - 'The pieces cover the same shape, with no gaps or overlaps, so they add to the same total.'
+          - 'Because both ways happened to use triangles.'
+          - 'Because the shape is symmetrical, and only symmetrical shapes work.'
+          - 'It is a coincidence. A third way could give a different area.'
+        answer: 0
+        feedback:
+          '1': 'Way 1 used a rectangle too. What do the two ways have in common?'
+          '2': 'Any shape can be split many ways. Symmetry isn’t needed.'
+          '3': 'Area measures the space inside the shape. Does cutting change that space?'
+        hints:
+          - Did cutting the shape add or remove any space?
+        solution:
+          - 'Cutting doesn’t change the space inside. Any split with no gaps or overlaps gives the same total.'
+    wrapUp: 'An area can be split in endless ways. Pick pieces with bases and heights you can find, and the total is always the same.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.6, K1.4, K1.5]
+    type: build
+    prompt: |-
+      Design a triangle with an area of exactly **24 cm²**. Use whole numbers for the base and height, and make the base and height **different**.
+    fields:
+      - { name: b, label: 'Base', unit: cm }
+      - { name: h, label: 'Height', unit: cm }
+    rules:
+      - { test: 'b % 1 == 0 && h % 1 == 0 && b > 0 && h > 0', fail: 'Use whole numbers of centimetres.' }
+      - { test: 'b != h', fail: 'Make the base and height different.' }
+      - { test: 'b * h / 2 == 24', fail: 'Check: base × height ÷ 2 must be exactly 24.' }
+    examples:
+      - { b: 6, h: 8 }
+      - { b: 12, h: 4 }
+      - { b: 3, h: 16 }
+    counterexamples:
+      - { b: 6, h: 4 }
+      - { b: 4, h: 6 }
+      - { b: 8, h: 8 }
+    hints:
+      - 'base × height ÷ 2 = 24. So what must base × height be?'
+      - 'Find two different numbers that multiply to 48.'
+    solution:
+      - 'base × height must be 48. Then 6 × 8, 4 × 12, 3 × 16, 2 × 24 and 1 × 48 all work, in either order.'
+      - 'Each makes a triangle with area 24 cm², even though the shapes look very different.'

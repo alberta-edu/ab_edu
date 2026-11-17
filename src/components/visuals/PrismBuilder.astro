@@ -1,0 +1,84 @@
+---
+// Build a rectangular prism from unit cubes, one layer at a time: the base area is the number of
+// cubes in a layer, and stacking that layer h times gives the volume (MAT6-OI5-GQ2-LO1: K1.3, K1.5,
+// U1.1, U1.2, U1.5, U1.6, S1.2, S1.3, S1.5, S1.6).
+import { prismSvg } from './g6-prism.ts';
+
+interface Props {
+  l?: number;
+  w?: number;
+  h?: number;
+}
+const { l = 4, w = 3, h = 3 } = Astro.props;
+---
+<prism-builder data-l={l} data-w={w} data-h={h}>
+  <div class="control-row">
+    <label class="control"><span>Length</span><input type="range" min="1" max="6" value={l} data-pb="l" /> <output data-pb="l-out">{l}</output></label>
+    <label class="control"><span>Width</span><input type="range" min="1" max="6" value={w} data-pb="w" /> <output data-pb="w-out">{w}</output></label>
+    <label class="control"><span>Height</span><input type="range" min="1" max="6" value={h} data-pb="h" /> <output data-pb="h-out">{h}</output></label>
+  </div>
+  <div class="g6m-pb-layout">
+    <div data-pb="svg" set:html={prismSvg({ l, w, h }, { layers: 1 })} />
+    <div class="g6m-pb-cards" data-pb="cards" aria-live="polite"></div>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-pb="add">Add a layer ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-pb="reset">Start over</button>
+  </div>
+</prism-builder>
+
+<style is:global>
+  prism-builder { display: block; }
+  .g6m-pb-layout { display: grid; gap: 1rem; align-items: center; margin-top: 0.6rem; }
+  @media (min-width: 44rem) { .g6m-pb-layout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .g6m-pb-cards { display: grid; gap: 0.5rem; }
+  .g6m-pb-card { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+  .g6m-pb-card small { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .g6m-pb-card strong { font-size: var(--step-1); color: var(--accent); font-variant-numeric: tabular-nums; }
+</style>
+
+<script>
+  import { prismSvg } from './g6-prism.ts';
+
+  class PrismBuilder extends HTMLElement {
+    private layers = 1;
+
+    connectedCallback() {
+      this.querySelectorAll('input').forEach((i) =>
+        i.addEventListener('input', () => {
+          this.layers = 1;
+          this.render(false);
+        }),
+      );
+      this.q('add').addEventListener('click', () => {
+        this.layers++;
+        this.render(true);
+      });
+      this.q('reset').addEventListener('click', () => {
+        this.layers = 1;
+        this.render(false);
+      });
+      this.render(false);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-pb="${k}"]`) as HTMLElement;
+    }
+
+    private render(grew: boolean) {
+      const [l, w, h] = ['l', 'w', 'h'].map((k) => Number((this.q(k) as HTMLInputElement).value));
+      for (const [k, v] of [['l', l], ['w', w], ['h', h]] as const) this.q(`${k}-out`).textContent = String(v);
+      this.layers = Math.min(this.layers, h);
+      this.q('svg').innerHTML = prismSvg({ l, w, h }, { layers: this.layers, labels: true, fresh: grew ? this.layers - 1 : undefined });
+      const base = l * w;
+      const done = this.layers === h;
+      const card = (k: string, v: string) => `<div class="g6m-pb-card"><small>${k}</small><strong>${v}</strong></div>`;
+      this.q('cards').innerHTML =
+        card('One layer = base area', `${l} × ${w} = ${base} cubes`) +
+        card(`Layers so far`, `${this.layers} of ${h}`) +
+        card(done ? 'Volume' : 'Cubes so far', done ? `${base} × ${h} = ${base * h} cubic units` : `${base} × ${this.layers} = ${base * this.layers}`);
+      (this.q('add') as HTMLButtonElement).disabled = done;
+    }
+  }
+  customElements.define('prism-builder', PrismBuilder);
+</script>

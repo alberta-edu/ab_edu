@@ -945,3 +945,46 @@ a.concept-card:hover { border-color: var(--accent); }
   .ed-card--hook { background: none; }
   .ed-key[open] summary { list-style: none; }
 }
+
+/* Grade 6 math figures and visuals (g6m-): integer lines, the Cartesian plane, prisms */
+.g6m-line { display: block; width: 100%; max-width: 32rem; height: auto; margin-inline: auto; font-family: var(--font); }
+.g6m-line--v { max-width: 19rem; }
+.g6m-axis { stroke: var(--ink); stroke-width: 3; }
+.g6m-head { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.g6m-tick { stroke: var(--ink-2); stroke-width: 2; }
+.g6m-zero { stroke: var(--ink); stroke-width: 3.5; }
+.g6m-num { fill: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.g6m-neg { fill: var(--bad); }
+.g6m-ctx { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+.g6m-tube { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+.g6m-mercury { fill: var(--bad); }
+.g6m-mag { fill: none; stroke: var(--sun); stroke-width: 3.5; stroke-linejoin: round; }
+.g6m-mag-label { fill: var(--ink); font-size: 17px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.g6m-jump { fill: none; stroke-width: 4; stroke-linecap: round; }
+.g6m-jump--up { stroke: var(--accent); }
+.g6m-jump--down { stroke: var(--bad); }
+.g6m-tip { fill: var(--ink); }
+.g6m-pt { fill: var(--accent); stroke: var(--surface); stroke-width: 2.5; }
+.g6m-pt--ghost { fill: var(--surface); stroke: var(--accent); stroke-width: 2.5; stroke-dasharray: 4 3; }
+.g6m-pt-label { fill: var(--accent); font-size: 20px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.g6m-plane { display: block; width: 100%; max-width: 26rem; height: auto; margin-inline: auto; font-family: var(--font); touch-action: manipulation; }
+.g6m-pl-line { stroke: var(--line); stroke-width: 1; }
+.g6m-pl-num { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+.g6m-pl-axis { fill: var(--ink); font-size: 17px; font-weight: 700; font-style: italic; }
+.g6m-pl-poly { stroke-width: 3; stroke-linejoin: round; }
+.g6m-pl-poly--a { fill: color-mix(in srgb, var(--accent) 22%, transparent); stroke: var(--accent); }
+.g6m-pl-poly--b { fill: color-mix(in srgb, var(--sun) 40%, transparent); stroke: var(--warn); stroke-dasharray: 7 4; }
+.g6m-pl-pt { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.g6m-pl-pt--b { fill: var(--warn); }
+.g6m-pl-label { fill: var(--accent); font-size: 16px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+.g6m-pl-label--b { fill: var(--warn); }
+.g6m-pl-centre { fill: none; stroke: var(--bad); stroke-width: 3; }
+.g6m-prism { display: block; width: 100%; max-width: 22rem; height: auto; margin-inline: auto; font-family: var(--font); overflow: visible; }
+.g6m-pr-top { fill: color-mix(in srgb, var(--sun) 80%, #fff); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-left { fill: color-mix(in srgb, var(--sun) 75%, #6b4d00); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-right { fill: color-mix(in srgb, var(--sun) 90%, #3d2c00); stroke: #4a3a10; stroke-width: 1.2; }
+.g6m-pr-ghost { fill: none; stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.g6m-pr-label { fill: var(--ink); font-size: 18px; font-weight: 700; }
+.g6m-pr-new { animation: g6m-pr-drop 0.45s ease both; }
+@keyframes g6m-pr-drop { from { opacity: 0; transform: translateY(-30px); } }
+@media (prefers-reduced-motion: reduce) { .g6m-pr-new { animation: none; } }

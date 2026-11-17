@@ -1,0 +1,284 @@
+id: volume-prisms
+grade: 6
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT6-OI5-GQ2-LO1]
+order: 16
+title: Volume of Rectangular Prisms
+shortTitle: Volume
+summary: >-
+  Build rectangular prisms from cubes layer by layer, measure volume in cubic centimetres and
+  cubic metres, and find volume by multiplying base area by height.
+
+bigIdea: |-
+  - **Volume** is the amount of space a 3-D shape takes up. It is measured in cubes.
+  - A **cubic centimetre** (cm³) is a cube 1 cm on each side. A **cubic metre** (m³) is a cube 1 m on each side.
+  - A prism is a **base area** moved straight up: one layer, stacked **height** times.
+  - Volume = base area × height = length × width × height.
+
+lesson:
+  - title: Layer by layer
+    blocks:
+      - type: visual
+        covers: [U1.2, U1.6, S1.2, S1.5, K1.5, S1.6]
+        component: prism-builder
+        props: { l: 4, w: 3, h: 3 }
+        caption: |-
+          - Press **Add a layer** until the box is full.
+          - Each layer is the **base area**. How many layers make the volume?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI5-GQ1-LO1#K1.2]
+        title: Remember from Grade 5
+        body: Area is measured in **square** units, like cm². Volume uses **cubic** units, like cm³, because it has a third direction, height.
+
+  - title: Units for volume
+    blocks:
+      - type: compare
+        covers: [K1.1, K1.2, K1.3, K1.4, U1.5]
+        columns:
+          - title: Non-standard units
+            body: Blocks, dice or sugar cubes. Any congruent units that fit with no gaps.
+          - title: Cubic centimetre, cm³
+            body: A cube 1 cm long, 1 cm wide and 1 cm high.
+          - title: Cubic metre, m³
+            body: A cube 1 m long, 1 m wide and 1 m high. It holds 1 000 000 cm³.
+      - type: table
+        covers: [S1.1, U1.1, U1.4]
+        headers: [Measuring the space inside, Good unit]
+        rows:
+          - ['A pencil box', 'cm³']
+          - ['A fridge, a classroom, a swimming pool', 'm³']
+          - ['A toy box, with building blocks', 'blocks (non-standard)']
+
+  - title: Base area × height
+    blocks:
+      - type: figure
+        covers: [K1.5, S1.6]
+        figure: { kind: prism, l: 5, w: 4, h: 3, unit: cm }
+        caption: 'Base area: \(5 \times 4 = 20\) cm². Three layers: \(20 \times 3 = 60\) cm³.'
+      - type: example
+        covers: [S1.6, K1.5, S1.4]
+        title: A juice box
+        problem: 'A juice box is **6 cm** long, **4 cm** wide and **10 cm** high. What is its volume?'
+        steps:
+          - 'Base area: \(6 \times 4 = 24\) cm². That is 24 cubes in one layer.'
+          - 'Height 10 cm means 10 layers: \(24 \times 10 = 240\).'
+        answer: 'The volume is **240 cm³**.'
+
+  - title: Same cubes, new shape
+    blocks:
+      - type: compare
+        covers: [U1.3, S1.3]
+        columns:
+          - title: 4 × 3 × 2
+            figure: { kind: prism, l: 4, w: 3, h: 2, labels: false }
+            body: 24 cubes
+          - title: 6 × 2 × 2
+            figure: { kind: prism, l: 6, w: 2, h: 2, labels: false }
+            body: The same 24 cubes, rearranged
+      - type: text
+        covers: [U1.3]
+        body: Taking a shape apart or rearranging its cubes doesn’t change its volume. Both prisms hold 24 cm³.
+
+keyTerms:
+  - term: Volume
+    covers: [U1.1]
+    definition: The amount of space a 3-D shape takes up.
+  - term: Cubic centimetre (cm³)
+    covers: [K1.3]
+    definition: The volume of a cube 1 cm long, 1 cm wide and 1 cm high.
+  - term: Cubic metre (m³)
+    covers: [K1.4]
+    definition: The volume of a cube 1 m long, 1 m wide and 1 m high.
+  - term: Base area
+    covers: [K1.5]
+    definition: 'The area of the bottom of a prism, length × width. Volume = base area × height.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.6, S1.5]
+    type: number
+    figure: { kind: prism, l: 4, w: 3, h: 2, unit: cm }
+    prompt: What is the volume of this box?
+    answer: 24
+    unit: cm³
+    verify: 4 * 3 * 2
+    hints:
+      - How many cubes are in one layer? How many layers?
+    solution:
+      - 'One layer: \(4 \times 3 = 12\) cubes. Two layers: \(12 \times 2 = 24\).'
+      - 'The volume is **24 cm³**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.2, K1.4, U1.1]
+    type: mc
+    prompt: Which unit is best for the volume of a swimming pool?
+    choices: ['m³', 'cm³', 'm²', 'm']
+    answer: 0
+    feedback:
+      '1': 'A cubic centimetre is tiny. You would need a huge number of them.'
+      '2': 'Square metres measure area, a flat surface. A pool has depth too.'
+      '3': 'Metres measure length in one direction only.'
+    hints:
+      - Volume needs a cube unit. Is a pool big or small?
+    solution:
+      - 'Volume is measured in cubic units. A pool is big, so **cubic metres** fit best.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [U1.2, S1.2, U1.6]
+    type: number
+    figure: { kind: prism, l: 3, w: 2, h: 5, layers: 1, labels: false }
+    prompt: One layer of cubes is already in this box. The box holds **5** layers. How many cubes fill the box?
+    answer: 30
+    unit: cubes
+    verify: 3 * 2 * 5
+    hints:
+      - How many cubes are in the layer you can see?
+    solution:
+      - 'One layer has \(3 \times 2 = 6\) cubes. Five layers: \(6 \times 5 = 30\) cubes.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.7, S1.1, S1.6]
+    type: number
+    prompt: 'A cereal box is **20 cm** long, **6 cm** wide and **30 cm** tall. What is its volume?'
+    answer: 3600
+    unit: cm³
+    verify: 20 * 6 * 30
+    hints:
+      - Find the base area first. Then think of the height as the number of layers.
+    solution:
+      - 'Base area: \(20 \times 6 = 120\) cm². Volume: \(120 \times 30 = 3600\) cm³.'
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [K1.5, S1.7]
+    type: number
+    prompt: 'A gift box has a volume of **96 cm³**. Its base is **4 cm** by **6 cm**. How tall is it?'
+    answer: 4
+    unit: cm
+    verify: 96 / (4 * 6)
+    hints:
+      - 'Base area × height = volume. What is the base area?'
+    solution:
+      - 'Base area: \(4 \times 6 = 24\) cm². Then \(24 \times \text{height} = 96\).'
+      - 'Height: \(96 \div 24 = 4\) cm.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [U1.6, S1.5, S1.3]
+    type: mc
+    figure: { kind: prism, l: 3, w: 3, h: 3, labels: false }
+    prompt: 'Ella counts the cubes she can see in this solid stack and gets **19**. She says the volume is 19 cubes. What did she miss?'
+    choices:
+      - 'The cubes hidden inside and at the back. It is 3 × 3 × 3 = 27 cubes.'
+      - 'She counted some cubes twice. It should be fewer than 19.'
+      - 'Volume counts only the top layer: 9 cubes.'
+      - 'Nothing. You can only count what you can see.'
+    answer: 0
+    feedback:
+      '1': 'Every cube she saw was a different cube. Is the stack hollow?'
+      '2': 'The top layer is the base area. How many layers are there?'
+      '3': 'The stack is solid, so there are cubes you can’t see.'
+    hints:
+      - Is the stack solid all the way through? How many layers does it have?
+    solution:
+      - 'The stack is a 3-D array: 3 layers of \(3 \times 3 = 9\) cubes. That is **27** cubes.'
+      - '8 cubes are hidden: some at the back, some below, and one in the middle.'
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [U1.3, S1.6, U1.5]
+    type: mc
+    prompt: 'Box A is 6 cm by 2 cm by 2 cm. Box B is 3 cm by 4 cm by 2 cm. Which box holds more?'
+    choices: ['They hold the same', 'Box A, because it is longer', 'Box B, because it is wider']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Box A is longer, but narrower. Multiply to compare.'
+      '2': 'Box B is wider, but shorter. Multiply to compare.'
+    hints:
+      - Find each volume.
+    solution:
+      - 'Box A: \(6 \times 2 \times 2 = 24\) cm³. Box B: \(3 \times 4 \times 2 = 24\) cm³.'
+      - 'They hold the **same**. Different shapes can have the same volume.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.7, S1.6, U1.3]
+    type: investigation
+    prompt: |-
+      A shipping crate is **60 cm** long, **40 cm** wide and **30 cm** tall. It will be packed with boxes that are **20 cm** long, **20 cm** wide and **10 cm** tall.
+    parts:
+      - type: number
+        prompt: What is the volume of the crate?
+        answer: 72000
+        unit: cm³
+        verify: 60 * 40 * 30
+        hints:
+          - 'Base area first: \(60 \times 40\).'
+        solution:
+          - 'Base area: \(60 \times 40 = 2400\) cm². Volume: \(2400 \times 30 = 72\,000\) cm³.'
+      - type: number
+        prompt: What is the volume of one box?
+        answer: 4000
+        unit: cm³
+        verify: 20 * 20 * 10
+        hints:
+          - Length × width × height.
+        solution:
+          - '\(20 \times 20 \times 10 = 4000\) cm³.'
+      - type: number
+        prompt: How many boxes fit in the crate, all standing the same way?
+        answer: 18
+        unit: boxes
+        verify: (60 / 20) * (40 / 20) * (30 / 10)
+        hints:
+          - How many boxes fit along the length? Along the width? How many layers?
+        solution:
+          - 'Along 60 cm: 3 boxes. Along 40 cm: 2 boxes. Up 30 cm: 3 layers.'
+          - '\(3 \times 2 \times 3 = 18\) boxes. Check: \(18 \times 4000 = 72\,000\) cm³ ✓'
+    wrapUp: 'Here the boxes fit exactly, so dividing the volumes gives the same answer. The edges tell you for sure: count how many fit along each one.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.6, U1.3, K1.5]
+    type: build
+    prompt: |-
+      Design a box that holds exactly **36 cm³**, using whole centimetres. No side can be 1 cm.
+    fields:
+      - { name: l, label: 'Length', unit: cm }
+      - { name: w, label: 'Width', unit: cm }
+      - { name: h, label: 'Height', unit: cm }
+    rules:
+      - { test: 'l % 1 == 0 && w % 1 == 0 && h % 1 == 0', fail: 'Use whole centimetres.' }
+      - { test: 'l >= 2 && w >= 2 && h >= 2', fail: 'Every side must be at least 2 cm.' }
+      - { test: 'l * w * h == 36', fail: 'Multiply length × width × height. It must be exactly 36.' }
+    examples:
+      - { l: 3, w: 3, h: 4 }
+      - { l: 2, w: 3, h: 6 }
+      - { l: 2, w: 2, h: 9 }
+    counterexamples:
+      - { l: 1, w: 6, h: 6 }
+      - { l: 3, w: 3, h: 3 }
+    hints:
+      - 'Choose a base first, like 3 × 3 = 9 cm². How many layers make 36?'
+    solution:
+      - 'A 3 × 3 base holds 9 cubes a layer, and 4 layers make 36: a 3 × 3 × 4 box.'
+      - '2 × 3 × 6 and 2 × 2 × 9 work too. They look different, but each holds 36 cm³.'

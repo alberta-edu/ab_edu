@@ -1,0 +1,323 @@
+id: simplify-solve-equations
+grade: 6
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT6-OI2-GQ1-LO1]
+order: 11
+title: Simplifying and Solving Equations
+shortTitle: Solving equations
+summary: >-
+  Simplify the expressions on each side of an equation, solve with inverse operations or another
+  strategy, and check by evaluating both sides.
+
+bigIdea: |-
+  - First **simplify each side**: combine like terms.
+  - The simpler equation has the **same solution** as the one you started with.
+  - Then solve, by undoing operations or another strategy.
+  - **Check**: put the solution into both sides of the **original** equation.
+
+lesson:
+  - title: Simplify, then balance
+    blocks:
+      - type: visual
+        covers: [S3.2, K3.1, S3.3]
+        component: balance-scale
+        props:
+          letter: x
+          examples: [{ a: 3, b: 1, c: 16 }, { a: 5, b: 2, c: 27 }, { a: 4, b: 0, c: 36 }]
+        caption: Press **Next step** to solve. Each step does the same thing to both sides, so the scale stays level.
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI2-GQ1-LO1#K3.1, MAT5-OI2-GQ1-LO1#U3.1]
+        title: Remember from Grade 5
+        body: '**Inverse operations** undo each other. Doing the same thing to both sides keeps an equation balanced.'
+
+  - title: Simplifying each side
+    blocks:
+      - type: example
+        covers: [S3.1, U3.1, S3.2]
+        title: Simplify first
+        problem: '\(2x + 3x + 1 = 9 + 7\)'
+        steps:
+          - 'Left side: \(2x\) and \(3x\) are like terms, so \(2x + 3x + 1 = 5x + 1\).'
+          - 'Right side: \(9 + 7 = 16\). The equation is now \(5x + 1 = 16\).'
+          - 'Subtract 1 from both sides: \(5x = 15\). Divide both sides by 5: \(x = 3\).'
+        answer: '\(x = 3\)'
+
+  - title: Same solution all the way down
+    blocks:
+      - type: table
+        covers: [K3.1, U3.1]
+        caption: Every line is a simpler form of the one above. Test \(x = 3\) in each.
+        headers: [Equation, With x = 3, True?]
+        rows:
+          - ['\(2x + 3x + 1 = 9 + 7\)', '\(6 + 9 + 1 = 16\)', '✓']
+          - ['\(5x + 1 = 16\)', '\(15 + 1 = 16\)', '✓']
+          - ['\(5x = 15\)', '\(15 = 15\)', '✓']
+          - ['\(x = 3\)', '\(3 = 3\)', '✓']
+
+  - title: More than one way
+    blocks:
+      - type: compare
+        covers: [S3.3]
+        columns:
+          - title: Undo, step by step
+            body: |-
+              \(4(x + 2) = 28\)
+
+              Divide both sides by 4: \(x + 2 = 7\). So \(x = 5\).
+          - title: Expand first
+            body: |-
+              \(4(x + 2) = 28\)
+
+              \(4x + 8 = 28\), so \(4x = 20\). So \(x = 5\).
+          - title: Guess and check
+            body: |-
+              Try \(x = 4\): \(4 \times 6 = 24\). Too small.
+
+              Try \(x = 5\): \(4 \times 7 = 28\) ✓
+      - type: text
+        covers: [S3.3, K3.1]
+        body: Different strategies, same solution. Choose the one that makes the fewest steps.
+
+  - title: Check with the original
+    blocks:
+      - type: example
+        covers: [S3.4, S3.5]
+        title: Prices at the fair
+        problem: 'Jo buys **2** ride tickets, then **3** more, and a **$4** drink. She spends **$29**. What does one ticket cost, \(t\)?'
+        steps:
+          - 'Equation: \(2t + 3t + 4 = 29\). Simplify: \(5t + 4 = 29\).'
+          - 'Subtract 4 from both sides: \(5t = 25\). Divide by 5: \(t = 5\).'
+          - 'Check in the original: \(2 \times 5 + 3 \times 5 + 4 = 10 + 15 + 4 = 29\) ✓'
+        answer: Each ticket costs **$5**.
+
+keyTerms:
+  - term: Simplify an equation
+    covers: [S3.1, U3.1]
+    definition: Combine like terms on each side, so the equation has fewer terms.
+  - term: Solution
+    covers: [K3.1]
+    definition: 'The value of the variable that makes both sides equal. Every simplified form of the equation has the same solution.'
+  - term: Verify
+    covers: [S3.4]
+    definition: Put the solution into both sides of the original equation and check that they are equal.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S3.1, S3.2]
+    type: number
+    prompt: 'Solve \(3x + 2x = 35\). \(x\) = ?'
+    answer: 7
+    verify: 35 / 5
+    hints:
+      - Combine the like terms on the left first.
+    solution:
+      - '\(3x + 2x = 5x\), so \(5x = 35\).'
+      - 'Divide both sides by 5: \(x = 7\).'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S3.1, U3.1]
+    type: mc
+    prompt: 'Which is the simplified form of \(4n + 6 + n = 20 + 1\)?'
+    choices: ['\(5n + 6 = 21\)', '\(4n + 7 = 21\)', '\(11n = 21\)', '\(5n + 6 = 20\)']
+    answer: 0
+    feedback:
+      '1': '\(n\) is a variable term, and 6 is a constant. They are not like terms.'
+      '2': 'Only like terms combine. The 6 has no \(n\).'
+      '3': 'The right side was simplified too: \(20 + 1 = 21\).'
+    hints:
+      - Combine like terms on each side. What are the like terms on the left?
+    solution:
+      - 'Left side: \(4n + n = 5n\), and the 6 stays. Right side: \(20 + 1 = 21\).'
+      - 'So the equation becomes \(5n + 6 = 21\).'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S3.4, K3.1]
+    type: mc
+    prompt: 'Is \(x = 4\) the solution of \(3x + 2 + x = 6 + 12\)?'
+    choices:
+      - 'Yes. Both sides equal 18.'
+      - 'No. The left side is 14 and the right side is 18.'
+      - 'No. The left side is 18 and the right side is 72.'
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Don’t forget the last \(x\) on the left. It is 4 too.'
+      '2': 'The right side adds: \(6 + 12\).'
+    hints:
+      - Put 4 in place of every \(x\), then work out each side.
+    solution:
+      - 'Left: \(3 \times 4 + 2 + 4 = 12 + 2 + 4 = 18\). Right: \(6 + 12 = 18\).'
+      - 'Both sides are 18, so \(x = 4\) is the solution ✓'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S3.5, S3.1, S3.2]
+    type: number
+    prompt: 'Raj buys **4** packs of hockey cards, then **2** more packs, and a **$4** card sleeve. He spends **$40**. Every pack costs the same. How much is one pack?'
+    answer: 6
+    unit: $
+    verify: (40 - 4) / 6
+    hints:
+      - 'Call the price of a pack \(p\). Write an equation with every pack in it.'
+      - '\(4p + 2p + 4 = 40\). Simplify the left side first.'
+    solution:
+      - '\(4p + 2p + 4 = 40\) simplifies to \(6p + 4 = 40\).'
+      - 'Subtract 4: \(6p = 36\). Divide by 6: \(p = 6\). A pack costs **$6**.'
+      - 'Check: \(4 \times 6 + 2 \times 6 + 4 = 24 + 12 + 4 = 40\) ✓'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [U3.1, S3.1, K2.1]
+    type: mc
+    prompt: 'Mia solves \(2x + 5 + 3x = 30\). Her first line is \(2x + 8x = 30\). What went wrong?'
+    choices:
+      - 'She combined 5 and \(3x\), which are not like terms.'
+      - 'She should have subtracted 5 from the right side only.'
+      - 'She should have added 2 and 3 to get 5.'
+      - 'Nothing. Her first line is correct.'
+    answer: 0
+    feedback:
+      '1': 'Taking 5 from one side only breaks the balance.'
+      '2': 'That is the right idea for \(2x + 3x\), but it isn’t what Mia did. Look at the \(8x\).'
+      '3': 'Where did \(8x\) come from? Is 5 an \(x\) term?'
+    hints:
+      - Where did the \(8x\) come from?
+    solution:
+      - '\(8x\) came from \(5 + 3x\). But 5 is a constant and \(3x\) is a variable term, so they can’t combine.'
+      - 'Correct: \(2x + 3x + 5 = 30\), so \(5x + 5 = 30\), \(5x = 25\) and \(x = 5\).'
+
+  - id: b3
+    level: 2
+    thinking: ways
+    covers: [S3.3, K3.1, S3.4]
+    type: mc
+    prompt: |-
+      Two friends solve \(4(x + 2) = 28\).
+
+      - **Ali** divides both sides by 4 first: \(x + 2 = 7\).
+      - **Bo** expands first: \(4x + 8 = 28\).
+
+      Who is on the right track?
+    choices: ['Both of them', 'Only Ali', 'Only Bo', 'Neither of them']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Finish Bo’s way: \(4x = 20\). What is \(x\)?'
+      '2': 'Finish Ali’s way: \(x + 2 = 7\). What is \(x\)?'
+      '3': 'Finish both, and check the answers in the original equation.'
+    hints:
+      - Finish each friend’s solution. Do they agree?
+    solution:
+      - 'Ali: \(x + 2 = 7\), so \(x = 5\). Bo: \(4x = 20\), so \(x = 5\).'
+      - 'Both are right. Check: \(4(5 + 2) = 4 \times 7 = 28\) ✓'
+
+  - id: b4
+    level: 2
+    thinking: backwards
+    covers: [S3.5, S3.1, S3.2]
+    type: number
+    figure: |-
+      <svg viewBox="-40 -30 400 230" class="fig-svg" role="img" aria-label="A triangle with sides x, x plus 3, and 2x centimetres."><path class="fig-rect" d="M20 170 L300 170 L120 20 Z"/><text class="fig-label" style="font-size:22px" x="160" y="200" text-anchor="middle">2x</text><text class="fig-label" style="font-size:22px" x="48" y="90" text-anchor="end">x</text><text class="fig-label" style="font-size:22px" x="230" y="86">x + 3</text></svg>
+    prompt: 'This triangle has sides of \(x\), \(x + 3\) and \(2x\) centimetres. Its perimeter is **31 cm**. What is \(x\)?'
+    answer: 7
+    unit: cm
+    verify: (31 - 3) / 4
+    hints:
+      - Add the three sides to get an expression for the perimeter.
+      - '\(x + x + 3 + 2x = 31\). Combine like terms.'
+    solution:
+      - '\(x + x + 3 + 2x = 31\) simplifies to \(4x + 3 = 31\).'
+      - 'Subtract 3: \(4x = 28\). Divide by 4: \(x = 7\).'
+      - 'Check: the sides are 7, 10 and 14, and \(7 + 10 + 14 = 31\) ✓'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S3.1, S3.2, U3.1, K3.1]
+    type: investigation
+    prompt: |-
+      A balance is level. The left pan has **2 bags**, then **3 more bags**, and a **4 kg** block. The right pan has a **10 kg** and a **9 kg** block. Every bag has the same mass, \(b\) kg.
+    parts:
+      - type: mc
+        prompt: Which equation matches the balance, simplified?
+        choices: ['\(5b + 4 = 19\)', '\(9b = 19\)', '\(5b = 23\)', '\(2b + 3b = 19\)']
+        answer: 0
+        feedback:
+          '1': 'The 4 kg block is not a bag. It can’t join the bag terms.'
+          '2': 'The 4 kg is on the same side as the bags, so it is added there.'
+          '3': 'Where is the 4 kg block?'
+        hints:
+          - 'Left: \(2b + 3b + 4\). Right: \(10 + 9\). Now simplify each side.'
+        solution:
+          - '\(2b + 3b + 4 = 10 + 9\) simplifies to \(5b + 4 = 19\).'
+      - type: number
+        prompt: What is the mass of one bag?
+        answer: 3
+        unit: kg
+        verify: (19 - 4) / 5
+        hints:
+          - Undo the + 4, then the × 5.
+        solution:
+          - '\(5b = 15\), so \(b = 3\) kg.'
+      - type: mc
+        prompt: Someone adds **1 more bag** to the left pan and a **3 kg** block to the right pan. What happens?
+        choices:
+          - 'It stays level, because a bag is 3 kg.'
+          - 'The left side goes down, because it has more things.'
+          - 'The right side goes down, because 3 kg is heavier than a bag.'
+          - 'You can’t tell without weighing the new bag.'
+        answer: 0
+        feedback:
+          '1': 'Count mass, not things. What does each side gain?'
+          '2': 'You worked out the mass of a bag in part 2.'
+          '3': 'Every bag has the same mass. You know what it is.'
+        hints:
+          - What does each side gain, in kilograms?
+        solution:
+          - 'The left gains one bag, which is 3 kg. The right gains 3 kg. Both sides gain the same, so it stays level.'
+          - 'As an equation: \(6b + 4 = 22\), and \(b = 3\) still works.'
+    wrapUp: 'Simplifying each side doesn’t change the balance, and doing the same to both sides keeps it level. That is why the solution never changes.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S3.1, S3.4, K3.1]
+    type: build
+    prompt: |-
+      Make an equation puzzle for a friend. It must look like \(ax + bx + c = d\), with whole numbers from 1 to 100. Its solution must be \(x = 4\).
+    fields:
+      - { name: a, label: 'a' }
+      - { name: b, label: 'b' }
+      - { name: c, label: 'c' }
+      - { name: d, label: 'd' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && d % 1 == 0', fail: 'Use whole numbers only.' }
+      - { test: 'a >= 1 && b >= 1 && c >= 1 && d <= 100', fail: 'Every number must be from 1 to 100.' }
+      - { test: 'a * 4 + b * 4 + c == d', fail: 'Check your puzzle: put 4 in for \(x\). Does the left side equal \(d\)?' }
+    examples:
+      - { a: 2, b: 3, c: 5, d: 25 }
+      - { a: 1, b: 1, c: 2, d: 10 }
+      - { a: 6, b: 4, c: 10, d: 50 }
+    counterexamples:
+      - { a: 2, b: 3, c: 5, d: 30 }
+      - { a: 20, b: 10, c: 1, d: 121 }
+    hints:
+      - Choose \(a\), \(b\) and \(c\) first. Then work out what \(d\) must be.
+      - 'With \(a = 2\), \(b = 3\) and \(c = 5\): the left side is \(2 \times 4 + 3 \times 4 + 5\).'
+    solution:
+      - 'Work forward from the solution: \(2x + 3x + 5\) with \(x = 4\) is \(8 + 12 + 5 = 25\). So \(2x + 3x + 5 = 25\).'
+      - 'Your friend simplifies to \(5x + 5 = 25\), then gets \(5x = 20\) and \(x = 4\).'
+      - 'Building a puzzle is solving in reverse: you multiply and add, and the solver subtracts and divides.'

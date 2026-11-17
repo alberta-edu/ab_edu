@@ -1,0 +1,121 @@
+---
+// Translate, reflect or rotate a triangle in the Cartesian plane and compare the coordinates of
+// the polygon and its image (MAT6-OI4-GQ1-LO1: K2.1-K2.3, U2.1, U2.2, S2.1-S2.7).
+import { planeSvg, type P } from './g6-plane.ts';
+
+interface Props {
+  move?: 'translate' | 'reflect' | 'rotate';
+  shape?: P[];
+}
+const { move = 'translate', shape = [[1, 1], [4, 1], [1, 3]] } = Astro.props;
+const r = 6;
+---
+<transform-lab data-move={move} data-shape={JSON.stringify(shape)}>
+  <div class="seg" role="group" aria-label="Choose a transformation">
+    <button type="button" data-move="translate" aria-pressed={String(move === 'translate')}>Translate</button>
+    <button type="button" data-move="reflect" aria-pressed={String(move === 'reflect')}>Reflect</button>
+    <button type="button" data-move="rotate" aria-pressed={String(move === 'rotate')}>Rotate</button>
+  </div>
+  <div class="control-row" data-panel="translate">
+    <label class="control"><span>Right / left</span><input type="range" min="-6" max="6" value="-5" data-tl="dx" /> <output data-tl="dx-out"></output></label>
+    <label class="control"><span>Up / down</span><input type="range" min="-6" max="6" value="2" data-tl="dy" /> <output data-tl="dy-out"></output></label>
+  </div>
+  <div class="control-row" data-panel="reflect">
+    <div class="seg" role="group" aria-label="Line of reflection">
+      <button type="button" data-axis="x" aria-pressed="true">Over the x-axis</button>
+      <button type="button" data-axis="y" aria-pressed="false">Over the y-axis</button>
+    </div>
+  </div>
+  <div class="control-row" data-panel="rotate">
+    <div class="seg" role="group" aria-label="Angle">
+      <button type="button" data-deg="90" aria-pressed="true">90°</button>
+      <button type="button" data-deg="180" aria-pressed="false">180°</button>
+      <button type="button" data-deg="270" aria-pressed="false">270°</button>
+    </div>
+    <div class="seg" role="group" aria-label="Direction">
+      <button type="button" data-dir="cw" aria-pressed="true">↻ clockwise</button>
+      <button type="button" data-dir="ccw" aria-pressed="false">↺ counter-clockwise</button>
+    </div>
+    <div class="seg" role="group" aria-label="Centre of rotation">
+      <button type="button" data-centre="0" aria-pressed="true">about A</button>
+      <button type="button" data-centre="1" aria-pressed="false">about B</button>
+      <button type="button" data-centre="2" aria-pressed="false">about C</button>
+    </div>
+  </div>
+  <div class="g6m-tl-layout">
+    <div data-tl="svg" set:html={planeSvg({ r, polys: [{ pts: shape, labels: ['A', 'B', 'C'] }] })} aria-hidden="true" />
+    <div>
+      <p class="g6m-tl-say" data-tl="say" aria-live="polite"></p>
+      <div class="table-wrap"><table class="data-table" data-tl="table"></table></div>
+    </div>
+  </div>
+</transform-lab>
+
+<style is:global>
+  transform-lab { display: block; }
+  transform-lab .control-row .seg { flex-wrap: wrap; }
+  .g6m-tl-layout { display: grid; gap: 1rem; align-items: start; margin-top: 0.6rem; }
+  @media (min-width: 44rem) { .g6m-tl-layout { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .g6m-tl-say { margin: 0 0 0.6rem; font-weight: 700; }
+</style>
+
+<script>
+  import { planeSvg, coord, translateP, reflectP, rotateP, type P } from './g6-plane.ts';
+
+  const L = ['A', 'B', 'C'];
+  class TransformLab extends HTMLElement {
+    private shape: P[] = [];
+    private move = 'translate';
+    private axis: 'x' | 'y' = 'x';
+    private deg: 90 | 180 | 270 = 90;
+    private dir: 'cw' | 'ccw' = 'cw';
+    private centre = 0;
+
+    connectedCallback() {
+      this.shape = JSON.parse(this.dataset.shape!);
+      this.move = this.dataset.move!;
+      const group = (attr: string, set: (v: string) => void) =>
+        this.querySelectorAll<HTMLButtonElement>(`[data-${attr}]`).forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll(`[data-${attr}]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            set(b.getAttribute(`data-${attr}`)!);
+            this.render();
+          }),
+        );
+      group('move', (v) => (this.move = v));
+      group('axis', (v) => (this.axis = v as 'x' | 'y'));
+      group('deg', (v) => (this.deg = Number(v) as 90));
+      group('dir', (v) => (this.dir = v as 'cw'));
+      group('centre', (v) => (this.centre = Number(v)));
+      this.querySelectorAll('input').forEach((i) => i.addEventListener('input', () => this.render()));
+      this.render();
+    }
+
+    private render() {
+      this.querySelectorAll<HTMLElement>('[data-panel]').forEach((p) => (p.style.display = p.dataset.panel === this.move ? '' : 'none'));
+      let img: P[];
+      let say: string;
+      const n = (v: number) => (v < 0 ? `−${-v}` : String(v));
+      if (this.move === 'translate') {
+        const dx = Number(this.querySelector<HTMLInputElement>('[data-tl="dx"]')!.value);
+        const dy = Number(this.querySelector<HTMLInputElement>('[data-tl="dy"]')!.value);
+        this.querySelector('[data-tl="dx-out"]')!.textContent = dx ? `${Math.abs(dx)} ${dx > 0 ? 'right' : 'left'}` : '0';
+        this.querySelector('[data-tl="dy-out"]')!.textContent = dy ? `${Math.abs(dy)} ${dy > 0 ? 'up' : 'down'}` : '0';
+        img = translateP(this.shape, dx, dy);
+        const part = (d: number, c: string) => (d < 0 ? `subtract ${-d} from every ${c}` : `add ${d} to every ${c}`);
+        say = `Translation: ${part(dx, 'x')} and ${part(dy, 'y')}. The image faces the same way.`;
+      } else if (this.move === 'reflect') {
+        img = reflectP(this.shape, this.axis);
+        say = this.axis === 'x' ? 'Reflection over the x-axis: x stays the same, y becomes its opposite.' : 'Reflection over the y-axis: y stays the same, x becomes its opposite.';
+      } else {
+        const c = this.shape[this.centre];
+        img = rotateP(this.shape, this.deg, this.dir, c);
+        say = `Rotation of ${this.deg}° ${this.dir === 'cw' ? 'clockwise' : 'counter-clockwise'} about ${L[this.centre]}${coord(c)}. ${L[this.centre]} stays put.`;
+      }
+      this.querySelector('[data-tl="svg"]')!.innerHTML = planeSvg({ r: 6, polys: [{ pts: this.shape, labels: L }, { pts: img, tone: 'b', labels: L.map((l) => `${l}′`) }], centre: this.move === 'rotate' ? this.shape[this.centre] : undefined });
+      this.querySelector('[data-tl="say"]')!.textContent = say;
+      this.querySelector('[data-tl="table"]')!.innerHTML = `<thead><tr><th scope="col">Vertex</th><th scope="col">Before</th><th scope="col">Image</th></tr></thead><tbody>${this.shape.map((p, i) => `<tr><th scope="row">${L[i]}</th><td>${coord(p)}</td><td>${coord(img[i])}</td></tr>`).join('')}</tbody>`;
+    }
+  }
+  customElements.define('transform-lab', TransformLab);
+</script>
