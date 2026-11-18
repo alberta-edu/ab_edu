@@ -1,0 +1,413 @@
+id: fantasy-fiction
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG4-OI1-GQ1-LO1]
+order: 2
+title: Fantasy, Flashbacks and Point of View
+shortTitle: Fantasy & point of view
+summary: >-
+  Find what makes a story fantasy, follow a main plot, a subplot and a flashback, tell major from minor
+  characters, and see a story told in the first person.
+
+bigIdea: |-
+  - A **fantasy** is fiction with something highly unreal in it, like boots that talk.
+  - Stories can have a **main plot**, a **subplot** and **flashbacks** to the past.
+  - The **point of view** is who tells the story. In the **first person**, the narrator says *I*.
+
+lesson:
+  - title: What makes it fantasy?
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI1-GQ1-LO1#K3.1', 'LANENG3-OI1-GQ1-LO1#K3.3']
+        title: Remember from Grade 3
+        body: Fiction has **sub-genres**, such as myths, mysteries, historical fiction and realistic fiction, where everything could really happen.
+      - type: visual
+        covers: [K3.1, K3.2, S3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: fantasy, label: Fantasy, icon: 🐉 }
+            - { id: realistic, label: Realistic fiction, icon: 🏙️ }
+            - { id: historical, label: Historical fiction, icon: 🕰️ }
+            - { id: mystery, label: Mystery, icon: 🔎 }
+          cards:
+            - { text: A boy finds a door in his closet that opens onto a land of giant snails., bin: fantasy, why: 'A door to another land is highly unreal. That makes it fantasy.' }
+            - { text: A girl’s pet goldfish grants her three wishes., bin: fantasy, why: 'Real fish can’t grant wishes. The unreal part makes it fantasy.' }
+            - { text: Two friends practise all winter for the big hockey tryout., bin: realistic, why: 'It happens now, and it could really happen.' }
+            - { text: A family travels to Alberta by covered wagon in 1905., bin: historical, why: 'It is set in the past. The time tells you the sub-genre.' }
+            - { text: Someone keeps leaving notes in the class library. Who is it?, bin: mystery, why: 'A secret to unravel makes it a mystery.' }
+        caption: Sort each story. Look at its **content, characters, time and place**.
+
+  - title: Read a fantasy
+    blocks:
+      - type: text
+        covers: [S3.3, K3.8]
+        body: As you read, notice **who is telling** the story. Watch for a moment when the story jumps back in time.
+      - type: passage
+        id: boots
+        title: The Whispering Boots
+        form: Fantasy
+        paragraphs:
+          - My new boots could talk. Not loudly, just a whisper with every step.
+          - That afternoon, I was lost in the worst snowstorm I had ever seen. The bus driver had dropped me at the wrong corner by mistake. “Sorry, kiddo!” he called, and the bus rumbled away. Now the snow had covered every street sign.
+          - And it was my little brother Mateo’s birthday. I had promised to sing him a song at his party, and I still could not remember the second verse.
+          - Then I remembered the day Grandma gave me these boots. She had wrapped them in newspaper and tied them with red wool. “They always know the way home,” she said, and winked. I thought she was joking.
+          - Now I wasn’t so sure. When the boots whispered *left*, I turned left. When they whispered *straight*, I walked straight, humming Mateo’s song to keep myself brave.
+          - Crunch, crunch, crunch. My boots tapped out the beat of the song, and the second verse came back to me, word by word.
+          - A porch light glowed through the snow. Mrs. Kaur from next door was shovelling her steps. She waved her mitten at me and pointed to my house.
+          - I burst through the door just as Mateo blew out his candles. I sang him the whole song, both verses. Under the table, my boots whispered one last word. *Home.*
+        note: An original story written for Alberta Edu. Paragraph numbers help you point to evidence.
+
+  - title: Two plots and a trip to the past
+    blocks:
+      - type: visual
+        covers: [K3.3, K3.4, S3.2]
+        component: plot-braid
+        props:
+          main: 'Main plot: getting home'
+          sub: 'Subplot: the song'
+          scenes:
+            - { strand: main, when: 2, text: 'Rosa is dropped at the wrong corner, and she is lost in the snow.' }
+            - { strand: sub, when: 3, text: 'She can’t remember the second verse of Mateo’s birthday song.' }
+            - { strand: flash, when: 1, text: 'Back in time: Grandma gives Rosa the boots. “They always know the way home.”' }
+            - { strand: main, when: 4, text: 'The boots whisper the way: left, then straight.' }
+            - { strand: sub, when: 5, text: 'The crunch of the boots taps out the beat, and the verse comes back.' }
+            - { strand: main, when: 6, text: 'Mrs. Kaur points Rosa home, and she bursts through the door.' }
+            - { strand: sub, when: 7, text: 'Rosa sings both verses as Mateo blows out his candles.' }
+        caption: Step through the scenes. Then switch to **Order it happened**. Where does the flashback go?
+      - type: compare
+        covers: [K3.3, K3.4]
+        columns:
+          - title: 🧵 Subplot
+            body: A smaller story that runs beside the **main plot**. Here, Rosa’s song.
+          - title: ↩️ Flashback
+            body: The story stops and takes you **back in time** to something in a character’s past.
+
+  - title: Who is telling the story?
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI1-GQ1-LO1#K3.10']
+        title: Remember from Grade 3
+        body: A narrator can be a character **in** the story, or someone telling it from the outside looking in.
+      - type: compare
+        covers: [K3.8, K3.9, S3.6]
+        columns:
+          - title: 🙋 First person
+            body: |-
+              > **I** turned left.
+
+              Rosa tells her own story. She says **I**, **me** and **my**. We only know what she sees, thinks and feels.
+          - title: 👀 A narrator outside the story
+            body: |-
+              > **Rosa** turned left.
+
+              Someone who isn’t in the story tells about the characters, by name.
+      - type: callout
+        variant: mistake
+        covers: [K3.9, S3.6]
+        title: Check outside the quotation marks
+        body: |-
+          > “I’m cold,” said Rosa.
+
+          This *I* is inside quotation marks, so Rosa is just talking. Look **outside** the marks to find the narrator.
+
+  - title: Major and minor characters
+    blocks:
+      - type: table
+        covers: [K3.5, K3.6, K3.7, S3.4]
+        caption: Characters in “The Whispering Boots”
+        headers: [Character, Major or minor?, How we know them]
+        rows:
+          - ['**Rosa**', '**Major:** the story is all about her.', 'What she **says**, **thinks** and **does**. She hums to keep herself brave.']
+          - ['**The bus driver**', '**Minor:** in one scene only.', 'One thing he **says**: “Sorry, kiddo!”']
+          - ['**Mrs. Kaur**', '**Minor:** helps in one moment.', 'One thing she **does**: she waves and points.']
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI1-GQ1-LO1#K3.8']
+        title: Remember from Grade 3
+        body: A **major character** is central to the plot or problem in a story.
+
+  - title: See it through another character’s eyes
+    blocks:
+      - type: example
+        covers: [S3.5, K3.8, K3.9]
+        title: Retell a moment as the bus driver
+        problem: Turn paragraph 2 into a short scene, told by the bus driver in the first person.
+        steps:
+          - '**Choose the character:** the bus driver.'
+          - '**Use I:** he tells it himself.'
+          - '**Tell only what he knows:** he can’t see Rosa’s boots or hear them whisper.'
+          - '**Act it out:** say it in his voice, as if you are driving.'
+        answer: '“I saw her in my mirror, standing at the wrong corner. I called out sorry, but I had a schedule to keep.”'
+      - type: callout
+        variant: tip
+        covers: [U3.1, K3.2]
+        title: Fiction opens your mind
+        body: |-
+          Fantasy asks, “**What if?**”
+
+          - What if boots could talk?
+          - What if a gift could keep looking after you?
+
+          Asking “what if” helps you imagine new possibilities.
+
+keyTerms:
+  - term: Fantasy
+    covers: [K3.1, K3.2]
+    definition: A fiction sub-genre with elements that are highly unreal, like talking boots or wishing fish.
+  - term: Subplot
+    covers: [K3.3]
+    definition: A smaller story that runs beside the main plot.
+  - term: Flashback
+    covers: [K3.4]
+    definition: A break in the story that takes the reader back in time to past events in a character’s life.
+  - term: Minor character
+    covers: [K3.6]
+    definition: A character who is not the main focus of the story and who we know less about.
+  - term: Point of view
+    covers: [K3.8]
+    definition: The way an author chooses to tell a story, such as who the narrator is.
+  - term: First person
+    covers: [K3.9]
+    definition: A point of view where the narrator tells the story from their own view, often using the word I.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K3.1, K3.2, S3.1]
+    type: mc
+    prompt: Which story is a **fantasy**?
+    choices:
+      - A girl’s backpack sprouts wings and flies her to school every morning.
+      - Two cousins follow muddy footprints to find out who took the class hamster.
+      - A boy helps his family plant wheat on their Alberta farm in the year 1910.
+      - A girl falls off her new bike many times, then rides all the way around the block.
+    answer: 0
+    feedback:
+      '1': A secret to solve, with clues to follow? That makes it a mystery.
+      '2': It is set long ago, but it could have happened. That makes it historical fiction.
+      '3': This could happen to a real kid today. That makes it realistic fiction.
+    hints:
+      - Which story has something in it that could **never** really happen?
+    solution:
+      - Backpacks can’t grow wings. Something highly unreal makes the story a **fantasy**.
+      - The other stories could all really happen. Their time and their problem tell you their sub-genres.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K3.8, K3.9, S3.6]
+    type: mc
+    prompt: Which line comes from a story told in the **first person**?
+    choices:
+      - I grabbed my skates and raced down to the pond.
+      - “I love skating!” said Rosa, and she raced to the pond.
+      - Rosa grabbed her skates and raced down to the pond.
+      - The children grabbed their skates and raced to the pond.
+    answer: 0
+    feedback:
+      '1': The *I* is inside quotation marks, so Rosa is just talking. Who tells the rest of the line?
+      '2': The narrator calls her *Rosa* and *her*. Is the narrator in the story?
+      '3': The narrator tells about *the children*. Does the narrator ever say *I*?
+    hints:
+      - Cover up any words inside quotation marks. Who is telling the rest?
+    solution:
+      - In the first line, the narrator says **I** and **my**, outside any quotation marks. The narrator is in the story.
+      - That is the **first person** point of view.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K3.5, K3.6, S3.4]
+    type: multi
+    prompt: Which characters in “The Whispering Boots” are **minor** characters? Choose all that are.
+    choices:
+      - Rosa
+      - The bus driver
+      - Mrs. Kaur
+    fixedOrder: true
+    answer: [1, 2]
+    feedback:
+      '0': The whole story is about Rosa’s trip home. We know what she thinks and feels. Is she minor?
+    hints:
+      - Who is the story mostly about? Who shows up for only one moment?
+    solution:
+      - The bus driver and Mrs. Kaur each appear for one moment, and we learn little about them. They are **minor** characters.
+      - Rosa is the focus of the whole story, so she is a **major** character.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K3.4, S3.2]
+    type: evidence
+    prompt: Tap the sentence where the story **jumps back in time** to a flashback.
+    passage: boots
+    paragraphs: [3, 4, 5]
+    answer: [p4s1]
+    feedback:
+      p3s1: This tells us about today, Mateo’s birthday. Look for a jump to an earlier day.
+      p3s2: The promise was made earlier, but the sentence is about Rosa’s problem right now. Where does the story take us to another day?
+      p4s2: This is inside the flashback already. Which sentence carried us there?
+      p4s3: This is inside the flashback, Grandma speaking on that day. Which sentence took us back?
+      p4s4: This is still the memory. Which sentence started it?
+      p5s1: Here the story comes back to the present, with the word *Now*. Look just before.
+    hints:
+      - Look for a word like *remembered*, or a different day.
+    solution:
+      - '“Then I remembered the day Grandma gave me these boots.” The story leaves the storm and goes back to an earlier day.'
+      - In paragraph 5, *Now* brings us back to the storm. The flashback tells us why the boots know the way.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K3.7, S3.3]
+    type: evidence
+    prompt: Rosa never says, “I was scared.” Tap the sentence where what she **does** shows us that she is scared.
+    passage: boots
+    paragraphs: [2, 5]
+    answer: [p5s3]
+    feedback:
+      p2s1: This tells us she is lost, but it doesn’t show what she does about it.
+      p2s2: This is what the bus driver did. Look for something Rosa does.
+      p2s3: This is what the bus driver says and does.
+      p2s4: This tells us about the snow. Look for an action of Rosa’s.
+      p5s1: This shows what she thinks about the boots now. Does it show that she is afraid?
+      p5s2: She follows the boots here. Is there a sentence that shows how she feels?
+    hints:
+      - Find something Rosa does. Why would someone do that?
+    solution:
+      - '“…humming Mateo’s song to keep myself brave.” People need to keep themselves brave when they are scared.'
+      - We get to know characters by what they say, think and **do**. Here, an action shows a feeling.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K3.3, S3.2]
+    type: mc
+    prompt: The main plot is about Rosa getting home. The subplot is about her song. Where does the author **tie the two plots together**?
+    choices:
+      - The crunch of the boots taps out a beat, and she remembers the verse.
+      - The bus driver drops Rosa at the wrong corner and calls out, “Sorry, kiddo!”
+      - Grandma wraps the boots in newspaper and ties them with red wool.
+      - Mrs. Kaur shovels her steps and waves her mitten at Rosa.
+    answer: 0
+    feedback:
+      '1': This starts the main plot. Is the song part of it?
+      '2': This is the flashback about the boots. Does it have anything to do with the song?
+      '3': This is part of getting home. Where does the song come in?
+    hints:
+      - Find a moment that moves **both** stories forward at once.
+    solution:
+      - The boots help her get home. In paragraph 6, the same boots tap out the beat that brings back the verse.
+      - One moment moves both plots, so the subplot joins the main plot.
+
+  - id: b4
+    level: 2
+    thinking: perspective
+    covers: [S3.5, K3.8, K3.9, S3.6]
+    type: mc
+    prompt: If **Mrs. Kaur** told paragraph 7 in the **first person**, which line could she write?
+    choices:
+      - I looked up from shovelling and saw Rosa, covered in snow, so I waved and pointed to her house.
+      - Mrs. Kaur looked up from shovelling and saw Rosa, so she waved and pointed to the house.
+      - A porch light glowed through the snow, and I knew that I was almost home at last.
+      - My boots whispered *left*, and I saw Mrs. Kaur waving her mitten at me through the snow.
+    answer: 0
+    feedback:
+      '1': The narrator calls her *Mrs. Kaur* and *she*. Is she telling it herself?
+      '2': Whose home is it? This is still Rosa talking.
+      '3': Mrs. Kaur can’t hear Rosa’s boots. Whose eyes is this told through?
+    hints:
+      - Mrs. Kaur says *I*. What can she see from her steps? What can’t she know?
+    solution:
+      - In the first person, Mrs. Kaur says **I** and tells only what she sees and does.
+      - She sees a snowy girl and points. She doesn’t know about the whispering boots.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K3.1, K3.2, S3.1, U3.1]
+    type: investigation
+    prompt: Let’s test what makes “The Whispering Boots” a fantasy, by changing it.
+    parts:
+      - type: mc
+        prompt: Which detail makes the story a **fantasy**?
+        choices:
+          - The boots whisper directions to Rosa.
+          - Rosa is lost in a terrible snowstorm.
+          - The bus driver drops her at the wrong corner.
+          - It is her little brother’s birthday.
+        answer: 0
+        feedback:
+          '1': Snowstorms are real, and people do get lost in them.
+          '2': Bus drivers can make mistakes. Could this happen to a real kid?
+          '3': Real kids have brothers with birthdays. Which detail could never happen?
+        hints:
+          - Which detail could **never** happen in real life?
+        solution:
+          - Boots can’t talk. That one highly unreal element makes the story a **fantasy**.
+      - type: mc
+        prompt: Now take out the talking boots. Rosa finds her way by spotting Mrs. Kaur’s porch light. What sub-genre is the story now?
+        choices:
+          - Realistic fiction
+          - Still a fantasy
+          - Historical fiction
+          - A mystery
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': What unreal thing is left in the story?
+          '2': The story is set today, with buses and birthday candles. Is it set in the past?
+          '3': Is there a secret or a crime for Rosa to unravel?
+        hints:
+          - Is anything unreal left? When does the story happen?
+        solution:
+          - Now everything could really happen, today. That is **realistic fiction**.
+      - type: mc
+        prompt: What would the story **lose** without the talking boots?
+        choices:
+          - The idea that Grandma’s gift keeps looking after Rosa, even when Grandma isn’t there
+          - The problem, because Rosa would no longer be lost in the snowstorm
+          - The ending, because Rosa would never get home for Mateo’s party
+          - The first person, because the boots are the ones telling the story
+        answer: 0
+        feedback:
+          '1': Rosa can still be lost in the snow. The storm is real.
+          '2': She can still get home by the porch light.
+          '3': Who says *I* in the story? Is it the boots?
+        hints:
+          - Think about what Grandma said in the flashback. Who makes it come true?
+        solution:
+          - Grandma said, “They always know the way home.” The boots make her words come true.
+          - The fantasy lets us imagine a gift that keeps helping someone. That is how fiction can open our minds to new possibilities.
+    wrapUp: One unreal element can make a story a fantasy. Take it out, and the sub-genre changes. So does what the story makes us imagine.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K3.5, K3.6, S3.4]
+    type: mc
+    prompt: Kai says, “Mrs. Kaur is a **major** character, because she points Rosa home. That helps solve the problem!” What is wrong with Kai’s thinking?
+    choices:
+      - Helping for one moment doesn’t make her the focus. We learn very little about her.
+      - Nothing, because every character who helps solve the problem is a major character.
+      - Mrs. Kaur can’t be in the story at all, because she isn’t part of Rosa’s family.
+      - Only people who talk can be major characters, and Mrs. Kaur never says a word.
+    answer: 0
+    feedback:
+      '1': Then the bus driver’s mistake, which starts the problem, would make him major too. What really makes a character major?
+      '2': Neighbours can be characters. The question is how important she is to the story.
+      '3': Characters are known by what they say, think **or do**. A quiet character could still be major.
+    hints:
+      - Who is the story about from beginning to end? How much do we learn about Mrs. Kaur?
+    solution:
+      - Kai noticed something true. Mrs. Kaur does help.
+      - But a major character is the **focus** of the story. We know what Rosa thinks and feels the whole way.
+      - Mrs. Kaur appears once, and we know almost nothing about her. She is a **minor** character, and still a helpful one.
