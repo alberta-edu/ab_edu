@@ -1,0 +1,144 @@
+---
+// How the parliamentary system set up in 1867 works (outcome RImgfrrzskGqH3G573n4Sw, K1.6, U1.1).
+// Hold a made-up election in nine ridings: each riding elects one Member of Parliament, the party
+// with the most MPs leads, its leader becomes prime minister, and the Governor General, who
+// represents the Crown, asks the leader to form the government. Parties are made up.
+const RIDINGS = 9;
+const PARTIES = [
+  { id: 'sun', name: 'Sun Party', icon: '☀️' },
+  { id: 'moon', name: 'Moon Party', icon: '🌙' },
+  { id: 'star', name: 'Star Party', icon: '⭐' },
+];
+---
+<parliament-sim data-parties={JSON.stringify(PARTIES)}>
+  <div class="g4ss-pa-legend" aria-hidden="true">
+    {PARTIES.map((p) => <span class={`g4ss-pa-chip g4ss-pa-${p.id}`}>{p.icon} {p.name}</span>)}
+  </div>
+  <p class="sci-pick-label">1. Each riding elects one MP</p>
+  <ol class="g4ss-pa-ridings">
+    {Array.from({ length: RIDINGS }, (_, i) => (
+      <li class="g4ss-pa-riding" data-pa-riding={i}>
+        <span class="g4ss-pa-box" aria-hidden="true">🗳️</span>
+        <span class="g4ss-pa-rname">Riding {i + 1}</span>
+        <span class="g4ss-pa-mp" data-pa-mp></span>
+      </li>
+    ))}
+  </ol>
+  <p class="sci-pick-label">2. MPs meet in the House of Commons</p>
+  <div class="g4ss-pa-house" aria-hidden="true">
+    {Array.from({ length: RIDINGS }, (_, i) => <span class="g4ss-pa-seat" data-pa-seat={i}></span>)}
+  </div>
+  <p class="sci-pick-label">3. Who leads?</p>
+  <div class="g4ss-pa-roles">
+    <div class="g4ss-pa-role" data-pa-role="gg"><span aria-hidden="true">👑</span><strong>Governor General</strong><span>Represents the Crown, the King or Queen</span></div>
+    <div class="g4ss-pa-arrow" aria-hidden="true">➜</div>
+    <div class="g4ss-pa-role" data-pa-role="pm"><span aria-hidden="true" data-pa="pmicon">🎩</span><strong>Prime Minister</strong><span data-pa="pmtext">The leader of the party with the most MPs</span></div>
+  </div>
+  <p class="sci-say" data-pa="say" aria-live="polite">Press the button to hold an election.</p>
+  <button type="button" class="btn btn--small" data-pa="vote">🗳️ Hold an election</button>
+  <p class="muted g4ss-note">A made-up election with 9 ridings. The real House of Commons had 181 MPs in 1867, and has 343 today.</p>
+</parliament-sim>
+
+<style is:global>
+  parliament-sim { display: block; }
+  .g4ss-pa-legend { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g4ss-pa-chip { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: var(--step--1); font-weight: 700; }
+  .g4ss-pa-sun { background: color-mix(in srgb, var(--sun) 45%, var(--surface)); }
+  .g4ss-pa-moon { background: color-mix(in srgb, var(--math) 35%, var(--surface)); }
+  .g4ss-pa-star { background: color-mix(in srgb, var(--ela) 30%, var(--surface)); }
+  .g4ss-pa-ridings { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr)); gap: 0.4rem; }
+  .g4ss-pa-riding { display: grid; justify-items: center; gap: 0.1rem; padding: 0.4rem; border: 2px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); transition: background 0.3s; }
+  .g4ss-pa-box { font-size: 1.3rem; }
+  .g4ss-pa-rname { font-size: var(--step--1); font-weight: 700; }
+  .g4ss-pa-mp { font-size: var(--step--1); min-height: 1.3em; }
+  .g4ss-pa-house { display: grid; grid-template-columns: repeat(9, minmax(0, 2rem)); gap: 0.35rem; justify-content: center; padding: 0.7rem; border-radius: var(--radius-sm); background: color-mix(in srgb, var(--science) 14%, var(--surface)); }
+  .g4ss-pa-seat { aspect-ratio: 1; border-radius: 50% 50% 6px 6px; background: var(--surface-3); border: 2px solid var(--line-strong); transition: background 0.3s, transform 0.3s; }
+  .g4ss-pa-seat.g4ss-pa-sun, .g4ss-pa-riding.g4ss-pa-sun { background: color-mix(in srgb, var(--sun) 45%, var(--surface)); }
+  .g4ss-pa-seat.g4ss-pa-moon, .g4ss-pa-riding.g4ss-pa-moon { background: color-mix(in srgb, var(--math) 35%, var(--surface)); }
+  .g4ss-pa-seat.g4ss-pa-star, .g4ss-pa-riding.g4ss-pa-star { background: color-mix(in srgb, var(--ela) 30%, var(--surface)); }
+  .g4ss-pa-roles { display: flex; align-items: stretch; gap: 0.5rem; }
+  .g4ss-pa-role { flex: 1; display: grid; justify-items: center; text-align: center; gap: 0.15rem; padding: 0.6rem; border-radius: var(--radius-sm); background: var(--surface-2); border: 2px solid var(--line); font-size: var(--step--1); }
+  .g4ss-pa-role > span:first-child { font-size: 1.6rem; }
+  .g4ss-pa-role.is-on { border-color: var(--accent); background: var(--accent-soft); }
+  .g4ss-pa-arrow { align-self: center; font-size: 1.4rem; color: var(--ink-3); }
+  parliament-sim > .btn { margin-top: 0.4rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4ss-pa-seat.is-new { transform: scale(1.25); }
+  }
+  @media (max-width: 30rem) {
+    .g4ss-pa-house { grid-template-columns: repeat(9, minmax(0, 1fr)); padding: 0.5rem; gap: 0.2rem; }
+  }
+</style>
+
+<script>
+  import { wait } from '../experiments/anim.ts';
+
+  interface Party { id: string; name: string; icon: string }
+
+  class ParliamentSim extends HTMLElement {
+    private run = 0;
+    private parties: Party[] = [];
+
+    connectedCallback() {
+      this.parties = JSON.parse(this.dataset.parties!);
+      this.querySelector('[data-pa="vote"]')!.addEventListener('click', () => this.vote());
+    }
+
+    private say(t: string) {
+      this.querySelector('[data-pa="say"]')!.textContent = t;
+    }
+
+    /** Nine riding results with one clear winner, so there is always a party with the most MPs. */
+    private results(): number[] {
+      for (;;) {
+        const r = Array.from({ length: 9 }, () => Math.floor(Math.random() * 3));
+        const counts = [0, 1, 2].map((p) => r.filter((x) => x === p).length);
+        const top = Math.max(...counts);
+        if (counts.filter((c) => c === top).length === 1) return r;
+      }
+    }
+
+    private async vote() {
+      const token = ++this.run;
+      const btn = this.querySelector<HTMLButtonElement>('[data-pa="vote"]')!;
+      btn.disabled = true;
+      const ids = this.parties.map((p) => p.id);
+      const ridings = [...this.querySelectorAll<HTMLElement>('[data-pa-riding]')];
+      const seats = [...this.querySelectorAll<HTMLElement>('[data-pa-seat]')];
+      for (const el of [...ridings, ...seats]) el.classList.remove(...ids, ...ids.map((i) => `g4ss-pa-${i}`), 'is-new');
+      ridings.forEach((r) => (r.querySelector('[data-pa-mp]')!.textContent = ''));
+      this.querySelectorAll('[data-pa-role]').forEach((r) => r.classList.remove('is-on'));
+      this.querySelector('[data-pa="pmtext"]')!.textContent = 'The leader of the party with the most MPs';
+      this.say('Voters in each riding choose their MP…');
+      const r = this.results();
+      // Seats fill from the winners' side, so each party's MPs sit together.
+      const order = [...r.keys()].sort((a, b) => r[a] - r[b]);
+      for (let i = 0; i < 9; i++) {
+        if (token !== this.run) return;
+        const p = this.parties[r[i]];
+        ridings[i].classList.add(`g4ss-pa-${p.id}`);
+        ridings[i].querySelector('[data-pa-mp]')!.textContent = `${p.icon} MP`;
+        const seat = seats[order.indexOf(i)];
+        seat.classList.add(`g4ss-pa-${p.id}`, 'is-new');
+        await wait(350);
+        seat.classList.remove('is-new');
+      }
+      const counts = [0, 1, 2].map((p) => r.filter((x) => x === p).length);
+      const win = this.parties[counts.indexOf(Math.max(...counts))];
+      const tally = this.parties.map((p, i) => `${p.icon} ${counts[i]}`).join(', ');
+      this.say(`Seats: ${tally}. The ${win.name} has the most MPs.`);
+      await wait(1200);
+      if (token !== this.run) return;
+      this.querySelector('[data-pa-role="gg"]')!.classList.add('is-on');
+      this.say(`The Governor General asks the ${win.name}’s leader to form the government.`);
+      await wait(1400);
+      if (token !== this.run) return;
+      this.querySelector('[data-pa-role="pm"]')!.classList.add('is-on');
+      this.querySelector('[data-pa="pmtext"]')!.textContent = `The ${win.name}’s leader`;
+      this.say(`The ${win.name}’s leader is now Prime Minister. Every MP still speaks for their riding.`);
+      btn.disabled = false;
+      btn.textContent = '🗳️ Hold another election';
+    }
+  }
+  customElements.define('parliament-sim', ParliamentSim);
+</script>
