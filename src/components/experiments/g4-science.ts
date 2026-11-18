@@ -39,3 +39,19 @@ export function barMagnet(cx: number, cy: number, left: Pole, w = 96, h = 32): s
  * (90°) the patch is as small as it gets; the lower the Sun, the more the same light spreads out.
  */
 export const patchWidth = (beam: number, angleDeg: number) => beam / Math.sin((angleDeg * Math.PI) / 180);
+
+/**
+ * Fish pond (SCI4-OI3-GQ1-LO1, U6.1, U6.2): an invented pond that holds at most `cap` fish. Each
+ * spring the fish increase by half (rounded down), up to the cap; then a family takes up to `take`.
+ * Returns the fish left after each year's catch.
+ */
+export function pondYears(start: number, cap: number, take: number, years: number): number[] {
+  const out: number[] = [];
+  let fish = start;
+  for (let y = 0; y < years; y++) {
+    fish = Math.min(cap, fish + Math.floor(fish / 2));
+    fish -= Math.min(take, fish);
+    out.push(fish);
+  }
+  return out;
+}

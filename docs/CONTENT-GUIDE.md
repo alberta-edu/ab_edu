@@ -94,7 +94,7 @@ Visuals:
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
-`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`.
+`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`, `g4-fish-pond`.
 
 If an idea would be clearer as an animation, 3D view or manipulative, build it in
 `src/components/visuals/` (lazy-loaded if heavy) instead of describing it.

@@ -22,6 +22,7 @@ import G4MagnetPoles from './G4MagnetPoles.astro';
 import G4HillRain from './G4HillRain.astro';
 import G4SunAngle from './G4SunAngle.astro';
 import G4ThirstyPlant from './G4ThirstyPlant.astro';
+import G4FishPond from './G4FishPond.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -49,6 +50,7 @@ const animations = {
   'g4-hill-rain': G4HillRain,
   'g4-sun-angle': G4SunAngle,
   'g4-thirsty-plant': G4ThirstyPlant,
+  'g4-fish-pond': G4FishPond,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
