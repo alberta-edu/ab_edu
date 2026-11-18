@@ -92,7 +92,7 @@ Visuals:
   `sentence-rhythm`, `show-dial`, `topic-funnel`, `sentence-lab` (`mode: roles`, `tense`, `adverb`,
   `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`)
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
-- **Grade 4 ELAL:** `book-index`, `plot-braid`, `text-parts`, `concrete-poem`
+- **Grade 4 ELAL:** `book-index`, `plot-braid`, `text-parts`, `concrete-poem`, `phrase-reader`, `voice-aim`
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
 `energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`.

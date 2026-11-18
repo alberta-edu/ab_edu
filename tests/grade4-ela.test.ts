@@ -42,3 +42,48 @@ describe('concrete poem', () => {
     expect(shapePath('spiral').startsWith('M')).toBe(true);
   });
 });
+
+import { parsePhrases, plainLine, phraseTime } from '../src/components/visuals/phrase-reader.ts';
+import { projection } from '../src/components/visuals/voice-aim.ts';
+
+describe('phrase reader', () => {
+  it('splits a marked line into phrases, pauses and stressed words', () => {
+    const ph = parsePhrases(['The snow fell / all *night* // and the town slept']);
+    expect(ph.map((p) => p.words.map((w) => w.text).join(' '))).toEqual(['The snow fell', 'all night', 'and the town slept']);
+    expect(ph.map((p) => p.pause)).toEqual([1, 2, 2]);
+    expect(ph[1].words[1].stress).toBe(true);
+  });
+
+  it('keeps punctuation next to a stressed word', () => {
+    expect(parsePhrases(['I said *no!*'])[0].words[2]).toEqual({ text: 'no!', stress: true });
+  });
+
+  it('ends every line with a long pause', () => {
+    const ph = parsePhrases(['one / two', 'three']);
+    expect(ph.map((p) => [p.line, p.pause])).toEqual([[0, 1], [0, 2], [1, 2]]);
+  });
+
+  it('gives the plain words without marks', () => {
+    expect(plainLine('all *night* // long')).toBe('all night long');
+  });
+
+  it('holds a long pause longer than a short one', () => {
+    const [a, b] = parsePhrases(['go / go']);
+    expect(phraseTime(b)).toBeGreaterThan(phraseTime(a));
+  });
+});
+
+describe('voice aim', () => {
+  it('reaches the target only with breath, clarity and intention together', () => {
+    expect(projection(true, true, true).heard).toBe(true);
+    for (const [b, c, i] of [[true, true, false], [true, false, true], [false, true, true]]) expect(projection(b, c, i).heard).toBe(false);
+  });
+
+  it('names what is missing', () => {
+    expect(projection(true, false, false).missing).toEqual(['clarity', 'intention']);
+  });
+
+  it('carries further with breath', () => {
+    expect(projection(true, false, false).reach).toBeGreaterThan(projection(false, false, false).reach);
+  });
+});

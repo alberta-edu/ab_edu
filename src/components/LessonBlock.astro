@@ -80,6 +80,8 @@ import BookIndex from './visuals/BookIndex.astro';
 import PlotBraid from './visuals/PlotBraid.astro';
 import TextParts from './visuals/TextParts.astro';
 import ConcretePoem from './visuals/ConcretePoem.astro';
+import PhraseReader from './visuals/PhraseReader.astro';
+import VoiceAim from './visuals/VoiceAim.astro';
 
 interface Props {
   block: LessonBlock;
@@ -163,6 +165,8 @@ const visuals = {
   'plot-braid': PlotBraid,
   'text-parts': TextParts,
   'concrete-poem': ConcretePoem,
+  'phrase-reader': PhraseReader,
+  'voice-aim': VoiceAim,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
