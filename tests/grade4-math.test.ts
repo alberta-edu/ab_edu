@@ -90,3 +90,23 @@ describe('equal balance', () => {
     expect(tilt(8, 8)).toBe(0);
   });
 });
+
+import { angleType, turnText, pairText, nearestBenchmark, angleAt } from '../src/components/visuals/angles.ts';
+
+describe('angles', () => {
+  it('names angles by size', () => {
+    expect([30, 90, 135, 180, 270, 360].map(angleType)).toEqual(['acute', 'right', 'obtuse', 'straight', 'more than a straight angle', 'a full turn']);
+    expect(turnText(270)).toBe('3/4 of a full turn');
+    expect(nearestBenchmark(130)).toBe(90);
+  });
+  it('describes angle pairs', () => {
+    expect(pairText(35, 90)).toBe('35° + 55° = 90°. They are complementary angles.');
+    expect(pairText(120, 180)).toBe('120° + 60° = 180°. They are supplementary angles.');
+  });
+  it('reads the angle of a point around the vertex', () => {
+    expect(angleAt(300, 160)).toBe(0);
+    expect(angleAt(200, 60)).toBe(90);
+    expect(angleAt(100, 160)).toBe(180);
+    expect(angleAt(200, 260)).toBe(270);
+  });
+});

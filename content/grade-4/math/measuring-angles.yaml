@@ -1,0 +1,302 @@
+id: measuring-angles
+grade: 4
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT4-OI5-GQ2-LO1]
+order: 10
+title: Measuring Angles in Degrees
+shortTitle: Measuring angles
+summary: >-
+  Measure angles in degrees with a protractor, name them as acute, right, obtuse or straight, see
+  90° to 360° as parts of a turn, and estimate.
+
+bigIdea: |-
+  - A full turn is split into **360 equal parts**. Each part is **1 degree** (1°).
+  - Angles are named by size: **acute**, **right**, **obtuse** and **straight**.
+  - Benchmarks such as **45°, 90° and 180°** help you estimate an angle before you measure it.
+
+lesson:
+  - title: A full turn is 360°
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1, U1.2, S1.3]
+        component: angle-turner
+        props: { mode: measure, angle: 90 }
+        caption: |-
+          1. Drag the dot, or use the slider, to turn the arm.
+          2. Try every benchmark button. Watch what fraction of a full turn each one is.
+      - type: callout
+        variant: remember
+        covers: [Fw_y7H1B706duQqzDkWglA#U1.2, Fw_y7H1B706duQqzDkWglA#S2.4]
+        title: Remember from Grade 3
+        body: An angle can be a **turn** of an arm around a vertex. The corner of a page is a right angle.
+
+  - title: Fractions of a turn
+    blocks:
+      - type: table
+        covers: [S1.3, K1.1]
+        headers: [Turn, Fraction of a full turn, Degrees]
+        rows:
+          - ['A quarter turn', '\(\frac{1}{4}\)', '90°']
+          - ['A half turn', '\(\frac{1}{2}\)', '180°']
+          - ['A three-quarter turn', '\(\frac{3}{4}\)', '270°']
+          - ['A full turn', '1 whole', '360°']
+      - type: callout
+        variant: tip
+        covers: [U1.2]
+        title: Degrees are tiny angles
+        body: An angle is measured by counting how many **1° angles** fit inside it, like counting squares to find an area.
+
+  - title: Reading a protractor
+    blocks:
+      - type: visual
+        covers: [S1.1]
+        component: angle-turner
+        props: { mode: measure, angle: 40 }
+        caption: Turn the arm to 40°, 100° and 150°. Read the number where the arm crosses the protractor.
+      - type: callout
+        variant: tip
+        covers: [S1.1]
+        title: How to use a protractor
+        body: |-
+          1. Put the centre of the protractor on the **vertex**.
+          2. Line up one arm with **0**.
+          3. Follow the scale that starts at 0 to the other arm. Most protractors have two scales.
+
+  - title: Naming angles
+    blocks:
+      - type: compare
+        covers: [K1.2, S1.2]
+        columns:
+          - title: Acute
+            body: Less than **90°**. Sharper than the corner of a page.
+          - title: Right
+            body: Exactly **90°**. A square corner.
+          - title: Obtuse
+            body: Between **90°** and **180°**. Wider than a square corner.
+          - title: Straight
+            body: Exactly **180°**. The arms make a straight line.
+
+  - title: Estimate with benchmarks
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.4]
+        component: angle-turner
+        props: { mode: measure, angle: 130, hide: true }
+        caption: The measure is hidden. Compare the angle with a benchmark and say your estimate. Then press **Show**, or try **New angle**.
+
+keyTerms:
+  - term: Degree (°)
+    covers: [K1.1]
+    definition: 'The unit for measuring angles. A full turn is 360°.'
+  - term: Protractor
+    covers: [S1.1]
+    definition: A tool for measuring angles in degrees.
+  - term: Acute, right, obtuse, straight
+    covers: [K1.2]
+    definition: 'Angles less than 90°, exactly 90°, between 90° and 180°, and exactly 180°.'
+  - term: Benchmark
+    covers: [K1.3]
+    definition: 'A known angle, such as 45°, 90° or 180°, to compare other angles with.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: An angle measures **135°**. What kind of angle is it?
+    choices: ['Obtuse', 'Acute', 'Right', 'Straight']
+    answer: 0
+    feedback:
+      '1': 'An acute angle is less than 90°. Is 135° less than 90°?'
+      '2': 'A right angle is exactly 90°.'
+      '3': 'A straight angle is exactly 180°. 135° is not that wide.'
+    hints:
+      - Is 135° more or less than 90°? More or less than 180°?
+    solution:
+      - '135° is between 90° and 180°, so it is **obtuse**.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.3, K1.1]
+    type: number
+    prompt: A full turn is **360°**. How many degrees is **half** a turn?
+    unit: °
+    answer: 180
+    verify: 360 / 2
+    hints:
+      - Half of 360 is what?
+    solution:
+      - 'Half of 360° is **180°**. That is a straight angle.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.1]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 400 200" class="fig-svg" role="img" aria-label="A protractor with two scales over an angle. One arm lies along 0 on the inside scale. The other arm passes the marks 50 on the inside scale and 130 on the outside scale."><path style="fill:color-mix(in srgb, var(--sun) 18%, transparent);stroke:var(--ink-3);stroke-width:1.5" d="M50 175 A150 150 0 0 1 350 175 Z"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="350.0" y1="175.0" x2="338.0" y2="175.0"/><text class="fig-small" x="326.0" y="179.0" text-anchor="middle">180</text><text class="fig-small" style="font-weight:700" x="304.0" y="179.0" text-anchor="middle">0</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="347.7" y1="149.0" x2="335.9" y2="151.0"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="341.0" y1="123.7" x2="329.7" y2="127.8"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="329.9" y1="100.0" x2="319.5" y2="106.0"/><text class="fig-small" x="309.1" y="116.0" text-anchor="middle">150</text><text class="fig-small" style="font-weight:700" x="290.1" y="127.0" text-anchor="middle">30</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="314.9" y1="78.6" x2="305.7" y2="86.3"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="296.4" y1="60.1" x2="288.7" y2="69.3"/><text class="fig-small" x="281.0" y="82.5" text-anchor="middle">130</text><text class="fig-small" style="font-weight:700" x="266.8" y="99.3" text-anchor="middle">50</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="275.0" y1="45.1" x2="269.0" y2="55.5"/><text class="fig-small" x="263.0" y="69.9" text-anchor="middle">120</text><text class="fig-small" style="font-weight:700" x="252.0" y="88.9" text-anchor="middle">60</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="251.3" y1="34.0" x2="247.2" y2="45.3"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="226.0" y1="27.3" x2="224.0" y2="39.1"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="200.0" y1="25.0" x2="200.0" y2="37.0"/><text class="fig-small" x="200.0" y="53.0" text-anchor="middle">90</text><text class="fig-small" style="font-weight:700" x="200.0" y="75.0" text-anchor="middle">90</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="174.0" y1="27.3" x2="176.0" y2="39.1"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="148.7" y1="34.0" x2="152.8" y2="45.3"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="125.0" y1="45.1" x2="131.0" y2="55.5"/><text class="fig-small" x="137.0" y="69.9" text-anchor="middle">60</text><text class="fig-small" style="font-weight:700" x="148.0" y="88.9" text-anchor="middle">120</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="103.6" y1="60.1" x2="111.3" y2="69.3"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="85.1" y1="78.6" x2="94.3" y2="86.3"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="70.1" y1="100.0" x2="80.5" y2="106.0"/><text class="fig-small" x="90.9" y="116.0" text-anchor="middle">30</text><text class="fig-small" style="font-weight:700" x="109.9" y="127.0" text-anchor="middle">150</text><line class="fig-grid" style="stroke:var(--ink-2)" x1="59.0" y1="123.7" x2="70.3" y2="127.8"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="52.3" y1="149.0" x2="64.1" y2="151.0"/><line class="fig-grid" style="stroke:var(--ink-2)" x1="50.0" y1="175.0" x2="62.0" y2="175.0"/><text class="fig-small" x="74.0" y="179.0" text-anchor="middle">0</text><text class="fig-small" style="font-weight:700" x="96.0" y="179.0" text-anchor="middle">180</text><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="200" y1="175" x2="358" y2="175"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="200" y1="175" x2="301.6" y2="54.0"/><circle class="cg-pt" cx="200" cy="175" r="5"/></svg>
+    prompt: One arm of this angle lines up with **0** on the inside scale. What does the angle measure?
+    choices: ['50°', '130°', '40°', '180°']
+    answer: 0
+    feedback:
+      '1': '130 is on the outside scale, which starts at 0 on the other side. Is this angle acute or obtuse?'
+      '2': '40° is what is left over to make 90°. Read where the arm crosses the scale.'
+      '3': '180° would be a straight line. The arms here make a sharp angle.'
+    hints:
+      - Which scale starts at 0 on the arm that lies flat?
+      - Is the angle acute or obtuse? That tells you which number makes sense.
+    solution:
+      - 'The flat arm lines up with 0 on the **inside** scale, so read the inside scale.'
+      - 'The other arm crosses **50**. The angle is acute, so 50° makes sense. 130° would be obtuse.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: estimate
+    covers: [S1.4, K1.3]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 300 170" class="fig-svg fig-svg--square" role="img" aria-label="An angle made by two arms meeting at a dot."><path class="cg-poly" d="M150 150 L184 150 A34 34 0 0 0 176.0 128.1 Z"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="150" y1="150" x2="270" y2="150"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="150" y1="150" x2="241.9" y2="72.9"/><circle class="cg-pt" cx="150" cy="150" r="5"/></svg>
+    prompt: Without a protractor, which is the best estimate for this angle?
+    choices: ['About 45°', 'About 90°', 'About 135°', 'About 180°']
+    answer: 0
+    feedback:
+      '1': '90° is a square corner. Is this angle as wide as the corner of a page?'
+      '2': '135° is wider than a square corner. This angle is sharper.'
+      '3': '180° is a straight line. These arms are far from a straight line.'
+    hints:
+      - Is it less than a right angle?
+      - Picture a right angle cut in half. That is 45°.
+    solution:
+      - 'The angle is less than a square corner, so it is less than 90°.'
+      - 'It looks close to half of a right angle, so **about 45°** is the best estimate.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.1]
+    type: number
+    prompt: The minute hand of a clock turns from the **12** to the **9**. How many degrees does it turn?
+    unit: °
+    answer: 270
+    verify: 3 * 90
+    hints:
+      - A full turn of the minute hand is 360°. From 12 to 9 is what fraction of a turn?
+      - From 12 to 3 is a quarter turn.
+    solution:
+      - 'From 12 to 3, to 6, to 9 is three quarter turns.'
+      - '\(3 \times 90 = 270\), so the hand turns **270°**, three-quarters of a full turn.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [U1.2, S1.1]
+    type: mc
+    prompt: Two angles both measure **60°**. One is drawn with short arms. The other has very long arms. Jo says the long one is the bigger angle. What do you tell Jo?
+    choices:
+      - They are the same size. An angle measures the turn, not the length of the arms.
+      - Jo is right. Longer arms make a bigger angle.
+      - The short one is bigger, because its arms are closer together.
+      - You can’t compare angles unless the arms are the same length.
+    answer: 0
+    feedback:
+      '1': 'Put the angles on a protractor. Do they cross the same number?'
+      '2': 'The arms of both angles open by the same turn. Does the length change the turn?'
+      '3': 'You can extend the arms of any angle. Does that change the turn between them?'
+    hints:
+      - What does a protractor measure, the arms or the turn between them?
+    solution:
+      - 'Both angles measure 60°, so they are the **same size**.'
+      - 'An angle is how much one arm turns from the other. Longer arms don’t make a bigger turn.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.3, K1.1]
+    type: mc
+    prompt: A snowboarder does a **180** in the air, turning half a turn. Then she does another 180, turning the same way. Which way is she facing now?
+    choices: ['The same way she started', 'Backwards', 'Sideways', 'Upside down']
+    answer: 0
+    feedback:
+      '1': 'One 180 leaves her facing backwards. What does a second 180 do?'
+      '2': 'Sideways would take a quarter turn, 90°. How many degrees did she turn in all?'
+      '3': 'She turns around, like spinning on the spot. She doesn’t flip over.'
+    hints:
+      - How many degrees did she turn in all?
+    solution:
+      - '\(180 + 180 = 360\). That is a full turn.'
+      - 'After a full turn, she is facing **the same way she started**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: pattern
+    covers: [K1.1, S1.3, U1.2]
+    type: investigation
+    prompt: |-
+      A robot vacuum turns on the spot, by the same angle each time, until it faces the way it started.
+    parts:
+      - type: number
+        prompt: It turns **90°** each time. How many turns does it make?
+        unit: turns
+        answer: 4
+        verify: 360 / 90
+        hints:
+          - How many quarter turns make a full turn?
+        solution:
+          - '90° is a quarter turn, and 4 quarter turns make 360°. It makes **4** turns.'
+      - type: number
+        prompt: A new setting makes it turn **45°** each time. How many turns now?
+        unit: turns
+        answer: 8
+        verify: 2 * 4
+        hints:
+          - 45° is half of 90°. What happens to the number of turns?
+        solution:
+          - 'Each turn is half as big, so it takes twice as many: **8** turns.'
+          - 'Check by skip counting: 45, 90, 135, 180, 225, 270, 315, 360.'
+      - type: number
+        prompt: Another setting turns **30°** each time. How many turns now?
+        unit: turns
+        answer: 12
+        verify: 360 / 30
+        hints:
+          - Skip count by 30 until you reach 360. Or think how many 30s fit in 90.
+        solution:
+          - '3 turns of 30° make 90°. 4 quarter turns make 360°, so \(4 \times 3 = 12\) turns.'
+    wrapUp: The smaller the angle, the more turns it takes to go all the way around. The angle times the number of turns always makes 360°.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.2, K1.3, S1.4]
+    type: build
+    prompt: |-
+      Invent an **obtuse** angle that is **closer to the 90° benchmark** than to 180°. Use a whole number of tens of degrees.
+    fields:
+      - { name: a, label: 'Your angle', unit: '°' }
+    rules:
+      - { test: 'a % 10 == 0 && a > 0', fail: 'Use a whole number of tens, such as 70° or 150°.' }
+      - { test: 'a > 90 && a < 180', fail: 'An obtuse angle is between 90° and 180°.' }
+      - { test: 'a < 135', fail: 'That is closer to 180° than to 90°. Which angle is exactly halfway?' }
+    examples:
+      - { a: 100 }
+      - { a: 110 }
+      - { a: 130 }
+    counterexamples:
+      - { a: 90 }
+      - { a: 140 }
+      - { a: 80 }
+      - { a: 135 }
+    hints:
+      - Which angles are obtuse?
+      - Which angle is exactly halfway between 90° and 180°?
+    solution:
+      - '135° is halfway between 90° and 180°. Angles between 90° and 135° are closer to 90°.'
+      - '**100°, 110°, 120° and 130°** all work. Each is wider than a square corner, but not by much.'
