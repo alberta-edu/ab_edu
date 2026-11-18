@@ -145,3 +145,14 @@ describe('prism faces', () => {
     expect(relationText(tri, 2)).toBe('The bottom face has 0 parallel faces, 2 perpendicular faces and 2 faces that are neither.');
   });
 });
+
+import { tiles, starPieces } from '../src/components/visuals/tile-cover.ts';
+
+describe('tile cover', () => {
+  it('covers the same rectangle with different counts', () => {
+    expect(['big', 'rect', 'square', 'triangle', 'circle'].map((k) => tiles(k as Parameters<typeof tiles>[0]).length)).toEqual([6, 12, 24, 48, 24]);
+  });
+  it('builds a star blanket from 32 diamonds', () => {
+    expect(starPieces()).toHaveLength(32);
+  });
+});
