@@ -78,6 +78,7 @@ import PunctLab from './visuals/PunctLab.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 import BookIndex from './visuals/BookIndex.astro';
 import PlotBraid from './visuals/PlotBraid.astro';
+import TextParts from './visuals/TextParts.astro';
 
 interface Props {
   block: LessonBlock;
@@ -159,6 +160,7 @@ const visuals = {
   'inference-equation': InferenceEquation,
   'book-index': BookIndex,
   'plot-braid': PlotBraid,
+  'text-parts': TextParts,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
