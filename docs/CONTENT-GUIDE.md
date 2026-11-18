@@ -88,7 +88,9 @@ Visuals:
   `issue-investigator`, `democracy-globe` (`focus`: a stop id), `athens-assembly`, `democracy-map`
   (`view: greece` or `compare`), `gov-branches` (`set: rome` or `canada`),
   `crown-balance`, `grand-council`, `election-sim`, `charter-check`,
-  `project-path`
+  `project-path`, `canada-map` (`mode: explorers`, `colonies`, `borders` with optional `eras`,
+  or `dots` with `set: settlements` or `posts`), `two-row`, `fur-trade` (`mode: ocean`, `post` or
+  `fort`), `law-lens`, `parliament`, `rights-scale`
 - **ELAL:** `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`),
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),

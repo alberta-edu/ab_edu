@@ -1,0 +1,86 @@
+---
+// Pick a law and a group, and see how it changed four parts of life (outcome
+// XiuhdUoB8EacTXvZQi9Djw, K1.8 and K1.9). Every card is in the HTML, so it reads without JavaScript.
+import { ASPECTS, GROUPS, LAWS, LENS } from './law-lens-data.ts';
+---
+<law-lens>
+  <p class="sci-pick-label">The law</p>
+  <div class="seg g4ss-ll-seg" role="group" aria-label="Choose a law">
+    {LAWS.map((l, i) => <button type="button" data-ll-law={l.id} aria-pressed={String(i === 0)}>{l.label}</button>)}
+  </div>
+  <p class="sci-pick-label">Whose life?</p>
+  <div class="sci-pick" role="group" aria-label="Choose a group">
+    {GROUPS.map((g, i) => <button type="button" data-ll-group={g.id} aria-pressed={String(i === 0)}><span aria-hidden="true">{g.icon}</span> {g.label}</button>)}
+  </div>
+  <div class="g4ss-ll-grid" aria-live="polite">
+    {
+      LAWS.map((l) =>
+        GROUPS.map((g) => (
+          <div class="g4ss-ll-set" data-ll-set={`${l.id}-${g.id}`}>
+            {ASPECTS.map((a) => {
+              const t = LENS[l.id][g.id][a.id];
+              return (
+                <div class={`g4ss-ll-card${t ? '' : ' g4ss-ll-card--same'}`}>
+                  <h4><span aria-hidden="true">{a.icon}</span> {a.label}</h4>
+                  <p>{t ?? 'Not much changed here.'}</p>
+                </div>
+              );
+            })}
+          </div>
+        )),
+      )
+    }
+  </div>
+</law-lens>
+
+<style is:global>
+  law-lens { display: block; }
+  law-lens .sci-pick-label:first-child { margin-top: 0; }
+  .g4ss-ll-seg { flex-wrap: wrap; border-radius: var(--radius-sm); }
+  .g4ss-ll-grid { margin-top: 0.8rem; }
+  .g4ss-ll-set { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+  .g4ss-ll-card { padding: 0.7rem 0.8rem; border-radius: var(--radius-sm); background: var(--social-soft); border: 2px solid var(--social); }
+  .g4ss-ll-card--same { background: var(--surface-2); border-color: var(--line); color: var(--ink-3); }
+  .g4ss-ll-card h4 { margin: 0 0 0.25rem; font-size: var(--step--1); }
+  .g4ss-ll-card p { margin: 0; font-size: var(--step--1); line-height: 1.4; }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4ss-ll-set.is-new .g4ss-ll-card:not(.g4ss-ll-card--same) { animation: g4ss-ll-in 0.45s ease both; }
+    .g4ss-ll-set.is-new .g4ss-ll-card:nth-child(2) { animation-delay: 0.08s; }
+    .g4ss-ll-set.is-new .g4ss-ll-card:nth-child(3) { animation-delay: 0.16s; }
+    .g4ss-ll-set.is-new .g4ss-ll-card:nth-child(4) { animation-delay: 0.24s; }
+    @keyframes g4ss-ll-in { from { opacity: 0; transform: translateY(6px); } }
+  }
+  @media (max-width: 34rem) {
+    .g4ss-ll-set { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  class LawLens extends HTMLElement {
+    private law = 'rp';
+    private group = 'fn';
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-ll-law]').forEach((b) => b.addEventListener('click', () => this.show(b.dataset.llLaw!, this.group)));
+      this.querySelectorAll<HTMLButtonElement>('[data-ll-group]').forEach((b) => b.addEventListener('click', () => this.show(this.law, b.dataset.llGroup!)));
+      this.show(this.law, this.group);
+    }
+
+    private show(law: string, group: string) {
+      this.law = law;
+      this.group = group;
+      this.querySelectorAll('[data-ll-law]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-ll-law') === law)));
+      this.querySelectorAll('[data-ll-group]').forEach((b) => b.setAttribute('aria-pressed', String(b.getAttribute('data-ll-group') === group)));
+      this.querySelectorAll<HTMLElement>('[data-ll-set]').forEach((s) => {
+        const on = s.dataset.llSet === `${law}-${group}`;
+        s.hidden = !on;
+        s.classList.remove('is-new');
+        if (on) {
+          void s.offsetWidth;
+          s.classList.add('is-new');
+        }
+      });
+    }
+  }
+  customElements.define('law-lens', LawLens);
+</script>
