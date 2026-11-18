@@ -128,3 +128,20 @@ describe('shape families', () => {
     expect(names).toEqual(['equilateral acute', 'isosceles acute', 'isosceles right', 'isosceles obtuse', 'scalene acute', 'scalene right', 'scalene obtuse']);
   });
 });
+
+import { boxFaces, triFaces, relation, relationText } from '../src/components/visuals/prism.ts';
+
+describe('prism faces', () => {
+  it('finds parallel and perpendicular faces of a box', () => {
+    const box = boxFaces();
+    expect(relation(box[0], box[1])).toBe('parallel');
+    expect(relation(box[0], box[2])).toBe('perpendicular');
+    expect(relationText(box, 0)).toBe('The top face has 1 parallel face and 4 perpendicular faces.');
+  });
+  it('shows a triangular prism has only one pair of parallel faces', () => {
+    const tri = triFaces();
+    expect(relation(tri[0], tri[1])).toBe('parallel');
+    expect(relation(tri[2], tri[3])).toBe('neither');
+    expect(relationText(tri, 2)).toBe('The bottom face has 0 parallel faces, 2 perpendicular faces and 2 faces that are neither.');
+  });
+});
