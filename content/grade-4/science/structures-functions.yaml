@@ -1,0 +1,401 @@
+id: structures-functions
+grade: 4
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI4-OI4-GQ1-LO1]
+order: 8
+title: Structures and What They Do
+shortTitle: Structures and functions
+summary: >-
+  Classify Alberta animals, find the jobs of a wild rose's parts, and test which bird beak can reach
+  nectar or crack a seed.
+
+bigIdea: |-
+  - **Organisms** are living things that respond to the world around them: plants, humans and other animals.
+  - **Structures** are body parts and other features. Each one has a **function**, a job.
+  - Structures help organisms eat, move, protect themselves, sense and reproduce.
+  - Scientists classify organisms by appearance, habitat and structures.
+
+lesson:
+  - title: What is an organism?
+    blocks:
+      - type: compare
+        covers: [K1.1]
+        columns:
+          - title: 🌻 A sunflower
+            body: Turns toward the light. It **responds**, so it is an organism.
+          - title: 🐕 A dog
+            body: Runs to its bowl when it hears food. It **responds**, so it is an organism.
+          - title: 🪨 A rock
+            body: Does nothing when the light or sound changes. It is **not** a living thing.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI4-GQ1-LO1#K3.1']
+        title: From Grade 3
+        body: Plants and animals use their senses to respond to water, food, temperature and light.
+
+  - title: Sort Alberta’s animals
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: fur, label: Fur, icon: 🦊 }
+            - { id: feathers, label: Feathers, icon: 🪶 }
+            - { id: scales, label: Scales, icon: 🐍 }
+          cards:
+            - { text: Bighorn sheep, bin: fur, why: Alberta’s provincial mammal has a thick coat of fur. }
+            - { text: Great horned owl, bin: feathers, why: Alberta’s provincial bird is covered in feathers. }
+            - { text: Northern pike, bin: scales, why: Fish like the pike are covered in scales. }
+            - { text: Red fox, bin: fur, why: Its bushy fur keeps it warm all winter. }
+            - { text: Plains garter snake, bin: scales, why: Snakes are covered in dry scales. }
+            - { text: Black-capped chickadee, bin: feathers, why: All birds have feathers. }
+        caption: This sort uses one **structure**, body covering. You could also sort by **appearance** or **habitat**.
+
+  - title: Plant structures
+    blocks:
+      - type: figure
+        covers: [K1.3, K1.4, S1.3, K1.5]
+        figure: >-
+          <svg viewBox="0 0 440 300" class="fig-svg" role="img" aria-label="A wild rose plant with labels: flower at the top, leaves, red rose hips (the fruit), thorns on the stem, and roots under the soil.">
+          <rect class="sci-ground" x="0" y="220" width="440" height="80"/>
+          <path d="M210,220 L210,60" style="stroke:#4f7a3a;stroke-width:6"/><path d="M210,150 L260,110" style="stroke:#4f7a3a;stroke-width:4"/><path d="M210,120 L160,90" style="stroke:#4f7a3a;stroke-width:4"/>
+          <g style="fill:#7b4a2a"><path d="M213,170 l8,-4 l-8,-2 Z"/><path d="M207,195 l-8,-4 l8,-2 Z"/><path d="M213,95 l8,-4 l-8,-2 Z"/></g>
+          <g style="fill:#5a9a3f;stroke:#3a6a2a;stroke-width:1.5"><ellipse cx="236" cy="136" rx="14" ry="7" transform="rotate(-35 236 136)"/><ellipse cx="184" cy="108" rx="14" ry="7" transform="rotate(35 184 108)"/><ellipse cx="226" cy="190" rx="13" ry="6" transform="rotate(-20 226 190)"/></g>
+          <g style="fill:#f4a6c0;stroke:#b5527a;stroke-width:1.5"><circle cx="210" cy="44" r="11"/><circle cx="225" cy="54" r="11"/><circle cx="218" cy="70" r="11"/><circle cx="202" cy="70" r="11"/><circle cx="195" cy="54" r="11"/></g><circle cx="210" cy="58" r="6" style="fill:#f2cf3a"/>
+          <ellipse cx="264" cy="108" rx="7" ry="9" style="fill:#d23b2e"/><ellipse cx="156" cy="88" rx="7" ry="9" style="fill:#d23b2e"/>
+          <path d="M210,220 Q190,250 170,280 M210,220 Q230,250 255,282 M210,220 L208,290 M200,240 L184,252 M220,244 L236,256" style="fill:none;stroke:#c9a46b;stroke-width:3"/>
+          <g class="fig-small" style="fill:var(--ink);font-weight:700">
+          <text x="250" y="40">Flower: makes seeds</text><text x="280" y="112">Fruit (rose hip):</text><text x="280" y="128">holds the seeds</text>
+          <text x="20" y="128">Leaf: catches</text><text x="20" y="144">sunlight to make food</text><text x="232" y="176">Thorns:</text><text x="232" y="192">protect the plant</text>
+          <text x="270" y="262">Roots: take in water,</text><text x="270" y="278">hold the plant in place</text><text x="20" y="200">Stem: holds it up</text></g>
+          </svg>
+        caption: The wild rose is Alberta’s provincial flower. Each structure has a job.
+      - type: table
+        covers: [K1.5, S1.3]
+        headers: [Function, Plant structure]
+        rows:
+          - ['Getting water', 'Roots take in water from the soil.']
+          - ['Making food', 'Leaves catch sunlight to make the plant’s food.']
+          - ['Protecting', 'Thorns keep hungry animals away.']
+          - ['Reproducing', 'Flowers make seeds. Fruit holds the seeds and helps spread them.']
+
+  - title: 'Virtual experiment: beaks as tools'
+    blocks:
+      - type: experiment
+        covers: [S1.4, K1.5, K1.4, K1.3]
+        title: Give two birds two different foods
+        question: |-
+          Two Alberta birds try two foods.
+
+          - **Hummingbird:** a long, thin beak
+          - **Evening grosbeak:** a short, thick beak
+
+          The foods are **nectar** deep inside a long flower, and a hard **sunflower seed**.
+        animation: g4-beak-tools
+        predict:
+          choices:
+            - Each bird can eat only one of the two foods.
+            - Both birds can eat both foods.
+            - The grosbeak can eat both foods.
+            - The hummingbird can eat both foods.
+          answer: 0
+        observe: |-
+          - The **hummingbird’s** long, thin beak reached the nectar. It couldn’t crack the seed.
+          - The **grosbeak’s** short, thick beak couldn’t reach the nectar. It cracked the seed open.
+        explain: |-
+          - A beak is a **structure**. Its shape fits its **function**: getting a certain kind of food.
+          - A long, thin beak works like a straw. A short, thick beak works like a nutcracker.
+
+  - title: Animal structures
+    blocks:
+      - type: visual
+        covers: [S1.4, K1.5, K1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: eat, label: Eating, icon: 🍽️ }
+            - { id: move, label: Moving, icon: 🏃 }
+            - { id: protect, label: Protecting, icon: 🛡️ }
+            - { id: sense, label: Sensing, icon: 👀 }
+          cards:
+            - { text: A beaver’s strong front teeth, bin: eat, why: They gnaw bark and branches to eat. }
+            - { text: A porcupine’s quills, bin: protect, why: They stab any predator that bites. }
+            - { text: A snowshoe hare’s big furry back feet, bin: move, why: 'Like snowshoes, they keep the hare on top of deep snow.' }
+            - { text: A great horned owl’s huge eyes, bin: sense, why: They help it see prey in the dark. }
+            - { text: A turtle’s shell, bin: protect, why: The turtle pulls its head and legs inside to stay safe. }
+            - { text: A duck’s webbed feet, bin: move, why: They push the water like paddles. }
+            - { text: A wolf’s sharp teeth, bin: eat, why: They grab and tear meat. }
+            - { text: A deer’s large ears, bin: sense, why: They turn to catch the faintest sounds. }
+        caption: What job does each structure do?
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI4-GQ1-LO1#K2.1', 'SCI3-OI4-GQ1-LO1#K2.2']
+        title: From Grade 3
+        body: Carnivores eat mostly meat. Herbivores eat only plants. Their teeth fit their food.
+
+  - title: Plants and animals compared
+    blocks:
+      - type: table
+        covers: [S1.5, K1.5, U1.1]
+        headers: [Function, In a plant, In an animal]
+        rows:
+          - ['Protecting', 'A wild rose’s thorns', 'A porcupine’s quills']
+          - ['Getting food or water', 'A tree’s roots', 'A beaver’s teeth']
+          - ['Moving', 'A dandelion seed’s fluffy parachute, carried by the wind', 'A duck’s webbed feet']
+      - type: callout
+        variant: tip
+        covers: [S1.2]
+        title: Look with respect
+        body: |-
+          - Watch animals from a distance, and never chase them.
+          - Leave wildflowers growing.
+          - If you lift a log or rock to look, put it back gently.
+
+keyTerms:
+  - term: Organism
+    covers: [K1.1]
+    definition: A living thing that responds to stimuli. Plants, humans and other animals are organisms.
+  - term: Structure
+    covers: [K1.3]
+    definition: A feature of an organism, like a body part, that serves a purpose.
+  - term: Function
+    covers: [K1.3, K1.5]
+    definition: The job a structure does, like eating, moving, protecting, sensing or reproducing.
+  - term: Classify
+    covers: [K1.2]
+    definition: To sort things into groups by what they have in common.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: mc
+    prompt: Which of these is an **organism**?
+    choices: [A dandelion, A river stone, An icicle, A kite]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Does a stone respond when the light or temperature changes?
+      '2': An icicle melts in the sun, but is it alive? Does it grow and respond?
+      '3': A kite moves in the wind, but only because the wind pushes it. Is it alive?
+    hints:
+      - An organism is a living thing that responds to the world around it.
+    solution:
+      - A dandelion is a **living thing**. It grows and responds, for example by opening its flower in the sun.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.5, S1.4]
+    type: mc
+    prompt: A great horned owl has long, curved, sharp claws called **talons**. What is their main function?
+    choices: [Catching food, Hearing, Keeping warm, Swimming]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Which structure would help an owl hear? Are claws on its head?
+      '2': Feathers keep an owl warm. What could sharp claws do?
+      '3': Owls don’t swim. What do they grab with their feet?
+    hints:
+      - Owls hunt mice and hares. What would sharp claws help them do?
+    solution:
+      - Sharp, curved talons grab and hold prey. Their function is **catching food**, which is part of eating.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.3, K1.4]
+    type: mc
+    prompt: Which plant structure takes in water from the soil?
+    choices: [Roots, Leaves, Flowers, Fruit]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Leaves are up in the air. Can they reach the water in the soil?
+      '2': Flowers make seeds. Which part reaches down into the soil?
+      '3': Fruit holds seeds. Which part reaches down into the soil?
+    hints:
+      - Which part of the plant is in the soil?
+    solution:
+      - The **roots** grow down into the soil and take in water. They also hold the plant in place.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.5, K1.5]
+    type: mc
+    prompt: A wild rose has **thorns**. A porcupine has **quills**. What do these structures have in common?
+    choices:
+      - Both protect the organism from animals that want to eat it.
+      - Both help the organism take in water.
+      - Both help the organism move.
+      - Both help the organism sense danger.
+    answer: 0
+    feedback:
+      '1': Roots take in water. What happens if a hungry animal grabs a thorny stem?
+      '2': Neither thorns nor quills help with moving. What happens when an animal bites one?
+      '3': Thorns and quills don’t notice anything. What do they do to an animal that bites?
+    hints:
+      - Imagine a hungry deer biting a wild rose, or a coyote biting a porcupine.
+    solution:
+      - Both are sharp, so animals that try to eat them get hurt.
+      - 'A plant and an animal can have different structures with the **same function**: protecting.'
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: |-
+      Two friends classify the same five animals.
+
+      - **Mia:** beaver, muskrat and northern pike together, because they live in water.
+      - **Leo:** beaver, muskrat and bighorn sheep together, because they have fur.
+
+      Who is right?
+    choices:
+      - Both. Mia sorted by habitat and Leo sorted by structure.
+      - Only Mia, because habitat is the correct way to sort.
+      - Only Leo, because structures are the correct way to sort.
+      - Neither, because beavers can’t be in two groups.
+    answer: 0
+    feedback:
+      '1': Is there only one correct way to classify organisms?
+      '2': Is there only one correct way to classify organisms?
+      '3': A beaver lives in water **and** has fur. Can it fit both kinds of groups?
+    hints:
+      - What did each friend use to decide? Are both of those real ways scientists classify?
+    solution:
+      - Mia used **habitat**. Leo used a **structure**, body covering.
+      - Organisms can be classified in different ways, so both groupings are right.
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [S1.4, K1.4]
+    type: mc
+    prompt: A snowshoe hare has very big, furry back feet. Why are they useful in an Alberta winter?
+    choices:
+      - They spread out its weight, so it can run on deep snow without sinking.
+      - They help it dig deep tunnels to hide in all winter.
+      - They help it hear foxes coming.
+      - They make it heavier, so the wind can’t blow it away.
+    answer: 0
+    feedback:
+      '1': Snowshoe hares stay active all winter. What do big feet do on soft snow?
+      '2': Hares hear with their ears. What do feet do?
+      '3': Big feet don’t add much weight. Think about what snowshoes do for people.
+    hints:
+      - Why do people wear snowshoes?
+    solution:
+      - Big feet spread the hare’s weight over more snow, like snowshoes.
+      - It can run on top of deep snow to escape a lynx or fox. The structure’s function is **moving**.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [S1.2]
+    type: mc
+    prompt: On a class walk, Rafi wants to study a ground squirrel up close. He chases it to its burrow and pokes a stick inside. What is wrong with his plan?
+    choices:
+      - It frightens the animal and could damage its home. Watch quietly from a distance instead.
+      - Nothing. Scientists have to catch animals to study them.
+      - The stick is too short to reach.
+      - He should have chased it faster.
+    answer: 0
+    feedback:
+      '1': Can you learn about an animal by watching it, without catching it?
+      '2': Would a longer stick be any kinder to the animal?
+      '3': Would chasing faster be any kinder to the animal?
+    hints:
+      - How would the ground squirrel feel? What could happen to its burrow?
+    solution:
+      - Chasing scares the animal, and poking can damage its home.
+      - '**Respect** means watching from a distance and leaving its home alone. You learn more when it acts naturally.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.4, K1.5, S1.4, K1.2]
+    type: investigation
+    prompt: |-
+      A mystery Alberta animal has these structures:
+
+      - webbed back feet
+      - a flat, wide tail covered in scales
+      - long, orange front teeth that never stop growing
+      - thick fur that keeps water out
+    parts:
+      - type: multi
+        prompt: Which structures help it **move** through water?
+        choices: [Webbed back feet, Flat wide tail, Orange front teeth, Thick fur]
+        fixedOrder: true
+        answer: [0, 1]
+        feedback:
+          '2': Teeth are for eating. Which structures push or steer?
+          '3': The fur keeps it dry and warm. Which structures push or steer?
+        hints:
+          - Think of a duck’s feet and a boat’s rudder.
+        solution:
+          - Webbed feet push the water like paddles, and the flat tail helps it steer.
+      - type: mc
+        prompt: What is the main function of the long front teeth?
+        choices:
+          - Eating, by gnawing through bark and branches
+          - Sensing, by feeling the water
+          - Protecting it from the cold
+        answer: 0
+        feedback:
+          '1': Teeth aren’t used to feel water. What do long, strong teeth chew through?
+          '2': What keeps this animal warm? Look at the list again.
+        hints:
+          - Teeth that never stop growing must get worn down. What hard food could wear them down?
+        solution:
+          - Strong front teeth gnaw through bark and wood. Their function is **eating**.
+      - type: mc
+        prompt: Which animal is it?
+        choices: [Beaver, Northern pike, Mallard duck, Bighorn sheep]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': A pike has scales all over and no fur or teeth for gnawing wood.
+          '2': A duck has webbed feet, but feathers, not fur. Does it have teeth?
+          '3': A bighorn sheep has fur, but does it swim or gnaw trees?
+        hints:
+          - Put all four structures together. Which animal has every one?
+        solution:
+          - Webbed feet, a flat scaly tail, gnawing teeth and waterproof fur. It’s a **beaver**.
+    wrapUp: Structures are clues. Each one tells you something about how an organism lives.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.5, S1.4, U1.1]
+    type: mc
+    prompt: |-
+      The red crossbill lives in Alberta’s evergreen forests. It eats seeds hidden under the hard scales of
+      spruce and pine cones. The tips of its beak **cross over each other**. What if it had a hummingbird’s beak
+      instead?
+    choices:
+      - It would struggle to pry open cone scales, so it would have trouble getting its food.
+      - It would eat more seeds, because a long beak reaches farther.
+      - Nothing would change, because any beak can eat any food.
+      - It would start drinking nectar from cones.
+    answer: 0
+    feedback:
+      '1': A long, thin beak works like a straw. Is a straw good for prying hard things apart?
+      '2': Remember the grosbeak and the flower. Could every beak eat every food?
+      '3': Cones don’t have nectar. What is the crossbill’s food?
+    hints:
+      - Think about the beak experiment. Could the hummingbird crack the seed?
+      - A crossed beak can twist between scales and lever them apart.
+    solution:
+      - The crossed tips slide between the cone scales and pry them apart, so the bird can reach the seeds.
+      - A thin, straw-like beak couldn’t pry hard scales, so the crossbill would struggle to eat.
+      - A structure fits its **function**. Change the structure, and the job gets harder.
