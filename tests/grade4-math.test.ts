@@ -110,3 +110,21 @@ describe('angles', () => {
     expect(angleAt(200, 260)).toBe(270);
   });
 });
+
+import { QUADS, TRIANGLES, quadFamilies, triangleBySides, triangleByAngles, parallelPairs } from '../src/components/visuals/shape-family.ts';
+
+describe('shape families', () => {
+  it('places each quadrilateral in its families', () => {
+    expect(quadFamilies(QUADS.square.pts)).toEqual(['quadrilateral', 'parallelogram', 'rectangle', 'rhombus', 'square']);
+    expect(quadFamilies(QUADS.rectangle.pts)).toEqual(['quadrilateral', 'parallelogram', 'rectangle']);
+    expect(quadFamilies(QUADS.rhombus.pts)).toEqual(['quadrilateral', 'parallelogram', 'rhombus']);
+    expect(quadFamilies(QUADS.parallelogram.pts)).toEqual(['quadrilateral', 'parallelogram']);
+    expect(quadFamilies(QUADS.trapezoid.pts)).toEqual(['quadrilateral', 'trapezoid']);
+    expect(quadFamilies(QUADS.quadrilateral.pts)).toEqual(['quadrilateral']);
+    expect(parallelPairs(QUADS.trapezoid.pts)).toEqual([[0, 2]]);
+  });
+  it('names every triangle by side and by angle', () => {
+    const names = Object.values(TRIANGLES).map((t) => `${triangleBySides(t.pts)} ${triangleByAngles(t.pts)}`);
+    expect(names).toEqual(['equilateral acute', 'isosceles acute', 'isosceles right', 'isosceles obtuse', 'scalene acute', 'scalene right', 'scalene obtuse']);
+  });
+});

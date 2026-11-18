@@ -1,0 +1,212 @@
+---
+// Shape families (MAT4-OI3-GQ1-LO1: K1.4-K1.6, U1.1, U1.2, S1.1, S1.4-S1.6, K2.2, S2.2).
+// "quads": pick a quadrilateral to see its equal sides (ticks), parallel sides (arrows) and right
+// angles, and where it sits in the family tree. Turn or flip a copy to check which sides are equal.
+// "triangles": pick a triangle to see its sides and angles, and its names by side and by angle.
+import { QUADS, TRIANGLES } from './shape-family.ts';
+
+interface Props {
+  mode?: 'quads' | 'triangles';
+  start?: string;
+}
+const { mode = 'quads', start = mode === 'quads' ? 'square' : 'a' } = Astro.props;
+const picks = mode === 'quads' ? Object.entries(QUADS).map(([id, q]) => ({ id, label: q.label })) : Object.keys(TRIANGLES).map((id, i) => ({ id, label: `Triangle ${i + 1}` }));
+---
+<g4m-quad-family data-mode={mode} data-start={start}>
+  <div class="g4m-qf-picks" role="group" aria-label="Choose a shape">
+    {picks.map((p) => <button type="button" class="chip" data-qf-pick={p.id} aria-pressed={String(p.id === start)}>{p.label}</button>)}
+  </div>
+  <div class="g4m-qf-layout">
+    <svg class="g4m-qf-svg" viewBox="0 0 300 200" role="img" aria-label="The chosen shape with its marks" data-qf="svg"></svg>
+    <div>
+      <ul class="g4m-qf-props" data-qf="props" aria-live="polite"></ul>
+      {
+        mode === 'quads' ? (
+          <div class="g4m-qf-tree" aria-label="The quadrilateral family">
+            <span data-fam="quadrilateral" style="grid-column: 1 / 4">Quadrilateral</span>
+            <span data-fam="trapezoid">Trapezoid</span>
+            <span data-fam="parallelogram" style="grid-column: 2 / 4">Parallelogram</span>
+            <span data-fam="rectangle" style="grid-column: 2">Rectangle</span>
+            <span data-fam="rhombus">Rhombus</span>
+            <span data-fam="square" style="grid-column: 2 / 4">Square</span>
+          </div>
+        ) : (
+          <table class="g4m-qf-grid">
+            <thead><tr><th></th><th>acute</th><th>right</th><th>obtuse</th></tr></thead>
+            <tbody>
+              {['equilateral', 'isosceles', 'scalene'].map((s) => (
+                <tr><th>{s}</th>{['acute', 'right', 'obtuse'].map((a) => <td data-cell={`${s}-${a}`}>{s === 'equilateral' && a !== 'acute' ? '✕' : ''}</td>)}</tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      }
+    </div>
+  </div>
+  {
+    mode === 'quads' && (
+      <div class="control-row">
+        <button type="button" class="btn btn--ghost btn--small" data-qf-move="turn">Turn a copy a half turn</button>
+        <button type="button" class="btn btn--ghost btn--small" data-qf-move="flip">Flip a copy</button>
+      </div>
+    )
+  }
+  <p class="g4m-qf-say" data-qf="say"></p>
+</g4m-quad-family>
+
+<style is:global>
+  g4m-quad-family { display: block; }
+  .g4m-qf-picks { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.6rem; }
+  .g4m-qf-picks .chip[aria-pressed='true'] { background: var(--math); color: var(--surface); border-color: var(--math); }
+  .g4m-qf-layout { display: grid; gap: 0.8rem; align-items: start; }
+  @media (min-width: 46rem) { .g4m-qf-layout { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+  .g4m-qf-svg { display: block; width: 100%; max-width: 24rem; height: auto; font-family: var(--font); }
+  .g4m-qf-poly { fill: color-mix(in srgb, var(--math) 22%, var(--surface)); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+  .g4m-qf-ghost { fill: color-mix(in srgb, var(--sun) 35%, transparent); stroke: var(--sun); stroke-width: 3; stroke-dasharray: 6 4; transform-box: view-box; transition: transform 1.2s cubic-bezier(.3,.8,.3,1); }
+  .g4m-qf-mark { stroke: var(--ink); stroke-width: 2.5; fill: none; stroke-linecap: round; }
+  .g4m-qf-par { stroke: var(--bad); stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .g4m-qf-ang { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+  .g4m-qf-props { margin: 0 0 0.6rem; padding-left: 1.1rem; font-weight: 700; }
+  .g4m-qf-tree { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.3rem; font-size: var(--step--1); font-weight: 700; text-align: center; }
+  .g4m-qf-tree span { padding: 0.35rem 0.2rem; border-radius: var(--radius-sm); border: 2px solid var(--line); color: var(--ink-3); }
+  .g4m-qf-tree span.is-on { border-color: var(--math); background: var(--math-soft); color: var(--ink); }
+  .g4m-qf-grid { border-collapse: collapse; font-size: var(--step--1); font-weight: 700; }
+  .g4m-qf-grid th, .g4m-qf-grid td { border: 1px solid var(--line); padding: 0.3rem 0.45rem; text-align: center; min-width: 3.4rem; }
+  .g4m-qf-grid td { color: var(--ink-3); }
+  .g4m-qf-grid td.is-on { background: var(--math); color: var(--surface); }
+  .g4m-qf-grid td.is-on::after { content: '●'; }
+  .g4m-qf-say { margin: 0.4rem 0 0; font-weight: 700; min-height: 1.4em; }
+  @media (prefers-reduced-motion: reduce) { .g4m-qf-ghost { transition: none; } }
+</style>
+
+<script>
+  import { QUADS, TRIANGLES, sides, angles, equalGroups, parallelPairs, quadFamilies, triangleBySides, triangleByAngles, type Pt } from './shape-family.ts';
+
+  const mid = (a: Pt, b: Pt): Pt => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+
+  class QuadFamily extends HTMLElement {
+    private pts: Pt[] = [];
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-qf-pick]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-qf-pick]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.show(b.dataset.qfPick!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-qf-move]').forEach((b) => b.addEventListener('click', () => this.move(b.dataset.qfMove as 'turn' | 'flip')));
+      this.show(this.dataset.start!);
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-qf="${name}"]`) as HTMLElement;
+    }
+
+    private show(id: string) {
+      const quads = this.dataset.mode === 'quads';
+      const pts = quads ? QUADS[id].pts : TRIANGLES[id].pts;
+      this.pts = pts;
+      const n = pts.length;
+      const s = sides(pts);
+      const ang = angles(pts);
+      const groups = equalGroups(pts);
+      const par = parallelPairs(pts);
+      let svg = `<polygon class="g4m-qf-poly" points="${pts.map((p) => p.join(',')).join(' ')}"/>`;
+      // Equal sides: the same number of tick marks.
+      pts.forEach((p, i) => {
+        const q = pts[(i + 1) % n];
+        const g = groups[i];
+        if (!g) return;
+        const [mx, my] = mid(p, q);
+        const len = s[i];
+        const ux = (q[0] - p[0]) / len;
+        const uy = (q[1] - p[1]) / len;
+        for (let k = 0; k < g; k++) {
+          const off = (k - (g - 1) / 2) * 6;
+          const cx = mx + ux * off;
+          const cy = my + uy * off;
+          svg += `<line class="g4m-qf-mark" x1="${(cx - uy * 7).toFixed(1)}" y1="${(cy + ux * 7).toFixed(1)}" x2="${(cx + uy * 7).toFixed(1)}" y2="${(cy - ux * 7).toFixed(1)}"/>`;
+        }
+      });
+      // Parallel sides: matching arrowheads.
+      par.forEach((pair, pi) => {
+        for (const i of pair) {
+          const p = pts[i];
+          const q = pts[(i + 1) % n];
+          const [mx, my] = mid(p, q);
+          const len = s[i];
+          const dir = i < 2 ? 1 : -1;
+          const ux = ((q[0] - p[0]) / len) * dir;
+          const uy = ((q[1] - p[1]) / len) * dir;
+          for (let k = 0; k <= pi; k++) {
+            const tx = mx + ux * (18 + k * 7);
+            const ty = my + uy * (18 + k * 7);
+            svg += `<path class="g4m-qf-par" d="M${(tx - ux * 7 - uy * 6).toFixed(1)} ${(ty - uy * 7 + ux * 6).toFixed(1)} L${tx.toFixed(1)} ${ty.toFixed(1)} L${(tx - ux * 7 + uy * 6).toFixed(1)} ${(ty - uy * 7 - ux * 6).toFixed(1)}"/>`;
+          }
+        }
+      });
+      // Angles: a square for right angles, the measure for the others.
+      const cx = pts.reduce((a, p) => a + p[0], 0) / n;
+      const cy = pts.reduce((a, p) => a + p[1], 0) / n;
+      pts.forEach((p, i) => {
+        const a = pts[(i + n - 1) % n];
+        const b = pts[(i + 1) % n];
+        const ua = [(a[0] - p[0]) / Math.hypot(a[0] - p[0], a[1] - p[1]), (a[1] - p[1]) / Math.hypot(a[0] - p[0], a[1] - p[1])];
+        const ub = [(b[0] - p[0]) / Math.hypot(b[0] - p[0], b[1] - p[1]), (b[1] - p[1]) / Math.hypot(b[0] - p[0], b[1] - p[1])];
+        if (ang[i] === 90) {
+          const k = 14;
+          svg += `<path class="g4m-qf-mark" d="M${(p[0] + ua[0] * k).toFixed(1)} ${(p[1] + ua[1] * k).toFixed(1)} L${(p[0] + (ua[0] + ub[0]) * k).toFixed(1)} ${(p[1] + (ua[1] + ub[1]) * k).toFixed(1)} L${(p[0] + ub[0] * k).toFixed(1)} ${(p[1] + ub[1] * k).toFixed(1)}"/>`;
+        }
+        const dx = cx - p[0];
+        const dy = cy - p[1];
+        const d = Math.hypot(dx, dy);
+        const r = ang[i] < 45 ? 36 : ang[i] === 90 ? 34 : 26;
+        if (quads && ang[i] === 90) return;
+        svg += `<text class="g4m-qf-ang" x="${(p[0] + (dx / d) * r).toFixed(1)}" y="${(p[1] + (dy / d) * r + 4).toFixed(1)}" text-anchor="middle">${ang[i]}°</text>`;
+      });
+      svg += `<polygon class="g4m-qf-ghost" data-qf="ghost" points="${pts.map((p) => p.join(',')).join(' ')}" style="transform-origin:${cx}px ${cy}px; opacity:0"/>`;
+      this.q('svg').innerHTML = svg;
+
+      const props: string[] = [];
+      if (quads) {
+        const fams = quadFamilies(pts);
+        const eq = groups.filter((g) => g).length;
+        props.push(groups.every((g) => g === 1) ? '4 equal sides' : eq ? `${eq / 2} pair${eq > 2 ? 's' : ''} of equal sides` : 'No equal sides');
+        props.push(par.length ? `${par.length} pair${par.length > 1 ? 's' : ''} of parallel sides` : 'No parallel sides');
+        const right = ang.filter((a) => a === 90).length;
+        props.push(right === 4 ? '4 right angles, so the sides are perpendicular' : right ? `${right} right angles` : 'No right angles');
+        this.querySelectorAll<HTMLElement>('[data-fam]').forEach((el) => el.classList.toggle('is-on', fams.includes(el.dataset.fam!)));
+        const names = fams.slice(1).reverse().map((f) => QUADS[f].label.toLowerCase());
+        this.q('say').textContent = names.length > 1 ? `It is a ${names.join(', a ')}, and a quadrilateral.` : names.length ? `It is a ${names[0]}, and a quadrilateral.` : 'It is a quadrilateral, but not in any smaller family.';
+      } else {
+        const bySide = triangleBySides(pts);
+        const byAngle = triangleByAngles(pts);
+        const eq = groups.filter((g) => g).length;
+        props.push(eq === 3 ? '3 equal sides' : eq === 2 ? '2 equal sides' : 'No equal sides');
+        props.push(`Angles: ${ang.join('°, ')}°`);
+        this.querySelectorAll<HTMLElement>('[data-cell]').forEach((el) => el.classList.toggle('is-on', el.dataset.cell === `${bySide}-${byAngle}`));
+        this.q('say').textContent = `By its sides, it is ${bySide}. By its angles, it is ${byAngle}.`;
+      }
+      this.q('props').innerHTML = props.map((p) => `<li>${p}</li>`).join('');
+    }
+
+    private move(kind: 'turn' | 'flip') {
+      const ghost = this.q('ghost');
+      const n = this.pts.length;
+      const cx = this.pts.reduce((a, p) => a + p[0], 0) / n;
+      const cy = this.pts.reduce((a, p) => a + p[1], 0) / n;
+      const moved = this.pts.map(([x, y]): Pt => (kind === 'turn' ? [2 * cx - x, 2 * cy - y] : [2 * cx - x, y]));
+      const lands = moved.every((m) => this.pts.some((p) => Math.hypot(p[0] - m[0], p[1] - m[1]) < 2));
+      ghost.style.transition = 'none';
+      ghost.style.transform = 'none';
+      ghost.style.opacity = '0.9';
+      void ghost.getBoundingClientRect();
+      ghost.style.transition = '';
+      ghost.style.transform = kind === 'turn' ? 'rotate(180deg)' : 'scaleX(-1)';
+      this.q('say').textContent = lands
+        ? `The copy lands exactly on the shape. Sides that land on each other must be equal, and so must angles.`
+        : `The copy doesn’t land on the shape, so this ${kind === 'turn' ? 'turn' : 'flip'} doesn’t match its sides.`;
+    }
+  }
+  customElements.define('g4m-quad-family', QuadFamily);
+</script>
