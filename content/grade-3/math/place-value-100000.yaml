@@ -1,0 +1,361 @@
+id: place-value-100000
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ1-LO1]
+order: 1
+title: Place Value to 100 000
+shortTitle: Place value
+summary: >-
+  Read, write, build, compare and round numbers up to 100 000, and see why each place is worth
+  10 times the place to its right.
+
+bigIdea: |-
+  - Each place is worth **10 times** the place to its right.
+  - A digit's value is the **digit × its place**. The 4 in 45 306 is worth 4 × 10 000.
+  - Place value helps you **read, write and compare** numbers.
+  - **Round** when you only need about how many.
+
+lesson:
+  - title: Ten times as much
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1, S1.1, S1.2, K1.7]
+        component: g3-place-chart
+        props: { value: 45306 }
+        caption: |-
+          1. Press ▲ under the **ones** until you pass 9. What happens?
+          2. Try it with the tens and the hundreds.
+          3. Every time, **10** of one place make **1** of the next place to the left.
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ1-LO1#K1.2, MAT2-OI1-GQ1-LO1#K1.3]
+        title: Remember from Grade 2
+        body: A three-digit number has **hundreds, tens and ones**. A **0** holds a place that has nothing in it, like the tens in 306.
+
+  - title: What is each digit worth?
+    blocks:
+      - type: table
+        covers: [K1.3, U1.2, S1.1, S1.3]
+        caption: 'The digits of **45 306**'
+        headers: [Digit, Place, Value]
+        rows:
+          - ['4', 'ten thousands', '4 × 10 000 = **40 000**']
+          - ['5', 'thousands', '5 × 1 000 = **5 000**']
+          - ['3', 'hundreds', '3 × 100 = **300**']
+          - ['0', 'tens', '0 × 10 = **0**']
+          - ['6', 'ones', '6 × 1 = **6**']
+      - type: callout
+        variant: mistake
+        covers: [U1.2, K1.7]
+        title: Where a digit sits matters
+        body: |-
+          - In **5**3 and 3**5**, the 5 is worth 50 and 5. Same digit, different place.
+          - A 0 at the **far left** changes nothing: 045 306 is still 45 306.
+
+  - title: Reading and writing big numbers
+    blocks:
+      - type: table
+        covers: [S1.4, U1.3]
+        headers: [Numeral, Words]
+        rows:
+          - ['8 052', 'eight thousand fifty-two']
+          - ['45 306', 'forty-five thousand three hundred six']
+          - ['70 019', 'seventy thousand nineteen']
+          - ['100 000', 'one hundred thousand']
+      - type: callout
+        variant: tip
+        covers: [S1.4, U1.3]
+        title: Read in two chunks
+        body: |-
+          1. Read the number **before the space**, then say "thousand".
+          2. Read the last three digits.
+
+  - title: One number, many ways
+    blocks:
+      - type: compare
+        covers: [K1.4, S1.5]
+        columns:
+          - title: By each place
+            body: |-
+              **4 506** is
+              4 thousands, 5 hundreds and 6 ones
+          - title: As hundreds
+            body: |-
+              **4 506** is
+              45 hundreds and 6 ones
+          - title: As tens
+            body: |-
+              **4 506** is
+              450 tens and 6 ones
+      - type: callout
+        variant: tip
+        covers: [K1.1, K1.4]
+        title: Why it works
+        body: 1 thousand is 10 hundreds, so 4 thousands and 5 hundreds make **45 hundreds**.
+
+  - title: Comparing and ordering
+    blocks:
+      - type: example
+        covers: [S1.7, S1.8, U1.3]
+        title: Which is greater?
+        problem: Compare **45 306** and **45 063**.
+        steps:
+          - 'Start at the left. Ten thousands: **4** and **4**, the same.'
+          - 'Thousands: **5** and **5**, the same.'
+          - 'Hundreds: **3** and **0**. 3 hundreds is more, so we can stop.'
+        answer: '\(45\,306 > 45\,063\)'
+      - type: compare
+        covers: [K1.6, S1.8]
+        columns:
+          - title: Greater than
+            body: |-
+              \[9\,000 > 900\]
+              The wide side faces the **greater** number.
+          - title: Less than
+            body: |-
+              \[900 < 9\,000\]
+              The point faces the **lesser** number.
+          - title: Equal
+            body: |-
+              \[9\,000 = 90 \text{ hundreds}\]
+              Both sides are the **same** number.
+
+  - title: Rounding when "about" is enough
+    blocks:
+      - type: visual
+        covers: [S1.6, K1.5]
+        component: g3-round-line
+        props: { value: 4368, to: 100 }
+        caption: Type any number, then pick a place. Is the dot **before** or **past** the yellow halfway mark?
+      - type: table
+        covers: [K1.5, S1.6]
+        headers: [Exact, Rounded, When "about" is enough]
+        rows:
+          - ['4 368 people', 'about **4 400**', 'A fair tells how many came']
+          - ['27 815 steps', 'about **28 000**', 'You walked a lot this week']
+          - ['93 fish', 'about **90**', 'A pond has many fish']
+
+keyTerms:
+  - term: Digit
+    covers: [K1.2]
+    definition: 'One of the symbols 0, 1, 2, 3, 4, 5, 6, 7, 8 or 9. Digits tell how many groups are in each place.'
+  - term: Place value
+    covers: [U1.2, K1.3]
+    definition: 'What a digit is worth because of its place. The 4 in 45 306 is worth 40 000.'
+  - term: Round
+    covers: [K1.5]
+    definition: To change a number to a nearby, simpler number when you don’t need the exact count.
+  - term: Greater than and less than
+    covers: [K1.6]
+    definition: 'The signs > and < show which number is bigger. 9 > 4 and 4 < 9.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.3, K1.3]
+    type: number
+    prompt: In **63 208**, what is the digit **3** worth?
+    answer: 3000
+    verify: 3 * 1000
+    hints:
+      - Which place is the 3 in? Count places from the ones.
+      - The 3 is in the thousands place. What is 3 × 1 000?
+    solution:
+      - 'From the right: 8 ones, 0 tens, 2 hundreds, **3 thousands**, 6 ten thousands.'
+      - 'So the 3 is worth \(3 \times 1\,000 = 3\,000\).'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.2]
+    type: number
+    prompt: Write **forty thousand six hundred eight** as a numeral.
+    answer: 40608
+    verify: 40000 + 600 + 8
+    hints:
+      - Which places are named? Which places are missing?
+      - A place with nothing in it still needs a digit. Which digit?
+    solution:
+      - 'Forty thousand is 40 000. Six hundred eight is 608.'
+      - 'There are no tens, so the tens place gets a 0.'
+      - 'Together: **40 608**.'
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.6, S1.8]
+    type: mc
+    fixedOrder: true
+    prompt: 'Which sign makes this true? \(70\,345 \;\square\; 70\,354\)'
+    choices: ['\(<\)', '\(>\)', '\(=\)']
+    answer: 0
+    feedback:
+      '1': 'Compare from the left. The ten thousands, thousands and hundreds match. Which number has more tens?'
+      '2': 'The numbers use the same digits, but in different places. Is 4 tens the same as 5 tens?'
+    hints:
+      - Compare the digits place by place, from the left.
+      - The first place that is different is the tens.
+    solution:
+      - 'Ten thousands, thousands and hundreds are the same: 7, 0 and 3.'
+      - 'Tens: 4 and 5. 4 tens is less than 5 tens.'
+      - 'So \(70\,345 < 70\,354\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.4, S1.5, K1.1]
+    type: number
+    prompt: |-
+      A craft store has **3 450** beads. It packs them in bags of **100**.
+      How many **full** bags can it make?
+    unit: bags
+    answer: 34
+    verify: 30 + 4
+    hints:
+      - How many hundreds are in 1 thousand?
+      - 3 thousands is how many hundreds? Then add the 4 hundreds.
+    solution:
+      - '3 450 is 3 thousands, 4 hundreds and 5 tens.'
+      - '1 thousand is 10 hundreds, so 3 thousands is 30 hundreds.'
+      - '30 hundreds and 4 hundreds make **34 hundreds**. That is 34 full bags, with 50 beads left over.'
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.5, S1.6]
+    type: multi
+    prompt: 'A poster says, "**About 2 000** people came to the Chinook Fair." It rounded to the nearest **thousand**. Which exact counts could be true? Choose **all** that work.'
+    choices: ['1 950', '2 438', '1 500', '2 501', '1 499', '2 899']
+    answer: [0, 1, 2]
+    feedback:
+      '3': '2 501 is past the halfway mark between 2 000 and 3 000. Which way does it round?'
+      '4': '1 499 is between 1 000 and 2 000. Is it past the halfway mark, 1 500?'
+      '5': '2 899 is between 2 000 and 3 000. Which one is it closer to?'
+    hints:
+      - Which round thousands is each number between?
+      - 'The halfway marks are 1 500 and 2 500. Numbers from 1 500 up to 2 499 round to 2 000.'
+    solution:
+      - 'A number rounds to 2 000 if it is from **1 500** up to **2 499**.'
+      - '1 950, 2 438 and 1 500 all fit. 1 500 is exactly halfway, so it rounds up to 2 000.'
+      - '1 499 rounds down to 1 000. 2 501 and 2 899 round up to 3 000.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.7, S1.7, U1.3]
+    type: mc
+    prompt: |-
+      A pinball machine shows **08 450** for Ali and **9 120** for Sam.
+      Ali says, "Mine has more digits, so I won." Who really has more points?
+    choices:
+      - Sam. The 0 on the left adds nothing, so Ali has 8 450.
+      - Ali. A number with more digits is always greater.
+      - Ali. 08 450 has 4 hundreds, and 9 120 has only 1.
+      - Nobody. You can’t compare a number that starts with 0.
+    answer: 0
+    feedback:
+      '1': 'Does a 0 at the far left add anything? Try reading 08 450 out loud.'
+      '2': 'Hundreds only matter if the bigger places are the same. Compare the thousands first.'
+      '3': 'A 0 at the left doesn’t change a number. Remove it, then compare.'
+    hints:
+      - Read 08 450 out loud. Do you say the 0?
+      - Now compare 8 450 and 9 120, starting at the thousands.
+    solution:
+      - 'A 0 in the leftmost place doesn’t change the value. 08 450 is just **8 450**.'
+      - 'Compare thousands: 8 and 9. So \(8\,450 < 9\,120\).'
+      - '**Sam** won. Count digits only after you drop zeros on the left.'
+
+  - id: b4
+    level: 2
+    thinking: apply
+    covers: [S1.7, U1.3]
+    type: order
+    prompt: Five friends counted their steps for a week. Put the step counts in order from **least** to **greatest**.
+    items: ['30 099', '30 909', '30 990', '39 009', '90 039']
+    hints:
+      - Look at the ten thousands first. Which number is clearly the greatest?
+      - 'Four numbers start with 3. Compare their thousands, then their hundreds.'
+    solution:
+      - '90 039 has 9 ten thousands. It is the greatest.'
+      - '39 009 has 9 thousands. The others have 0 thousands.'
+      - '30 099, 30 909 and 30 990: compare hundreds. 0 < 9, so 30 099 is least.'
+      - '30 909 and 30 990: compare tens. 0 < 9.'
+      - 'Order: 30 099, 30 909, 30 990, 39 009, 90 039.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.5, S1.7, K1.7, K1.2]
+    type: investigation
+    prompt: |-
+      You have five digit cards: **0**, **2**, **5**, **7** and **9**.
+      Use **every card once** to make a 5-digit number.
+    parts:
+      - type: number
+        prompt: What is the **greatest** number you can make?
+        answer: 97520
+        verify: 90000 + 7000 + 500 + 20
+        hints:
+          - Which place is worth the most? Which card should go there?
+        solution:
+          - 'Put the biggest digits in the biggest places: **97 520**.'
+      - type: number
+        prompt: What is the **least** 5-digit number you can make?
+        answer: 20579
+        verify: 20000 + 500 + 70 + 9
+        hints:
+          - 'If the 0 goes first, is it still a 5-digit number?'
+        solution:
+          - '02 579 is really 2 579. That has only 4 digits.'
+          - 'So the smallest digit that isn’t 0 goes first. Then 0, 5, 7, 9: **20 579**.'
+      - type: number
+        prompt: Which number you can make is **closest to 50 000**?
+        answer: 50279
+        verify: 50000 + 200 + 70 + 9
+        hints:
+          - Can you make a number just under 50 000? It would need to start with 4.
+          - Start with 5. How can you keep the rest as small as possible?
+        solution:
+          - 'There is no 4 card, so nothing starts with 4. The closest numbers start with 5.'
+          - 'Keep the rest as small as you can: 0, 2, 7, 9.'
+          - '**50 279** is only 279 away from 50 000.'
+    wrapUp: The biggest places matter most. Where you put a digit decides what it is worth.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.5, S1.6]
+    type: build
+    prompt: |-
+      A museum counted its visitors one day.
+      - The sign says **about 3 000** (nearest thousand).
+      - The newspaper says **about 2 500** (nearest hundred).
+
+      How many visitors could have come? Find one exact number that fits both.
+    fields:
+      - { name: n, label: 'Visitors', unit: people }
+    rules:
+      - { test: 'n % 1 == 0 && n > 0', fail: 'People come in whole numbers. Try a whole number.' }
+      - { test: 'n >= 2450 && n < 2550', fail: 'Round your number to the nearest hundred. Do you get 2 500?' }
+      - { test: 'n >= 2500 && n < 3500', fail: 'That fits the newspaper. Now round it to the nearest thousand. Do you get 3 000?' }
+    examples:
+      - { n: 2500 }
+      - { n: 2531 }
+      - { n: 2549 }
+    counterexamples:
+      - { n: 2480 }
+      - { n: 2550 }
+      - { n: 3000 }
+    hints:
+      - Which numbers round to 2 500 to the nearest hundred? Make a list of the smallest and the largest.
+      - Now check those numbers. Which ones round to 3 000 to the nearest thousand?
+    solution:
+      - 'To round to 2 500, a number must be from **2 450** to **2 549**.'
+      - 'To round to 3 000, it must be from **2 500** to **3 499**.'
+      - 'Both are true from **2 500** to **2 549**. So 2 500, 2 531 and 2 549 all work.'
+      - '2 480 fits the newspaper, but it rounds to 2 000 on the sign.'
