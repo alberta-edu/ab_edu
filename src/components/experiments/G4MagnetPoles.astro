@@ -1,0 +1,79 @@
+---
+// Animated experiment: two pairs of toy carts carry bar magnets. In the top pair a north pole faces
+// a south pole; in the bottom pair two north poles face each other. Let go: the top pair rolls
+// together, the bottom pair rolls apart (SCI4-OI2-GQ1-LO1, K2.2, K2.3, S2.1, U2.1).
+---
+<g4-magnet-poles>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-magnet-poles>
+
+<style is:global>
+  g4-magnet-poles { display: block; }
+  g4-magnet-poles svg { background: var(--surface-2); }
+  .g4s-mp-cart { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g4s-mp-wheel { fill: var(--ink-2); }
+  .g4s-mp-track { stroke: var(--line-strong); stroke-width: 3; }
+  .g4s-mp-res { fill: var(--ink); font-size: 17px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { barMagnet, poles, type Pole } from './g4-science.ts';
+
+  const W = 96; // magnet length
+  const ROWS: { y: number; left: Pole; right: Pole }[] = [
+    { y: 95, left: 'S', right: 'S' }, // left magnet S|N, right magnet S|N: N faces S
+    { y: 225, left: 'S', right: 'N' }, // left magnet S|N, right magnet N|S: N faces N
+  ];
+  const START = 70; // gap between the facing ends at the start, px
+
+  class G4MagnetPoles extends HTMLElement {
+    private gap = [START, START];
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.gap = [START, START];
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      this.draw();
+      await wait(300);
+      await tween(1500, (t) => {
+        this.gap = ROWS.map((r) => {
+          const facingLeft: Pole = r.left === 'N' ? 'S' : 'N'; // right-hand end of the left magnet
+          return poles(facingLeft, r.right) === 'attract' ? START * (1 - t * t) : START + 250 * (1 - (1 - t) ** 2);
+        });
+        this.draw();
+      });
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'Top pair, north facing south: the carts rolled together and the magnets snapped together. Bottom pair, north facing north: the carts rolled apart.';
+    }
+
+    private cart(cx: number, y: number, left: Pole) {
+      return `<rect class="g4s-mp-cart" x="${cx - 58}" y="${y + 14}" width="116" height="16" rx="4"/><circle class="g4s-mp-wheel" cx="${cx - 38}" cy="${y + 34}" r="7"/><circle class="g4s-mp-wheel" cx="${cx + 38}" cy="${y + 34}" r="7"/>${barMagnet(cx, y - 2, left, W)}`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      ROWS.forEach((r, i) => {
+        const g = this.gap[i];
+        const a = 330 - g / 2 - W / 2;
+        const b = 330 + g / 2 + W / 2;
+        out.push(`<line class="g4s-mp-track" x1="10" y1="${r.y + 41}" x2="650" y2="${r.y + 41}"/>`);
+        out.push(this.cart(a, r.y, r.left), this.cart(b, r.y, r.right));
+        const attract = poles(r.left === 'N' ? 'S' : 'N', r.right) === 'attract';
+        const name = attract ? 'North faces south' : 'North faces north';
+        const result = attract ? 'snapped together' : 'pushed apart';
+        out.push(`<text class="${this.done ? 'g4s-mp-res' : 'sci-text'}" x="330" y="${r.y - 34}" text-anchor="middle">${this.done ? `${name}: ${result}` : name}</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-magnet-poles', G4MagnetPoles);
+</script>
