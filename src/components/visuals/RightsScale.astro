@@ -1,0 +1,186 @@
+---
+// Rights come with responsibilities (outcome T9D6ixz0A02x1TS5l6YV-A, U1.1, S1.2). A right sits on one
+// pan of a scale. Choose the responsibility that goes with it, and the scale balances. A wrong
+// choice leaves it tipped, with a hint.
+import { mdInline } from '../../lib/render.ts';
+
+interface Pair {
+  right: string;
+  icon: string;
+  answer: string;
+  wrong: { text: string; why: string }[];
+  why: string;
+}
+const PAIRS: Pair[] = [
+  {
+    right: 'To be treated equally, no matter how you are different',
+    icon: '🤝',
+    answer: 'Treat other people equally too',
+    wrong: [{ text: 'Only play with people who are like you', why: 'That would leave others out. Would it protect equal treatment?' }, { text: 'Make sure you always go first', why: 'Going first every time isn’t equal. Who else wants a turn?' }],
+    why: 'Equal treatment only works if everyone gives it, not just gets it.',
+  },
+  {
+    right: 'Freedom to say what you think',
+    icon: '💬',
+    answer: 'Let others say what they think, and listen',
+    wrong: [{ text: 'Talk louder than everyone else', why: 'If you drown others out, can they use the same freedom?' }, { text: 'Never share your ideas', why: 'This freedom is yours to use. What do you owe the people around you?' }],
+    why: 'Your freedom to speak is safe when everyone’s freedom to speak is respected.',
+  },
+  {
+    right: 'Freedom to follow your own religion or beliefs',
+    icon: '🕊️',
+    answer: 'Respect other people’s beliefs',
+    wrong: [{ text: 'Try to make others believe what you believe', why: 'Then would they be free to follow their own beliefs?' }, { text: 'Keep your beliefs a secret from everyone', why: 'You don’t have to hide them. What do you owe others who believe differently?' }],
+    why: 'Respecting others’ beliefs protects the same freedom for you.',
+  },
+  {
+    right: 'To use parks, libraries and rinks in your community',
+    icon: '🏞️',
+    answer: 'Contribute: keep them clean and help out',
+    wrong: [{ text: 'Use them as much as you like and leave a mess', why: 'If everyone did that, would the park still be there for you?' }, { text: 'Stay home so you never have to help', why: 'The places are there for you to use. What keeps them good for everyone?' }],
+    why: 'Places we share stay good when people contribute to their community.',
+  },
+  {
+    right: 'Citizens 18 and older have the right to vote',
+    icon: '🗳️',
+    answer: 'Vote, and learn about the choices first',
+    wrong: [{ text: 'Let someone else vote for you', why: 'A vote is yours. What does a responsible citizen do with it?' }, { text: 'Skip voting, since one vote doesn’t matter', why: 'Many single votes add up to a decision. What is the responsibility?' }],
+    why: 'Voting is a right and a responsibility. When citizens vote, the government listens to more of them.',
+  },
+];
+const data = PAIRS.map((p) => ({ ...p, why: mdInline(p.why) }));
+---
+<rights-scale data-pairs={JSON.stringify(data)}>
+  <p class="g4ss-rs-progress muted" data-rs="progress"></p>
+  <div class="g4ss-rs-frame">
+    <svg class="sci-svg g4ss-rs-svg" viewBox="0 0 480 220" role="img" aria-label="A balance scale. A right sits on the left pan. The right pan holds the responsibility you choose.">
+      <rect class="g4ss-rs-bg" width="480" height="220"></rect>
+      <polygon class="g4ss-rs-post" points="225,210 255,210 244,70 236,70"></polygon>
+      <g data-rs="beam">
+        <line class="g4ss-rs-beam" x1="80" y1="70" x2="400" y2="70"></line>
+        <circle class="g4ss-rs-pivot" cx="240" cy="70" r="8"></circle>
+      </g>
+        <g data-rs="left">
+          <line class="g4ss-rs-string" x1="80" y1="70" x2="80" y2="130"></line>
+          <path class="g4ss-rs-pan" d="M30 130 Q80 165 130 130 Z"></path>
+          <text class="g4ss-rs-icon" data-rs="licon" x="80" y="118" text-anchor="middle"></text>
+          <text class="g4ss-rs-tag" x="80" y="182" text-anchor="middle">Right</text>
+        </g>
+        <g data-rs="right">
+          <line class="g4ss-rs-string" x1="400" y1="70" x2="400" y2="130"></line>
+          <path class="g4ss-rs-pan" d="M350 130 Q400 165 450 130 Z"></path>
+          <text class="g4ss-rs-icon" data-rs="ricon" x="400" y="118" text-anchor="middle"></text>
+          <text class="g4ss-rs-tag" x="400" y="182" text-anchor="middle">Responsibility</text>
+        </g>
+    </svg>
+  </div>
+  <p class="g4ss-rs-right" data-rs="right-text" aria-live="polite"></p>
+  <p class="sci-pick-label">Which responsibility balances it?</p>
+  <div class="g4ss-rs-choices" data-rs="choices" role="group" aria-label="Choose a responsibility"></div>
+  <p class="sci-say" data-rs="say" aria-live="polite"></p>
+  <button type="button" class="btn btn--small" data-rs="next" hidden>Next right ➜</button>
+  <noscript>
+    <ul>{PAIRS.map((p) => <li><strong>{p.right}</strong> → {p.answer}</li>)}</ul>
+  </noscript>
+</rights-scale>
+
+<style is:global>
+  rights-scale { display: block; }
+  .g4ss-rs-progress { margin: 0 0 0.4rem; font-size: var(--step--1); }
+  .g4ss-rs-frame { max-width: 30rem; margin-inline: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .g4ss-rs-svg { display: block; border-radius: 0; }
+  .g4ss-rs-bg { fill: color-mix(in srgb, var(--social) 8%, var(--surface)); }
+  .g4ss-rs-post { fill: var(--ink-3); }
+  .g4ss-rs-beam { stroke: var(--ink-2); stroke-width: 8; stroke-linecap: round; }
+  .g4ss-rs-pivot { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .g4ss-rs-string { stroke: var(--ink-3); stroke-width: 2; }
+  .g4ss-rs-pan { fill: color-mix(in srgb, var(--social) 45%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; }
+  .g4ss-rs-icon { font-size: 34px; }
+  .g4ss-rs-tag { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  [data-rs='beam'] { transform-box: view-box; transform-origin: 240px 70px; transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  [data-rs='left'], [data-rs='right'] { transform-box: view-box; transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .g4ss-rs-right { margin: 0.6rem 0 0; font-weight: 700; font-size: var(--step-1); text-align: center; }
+  .g4ss-rs-choices { display: grid; gap: 0.4rem; }
+  .g4ss-rs-choices button { text-align: left; padding: 0.6rem 0.8rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); font: inherit; color: var(--ink); cursor: pointer; }
+  .g4ss-rs-choices button:hover:not(:disabled) { border-color: var(--accent); }
+  .g4ss-rs-choices button.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  .g4ss-rs-choices button.is-right { border-color: var(--ok); background: var(--ok-soft); font-weight: 700; }
+  rights-scale > .btn { margin-top: 0.5rem; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-rs='beam'], [data-rs='left'], [data-rs='right'] { transition: none; }
+  }
+  @media (max-width: 40rem) {
+    svg .g4ss-rs-tag { font-size: 20px; }
+  }
+</style>
+
+<script>
+  interface Pair { right: string; icon: string; answer: string; wrong: { text: string; why: string }[]; why: string }
+
+  class RightsScale extends HTMLElement {
+    private pairs: Pair[] = [];
+    private i = 0;
+
+    connectedCallback() {
+      this.pairs = JSON.parse(this.dataset.pairs!);
+      this.q('[data-rs="next"]').addEventListener('click', () => this.show((this.i + 1) % this.pairs.length));
+      this.show(0);
+    }
+
+    private q(sel: string) {
+      return this.querySelector(sel) as HTMLElement;
+    }
+
+    /** Tips the beam: positive angles drop the right-hand pan. The pans hang straight down from its ends. */
+    private tilt(deg: number) {
+      this.q('[data-rs="beam"]').style.transform = `rotate(${deg}deg)`;
+      const drop = 160 * Math.sin((deg * Math.PI) / 180);
+      this.q('[data-rs="left"]').style.transform = `translateY(${-drop}px)`;
+      this.q('[data-rs="right"]').style.transform = `translateY(${drop}px)`;
+    }
+
+    private show(i: number) {
+      this.i = i;
+      const p = this.pairs[i];
+      this.q('[data-rs="progress"]').textContent = `Right ${i + 1} of ${this.pairs.length}`;
+      this.q('[data-rs="right-text"]').textContent = `${p.icon} ${p.right}`;
+      this.q('[data-rs="licon"]').textContent = p.icon;
+      this.q('[data-rs="ricon"]').textContent = '';
+      this.q('[data-rs="say"]').textContent = 'A right on its own tips the scale.';
+      this.q('[data-rs="next"]').hidden = true;
+      this.tilt(-14);
+      const box = this.q('[data-rs="choices"]');
+      box.replaceChildren();
+      // A fixed but mixed order, so the answer isn't always in the same place.
+      const options = [{ text: p.answer, why: '' }, ...p.wrong];
+      const order = [[1, 0, 2], [2, 1, 0], [0, 2, 1], [1, 2, 0], [2, 0, 1]][i % 5];
+      for (const k of order) {
+        const o = options[k];
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = o.text;
+        b.addEventListener('click', () => this.choose(b, k === 0, o.why));
+        box.append(b);
+      }
+    }
+
+    private choose(b: HTMLButtonElement, right: boolean, why: string) {
+      const p = this.pairs[this.i];
+      if (!right) {
+        b.classList.add('is-wrong');
+        this.q('[data-rs="ricon"]').textContent = '❔';
+        this.tilt(-8);
+        this.q('[data-rs="say"]').textContent = why;
+        return;
+      }
+      this.q('[data-rs="choices"]').querySelectorAll('button').forEach((x) => (x.disabled = true));
+      b.classList.add('is-right');
+      this.q('[data-rs="ricon"]').textContent = '✅';
+      this.tilt(0);
+      this.q('[data-rs="say"]').innerHTML = `Balanced! ${p.why}`;
+      this.q('[data-rs="next"]').hidden = false;
+      if (this.i === this.pairs.length - 1) this.q('[data-rs="next"]').textContent = '↺ Start again';
+    }
+  }
+  customElements.define('rights-scale', RightsScale);
+</script>
