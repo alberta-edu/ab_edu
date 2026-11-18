@@ -19,6 +19,7 @@ import G4CompostBin from './G4CompostBin.astro';
 import G4StormDrain from './G4StormDrain.astro';
 import G4MagnetReach from './G4MagnetReach.astro';
 import G4MagnetPoles from './G4MagnetPoles.astro';
+import G4HillRain from './G4HillRain.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -43,6 +44,7 @@ const animations = {
   'g4-storm-drain': G4StormDrain,
   'g4-magnet-reach': G4MagnetReach,
   'g4-magnet-poles': G4MagnetPoles,
+  'g4-hill-rain': G4HillRain,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

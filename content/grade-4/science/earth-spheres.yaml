@@ -1,0 +1,356 @@
+id: earth-spheres
+grade: 4
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI4-OI3-GQ1-LO1]
+order: 5
+title: "Earth's Four Spheres"
+shortTitle: "Earth's spheres"
+summary: >-
+  Explore the lithosphere, atmosphere, hydrosphere and biosphere in an Alberta landscape, then watch one
+  rainstorm show how a change in one sphere spreads to the others.
+
+bigIdea: |-
+  - Earth scientists call Earth’s systems the **spheres**: lithosphere, atmosphere, hydrosphere and biosphere.
+  - The spheres **interact**. Together they make places where life can live.
+  - A change in one sphere can **spread** to the others, even a small change.
+
+lesson:
+  - title: Four spheres
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, K1.3, K1.4, K1.5]
+        component: g4-spheres
+        caption: Tap each sphere. Which parts of the picture light up?
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: Why “sphere”?
+        body: A sphere is a ball shape. Each system wraps around the round Earth, or spreads all over it.
+
+  - title: The spheres work together
+    blocks:
+      - type: table
+        covers: [U1.1, S1.2, K1.2, K1.3, K1.4]
+        headers: [What happens, Spheres that interact]
+        rows:
+          - ['Rain falls from clouds and fills a lake.', 'Atmosphere → hydrosphere']
+          - ['A spruce tree’s roots take in water and minerals from the soil.', 'Lithosphere and hydrosphere → biosphere']
+          - ['A deer breathes in oxygen from the air.', 'Atmosphere → biosphere']
+          - ['A river wears rock away and carries it downstream.', 'Hydrosphere → lithosphere']
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI3-GQ1-LO1#K2.1']
+        title: From Grade 3
+        body: Wind, water or ice can move material as it flows.
+
+  - title: 'Virtual experiment: rain on two hills'
+    blocks:
+      - type: experiment
+        covers: [K4.1, U4.1, S4.1, S1.1, U1.1]
+        title: Let a heavy rain fall on two hillsides
+        question: |-
+          Two hillsides slope down to a stream with fish in it.
+
+          - On one hill, people have **cleared away the plants**.
+          - On the other, the plants are **left growing**.
+
+          A heavy rain falls on both.
+        animation: g4-hill-rain
+        predict:
+          choices:
+            - The stream below the cleared hill turns muddy.
+            - The stream below the hill with plants turns muddy.
+            - Both streams stay clear.
+            - Both streams turn equally muddy.
+          answer: 0
+        observe: |-
+          - On the **cleared** hill, rain washed soil down into the stream. The water turned muddy and the fish swam away.
+          - On the hill **with plants**, the soil stayed put and the stream stayed clear.
+        explain: |-
+          - Plant roots (biosphere) hold the soil (lithosphere) in place.
+          - Rain (atmosphere) washed the bare soil into the stream (hydrosphere).
+          - Muddy water changed the fish’s **habitat**. One human action changed all four spheres.
+
+  - title: One change, many effects
+    blocks:
+      - type: table
+        covers: [K4.1, S4.1, U4.1]
+        headers: [A change in…, Can lead to…]
+        rows:
+          - ['🦌 **Number of organisms:** too many deer in a park', 'Young trees eaten, so birds lose nesting places']
+          - ['🫐 **Food sources:** a poor berry year', 'Bears travel farther to find food']
+          - ['🏡 **Habitat:** a wetland is drained', 'Ducks and frogs have nowhere to live']
+          - ['💧 **Water:** a river gets polluted', 'Fish and the animals that eat them get sick']
+          - ['🌦️ **Weather patterns:** a long dry spell', 'Ponds shrink, and crops grow poorly']
+      - type: callout
+        variant: mistake
+        covers: [U4.1]
+        title: Small changes matter too
+        body: Earth’s systems are connected, so even a **small** change, like one blocked stream, can reach many living things.
+
+  - title: All things are connected
+    blocks:
+      - type: compare
+        covers: [K1.6, U1.1]
+        columns:
+          - title: A Cree teaching
+            body: |-
+              - In Plains Cree, **wâhkôhtowin** means relationship or kinship.
+              - Cree Elders teach that people are related to the land, water, plants and animals.
+          - title: Earth scientists
+            body: |-
+              - The four spheres **interact** all the time.
+              - Together they sustain life.
+      - type: text
+        covers: [K1.6, S1.2]
+        body: First Nations, Métis and Inuit have long held understandings of how Earth’s systems sustain life. A shared idea is that **all things are interconnected**.
+
+keyTerms:
+  - term: Lithosphere
+    covers: [K1.2]
+    definition: The outer layers of Earth’s surface, made of rock, with the soil and minerals that support life.
+  - term: Atmosphere
+    covers: [K1.3]
+    definition: The layer of gases around Earth. It warms the surface, keeps temperatures from swinging too far, and has the oxygen we breathe.
+  - term: Hydrosphere
+    covers: [K1.4]
+    definition: All the parts of Earth covered with water.
+  - term: Biosphere
+    covers: [K1.5]
+    definition: All life on Earth, and every place where life is supported.
+  - term: Interact
+    covers: [U1.1]
+    definition: To act on each other, so that a change in one affects the other.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4, K1.1]
+    type: mc
+    prompt: Lake Louise is part of which sphere?
+    choices: [Hydrosphere, Lithosphere, Atmosphere, Biosphere]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The lithosphere is rock and soil. What is a lake made of?
+      '2': The atmosphere is the layer of gases. Is a lake a gas?
+      '3': Fish live in the lake, but the lake itself isn’t alive. Which sphere is about water?
+    hints:
+      - Which word root means water?
+    solution:
+      - A lake is an area covered with water, so it is part of the **hydrosphere**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3]
+    type: multi
+    prompt: Select **every** job the **atmosphere** does.
+    choices:
+      - It has the oxygen we breathe.
+      - It warms Earth’s surface.
+      - It keeps temperatures from getting too hot or too cold.
+      - It is made of rock.
+      - It holds all the oceans.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Rock is the lithosphere. What is the atmosphere made of?
+      '4': Oceans are part of a different sphere. Which one?
+    hints:
+      - The atmosphere is the layer of gases around Earth. Which jobs could a layer of gases do?
+    solution:
+      - The atmosphere gives us **oxygen**, **warms** Earth’s surface and **reduces extremes** of temperature.
+      - Rock is the lithosphere, and oceans are the hydrosphere.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.5, K1.2]
+    type: mc
+    prompt: An earthworm tunnels through garden soil. Why is the soil part of the **biosphere** as well as the lithosphere?
+    choices:
+      - Life lives in it, and the biosphere includes every place where life is supported.
+      - Soil is alive, just like the worm.
+      - The biosphere includes everything under the ground.
+      - Soil is made of air.
+    answer: 0
+    feedback:
+      '1': Soil holds living things, but grains of rock aren’t alive. What does the biosphere include besides living things?
+      '2': Deep rock with no life isn’t part of the biosphere. What makes this soil different?
+      '3': Soil has air in it, but it is mostly rock bits. What makes it part of the biosphere?
+    hints:
+      - The biosphere is all life, **and** something else. What else?
+    solution:
+      - The biosphere includes all life **and** every region where life is supported.
+      - Worms, roots and tiny living things live in soil, so soil is part of both spheres.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K4.1, S4.1, U4.1]
+    type: order
+    prompt: A summer has almost no rain. Put the chain of effects in order.
+    items:
+      - Almost no rain falls all summer.
+      - The pond shrinks.
+      - Fewer insects hatch in the pond.
+      - The swallows that eat those insects have less food.
+    hints:
+      - Which sphere does the change start in? Follow it one step at a time.
+    solution:
+      - It starts in the **atmosphere**, with a change in the weather.
+      - Less rain means less water in the **hydrosphere**, so the pond shrinks.
+      - The insects lose their habitat, so the swallows lose a **food source**. The change reached the **biosphere**.
+
+  - id: b2
+    level: 2
+    thinking: whatif
+    covers: [S1.1, K4.1, U4.1]
+    type: multi
+    prompt: A town drains a wetland and paves it for a parking lot. Select **every** change this could cause.
+    choices:
+      - Frogs and ducks lose their habitat.
+      - Rainwater runs off the pavement instead of soaking into the ground.
+      - The wetland’s water is no longer there for animals to drink.
+      - The air stops having oxygen in it.
+      - The rocks deep under Alberta disappear.
+    answer: [0, 1, 2]
+    feedback:
+      '3': The atmosphere has oxygen all over the world. Would one parking lot take it all away?
+      '4': Paving covers the surface. Does it remove the rock far below?
+    hints:
+      - Think about each sphere. What happens to the water, the soil and the living things there?
+    solution:
+      - The **habitat** is gone, so frogs and ducks have nowhere to live.
+      - Water can’t soak into pavement, so **water distribution** changes.
+      - One human action changed the hydrosphere, the lithosphere and the biosphere.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.3, U1.1, S1.2]
+    type: mc
+    prompt: 'Jin says, “Fish live in water, so the atmosphere doesn’t matter to them at all.” What is wrong with his idea?'
+    choices:
+      - Rain and snow from the atmosphere fill lakes, and the air keeps temperatures from swinging too far.
+      - Fish come up to breathe air, just like people.
+      - Fish fly through the atmosphere when they jump.
+      - Nothing. The spheres don’t interact.
+    answer: 0
+    feedback:
+      '1': Most fish take oxygen from the water through their gills. How else could the atmosphere matter?
+      '2': A jump lasts a second. Is there a bigger way the air affects a lake?
+      '3': Remember the rain on the hills. Did the atmosphere change the stream?
+    hints:
+      - Where does the water in a lake come from?
+      - What job does the atmosphere do for temperature?
+    solution:
+      - Lakes are filled by **rain and snow** that fall from the atmosphere.
+      - The atmosphere also warms Earth and keeps temperatures from getting too extreme.
+      - So the spheres **interact**, and fish depend on the atmosphere too.
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [K4.1, S4.1]
+    type: multi
+    prompt: A wildfire burns part of a forest. Select every effect that is a change to the **biosphere**.
+    choices:
+      - Animals lose the trees they lived in.
+      - Bears find fewer berries to eat.
+      - Smoke fills the air for days.
+      - Ash washes into a nearby river.
+    answer: [0, 1]
+    feedback:
+      '2': Smoke is a real effect. Which sphere is the air?
+      '3': Ash is a real effect. Which sphere is the river?
+    hints:
+      - The biosphere is life. Which effects are about living things?
+    solution:
+      - Losing homes is a change in **habitat**, and fewer berries is a change in **food sources**. Both are in the biosphere.
+      - The smoke changes the atmosphere, and the ash changes the hydrosphere. One fire touched three spheres.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K4.1, U4.1, S4.1, S1.2]
+    type: investigation
+    prompt: |-
+      On an island, the deer have no animals hunting them. Year after year, the number of deer grows. The deer eat
+      the young trees and shrubs along the river.
+    parts:
+      - type: mc
+        prompt: What happens to the riverbank plants as the deer keep growing in number?
+        choices:
+          - There are fewer and fewer of them.
+          - There are more of them, because deer help plants grow.
+          - Nothing changes, because deer only eat grass.
+        answer: 0
+        feedback:
+          '1': The story says what the deer eat. What happens to plants that get eaten?
+          '2': Read the story again. What do these deer eat?
+        hints:
+          - More deer eating means what for the plants?
+        solution:
+          - More deer eat more young trees and shrubs, so there are **fewer** plants on the bank.
+      - type: mc
+        prompt: A heavy rain falls on the riverbank. What happens now that fewer roots are there?
+        choices:
+          - Soil washes into the river.
+          - The soil stays put, just as before.
+          - The rain can’t reach the ground.
+        answer: 0
+        feedback:
+          '1': Remember the two hills. Which one kept its soil?
+          '2': With fewer plants covering it, what is stopping the rain?
+        hints:
+          - What did plant roots do on the hill in the virtual experiment?
+        solution:
+          - Roots hold soil in place. With fewer roots, the rain washes soil into the river, just like the cleared hill.
+      - type: mc
+        prompt: Salmon lay their eggs in clean gravel on the river bottom. What might happen to the salmon?
+        choices:
+          - Fewer young salmon hatch, because mud covers the gravel.
+          - More salmon hatch, because mud keeps eggs warm.
+          - Nothing, because salmon live in water, not on land.
+        answer: 0
+        feedback:
+          '1': The story says salmon need **clean** gravel. Is muddy gravel clean?
+          '2': The mud came from the land. Did the river stay the same?
+        hints:
+          - What is the salmon’s habitat for its eggs? What happened to it?
+        solution:
+          - Mud settles on the gravel, so the eggs lose their **clean** habitat. Fewer young salmon hatch.
+    wrapUp: One change, more deer, reached the plants, the soil, the river and the fish. Earth’s systems are interconnected.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.3, U1.1]
+    type: mc
+    prompt: |-
+      The Moon has almost no atmosphere. Where the Sun shines on it, its ground gets to about **120 °C**. At night it
+      drops to about **−130 °C**. Earth is about the same distance from the Sun. Why don’t Earth’s days and nights
+      swing that far?
+    choices:
+      - Earth’s atmosphere warms the surface and keeps temperatures from getting too extreme.
+      - Earth is closer to the Sun than the Moon is.
+      - Earth’s lithosphere is made of warmer rock.
+      - Earth spins faster, so the Sun never sets.
+    answer: 0
+    feedback:
+      '1': The story says they are about the same distance from the Sun. What does Earth have that the Moon doesn’t?
+      '2': Rock is rock. Which sphere is the big difference between Earth and the Moon?
+      '3': The Sun does set on Earth every day. What keeps our nights from getting so cold?
+    hints:
+      - What is the big difference between Earth and the Moon in the story?
+      - What jobs does the atmosphere do for temperature?
+    solution:
+      - The big difference is the **atmosphere**. Earth has one, and the Moon has almost none.
+      - The atmosphere warms Earth’s surface and **reduces extremes** of temperature.
+      - Another reason, to be fair, is that a day on the Moon lasts about two weeks, so its nights are long too.
