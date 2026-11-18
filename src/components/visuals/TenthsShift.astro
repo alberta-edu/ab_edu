@@ -16,13 +16,13 @@ const start = parsePlace(value);
 if (!start || (!decimals && start.decimals)) throw new Error(`TenthsShift: can't show ${value}`);
 const text = formatPlace(start);
 ---
-<g4m-tenths-shift data-value={value} data-decimals={String(decimals)}>
+<g4m-tenths-shift lang="en" data-value={value} data-decimals={String(decimals)}>
   <label class="g4m-ts-input">
     <span>Type a number</span>
     <input type="text" inputmode="decimal" value={text} data-ts="input" autocomplete="off" spellcheck="false" />
   </label>
   <div class="g4m-ts-chart" style={`--cols:${places.length}`}>
-    {places.map((p) => <span class={`g4m-ts-name${p.k === 0 ? ' is-ones' : ''}`}>{p.name}<small>{p.value}</small></span>)}
+    {places.map((p) => <span class={`g4m-ts-name${p.k === 0 ? ' is-ones' : ''}`}>{p.name.replace('thousands', 'thou­sands').replace(/^hundred/, 'hun­dred')}<small>{p.value}</small></span>)}
     {
       places.map((p) => {
         const lead = p.k > 0 && start.h < 10 ** (p.k + 2);
@@ -57,13 +57,13 @@ const text = formatPlace(start);
   .g4m-ts-input { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-weight: 700; margin-bottom: 0.6rem; }
   .g4m-ts-input input { font: inherit; font-size: var(--step-1); width: 9rem; padding: 0.3rem 0.6rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
   .g4m-ts-chart { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); overflow: hidden; border-radius: var(--radius-sm); }
-  .g4m-ts-name { display: grid; place-items: center; gap: 0.1rem; padding: 0.35rem 0.1rem; min-height: 3.4rem; font-size: 0.68rem; font-weight: 700; line-height: 1.15; text-align: center; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); }
+  .g4m-ts-name { display: grid; place-items: center; gap: 0.1rem; padding: 0.35rem 0.1rem; min-height: 3.4rem; font-size: clamp(0.56rem, 0.4rem + 0.8vw, 0.72rem); font-weight: 700; line-height: 1.15; hyphens: manual; text-align: center; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); }
   .g4m-ts-name small { font-size: 0.72rem; color: var(--ink-3); }
   .g4m-ts-digit { position: relative; font: inherit; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); font-weight: 700; padding: 0.45rem 0; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
   .g4m-ts-digit.is-empty { color: transparent; }
   .g4m-ts-digit.is-on { outline: 3px solid var(--accent); outline-offset: -3px; }
   .g4m-ts-name.is-ones, .g4m-ts-digit.is-ones { background: var(--accent-soft, var(--math-soft)); }
-  .g4m-ts-digit.is-after-point::before { content: var(--g4m-sep, '.'); position: absolute; left: -0.18em; bottom: 0.1em; color: var(--bad); font-size: 1.2em; line-height: 1; pointer-events: none; }
+  .g4m-ts-digit.is-after-point::before { content: var(--g4m-sep, '.'); position: absolute; left: -0.2em; bottom: 0; color: var(--bad); font-size: 1.5em; line-height: 1; pointer-events: none; }
   .g4m-ts-number { margin: 0.3rem 0 0; font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
   .g4m-ts-words { margin: 0.1rem 0 0.3rem; font-size: var(--step-0); font-weight: 700; color: var(--accent); }
   .g4m-ts-detail { margin: 0; color: var(--ink-2); }

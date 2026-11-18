@@ -69,25 +69,25 @@ export const tilt = (l: number, r: number) => (l === r ? 0 : l > r ? -9 : 9);
 
 /** The balance drawing. Weights are counts of cubes (a box weighs `boxValue` cubes for the tilt). */
 export function balanceSvg(left: Side, right: Side, angle: number, reveal?: number): string {
-  const px = 200;
+  const px = 220;
   const py = 64;
-  const arm = 140;
+  const arm = 146;
   const rad = (angle * Math.PI) / 180;
   const pan = (dir: -1 | 1, side: Side) => {
     const cx = px + dir * arm * Math.cos(rad);
     const cy = py + dir * arm * Math.sin(rad);
     const plateY = cy + 96;
     let items = '';
-    const cell = 9;
+    const cell = 12;
     // Boxes first, then cubes in rows of 10, stacked up from the plate.
-    const bw = 26;
+    const bw = 30;
     const boxRow = side.boxes ? Math.min(side.boxes, 4) : 0;
     for (let i = 0; i < side.boxes; i++) {
       const col = i % 4;
       const row = Math.floor(i / 4);
       const bx = cx - (boxRow * (bw + 4)) / 2 + col * (bw + 4);
       const by = plateY - bw - row * (bw + 4) - 2;
-      items += `<g class="g4m-eb-box"><rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw}" height="${bw}" rx="4"/><text x="${(bx + bw / 2).toFixed(1)}" y="${(by + 18).toFixed(1)}" text-anchor="middle">${reveal ?? '?'}</text></g>`;
+      items += `<g class="g4m-eb-box"><rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw}" height="${bw}" rx="4"/><text x="${(bx + bw / 2).toFixed(1)}" y="${(by + 21).toFixed(1)}" text-anchor="middle">${reveal ?? '?'}</text></g>`;
     }
     const boxRows = Math.ceil(side.boxes / 4);
     const base = plateY - 2 - boxRows * (bw + 4);
@@ -100,10 +100,10 @@ export function balanceSvg(left: Side, right: Side, angle: number, reveal?: numb
       items += `<rect class="g4m-eb-cube" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${cell - 1}" height="${cell - 1}" rx="1.5"/>`;
     }
     return (
-      `<line class="g4m-eb-string" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx - 56).toFixed(1)}" y2="${plateY.toFixed(1)}"/>` +
-      `<line class="g4m-eb-string" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx + 56).toFixed(1)}" y2="${plateY.toFixed(1)}"/>` +
+      `<line class="g4m-eb-string" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx - 62).toFixed(1)}" y2="${plateY.toFixed(1)}"/>` +
+      `<line class="g4m-eb-string" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}" x2="${(cx + 62).toFixed(1)}" y2="${plateY.toFixed(1)}"/>` +
       items +
-      `<rect class="g4m-eb-plate" x="${(cx - 62).toFixed(1)}" y="${plateY.toFixed(1)}" width="124" height="7" rx="3"/>`
+      `<rect class="g4m-eb-plate" x="${(cx - 68).toFixed(1)}" y="${plateY.toFixed(1)}" width="136" height="7" rx="3"/>`
     );
   };
   const x1 = px - arm * Math.cos(rad);

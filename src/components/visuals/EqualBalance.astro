@@ -32,7 +32,7 @@ const moves = [
     )
   }
   <p class="g4m-eb-eq" data-eb="eq" aria-live="polite">{mode === 'solve' ? first!.equation : `${left[0]} + ${left[1]} = ${sum}`}</p>
-  <svg class="g4m-eb-svg" viewBox="0 0 400 244" role="img" aria-label="A pan balance" data-eb="svg" set:html={mode === 'solve' ? balanceSvg(first!.left, first!.right, 0) : balanceSvg({ boxes: 0, cubes: sum }, { boxes: 0, cubes: sum }, 0)} />
+  <svg class="g4m-eb-svg" viewBox="0 0 440 244" role="img" aria-label="A pan balance" data-eb="svg" set:html={mode === 'solve' ? balanceSvg(first!.left, first!.right, 0) : balanceSvg({ boxes: 0, cubes: sum }, { boxes: 0, cubes: sum }, 0)} />
   <p class="g4m-eb-say" data-eb="say">{mode === 'solve' ? first!.caption : `${left[0]} + ${left[1]} and ${sum} name the same number, so the balance is level.`}</p>
   {
     mode === 'solve' ? (
@@ -62,7 +62,7 @@ const moves = [
   .g4m-eb-plate { fill: var(--ink-2); }
   .g4m-eb-cube { fill: var(--math); stroke: var(--surface); stroke-width: 1; }
   .g4m-eb-box rect { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
-  .g4m-eb-box text { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4m-eb-box text { fill: var(--ink); font-size: 18px; font-weight: 700; }
   .g4m-eb-say { margin: 0.3rem 0 0; font-weight: 700; min-height: 2.6em; }
   .g4m-eb-say.is-tipped { color: var(--bad); }
   .g4m-eb-moves { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }

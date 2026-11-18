@@ -16,7 +16,7 @@ const { numerator = 2, denominator = 3 } = Astro.props;
     <span class="g4m-fs-eq" data-fs="eq" hidden>=</span>
     <span class="frac" data-fs="now" hidden><span>{numerator}</span><span>{denominator}</span></span>
   </div>
-  <svg class="g4m-fs-svg" viewBox={`0 0 680 ${splitHeight(true)}`} role="img" aria-label="Two fraction bars, the starting fraction and the new one, above a number line" data-fs="svg" set:html={splitSvg(numerator, denominator, [numerator, denominator])} />
+  <svg class="g4m-fs-svg" viewBox={`0 0 512 ${splitHeight(true)}`} role="img" aria-label="Two fraction bars, the starting fraction and the new one, above a number line" data-fs="svg" set:html={splitSvg(numerator, denominator, [numerator, denominator])} />
   <div class="control-row">
     <div class="control">
       <span id="g4m-fs-split">Split each part into</span>
@@ -40,14 +40,14 @@ const { numerator = 2, denominator = 3 } = Astro.props;
   g4m-fraction-split { display: block; }
   .g4m-fs-read { display: flex; align-items: center; gap: 0.6rem; min-height: 3.6rem; }
   .g4m-fs-eq { font-size: 1.8rem; color: var(--ink-3); }
-  .g4m-fs-svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .g4m-fs-svg { display: block; width: 100%; max-width: 40rem; height: auto; font-family: var(--font); }
   .g4m-fs-cell { fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.5; transition: fill 0.3s; }
   .g4m-fs-cell.is-on { fill: var(--math); }
   .g4m-fs-ghost { opacity: 0.55; }
   .g4m-fs-frame { fill: none; stroke: var(--ink); stroke-width: 3; }
-  .g4m-fs-lab { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4m-fs-lab { fill: var(--ink); font-size: 24px; font-weight: 700; }
   .g4m-fs-axis, .g4m-fs-tick { stroke: var(--ink); stroke-width: 2; }
-  .g4m-fs-num { fill: var(--ink); font-size: 18px; font-weight: 700; }
+  .g4m-fs-num { fill: var(--ink); font-size: 22px; font-weight: 700; }
   .g4m-fs-drop { stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 4 4; }
   .g4m-fs-dot { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
   .g4m-fs-new { animation: g4m-fs-in 0.5s ease-out; }
