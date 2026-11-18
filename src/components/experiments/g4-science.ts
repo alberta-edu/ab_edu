@@ -32,3 +32,10 @@ export function barMagnet(cx: number, cy: number, left: Pole, w = 96, h = 32): s
     t(cx + half / 2, right)
   );
 }
+
+/**
+ * Sunlight on the ground (SCI4-OI3-GQ1-LO1, K2.2): a beam `beam` wide lands on a patch
+ * beam / sin(angle) wide, where angle is the Sun's height above the ground. Straight down
+ * (90°) the patch is as small as it gets; the lower the Sun, the more the same light spreads out.
+ */
+export const patchWidth = (beam: number, angleDeg: number) => beam / Math.sin((angleDeg * Math.PI) / 180);

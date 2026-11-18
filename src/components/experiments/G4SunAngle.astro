@@ -1,0 +1,90 @@
+---
+// Animated experiment: the same sunlight lands straight down at the equator and at a slant near
+// the pole. Straight down, it falls on a small patch; at a slant, the same light spreads over a
+// bigger patch, so each bit of ground warms less (SCI4-OI3-GQ1-LO1, K2.2, K2.3, U2.1).
+---
+<g4-sun-angle>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-sun-angle>
+
+<style is:global>
+  g4-sun-angle { display: block; }
+  .g4s-sa-ray { stroke: #f2b01e; stroke-width: 3; stroke-linecap: round; }
+  .g4s-sa-patch { fill: #ffd84a; }
+  .g4s-sa-ground { fill: #8b6a45; }
+  .g4s-sa-tube { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+  .g4s-sa-red { fill: #d23b2e; }
+  .g4s-sa-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-sa-res { fill: var(--ink); font-size: 15px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { patchWidth } from './g4-science.ts';
+
+  const GROUND = 220;
+  const BEAM = 90; // width of the same bundle of sunlight, measured across the beam
+  const PANELS = [
+    { cx: 165, angle: 90, label: 'At the equator: straight down' },
+    { cx: 495, angle: 25, label: 'Near a pole: at a slant' },
+  ];
+  const RAYS = 6;
+
+  class G4SunAngle extends HTMLElement {
+    private shine = 0; // 0..1: light arriving
+    private heat = 0; // 0..1: time warming
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.shine = this.heat = 0;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(900, (t) => ((this.shine = t), this.draw()));
+      await wait(200);
+      await tween(2600, (t) => ((this.heat = t), this.draw()));
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'Straight down, the light landed on a small, bright patch, and its thermometer rose high. At a slant, the same light spread over a much bigger, dimmer patch, and its thermometer rose much less.';
+    }
+
+    private draw() {
+      const out: string[] = ['<rect class="sci-sky" width="660" height="300"/>'];
+      PANELS.forEach((p, i) => {
+        out.push(`<clipPath id="g4s-sa-clip${i}"><rect x="${p.cx - 165}" y="0" width="330" height="300"/></clipPath><g clip-path="url(#g4s-sa-clip${i})">`);
+        const w = patchWidth(BEAM, p.angle);
+        const a = (p.angle * Math.PI) / 180;
+        const dx = Math.cos(a); // the rays travel down and to the right at a slant
+        const dy = Math.sin(a);
+        out.push(`<rect class="g4s-sa-ground" x="${p.cx - 160}" y="${GROUND}" width="320" height="80"/>`);
+        // The patch of ground the light lands on. The same light over more ground is dimmer.
+        if (this.shine > 0.98) out.push(`<rect class="g4s-sa-patch" x="${(p.cx - w / 2).toFixed(1)}" y="${GROUND - 4}" width="${w.toFixed(1)}" height="8" opacity="${(0.35 + 0.65 * (BEAM / w)).toFixed(2)}"/>`);
+        for (let k = 0; k < RAYS; k++) {
+          const gx = p.cx - w / 2 + (w * (k + 0.5)) / RAYS; // where the ray lands
+          const len = 190 * this.shine;
+          const x1 = gx - (dx * 190) / dy;
+          const y1 = GROUND - 190;
+          const sx = x1 + (gx - x1) * (len / 190);
+          const sy = y1 + (GROUND - y1) * (len / 190);
+          if (len > 1) out.push(`<line class="g4s-sa-ray" x1="${x1.toFixed(1)}" y1="${y1}" x2="${sx.toFixed(1)}" y2="${sy.toFixed(1)}"/>`);
+        }
+        out.push('</g>');
+        // A thermometer standing in the patch.
+        const rise = this.heat * (p.angle === 90 ? 0.85 : 0.85 * (BEAM / w));
+        const tx = p.cx + 120;
+        out.push(`<rect class="g4s-sa-tube" x="${tx - 7}" y="${GROUND - 120}" width="14" height="110" rx="7"/><circle class="g4s-sa-red" cx="${tx}" cy="${GROUND - 8}" r="11"/>`);
+        out.push(`<rect class="g4s-sa-red" x="${tx - 4}" y="${(GROUND - 14 - 100 * (0.1 + rise)).toFixed(1)}" width="8" height="${(100 * (0.1 + rise)).toFixed(1)}"/>`);
+        out.push(`<text class="g4s-sa-lbl" x="${p.cx}" y="22" text-anchor="middle">${p.label}</text>`);
+        if (this.done) out.push(`<text class="g4s-sa-res" x="${p.cx}" y="${GROUND + 34}" text-anchor="middle" style="fill:#fff">${p.angle === 90 ? 'Small, bright patch: warms a lot' : 'Big, dim patch: warms a little'}</text>`);
+      });
+      out.push('<line x1="330" y1="34" x2="330" y2="300" style="stroke:var(--line-strong);stroke-width:2;stroke-dasharray:6 6"/>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-sun-angle', G4SunAngle);
+</script>
