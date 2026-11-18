@@ -5,22 +5,21 @@ Social Studies. Grade 5 came first; Grades 6, 4, 3, 2 and 1 follow. Kindergarten
 
 ## Where we are now
 
-*Last updated: November 16, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 17, 2026. Update this section whenever a phase or batch finishes.*
 
-**Grade 5 is live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 6 to 1 (Phases 9–14).**
+**Grades 5 and 6 are live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 4 to 1 (Phases 11–14).**
 
 - Phase 9 (`feature/multi-grade`) was merged and deployed on November 13, 2026.
-- **Waiting for review:** `feature/grade-6` (Phase 10). It merges the four subject branches
-  (`feature/g6-math`, `-science`, `-social`, `-ela`). A shared fix lets `.seg` view switchers wrap on a
-  phone.
-- **In progress:** Grade 4, one agent per subject (`feature/g4-*`).
+- Phase 10 (Grade 6) was merged and deployed on November 17, 2026.
+- **In progress:** Grade 4 (Phase 11), one agent per subject (`feature/g4-*`), merged into
+  `feature/grade-4` as each finishes. Social Studies is in. Grade 3 Math has started.
 
 | Grade | Outcomes | Statements | Status |
 |---|---|---|---|
 | 5 | 32 | 674 | ✅ Live |
-| 6 | 33 | 763 | 🔍 55 concepts, 495 problems, 763 of 763 taught; waiting for review |
+| 6 | 33 | 763 | ✅ Live: 55 concepts, 495 problems, 763 of 763 taught |
 | 4 | 32 | 651 | 🔨 In progress (Phase 11) |
-| 3 | 30 | 749 | Phase 12 |
+| 3 | 30 | 749 | 🔨 Math started (Phase 12) |
 | 2 | 28 | 596 | Phase 13 |
 | 1 | 28 | 565 | Phase 14 |
 
@@ -36,7 +35,7 @@ Grade 6 detail:
 Grade 6 checks: `npm run check` passes (103 concepts, 926 problems, 315 tests). A browser script solved
 all 495 Grade 6 and all 431 Grade 5 problems at phone width, with no page errors.
 
-To check when reviewing Grade 6 (flagged by the writing agents):
+Facts the writing agents flagged in Grade 6, still worth a second look:
 - **Social Studies:**
   - Roman provinces "run by a magistrate the citizens had elected." Governors were really former
     magistrates, assigned by the Senate or by lot.
@@ -167,7 +166,7 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 7 | Polish | Question rewrite, grade-level audit, educator notes, accessibility, SEO and device testing | ✅ Merged |
 | 8 | Release | Make the repo public, turn on Pages, publish | ✅ Live since November 4, 2026 |
 | 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | ✅ Merged November 13, 2026 |
-| 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | 🔍 Waiting for review |
+| 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | ✅ Live since November 17, 2026 |
 | 11 | Grade 4 | 4 subjects | 🔨 In progress |
 | 12 | Grade 3 | 4 subjects | Planned |
 | 13 | Grade 2 | 4 subjects, Grades 1–2 profile: less text, more animation, 6 problems | Planned |
