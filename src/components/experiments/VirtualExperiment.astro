@@ -15,6 +15,25 @@ import EggFloat from './EggFloat.astro';
 import EnergyRun from './EnergyRun.astro';
 import ScrollScan from './ScrollScan.astro';
 import EchoRoom from './EchoRoom.astro';
+import MeltScale from './MeltScale.astro';
+import BottleThermo from './BottleThermo.astro';
+import PondFreeze from './PondFreeze.astro';
+import FrictionSlide from './FrictionSlide.astro';
+import SkatePush from './SkatePush.astro';
+import StretchTest from './StretchTest.astro';
+import WindTwoWays from './WindTwoWays.astro';
+import GreenhouseRun from './GreenhouseRun.astro';
+import SeaRise from './SeaRise.astro';
+import RadarSweep from './RadarSweep.astro';
+import WetlandDrought from './WetlandDrought.astro';
+import Pondweed from './Pondweed.astro';
+import SealedJars from './SealedJars.astro';
+import ScaleWalk from './ScaleWalk.astro';
+import OrbitDay from './OrbitDay.astro';
+import MapAbstract from './MapAbstract.astro';
+import IfRobot from './IfRobot.astro';
+import MoonShadow from './MoonShadow.astro';
+import DarkRoom from './DarkRoom.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -35,6 +54,25 @@ const animations = {
   'arrow-flight': ArrowFlight,
   'egg-float': EggFloat,
   'energy-run': EnergyRun,
+  'g6-melt-scale': MeltScale,
+  'g6-bottle-thermo': BottleThermo,
+  'g6-pond-freeze': PondFreeze,
+  'g6-friction-slide': FrictionSlide,
+  'g6-skate-push': SkatePush,
+  'g6-stretch-test': StretchTest,
+  'g6-wind-two-ways': WindTwoWays,
+  'g6-greenhouse': GreenhouseRun,
+  'g6-sea-rise': SeaRise,
+  'g6-radar': RadarSweep,
+  'g6-wetland-drought': WetlandDrought,
+  'g6-pondweed': Pondweed,
+  'g6-sealed-jars': SealedJars,
+  'g6-scale-walk': ScaleWalk,
+  'g6-orbit-day': OrbitDay,
+  'g6-map-abstract': MapAbstract,
+  'g6-if-robot': IfRobot,
+  'g6-moon-shadow': MoonShadow,
+  'g6-dark-room': DarkRoom,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

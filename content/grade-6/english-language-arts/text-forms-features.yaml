@@ -1,0 +1,530 @@
+id: text-forms-features
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG6-OI1-GQ1-LO1]
+order: 1
+title: Text Purposes, Forms and Features
+shortTitle: Text forms & features
+summary: >-
+  Find the purpose that stands out, X-ray articles, speeches and hybrids, use text features, and
+  check a problem-and-solution speech for factual accuracy.
+
+bigIdea: |-
+  - A text can have **more than one purpose**, and one of them often stands out.
+  - Its **form** (article, speech, hybrid) and **structure** help the ideas reach you.
+  - **Text features** organize content, point to what matters and teach new words.
+  - Non-fiction should be **accurate**. Check the content and the source.
+
+lesson:
+  - title: The purpose that stands out
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: inform, label: Mostly to inform, icon: 📘 }
+            - { id: entertain, label: Mostly to entertain, icon: 🎭 }
+            - { id: persuade, label: Mostly to persuade, icon: 📣 }
+          cards:
+            - { text: 'A funny video about bike helmets that ends, “Wear one every ride!”', bin: persuade, why: 'The jokes keep you watching, but they are there to get you to wear a helmet.' }
+            - { text: 'A comic about a lost robot, with one true fact about robots on the last page', bin: entertain, why: 'The fact is a bonus. The comic is mainly there for you to enjoy.' }
+            - { text: 'A bus app with a cartoon owl who says, “Hoo’s ready? Your bus comes in 4 minutes.”', bin: inform, why: 'The owl is cute, but you open the app to find out when your bus comes.' }
+            - { text: 'A poster with a joke about smelly socks, asking you to donate socks to the shelter', bin: persuade, why: 'The joke catches your eye. The poster wants you to give.' }
+            - { text: 'A web page about how bees make honey, with a short quiz at the end', bin: inform, why: 'The quiz is fun, but it checks what you learned. Informing stands out.' }
+            - { text: 'A story about a girl who trains a crow, in a printed book', bin: entertain, why: 'It may teach you something about crows, but it is mainly a story to enjoy.' }
+        caption: Each text has more than one purpose. Sort it by the purpose that **stands out**. Some are digital and some are not.
+      - type: callout
+        variant: tip
+        covers: [K1.1, S1.1]
+        title: Ask what the rest is there for
+        body: 'Find the part that everything else is helping. In the helmet video, the jokes help the message: wear a helmet.'
+
+  - title: Fiction or non-fiction?
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.5, S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: fiction, label: Fiction, icon: 🐉 }
+            - { id: nonfiction, label: Non-fiction, icon: 🔎 }
+          cards:
+            - { text: 'A true story of how your grandmother learned to drive a tractor, told like an adventure', bin: nonfiction, why: 'It really happened. A true story can still be a narrative, with a problem and an ending.' }
+            - { text: A novel about a boy who finds a door to another world in his closet, bin: fiction, why: 'The events are invented.' }
+            - { text: A biography of Terry Fox and his Marathon of Hope, bin: nonfiction, why: 'A biography tells the true story of a real person’s life.' }
+            - { text: A news article about a lost hiker found safe, bin: nonfiction, why: 'It reports a real event.' }
+            - { text: A diary written by an imaginary girl living in 1905, bin: fiction, why: 'The year is real, but the girl is invented. That makes it fiction.' }
+            - { text: A comic about a squirrel who runs a bakery, bin: fiction, why: 'Squirrels don’t run bakeries. It is invented.' }
+        caption: A **genre** is a kind of text. Sort each one. Watch out for the tricky ones.
+
+  - title: Three forms, one storm
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.3, U1.1]
+        component: text-xray
+        props:
+          button: Show the structure
+          pages:
+            - label: Article
+              icon: 📰
+              note: 'A **news article** reports facts about a recent event. It can be printed or posted online.'
+              parts:
+                - { style: kicker, text: 'Pine Creek News · Tuesday' }
+                - { style: title, text: Hail Flattens Gardens Across Pine Creek, tag: Headline, job: 'Gives the main fact in a few words.' }
+                - { style: lead, text: 'Hail the size of grapes fell on Pine Creek on Tuesday evening. It flattened gardens and dented cars, but no one was hurt.', tag: Lead, job: 'Answers who, what, when and where right away.' }
+                - { style: text, text: 'The storm lasted about ten minutes. Town crews spent Wednesday clearing branches from the streets.', tag: Details, job: 'More facts, most important first.' }
+                - { style: quote, text: '“It sounded like someone was throwing gravel at the roof,” said Mei Chen, who lives on Birch Street.', tag: Quote, job: 'Lets someone who was there tell part of it.' }
+            - label: Speech
+              icon: 🎤
+              note: 'A **speech** is written to be heard. Speakers talk straight to listeners, say *you* and *we*, and often ask them to act.'
+              parts:
+                - { style: text, text: 'Good morning, Pine Creek School!', tag: Greeting, job: 'Speaks straight to the listeners.' }
+                - { style: text, text: 'On Tuesday, hail flattened our school garden. Every tomato plant we grew from seed is gone.', tag: Problem, job: 'Tells listeners what is wrong.' }
+                - { style: text, text: 'But summer isn’t over. If ten of you help us at lunch on Thursday, we can replant the whole garden in one hour.', tag: Solution, job: 'Tells listeners how to fix it.' }
+                - { style: text, text: 'So bring your gloves, bring a friend, and let’s grow it back together!', tag: Call to action, job: 'Asks listeners to do something.' }
+            - label: Hybrid
+              icon: 🧩
+              note: 'A **hybrid** puts fiction and non-fiction together in one text.'
+              parts:
+                - { style: title, text: Life of a Hailstone }
+                - { style: story, text: 'I began as a speck of ice, high in a thundercloud. The wind tossed me up, and I grew a new coat of ice. Down, up, another coat. At last I was too heavy, and I fell.', tag: Fiction, job: 'An invented story, told by a hailstone.' }
+                - { style: box, text: '**Real facts:** Hail forms inside thunderstorms. Strong winds can carry a hailstone up and down, and it can grow a new layer of ice each time. When it gets too heavy for the wind to hold up, it falls.', tag: Non-fiction, job: 'True information about the same topic.' }
+        caption: Three **forms** about one hailstorm. Read each, then switch on the X-ray.
+      - type: callout
+        variant: tip
+        covers: [K1.4]
+        title: On paper or on a screen
+        body: Articles, speeches and hybrids can be **digital or non-digital**. A speech can be given in a gym, or posted as a video.
+
+  - title: Telling a true story for effect
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.3]
+        component: text-xray
+        props:
+          button: Show the order
+          pages:
+            - label: In time order
+              icon: ➡️
+              note: The events are told in the order they happened. It is clear and calm.
+              parts:
+                - { style: text, text: 'On Saturday morning, Jun and his sister baked a cake for Grandma’s birthday.', tag: 1. First, job: 'Starts where the events start.' }
+                - { style: text, text: 'They left it on the table and went to wrap her present.', tag: 2. Next }
+                - { style: text, text: 'When they came back, the plate was empty, and there was frosting on the dog’s nose.', tag: 3. Then }
+                - { style: text, text: 'Grandma laughed so hard that she said it was the best birthday ever. They had pancakes instead.', tag: 4. Last }
+            - label: Starting in the middle
+              icon: 🔀
+              note: The same true events, in a new order. Now the story **grabs you** first, then explains.
+              parts:
+                - { style: text, text: 'There was frosting on the dog’s nose.', tag: Starts at the funniest moment, job: 'Makes you ask, “What happened?”' }
+                - { style: text, text: 'Three hours earlier, Jun and his sister had baked a cake for Grandma’s birthday. They left it on the table and went to wrap her present.', tag: Jumps back, job: 'Explains how it happened.' }
+                - { style: text, text: 'Grandma laughed so hard that she said it was the best birthday ever. They had pancakes instead.', tag: Ending }
+        caption: One **non-fiction narrative**, told two ways. Switch on the X-ray and compare.
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI1-GQ1-LO1#K1.6]
+        title: Remember from Grade 5
+        body: Narratives, fiction or non-fiction, can follow a beginning, a problem, events, a resolution and an ending.
+
+  - title: Text features do jobs
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.1]
+        component: text-xray
+        props:
+          button: Show the features
+          pages:
+            - label: Rain gardens
+              note: 'Features **organize** content, point to **important information** and **expand your vocabulary**. Web pages use them too, such as menus, links and pop-up definitions.'
+              parts:
+                - { style: title, text: Rain Gardens, tag: Title }
+                - { style: heading, text: What is a rain garden?, tag: Heading, job: 'Organizes content: tells you what each part is about.' }
+                - { style: text, text: 'A **rain garden** is a shallow bed of plants that catches rain and melting snow. It is planted where water collects.', tag: Bold word, job: 'Points to the most important word.' }
+                - style: figure
+                  tag: Diagram and caption
+                  job: 'Shows how it works, faster than words can.'
+                  text: Water runs downhill into the garden. Deep roots help it soak into the ground.
+                  svg: >-
+                    <svg viewBox="0 0 320 130" role="img" aria-label="A diagram. Rain runs down a slope into a shallow dip planted with flowers. Long roots reach down into the soil under the dip.">
+                    <path class="sci-ground" d="M0 30 L170 88 Q215 112 260 88 L320 74 L320 130 L0 130 Z"/>
+                    <path class="sci-water" d="M174 89 Q215 113 256 89 Z"/>
+                    <g stroke="var(--math)" stroke-width="3" fill="none" stroke-linecap="round"><path d="M20 22 L130 60"/><path d="M120 50 L132 61 L116 64"/></g>
+                    <g stroke="#3f9a40" stroke-width="3" fill="none" stroke-linecap="round"><path d="M200 96 V70"/><path d="M215 100 V64"/><path d="M230 96 V72"/></g>
+                    <g fill="#e0679a"><circle cx="200" cy="68" r="5"/><circle cx="215" cy="62" r="5"/><circle cx="230" cy="70" r="5"/></g>
+                    <g stroke="#a8743d" stroke-width="2" fill="none" stroke-linecap="round"><path d="M200 98 q-6 12 -2 26"/><path d="M215 102 q4 12 0 24"/><path d="M230 98 q6 12 2 26"/></g>
+                    <text class="fig-small" x="18" y="14">rain and snowmelt</text>
+                    <text class="fig-small" x="215" y="48" text-anchor="middle">rain garden</text>
+                    </svg>
+                - { style: heading, text: How do you plant one?, tag: Heading }
+                - { style: text, text: 'Choose plants with deep roots. Their roots make the soil more **permeable**.' }
+                - { style: box, text: '**Glossary**<br>**permeable:** lets water pass through<br>**runoff:** water that flows over the ground instead of soaking in', tag: Glossary, job: 'Expands your vocabulary with the meanings of new words.' }
+        caption: Read the page, then switch on the X-ray. Which feature would you use first?
+      - type: callout
+        variant: tip
+        covers: [S2.2, U2.1]
+        title: Use them in your own writing
+        body: Add headings, a diagram with a caption, or a glossary, so readers can find what matters and learn new words quickly.
+
+  - title: A speech that solves a problem
+    blocks:
+      - type: passage
+        id: lake
+        title: The Lake on Our Field
+        form: Speech to the parent council
+        paragraphs:
+          - Good evening. My name is Amara Osei, and I am in Grade 6 at Prairie View School. I am here to talk about the lake on our field.
+          - Every spring, when the snow melts, the low end of our field turns into a lake. Last April, water covered the soccer goals for eleven days. Nobody could play there at recess, and two ducks moved in.
+          - Why does this happen? That end of the field is the lowest, so the water runs downhill and collects there. The ground under the grass is mostly clay, and water soaks into clay very slowly.
+          - 'Our class has a solution: a rain garden. A rain garden is a shallow bed of plants that catches water where it collects. The plants have deep roots that open up the soil, so the water can soak in faster.'
+          - Rocky Ridge School planted a rain garden at the low end of its field three years ago. Their principal told us that their field now dries out in two days.
+          - We have a plan, a list of plants and twenty-six volunteers. All we need is your permission to dig. Let’s turn our lake back into a field!
+        note: An original speech written for Alberta Edu. The people and schools are made up. Paragraph numbers help you point to evidence.
+      - type: table
+        covers: [K4.1, K4.2, S4.1, U4.1]
+        caption: A **problem and solution** structure, paragraph by paragraph
+        headers: [Paragraph, Part, What it does]
+        rows:
+          - ['1', 'Opening', 'Says who is speaking, and the topic.']
+          - ['2', '**Problem**', 'Shows what is wrong, with facts.']
+          - ['3', 'Cause', 'Explains **why** it happens.']
+          - ['4', '**Solution**', 'Says what will fix it, and **how**.']
+          - ['5', 'Proof', 'Shows that the solution worked somewhere else.']
+          - ['6', 'Call to action', 'Asks the listeners to act.']
+
+  - title: Is it accurate?
+    blocks:
+      - type: table
+        covers: [K4.3, S4.3]
+        caption: The school caretaker’s log, April
+        headers: [Date, 'Mr. Dubois wrote…']
+        rows:
+          - ['April 3', 'Water up to the soccer goals.']
+          - ['April 6', 'Two ducks swimming beside the goals!']
+          - ['April 10', 'Water going down, slowly.']
+          - ['April 14', 'Goals out of the water at last. Field still muddy.']
+      - type: example
+        covers: [K4.3, S4.3, S4.2]
+        title: Can we trust “eleven days”?
+        problem: Amara says, “Last April, water covered the soccer goals for eleven days.” Is that accurate?
+        steps:
+          - '**Check the content against another source:** the log says the water reached the goals on April 3 and left them on April 14. That is 11 days ✓'
+          - '**Check the source:** Mr. Dubois sees the field every day, and he gains nothing either way. He is a good source for this.'
+          - '**Decide:** the fact is confirmed. My opinion: a speech is stronger when its facts can be checked.'
+        answer: Amara’s fact is **accurate**. Two sources agree, and one of them watched it happen.
+
+  - title: Read for fun, grow as a reader
+    blocks:
+      - type: compare
+        covers: [K1.2, S1.4, U1.1]
+        columns:
+          - title: 📚 A mystery novel
+            body: 'You hunt for clues and predict who did it. That is the same thinking you use to make inferences in class.'
+          - title: 🪐 A comic set in space
+            body: 'You meet words like *orbit* and *gravity*. When they come up in science, you already know them.'
+          - title: 📰 A sports article
+            body: 'You read stats, quotes and headlines. That helps you read charts and non-fiction in any subject.'
+      - type: callout
+        variant: tip
+        covers: [K1.2, S1.4]
+        title: Make the connection
+        body: 'After you read for fun, ask: “Where else have I seen this kind of thinking, word or text?” Reading what you enjoy makes school reading easier.'
+
+keyTerms:
+  - term: Purpose
+    covers: [K1.1]
+    definition: The reason a text was made, such as to inform, entertain or persuade. A text can have more than one.
+  - term: Genre
+    covers: [K1.3, S1.2]
+    definition: A kind of text. Fiction and non-fiction are two big genres.
+  - term: Article
+    covers: [K1.4]
+    definition: A non-fiction text that reports or explains, such as a news article.
+  - term: Speech
+    covers: [K1.4, K4.1]
+    definition: A text written to be spoken to listeners.
+  - term: Hybrid
+    covers: [K1.4]
+    definition: A text that puts fiction and non-fiction together.
+  - term: Text feature
+    covers: [K2.1]
+    definition: A part of a text, such as a heading, caption, diagram or glossary, that helps readers find and understand information.
+  - term: Problem and solution
+    covers: [K4.2]
+    definition: A structure that explains what is wrong, then how to fix it.
+  - term: Factual accuracy
+    covers: [K4.3]
+    definition: Whether the facts in a text are true. Check the content against other sources, and check who made it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: |-
+      The town’s recycling app has a cartoon raccoon. It tells a joke, then shows which bin your pizza box goes in.
+
+      Which purpose **stands out**?
+    choices:
+      - To inform, because the jokes are there to keep you using it to find the right bin.
+      - To entertain, because a cartoon raccoon telling jokes is there to make you laugh.
+      - To persuade, because the raccoon is trying to get you to buy a new recycling bin.
+      - None stands out, because a joke and a fact are always equally important in a text.
+    answer: 0
+    feedback:
+      '1': The raccoon does entertain. But why would someone open a recycling app? What would they lose without the jokes, and without the bins?
+      '2': Nothing in the app asks you to buy anything. Look at what it shows you.
+      '3': Texts often have more than one purpose, but one usually stands out. Which part is the rest helping?
+    hints:
+      - What would a person open this app to find out?
+      - Take away the jokes. Does the app still do its job? Now take away the bins.
+    solution:
+      - The app has two purposes. The jokes **entertain**, and the bins **inform**.
+      - Without the jokes, it still tells you where the box goes. Without the bins, it is useless.
+      - So the jokes are helping. The purpose that stands out is to **inform**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3, K1.5, S1.2]
+    type: multi
+    prompt: Which of these texts are **non-fiction**? Choose every one.
+    choices:
+      - The true story of how your uncle lost his canoe paddle, told with lots of suspense
+      - A diary written by an imaginary boy who sails to Canada in 1880
+      - The speech your principal gave on the last day of school
+      - A news report about a hockey team that won the provincial final
+      - A comic about a moose who becomes a detective
+    answer: [0, 2, 3]
+    feedback:
+      '1': The year 1880 is real, but the boy is imaginary. An invented person makes it fiction.
+      '4': A moose detective is invented. Funny, but fiction.
+    hints:
+      - For each one, ask, “Did this really happen, or is it real information?”
+      - A true story can still be told like an adventure.
+    solution:
+      - The canoe story really happened. Suspense doesn’t make it fiction, because **narratives can be non-fiction**.
+      - The principal’s speech and the news report give real information, so they are non-fiction too.
+      - The 1880 diary and the moose detective are invented. They are fiction.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.4, K4.1, S1.3]
+    type: mc
+    prompt: Which of these is most likely the **start of a speech**?
+    choices:
+      - Thank you all for coming tonight. I know it’s late, so I’ll keep this short.
+      - Mayor Opens New Library on Main Street After Two Years of Building
+      - Once upon a time, a small library lived at the end of Main Street.
+      - The library has 20 000 books, 12 computers and a reading garden.
+    answer: 0
+    feedback:
+      '1': This reads like a headline, which is how a news article starts.
+      '2': This is how a made-up story might start. Who is it talking to?
+      '3': This gives facts, but who is it talking to? A speech usually speaks straight to its listeners.
+    hints:
+      - A speech is written to be **heard**. Which one talks to people in the room?
+    solution:
+      - '“Thank you all for coming tonight” speaks straight to listeners who are there. That is a speech.'
+      - The others are a headline (article), a story opening (fiction) and a list of facts.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.1, S2.1, S2.2]
+    type: multi
+    prompt: |-
+      Liam wrote a two-page report about rain gardens, with no features at all. His readers said:
+
+      > “I couldn’t find the part about how to plant one.”
+      >
+      > “I didn’t know what *permeable* meant.”
+
+      Which **two** features would fix those problems?
+    choices:
+      - Headings for each section
+      - A glossary
+      - A bigger title
+      - A fact box of fun facts
+      - More bold words on every line
+    answer: [0, 1]
+    feedback:
+      '2': A bigger title helps people notice the report, but would it help them find one section inside it?
+      '3': Fun facts are a nice extra. Do they fix either problem?
+      '4': If every line has bold words, nothing stands out. And bold doesn’t explain what a word means.
+    hints:
+      - Take one reader’s problem at a time. What feature helps you **find** a part? What feature helps with a **new word**?
+    solution:
+      - '“I couldn’t find the part” is a problem of organization. **Headings** organize content and show where each part starts.'
+      - '“I didn’t know what *permeable* meant” is a vocabulary problem. A **glossary** gives the meanings of new words.'
+      - Choose features for the job your reader needs done.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K4.2, S4.1]
+    type: evidence
+    prompt: Amara’s rain garden only makes sense if you know **why** the lake forms. Tap a sentence that explains the **cause** of the lake.
+    passage: lake
+    paragraphs: [2, 3]
+    answer: [p3s2, p3s3]
+    feedback:
+      p2s1: This tells you **that** the lake forms. Look for why.
+      p2s2: This shows how bad the problem is. It doesn’t say why it happens.
+      p2s3: These are effects of the lake, not its cause.
+      p3s1: Amara asks the question here. The answer comes next.
+    hints:
+      - Look for the paragraph that starts with a question.
+      - Which sentences answer “Why does this happen?”
+    solution:
+      - 'Either of these works: “That end of the field is the lowest, so the water runs downhill and collects there.” or “The ground under the grass is mostly clay, and water soaks into clay very slowly.”'
+      - In a problem and solution text, the cause is often the key. Amara’s solution is built to fix it.
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K4.3, S4.3]
+    type: multi
+    prompt: |-
+      Look again at Mr. Dubois’s log in the lesson. It is a list of what he saw at the low end of the field in April.
+
+      Which facts from Amara’s speech can **this log** confirm? Choose every one.
+    choices:
+      - Water covered the soccer goals for eleven days.
+      - Two ducks moved in.
+      - The ground under the grass is mostly clay.
+      - Rocky Ridge’s field now dries out in two days.
+    answer: [0, 1]
+    feedback:
+      '2': The log says what the water did, not what the soil is made of. Amara needs another source for this one.
+      '3': The log is about **our** field. Does Mr. Dubois work at Rocky Ridge?
+    hints:
+      - What did Mr. Dubois write about? Only water, ducks and mud.
+      - A source can confirm only what it knows about.
+    solution:
+      - 'The log confirms two facts: the water was over the goals from April 3 to April 14 (11 days), and two ducks swam there on April 6.'
+      - It says nothing about clay or Rocky Ridge. Those facts aren’t wrong, but **this** source can’t confirm them. Amara would need another one.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [K1.5, S1.3]
+    type: mc
+    prompt: |-
+      Ava writes a true story about her first time on a horse. Her first sentence is:
+
+      > The horse stopped, and I kept going.
+
+      Then the story goes back to the morning, when she pulled on her boots. Why might Ava start this way?
+    choices:
+      - To grab readers with the most exciting moment, so they want to know how it happened.
+      - To show that the story is made up, since true stories have to be told in time order.
+      - Because she forgot the order of events and had to go back to fix the beginning.
+      - Because every narrative has to start with the problem before it gives the setting.
+    answer: 0
+    feedback:
+      '1': A true story can be told in any order and still be true. The events don’t change, only the order you hear them in.
+      '2': She goes back on purpose, to the exact moment it all began. What does that do to you as a reader?
+      '3': Many narratives start with the setting, like a calm morning. Ava chose to do something different. Why?
+    hints:
+      - How do you feel after reading her first sentence? What do you want to know?
+    solution:
+      - Starting with “The horse stopped, and I kept going” makes you ask, “What happened? Is she OK?”
+      - Then she jumps back to explain. Narratives, fiction **or** non-fiction, can be **structured for effect**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [K4.3, S4.2, S4.3]
+    type: investigation
+    prompt: |-
+      Amara finds this ad on a website:
+
+      > **Dry any field in ONE HOUR!** Our rain garden kit soaks up every drop. Guaranteed!
+      > *GreenSoak Garden Kits, $299*
+
+      She wants to quote it in her speech.
+    parts:
+      - type: mc
+        prompt: What should a careful reader notice first about this **source**?
+        choices:
+          - It is a company selling kits, so it gains if you believe the claim.
+          - It uses capital letters, which shows that the claim is important.
+          - It is on a website, so nothing it says can possibly be true.
+          - It shows a price, so the claim must have been checked already.
+        answer: 0
+        feedback:
+          '1': Capitals make it loud, not true. Who made this, and why?
+          '2': Plenty of true information is online. Being digital doesn’t make it false. Ask who made it.
+          '3': A price tells you what it costs. It says nothing about whether the claim was checked.
+        hints:
+          - Who wrote this, and what do they want you to do?
+        solution:
+          - It is an **ad** by the company that sells the kit. The company gains if you believe it, so check it somewhere else.
+      - type: multi
+        prompt: Which of these could help Amara **check** the claim? Choose every one.
+        choices:
+          - A guide to rain gardens from the city’s parks department
+          - Rocky Ridge’s principal, who watched their field dry
+          - Another GreenSoak ad that makes the same promise
+          - A comment under the ad that says, “Wow, amazing!”
+        answer: [0, 1]
+        feedback:
+          '2': It comes from the same company, so it is the same source saying the same thing again.
+          '3': Who wrote the comment, and how do they know? It gives no facts at all.
+        hints:
+          - A good check comes from a **different** source that has seen or studied rain gardens.
+        solution:
+          - The city guide and the principal are different sources, and both have real knowledge of rain gardens.
+          - Another ad by the same company, or a comment with no facts, can’t confirm anything.
+      - type: mc
+        prompt: Rocky Ridge’s field took **two days** to dry, not one hour. What should Amara do with the GreenSoak claim?
+        choices:
+          - Leave it out, because a source who watched a real field disagrees, and the company gains from it.
+          - Use it, because “one hour” is more exciting and will make the council say yes faster.
+          - Use it, but change “one hour” to “one day,” so it is closer to what Rocky Ridge saw.
+          - Leave out Rocky Ridge instead, because a company’s guarantee is stronger than one principal.
+        answer: 0
+        feedback:
+          '1': Exciting isn’t the same as accurate. If one council member checks, what happens to Amara’s whole speech?
+          '2': Changing the number makes a new claim that no source made. That isn’t fair or accurate.
+          '3': A guarantee is a promise from a seller. The principal watched it happen, and gains nothing from selling kits.
+        hints:
+          - Which source saw a real field dry, and which one wants to sell you something?
+        solution:
+          - The claim doesn’t match what someone actually saw, and its source gains from it.
+          - Amara should leave it out. Her two-day fact from Rocky Ridge is honest, and it is still a good reason to say yes.
+    wrapUp: To confirm a fact, check the **content** against a different source, and ask who made the **source** and what they gain.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K4.2, S4.1, S4.2]
+    type: mc
+    prompt: |-
+      Amara’s speech is too long, so she cuts **paragraph 3**, the one that begins “Why does this happen?”
+
+      Which question are council members now most likely to ask?
+    choices:
+      - Why would planting a garden get rid of a lake?
+      - How long did the water cover the soccer goals?
+      - Which school is Amara speaking for tonight?
+      - What does Amara want the council to do?
+    answer: 0
+    feedback:
+      '1': That is still in paragraph 2. Listeners would still know it.
+      '2': That is still in paragraph 1.
+      '3': That is still in paragraph 6, “All we need is your permission to dig.”
+    hints:
+      - What does paragraph 3 tell listeners that no other paragraph does?
+      - Read paragraph 4 again. Which words only make sense if you know about the clay?
+    solution:
+      - Paragraph 3 gives the **cause**. Water collects at the low end, and clay soaks it up slowly.
+      - Paragraph 4’s solution fixes exactly that. Roots “open up the soil, so the water can soak in faster.”
+      - Without the cause, the garden seems like a random idea. In a problem and solution structure, the cause is what ties the two together.

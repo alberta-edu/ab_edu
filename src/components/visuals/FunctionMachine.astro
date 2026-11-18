@@ -1,0 +1,92 @@
+---
+// A function three ways (MAT6-OI6-GQ1-LO1: K1.1-K1.5, U1.1, U1.2, S1.1-S1.6): a machine that turns
+// each input (independent variable) into exactly one output (dependent variable), a table of values,
+// and the same pairs as points in the Cartesian plane.
+import { graphSvg, equation, type Rule } from './g6-function.ts';
+
+interface Props {
+  rules?: (Rule & { label: string })[];
+}
+const { rules = [
+  { label: 'Plant height', a: 2, b: 3, x: 't', y: 'h', xName: 'weeks', yName: 'height in cm' },
+  { label: 'Distance walked', a: 5, b: 0, x: 't', y: 'd', xName: 'hours', yName: 'distance in km' },
+  { label: 'Warming water', a: 4, b: 10, x: 'm', y: 'T', xName: 'minutes', yName: 'temperature in °C' },
+] } = Astro.props;
+---
+<function-machine data-rules={JSON.stringify(rules)}>
+  {rules.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose a situation">
+      {rules.map((r, i) => <button type="button" data-rule={i} aria-pressed={String(i === 0)}>{r.label}</button>)}
+    </div>
+  )}
+  <div class="g6m-fm-machine" aria-live="polite">
+    <label class="control"><span data-fm="xlabel"></span><input type="range" min="0" max="5" value="2" data-fm="x" /></label>
+    <div class="g6m-fm-row"><span class="g6m-fm-box" data-fm="in"></span><span class="g6m-fm-arrow">→</span><span class="g6m-fm-rule" data-fm="rule"></span><span class="g6m-fm-arrow">→</span><span class="g6m-fm-box g6m-fm-box--out" data-fm="out"></span></div>
+    <p class="g6m-fm-say" data-fm="say"></p>
+  </div>
+  <div class="g6m-fm-layout">
+    <div class="table-wrap"><table class="data-table" data-fm="table"></table></div>
+    <div data-fm="graph" set:html={graphSvg(rules[0], 5, 2)} aria-hidden="true" />
+  </div>
+  <p class="g6m-fm-eq" data-fm="eq">{equation(rules[0])}</p>
+</function-machine>
+
+<style is:global>
+  function-machine { display: block; }
+  .g6m-fm-machine { margin-top: 0.8rem; padding: 0.8rem; border-radius: var(--radius); background: var(--surface-2); }
+  .g6m-fm-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.6rem; font-size: var(--step-1); font-weight: 700; }
+  .g6m-fm-box { min-width: 3rem; padding: 0.3rem 0.6rem; text-align: center; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--accent); font-variant-numeric: tabular-nums; }
+  .g6m-fm-box--out { border-color: var(--warn); }
+  .g6m-fm-rule { padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--accent); color: var(--brand-ink); }
+  .g6m-fm-arrow { color: var(--ink-3); }
+  .g6m-fm-say { margin: 0.5rem 0 0; }
+  .g6m-fm-layout { display: grid; gap: 1rem; align-items: start; margin-top: 0.8rem; }
+  @media (min-width: 44rem) { .g6m-fm-layout { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); } }
+  .g6m-fm-hi { fill: var(--warn); }
+  .g6m-fm-eq { margin: 0.6rem 0 0; font-size: var(--step-2); font-weight: 700; font-style: italic; text-align: center; }
+  .data-table tr.g6m-fm-on td, .data-table tr.g6m-fm-on th { background: color-mix(in srgb, var(--sun) 35%, transparent); }
+</style>
+
+<script>
+  import { graphSvg, equation, ruleWords, value, type Rule } from './g6-function.ts';
+
+  class FunctionMachine extends HTMLElement {
+    private rules: Rule[] = [];
+    private r!: Rule;
+
+    connectedCallback() {
+      this.rules = JSON.parse(this.dataset.rules!);
+      this.r = this.rules[0];
+      this.querySelectorAll<HTMLButtonElement>('[data-rule]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-rule]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.r = this.rules[Number(b.dataset.rule)];
+          this.render();
+        }),
+      );
+      this.q('x').addEventListener('input', () => this.render());
+      this.render();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-fm="${k}"]`) as HTMLElement;
+    }
+
+    private render() {
+      const r = this.r;
+      const x = Number((this.q('x') as HTMLInputElement).value);
+      const y = value(r, x);
+      this.q('xlabel').textContent = `${r.x} (${r.xName})`;
+      this.q('in').textContent = `${r.x} = ${x}`;
+      this.q('rule').textContent = r.b ? `× ${r.a}, + ${r.b}` : `× ${r.a}`;
+      this.q('out').textContent = `${r.y} = ${y}`;
+      this.q('say').textContent = `${r.x} is the independent variable (${r.xName}). ${r.y} depends on it (${r.yName}). Rule: ${ruleWords(r)}. Each ${r.x} gives exactly one ${r.y}.`;
+      this.q('table').innerHTML = `<thead><tr><th scope="col">${r.x} (${r.xName})</th><th scope="col">${r.y} (${r.yName})</th></tr></thead><tbody>${[0, 1, 2, 3, 4, 5]
+        .map((t) => `<tr${t === x ? ' class="g6m-fm-on"' : ''}><th scope="row">${t}</th><td>${value(r, t)}</td></tr>`)
+        .join('')}</tbody>`;
+      this.q('graph').innerHTML = graphSvg(r, 5, x);
+      this.q('eq').textContent = equation(r);
+    }
+  }
+  customElements.define('function-machine', FunctionMachine);
+</script>

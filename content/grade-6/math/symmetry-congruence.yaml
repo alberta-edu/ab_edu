@@ -1,0 +1,306 @@
+id: symmetry-congruence
+grade: 6
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT6-OI3-GQ1-LO1]
+order: 12
+title: Symmetry, Congruence and Tessellations
+shortTitle: Symmetry & tessellations
+summary: >-
+  Reflect and rotate shapes onto each other to show symmetry, test congruence by laying shapes on
+  top, and find symmetry in tessellations and star blankets.
+
+bigIdea: |-
+  - Two shapes have **symmetry** when a **reflection** or **rotation** maps one exactly onto the other.
+  - Shapes related by symmetry are always **congruent**: the same size and shape.
+  - Congruent shapes match when laid on top, **however** they are turned or placed. They may not be related by symmetry.
+  - A **tessellation** covers a flat surface with shapes, with no gaps or overlaps.
+
+lesson:
+  - title: Map one shape onto another
+    blocks:
+      - type: visual
+        covers: [U1.1, S1.1, S1.2, S1.3, K1.1]
+        component: shape-mapper
+        props: { pairs: [reflect, rotate, two] }
+        caption: |-
+          - **Reflect** over the dashed line, or **rotate** a half turn about the dot.
+          - Pair 3 needs **two** moves. Which ones?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI3-GQ1-LO1#K1.1]
+        title: Remember from Grade 5
+        body: In Grade 5 you found symmetry **inside** one shape. Now the symmetry is **between** two shapes.
+
+  - title: Congruent shapes
+    blocks:
+      - type: visual
+        covers: [S2.1, U2.1, U2.2, K2.2]
+        component: shape-mapper
+        props: { pairs: [slide, reflect] }
+        caption: Press **Lay A on top of B** for Pair 4. They match, so they are **congruent**. Can a reflection or rotation do it?
+      - type: compare
+        covers: [K2.1, K2.2, S2.2]
+        columns:
+          - title: Related by symmetry
+            body: A reflection or rotation maps one onto the other. They are always **congruent**.
+          - title: Only congruent
+            body: Same size and shape, but no reflection or rotation maps one onto the other.
+
+  - title: Tessellations
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.4, S1.5]
+        component: tessellation
+        props: { kinds: [squares, triangles, hexagons] }
+        caption: Press **Tile it**. Look for the reflection or rotation that maps a tile onto its neighbour.
+      - type: table
+        covers: [S1.5, K1.2]
+        headers: [Where, Tile]
+        rows:
+          - ['A brick wall', 'rectangles']
+          - ['A honeycomb', 'hexagons']
+          - ['A floor of square tiles', 'squares']
+
+  - title: Star blankets
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.4]
+        component: tessellation
+        props: { kinds: [star] }
+        caption: 'Press **Tile it**. One small diamond builds the whole eight-point star.'
+      - type: text
+        covers: [K1.3]
+        body: First Nations and Métis star blankets are given to honour a person. In 2024, the Muskowekwan First Nation in Saskatchewan gave star blankets to three professors, "to honour, protect, and celebrate the individual" (Carleton University, 2024).
+
+keyTerms:
+  - term: Reflection symmetry
+    covers: [S1.2, U1.1]
+    definition: Two shapes have it when reflecting one over a line lands it exactly on the other.
+  - term: Rotation symmetry
+    covers: [S1.2, U1.1]
+    definition: Two shapes have it when turning one about a point lands it exactly on the other.
+  - term: Congruent
+    covers: [U2.1, U2.2]
+    definition: 'The same size and shape, whatever the position or the way it faces.'
+  - term: Tessellation
+    covers: [K1.2]
+    definition: A tiling that covers a flat surface with shapes, with no gaps and no overlaps.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.2, U1.1, S1.1]
+    type: mc
+    figure: |-
+      <svg viewBox="-6 -6 372 252" class="fig-svg" role="img" aria-label="Shape A in the top left. Shape B is the same L shape, turned upside down in the bottom right. A dot marks the middle point between them."><polygon class="fig-rect" points="30,30 30,150 60,150 60,60 120,60 120,30"/><polygon class="fig-hl" points="330,210 330,90 300,90 300,180 240,180 240,210"/><circle cx="180" cy="120" r="6" style="fill:var(--ink)"/><text class="fig-label" x="38" y="140">A</text><text class="fig-label" x="306" y="110">B</text></svg>
+    prompt: How are shape **A** and shape **B** related?
+    choices: ['By rotation symmetry: a half turn about the dot', 'By reflection symmetry: a flip over a line', 'They are not congruent']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'A flip would make the foot of the L point the other way, but still at the top. Here B is upside down.'
+      '2': 'Trace A and lay the tracing on B. Do they match?'
+    hints:
+      - Imagine turning A upside down around the dot. Where does it land?
+    solution:
+      - 'A half turn (180°) about the dot carries A exactly onto B.'
+      - 'So A and B are related by **rotation symmetry**, and they are congruent.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K2.1, K2.2, U2.2, S2.2]
+    type: multi
+    prompt: Which statements are **true**? Choose all of them.
+    choices:
+      - Shapes related by symmetry are always congruent.
+      - Congruent shapes are always related by symmetry.
+      - Turning a shape around changes its size.
+      - Congruent shapes can face different ways and be in different places.
+    answer: [0, 3]
+    feedback:
+      '1': 'Two shapes can match when laid on top, even when no single reflection or rotation maps one onto the other.'
+      '2': 'Reflections and rotations move a shape. They never stretch or shrink it.'
+    hints:
+      - Does a reflection or rotation ever change the size of a shape?
+    solution:
+      - 'A reflection or rotation keeps size and shape, so symmetrical shapes are always congruent.'
+      - 'But congruent shapes don’t always have symmetry, and position or direction doesn’t matter for congruence.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.2]
+    type: mc
+    prompt: In a floor tiled with squares, how does one square map onto the square right beside it?
+    choices: ['A reflection over the side they share', 'A rotation of 45° about a corner', 'Make it bigger, then slide it', 'It can’t be mapped']
+    answer: 0
+    feedback:
+      '1': 'A 45° turn would tip the square onto a corner. Would it still fit the floor?'
+      '2': 'All the tiles are the same size. Nothing gets bigger in a tessellation.'
+      '3': 'The two squares are congruent, so something maps one onto the other.'
+    hints:
+      - Imagine folding the floor along the line between the two squares.
+    solution:
+      - 'Folding along the shared side lands one square exactly on the other. That is a **reflection**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S1.3, K1.1, S1.1]
+    type: mc
+    figure: |-
+      <svg viewBox="-6 -6 372 252" class="fig-svg" role="img" aria-label="Shape A in the top left. Shape B is the L shape flipped upside down in the bottom left. A dashed vertical line runs down the middle, and a dot marks the centre."><line x1="180" y1="0" x2="180" y2="240" style="stroke:var(--bad);stroke-width:3;stroke-dasharray:8 6"/><polygon class="fig-rect" points="30,30 30,150 60,150 60,60 120,60 120,30"/><polygon class="fig-hl" points="30,210 30,90 60,90 60,180 120,180 120,210"/><circle cx="180" cy="120" r="6" style="fill:var(--ink)"/><text class="fig-label" x="38" y="140">A</text><text class="fig-label" x="70" y="204">B</text></svg>
+    prompt: 'Jo says, "B is A reflected over the dashed line." Is she right?'
+    choices:
+      - 'No. Reflecting over the dashed line puts A on the right. It takes a reflection **and** a half turn about the dot.'
+      - 'Yes. B is a mirror image of A, so any line works.'
+      - 'No. A and B are not congruent.'
+      - 'No. B is a half turn of A about the dot.'
+    answer: 0
+    feedback:
+      '1': 'A reflection over a line lands the shape on the other side of **that** line. Where would A land?'
+      '2': 'Lay a tracing of A on B. Do they match in size and shape?'
+      '3': 'A half turn about the dot sends A to the bottom **right**. B is on the left.'
+    hints:
+      - Where would A land after a reflection over the dashed line?
+      - Then, where would a half turn about the dot take it?
+    solution:
+      - 'Reflecting over the dashed line moves A to the top right, facing the other way.'
+      - 'A half turn about the dot then carries it to the bottom left, onto B. It takes **two** transformations.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.3, S1.4, K1.1]
+    type: number
+    prompt: 'A star blanket design has an eight-point star. Each of its **8** large diamonds is the one before it, turned the same amount about the centre. A full turn is **360°**. How many degrees is each turn?'
+    answer: 45
+    unit: °
+    verify: 360 / 8
+    hints:
+      - Eight equal turns make one full turn.
+    solution:
+      - '8 equal turns make 360°, so each turn is \(360 \div 8 = 45\)°.'
+      - 'The star has rotation symmetry: turning it 45° about the centre lands it on itself.'
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [S1.5, K1.2]
+    type: multi
+    prompt: Which of these are **tessellations**? Choose all of them.
+    choices: ['A brick wall', 'A honeycomb', 'A checkerboard', 'Coins laid flat on a table, touching', 'A pile of marbles']
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'Round coins leave gaps between them, however you push them together.'
+      '4': 'Marbles are round and leave gaps. They don’t cover a flat surface.'
+    hints:
+      - A tessellation has no gaps and no overlaps.
+    solution:
+      - 'Bricks, hexagon cells and checkerboard squares fit together with no gaps or overlaps.'
+      - 'Circles always leave gaps, so coins and marbles don’t tessellate.'
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [K2.2, U2.1, S2.1, U2.2]
+    type: mc
+    figure: |-
+      <svg viewBox="-6 -6 372 252" class="fig-svg" role="img" aria-label="Shape A in the top left. Shape B is the same L shape, facing the same way, further right and lower down."><polygon class="fig-rect" points="30,30 30,150 60,150 60,60 120,60 120,30"/><polygon class="fig-hl" points="210,90 210,210 240,210 240,120 300,120 300,90"/><text class="fig-label" x="38" y="140">A</text><text class="fig-label" x="218" y="200">B</text></svg>
+    prompt: B is A, slid right and down. Which is true?
+    choices:
+      - They are congruent, but not related by reflection or rotation.
+      - They are related by reflection symmetry, so they are congruent.
+      - They are not congruent, because B is in a different place.
+      - They are related by rotation symmetry, so they are congruent.
+    answer: 0
+    feedback:
+      '1': 'A reflection would make B face the other way. Both face the same way here.'
+      '2': 'Congruence doesn’t depend on where a shape is. Lay one on top of the other.'
+      '3': 'A turn would change the way B faces. Both face the same way here.'
+    hints:
+      - Do they match when laid on top? Could one flip or one turn do the job?
+    solution:
+      - 'Laid on top, A fits B exactly, so they are **congruent**.'
+      - 'A slide moved A. No single reflection or rotation maps A onto B, so they are not related by symmetry.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.2, S1.4, S1.5]
+    type: investigation
+    prompt: |-
+      Where tiles meet at a corner point, their angles must add to exactly **360°**, with no gap and no overlap.
+    parts:
+      - type: number
+        prompt: Each angle of a triangle with three equal sides is **60°**. How many of these triangles meet at each corner point of a tessellation?
+        answer: 6
+        unit: triangles
+        verify: 360 / 60
+        hints:
+          - How many 60° angles make 360°?
+        solution:
+          - '\(360 \div 60 = 6\). Six triangles meet at each point, as in the lesson.'
+      - type: number
+        prompt: Each angle of a hexagon with six equal sides is **120°**. How many hexagons meet at a corner point?
+        answer: 3
+        unit: hexagons
+        verify: 360 / 120
+        hints:
+          - How many 120° angles make 360°?
+        solution:
+          - '\(360 \div 120 = 3\). Three hexagons meet at each point, like a honeycomb.'
+      - type: mc
+        prompt: Each angle of a pentagon with five equal sides is **108°**. Can these pentagons tessellate?
+        choices:
+          - 'No. 3 angles make 324°, leaving a gap, and 4 make 432°, which overlap.'
+          - 'Yes. Every shape with equal sides tessellates.'
+          - 'Yes, if 4 pentagons meet at each point.'
+          - 'No, because a pentagon has an odd number of sides.'
+        answer: 0
+        feedback:
+          '1': 'Test it: does 108 go into 360 a whole number of times?'
+          '2': '\(4 \times 108 = 432\), which is more than 360°. They would overlap.'
+          '3': 'Equal-sided triangles have 3 sides, an odd number, and they tessellate.'
+        hints:
+          - 'Try \(3 \times 108\) and \(4 \times 108\). Is either one exactly 360?'
+        solution:
+          - '\(3 \times 108 = 324\), which leaves a 36° gap. \(4 \times 108 = 432\), which overlaps.'
+          - 'No whole number of 108° angles makes 360°, so these pentagons **can’t** tessellate.'
+    wrapUp: 'A shape tessellates by itself only if its angles fit around a point exactly. That is why floors use squares, triangles and hexagons, but not equal-sided pentagons.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.4, K1.1, K1.3]
+    type: build
+    prompt: |-
+      Design your own star: some congruent diamonds around a centre, each one the one before it turned by the same angle. Going all the way round must make exactly one full turn, **360°**. Use from 5 to 12 diamonds, and a whole number of degrees.
+    fields:
+      - { name: n, label: 'Number of diamonds' }
+      - { name: a, label: 'Turn each time', unit: '°' }
+    rules:
+      - { test: 'n % 1 == 0 && n >= 5 && n <= 12', fail: 'Use a whole number of diamonds, from 5 to 12.' }
+      - { test: 'a % 1 == 0 && a > 0', fail: 'Use a whole number of degrees for each turn.' }
+      - { test: 'n * a == 360', fail: 'Multiply: your turns must add to exactly 360°, one full turn.' }
+    examples:
+      - { n: 8, a: 45 }
+      - { n: 6, a: 60 }
+      - { n: 10, a: 36 }
+    counterexamples:
+      - { n: 7, a: 50 }
+      - { n: 8, a: 40 }
+      - { n: 4, a: 90 }
+    hints:
+      - The number of diamonds times the turn must make 360.
+      - 'Which numbers from 5 to 12 divide 360 with no remainder?'
+    solution:
+      - '8 diamonds turned 45° each is the star blanket star: \(8 \times 45 = 360\).'
+      - '6 × 60°, 9 × 40°, 10 × 36° and 12 × 30° all work too.'
+      - '7 diamonds don’t work with a whole number of degrees, because 360 isn’t divisible by 7.'

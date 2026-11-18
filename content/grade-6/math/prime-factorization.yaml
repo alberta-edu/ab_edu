@@ -1,0 +1,357 @@
+id: prime-factorization
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT6-OI1-GQ3-LO1]
+order: 4
+title: Prime Factorization and Powers
+shortTitle: Prime factors & powers
+summary: >-
+  Split composite numbers into prime factors with factor trees, write repeated factors as powers,
+  and use prime factors to find divisors and common factors.
+
+bigIdea: |-
+  - A **composite** number splits into smaller factors. Keep splitting and you reach **primes**.
+  - Every tree for the same number ends in the **same primes**: its **prime factorization**.
+  - Repeated factors can be written as a **power**: \(2 \times 2 \times 2 = 2^3\).
+  - The prime factors show **every** number it is divisible by.
+
+lesson:
+  - title: Split until you reach primes
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, S1.2, U1.1]
+        component: factor-tree
+        props: { numbers: [60, 72, 36, 90, 84], test: 12 }
+        caption: |-
+          - Press **Split** until every branch ends in a gold **prime**.
+          - Press **Start with a different pair**. The tree changes, but do the primes?
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI1-GQ3-LO1#U1.1, MAT5-OI1-GQ3-LO1#S1.3]
+        title: Remember from Grade 5
+        body: A number is **divisible** by another if dividing leaves a remainder of 0. The numbers it divides by are its **factors**.
+
+  - title: Prime or composite?
+    blocks:
+      - type: compare
+        covers: [K1.2, K1.3]
+        columns:
+          - title: Prime
+            body: |-
+              Exactly **two** factors: 1 and itself.
+              2, 3, 5, 7, 11, 13, …
+          - title: Composite
+            body: |-
+              **More** than two factors.
+              It splits into smaller factors: \(12 = 3 \times 4\).
+      - type: callout
+        variant: tip
+        covers: [K1.3]
+        title: 1 is neither
+        body: 1 has only **one** factor, itself. So it is not prime and not composite, and it never appears in a prime factorization.
+
+  - title: Many ways to build a product
+    blocks:
+      - type: table
+        covers: [S1.1, U1.1, K1.1]
+        caption: Five ways to write 24 as a product.
+        headers: [Product, Number of factors]
+        rows:
+          - ['\(2 \times 12\)', '2']
+          - ['\(4 \times 6\)', '2']
+          - ['\(2 \times 3 \times 4\)', '3']
+          - ['\((2 \times 3) \times 4 = 2 \times (3 \times 4)\)', '3']
+          - ['\(2 \times 2 \times 2 \times 3\)', '4: all prime']
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: Group the factors any way
+        body: 'When you multiply three or more numbers, the grouping doesn’t change the product: \((2 \times 3) \times 4 = 6 \times 4\) and \(2 \times (3 \times 4) = 2 \times 12\). Both are 24. This is the **associative property**.'
+
+  - title: Powers
+    blocks:
+      - type: figure
+        covers: [K2.1, K2.2, S2.1]
+        figure: |-
+          <svg viewBox="0 0 360 176" class="fig-svg" role="img" aria-label="The power 2 to the exponent 3. The base 2 is the repeated factor. The exponent 3 counts how many times it repeats: 2 times 2 times 2 equals 8."><text x="20" y="120" style="font-size:96px;font-weight:700" class="fig-label">2</text><text x="80" y="62" style="font-size:48px;font-weight:700" class="fig-label">3</text><path class="fig-arrow" d="M112 40 C 125 30, 135 30, 146 34"/><path class="fig-arrow" d="M62 132 C 80 150, 120 152, 146 148"/><text class="fig-label" x="152" y="40">exponent</text><text class="fig-small" style="font-size:16px" x="152" y="60">how many times</text><text class="fig-label" style="font-size:26px" x="152" y="106">= 2 × 2 × 2 = 8</text><text class="fig-label" x="152" y="146">base</text><text class="fig-small" style="font-size:16px" x="152" y="166">the repeated factor</text></svg>
+        caption: 'In the **power** \(2^3\), the **base** 2 is the factor that repeats. The **exponent** 3 says it repeats 3 times.'
+      - type: table
+        covers: [S2.1, S2.2, K2.2]
+        headers: [Power, Base, Exponent, Value]
+        rows:
+          - ['\(3^2\)', '3', '2', '\(3 	imes 3 = 9\)']
+          - ['\(5^3\)', '5', '3', '\(5 	imes 5 	imes 5 = 125\)']
+          - ['\(2^4\)', '2', '4', '\(2 	imes 2 	imes 2 	imes 2 = 16\)']
+          - ['\(10^2\)', '10', '2', '\(10 	imes 10 = 100\)']
+
+  - title: Prime factorization with powers
+    blocks:
+      - type: example
+        covers: [K2.3, S2.2, S1.2]
+        title: Write 72 with powers
+        problem: Write the prime factorization of **72**.
+        steps:
+          - 'Split: \(72 = 8 \times 9\), then \(8 = 2 \times 2 \times 2\) and \(9 = 3 \times 3\).'
+          - 'So \(72 = 2 \times 2 \times 2 \times 3 \times 3\).'
+          - 'Three 2s make \(2^3\). Two 3s make \(3^2\).'
+        answer: '\(72 = 2^3 \times 3^2\)'
+
+  - title: What the primes tell you
+    blocks:
+      - type: table
+        covers: [K1.4, U1.2, S1.4, U2.1, U2.2, S2.3]
+        caption: '\(72 = 2^3 \times 3^2\). Is 72 divisible by…'
+        headers: [Number, Its primes, Divisible?]
+        rows:
+          - ['12', '\(2^2 	imes 3\)', '**yes**: 72 has two 2s and a 3']
+          - ['8', '\(2^3\)', '**yes**: 72 has three 2s']
+          - ['16', '\(2^4\)', '**no**: 72 has only three 2s']
+          - ['15', '\(3 	imes 5\)', '**no**: 72 has no 5']
+      - type: callout
+        variant: tip
+        covers: [U2.2, S2.3]
+        title: A power is divisible by its base
+        body: '\(3^4 = 3 \times 3 \times 3 \times 3\). It is 3 times something, so it is divisible by 3. The same is true for every power and its base.'
+
+  - title: Common factors
+    blocks:
+      - type: example
+        covers: [S1.3, K1.4]
+        title: Factors that 36 and 60 share
+        problem: Find the common factors of **36** and **60**.
+        steps:
+          - '\(36 = 2 \times 2 \times 3 \times 3\) and \(60 = 2 \times 2 \times 3 \times 5\).'
+          - 'They share **2, 2 and 3**.'
+          - 'Multiply any of the shared primes: 2, 3, \(2 \times 2 = 4\), \(2 \times 3 = 6\) and \(2 \times 2 \times 3 = 12\). And 1 is always a common factor.'
+        answer: 'The common factors are **1, 2, 3, 4, 6 and 12**.'
+
+keyTerms:
+  - term: Prime number
+    covers: [K1.3]
+    definition: 'A number with exactly two factors, 1 and itself, like 2, 3, 5 and 7.'
+  - term: Composite number
+    covers: [K1.2]
+    definition: A number with more than two factors. It can be written as a product of smaller numbers.
+  - term: Prime factorization
+    covers: [K1.3, S1.2]
+    definition: 'A number written as a product of primes, like \(60 = 2 \times 2 \times 3 \times 5\).'
+  - term: Power
+    covers: [K2.1, K2.2]
+    definition: 'A repeated factor written with a base and an exponent: \(2^3 = 2 \times 2 \times 2\).'
+  - term: Associative property
+    covers: [K1.1]
+    definition: 'Grouping doesn’t change a product: \((2 \times 3) \times 4 = 2 \times (3 \times 4)\).'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2, S2.1]
+    type: mc
+    prompt: 'What does the power \(5^3\) mean?'
+    choices:
+      - '5 is used as a factor 3 times: \(5 \times 5 \times 5\)'
+      - '3 is used as a factor 5 times: \(3 \times 3 \times 3 \times 3 \times 3\)'
+      - '5 is multiplied by 3: \(5 \times 3\)'
+      - '5 is added 3 times: \(5 + 5 + 5\)'
+    answer: 0
+    feedback:
+      '1': 'The big number is the base, the factor that repeats. The small raised number counts the repeats.'
+      '2': 'That would be 15. The exponent counts how many 5s are multiplied together.'
+      '3': 'That is \(3 \times 5\). A power repeats multiplication, not addition.'
+    hints:
+      - Which number is the base, and which is the exponent?
+    solution:
+      - 'The base, 5, is the repeated factor. The exponent, 3, counts how many times it repeats.'
+      - '\(5^3 = 5 \times 5 \times 5 = 125\).'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3, K2.3, S2.2]
+    type: number
+    prompt: 'A number has the prime factorization \(2^3 \times 3 \times 5\). What is the number?'
+    answer: 120
+    verify: 2 * 2 * 2 * 3 * 5
+    hints:
+      - 'Write \(2^3\) as a product first.'
+    solution:
+      - '\(2^3 = 2 \times 2 \times 2 = 8\).'
+      - '\(8 \times 3 \times 5 = 120\).'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.3, S1.2, S2.2]
+    type: multi
+    prompt: Which of these are the **prime factorization** of 36? Choose all of them.
+    choices:
+      - '\(2 \times 2 \times 3 \times 3\)'
+      - '\(2^2 \times 3^2\)'
+      - '\(4 \times 9\)'
+      - '\(6 \times 6\)'
+      - '\(2 \times 18\)'
+    answer: [0, 1]
+    feedback:
+      '2': '4 × 9 is 36, but 4 and 9 are not prime. They can still be split.'
+      '3': '6 × 6 is 36, but 6 is not prime.'
+      '4': '2 is prime, but 18 is not.'
+    hints:
+      - In a prime factorization, every factor must be prime.
+    solution:
+      - '\(36 = 2 \times 2 \times 3 \times 3\), and every factor is prime.'
+      - 'With powers, that is \(2^2 \times 3^2\). It is the same factorization, written another way.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: ways
+    covers: [S1.1, U1.1, K1.1]
+    type: number
+    prompt: A baker stacks **24** cookies in a box as layers, rows and columns. Each of those is **more than 1**. How many different box shapes are there, if you don’t count turning a box around?
+    answer: 2
+    verify: '2'
+    hints:
+      - You need 24 as a product of **three** numbers, each more than 1.
+      - 'Start from the primes: \(24 = 2 \times 2 \times 2 \times 3\). How can you group four primes into three factors?'
+    solution:
+      - 'The primes are \(2 \times 2 \times 2 \times 3\). To make three factors, two of the primes join together.'
+      - 'Join two 2s: \(4 \times 2 \times 3\). Join a 2 and the 3: \(2 \times 2 \times 6\).'
+      - 'So there are **2** shapes: \(2 \times 3 \times 4\) and \(2 \times 2 \times 6\).'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: 'Sam makes a factor tree for 48. His branches end in **2, 4 and 6**, so he writes "the prime factorization of 48 is \(2 \times 4 \times 6\)." What is wrong?'
+    choices:
+      - 4 and 6 are not prime, so his tree isn’t finished.
+      - \(2 \times 4 \times 6\) does not equal 48.
+      - He had to start his tree with 6 × 8.
+      - 48 is prime, so it has no prime factorization.
+    answer: 0
+    feedback:
+      '1': 'Check: \(2 \times 4 = 8\), and \(8 \times 6 = 48\). The product is right.'
+      '2': 'Any factor pair can start the tree. Every tree for 48 ends in the same primes.'
+      '3': '48 has many factors, like 2, 3 and 4. It is composite.'
+    hints:
+      - Is every number at the end of his branches prime?
+    solution:
+      - 'His product is 48, but 4 and 6 can still be split. A prime factorization uses primes only.'
+      - 'Split \(4 = 2 \times 2\) and \(6 = 2 \times 3\). Then \(48 = 2 \times 2 \times 2 \times 2 \times 3 = 2^4 \times 3\).'
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K1.4, S1.4, U1.2, S2.3]
+    type: mc
+    prompt: 'The prime factorization of 360 is \(2^3 \times 3^2 \times 5\). Without dividing, which number is **not** a factor of 360?'
+    choices: ['27', '8', '45', '40', '18']
+    answer: 0
+    feedback:
+      '1': '\(8 = 2^3\). 360 has three 2s, so 8 is a factor.'
+      '2': '\(45 = 3^2 \times 5\). 360 has two 3s and a 5, so 45 is a factor.'
+      '3': '\(40 = 2^3 \times 5\). 360 has three 2s and a 5, so 40 is a factor.'
+      '4': '\(18 = 2 \times 3^2\). 360 has a 2 and two 3s, so 18 is a factor.'
+    hints:
+      - Write each choice as a product of primes.
+      - Does 360 have enough of each prime?
+    solution:
+      - '\(27 = 3 \times 3 \times 3 = 3^3\). It needs three 3s.'
+      - '360 has only two 3s, so 27 is **not** a factor. Check: \(360 \div 27\) is about 13.3.'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.4]
+    type: number
+    prompt: You have **36** red beads and **60** blue beads. You want to make identical bracelet kits with every bead used, and no beads left over. What is the **greatest** number of kits you can make?
+    answer: 12
+    verify: 2 * 2 * 3
+    hints:
+      - The number of kits must be a factor of 36 and of 60.
+      - 'Write both as products of primes. Which primes do they share?'
+    solution:
+      - 'The number of kits must divide both 36 and 60, so it is a **common factor**.'
+      - '\(36 = 2 \times 2 \times 3 \times 3\) and \(60 = 2 \times 2 \times 3 \times 5\). They share 2, 2 and 3.'
+      - 'The greatest common factor uses all of them: \(2 \times 2 \times 3 = 12\) kits. Each kit gets 3 red and 5 blue beads.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, U1.2, K2.3, U2.1, S2.3]
+    type: investigation
+    prompt: |-
+      A secret locker number has only **2s and 3s** as prime factors. It is divisible by **8** and by **9**. It is **not** divisible by 16, and **not** by 27.
+    parts:
+      - type: mc
+        prompt: '\(8 = 2^3\) and \(16 = 2^4\). What do the clues about 8 and 16 tell you about the 2s?'
+        choices: ['It has exactly three 2s', 'It has at least three 2s', 'It has at most three 2s', 'It has exactly eight 2s']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'If it had four 2s, it would be divisible by \(2^4 = 16\). Is it?'
+          '2': 'It must be divisible by 8, so it needs at least three 2s.'
+          '3': '8 is the number, not how many 2s. \(8 = 2^3\) has three.'
+        hints:
+          - Divisible by 8 means it has at least three 2s. What does "not by 16" add?
+        solution:
+          - 'Divisible by \(2^3\): at least three 2s. Not divisible by \(2^4\): fewer than four. So **exactly three**.'
+      - type: number
+        prompt: Use the clues about 9 and 27 too. What is the locker number?
+        answer: 72
+        verify: 2 * 2 * 2 * 3 * 3
+        hints:
+          - '\(9 = 3^2\) and \(27 = 3^3\). How many 3s does it have?'
+        solution:
+          - 'In the same way, it has exactly two 3s.'
+          - 'So the number is \(2^3 \times 3^2 = 8 \times 9 = 72\).'
+      - type: mc
+        prompt: 'Now suppose the clue "not divisible by 27" was lost. Every other clue stays. How many locker numbers would fit?'
+        choices: ['Only 72', 'Two', 'Three', 'Endless numbers']
+        fixedOrder: true
+        answer: 3
+        feedback:
+          '0': 'Without that clue, could it have three 3s? What about four?'
+          '1': 'You found 72 and 216. Can it have even more 3s?'
+          '2': 'Nothing stops the 3s at four. Is there a largest number of 3s?'
+        hints:
+          - It still has exactly three 2s. How many 3s could it have now?
+        solution:
+          - 'It has exactly three 2s and at least two 3s.'
+          - '\(2^3 \times 3^2 = 72\), \(2^3 \times 3^3 = 216\), \(2^3 \times 3^4 = 648\), and so on. There are **endless** numbers.'
+    wrapUp: 'A prime factorization is a full picture of a number’s divisibility. Each clue about a divisor becomes a clue about how many of each prime it holds.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.4, K1.4, U1.2]
+    type: build
+    prompt: |-
+      Find a number **between 100 and 200** that is divisible by **12** and by **18**, but **not** by 8.
+    fields:
+      - { name: n, label: 'Your number' }
+    rules:
+      - { test: 'n > 100 && n < 200 && n % 1 == 0', fail: 'Choose a whole number between 100 and 200.' }
+      - { test: 'n % 12 == 0', fail: 'That number isn’t divisible by 12. It needs \(2^2 \times 3\) inside it.' }
+      - { test: 'n % 18 == 0', fail: 'That number isn’t divisible by 18. It needs \(2 \times 3^2\) inside it.' }
+      - { test: 'n % 8 != 0', fail: 'That one is divisible by 8, because it has three 2s. Try one with exactly two 2s.' }
+    examples:
+      - { n: 108 }
+      - { n: 180 }
+    counterexamples:
+      - { n: 144 }
+      - { n: 120 }
+      - { n: 72 }
+    hints:
+      - '\(12 = 2^2 \times 3\) and \(18 = 2 \times 3^2\). What must your number hold?'
+      - 'It needs two 2s and two 3s, which is 36. Not divisible by 8 means no third 2.'
+      - 'Multiply 36 by a number with no 2 in it.'
+    solution:
+      - 'It must hold \(2^2\) (for 12) and \(3^2\) (for 18). So it is \(36 \times\) something.'
+      - 'A third 2 would make it divisible by 8, so the something must be odd.'
+      - '\(36 \times 3 = 108\) and \(36 \times 5 = 180\) both work. \(36 \times 4 = 144\) is divisible by 8.'

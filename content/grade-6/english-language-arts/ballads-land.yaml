@@ -1,0 +1,521 @@
+id: ballads-land
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG6-OI1-GQ1-LO1]
+order: 3
+title: Ballads and Reading the Land
+shortTitle: Ballads & reading the land
+summary: >-
+  Hear a ballad tell a family story across a hundred years, then spin a globe to read inuksuit,
+  lobsticks, totem poles, pyramids and Stonehenge as texts.
+
+bigIdea: |-
+  - A **ballad** tells a story in short stanzas, and it can be sung or recited.
+  - Poems and songs carry a people’s story from one generation to the next.
+  - The **land is a text**. Structures that people build on it carry meaning, and can be read in more than one way.
+
+lesson:
+  - title: A story in a song
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.1, U5.1]
+        component: poem-reader
+        props:
+          title: The Ballad of the Blue Quilt
+          ideas:
+            - A family arrives on the prairie
+            - A hard first winter
+            - Marta sews by lamplight
+            - The quilt is done
+            - Passed down, and mended
+            - The quilt today
+          stanzas:
+            - - In nineteen-ten the wagon came
+              - across the prairie wide,
+              - with Marta, eight, and one small sack
+              - of fabric scraps inside.
+            - - That winter, wind was a hungry wolf
+              - that howled outside the door.
+              - The sod house shook, the lamp burned low,
+              - and frost crept on the floor.
+            - - So Marta sewed by lamplight,
+              - a square for every night,
+              - blue for the sky she’d left behind
+              - and gold for spring in sight.
+            - - When spring came green across the land,
+              - the quilt was done at last.
+              - And Marta laid it on her bed,
+              - a map of winter past.
+            - - Her daughter slept beneath it,
+              - then her daughter’s daughter too,
+              - and every winter someone stitched
+              - a patch where it wore through.
+            - - Now it is mine. On stormy nights
+              - I pull it to my chin
+              - and hear the wind, that hungry wolf,
+              - that cannot get back in.
+        caption: An original ballad. Listen, then read it aloud or sing it to any tune you like. Each stanza moves the story on.
+
+  - title: What makes a ballad
+    blocks:
+      - type: table
+        covers: [K5.1, S5.3]
+        caption: The ballad’s tools, in “The Ballad of the Blue Quilt”
+        headers: [A ballad…, In the poem]
+        rows:
+          - ['**Tells a story**, with a beginning, a middle and an end', 'Marta arrives, gets through the winter, and the quilt is passed down.']
+          - ['Uses **short stanzas**, often four lines', 'Six stanzas of four lines each.']
+          - ['Often **rhymes** on lines 2 and 4', '*wide* and *inside*, *door* and *floor*']
+          - ['**Repeats** words or images', 'The “hungry wolf” comes back in the last stanza.']
+          - ['Has a strong beat, so it can be **sung**', 'Clap along. Many ballads are songs.']
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI1-GQ1-LO1#K5.4]
+        title: Remember from Grade 5
+        body: A stanza is a group of lines in a poem that go with one idea.
+
+  - title: Images that make you feel
+    blocks:
+      - type: visual
+        covers: [S5.2]
+        component: figure-lens
+        props:
+          items:
+            - phrase: That winter, wind was a hungry wolf that howled outside the door.
+              kind: Metaphor
+              picture: 🐺🚪❄️
+              literally: A real wolf is standing at the sod house door!
+              means: The wind was fierce and frightening, and it seemed to be trying to get in.
+              because: You feel what Marta felt, small and cold inside a shaking house.
+            - phrase: The quilt was … a map of winter past.
+              kind: Metaphor
+              picture: 🗺️🧵
+              literally: The quilt has roads and towns drawn on it!
+              means: Each square shows one night of that hard winter, like a record of it.
+              because: Like a map, you can trace the winter on it square by square.
+            - phrase: Blue for the sky she’d left behind.
+              kind: Image
+              picture: 🟦🌄
+              literally: She cut a piece out of the sky!
+              means: The blue fabric reminds her of the home she came from.
+              because: One colour holds a whole feeling, missing home.
+        caption: Read each line literally, then as the poet meant it. How does it help you feel what Marta felt?
+
+  - title: Poems carry history
+    blocks:
+      - type: compare
+        covers: [U5.1, S5.3]
+        columns:
+          - title: 🧵 Then
+            body: 'Marta’s winter in a sod house, in **1910**. The ballad keeps it from being forgotten.'
+          - title: 🔗 Every generation
+            body: 'Her daughter, and her daughter’s daughter, keep the quilt, and the story, going.'
+          - title: 🛏️ Now
+            body: 'The speaker pulls the same quilt up today. Past and present are joined.'
+      - type: callout
+        variant: tip
+        covers: [S5.4, S5.3]
+        title: Try it yourself
+        body: 'Write a ballad stanza about a story from your own family: four lines, with lines 2 and 4 rhyming. Or turn it into a song with a chorus that repeats.'
+
+  - title: The land is a text
+    blocks:
+      - type: visual
+        covers: [K7.1, S7.1, U7.1]
+        component: land-globe
+        props:
+          # Sources: Writing-on-Stone/Áísínai'pi (UNESCO World Heritage, 2019; The Canadian Encyclopedia;
+          # Wikipedia), Inuksuk (Wikipedia), lobstick (Gabriel Dumont Institute, Leah Marie Dorion,
+          # "My First Métis Lobstick"; Dictionary of Canadian Historical Parlance), Totem pole (Wikipedia),
+          # El Castillo, Chichén Itzá; Stonehenge; Newgrange; Chauvet Cave (Wikipedia, checked 2026-11-07).
+          sites:
+            - id: petroglyphs
+              name: Petroglyphs
+              icon: 🪨
+              group: fnmi
+              where: Áísínai’pi (Writing-on-Stone), Alberta. Much of the art was made by Blackfoot people.
+              lat: 49.08
+              lon: -111.62
+              what: Pictures **carved** into the sandstone cliffs of the Milk River valley. They show people, horses, battles and spirit beings.
+              meaning: 'They record events and beliefs. The Blackfoot name, *Áísínai’pi*, means “it is pictured” or “it is written.” The place is sacred to the Blackfoot.'
+            - id: pictographs
+              name: Pictographs
+              icon: 🖌️
+              group: fnmi
+              where: Áísínai’pi (Writing-on-Stone), Alberta. Much of the art was made by Blackfoot people.
+              lat: 49.0
+              lon: -111.5
+              what: Pictures **painted** on the rock, beside the carvings.
+              meaning: Painted and carved pictures together make the cliffs a kind of written record on the land.
+            - id: inuksuk
+              name: Inuksuk
+              icon: 🗿
+              group: fnmi
+              where: The Arctic, such as Nunavut. Inuit.
+              lat: 63.75
+              lon: -68.5
+              what: Stones stacked into a landmark. The word is often translated as “that which acts in the capacity of a human.” The plural is **inuksuit**.
+              meaning: An inuksuk can tell a traveller the way to go, where food is stored, or where to fish or hunt.
+            - id: lobstick
+              name: Lobstick
+              icon: 🌲
+              group: fnmi
+              where: Boreal forest rivers and portages. Métis.
+              lat: 56.7
+              lon: -111.4
+              what: A tall spruce or pine with all but its top branches cut off, so it stands out from far away.
+              meaning: It marked trails and portages. A lobstick could also **honour a person**, with a celebration and a feast.
+            - id: totem
+              name: Totem pole
+              icon: 🪵
+              group: fnmi
+              where: Haida Gwaii, British Columbia. Haida and other Coastal First Nations.
+              lat: 52.1
+              lon: -131.2
+              what: A pole carved from western red cedar, with crests such as Raven and Eagle.
+              meaning: A pole can record a family’s history and crests, honour a person who has died, or welcome visitors.
+            - id: giza
+              name: Egyptian pyramids
+              icon: 🔺
+              group: world
+              where: Giza, Egypt
+              lat: 29.98
+              lon: 31.13
+              what: Huge stone tombs built about 4500 years ago for Egypt’s kings, the pharaohs.
+              meaning: Their size shows the king’s power, and what people believed about life after death.
+            - id: castillo
+              name: Mesoamerican pyramid
+              icon: 🛕
+              group: world
+              where: El Castillo, Chichén Itzá, Mexico. Maya.
+              lat: 20.68
+              lon: -88.57
+              what: A temple pyramid for Kukulcán, the feathered serpent, built by the Maya about 1000 years ago.
+              meaning: Its stairs lead up to a temple on top. Its height shows how important Kukulcán was to the people who built it.
+            - id: stonehenge
+              name: Stonehenge
+              icon: 🌅
+              group: world
+              where: England
+              lat: 51.18
+              lon: -1.83
+              what: A circle of huge stones, begun about 5000 years ago. It lines up with sunrise on the longest day and sunset on the shortest.
+              meaning: People still debate what it meant. A calendar, a burial place, a place for ceremonies? Land can be read in more than one way.
+            - id: newgrange
+              name: Neolithic burial mound
+              icon: ⛰️
+              group: world
+              where: Newgrange, Ireland
+              lat: 53.69
+              lon: -6.48
+              what: A huge mound, about 5000 years old, with a stone passage to a chamber inside.
+              meaning: At sunrise on the shortest day of the year, light shines down the passage into the chamber. Its builders watched the sun closely.
+            - id: caves
+              name: Lascaux and Chauvet caves
+              icon: 🐎
+              group: world
+              where: France
+              lat: 45.05
+              lon: 1.17
+              what: Cave walls painted with horses, bison, lions and rhinos. Chauvet’s are over 30 000 years old. Lascaux’s are about 17 000.
+              meaning: They show the animals that mattered to people, long before anyone wrote words.
+            - id: mesopotamia
+              name: Mesopotamian dams and dikes
+              icon: 🌊
+              group: world
+              where: Between the Tigris and Euphrates rivers, Iraq
+              lat: 31.0
+              lon: 46.1
+              what: Walls of earth that held back floods, and canals that carried river water to fields.
+              meaning: They show a people who worked together to farm and to plan for floods.
+        caption: Tap a structure. Who made it, and what can it tell someone who knows how to read it?
+
+  - title: One structure, many meanings
+    blocks:
+      - type: compare
+        covers: [K7.2, S7.1]
+        columns:
+          - title: 🗿 An inuksuk on a hill
+            body: |-
+              To one traveller it says, “This is the way.” To another, “Food is stored here.”
+
+              The same stones can carry different messages.
+          - title: 🌅 Stonehenge
+            body: |-
+              Some read a calendar of the sun. Others read a burial place, or a gathering place.
+
+              Readers still disagree.
+      - type: callout
+        variant: mistake
+        covers: [K7.1, S7.1]
+        title: Read it with respect
+        body: |-
+          - Totem poles were not made to be worshipped. They record families, crests and events.
+          - Learn what a structure means from the people who made it.
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI1-GQ1-LO1#K7.1]
+        title: Remember from Grade 5
+        body: You can connect to land through its features, including human-made structures and stories of place.
+
+keyTerms:
+  - term: Ballad
+    covers: [K5.1]
+    definition: A poem or song that tells a story in short stanzas.
+  - term: Petroglyph
+    covers: [K7.1]
+    definition: A picture carved into rock.
+  - term: Pictograph
+    covers: [K7.1]
+    definition: A picture painted on rock.
+  - term: Inuksuk
+    covers: [K7.1]
+    definition: A landmark of stacked stones built by Inuit. The plural is inuksuit.
+  - term: Lobstick
+    covers: [K7.1]
+    definition: A tall tree with all but its top branches cut off, used by the Métis to mark a route or honour a person.
+  - term: Land literacy
+    covers: [K7.2, U7.1]
+    definition: Reading the land, and what people have built on it, for meaning.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K5.1, S5.3]
+    type: mc
+    prompt: What makes “The Ballad of the Blue Quilt” a **ballad**?
+    choices:
+      - It tells a story, stanza by stanza, that could be sung.
+      - It describes one feeling, without telling a story.
+      - It has no rhyme, so it sounds like someone talking.
+      - It is written in paragraphs, like a short story.
+    answer: 0
+    feedback:
+      '1': A poem about one feeling is a lyric poem. Does this poem have events that happen one after another?
+      '2': Look at the ends of lines 2 and 4 in any stanza.
+      '3': Look at how the lines are grouped. Are those paragraphs?
+    hints:
+      - What happens from the first stanza to the last?
+    solution:
+      - A family arrives, Marta sews through a hard winter, and the quilt is passed down. That is a **story**.
+      - It is told in short stanzas, with rhyme and a beat, so it can be sung or recited. That makes it a ballad.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S5.2]
+    type: mc
+    prompt: |-
+      > That winter, wind was a hungry wolf
+      > that howled outside the door.
+
+      What does this metaphor help you **feel**?
+    choices:
+      - How fierce and scary the wind seemed to the family inside.
+      - That wolves really did come to the door of the sod house.
+      - How calm and quiet that winter on the prairie seemed.
+      - That the family was hungry because the winter was long.
+    answer: 0
+    feedback:
+      '1': Read it figuratively. The wind isn’t a real wolf. What do the wind and a hungry wolf have in common?
+      '2': A howling, hungry wolf isn’t calm. What feeling does it bring?
+      '3': The **wolf** is hungry, not the family. What is the wolf standing for?
+    hints:
+      - What is the wind being compared to?
+      - How would you feel with a hungry wolf at your door?
+    solution:
+      - The wind howls and seems to want to get in, like a hungry wolf.
+      - The metaphor makes you feel the family’s fear. Figurative language can help you feel what someone else felt.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K7.1, S7.1]
+    type: mc
+    prompt: A traveller in the Arctic sees an **inuksuk** on a hill. Which message could it be giving?
+    choices:
+      - This is the way to travel.
+      - A king is buried under here.
+      - Here is my family’s crest.
+      - Today is the longest day.
+    answer: 0
+    feedback:
+      '1': A royal tomb fits the Egyptian pyramids. What did Inuit build inuksuit for?
+      '2': Family crests are carved on totem poles. What does an inuksuk do?
+      '3': Stonehenge lines up with the sunrise on the longest day. What does an inuksuk do?
+    hints:
+      - Inuksuit help people who are travelling on the land. What would a traveller need to know?
+    solution:
+      - An inuksuk can show the way, mark stored food, or point to a place to fish or hunt.
+      - The others are messages from other structures on the globe.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [U5.1, S5.2, S5.3]
+    type: mc
+    prompt: |-
+      The “hungry wolf” comes back in the last stanza:
+
+      > and hear the wind, that hungry wolf,
+      > that cannot get back in.
+
+      Why might the poet bring it back at the end?
+    choices:
+      - To show that more than a hundred years later, Marta’s quilt still keeps the cold out.
+      - To fill the last stanza, because the poet ran out of new things to say.
+      - To show that wolves still live near the house where the speaker sleeps.
+      - To warn readers that the winter of 1910 is about to happen once more.
+    answer: 0
+    feedback:
+      '1': Repeating an image on purpose is a ballad tool. What has changed since the wolf first howled?
+      '2': Read it figuratively, as in stanza 2. What is the wolf?
+      '3': The speaker is safe under the quilt. Is anything going to happen again?
+    hints:
+      - In stanza 2, who is inside, and what is the wolf trying to do?
+      - Who is inside now, and what keeps the wolf out?
+    solution:
+      - In stanza 2, the wind howls at Marta’s door. In the last stanza, the same wind howls, and the speaker is safe under Marta’s quilt.
+      - Bringing back the image joins 1910 and today. That is how a ballad carries history from one generation to the next.
+
+  - id: b2
+    level: 2
+    thinking: breakdown
+    covers: [K5.1, S5.3]
+    type: order
+    prompt: Put the story of the ballad in order.
+    items:
+      - Marta’s family arrives on the prairie.
+      - The wind howls through a hard winter.
+      - Marta sews a square every night.
+      - The finished quilt goes on her bed in spring.
+      - Her daughter, then her granddaughter, sleep under it.
+      - The speaker pulls it up on a stormy night.
+    hints:
+      - Each stanza moves the story one step. Use the stanza ideas beside the poem.
+    solution:
+      - The ballad tells its story one stanza at a time, in order, from 1910 to today.
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K7.1, K7.2, S7.1]
+    type: multi
+    prompt: A canoe on a northern river passes a tall spruce with only a tuft of branches at the top. A name is carved into its trunk. What could this **lobstick** be telling the people in the canoe? Choose every one.
+    choices:
+      - The route or portage goes this way.
+      - The person named on it was honoured here.
+      - A king is buried under the tree.
+      - The tree was struck by lightning.
+    answer: [0, 1]
+    feedback:
+      '2': Burying kings fits the Egyptian pyramids. What were lobsticks made for?
+      '3': Lightning doesn’t carve names or trim branches neatly. People shaped this tree on purpose.
+    hints:
+      - Why cut off the lower branches? Why carve a name?
+    solution:
+      - A lobstick stands out from far away, so it marks the route. The carved name suggests it honours a person.
+      - One structure can carry more than one meaning.
+
+  - id: b4
+    level: 2
+    thinking: evidence
+    covers: [K7.1, K7.2, U7.1]
+    type: mc
+    prompt: At **Newgrange**, sunrise on the shortest day of the year lights up the chamber inside the mound. It happens only around that day. What can a careful reader of the land conclude?
+    choices:
+      - The builders watched the sun closely and built the passage to line up with it.
+      - The builders made the passage by accident, and the light only happens to fit.
+      - The builders lived inside the chamber and used the light to wake up every day.
+      - The builders had clocks and calendars like ours to time the light exactly.
+    answer: 0
+    feedback:
+      '1': A long stone passage that lines up with one sunrise of the year is hard to make by chance. What does that suggest?
+      '2': It is a burial mound, and the light comes only around one day. Could it be a daily alarm?
+      '3': Nothing in the mound needs clocks. How could people learn the sun’s path without them?
+    hints:
+      - The light comes in on only one time of year. What would the builders have needed to know?
+    solution:
+      - Lining a passage up with one sunrise means knowing where the sun rises on that day.
+      - So the mound shows that its builders **watched the sun**, year after year. The land holds that knowledge, even without writing.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [K7.2, S7.1, U7.1]
+    type: investigation
+    prompt: |-
+      The Maya pyramid **El Castillo** has about **91 steps** on each of its **4** sides. At the top there is a temple platform.
+
+      Let’s read it like a text.
+    parts:
+      - type: number
+        prompt: Count all the steps on the four sides, and count the platform as one more step. How many is that?
+        answer: 365
+        verify: 4 * 91 + 1
+        hints:
+          - Four sides of 91 steps each, plus 1.
+        solution:
+          - '\(4 \times 91 = 364\), and \(364 + 1 = 365\).'
+      - type: mc
+        prompt: What might that number tell a reader of the land?
+        choices:
+          - The builders may have built the number of days in a year into the pyramid.
+          - The builders ran out of stone after exactly that many steps.
+          - The pyramid took exactly that many days to build.
+          - The number has no meaning, since steps are only for climbing.
+        answer: 0
+        feedback:
+          '1': Stone running out would give a random number. Is 365 random?
+          '2': Nothing about the steps tells us how long building took. What else is 365?
+          '3': Steps are for climbing, but why exactly this many? Could they mean something too?
+        hints:
+          - Where else have you seen the number 365?
+        solution:
+          - 365 is about the number of days in a year. The steps may be a calendar built in stone.
+      - type: mc
+        prompt: Near the spring and autumn equinoxes, late-afternoon shadows make a feathered serpent seem to crawl down the stairs. Experts aren’t sure whether this was planned. What should a careful reader say?
+        choices:
+          - The steps suggest the Maya tracked the year, but we can’t be sure the serpent shadow was planned.
+          - The shadow proves the builders planned everything about the sun, so the matter is closed.
+          - The shadow was an accident, so the 365 steps must be an accident too.
+          - Since experts disagree, the pyramid can’t tell us anything at all.
+        answer: 0
+        feedback:
+          '1': If experts aren’t sure, can we be sure? A good reader says how strong the evidence is.
+          '2': The two clues are separate. Not knowing about one doesn’t cancel the other.
+          '3': Disagreement about one clue doesn’t erase every clue. What does the step count still suggest?
+        hints:
+          - Weigh each clue on its own. How strong is each one?
+        solution:
+          - The step count is a strong clue. The shadow is uncertain.
+          - A careful reader keeps both ideas, and says which one is surer. Land can be read for more than one meaning.
+    wrapUp: Reading the land is like reading any text. Look for clues, connect them to what you know, and say how sure you are.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S5.4, S5.3]
+    type: open
+    prompt: |-
+      Write **one more stanza** for “The Ballad of the Blue Quilt.” It could come after the last one, when the speaker passes the quilt on, or mends it, or tells its story.
+
+      Make it sound like it belongs in the ballad.
+    modelAnswer: |-
+      One day I’ll fold it, worn and blue,
+      and pass it to my child,
+      and say, “A girl named Marta sewed
+      this quilt when winds ran wild.”
+    rubric:
+      - My stanza has four lines.
+      - Lines 2 and 4 rhyme.
+      - It moves the story on, or tells what happens to the quilt.
+      - It brings back a word or image from the ballad, such as the wind, the wolf, the colours or Marta.
+    hints:
+      - Read the ballad aloud and clap the beat. Try to keep it.
+      - Pick your two rhyming words first, then build lines 2 and 4 around them.

@@ -1,0 +1,116 @@
+---
+// Animated experiment: a block of ice in a sealed jar sits on a scale in a 20 °C room. The ice
+// warms and melts. The scale reads 250 g the whole time, and the water takes up a little less
+// space than the ice did. A zoomed-in view shows the particles speeding up and starting to
+// slide (SCI6-OI1-GQ1-LO1, K1.1, K1.2, K1.5, K1.6, S1.2, S1.3).
+---
+<g6-melt-scale>
+  <svg class="sci-svg" viewBox="0 0 640 330" aria-hidden="true" data-ms="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ms="live"></p>
+</g6-melt-scale>
+
+<style is:global>
+  g6-melt-scale { display: block; }
+  g6-melt-scale svg { background: var(--surface-2); }
+  .g6s-ms-scale { fill: var(--surface-3); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-ms-screen { fill: #12261d; }
+  .g6s-ms-read { fill: #7cf0b0; font-size: 26px; font-weight: 700; }
+  .g6s-ms-ice { fill: #cfeaff; stroke: #6aa9d8; stroke-width: 2; }
+  .g6s-ms-lid { fill: var(--ink-3); }
+  .g6s-ms-zoom { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-ms-dot { fill: var(--accent); }
+  .g6s-ms-mark { stroke: var(--ink-2); stroke-width: 2; stroke-dasharray: 6 5; }
+  .g6s-ms-clock { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+  .g6s-ms-hand { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  // Jar inside: x 70-230, floor y 230. The ice block takes 1.09 times the space of the same
+  // mass of liquid water (ice is less dense), so the meltwater ends a little lower.
+  const JX = 70;
+  const JW = 160;
+  const FLOOR = 230;
+  const ICE = { w: JW - 4, h: 112 };
+  const WATER_H = ICE.h / 1.09; // the ice fills the jar's width, so heights compare directly
+  const ZX = 500;
+  const ZY = 160;
+  const ZR = 90;
+
+  class MeltScale extends HTMLElement {
+    private melt = 0; // 0 = all ice, 1 = all water
+    private hours = 0;
+    private seed = Array.from({ length: 16 }, () => [Math.random(), Math.random(), Math.random() * 6.28]);
+    private time = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.melt = 0;
+      this.hours = 0;
+      this.querySelector('[data-ms="live"]')!.textContent = '';
+      await tween(6500, (t) => {
+        this.time = t * 40;
+        this.hours = t * 3;
+        this.melt = Math.min(1, Math.max(0, (t - 0.12) / 0.78));
+        this.draw();
+      });
+      await wait(150);
+      this.querySelector('[data-ms="live"]')!.textContent =
+        'All the ice melted into liquid water. The scale read 250 grams the whole time. The water takes up a little less space than the ice did.';
+    }
+
+    private particles() {
+      // Solid: neat rows, vibrating in place. Liquid: the rows slide past each other.
+      const out: string[] = [];
+      const m = this.melt;
+      const jig = 1.5 + 2 * m;
+      const slide = m > 0.5 ? (m - 0.5) * 2 : 0;
+      this.seed.forEach(([, , ph], i) => {
+        const col = i % 4;
+        const row = Math.floor(i / 4);
+        const dir = row % 2 ? 1 : -1;
+        const x = ZX - 39 + col * 26 + dir * Math.sin(this.time * 0.9 + row) * 16 * slide + Math.sin(this.time * 3 + ph) * jig;
+        const y = ZY - 30 + row * 24 + 14 * slide + Math.cos(this.time * 3.3 + ph) * jig;
+        out.push(`<circle class="g6s-ms-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10"/>`);
+      });
+      return out.join('');
+    }
+
+    private draw() {
+      const m = this.melt;
+      const k = Math.sqrt(1 - m);
+      const iceH = ICE.h * k;
+      const iceW = ICE.w * k;
+      const waterH = WATER_H * m;
+      const done = this.hours >= 3;
+      const ang = this.hours * 2 * Math.PI;
+      this.querySelector('[data-ms="svg"]')!.innerHTML = [
+        `<text class="sci-text" x="300" y="34">Room: 20 °C</text>`,
+        `<circle class="g6s-ms-clock" cx="320" cy="74" r="20"/>`,
+        `<line class="g6s-ms-hand" x1="320" y1="74" x2="${(320 + Math.sin(ang) * 14).toFixed(1)}" y2="${(74 - Math.cos(ang) * 14).toFixed(1)}"/>`,
+        `<text class="sci-small" x="320" y="116" text-anchor="middle">${done ? '3 hours later' : `${Math.floor(this.hours)} h`}</text>`,
+        waterH > 0.5 ? `<rect class="sci-water" x="${JX}" y="${(FLOOR - waterH).toFixed(1)}" width="${JW}" height="${waterH.toFixed(1)}"/>` : '',
+        waterH > 0.5 ? `<line class="sci-surface" x1="${JX}" x2="${JX + JW}" y1="${(FLOOR - waterH).toFixed(1)}" y2="${(FLOOR - waterH).toFixed(1)}"/>` : '',
+        iceH > 1 ? `<rect class="g6s-ms-ice" x="${(JX + JW / 2 - iceW / 2).toFixed(1)}" y="${(FLOOR - iceH).toFixed(1)}" width="${iceW.toFixed(1)}" height="${iceH.toFixed(1)}" rx="4"/>` : '',
+        m > 0 ? `<line class="g6s-ms-mark" x1="${JX}" x2="${JX + JW}" y1="${FLOOR - ICE.h}" y2="${FLOOR - ICE.h}"/>` : '',
+        m > 0 ? `<text class="sci-small" x="${JX + JW / 2}" y="${FLOOR - ICE.h - 7}" text-anchor="middle">ice top at start</text>` : '',
+        `<path class="sci-glass" d="M${JX} 76 V${FLOOR} H${JX + JW} V100"/>`,
+        `<rect class="g6s-ms-lid" x="${JX - 6}" y="66" width="${JW + 12}" height="12" rx="3"/>`,
+        `<text class="sci-small" x="${JX + JW / 2}" y="60" text-anchor="middle">Sealed lid</text>`,
+        `<rect class="g6s-ms-scale" x="40" y="${FLOOR}" width="220" height="56" rx="8"/>`,
+        `<rect class="g6s-ms-screen" x="95" y="${FLOOR + 10}" width="110" height="36" rx="4"/>`,
+        `<text class="g6s-ms-read" x="150" y="${FLOOR + 38}" text-anchor="middle">250 g</text>`,
+        `<circle class="g6s-ms-zoom" cx="${ZX}" cy="${ZY}" r="${ZR}"/>`,
+        this.particles(),
+        `<text class="sci-text" x="${ZX}" y="${ZY - ZR - 14}" text-anchor="middle">Zoomed in: ${m < 0.5 ? 'solid' : 'liquid'}</text>`,
+        `<text class="sci-small" x="${ZX}" y="${ZY + ZR + 24}" text-anchor="middle">Drawn much bigger than real</text>`,
+        done ? `<text class="sci-text" x="150" y="${FLOOR + 84}" text-anchor="middle">Still 250 g</text>` : '',
+      ].join('');
+    }
+  }
+  customElements.define('g6-melt-scale', MeltScale);
+</script>

@@ -1,0 +1,279 @@
+id: transformations
+grade: 6
+subject: math
+organizingIdea: MAT-OI4
+outcomes: [MAT6-OI4-GQ1-LO1]
+order: 14
+title: Translations, Reflections and Rotations
+shortTitle: Transformations
+summary: >-
+  Translate polygons, reflect them over the x-axis or y-axis, and rotate them about a vertex in the
+  Cartesian plane, then compare the coordinates of each image.
+
+bigIdea: |-
+  - A **translation** slides a shape: one horizontal move and one vertical move, as a single movement.
+  - A **reflection** flips a shape over a line. Over the x-axis, y becomes its opposite. Over the y-axis, x does.
+  - A **rotation** turns a shape about a centre, 90°, 180° or 270°, clockwise or counter-clockwise.
+  - The shape’s **location** changes. A translation keeps the way it faces.
+
+lesson:
+  - title: Translations
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, S2.2, U2.1, U2.2]
+        component: transform-lab
+        props: { move: translate }
+        caption: |-
+          - Slide the triangle with the two sliders.
+          - Watch the table: what happens to every x? To every y?
+
+  - title: Reflections
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.3, S2.4, S2.7]
+        component: transform-lab
+        props: { move: reflect }
+        caption: Reflect over the **x-axis**, then over the **y-axis**. Which coordinate changes each time?
+
+  - title: Rotations
+    blocks:
+      - type: visual
+        covers: [K2.3, S2.5, S2.6]
+        component: transform-lab
+        props: { move: rotate }
+        caption: |-
+          - Choose an angle, a direction and a vertex to turn about.
+          - The red circle marks the centre. That vertex stays put.
+
+  - title: The coordinates tell the story
+    blocks:
+      - type: table
+        covers: [S2.7, S2.2, S2.4]
+        caption: 'What happens to a point (x, y)?'
+        headers: [Transformation, 'Image of (x, y)', 'Example with (4, 1)']
+        rows:
+          - ['Translate 5 left, 2 up', '(x − 5, y + 2)', '(−1, 3)']
+          - ['Reflect over the x-axis', '(x, −y)', '(4, −1)']
+          - ['Reflect over the y-axis', '(−x, y)', '(−4, 1)']
+      - type: callout
+        variant: tip
+        covers: [U2.2, U2.1]
+        title: Location and direction
+        body: Every transformation changes **where** a shape is. Only a translation keeps it facing the **same way**.
+
+keyTerms:
+  - term: Image
+    covers: [S2.1, S2.7]
+    definition: 'The shape after a transformation. Its vertices are named with a mark: A becomes A′.'
+  - term: Translation
+    covers: [K2.1]
+    definition: A slide. A horizontal and a vertical movement combined into one movement.
+  - term: Reflection
+    covers: [K2.2]
+    definition: 'A flip over a line of reflection, like the x-axis or the y-axis.'
+  - term: Rotation
+    covers: [K2.3]
+    definition: A turn by an angle about a centre, clockwise or counter-clockwise.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S2.1, S2.7]
+    type: text
+    prompt: 'Translate the point **(2, −1)** 3 units left and 4 units up. Where is its image? Type it like **(2, −5)**.'
+    accept: ['(-1, 3)', '(−1, 3)', '(-1,3)', '(−1,3)', '-1, 3', '−1, 3']
+    hints:
+      - Left and right change x. Up and down change y.
+    solution:
+      - 'x: \(2 - 3 = -1\). y: \(-1 + 4 = 3\). The image is **(−1, 3)**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S2.3, S2.7]
+    type: mc
+    prompt: 'Reflect the point **(3, 5)** over the **x-axis**. Where is its image?'
+    choices: ['(3, −5)', '(−3, 5)', '(−3, −5)', '(5, 3)']
+    answer: 0
+    feedback:
+      '1': 'That is a reflection over the y-axis. Over the x-axis, the point flips up or down.'
+      '2': 'Only one coordinate changes in a reflection over an axis.'
+      '3': 'A reflection doesn’t swap the numbers.'
+    hints:
+      - The x-axis runs across. Does the point flip left or right, or up or down?
+    solution:
+      - 'Flipping over the x-axis moves the point from 5 above to 5 below. x stays 3.'
+      - 'The image is **(3, −5)**.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [U2.2, U2.1]
+    type: mc
+    prompt: 'Which transformation always keeps the image facing the **same way** as the original?'
+    choices: ['A translation', 'A reflection over the y-axis', 'A rotation of 90°', 'A rotation of 180°']
+    answer: 0
+    feedback:
+      '1': 'A reflection makes a mirror image, facing the opposite way.'
+      '2': 'A quarter turn tips the shape on its side.'
+      '3': 'A half turn turns the shape upside down.'
+    hints:
+      - Which move only slides the shape, with no flip or turn?
+    solution:
+      - 'A translation only slides the shape. Its location changes, but the way it faces doesn’t.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: backwards
+    covers: [S2.2, K2.1, S2.7]
+    type: mc
+    figure: { kind: plane, r: 5, polys: [{ pts: [[-4, 2], [-2, 2], [-4, 4]], labels: [A, B, C] }, { pts: [[1, -1], [3, -1], [1, 1]], tone: b, labels: ['A′', 'B′', 'C′'] }] }
+    prompt: 'Triangle A′B′C′ is a translation of triangle ABC. Describe the translation.'
+    choices: ['5 right and 3 down', '3 right and 5 down', '5 left and 3 up', '1 right and 1 down']
+    answer: 0
+    feedback:
+      '1': 'Compare the x-coordinates of A and A′ first. How far across is it?'
+      '2': 'That would take A′ back to A. Which way did the triangle move?'
+      '3': 'Those are the coordinates of A′, not the moves. How far did A travel?'
+    hints:
+      - 'Follow one vertex: A(−4, 2) moves to A′(1, −1).'
+    solution:
+      - 'x goes from −4 to 1: that is **5 right**. y goes from 2 to −1: that is **3 down**.'
+      - 'Check with B: (−2, 2) moves to (3, −1). Same moves ✓'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S2.4, S2.3, S2.7]
+    type: mc
+    prompt: 'Sam reflects the point **(−2, 4)** over the **y-axis** and writes **(−2, −4)**. What went wrong?'
+    choices:
+      - 'He reflected over the x-axis instead. Over the y-axis, the image is (2, 4).'
+      - 'He should have changed both signs: (2, −4).'
+      - 'He should have swapped the numbers: (4, −2).'
+      - 'Nothing. (−2, −4) is right.'
+    answer: 0
+    feedback:
+      '1': 'Changing both signs is two reflections, not one.'
+      '2': 'A reflection over an axis never swaps x and y.'
+      '3': '(−2, −4) is directly below the original point. Is the y-axis above or below it?'
+    hints:
+      - The y-axis is the upright line. Does flipping over it move a point up and down, or left and right?
+    solution:
+      - 'Flipping over the upright y-axis moves a point left or right, so only x changes: (−2, 4) becomes **(2, 4)**.'
+      - 'Sam changed y, which is a reflection over the x-axis.'
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [S2.6, S2.5, K2.3]
+    type: mc
+    figure: { kind: plane, r: 5, polys: [{ pts: [[1, 1], [4, 1], [1, 3]], labels: [A, B, C] }, { pts: [[1, 1], [1, -2], [3, 1]], tone: b, labels: ['', 'B′', 'C′'] }], centre: [1, 1] }
+    prompt: 'Triangle ABC was rotated about vertex A. Describe the rotation.'
+    choices: ['90° clockwise', '90° counter-clockwise', '180°', '270° clockwise']
+    answer: 0
+    feedback:
+      '1': 'Follow B. It started to the right of A. Counter-clockwise would take it up, above A.'
+      '2': 'A half turn would send B to the left of A.'
+      '3': '270° clockwise is the same as 90° counter-clockwise. Where would B land?'
+    hints:
+      - 'B starts to the right of A. Where is B′? Which way did it turn?'
+    solution:
+      - 'B moved from right of A to straight below A. That is a quarter turn, the way a clock’s hands move.'
+      - 'The rotation is **90° clockwise** about A.'
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [S2.7, S2.4, S2.2]
+    type: multi
+    prompt: 'Which single moves map the point **(3, 2)** onto **(−3, 2)**? Choose all of them.'
+    choices: ['Reflect over the y-axis', 'Translate 6 units left', 'Reflect over the x-axis', 'Translate 6 units down']
+    answer: [0, 1]
+    feedback:
+      '2': 'That changes y and gives (3, −2).'
+      '3': 'Moving down changes y, but here only x changes.'
+    hints:
+      - Which coordinate changes, and by how much?
+    solution:
+      - 'Only x changes, from 3 to −3.'
+      - 'A reflection over the y-axis makes x its opposite. A translation of 6 left subtracts 6 from x. Both work.'
+      - 'For one point they match. For a whole shape, the reflection flips it and the translation doesn’t.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.3, S2.4, S2.7]
+    type: investigation
+    figure: { kind: plane, r: 5, polys: [{ pts: [[1, 1], [4, 1], [1, 3]], labels: [A, B, C] }] }
+    prompt: |-
+      Triangle ABC has vertices **A(1, 1)**, **B(4, 1)** and **C(1, 3)**. First reflect it over the **y-axis**. Then reflect that image over the **x-axis**.
+    parts:
+      - type: text
+        prompt: Where is B after the **first** reflection? Type it like **(2, −5)**.
+        accept: ['(-4, 1)', '(−4, 1)', '(-4,1)', '(−4,1)', '-4, 1', '−4, 1']
+        hints:
+          - Over the y-axis, which coordinate becomes its opposite?
+        solution:
+          - 'Over the y-axis, x becomes its opposite: B(4, 1) goes to **(−4, 1)**.'
+      - type: text
+        prompt: Where is B after the **second** reflection? Type it like **(2, −5)**.
+        accept: ['(-4, -1)', '(−4, −1)', '(-4,-1)', '(−4,−1)', '-4, -1', '−4, −1']
+        hints:
+          - Now reflect (−4, 1) over the x-axis.
+        solution:
+          - 'Over the x-axis, y becomes its opposite: (−4, 1) goes to **(−4, −1)**.'
+      - type: mc
+        prompt: 'Compare each vertex at the start with where it ends up. What happened to the coordinates?'
+        choices:
+          - 'Both x and y became their opposites.'
+          - 'Only x became its opposite.'
+          - 'x and y swapped places.'
+          - 'Nothing. The triangle is back where it started.'
+        answer: 0
+        feedback:
+          '1': 'Look at y too: B started at y = 1 and ended at y = −1.'
+          '2': 'B started at (4, 1) and ended at (−4, −1). Did the numbers swap?'
+          '3': 'The triangle is on the other side of both axes now.'
+        hints:
+          - 'Compare B(4, 1) with its final image (−4, −1). Then check A and C.'
+        solution:
+          - 'B(4, 1) ends at (−4, −1), A(1, 1) at (−1, −1) and C(1, 3) at (−1, −3).'
+          - 'Each reflection made one coordinate its opposite, so together **both** became opposites.'
+    wrapUp: 'Each reflection changes one coordinate. Two reflections, over both axes, change both. The coordinates let you predict where a shape lands before you draw it.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.1, S2.2, S2.7]
+    type: build
+    figure: { kind: plane, r: 6, polys: [{ pts: [[1, 1], [4, 1], [1, 3]], labels: [A, B, C] }] }
+    prompt: |-
+      Translate triangle ABC so that **every** vertex of the image has a **negative** x and a **negative** y, and the image still fits on this plane, from −6 to 6. Describe your translation.
+    fields:
+      - { name: dx, label: 'Right (+) or left (−)' }
+      - { name: dy, label: 'Up (+) or down (−)' }
+    rules:
+      - { test: 'dx % 1 == 0 && dy % 1 == 0', fail: 'Move a whole number of units each way.' }
+      - { test: '4 + dx < 0', fail: 'Check B(4, 1). Its image needs a negative x, so it must move more than 4 left.' }
+      - { test: '3 + dy < 0', fail: 'Check C(1, 3). Its image needs a negative y, so it must move more than 3 down.' }
+      - { test: '1 + dx >= -6 && 1 + dy >= -6', fail: 'Check A(1, 1). Its image falls off the plane. Move a little less.' }
+    examples:
+      - { dx: -5, dy: -4 }
+      - { dx: -7, dy: -7 }
+      - { dx: -6, dy: -5 }
+    counterexamples:
+      - { dx: -4, dy: -4 }
+      - { dx: -5, dy: -3 }
+      - { dx: -8, dy: -5 }
+    hints:
+      - Which vertex is the hardest to move left past the y-axis? Which is hardest to move below the x-axis?
+      - 'B has the largest x, 4. C has the largest y, 3.'
+    solution:
+      - 'B(4, 1) needs at least 5 left, and C(1, 3) needs at least 4 down.'
+      - '5 left and 4 down gives A′(−4, −3), B′(−1, −3) and C′(−4, −1). All negative ✓'
+      - 'Up to 7 left and 7 down also works, because A′ still lands at −6 or more.'

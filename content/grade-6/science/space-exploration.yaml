@@ -1,0 +1,341 @@
+id: space-exploration
+grade: 6
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI6-OI5-GQ1-LO1]
+order: 13
+title: 'Exploring Space: Satellites and Technologies'
+shortTitle: Satellites and space technologies
+summary: >-
+  Race the space station against the Moon, compare natural and artificial satellites, meet Alberta’s first
+  satellite, and weigh the barriers to living in space.
+
+bigIdea: |-
+  - A **satellite** is an object in space that orbits a larger object. An **orbit** is its repeating path.
+  - **Natural satellites**, like the Moon, are celestial bodies. **Artificial satellites** are built by people.
+  - Telescopes, satellites, probes, rovers, crewed spacecraft, space stations and computer models all help us explore.
+  - Living and working in space has **personal**, **societal**, **technological** and **environmental** barriers.
+
+lesson:
+  - title: 'Virtual experiment: one day of orbits'
+    blocks:
+      - type: experiment
+        covers: [K2.2, K2.3, K2.4, K2.5, K2.7, S2.2]
+        title: The space station and the Moon, over one day
+        question: |-
+          - The **International Space Station** orbits about 400 km above Earth.
+          - The **Moon** orbits much farther away, about 384 400 km. The drawing is not to scale.
+        animation: g6-orbit-day
+        predict:
+          choices:
+            - The space station goes around Earth many more times.
+            - The Moon goes around Earth many more times.
+            - They each go around once.
+          answer: 0
+        observe: |-
+          - In one day, the space station circled Earth **more than 15 times**, about once every hour and a half.
+          - The Moon moved only a **small part** of its orbit. It takes about 27 days to go around once.
+        explain: |-
+          - Both are **satellites**: each orbits a larger object, Earth, on a repeating path.
+          - The Moon is a **natural satellite**, a celestial body. The space station is an **artificial satellite** that people built and put into orbit.
+
+  - title: Natural and artificial satellites
+    blocks:
+      - type: compare
+        covers: [K2.2, K2.4, K2.5, S2.2]
+        columns:
+          - title: 🌙 Natural satellites
+            body: |-
+              - Formed in nature
+              - Celestial bodies, like the Moon or Saturn’s moon Titan
+              - Reflect sunlight
+          - title: 🛰️ Artificial satellites
+            body: |-
+              - Built and launched by people
+              - Do jobs like weather watching, phone signals and GPS
+              - Many reflect sunlight too, so some look like moving stars at night
+      - type: callout
+        variant: tip
+        covers: [K2.6, K2.5]
+        title: Alberta’s first satellite
+        body: '**Ex-Alta 1** was designed by students and faculty at the University of Alberta, in a group called AlbertaSat. It was launched from the International Space Station in 2017.'
+      - type: callout
+        variant: tip
+        covers: [K2.7]
+        title: The International Space Station
+        body: |-
+          - The ISS is a **research facility** that orbits Earth.
+          - Astronauts from many countries, including Canada, live and do experiments there. Canada built its robotic arm, Canadarm2.
+
+  - title: Technologies for exploring space
+    blocks:
+      - type: table
+        covers: [K2.1, S2.1, U2.1]
+        headers: [Technology, What it does, Example]
+        rows:
+          - ['🔭 **Telescope**', 'Collects light to see faraway objects.', 'The James Webb Space Telescope, launched in 2021 with Canadian parts']
+          - ['🛰️ **Satellite**', 'Orbits Earth or another body, watching and sending signals.', 'Weather satellites, Ex-Alta 1']
+          - ['🚀 **Probe**', 'A robot spacecraft sent to fly past, orbit or land on other worlds.', 'Voyager 1, launched in 1977, still sends back data']
+          - ['🚙 **Rover**', 'A robot vehicle that drives around on another world.', 'Perseverance, on Mars since 2021']
+          - ['👩‍🚀 **Crewed spacecraft and space stations**', 'Carry people to space and let them live there.', 'The International Space Station']
+          - ['💻 **Computer modelling**', 'Uses data to plan missions and test ideas about space.', 'Working out a probe’s path to a planet']
+      - type: callout
+        variant: tip
+        covers: [U2.1, S2.1]
+        title: Knowledge keeps growing
+        body: Each new technology lets us see farther or go closer, so our understanding of the solar system keeps developing.
+
+  - title: Living and working in space
+    blocks:
+      - type: table
+        covers: [S2.3, K2.7]
+        headers: [Barrier, Examples]
+        rows:
+          - ['👤 **Personal**', 'Months away from family. Tight living space with the same few people.']
+          - ['🏛️ **Societal**', 'Space missions cost a lot, and countries must agree on how to share the work.']
+          - ['🔧 **Technological**', 'Every breath of air, sip of water and meal must be supplied or recycled.']
+          - ['🌌 **Environmental**', 'No air to breathe. Floating in near weightlessness weakens bones and muscles. Radiation from the Sun.']
+      - type: callout
+        variant: remember
+        covers: [SCI4-OI5-GQ1-LO1#K1.4]
+        title: Remember from Grade 4
+        body: Binoculars, telescopes and planetariums are technologies for viewing objects in space.
+
+keyTerms:
+  - term: Satellite
+    covers: [K2.2]
+    definition: An object in space that orbits another, larger object.
+  - term: Orbit
+    covers: [K2.3]
+    definition: The repeating path of an object around another object in space.
+  - term: Natural satellite
+    covers: [K2.4]
+    definition: A satellite formed in nature, such as the Moon. It is a celestial body.
+  - term: Artificial satellite
+    covers: [K2.5]
+    definition: A satellite that people build and put into orbit.
+  - term: Probe
+    covers: [K2.1]
+    definition: A robot spacecraft sent to explore other parts of space.
+  - term: Rover
+    covers: [K2.1]
+    definition: A robot vehicle that drives on the surface of another world.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.4, K2.5]
+    type: multi
+    prompt: Select **all** the **artificial** satellites.
+    choices: [The International Space Station, Ex-Alta 1, A weather satellite, The Moon, Titan]
+    answer: [0, 1, 2]
+    feedback:
+      '3': Did people build the Moon?
+      '4': Titan is Saturn’s moon. Was it built by people?
+    hints:
+      - Artificial means built by people.
+    solution:
+      - The ISS, Ex-Alta 1 and weather satellites were built by people and put into orbit.
+      - The Moon and Titan formed in nature, so they are natural satellites.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: Scientists want to drive around on Mars, collecting rock samples. Which technology fits best?
+    choices: [A rover, A telescope on Earth, A weather satellite orbiting Earth, A planetarium]
+    answer: 0
+    feedback:
+      '1': A telescope can see Mars from far away. Can it pick up a rock?
+      '2': It orbits Earth. Can it reach the surface of Mars?
+      '3': A planetarium shows the sky on a dome. Does it go to Mars?
+    hints:
+      - The job is to drive on the surface. Which technology has wheels?
+    solution:
+      - A **rover** drives on the surface of another world and can study rocks up close, like Perseverance on Mars.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.6]
+    type: mc
+    prompt: Who designed **Ex-Alta 1**, Alberta’s first satellite?
+    choices:
+      - Students and faculty at the University of Alberta
+      - Astronauts living on the International Space Station
+      - A team of scientists in another country
+      - A company that makes weather satellites
+    answer: 0
+    feedback:
+      '1': It was launched from the ISS, but who designed it?
+      '2': It is Alberta’s first satellite. Where was the team?
+      '3': Read the tip about AlbertaSat. Who was in the group?
+    hints:
+      - The group was called AlbertaSat.
+    solution:
+      - AlbertaSat, a group of **students and faculty at the University of Alberta**, designed it. It was launched from the ISS in 2017.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.2, K2.3, K2.4, S2.2]
+    type: mc
+    prompt: Ella says, “The Moon can’t be a satellite. Satellites are machines with solar panels.” What is the best reply?
+    choices:
+      - A satellite is any object that orbits a larger one. The Moon orbits Earth, so it is a natural satellite.
+      - The Moon is a satellite only because astronauts have landed on it.
+      - The Moon is a satellite because it is made of metal, like a machine.
+      - Ella is right. Only things built by people can be satellites.
+    answer: 0
+    feedback:
+      '1': The Moon orbited Earth long before anyone landed there. What makes something a satellite?
+      '2': The Moon is mostly rock. What makes something a satellite?
+      '3': Look at the definition of a satellite. Does it say anything about who made it?
+    hints:
+      - What is the definition of a satellite?
+    solution:
+      - A satellite is an object in space that **orbits** a larger object.
+      - The Moon orbits Earth, so it is a **natural** satellite. Machines like the ISS are **artificial** satellites.
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [S2.1, K2.1]
+    type: mc
+    prompt: |-
+      A team wants to learn what the surface of a faraway moon of Neptune is made of. People can’t travel that far
+      yet. Which technology would gather the most detail?
+    choices:
+      - A probe that flies close past the moon and sends back pictures and measurements
+      - A crewed spacecraft with astronauts on board
+      - A rover driven from the space station
+      - A satellite orbiting Earth
+    answer: 0
+    feedback:
+      '1': The story says people can’t travel that far yet. What can go without people?
+      '2': The ISS orbits Earth. Could a rover drive from there to Neptune?
+      '3': An Earth satellite stays near Earth. How close would it get to Neptune?
+    hints:
+      - Which technologies can travel very far without people on board?
+    solution:
+      - A **probe** is a robot spacecraft that can travel far and send back data. Voyager 2 did this at Neptune.
+      - Crewed spacecraft can’t go that far yet, and Earth satellites stay near Earth.
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [S2.3]
+    type: multi
+    prompt: An astronaut spends six months on the space station. Select **all** the **environmental** barriers she faces.
+    choices:
+      - Near weightlessness weakens her bones and muscles.
+      - There is no air to breathe outside the station.
+      - She misses her family back home.
+      - The mission costs a lot of money.
+      - Radiation from the Sun reaches the station.
+    answer: [0, 1, 4]
+    feedback:
+      '2': Missing family is real, but which kind of barrier is it?
+      '3': Cost matters, but which kind of barrier is it?
+    hints:
+      - Environmental barriers come from the conditions of space itself.
+    solution:
+      - Weightlessness, no air and radiation come from the space environment. Those are **environmental** barriers.
+      - Missing family is **personal**, and cost is **societal**.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [K2.5, K2.2, S2.2]
+    type: mc
+    prompt: On a clear night, Sam sees a bright dot moving steadily across the sky in a few minutes. It doesn’t blink. What could it be, and why does it shine?
+    choices:
+      - An artificial satellite, such as the ISS, reflecting sunlight
+      - A star, making its own light as it races across the sky
+      - The Moon, which moves across the sky in a few minutes
+      - A planet orbiting the Sun very quickly
+    answer: 0
+    feedback:
+      '1': Stars seem to stay in their patterns. Which object orbits Earth fast enough to cross the sky in minutes?
+      '2': Does the Moon look like a dot? How long does it take to orbit?
+      '3': Planets take months or years to orbit the Sun. What orbits Earth in about an hour and a half?
+    hints:
+      - Remember the virtual experiment. What went around Earth very quickly?
+    solution:
+      - The ISS goes around Earth about once every hour and a half, so it crosses the sky in minutes.
+      - It doesn’t make light. Like other artificial satellites, it **reflects sunlight**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.3, K2.7, K2.1]
+    type: investigation
+    prompt: |-
+      Your class is planning a made-up research station on the Moon for six people. Work through the barriers
+      one at a time.
+    parts:
+      - type: mc
+        prompt: The Moon has almost no air. Which kind of barrier is this, and what must the station do?
+        choices:
+          - Environmental. It must supply and recycle air for the crew.
+          - Personal. The crew must hold their breath outside.
+          - Societal. People on Earth must agree to send air.
+        answer: 0
+        feedback:
+          '1': Is lack of air a personal feeling, or a condition of the Moon itself?
+          '2': Agreement on Earth won’t make air. What kind of barrier is it?
+        hints:
+          - Does the barrier come from the Moon’s conditions?
+        solution:
+          - No air is an **environmental** barrier. The station must supply and recycle air, a **technological** job.
+      - type: mc
+        prompt: The crew will be away from home for a year. Which plan helps with this **personal** barrier?
+        choices:
+          - Regular video calls with family, and private space for each person
+          - A bigger rocket, so the trip is faster
+          - Thicker walls to block radiation
+        answer: 0
+        feedback:
+          '1': A faster trip helps a little, but they still live there for a year. What helps with missing people?
+          '2': That protects their bodies. Which barrier is about feelings and family?
+        hints:
+          - Personal barriers are about the people themselves.
+        solution:
+          - Video calls and private space help with being far from family and close to the same few people.
+      - type: text
+        prompt: Building the station costs a lot, so several countries share the work, like the ISS. What kind of barrier does sharing help with?
+        accept: [societal, a societal barrier, society, societal barrier, economic, cost]
+        hints:
+          - Look at the barriers table. Which one mentions cost and countries?
+        solution:
+          - Cost and countries agreeing are **societal** barriers. Sharing the work, as countries do on the ISS, helps.
+    wrapUp: Living in space means solving many kinds of problems at once, from air and radiation to loneliness and cost.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [U2.1, K2.1, S2.1]
+    type: mc
+    prompt: |-
+      For centuries, people could only see Saturn as a bright dot. Then telescopes showed its rings, and probes later
+      flew close and found that the rings are made of countless pieces of ice and rock. What does this story show?
+    choices:
+      - Knowledge of the solar system grows as new technologies let us look closer.
+      - The first telescopes were wrong, so we should only trust probes.
+      - Saturn grew its rings after telescopes were invented.
+      - Scientists can never know what planets are like.
+    answer: 0
+    feedback:
+      '1': The telescopes were right about the rings. Did the probes prove them wrong, or add more detail?
+      '2': The rings were there all along. What changed?
+      '3': We know a lot about Saturn’s rings now. What made that possible?
+    hints:
+      - What changed at each step of the story, Saturn or our tools?
+    solution:
+      - Saturn didn’t change. Each new technology, first telescopes and then probes, revealed more.
+      - Knowledge of the solar system keeps developing with further exploration and new technologies.

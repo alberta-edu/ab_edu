@@ -1,0 +1,93 @@
+---
+// Animated experiment: two friends of the same size sit on scooter boards, face to face. One
+// pushes the other's hands. During the push, equal and opposite arrows show the action and
+// reaction forces, and both friends roll apart in opposite directions
+// (SCI6-OI2-GQ1-LO1, K3.1-K3.3, U3.1, S3.1).
+---
+<g6-skate-push>
+  <svg class="sci-svg" viewBox="0 0 640 300" aria-hidden="true" data-sp="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-sp="live"></p>
+</g6-skate-push>
+
+<style is:global>
+  g6-skate-push { display: block; }
+  g6-skate-push svg { background: var(--surface-2); }
+  .g6s-sp-floor { fill: color-mix(in srgb, #d9b380 60%, var(--surface)); }
+  .g6s-sp-board { fill: #4a6fa5; stroke: var(--ink); stroke-width: 2; }
+  .g6s-sp-wheel { fill: var(--ink); }
+  .g6s-sp-a { fill: #5aa36a; stroke: var(--ink); stroke-width: 2; }
+  .g6s-sp-b { fill: #c46aa8; stroke: var(--ink); stroke-width: 2; }
+  .g6s-sp-skin { fill: #e0b48a; stroke: var(--ink); stroke-width: 2; }
+  .g6s-sp-arm { stroke: #e0b48a; stroke-width: 9; stroke-linecap: round; }
+  .g6s-sp-act { stroke: var(--math); stroke-width: 6; stroke-linecap: round; }
+  .g6s-sp-acth { fill: var(--math); }
+  .g6s-sp-rea { stroke: var(--bad); stroke-width: 6; stroke-linecap: round; }
+  .g6s-sp-reah { fill: var(--bad); }
+  .g6s-sp-lact { fill: var(--math); font-size: 15px; font-weight: 700; }
+  .g6s-sp-lrea { fill: var(--bad); font-size: 15px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-sp-lact, .g6s-sp-lrea { font-size: 22px; } }
+</style>
+
+<script>
+  import { tween, wait, ease } from './anim.ts';
+
+  const FLOOR = 250;
+
+  class SkatePush extends HTMLElement {
+    private gap = 0; // how far each friend has rolled from the start
+    private arm = 30; // length of Ava's pushing arm; Jay's stays at 30
+    private arrows = false;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-sp="live"]')!;
+      live.textContent = '';
+      this.gap = 0; this.arm = 30; this.arrows = false; this.done = false;
+      await wait(300);
+      this.arrows = true;
+      // The push: Ava straightens her arm, so the hands stay together while both friends move apart.
+      await tween(900, (t) => { this.gap = 15 * ease(t); this.arm = 30 + 2 * this.gap; this.draw(); });
+      this.arrows = false;
+      // Rolling apart, slowing down.
+      await tween(2600, (t) => { this.gap = 15 + 150 * (1 - (1 - t) ** 2); this.draw(); });
+      this.done = true;
+      this.draw();
+      live.textContent = 'During the push, the action force on Jay and the reaction force on Ava were the same size and opposite directions. Both friends rolled apart, the same distance in opposite directions.';
+    }
+
+    private kid(cx: number, face: 1 | -1, cls: string, name: string, arm: number) {
+      const hand = cx + face * (10 + arm);
+      return [
+        `<rect class="g6s-sp-board" x="${cx - 44}" y="${FLOOR - 22}" width="88" height="12" rx="4"/>`,
+        `<circle class="g6s-sp-wheel" cx="${cx - 30}" cy="${FLOOR - 5}" r="6"/><circle class="g6s-sp-wheel" cx="${cx + 30}" cy="${FLOOR - 5}" r="6"/>`,
+        `<rect class="${cls}" x="${cx - 22}" y="${FLOOR - 92}" width="44" height="72" rx="14"/>`,
+        `<line class="g6s-sp-arm" x1="${cx + face * 10}" y1="${FLOOR - 70}" x2="${hand.toFixed(1)}" y2="${FLOOR - 70}"/>`,
+        `<circle class="g6s-sp-skin" cx="${cx}" cy="${FLOOR - 112}" r="20"/>`,
+        `<circle cx="${cx + face * 8}" cy="${FLOOR - 116}" r="2.5" fill="#1c1b24"/>`,
+        `<text class="sci-text" x="${cx}" y="${FLOOR + 32}" text-anchor="middle">${name}</text>`,
+      ].join('');
+    }
+
+    private draw() {
+      const L = 280 - this.gap;
+      const R = 360 + this.gap;
+      const out = [`<rect class="g6s-sp-floor" x="0" y="${FLOOR}" width="640" height="50"/>`, this.kid(L, 1, 'g6s-sp-a', 'Ava', this.arm), this.kid(R, -1, 'g6s-sp-b', 'Jay', 30)];
+      out.push(`<line class="sci-tick" x1="280" y1="${FLOOR + 4}" x2="280" y2="${FLOOR + 14}"/><line class="sci-tick" x1="360" y1="${FLOOR + 4}" x2="360" y2="${FLOOR + 14}"/>`);
+      if (this.arrows) {
+        const y = FLOOR - 150;
+        // Action: Ava pushes Jay to the right. Reaction: Jay pushes Ava to the left. Same length.
+        out.push(`<line class="g6s-sp-act" x1="${R - 10}" y1="${y}" x2="${R + 60}" y2="${y}"/><path class="g6s-sp-acth" d="M${R + 74} ${y} l-16 -10 v20 Z"/>`);
+        out.push(`<text class="g6s-sp-lact" x="${R - 10}" y="${y - 16}">action on Jay</text>`);
+        out.push(`<line class="g6s-sp-rea" x1="${L + 10}" y1="${y}" x2="${L - 60}" y2="${y}"/><path class="g6s-sp-reah" d="M${L - 74} ${y} l16 -10 v20 Z"/>`);
+        out.push(`<text class="g6s-sp-lrea" x="${L + 10}" y="${y - 16}" text-anchor="end">reaction on Ava</text>`);
+      }
+      if (this.done) out.push(`<text class="sci-text" x="320" y="40" text-anchor="middle">Both rolled apart, the same distance</text>`);
+      this.querySelector('[data-sp="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-skate-push', SkatePush);
+</script>

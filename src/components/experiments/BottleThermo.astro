@@ -1,0 +1,106 @@
+---
+// Animated experiment: a homemade thermometer, a bottle of coloured water with a clear straw
+// sealed through its cap. In a bowl of warm water the liquid expands and rises up the straw; in
+// ice water it contracts and falls below where it started (SCI6-OI1-GQ1-LO1, K2.1, U2.1, S2.1,
+// S2.2, K3.1, K3.2, U3.1).
+---
+<g6-bottle-thermo>
+  <svg class="sci-svg" viewBox="0 0 640 330" aria-hidden="true" data-bt="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-bt="live"></p>
+</g6-bottle-thermo>
+
+<style is:global>
+  g6-bottle-thermo { display: block; }
+  g6-bottle-thermo svg { background: var(--surface-2); }
+  .g6s-bt-bottle { fill: color-mix(in srgb, var(--surface) 70%, transparent); stroke: var(--ink-2); stroke-width: 3; }
+  .g6s-bt-red { fill: #d23b2e; }
+  .g6s-bt-straw { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2; }
+  .g6s-bt-cap { fill: #c0563a; stroke: var(--ink); stroke-width: 2; }
+  .g6s-bt-bowl { fill: none; stroke: var(--ink-2); stroke-width: 3; }
+  .g6s-bt-warm { fill: color-mix(in srgb, #e5793a 30%, transparent); }
+  .g6s-bt-cold { fill: color-mix(in srgb, var(--math) 25%, transparent); }
+  .g6s-bt-cube { fill: #e6f4ff; stroke: #6aa9d8; stroke-width: 2; }
+  .g6s-bt-steam { fill: none; stroke: #e5793a; stroke-width: 2.5; stroke-linecap: round; }
+  .g6s-bt-start { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 5 4; }
+</style>
+
+<script>
+  import { tween, wait, ease, lerp } from './anim.ts';
+
+  const MID = 320;
+  const WARM = 140;
+  const COLD = 500;
+  const TABLE = 290; // bottom of the bottle when it stands on the table
+  const IN_BOWL = 296;
+  const START_TOP = 60; // top of the red column at room temperature (straw coordinates)
+
+  class BottleThermo extends HTMLElement {
+    private x = MID;
+    private base = TABLE;
+    private rise = 0; // pixels above the start mark (negative = below)
+    private where: 'table' | 'warm' | 'cold' = 'table';
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-bt="live"]')!;
+      live.textContent = '';
+      this.x = MID; this.base = TABLE; this.rise = 0; this.where = 'table';
+      this.draw();
+      await wait(400);
+      await this.move(WARM, IN_BOWL);
+      this.where = 'warm';
+      await tween(2200, (t) => { this.rise = 46 * ease(t); this.draw(); });
+      await wait(500);
+      await this.move(COLD, IN_BOWL);
+      this.where = 'cold';
+      await tween(2600, (t) => { this.rise = lerp(46, -30, ease(t)); this.draw(); });
+      live.textContent = 'In the warm water, the coloured water rose up the straw. In the ice water, it fell below where it started.';
+    }
+
+    private async move(toX: number, toBase: number) {
+      const fromX = this.x;
+      const fromB = this.base;
+      this.where = 'table';
+      await tween(1100, (t) => {
+        const e = ease(t);
+        this.x = lerp(fromX, toX, e);
+        this.base = lerp(fromB, toBase, e) - Math.sin(t * Math.PI) * 50; // lift up and over
+        this.draw();
+      });
+    }
+
+    private bowl(cx: number, kind: 'warm' | 'cold') {
+      const out = [`<path class="${kind === 'warm' ? 'g6s-bt-warm' : 'g6s-bt-cold'}" d="M${cx - 95} 236 H${cx + 95} V300 Q${cx + 95} 314 ${cx + 80} 314 H${cx - 80} Q${cx - 95} 314 ${cx - 95} 300 Z"/>`];
+      out.push(`<path class="g6s-bt-bowl" d="M${cx - 100} 220 V300 Q${cx - 100} 318 ${cx - 82} 318 H${cx + 82} Q${cx + 100} 318 ${cx + 100} 300 V220"/>`);
+      if (kind === 'warm') for (const dx of [-70, 70]) out.push(`<path class="g6s-bt-steam" d="M${cx + dx} 214 q8 -12 0 -24 q-8 -12 0 -24"/>`);
+      else for (const [dx, dy] of [[-72, 240], [58, 246], [-50, 262]]) out.push(`<rect class="g6s-bt-cube" x="${cx + dx}" y="${dy}" width="22" height="20" rx="3"/>`);
+      out.push(`<text class="sci-text" x="${cx}" y="30" text-anchor="middle">${kind === 'warm' ? 'Warm water' : 'Ice water'}</text>`);
+      return out.join('');
+    }
+
+    private draw() {
+      const x = this.x;
+      const b = this.base;
+      const top = b - 110; // shoulder of the bottle
+      const strawTop = top - 120;
+      const colTop = b - 110 - 120 + START_TOP - this.rise;
+      const startY = b - 110 - 120 + START_TOP;
+      this.querySelector('[data-bt="svg"]')!.innerHTML = [
+        this.bowl(WARM, 'warm'),
+        this.bowl(COLD, 'cold'),
+        `<rect class="g6s-bt-red" x="${x - 42}" y="${top + 4}" width="84" height="${b - top - 8}" rx="10"/>`,
+        `<path class="g6s-bt-bottle" d="M${x - 46} ${b} V${top + 22} Q${x - 46} ${top} ${x - 24} ${top} H${x + 24} Q${x + 46} ${top} ${x + 46} ${top + 22} V${b} Z"/>`,
+        `<rect class="g6s-bt-straw" x="${x - 6}" y="${strawTop}" width="12" height="${top - strawTop + 60}"/>`,
+        `<rect class="g6s-bt-red" x="${x - 3}" y="${colTop.toFixed(1)}" width="6" height="${(b - 20 - colTop).toFixed(1)}"/>`,
+        `<rect class="g6s-bt-cap" x="${x - 20}" y="${top - 14}" width="40" height="16" rx="3"/>`,
+        `<line class="g6s-bt-start" x1="${x - 18}" x2="${x + 18}" y1="${startY}" y2="${startY}"/>`,
+        `<text class="sci-small" x="${x + 22}" y="${startY + 4}">start</text>`,
+        this.where === 'table' && this.x === MID ? `<line class="sci-tick" x1="${MID - 70}" x2="${MID + 70}" y1="${TABLE}" y2="${TABLE}"/>` : '',
+      ].join('');
+    }
+  }
+  customElements.define('g6-bottle-thermo', BottleThermo);
+</script>

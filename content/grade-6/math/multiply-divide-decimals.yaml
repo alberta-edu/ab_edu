@@ -1,0 +1,307 @@
+id: multiply-divide-decimals
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT6-OI1-GQ4-LO1]
+order: 5
+title: Multiplying and Dividing Decimals
+shortTitle: × and ÷ decimals
+summary: >-
+  Multiply and divide decimals by 2-digit numbers with the standard algorithms, write remainders
+  as decimals, and use estimates to check money problems.
+
+bigIdea: |-
+  - To multiply a decimal, multiply as if there were **no point**, then put back the **decimal places**.
+  - In long division, the decimal point goes **straight up** into the answer.
+  - A remainder can keep going: write **0s after the point** and keep dividing.
+  - An **estimate** tells you if the point is in the right place.
+
+lesson:
+  - title: Multiply, then place the point
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.2, U1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '×', a: '4.75', b: '12' }
+            - { op: '×', a: '2.4', b: '15' }
+            - { op: '×', a: '0.36', b: '25' }
+        caption: Press **Next step**. Watch the estimate at the start and the decimal point at the end.
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI1-GQ4-LO1#S1.2, MAT5-OI1-GQ4-LO1#S1.5]
+        title: Remember from Grade 5
+        body: You multiplied up to 3-digit by 2-digit **natural** numbers, and checked with an estimate. Now one of the numbers can be a decimal.
+
+  - title: Why the point goes there
+    blocks:
+      - type: table
+        covers: [S1.1, S1.3]
+        caption: '\(4.75 \times 12\), thinking in hundredths'
+        headers: [Step, What it means]
+        rows:
+          - ['4.75 = 475 hundredths', 'Hundredths are a unit, like apples.']
+          - ['475 × 12 = 5700', '12 groups of 475 hundredths is 5700 hundredths.']
+          - ['5700 hundredths = 57.00', 'Two decimal places, because the unit was hundredths.']
+          - ['Estimate: 5 × 12 = 60', '57 is close to 60, so the point is in the right place.']
+
+  - title: Long division with decimals
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.2]
+        component: column-calc
+        props:
+          examples:
+            - { op: '÷', a: '85.2', b: '12', decimal: true }
+            - { op: '÷', a: '9.6', b: '12', decimal: true }
+            - { op: '÷', a: '6.54', b: '3', decimal: true }
+        caption: Divide as usual. When you reach the decimal point, it goes **straight up** into the answer.
+
+  - title: Remainders become decimals
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.2]
+        component: column-calc
+        props:
+          examples:
+            - { op: '÷', a: '245', b: '14', decimal: true }
+            - { op: '÷', a: '750', b: '24', decimal: true }
+        caption: When digits run out but something is left, write a **decimal point** and a **0**, and keep dividing.
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: With a remainder
+            body: |-
+              \(245 \div 14 = 17\) R 7
+
+              7 is left over.
+          - title: As a decimal
+            body: |-
+              \(245 \div 14 = 17.5\)
+
+              The 7 left is \(\frac{7}{14}\), half of another 14.
+
+  - title: Does it make sense?
+    blocks:
+      - type: example
+        covers: [S1.3, S1.4, S1.2]
+        title: Sharing a bill
+        problem: '**16** friends share a pizza bill of **$43.20** equally. How much does each pay?'
+        steps:
+          - 'Estimate: $43.20 is close to $48, and \(48 \div 16 = 3\). So a bit less than $3 each.'
+          - 'Divide: \(43.20 \div 16 = 2.70\).'
+          - 'Check: \(2.70 \times 16 = 43.20\) ✓ and $2.70 is a bit less than $3.'
+        answer: Each friend pays **$2.70**.
+      - type: callout
+        variant: mistake
+        covers: [S1.3]
+        title: The point can hide in the wrong place
+        body: '\(4.75 \times 12\) is 57, not 570 or 5.7. The digits are the same, so only an **estimate** catches this mistake.'
+
+keyTerms:
+  - term: Decimal place
+    covers: [S1.1]
+    definition: 'A place after the decimal point: tenths, hundredths, thousandths.'
+  - term: Quotient
+    covers: [K1.2]
+    definition: 'The answer to a division. A quotient can be a decimal, like \(245 \div 14 = 17.5\).'
+  - term: Estimate
+    covers: [S1.3]
+    definition: An easy calculation with nearby numbers, used to check that an answer is about right.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.1]
+    type: number
+    prompt: '\(3.45 \times 16\) = ?'
+    answer: 55.2
+    verify: 3.45 * 16
+    hints:
+      - 'Multiply \(345 \times 16\) first. How many decimal places does 3.45 have?'
+    solution:
+      - '\(345 \times 16 = 5520\).'
+      - '3.45 has two decimal places, so the answer is 55.20, or **55.2**.'
+      - 'Estimate: \(3 \times 16 = 48\) and \(4 \times 16 = 64\). 55.2 is between them ✓'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.1, S1.3]
+    type: mc
+    prompt: '\(268 \times 14 = 3752\). What is \(2.68 \times 14\)?'
+    choices: ['37.52', '375.2', '3.752', '3752']
+    answer: 0
+    feedback:
+      '1': '2.68 is about 3, and \(3 \times 14 = 42\). Is 375.2 close to that?'
+      '2': '2.68 has two decimal places, not three.'
+      '3': 'That is \(268 \times 14\). 2.68 is much smaller than 268.'
+    hints:
+      - 2.68 is 268 hundredths. So the product is 3752 what?
+    solution:
+      - '2.68 is 268 **hundredths**, so the product is 3752 hundredths, which is **37.52**.'
+      - 'Estimate: \(3 \times 14 = 42\). 37.52 is close ✓'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.2, S1.2]
+    type: number
+    prompt: 'Write \(171 \div 18\) as a decimal.'
+    answer: 9.5
+    verify: 171 / 18
+    hints:
+      - '\(18 \times 9 = 162\). What is left? Then write a decimal point and a 0, and keep dividing.'
+    solution:
+      - '18 goes into 171 nine times: \(9 \times 18 = 162\), and 9 is left.'
+      - 'Write a point and a 0: 90 ÷ 18 = 5. So \(171 \div 18 = 9.5\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.4, S1.2]
+    type: number
+    prompt: The school band buys **15** music stands. Each costs **$23.80**, and the band pays with **four $100 bills**. How much change does the band get?
+    answer: 43
+    unit: $
+    verify: 400 - 23.8 * 15
+    hints:
+      - First find the cost of all 15 stands.
+      - Four $100 bills make $400.
+    solution:
+      - 'Cost: \(23.80 \times 15 = 357.00\).'
+      - 'Change: \(400.00 - 357.00 = 43.00\). The band gets **$43**.'
+      - 'Estimate: about \(24 \times 15 = 360\), so about $40 change ✓'
+
+  - id: b2
+    level: 2
+    thinking: estimate
+    covers: [S1.3, S1.2]
+    type: mc
+    prompt: 'Kai works out \(7.85 \times 23\) and gets **1805.5**. Without multiplying exactly, how can you tell he made a mistake?'
+    choices:
+      - '7.85 is about 8, and \(8 \times 23\) is about 184. 1805.5 is ten times too big.'
+      - '23 is odd, so the product must have an odd number of digits.'
+      - 'Multiplying by a decimal always makes a number smaller, so it must be less than 23.'
+      - 'An answer can’t have more digits than the numbers you multiplied.'
+    answer: 0
+    feedback:
+      '1': 'Odd and even don’t tell you how many digits a product has. Try \(3 \times 5 = 15\).'
+      '2': '7.85 is more than 1, so multiplying by it makes 23 bigger, not smaller.'
+      '3': '\(9 \times 9 = 81\) has more digits than 9. Digit counts can’t check this.'
+    hints:
+      - Round 7.85 to a whole number. About how big should the answer be?
+    solution:
+      - '7.85 is about 8, and \(8 \times 23 = 184\). So the answer should be near 184.'
+      - '1805.5 is about ten times that. The point is in the wrong place. The real product is **180.55**.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: 'Maya shares **230 cm** of ribbon equally among **20** friends. She finds \(230 \div 20 = 11\) R 10 and writes "11.10 cm each". What went wrong?'
+    choices:
+      - 'The remainder 10 is 10 out of 20, which is half, so each gets 11.5 cm.'
+      - 'The remainder should be written as 11.01, because it is small.'
+      - 'She should have rounded down to 11 cm, because remainders are thrown away.'
+      - 'Nothing. A remainder of 10 always means 0.10.'
+    answer: 0
+    feedback:
+      '1': 'A remainder is not a number of hundredths. What part of 20 is 10?'
+      '2': 'The ribbon can be cut into smaller parts, so the extra 10 cm can be shared too.'
+      '3': 'Check: \(11.10 \times 20 = 222\). That isn’t 230 cm.'
+    hints:
+      - The 10 cm left over still gets shared among 20 friends. How much does each get?
+    solution:
+      - 'The 10 cm left is shared among 20 friends: \(10 \div 20 = 0.5\) cm each.'
+      - 'So each friend gets \(11 + 0.5 = 11.5\) cm. Check: \(11.5 \times 20 = 230\) ✓'
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S1.4, S1.2, S1.3]
+    type: number
+    prompt: 'A **12**-pack of juice boxes costs **$8.40**. A **24**-pack costs **$15.60**. How much do you save on **each** juice box by buying the 24-pack?'
+    answer: 0.05
+    unit: $
+    verify: 8.4 / 12 - 15.6 / 24
+    hints:
+      - Find the cost of one juice box in each pack.
+    solution:
+      - '12-pack: \(8.40 \div 12 = 0.70\), so 70¢ a box.'
+      - '24-pack: \(15.60 \div 24 = 0.65\), so 65¢ a box.'
+      - 'You save \(0.70 - 0.65 = 0.05\), which is **5¢** a box.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, S1.2, K1.1]
+    type: investigation
+    prompt: |-
+      For a garden fundraiser, the class buys **24** seed packets for **$9.36** in total. They sell each packet for **$1.25**. By the end of the day, they have sold **22** packets.
+    parts:
+      - type: number
+        prompt: How much did the class pay for **one** packet?
+        answer: 0.39
+        unit: $
+        verify: 9.36 / 24
+        hints:
+          - 'Share $9.36 equally among 24 packets.'
+        solution:
+          - '\(9.36 \div 24 = 0.39\). Each packet cost the class 39¢.'
+      - type: number
+        prompt: How much money did they take in from the 22 packets they sold?
+        answer: 27.5
+        unit: $
+        verify: 1.25 * 22
+        hints:
+          - Multiply the selling price by the number sold.
+        solution:
+          - '\(1.25 \times 22 = 27.50\).'
+      - type: number
+        prompt: How much money did the class **make** for the garden, after paying for the seeds?
+        answer: 18.14
+        unit: $
+        verify: 1.25 * 22 - 9.36
+        hints:
+          - Did they pay for 22 packets, or for all 24?
+        solution:
+          - 'They paid $9.36 for all 24 packets, even the 2 they didn’t sell.'
+          - '\(27.50 - 9.36 = 18.14\). The garden gets **$18.14**.'
+    wrapUp: 'Division found the cost of one packet, and multiplication found the money in. The last step needed the story: the class paid for every packet, sold or not.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, S1.3, S1.1]
+    type: build
+    prompt: |-
+      Choose a decimal **less than 10** with **two decimal places**, like 4.36, and a **2-digit** natural number. Their product must be between **99 and 101**.
+    fields:
+      - { name: a, label: 'Decimal (two places)' }
+      - { name: b, label: '2-digit number' }
+    rules:
+      - { test: 'b >= 10 && b <= 99 && b % 1 == 0', fail: 'The second number must be a 2-digit natural number, from 10 to 99.' }
+      - { test: 'a > 0 && a < 10 && (a * 100) % 1 == 0 && (a * 100) % 10 != 0', fail: 'The decimal must be less than 10, with a hundredths digit that isn’t 0, like 4.36.' }
+      - { test: 'a * b >= 99 && a * b <= 101', fail: 'Multiply them. The product must be between 99 and 101. Estimate: 100 ÷ your 2-digit number is about what?' }
+    examples:
+      - { a: 8.25, b: 12 }
+      - { a: 6.25, b: 16 }
+      - { a: 4.04, b: 25 }
+    counterexamples:
+      - { a: 4, b: 25 }
+      - { a: 9.99, b: 11 }
+      - { a: 12.5, b: 8 }
+    hints:
+      - Pick the 2-digit number first. About what times it makes 100?
+      - 'If you pick 25, the decimal must be about \(100 \div 25 = 4\). Try 4.01 or 3.98.'
+    solution:
+      - 'Start with the 2-digit number. With 16, you need about \(100 \div 16 = 6.25\). And \(6.25 \times 16 = 100\) exactly.'
+      - 'With 12: \(100 \div 12\) is about 8.3. Try \(8.25 \times 12 = 99\). That works.'
+      - 'Division gives the target, and multiplication checks it.'

@@ -1,0 +1,480 @@
+id: word-roots-affixes
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG6-OI3-GQ1-LO1]
+order: 5
+title: Word Histories, Roots and Affixes
+shortTitle: Word histories & affixes
+summary: >-
+  Spin a globe of word origins, from Cree and Inuktitut to Greek, Latin and French, watch meanings
+  change, and build words with pro-, com-, con-, en-, oc-, -en and -ize.
+
+bigIdea: |-
+  - English has borrowed words from people all over the world, and from **First Nations, Métis and Inuit** languages all around us.
+  - Many words still carry **Greek and Latin roots**, and many came from **French**.
+  - Meanings change, and new words appear when the world changes.
+  - **Affixes** change what a base means. Know them, and you can build and read new words.
+
+lesson:
+  - title: Words with passports
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.3, K1.4, K1.5, S1.1, S1.3, S1.4, S1.5, U1.1]
+        component: land-globe
+        props:
+          # Every word history is from en.wiktionary.org, checked 2026-11-08.
+          groupLabels: { fnmi: 'From First Nations and Inuit languages', world: 'From other languages' }
+          readLabel: 'Its parts:'
+          sites:
+            - id: saskatoon
+              name: saskatoon
+              icon: 🫐
+              group: fnmi
+              where: From Cree
+              lat: 52.6
+              lon: -108.5
+              what: The purple berry that grows across the Prairies.
+              meaning: 'Cree *misaaskwatoomin*, from *misaaskwat* “saskatoon shrub” + *min* “berry.”'
+            - id: muskeg
+              name: muskeg
+              icon: 🌿
+              group: fnmi
+              where: From Cree
+              lat: 57.5
+              lon: -113.0
+              what: Wet, spongy, boggy ground, common in northern Alberta.
+              meaning: From the Cree word *maskek*.
+            - id: ponoka
+              name: Ponoka
+              icon: 🦌
+              group: fnmi
+              where: From Blackfoot
+              lat: 52.68
+              lon: -113.58
+              what: A town in central Alberta.
+              meaning: In Blackfoot, *ponoka-* means “elk.”
+            - id: kayak
+              name: kayak
+              icon: 🛶
+              group: fnmi
+              where: From Inuktitut
+              lat: 69.1
+              lon: -105.1
+              what: A light, covered boat for one paddler.
+              meaning: Inuktitut *qayaq*, “hunter’s boat.”
+            - id: caribou
+              name: caribou
+              icon: 🦌
+              group: fnmi
+              where: From Mi’kmaq, through Canadian French
+              lat: 45.2
+              lon: -63.5
+              what: A deer of the North, with wide hooves.
+              meaning: Mi’kmaq *qalipu*, linked to a word meaning “it shovels snow.” Caribou dig through snow to find food.
+            - id: photograph
+              name: photograph
+              icon: 📷
+              group: world
+              where: From Greek
+              lat: 37.98
+              lon: 23.73
+              what: A picture taken with a camera.
+              meaning: '*photo-* “light” + *-graph* “scratch, write.” A picture written with light.'
+            - id: aquarium
+              name: aquarium
+              icon: 🐠
+              group: world
+              where: From Latin
+              lat: 41.9
+              lon: 12.5
+              what: A tank where fish and water plants live.
+              meaning: '*aqua* “water” + *-arium*, a place for something.'
+            - id: portage
+              name: portage
+              icon: 🛶
+              group: world
+              where: From French
+              lat: 48.85
+              lon: 2.35
+              what: Carrying a canoe over land between two waterways.
+              meaning: '*port* “carry” + *-age*. French-speaking voyageurs brought it into Canadian English.'
+            - id: beef
+              name: beef
+              icon: 🐄
+              group: world
+              where: From Anglo-Norman French
+              lat: 49.18
+              lon: -0.37
+              what: Meat from a cow.
+              meaning: 'Old French *buef* meant “ox.” It came to England with French-speaking Normans.'
+            - id: emoji
+              name: emoji
+              icon: 😀
+              group: world
+              where: From Japanese
+              lat: 35.68
+              lon: 139.69
+              what: A small picture used in a message.
+              meaning: '*e* “picture” + *moji* “character.” It is new to English, and arrived with phones.'
+        caption: Tap a word. The globe turns to where it came from. Word histories from Wiktionary.
+
+  - title: 1066 and your dinner
+    blocks:
+      - type: table
+        covers: [K1.1, K1.5, S1.5]
+        caption: In 1066, French-speaking Normans took over England. Thousands of French words joined English.
+        headers: [The animal (an older English word), The meat (from French)]
+        rows:
+          - ['cow', '**beef**, from Old French *buef*']
+          - ['pig', '**pork**, from Old French *porc*']
+      - type: callout
+        variant: tip
+        covers: [K1.1, U1.1]
+        title: History hides in words
+        body: A conquest, a fur trade or a new invention can each leave words behind. Look up where a word came from, and you find a piece of history.
+
+  - title: Greek and Latin roots
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: tele, label: 'tele: far', icon: 🔭 }
+            - { id: photo, label: 'photo: light', icon: 💡 }
+            - { id: aqua, label: 'aqua: water', icon: 💧 }
+          cards:
+            - { text: telescope, bin: tele, why: '*tele* “far” + *scope* “look.” A tool for looking at far-off things.' }
+            - { text: telephone, bin: tele, why: '*tele* “far” + *phone* “sound.” Sound from far away.' }
+            - { text: photograph, bin: photo, why: '*photo* “light” + *graph* “write.” Writing with light.' }
+            - { text: photocopy, bin: photo, why: 'A copy made with the help of **light**.' }
+            - { text: aquarium, bin: aqua, why: 'A place for **water** creatures.' }
+            - { text: aquatic, bin: aqua, why: 'Living in or near **water**.' }
+        caption: Sort each word by its root. Greek gave us *tele* and *photo*. Latin gave us *aqua*. All three are still busy today.
+
+  - title: Meanings on the move
+    blocks:
+      - type: table
+        covers: [K1.2, S1.2, S1.6]
+        caption: Words change when life changes.
+        headers: [Word, Long ago, Today]
+        rows:
+          - ['**nice**', '“foolish, not knowing” (from Latin *nescius*)', 'pleasant, kind']
+          - ['**tablet**', 'a flat slab of stone or clay to write on', 'also a flat computer you touch']
+          - ['**stream**', 'a small river', 'also watching video as it arrives online']
+          - ['**emoji**, **selfie**', 'didn’t exist', 'brand-new words, made because of phones']
+      - type: callout
+        variant: tip
+        covers: [K1.2, S1.6]
+        title: Context decides
+        body: '“Grab your tablet” means one thing to a Roman and another to you. Vocabulary depends on **when** and **where** it is used.'
+
+  - title: Build with prefixes
+    blocks:
+      - type: visual
+        covers: [K1.7, S1.7, S1.8]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: pro
+              kind: prefix
+              meaning: forward
+              words:
+                - { base: pel, baseMeaning: push, word: propel, meaning: to push something forward }
+                - { base: ceed, baseMeaning: go, word: proceed, meaning: to go forward }
+            - affix: com
+              kind: prefix
+              meaning: together
+              note: Spelled *com-* before **b**, **m** and **p**.
+              words:
+                - { base: press, baseMeaning: press, word: compress, meaning: to press together }
+                - { base: bine, baseMeaning: two by two, word: combine, meaning: to put together }
+            - affix: con
+              kind: prefix
+              meaning: together
+              note: Spelled *con-* before most other letters.
+              words:
+                - { base: nect, baseMeaning: bind, word: connect, meaning: to fasten together }
+                - { base: tain, baseMeaning: hold, word: contain, meaning: to hold inside }
+            - affix: en
+              kind: prefix
+              meaning: make, or put into
+              words:
+                - { base: large, baseMeaning: big, word: enlarge, meaning: to make larger }
+                - { base: danger, baseMeaning: harm, word: endanger, meaning: to put in danger }
+            - affix: oc
+              kind: prefix
+              meaning: toward, against
+              note: This is *ob-* from Grade 5, spelled *oc-* before a **c**.
+              words:
+                - { base: cur, baseMeaning: run, word: occur, meaning: 'to happen, to run into your path' }
+                - { base: cupy, baseMeaning: take, word: occupy, meaning: to take and fill a space }
+        caption: Tap each prefix. Watch it change the meaning of a base.
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI3-GQ1-LO1#K1.3]
+        title: Remember from Grade 5
+        body: You met *com-* and *ob-* in Grade 5. An affix changes the meaning of a word when it is added to a base.
+
+  - title: Build with suffixes
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.7, S1.8]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: en
+              kind: suffix
+              meaning: make, or made of
+              words:
+                - { base: dark, baseMeaning: little light, word: darken, meaning: to make dark }
+                - { base: deep, baseMeaning: far down, word: deepen, meaning: to make deeper }
+                - { base: wood, baseMeaning: from trees, word: wooden, meaning: made of wood }
+            - affix: ize
+              kind: suffix
+              meaning: make, or do
+              note: 'Canadian spelling uses *-ize*: memorize, realize.'
+              words:
+                - { base: memory, baseMeaning: remembering, word: memorize, meaning: to put into memory }
+                - { base: modern, baseMeaning: new, word: modernize, meaning: to make modern }
+        caption: Tap each suffix. Notice that *-en* can mean two different things.
+      - type: callout
+        variant: mistake
+        covers: [K1.6, S1.7]
+        title: Check the spelling join
+        body: '*memory* + *-ize* is *memorize*. The *y* drops. Say the new word, then check its spelling.'
+
+keyTerms:
+  - term: Root
+    covers: [K1.3]
+    definition: A word part from another language, often Greek or Latin, that carries a meaning, such as tele “far.”
+  - term: Prefix
+    covers: [K1.7]
+    definition: An affix added before a base, such as pro- or en-.
+  - term: Suffix
+    covers: [K1.6]
+    definition: An affix added after a base, such as -en or -ize.
+  - term: Word origin
+    covers: [K1.1, S1.1]
+    definition: Where a word came from, and how it reached English.
+  - term: Borrowed word
+    covers: [K1.4, K1.5]
+    definition: A word that English took from another language, such as kayak from Inuktitut.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.7, S1.7]
+    type: mc
+    prompt: A rowing coach says, “Use your legs to **propel** the boat.” Using the parts *pro-* and *pel*, what does she want?
+    choices:
+      - Push the boat forward.
+      - Push the boat together.
+      - Hold the boat inside.
+      - Turn the boat around.
+    answer: 0
+    feedback:
+      '1': “Together” is *com-* or *con-*. What does *pro-* mean?
+      '2': That sounds like *contain*. Look at both parts of *propel*.
+      '3': Neither part means “around.” What do *pro-* and *pel* mean?
+    hints:
+      - '*pro-* means “forward.” *pel* means “push.”'
+    solution:
+      - Forward + push = **push forward**.
+      - Knowing two small parts unlocks the whole word.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.4, S1.4]
+    type: multi
+    prompt: Which of these English words came from a **First Nations or Inuit** language? Choose every one.
+    choices: [saskatoon, kayak, muskeg, photograph, beef]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': This one came from Greek, *photo* “light” + *graph* “write.”
+      '4': This one came from French, *buef* “ox.”
+    hints:
+      - Think back to the globe. Which words came from Cree or Inuktitut?
+    solution:
+      - '*Saskatoon* and *muskeg* came from Cree. *Kayak* came from Inuktitut.'
+      - These words name things all around us, berries, land and boats, and they come from the languages of this land.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.6, S1.8]
+    type: text
+    prompt: |-
+      The creek is too shallow for canoes. The workers will make it deeper.
+
+      Add a suffix to **deep** to make one word that means “make deeper.”
+    accept: [deepen]
+    hints:
+      - Which suffix means “make”? Think of *darken*.
+    solution:
+      - '*deep* + *-en* = **deepen**, “to make deep or deeper.” The workers will deepen the creek.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.3, S1.3]
+    type: mc
+    prompt: A wildlife photographer buys a **telephoto** lens. Using the Greek roots, what does it help her do?
+    choices:
+      - Take pictures of animals that are far away.
+      - Take pictures of animals that live in water.
+      - Take pictures in very bright light only.
+      - Phone other photographers who are far away.
+    answer: 0
+    feedback:
+      '1': That would need *aqua*. Which roots are in *telephoto*?
+      '2': '*photo* means light, and every photo needs light. What does *tele* add?'
+      '3': '*tele* is in *telephone* too, but here it joins *photo*. What does a photo need, and what does *tele* add?'
+    hints:
+      - Split it into *tele* + *photo*. What does each mean?
+    solution:
+      - '*tele* “far” + *photo* “light, picture.” A lens for **pictures of things far away**.'
+      - The same roots in *telescope* and *photograph* help you read a word you have never seen.
+
+  - id: b2
+    level: 2
+    thinking: pattern
+    covers: [K1.7, S1.8]
+    type: multi
+    prompt: |-
+      *Com-* and *con-* both mean “together.” *Com-* is used before **b**, **m** and **p**.
+
+      Which words should start with **com-**? Choose every one.
+    choices: ['_ _ _ pact', '_ _ _ bine', '_ _ _ nect', '_ _ _ tain', '_ _ _ press']
+    fixedOrder: true
+    answer: [0, 1, 4]
+    feedback:
+      '2': The base starts with **n**. Which prefix goes before most letters?
+      '3': The base starts with **t**. Which prefix goes before most letters?
+    hints:
+      - Look only at the first letter of each base.
+    solution:
+      - '*pact*, *bine* and *press* start with **p**, **b** and **p**, so they take *com-*: **compact, combine, compress**.'
+      - '*nect* and *tain* take *con-*: **connect, contain**.'
+      - Try saying *conbine*. *Com-* is easier to say before those letters, and that is why the spelling changes.
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [K1.1, K1.5, S1.5]
+    type: mc
+    prompt: Long ago, voyageurs carried their canoes over land between rivers. The word they used, **portage**, is still Canadian English today. Why is it such a good name?
+    choices:
+      - Its French parts mean “carry” + “the act of,” and that is exactly what they did.
+      - It comes from *port*, a harbour, because the trail always ended at a city.
+      - It was made up by English speakers, who wanted a word that sounded French.
+      - It means “portable canoe,” because voyageurs used special folding canoes.
+    answer: 0
+    feedback:
+      '1': '*Port* can mean a harbour, but this *port* is the one in *transport*. What does it mean?'
+      '2': The word came straight from French, and the voyageurs spoke French.
+      '3': Nothing in the word says “canoe,” and the canoes didn’t fold.
+    hints:
+      - '*port* is the same base as in *transport*. What does it mean?'
+    solution:
+      - '*port* “carry” + *-age* “the act of.” A portage is **the act of carrying**.'
+      - French-speaking voyageurs of the fur trade brought it into Canadian English. A people and an event left a word behind.
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [K1.6, K1.7, S1.7]
+    type: mc
+    prompt: Which pair of words shows the **same** change in meaning, “make ___”?
+    choices:
+      - darken and enlarge
+      - wooden and enlarge
+      - golden and darken
+      - deepen and wooden
+    answer: 0
+    feedback:
+      '1': '*Wooden* means “made of wood.” Is that “make wood”?'
+      '2': '*Golden* means “made of gold,” or gold-coloured. Does it mean “make gold”?'
+      '3': '*Deepen* means “make deeper.” Does *wooden* mean “make wood”?'
+    hints:
+      - Turn each word into a phrase. *Darken* = “make ___.”
+    solution:
+      - '*darken* = make dark. *enlarge* = make large. Both mean **make**, one with a suffix, one with a prefix.'
+      - '*-en* at the end can also mean “made of,” as in *wooden*. Same letters, different job.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.7, S1.7, U1.1]
+    type: investigation
+    prompt: The word **occur** looks odd. Why two c’s? Let’s take it apart.
+    parts:
+      - type: text
+        prompt: The base *cur* comes from a Latin word meaning “run.” Which word for the flow of water running in a river has the same base? (Hint, it starts with *cur*.)
+        accept: [current, currents]
+        hints:
+          - Swimmers are warned about a strong ___ in the river.
+        solution:
+          - A **current** is water that runs. Same base, same meaning.
+      - type: mc
+        prompt: In Grade 5 you met *ob-*, “toward, against.” Why might *ob-* + *cur* be spelled **occur**?
+        choices:
+          - The *b* changed to match the *c*, because *obcur* is hard to say.
+          - The word comes from *occasion*, so it copied the double *c*.
+          - English spelling is random, so there is no reason at all.
+          - The second *c* was added to show that the word is a verb.
+        answer: 0
+        feedback:
+          '1': '*Occasion* has *oc-* too, but for the same reason. Try saying *obcur*, then *occur*.'
+          '2': There usually is a reason. Say *obcur* aloud. What does your mouth want to do?
+          '3': Plenty of verbs have one *c*. Look at what came before the *c*.
+        hints:
+          - Say *obcur*, then *occur*. Which is easier?
+        solution:
+          - The *b* turns into a *c* to match the base. That makes the double *c*, and it is easier to say.
+      - type: mc
+        prompt: 'Toward + run. So what does “An idea **occurred** to me” really picture?'
+        choices:
+          - The idea ran toward me, and it came into my mind.
+          - The idea ran away from me, and I forgot it.
+          - I ran toward the idea, chasing after it.
+          - The idea was carried forward to someone else.
+        answer: 0
+        feedback:
+          '1': '*oc-* means toward, not away.'
+          '2': Who is doing the running in the sentence, the idea or the person?
+          '3': That sounds like *pro-* and *port*. Use *oc-* and *cur*.
+        hints:
+          - In the sentence, what occurs, and to whom?
+        solution:
+          - The idea runs toward me, and arrives. That is exactly what it feels like when an idea occurs to you.
+    wrapUp: Strange spellings often hide a reason. Find the base, find the prefix, and the word starts to make sense, even its double letters.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.2, S1.1, S1.6]
+    type: mc
+    prompt: Mia says, “*Emoji* must come from the word *emotion*, because emojis show feelings.” What is wrong with her thinking?
+    choices:
+      - Two words that look alike may not be related. The history shows emoji came from Japanese “picture” + “character.”
+      - Nothing is wrong. Words that look alike always come from the same place.
+      - Emoji must come from *emu*, because both start with the same letters.
+      - Emojis don’t show feelings, so the word can’t be linked to emotion.
+    answer: 0
+    feedback:
+      '1': That rule would make *pineapple* a kind of apple. Look up where *emoji* came from.
+      '2': That’s the same mistake as Mia’s, with a different word.
+      '3': Many emojis do show feelings. That isn’t the problem with her idea.
+    hints:
+      - Is looking alike the same as being related? How could Mia check?
+    solution:
+      - Mia guessed from how the word looks. The word history shows **Japanese** *e* “picture” + *moji* “character.”
+      - It arrived in English with phones, so it is a new word with a story of its own. Check a word’s origin before you trust a guess.

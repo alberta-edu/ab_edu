@@ -1,0 +1,275 @@
+id: cartesian-plane
+grade: 6
+subject: math
+organizingIdea: MAT-OI4
+outcomes: [MAT6-OI4-GQ1-LO1]
+order: 13
+title: Points and Polygons in the Cartesian Plane
+shortTitle: Cartesian plane
+summary: >-
+  See the Cartesian plane as two number lines crossing at the origin, then locate and describe
+  points and polygon vertices with positive and negative coordinates.
+
+bigIdea: |-
+  - The **Cartesian plane** is two number lines that cross at the **origin**, (0, 0).
+  - The **x-axis** goes across. The **y-axis** goes up and down.
+  - In an ordered pair **(x, y)**, x is the distance across from the y-axis and y is the distance up or down from the x-axis.
+  - Negative coordinates are **left** of the y-axis or **below** the x-axis.
+
+lesson:
+  - title: Explore the plane
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.5, K1.6, S1.2, S1.3, U1.1]
+        component: cartesian-plane
+        props: { r: 6 }
+        caption: |-
+          - **Explore**: tap a crossing to read its ordered pair.
+          - **Find the point**: the coordinates can be negative now.
+          - **Draw a polygon**: plot each vertex in order.
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI4-GQ1-LO1#K1.2]
+        title: Remember from Grade 5
+        body: In an ordered pair, the **first** number is the distance from the vertical axis, and the **second** is the distance from the horizontal axis.
+
+  - title: Two number lines
+    blocks:
+      - type: figure
+        covers: [S1.1, U1.2, K1.3, K1.4]
+        figure: { kind: plane, r: 5, points: [{ x: 0, y: 0, label: 'origin (0, 0)' }, { x: 4, y: 0, label: '(4, 0)' }, { x: 0, y: -3, label: '(0, −3)' }] }
+        caption: 'The **x-axis** is a sideways number line, and the **y-axis** is an upright one. They cross at the **origin**, (0, 0).'
+      - type: table
+        covers: [K1.3, K1.4]
+        headers: [Where, What is true, Examples]
+        rows:
+          - ['On the x-axis', 'y is 0', '(4, 0), (−3, 0)']
+          - ['On the y-axis', 'x is 0', '(0, 5), (0, −3)']
+          - ['The origin', 'both are 0', '(0, 0)']
+      - type: text
+        covers: [K1.1]
+        body: The Cartesian plane is named after **René Descartes**, a French mathematician who lived from 1596 to 1650.
+
+  - title: Finding a point
+    blocks:
+      - type: figure
+        covers: [K1.2, K1.6]
+        figure: { kind: plane, r: 5, points: [{ x: -3, y: 2, label: 'P (−3, 2)' }, { x: -3, y: 0 }, { x: 0, y: 2 }] }
+        caption: 'P is where the upright line through (−3, 0) meets the sideways line through (0, 2).'
+      - type: example
+        covers: [S1.2, S1.3, K1.6]
+        title: Plot P(−3, 2)
+        problem: 'Plot the point **(−3, 2)**.'
+        steps:
+          - 'Start at the origin.'
+          - 'x is −3: go **3 left**, across from the y-axis.'
+          - 'y is 2: go **2 up**, away from the x-axis.'
+        answer: 'P is 3 units left of the y-axis and 2 units above the x-axis.'
+
+  - title: Polygons in the plane
+    blocks:
+      - type: figure
+        covers: [S1.4, S1.5, U1.1]
+        figure: { kind: plane, r: 5, polys: [{ pts: [[-4, 1], [2, 3], [3, -2], [-3, -4]], labels: [A, B, C, D] }] }
+        caption: 'Quadrilateral ABCD has vertices **A(−4, 1)**, **B(2, 3)**, **C(3, −2)** and **D(−3, −4)**. The coordinates tell exactly where it is.'
+
+keyTerms:
+  - term: Cartesian plane
+    covers: [K1.1, U1.2]
+    definition: 'A flat surface made by two number lines, the x-axis and the y-axis, crossing at right angles.'
+  - term: Origin
+    covers: [K1.4]
+    definition: 'The point (0, 0), where the x-axis and the y-axis cross.'
+  - term: x-axis and y-axis
+    covers: [K1.3]
+    definition: 'The sideways axis, where every y is 0, and the upright axis, where every x is 0.'
+  - term: Ordered pair
+    covers: [K1.5, K1.6]
+    definition: '(x, y): x is the distance across from the y-axis, and y is the distance up or down from the x-axis.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.3, K1.5]
+    type: text
+    figure: { kind: plane, r: 5, points: [{ x: -3, y: 4, label: P }] }
+    prompt: 'What are the coordinates of point P? Type them like **(2, −5)**.'
+    accept: ['(-3, 4)', '(−3, 4)', '(-3,4)', '(−3,4)', '-3, 4', '−3, 4', '-3,4', '−3,4']
+    hints:
+      - Across first. Is P left or right of the y-axis?
+    solution:
+      - 'P is 3 units **left** of the y-axis, so x is −3. It is 4 units up, so y is 4.'
+      - 'P is at **(−3, 4)**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.3, K1.4]
+    type: multi
+    prompt: Which points are on the **x-axis**? Choose all of them.
+    choices: ['(5, 0)', '(0, 5)', '(−2, 0)', '(0, 0)', '(3, 3)']
+    answer: [0, 2, 3]
+    feedback:
+      '1': 'x is 0 here, so this point is on the y-axis, 5 units up.'
+      '4': 'This point is 3 units above the x-axis.'
+    hints:
+      - On the x-axis, how far up or down is a point?
+    solution:
+      - 'Points on the x-axis have y = 0: (5, 0), (−2, 0) and the origin (0, 0).'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.6, S1.2]
+    type: mc
+    prompt: 'Which describes the point **(−4, −1)**?'
+    choices:
+      - '4 units left of the y-axis and 1 unit below the x-axis'
+      - '4 units below the x-axis and 1 unit left of the y-axis'
+      - '4 units right of the y-axis and 1 unit below the x-axis'
+      - '1 unit left of the y-axis and 4 units below the x-axis'
+    answer: 0
+    feedback:
+      '1': 'The first number, x, tells you about left and right.'
+      '2': 'A negative x means left of the y-axis.'
+      '3': 'The order is x first, then y.'
+    hints:
+      - The first number is x. Is it positive or negative?
+    solution:
+      - 'x = −4: 4 units **left** of the y-axis. y = −1: 1 unit **below** the x-axis.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K1.5, S1.3, K1.6]
+    type: mc
+    figure: { kind: plane, r: 6, points: [{ x: 2, y: -5, label: Q }] }
+    prompt: 'Leo says point Q is at **(−5, 2)**. What did he do?'
+    choices:
+      - 'He swapped the order: he wrote the up-or-down number first.'
+      - 'He counted from the top of the grid.'
+      - 'He forgot the negative sign on the 2.'
+      - 'Nothing. Q is at (−5, 2).'
+    answer: 0
+    feedback:
+      '1': 'Then both numbers would be very different. Compare his numbers with the real ones.'
+      '2': 'The 2 is positive, because Q is right of the y-axis. Look at the order.'
+      '3': '(−5, 2) is 5 left and 2 up. Is that where Q is?'
+    hints:
+      - Work out Q’s coordinates yourself, then compare.
+    solution:
+      - 'Q is 2 right and 5 down, so it is at **(2, −5)**.'
+      - 'Leo wrote the same two numbers in the wrong order. The order matters: x first, then y.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S1.4, S1.5]
+    type: text
+    prompt: 'A square has three vertices at **(−2, 3)**, **(3, 3)** and **(3, −2)**. Where is the fourth vertex? Type it like **(2, −5)**.'
+    accept: ['(-2, -2)', '(−2, −2)', '(-2,-2)', '(−2,−2)', '-2, -2', '−2, −2', '-2,-2', '−2,−2']
+    hints:
+      - Sketch the three points. Which corner is missing?
+      - The missing corner is straight below (−2, 3) and straight across from (3, −2).
+    solution:
+      - 'The missing corner has the same x as (−2, 3), which is −2, and the same y as (3, −2), which is −2.'
+      - 'The fourth vertex is **(−2, −2)**. Each side is 5 units long.'
+
+  - id: b3
+    level: 2
+    thinking: model
+    covers: [K1.6, S1.1, U1.2]
+    type: number
+    prompt: 'On a town map, the library is at **(−4, 2)** and the rink is at **(5, 2)**. Each unit is **100 m**. How far is it from the library to the rink, in a straight line?'
+    answer: 900
+    unit: m
+    verify: (5 + 4) * 100
+    hints:
+      - They have the same y, so the path goes straight across. How far is it from −4 to 5 on a number line?
+    solution:
+      - 'From −4 to 0 is 4 units, and from 0 to 5 is 5 units. That is 9 units.'
+      - '\(9 \times 100 = 900\) m.'
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [K1.6, S1.2]
+    type: multi
+    prompt: Which points are exactly **3 units from the y-axis**? Choose all of them.
+    choices: ['(3, 1)', '(−3, 4)', '(1, 3)', '(3, −3)', '(0, 3)']
+    answer: [0, 1, 3]
+    feedback:
+      '2': 'This point is 3 units from the x-axis, but only 1 unit from the y-axis.'
+      '4': 'x is 0, so this point is on the y-axis.'
+    hints:
+      - The distance from the y-axis is given by x. Does the sign matter for distance?
+    solution:
+      - 'Distance from the y-axis is the size of x, left or right. (3, 1), (−3, 4) and (3, −3) all have x = 3 or −3.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, S1.5, K1.6]
+    type: investigation
+    prompt: |-
+      Rectangle ABCD has vertices **A(−3, 2)**, **B(4, 2)** and **C(4, −1)**. Its sides run along grid lines.
+    parts:
+      - type: text
+        prompt: Where is vertex D? Type it like **(2, −5)**.
+        accept: ['(-3, -1)', '(−3, −1)', '(-3,-1)', '(−3,−1)', '-3, -1', '−3, −1']
+        hints:
+          - D is straight below A and straight across from C.
+        solution:
+          - 'D has A’s x, −3, and C’s y, −1. D is at **(−3, −1)**.'
+      - type: number
+        prompt: How long is side AB, in units?
+        answer: 7
+        unit: units
+        verify: 4 + 3
+        hints:
+          - 'A and B have the same y. How far is it from x = −3 to x = 4?'
+        solution:
+          - 'From −3 to 0 is 3, and from 0 to 4 is 4. AB is **7** units long.'
+      - type: number
+        prompt: What is the **area** of the rectangle, in square units?
+        answer: 21
+        unit: square units
+        verify: 7 * 3
+        hints:
+          - You know the length. How long is BC, from y = 2 to y = −1?
+        solution:
+          - 'BC goes from 2 down to −1, which is 3 units.'
+          - 'Area: \(7 \times 3 = 21\) square units.'
+    wrapUp: 'When two points share a coordinate, the distance between them is the distance between the other coordinates on a number line, even across zero.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.6, S1.2, S1.3]
+    type: build
+    prompt: |-
+      Find a point that is **left** of the y-axis and **above** the x-axis, the **same distance** from both axes, and at least **3 units** from each. Keep it within 6 of the origin each way.
+    fields:
+      - { name: x, label: 'x' }
+      - { name: y, label: 'y' }
+    rules:
+      - { test: 'x % 1 == 0 && y % 1 == 0', fail: 'Use whole numbers, so the point sits where grid lines cross.' }
+      - { test: 'x < 0 && y > 0', fail: 'Left of the y-axis means x is negative. Above the x-axis means y is positive.' }
+      - { test: '0 - x == y', fail: 'The distance from the y-axis (x without its sign) must equal the distance from the x-axis (y).' }
+      - { test: 'y >= 3 && y <= 6', fail: 'The point must be at least 3 units from each axis, and no more than 6.' }
+    examples:
+      - { x: -3, y: 3 }
+      - { x: -5, y: 5 }
+    counterexamples:
+      - { x: 3, y: 3 }
+      - { x: -3, y: 4 }
+      - { x: -2, y: 2 }
+    hints:
+      - Left means a negative x. The same distance means x and y have the same size.
+    solution:
+      - '(−3, 3), (−4, 4), (−5, 5) and (−6, 6) all work. Each is as far left of the y-axis as it is above the x-axis.'
+      - 'They all lie on one straight line through the origin.'

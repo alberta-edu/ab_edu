@@ -5,22 +5,52 @@ Social Studies. Grade 5 came first; Grades 6, 4, 3, 2 and 1 follow. Kindergarten
 
 ## Where we are now
 
-*Last updated: November 7, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 16, 2026. Update this section whenever a phase or batch finishes.*
 
 **Grade 5 is live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 6 to 1 (Phases 9–14).**
 
-**Waiting for review:** `feature/multi-grade` (Phase 9). Every page, check and script works for any
-grade from 1 to 6, and Kindergarten is removed. No Grade 5 content changed; the site still builds the
-same 112 pages.
+- Phase 9 (`feature/multi-grade`) was merged and deployed on November 13, 2026.
+- **Waiting for review:** `feature/grade-6` (Phase 10). It merges the four subject branches
+  (`feature/g6-math`, `-science`, `-social`, `-ela`). A shared fix lets `.seg` view switchers wrap on a
+  phone.
+- **In progress:** Grade 4, one agent per subject (`feature/g4-*`).
 
 | Grade | Outcomes | Statements | Status |
 |---|---|---|---|
 | 5 | 32 | 674 | ✅ Live |
-| 6 | 33 | 763 | Next (Phase 10) |
-| 4 | 32 | 651 | Phase 11 |
+| 6 | 33 | 763 | 🔍 55 concepts, 495 problems, 763 of 763 taught; waiting for review |
+| 4 | 32 | 651 | 🔨 In progress (Phase 11) |
 | 3 | 30 | 749 | Phase 12 |
 | 2 | 28 | 596 | Phase 13 |
 | 1 | 28 | 565 | Phase 14 |
+
+Grade 6 detail:
+
+| Subject | Concepts | Statements taught | Problems |
+|---|---|---|---|
+| Math | 18 | 240 of 240 ✅ | 162 |
+| Science | 17 | 216 of 216 ✅ | 153 |
+| Social Studies | 7 | 74 of 74 ✅ | 63 |
+| ELAL | 13 | 233 of 233 ✅ | 117 |
+
+Grade 6 checks: `npm run check` passes (103 concepts, 926 problems, 315 tests). A browser script solved
+all 495 Grade 6 and all 431 Grade 5 problems at phone width, with no page errors.
+
+To check when reviewing Grade 6 (flagged by the writing agents):
+- **Social Studies:**
+  - Roman provinces "run by a magistrate the citizens had elected." Governors were really former
+    magistrates, assigned by the Senate or by lot.
+  - Statistics Canada hate-crime figures.
+- **Science:**
+  - Sea-ice figures mix a September average (1979) with a daily low (2012).
+  - Alberta energy mix; Tuktoyaktuk, SmartICE, four sacred medicines; Wilfred Buck's star knowledge.
+- **ELAL:**
+  - Writing-on-Stone (Áísínai'pi), inuksuk, Métis lobsticks, talking-circle protocols.
+  - Word origins (from Wiktionary).
+  - One public-domain excerpt from *Anne of Green Gables*, for statement S2.2 (study professional authors).
+- **Math:**
+  - The Muskowekwan star blanket is shown only as a tessellation design.
+  - Quadrant names are left out, because the outcome doesn't list them.
 
 Grade 5 detail:
 
@@ -136,9 +166,9 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 6 | ELAL | 12 concepts, with original passages and poems | ✅ Merged |
 | 7 | Polish | Question rewrite, grade-level audit, educator notes, accessibility, SEO and device testing | ✅ Merged |
 | 8 | Release | Make the repo public, turn on Pages, publish | ✅ Live since November 4, 2026 |
-| 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | 🔍 `feature/multi-grade`, waiting for review |
-| 10 | Grade 6 | 4 subjects, one branch each, stacked on Phase 9 | Planned |
-| 11 | Grade 4 | 4 subjects | Planned |
+| 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | ✅ Merged November 13, 2026 |
+| 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | 🔍 Waiting for review |
+| 11 | Grade 4 | 4 subjects | 🔨 In progress |
 | 12 | Grade 3 | 4 subjects | Planned |
 | 13 | Grade 2 | 4 subjects, Grades 1–2 profile: less text, more animation, 6 problems | Planned |
 | 14 | Grade 1 | 4 subjects, Grades 1–2 profile | Planned |

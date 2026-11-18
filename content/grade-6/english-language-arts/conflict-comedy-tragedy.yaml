@@ -1,0 +1,452 @@
+id: conflict-comedy-tragedy
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG6-OI1-GQ1-LO1]
+order: 2
+title: Conflict, Characters, Comedy and Tragedy
+shortTitle: Conflict, comedy & tragedy
+summary: >-
+  Meet protagonists, antagonists and stock characters, find the conflict, read a comedy with a story
+  inside it, and see how comedy and tragedy change a play’s ending.
+
+bigIdea: |-
+  - Every story has a **conflict**: something stands between the **protagonist** and a goal.
+  - The **antagonist** can be a person, a group or a force, and isn’t always a villain.
+  - A **comedy** is amusing and usually ends cheerfully. A **tragedy** is serious and ends unhappily.
+  - Stories can hide a **story within a story** that mirrors the main one.
+
+lesson:
+  - title: What stands in the way?
+    blocks:
+      - type: visual
+        covers: [K3.4, K3.5, K3.7, K3.8, S3.3]
+        component: conflict-map
+        props:
+          stories:
+            - label: Science fair
+              hero: Maya
+              heroIcon: 👧🏽
+              goal: to win the science fair
+              goalIcon: 🏆
+              against: Jasper, who copies her idea
+              againstIcon: 🧑🏻
+              kind: individual
+              note: 'Jasper is the **antagonist**. He works against Maya and gets in her way.'
+            - label: The old park
+              hero: Sam
+              heroIcon: 🧒🏿
+              goal: to save the old park
+              goalIcon: 🌳
+              against: the town council
+              againstIcon: 🏛️
+              kind: group
+              note: 'The council isn’t evil. It has its own reasons. An antagonist is whoever or whatever stands in the protagonist’s way.'
+            - label: Snow sculpture
+              hero: Ana
+              heroIcon: 👧🏼
+              goal: to finish her snow sculpture for the festival
+              goalIcon: ⛄
+              against: a warm chinook wind
+              againstIcon: 🌬️
+              kind: force
+              note: 'An antagonist doesn’t have to be a person. A force, like the weather, can stand in the way.'
+        caption: Press **Go**. The **protagonist** heads for a goal. The struggle with whatever blocks the way is the **conflict**.
+
+  - title: Read a comedy
+    blocks:
+      - type: passage
+        id: bedtime
+        title: The Last Bedtime Story
+        form: Comedy
+        paragraphs:
+          - 'Theo had one job: get his cousin Lulu to sleep by eight o’clock. Aunt Rosa had said it twice at the door. “Eight o’clock, Theo. She has a dentist appointment at seven tomorrow.”'
+          - At eight fifteen, Lulu was standing on her bed in a cape. “I am not tired,” she announced. “I am a superhero, and superheroes do not sleep.”
+          - Theo tried warm milk. Lulu fed it to the cat. He tried counting sheep. Lulu counted them backward, very loudly, from one hundred. Theo looked at the clock and pictured Aunt Rosa’s face.
+          - “Fine,” Theo said, flopping into the beanbag chair. “I’ll tell you a story. Once upon a time, there was a brave knight named Sir Clank.”
+          - “With shiny armour?” Lulu asked. “The shiniest,” said Theo. “One night, Sir Clank rode up the mountain to fight a terrible dragon. But the dragon was hiding under a blanket, shaking. ‘Please don’t fight me,’ the dragon said. ‘I’m scared of the dark.’”
+          - “So Sir Clank lit a candle,” Theo went on, more slowly now. “The dragon stopped shaking. The knight sat down beside him, and they both…” Theo’s eyes closed. “…yawned.”
+          - When Aunt Rosa came home at nine, the house was quiet. Theo was asleep in the beanbag chair, with a superhero cape tucked over him like a blanket. Lulu sat beside him with a flashlight, reading a picture book to the cat.
+          - “He was scared of the dark,” Lulu whispered. “So I stayed up.”
+        note: An original story written for Alberta Edu. Paragraph numbers help you point to evidence.
+      - type: compare
+        covers: [K3.7, K3.8, S3.5]
+        columns:
+          - title: 🦸 Protagonist
+            body: '**Theo.** He is at the centre of the story. He has the goal, makes the choices (milk, sheep, a story) and faces the obstacles.'
+          - title: 🚧 Antagonist
+            body: '**Lulu.** She gets in Theo’s way at every turn. She isn’t a villain, just a little kid in a cape.'
+
+  - title: A story within a story
+    blocks:
+      - type: visual
+        covers: [K3.3, S3.2]
+        component: text-xray
+        props:
+          button: Show the layers
+          pages:
+            - label: The Last Bedtime Story
+              note: 'A **story within a story** is a story that a character tells inside the main story.'
+              parts:
+                - { style: text, text: 'Theo tries to get Lulu to sleep by eight. Nothing works.', tag: Outer story, job: 'The main story, about Theo and Lulu.' }
+                - { style: story, text: 'Theo tells a story. Sir Clank rides up a mountain to fight a dragon. The dragon is scared of the dark, so the knight lights a candle.', tag: Inner story, job: 'A story told by a character, inside the main one.' }
+                - { style: text, text: 'Theo falls asleep. Lulu stays up with a flashlight.', tag: Back to the outer story, job: 'The main story picks up again.' }
+        caption: Switch on the X-ray to see the two layers. What does the inner story have in common with the outer one?
+
+  - title: How we know a character
+    blocks:
+      - type: visual
+        covers: [S3.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: says, label: What they say, icon: 💬 }
+            - { id: does, label: What they do, icon: 🏃 }
+            - { id: thinks, label: What they think, icon: 💭 }
+            - { id: others, label: What others say, icon: 👥 }
+          cards:
+            - { text: '“Superheroes do not sleep.”', bin: says, why: 'Lulu’s own words show she is stubborn, and full of imagination.' }
+            - { text: Lulu feeds the warm milk to the cat., bin: does, why: 'Her action shows she won’t go along with Theo’s plan.' }
+            - { text: Theo looks at the clock and pictures Aunt Rosa’s face., bin: thinks, why: 'We see inside Theo’s head. He is worried about what she will say.' }
+            - { text: 'Aunt Rosa says “Eight o’clock” twice at the door.', bin: others, why: 'Saying it twice hints that she isn’t sure Theo can manage.' }
+            - { text: Lulu sits up with a flashlight and reads to the cat., bin: does, why: 'Her action at the end shows a gentler side of her.' }
+        caption: Authors show characters in four ways. Sort each clue from “The Last Bedtime Story.”
+
+  - title: Stock characters
+    blocks:
+      - type: table
+        covers: [K3.5, K3.6]
+        caption: A **stock character** is a familiar type that readers recognize right away.
+        headers: [Stock character, You know them from, Readers expect them to…]
+        rows:
+          - ['🛡️ The brave knight', 'Fairy tales and legends', 'ride in and save the day']
+          - ['🐉 The terrible dragon', 'Fairy tales and legends', 'breathe fire and guard treasure']
+          - ['🧙 The wise old wizard', 'Fantasy stories', 'give the hero advice']
+          - ['🧪 The mad scientist', 'Comics and cartoons', 'invent something that goes wrong']
+      - type: callout
+        variant: tip
+        covers: [K3.6, K3.5]
+        title: Spot them in Theo’s story
+        body: Sir Clank and the dragon are stock characters. You knew what to expect before Theo said much at all. Then the dragon surprised you.
+
+  - title: What makes it a comedy?
+    blocks:
+      - type: table
+        covers: [K3.1, K3.2, S3.1]
+        caption: Read “The Last Bedtime Story” as a **mentor text**, a model that shows how a comedy works.
+        headers: [Comedy trick, In the story]
+        rows:
+          - ['**Exaggeration**', 'Lulu counts the sheep backward, very loudly, from one hundred.']
+          - ['**Surprise**', 'Theo tries warm milk. Lulu feeds it to the cat.']
+          - ['**Turning the tables**', 'The babysitter falls asleep. The little kid stays up.']
+          - ['**A cheerful ending**', 'Lulu tucks the cape over Theo and looks after him.']
+      - type: callout
+        variant: tip
+        covers: [U3.1, S3.1]
+        title: See it from Lulu’s side
+        body: |-
+          - Lulu’s last line changes the whole night. She stayed up to look after Theo.
+          - Stories help you feel what someone else feels, and give you ideas for your own.
+
+  - title: Comedy or tragedy?
+    blocks:
+      - type: visual
+        covers: [K6.1, K6.2, K6.3, U6.1, S6.1, S6.2]
+        component: text-xray
+        props:
+          button: Show what changes
+          pages:
+            - label: Comedy
+              icon: 😄
+              note: A **comedy** is a humorous story with a happy ending.
+              parts:
+                - { style: text, text: '**Ruby** *(patting the snow)*: Our fort needs a tower. A tall one.<br>**Kofi:** It’s already wobbly. A tower could knock the whole thing down.<br>**Ruby:** Trust me. Judges love towers.', tag: Same start }
+                - { style: text, text: '*Next morning. The tower wobbles, slides off, and lands, plop, on the judge’s boots.*', tag: Turning point }
+                - { style: text, text: '**Judge** *(laughing)*: The funniest fort I’ve ever seen! First prize for Best Surprise!<br>*Ruby and Kofi high-five.*', tag: Happy ending, job: 'Funny, and it ends well.' }
+            - label: Tragedy
+              icon: 🎭
+              note: A **tragedy** is a serious story with an unhappy ending.
+              parts:
+                - { style: text, text: '**Ruby** *(patting the snow)*: Our fort needs a tower. A tall one.<br>**Kofi:** It’s already wobbly. A tower could knock the whole thing down.<br>**Ruby:** Trust me. Judges love towers.', tag: Same start }
+                - { style: text, text: '*Kofi goes home. Ruby builds the tower alone. That night, a crack runs up the wall.*', tag: Turning point }
+                - { style: text, text: '*Next morning, the fort is a heap of snow. Kofi doesn’t come.*<br>**Ruby** *(quietly)*: He told me. I didn’t listen.', tag: Unhappy ending, job: 'Serious, and it ends badly.' }
+        caption: Two versions of one short play. Read both, then switch on the X-ray.
+      - type: callout
+        variant: tip
+        covers: [U6.1, S6.2]
+        title: The genre steers the ending
+        body: The start is the same. Once a writer chooses comedy or tragedy, the **outcome** follows from that choice.
+
+keyTerms:
+  - term: Conflict
+    covers: [K3.4]
+    definition: A struggle between individuals, groups or forces that keeps the protagonist from a goal.
+  - term: Protagonist
+    covers: [K3.7]
+    definition: The main character at the centre of a story, who makes decisions, deals with consequences and faces obstacles.
+  - term: Antagonist
+    covers: [K3.8]
+    definition: An opponent of, or a force acting against, the protagonist.
+  - term: Stock character
+    covers: [K3.6]
+    definition: A familiar type of character that readers recognize from other stories, such as the brave knight.
+  - term: Story within a story
+    covers: [K3.3]
+    definition: A story that a character tells inside the main story.
+  - term: Comedy
+    covers: [K3.2, K6.2]
+    definition: A humorous story, amusing in tone, that usually has a happy ending.
+  - term: Tragedy
+    covers: [K6.3]
+    definition: A serious story with an unhappy ending.
+  - term: Mentor text
+    covers: [S3.1]
+    definition: A text you study as a model, to learn how writers do something.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K3.4, K3.8]
+    type: mc
+    prompt: Nils wants to paddle his canoe to the island before lunch. A strong wind keeps pushing him back toward shore. Who or what is the **antagonist**?
+    choices:
+      - The wind, because it is the force working against Nils’s goal.
+      - Nils, because he is the one who keeps losing ground.
+      - Nobody, because a story needs a villain to have an antagonist.
+      - The island, because it is the place Nils is trying to reach.
+    answer: 0
+    feedback:
+      '1': Nils has the goal and faces the obstacles. That makes him the protagonist.
+      '2': An antagonist doesn’t have to be a villain, or even a person.
+      '3': The island is his goal. Does it stop him from reaching it?
+    hints:
+      - What does Nils want? What keeps him from getting it?
+    solution:
+      - Nils is the protagonist. His goal is the island.
+      - The wind pushes against him, so the wind is the antagonist. This is a conflict between a person and a **force**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K3.5, K3.6]
+    type: mc
+    prompt: Which of these is a **stock character**?
+    choices:
+      - A wise old wizard with a long white beard, who gives the hero advice
+      - Mrs. Okafor, a bus driver who collects spoons and is scared of geese
+      - Pip, a shy robot who learns to whistle by listening to robins
+      - Dez, a goalie who wears his lucky socks inside out on game days
+    answer: 0
+    feedback:
+      '1': She is fun and unusual. Have you met her in lots of other stories, or is she new?
+      '2': A shy, whistling robot is a fresh idea. Is it a type you already know from many stories?
+      '3': This is a specific person with his own habits. Is he a type that readers recognize at once?
+    hints:
+      - Which one could you describe before you even read the story, because you have met that type so often?
+    solution:
+      - The wise old wizard turns up in story after story. Readers know what he will do before he does it. That makes him a **stock character**.
+      - The others are new and specific. They have details you wouldn’t expect.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K6.1, K6.3, S6.2]
+    type: mc
+    prompt: |-
+      Here is how a play ends:
+
+      > The proud king will not listen to his daughter’s warning. The river floods the castle, and the king loses his kingdom.
+
+      What genre of drama is this play?
+    choices:
+      - A tragedy, because it is serious and it ends unhappily.
+      - A comedy, because the daughter turned out to be right.
+      - A comedy, because every play on a stage ends happily.
+      - We can’t tell until we know whether the lines rhyme.
+    answer: 0
+    feedback:
+      '1': She was right, but how does the play end for the king, and for the kingdom?
+      '2': Plays can end happily or unhappily. That is the difference between the two genres.
+      '3': Rhyme doesn’t decide the genre. Look at the tone and the ending.
+    hints:
+      - Is the ending happy or unhappy? Is the story funny or serious?
+    solution:
+      - The king loses everything, and nothing about it is funny.
+      - A serious story with an unhappy ending is a **tragedy**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K3.4, S3.3, S3.4]
+    type: evidence
+    prompt: Theo has plans, and Lulu blocks them. Tap a sentence that shows Lulu **doing** something that blocks one of his plans.
+    passage: bedtime
+    paragraphs: [2, 3]
+    answer: [p3s2, p3s4]
+    feedback:
+      p2s1: She is up, but Theo hasn’t tried a plan yet. Find a sentence where she blocks one.
+      p2s2: This is what she **says**. Find what she **does**.
+      p2s3: This is what she **says**. Find what she **does**.
+      p3s1: This is Theo’s plan. What does Lulu do about it?
+      p3s3: This is Theo’s next plan. What does Lulu do about it?
+      p3s5: This is Theo thinking. Find Lulu doing something.
+    hints:
+      - Find Theo’s two plans first. The sentence after each one tells you what Lulu does.
+    solution:
+      - 'Either of these works: “Lulu fed it to the cat.” or “Lulu counted them backward, very loudly, from one hundred.”'
+      - Each one is an action that blocks Theo’s goal. That struggle is the **conflict** that drives the story.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K3.7, S3.5]
+    type: mc
+    prompt: Ayaan says, “Lulu is the protagonist. She has the last line, and the story ends with her.” What is wrong with his thinking?
+    choices:
+      - The protagonist is the one at the centre, with the goal and the choices. That is Theo, from the first line.
+      - Aunt Rosa has the last line in the story, so she is the protagonist, not Lulu.
+      - Lulu can’t be the protagonist, because a protagonist always has to be older.
+      - Nothing is wrong, because whoever speaks last in a story is the protagonist.
+    answer: 0
+    feedback:
+      '1': Check paragraph 8 again. Who whispers the last line?
+      '2': Age has nothing to do with it. Look at whose goal the story follows.
+      '3': The last line can go to anyone. What makes a character the protagonist?
+    hints:
+      - Whose goal is the story about? Who keeps making decisions?
+    solution:
+      - The story follows **Theo’s** goal, to get Lulu to sleep by eight. He makes the choices and faces the obstacles.
+      - Lulu is the one in his way, so she is the **antagonist**, even though she ends up being kind.
+      - Having the last line doesn’t make a protagonist.
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [K3.1, K3.2, S3.1]
+    type: multi
+    prompt: Which details help give “The Last Bedtime Story” its **amusing tone**? Choose every one.
+    choices:
+      - Lulu fed it to the cat.
+      - Lulu counted them backward, very loudly, from one hundred.
+      - She has a dentist appointment at seven tomorrow.
+      - When Aunt Rosa came home at nine, the house was quiet.
+      - Lulu sat beside him with a flashlight, reading a picture book to the cat.
+    answer: [0, 1, 4]
+    feedback:
+      '2': This is a reason Lulu needs sleep. Is it funny?
+      '3': This sets up the ending, but a quiet house isn’t funny by itself. What does Aunt Rosa find?
+    hints:
+      - Picture each detail. Which ones make you smile?
+      - Look for exaggeration and surprise.
+    solution:
+      - Feeding the milk to the cat is a **surprise**. Counting sheep backward, very loudly, is **exaggeration**.
+      - Reading a picture book to a cat is a funny picture. These details make the tone amusing, which is part of what makes it a comedy.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [K3.3, S3.2]
+    type: multi
+    prompt: Which of these stories have a **story within a story**? Choose every one.
+    choices:
+      - Mila reads a letter from her great-grandmother. The letter tells how she crossed the ocean in 1912. Then Mila folds it up and calls her mom.
+      - Two friends sit by a campfire. One tells the legend of a lake monster. Back at the fire, they hear a splash.
+      - A story about a soccer team goes day by day, from Monday’s practice to Saturday’s final.
+      - A book holds ten short stories, each by a different author.
+      - A story about a girl suddenly jumps ten years ahead to show her as an adult.
+    answer: [0, 1]
+    feedback:
+      '2': This is one story, told in time order. Does anyone in it tell a story?
+      '3': These stories sit side by side. Is any of them told **inside** another?
+      '4': That is a flash-forward. Does a character tell a story here?
+    hints:
+      - Look for a character who tells or reads a story, inside the main story.
+    solution:
+      - The letter and the legend are both stories told inside a main story, and each time we go back to the main story after.
+      - A collection, a day-by-day story and a flash-forward are other structures.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: connect
+    covers: [K3.3, S3.2, U3.1]
+    type: investigation
+    prompt: Why would an author put a story about a knight and a dragon inside a story about a babysitter? Let’s find out.
+    parts:
+      - type: mc
+        prompt: In Sir Clank’s story, who is scared of the dark, and who brings a light?
+        choices:
+          - The dragon is scared, and the knight lights a candle.
+          - The knight is scared, and the dragon breathes fire for light.
+          - Lulu is scared, and Theo turns on a flashlight.
+          - Nobody is scared, because the knight is very brave.
+        answer: 0
+        feedback:
+          '1': Read paragraph 5 again. Who is hiding under the blanket?
+          '2': That mixes up the two stories. Stay inside Sir Clank’s story for now.
+          '3': Read the dragon’s words in paragraph 5.
+        hints:
+          - Look at paragraphs 5 and 6 only.
+        solution:
+          - The dragon hides, shaking, because he is scared of the dark. Sir Clank lights a candle and sits beside him.
+      - type: mc
+        prompt: Now look at paragraph 7. Who is doing the **knight’s** job in the outer story?
+        choices:
+          - Lulu, sitting up beside Theo with a flashlight
+          - Theo, because he is the one who told the story
+          - Aunt Rosa, because she comes home to check on them
+          - The cat, because it is listening to the picture book
+        answer: 0
+        feedback:
+          '1': By paragraph 7, Theo is asleep. Is he looking after anyone?
+          '2': She arrives once it’s all over. Who sat up with a light?
+          '3': The cat is listening. Who brought the light?
+        hints:
+          - The knight brought a light and sat beside someone. Who does that in paragraph 7?
+        solution:
+          - Lulu sits beside sleeping Theo with a flashlight. She is the knight now, and Theo is the dragon.
+      - type: mc
+        prompt: So what does Lulu’s last line, “He was scared of the dark. So I stayed up,” tell us?
+        choices:
+          - She was really listening, and she copied the knight to look after Theo.
+          - She is still being difficult, and found a new excuse to stay awake.
+          - Theo told her that he was scared of the dark before he fell asleep.
+          - She wants Aunt Rosa to be angry with Theo for falling asleep.
+        answer: 0
+        feedback:
+          '1': She may like staying up. But where did the idea of being “scared of the dark” come from?
+          '2': Look for that in the story. Did Theo ever say it about himself?
+          '3': She whispers it, gently. Does that sound like someone trying to get Theo in trouble?
+        hints:
+          - Where in the story did the words “scared of the dark” come up first?
+        solution:
+          - The words come from the inner story. Lulu believed it, and she did what the knight did.
+          - The little kid who wouldn’t sleep turns out to be kind. That ending lets us feel what she felt.
+    wrapUp: A story within a story can **mirror** the main story. Here, the knight and the dragon show us Lulu and Theo, with the roles turned around.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K3.5, K3.6, K3.2]
+    type: mc
+    prompt: Theo’s story starts with two stock characters, a brave knight and a terrible dragon. Then the dragon turns out to be scared of the dark. Why does that surprise work so well in a **comedy**?
+    choices:
+      - Readers already expect a fierce dragon, so turning that around makes them laugh.
+      - Stock characters are boring, so the author had to swap in brand-new ones.
+      - It teaches a true fact, because real dragons were shy and gentle creatures.
+      - The dragon had to be scared so that the story could become a tragedy.
+    answer: 0
+    feedback:
+      '1': The knight and the dragon are still stock characters. They are just used in a surprising way.
+      '2': Dragons aren’t real. This joke works because of what readers expect from stories.
+      '3': The story ends cheerfully, with Lulu looking after Theo. Is that a tragedy?
+    hints:
+      - What did you expect the dragon to do when Theo said “terrible dragon”?
+      - Why do readers have that expectation in the first place?
+    solution:
+      - Stock characters come with expectations. Everyone “knows” a dragon is fierce.
+      - When the dragon is scared of the dark, the expectation flips, and the surprise is funny.
+      - Comedy writers often borrow a stock character just to turn it upside down.

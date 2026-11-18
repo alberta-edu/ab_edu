@@ -1,0 +1,398 @@
+id: shape-action-reaction
+grade: 6
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI6-OI2-GQ1-LO1]
+order: 4
+title: Elasticity, Plasticity and Action-Reaction Forces
+shortTitle: Elasticity, plasticity and action-reaction
+summary: >-
+  Stretch and bend four objects to sort temporary changes from permanent ones, then push off on scooter
+  boards to find the reaction to every action.
+
+bigIdea: |-
+  - **Elasticity** lets an object change shape for a while and spring back, like a rubber band. The change is **temporary**.
+  - **Plasticity** leads to a **permanent** change in shape, like bending a paper clip.
+  - For every **action force**, there is an **equal and opposite reaction force** (Newton’s Third Law).
+  - The action and the reaction act on **two different objects**.
+
+lesson:
+  - title: 'Virtual experiment: stretch it, then let go'
+    blocks:
+      - type: experiment
+        covers: [K2.1, K2.2, U2.1, S2.1, S2.2, K1.7]
+        title: Stretch or bend four objects, then let go
+        question: A rubber band, a spring, a paper clip and a lump of modelling clay are each stretched or bent, then let go.
+        animation: g6-stretch-test
+        predict:
+          choices:
+            - The rubber band and the spring go back. The others stay changed.
+            - The paper clip and the clay go back. The others stay changed.
+            - All four go back to their shape.
+            - None of them go back to their shape.
+          answer: 0
+        observe: |-
+          - The **rubber band** and the **spring** went back to their shape.
+          - The **paper clip** stayed bent, and the **clay** stayed stretched.
+        explain: |-
+          - The rubber band and spring have **elasticity**. Their change was **temporary**. While stretched, they pulled back with an **elastic force**.
+          - The paper clip and the clay have **plasticity**. Their change was **permanent**.
+
+  - title: Temporary or permanent?
+    blocks:
+      - type: compare
+        covers: [K2.1, K2.2, S2.1, U2.1]
+        columns:
+          - title: Elasticity
+            body: |-
+              - A **temporary** change in shape.
+              - Let go, and it springs back.
+              - Stretching a rubber band.
+          - title: Plasticity
+            body: |-
+              - A **permanent** change in shape.
+              - Let go, and it stays changed.
+              - Bending a paper clip.
+      - type: visual
+        covers: [S2.1, U2.1, K2.1, K2.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: temp, label: Temporary (elastic), icon: '🔁' }
+            - { id: perm, label: Permanent (plastic), icon: '📌' }
+          cards:
+            - { text: A trampoline mat as you land on it, bin: temp, why: It dips under you and springs flat again. }
+            - { text: Aluminum foil crumpled into a ball, bin: perm, why: Open it up and the creases stay. The change is permanent. }
+            - { text: A sponge squeezed in your hand, bin: temp, why: Let go and it puffs back to its shape. }
+            - { text: A spoon bent in a drawer, bin: perm, why: It stays bent until someone bends it back. }
+            - { text: A hair elastic stretched around a ponytail, bin: temp, why: Take it out and it shrinks back. }
+            - { text: Your thumbprint pressed into clay, bin: perm, why: The dent stays after you lift your thumb. }
+        caption: Sort each change. Does it spring back, or stay changed?
+
+  - title: 'Virtual experiment: push off'
+    blocks:
+      - type: experiment
+        covers: [K3.1, K3.2, K3.3, U3.1, S3.1]
+        title: Ava pushes Jay on scooter boards
+        question: |-
+          - Ava and Jay are the same size, sitting on scooter boards on a smooth gym floor.
+          - Ava pushes on Jay’s hands. Jay just holds his hands still.
+        animation: g6-skate-push
+        predict:
+          choices:
+            - Only Jay rolls away.
+            - Only Ava rolls away.
+            - Both roll apart, in opposite directions.
+          answer: 2
+        observe: |-
+          - During the push, two arrows appeared, the **same size** and pointing in **opposite directions**.
+          - The **action** force acted on Jay, and the **reaction** force acted on Ava.
+          - **Both** friends rolled apart, the same distance.
+        explain: |-
+          - Ava exerted an **action force** on Jay, toward the right. So Jay rolled right.
+          - At the same moment, Jay exerted an equal **reaction force** on Ava, toward the left. So Ava rolled left.
+          - Even though Jay didn’t try to push, the reaction force was there.
+
+  - title: Action and reaction all around
+    blocks:
+      - type: figure
+        covers: [S3.1, K3.1, K3.2, K3.3]
+        figure: >-
+          <svg viewBox="0 0 440 170" class="fig-svg" role="img" aria-label="A balloon flying to the right along a string. Air rushes out of its opening to the left. A blue arrow on the air points left, labelled action, balloon pushes air. A red arrow on the balloon points right, labelled reaction, air pushes balloon.">
+          <line class="sci-tick" x1="10" y1="40" x2="430" y2="40"/>
+          <ellipse cx="250" cy="80" rx="70" ry="38" fill="#d23b2e" stroke="currentColor" stroke-width="2"/><path d="M180 80 l-14 -9 v18 Z" fill="#d23b2e"/>
+          <path class="fig-arrow" d="M150 70 q-20 10 -40 0 M150 90 q-20 -10 -40 0"/>
+          <line x1="150" y1="130" x2="70" y2="130" stroke="#2f5fd0" stroke-width="5" stroke-linecap="round"/><path d="M58 130 l14 -8 v16 Z" fill="#2f5fd0"/>
+          <text class="fig-label" x="20" y="160">Action: balloon pushes air</text>
+          <line x1="260" y1="130" x2="340" y2="130" stroke="#b42318" stroke-width="5" stroke-linecap="round"/><path d="M352 130 l-14 -8 v16 Z" fill="#b42318"/>
+          <text class="fig-label" x="430" y="160" text-anchor="end">Reaction: air pushes balloon</text>
+          </svg>
+        caption: A balloon rocket. The two arrows are the same length and point opposite ways. They act on two different objects.
+      - type: table
+        covers: [S3.1, K3.1, K3.2, K3.3, U3.1]
+        headers: [Interaction, Action force, Reaction force]
+        rows:
+          - ['🏊 Swimming', 'Your hands push the water **backward**.', 'The water pushes you **forward**.']
+          - ['🛶 Paddling a canoe', 'The paddle pushes the water **backward**.', 'The water pushes the paddle and canoe **forward**.']
+          - ['🚶 Walking', 'Your foot pushes the ground **backward**.', 'The ground pushes you **forward**.']
+          - ['🏀 Bouncing a ball', 'The ball pushes the floor **down**.', 'The floor pushes the ball **up**.']
+      - type: callout
+        variant: mistake
+        covers: [K3.2, K3.3, U3.1]
+        title: Watch out for these
+        body: |-
+          - The reaction force is **never smaller**. It is always equal to the action force.
+          - Something doesn’t have to move, or try, to push back. A wall pushes back on your hand, too.
+
+keyTerms:
+  - term: Elasticity
+    covers: [K2.2]
+    definition: A property that lets an object change shape for a while, then go back, like a stretched rubber band.
+  - term: Plasticity
+    covers: [K2.1]
+    definition: A property that leads to a permanent change in shape, like a bent paper clip.
+  - term: Action force
+    covers: [K3.1]
+    definition: A force exerted on an object in a particular direction.
+  - term: Reaction force
+    covers: [K3.2, U3.1]
+    definition: The equal force that acts in the opposite direction to an action force, on the other object.
+  - term: Newton’s Third Law
+    covers: [U3.1]
+    definition: For every action force, there is an equal and opposite reaction force.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: Mila bends a paper clip open to make a hook. When she lets go, it stays as a hook. Which property is this?
+    choices:
+      - Plasticity, a permanent change
+      - Elasticity, a temporary change
+      - Elasticity, a permanent change
+      - Plasticity, a temporary change
+    answer: 0
+    feedback:
+      '1': Did the paper clip spring back to its first shape?
+      '2': Elasticity lets an object go back. Did this one go back?
+      '3': A temporary change would undo itself. Did the hook undo itself?
+    hints:
+      - Did the paper clip go back to its first shape when Mila let go?
+    solution:
+      - The paper clip stayed as a hook, so the change is **permanent**.
+      - A permanent change in shape comes from **plasticity**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S2.1, K2.2]
+    type: multi
+    prompt: Select **all** the **temporary** changes in shape.
+    choices:
+      - A diving board bends as a swimmer bounces on it.
+      - A bike tire squashes a little as you ride over a bump.
+      - A car door gets dented by a shopping cart.
+      - A snowball is pressed into a hard ball.
+      - A slingshot band stretches back before a shot.
+    answer: [0, 1, 4]
+    feedback:
+      '2': Does the dent pop out by itself after the cart rolls away?
+      '3': Does the hard snowball fluff back into loose snow by itself?
+    hints:
+      - For each one, ask what happens right after the force stops.
+    solution:
+      - The diving board, the tire and the slingshot band all spring back once the force stops. Those are temporary changes.
+      - The dent and the packed snowball stay changed. Those are permanent.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K3.1, K3.2, U3.1]
+    type: mc
+    prompt: A swimmer pushes the water **backward** with her hands. What is the reaction force?
+    choices:
+      - The water pushes the swimmer forward.
+      - The water pushes the swimmer backward.
+      - The swimmer pushes the water forward.
+      - There is no reaction force in water.
+    answer: 0
+    feedback:
+      '1': A reaction acts in the opposite direction to the action. Which way was the action?
+      '2': The reaction acts on the other object. Which object did the swimmer push?
+      '3': Every action force has a reaction force. Is water any different?
+    hints:
+      - The reaction acts on the **other** object, in the **opposite** direction.
+    solution:
+      - The action is the swimmer pushing the water backward.
+      - So the reaction is the water pushing the swimmer **forward**, with an equal force. That is how she moves through the pool.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K3.3, U3.1, S3.1]
+    type: mc
+    prompt: |-
+      Ezra steps out of a canoe onto a dock. As he jumps forward, the canoe slides **backward**, away from the dock.
+      Why?
+    choices:
+      - His feet pushed the canoe backward, and the canoe pushed him forward with an equal force.
+      - The canoe got lighter when he left, so the water pushed it away.
+      - He pushed the dock, and the dock pushed the canoe away.
+      - The canoe was already drifting backward, and he jumped at the same time.
+    answer: 0
+    feedback:
+      '1': The canoe moved at the moment he jumped. What touched it at that moment?
+      '2': Was Ezra touching the dock while he was pushing off?
+      '3': It moved the moment he jumped. What forces acted between Ezra and the canoe?
+    hints:
+      - What did Ezra push on to jump?
+      - Name the action force, then the reaction force.
+    solution:
+      - To jump forward, Ezra’s feet pushed the canoe **backward**. That is the action force, on the canoe.
+      - The canoe pushed Ezra **forward** with an equal force. That is the reaction, on Ezra.
+      - So he moved toward the dock and the canoe moved away from it.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S2.2, K2.1, K2.2]
+    type: mc
+    prompt: Lin has a strip of a new plastic material. How can she test whether it is **elastic** or **plastic**?
+    choices:
+      - Bend it a little, let go, and see whether it goes back to its first shape.
+      - Weigh it, then bend it, and weigh it again.
+      - Put it in water and see whether it floats or sinks.
+      - Look closely at its colour and how shiny it is.
+    answer: 0
+    feedback:
+      '1': Bending doesn’t change the mass, whether the material is elastic or plastic. What would show the difference?
+      '2': That tests density. What do the words elastic and plastic describe?
+      '3': Colour and shine don’t tell you what happens when its shape changes. What would?
+    hints:
+      - Elastic and plastic describe what happens **after** a change in shape.
+    solution:
+      - Elasticity means a temporary change and plasticity means a permanent one.
+      - So change its shape a little, let go, and watch. If it springs back, it is elastic. If it stays changed, it is plastic.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K3.2, K3.3, U3.1]
+    type: mc
+    prompt: Owen pushes hard on a brick wall. He says, “The wall isn’t pushing back on me. It isn’t even moving!” What is wrong?
+    choices:
+      - The wall pushes back on him with an equal force. That is why his hands don’t go through it.
+      - The wall pushes back, but much more weakly, because it isn’t trying.
+      - Owen is right. Only moving objects can push back.
+      - The wall pushes back only after Owen stops pushing.
+    answer: 0
+    feedback:
+      '1': Newton’s Third Law says how big the reaction is. Does it depend on trying?
+      '2': If the wall didn’t push back, what would stop his hands?
+      '3': Do action and reaction forces happen one after the other, or at the same time?
+    hints:
+      - Picture Owen pushing the same wall while standing on a scooter board. What would happen to him?
+    solution:
+      - Every action force has an **equal and opposite** reaction force, whether or not anything moves.
+      - The wall pushes back on Owen’s hands as hard as he pushes. On a scooter board, that reaction would roll him backward.
+      - It seemed right because the wall doesn’t look like it is doing anything.
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [S3.1, K3.1, K3.2, K3.3]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 460 150" class="fig-svg" role="img" aria-label="Four drawings, A to D, of a hand pushing a wall. A: a blue arrow on the wall points into the wall and an equal red arrow on the hand points away from the wall. B: two arrows, both on the wall, point opposite ways. C: a long arrow on the wall points into it and a short arrow on the hand points away. D: two equal arrows both point into the wall.">
+      <g><rect class="fig-rect" x="80" y="10" width="20" height="100"/><circle cx="62" cy="60" r="12" fill="#e0b48a"/>
+      <line x1="80" y1="40" x2="104" y2="40" stroke="#2f5fd0" stroke-width="4"/><path d="M112 40 l-10 -6 v12 Z" fill="#2f5fd0"/>
+      <line x1="50" y1="84" x2="26" y2="84" stroke="#b42318" stroke-width="4"/><path d="M18 84 l10 -6 v12 Z" fill="#b42318"/><text class="fig-label" x="60" y="140" text-anchor="middle">A</text></g>
+      <g transform="translate(115 0)"><rect class="fig-rect" x="80" y="10" width="20" height="100"/><circle cx="62" cy="60" r="12" fill="#e0b48a"/>
+      <line x1="80" y1="40" x2="104" y2="40" stroke="#2f5fd0" stroke-width="4"/><path d="M112 40 l-10 -6 v12 Z" fill="#2f5fd0"/>
+      <line x1="104" y1="84" x2="80" y2="84" stroke="#b42318" stroke-width="4"/><path d="M72 84 l10 -6 v12 Z" fill="#b42318"/><text class="fig-label" x="60" y="140" text-anchor="middle">B</text></g>
+      <g transform="translate(230 0)"><rect class="fig-rect" x="80" y="10" width="20" height="100"/><circle cx="62" cy="60" r="12" fill="#e0b48a"/>
+      <line x1="80" y1="40" x2="104" y2="40" stroke="#2f5fd0" stroke-width="4"/><path d="M112 40 l-10 -6 v12 Z" fill="#2f5fd0"/>
+      <line x1="50" y1="84" x2="42" y2="84" stroke="#b42318" stroke-width="4"/><path d="M34 84 l10 -6 v12 Z" fill="#b42318"/><text class="fig-label" x="60" y="140" text-anchor="middle">C</text></g>
+      <g transform="translate(345 0)"><rect class="fig-rect" x="80" y="10" width="20" height="100"/><circle cx="62" cy="60" r="12" fill="#e0b48a"/>
+      <line x1="80" y1="40" x2="104" y2="40" stroke="#2f5fd0" stroke-width="4"/><path d="M112 40 l-10 -6 v12 Z" fill="#2f5fd0"/>
+      <line x1="26" y1="84" x2="50" y2="84" stroke="#b42318" stroke-width="4"/><path d="M58 84 l-10 -6 v12 Z" fill="#b42318"/><text class="fig-label" x="60" y="140" text-anchor="middle">D</text></g>
+      </svg>
+    prompt: A hand pushes a wall. In each drawing, the **blue** arrow is the action and the **red** arrow is the reaction. Which drawing is correct?
+    choices: [Drawing A, Drawing B, Drawing C, Drawing D]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The arrows are equal and opposite, but look where they are drawn. Which object should feel the reaction?
+      '2': The reaction is on the hand and points the right way. Compare the two arrows’ lengths.
+      '3': Both arrows point at the wall. Which way should a reaction point?
+    hints:
+      - Check three things. Is the reaction on the **other** object? Is it **opposite**? Is it **equal**?
+    solution:
+      - The action is the hand pushing the wall, so the blue arrow is on the wall, pointing into it.
+      - The reaction is the wall pushing the hand, so the red arrow is on the hand, pointing away from the wall, and just as long.
+      - Only **Drawing A** gets all three right.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K3.1, K3.2, K3.3, U3.1, S3.1]
+    type: investigation
+    prompt: |-
+      Priya tapes a blown-up balloon to a straw. The straw slides along a string stretched across the classroom.
+      She lets go of the balloon’s opening, and air rushes out.
+    parts:
+      - type: mc
+        prompt: The opening points toward the **door**. Which way does the balloon zoom?
+        choices:
+          - Away from the door
+          - Toward the door
+          - Straight up off the string
+        answer: 0
+        feedback:
+          '1': The air rushes out toward the door. Which way does the reaction push?
+          '2': The string holds the straw. And which way did the air go?
+        hints:
+          - Which way is the air pushed? The balloon goes the opposite way.
+        solution:
+          - The balloon pushes air out toward the door. The air pushes the balloon the **opposite** way, away from the door.
+      - type: multi
+        prompt: Select **both** forces in the action-reaction pair.
+        choices:
+          - The balloon pushes the air out toward the door.
+          - The air pushes the balloon away from the door.
+          - The string pushes the straw upward.
+          - The balloon pushes the string toward the door.
+        answer: [0, 1]
+        feedback:
+          '2': The string does hold the straw up, but that is not what makes the balloon zoom. Which two forces are equal and opposite here?
+          '3': The straw slides along the string. Which object does the balloon push to move?
+        hints:
+          - An action-reaction pair acts between the **same two objects**, in opposite directions.
+        solution:
+          - The balloon and the air push on each other. The balloon pushes the air toward the door, and the air pushes the balloon away from the door.
+          - Same two objects, equal size, opposite directions.
+      - type: mc
+        prompt: Priya turns the balloon around, so its opening points toward the **window**. What happens now?
+        choices:
+          - It zooms toward the door, away from the window.
+          - It still zooms away from the door.
+          - It doesn’t move, because it is facing the wrong way.
+        answer: 0
+        feedback:
+          '1': The balloon doesn’t remember where it went last time. Where is the air pushed out now?
+          '2': Air still rushes out. What does the reaction force do?
+        hints:
+          - Where is the air going now? The balloon goes the opposite way.
+        solution:
+          - Now the air is pushed out toward the window, so the reaction pushes the balloon toward the door.
+          - The balloon always moves **opposite** to the air it pushes out.
+    wrapUp: To make something move one way, push something else the other way. The reaction does the rest.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [U2.1, K2.1, K2.2, S2.1]
+    type: multi
+    prompt: |-
+      A toy company asks you to choose materials. Select **all** the parts that need an **elastic** material.
+    choices:
+      - The string on a toy bow, which must spring back after every shot
+      - The bouncy mat of a mini trampoline
+      - A model sculpture that must keep the shape the artist pressed into it
+      - A bumper on a toy car, which must go back to its shape after a bump
+      - A bendable craft stem that stays in any shape a child twists it into
+    answer: [0, 1, 3]
+    feedback:
+      '2': The sculpture must **keep** its new shape. Is that a temporary change or a permanent one?
+      '4': It must stay in the new shape. Which property gives a permanent change?
+    hints:
+      - For each part, ask whether its change in shape should **undo itself** or **stay**.
+    solution:
+      - The bow string, the trampoline mat and the bumper must go back to their shape every time, so they need **elasticity**.
+      - The sculpture and the craft stem must keep their new shape, so they need **plasticity**.
+      - The right property depends on the job. Neither one is better.

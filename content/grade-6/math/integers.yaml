@@ -1,0 +1,328 @@
+id: integers
+grade: 6
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT6-OI1-GQ1-LO1]
+order: 1
+title: Positive and Negative Numbers
+shortTitle: Positive & negative
+summary: >-
+  Find negative numbers on sideways and upright number lines, write them with signs in context,
+  and use magnitude and opposites to compare and order them.
+
+bigIdea: |-
+  - **Negative numbers** are left of zero, or below zero on an upright line. They have a **−** sign.
+  - **Positive numbers** are right of or above zero. The **+** sign is optional. **Zero** is neither.
+  - **Magnitude** is how far a number is from zero. The **sign** tells you which way.
+  - A number and its **opposite** have the same magnitude on opposite sides of zero.
+
+lesson:
+  - title: Numbers below zero
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.5, S1.1, U1.2]
+        component: integer-line
+        props: { mode: opposites, view: thermometer, a: -4 }
+        caption: |-
+          - Slide **A** below zero. Watch where it goes on each line.
+          - Try the **Thermometer**, **Sea level** and **Money** views too.
+
+  - title: Writing the sign
+    blocks:
+      - type: table
+        covers: [K1.2, K1.3, K1.4, K1.5, S1.2]
+        headers: [Situation, In words, As a number]
+        rows:
+          - ['A cold morning', '5 °C below zero', '−5']
+          - ['A hilltop', '8 m above sea level', '+8 or 8']
+          - ['A diver', '3 m below sea level', '−3']
+          - ['A library fine', 'you owe $4, a debt', '−4']
+          - ['Water freezes', '0 °C', '0, with no sign']
+      - type: callout
+        variant: tip
+        covers: [K1.4, U1.2]
+        title: Zero has no sign
+        body: The sign tells you which **direction** a number is from zero. Zero is where you start, so it is **neither** positive nor negative.
+
+  - title: Magnitude and opposites
+    blocks:
+      - type: figure
+        covers: [K1.6, K1.7, S1.3, S1.4]
+        figure: { kind: int-line, min: -6, max: 6, points: [{ v: -3, label: '−3' }, { v: 3, label: '+3' }], jumps: [{ from: 0, to: -3 }, { from: 0, to: 3 }] }
+        caption: '−3 and +3 are both **3 units from zero**. They have the same **magnitude**, in opposite directions.'
+      - type: compare
+        covers: [K1.8, U1.3, U1.1]
+        columns:
+          - title: Magnitude
+            body: |-
+              How **far** from zero.
+              −3 and 3 both have magnitude **3**.
+          - title: Sign
+            body: |-
+              Which **way** from zero.
+              − is left or below. + is right or above.
+          - title: Opposites
+            body: |-
+              Same magnitude, other side.
+              −3 and 3 are **additive inverses**.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI6-GQ1-LO1#K1.3]
+        title: Remember from Grade 3
+        body: The natural numbers **never end**. Now every one of them has a mirror twin left of zero, so the number line never ends in **either** direction.
+
+  - title: Which is greater?
+    blocks:
+      - type: visual
+        covers: [S1.5, S1.6, K1.1]
+        component: integer-line
+        props: { mode: compare, views: [line, thermometer], a: -7, b: -2 }
+        caption: Move **A** and **B**. The number farther **right**, or higher up, is always the greater one.
+      - type: callout
+        variant: mistake
+        covers: [U1.3, S1.6]
+        title: A bigger magnitude can be less
+        body: '−7 is farther from zero than −2, but it is farther **left**. So \(-7 < -2\). On a thermometer, −7 °C is colder.'
+
+  - title: Putting numbers in order
+    blocks:
+      - type: example
+        covers: [S1.5, S1.6]
+        title: Least to greatest
+        problem: Order **4, −7, 0, 9, −2** from least to greatest.
+        steps:
+          - 'Negative numbers come first. The one with the **greater** magnitude is farther left: −7, then −2.'
+          - 'Zero comes next, between the negatives and the positives.'
+          - 'Then the positive numbers, from small to big: 4, then 9.'
+        answer: '\(-7 < -2 < 0 < 4 < 9\)'
+
+keyTerms:
+  - term: Negative number
+    covers: [K1.1, K1.3]
+    definition: 'A number less than zero, written with a − sign, like −5. It sits left of zero, or below it.'
+  - term: Positive number
+    covers: [K1.2]
+    definition: 'A number greater than zero. You can write it with or without a + sign: +5 or 5.'
+  - term: Magnitude
+    covers: [K1.6]
+    definition: 'How many units a number is from zero. −5 and 5 both have magnitude 5.'
+  - term: Additive inverses
+    covers: [K1.7, K1.8]
+    definition: 'A number and its opposite, like 5 and −5. They have the same magnitude and opposite signs.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.1, S1.2]
+    type: number
+    figure: { kind: int-line, min: -10, max: 10, view: thermometer, points: [{ v: -6 }] }
+    prompt: A thermometer outside a rink shows this temperature. What is it?
+    answer: -6
+    unit: °C
+    verify: 0 - 6
+    hints:
+      - Is the red line above zero or below it?
+      - Count the marks from 0 down to the top of the red line. Below zero means a − sign.
+    solution:
+      - 'The red line stops **6** marks below zero.'
+      - 'Below zero is negative, so the temperature is **−6 °C**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.3, K1.2, K1.4]
+    type: multi
+    prompt: Which of these are **negative** numbers? Choose all of them.
+    choices: ['−8', '+3', '0', '12', '−1']
+    answer: [0, 4]
+    feedback:
+      '1': 'The + sign means positive, so +3 is right of zero.'
+      '2': 'Zero is neither positive nor negative. It is where you start counting from.'
+      '3': 'A number with no sign is positive. 12 is right of zero.'
+    hints:
+      - Which sign shows a negative number?
+    solution:
+      - 'Negative numbers have a **−** sign: **−8** and **−1**.'
+      - '+3 and 12 are positive, with or without the + sign. Zero is neither.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.6, S1.3, S1.1]
+    type: mc
+    figure: { kind: int-line, min: -8, max: 8, view: elevation, points: [{ v: -5, label: diver }, { v: 3, label: gull }] }
+    prompt: A diver swims below a gull. Which one is **farther** from sea level?
+    choices: [The diver, The gull, They are the same distance]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'The gull is higher up, but count the units from sea level for each one.'
+      '2': 'Count the marks from 0 to the diver, then from 0 to the gull. Do you get the same number?'
+    hints:
+      - Sea level is 0. How many units is each one from 0?
+    solution:
+      - 'The diver is at −5, which is **5** units from sea level. The gull is at +3, which is **3** units.'
+      - 'The diver is farther. Magnitude is distance from zero, whichever way you go.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.5, S1.2, K1.5]
+    type: order
+    prompt: |-
+      At a dock, a seal dives **12 m below** the water. A crab hides **3 m below**. The dock is **1 m above** the water, and a kite flies **9 m above**.
+      Write each height as a number. Put them in order from **lowest** to **highest**, with the water's surface too.
+    items: ['−12 (seal)', '−3 (crab)', '0 (water)', '+1 (dock)', '+9 (kite)']
+    hints:
+      - Which heights are below the water? They get a − sign.
+      - The lowest thing is the one farthest below zero.
+    solution:
+      - 'Below the water is negative: the seal is −12 and the crab is −3. The water is 0.'
+      - 'Above the water is positive: the dock is +1 and the kite is +9.'
+      - 'Lowest to highest: \(-12 < -3 < 0 < 1 < 9\).'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.5, U1.3, K1.6]
+    type: mc
+    prompt: |-
+      Priya was asked to order **−2, −5, 0, 3, −9** from least to greatest. She wrote:
+
+      **0, −2, 3, −5, −9**
+
+      Her order isn't right, but she followed a rule. What rule did she use?
+    choices:
+      - She ordered them by their distance from zero.
+      - She put the numbers with no sign first.
+      - She ordered them from greatest to least.
+      - She wrote them in the order they were given.
+    answer: 0
+    feedback:
+      '1': '0 has no sign and 3 has no sign, but they are not next to each other in her list.'
+      '2': 'From greatest to least would start with 3. Her list starts with 0.'
+      '3': 'The question gave −2 first. Her list starts with 0.'
+    hints:
+      - Look at her list without the signs. What do you notice?
+      - '0, 2, 3, 5, 9. What is each of those numbers, for each number she wrote?'
+    solution:
+      - 'Without signs, her list reads 0, 2, 3, 5, 9. Those are the **magnitudes**, from smallest to biggest.'
+      - 'She ordered by distance from zero and ignored the direction.'
+      - 'The real order is \(-9 < -5 < -2 < 0 < 3\). For negative numbers, a bigger magnitude means farther left.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K1.5, S1.6, S1.2]
+    type: multi
+    prompt: |-
+      Four friends count their money after a school fair. Write money you have as positive and money you owe as negative.
+
+      - Ari **has $5**.
+      - Bea **owes $8**.
+      - Cal **owes $2**.
+      - Dee has nothing and owes nothing.
+
+      Which statements are true? Choose all of them.
+    choices:
+      - '\(-8 < -2\), because Bea owes more than Cal'
+      - '\(0 > -2\), because Dee is better off than Cal'
+      - '\(5 > -8\)'
+      - '\(-2 < -8\), because 2 is less than 8'
+      - '\(0 < -8\)'
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'Owing $2 is better than owing $8, so Cal’s −2 is the greater number. Which way should the sign point?'
+      '4': 'Dee owes nothing, and Bea owes $8. Who is better off? The better-off number is greater.'
+    hints:
+      - Write each friend’s money as a number first.
+      - The more someone owes, the farther left their number is.
+    solution:
+      - 'Ari is +5, Bea is −8, Cal is −2 and Dee is 0.'
+      - 'On the line, −8 is farthest left, then −2, then 0, then 5. So \(-8 < -2\), \(0 > -2\) and \(5 > -8\) are true.'
+      - 'Owing more money means being worse off, so the number is **less**.'
+
+  - id: b4
+    level: 2
+    thinking: backwards
+    covers: [K1.7, K1.8, S1.3, S1.4]
+    type: number
+    prompt: A number and its opposite are marked on a number line. They are **14 units apart**. What is the **negative** one?
+    answer: -7
+    verify: 0 - 14 / 2
+    hints:
+      - Where is zero, compared with a number and its opposite?
+      - Zero is exactly halfway between them. How far is each one from zero?
+    solution:
+      - 'A number and its opposite have the same magnitude, so zero is exactly **halfway** between them.'
+      - 'Half of 14 is 7. So they are 7 and **−7**.'
+      - 'Check: from −7 to 0 is 7 units, and from 0 to 7 is 7 more. That makes 14.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [U1.3, K1.6, S1.5, K1.5]
+    type: investigation
+    prompt: |-
+      Two towns report their noon temperatures, but rain has smudged the signs on the weather sheet. You can read only the magnitudes: **3** and **5**.
+    parts:
+      - type: number
+        prompt: Each temperature could be positive or negative. How many different **pairs** of temperatures could the two towns have?
+        answer: 4
+        verify: 2 * 2
+        hints:
+          - The first town could be 3 °C or −3 °C. What about the second town?
+        solution:
+          - 'The first town is 3 or −3. For each of those, the second town is 5 or −5.'
+          - 'That is \(2 \times 2 = 4\) pairs: 3 and 5, 3 and −5, −3 and 5, −3 and −5.'
+      - type: mc
+        prompt: 'A reporter says both towns were **below zero**. Which town was colder?'
+        choices: ['The town with magnitude 5', 'The town with magnitude 3', 'You still can’t tell']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '−3 °C is closer to zero than −5 °C. Is closer to zero warmer or colder, below zero?'
+          '2': 'Both are below zero now, so you know both signs. Put −3 and −5 on a thermometer.'
+        hints:
+          - Both are negative. Which one is farther below zero?
+        solution:
+          - 'The temperatures are −3 °C and −5 °C. −5 is farther below zero, so that town was colder.'
+      - type: number
+        prompt: 'Forget the reporter. A new clue says the **colder** town has the **smaller** magnitude. What was the **warmer** town’s temperature?'
+        answer: 5
+        unit: °C
+        verify: '5'
+        hints:
+          - Go through the four pairs from part 1. In which pairs is the colder temperature the one with magnitude 3?
+          - Two pairs fit. What is the same about them?
+        solution:
+          - '3 and 5: the colder is 3, magnitude 3 ✓. −3 and 5: the colder is −3, magnitude 3 ✓.'
+          - '3 and −5, or −3 and −5: the colder is −5, magnitude 5 ✗.'
+          - 'Both pairs that fit have **5 °C** as the warmer temperature. You still can’t tell if the colder town was 3 °C or −3 °C.'
+    wrapUp: 'Magnitude tells you how far a number is from zero. The sign tells you which way. To compare two numbers, you need both.'
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.7, S1.4, S1.5, U1.1]
+    type: mc
+    prompt: |-
+      Jonah says, "If \(a < b\), then the opposite of \(a\) is also less than the opposite of \(b\)." For example, he would say that since \(2 < 6\), then \(-2 < -6\).
+      Is Jonah’s claim always true, sometimes true or never true?
+    choices: [Always true, Sometimes true, Never true]
+    fixedOrder: true
+    answer: 2
+    feedback:
+      '0': 'Test his own example on a number line. Is −2 left of −6?'
+      '1': 'Try a few pairs, like 2 and 6, or −4 and 1, or −5 and −3. Does any pair work for Jonah?'
+    hints:
+      - Test his example first. Put −2 and −6 on a number line.
+      - 'Taking the opposite flips a number to the other side of zero, like a mirror. What does a mirror do to left and right?'
+    solution:
+      - 'His example fails: −6 is left of −2, so \(-6 < -2\), not \(-2 < -6\).'
+      - 'Taking opposites is like folding the number line at zero. Whatever was on the left ends up on the right.'
+      - 'So if \(a\) is left of \(b\), then the opposite of \(a\) is **right** of the opposite of \(b\). The claim is **never** true.'

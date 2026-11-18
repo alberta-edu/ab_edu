@@ -75,8 +75,44 @@ import TopicFunnel from './visuals/TopicFunnel.astro';
 import SentenceLab from './visuals/SentenceLab.astro';
 import SpellBuilder from './visuals/SpellBuilder.astro';
 import PunctLab from './visuals/PunctLab.astro';
+import TextXray from './visuals/TextXray.astro';
+import ConflictMap from './visuals/ConflictMap.astro';
+import LandGlobe from './visuals/LandGlobe.astro';
+import SharingCircle from './visuals/SharingCircle.astro';
+import AffixLab from './visuals/AffixLab.astro';
+import PalindromeMirror from './visuals/PalindromeMirror.astro';
+import SlantMeter from './visuals/SlantMeter.astro';
+import ClauseBuilder from './visuals/ClauseBuilder.astro';
+import HeatParticles from './visuals/HeatParticles.astro';
+import ForceShapes from './visuals/ForceShapes.astro';
+import SolarSystem from './visuals/SolarSystem.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
+import DemocracyGlobe from './visuals/DemocracyGlobe.astro';
+import AthensAssembly from './visuals/AthensAssembly.astro';
+import DemocracyMap from './visuals/DemocracyMap.astro';
+import GovBranches from './visuals/GovBranches.astro';
+import CrownBalance from './visuals/CrownBalance.astro';
+import GrandCouncil from './visuals/GrandCouncil.astro';
+import ElectionSim from './visuals/ElectionSim.astro';
+import CharterCheck from './visuals/CharterCheck.astro';
+import ProjectPath from './visuals/ProjectPath.astro';
+import IntegerLine from './visuals/IntegerLine.astro';
+import ZeroPairs from './visuals/ZeroPairs.astro';
 
+import FactorTree from './visuals/FactorTree.astro';
+import FairShare from './visuals/FairShare.astro';
+import CommonDenominators from './visuals/CommonDenominators.astro';
+import FractionTimes from './visuals/FractionTimes.astro';
+import DoubleLine from './visuals/DoubleLine.astro';
+import AlgebraTiles from './visuals/AlgebraTiles.astro';
+import ShapeMapper from './visuals/ShapeMapper.astro';
+import Tessellation from './visuals/Tessellation.astro';
+import CartesianPlane from './visuals/CartesianPlane.astro';
+import TransformLab from './visuals/TransformLab.astro';
+import ParallelogramArea from './visuals/ParallelogramArea.astro';
+import PrismBuilder from './visuals/PrismBuilder.astro';
+import FunctionMachine from './visuals/FunctionMachine.astro';
+import ChanceLab from './visuals/ChanceLab.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -155,6 +191,42 @@ const visuals = {
   globe: Globe,
   'latlong-map': LatLongMap,
   'inference-equation': InferenceEquation,
+  'democracy-globe': DemocracyGlobe,
+  'athens-assembly': AthensAssembly,
+  'democracy-map': DemocracyMap,
+  'gov-branches': GovBranches,
+  'crown-balance': CrownBalance,
+  'grand-council': GrandCouncil,
+  'election-sim': ElectionSim,
+  'charter-check': CharterCheck,
+  'project-path': ProjectPath,
+  'text-xray': TextXray,
+  'conflict-map': ConflictMap,
+  'land-globe': LandGlobe,
+  'sharing-circle': SharingCircle,
+  'affix-lab': AffixLab,
+  'palindrome-mirror': PalindromeMirror,
+  'slant-meter': SlantMeter,
+  'clause-builder': ClauseBuilder,
+  'g6-heat-particles': HeatParticles,
+  'g6-force-shapes': ForceShapes,
+  'g6-solar-system': SolarSystem,
+  'integer-line': IntegerLine,
+  'zero-pairs': ZeroPairs,
+  'factor-tree': FactorTree,
+  'fair-share': FairShare,
+  'common-denominators': CommonDenominators,
+  'fraction-times': FractionTimes,
+  'double-line': DoubleLine,
+  'algebra-tiles': AlgebraTiles,
+  'shape-mapper': ShapeMapper,
+  'tessellation': Tessellation,
+  'cartesian-plane': CartesianPlane,
+  'transform-lab': TransformLab,
+  'parallelogram-area': ParallelogramArea,
+  'prism-builder': PrismBuilder,
+  'function-machine': FunctionMachine,
+  'chance-lab': ChanceLab,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

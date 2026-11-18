@@ -1,0 +1,361 @@
+id: capitals-colons-spelling
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG6-OI9-GQ1-LO1]
+order: 13
+title: Capitals, Colons, Abbreviations and Spelling
+shortTitle: Capitals, colons & spelling
+summary: >-
+  Use capitals for importance and effect, give the colon its three jobs, read and write
+  abbreviations, and spell long words by their word families and patterns.
+
+bigIdea: |-
+  - **Capitals** show which words are important, and can create effects.
+  - A **colon** introduces a list, an explanation or an example.
+  - **Abbreviations** make writing quick to read, when readers know them.
+  - Words in the same family keep their spelling, so a word you know can spell a word you don’t.
+
+lesson:
+  - title: Capitals show importance
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: punct-lab
+        props:
+          mode: capitals
+          sentence: On Canada Day, my aunt Rosa took us to the Royal Tyrrell Museum in Drumheller to see Albertosaurus.
+        caption: Tap every word that needs a capital. Names of people, places, days, holidays, museums and dinosaurs all count as important.
+      - type: callout
+        variant: tip
+        covers: [K1.1, S1.1]
+        title: Titles too
+        body: 'In a title, capitalize the important words: *The Ballad of the Blue Quilt*. Small words like *of* and *the* stay lowercase, unless they come first.'
+
+  - title: Capitals and punctuation for effect
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.3, U1.1]
+        component: punct-lab
+        props:
+          mode: effect
+          versions:
+            - { text: 'Do not feed the goat.', effect: 'Calm and clear. A good everyday sign.' }
+            - { text: 'Do NOT feed the goat.', effect: 'One word in capitals stresses the most important part.' }
+            - { text: 'Do not feed the goat: he eats everything.', effect: 'The colon adds an explanation, and a little joke.' }
+            - { text: 'Welcome to the Goat Zone.', effect: 'Capitals on *Goat Zone* make it sound like an important place, for fun.' }
+        caption: Same goat, different effects. Which sign would actually stop you?
+      - type: callout
+        variant: mistake
+        covers: [S1.3, U1.1]
+        title: Less is more
+        body: If every word is in capitals, none of them stands out, and it is hard to read. Save capitals for the words that matter most.
+
+  - title: The colon’s three jobs
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: list, label: Introduces a list, icon: 📋 }
+            - { id: explain, label: Gives an explanation, icon: 💡 }
+            - { id: example, label: Gives an example, icon: 🔎 }
+          cards:
+            - { text: 'Pack these for the hike: water, a hat and sunscreen.', bin: list, why: 'The colon points to the items.' }
+            - { text: 'We need three things for the bird feeder: seeds, string and a pine cone.', bin: list, why: 'After the colon comes the list of things.' }
+            - { text: 'The game was cancelled: the rink’s ice had melted.', bin: explain, why: 'The second part tells **why**.' }
+            - { text: 'Nobody could sleep: the wind howled all night.', bin: explain, why: 'The colon introduces the reason.' }
+            - { text: 'Some animals change colour in winter: the snowshoe hare turns white.', bin: example, why: 'The second part gives one example.' }
+            - { text: 'Our town has a famous landmark: the giant pysanka in Vegreville.', bin: example, why: 'The colon introduces a specific example.' }
+        caption: Sort each sentence by what the colon does. The part **before** a colon must be a complete thought.
+
+  - title: Abbreviations
+    blocks:
+      - type: table
+        covers: [K1.2]
+        caption: Abbreviations make writing shorter and quicker to read, if the reader knows them.
+        headers: [Abbreviation, Stands for, Where you see it]
+        rows:
+          - ['**km**, **cm**, **kg**', 'kilometre, centimetre, kilogram', 'Measurements, in math and science']
+          - ['**AB**, **BC**, **SK**', 'Alberta, British Columbia, Saskatchewan', 'Addresses']
+          - ['**Ave.**, **St.**, **Rd.**', 'Avenue, Street, Road', 'Addresses and maps']
+          - ['**Dr.**, **Mrs.**', 'Doctor, Missus', 'Before a person’s name']
+          - ['**e.g.**', 'for example', 'Notes and textbooks']
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Know your reader
+        body: Use an abbreviation only when your reader will know it. If not, write the word out the first time.
+
+  - title: Word families keep their spelling
+    blocks:
+      - type: visual
+        covers: [K3.2, U3.1, S3.2]
+        component: text-xray
+        props:
+          button: Show the family link
+          pages:
+            - label: sign
+              note: Sign’s silent *g* is heard in *signal*. Remember one, and you can spell the other.
+              parts:
+                - { style: text, text: '**sign** · **sign**al · **sign**ature · de**sign**', tag: 'Base: sign', job: 'You hear the g in signal and signature.' }
+            - label: muscle
+              note: Muscle’s silent *c* is heard in *muscular*.
+              parts:
+                - { style: text, text: '**musc**le · **musc**ular', tag: 'Base: musc', job: 'Say muscular. Now you hear the c.' }
+            - label: nation
+              note: The sound of the *a* changes, but the spelling stays the same.
+              parts:
+                - { style: text, text: '**nation** · **nation**al · inter**nation**al', tag: 'Base: nation', job: 'Na-tion and nat-ional sound different, but they share their spelling.' }
+        caption: Words built from the same base by adding prefixes and suffixes are a **family**. Spelling follows meaning.
+
+  - title: Patterns to know
+    blocks:
+      - type: table
+        covers: [K3.1, S3.1, K3.3]
+        caption: Spelling patterns for adding suffixes
+        headers: [Pattern, Examples]
+        rows:
+          - ['Drop a silent *e* before a suffix that starts with a vowel', 'compete → competing, create → creation']
+          - ['Change *y* to *i* after a consonant', 'happy → happiness, carry → carried']
+          - ['Double a final *l* before *-ed* or *-ing* (Canadian spelling)', 'travel → travelled, cancel → cancelled']
+          - ['Keep the base when adding a prefix', 'mis + spell → misspell, un + natural → unnatural']
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI9-GQ1-LO1#K3.2]
+        title: Remember from Grade 5
+        body: Knowing word parts, or morphemes, helps you spell words correctly.
+
+keyTerms:
+  - term: Colon
+    covers: [K1.3]
+    definition: 'A punctuation mark (:) that introduces a list, an explanation or an example.'
+  - term: Abbreviation
+    covers: [K1.2]
+    definition: A shortened form of a word, such as km for kilometre.
+  - term: Derivation
+    covers: [K3.2]
+    definition: Building new words by adding prefixes and suffixes to a base, such as sign to signal.
+  - term: Word family
+    covers: [K3.2, U3.1]
+    definition: Words that share a base and a meaning, such as nation, national and international.
+  - term: Spelling pattern
+    covers: [K3.1]
+    definition: A rule that works across many words, such as dropping a silent e before -ing.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Which sentence uses a **colon** correctly?
+    choices:
+      - 'We saw three birds at the feeder: a jay, a chickadee and a magpie.'
+      - 'We saw: a jay, a chickadee and a magpie at the feeder.'
+      - 'We saw three birds at: the feeder.'
+      - 'We: saw three birds at the feeder.'
+    answer: 0
+    feedback:
+      '1': '“We saw” leaves you waiting. The part before a colon must be a complete thought.'
+      '2': There is no list, explanation or example after this colon.
+      '3': A colon can’t split the subject from its verb.
+    hints:
+      - Read the part before the colon on its own. Is it a complete thought?
+    solution:
+      - '“We saw three birds at the feeder” is complete. The colon introduces the **list** of birds.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.2]
+    type: mc
+    prompt: A trail sign says “Lookout 3 km.” What does **km** stand for?
+    choices: [kilometres, kilograms, kilometres per hour, kind of mountain]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Kilograms measure mass, and a trail sign measures distance.
+      '2': That is a speed, written km/h.
+      '3': Not a real abbreviation. What would a trail sign measure?
+    hints:
+      - What would a trail sign tell you about a lookout?
+    solution:
+      - '**km** means kilometres, a distance. The lookout is 3 kilometres away.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Which sentence has **all** the capitals it needs?
+    choices:
+      - On Tuesday, Kiran visited Elk Island National Park.
+      - On tuesday, Kiran visited Elk Island national park.
+      - on Tuesday, Kiran visited elk island National Park.
+      - On Tuesday, kiran visited Elk Island National park.
+    answer: 0
+    feedback:
+      '1': Days of the week are capitalized, and so is every main word of a park’s name.
+      '2': The first word of a sentence, and every main word of a place name, need capitals.
+      '3': A person’s name is important, and so is the whole park name.
+    hints:
+      - Check the first word, the day, the name and every word of the park.
+    solution:
+      - '*On*, *Tuesday*, *Kiran*, and each word of *Elk Island National Park* need capitals.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.3]
+    type: mc
+    prompt: '“There was only one problem: the cake was still in the oven.” What is this colon doing?'
+    choices:
+      - Introducing an explanation of the problem
+      - Introducing a list of problems
+      - Introducing an example of a cake
+      - Joining two sentences that have nothing to do with each other
+    answer: 0
+    feedback:
+      '1': There is only one thing after the colon. Is it a list?
+      '2': Is the second part an example of a cake, or something else?
+      '3': A colon links ideas that belong together. How are these two parts connected?
+    hints:
+      - The first part says there is a problem. What does the second part do?
+    solution:
+      - The second part tells **what** the problem was. The colon introduces an **explanation**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.2, U3.1, S3.2]
+    type: mc
+    prompt: Amir keeps forgetting the silent **g** in *design*. Which word could help him remember it?
+    choices: [signal, desk, dragon, digging]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*Desk* starts the same, but is it in the same word family?'
+      '2': '*Dragon* has a g, but does it share a base and meaning with *design*?'
+      '3': '*Digging* has g’s, but is it from the base *sign*?'
+    hints:
+      - Find the base inside *design*. Which choice has the same base?
+    solution:
+      - '*Design* and *signal* share the base **sign**. In *signal*, you can hear the g.'
+      - Spelling follows meaning, so one family member can help you spell another.
+
+  - id: b3
+    level: 2
+    thinking: apply
+    covers: [S3.1, K3.1]
+    type: text
+    prompt: |-
+      Add **-ed** to *travel*, using Canadian spelling:
+
+      “Last summer, we ___ to Jasper.”
+    accept: [travelled]
+    hints:
+      - In Canadian spelling, what happens to a final *l* before *-ed*?
+    solution:
+      - Double the *l*, **travelled**. Canadian spelling doubles it, as in *cancelled* and *labelled*.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [S1.3, K1.1, U1.1]
+    type: mc
+    prompt: Lucy is making a sign for the classroom fish tank. Which one gets the most important message across **best**?
+    choices:
+      - 'Please feed the fish ONCE a day: too much food makes them sick.'
+      - 'PLEASE FEED THE FISH ONCE A DAY TOO MUCH FOOD MAKES THEM SICK'
+      - 'please feed the fish once a day too much food makes them sick'
+      - 'Please Feed The Fish Once A Day. Too Much Food Makes Them Sick.'
+    answer: 0
+    feedback:
+      '1': When every word is in capitals, which word stands out? And where does one idea end?
+      '2': No capitals and no punctuation make it hard to read. Where does each idea start?
+      '3': Capitals on every word make them all look equally important. Which one really matters?
+    hints:
+      - Which word is the most important? Which sign makes that word stand out?
+    solution:
+      - One word in capitals, **ONCE**, stresses the key rule. The colon introduces the explanation.
+      - Capitals and punctuation work best when they help readers find what matters.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K3.2, S3.2, U3.1]
+    type: investigation
+    prompt: You hear the word **competition** but don’t know how to spell the middle. Let’s use its word family.
+    parts:
+      - type: text
+        prompt: Which shorter verb is *competition* built from? It means “to try to win.”
+        accept: [compete]
+        hints:
+          - Athletes ___ in the Olympics.
+        solution:
+          - '**compete**. *Competition* is built from it.'
+      - type: mc
+        prompt: In *compete*, you clearly hear the second *e*. In *competition*, that sound is blurry. What letter is it?
+        choices:
+          - e, because it comes from compete
+          - i, because it sounds like “compitition”
+          - a, because it sounds like “compatition”
+          - u, because it sounds like “compution”
+        answer: 0
+        feedback:
+          '1': It may sound like an i, but your ear can be fooled. Which family member makes the sound clear?
+          '2': Say *compete* again. Do you hear an a anywhere in the middle?
+          '3': Say *compete* again. Do you hear a u anywhere in the middle?
+        hints:
+          - Say *compete* slowly. Which vowel do you hear in the middle?
+        solution:
+          - The family member *compete* shows the vowel is **e**. So it is *comp-e-tition*.
+      - type: mc
+        prompt: Which other pair works the same way, where a clear word helps you spell a blurry one?
+        choices:
+          - define → definition
+          - happy → happiness
+          - sing → sang
+          - jump → jumping
+        answer: 0
+        feedback:
+          '1': The y changes to i here, but no sound gets blurry. Look for a hidden vowel.
+          '2': This is a change of tense, not a word family built with a suffix.
+          '3': Nothing is hidden here. Every sound stays clear.
+        hints:
+          - Say *definition*. Is any vowel hard to hear? Which family member makes it clear?
+        solution:
+          - The middle of *definition* is blurry, but *define* makes the *i* clear. Spelling keeps the family link.
+    wrapUp: When a vowel is hard to hear, think of a family member where it is clear. Spelling follows meaning.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.2, S1.2, S1.3]
+    type: mc
+    prompt: |-
+      Theo sends a note to his grandmother:
+
+      > Mtg w/ Dr. Patel @ 3. Pls pick me up b4 4 @ the S. entrance.
+
+      His grandmother calls him, confused. What went wrong?
+    choices:
+      - He used abbreviations his reader doesn’t know, so the note was quick to write but hard to read.
+      - Abbreviations are always wrong in a note, so he should never use any.
+      - He forgot to put a colon before the list of times.
+      - He should have written every word in capitals so it was clear.
+    answer: 0
+    feedback:
+      '1': '*Dr.* is a fine abbreviation that nearly everyone knows. Which ones are the problem?'
+      '2': There is no list here. What made it confusing?
+      '3': Capitals wouldn’t explain what *mtg* or *b4* mean.
+    hints:
+      - Which abbreviations would Grandma know? Which might she not?
+    solution:
+      - '*Mtg*, *w/*, *Pls*, *b4* and *S.* may be quick for Theo, but Grandma doesn’t know them.'
+      - Abbreviations help only when the reader knows them. Choose them for your reader, not just for speed.

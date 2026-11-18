@@ -1,0 +1,406 @@
+id: canada-democracy
+grade: 6
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [TmeAXRKA1UWMLoMTK8midA]
+order: 5
+title: How Democracy Works in Canada
+shortTitle: Democracy in Canada
+summary: >-
+  Run an election in a made-up province, meet the premier, the Official Opposition and the judges, and
+  sort what federal and provincial governments decide.
+
+bigIdea: |-
+  - Canada’s democracy is built on the **British parliamentary system**, and on ideas from Athens, Rome and England.
+  - Citizens **elect** MPs, MLAs and local councils. The party with the most seats forms the government.
+  - An **Official Opposition** and **independent judges** keep governments in check.
+  - The **Constitution Act** splits decisions between the **federal** and **provincial** governments.
+
+lesson:
+  - title: Built on older ideas
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.1]
+        component: democracy-globe
+        props: { focus: ottawa }
+        caption: Press **Play the journey** to follow democracy from Athens to Ottawa and Edmonton.
+      - type: table
+        covers: [K1.12, K1.3, S1.1, S1.2]
+        caption: Democracy in Canada today, and where its ideas come from
+        headers: [In Canada today, Earlier system]
+        rows:
+          - ['🗳️ **Free and fair elections**', 'Rome elected its magistrates. England’s Bill of Rights called for free elections.']
+          - ['⚖️ **An independent judiciary**', 'Under England’s Habeas Corpus Act, a judge checks whether jailing someone is lawful.']
+          - ['🔒 **Checks and balances**', 'Rome’s two consuls could block each other. Magna Carta made the king consult a council.']
+          - ['👀 **Government transparency**', 'Draco put the laws of Athens up for everyone to read. Today, laws are published and debates are recorded.']
+          - ['📜 **Laws that protect rights**', 'England’s Bill of Rights turned rights into law.']
+      - type: callout
+        variant: remember
+        covers: ['RImgfrrzskGqH3G573n4Sw#K1.6']
+        title: Remember from Grade 4
+        body: The **BNA Act** of 1867 set up Canada’s parliamentary system, with MPs, a prime minister and a Governor General to represent the Crown.
+
+  - title: Who’s who in government
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.3, K1.4, K1.6, K1.7, K1.8, K1.11]
+        component: gov-branches
+        props: { set: canada }
+        caption: Tap each column. Like the Roman Republic, Canada splits power into three branches.
+      - type: compare
+        covers: [K1.1, K1.2]
+        columns:
+          - title: 🏛️ A government system
+            body: Gives a society **leaders**, a way to **make decisions** and a way to **apply laws**.
+          - title: 🗳️ Democracy
+            body: A government system in which **citizens have a voice** in decision making.
+
+  - title: Holding an election
+    blocks:
+      - type: visual
+        covers: [K1.5, K1.6, K1.7, K1.8, S1.3]
+        component: election-sim
+        caption: Press **Hold the election**, then hold another. Watch who becomes premier and who becomes the Official Opposition.
+      - type: example
+        covers: [S1.3, K1.5, K1.7]
+        title: How a provincial election works
+        problem: Alberta elects its MLAs this way. Federal elections for MPs work the same way.
+        steps:
+          - The province is split into areas called **ridings**. Each riding elects one member.
+          - Candidates run in each riding. Most belong to a political **party**.
+          - Citizens 18 and older vote by **secret ballot**. The candidate with the **most votes** wins.
+          - The party with the **most seats** forms the government. Its leader becomes **premier**.
+          - The party with the next most seats becomes the **Official Opposition**.
+      - type: callout
+        variant: tip
+        covers: [K1.7, K1.5]
+        title: Two territories do it differently
+        body: In the Northwest Territories and Nunavut, MLAs are elected without parties. The MLAs then choose the premier together.
+
+  - title: What MPs and MLAs do
+    blocks:
+      - type: compare
+        covers: [K1.9, S1.5]
+        columns:
+          - title: 🍁 MPs
+            body: |-
+              Members of Parliament, in Ottawa.
+
+              - Listen to the people in their riding
+              - Debate and **pass laws** for all of Canada
+              - Decide on federal services and issues
+          - title: 🌹 MLAs
+            body: |-
+              Members of the Legislative Assembly, in Edmonton.
+
+              - Listen to the people in their riding
+              - Debate and **pass laws** for Alberta
+              - Decide on provincial services and issues
+      - type: table
+        covers: [K1.8, S1.4]
+        caption: Why have an Official Opposition?
+        headers: [Without one, With one]
+        rows:
+          - ['The government could pass any law with no hard questions.', 'The Opposition asks hard questions every day.']
+          - ['Mistakes could stay hidden.', 'Problems come out in public, where citizens can see them.']
+          - ['Voters would hear only one plan.', 'Voters hear another plan, ready for the next election.']
+
+  - title: Federal or provincial?
+    blocks:
+      - type: visual
+        covers: [K1.10, S1.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: federal, label: Federal government, icon: 🍁 }
+            - { id: provincial, label: Provincial government, icon: 🌹 }
+          cards:
+            - { text: 'Canada’s army, navy and air force', bin: federal, why: 'Defence protects the whole country, so the Constitution Act gives it to the federal government.' }
+            - { text: Money and coins, bin: federal, why: 'One currency works across all of Canada.' }
+            - { text: The postal service, bin: federal, why: 'Mail crosses provincial borders, so it is federal.' }
+            - { text: Criminal law, bin: federal, why: 'The same criminal law applies across Canada.' }
+            - { text: Schools and education, bin: provincial, why: 'Each province runs its own schools.' }
+            - { text: Hospitals, bin: provincial, why: 'The Constitution Act gives hospitals to the provinces.' }
+            - { text: 'Setting up towns, cities and counties', bin: provincial, why: 'Provinces create local governments, which citizens then elect.' }
+        caption: The **Constitution Act** divides who decides what. Sort each card.
+
+  - title: Judges who answer only to the law
+    blocks:
+      - type: compare
+        covers: [K1.11, S1.7]
+        columns:
+          - title: ✅ Independent judges
+            body: |-
+              - Decide each case by the law and the evidence
+              - Can rule **against the government**
+              - Can’t be fired for a decision the government doesn’t like
+          - title: ❌ If judges obeyed the government
+            body: |-
+              - A government could win every case
+              - Citizens couldn’t challenge an unfair law
+              - No one would trust the courts
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.2]
+        title: Democratic principles in action
+        body: |-
+          - **Representation:** citizens elect MPs, MLAs and councils.
+          - **Equality under law:** governments must obey the law too.
+          - **Justice:** independent courts settle disputes fairly.
+          - **Freedom:** people can criticize the government and vote it out.
+
+keyTerms:
+  - term: MP
+    covers: [K1.6, K1.9]
+    definition: A Member of Parliament, elected to represent a riding in Canada’s House of Commons.
+  - term: MLA
+    covers: [K1.7, K1.9]
+    definition: A Member of the Legislative Assembly, elected to represent a riding in a provincial or territorial legislature.
+  - term: Prime minister
+    covers: [K1.6]
+    definition: The head of the federal government, the leader of the party with the most elected MPs.
+  - term: Premier
+    covers: [K1.7]
+    definition: The head of a provincial or territorial government.
+  - term: Official Opposition
+    covers: [K1.8]
+    definition: The party with the second-most seats, which questions the government and holds it accountable.
+  - term: Lieutenant governor
+    covers: [K1.4]
+    definition: The person who represents the King in a provincial government.
+  - term: Riding
+    covers: [K1.5]
+    definition: An area whose voters elect one member, such as an MP or an MLA. Also called an electoral district.
+  - term: Independent judiciary
+    covers: [K1.11, K1.12]
+    definition: Courts and judges that decide by the law, free from control by elected governments.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.6]
+    type: mc
+    prompt: Who becomes Canada’s **prime minister**?
+    choices:
+      - The leader of the party with the most elected MPs
+      - The person who gets the most votes across all of Canada
+      - The Governor General
+      - The MP who has served the longest
+    answer: 0
+    feedback:
+      '1': Canadians vote for an MP in their riding, not for a prime minister. How are seats turned into a leader?
+      '2': The Governor General represents the King. Who leads the government?
+      '3': Years of service don’t decide it. Which party matters?
+    hints:
+      - Think about the election visual. Which party’s leader ends up in charge?
+    solution:
+      - The prime minister is the **leader of the party with the most elected MPs**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.4]
+    type: mc
+    prompt: Who represents the King in **Alberta’s** government?
+    choices:
+      - The lieutenant governor
+      - The Governor General
+      - The premier
+      - The Speaker
+    answer: 0
+    feedback:
+      '1': The Governor General represents the King in the federal government. Who does it for a province?
+      '2': The premier leads the government. Who stands in for the King?
+      '3': The Speaker runs debates in the legislature. Who stands in for the King?
+    hints:
+      - Is Alberta’s government federal or provincial?
+    solution:
+      - In a provincial government, a **lieutenant governor** represents the King. The Governor General does it for the federal government.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.10, S1.6]
+    type: mc
+    prompt: Lethbridge needs a new hospital. Which government is responsible?
+    choices:
+      - The provincial government
+      - The federal government
+      - The Official Opposition
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The federal government handles things like defence and money. Who did the Constitution Act give hospitals to?
+      '2': The Opposition asks questions, but does it run the province?
+    hints:
+      - Look back at the card sort. Where did hospitals go?
+    solution:
+      - The Constitution Act gives **hospitals** to the **provinces**, so it is Alberta’s provincial government.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K1.7, K1.8, S1.3]
+    type: mc
+    prompt: |-
+      A made-up province has just held an election.
+
+      | Party | Seats won |
+      |---|---|
+      | 🌾 Wheat Party | 12 |
+      | 🌊 River Party | 31 |
+      | 🌹 Rose Party | 44 |
+
+      Which is true?
+    choices:
+      - The Rose Party’s leader becomes premier. The River Party is the Official Opposition.
+      - The Wheat Party’s leader becomes premier, because it is listed first.
+      - The River Party’s leader becomes premier, because it is in the middle.
+      - The Rose Party forms the government. The Wheat Party is the Official Opposition.
+    answer: 0
+    feedback:
+      '1': The order of the table doesn’t matter. Which party has the most seats?
+      '2': Being in the middle doesn’t count. Compare the numbers.
+      '3': The Rose Party does form the government. But which party has the next most seats?
+    hints:
+      - Find the most seats, then the second-most.
+    solution:
+      - 'Rose has the most seats (44), so its leader becomes **premier**.'
+      - 'River has the next most (31), so it is the **Official Opposition**.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K1.12, S1.2]
+    type: multi
+    prompt: Which of these are evidence of **government transparency** in Canada? Choose all that apply.
+    choices:
+      - Debates in the Legislature are open to the public and written down.
+      - New laws are published for anyone to read.
+      - You vote in secret, so no one sees your ballot.
+      - Judges can rule against the government.
+    answer: [0, 1]
+    feedback:
+      '2': Secret ballots protect **voters**, not the government. Transparency is about whether citizens can see what the government does.
+      '3': That is an independent judiciary. Does it let citizens see what the government is doing?
+    hints:
+      - Transparency means citizens can see what their **government** is doing. Which choices show that?
+    solution:
+      - Open debates and published laws let citizens see what the government does. That is **transparency**.
+      - The secret ballot protects voters’ choices, and independent judges are a **check** on government. Both are democratic, but they are different ideas.
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [K1.8, S1.4]
+    type: mc
+    prompt: 'Oscar says, "The government won the most seats. The Official Opposition just slows things down. Get rid of it!" What is the strongest reason to keep it?'
+    choices:
+      - It asks hard questions in public, so the government has to explain and fix its plans.
+      - It gets to pass half the laws, so things stay fair.
+      - It chooses the premier when the government can’t agree.
+      - It runs the courts, so judges stay independent.
+    answer: 0
+    feedback:
+      '1': The government has the most seats. Does the Opposition pass half the laws?
+      '2': The premier is the leader of the party with the most seats. What does the Opposition do instead?
+      '3': Judges are independent of all elected members. What is the Opposition’s job?
+    hints:
+      - What would change if no one questioned the government?
+    solution:
+      - The Official Opposition **holds the government accountable**. It questions plans in public and offers other ideas.
+      - Slowing down to answer hard questions can catch mistakes before they become laws.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [K1.9, K1.10, S1.5, S1.6]
+    type: mc
+    prompt: Kai lives on a farm near Vulcan. The school bus ride takes over an hour each way. Kai wants Alberta to pay for more rural school buses. Who should Kai write to?
+    choices:
+      - Kai’s MLA, because education is a provincial responsibility.
+      - Kai’s MP, because buses travel on roads all across Canada.
+      - The Governor General, who represents the King.
+      - A judge, because judges decide what is fair.
+    answer: 0
+    feedback:
+      '1': Which government runs schools, the federal one or the provincial one?
+      '2': The Governor General represents the King federally. Who makes decisions about Alberta’s schools?
+      '3': Judges decide court cases. Who decides how school money is spent?
+    hints:
+      - Is school transportation federal or provincial? Who represents Kai there?
+    solution:
+      - Schools are a **provincial** responsibility. Kai’s **MLA** represents Kai’s riding in Alberta’s Legislature.
+      - MLAs serve citizens by making decisions and passing laws about issues and services like this.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.5, K1.7, S1.3]
+    type: investigation
+    prompt: |-
+      A tiny made-up province has **3 ridings**. Here are the votes.
+
+      | Riding | 🌾 Wheat | 🌊 River |
+      |---|---|---|
+      | North | 600 | 100 |
+      | East | 300 | 400 |
+      | South | 300 | 400 |
+    parts:
+      - type: number
+        prompt: How many seats does the River Party win?
+        answer: 2
+        verify: 1 + 1
+        unit: seats
+        hints: [In each riding, who has the most votes?]
+        solution: ['River wins East and South. Wheat wins North. So River has **2** seats.']
+      - type: number
+        prompt: Now add up **all** the votes in the province. How many more votes did the Wheat Party get than the River Party?
+        answer: 300
+        verify: (600 + 300 + 300) - (100 + 400 + 400)
+        unit: votes
+        hints: [Add each party’s column.]
+        solution: ['Wheat: \(600 + 300 + 300 = 1200\). River: \(100 + 400 + 400 = 900\).', '\(1200 - 900 = 300\) more votes for Wheat.']
+      - type: mc
+        prompt: So which party forms the government?
+        choices:
+          - River, because it won the most seats.
+          - Wheat, because it got the most votes in the province.
+          - Neither, because the results don’t match, so they vote again.
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Wheat did get more votes overall. But what decides who governs?
+          '2': Nothing says they vote again. Look at the steps of an election.
+        hints: [The government is the party with the most what?]
+        solution: ['The party with the **most seats** forms the government. River has 2 of 3 seats, so its leader becomes premier.']
+    wrapUp: Each riding elects one member, and seats decide who governs. So a party can get the most votes in a province and still not form the government.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: perspective
+    covers: [K1.11, S1.7]
+    type: mc
+    prompt: A judge rules that a new provincial law broke the rules and can’t be used. The premier is furious and wants to fire the judge. Why is it important that she can’t?
+    choices:
+      - If judges could be fired for ruling against the government, they might rule however it wants, even when it is wrong.
+      - Because judges are elected, so only voters can fire them.
+      - Because the Official Opposition chooses all the judges.
+      - It isn’t important, because the premier was elected and the judge wasn’t.
+    answer: 0
+    feedback:
+      '1': Canada’s judges aren’t elected. What protects them?
+      '2': The Opposition questions the government. Does it choose judges?
+      '3': Being elected gives the premier a lot of power. Should that include power over the courts?
+    hints:
+      - Imagine you were a judge who could be fired. How might that change your rulings?
+    solution:
+      - Judges have to be free to rule **against the government** when the law says so.
+      - If the premier could fire them, judges might decide to please her, not to follow the law.
+      - That is why the judicial system is **independent** of elected governments. It protects everyone, including people who didn’t vote for the government.

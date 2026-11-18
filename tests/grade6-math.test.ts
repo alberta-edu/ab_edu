@@ -1,0 +1,370 @@
+import { describe, expect, it } from 'vitest';
+import { zeroPairSteps, lineSvg, meaning, compareSymbol, signed, term } from '../src/components/visuals/g6-integers.ts';
+
+describe('Grade 6 integers', () => {
+  it('writes signs with a real minus', () => {
+    expect(signed(-4)).toBe('−4');
+    expect(signed(4)).toBe('+4');
+    expect(signed(4, false)).toBe('4');
+    expect(signed(0)).toBe('0');
+    expect(term(-3)).toBe('(−3)');
+  });
+
+  it('describes a number in context', () => {
+    expect(meaning(-5, 'thermometer')).toBe('5 °C below zero');
+    expect(meaning(8, 'elevation')).toBe('8 m above sea level');
+    expect(meaning(-4, 'money')).toContain('owes $4');
+    expect(meaning(0, 'line')).toContain('neither');
+  });
+
+  it('compares from positions on the line', () => {
+    expect(compareSymbol(-7, -2)).toBe('<');
+    expect(compareSymbol(3, -9)).toBe('>');
+    expect(compareSymbol(0, 0)).toBe('=');
+  });
+
+  const cases: [number, '+' | '−', number, number][] = [
+    [5, '+', -3, 2],
+    [-4, '+', -2, -6],
+    [3, '+', 4, 7],
+    [-6, '+', 6, 0],
+    [2, '−', 5, -3],
+    [-3, '−', -5, 2],
+    [0, '+', -4, -4],
+    [4, '−', 0, 4],
+  ];
+  for (const [a, op, b, want] of cases) {
+    it(`zero pairs: ${a} ${op} ${b} = ${want}`, () => {
+      const steps = zeroPairSteps(a, op, b);
+      const last = steps.at(-1)!;
+      expect(last.phase).toBe('result');
+      expect(last.top.reduce((s, x) => s + x, 0)).toBe(want);
+      expect(last.top.length).toBe(Math.abs(want));
+      if (op === '−') expect(steps.some((s) => s.phase === 'flip')).toBe(true);
+      // Every step's counters add to the same value as the sum written so far.
+      const pair = steps.find((s) => s.phase === 'pair');
+      if (pair) expect(pair.top.length + pair.bottom.length - 2 * pair.pairs).toBe(Math.abs(want));
+    });
+  }
+
+  it('explains subtraction as adding the opposite', () => {
+    const flip = zeroPairSteps(2, '−', 5).find((s) => s.phase === 'flip')!;
+    expect(flip.caption).toContain('2 + (−5)');
+    expect(flip.bottom).toEqual([-1, -1, -1, -1, -1]);
+  });
+
+  it('draws a line with every tick and the chosen points', () => {
+    const svg = lineSvg({ min: -5, max: 5, points: [{ v: -3, label: 'A' }] });
+    expect(svg.match(/g6m-tick/g)?.length).toBe(11);
+    expect(svg).toContain('aria-label="Sideways number line from −5 to 5, with points at A −3."');
+    expect(lineSvg({ min: -10, max: 10, view: 'thermometer', points: [{ v: -6 }] })).toContain('g6m-mercury');
+  });
+});
+
+import { primeFactors, powerHtml, factorPairs, factorTree, leaves, layout, divisibleBy, commonFactors, isPrime, prune, depthOf } from '../src/components/visuals/g6-factors.ts';
+
+describe('Grade 6 prime factorization', () => {
+  it('finds prime factors with repeats', () => {
+    expect(primeFactors(60)).toEqual([2, 2, 3, 5]);
+    expect(primeFactors(72)).toEqual([2, 2, 2, 3, 3]);
+    expect(primeFactors(97)).toEqual([97]);
+    expect(powerHtml(72)).toBe('2<sup>3</sup> × 3<sup>2</sup>');
+    expect(powerHtml(30)).toBe('2 × 3 × 5');
+    expect(isPrime(1)).toBe(false);
+    expect(isPrime(2)).toBe(true);
+  });
+
+  it('ends every factor tree in the same primes', () => {
+    for (const n of [60, 72, 36, 90, 84, 100]) {
+      for (const pair of factorPairs(n)) {
+        const t = factorTree(n, pair);
+        expect([...leaves(t)].sort((a, b) => a - b)).toEqual(primeFactors(n));
+      }
+    }
+  });
+
+  it('grows a tree level by level and lays out every node', () => {
+    const t = factorTree(60, [6, 10]);
+    expect(leaves(prune(t, 1))).toEqual([6, 10]);
+    expect(leaves(prune(t, depthOf(t)))).toEqual([2, 3, 2, 5]);
+    const nodes = layout(t);
+    expect(nodes.length).toBe(7);
+    expect(nodes.filter((p) => !p.parent).map((p) => p.n)).toEqual([60]);
+  });
+
+  it('reads divisibility from prime factors', () => {
+    expect(divisibleBy(72, 12).yes).toBe(true);
+    expect(divisibleBy(60, 9)).toMatchObject({ yes: false });
+    expect(divisibleBy(60, 9).why).toContain('only 1');
+    expect(divisibleBy(60, 7).why).toContain('no 7');
+  });
+
+  it('builds common factors from shared primes', () => {
+    expect(commonFactors(36, 60)).toEqual([1, 2, 3, 4, 6, 12]);
+    expect(commonFactors(8, 15)).toEqual([1]);
+  });
+});
+
+import { decimalMultiplyFrames, decimalDivideFrames, quotientOf } from '../src/components/visuals/g6-decimal-calc.ts';
+import { framesFor } from '../src/components/visuals/column-calc.ts';
+
+describe('Grade 6 decimal algorithms', () => {
+  const lastRow = (fs: ReturnType<typeof decimalMultiplyFrames>) => fs.at(-1)!.rows.at(-1)!.map((c) => c.ch).join('');
+  it('multiplies a decimal by a 2-digit number and places the point', () => {
+    expect(lastRow(decimalMultiplyFrames('4.75', '12'))).toBe('57.00');
+    expect(lastRow(decimalMultiplyFrames('0.36', '25'))).toBe('9.00');
+    expect(lastRow(decimalMultiplyFrames('2.4', '15'))).toBe('36.0');
+    expect(decimalMultiplyFrames('4.75', '12')[0].caption).toContain('close to 60');
+  });
+  const cases: [string, string, string][] = [
+    ['85.2', '12', '7.1'],
+    ['245', '14', '17.5'],
+    ['750', '24', '31.25'],
+    ['9.6', '12', '0.8'],
+    ['6.54', '3', '2.18'],
+    ['100', '16', '6.25'],
+    ['10', '3', '3.333'],
+  ];
+  for (const [a, b, want] of cases) {
+    it(`${a} ÷ ${b} = ${want}`, () => {
+      const fs = decimalDivideFrames(a, b);
+      expect(quotientOf(fs).replace(/^0+(?=\d)/, '')).toBe(want);
+      for (const f of fs) expect(f.caption.length).toBeGreaterThan(10);
+    });
+  }
+  it('is reached through column-calc', () => {
+    expect(quotientOf(framesFor({ op: '÷', a: '245', b: '14', decimal: true }))).toBe('17.5');
+    expect(framesFor({ op: '÷', a: '612', b: '6' }).at(-1)!.caption).toContain('102');
+  });
+});
+
+import { share, divideToDecimal, sector } from '../src/components/visuals/g6-share.ts';
+
+describe('Grade 6 fractions as quotients', () => {
+  it('shares n things among k people', () => {
+    expect(share(3, 4)).toMatchObject({ whole: 0, rest: 3, decimal: '0.75', exact: true, simplest: null });
+    expect(share(5, 4)).toMatchObject({ whole: 1, rest: 1, decimal: '1.25' });
+    expect(share(6, 8).simplest).toEqual([3, 4]);
+    expect(share(2, 3)).toMatchObject({ decimal: '0.666', exact: false });
+  });
+  it('divides to a decimal', () => {
+    expect(divideToDecimal(3, 8).text).toBe('0.375');
+    expect(divideToDecimal(8, 4).text).toBe('2');
+    expect(divideToDecimal(7, 20).text).toBe('0.35');
+  });
+  it('draws whole circles and slices', () => {
+    expect(sector(0, 0, 10, 0, 1)).toContain('a10 10');
+    expect(sector(0, 0, 10, 0, 0.25)).toMatch(/^M0 0 L0.00 -10.00 A10 10 0 0 1 10.00 0.00 Z$/);
+  });
+});
+
+import { plan, steps as cdSteps, barsSvg, units } from '../src/components/visuals/g6-common-denom.ts';
+
+describe('Grade 6 common denominators', () => {
+  it('uses the bigger denominator when they are related, else the product', () => {
+    expect(plan({ n: 1, d: 3 }, { n: 1, d: 6 })).toEqual({ related: true, fa: 2, fb: 1, D: 6 });
+    expect(plan({ n: 3, d: 8 }, { n: 1, d: 4 })).toEqual({ related: true, fa: 1, fb: 2, D: 8 });
+    expect(plan({ n: 2, d: 3 }, { n: 1, d: 4 })).toEqual({ related: false, fa: 4, fb: 3, D: 12 });
+  });
+  it('ends each example with the right answer', () => {
+    expect(cdSteps('1/3', '+', '1/6').at(-1)!.rows[2]).toMatchObject({ n: 3, d: 6 });
+    expect(cdSteps('2/3', '+', '1/4').at(-1)!.rows[2]).toMatchObject({ n: 11, d: 12 });
+    expect(cdSteps('3/4', '−', '1/6').at(-1)!.rows[2]).toMatchObject({ n: 14, d: 24 });
+    expect(cdSteps('1/2', '+', '1/2')).toHaveLength(2);
+    expect(() => cdSteps('1/4', '−', '1/2')).toThrow();
+    expect(units(6)).toBe('sixths');
+  });
+  it('draws a second bar for an amount over one whole', () => {
+    const svg = barsSvg([{ n: 7, d: 6, label: '7/6', tone: 'sum' }]);
+    expect(svg.match(/g6m-cd-bar/g)?.length).toBe(2);
+  });
+});
+
+import { fracText, groupJumps, groupsSum, partOf, jumpsSvg, partSvg } from '../src/components/visuals/g6-frac-times.ts';
+
+describe('Grade 6 fractions times natural numbers', () => {
+  it('writes products as fractions and mixed numbers', () => {
+    expect(fracText(8, 3)).toBe('8/3 = 2 2/3');
+    expect(fracText(6, 3)).toBe('6/3 = 2');
+    expect(fracText(3, 4)).toBe('3/4');
+  });
+  it('models n × a/b as repeated jumps', () => {
+    expect(groupJumps(4, 2, 3).at(-1)).toEqual({ from: 6, to: 8 });
+    expect(groupsSum(3, 2, 5)).toBe('2/5 + 2/5 + 2/5 = 6/5');
+    expect(jumpsSvg(4, 2, 3).match(/g6m-ft-arc"/g)?.length).toBe(4);
+  });
+  it('models a/b of c as equal parts', () => {
+    expect(partOf(3, 4, 12)).toEqual({ part: [12, 4], total: [36, 4] });
+    expect(partSvg(3, 4, 12).match(/g6m-fx-part--on/g)?.length).toBe(3);
+  });
+});
+
+import { equivalent, unitRate, percentOf, ratioPairs, percentPairs, doubleLineSvg, num } from '../src/components/visuals/g6-ratio.ts';
+
+describe('Grade 6 ratios, rates and percent', () => {
+  it('checks equivalent ratios, unit rates and percents', () => {
+    expect(equivalent(2, 3, 6, 9)).toBe(true);
+    expect(equivalent(2, 3, 4, 5)).toBe(false);
+    expect(unitRate(4, 6)).toBe(1.5);
+    expect(percentOf(35, 60)).toBe(21);
+    expect(num(0.1 + 0.2)).toBe('0.3');
+  });
+  it('lines up matching amounts', () => {
+    const pairs = ratioPairs(2, 150, 4, 0.5);
+    expect(pairs.find((p) => p.hi)).toMatchObject({ top: 1, bottom: 75 });
+    expect(percentPairs(25, 80).find((p) => p.hi)).toMatchObject({ top: 25, bottom: 20 });
+    expect(doubleLineSvg(ratioPairs(2, 3, 3, 2), 'cups', 'eggs')).toContain('g6m-dl-join--hi');
+  });
+});
+
+import { parseTerms, text as termText, combine, sortTerms, tileSteps } from '../src/components/visuals/g6-algebra.ts';
+import { evaluateSteps, pretty } from '../src/components/visuals/expression-steps.ts';
+
+describe('Grade 6 expressions', () => {
+  it('evaluates powers after parentheses and before × and ÷', () => {
+    const last = (e: string) => evaluateSteps(e).at(-1)!.caption;
+    expect(last('2^3 + 4 × 5')).toContain('value 28');
+    expect(last('(3 + 2)^2 − 10')).toContain('value 15');
+    expect(last('36 ÷ (2 + 1)^2')).toContain('value 4');
+    expect(evaluateSteps('2^3 + 1')[0].caption).toContain('2³ = 2 × 2 × 2 = 8');
+    expect(pretty('5^2 × 2')).toBe('5² × 2');
+  });
+  it('reads, sorts and combines like terms', () => {
+    expect(parseTerms('2x + 3 − x + 1')).toEqual([{ c: 2, v: 'x' }, { c: 3, v: '' }, { c: -1, v: 'x' }, { c: 1, v: '' }]);
+    expect(termText(sortTerms(parseTerms('3 + 2y + x + y')))).toBe('x + 2y + y + 3');
+    expect(termText(combine(parseTerms('2x + 3 − x + 1')))).toBe('x + 4');
+    expect(termText(combine(parseTerms('4y + 2x + y + 3x')))).toBe('5x + 5y');
+    expect(termText(combine(parseTerms('5x − 5x + 2')))).toBe('2');
+  });
+  it('expands with the distributive property', () => {
+    const st = tileSteps('3(x + 2)');
+    expect(st[0].groups).toHaveLength(3);
+    expect(st.at(-1)!.expr).toBe('3x + 6');
+    expect(tileSteps('2x + 3 + x + 1').at(-1)!.expr).toBe('3x + 4');
+  });
+});
+
+import { PAIRS, ID, compose, matches, reflectV, rotate, apply, tessellation } from '../src/components/visuals/g6-symmetry.ts';
+
+describe('Grade 6 symmetry and congruence', () => {
+  const pair = (id: string) => PAIRS.find((p) => p.id === id)!;
+  const [flip, turn] = [pair('reflect').moves[0].m, pair('reflect').moves[1].m];
+  it('maps each pair with the moves the lesson describes', () => {
+    expect(matches(flip, pair('reflect').a, pair('reflect').b)).toBe(true);
+    expect(matches(turn, pair('reflect').a, pair('reflect').b)).toBe(false);
+    expect(matches(turn, pair('rotate').a, pair('rotate').b)).toBe(true);
+    expect(matches(compose(flip, turn), pair('two').a, pair('two').b)).toBe(true);
+    expect(matches(flip, pair('two').a, pair('two').b)).toBe(false);
+  });
+  it('finds no reflection or rotation for the slid pair, but laying on top works', () => {
+    const p = pair('slide');
+    for (const m of [ID, flip, turn, compose(flip, turn), compose(turn, flip)]) expect(matches(m, p.a, p.b)).toBe(false);
+    expect(matches(p.lay, p.a, p.b)).toBe(true);
+  });
+  it('reflects and rotates points exactly', () => {
+    expect(apply(reflectV(6), [1, 1])).toEqual([11, 1]);
+    expect(apply(rotate(90, 0, 0), [1, 0]).map((v) => Math.round(v))).toEqual([0, 1]);
+  });
+  it('builds the star from 72 congruent diamonds', () => {
+    const star = tessellation('star');
+    expect(star).toHaveLength(72);
+    const side = (t: (typeof star)[number]) => Math.hypot(t.pts[1][0] - t.pts[0][0], t.pts[1][1] - t.pts[0][1]);
+    for (const t of star) expect(side(t)).toBeCloseTo(side(star[0]), 1);
+  });
+});
+
+import { coord, planeSvg, where, translateP, reflectP, rotateP } from '../src/components/visuals/g6-plane.ts';
+
+describe('Grade 6 Cartesian plane', () => {
+  it('writes coordinates and finds axes', () => {
+    expect(coord([-3, 4])).toBe('(−3, 4)');
+    expect(where([0, 0])).toBe('the origin');
+    expect(where([4, 0])).toBe('the x-axis');
+    expect(planeSvg({ r: 5, points: [{ x: -3, y: 2, label: 'P' }] })).toContain('P (−3, 2)');
+  });
+  it('translates, reflects and rotates polygons', () => {
+    const tri: [number, number][] = [[1, 1], [4, 1], [1, 3]];
+    expect(translateP(tri, -5, 2)).toEqual([[-4, 3], [-1, 3], [-4, 5]]);
+    expect(reflectP(tri, 'x')).toEqual([[1, -1], [4, -1], [1, -3]]);
+    expect(reflectP(tri, 'y')).toEqual([[-1, 1], [-4, 1], [-1, 3]]);
+    expect(rotateP(tri, 90, 'cw', [1, 1])).toEqual([[1, 1], [1, -2], [3, 1]]);
+    expect(rotateP(tri, 90, 'ccw', [1, 1])).toEqual([[1, 1], [1, 4], [-1, 1]]);
+    expect(rotateP(tri, 270, 'cw', [1, 1])).toEqual(rotateP(tri, 90, 'ccw', [1, 1]));
+    expect(rotateP(tri, 180, 'cw', [1, 1])).toEqual([[1, 1], [-2, 1], [1, -1]]);
+  });
+});
+
+import { parallelogram, endTriangle, polygonArea, parallelogramArea, triangleArea } from '../src/components/visuals/g6-area.ts';
+
+describe('Grade 6 area', () => {
+  it('keeps the area when the slant changes', () => {
+    for (const s of [0, 1, 3, 6]) expect(polygonArea(parallelogram(6, 4, s))).toBe(parallelogramArea(6, 4));
+  });
+  it('moves the end triangle to make a rectangle', () => {
+    const tri = endTriangle(4, 2).map(([x, y]) => [x + 6, y] as [number, number]);
+    const rect = polygonArea([[2, 0], [8, 0], [8, 4], [2, 4]]);
+    expect(polygonArea([[2, 0], [6, 0], [8, 4], [2, 4]]) + polygonArea(tri)).toBe(rect);
+  });
+  it('makes a triangle half of the parallelogram', () => {
+    const p = parallelogram(6, 4, 2);
+    expect(polygonArea([p[0], p[1], p[2]])).toBe(triangleArea(6, 4));
+  });
+});
+
+import { cubes, volume, prismSvg } from '../src/components/visuals/g6-prism.ts';
+
+describe('Grade 6 volume', () => {
+  it('counts unit cubes layer by layer', () => {
+    expect(cubes({ l: 4, w: 3, h: 2 })).toHaveLength(24);
+    expect(cubes({ l: 4, w: 3, h: 2 }, 1)).toHaveLength(12);
+    expect(volume({ l: 4, w: 3, h: 2 })).toBe(24);
+  });
+  it('draws one group per cube, with a ghost while layers are missing', () => {
+    const svg = prismSvg({ l: 2, w: 2, h: 3 }, { layers: 2 });
+    expect(svg.match(/g6m-pr-cube/g)).toHaveLength(8);
+    expect(svg).toContain('g6m-pr-ghost');
+  });
+});
+
+import { value, equation, ruleWords, inputFor, graphSvg } from '../src/components/visuals/g6-function.ts';
+
+describe('Grade 6 functions', () => {
+  const plant = { a: 2, b: 3, x: 't', y: 'h', xName: 'weeks', yName: 'cm' };
+  it('applies and writes the rule', () => {
+    expect(value(plant, 4)).toBe(11);
+    expect(equation(plant)).toBe('h = 2t + 3');
+    expect(equation({ ...plant, a: 5, b: 0, y: 'd' })).toBe('d = 5t');
+    expect(ruleWords(plant)).toBe('multiply by 2, then add 3');
+  });
+  it('works backwards from an output', () => {
+    expect(inputFor(plant, 15)).toBe(6);
+    expect(inputFor(plant, 10)).toBeNull();
+  });
+  it('plots one point for each input', () => {
+    expect(graphSvg(plant, 5).match(/<circle/g)).toHaveLength(6);
+  });
+});
+
+import { EXPERIMENTS, likelihood, trial, relative, running, chartSvg } from '../src/components/visuals/g6-chance.ts';
+
+describe('Grade 6 relative frequency', () => {
+  const die = EXPERIMENTS.find((e) => e.id === 'die')!;
+  it('uses the curriculum’s events', () => {
+    expect(EXPERIMENTS.map((e) => e.eventName)).toEqual(['a head', 'an even number', 'blue']);
+    expect(likelihood(die)).toEqual([3, 6]);
+  });
+  it('maps random numbers to equally likely outcomes', () => {
+    expect(trial(die, 0)).toBe(0);
+    expect(trial(die, 0.999)).toBe(5);
+    const seen = new Set(Array.from({ length: 600 }, (_, i) => trial(die, i / 600)));
+    expect(seen.size).toBe(6);
+  });
+  it('writes relative frequency three ways', () => {
+    expect(relative(7, 20)).toEqual({ fraction: '7/20', decimal: '0.35', percent: '35%' });
+    expect(relative(0, 0).percent).toBe('0%');
+  });
+  it('tracks the running relative frequency of the event', () => {
+    expect(running([1, 0, 3], die)).toEqual([1, 0.5, 2 / 3]);
+    expect(chartSvg(running([1, 0, 3], die), 0.5)).toContain('g6m-ch-expect');
+  });
+});

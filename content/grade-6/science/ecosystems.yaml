@@ -1,0 +1,396 @@
+id: ecosystems
+grade: 6
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI6-OI4-GQ1-LO1]
+order: 9
+title: 'Ecosystems: Living and Non-living Parts'
+shortTitle: Ecosystems
+summary: >-
+  Watch a dry year ripple through a wetland, connect the living and non-living parts of ecosystems, and
+  compare deserts, forests, wetlands and more.
+
+bigIdea: |-
+  - An **ecosystem** is a complex system of **biotic** (living) and **abiotic** (non-living) parts.
+  - Every part influences the others, **directly or indirectly**.
+  - Location, size and complexity affect how **diverse** an ecosystem is.
+  - Some ecosystems, like wetlands and forests, **store greenhouse gases**, so protecting them helps with climate change.
+
+lesson:
+  - title: Living and non-living parts
+    blocks:
+      - type: figure
+        covers: [K1.1, K1.2, K1.3, S1.1]
+        figure: >-
+          <svg viewBox="0 0 440 250" class="fig-svg" role="img" aria-label="An ecosystem diagram. Abiotic parts, the Sun's energy, water, soil, air and temperature, are on the left. Biotic parts, plants, animals and micro-organisms, are on the right. Arrows connect them.">
+          <text class="fig-label" x="70" y="22" text-anchor="middle">Abiotic</text><text class="fig-label" x="350" y="22" text-anchor="middle">Biotic</text>
+          <rect class="fig-hl" x="10" y="34" width="120" height="30" rx="8"/><text class="fig-small" x="70" y="54" text-anchor="middle">☀️ Sun’s energy</text>
+          <rect class="fig-hl" x="10" y="74" width="120" height="30" rx="8"/><text class="fig-small" x="70" y="94" text-anchor="middle">💧 Water</text>
+          <rect class="fig-hl" x="10" y="114" width="120" height="30" rx="8"/><text class="fig-small" x="70" y="134" text-anchor="middle">🟫 Soil</text>
+          <rect class="fig-hl" x="10" y="154" width="120" height="30" rx="8"/><text class="fig-small" x="70" y="174" text-anchor="middle">💨 Air</text>
+          <rect class="fig-hl" x="10" y="194" width="120" height="30" rx="8"/><text class="fig-small" x="70" y="214" text-anchor="middle">🌡️ Temperature</text>
+          <rect class="fig-rect" x="290" y="50" width="130" height="34" rx="8"/><text class="fig-small" x="355" y="72" text-anchor="middle">🌿 Plants</text>
+          <rect class="fig-rect" x="290" y="110" width="130" height="34" rx="8"/><text class="fig-small" x="355" y="132" text-anchor="middle">🦌 Animals</text>
+          <rect class="fig-rect" x="290" y="170" width="130" height="34" rx="8"/><text class="fig-small" x="355" y="192" text-anchor="middle">🦠 Micro-organisms</text>
+          <path class="fig-arrow" d="M130 49 L290 64 M130 89 L290 70 M130 129 L290 76 M355 84 L355 110 M355 170 L355 144 M290 190 L130 132 M130 49 L130 209"/>
+          </svg>
+        caption: The arrows show some of the ways the parts influence each other. Can you think of more?
+      - type: compare
+        covers: [K1.2, K1.3, K1.1]
+        columns:
+          - title: Biotic (living)
+            body: '**Plants**, **animals** and **micro-organisms**, living things too small to see without a microscope.'
+          - title: Abiotic (non-living)
+            body: '**Energy from the Sun**, **water**, **soil**, **air** and **temperature**.'
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI4-GQ1-LO1#K4.2]
+        title: Remember from Grade 3
+        body: Plants and animals may depend on each other and their environments for survival, such as for food and habitat.
+
+  - title: 'Virtual experiment: a dry year'
+    blocks:
+      - type: experiment
+        covers: [K1.4, U1.1, S1.1, S1.6]
+        title: Watch a dry year in a prairie wetland
+        question: |-
+          - Cattails grow in a wetland, and ducks eat and shelter among them.
+          - Then a year comes with very little rain.
+        animation: g6-wetland-drought
+        predict:
+          choices:
+            - Fewer cattails grow, and most ducks leave.
+            - The ducks stay, because the drought only affects the water.
+            - More cattails grow, because there is more mud.
+          answer: 0
+        observe: |-
+          - The **water level dropped**.
+          - Most of the **cattails** died back.
+          - Most of the **ducks** left. Only two stayed.
+        explain: |-
+          - **Directly:** plants need water to grow, so less water meant fewer cattails.
+          - **Indirectly:** the ducks rely on the plants for food and shelter, so the lack of rain affected them too, through the plants.
+      - type: table
+        covers: [K1.4]
+        caption: More ways the parts influence each other
+        headers: [Example, Directly or indirectly]
+        rows:
+          - ['Animals rely on plants for food.', 'Directly']
+          - ['Energy from the Sun affects temperature.', 'Directly']
+          - ['Decomposers, like bacteria and fungi, help return nutrients to the soil, which helps plants grow.', 'Indirectly']
+
+  - title: Kinds of ecosystems
+    blocks:
+      - type: table
+        covers: [K1.5, K1.6, S1.5]
+        headers: [Ecosystem, Climate pattern, Vegetation, Example]
+        rows:
+          - ['🏜️ **Desert**', 'Very dry', 'Few, spread-out plants such as cactus', 'The Sahara in Africa']
+          - ['🧊 **Arctic**', 'Very cold, short summers', 'Low mosses, lichens and small shrubs', 'The tundra of Nunavut']
+          - ['🌾 **Grassland**', 'Dry summers, cold winters', 'Grasses and wildflowers, few trees', 'The prairie of southern Alberta']
+          - ['🪷 **Wetland**', 'Wet ground most of the year', 'Cattails, sedges and mosses', 'A slough on an Alberta farm']
+          - ['🌲 **Forest**', 'Enough rain for trees', 'Tall trees with layers of shrubs and plants below', 'The boreal forest of northern Alberta']
+          - ['🐟 **Freshwater**', 'Depends on the place', 'Water plants along the shore and below the surface', 'A lake or river']
+      - type: callout
+        variant: tip
+        covers: [K1.6, S1.5]
+        title: Ways to compare ecosystems
+        body: Compare their **climate patterns**, **size**, **vegetation structure** (how plants are layered), **animal populations** and **geographic location**.
+
+  - title: What makes an ecosystem diverse?
+    blocks:
+      - type: compare
+        covers: [K1.9, U1.1, S1.6]
+        columns:
+          - title: 📍 Geographic location
+            body: Its **climate**, **landforms** and **water sources**. A warm, wet place with hills and streams usually supports more kinds of organisms than a cold, dry, flat one.
+          - title: 📏 Size
+            body: From a puddle to a whole forest. A large ecosystem usually has room for more kinds of habitats.
+          - title: 🕸️ Complexity
+            body: The **number and types** of plants and animals. More kinds of plants give more kinds of food and shelter for animals.
+
+  - title: Ecosystems and climate change
+    blocks:
+      - type: table
+        covers: [K1.7, S1.3]
+        caption: Some ecosystems store greenhouse gases and keep them out of the air.
+        headers: [Ecosystem, Where it stores them]
+        rows:
+          - ['🪷 **Wetlands**', 'In layers of wet, partly rotted plants in the ground']
+          - ['🌊 **Oceans**', 'Dissolved in seawater and in ocean life']
+          - ['🌲 **Forests**', 'In tree trunks, roots and the forest floor']
+          - ['🌾 **Grasslands**', 'In deep roots and the soil around them']
+      - type: callout
+        variant: tip
+        covers: [S1.3, K1.7]
+        title: Protecting ecosystems is climate action
+        body: Draining a wetland or clearing a forest can release the greenhouse gases it stored. Preserving them keeps those gases out of the air.
+
+  - title: Exploring an ecosystem
+    blocks:
+      - type: table
+        covers: [K1.8, S1.2]
+        headers: [Tool, Use it to…]
+        rows:
+          - ['🔍 **Magnifying glass**', 'See tiny animals and plant parts up close.']
+          - ['📷 **Still-image camera**', 'Record what you see without taking it home.']
+          - ['🎥 **Video camera** or trail camera', 'Watch animals that hide when people are near, even at night.']
+      - type: table
+        covers: [S1.2, S1.4]
+        caption: Explore responsibly, then build a model
+        headers: ['#', Step]
+        rows:
+          - ['1', 'Stay on paths and **leave things where you find them**. Lift a log gently and put it back.']
+          - ['2', 'Record the **biotic** and **abiotic** parts you see.']
+          - ['3', 'Build a **model** of the ecosystem, such as a diagram, a diorama or a sealed jar, and show how its parts connect.']
+
+keyTerms:
+  - term: Ecosystem
+    covers: [K1.1]
+    definition: A complex system of living and non-living parts that interact in one place.
+  - term: Biotic
+    covers: [K1.2]
+    definition: Living, such as plants, animals and micro-organisms.
+  - term: Abiotic
+    covers: [K1.3]
+    definition: Non-living, such as sunlight, water, soil, air and temperature.
+  - term: Micro-organism
+    covers: [K1.2]
+    definition: A living thing too small to see without a microscope, such as bacteria.
+  - term: Decomposer
+    covers: [K1.4]
+    definition: A living thing that breaks down dead plants and animals and returns nutrients to the soil.
+  - term: Diversity
+    covers: [K1.9, U1.1]
+    definition: How many different kinds of living things an ecosystem has.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2, K1.3]
+    type: multi
+    prompt: In a forest, select **all** the **abiotic** components.
+    choices: [Sunlight, Rainwater, Soil, Moss, Woodpeckers, Mushrooms]
+    answer: [0, 1, 2]
+    feedback:
+      '3': Moss grows and needs water. Is it living?
+      '4': Is a woodpecker alive?
+      '5': Mushrooms grow from the forest floor. Are they living?
+    hints:
+      - Abiotic means non-living. Which of these have never been alive?
+    solution:
+      - Sunlight, water and soil are **abiotic**.
+      - Moss, woodpeckers and mushrooms are all living, so they are **biotic**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.5, K1.6]
+    type: mc
+    prompt: An ecosystem has grasses and wildflowers but very few trees, with dry summers and cold winters. Which kind is it?
+    choices: [Grassland, Forest, Wetland, Desert]
+    answer: 0
+    feedback:
+      '1': A forest has tall trees in layers. What does this one have instead?
+      '2': A wetland has wet ground most of the year. Is this one wet?
+      '3': A desert is very dry with few, spread-out plants. Would it be covered in grass?
+    hints:
+      - Look at the vegetation. What covers the ground?
+    solution:
+      - Grasses and wildflowers with few trees, plus dry summers and cold winters, is a **grassland**, like Alberta’s prairie.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.8, S1.2]
+    type: mc
+    prompt: Mo wants to find out which animals visit a pond at **night**, without disturbing them. Which tool is best?
+    choices: [A trail camera, A magnifying glass, A butterfly net, A flashlight and a jar]
+    answer: 0
+    feedback:
+      '1': A magnifying glass helps you see small things up close. Will Mo be there, close up, at night?
+      '2': Catching animals disturbs them. Is there a way to watch without touching?
+      '3': A bright light and a jar would disturb the animals. What could record them?
+    hints:
+      - Mo won’t be there all night. What can watch for him?
+    solution:
+      - A **trail camera**, a kind of video or still camera, records animals while nobody is there to disturb them.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: whatif
+    covers: [K1.4, U1.1, S1.1]
+    type: mc
+    prompt: Imagine all the **decomposers** on a forest floor disappeared. What would happen over many years?
+    choices:
+      - Dead leaves would pile up, the soil would get fewer nutrients, and plants would grow less.
+      - Nothing would change, because decomposers are too small to matter.
+      - Plants would grow better, because no micro-organisms would compete with them.
+      - The dead leaves would turn into soil faster, on their own.
+    answer: 0
+    feedback:
+      '1': Small doesn’t mean unimportant. What job do decomposers do?
+      '2': Plants need nutrients from the soil. Where do many of those nutrients come from?
+      '3': Who breaks dead leaves down into the soil?
+    hints:
+      - What job do decomposers do?
+      - Follow it one step further. Who needs what they make?
+    solution:
+      - Decomposers break down dead plants and animals and return nutrients to the soil.
+      - Without them, dead leaves pile up, the soil runs low on nutrients, and plants grow less.
+      - Then the animals that eat the plants are affected too. That is an indirect influence.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S1.5, S1.6, K1.9]
+    type: mc
+    prompt: |-
+      | | Arctic tundra | Boreal forest |
+      |---|---|---|
+      | Growing season | 6 to 8 weeks | About 3 months |
+      | Tallest plants | Small shrubs | Tall trees |
+      | Kinds of birds | Fewer | More |
+
+      Which explanation does the table support best?
+    choices:
+      - A colder climate with a shorter growing season supports fewer kinds of plants, and so fewer kinds of birds.
+      - The forest has more birds because birds don’t like the colour white.
+      - The tundra has fewer birds because it has no water at all.
+      - Both have the same diversity, because both are in the north.
+    answer: 0
+    feedback:
+      '1': Is there anything in the table about colour? Use the rows you have.
+      '2': The tundra has lots of water, frozen for much of the year. What does the table say is different?
+      '3': Read the last row. Are they the same?
+    hints:
+      - Which row is abiotic? How could it affect the plants row, and then the birds row?
+    solution:
+      - The tundra’s growing season is shorter, so plants have less time to grow, and only small ones survive.
+      - Fewer kinds of plants mean fewer kinds of food and shelter, so fewer kinds of birds. An abiotic part shapes the diversity.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.7]
+    type: mc
+    prompt: A town plans to drain a large wetland to build a parking lot. A student says this matters for climate change. Why?
+    choices:
+      - Wetlands store greenhouse gases in the ground, and draining one can release them.
+      - Parking lots make clouds that reflect sunlight away.
+      - Wetlands make the Sun shine more strongly on the town.
+      - Draining a wetland adds more water to the air, which cools Earth.
+    answer: 0
+    feedback:
+      '1': Do parking lots make clouds? Think about what the wetland is storing.
+      '2': Can a wetland change the Sun?
+      '3': What does a wetland keep out of the air?
+    hints:
+      - What does a wetland store?
+    solution:
+      - Wetlands store greenhouse gases in their wet ground. Draining one can let those gases escape into the air.
+      - So preserving the wetland is one way to help address climate change.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [S1.2, K1.8]
+    type: mc
+    prompt: |-
+      To study a local creek, Zoe’s group turns over every rock, leaves them where they land, and takes six frogs home
+      in a bucket. What should they have done instead?
+    choices:
+      - Lift rocks gently and put them back, and photograph the frogs where they found them.
+      - Turn over even more rocks, so they see every animal.
+      - Take the frogs home but give them water.
+      - Bring only one frog home, so the creek still has five.
+    answer: 0
+    feedback:
+      '1': Rocks left flipped over are homes that are now gone. Is more of that responsible?
+      '2': Water is kind, but should the frogs leave the creek at all?
+      '3': Fewer is better, but which tool lets you study a frog without taking it?
+    hints:
+      - Responsible examining leaves the ecosystem as you found it. Which tools help?
+    solution:
+      - Rocks and logs are homes for small animals, so put them back gently.
+      - A camera lets you study frogs without taking them from their ecosystem.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, K1.3, K1.4, K1.9, S1.1]
+    type: investigation
+    prompt: |-
+      Ivy builds a model of a pond ecosystem in a big glass jar. She adds pond water, a few water plants, some mud and
+      two snails, and seals the lid.
+    parts:
+      - type: multi
+        prompt: Select **all** the abiotic components Ivy has included.
+        choices: [Pond water, Mud from the pond bottom, Air in the top of the jar, The water plants, The snails]
+        answer: [0, 1, 2]
+        feedback:
+          '3': Do water plants grow? Are they alive?
+          '4': Snails move and eat. Are they alive?
+        hints:
+          - Find everything in the jar that has never been alive.
+        solution:
+          - The water, the mud and the air are abiotic. The plants and snails are biotic.
+      - type: mc
+        prompt: Ivy keeps the jar in a dark closet for a month. Which part fails first, and what happens next?
+        choices:
+          - The plants can’t grow without light, so the snails lose their food.
+          - The snails stop eating, so the plants grow too big.
+          - Nothing, because the lid keeps everything inside.
+        answer: 0
+        feedback:
+          '1': Which part needs light directly?
+          '2': The lid keeps things in, but which abiotic part is missing in a closet?
+        hints:
+          - Which abiotic part is missing in the closet?
+        solution:
+          - Energy from the Sun is missing. The plants need light to grow, so they fail first.
+          - The snails rely on the plants for food, so they are affected indirectly.
+      - type: mc
+        prompt: Ivy compares her jar with the real pond. Which will have **more kinds** of living things?
+        choices:
+          - The real pond, because it is larger and more complex.
+          - The jar, because it is sealed and safe.
+          - Both the same, because the jar has the same water.
+        answer: 0
+        feedback:
+          '1': Being sealed keeps things in. Does it make room for more kinds of living things?
+          '2': Same water, but which one is bigger, with more kinds of plants and animals?
+        hints:
+          - Which characteristics affect diversity?
+        solution:
+          - The real pond is much **larger** and more **complex**, so it supports many more kinds of organisms.
+          - A model is useful, but it is a simplified version of the real thing.
+    wrapUp: A model ecosystem shows how parts connect, but a real ecosystem’s size and complexity support far more life.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.9, U1.1, S1.6]
+    type: mc
+    prompt: |-
+      Two ecosystems are the **same size**. Ecosystem A is flat, dry and has one small pond. Ecosystem B has hills,
+      valleys, two streams and a lake. Which likely has more kinds of plants and animals, and why?
+    choices:
+      - B, because its landforms and water sources create more different habitats.
+      - A, because a flat place is easier for animals to move around.
+      - Both the same, because they are the same size.
+      - A, because one pond is easier for animals to find than many streams.
+    answer: 0
+    feedback:
+      '1': Moving around easily is nice, but does it give more kinds of homes and food?
+      '2': Size is the same, but is size the only characteristic that affects diversity?
+      '3': Does having fewer water sources give more kinds of living things a place to live?
+    hints:
+      - Size is the same, so look at geographic location. What else differs?
+    solution:
+      - With size the same, the difference is **landforms and water sources**.
+      - Hills, valleys, streams and a lake make many different habitats, wet and dry, sunny and shaded. More habitats support more kinds of organisms.

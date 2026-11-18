@@ -78,23 +78,28 @@ Visuals:
 - **Math:** `place-value`, `decimal-zoom`, `column-calc`, `divisibility`, `fraction-explorer`,
   `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`,
   `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`,
-  `data-sorter`
+  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`, `transform-lab` (`move: translate`, `reflect` or `rotate`), `parallelogram-area` (`mode: parallelogram` or `triangle`), `prism-builder`, `function-machine`, `chance-lab` (`start: coin`, `die` or `spinner`)
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,
-  `data-views`
+  `data-views`, `g6-heat-particles`, `g6-force-shapes`, `g6-solar-system`
 - **Social Studies:** `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`,
   `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`,
-  `issue-investigator`
+  `issue-investigator`, `democracy-globe` (`focus`: a stop id), `athens-assembly`, `democracy-map`
+  (`view: greece` or `compare`), `gov-branches` (`set: rome` or `canada`),
+  `crown-balance`, `grand-council`, `election-sim`, `charter-check`,
+  `project-path`
 - **ELAL:** `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`),
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),
   `sentence-rhythm`, `show-dial`, `topic-funnel`, `sentence-lab` (`mode: roles`, `tense`, `adverb`,
-  `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`)
+  `join`), `spell-builder`, `punct-lab` (`mode: capitals` or `effect`), `text-xray` (mock pages with an X-ray of
+  their parts), `conflict-map`, `land-globe` (also word origins), `sharing-circle`, `affix-lab`,
+  `palindrome-mirror`, `slant-meter` (`[[loaded|neutral]]`), `clause-builder` (`mode: join` or `agree`)
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
-`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`.
+`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`, `g6-scale-walk`, `g6-orbit-day`, `g6-map-abstract`, `g6-if-robot`, `g6-moon-shadow`, `g6-dark-room`.
 
 If an idea would be clearer as an animation, 3D view or manipulative, build it in
 `src/components/visuals/` (lazy-loaded if heavy) instead of describing it.
@@ -150,6 +155,9 @@ Used in problems, `figure` blocks and `compare` columns:
 - `{ kind: cylinder, max: 100, minor: 2, major: 10, level: 64 }`: graduated cylinder
 - `{ kind: moons, ages: [3.7, 7.4], labels: [A, B] }`: `ages` in days into the cycle
 - `{ kind: code, blocks: [move, { repeat: 4, body: [move, right] }] }`: block code
+- `{ kind: int-line, min: -10, max: 10, points: [{ v: -4, label: A }], view: thermometer }`: Grade 6 negative numbers
+- `{ kind: plane, r: 6, points: [{ x: -3, y: 2, label: A }], polys: [{ pts: [[1, 1], [4, 1], [1, 3]], labels: [A, B, C] }], centre: [1, 1] }`: Grade 6 four quadrants (`tone: b` for an image)
+- `{ kind: prism, l: 4, w: 3, h: 2, layers: 1, unit: cm, labels: true }`: Grade 6 prism of unit cubes
 - Raw inline SVG for a one-off. Use the site's CSS classes so dark mode works.
 
 ## Math and YAML pitfalls

@@ -1,0 +1,108 @@
+---
+// Positive and negative numbers on a number line that lies sideways or stands upright, as a
+// thermometer, sea level or money owed (MAT6-OI1-GQ1-LO1: K1.1-K1.8, U1.1-U1.3, S1.1-S1.6).
+// "Opposites" shows a number, its magnitude and its additive inverse; "Compare" shows which of
+// two numbers is greater.
+import { lineSvg, type LineView } from './g6-integers.ts';
+
+interface Props {
+  mode?: 'opposites' | 'compare';
+  view?: LineView;
+  /** Views to offer, in order. */
+  views?: LineView[];
+  a?: number;
+  b?: number;
+}
+const { mode = 'opposites', view = 'line', views = ['line', 'thermometer', 'elevation', 'money'], a = -4, b = 2 } = Astro.props;
+const NAMES: Record<LineView, string> = { line: 'Number line', thermometer: 'Thermometer', elevation: 'Sea level', money: 'Money' };
+---
+<integer-line data-mode={mode} data-view={view} data-a={a} data-b={b}>
+  {views.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose a number line">
+      {views.map((v) => <button type="button" data-view={v} aria-pressed={String(v === view)}>{NAMES[v]}</button>)}
+    </div>
+  )}
+  <div class="g6m-il-layout">
+    <div class="g6m-il-stage" data-il="svg" set:html={lineSvg({ min: -10, max: 10, view, points: [{ v: a, label: 'A' }] })} />
+    <div class="g6m-il-panel">
+      <label class="control"><span>A</span><input type="range" min="-10" max="10" value={a} data-il="a" /> <output data-il="a-out"></output></label>
+      {mode === 'compare' && <label class="control"><span>B</span><input type="range" min="-10" max="10" value={b} data-il="b" /> <output data-il="b-out"></output></label>}
+      <div class="g6m-il-cards" data-il="cards" aria-live="polite"></div>
+    </div>
+  </div>
+</integer-line>
+
+<style is:global>
+  integer-line { display: block; }
+  .g6m-il-layout { display: grid; gap: 1rem; align-items: center; margin-top: 0.8rem; }
+  @media (min-width: 44rem) { .g6m-il-layout { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); } }
+  .g6m-il-stage { display: flex; justify-content: center; }
+  .g6m-il-cards { display: grid; gap: 0.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); margin-top: 0.6rem; }
+  .g6m-il-card { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--line); }
+  .g6m-il-card small { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-3); }
+  .g6m-il-card strong { font-size: var(--step-2); font-variant-numeric: tabular-nums; color: var(--accent); }
+  .g6m-il-card p { margin: 0.15rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .g6m-il-card--wide { grid-column: 1 / -1; }
+</style>
+
+<script>
+  import { lineSvg, meaning, signed, compareSymbol, tickLabel, type LineView } from './g6-integers.ts';
+
+  class IntegerLine extends HTMLElement {
+    private view: LineView = 'line';
+    private mode = 'opposites';
+
+    connectedCallback() {
+      this.view = this.dataset.view as LineView;
+      this.mode = this.dataset.mode!;
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.view = btn.dataset.view as LineView;
+          this.querySelectorAll('button[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.render();
+        }),
+      );
+      this.querySelectorAll<HTMLInputElement>('input[type="range"]').forEach((i) => i.addEventListener('input', () => this.render()));
+      this.render();
+    }
+
+    private val(k: string) {
+      const el = this.querySelector<HTMLInputElement>(`[data-il="${k}"]`);
+      return el ? Number(el.value) : 0;
+    }
+
+    private render() {
+      const a = this.val('a');
+      const b = this.val('b');
+      const v = this.view;
+      const vertical = v === 'thermometer' || v === 'elevation';
+      const out = (k: string, n: number) => {
+        const o = this.querySelector(`[data-il="${k}-out"]`);
+        if (o) o.textContent = tickLabel(n, v) + (v === 'thermometer' ? ' °C' : v === 'elevation' ? ' m' : '');
+      };
+      out('a', a);
+      out('b', b);
+      const card = (k: string, val: string, p: string, wide = false) => `<div class="g6m-il-card${wide ? ' g6m-il-card--wide' : ''}"><small>${k}</small><strong>${val}</strong><p>${p}</p></div>`;
+      let svg: string;
+      let cards: string;
+      if (this.mode === 'compare') {
+        svg = lineSvg({ min: -10, max: 10, view: v, points: [{ v: a, label: 'A' }, { v: b, label: 'B' }] });
+        const sym = compareSymbol(a, b);
+        const where = vertical ? (a < b ? 'below' : 'above') : a < b ? 'left of' : 'right of';
+        cards = card('A compared with B', `${signed(a, false)} ${sym} ${signed(b, false)}`, a === b ? 'The same point, so they are equal.' : `A is ${where} B, so A is ${a < b ? 'less' : 'greater'}.`, true);
+        cards += card('A', signed(a, false), meaning(a, v)) + card('B', signed(b, false), meaning(b, v));
+      } else {
+        const pts = a === 0 ? [{ v: 0, label: 'A' }] : [{ v: -a, label: 'opposite', ghost: true }, { v: a, label: 'A' }];
+        svg = lineSvg({ min: -10, max: 10, view: v, points: pts, magnitude: a });
+        const sign = a === 0 ? 'Zero has no sign. It is neither positive nor negative.' : a > 0 ? `Positive: ${vertical ? 'above' : 'right of'} zero. Write ${a} or +${a}.` : `Negative: ${vertical ? 'below' : 'left of'} zero. Write it with a − sign.`;
+        cards = card('A', signed(a, false), meaning(a, v), true);
+        cards += card('Sign', a === 0 ? 'none' : a > 0 ? '+' : '−', sign);
+        cards += card('Magnitude', String(Math.abs(a)), `${Math.abs(a)} unit${Math.abs(a) === 1 ? '' : 's'} from zero`);
+        cards += card('Opposite', signed(-a, false), a === 0 ? 'Zero is its own opposite.' : `Same magnitude, other side. ${signed(a, false)} and ${signed(-a, false)} are additive inverses.`, true);
+      }
+      this.querySelector('[data-il="svg"]')!.innerHTML = svg;
+      this.querySelector('[data-il="cards"]')!.innerHTML = cards;
+    }
+  }
+  customElements.define('integer-line', IntegerLine);
+</script>

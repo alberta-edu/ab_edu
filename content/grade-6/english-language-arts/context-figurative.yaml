@@ -1,0 +1,386 @@
+id: context-figurative
+grade: 6
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG6-OI3-GQ1-LO1]
+order: 6
+title: Context Clues, Figurative Language and Precise Words
+shortTitle: Context & figurative language
+summary: >-
+  Crack unknown words with word parts and context clues, sort a word collection, read similes,
+  metaphors and analogies, flip palindromes, and pick tier 2 and tier 3 words.
+
+bigIdea: |-
+  - To read an unknown word, use its **parts**, then **cross-check** with the context.
+  - Words can be sorted many ways, by meaning, origin, part of speech and more.
+  - **Figurative language**, like similes, metaphors and analogies, says more than the literal words.
+  - Precise words, **tier 2** and **tier 3**, make your meaning clear in every subject.
+
+lesson:
+  - title: Word parts + context = meaning
+    blocks:
+      - type: visual
+        covers: [S2.2]
+        component: inference-equation
+        props:
+          examples:
+            - clue: 'The crew worked all night to **contain** the wildfire before it reached the town.'
+              know: '*con-* means “together,” and *tain* means “hold.”'
+              inference: 'To contain the fire is to hold it in, so it can’t spread. The context agrees ✓'
+            - clue: 'The **aquanauts** lived in an underwater lab for ten days.'
+              know: '*aqua* means “water.” An astronaut travels in space.'
+              inference: 'An aquanaut lives and works under water. “Underwater lab” confirms it ✓'
+            - clue: 'Grandpa’s help was **invaluable**. We could never have built the canoe without him.'
+              know: '*in-* often means “not.” So, “not valuable”?'
+              inference: 'The context says his help mattered a lot. So it means “too valuable to put a price on.” The cross-check caught the trap!'
+        caption: Press the button to build each meaning. The last one shows why you always **cross-check** word parts with context.
+
+  - title: Sort your word collection
+    blocks:
+      - type: table
+        covers: [K2.1, S2.1]
+        caption: One collection of words, sorted six different ways
+        headers: [Sort by…, Example group]
+        rows:
+          - ['**Definition** (similar meaning)', '*swift, rapid, speedy*']
+          - ['**Part of speech**', 'verbs: *propel, encircle, memorize*']
+          - ['**Content** (topic)', 'weather: *chinook, hail, blizzard*']
+          - ['**Context** (where you’d use it)', 'at a ceremony: *honoured, gathered, grateful*']
+          - ['**Form of writing**', 'in a recipe: *whisk, simmer, stir*']
+          - ['**Word origin**', 'from Cree: *saskatoon, muskeg*']
+      - type: compare
+        covers: [U2.1, S2.1, S2.3]
+        columns:
+          - title: 📓 Keep a word collection
+            body: When a word grabs you, in a game, a comic or a book, write it down. Then sort your collection in a new way each week.
+          - title: 📚 Read for fun
+            body: The more you read what you enjoy, the more words you meet. It is one of the best ways to grow your vocabulary.
+
+  - title: Saying more than the words
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1, S3.2, U3.1]
+        component: figure-lens
+        props:
+          items:
+            - phrase: The hallway after the bell was a river of backpacks.
+              kind: Metaphor
+              picture: 🌊🎒🎒🎒
+              literally: Water full of backpacks is flowing down the hall!
+              means: The hall was crowded, and everyone was moving the same way, fast.
+              because: A crowd and a river aren’t alike, but both flow and push you along.
+            - phrase: Her laugh was as loud as a fire alarm in the quiet library.
+              kind: Simile
+              picture: 🚨📚😂
+              literally: She has a fire alarm instead of a laugh!
+              means: Her laugh was sudden and very loud.
+              because: Like a fire alarm, it made everyone jump.
+            - phrase: Learning to read music is like learning a new alphabet. At first the marks mean nothing. Then you read them without thinking.
+              kind: Analogy
+              picture: 🎼🔤
+              literally: Music notes are really letters!
+              means: Reading music gets easier with practice, the same way reading words did.
+              because: An analogy explains something new by comparing it, step by step, to something you know.
+        caption: Read each one literally, then as the writer meant it. Which one explains, and which ones paint a picture?
+      - type: callout
+        variant: remember
+        covers: [LANENG5-OI3-GQ1-LO1#K3.2]
+        title: Remember from Grade 5
+        body: A metaphor compares two things that are not alike but have something in common, without using *like* or *as*.
+
+  - title: Palindromes
+    blocks:
+      - type: visual
+        covers: [K3.2]
+        component: palindrome-mirror
+        props:
+          words: [radar, kayak, level, stop, Never odd or even, rotator]
+        caption: A **palindrome** reads the same backward and forward. Pick one and flip it, or type your own. Spaces and capitals don’t count.
+
+  - title: The right word for the subject
+    blocks:
+      - type: visual
+        covers: [S3.3, S3.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: t2, label: 'Tier 2: useful in many subjects', icon: 🔁 }
+            - { id: t3, label: 'Tier 3: belongs to one subject', icon: 🎯 }
+          cards:
+            - { text: evidence, bin: t2, why: 'You need evidence in science, social studies and reading.' }
+            - { text: summarize, bin: t2, why: 'You can summarize a story, an experiment or a speech.' }
+            - { text: analyze, bin: t2, why: 'You analyze a poem, a graph or a map.' }
+            - { text: stanza, bin: t3, why: 'A stanza belongs to poetry.' }
+            - { text: perimeter, bin: t3, why: 'Perimeter belongs to math.' }
+            - { text: petroglyph, bin: t3, why: 'You’ll meet it when reading the land and in social studies, not in math.' }
+        caption: Sort each word. Use tier 2 words everywhere, and tier 3 words in their own subject.
+      - type: compare
+        covers: [S3.3, S3.4, U3.1]
+        columns:
+          - title: ❌ Vague
+            body: '“The thing about the poem is good, because of the stuff it shows.”'
+          - title: ✅ Precise
+            body: '“The second **stanza** is strong. Its metaphor is **evidence** that the speaker is lonely.”'
+
+keyTerms:
+  - term: Context clue
+    covers: [S2.2]
+    definition: A hint in the words around an unknown word that helps you work out what it means.
+  - term: Figurative language
+    covers: [K3.1]
+    definition: Language with a non-literal meaning, such as a simile, a metaphor or an analogy.
+  - term: Analogy
+    covers: [S3.1]
+    definition: A comparison that explains something new by showing how it is like something familiar.
+  - term: Palindrome
+    covers: [K3.2]
+    definition: A word or phrase that reads the same backward and forward, such as radar.
+  - term: Tier 2 word
+    covers: [S3.3]
+    definition: A precise word useful in many subjects, such as analyze.
+  - term: Tier 3 word
+    covers: [S3.4]
+    definition: A word that belongs to one subject, such as stanza.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K3.2]
+    type: mc
+    prompt: Which word is a **palindrome**?
+    choices: [noon, moon, loop, onion]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Flip it, letter by letter. *moon* becomes *noom*.
+      '2': Flip it. *loop* becomes *pool*, a different word.
+      '3': It starts and ends with *n*, but check the middle. Flipped, it is *noino*.
+    hints:
+      - Read each word from right to left. Does it stay the same?
+    solution:
+      - '*noon* backward is *n-o-o-n*. Same word, so it is a palindrome.'
+      - '*loop* is a fun trap. Backward it makes a real word, *pool*, but a different one.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K3.1, S3.2]
+    type: mc
+    prompt: '“After the long hike, my legs were **wet noodles**.” What does the writer mean?'
+    choices:
+      - Her legs felt weak and wobbly.
+      - Her legs were wet from the rain.
+      - She ate noodles after the hike.
+      - Her legs were long and thin.
+    answer: 0
+    feedback:
+      '1': That reads it literally. What are wet noodles like?
+      '2': That reads the words literally. The metaphor compares her legs to something.
+      '3': Noodles are long and thin, but what is a **wet** noodle like when you hold it up?
+    hints:
+      - Picture a wet noodle. Can it stand up on its own?
+    solution:
+      - Wet noodles are floppy. The metaphor says her legs felt **weak and wobbly**.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [S3.3, S3.4]
+    type: mc
+    prompt: Which word is a **tier 2** word, useful in many subjects?
+    choices: [compare, denominator, stanza, latitude]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Denominator belongs to math, so it is a tier 3 word.
+      '2': A stanza belongs to poetry, so it is a tier 3 word.
+      '3': Latitude belongs to maps in social studies, so it is a tier 3 word.
+    hints:
+      - Which word could you use in math, science and reading?
+    solution:
+      - You compare fractions, animals and characters. **Compare** works in many subjects, so it is tier 2.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: pattern
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: |-
+      Kai put these four words together in his word collection:
+
+      > kayak, saskatoon, Ponoka, muskeg
+
+      What did he most likely sort them by?
+    choices:
+      - Word origin, since all four came from First Nations or Inuit languages
+      - Content, since all four are words about boats and water travel
+      - Part of speech, since all four are verbs that name an action
+      - Definition, since all four mean nearly the same thing
+    answer: 0
+    feedback:
+      '1': A kayak is a boat. But is a saskatoon? Is Ponoka?
+      '2': A kayak, a berry, a town and boggy land are all things. Are any of them actions?
+      '3': A boat, a berry, a town and boggy land mean very different things.
+    hints:
+      - The words name very different things. What else could they have in common?
+    solution:
+      - A boat, a berry, a town and boggy land share no meaning or topic.
+      - They share a history. *Kayak* is from Inuktitut, *saskatoon* and *muskeg* from Cree, and *Ponoka* from Blackfoot. Kai sorted by **word origin**.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S2.2]
+    type: mc
+    prompt: |-
+      “The comedy show was **priceless**. We laughed until we cried.”
+
+      *price* + *-less* (“without”) seems to say “without a price.” What does *priceless* mean here?
+    choices:
+      - So wonderful that no price could match it
+      - Free, so nobody had to pay to get in
+      - Cheap, and not worth very much at all
+      - Missing its price tag at the ticket booth
+    answer: 0
+    feedback:
+      '1': That fits the parts. Does the rest of the sentence say anything about tickets?
+      '2': If it were worth little, would they laugh until they cried?
+      '3': The parts don’t mention a tag. What does the context say about the show?
+    hints:
+      - The parts give you a guess. What does “laughed until we cried” tell you?
+    solution:
+      - The parts suggest “without a price.” The context says the show was wonderful.
+      - Put them together. It was **worth more than any price**. Always cross-check the parts with the context.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S3.1, U3.1]
+    type: mc
+    prompt: You want to explain to a Grade 2 student how the **heart** moves blood around the body. Which **analogy** explains it best?
+    choices:
+      - The heart is like a pump that pushes water through a garden hose.
+      - The heart is like a red balloon that floats inside your chest.
+      - The heart is like a drum, because it makes a thumping sound.
+      - The heart is like a best friend, because it is always with you.
+    answer: 0
+    feedback:
+      '1': A balloon just floats. Does it move anything anywhere?
+      '2': A heart does thump. But does a drum explain how blood **moves**?
+      '3': That is a sweet comparison, but it doesn’t explain anything about blood.
+    hints:
+      - What job does the heart do? Which choice does that same job?
+    solution:
+      - A pump pushes water through hoses. The heart pushes blood through the body.
+      - A strong analogy matches the **job**, not just one surface detail like a sound or a colour.
+
+  - id: b4
+    level: 2
+    thinking: whatif
+    covers: [K3.1, S3.2, U3.1]
+    type: mc
+    prompt: |-
+      A writer changed this sentence:
+
+      > The hallway after the bell was a river of backpacks.
+
+      to:
+
+      > The hallway after the bell was full of students.
+
+      What was lost?
+    choices:
+      - The picture of a crowd flowing fast in one direction
+      - The fact that the students had backpacks with them
+      - The time of day that the hallway was crowded
+      - Nothing, because both say the hallway was full
+    answer: 0
+    feedback:
+      '1': That is a small detail. What does the word *river* add that *full* doesn’t?
+      '2': '“After the bell” is still in the new sentence.'
+      '3': Both say it was crowded. Does *full* show which way people were moving?
+    hints:
+      - What does a river do that a full room doesn’t?
+    solution:
+      - '*Full* just says crowded. A *river* moves, so the metaphor shows the crowd **flowing**, all one way, and hard to swim against.'
+      - Figurative language packs a lot of meaning into a few words. That keeps writing **concise** and engaging.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.2, K2.1]
+    type: investigation
+    prompt: |-
+      You read in a book about caves:
+
+      > Explorers needed headlamps and ropes to follow the **subterranean** river.
+
+      Let’s crack it.
+    parts:
+      - type: text
+        prompt: '*sub-* means “under.” *terra* is Latin for “earth” or “land.” In one word, what might **subterranean** mean?'
+        accept: [underground, under ground, under the ground, beneath the ground, below ground, below the ground, under the earth, beneath the earth]
+        hints:
+          - Under + earth = ?
+        solution:
+          - Under + earth = **underground**.
+      - type: mc
+        prompt: Now cross-check. Which clue in the sentence best confirms your meaning?
+        choices:
+          - They needed **headlamps**, so it is dark, like under the ground.
+          - It is a **river**, so it must be full of water.
+          - They are **explorers**, so it must be far away.
+          - They needed **ropes**, so it must be very long.
+        answer: 0
+        feedback:
+          '1': Every river has water. Does that tell you where this one is?
+          '2': Explorers go to many places, near and far. Which clue says *where*?
+          '3': Ropes help with climbing in many places. Which clue points to darkness under the earth?
+        hints:
+          - Which clue only makes sense if the river is under the earth?
+        solution:
+          - Headlamps mean no daylight. That fits a river running **underground**, through a cave.
+      - type: mc
+        prompt: Same root, new word. A **terrarium** is like an aquarium, but filled with what?
+        choices:
+          - Soil and plants
+          - Water and fish
+          - Air and birds
+          - Ice and snow
+        answer: 0
+        feedback:
+          '1': That is an aquarium, with *aqua* “water.” This one has *terra*.
+          '2': Nothing in *terra* means air. What does it mean?
+          '3': Nothing in *terra* means cold. What does it mean?
+        hints:
+          - '*aquarium* is a place for water things. *terrarium* is a place for ___ things.'
+        solution:
+          - '*terra* means earth, so a terrarium holds **soil and plants**. One root opened up two words.'
+    wrapUp: Parts give you a first guess, context checks it, and the same root unlocks a whole family of words.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S3.1, U3.1]
+    type: open
+    prompt: |-
+      Write an **analogy** that explains one of these to a Grade 2 student:
+
+      - how a seed grows into a plant
+      - why we take turns in a talking circle
+      - what a glossary does in a book
+
+      Compare it to something the student already knows, and show how the two are alike.
+    modelAnswer: A glossary is like a friend sitting beside you while you read. When you get stuck on a hard word, you can turn and ask what it means, and the friend tells you. The glossary does that job at the back of the book.
+    rubric:
+      - I picked something a Grade 2 student already knows well.
+      - My comparison matches what the thing **does**, not just how it looks.
+      - I explained how the two are alike.
+      - My analogy makes the idea clearer, and isn’t just a pretty picture.
+    hints:
+      - Start with what the thing **does**. What else does that job?
+      - Try the frame, “A ___ is like a ___. Just as ___, ___.”

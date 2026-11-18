@@ -1,0 +1,291 @@
+id: expressions-like-terms
+grade: 6
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT6-OI2-GQ1-LO1]
+order: 10
+title: Powers in Expressions and Like Terms
+shortTitle: Powers & like terms
+summary: >-
+  Evaluate expressions with powers in the right order, model algebraic expressions with tiles,
+  combine like terms, and use properties to rearrange and expand.
+
+bigIdea: |-
+  - Order of operations: **parentheses**, then **powers**, then × and ÷, then + and −.
+  - **Like terms** have exactly the same variable, or are both constants.
+  - Combine like terms by adding or subtracting them: \(2x + x = 3x\).
+  - Properties let you **rearrange** terms and **expand** brackets without changing the value.
+
+lesson:
+  - title: Powers in the order of operations
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1, S1.1]
+        component: expression-steps
+        props:
+          examples: ['2^3 + 4 × 5', '(3 + 2)^2 − 10', '36 ÷ (2 + 1)^2']
+        caption: Press **Next step**. Watch where the **power** comes in the order.
+      - type: callout
+        variant: remember
+        covers: [MAT5-OI2-GQ1-LO1#K1.2, MAT5-OI2-GQ1-LO1#S1.1]
+        title: Remember from Grade 5
+        body: Operations in **parentheses** come first. Then multiply and divide, then add and subtract, from left to right.
+
+  - title: The order, step by step
+    blocks:
+      - type: table
+        covers: [K1.2, S1.1]
+        headers: [Order, Do this, Example]
+        rows:
+          - ['1', 'Parentheses', '\((3 + 2)^2 = 5^2\)']
+          - ['2', 'Powers', '\(5^2 = 25\)']
+          - ['3', '× and ÷, left to right', '\(2 \times 9 = 18\)']
+          - ['4', '+ and −, left to right', '\(18 - 3 = 15\)']
+      - type: callout
+        variant: mistake
+        covers: [K1.2, K1.1]
+        title: The power belongs to one number
+        body: 'In \(2 \times 3^2\), only the 3 is squared: \(2 \times 9 = 18\). It is **not** \(6^2 = 36\). For that, you need parentheses: \((2 \times 3)^2\).'
+
+  - title: Like terms
+    blocks:
+      - type: visual
+        covers: [S2.1, K2.1, K2.2, K2.3, S2.2]
+        component: algebra-tiles
+        props:
+          examples: ['2x + 3 + x + 1', '4y + 2x + y + 3x', '5x + 4 − 2x − 1']
+        caption: Press **Next step** to sort the tiles and combine them. Which tiles can join up?
+      - type: table
+        covers: [K2.1, K2.2, K2.3]
+        headers: [Terms, Like terms?, Why]
+        rows:
+          - ['\(3x\) and \(5x\)', 'yes', 'same variable: \(3x + 5x = 8x\)']
+          - ['4 and 9', 'yes', 'both constants: \(4 + 9 = 13\)']
+          - ['\(2x\) and \(2y\)', 'no', 'different variables']
+          - ['\(6x\) and 6', 'no', 'a variable term and a constant']
+
+  - title: Properties keep it equal
+    blocks:
+      - type: table
+        covers: [K2.4, K2.5, U2.1, S2.3]
+        headers: [Property, Rule, Example]
+        rows:
+          - ['Commutative, adding', '\(a + b = b + a\)', '\(3 + 2x = 2x + 3\)']
+          - ['Commutative, multiplying', '\(ab = ba\)', '\(x \times 4 = 4x\)']
+          - ['Associative, adding', '\((a + b) + c = a + (b + c)\)', '\((x + 2) + 5 = x + 7\)']
+          - ['Associative, multiplying', '\(a(bc) = b(ac)\)', '\(2(3x) = 3(2x) = 6x\)']
+          - ['Distributive', '\(a(b + c) = ab + ac\)', '\(3(x + 2) = 3x + 6\)']
+      - type: text
+        covers: [U2.1, S2.3]
+        body: These properties are why you can **move** like terms next to each other before combining. The expression changes its look, but not its value.
+
+  - title: The distributive property
+    blocks:
+      - type: visual
+        covers: [K2.5, U2.1, S2.1]
+        component: algebra-tiles
+        props:
+          examples: ['3(x + 2)', '2(4 + y)']
+        caption: '\(3(x + 2)\) is 3 groups of \(x + 2\). Press **Next step** to gather the tiles.'
+
+keyTerms:
+  - term: Power
+    covers: [K1.1]
+    definition: 'A repeated factor, like \(3^2 = 3 \times 3\). In the order of operations, powers come right after parentheses.'
+  - term: Like terms
+    covers: [K2.1, K2.2]
+    definition: 'Terms with exactly the same variable, like \(3x\) and \(5x\), or two constants, like 4 and 9.'
+  - term: Combine like terms
+    covers: [K2.3, S2.2]
+    definition: 'Add or subtract like terms to make one term: \(3x + 5x = 8x\).'
+  - term: Distributive property
+    covers: [K2.5]
+    definition: 'Multiplying a sum by a number multiplies each term: \(a(b + c) = ab + ac\).'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.2]
+    type: number
+    prompt: '\(3 + 2^4 \div 8\) = ?'
+    answer: 5
+    verify: 3 + 16 / 8
+    hints:
+      - No parentheses here. What comes next in the order?
+    solution:
+      - 'Power first: \(2^4 = 16\).'
+      - 'Then divide: \(16 \div 8 = 2\). Then add: \(3 + 2 = 5\).'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.1, K2.2]
+    type: multi
+    prompt: 'Which of these are **like terms** with \(4x\)? Choose all of them.'
+    choices: ['\(7x\)', '\(x\)', '\(4y\)', '4', '\(10x\)']
+    answer: [0, 1, 4]
+    feedback:
+      '2': 'It has the same coefficient, 4, but a different variable.'
+      '3': '4 is a constant. It has no variable at all.'
+    hints:
+      - Like terms have exactly the same variable. The coefficient doesn’t matter.
+    solution:
+      - '\(7x\), \(x\) and \(10x\) all have the variable \(x\). Remember, \(x\) means \(1x\).'
+      - '\(4y\) has a different variable, and 4 has none.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S2.2, K2.3]
+    type: text
+    prompt: 'Simplify \(6y + 2 + 3y\). Type your answer like **4y + 5**.'
+    accept: ['9y + 2', '9y+2', '2 + 9y', '2+9y']
+    hints:
+      - Which two terms are like terms?
+    solution:
+      - '\(6y\) and \(3y\) are like terms: \(6y + 3y = 9y\).'
+      - 'The constant 2 has nothing to join, so the answer is \(9y + 2\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K1.2, S1.1, K1.1]
+    type: mc
+    prompt: 'Eli works out \(2 \times 3^2\) and gets **36**. What did he do?'
+    choices:
+      - 'He multiplied \(2 \times 3\) first, then squared 6.'
+      - 'He squared 2 instead of 3.'
+      - 'He added instead of multiplying.'
+      - 'Nothing. \(2 \times 3^2 = 36\).'
+    answer: 0
+    feedback:
+      '1': 'Squaring 2 gives \(4 \times 3 = 12\). That isn’t 36.'
+      '2': 'Adding gives \(2 + 9 = 11\). That isn’t 36.'
+      '3': 'The power belongs to the 3 alone. Which comes first, the power or the ×?'
+    hints:
+      - Which number is 36 the square of?
+    solution:
+      - '36 is \(6^2\), so Eli did \(2 \times 3 = 6\) first, then squared it.'
+      - 'Powers come before multiplying: \(3^2 = 9\), then \(2 \times 9 = 18\).'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.3, S2.1]
+    type: text
+    figure: |-
+      <svg viewBox="-80 -36 440 210" class="fig-svg" role="img" aria-label="A rectangle with length 2x plus 3 and width x."><rect class="fig-rect" x="0" y="0" width="280" height="120" rx="3"/><text class="fig-label" style="font-size:22px" x="140" y="-10" text-anchor="middle">2x + 3</text><text class="fig-label" style="font-size:22px" x="-14" y="66" text-anchor="end">x</text></svg>
+    prompt: 'A garden is **\(2x + 3\)** metres long and **\(x\)** metres wide. Write its **perimeter** in simplest form. Type it like **4x + 5**.'
+    accept: ['6x + 6', '6x+6', '6 + 6x', '6+6x']
+    hints:
+      - The perimeter goes all the way around. Write all four sides as one expression.
+      - '\((2x + 3) + x + (2x + 3) + x\). Now combine like terms.'
+    solution:
+      - 'All four sides: \(2x + 3 + x + 2x + 3 + x\).'
+      - 'The \(x\) terms: \(2x + x + 2x + x = 6x\). The constants: \(3 + 3 = 6\).'
+      - 'The perimeter is \(6x + 6\) metres.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K2.5, U2.1, S2.3]
+    type: multi
+    prompt: 'Which expressions are **equivalent** to \(3(x + 4)\)? Choose all of them.'
+    choices: ['\(3x + 12\)', '\(3x + 4\)', '\(12 + 3x\)', '\(x + 4 + x + 4 + x + 4\)', '\(7x\)']
+    answer: [0, 2, 3]
+    feedback:
+      '1': 'The 3 multiplies **each** term in the brackets, the 4 too.'
+      '4': '\(3x\) and 12 are not like terms, so they can’t combine into one term.'
+    hints:
+      - '\(3(x + 4)\) means 3 groups of \(x + 4\).'
+    solution:
+      - 'Distributive property: \(3(x + 4) = 3x + 12\).'
+      - '\(12 + 3x\) is the same terms in another order. \(x + 4 + x + 4 + x + 4\) is the three groups written out.'
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [S1.1, K1.1, K1.2]
+    type: mc
+    prompt: 'Which expression has the **greatest** value?'
+    choices: ['\((2 \times 3)^2\)', '\((2 + 3)^2\)', '\(2^2 + 3^2\)', '\(2 \times 3^2\)']
+    answer: 0
+    feedback:
+      '1': '\((2 + 3)^2 = 5^2 = 25\). Is there a bigger one?'
+      '2': '\(2^2 + 3^2 = 4 + 9 = 13\).'
+      '3': '\(2 \times 3^2 = 2 \times 9 = 18\).'
+    hints:
+      - Evaluate each one, following the order of operations.
+    solution:
+      - '\((2 \times 3)^2 = 6^2 = 36\), \((2 + 3)^2 = 25\), \(2 \times 3^2 = 18\) and \(2^2 + 3^2 = 13\).'
+      - 'The greatest is \((2 \times 3)^2 = 36\). Where the parentheses go decides what gets squared.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.1, K1.2, U1.1]
+    type: investigation
+    prompt: |-
+      **Bracket battle!** Start with \(2 + 3 \times 4^2\). You may add **one** pair of parentheses anywhere, to make the value as **big** as you can.
+    parts:
+      - type: number
+        prompt: What is the value with **no** parentheses?
+        answer: 50
+        verify: 2 + 3 * 16
+        hints:
+          - Power first, then multiply, then add.
+        solution:
+          - '\(4^2 = 16\), then \(3 \times 16 = 48\), then \(2 + 48 = 50\).'
+      - type: number
+        prompt: What is the **greatest** value you can make with one pair of parentheses?
+        answer: 196
+        verify: (2 + 3 * 4) * (2 + 3 * 4)
+        hints:
+          - 'Try \((2 + 3) \times 4^2\). Then try putting the parentheses so the power works on something bigger than 4.'
+        solution:
+          - '\((2 + 3) \times 4^2 = 5 \times 16 = 80\). \(2 + (3 \times 4)^2 = 2 + 144 = 146\).'
+          - '\((2 + 3 \times 4)^2 = 14^2 = 196\). That is the greatest.'
+      - type: mc
+        prompt: '\(3 \times 4\) is done before \(2 +\) anyway. So why does \(2 + (3 \times 4)^2\) give a different answer from \(2 + 3 \times 4^2\)?'
+        choices:
+          - 'The power now squares 12 instead of only 4.'
+          - 'The parentheses make you add first.'
+          - 'Parentheses always double the answer.'
+          - 'It doesn’t. Both are 50.'
+        answer: 0
+        feedback:
+          '1': 'The 2 is outside the parentheses, so it is still added last.'
+          '2': '146 is not double 50. Look at what the power is attached to.'
+          '3': 'Work out \(2 + (3 \times 4)^2\) step by step. Is it 50?'
+        hints:
+          - In each expression, what number is the power attached to?
+        solution:
+          - 'Without parentheses, the power belongs to the 4 alone: \(4^2 = 16\).'
+          - 'With them, the power belongs to the whole \((3 \times 4)\): \(12^2 = 144\). Powers come before multiplying, so the parentheses change what gets squared.'
+    wrapUp: 'Powers grab the number right before them. Parentheses decide what that "number" is, so one pair can change an answer from 50 to 196.'
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [U2.1, K2.3, K2.1]
+    type: mc
+    prompt: 'Ana says \(2x + 3\) and \(5x\) are **equivalent**: "When \(x = 1\), both are 5." Is she right?'
+    choices:
+      - 'No. Try \(x = 2\): \(2x + 3 = 7\) but \(5x = 10\). Equivalent expressions are equal for every value.'
+      - 'Yes. They are equal when \(x = 1\), so they are equivalent.'
+      - 'Yes. \(2x\) and 3 combine to make \(5x\).'
+      - 'No, because one has two terms and the other has one.'
+    answer: 0
+    feedback:
+      '1': 'Equal for one value isn’t enough. Test another value of \(x\).'
+      '2': '\(2x\) and 3 are not like terms, so they can’t combine.'
+      '3': 'Two terms can be equivalent to one term, like \(2x + 3x\) and \(5x\). The number of terms isn’t the reason.'
+    hints:
+      - Try \(x = 2\) or \(x = 10\) in both expressions.
+    solution:
+      - 'With \(x = 2\): \(2x + 3 = 7\) and \(5x = 10\). They are not equal.'
+      - 'Equivalent expressions are equal for **every** value of the variable. \(2x\) and 3 are not like terms, so \(2x + 3\) can’t be simplified to \(5x\).'

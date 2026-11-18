@@ -1,0 +1,431 @@
+id: energy-choices
+grade: 6
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI6-OI2-GQ2-LO1]
+order: 5
+title: Choosing and Using Energy Resources
+shortTitle: Choosing and using energy resources
+summary: >-
+  Use the wind two ways, sort resources used before or after processing, weigh energy choices, and see how
+  Alberta manages its energy.
+
+bigIdea: |-
+  - Some energy resources are used **before processing**, like wind filling a sail. Others are used **after processing**, often as **electricity**.
+  - We use energy for **heating and cooling**, **lighting**, **cooking** and **transportation**.
+  - Choosing a resource means weighing **availability**, and its **social**, **economic** and **environmental** impacts.
+  - **Responsible management** limits harm to nature, restores land, handles waste and respects land and resource rights.
+
+lesson:
+  - title: 'Virtual experiment: the wind, two ways'
+    blocks:
+      - type: experiment
+        covers: [K2.2, K2.3, K2.4, K2.5, S2.2, S2.3]
+        title: The same wind on a sailboat and a wind turbine
+        question: |-
+          - The wind blows on a sailboat and on a wind turbine.
+          - A house sits far away from the lake. Its lamp is off.
+        animation: g6-wind-two-ways
+        predict:
+          choices:
+            - Only the turbine can light the lamp in the house.
+            - Only the sailboat can light the lamp.
+            - Both can light the lamp.
+            - Neither can light the lamp.
+          answer: 0
+        observe: |-
+          - The wind **pushed the sail**, and the boat crossed the lake.
+          - The turbine spun, and **electricity** travelled along the wires to the house. The lamp came on.
+        explain: |-
+          - The sailboat uses wind **before processing**. The wind’s push moves the boat directly.
+          - The turbine **processes** wind into electricity. Electricity can travel a long way and do many jobs, like lighting a lamp.
+      - type: callout
+        variant: remember
+        covers: [SCI5-OI2-GQ2-LO1#K1.1, SCI5-OI2-GQ2-LO1#K1.6]
+        title: Remember from Grade 5
+        body: Energy resources are **renewable** or **non-renewable**. Alberta relies on both kinds.
+
+  - title: Before or after processing?
+    blocks:
+      - type: compare
+        covers: [K2.2, K2.3, K2.4]
+        columns:
+          - title: Used before processing
+            body: |-
+              - 🪵 **Wood** burned in a campfire
+              - 💨 **Wind** filling a sail
+              - 💧 **Water** turning a water wheel
+          - title: Used after processing
+            body: |-
+              - **Wind**, **solar**, **hydro** and **nuclear** made into electricity
+              - **Fossil fuels**, like oil made into gasoline
+              - **Biofuel**, fuel made from plants such as corn or canola
+      - type: visual
+        covers: [S2.2, K2.2, K2.3, K2.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: before, label: Before processing, icon: '🌿' }
+            - { id: after, label: After processing, icon: '🏭' }
+          cards:
+            - { text: A kite surfer pulled across a lake by the wind, bin: before, why: The wind’s push is used directly. }
+            - { text: A wood stove heating a cabin, bin: before, why: The wood is burned as it is. }
+            - { text: A car running on gasoline, bin: after, why: 'Gasoline is made from oil, a fossil fuel.' }
+            - { text: Lights powered by a hydro dam, bin: after, why: The dam turns flowing water into electricity. }
+            - { text: A river current carrying a raft downstream, bin: before, why: The moving water pushes the raft directly. }
+            - { text: Solar panels charging a tablet, bin: after, why: The panels turn sunlight into electricity. }
+        caption: Is the resource used as it is, or changed first?
+
+  - title: Energy in daily life
+    blocks:
+      - type: table
+        covers: [K2.6, S2.4, U2.1]
+        headers: [Use, Before processing, After processing]
+        rows:
+          - ['🌡️ **Heating and cooling**', 'A wood stove', 'A natural gas furnace, an electric air conditioner']
+          - ['💡 **Lighting**', 'A campfire', 'Electric lights']
+          - ['🍳 **Cooking**', 'Cooking over a wood fire', 'A natural gas or electric stove']
+          - ['🚲 **Transportation**', 'A sailboat', 'A gasoline car, an electric bus']
+      - type: callout
+        variant: tip
+        covers: [S2.4, K2.6]
+        title: Communities use energy too
+        body: A town lights its streets, heats its arena and runs its buses. Count the energy uses on your way to school.
+
+  - title: Choosing an energy resource
+    blocks:
+      - type: table
+        covers: [K1.1, U1.1, S1.1]
+        caption: Four factors to weigh
+        headers: [Factor, The question it asks]
+        rows:
+          - ['📍 **Availability and accessibility**', 'Is the resource here, and can we reach it when we need it?']
+          - ['👥 **Societal impacts**', 'How does it affect people’s health, jobs and communities?']
+          - ['💲 **Economic impacts**', 'What does it cost to build, run and buy?']
+          - ['🌳 **Environmental impacts**', 'What does it do to land, water, air and living things?']
+      - type: example
+        covers: [S1.1, K1.1, U1.1]
+        title: A made-up town weighs wind
+        problem: Breezeton is a windy prairie town choosing how to make more electricity.
+        steps:
+          - '**Availability:** strong winds most days. An advantage. But on calm days there is no wind power.'
+          - '**Economic:** turbines cost a lot to build, but the wind itself is free.'
+          - '**Environmental:** no smoke while making electricity, but turbines change the view and land for birds.'
+          - '**Societal:** jobs building and fixing turbines. Some neighbours dislike the noise.'
+        answer: Every resource has advantages and disadvantages. The choice depends on which factors matter most to the town.
+
+  - title: Alberta’s main energy resources
+    blocks:
+      - type: table
+        covers: [S1.2, K1.1]
+        caption: 'Source: Canada Energy Regulator, Alberta energy profile.'
+        headers: [Resource, How Alberta uses it]
+        rows:
+          - ['🛢️ **Oil**', 'Alberta produced 84% of Canada’s crude oil in 2023. It is processed into fuels like gasoline and diesel.']
+          - ['🔥 **Natural gas**', 'Made 63% of Alberta’s electricity in 2021, and heats many homes and businesses.']
+          - ['💨 **Wind**', 'Made 9% of Alberta’s electricity in 2021, mostly in the windy south.']
+          - ['💧 **Hydro**, 🌾 **bioenergy** and ☀️ **solar**', 'Smaller amounts of electricity.']
+          - ['⛏️ **Coal**', 'Made 22% of the electricity in 2021. Alberta stopped making electricity from coal in June 2024.']
+      - type: callout
+        variant: tip
+        covers: [S1.2, U1.1]
+        title: Why natural gas?
+        body: |-
+          - **Available:** Alberta has a lot of it, and it can run day or night.
+          - **Trade-off:** burning it makes less pollution than coal, but more than wind or solar.
+
+  - title: Managing energy responsibly
+    blocks:
+      - type: table
+        covers: [K2.1, S2.1, U2.1]
+        headers: [Responsible practice, What it looks like]
+        rows:
+          - ['🦌 **Minimal disruption to nature**', 'Building around wetlands and animal paths. Using land that is already disturbed.']
+          - ['🌱 **Restoring extraction areas**', 'Refilling, replanting and caring for land after a mine or well closes.']
+          - ['♻️ **Waste management**', 'Storing waste safely, such as used nuclear fuel, and cleaning up spills.']
+          - ['🤝 **Respect for land and resource rights**', 'The government must consult First Nations and Métis communities when a project may affect their rights.']
+      - type: callout
+        variant: tip
+        covers: [K2.1, S2.1]
+        title: A restored mine
+        body: In 2008, Alberta gave its first oil sands **reclamation certificate** for Gateway Hill, a 104-hectare area near Fort McMurray. Once mined, it was replanted with trees and shrubs.
+      - type: example
+        covers: [S2.5, K2.2]
+        title: Design a device that uses an energy resource
+        problem: 'Problem: move a toy car across the classroom floor without batteries or a plug.'
+        steps:
+          - '**Pick a resource:** moving air, used before processing.'
+          - '**Design:** a paper sail on a straw mast, taped to the car.'
+          - '**Test:** blow on the sail, or wave a sheet of cardboard to make wind. Measure how far it goes.'
+          - '**Improve:** try a bigger sail. Test again and compare.'
+
+keyTerms:
+  - term: Energy resource
+    covers: [K1.1]
+    definition: Something people use to meet their energy needs, such as wind, wood or natural gas.
+  - term: Before processing
+    covers: [K2.2]
+    definition: Used just as it is found, like wind pushing a sail or wood burned in a fire.
+  - term: After processing
+    covers: [K2.3, K2.4]
+    definition: Changed first, often into electricity or a fuel, before it is used.
+  - term: Biofuel
+    covers: [K2.3]
+    definition: A fuel made from plants or other living things.
+  - term: Reclamation
+    covers: [K2.1]
+    definition: Restoring land after it was used to get an energy resource, such as a mine.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2, K2.3, S2.2]
+    type: multi
+    prompt: Select **all** the energy resources being used **before processing**.
+    choices:
+      - Logs burning in a fire pit at a campground
+      - Wind pushing an iceboat across a frozen lake
+      - A river turning an old mill’s water wheel
+      - A furnace burning natural gas
+      - A solar panel running a parking meter
+    answer: [0, 1, 2]
+    feedback:
+      '3': Natural gas is a fossil fuel. Is it used just as it comes out of the ground?
+      '4': The panel changes sunlight into something else first. What?
+    hints:
+      - Ask whether the resource is used **as it is**, or changed into something else first.
+    solution:
+      - Wood in a fire, wind on a sail and water on a wheel are used as they are. That is **before processing**.
+      - The furnace uses a fossil fuel that has been processed, and the solar panel turns sunlight into electricity first.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.1]
+    type: mc
+    prompt: A northern town has no roads in summer, so fuel can arrive only by plane. Which factor is this?
+    choices:
+      - Availability and accessibility
+      - Environmental impacts
+      - Societal impacts
+      - Economic impacts
+    answer: 0
+    feedback:
+      '1': The problem isn’t about land, water or air. What is hard here?
+      '2': It may affect people, but what is the problem with the fuel itself?
+      '3': Flying it in may cost more, but what is the main problem the story describes?
+    hints:
+      - The story is about **getting** the fuel to the town.
+    solution:
+      - The trouble is reaching the fuel when it is needed. That is **availability and accessibility**.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K2.5]
+    type: mc
+    prompt: Which resource can be used **both** before processing and after processing?
+    choices: [Wind, Nuclear, Gasoline, Biofuel]
+    answer: 0
+    feedback:
+      '1': Nuclear energy is used to make electricity. Is it ever used just as it is found?
+      '2': Gasoline is already made from oil. What does that tell you?
+      '3': Biofuel is made from plants. Is it used as it is found?
+    hints:
+      - Think back to the sailboat and the turbine.
+    solution:
+      - Wind fills a sail **before processing**, and a turbine makes electricity from it **after processing**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S2.3, K2.4, K2.5]
+    type: mc
+    prompt: |-
+      An old farm windmill pumps water into a trough right beside it. A new wind turbine on the same farm makes
+      electricity. What can the turbine do that the windmill can’t?
+    choices:
+      - Its electricity can travel through wires to power lights, heaters and machines far away.
+      - It can work on calm days, because electricity doesn’t need wind.
+      - It uses a renewable resource, while the windmill uses a non-renewable one.
+      - It doesn’t need the wind to blow, because it stores wind inside.
+    answer: 0
+    feedback:
+      '1': Both need wind to turn. What happens to a turbine on a calm day?
+      '2': Both use wind. Is wind renewable?
+      '3': A turbine’s blades turn only when the wind blows. What does the turbine change the wind into?
+    hints:
+      - The windmill uses the wind right where it is. What does the turbine make instead?
+    solution:
+      - The windmill uses wind **before processing**. Its job happens right beside it.
+      - The turbine processes wind into **electricity**, which travels through wires and can do many jobs far away.
+      - Both still need wind, and wind is renewable in both cases.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S1.2, K1.1]
+    type: mc
+    prompt: |-
+      This table shows how Alberta made its electricity in **2021** (Canada Energy Regulator).
+
+      | Source | Share |
+      |---|---|
+      | Natural gas | 63% |
+      | Coal | 22% |
+      | Wind | 9% |
+      | Hydro | 3% |
+      | Bioenergy | 2% |
+
+      Which statement does the table support?
+    choices:
+      - In 2021, most of Alberta’s electricity came from fossil fuels.
+      - In 2021, wind made more electricity than coal.
+      - Alberta makes most of its electricity from wind today.
+      - Alberta never used coal to make electricity.
+    answer: 0
+    feedback:
+      '1': Compare the two numbers for wind and coal.
+      '2': The table only shows 2021. Can it tell you about today?
+      '3': Find coal in the table. What does its number say?
+    hints:
+      - Which sources in the table are fossil fuels?
+      - Add up their shares.
+    solution:
+      - Natural gas and coal are fossil fuels. Together they made 63% + 22% = 85% of the electricity.
+      - The table is about 2021 only. To talk about today, you would need newer data.
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [K1.1, S1.1, U1.1]
+    type: multi
+    prompt: A town is deciding whether to build a hydro dam. Select **all** the statements about **environmental impacts**.
+    choices:
+      - The lake behind the dam would flood a valley where moose live.
+      - Making electricity from flowing water gives off no smoke.
+      - Building the dam would cost millions of dollars.
+      - The dam would create jobs for people in town.
+      - The river is strong all year, even in winter.
+    answer: [0, 1]
+    feedback:
+      '2': This is about money. Which factor is that?
+      '3': This is about people’s work. Which factor is that?
+      '4': This is about whether the resource is there when needed. Which factor is that?
+    hints:
+      - Environmental impacts are about land, water, air and living things.
+    solution:
+      - Flooding moose habitat and making no smoke are both about nature, so both are **environmental** impacts. One is an advantage and one is a disadvantage.
+      - Cost is economic, jobs are societal, and a strong river all year is availability.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: |-
+      A company finishes taking gravel and oil sand from a mine. A worker says, “The mine is closed, so our job here
+      is done.” What has the worker forgotten?
+    choices:
+      - Responsible management includes restoring the land after the mine closes.
+      - The mine must stay open until all the oil sand is gone.
+      - Closed mines must be left alone, so nature can choose what grows.
+      - The company only needs to put up a fence around the hole.
+    answer: 0
+    feedback:
+      '1': The mine has already closed. What should happen to land after a mine is finished?
+      '2': Think of Gateway Hill. Did people leave it alone, or replant it?
+      '3': A fence keeps people out. Does it give the land back to plants and animals?
+    hints:
+      - Look at the four responsible practices. Which one happens after the resource has been taken?
+    solution:
+      - '**Restoring extraction areas** is part of responsible management. The land is refilled, replanted and cared for.'
+      - Gateway Hill was mined, then replanted, and Alberta certified it as reclaimed in 2008.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.5, K2.2, K2.3, K2.6, S2.4]
+    type: investigation
+    prompt: |-
+      The Okafor family’s cabin is far from any power lines. They want to **heat the cabin** at night and **charge a
+      phone**. Their land has a forest with fallen trees, and the cabin roof gets lots of sun.
+    parts:
+      - type: mc
+        prompt: Which resource from their land could heat the cabin **before processing**?
+        choices: [Wood from fallen trees, Sunlight on the roof, Gasoline from town]
+        answer: 0
+        feedback:
+          '1': At night, is there sunlight to use as it is?
+          '2': Is gasoline from their land? And is it used before processing?
+        hints:
+          - Which one can they use just as it is, at night?
+        solution:
+          - Wood from fallen trees can be burned in a wood stove as it is. That is **before processing**.
+      - type: mc
+        prompt: A phone needs electricity. Which device uses a resource from their land to charge it?
+        choices:
+          - Solar panels on the roof, which turn sunlight into electricity
+          - A wood stove, because it gives off heat
+          - A sail on the cabin roof
+        answer: 0
+        feedback:
+          '1': A wood stove makes heat. Does a phone charge from heat?
+          '2': A sail uses wind to push something. Does that make electricity?
+        hints:
+          - To charge a phone, the resource has to be **processed** into something. What?
+        solution:
+          - Solar panels process sunlight into **electricity**, which can charge the phone.
+      - type: mc
+        prompt: Their neighbour suggests a gasoline generator instead of solar panels. Which reason favours **solar** for this family?
+        choices:
+          - Sunlight is free and right there, while gasoline must be bought and carried in.
+          - Solar panels work at night, while a generator only works in the day.
+          - Gasoline can’t make electricity, so the generator won’t work.
+        answer: 0
+        feedback:
+          '1': Do solar panels make electricity when there is no sunlight?
+          '2': A generator does make electricity from gasoline. What are the real differences?
+        hints:
+          - Think about availability and cost. Where does each resource come from?
+        solution:
+          - The sun shines on their roof for free. Gasoline must be bought in town and carried to the cabin.
+          - That is availability and economic impacts both favouring solar. A generator could still help on cloudy days.
+    wrapUp: Different jobs can call for different resources, some used before processing and some after. Good choices weigh the factors for that place.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [U1.1, K1.1, S1.1]
+    type: mc
+    prompt: |-
+      A town compares two ways to make electricity.
+
+      | Factor | Wind farm | Natural gas plant |
+      |---|---|---|
+      | Available | Only when windy | Any time |
+      | Smoke | None | Some |
+      | Fuel cost | Free | Must be bought |
+
+      The town decides to build **both**. Which reason best explains that choice?
+    choices:
+      - The wind farm makes clean electricity when it is windy, and the gas plant fills in on calm days.
+      - Two power plants always cost less than one, so building both saves money.
+      - The gas plant’s smoke helps the wind farm’s turbines spin faster.
+      - The town couldn’t decide, so it picked both to avoid choosing.
+    answer: 0
+    feedback:
+      '1': Look at the cost row. Does building two of something cost less?
+      '2': Do turbines need smoke to turn? What do they need?
+      '3': Look at the table. Does each option cover a weakness of the other?
+    hints:
+      - For each option, find its biggest disadvantage in the table.
+      - Can the other option make up for it?
+    solution:
+      - The wind farm’s disadvantage is availability. The gas plant’s disadvantages are smoke and fuel cost.
+      - Together they cover each other. Wind is used whenever it blows, and gas keeps the lights on when it doesn’t.
+      - Weighing advantages and disadvantages can lead to a **mix** of resources.

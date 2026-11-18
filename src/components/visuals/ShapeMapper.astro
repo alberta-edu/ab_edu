@@ -1,0 +1,125 @@
+---
+// Two shapes on a grid. Reflect or rotate shape A (one move or two) to see whether it lands exactly
+// on shape B, which would make them symmetrical, or lay it on top to test congruence in any position
+// (MAT6-OI3-GQ1-LO1: K1.1, U1.1, S1.1-S1.3, K2.1, K2.2, U2.1, U2.2, S2.1, S2.2).
+import { PAIRS, points } from './g6-symmetry.ts';
+
+interface Props {
+  pairs?: string[];
+}
+const { pairs = PAIRS.map((p) => p.id) } = Astro.props;
+const list = PAIRS.filter((p) => pairs.includes(p.id));
+const U = 30;
+const first = list[0];
+let grid = '';
+for (let x = 0; x <= 12; x++) grid += `<line class="g6m-sm-grid" x1="${x * U}" y1="0" x2="${x * U}" y2="${8 * U}"/>`;
+for (let y = 0; y <= 8; y++) grid += `<line class="g6m-sm-grid" x1="0" y1="${y * U}" x2="${12 * U}" y2="${y * U}"/>`;
+---
+<shape-mapper data-pairs={JSON.stringify(list.map((p) => p.id))}>
+  {list.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose a pair of shapes">
+      {list.map((p, i) => <button type="button" data-pair={p.id} aria-pressed={String(i === 0)}>{p.name}</button>)}
+    </div>
+  )}
+  <div class="g6m-sm-stage">
+    <svg viewBox={`-6 -6 ${12 * U + 12} ${8 * U + 12}`} role="img" aria-label="Shape A and shape B on a grid, with a dashed mirror line and a turn centre.">
+      <g set:html={grid} />
+      <line class="g6m-sm-mirror" x1={6 * U} y1="-6" x2={6 * U} y2={8 * U + 6} />
+      <polygon class="g6m-sm-b" data-sm="b" points={points(first.b, U)} />
+      <text class="g6m-sm-tag" data-sm="b-tag" x={first.b[0][0] * U + 6} y={first.b[0][1] * U + 22}>B</text>
+      <g class="g6m-sm-a" data-sm="a" style="transform: matrix(1, 0, 0, 1, 0, 0)">
+        <polygon points={points(first.a, U)} />
+        <text class="g6m-sm-tag g6m-sm-tag--a" x={first.a[0][0] * U + 6} y={first.a[0][1] * U + 22}>A</text>
+      </g>
+      <circle class="g6m-sm-centre" cx={6 * U} cy={4 * U} r="6" />
+    </svg>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-move="0">Reflect</button>
+    <button type="button" class="btn btn--primary btn--small" data-move="1">Rotate 180°</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sm="lay">Lay A on top of B</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sm="reset">Start over</button>
+  </div>
+  <p class="g6m-sm-say" data-sm="say" aria-live="polite">Reflect over the dashed line, or rotate about the dot. Can you land A exactly on B?</p>
+</shape-mapper>
+
+<style is:global>
+  shape-mapper { display: block; }
+  .g6m-sm-stage svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.8rem auto 0; font-family: var(--font); }
+  .g6m-sm-grid { stroke: var(--line); stroke-width: 1; }
+  .g6m-sm-mirror { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 8 6; }
+  .g6m-sm-centre { fill: var(--ink); }
+  .g6m-sm-b { fill: color-mix(in srgb, var(--sun) 35%, transparent); stroke: var(--ink-2); stroke-width: 2.5; stroke-dasharray: 6 4; }
+  .g6m-sm-a polygon { fill: color-mix(in srgb, var(--accent) 55%, transparent); stroke: var(--accent); stroke-width: 3; }
+  .g6m-sm-a { transform-origin: 0 0; transition: transform 0.9s ease; }
+  .g6m-sm-tag { fill: var(--ink); font-size: 18px; font-weight: 800; }
+  .g6m-sm-tag--a { fill: #fff; }
+  .g6m-sm-say { min-height: 3em; margin: 0.2rem 0 0; }
+  .g6m-sm-say .ok { color: var(--ok); font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .g6m-sm-a { transition: none; } }
+</style>
+
+<script>
+  import { PAIRS, ID, compose, matches, points, cssMatrix, type M, type Pair } from './g6-symmetry.ts';
+
+  const U = 30;
+
+  class ShapeMapper extends HTMLElement {
+    private pair!: Pair;
+    private m: M = ID;
+    private moves: string[] = [];
+
+    connectedCallback() {
+      const ids: string[] = JSON.parse(this.dataset.pairs!);
+      this.querySelectorAll<HTMLButtonElement>('[data-pair]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-pair]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(b.dataset.pair!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-move]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const mv = this.pair.moves[Number(b.dataset.move)];
+          this.moves.push(mv.label.toLowerCase());
+          this.set(compose(this.m, mv.m));
+        }),
+      );
+      this.q('lay').addEventListener('click', () => {
+        this.moves = ['lay'];
+        this.set(this.pair.lay);
+      });
+      this.q('reset').addEventListener('click', () => this.load(this.pair.id));
+      this.load(ids[0]);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-sm="${k}"]`) as HTMLElement;
+    }
+
+    private load(id: string) {
+      this.pair = PAIRS.find((p) => p.id === id)!;
+      const b = this.q('b');
+      b.setAttribute('points', points(this.pair.b, U));
+      const tag = this.q('b-tag');
+      tag.setAttribute('x', String(this.pair.b[0][0] * U + 6));
+      tag.setAttribute('y', String(this.pair.b[0][1] * U + 22));
+      this.moves = [];
+      this.set(ID);
+      this.q('say').textContent = 'Reflect over the dashed line, or rotate about the dot. Can you land A exactly on B?';
+    }
+
+    private set(m: M) {
+      this.m = m;
+      this.q('a').style.transform = cssMatrix(m, U);
+      if (!this.moves.length) return;
+      const say = this.q('say');
+      if (matches(m, this.pair.a, this.pair.b)) {
+        const how = this.moves[0] === 'lay' ? 'Laid on top, A fits B exactly.' : `Your moves: ${this.moves.join(', then ')}.`;
+        say.innerHTML = `<span class="ok">✓ A lands exactly on B.</span> ${how} ${this.pair.found}`;
+      } else {
+        say.textContent = `Not a match yet (${this.moves.join(', then ')}). Try another move, or Start over.`;
+      }
+    }
+  }
+  customElements.define('shape-mapper', ShapeMapper);
+</script>

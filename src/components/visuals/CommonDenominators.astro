@@ -1,0 +1,78 @@
+---
+// Fractions with different denominators: split the pieces of one or both bars until they are the
+// same size, then add or subtract the numerators (eVwjDHYcXUuWmBMwi-XVjg: K1.1-K1.4, U1.1, U1.2,
+// S1.1-S1.4).
+import { steps, barsSvg } from './g6-common-denom.ts';
+
+interface Props {
+  examples: { a: string; op: '+' | '−'; b: string }[];
+}
+const { examples } = Astro.props;
+for (const e of examples) steps(e.a, e.op, e.b);
+const first = steps(examples[0].a, examples[0].op, examples[0].b);
+---
+<common-denominators data-examples={JSON.stringify(examples)}>
+  {examples.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose an example">
+      {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{e.a} {e.op} {e.b}</button>)}
+    </div>
+  )}
+  <div class="g6m-cd-stage" data-cd="svg" set:html={barsSvg(first[0].rows)} />
+  <p class="g6m-cd-say" data-cd="say" aria-live="polite">{first[0].caption}</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-cd="back" disabled>◀ Back</button>
+    <button type="button" class="btn btn--primary btn--small" data-cd="next">Next step ▶</button>
+  </div>
+</common-denominators>
+
+<style is:global>
+  common-denominators { display: block; }
+  .g6m-cd-stage { margin-top: 0.8rem; }
+  .g6m-cd-stage svg { display: block; width: 100%; max-width: 34rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g6m-cd-cell { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1.5; transition: fill 0.3s; }
+  .g6m-cd-bar { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .g6m-cd-label { fill: var(--ink); font-size: 24px; font-weight: 700; }
+  .g6m-cd-say { min-height: 3.2em; margin: 0.6rem 0 0; }
+  @media (prefers-reduced-motion: reduce) { .g6m-cd-cell { transition: none; } }
+</style>
+
+<script>
+  import { steps, barsSvg, type Step } from './g6-common-denom.ts';
+
+  class CommonDenominators extends HTMLElement {
+    private list: Step[] = [];
+    private i = 0;
+
+    connectedCallback() {
+      const examples: { a: string; op: '+' | '−'; b: string }[] = JSON.parse(this.dataset.examples!);
+      const load = (k: number) => {
+        const e = examples[k];
+        this.list = steps(e.a, e.op, e.b);
+        this.go(0);
+      };
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          load(Number(b.dataset.ex));
+        }),
+      );
+      this.q('next').addEventListener('click', () => this.go(this.i + 1));
+      this.q('back').addEventListener('click', () => this.go(this.i - 1));
+      load(0);
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(k: string) {
+      return this.querySelector(`[data-cd="${k}"]`) as T;
+    }
+
+    private go(i: number) {
+      this.i = Math.max(0, Math.min(this.list.length - 1, i));
+      const st = this.list[this.i];
+      this.q('svg').innerHTML = barsSvg(st.rows);
+      this.q('say').textContent = st.caption;
+      this.q<HTMLButtonElement>('back').disabled = this.i === 0;
+      this.q<HTMLButtonElement>('next').disabled = this.i === this.list.length - 1;
+    }
+  }
+  customElements.define('common-denominators', CommonDenominators);
+</script>

@@ -1,0 +1,374 @@
+id: solar-system
+grade: 6
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI6-OI5-GQ1-LO1]
+order: 12
+title: The Solar System
+shortTitle: The solar system
+summary: >-
+  Explore the Sun, planets, moons, asteroids and comets, put the planets in order, find out why Pluto was
+  reclassified, and walk out a scale model of the solar system.
+
+bigIdea: |-
+  - Earth is one of **eight planets** that orbit the **Sun**, a star.
+  - The solar system also holds **moons**, **dwarf planets**, **asteroids**, **comets** and **meteoroids**.
+  - Celestial bodies differ in surface conditions, what they are made of, size and shape. The Sun **emits** light, and the rest **reflect** it.
+  - The solar system is **huge**. A scale model shows how small the planets are and how far apart.
+
+lesson:
+  - title: Explore the solar system
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, K1.4, K1.5, S1.2, S1.3, S1.6]
+        component: g6-solar-system
+        props: { start: earth }
+        caption: |-
+          - Tap a body, or choose one from the list, to read about it.
+          - The picture is **not to scale**. Real sizes and distances come later in the lesson.
+      - type: callout
+        variant: remember
+        covers: [SCI4-OI5-GQ1-LO1#K1.2]
+        title: Remember from Grade 4
+        body: Objects in space include the Moon, the Sun (a star), stars and their planets, and planets and their moons.
+
+  - title: The planets in order
+    blocks:
+      - type: table
+        covers: [S1.1, K1.1, K1.6]
+        caption: 'Average distance from the Sun. Source: NASA Planetary Fact Sheet.'
+        headers: ['#', Planet, Millions of km from the Sun]
+        rows:
+          - ['1', 'Mercury', '58']
+          - ['2', 'Venus', '108']
+          - ['3', 'Earth', '150']
+          - ['4', 'Mars', '228']
+          - ['–', '**Main asteroid belt**', 'Between Mars and Jupiter']
+          - ['5', 'Jupiter', '779']
+          - ['6', 'Saturn', '1432']
+          - ['7', 'Uranus', '2867']
+          - ['8', 'Neptune', '4515']
+      - type: callout
+        variant: tip
+        covers: [S1.1]
+        title: A trick to remember the order
+        body: '**M**y **V**ery **E**ager **M**oose **J**umped **S**ix **U**nder **N**ets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune.'
+
+  - title: Kinds of celestial bodies
+    blocks:
+      - type: table
+        covers: [K1.2, K1.3, S1.2, K1.6]
+        caption: Celestial bodies are natural bodies beyond Earth’s atmosphere.
+        headers: [Kind, What it is]
+        rows:
+          - ['☀️ **The Sun**', 'A star, at the centre of the solar system.']
+          - ['🪐 **Planet**', 'A large, round body that orbits the Sun and has cleared its path of other objects.']
+          - ['🌙 **Moon**', 'A body that orbits a planet or other body.']
+          - ['⚪ **Dwarf planet**', 'A round body that orbits the Sun but shares its path with other objects, like Pluto and Ceres.']
+          - ['🪨 **Asteroid**', 'A rocky body orbiting the Sun, often lumpy. Most are in the main asteroid belt.']
+          - ['☄️ **Comet**', 'A ball of ice, dust and rock. Near the Sun it grows a glowing cloud and a tail.']
+          - ['✨ **Meteoroid**', 'A small piece of rock or metal in space, from a speck of dust to about a metre across.']
+      - type: visual
+        covers: [S1.2, K1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: planet, label: Planet, icon: '🪐' }
+            - { id: moon, label: Moon, icon: '🌙' }
+            - { id: dwarf, label: Dwarf planet, icon: '⚪' }
+            - { id: small, label: 'Asteroid, comet or meteoroid', icon: '🪨' }
+          cards:
+            - { text: Neptune, bin: planet, why: The eighth planet from the Sun. }
+            - { text: 'Titan, which orbits Saturn', bin: moon, why: It orbits a planet. }
+            - { text: Ceres, bin: dwarf, why: It is round but shares its path in the asteroid belt with many asteroids. }
+            - { text: 'Halley’s Comet', bin: small, why: It is made of ice and dust and grows a tail near the Sun. }
+            - { text: A lumpy rock in the belt between Mars and Jupiter, bin: small, why: That is an asteroid. }
+            - { text: Pluto, bin: dwarf, why: It was reclassified as a dwarf planet in 2006. }
+        caption: Sort each celestial body.
+
+  - title: Emit or reflect?
+    blocks:
+      - type: compare
+        covers: [K1.5, S1.4]
+        columns:
+          - title: Emits light ☀️
+            body: The **Sun** makes its own light. In our solar system, it is the only body that does.
+          - title: Reflects light 🌙
+            body: Planets, moons, asteroids and comets **reflect** sunlight. The Moon and Venus look bright because sunlight bounces off them.
+      - type: callout
+        variant: mistake
+        covers: [K1.5, S1.4]
+        title: Watch out for this
+        body: A bright light in the night sky isn’t always a star. Venus is often the brightest one after the Moon, and it only reflects sunlight.
+
+  - title: Why Pluto was reclassified
+    blocks:
+      - type: table
+        covers: [K1.7, S1.5]
+        headers: [Year, What happened]
+        rows:
+          - ['1930', 'Clyde Tombaugh discovered Pluto. It was called the ninth planet.']
+          - ['1992 onward', 'Telescopes found many icy bodies in Pluto’s part of the solar system.']
+          - ['2005', 'Astronomers found Eris, a body about the same size as Pluto.']
+          - ['2006', 'Astronomers agreed on what a planet is. Pluto shares its path with many other objects, so it became a **dwarf planet**.']
+      - type: callout
+        variant: tip
+        covers: [K1.7, S1.5]
+        title: Pluto didn’t change. What we knew did.
+        body: New information led scientists to sort Pluto differently. That is how science works.
+
+  - title: 'Virtual experiment: a scale model'
+    blocks:
+      - type: experiment
+        covers: [K1.8, S1.6, K1.4]
+        title: Shrink the Sun to a ball 1 m wide
+        question: |-
+          - Picture the Sun as a beach ball **1 metre** wide.
+          - Everything else shrinks by the same amount. How far away is Earth?
+        animation: g6-scale-walk
+        predict:
+          choices:
+            - About 1 m away
+            - About 10 m away
+            - About 100 m away
+            - About 1 km away
+          answer: 2
+        observe: |-
+          - **Earth** is a 9 mm pea, about **107 m** away. That is about the length of a soccer field.
+          - **Jupiter** is a 10 cm ball, about **559 m** away.
+          - **Neptune** is about **3.2 km** away.
+        explain: |-
+          - The planets are tiny compared with the Sun, and the spaces between them are enormous.
+          - That is why pictures of the solar system are almost never drawn to scale. They wouldn’t fit on a page.
+      - type: table
+        covers: [K1.1, U1.1, S1.7]
+        caption: What exploring the solar system has taught us about Earth
+        headers: [Discovery, What it tells us]
+        rows:
+          - ['In 1610, Galileo saw moons orbiting Jupiter through a telescope.', 'Not everything orbits Earth. Earth is one of a group of planets orbiting the Sun.']
+          - ['Venus has a thick carbon dioxide atmosphere and is hotter than Mercury.', 'How greenhouse gases can trap heat on a planet.']
+          - ['Rovers found signs that water once flowed on Mars.', 'How a planet’s water and climate can change.']
+
+keyTerms:
+  - term: Solar system
+    covers: [K1.1, K1.2]
+    definition: The Sun and all the celestial bodies that orbit it.
+  - term: Celestial body
+    covers: [K1.3]
+    definition: A natural body located beyond Earth’s atmosphere, such as a planet, moon or comet.
+  - term: Dwarf planet
+    covers: [K1.2, K1.7]
+    definition: A round body that orbits the Sun but shares its path with other objects, such as Pluto.
+  - term: Asteroid belt
+    covers: [K1.6]
+    definition: A collection of asteroids. The main asteroid belt lies between Mars and Jupiter.
+  - term: Comet
+    covers: [K1.2]
+    definition: A body of ice, dust and rock that grows a glowing tail when it nears the Sun.
+  - term: Meteoroid
+    covers: [K1.2]
+    definition: A small piece of rock or metal travelling through space.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.1]
+    type: order
+    prompt: Put these planets in order, starting with the one **closest** to the Sun.
+    items: [Mercury, Earth, Mars, Jupiter, Saturn, Neptune]
+    hints:
+      - My Very Eager Moose Jumped Six Under Nets.
+    solution:
+      - Mercury, then Earth, Mars, Jupiter, Saturn and Neptune.
+      - Venus and Uranus were left out, but they fit between Mercury and Earth, and between Saturn and Neptune.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.2, K1.6]
+    type: mc
+    prompt: A lumpy, rocky body about 50 km long orbits the Sun between Mars and Jupiter. What is it most likely to be?
+    choices: [An asteroid, A comet, A moon, A planet]
+    answer: 0
+    feedback:
+      '1': A comet is icy and grows a tail near the Sun. Does this one?
+      '2': A moon orbits a planet or other body. What does this one orbit?
+      '3': Planets are large and round. Is this one?
+    hints:
+      - Where is it, and what shape is it?
+    solution:
+      - It is rocky, lumpy and in the main asteroid belt between Mars and Jupiter. It is an **asteroid**.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.5, S1.4]
+    type: multi
+    prompt: Select **all** the celestial bodies that **emit** their own light.
+    choices: [The Sun, The Moon, Venus, A comet’s tail, Jupiter]
+    answer: [0]
+    feedback:
+      '1': The Moon looks bright, but where does its light come from?
+      '2': Venus is very bright at night. Does it make its own light?
+      '3': A comet’s tail glows near the Sun. What lights it up?
+      '4': Jupiter is bright in the night sky. Is it a star?
+    hints:
+      - Only one body in our solar system makes its own light.
+    solution:
+      - Only **the Sun** emits its own light. It is a star.
+      - The others are bright because they reflect sunlight.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: why
+    covers: [K1.4, U1.1, S1.3]
+    type: mc
+    prompt: Venus is almost twice as far from the Sun as Mercury. So why is Venus **hotter**?
+    choices:
+      - Its thick carbon dioxide atmosphere traps heat, and Mercury has almost no atmosphere.
+      - Venus is bigger, and bigger planets are always hotter.
+      - Venus makes its own light and heat, like a small star.
+      - The thermometers on Venus were broken, so the number is wrong.
+    answer: 0
+    feedback:
+      '1': Jupiter is much bigger, and it is very cold at its cloud tops. Is size the reason?
+      '2': Does Venus emit light or reflect it?
+      '3': Is there anything in the explorer to suggest that? What is different about the two atmospheres?
+    hints:
+      - Tap Venus and Mercury in the explorer. Compare their atmospheres.
+      - Remember what greenhouse gases do.
+    solution:
+      - Venus has a very thick atmosphere, mostly carbon dioxide, a greenhouse gas. It traps heat.
+      - Mercury has almost no atmosphere to hold heat, so its nights get very cold.
+      - Exploring Venus helps us understand how greenhouse gases work on Earth too.
+
+  - id: b2
+    level: 2
+    thinking: estimate
+    covers: [K1.8, S1.6]
+    type: number
+    prompt: |-
+      In the scale model, Earth is about **107 m** from the 1 m Sun. Jupiter is about **5 times** as far from the
+      Sun as Earth. About how far from the beach ball should Jupiter go?
+    answer: 535
+    tolerance: 40
+    unit: m
+    verify: 107 * 5
+    hints:
+      - Five times as far means five Earth distances end to end.
+    solution:
+      - '\(107 \times 5 = 535\), so about **535 m**.'
+      - The experiment showed 559 m, because Jupiter is really a little more than 5 times as far. An estimate gets you close.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.7, S1.5]
+    type: mc
+    prompt: Lin says, “Pluto was kicked out of the planets because it shrank.” What is wrong with Lin’s idea?
+    choices:
+      - Pluto didn’t change. New information about other objects in its path led scientists to classify it differently.
+      - Pluto actually grew, and it got too big to be a planet.
+      - Pluto was never called a planet, so it couldn’t be kicked out.
+      - Pluto moved out of the solar system in 2006.
+    answer: 0
+    feedback:
+      '1': Did Pluto’s size change at all? What changed in 2006?
+      '2': From 1930 to 2006 it was called the ninth planet. Look at the timeline.
+      '3': Pluto still orbits the Sun. What changed in 2006?
+    hints:
+      - Look at the timeline. What was discovered before 2006?
+    solution:
+      - Pluto stayed the same size and in the same orbit.
+      - Scientists found many objects in its part of the solar system, including Eris, which is about as big. That new information led them to reclassify Pluto as a dwarf planet.
+
+  - id: b4
+    level: 2
+    thinking: evidence
+    covers: [S1.6, K1.8]
+    type: mc
+    prompt: A poster shows all eight planets in a row, almost touching, with Jupiter nearly as big as the Sun. What does the scale model tell you about this poster?
+    choices:
+      - It gets the order right, but the planets should be far smaller than the Sun and much farther apart.
+      - It is drawn to scale, because posters always use real sizes and distances.
+      - It gets everything wrong, including the order of the planets.
+      - It is right that the planets are close together, but the Sun should be smaller.
+    answer: 0
+    feedback:
+      '1': In the scale model, how far was Earth from a 1 m Sun? Could that fit on a poster?
+      '2': If the row goes Mercury to Neptune, is the order wrong?
+      '3': In the model, was Earth close to the Sun? Was the Sun small?
+    hints:
+      - Compare the poster with the scale model. What would a 1 m Sun look like next to a 10 cm Jupiter?
+    solution:
+      - Models can be useful even when they aren’t to scale. This one shows the **order** well.
+      - But the Sun is far bigger than any planet, and the planets are very far apart. A poster can’t fit real distances.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.2, K1.2, K1.4, K1.7]
+    type: investigation
+    prompt: |-
+      A made-up space probe sends back reports on three objects it has found. Classify each one, using what the
+      lesson says about each kind of celestial body.
+    parts:
+      - type: mc
+        prompt: '**Object 1** is rocky and round. It orbits Uranus.'
+        choices: [A moon, A planet, A dwarf planet]
+        answer: 0
+        feedback:
+          '1': A planet orbits the Sun. What does this object orbit?
+          '2': A dwarf planet orbits the Sun. What does this object orbit?
+        hints:
+          - What does it orbit?
+        solution:
+          - It orbits a planet, so it is a **moon**.
+      - type: mc
+        prompt: '**Object 2** is round and orbits the Sun, but it shares its path with thousands of icy objects.'
+        choices: [A dwarf planet, A planet, A comet]
+        answer: 0
+        feedback:
+          '1': A planet has cleared its path of other objects. Has this one?
+          '2': Does the report say it grows a tail near the Sun?
+        hints:
+          - Think about Pluto’s story.
+        solution:
+          - It is round and orbits the Sun, but it hasn’t cleared its path. Like Pluto, it is a **dwarf planet**.
+      - type: text
+        prompt: '**Object 3** is a lumpy chunk of ice and dust. As it nears the Sun, it grows a long, glowing tail. What is it?'
+        accept: [comet, a comet]
+        hints:
+          - Which kind of body grows a tail near the Sun?
+        solution:
+          - Ice, dust and a tail near the Sun make it a **comet**.
+    wrapUp: To classify a celestial body, ask what it orbits, what shape it is, what it is made of and whether it shares its path.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.3, K1.4, K1.5, K1.2]
+    type: multi
+    prompt: Select **all** the statements that are **always** true.
+    choices:
+      - A celestial body is located beyond Earth’s atmosphere.
+      - The planets orbit the Sun.
+      - Celestial bodies are round.
+      - A very bright light in the night sky is a body that emits its own light.
+      - Every moon orbits a planet.
+    answer: [0, 1]
+    feedback:
+      '2': Tap the asteroid or the comet in the explorer. What shape are they?
+      '3': Think about Venus. Is it bright? Does it make its own light?
+      '4': Pluto is a dwarf planet, and it has moons too. What does that tell you?
+    hints:
+      - For each one, try to find one body that breaks it.
+      - Look at asteroids, Venus and Pluto in the explorer.
+    solution:
+      - Celestial bodies are beyond Earth’s atmosphere by definition, and all eight planets orbit the Sun. Those are **always** true.
+      - Asteroids and comets are often lumpy, so not all bodies are round.
+      - Venus is very bright but only reflects light. And Pluto, a dwarf planet, has moons, so not every moon orbits a planet.

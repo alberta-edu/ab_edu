@@ -1,0 +1,103 @@
+---
+// Animated experiment: three identical blocks get the same push (an applied force) on ice, a wood
+// floor and carpet. Friction opposes each block's movement, so they slide different distances
+// (SCI6-OI2-GQ1-LO1, K1.2, K1.4, K1.5, S1.1, S1.2).
+---
+<g6-friction-slide>
+  <svg class="sci-svg" viewBox="0 0 640 320" aria-hidden="true" data-fs="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-fs="live"></p>
+</g6-friction-slide>
+
+<style is:global>
+  g6-friction-slide { display: block; }
+  g6-friction-slide svg { background: var(--surface-2); }
+  .g6s-fs-ice { fill: #dff1ff; stroke: #6aa9d8; stroke-width: 1.5; }
+  .g6s-fs-wood { fill: #d9b380; stroke: #9a6b35; stroke-width: 1.5; }
+  .g6s-fs-carpet { fill: #b5577a; stroke: #7d2f4c; stroke-width: 1.5; }
+  .g6s-fs-tuft { stroke: #7d2f4c; stroke-width: 2; stroke-linecap: round; }
+  .g6s-fs-grain { stroke: #9a6b35; stroke-width: 1.2; opacity: 0.7; }
+  .g6s-fs-block { fill: color-mix(in srgb, var(--sun) 45%, var(--surface)); stroke: var(--ink); stroke-width: 2.5; }
+  .g6s-fs-push { fill: var(--ink-3); }
+  .g6s-fs-arrow { stroke: var(--bad); stroke-width: 4; stroke-linecap: round; }
+  .g6s-fs-arrowhead { fill: var(--bad); }
+  .g6s-fs-applied { stroke: var(--math); stroke-width: 4; stroke-linecap: round; }
+  .g6s-fs-appliedhead { fill: var(--math); }
+  .g6s-fs-flabel { fill: var(--bad); font-size: 14px; font-weight: 700; }
+  .g6s-fs-alabel { fill: var(--math); font-size: 14px; font-weight: 700; }
+  @media (max-width: 40rem) { .g6s-fs-flabel, .g6s-fs-alabel { font-size: 20px; } }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  // Same starting speed for every block; friction slows each one at its own rate.
+  const V0 = 190; // pixels per second
+  const LANES = [
+    { id: 'ice', label: 'Ice', dist: 430 },
+    { id: 'wood', label: 'Wood floor', dist: 210 },
+    { id: 'carpet', label: 'Carpet', dist: 80 },
+  ].map((l) => ({ ...l, a: (V0 * V0) / (2 * l.dist), stop: (2 * l.dist) / V0 }));
+  const X0 = 110;
+  const laneY = (i: number) => 70 + i * 90;
+
+  class FrictionSlide extends HTMLElement {
+    private time = -1; // seconds since the push; -1 = before the push
+    private pushX = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-fs="live"]')!;
+      live.textContent = '';
+      this.time = -1;
+      // The pusher swings in and gives each block the same push.
+      await tween(700, (t) => { this.pushX = -30 + 30 * t; this.draw(); });
+      const total = LANES[0].stop;
+      await tween(total * 1000, (t) => { this.time = t * total; this.draw(); });
+      await wait(150);
+      live.textContent = 'With the same push, the block on ice slid farthest, the block on the wood floor slid less far, and the block on carpet stopped soonest.';
+    }
+
+    private pos(i: number) {
+      if (this.time < 0) return 0;
+      const l = LANES[i];
+      const t = Math.min(this.time, l.stop);
+      return V0 * t - (l.a * t * t) / 2;
+    }
+
+    private surface(id: string, y: number) {
+      const out = [`<rect class="g6s-fs-${id}" x="20" y="${y}" width="600" height="18" rx="3"/>`];
+      if (id === 'carpet') for (let x = 26; x < 616; x += 9) out.push(`<line class="g6s-fs-tuft" x1="${x}" y1="${y + 2}" x2="${x + 2}" y2="${y - 4}"/>`);
+      if (id === 'wood') for (let x = 70; x < 620; x += 110) out.push(`<line class="g6s-fs-grain" x1="${x}" y1="${y}" x2="${x}" y2="${y + 18}"/>`);
+      return out.join('');
+    }
+
+    private draw() {
+      const out: string[] = [];
+      LANES.forEach((l, i) => {
+        const y = laneY(i);
+        const x = X0 + this.pos(i);
+        const moving = this.time >= 0 && this.time < l.stop;
+        out.push(this.surface(l.id, y + 30));
+        out.push(`<text class="sci-text" x="20" y="${y - 16}">${l.label}</text>`);
+        out.push(`<rect class="g6s-fs-block" x="${(x - 30).toFixed(1)}" y="${y - 10}" width="60" height="40" rx="5"/>`);
+        if (this.time < 0) {
+          out.push(`<rect class="g6s-fs-push" x="${(X0 - 80 + this.pushX).toFixed(1)}" y="${y + 4}" width="50" height="12" rx="4"/>`);
+          if (this.pushX > -2) {
+            out.push(`<line class="g6s-fs-applied" x1="${X0 + 34}" y1="${y + 10}" x2="${X0 + 74}" y2="${y + 10}"/><path class="g6s-fs-appliedhead" d="M${X0 + 84} ${y + 10} l-12 -7 v14 Z"/>`);
+          }
+        }
+        if (moving) {
+          out.push(`<line class="g6s-fs-arrow" x1="${(x - 34).toFixed(1)}" y1="${y + 24}" x2="${(x - 70).toFixed(1)}" y2="${y + 24}"/><path class="g6s-fs-arrowhead" d="M${(x - 80).toFixed(1)} ${y + 24} l12 -7 v14 Z"/>`);
+          out.push(`<text class="g6s-fs-flabel" x="${(x - 82).toFixed(1)}" y="${y + 6}">friction</text>`);
+        }
+        if (this.time >= l.stop) out.push(`<text class="sci-small" x="${x.toFixed(1)}" y="${y - 18}" text-anchor="middle">stopped</text>`);
+      });
+      if (this.time < 0) out.push(`<text class="g6s-fs-alabel" x="${X0 + 40}" y="${laneY(0) - 16}">same push for each</text>`);
+      this.querySelector('[data-fs="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-friction-slide', FrictionSlide);
+</script>

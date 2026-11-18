@@ -1,0 +1,111 @@
+---
+// Animated experiment: a garden robot runs block code with a sequence, a loop and an if-then-else
+// conditional. At each of five pots it checks the soil: if it is dry, the robot waters it; else it
+// moves on. The code block running is highlighted (SCI6-OI6-GQ1-LO1, K1.6-K1.8, S1.4).
+import { IF_ROBOT_POTS } from '../visuals/if-robot.ts';
+---
+<g6-if-robot data-pots={JSON.stringify(IF_ROBOT_POTS)}>
+  <svg class="sci-svg" viewBox="0 0 640 330" aria-hidden="true" data-ir="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-ir="live"></p>
+</g6-if-robot>
+
+<style is:global>
+  g6-if-robot { display: block; }
+  g6-if-robot svg { background: var(--surface-2); }
+  .g6s-ir-block { fill: #4f7fd6; }
+  .g6s-ir-loop { fill: #e5a43a; }
+  .g6s-ir-if { fill: #7a3dc2; }
+  .g6s-ir-on { stroke: var(--ink); stroke-width: 4; }
+  .g6s-ir-code { fill: #fff; font-size: 14px; font-weight: 700; }
+  .g6s-ir-pot { fill: #c0563a; stroke: var(--ink); stroke-width: 2; }
+  .g6s-ir-dry { fill: #d9b380; }
+  .g6s-ir-wet { fill: #6b4a2b; }
+  .g6s-ir-plant { stroke: #3f9a40; stroke-width: 4; stroke-linecap: round; fill: none; }
+  .g6s-ir-bot { fill: var(--surface); stroke: var(--ink); stroke-width: 2.5; }
+  .g6s-ir-eye { fill: var(--accent); }
+  .g6s-ir-drop { fill: #4f9ad6; }
+  @media (max-width: 40rem) { .g6s-ir-code { font-size: 19px; } }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { runIfRobot } from '../visuals/if-robot.ts';
+
+  const POT_X = (i: number) => 330 + i * 64;
+  const GROUND = 250;
+
+  class IfRobot extends HTMLElement {
+    private pots: boolean[] = []; // true = dry at the start
+    private wet: boolean[] = [];
+    private botX = 290;
+    private line = -1; // highlighted code line
+    private pour = 0;
+    private watered = 0;
+
+    connectedCallback() {
+      this.pots = JSON.parse(this.dataset.pots!);
+      this.wet = this.pots.map((d) => !d);
+      this.draw();
+    }
+
+    async run() {
+      const live = this.querySelector('[data-ir="live"]')!;
+      live.textContent = '';
+      this.wet = this.pots.map((d) => !d);
+      this.botX = 290; this.watered = 0;
+      for (const step of runIfRobot(this.pots)) {
+        this.line = 1;
+        const from = this.botX;
+        await tween(500, (t) => { this.botX = from + (POT_X(step.pot) - from) * t; this.draw(); });
+        this.line = 2;
+        this.draw();
+        await wait(350);
+        if (step.water) {
+          this.line = 3;
+          await tween(700, (t) => { this.pour = Math.sin(t * Math.PI); this.draw(); });
+          this.wet[step.pot] = true;
+          this.watered++;
+        } else {
+          this.line = 5;
+          this.draw();
+          await wait(450);
+        }
+      }
+      this.line = -1;
+      this.pour = 0;
+      this.draw();
+      live.textContent = `The robot checked all five pots. It watered the ${this.watered} dry pots and skipped the 2 wet ones.`;
+    }
+
+    private draw() {
+      const code = [
+        { text: 'repeat 5 times', cls: 'g6s-ir-loop', x: 14 },
+        { text: 'move to next pot', cls: 'g6s-ir-block', x: 34 },
+        { text: 'if soil is dry', cls: 'g6s-ir-if', x: 34 },
+        { text: 'then: water it', cls: 'g6s-ir-block', x: 54 },
+        { text: 'else', cls: 'g6s-ir-if', x: 34 },
+        { text: 'skip it', cls: 'g6s-ir-block', x: 54 },
+      ];
+      const out: string[] = [];
+      code.forEach((c, i) => {
+        out.push(`<rect class="${c.cls} ${this.line === i ? 'g6s-ir-on' : ''}" x="${c.x}" y="${30 + i * 42}" width="${230 - c.x}" height="34" rx="6"/><text class="g6s-ir-code" x="${c.x + 10}" y="${53 + i * 42}">${c.text}</text>`);
+      });
+      out.push(`<line class="sci-tick" x1="290" y1="${GROUND}" x2="640" y2="${GROUND}"/>`);
+      this.pots.forEach((_, i) => {
+        const x = POT_X(i);
+        const wet = this.wet[i];
+        out.push(`<path class="g6s-ir-plant" d="M${x} ${GROUND - 34} q-10 -18 -2 -34 M${x} ${GROUND - 34} q10 -14 4 -28"/>`);
+        out.push(`<path class="g6s-ir-pot" d="M${x - 20} ${GROUND - 36} H${x + 20} L${x + 14} ${GROUND} H${x - 14} Z"/>`);
+        out.push(`<rect class="${wet ? 'g6s-ir-wet' : 'g6s-ir-dry'}" x="${x - 18}" y="${GROUND - 36}" width="36" height="7"/>`);
+        out.push(`<text class="sci-small" x="${x}" y="${GROUND + 24}" text-anchor="middle">${wet ? 'wet' : 'dry'}</text>`);
+      });
+      const bx = this.botX;
+      out.push(`<rect class="g6s-ir-bot" x="${bx - 18}" y="${GROUND - 120}" width="36" height="30" rx="6"/><circle class="g6s-ir-eye" cx="${bx - 7}" cy="${GROUND - 106}" r="4"/><circle class="g6s-ir-eye" cx="${bx + 7}" cy="${GROUND - 106}" r="4"/>`);
+      out.push(`<line class="sci-tick" x1="${bx}" y1="${GROUND - 90}" x2="${bx}" y2="${GROUND - 76}"/>`);
+      if (this.pour > 0.05) for (let k = 0; k < 3; k++) out.push(`<ellipse class="g6s-ir-drop" cx="${bx - 6 + k * 6}" cy="${GROUND - 70 + k * 9 * this.pour}" rx="3" ry="5"/>`);
+      out.push(`<text class="sci-text" x="460" y="40" text-anchor="middle">Pots watered: ${this.watered}</text>`);
+      this.querySelector('[data-ir="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g6-if-robot', IfRobot);
+</script>

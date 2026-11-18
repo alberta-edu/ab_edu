@@ -1,0 +1,388 @@
+id: heating-cooling
+grade: 6
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI6-OI1-GQ1-LO1]
+order: 1
+title: Heating, Cooling and Phase Changes
+shortTitle: Heating, cooling and phase changes
+summary: >-
+  Heat and cool water to see its particles speed up and slow down, read temperature in degrees Celsius,
+  and prove that mass stays the same when ice melts.
+
+bigIdea: |-
+  - **Heating** makes particles move **faster**. Their attractive forces weaken and the spaces between them grow.
+  - **Cooling** makes particles move **slower**. Their attractive forces increase and the spaces between them shrink.
+  - A **phase change** is a change from one state of matter to another, like ice melting into water.
+  - During a phase change, the volume may change, but the **mass stays the same**.
+
+lesson:
+  - title: Heat it up, cool it down
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, K1.3, K1.4, U1.1, S1.1]
+        component: g6-heat-particles
+        props: { start: -20 }
+        caption: |-
+          - Drag the temperature up, then back down. Watch the particles and the speed bar.
+          - The particles are drawn much bigger than real ones.
+      - type: table
+        covers: [K1.1, K1.2, K1.3, K1.4, U1.1]
+        caption: What the particle model says
+        headers: ['', 'Heating 🔥', 'Cooling ❄️']
+        rows:
+          - ['Particles move…', '**faster**', '**slower**']
+          - ['Attractive forces…', '**weaken**', '**increase**']
+          - ['Spaces between particles…', '**increase**', '**decrease**']
+
+  - title: Temperature and the Celsius scale
+    blocks:
+      - type: figure
+        covers: [K2.2, K2.3, S2.3]
+        figure: >-
+          <svg viewBox="0 0 360 250" class="fig-svg" role="img" aria-label="A thermometer marked in degrees Celsius. The 0 degree mark is labelled melting and freezing point of water. The 100 degree mark is labelled boiling point of water.">
+          <rect class="fig-rect" x="60" y="14" width="26" height="196" rx="13"/><circle fill="#d23b2e" cx="73" cy="222" r="20"/><rect fill="#d23b2e" x="67" y="120" width="12" height="96" rx="6"/>
+          <line class="sci-tick" x1="50" y1="40" x2="96" y2="40"/><line class="sci-tick" x1="50" y1="170" x2="96" y2="170"/>
+          <text class="fig-label" x="44" y="46" text-anchor="end">100</text><text class="fig-label" x="44" y="176" text-anchor="end">0</text>
+          <text class="fig-label" x="108" y="38">100 °C: water boils</text><text class="fig-label" x="108" y="58">(boiling point)</text>
+          <text class="fig-label" x="108" y="168">0 °C: ice melts and</text><text class="fig-label" x="108" y="188">water freezes</text>
+          </svg>
+        caption: Scientists measure temperature in **degrees Celsius**, written **°C**. The scale is built on two changes of state of water.
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI1-GQ1-LO1#K4.6, SCI3-OI1-GQ1-LO1#K4.7]
+        title: Remember from Grade 3
+        body: The melting and freezing point of water is **0 °C**. The boiling point of water is **100 °C**.
+      - type: compare
+        covers: [S1.1, K1.1, K1.3, K2.2]
+        columns:
+          - title: Higher temperature
+            body: The particles move **faster**. Water at 60 °C has faster particles than water at 10 °C.
+          - title: Lower temperature
+            body: The particles move **slower**. Ice at −20 °C has slower particles than ice at −1 °C.
+
+  - title: Phase changes
+    blocks:
+      - type: figure
+        covers: [K1.5, S1.2]
+        figure: { kind: particle-boxes, boxes: [solid, liquid, gas], labels: [Ice, Liquid water, Water as a gas] }
+        caption: |-
+          - A **phase change** is a change from one state of matter to another.
+          - Heating moves water to the right. Cooling moves it to the left.
+      - type: table
+        covers: [K1.5, S1.2, K1.1, K1.2, K1.3, K1.4]
+        headers: [Phase change, Heated or cooled?, What the particles do]
+        rows:
+          - ['**Melting**: solid → liquid', 'Heated', 'Move faster. Forces weaken enough for them to slide past each other.']
+          - ['**Boiling**: liquid → gas', 'Heated', 'Move faster still. Forces weaken so much that they move apart in all directions.']
+          - ['**Condensing**: gas → liquid', 'Cooled', 'Slow down. Forces increase and pull them close together again.']
+          - ['**Freezing**: liquid → solid', 'Cooled', 'Slow down more. Forces hold them in place, vibrating.']
+      - type: callout
+        variant: remember
+        covers: [SCI3-OI1-GQ1-LO1#K2.3, SCI3-OI1-GQ1-LO1#K2.4, SCI3-OI1-GQ1-LO1#K2.6]
+        title: Remember from Grade 3
+        body: |-
+          - **Melting** is a change from solid to liquid. **Freezing** is the reverse.
+          - **Condensation** is a change from gas to liquid.
+
+  - title: 'Virtual experiment: weigh ice as it melts'
+    blocks:
+      - type: experiment
+        covers: [K1.6, S1.3, K1.5, K1.1]
+        title: Melt ice in a sealed jar on a scale
+        question: |-
+          - A block of ice sits in a jar with a **sealed lid**, so nothing can get in or out.
+          - The jar sits on a scale in a 20 °C room. Together they read **250 g**.
+        animation: g6-melt-scale
+        predict:
+          choices:
+            - More than 250 g once the ice has melted
+            - Exactly 250 g once the ice has melted
+            - Less than 250 g once the ice has melted
+          answer: 1
+        observe: |-
+          - The ice melted into liquid water.
+          - The scale read **250 g** the whole time.
+          - The water takes up a little **less space** than the ice did.
+          - Zoomed in, the particles moved faster and began to slide past each other.
+        explain: |-
+          - The warm room heated the ice. Its particles moved faster, and it changed state from solid to liquid.
+          - No particles got in or out of the sealed jar. The same particles are there, so the **mass stays the same**.
+          - The particles changed how they are arranged, so the **volume changed** a little.
+      - type: callout
+        variant: tip
+        covers: [S1.3]
+        title: Why the lid matters
+        body: The lid makes this a **controlled experiment**. The only thing that changes is the state of the water. Nothing is added and nothing escapes.
+
+  - title: Common mix-ups
+    blocks:
+      - type: callout
+        variant: mistake
+        covers: [K1.1, K1.2, K1.6, S1.1]
+        title: Watch out for these
+        body: |-
+          - Heating doesn’t make particles **bigger**. They move faster, and the **spaces between** them grow.
+          - At 0 °C, ice particles **haven’t stopped**. They still vibrate in place.
+          - Melting doesn’t make matter disappear. The mass stays the same.
+
+keyTerms:
+  - term: Temperature
+    covers: [S1.1, K2.2]
+    definition: How hot or cold something is. Higher temperature means faster particles.
+  - term: Degrees Celsius (°C)
+    covers: [K2.2, K2.3]
+    definition: The unit scientists use for temperature. Water freezes at 0 °C and boils at 100 °C.
+  - term: Phase change
+    covers: [K1.5]
+    definition: A change from one state of matter to another, such as melting or freezing.
+  - term: Mass
+    covers: [K1.6]
+    definition: The amount of matter in something. It stays the same during a phase change.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.1, K1.1, K1.3]
+    type: mc
+    prompt: Two mugs of water sit on a table. One is at **15 °C** and one is at **70 °C**. In which mug are the particles moving faster?
+    choices:
+      - The 70 °C mug
+      - The 15 °C mug
+      - They move at the same speed, because both are liquid water.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Picture the heat particles slider. Which way did you drag it to make the speed bar grow?
+      '2': They are both liquids, but are they at the same temperature? What does temperature tell you about particles?
+    hints:
+      - Which mug is hotter?
+      - What does heating do to how fast particles move?
+    solution:
+      - The 70 °C mug is at the higher temperature.
+      - A higher temperature means the particles move **faster**, even when both are the same state.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.1, K1.3, K2.3]
+    type: order
+    prompt: Put these from the **slowest** particles to the **fastest**.
+    items:
+      - Ice at −15 °C
+      - Ice at −2 °C
+      - Water at 40 °C
+      - Water as a gas at 110 °C
+    hints:
+      - Only one thing decides the order here. What is it?
+    solution:
+      - The lower the temperature, the slower the particles. So go from coldest to hottest.
+      - −15 °C, then −2 °C, then 40 °C, then 110 °C.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.5]
+    type: multi
+    prompt: Select **all** the **phase changes**.
+    choices:
+      - A pond’s surface freezes into ice.
+      - Water in a pot warms from 20 °C to 30 °C.
+      - Water in a kettle boils into a gas.
+      - Steam on a cold window turns into drops of water.
+      - An icicle cools from −5 °C to −20 °C.
+    answer: [0, 2, 3]
+    feedback:
+      '1': The water got warmer. Is it still a liquid at 30 °C?
+      '4': The icicle got colder. Did it stop being a solid?
+    hints:
+      - A phase change means the **state** changes. For each one, name the state before and after.
+    solution:
+      - Freezing (liquid → solid), boiling (liquid → gas) and condensing (gas → liquid) are phase changes.
+      - Warming water to 30 °C and cooling an icicle change the temperature, but the state stays the same.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.2, K1.1, K1.2, K1.5]
+    type: mc
+    prompt: |-
+      Theo leaves a chocolate bar on the seat of a hot car. When he comes back, it has melted into a puddle in its
+      wrapper. Which explanation uses the particle model?
+    choices:
+      - The particles moved faster, their attractive forces weakened, and they could slide past each other.
+      - The particles got bigger in the heat, so they pushed each other out of their places.
+      - The heat made new particles inside the chocolate, so it couldn’t hold its shape.
+      - The particles stopped vibrating, so nothing held them in their places any more.
+    answer: 0
+    feedback:
+      '1': The chocolate looks bigger and floppier, but what grows when particles are heated, the particles or the spaces?
+      '2': Is there any more chocolate in the wrapper than before? Where would new particles come from?
+      '3': What does heating do to how fast particles move? Do they ever stop?
+    hints:
+      - Melting is solid → liquid. What can liquid particles do that solid particles can’t?
+      - What does heating do to the speed of particles, and to their attractive forces?
+    solution:
+      - The hot car heated the chocolate, so its particles moved faster.
+      - As they sped up, the attractive forces between them weakened and the spaces grew.
+      - Now they could slide past each other, so the chocolate flowed like a liquid.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K1.3, K1.4, S1.2, U1.1]
+    type: multi
+    figure: { kind: particle-boxes, boxes: [liquid, solid], labels: [Evening, Morning] }
+    prompt: A puddle on the playground freezes overnight. The boxes show its particles. Select **all** the things that happened to the particles.
+    choices:
+      - They moved slower.
+      - Their attractive forces increased.
+      - The spaces between them decreased.
+      - Some of them disappeared.
+      - They stopped moving.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Count the particles in each box. Is the puddle any less matter in the morning?
+      '4': Particles are always moving. What do particles in a solid do?
+    hints:
+      - Freezing happens when a liquid is cooled. What does cooling do to particles?
+    solution:
+      - The night cooled the water, so its particles moved slower.
+      - As they slowed, the attractive forces increased and the spaces between them decreased, until the forces held them in place.
+      - They still vibrate in place, and none of them disappeared.
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [S1.3, K1.6]
+    type: mc
+    prompt: Four students want to prove that **mass stays the same when butter melts**. Whose plan is a fair test?
+    choices:
+      - 'Ana: weigh butter in a sealed bag, warm the bag until the butter melts, then weigh the same bag again.'
+      - 'Ben: weigh butter on a plate, melt it in a pan, pour it into a cup, then weigh the cup.'
+      - 'Cara: weigh one piece of solid butter, then melt a different piece and weigh that.'
+      - 'Dev: weigh butter in a sealed bag, melt it, then weigh it on a different scale.'
+    answer: 0
+    feedback:
+      '1': Some butter would stay stuck in the pan, and the cup isn’t the plate. How many things changed besides the state?
+      '2': Two pieces of butter could have different masses from the start. Would the result tell you about melting?
+      '3': Two scales may not read the same. Is the state the only thing that changed?
+    hints:
+      - In a fair test, only one thing changes. Here, that thing is the state of the butter.
+      - For each plan, list everything that changed between the two weighings.
+    solution:
+      - Only Ana changes **just one thing**, the state. The same butter, the same bag and the same scale are used, and nothing gets in or out.
+      - Each other plan changes something else too, so a different reading could come from that instead.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K2.3, S2.3, S1.1, K1.3]
+    type: mc
+    prompt: |-
+      On a winter morning the thermometer reads **0 °C**. Kai says, “Zero means there’s no temperature at all. The
+      particles in the ice on the pond have stopped moving.” What is wrong with Kai’s idea?
+    choices:
+      - 0 °C is just where the scale puts water’s freezing point. The ice’s particles still vibrate in place.
+      - 0 °C is too warm for ice, so the pond must be liquid water with fast-moving particles.
+      - Ice particles only stop moving below −10 °C, so the pond’s particles are slowly moving.
+      - Particles in a solid never move at any temperature, but it’s not because of the zero.
+    answer: 0
+    feedback:
+      '1': What happens to water at 0 °C? Look at the Celsius thermometer in the lesson.
+      '2': Look at the slider again. At −20 °C, were the particles still for even a moment?
+      '3': In the lesson, what did particles in a solid do at every temperature on the slider?
+    hints:
+      - Why is 0 °C where it is on the Celsius scale? What does it mark?
+      - On the slider, did the ice’s particles ever stop?
+    solution:
+      - The Celsius scale puts **0 °C** at the melting and freezing point of water. It is a mark on a scale, not “no temperature”.
+      - Particles in ice still vibrate in place at 0 °C, and even at −20 °C. Colder means **slower**, not stopped.
+      - Kai’s idea seemed right because zero usually means “none”. On this scale, it doesn’t.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.6, K1.2, K1.4, S1.2, K1.5]
+    type: investigation
+    prompt: |-
+      In a science video, a little water is sealed inside a strong heat-safe bag. The bag and water have a mass of
+      **40 g**. The bag is heated until all the water has boiled into a gas, and the bag puffs up like a pillow.
+    parts:
+      - type: number
+        prompt: The puffed-up bag is weighed. What does the scale read?
+        answer: 40
+        unit: g
+        verify: '40'
+        hints:
+          - Did any particles get into the sealed bag, or out of it?
+        solution:
+          - Nothing got in or out of the sealed bag, and the same particles are inside.
+          - So the mass is still **40 g**. Only the state changed.
+      - type: mc
+        prompt: So why did the bag puff up?
+        choices:
+          - The particles moved faster and moved apart, so the spaces between them increased.
+          - Each particle grew bigger when it became a gas, so they needed more room.
+          - The heat added new particles of gas to the bag, so it filled up.
+          - The air outside the bag got pulled in through the seal as it was heated.
+        answer: 0
+        feedback:
+          '1': The bag got much bigger. But what grows when particles are heated?
+          '2': If new particles were added, what would the scale have shown in part 1?
+          '3': The bag is sealed. And what did part 1 tell you about particles getting in?
+        hints:
+          - The mass didn’t change, but the volume did. What takes up the extra space?
+        solution:
+          - Heating made the particles move faster, their attractive forces weakened, and the spaces between them grew.
+          - The same particles now take up much more space, so the volume of the bag increased.
+      - type: mc
+        prompt: The bag cools on the counter. What will you see, and what will the scale read?
+        choices:
+          - The bag goes flat and drops of water form inside. The scale still reads 40 g.
+          - The bag goes flat and drops of water form inside. The scale reads less than 40 g.
+          - The bag stays puffed up, because a gas can’t turn back into a liquid.
+          - The bag goes flat and is empty inside, because the gas has used itself up.
+        answer: 0
+        feedback:
+          '1': The bag is flatter, so it looks like there is less. Did any particles leave the sealed bag?
+          '2': What does cooling do to particles? Think about steam on a cold window.
+          '3': Where could the particles go? Is the bag still sealed?
+        hints:
+          - What does cooling do to the speed of particles, and to the attractive forces between them?
+          - Is the bag still sealed?
+        solution:
+          - Cooling slows the particles. Their attractive forces increase and the spaces shrink, so the gas condenses back into liquid water.
+          - The volume gets smaller, so the bag goes flat. No particles left the bag, so it is still **40 g**.
+    wrapUp: Heating and cooling change how fast particles move and how far apart they are. That can change the state and the volume, but the mass stays the same.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.1, K1.2, K1.5, K1.6, U1.1]
+    type: multi
+    prompt: |-
+      Think about heating **any** substance in a sealed container, from a little warmer to a lot warmer. Select
+      **all** the things that are **always** true.
+    choices:
+      - Its particles move faster.
+      - The spaces between its particles increase.
+      - Its mass stays the same.
+      - It changes state.
+      - Its particles get bigger.
+    answer: [0, 1, 2]
+    feedback:
+      '3': Think about water heated from 20 °C to 30 °C. Did it change state?
+      '4': Something heated takes up more space. Is that because of the particles or the spaces?
+    hints:
+      - For each one, try to find one example where it **doesn’t** happen.
+      - Can you warm water without it boiling or melting?
+    solution:
+      - Heating **always** makes particles move faster, and as they speed up the spaces between them increase.
+      - In a sealed container nothing gets in or out, so the mass **always** stays the same.
+      - A phase change happens only **sometimes**. Water warmed from 20 °C to 30 °C is still a liquid.
+      - Particles **never** get bigger. The spaces between them do.
