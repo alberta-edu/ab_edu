@@ -1,0 +1,381 @@
+id: oral-traditions-listening
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI2
+outcomes: [LANENG4-OI2-GQ1-LO1]
+order: 5
+title: Oral Traditions and Active Listening
+shortTitle: Oral traditions & listening
+summary: >-
+  See how spoken stories connect people, places and times, learn why sharing a story can need
+  permission, and practise listening actively and talking respectfully.
+
+bigIdea: |-
+  - **Oral traditions** are stories passed on by speaking. They connect us to people, places and the past.
+  - Every community has its own **protocols**, or ways of sharing stories respectfully.
+  - **Active listeners** restate key points, make connections, and respect what others say.
+
+lesson:
+  - title: Stories that connect us
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI2-GQ1-LO1#K1.2', 'LANENG3-OI2-GQ1-LO1#K1.3']
+        title: Remember from Grade 3
+        body: Stories can last and be retold for a very long time, from grandparents to parents to children.
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: people, label: People, icon: 👪 }
+            - { id: community, label: Community, icon: 🏘️ }
+            - { id: nature, label: Natural world, icon: 🌲 }
+            - { id: built, label: Constructed world, icon: 🌉 }
+          cards:
+            - { text: Grandma’s story about the day her family arrived in Canada, bin: people, why: 'It connects you to your family and where they came from.' }
+            - { text: The story your town tells about neighbours helping each other in a flood, bin: community, why: 'It connects everyone in the town to a time they shared.' }
+            - { text: Your uncle’s story about a moose that walked through his campsite at night, bin: nature, why: 'It connects you to animals and the wild.' }
+            - { text: The story of how the people of your town built the bridge over the river, bin: built, why: 'It connects you to something people made.' }
+        caption: What does each spoken story connect you to?
+
+  - title: Oral traditions carry knowledge
+    blocks:
+      - type: compare
+        covers: [K1.2, U1.1]
+        columns:
+          - title: 🔥 Napi stories (Blackfoot)
+            body: |-
+              - Napi, or Old Man, is a figure in Blackfoot stories.
+              - In these stories, Napi creates the world, and places the animals and birds on the land.
+              - For a very long time, people have gathered around the campfire to listen to Napi stories.
+          - title: 🔗 What they connect
+            body: Oral traditions can reflect connections to **spirit, land, the universe, time and people**. A story told long ago is still heard today, and it can guide the listeners of tomorrow.
+      - type: passage
+        id: ice
+        title: The Grey Ice
+        form: A family story, told aloud
+        paragraphs:
+          - When I was your age, I lived on a farm beside the North Saskatchewan River. Every spring, the ice on the river broke up with a sound like thunder.
+          - My father taught me to read the ice. Clear, dark ice was strong. Grey, slushy ice was weak, and you stayed off it.
+          - One April, my cousin Paulo wanted to walk across to the other side. The ice near the shore was grey and soft. I grabbed his sleeve and would not let go.
+          - The next morning, that whole part of the river was open water. Paulo never forgot it, and neither did I.
+          - So when you go skating on the pond this winter, look at the colour of the ice first. That’s what my father taught me, and now I’m teaching you.
+        note: An original family story written for Alberta Edu, told by a grandmother to her grandchild.
+
+  - title: Protocols for sharing stories
+    blocks:
+      - type: table
+        covers: [K1.3, S1.2]
+        caption: Protocols are the respectful ways a story is shared. They depend on…
+        headers: [It depends on…, Example]
+        rows:
+          - ['**The source**: who the story belongs to', 'A book of Napi stories by the historian Hugh A. Dempsey uses the stories **by permission of Blackfoot Elders**.']
+          - ['**The context**: where and when it is told', 'A funny family story fits a birthday dinner. It may not fit a quiet, sad day.']
+          - ['**The community**: the group’s own rules', 'In your class sharing circle, one person speaks at a time.']
+          - ['**The culture**: the ways of a people', 'Different peoples have their own ways of sharing stories. If you don’t know, ask someone from that community.']
+      - type: callout
+        variant: tip
+        covers: [K1.3, S1.2]
+        title: When in doubt, ask
+        body: Before you retell someone else’s story, ask the person or community it came from. They may say yes, no, or “yes, like this.”
+
+  - title: Talk respectfully
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, U2.1]
+        component: talk-it-out
+        props:
+          turns:
+            - speaker: Noor
+              says: For our story day, I want to tell my grandpa’s story about his first snowfall in Canada.
+              choices:
+                - { text: 'That’s boring. Everyone has seen snow.', good: false, reply: 'Noor goes quiet and looks away.', why: 'This ignores her **feelings**. The story matters to her family.' }
+                - { text: 'I’d love to hear it! What happened when he saw the snow?', good: true, reply: 'Noor smiles. “He tried to catch every flake!”', why: 'You valued her **contribution** and asked to hear more.' }
+                - { text: '(Start talking about your own idea.)', good: false, reply: 'Noor stops in the middle of her sentence.', why: 'Talking over someone shows you weren’t listening.' }
+            - speaker: Eli
+              says: I don’t really want to tell a story out loud. I get nervous in front of people.
+              choices:
+                - { text: 'Just do it. Everyone else has to.', good: false, reply: 'Eli looks even more worried.', why: 'This ignores Eli’s **needs**.' }
+                - { text: 'Could you draw the pictures while we tell the story?', good: true, reply: 'Eli nods. “I can do that!”', why: 'You thought about Eli’s **needs**, and found a way for him to join in.' }
+            - speaker: Mia
+              says: I think we should pick only funny stories. Sad ones are no fun.
+              choices:
+                - { text: 'I see your point, funny stories are fun. I think some sad stories teach us a lot, though.', good: true, reply: 'Mia thinks. “OK, maybe one of each.”', why: 'You respected her **point of view** and shared yours, with a reason.' }
+                - { text: 'That’s a silly idea, Mia.', good: false, reply: 'Mia crosses her arms.', why: 'Calling an idea silly hurts feelings. Disagree with a reason, kindly.' }
+          ending: 'Your group has a plan that **everyone** helped to build: Noor tells her grandpa’s story, Eli draws, and the group picks one funny and one sad story.'
+        caption: Choose what to say. Watch how the group’s trust changes.
+
+  - title: Listen actively
+    blocks:
+      - type: compare
+        covers: [K3.1, S3.1, S3.2, U3.1]
+        columns:
+          - title: 🔁 Restate key points
+            body: |-
+              Say back the main idea in your own words.
+
+              > “So your grandma learned to stay off grey ice?”
+          - title: 🔗 Make a connection
+            body: |-
+              Link what you heard to your own life.
+
+              > “My dad checks the ice before we skate, too.”
+          - title: 👀 Show you are with them
+            body: |-
+              Look at the speaker, wait your turn, and ask a question when they finish.
+      - type: callout
+        variant: tip
+        covers: [K3.2]
+        title: Listening grows your mind
+        body: Listening to stories teaches you new words, new ideas and other people’s views. *Slushy* and *open water* came from “The Grey Ice.”
+
+  - title: Opinions and points of view
+    blocks:
+      - type: table
+        covers: [S2.2, K2.1]
+        caption: Listen for what each person thinks, and why.
+        headers: [Speaker, What they say, Their point of view]
+        rows:
+          - ['**Ava**', '“Let’s skate on the pond today. It’s been cold all week.”', 'The ice is ready.']
+          - ['**Sam**', '“I’d rather wait. My grandma says to check the colour first.”', 'It’s better to be careful.']
+          - ['**Jun**', '“Let’s ask an adult to check it with us.”', 'Someone who knows should decide.']
+      - type: callout
+        variant: tip
+        covers: [S2.2]
+        title: Hear the “because”
+        body: An opinion often comes with a reason. Listen for *because*, *I think* and *I’d rather*.
+
+keyTerms:
+  - term: Oral tradition
+    covers: [K1.1, K1.2]
+    definition: Stories and knowledge passed on by speaking, from one person or generation to the next.
+  - term: Protocol
+    covers: [K1.3]
+    definition: A respectful way of doing something, such as sharing a story. Protocols can be different in each community.
+  - term: Active listening
+    covers: [K3.1, U3.1]
+    definition: Listening with your whole attention, then restating key points and making connections.
+  - term: Point of view
+    covers: [S2.2]
+    definition: The way a person sees or thinks about something.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Every spring, Mr. Ito tells his class how the parents in town built the school with their own hands, long ago. What does this spoken story connect the class to most?
+    choices:
+      - The constructed world, something people made
+      - The natural world, the land and the animals
+      - The weather, and how spring arrives each year
+      - A faraway country, where the parents came from
+    answer: 0
+    feedback:
+      '1': Is the story about animals or land? What did the parents make?
+      '2': The story is told in spring. Is it about the weather?
+      '3': Does the story say where the parents came from?
+    hints:
+      - What is the story about? Was it made by people or by nature?
+    solution:
+      - The school is something people built. The story connects the class to the **constructed world**, and to the community that built it.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K3.1, S3.2]
+    type: mc
+    prompt: 'Lila finishes telling about her trip to the mountains. Which reply shows that you **restated her key point**?'
+    choices:
+      - “So the best part was seeing the mountain goats up close?”
+      - “I went to the mountains once too, and it rained.”
+      - “Can we talk about my trip to the lake now?”
+      - “Mm-hmm.”
+    answer: 0
+    feedback:
+      '1': That is a personal connection, which is part of listening too. Does it say back what Lila said?
+      '2': This changes the subject. Did you show you heard her?
+      '3': This shows you might be listening. Does it say back her main point?
+    hints:
+      - Which reply says back what Lila said, in your own words?
+    solution:
+      - Restating means saying the speaker’s **key point** back in your own words. It shows you listened, and lets the speaker fix anything you missed.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: In your group, Omar shares an idea that you don’t think will work. What is the most **respectful** thing to say?
+    choices:
+      - “Thanks, Omar. I’m not sure it will work, because we only have one day. What do you think?”
+      - “That won’t work, Omar. Next idea, please.”
+      - “Sure, great idea!” (even though you don’t think so)
+      - “Let’s just do my idea instead, because it’s better.”
+    answer: 0
+    feedback:
+      '1': This doesn’t consider Omar’s feelings or give a reason. Could it be said more kindly?
+      '2': Being kind is good, but pretending doesn’t help the group. Can you be kind **and** honest?
+      '3': This leaves out Omar’s contribution. Did you consider his point of view?
+    hints:
+      - Look for the answer that is kind, honest and asks Omar to keep talking.
+    solution:
+      - Thank him, give your reason, then ask for his view. That considers Omar’s **contribution, feelings and point of view**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K3.1, S3.2]
+    type: evidence
+    prompt: Imagine you are listening to “The Grey Ice.” To restate its key point, you need the most important lesson. Tap the sentence that holds it.
+    passage: ice
+    paragraphs: [1, 2]
+    answer: [p2s3]
+    feedback:
+      p1s1: This sets the scene. Is it the lesson?
+      p1s2: This is a strong detail, but it isn’t the lesson.
+      p2s1: This tells us someone taught her, but not what she learned.
+      p2s2: This is part of it. Which sentence says what to **do**?
+    hints:
+      - Which sentence tells the listener what to do to stay safe?
+    solution:
+      - '“Grey, slushy ice was weak, and you stayed off it.”'
+      - A restatement could be, “Stay off grey, slushy ice, because it is weak.”
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Your friend Tia told you a story her grandmother tells about leaving her home country. You want to retell it on the class podcast. What should you do **first**?
+    choices:
+      - Ask Tia, and maybe her grandmother, if it is OK to share it.
+      - Retell it, because it is a good story and everyone will like it.
+      - Change the names, so that nobody knows whose story it is.
+      - Retell only the happy parts, and leave out the sad parts.
+    answer: 0
+    feedback:
+      '1': Being a good story doesn’t make it yours to share. Whose story is it?
+      '2': Changing names doesn’t give you permission. Who should decide?
+      '3': Changing the story makes it less true. Whose story is it to change?
+    hints:
+      - Who does the story belong to?
+    solution:
+      - The story belongs to Tia’s grandmother. The **source** decides how it is shared.
+      - Asking first is a protocol. They may say yes, no, or tell you how to share it well.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [U1.1, K1.1, K1.2]
+    type: mc
+    prompt: In “The Grey Ice,” Grandma tells a story from long ago. How does it **connect** her grandchild to the past and the future?
+    choices:
+      - A lesson from her father, long ago, will keep the grandchild safe on the ice this winter.
+      - The grandchild learns the exact date the river ice broke up that spring.
+      - The grandchild finds out that Paulo still lives on the farm today.
+      - Grandma shows that skating on rivers is too dangerous for anyone to try.
+    answer: 0
+    feedback:
+      '1': Does the story ever give a date? What does it teach instead?
+      '2': The story doesn’t say where Paulo lives now. What does it really pass on?
+      '3': Grandma doesn’t say never to skate. What does she say to do first?
+    hints:
+      - Look at the last paragraph. Who taught the lesson first? Who is learning it now?
+    solution:
+      - Great-grandpa taught Grandma, and now Grandma teaches the grandchild. The lesson travels across time.
+      - Oral traditions connect us to the past **and** help prepare us for the future.
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K3.1, S3.1, U3.1]
+    type: mc
+    prompt: In group work, Kim explains her plan for the poster. Max says, “That reminds me!” and tells a long story about his dog. When he finishes, nobody remembers Kim’s plan. What went wrong?
+    choices:
+      - A connection should help you understand the speaker. Max’s took over instead.
+      - Max should never make connections while someone else is talking.
+      - Kim’s plan was too long, so it was her fault that people forgot it.
+      - Nothing, because telling stories is always good listening.
+    answer: 0
+    feedback:
+      '1': Making connections is part of listening. Is the connection the problem, or what Max did with it?
+      '2': Did Kim do anything wrong? Who changed the subject?
+      '3': Did the group still understand Kim’s plan at the end?
+    hints:
+      - Is making a connection good? What should it be used for?
+    solution:
+      - Listening includes making personal connections, but they should help you understand the speaker.
+      - Max could say, “That reminds me of my dog. So your plan is…?” and bring it back to Kim.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.2, K3.1, K2.1, S2.1]
+    type: investigation
+    prompt: |-
+      Your group is picking a story to tell at the school’s story night.
+
+      > **Lena:** Let’s tell a scary story. Story night is in the dark, so scary would be perfect.
+      >
+      > **Raj:** Scary is fun, but the Grade 1s are coming. I think they might get upset.
+      >
+      > **Zoe:** What about a funny story? Everyone likes to laugh.
+    parts:
+      - type: mc
+        prompt: Restate Raj’s **point of view**.
+        choices:
+          - Scary stories can be fun, but he is worried about the young listeners.
+          - He thinks scary stories are never any fun at all.
+          - He thinks the story should be about the Grade 1s.
+          - He agrees with Lena that scary would be perfect.
+        answer: 0
+        feedback:
+          '1': Raj says “Scary is fun.” Is this what he thinks?
+          '2': Does Raj want a story **about** the Grade 1s, or something else?
+          '3': Listen to the word *but*. What comes after it?
+        hints:
+          - Listen for *but*. What does Raj think after it?
+        solution:
+          - Raj agrees scary is fun, **but** he is thinking of the Grade 1s’ feelings.
+      - type: mc
+        prompt: Which reply respects **everyone’s** point of view?
+        choices:
+          - “What if it’s a little bit spooky and funny, so the Grade 1s laugh instead of getting upset?”
+          - “Raj is right. Lena, scary is a bad idea.”
+          - “Let’s vote now and stop talking about it.”
+          - “Zoe’s idea is the best, so let’s do funny.”
+        answer: 0
+        feedback:
+          '1': This takes Raj’s side. How would Lena feel?
+          '2': A vote decides fast. Does it consider anyone’s reasons?
+          '3': This leaves out Lena’s and Raj’s ideas. Can you use all three?
+        hints:
+          - Can one plan use a bit of each person’s idea?
+        solution:
+          - A spooky-funny story keeps Lena’s idea, cares about Raj’s worry and uses Zoe’s laughs.
+    wrapUp: Listening carefully lets you hear each person’s point of view. Then you can build a plan that respects them all.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [U1.1, K1.1, S1.1]
+    type: evidence
+    prompt: Oral traditions can help prepare listeners for the **future**. Tap the sentence where Grandma does this.
+    passage: ice
+    paragraphs: [4, 5]
+    answer: [p5s1]
+    feedback:
+      p4s1: This is about the next morning, long ago. Does it tell the listener what to do?
+      p4s2: This shows the story was remembered. Does it prepare the listener for something ahead?
+      p5s2: This links the past to now, from her father to her grandchild. Which sentence looks ahead to what the grandchild will do?
+    hints:
+      - Look for words about what the listener will do later.
+    solution:
+      - '“So when you go skating on the pond this winter, look at the colour of the ice first.”'
+      - Grandma turns an old memory into advice for this winter. The story connects the past to the listener’s future.
