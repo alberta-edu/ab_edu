@@ -120,3 +120,9 @@ export const cycleEnds = (days: number) => Array.from({ length: Math.floor(days 
  * the same sheet still holds all 20 coins the class has.
  */
 export const BRIDGE = { flatHolds: 3, coins: 20 };
+
+/**
+ * Bounce test (SCI4-OI7-GQ1-LO1, K1.1, K1.2, S1.1): an invented class test. A tennis ball dropped
+ * from 100 cm bounces to these heights in centimetres, an SI unit.
+ */
+export const BOUNCE = { drop: 100, wood: 62, carpet: 24 };
