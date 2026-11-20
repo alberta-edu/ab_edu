@@ -26,6 +26,7 @@ import G4FishPond from './G4FishPond.astro';
 import G4BeakTools from './G4BeakTools.astro';
 import G4PlantTurn from './G4PlantTurn.astro';
 import G4BugChoice from './G4BugChoice.astro';
+import G4DayNightSky from './G4DayNightSky.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -57,6 +58,7 @@ const animations = {
   'g4-beak-tools': G4BeakTools,
   'g4-plant-turn': G4PlantTurn,
   'g4-bug-choice': G4BugChoice,
+  'g4-day-night-sky': G4DayNightSky,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

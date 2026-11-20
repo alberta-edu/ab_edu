@@ -62,3 +62,17 @@ export function pondYears(start: number, cap: number, take: number, years: numbe
  * result the lesson reports. Pill bugs dry out easily, so they move to damp places.
  */
 export const BUG_END: { lane: number; endX: number }[] = [0.08, 0.2, 0.14, 0.3, 0.06, 0.62, 0.24, 0.38, 0.85, 0.12].map((endX, lane) => ({ lane, endX }));
+
+/**
+ * Day and night sky (SCI4-OI5-GQ1-LO1, K1.3): how dark the sky is at a given hour, from 0 (full
+ * daylight) to 1 (full night). The Sun sets at 9 p.m. in the animation, and twilight lasts until
+ * about 10:30 p.m.
+ */
+export const skyDarkness = (hour: number) => Math.max(0, Math.min(1, (hour - 20.5) / 2));
+
+/** A fixed field of stars for the night sky, each with a brightness from 0 (faint) to 1 (bright). */
+export const STARS: { x: number; y: number; bright: number }[] = Array.from({ length: 46 }, (_, k) => ({
+  x: (k * 137 + 31) % 640 + 10,
+  y: (k * 89 + 17) % 200 + 10,
+  bright: ((k * 53) % 100) / 100,
+}));
