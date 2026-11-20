@@ -22,7 +22,7 @@ const lead = (i: number) => d.slice(0, i + 1).every((x) => x === 0) && i < 5;
           <div class="g3m-pc-col" data-i={i}>
             <span class="g3m-pc-name" set:html={p.name.replace('thousands', 'thou&shy;sands').replace('hundreds', 'hun&shy;dreds')} />
             <button type="button" class="g3m-pc-btn" data-dir="1" aria-label={`One more ${p.name.replace(/s$/, '')}`}>▲</button>
-            <span class={`g3m-pc-digit${lead(i) ? ' is-lead' : ''}`} data-digit>{d[i]}</span>
+            <button type="button" class={`g3m-pc-digit${lead(i) ? ' is-lead' : ''}`} data-digit aria-label={`${p.name} digit`}>{d[i]}</button>
             <button type="button" class="g3m-pc-btn" data-dir="-1" aria-label={`One less ${p.name.replace(/s$/, '')}`}>▼</button>
             <span class="g3m-pc-value" data-val>{d[i] ? fmt(d[i] * p.value) : ''}</span>
           </div>
@@ -33,7 +33,7 @@ const lead = (i: number) => d.slice(0, i + 1).every((x) => x === 0) && i < 5;
   <p class="g3m-pc-num" data-pc="num">{fmt(value)}</p>
   <p class="g3m-pc-exp" data-pc="exp">{fmt(value)} = {expanded(value)}</p>
   <p class="g3m-pc-words" data-pc="words">{words(value)}</p>
-  <p class="g3m-pc-note" data-pc="note" aria-live="polite">Press ▲ or ▼ to change a digit. Zeros at the far left are pale: they don’t change the number.</p>
+  <p class="g3m-pc-note" data-pc="note" aria-live="polite">Tap a digit to see what it is worth. Press ▲ or ▼ to change it.</p>
 </g3-place-chart>
 
 <style is:global>
@@ -48,7 +48,7 @@ const lead = (i: number) => d.slice(0, i + 1).every((x) => x === 0) && i < 5;
   .g3m-pc-btn { width: min(2.4rem, 100%); height: 2rem; border: 1px solid var(--line-strong); border-radius: 0.6rem; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 0.8rem; cursor: pointer; }
   .g3m-pc-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
   .g3m-pc-btn:disabled { opacity: 0.35; cursor: default; }
-  .g3m-pc-digit { font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.3rem); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .g3m-pc-digit { border: 0; background: none; color: var(--ink); font-family: inherit; cursor: pointer; padding: 0 0.2rem; border-radius: 0.4rem; font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.3rem); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
   .g3m-pc-digit.is-lead { color: var(--ink-3); opacity: 0.45; }
   .g3m-pc-digit.is-bump { animation: g3m-pc-bump 0.45s ease; }
   .g3m-pc-value { min-height: 1.3em; font-size: clamp(0.6rem, 0.52rem + 0.3vw, 0.75rem); font-weight: 700; color: var(--accent); white-space: nowrap; }
@@ -81,6 +81,15 @@ const lead = (i: number) => d.slice(0, i + 1).every((x) => x === 0) && i < 5;
           }),
         );
       });
+      this.querySelectorAll<HTMLElement>('[data-digit]').forEach((b, i) =>
+        b.addEventListener('click', () => {
+          const d = digitsOf(this.n)[i];
+          const lead = i < 5 && digitsOf(this.n).slice(0, i + 1).every((x) => x === 0);
+          this.q('note').textContent = lead
+            ? `This 0 is at the far left, so it changes nothing. You don’t even say it.`
+            : `The ${d} is in the ${PLACES[i].name} place. ${d} × ${fmt(PLACES[i].value)} = ${fmt(d * PLACES[i].value)}.`;
+        }),
+      );
       this.draw();
     }
 
