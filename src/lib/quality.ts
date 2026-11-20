@@ -61,7 +61,7 @@ const promptWords = (prompt: string) =>
 /** Checks one concept's practice set against the question standard. Returns what is wrong. */
 export function qualityIssues(c: Concept): string[] {
   const issues: string[] = [];
-  // Limits by grade: 9 problems for Grades 3–6, 6 for Grades 1 and 2 (gradeProfile in src/site.ts).
+  // Limits by grade: 9 problems in Grades 4–6, then 6, 4 and 3 in Grades 3, 2 and 1 (gradeProfile in src/site.ts).
   const { maxPerLevel: MAX_PER_LEVEL, maxParts: MAX_PARTS, maxDeepSteps: MAX_DEEP_STEPS, minMoves, maxPromptWords } = gradeProfile(c.grade);
   const young = c.grade <= 2;
   const atLevel = (l: number) => c.problems.filter((p) => p.level === l);
@@ -72,7 +72,7 @@ export function qualityIssues(c: Concept): string[] {
     if (p.type !== 'investigation' && isBareCalculation(p.prompt)) issues.push(`${p.id}: a Deep Think problem can't be a bare calculation`);
     if (p.thinking === 'recall' || p.thinking === 'apply') issues.push(`${p.id}: a Deep Think problem needs a real thinking move, not "${p.thinking}"`);
   }
-  if (new Set(deep.map((p) => p.thinking)).size < 2) issues.push('Deep Think needs at least 2 different thinking moves');
+  if (deep.length >= 2 && new Set(deep.map((p) => p.thinking)).size < 2) issues.push('Deep Think needs at least 2 different thinking moves');
   if (!deep.some((p) => p.type !== 'mc' && p.type !== 'multi')) issues.push('Deep Think needs a problem that is not multiple choice');
   if (c.subject === 'math' && !young && !deep.some((p) => p.type === 'investigation' || p.type === 'build')) issues.push('Math Deep Think needs an investigation or a build problem');
   if (build.filter((p) => p.thinking === 'recall').length > 1) issues.push('Build has more than one recall problem');
@@ -83,7 +83,9 @@ export function qualityIssues(c: Concept): string[] {
     if (n > MAX_PER_LEVEL[level]) issues.push(`${n} ${name} problems is too many: keep the best ${MAX_PER_LEVEL[level]}`);
   }
   for (const p of c.problems) {
-    if (p.type === 'investigation' && p.parts.length > MAX_PARTS) issues.push(`${p.id}: ${p.parts.length} parts is too many: keep ${MAX_PARTS} or fewer`);
+    if (p.type !== 'investigation') continue;
+    if (!MAX_PARTS) issues.push(`${p.id}: Grade ${c.grade} has no investigations: use one short problem instead`);
+    else if (p.parts.length > MAX_PARTS) issues.push(`${p.id}: ${p.parts.length} parts is too many: keep ${MAX_PARTS} or fewer`);
   }
   const deepSteps = deep.reduce((n, p) => n + (p.type === 'investigation' ? p.parts.length : 1), 0);
   if (deepSteps > MAX_DEEP_STEPS) issues.push(`Deep Think has ${deepSteps} steps, counting each investigation part: keep ${MAX_DEEP_STEPS} or fewer`);

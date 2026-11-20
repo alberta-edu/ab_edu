@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
-import { UNLOCK_AFTER, gradeName, gradeProfile } from '../../site.ts';
+import { UNLOCK_AFTER, gradeName, problemsPerTopic } from '../../site.ts';
 import { subjectGuide } from '../../lib/educator.ts';
 import { gradesWithContent, subjectsFor, subjectPath } from '../../lib/content.ts';
 import { THINKING_MOVES, MOVE_GROUPS } from '../../lib/thinking.ts';
@@ -13,7 +13,6 @@ const description =
 const guides = gradesWithContent()
   .map((grade) => ({ grade, subjects: subjectsFor(grade).filter((s) => subjectGuide(s.slug, grade)) }))
   .filter((g) => g.subjects.length);
-const young = gradeProfile(1);
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -66,7 +65,7 @@ const everyChild = [
           </article>
           <article class="card ed-card">
             <Fragment set:html={levelBadge(2)} />
-            <p>Read a story, table or map, then decide what to do. Solving {UNLOCK_AFTER} unlocks the next level ({young.unlockAfter} in Grades 1 and 2).</p>
+            <p>Read a story, table or map, then decide what to do. Solving {UNLOCK_AFTER} unlocks the next level (1 in Grades 1 to 3).</p>
           </article>
           <article class="card ed-card">
             <Fragment set:html={levelBadge(3)} />
@@ -76,7 +75,7 @@ const everyChild = [
         <ul class="ed-checks">
           <li>Every problem traces to Alberta’s program of studies.</li>
           <li>Nothing needs knowledge above the grade.</li>
-          <li>Grades 1 and 2 have less to read, more to watch, and {young.maxPerLevel[1] + young.maxPerLevel[2] + young.maxPerLevel[3]} problems per topic.</li>
+          <li>Younger grades get shorter lessons and fewer problems: {problemsPerTopic(3)} per topic in Grade 3, {problemsPerTopic(2)} in Grade 2, {problemsPerTopic(1)} in Grade 1.</li>
           <li>Every problem has hints, a worked solution and feedback on wrong answers.</li>
         </ul>
       </section>

@@ -65,15 +65,18 @@ export const LEVELS = {
 export const UNLOCK_AFTER = 2;
 
 /**
- * What changes with age. Grades 1 and 2 read little, so lessons have less text and more to
- * watch, and practice is shorter. `npm run verify` enforces these limits.
+ * What changes with age. Each younger grade gets less: shorter lessons, fewer words, fewer problems,
+ * and something to watch or play with in every step, because younger children can't concentrate as
+ * long. Grades 4 to 6 share Grade 5's limits. `npm run verify` enforces all of them.
  */
 export interface GradeProfile {
   /** Most problems per level: Warm-up, Build, Deep Think. */
   maxPerLevel: { 1: number; 2: number; 3: number };
+  /** Fewest problems per level. */
+  minPerLevel: { 1: number; 2: number; 3: number };
   /** Problems to solve at one level before the next unlocks. */
   unlockAfter: number;
-  /** Most parts an investigation may have. */
+  /** Most parts an investigation may have. 0 means no investigations. */
   maxParts: number;
   /** Most steps Deep Think may take, counting each investigation part as a step. */
   maxDeepSteps: number;
@@ -88,29 +91,20 @@ export interface GradeProfile {
   maxBigIdeaBullets: number;
   /** Most lesson steps. */
   maxSteps: number;
+  /** Most blocks in one lesson step. */
+  maxBlocksPerStep: number;
+  /** Most key terms. 0 means no limit. */
+  maxKeyTerms: number;
   /** Every lesson step must hold a visual, experiment or figure. */
   visualEveryStep: boolean;
   /** Longest problem prompt in words, apart from passages and tables. 0 means no limit. */
   maxPromptWords: number;
 }
 
-const YOUNG: GradeProfile = {
-  maxPerLevel: { 1: 2, 2: 2, 3: 2 },
-  unlockAfter: 1,
-  maxParts: 2,
-  maxDeepSteps: 3,
-  minMoves: 3,
-  maxWords: 20,
-  maxSentences: 2,
-  minBlobWords: 15,
-  maxBigIdeaBullets: 3,
-  maxSteps: 5,
-  visualEveryStep: true,
-  maxPromptWords: 30,
-};
-
-const OLDER: GradeProfile = {
+/** Grades 4 to 6: Grade 5's limits. */
+const GRADES_4_TO_6: GradeProfile = {
   maxPerLevel: { 1: 3, 2: 4, 3: 2 },
+  minPerLevel: { 1: 3, 2: 3, 3: 2 },
   unlockAfter: UNLOCK_AFTER,
   maxParts: 3,
   maxDeepSteps: 5,
@@ -120,8 +114,70 @@ const OLDER: GradeProfile = {
   minBlobWords: 25,
   maxBigIdeaBullets: 0,
   maxSteps: 8,
+  maxBlocksPerStep: 5,
+  maxKeyTerms: 0,
   visualEveryStep: false,
   maxPromptWords: 0,
 };
 
-export const gradeProfile = (g: number): GradeProfile => (g <= 2 ? YOUNG : OLDER);
+const GRADE_3: GradeProfile = {
+  maxPerLevel: { 1: 2, 2: 2, 3: 2 },
+  minPerLevel: { 1: 2, 2: 2, 3: 2 },
+  unlockAfter: 1,
+  maxParts: 2,
+  maxDeepSteps: 3,
+  minMoves: 3,
+  maxWords: 25,
+  maxSentences: 2,
+  minBlobWords: 18,
+  maxBigIdeaBullets: 3,
+  maxSteps: 5,
+  maxBlocksPerStep: 3,
+  maxKeyTerms: 5,
+  visualEveryStep: true,
+  maxPromptWords: 40,
+};
+
+const GRADE_2: GradeProfile = {
+  maxPerLevel: { 1: 2, 2: 1, 3: 1 },
+  minPerLevel: { 1: 2, 2: 1, 3: 1 },
+  unlockAfter: 1,
+  maxParts: 0,
+  maxDeepSteps: 1,
+  minMoves: 3,
+  maxWords: 15,
+  maxSentences: 2,
+  minBlobWords: 12,
+  maxBigIdeaBullets: 2,
+  maxSteps: 4,
+  maxBlocksPerStep: 2,
+  maxKeyTerms: 4,
+  visualEveryStep: true,
+  maxPromptWords: 20,
+};
+
+const GRADE_1: GradeProfile = {
+  maxPerLevel: { 1: 1, 2: 1, 3: 1 },
+  minPerLevel: { 1: 1, 2: 1, 3: 1 },
+  unlockAfter: 1,
+  maxParts: 0,
+  maxDeepSteps: 1,
+  minMoves: 2,
+  maxWords: 10,
+  maxSentences: 2,
+  minBlobWords: 8,
+  maxBigIdeaBullets: 2,
+  maxSteps: 3,
+  maxBlocksPerStep: 2,
+  maxKeyTerms: 3,
+  visualEveryStep: true,
+  maxPromptWords: 12,
+};
+
+export const gradeProfile = (g: number): GradeProfile => (g <= 1 ? GRADE_1 : g === 2 ? GRADE_2 : g === 3 ? GRADE_3 : GRADES_4_TO_6);
+
+/** Problems in a full set for a grade. */
+export const problemsPerTopic = (g: number) => {
+  const m = gradeProfile(g).maxPerLevel;
+  return m[1] + m[2] + m[3];
+};
