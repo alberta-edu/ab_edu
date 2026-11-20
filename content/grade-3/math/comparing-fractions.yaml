@@ -1,0 +1,214 @@
+id: comparing-fractions
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [CLrkTvQMl0Oj1FGsDZHeJQ]
+order: 10
+title: Comparing Fractions and the Number Line
+shortTitle: Comparing fractions
+summary: >-
+  Compare fractions with the same denominator or the same numerator, see why more parts make
+  smaller parts, and place fractions between 0 and 1 on a number line.
+
+bigIdea: |-
+  - **Same denominator:** more parts is more. 5/8 > 3/8.
+  - **Same numerator:** more parts in the whole make **smaller** parts. 2/3 > 2/6.
+  - Fractions are numbers **between** 0 and 1 on the number line.
+
+lesson:
+  - title: Same size parts
+    blocks:
+      - type: visual
+        covers: [S1.8, K1.4, S1.10]
+        component: g3-fraction
+        props: { mode: compare, n: 3, d: 8, b: [5, 8] }
+        caption: Both bars have eighths. Slide the shading. The one with **more parts shaded** is greater.
+
+  - title: Same number of parts
+    blocks:
+      - type: visual
+        covers: [S1.9, U1.4, K1.4, S1.10]
+        component: g3-fraction
+        props: { mode: compare, n: 2, d: 3, b: [2, 6] }
+        caption: |-
+          1. Both show 2 parts. Press **+** on the bottom bar.
+          2. More parts in the whole make **smaller** parts.
+
+  - title: Different-sized wholes
+    blocks:
+      - type: visual
+        covers: [S1.7]
+        component: g3-fraction
+        props: { mode: compare, n: 1, d: 2, b: [1, 2], sizes: [1, 0.55] }
+        caption: Both are **1/2**. But half of a big bar is more than half of a small bar.
+
+  - title: On the number line
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.11, U1.1]
+        component: g3-fraction
+        props: { mode: line, n: 3, d: 8 }
+        caption: Slide the dot. Every fraction has its own spot **between 0 and 1**, before or after 1/2.
+
+  - title: Near 0, 1/2 or 1?
+    blocks:
+      - type: visual
+        covers: [S1.12, S1.10]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'lt', label: 'Less than 1/2' }
+            - { id: 'eq', label: 'Exactly 1/2' }
+            - { id: 'gt', label: 'More than 1/2' }
+          cards:
+            - { text: '1/8', bin: 'lt', why: 'Half of 8 parts is 4 parts. 1 part is less.' }
+            - { text: '7/8', bin: 'gt', why: '7 parts is more than 4, so it is close to 1.' }
+            - { text: '5/10', bin: 'eq', why: '5 is half of 10.' }
+            - { text: '2/12', bin: 'lt', why: 'Half of 12 is 6. 2 is much less.' }
+            - { text: '9/12', bin: 'gt', why: '9 is more than 6, half of 12.' }
+        caption: Half of the bottom number tells you where 1/2 is.
+
+keyTerms:
+  - term: Benchmark
+    covers: [S1.12]
+    definition: 'A friendly number to compare with, like 0, 1/2 or 1.'
+  - term: Number line
+    covers: [K1.6]
+    definition: 'A line where every number has its own point. Fractions sit between 0 and 1.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.8, S1.10]
+    type: mc
+    fixedOrder: true
+    prompt: 'Which sign makes this true? \(\frac{5}{9} \;\square\; \frac{7}{9}\)'
+    choices: ['\(<\)', '\(>\)', '\(=\)']
+    answer: 0
+    feedback:
+      '1': 'Both are ninths, so the parts are the same size. Which has more parts?'
+      '2': 'They have the same size parts, but not the same number of them.'
+    hints:
+      - The parts are the same size. Which fraction has more of them?
+    solution:
+      - 'Both are ninths. 5 ninths is less than 7 ninths, so \(\frac{5}{9} < \frac{7}{9}\).'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [U1.4, S1.9]
+    type: mc
+    prompt: Which part is the **biggest**?
+    choices: ['\(\frac{1}{3}\)', '\(\frac{1}{8}\)', '\(\frac{1}{12}\)']
+    answer: 0
+    feedback:
+      '1': 'Cutting a whole into 8 parts makes smaller parts than cutting it into 3.'
+      '2': '12 is the biggest number, but 12 parts are the smallest parts.'
+    hints:
+      - Which whole is cut into the fewest parts?
+    solution:
+      - 'Fewer parts make bigger parts. Thirds are the biggest, so **1/3** wins.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S1.7]
+    type: mc
+    prompt: |-
+      Ali eats 1/2 of a **small** pizza. Bea eats 1/2 of a **large** pizza.
+      Ali says, "We ate the same amount." Who ate more?
+    choices: ['Bea', 'Same', 'Ali']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'They ate the same fraction. Are the pizzas the same size?'
+      '2': 'Ali’s pizza is the small one. Is half of it bigger?'
+    hints:
+      - Is half of a small pizza the same size as half of a large one?
+    solution:
+      - 'Both ate 1/2, but of different wholes.'
+      - 'Half of the large pizza is bigger, so **Bea** ate more.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.11, K1.6]
+    type: fraction
+    figure: { kind: number-line, n: 4, d: 6, wholes: 1, label: 'A' }
+    prompt: What fraction is at point **A**?
+    answer: 4/6
+    form: any
+    verify: 4/6
+    hints:
+      - How many equal steps are there from 0 to 1?
+      - Count the steps from 0 to A.
+    solution:
+      - 'There are 6 equal steps from 0 to 1, so each step is 1/6.'
+      - 'A is 4 steps from 0: **4/6**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.9, S1.12, U1.4]
+    type: investigation
+    prompt: 'Three friends run on the same trail. Kai runs **3/4** of it, Lu runs **3/8** and Mo runs **3/5**.'
+    parts:
+      - type: mc
+        prompt: Who ran the **farthest**?
+        choices: ['Kai', 'Lu', 'Mo']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Eighths are small parts. Does 3 small parts go far?'
+          '2': 'Fifths are bigger than eighths. Are they bigger than fourths?'
+        hints:
+          - They all ran 3 parts. Whose parts are the biggest?
+        solution:
+          - 'Same numerator, so compare the parts. Fourths are the biggest parts.'
+          - '**Kai** ran the farthest.'
+      - type: mc
+        prompt: Who ran **less than half** of the trail?
+        choices: ['Lu', 'Mo', 'Kai']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Half of 5 parts is 2 and a half parts. Is 3 parts more or less?'
+          '2': 'Half of 4 parts is 2 parts. Kai ran 3.'
+        hints:
+          - For each one, how many parts would make exactly half?
+        solution:
+          - 'Half of 8 parts is 4 parts. Lu ran only 3, so **Lu** ran less than half.'
+          - 'Mo and Kai each ran more than half.'
+    wrapUp: When the numerators match, the size of the parts decides. And 1/2 is a handy friend to compare with.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.12, S1.5]
+    type: build
+    prompt: Write a fraction that is **more than 1/2** but **less than 1**. Use a denominator of 12 or less.
+    fields:
+      - { name: n, label: 'Numerator' }
+      - { name: d, label: 'Denominator' }
+    rules:
+      - { test: 'n % 1 == 0 && d % 1 == 0 && n >= 1 && d >= 2 && d <= 12', fail: 'Use whole numbers, with a denominator from 2 to 12.' }
+      - { test: 'n < d', fail: 'That is one whole or more. Shade fewer parts than the whole has.' }
+      - { test: '2 * n > d', fail: 'That is not more than half. How many parts make exactly half?' }
+    examples:
+      - { n: 3, d: 4 }
+      - { n: 5, d: 8 }
+      - { n: 11, d: 12 }
+    counterexamples:
+      - { n: 4, d: 8 }
+      - { n: 6, d: 6 }
+      - { n: 2, d: 5 }
+    hints:
+      - Pick a denominator. How many parts make exactly half?
+      - Shade more than half, but not all of them.
+    solution:
+      - 'With eighths, half is 4 parts. 5, 6 or 7 parts work: **5/8** is one answer.'
+      - '**3/4** and **11/12** work too.'
