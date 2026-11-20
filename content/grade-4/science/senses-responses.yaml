@@ -1,0 +1,381 @@
+id: senses-responses
+grade: 4
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI4-OI4-GQ1-LO1]
+order: 9
+title: Sensing and Responding
+shortTitle: Senses and responses
+summary: >-
+  Match animal sense organs to what they detect, watch a bean seedling bend toward light, and test
+  whether pill bugs choose damp or dry ground.
+
+bigIdea: |-
+  - Animals sense the world with **ears, eyes, nose, tongue and skin**.
+  - Senses help them find food and detect other animals, danger and temperature.
+  - **Plants** sense light, gravity, temperature and touch, and they respond by how they grow.
+  - Sensing and responding help organisms grow and survive.
+
+lesson:
+  - title: Animal sense organs
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, S2.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: eyes, label: Eyes, icon: 👀 }
+            - { id: ears, label: Ears, icon: 👂 }
+            - { id: nose, label: Nose, icon: 👃 }
+            - { id: tongue, label: Tongue, icon: 👅 }
+            - { id: skin, label: Skin, icon: ✋ }
+          cards:
+            - { text: A hawk spots a mouse from high in the sky., bin: eyes, why: Sharp eyes help it find food from far away. }
+            - { text: A great gray owl hears a vole moving under the snow., bin: ears, why: It finds food it cannot even see. }
+            - { text: A black bear smells berries from far away., bin: nose, why: A strong sense of smell leads it to food. }
+            - { text: A moose licks salty mud at a mineral lick., bin: tongue, why: Tasting the salt tells it this mud has something its body needs. }
+            - { text: You feel the cold wind and zip up your coat., bin: skin, why: Skin senses temperature. }
+            - { text: A deer hears a twig snap and runs., bin: ears, why: Hearing warns it of danger. }
+        caption: Which sense organ is at work?
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI4-GQ1-LO1#K3.2']
+        title: From Grade 3
+        body: Animals use their senses to detect food, predators and other plants and animals.
+
+  - title: Senses help animals survive
+    blocks:
+      - type: table
+        covers: [K2.3, S2.2, U2.1]
+        headers: [Animal, Sense organ, Detects, Helps it survive by…]
+        rows:
+          - ['🐇 Snowshoe hare', 'Long ears', 'Danger', 'Hearing a lynx in time to run']
+          - ['🐻 Black bear', 'Nose', 'Food', 'Finding berries and other food']
+          - ['🪱 Earthworm', 'Skin', 'Light', 'Staying underground, away from birds and the drying Sun']
+          - ['🐕 Dog', 'Skin', 'Temperature', 'Finding shade on a hot day']
+      - type: callout
+        variant: tip
+        covers: [K2.2, K2.3]
+        title: No eyes needed
+        body: Earthworms have no eyes. Their **skin** senses light, so they can tell when they are out in the open.
+
+  - title: 'Virtual experiment: the seedling in a box'
+    blocks:
+      - type: experiment
+        covers: [K2.1, S2.1, U2.1]
+        title: Grow a bean seedling in a dark box with one hole
+        question: |-
+          A bean seedling grows in a pot inside a dark box. The only light comes through **one hole** in the side
+          of the box.
+
+          Watch it for five days.
+        animation: g4-plant-turn
+        predict:
+          choices:
+            - The stem bends toward the hole.
+            - The stem grows straight up, ignoring the hole.
+            - The stem bends away from the hole.
+            - The seedling stops growing in the dark.
+          answer: 0
+        observe: |-
+          - The stem grew up, then **bent toward the hole** where the light came in.
+          - The **roots** grew down into the soil.
+        explain: |-
+          - Plants **detect light**. The stem grew toward it, so the leaves could get the light they need.
+          - Plants also **detect gravity**. Roots grow down, toward water in the soil.
+
+  - title: Plants sense in four ways
+    blocks:
+      - type: compare
+        covers: [K2.1, S2.1]
+        columns:
+          - title: ☀️ Light
+            body: Stems and leaves bend toward light.
+          - title: ⬇️ Gravity
+            body: Roots grow down, even if the seed was planted upside down.
+          - title: 🌡️ Temperature
+            body: Seeds wait for warm spring soil before they sprout.
+          - title: 🤚 Touch
+            body: A pea plant’s thin tendrils curl around a stick they touch, and hold on as it climbs.
+
+  - title: 'Investigate: damp or dry?'
+    blocks:
+      - type: experiment
+        covers: [S2.3, U2.1, K2.3]
+        title: Give pill bugs a choice
+        question: |-
+          Ten pill bugs start in the middle of a tray.
+
+          - One half has a **damp** paper towel.
+          - The other half has a **dry** paper towel.
+
+          After ten minutes, where will they be?
+        animation: g4-bug-choice
+        predict:
+          choices:
+            - Most of them on the damp side
+            - Most of them on the dry side
+            - About half on each side
+          answer: 0
+        observe: |-
+          - After ten minutes, **8** pill bugs were on the damp side.
+          - Only **2** were on the dry side.
+        explain: |-
+          - Pill bugs **sensed** the difference and **responded** by moving.
+          - Their bodies dry out easily, so damp places help them survive.
+          - Afterward, gently put the bugs back where you found them.
+      - type: callout
+        variant: tip
+        covers: [S2.3]
+        title: One try isn’t enough
+        body: Scientists would run this test a few times. If the bugs pick the damp side again and again, the result is much more convincing.
+
+keyTerms:
+  - term: Stimulus
+    covers: [K2.1]
+    definition: Something in the environment that an organism can sense, like light, a sound or a smell. More than one is called stimuli.
+  - term: Respond
+    covers: [U2.1, S2.1]
+    definition: To react to something sensed, for example by moving or growing a certain way.
+  - term: Sensory organ
+    covers: [K2.2]
+    definition: A body part that senses, like the ears, eyes, nose, tongue or skin.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2]
+    type: multi
+    prompt: Select **every** sensory organ.
+    choices: [Ears, Nose, Skin, Heart, Lungs]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': The heart pumps blood. Does it sense the world outside the body?
+      '4': Lungs take in air for breathing. Do they sense the world outside?
+    hints:
+      - Which of these let an animal see, hear, smell, taste or feel?
+    solution:
+      - Ears hear, the nose smells and the skin feels. They are **sensory organs**.
+      - The heart and lungs do other jobs inside the body.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.3, S2.2]
+    type: mc
+    prompt: A white-tailed deer lifts its head and turns its big ears toward a sound in the bushes. What are its ears most likely helping it detect?
+    choices: [Danger, Temperature, Food to taste, Light]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Skin senses temperature. What do ears sense?
+      '2': Tasting uses the tongue. What might a sound in the bushes be?
+      '3': Light is sensed by the eyes. What do ears sense?
+    hints:
+      - What could be making a sound in the bushes that a deer should worry about?
+    solution:
+      - Ears detect sounds. A sound in the bushes could be a wolf or a coyote.
+      - Hearing helps the deer detect **danger** in time to run.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.1, S2.1]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 420 170" class="fig-svg" role="img" aria-label="A potted plant on a table beside a window. Its stem and leaves lean toward the window.">
+      <rect x="320" y="20" width="90" height="110" style="fill:#cfe6fa;stroke:var(--ink-2);stroke-width:3"/><line x1="365" y1="20" x2="365" y2="130" style="stroke:var(--ink-2);stroke-width:3"/>
+      <rect x="0" y="140" width="420" height="30" class="sci-ground"/>
+      <path d="M150,140 L190,140 L184,110 L156,110 Z" style="fill:#c0563a"/>
+      <path d="M170,110 Q168,60 250,45" style="fill:none;stroke:#6cbf4a;stroke-width:5;stroke-linecap:round"/>
+      <ellipse cx="258" cy="40" rx="16" ry="8" style="fill:#6cbf4a"/><ellipse cx="214" cy="62" rx="16" ry="8" transform="rotate(-20 214 62)" style="fill:#6cbf4a"/>
+      </svg>
+    prompt: This plant has been sitting by a window for a week. What is it responding to?
+    choices: [Light, Gravity, Touch, Sound]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Gravity pulls down. Which way is this plant leaning?
+      '2': Nothing is touching the leaves. What comes in through the window?
+      '3': Plants don’t have ears. What comes in through the window?
+    hints:
+      - What comes in through a window?
+    solution:
+      - The plant bends toward the window, where the **light** comes from. It senses light and grows toward it.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S2.2, K2.3, K2.2]
+    type: mc
+    prompt: In winter, a great gray owl sits still on a branch. Suddenly it dives into the deep snow and comes up with a vole it never saw. How did it find the vole?
+    choices:
+      - Its ears heard the vole moving under the snow.
+      - Its eyes saw through the snow.
+      - Its skin felt the vole’s warmth from the branch.
+      - Its tongue tasted the air.
+    answer: 0
+    feedback:
+      '1': The story says the owl never saw the vole. Which sense doesn’t need to see?
+      '2': The owl is high on a branch, far from the vole. Could it feel warmth from there?
+      '3': Owls don’t taste the air to hunt. What else could a moving vole give off?
+    hints:
+      - A vole moving under snow makes tiny sounds.
+    solution:
+      - The vole was hidden, so the owl couldn’t see it.
+      - Owls have excellent **hearing**. Its ears detected the vole’s sounds, which led it to **food**.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S2.3, U2.1]
+    type: mc
+    prompt: |-
+      Kiran runs the pill bug test three times, with ten bugs each time.
+
+      | Try | Damp side | Dry side |
+      |---|---|---|
+      | 1 | 8 | 2 |
+      | 2 | 7 | 3 |
+      | 3 | 9 | 1 |
+
+      What can Kiran conclude?
+    choices:
+      - Pill bugs sense moisture and move toward damp places.
+      - Pill bugs can’t sense anything, so they move at random.
+      - Pill bugs like dry places best.
+      - The results are different every time, so they tell us nothing.
+    answer: 0
+    feedback:
+      '1': If they moved at random, about how many would end up on each side?
+      '2': Add up the dry side. Is that most of the bugs?
+      '3': The numbers change a little, but what stays the same every time?
+    hints:
+      - In every try, which side had more bugs?
+    solution:
+      - Every time, most bugs ended up on the **damp** side.
+      - So pill bugs **sense** moisture and **respond** by moving toward it.
+
+  - id: b3
+    level: 2
+    thinking: whatif
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: Nadia plants a bean seed upside down by mistake. When it sprouts, which way will its first root grow?
+    choices:
+      - It turns and grows down, because roots sense gravity.
+      - It grows up, because the seed is upside down.
+      - It grows sideways, because it is confused.
+      - It doesn’t grow, because the seed is upside down.
+    answer: 0
+    feedback:
+      '1': Roots sense something that always pulls the same way. Which way is that?
+      '2': Plants don’t get confused. What can they sense that always points down?
+      '3': Seeds sprout in all positions in nature. What tells the root which way to grow?
+    hints:
+      - Which of the four things plants sense always pulls down?
+    solution:
+      - Plants **detect gravity**. Roots turn to grow down, whichever way the seed was planted.
+      - That takes them toward water and holds the plant in place.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S2.3, S1.2]
+    type: order
+    prompt: Put the steps of the pill bug investigation in order.
+    items:
+      - Ask a question. Do pill bugs prefer damp or dry places?
+      - Put a damp towel in one half of a tray and a dry towel in the other.
+      - Gently place the pill bugs in the middle.
+      - Wait ten minutes, then count the bugs on each side.
+      - Repeat the test to check the result.
+      - Put the pill bugs back where you found them.
+    hints:
+      - Every investigation starts with a question. What comes last, to show respect for the animals?
+    solution:
+      - Start with the **question**, then set up the tray and place the bugs.
+      - Count after waiting, and **repeat** to check.
+      - Finally, return the bugs to their home.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.1, S2.1, U2.1]
+    type: investigation
+    prompt: |-
+      Zara lays a potted bean plant on its side in a dark cupboard for three days. Then she stands it upright on a
+      windowsill, with the window on its **left**, for three more days.
+    parts:
+      - type: mc
+        prompt: In the dark cupboard, what does the stem do?
+        choices:
+          - It bends to grow upward again.
+          - It keeps growing sideways along the shelf.
+          - It grows down toward the shelf.
+        answer: 0
+        feedback:
+          '1': There is no light in the cupboard. What else can a plant sense that tells it which way is up?
+          '2': Roots grow down. Which way do stems grow?
+        hints:
+          - Without light, what else tells a plant which way is up?
+        solution:
+          - Plants **detect gravity**. Stems grow up, away from the pull, so the stem curves to point up again.
+      - type: mc
+        prompt: On the windowsill, which way does the top of the plant bend?
+        choices: [Toward the left, Toward the right, Straight up]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Where is the window?
+          '2': Remember the seedling in the box. What did it bend toward?
+        hints:
+          - Where is the light coming from now?
+        solution:
+          - The window is on the left, so the plant bends **toward the left**, toward the light.
+      - type: mc
+        prompt: How does each response help the plant survive?
+        choices:
+          - Growing up and toward light gets the leaves the light they need.
+          - It helps the plant hide from animals in the dark.
+          - It helps the plant stay small, so it needs less water.
+        answer: 0
+        feedback:
+          '1': Would bending toward a window help a plant hide?
+          '2': Is the plant getting smaller, or reaching for something?
+        hints:
+          - What do leaves need to make the plant’s food?
+        solution:
+          - Leaves need **light** to make food. Sensing gravity and light points them where the light is.
+    wrapUp: Plants can’t walk to the light, so they sense it and grow toward it.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.3, K2.2, K2.3]
+    type: mc
+    prompt: |-
+      Earthworms have no eyes. Owen wonders, “Can earthworms sense light?” Which investigation would answer his
+      question best?
+    choices:
+      - Cover half a damp tray so it is dark, put worms in the middle, and count where they go. Repeat it.
+      - Shine a flashlight on one worm for a second and see if it wiggles.
+      - Look at a worm’s head closely to find its eyes.
+      - Put worms in a bright tray and a dark tray, then ask which tray they liked.
+    answer: 0
+    feedback:
+      '1': A worm wiggles all the time. Would one quick look with one worm convince you?
+      '2': Worms have no eyes. Could they still sense light some other way?
+      '3': Worms can’t tell you what they like. What could they show you instead?
+    hints:
+      - Like the pill bug test, give the worms a **choice**, and watch what they do.
+      - How would you make sure the result wasn’t just luck?
+    solution:
+      - A tray with a light half and a dark half gives the worms a **choice**. Where they go shows what they sensed.
+      - Using many worms and repeating the test makes the result convincing.
+      - Earthworms do move to the dark. Their **skin** senses light.

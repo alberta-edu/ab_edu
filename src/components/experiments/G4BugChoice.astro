@@ -1,0 +1,80 @@
+---
+// Animated experiment: ten pill bugs start in the middle of a tray. One half has a damp paper
+// towel, the other half a dry one. After ten minutes, most of them are on the damp side
+// (SCI4-OI4-GQ1-LO1, S2.3, U2.1, K2.3). Pill bugs lose water easily, so they move to damp places.
+---
+<g4-bug-choice>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-bug-choice>
+
+<style is:global>
+  g4-bug-choice { display: block; }
+  g4-bug-choice svg { background: var(--surface-2); }
+  .g4s-bc-tray { fill: none; stroke: var(--ink-2); stroke-width: 4; }
+  .g4s-bc-damp { fill: #8fa9bf; }
+  .g4s-bc-dry { fill: #f0e6d0; }
+  .g4s-bc-bug { fill: #6b6f78; stroke: #2e3036; stroke-width: 1.5; }
+  .g4s-bc-lbl { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .g4s-bc-count { fill: var(--ink); font-size: 22px; font-weight: 700; }
+  .g4s-bc-clock { fill: var(--ink-2); font-size: 16px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { BUG_END } from './g4-science.ts';
+
+  const TRAY = { x: 60, y: 50, w: 540, h: 190 };
+  const MID = TRAY.x + TRAY.w / 2;
+
+  class G4BugChoice extends HTMLElement {
+    private bugs = BUG_END.map((b) => ({ x: MID, y: TRAY.y + 30 + b.lane * 17, a: 0 }));
+    private minutes = 0;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.done = false;
+      this.minutes = 0;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      const start = BUG_END.map((b) => ({ x: MID + (b.lane % 2 ? 8 : -8), y: TRAY.y + 30 + b.lane * 15 }));
+      const end = BUG_END.map((b) => ({ x: TRAY.x + TRAY.w * b.endX, y: TRAY.y + 25 + ((b.lane * 37) % 140) }));
+      await tween(4200, (t) => {
+        this.minutes = Math.round(t * 10);
+        this.bugs = start.map((s, i) => {
+          // Wander a little, then settle where each bug ends up.
+          const k = Math.min(1, t * 1.3);
+          const wob = Math.sin(t * 12 + i) * 18 * (1 - k);
+          const x = s.x + (end[i].x - s.x) * k + wob;
+          const y = s.y + (end[i].y - s.y) * k + Math.cos(t * 9 + i) * 10 * (1 - k);
+          return { x, y, a: (Math.atan2(end[i].y - s.y, end[i].x - s.x) * 180) / Math.PI };
+        });
+        this.draw();
+      });
+      await wait(200);
+      this.done = true;
+      this.draw();
+      const damp = BUG_END.filter((b) => b.endX < 0.5).length;
+      this.querySelector('[data-g4s="live"]')!.textContent = `After ten minutes, ${damp} of the 10 pill bugs were on the damp side and ${10 - damp} were on the dry side.`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      out.push(`<rect class="g4s-bc-damp" x="${TRAY.x}" y="${TRAY.y}" width="${TRAY.w / 2}" height="${TRAY.h}"/><rect class="g4s-bc-dry" x="${MID}" y="${TRAY.y}" width="${TRAY.w / 2}" height="${TRAY.h}"/>`);
+      out.push(`<rect class="g4s-bc-tray" x="${TRAY.x}" y="${TRAY.y}" width="${TRAY.w}" height="${TRAY.h}" rx="8"/><line x1="${MID}" y1="${TRAY.y}" x2="${MID}" y2="${TRAY.y + TRAY.h}" style="stroke:var(--ink-3);stroke-width:2;stroke-dasharray:6 6"/>`);
+      for (const b of this.bugs)
+        out.push(`<g transform="translate(${b.x.toFixed(1)} ${b.y.toFixed(1)}) rotate(${b.a.toFixed(1)})"><ellipse class="g4s-bc-bug" rx="11" ry="7"/><path d="M-5,-7 v14 M0,-7 v14 M5,-7 v14" style="stroke:#2e3036;stroke-width:1"/></g>`);
+      out.push(`<text class="g4s-bc-lbl" x="${TRAY.x + TRAY.w / 4}" y="${TRAY.y - 14}" text-anchor="middle">Damp paper towel</text><text class="g4s-bc-lbl" x="${MID + TRAY.w / 4}" y="${TRAY.y - 14}" text-anchor="middle">Dry paper towel</text>`);
+      out.push(`<text class="g4s-bc-clock" x="${MID}" y="${TRAY.y + TRAY.h + 24}" text-anchor="middle">${this.minutes} min</text>`);
+      if (this.done) {
+        const damp = BUG_END.filter((b) => b.endX < 0.5).length;
+        out.push(`<text class="g4s-bc-count" x="${TRAY.x + TRAY.w / 4}" y="${TRAY.y + TRAY.h + 46}" text-anchor="middle">${damp} bugs</text><text class="g4s-bc-count" x="${MID + TRAY.w / 4}" y="${TRAY.y + TRAY.h + 46}" text-anchor="middle">${10 - damp} bugs</text>`);
+      }
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-bug-choice', G4BugChoice);
+</script>

@@ -55,3 +55,10 @@ export function pondYears(start: number, cap: number, take: number, years: numbe
   }
   return out;
 }
+
+/**
+ * Pill bug choice tray (SCI4-OI4-GQ1-LO1, S2.3): where each of ten bugs ends up, as a share of
+ * the tray's width from the damp end (0) to the dry end (1). Eight settle on the damp side, the
+ * result the lesson reports. Pill bugs dry out easily, so they move to damp places.
+ */
+export const BUG_END: { lane: number; endX: number }[] = [0.08, 0.2, 0.14, 0.3, 0.06, 0.62, 0.24, 0.38, 0.85, 0.12].map((endX, lane) => ({ lane, endX }));
