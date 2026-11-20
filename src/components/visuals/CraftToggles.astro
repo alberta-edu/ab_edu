@@ -1,0 +1,80 @@
+---
+// A plain story, dressed up one craft move at a time (LANENG4-OI8-GQ1-LO1, K2.2, K2.3, S2.3 to S2.8).
+// Each switch swaps one plain part for a crafted one, and says what the change does for the reader.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  parts: { id: string; label: string; icon: string; plain: string; crafted: string; why: string }[];
+}
+const { parts } = Astro.props;
+const data = parts.map((p) => ({ ...p, plain: mdInline(p.plain), crafted: mdInline(p.crafted), why: mdInline(p.why) }));
+---
+<craft-toggles data-parts={JSON.stringify(data)}>
+  <div class="g4e-ct__switches" role="group" aria-label="Craft moves">
+    {parts.map((p) => <button type="button" data-ct={p.id} aria-pressed="false"><span aria-hidden="true">{p.icon}</span> {p.label}</button>)}
+    <button type="button" data-ct="all" aria-pressed="false">✨ All of them</button>
+  </div>
+  <article class="g4e-ct__story" aria-live="polite">
+    {data.map((p, i) => <>{i > 0 && ' '}<span class="g4e-ct__part" data-ct-part={p.id} set:html={p.plain} /></>)}
+  </article>
+  <p class="g4e-ct__why" data-ct="why">Switch on a craft move. Watch the story change.</p>
+  <noscript><ul>{parts.map((p) => <li><strong>{p.label}:</strong> <span set:html={mdInline(p.plain)} /> → <span set:html={mdInline(p.crafted)} /></li>)}</ul></noscript>
+</craft-toggles>
+
+<style is:global>
+  craft-toggles { display: block; }
+  .g4e-ct__switches { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g4e-ct__switches button { padding: 0.4rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g4e-ct__switches button:hover { border-color: var(--accent); }
+  .g4e-ct__switches button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+  .g4e-ct__story { margin-top: 0.7rem; padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 1.7; }
+  .g4e-ct__part { border-radius: 4px; transition: background-color 0.3s ease; }
+  .g4e-ct__part.is-crafted { background: var(--accent-soft); box-shadow: inset 0 -3px var(--accent); }
+  .g4e-ct__why { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.6rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4e-ct__part.is-new { animation: g4e-ct-in 0.5s ease; }
+    @keyframes g4e-ct-in { from { opacity: 0.2; } }
+  }
+</style>
+
+<script>
+  type Part = { id: string; label: string; plain: string; crafted: string; why: string };
+
+  class CraftToggles extends HTMLElement {
+    private parts: Part[] = [];
+    private on = new Set<string>();
+
+    connectedCallback() {
+      this.parts = JSON.parse(this.dataset.parts!);
+      this.querySelectorAll<HTMLButtonElement>('[data-ct]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const id = b.dataset.ct!;
+          if (id === 'all') {
+            const all = this.on.size < this.parts.length;
+            this.on = new Set(all ? this.parts.map((p) => p.id) : []);
+            this.paint(all ? 'All five moves together: the same events, but now you want to read it.' : 'Switch on a craft move. Watch the story change.', all ? null : undefined);
+            return;
+          }
+          if (this.on.has(id)) this.on.delete(id);
+          else this.on.add(id);
+          const p = this.parts.find((x) => x.id === id)!;
+          this.paint(this.on.has(id) ? p.why : 'Back to plain. Can you feel what is missing?', this.on.has(id) ? id : undefined);
+        }),
+      );
+    }
+
+    private paint(why: string, fresh?: string | null) {
+      for (const p of this.parts) {
+        const el = this.querySelector<HTMLElement>(`[data-ct-part="${p.id}"]`)!;
+        const crafted = this.on.has(p.id);
+        el.innerHTML = crafted ? p.crafted : p.plain;
+        el.classList.toggle('is-crafted', crafted);
+        el.classList.toggle('is-new', fresh === p.id || (fresh === null && crafted));
+        this.querySelector(`[data-ct="${p.id}"]`)!.setAttribute('aria-pressed', String(crafted));
+      }
+      this.querySelector('[data-ct="all"]')!.setAttribute('aria-pressed', String(this.on.size === this.parts.length));
+      this.querySelector<HTMLElement>('[data-ct="why"]')!.innerHTML = why;
+    }
+  }
+  customElements.define('craft-toggles', CraftToggles);
+</script>
