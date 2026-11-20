@@ -89,3 +89,26 @@ export function roundSvg(n: number, to: number): string {
   const defs = `<defs><marker id="g3m-rl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="g3m-rl-head"/></marker></defs>`;
   return `<svg viewBox="0 0 ${W} 108" role="img" aria-label="Number line from ${fmt(r.low)} to ${fmt(r.high)} with a dot at ${fmt(n)}.">${defs}${s}</svg>`;
 }
+
+/** Compare two numbers place by place from the left, as a child would. One message per place looked at. */
+export function compareSteps(a: number, b: number): { i: number; say: string }[] {
+  const da = digitsOf(a);
+  const db = digitsOf(b);
+  const start = Math.min(da.findIndex((x) => x > 0), db.findIndex((x) => x > 0));
+  const out: { i: number; say: string }[] = [];
+  for (let i = Math.max(0, start); i < 6; i++) {
+    const name = PLACES[i].name;
+    if (da[i] === db[i]) {
+      out.push({ i, say: i === 5 ? `Ones: ${da[i]} and ${db[i]}. Every place is the same, so ${fmt(a)} = ${fmt(b)}.` : `${cap(name)}: ${da[i]} and ${db[i]}. The same, so look at the next place.` });
+      continue;
+    }
+    const sign = da[i] > db[i] ? '>' : '<';
+    out.push({ i, say: `${cap(name)}: ${da[i]} and ${db[i]}. ${Math.max(da[i], db[i])} ${Math.max(da[i], db[i]) === 1 ? name.replace(/s$/, '') : name} ${Math.max(da[i], db[i]) === 1 ? 'is' : 'are'} more, so ${fmt(a)} ${sign} ${fmt(b)}.` });
+    break;
+  }
+  return out;
+}
+
+const cap = (s: string) => s[0].toUpperCase() + s.slice(1);
+
+export const compareSign = (a: number, b: number) => (a > b ? '>' : a < b ? '<' : '=');

@@ -115,6 +115,7 @@ import FunctionMachine from './visuals/FunctionMachine.astro';
 import ChanceLab from './visuals/ChanceLab.astro';
 import G3PlaceChart from './visuals/G3PlaceChart.astro';
 import G3RoundLine from './visuals/G3RoundLine.astro';
+import G3Compare from './visuals/G3Compare.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -231,6 +232,7 @@ const visuals = {
   'chance-lab': ChanceLab,
   'g3-place-chart': G3PlaceChart,
   'g3-round-line': G3RoundLine,
+  'g3-compare': G3Compare,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

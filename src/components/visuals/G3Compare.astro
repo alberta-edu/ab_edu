@@ -1,0 +1,131 @@
+---
+// Compare two numbers place by place (MAT3-OI1-GQ1-LO1: K1.6, U1.3, S1.7, S1.8). Guess the sign
+// first, then step from the left until a place is different. That place decides.
+import { digitsOf, fmt } from './g3-place.ts';
+
+interface Props {
+  pairs?: [number, number][];
+}
+const { pairs = [[45306, 45063], [9870, 10001], [70345, 70354]] } = Astro.props;
+const [a, b] = pairs[0];
+const row = (n: number) => digitsOf(n).map((d, i) => (digitsOf(n).slice(0, i + 1).every((x) => x === 0) && i < 5 ? '' : String(d)));
+---
+<g3-compare data-pairs={JSON.stringify(pairs)}>
+  {pairs.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose two numbers">
+      {pairs.map((p, i) => <button type="button" data-pair={i} aria-pressed={String(i === 0)}>{fmt(p[0])} and {fmt(p[1])}</button>)}
+    </div>
+  )}
+  <div class="g3m-cp-board" aria-hidden="true">
+    <div class="g3m-cp-row" data-cp="a">{row(a).map((d) => <span>{d}</span>)}</div>
+    <div class="g3m-cp-row" data-cp="b">{row(b).map((d) => <span>{d}</span>)}</div>
+  </div>
+  <p class="g3m-cp-sign" data-cp="sign">{fmt(a)} ? {fmt(b)}</p>
+  <div class="g3m-cp-guess" role="group" aria-label="Your guess">
+    <span>Your guess:</span>
+    {['<', '=', '>'].map((s) => <button type="button" class="g3m-cp-pick" data-sign={s}>{s}</button>)}
+  </div>
+  <p class="g3m-cp-say" data-cp="say" aria-live="polite">Guess the sign. Then check, one place at a time.</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-cp="next">Check the next place ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-cp="reset">Start over</button>
+  </div>
+</g3-compare>
+
+<style is:global>
+  g3-compare { display: block; }
+  .g3m-cp-board { display: grid; justify-items: center; gap: 0.2rem; margin: 0.9rem auto 0.6rem; }
+  .g3m-cp-row { display: grid; grid-template-columns: repeat(6, 2.4rem); gap: 0.2rem; }
+  .g3m-cp-row span { display: grid; place-items: center; height: 2.8rem; border-radius: 0.5rem; font-size: 1.7rem; font-weight: 700; font-variant-numeric: tabular-nums; background: var(--surface-2); transition: background 0.3s, transform 0.3s; }
+  .g3m-cp-row span:empty { background: transparent; }
+  .g3m-cp-row span.is-same { background: var(--surface-3); color: var(--ink-3); }
+  .g3m-cp-row span.is-win { background: var(--ok-soft); color: var(--ok); transform: scale(1.12); }
+  .g3m-cp-row span.is-lose { background: var(--accent-soft); }
+  .g3m-cp-sign { font-size: var(--step-2); font-weight: 700; line-height: 1.2; color: var(--accent); text-align: center; margin: 0 0 0.6rem; font-variant-numeric: tabular-nums; }
+  .g3m-cp-guess { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem; font-weight: 700; }
+  .g3m-cp-pick { width: 3rem; height: 2.6rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); color: var(--ink); font: inherit; font-size: 1.4rem; font-weight: 700; cursor: pointer; }
+  .g3m-cp-pick[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3m-cp-pick.is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3m-cp-pick.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  .g3m-cp-say { min-height: 3em; margin: 0.6rem 0 0; font-weight: 600; text-align: center; }
+  @media (max-width: 26rem) { .g3m-cp-row { grid-template-columns: repeat(6, 2.1rem); } }
+  @media (prefers-reduced-motion: reduce) { .g3m-cp-row span { transition: none; } }
+</style>
+
+<script>
+  import { compareSteps, compareSign, digitsOf, fmt } from './g3-place.ts';
+
+  class G3Compare extends HTMLElement {
+    private pairs: [number, number][] = [];
+    private pair = 0;
+    private at = 0;
+    private guess = '';
+
+    connectedCallback() {
+      this.pairs = JSON.parse(this.dataset.pairs!);
+      this.querySelectorAll<HTMLButtonElement>('[data-pair]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.pair = Number(btn.dataset.pair);
+          this.querySelectorAll('[data-pair]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.reset();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-sign]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          this.guess = btn.dataset.sign!;
+          this.querySelectorAll('[data-sign]').forEach((x) => x.setAttribute('aria-pressed', String(x === btn)));
+          this.q('say').textContent = `You guessed ${this.guess}. Now check, one place at a time.`;
+        }),
+      );
+      this.q('next').addEventListener('click', () => this.next());
+      this.q('reset').addEventListener('click', () => this.reset());
+      this.reset();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-cp="${k}"]`) as HTMLElement;
+    }
+
+    private reset() {
+      const [a, b] = this.pairs[this.pair];
+      for (const [k, n] of [['a', a], ['b', b]] as const) {
+        const d = digitsOf(n);
+        this.q(k).innerHTML = d.map((x, i) => `<span>${i < 5 && d.slice(0, i + 1).every((y) => y === 0) ? '' : x}</span>`).join('');
+      }
+      this.at = 0;
+      this.guess = '';
+      this.q('sign').textContent = `${fmt(a)} ? ${fmt(b)}`;
+      this.querySelectorAll('[data-sign]').forEach((x) => {
+        x.setAttribute('aria-pressed', 'false');
+        x.classList.remove('is-right', 'is-wrong');
+      });
+      (this.q('next') as HTMLButtonElement).disabled = false;
+      this.q('say').textContent = `Which is greater, ${fmt(a)} or ${fmt(b)}? Guess the sign, then check.`;
+    }
+
+    private next() {
+      const [a, b] = this.pairs[this.pair];
+      const steps = compareSteps(a, b);
+      const s = steps[this.at];
+      if (!s) return;
+      const cells = [this.q('a'), this.q('b')].map((r) => r.children[s.i] as HTMLElement);
+      const done = this.at === steps.length - 1;
+      const sign = compareSign(a, b);
+      if (!done || sign === '=') cells.forEach((c) => c.classList.add('is-same'));
+      else {
+        cells[0].classList.add(a > b ? 'is-win' : 'is-lose');
+        cells[1].classList.add(b > a ? 'is-win' : 'is-lose');
+      }
+      this.q('say').textContent = s.say;
+      this.at++;
+      if (done) {
+        this.q('sign').textContent = `${fmt(a)} ${sign} ${fmt(b)}`;
+        (this.q('next') as HTMLButtonElement).disabled = true;
+        const pick = this.querySelector(`[data-sign="${this.guess}"]`);
+        if (pick) pick.classList.add(this.guess === sign ? 'is-right' : 'is-wrong');
+        if (this.guess) this.q('say').textContent += this.guess === sign ? ' Your guess was right! 🎉' : ` You guessed ${this.guess}. Look again at the place that decided it.`;
+      }
+    }
+  }
+  customElements.define('g3-compare', G3Compare);
+</script>

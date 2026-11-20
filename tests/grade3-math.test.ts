@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
+import { compareSign, compareSteps, digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
 
 describe('Grade 3 place value', () => {
   it('splits a number into its six places', () => {
@@ -27,5 +27,16 @@ describe('Grade 3 place value', () => {
     expect(roundTo(2499, 1000).result).toBe(2000);
     expect(roundSay(4368, 100)).toBe('4 368 is between 4 300 and 4 400. It is past the halfway mark, 4 350, so it rounds up to 4 400.');
     expect(roundSay(4300, 100)).toContain('stays 4 300');
+  });
+});
+
+describe('Grade 3 comparing', () => {
+  it('stops at the first place that differs', () => {
+    const s = compareSteps(45306, 45063);
+    expect(s.map((x) => x.i)).toEqual([1, 2, 3]);
+    expect(s.at(-1)!.say).toBe('Hundreds: 3 and 0. 3 hundreds are more, so 45 306 > 45 063.');
+    expect(compareSteps(9870, 10001).at(-1)!.say).toContain('9 870 < 10 001');
+    expect(compareSteps(512, 512).at(-1)!.say).toContain('512 = 512');
+    expect(compareSign(3, 4)).toBe('<');
   });
 });
