@@ -1,0 +1,78 @@
+---
+// Animated experiment: watch the sky over a town from noon until night. The stars are in the same
+// places all along, but they only show once the bright daytime sky darkens. The Moon can be seen in
+// both the day and the night (SCI4-OI5-GQ1-LO1, K1.3, S1.2, U1.1).
+---
+<g4-day-night-sky>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-day-night-sky>
+
+<style is:global>
+  g4-day-night-sky { display: block; }
+  .g4s-dn-sun { fill: #ffcf3d; stroke: #e0a400; stroke-width: 2; }
+  .g4s-dn-moon { fill: #f4f1e6; }
+  .g4s-dn-moon-dark { fill: #c9c4b2; }
+  .g4s-dn-star { fill: #fff; }
+  .g4s-dn-house { fill: #3a3f4b; }
+  .g4s-dn-win { fill: #ffe27a; }
+  .g4s-dn-ground { fill: #2f4a2a; }
+  .g4s-dn-clock { fill: #fff; font-size: 20px; font-weight: 700; paint-order: stroke; stroke: rgba(0, 0, 0, 0.45); stroke-width: 4px; }
+  .g4s-dn-note { fill: #fff; font-size: 15px; font-weight: 700; paint-order: stroke; stroke: rgba(0, 0, 0, 0.45); stroke-width: 3px; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { STARS, skyDarkness } from './g4-science.ts';
+
+  const GROUND = 250;
+
+  class G4DayNightSky extends HTMLElement {
+    private hour = 12; // 12 = noon, 24 = midnight
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.hour = 12;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(5200, (t) => ((this.hour = 12 + 12 * t), this.draw()));
+      await wait(200);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'At noon the sky was bright blue and only the Sun and a pale Moon showed. As the Sun set and the sky darkened, stars appeared, brightest first, in the same places they had been all day.';
+    }
+
+    private draw() {
+      const h = this.hour;
+      const dark = skyDarkness(h); // 0 = full day, 1 = full night
+      const mix = (a: number, b: number) => Math.round(a + (b - a) * dark);
+      const out: string[] = [`<rect width="660" height="300" style="fill:rgb(${mix(120, 12)},${mix(180, 20)},${mix(235, 48)})"/>`];
+      // Stars are always there. They show only when the sky is dark enough for their brightness.
+      for (const s of STARS) {
+        const show = Math.max(0, Math.min(1, (dark - (1 - s.bright) * 0.7 - 0.25) / 0.2));
+        if (show > 0) out.push(`<circle class="g4s-dn-star" cx="${s.x}" cy="${s.y}" r="${(1 + 2 * s.bright).toFixed(1)}" opacity="${show.toFixed(2)}"/>`);
+      }
+      // The Sun sets in the west (right) at about 9 p.m. in this animation.
+      const sunT = (h - 12) / 9; // 0 at noon, 1 at sunset
+      if (sunT <= 1.05) out.push(`<circle class="g4s-dn-sun" cx="${(330 + 290 * sunT).toFixed(1)}" cy="${(60 + 200 * sunT * sunT).toFixed(1)}" r="24"/>`);
+      // A half-lit Moon, up in the east all afternoon and evening.
+      const mx = 120 + 120 * ((h - 12) / 12);
+      const my = 120 - 50 * ((h - 12) / 12);
+      out.push(`<circle class="g4s-dn-moon-dark" cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="16" opacity="${(0.15 + 0.5 * dark).toFixed(2)}"/><path class="g4s-dn-moon" opacity="${(0.55 + 0.45 * dark).toFixed(2)}" d="M${mx.toFixed(1)},${(my - 16).toFixed(1)} A16,16 0 0 1 ${mx.toFixed(1)},${(my + 16).toFixed(1)} Z"/>`);
+      // Ground and houses.
+      out.push(`<rect class="g4s-dn-ground" x="0" y="${GROUND}" width="660" height="${300 - GROUND}"/>`);
+      for (const x of [60, 180, 420, 540]) out.push(`<rect class="g4s-dn-house" x="${x}" y="${GROUND - 34}" width="50" height="34"/><path class="g4s-dn-house" d="M${x - 6},${GROUND - 34} L${x + 25},${GROUND - 56} L${x + 56},${GROUND - 34} Z"/>${dark > 0.5 ? `<rect class="g4s-dn-win" x="${x + 18}" y="${GROUND - 24}" width="14" height="12"/>` : ''}`);
+      const hh = Math.floor(h);
+      const label = hh === 12 ? '12 noon' : hh >= 24 ? '12 midnight' : `${hh - 12}:${String(Math.floor((h % 1) * 60)).padStart(2, '0')} p.m.`;
+      out.push(`<text class="g4s-dn-clock" x="20" y="34">${label}</text>`);
+      if (this.done) out.push('<text class="g4s-dn-note" x="640" y="34" text-anchor="end">Same stars, same places, all day long</text>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-day-night-sky', G4DayNightSky);
+</script>

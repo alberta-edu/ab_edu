@@ -1,0 +1,359 @@
+id: constellations
+grade: 4
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI4-OI5-GQ1-LO1]
+order: 11
+title: Constellations and Finding Your Way
+shortTitle: Constellations
+summary: >-
+  Fly around the Big Dipper to see how far apart its stars are, watch the night sky turn around Polaris,
+  and use the stars to find north and south.
+
+bigIdea: |-
+  - A **constellation** is a group of stars that seems to make a shape. Its stars may be trillions of kilometres apart.
+  - Earth’s daily **rotation** and yearly **revolution** make constellations appear in different places at different times.
+  - **Polaris**, the North Star, shows the direction of north. **Orion** can help you find south.
+  - People have used the stars to find their way and to keep track of time.
+
+lesson:
+  - title: Shapes in the stars
+    blocks:
+      - type: compare
+        covers: [K2.1, K2.2]
+        columns:
+          - title: Orion
+            figure: '<svg viewBox="0 0 300 260" class="fig-svg" style="max-width:14rem" role="img" aria-label="Orion: two bright shoulder stars, three stars in a row for the belt, and two bright stars for the feet."><rect width="300" height="260" rx="8" style="fill:#0f1830"/><g style="stroke:#6f86c4;stroke-width:1.5"><line x1="100" y1="50" x2="125" y2="140"/><line x1="190" y1="60" x2="165" y2="130"/><line x1="125" y1="140" x2="115" y2="220"/><line x1="165" y1="130" x2="200" y2="210"/><line x1="100" y1="50" x2="190" y2="60"/></g><circle cx="100" cy="50" r="6" style="fill:#ff9a6a"/><circle cx="190" cy="60" r="4" style="fill:#fff"/><circle cx="125" cy="140" r="4" style="fill:#fff"/><circle cx="145" cy="135" r="4" style="fill:#fff"/><circle cx="165" cy="130" r="4" style="fill:#fff"/><circle cx="143" cy="160" r="2.5" style="fill:#fff"/><circle cx="144" cy="172" r="3" style="fill:#d8c8ff"/><circle cx="145" cy="184" r="2.5" style="fill:#fff"/><circle cx="115" cy="220" r="4" style="fill:#fff"/><circle cx="200" cy="210" r="6" style="fill:#a8c8ff"/><text x="190" y="140" style="fill:#fff;font-size:14px;font-weight:700">Belt</text></svg>'
+            body: Named after a **hunter** in ancient Greek stories. Look for the three stars of his belt.
+          - title: The Big Dipper
+            figure: '<svg viewBox="0 0 240 160" class="fig-svg" style="max-width:14rem" role="img" aria-label="The seven stars of the Big Dipper: four make a bowl and three make a bent handle."><rect width="240" height="160" rx="8" style="fill:#0f1830"/><line x1="200" y1="110" x2="160" y2="140" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="160" y1="140" x2="120" y2="115" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="120" y1="115" x2="158" y2="85" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="158" y1="85" x2="200" y2="110" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="158" y1="85" x2="120" y2="58" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="120" y1="58" x2="90" y2="40" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="90" y1="40" x2="50" y2="42" style="stroke:#6f86c4;stroke-width:1.5"/><circle cx="200" cy="110" r="4" style="fill:#fff"/><circle cx="160" cy="140" r="4" style="fill:#fff"/><circle cx="120" cy="115" r="4" style="fill:#fff"/><circle cx="158" cy="85" r="4" style="fill:#fff"/><circle cx="120" cy="58" r="4" style="fill:#fff"/><circle cx="90" cy="40" r="4" style="fill:#fff"/><circle cx="50" cy="42" r="4" style="fill:#fff"/></svg>'
+            body: Seven stars shaped like a **dipper**, a long-handled scoop. It is part of a bigger constellation, Ursa Major.
+      - type: table
+        covers: [K2.2]
+        caption: Constellation names come from many sources.
+        headers: [Name, Where it comes from]
+        rows:
+          - ['**Ursa Major**', 'Latin for “great bear”']
+          - ['**Orion**', 'A hunter in ancient Greek stories']
+          - ['**Ihkitsikammiksi**', 'In Blackfoot tradition, the Big Dipper’s stars are six brothers and their little sister.']
+
+  - title: Not as close as they look
+    blocks:
+      - type: visual
+        covers: [K2.3, K2.1]
+        component: g4-dipper-depth
+        caption: The stars only **look** close together because we see them from one place, Earth.
+      - type: callout
+        variant: mistake
+        covers: [K2.3]
+        title: Stars in a constellation aren’t neighbours
+        body: Stars in the same constellation may be **trillions of kilometres** apart. They just line up in the same direction from Earth.
+
+  - title: 'Virtual experiment: one night, facing north'
+    blocks:
+      - type: experiment
+        covers: [K2.4, K2.5, S2.1]
+        title: Watch the northern sky from 9 p.m. to 5 a.m.
+        question: |-
+          On a clear night in Alberta, you face **north** and watch the Big Dipper, Cassiopeia and Polaris all
+          night long.
+
+          Which star stays in the same place?
+        animation: g4-star-circle
+        predict:
+          choices:
+            - Polaris, the North Star
+            - The brightest star in the Big Dipper
+            - None of them. They all stay still.
+            - None of them. They all move across the sky.
+          answer: 0
+        observe: |-
+          - The Big Dipper and Cassiopeia swung around in a **circle**, about a third of the way around.
+          - **Polaris** stayed in the same place, in the middle.
+        explain: |-
+          - The stars aren’t really moving. **Earth rotates** once a day, so the whole sky seems to turn.
+          - Polaris is almost straight above the North Pole, so it barely seems to move. It shows the direction of **north**.
+
+  - title: Find north, find south
+    blocks:
+      - type: figure
+        covers: [K2.5, S2.2, S2.1]
+        figure: '<svg viewBox="0 0 420 250" class="fig-svg" role="img" aria-label="The Big Dipper. A dashed line from Merak through Dubhe, the two pointer stars at the end of the bowl, continues about five times as far to Polaris, the North Star."><rect width="420" height="250" rx="8" style="fill:#0f1830"/><line x1="190" y1="200" x2="150" y2="230" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="150" y1="230" x2="110" y2="205" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="110" y1="205" x2="148" y2="175" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="148" y1="175" x2="190" y2="200" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="148" y1="175" x2="110" y2="148" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="110" y1="148" x2="80" y2="130" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="80" y1="130" x2="40" y2="132" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="150" y1="230" x2="390" y2="50" style="stroke:#ffe27a;stroke-width:2;stroke-dasharray:6 5"/><circle cx="190" cy="200" r="4" style="fill:#fff"/><circle cx="150" cy="230" r="4" style="fill:#fff"/><circle cx="110" cy="205" r="4" style="fill:#fff"/><circle cx="148" cy="175" r="4" style="fill:#fff"/><circle cx="110" cy="148" r="4" style="fill:#fff"/><circle cx="80" cy="130" r="4" style="fill:#fff"/><circle cx="40" cy="132" r="4" style="fill:#fff"/><circle cx="390" cy="50" r="6" style="fill:#ffe27a"/><text x="200" y="196" style="fill:#fff;font-size:14px;font-weight:700">Dubhe</text><text x="160" y="240" style="fill:#fff;font-size:14px;font-weight:700">Merak</text><text x="380" y="76" text-anchor="end" style="fill:#ffe27a;font-size:15px;font-weight:700">Polaris (North Star)</text><text x="60" y="240" style="fill:#fff;font-size:14px;font-weight:700">Big Dipper</text></svg>'
+        caption: |-
+          1. Find the two **pointer** stars at the end of the Big Dipper’s bowl.
+          2. Follow them about five times as far to Polaris.
+          3. Face Polaris, and you face north.
+      - type: figure
+        covers: [K2.6, S2.2]
+        figure: '<svg viewBox="0 0 300 300" class="fig-svg" style="max-width:20rem" role="img" aria-label="Orion high in the southern sky. Three stars in a row make Orion’s belt. Below the belt hangs a short line of fainter stars, the sword. A dashed arrow follows the sword straight down to the horizon, marked South."><rect width="300" height="300" rx="8" style="fill:#0f1830"/><g style="stroke:#6f86c4;stroke-width:1.5"><line x1="100" y1="50" x2="125" y2="140"/><line x1="190" y1="60" x2="165" y2="130"/><line x1="125" y1="140" x2="115" y2="220"/><line x1="165" y1="130" x2="200" y2="210"/><line x1="100" y1="50" x2="190" y2="60"/></g><circle cx="100" cy="50" r="6" style="fill:#ff9a6a"/><circle cx="190" cy="60" r="4" style="fill:#fff"/><circle cx="125" cy="140" r="4" style="fill:#fff"/><circle cx="145" cy="135" r="4" style="fill:#fff"/><circle cx="165" cy="130" r="4" style="fill:#fff"/><circle cx="143" cy="160" r="2.5" style="fill:#fff"/><circle cx="144" cy="172" r="3" style="fill:#d8c8ff"/><circle cx="145" cy="184" r="2.5" style="fill:#fff"/><circle cx="115" cy="220" r="4" style="fill:#fff"/><circle cx="200" cy="210" r="6" style="fill:#a8c8ff"/><line x1="145" y1="192" x2="148" y2="262" style="stroke:#ffe27a;stroke-width:2;stroke-dasharray:6 5"/><path d="M141,256 L148,270 L155,256 Z" style="fill:#ffe27a"/><rect x="0" y="272" width="300" height="28" style="fill:#1b2a1b"/><text x="150" y="292" text-anchor="middle" style="fill:#ffe27a;font-size:16px;font-weight:700">South</text><text x="190" y="140" style="fill:#fff;font-size:14px;font-weight:700">Belt</text><text x="160" y="180" style="fill:#fff;font-size:14px;font-weight:700">Sword</text></svg>'
+        caption: When Orion is high in the sky, follow his **sword** down to the horizon. That direction is south, toward the South Pole.
+      - type: callout
+        variant: tip
+        covers: [S2.2, U2.1]
+        title: Steering by the stars
+        body: Face Polaris, and north is ahead. Keep it on your **right**, and you are heading west.
+
+  - title: Names for the North Star
+    blocks:
+      - type: compare
+        covers: [S2.3, K2.5]
+        columns:
+          - title: acâhkos êkâ kâ-âhcît
+            body: |-
+              - **Plains Cree** for the North Star
+              - It means “star that does not move.”
+          - title: Kiwatin
+            body: |-
+              - Cree astronomer and knowledge keeper **Wilfred Buck** says his people call the North Star Kiwatin.
+              - It is “the going-home star.”
+      - type: callout
+        variant: tip
+        covers: [S2.3]
+        title: Ask locally
+        body: Many peoples in Alberta have their own names and stories for the North Star. A local Elder or Knowledge Keeper may share them.
+
+  - title: A clock and a calendar in the sky
+    blocks:
+      - type: compare
+        covers: [K2.4, U2.1, S2.1]
+        columns:
+          - title: 🌍 Every night
+            body: Earth **rotates** once a day. The constellations seem to circle Polaris, like the hand of a giant clock.
+          - title: ☀️ Every year
+            body: |-
+              - Earth **revolves** around the Sun once a year.
+              - On winter evenings, you see Orion. In summer, Orion is up in the daytime sky, hidden by sunlight.
+
+keyTerms:
+  - term: Constellation
+    covers: [K2.1]
+    definition: A group of stars that seems to form a shape.
+  - term: Rotation
+    covers: [K2.4]
+    definition: Earth spinning around once a day, which makes day and night.
+  - term: Revolution
+    covers: [K2.4]
+    definition: Earth travelling once around the Sun, which takes a year.
+  - term: Polaris
+    covers: [K2.5]
+    definition: The North Star. It shows the direction of the North Pole.
+  - term: Navigation
+    covers: [S2.2, U2.1]
+    definition: Finding your way from one place to another.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: What is a **constellation**?
+    choices:
+      - A group of stars that seems to form a shape
+      - A planet with many moons
+      - The brightest star in the sky
+      - A cloud of stars that touch each other
+    answer: 0
+    feedback:
+      '1': Planets and moons are different objects. What do we see in a constellation?
+      '2': A constellation has many stars. What do they make together?
+      '3': The stars in a constellation are very far apart. What do they seem to make?
+    hints:
+      - Think of Orion or the Big Dipper. What do their stars make?
+    solution:
+      - A constellation is a **group of stars that seems to form a shape**, like Orion the hunter.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.5, S2.2]
+    type: mc
+    prompt: You are camping and want to know which way is north. You find Polaris. What do you do?
+    choices:
+      - Face Polaris. You are now facing north.
+      - Face Polaris. You are now facing south.
+      - Wait for Polaris to set in the west.
+      - Follow Polaris as it moves across the sky.
+    answer: 0
+    feedback:
+      '1': Polaris is called the **North** Star. Which way does it show?
+      '2': In the experiment, did Polaris set or move?
+      '3': In the experiment, which star stayed in the same place?
+    hints:
+      - What is Polaris’s other name?
+    solution:
+      - Polaris, the **North Star**, shows the direction of the North Pole. Facing it, you face north.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.4]
+    type: mc
+    prompt: At 10 p.m., the Big Dipper is low in the north. At 4 a.m., it is high in the sky. What caused the change?
+    choices:
+      - Earth rotated, so the whole sky seemed to turn.
+      - The stars of the Big Dipper flew to a new place.
+      - The Moon pushed the Big Dipper.
+      - Clouds moved the stars.
+    answer: 0
+    feedback:
+      '1': Stars are very far away. What is moving that makes them seem to move?
+      '2': The Moon doesn’t push stars. What spins once a day?
+      '3': Clouds can hide stars, but can they move them?
+    hints:
+      - What spins once every day?
+    solution:
+      - Earth **rotates** once a day. As it turns, the stars seem to circle around Polaris.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: estimate
+    covers: [K2.3, K2.1]
+    type: number
+    prompt: |-
+      In the Big Dipper, Merak and Dubhe look like neighbours. But Merak is about **750 trillion km** from Earth,
+      and Dubhe is about **1 170 trillion km** away. About how many trillion kilometres farther away is Dubhe?
+    answer: 420
+    verify: 1170 - 750
+    unit: trillion km
+    hints:
+      - How far is it from 750 to 1 170?
+    solution:
+      - \(1170 - 750 = 420\).
+      - Dubhe is about **420 trillion km** farther away. The two stars only look close together from Earth.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K2.4, U2.1]
+    type: mc
+    prompt: 'Ella says, “The stars move across the sky at night because they are flying around.” What is wrong with her idea?'
+    choices:
+      - The stars only seem to move. Earth is rotating.
+      - Nothing. Stars fly around Earth every night.
+      - Stars don’t move at all, and neither does the sky.
+      - The stars are pushed by the wind.
+    answer: 0
+    feedback:
+      '1': If every star flew around Earth each night, why would they all keep the same shapes?
+      '2': In the experiment, did the Big Dipper change place during the night?
+      '3': Wind is part of the air near Earth. Do stars live in our air?
+    hints:
+      - The Big Dipper kept its shape while it turned. What does that suggest?
+    solution:
+      - All the stars turn together and keep their shapes. That is what you’d see if **Earth** were turning.
+      - Earth **rotates** once a day, so the sky only seems to move.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K2.6, S2.2]
+    type: mc
+    prompt: On a winter night, a hiker sees Orion high in the sky, with his sword hanging below his belt. Which way should she walk to go **south**?
+    choices:
+      - Toward where the sword points down to the horizon
+      - Toward Orion’s brightest star
+      - Away from where the sword points
+      - Toward where Orion rose in the evening
+    answer: 0
+    feedback:
+      '1': The brightest star is up in Orion’s shoulder or foot. What part of Orion points the way?
+      '2': Following the sword leads one way. Which way does it lead?
+      '3': Orion rises in the east. Is that south?
+    hints:
+      - Look at the Orion picture. Where does the arrow lead?
+    solution:
+      - When Orion is high, his **sword** hangs down toward the southern horizon.
+      - Follow it down, and you are facing **south**.
+
+  - id: b4
+    level: 2
+    thinking: whatif
+    covers: [K2.4, U2.1]
+    type: mc
+    prompt: You can see Orion on January evenings. In July, you look for it at 10 p.m. and it isn’t there. Why?
+    choices:
+      - Earth has moved around the Sun, so Orion is now up in the daytime sky.
+      - Orion only exists in winter.
+      - Orion fell below the North Pole.
+      - Summer clouds always cover Orion.
+    answer: 0
+    feedback:
+      '1': Stars don’t come and go with our seasons. What has Earth done between January and July?
+      '2': Orion is far from Polaris and the North Pole. What changes with the seasons?
+      '3': On a clear July night, Orion still doesn’t show. So clouds can’t be the reason.
+    hints:
+      - Earth travels around the Sun once a year. What happens to which stars face us at night?
+    solution:
+      - Earth **revolves** around the Sun. By July, we are on the other side of our path.
+      - Now Orion is in the same direction as the Sun, so it is up in the **daytime**, hidden by sunlight.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.5, S2.2, S2.1]
+    type: investigation
+    figure: '<svg viewBox="0 0 240 160" class="fig-svg" style="max-width:18rem" role="img" aria-label="The Big Dipper with its stars lettered. A is the end of the handle. B, C and D run along the handle to the bowl. E and F are the bottom of the bowl. G is the top corner of the bowl at the far end from the handle."><rect width="240" height="160" rx="8" style="fill:#0f1830"/><line x1="200" y1="110" x2="160" y2="140" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="160" y1="140" x2="120" y2="115" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="120" y1="115" x2="158" y2="85" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="158" y1="85" x2="200" y2="110" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="158" y1="85" x2="120" y2="58" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="120" y1="58" x2="90" y2="40" style="stroke:#6f86c4;stroke-width:1.5"/><line x1="90" y1="40" x2="50" y2="42" style="stroke:#6f86c4;stroke-width:1.5"/><circle cx="200" cy="110" r="4" style="fill:#fff"/><text x="207" y="103" style="fill:#ffe27a;font-size:15px;font-weight:700">G</text><circle cx="160" cy="140" r="4" style="fill:#fff"/><text x="167" y="133" style="fill:#ffe27a;font-size:15px;font-weight:700">F</text><circle cx="120" cy="115" r="4" style="fill:#fff"/><text x="127" y="108" style="fill:#ffe27a;font-size:15px;font-weight:700">E</text><circle cx="158" cy="85" r="4" style="fill:#fff"/><text x="165" y="78" style="fill:#ffe27a;font-size:15px;font-weight:700">D</text><circle cx="120" cy="58" r="4" style="fill:#fff"/><text x="127" y="51" style="fill:#ffe27a;font-size:15px;font-weight:700">C</text><circle cx="90" cy="40" r="4" style="fill:#fff"/><text x="97" y="33" style="fill:#ffe27a;font-size:15px;font-weight:700">B</text><circle cx="50" cy="42" r="4" style="fill:#fff"/><text x="57" y="35" style="fill:#ffe27a;font-size:15px;font-weight:700">A</text></svg>'
+    prompt: Sam wants to find Polaris using the Big Dipper.
+    parts:
+      - type: mc
+        prompt: Which two stars are the **pointers**?
+        choices: [F and G, A and B, D and E, C and D]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': A and B are on the handle. The pointers are at the end of the bowl, far from the handle.
+          '2': D and E are part of the bowl, but next to the handle. Which end of the bowl points?
+          '3': C and D join the handle to the bowl. Which end of the bowl points?
+        hints:
+          - The pointers are the two stars at the end of the bowl, farthest from the handle.
+        solution:
+          - '**F and G** are at the end of the bowl, farthest from the handle. They are the pointers.'
+      - type: number
+        prompt: At arm’s length, the two pointers are **2 fingers** apart. Polaris is about **5 times** that far beyond them. How many fingers is that?
+        answer: 10
+        verify: 2 * 5
+        unit: fingers
+        hints:
+          - What is 5 groups of 2?
+        solution:
+          - \(5 \times 2 = 10\). Polaris is about **10 fingers** from the pointers.
+      - type: mc
+        prompt: Sam faces Polaris. Which direction is behind him?
+        choices: [South, North, East, West]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': He is facing north. Is north in front of him or behind him?
+          '2': East and west are to his sides. Which way is opposite north?
+          '3': East and west are to his sides. Which way is opposite north?
+        hints:
+          - Facing Polaris means facing north. What is opposite north?
+        solution:
+          - Facing Polaris, Sam faces north, so **south** is behind him.
+    wrapUp: Two stars and a hand at arm’s length can tell you which way you’re facing, with no map at all.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K2.5, K2.4, U2.1]
+    type: mc
+    prompt: For thousands of years, travellers have used Polaris, not other stars, to find north. Why Polaris?
+    choices:
+      - It stays in about the same place all night, in the direction of the North Pole.
+      - It is the brightest star in the whole sky.
+      - It is the closest star to Earth.
+      - It is the only star you can see from Alberta.
+    answer: 0
+    feedback:
+      '1': Polaris isn’t the brightest star. What makes it special in the experiment?
+      '2': The closest star is the Sun. What did Polaris do while other stars circled?
+      '3': You can see thousands of stars from Alberta. What does Polaris do that they don’t?
+    hints:
+      - Remember the experiment. What did Polaris do while the other stars circled?
+    solution:
+      - As Earth rotates, the other stars circle around the sky. A moving star can’t point the same way all night.
+      - Polaris stays in about the same place, toward the **North Pole**, so it always shows north.

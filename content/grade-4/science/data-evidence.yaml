@@ -1,0 +1,378 @@
+id: data-evidence
+grade: 4
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI4-OI7-GQ1-LO1]
+order: 14
+title: Data and Evidence
+shortTitle: Data and evidence
+summary: >-
+  Record a bouncing ball in words and in centimetres, sort relevant data from distractions, show evidence
+  in tables and graphs, and meet the SI units scientists share.
+
+bigIdea: |-
+  - **Data** can be descriptive, in words, or measured, in numbers and counts.
+  - **Relevant** data helps answer the question. All of it must be considered.
+  - Studying data gives **evidence**, which can be shown in many ways.
+  - Scientists share measurements in **SI units**, like metres and grams.
+
+lesson:
+  - title: Words or numbers?
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, K1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: words, label: Descriptive (words), icon: 💬 }
+            - { id: numbers, label: Measured (numbers), icon: 🔢 }
+          cards:
+            - { text: The leaves are bright green and fuzzy., bin: words, why: It describes with words. Nothing is counted or measured. }
+            - { text: The plant is 14 cm tall., bin: numbers, why: It was measured with a ruler. }
+            - { text: The pond smelled like rotten eggs., bin: words, why: It describes a smell in words. }
+            - { text: We counted 23 geese on the pond., bin: numbers, why: Counts are numbers too. }
+            - { text: The water was 18 °C., bin: numbers, why: It was measured with a thermometer. }
+            - { text: The sky turned orange at sunset., bin: words, why: It describes a colour in words. }
+        caption: Is each one descriptive or measured data?
+      - type: callout
+        variant: tip
+        covers: [K1.3, K1.8]
+        title: Stories carry data too
+        body: Spoken stories can hold numbers and counts, like “That winter, the river stayed frozen for five months.” Oral traditions pass evidence on.
+
+  - title: 'Virtual experiment: the bounce test'
+    blocks:
+      - type: experiment
+        covers: [S1.1, S1.2, K1.1, K1.2, S1.3]
+        title: Drop a tennis ball on wood and on carpet
+        question: |-
+          A tennis ball is dropped from **100 cm** onto a wooden floor, and onto carpet. A metre stick stands beside
+          each one.
+
+          Where will it bounce higher?
+        animation: g4-bounce-test
+        predict:
+          choices:
+            - Higher on the wooden floor
+            - Higher on the carpet
+            - The same on both
+          answer: 0
+        observe: |-
+          - On the **wooden floor**, the ball bounced to **62 cm**.
+          - On the **carpet**, it bounced to only **24 cm**.
+        explain: |-
+          - In words, we can say “high” and “low”. That is **descriptive** data.
+          - With a metre stick, we can say **how much** higher: 38 cm. That is **measured** data.
+          - Measured data helps when you need to compare exactly.
+
+  - title: Relevant or not?
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: rel, label: Relevant, icon: ✅ }
+            - { id: not, label: Not relevant, icon: ❌ }
+          cards:
+            - { text: The ball bounced to 62 cm on wood., bin: rel, why: It answers the question about how high it bounces. }
+            - { text: The ball is yellow-green., bin: not, why: Colour doesn’t change how high a ball bounces. }
+            - { text: The ball bounced to 24 cm on carpet., bin: rel, why: It answers the question too. }
+            - { text: The test was on a Tuesday., bin: not, why: The day of the week doesn’t affect the bounce. }
+            - { text: Both drops started at 100 cm., bin: rel, why: 'The drop height matters, so it helps make sense of the bounces.' }
+        caption: The question is “Does a ball bounce higher on wood or on carpet?”
+      - type: callout
+        variant: mistake
+        covers: [K1.6]
+        title: Don’t leave out data you don’t like
+        body: All **relevant** data must be considered, even a result you didn’t expect.
+
+  - title: Many ways to show evidence
+    blocks:
+      - type: figure
+        covers: [K1.8, K1.7, S1.4, S1.2]
+        figure: >-
+          <svg viewBox="0 0 420 220" class="fig-svg" role="img" aria-label="Bar graph of how high a tennis ball bounced, in centimetres. Wooden floor: 62 cm. Tile: 55 cm. Grass: 30 cm. Carpet: 24 cm.">
+          <line x1="50" y1="180" x2="400" y2="180" class="sci-tick"/><line x1="50" y1="20" x2="50" y2="180" class="sci-tick"/>
+          <g class="fig-small" text-anchor="end"><text x="44" y="184">0</text><text x="44" y="134">20</text><text x="44" y="84">40</text><text x="44" y="34">60</text></g>
+          <g style="fill:var(--science)"><rect x="70" y="25" width="60" height="155"/><rect x="155" y="42.5" width="60" height="137.5"/><rect x="240" y="105" width="60" height="75"/><rect x="325" y="120" width="60" height="60"/></g>
+          <g class="fig-small" text-anchor="middle"><text x="100" y="198">Wood</text><text x="185" y="198">Tile</text><text x="270" y="198">Grass</text><text x="355" y="198">Carpet</text></g>
+          <text x="225" y="216" text-anchor="middle" class="fig-small">Bounce height (cm)</text>
+          </svg>
+        caption: A **bar graph** makes it easy to compare at a glance. The class tested two more floors.
+      - type: table
+        covers: [K1.8, S1.4]
+        headers: [Way to show evidence, Good for]
+        rows:
+          - ['Table', 'Every exact number']
+          - ['Graph or chart', 'Comparing at a glance']
+          - ['Diagram or model', 'Showing how something works']
+          - ['Written text or a talk', 'Explaining what you found and why']
+          - ['Oral tradition', 'Passing knowledge on through stories told over time']
+          - ['Simulation', 'Watching something too big, slow or dangerous to test for real']
+
+  - title: SI units
+    blocks:
+      - type: table
+        covers: [K1.9, K1.10, S1.3]
+        caption: The **International System of Units**, or **SI**, is shared by scientists around the world.
+        headers: [To measure, SI unit, Short form]
+        rows:
+          - ['Length', 'metre, centimetre, kilometre', 'm, cm, km']
+          - ['Mass', 'gram, kilogram', 'g, kg']
+          - ['Volume', 'litre, millilitre', 'L, mL']
+          - ['Temperature', 'degree Celsius', '°C']
+          - ['Time', 'second', 's']
+      - type: callout
+        variant: tip
+        covers: [U1.1, K1.7]
+        title: Evidence can change what we know
+        body: Pluto was called a planet for 76 years. In 2006, after finding many similar faraway objects, astronomers called it a **dwarf planet**.
+
+keyTerms:
+  - term: Data
+    covers: [K1.1, K1.2]
+    definition: Information collected to answer a question. It can be in words or in numbers.
+  - term: Descriptive data
+    covers: [K1.1]
+    definition: Data in words, like colours, smells or shapes. Also called qualitative data.
+  - term: Measured data
+    covers: [K1.2]
+    definition: Data in numbers or counts. Also called quantitative data.
+  - term: Relevant
+    covers: [K1.4]
+    definition: Connected to the question being investigated.
+  - term: Evidence
+    covers: [K1.7]
+    definition: What we learn by studying and making sense of data.
+  - term: SI
+    covers: [K1.9, K1.10]
+    definition: Short for Système international d’unités, the International System of Units used to share measurements.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2, K1.1]
+    type: mc
+    prompt: Which of these is **measured** data?
+    choices:
+      - The puppy weighs 4 kg.
+      - The puppy has soft, curly fur.
+      - The puppy is very playful.
+      - The puppy’s nose is black.
+    answer: 0
+    feedback:
+      '1': Soft and curly are words. Was anything measured?
+      '2': Playful is a word. Was anything counted or measured?
+      '3': Black is a colour word. Was anything measured?
+    hints:
+      - Look for a number.
+    solution:
+      - '“4 kg” is a number, measured with a scale. It is **measured** data.'
+      - The others describe the puppy in words, so they are descriptive data.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.9, K1.10, S1.3]
+    type: mc
+    prompt: Which measurement uses an **SI** unit?
+    choices: [A pencil 15 cm long, A pencil 6 inches long, A pencil 3 thumbs long, A pencil as long as a spoon]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Inches are used in some countries, but are they part of the International System of Units?
+      '2': Whose thumb? Thumbs are different sizes. Is a thumb a shared unit?
+      '3': Spoons come in many sizes. Is that a shared unit?
+    hints:
+      - Look at the SI units table. Which units measure length?
+    solution:
+      - Centimetres (**cm**) are an SI unit of length, so scientists everywhere understand 15 cm.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.4, K1.5]
+    type: mc
+    prompt: 'Zoe’s question is “Do bean plants grow taller with more sunlight?” Which observation is **not** relevant?'
+    choices:
+      - The pots are painted with flowers.
+      - The plant by the window grew 12 cm.
+      - The plant in the cupboard grew 3 cm.
+      - Both plants got the same amount of water.
+    answer: 0
+    feedback:
+      '1': How tall the plant grew answers the question. Is that relevant?
+      '2': How tall the plant grew answers the question. Is that relevant?
+      '3': Water also affects growth, so knowing it was the same helps you trust the comparison.
+    hints:
+      - Which observation has nothing to do with sunlight or growing?
+    solution:
+      - Painted flowers on the pots don’t help answer the question, so that observation is **not relevant**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [S1.2, S1.3, K1.7]
+    type: number
+    prompt: |-
+      Three balls were dropped from 100 cm.
+
+      | Ball | Bounce height |
+      |---|---|
+      | Tennis ball | 62 cm |
+      | Rubber ball | 78 cm |
+      | Clay ball | 0 cm |
+
+      How many centimetres higher did the rubber ball bounce than the tennis ball?
+    answer: 16
+    verify: 78 - 62
+    unit: cm
+    hints:
+      - Find both numbers in the table, then compare them.
+    solution:
+      - \(78 - 62 = 16\). The rubber ball bounced **16 cm** higher.
+      - The clay ball didn’t bounce at all, which is still useful data.
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [S1.1, K1.1, K1.2]
+    type: mc
+    prompt: Which question needs **measured** data to answer it well?
+    choices:
+      - How much did our sunflower grow this week?
+      - What colour are the sunflower’s petals?
+      - What does the sunflower smell like?
+      - What shape are the sunflower’s leaves?
+    answer: 0
+    feedback:
+      '1': A colour is easy to describe in words. Do you need a number?
+      '2': A smell is described in words. Do you need a number?
+      '3': A shape can be described in words or a drawing. Which question asks “how much”?
+    hints:
+      - Which question asks “how much”?
+    solution:
+      - “How much did it grow?” needs a number, measured with a ruler in centimetres.
+      - The other questions are answered well with **descriptive** data.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.6, S1.2]
+    type: mc
+    prompt: |-
+      Leo predicted his paper plane would always fly more than 5 m. He threw it 5 times: 6 m, 7 m, 2 m, 6 m and 7 m.
+      In his report, he writes only 6 m, 7 m, 6 m and 7 m. What is wrong?
+    choices:
+      - He left out the 2 m throw, and all relevant data must be considered.
+      - Nothing. The 2 m throw didn’t match, so it doesn’t count.
+      - He should have written the distances in words.
+      - He should have thrown it only once.
+    answer: 0
+    feedback:
+      '1': The 2 m throw happened in the same test. Is it relevant to how far his plane flies?
+      '2': Numbers are fine for distances. What is missing from his report?
+      '3': More throws give more evidence. What did he do with one of them?
+    hints:
+      - Count the throws, then count the results in his report.
+    solution:
+      - Leo threw 5 times but reported 4. He left out the throw that didn’t fit his prediction.
+      - '**All relevant data** must be considered. The 2 m throw shows his plane doesn’t always fly more than 5 m.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.4, K1.8]
+    type: mc
+    prompt: Amir measured how high four balls bounce. He wants his class to see **at a glance** which bounced highest. Which way of showing his evidence is best?
+    choices: [A bar graph, A long paragraph, A list of the balls’ colours, A photo of the four balls]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A paragraph can explain, but is it quick to compare four numbers in sentences?
+      '2': Colours aren’t the data he measured. What did he measure?
+      '3': A photo shows the balls, but does it show how high each one bounced?
+    hints:
+      - Which way lets your eyes compare heights quickly?
+    solution:
+      - A **bar graph** shows each bounce as a bar. The tallest bar jumps out at a glance.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.4, K1.5, K1.6, K1.7, S1.2]
+    type: investigation
+    prompt: |-
+      Ivy asks, **“Which paper towel soaks up the most water?”** She dips one sheet of each into water and measures
+      how much water each one takes up.
+
+      | Towel | Water soaked up | Colour | Price |
+      |---|---|---|---|
+      | A | 30 mL | White | $4 |
+      | B | 45 mL | Blue | $6 |
+      | C | 20 mL | White | $3 |
+    parts:
+      - type: multi
+        prompt: Which columns are **relevant** to Ivy’s question?
+        choices: [Towel, Water soaked up, Colour, Price]
+        fixedOrder: true
+        answer: [0, 1]
+        feedback:
+          '2': Does the colour change how much water a towel soaks up, in this question?
+          '3': Price matters when shopping, but does it answer this question?
+        hints:
+          - Read the question again. What is she trying to find out?
+        solution:
+          - She needs to know **which towel** and **how much water** it soaked up.
+          - Colour and price don’t answer her question.
+      - type: number
+        prompt: How many more millilitres did the best towel soak up than the worst?
+        answer: 25
+        verify: 45 - 20
+        unit: mL
+        hints:
+          - Find the biggest and smallest amounts of water.
+        solution:
+          - \(45 - 20 = 25\) mL.
+      - type: mc
+        prompt: What evidence-based answer can Ivy give?
+        choices:
+          - Towel B soaked up the most water in her test.
+          - Towel B is best because it is blue.
+          - Towel C is best because it is the cheapest.
+        answer: 0
+        feedback:
+          '1': Did her test show that blue towels soak up more?
+          '2': Was her question about price?
+        hints:
+          - Use only the relevant data.
+        solution:
+          - Towel **B** soaked up **45 mL**, the most. That is her evidence.
+    wrapUp: Start from the question. It tells you which data matters, and which to leave aside.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [U1.1, K1.7]
+    type: mc
+    prompt: For 76 years, Pluto was called a planet. In 2006, astronomers decided to call it a **dwarf planet** instead. What does this show about science?
+    choices:
+      - New evidence can change what scientists know.
+      - Scientists made a mistake, so science can’t be trusted.
+      - Pluto shrank, so it became a dwarf.
+      - Names in science change for no reason.
+    answer: 0
+    feedback:
+      '1': Changing an idea because of new evidence is what science is supposed to do. Is that a weakness?
+      '2': Pluto didn’t change. What did astronomers learn?
+      '3': Astronomers had found many similar objects. Is that a reason?
+    hints:
+      - What did astronomers find before 2006?
+    solution:
+      - Astronomers found many faraway objects like Pluto. That new **evidence** changed how they grouped it.
+      - Collecting evidence over time lets scientists **adjust** what they know. That is a strength of science.

@@ -1,0 +1,392 @@
+id: resources-conservation
+grade: 4
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI4-OI3-GQ1-LO1]
+order: 7
+title: Natural Resources and Conservation
+shortTitle: Resources and conservation
+summary: >-
+  Find the natural resources Albertans use, fish two ponds for five years, see how parks protect nature,
+  and plan ways to conserve.
+
+bigIdea: |-
+  - **Natural resources** are materials from nature that meet our needs, like water, soil, forests and animals.
+  - **Conservation** protects Earth’s systems from pollution, using up and extinction.
+  - Taking **only what is needed** leaves enough for the future.
+  - Conservation takes personal, community and global action, including parks.
+
+lesson:
+  - title: Natural resources in Alberta
+    blocks:
+      - type: table
+        covers: [K5.1, S5.1, U5.1]
+        headers: [Natural resource, How Albertans use it]
+        rows:
+          - ['💨 **Air**', 'We breathe it. Wind turbines near Pincher Creek turn wind into electricity.']
+          - ['💧 **Water**', 'For drinking, washing, and watering crops on dry southern farms.']
+          - ['🟫 **Soil**', 'Prairie farms grow wheat and canola in it.']
+          - ['🪨 **Minerals**', 'Gravel and sand build roads. Limestone near Exshaw is made into cement.']
+          - ['🔩 **Metals**', 'Steel, copper and aluminum make cars, wires and cans.']
+          - ['🌲 **Forests**', 'Trees from northern Alberta become lumber for houses, and paper.']
+          - ['🐄 **Organisms**', 'Cattle, fish and honeybees give us food.']
+      - type: callout
+        variant: tip
+        covers: [K5.1, U5.1]
+        title: From nature, for people
+        body: A natural resource comes from **nature**, not from a factory. Our health and well-being depend on them.
+
+  - title: What is conservation?
+    blocks:
+      - type: compare
+        covers: [K6.1, K6.2, S6.1]
+        columns:
+          - title: 🏔️ In a natural area
+            body: |-
+              - Banff National Park closes part of the Bow Valley Parkway at night each spring.
+              - Bears, wolves and elk can move and feed in peace.
+          - title: 🏫 In a human-made area
+            body: |-
+              - A school plants native flowers in its yard.
+              - Bees and butterflies find food in the middle of the city.
+      - type: table
+        covers: [K6.3, S6.1]
+        caption: Conservation can involve creating parks.
+        headers: [Kind of park, Who creates it, Alberta example]
+        rows:
+          - ['Local park', 'A town or city', 'A ravine park in your city']
+          - ['Provincial park', 'The province of Alberta', 'Dinosaur Provincial Park']
+          - ['National park', 'The government of Canada', 'Banff, Canada’s first national park, created in 1885']
+
+  - title: 'Virtual experiment: two fish ponds'
+    blocks:
+      - type: experiment
+        covers: [U6.2, U6.1, K6.1, K6.4]
+        title: Fish two ponds for five years
+        question: |-
+          Two ponds each start with **20 fish**. Every spring, new fish hatch, until a pond is full at 30.
+
+          - One family takes only what it needs: **5 fish a year**.
+          - The other takes as many as it can: **15 fish a year**.
+        animation: g4-fish-pond
+        predict:
+          choices:
+            - Only the pond where 5 fish a year are taken still has fish after five years.
+            - Both ponds still have plenty of fish after five years.
+            - Both ponds run out of fish.
+          answer: 0
+        observe: |-
+          - Taking **5 a year**, the pond still had **25 fish** every year.
+          - Taking **15 a year**, the pond dropped to 15, then 7, then **0 fish** in year 3.
+        explain: |-
+          - New fish only replace what was taken if a family takes **no more than** grows back.
+          - Taking only what is needed **conserves** the fish for the future.
+      - type: text
+        covers: [U6.2, K6.4]
+        body: |-
+          - First Nations, Métis and Inuit have a long history with the land. It has shaped their conservation practices and beliefs.
+          - Many practise traditional ways of conservation, such as **taking only what is needed**.
+
+  - title: Working together with Parks Canada
+    blocks:
+      - type: table
+        covers: [K4.2, S4.2]
+        caption: Governments, conservation groups, and First Nations, Métis and Inuit communities work with Parks Canada.
+        headers: [Kind of work, What it does]
+        rows:
+          - ['⛺ **Culture camps**', 'Elders and young people share traditions on the land.']
+          - ['🔬 **Science camps**', 'Young people learn to study plants, animals and water.']
+          - ['🗺️ **Land management**', 'Partners decide together how to care for the land and protect important sites.']
+          - ['🏛️ **Cultural centres**', 'Places where visitors learn the history and culture of a people.']
+      - type: compare
+        covers: [K4.2, S4.2, K6.3]
+        columns:
+          - title: Wood Buffalo National Park
+            body: |-
+              - Parks Canada works with Cree, Dene and Métis communities to manage this huge park.
+              - In 2026, a new field station opened there for watching over the land and for learning on the land.
+          - title: Banff National Park
+            body: |-
+              - In 2017, plains bison were brought back to Banff, after more than 100 years away.
+              - First Nations that signed the Buffalo Treaty supported their return.
+
+  - title: Parks are for people and nature
+    blocks:
+      - type: table
+        covers: [S6.2, U6.1]
+        headers: [When you visit a park…, It conserves…]
+        rows:
+          - ['Stay on the trail', 'Plants and soil, which trampling feet would damage']
+          - ['Never feed wildlife', 'Animals, which get sick or lose their fear of people']
+          - ['Pack out all your garbage', 'Clean land and water']
+          - ['Leave flowers, rocks and antlers where you find them', 'Food and homes for living things']
+      - type: callout
+        variant: tip
+        covers: [S6.2]
+        title: A balance
+        body: Parks let people enjoy nature. Rules keep that enjoyment from harming the land, water and animals.
+
+  - title: Conservation starts with you
+    blocks:
+      - type: visual
+        covers: [K7.1, K7.2, U7.1, S7.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: me, label: Personal action, icon: 🙋 }
+            - { id: us, label: Community or global action, icon: 🏘️ }
+          cards:
+            - { text: Turning off the lights when you leave a room, bin: me, why: One person can do it every day. }
+            - { text: A town putting solar panels on its arena, bin: us, why: A whole community uses energy-efficient choices together. }
+            - { text: Taking shorter showers, bin: me, why: You choose it yourself to use less water. }
+            - { text: Bringing water to farm crops through irrigation canals, bin: us, why: Whole farming communities share the water and the canals. }
+            - { text: Packing your lunch in reusable containers, bin: me, why: You cut down waste yourself. }
+            - { text: A city green cart program for compost, bin: us, why: The whole city collects food scraps together. }
+        caption: Sort each action. Both kinds are needed.
+      - type: example
+        covers: [S7.2, U7.1]
+        title: A plan for your community
+        problem: '**Goal:** Use less water watering the school garden.'
+        steps:
+          - '**Notice.** The sprinkler runs at noon, and lots of water dries up in the sun.'
+          - '**Plan.** Put a rain barrel under the school’s downspout. Water in the early morning.'
+          - '**Share.** Ask the principal and caretaker. Make a sign so everyone knows the plan.'
+          - '**Check.** Watch the garden for a month. Is it healthy? Is the barrel being used?'
+
+keyTerms:
+  - term: Natural resource
+    covers: [K5.1]
+    definition: A material from nature that people use to meet their needs, like water, soil or forests.
+  - term: Conservation
+    covers: [K6.1]
+    definition: Preserving and protecting Earth’s systems from pollution, being used up, or extinction.
+  - term: Extinction
+    covers: [K6.1]
+    definition: When a kind of living thing dies out completely, everywhere.
+  - term: Irrigation
+    covers: [K7.2]
+    definition: Bringing water to crops through pipes, ditches or sprinklers.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K6.1]
+    type: mc
+    prompt: What does **conservation** mean?
+    choices:
+      - Protecting Earth’s systems from pollution, being used up and extinction
+      - Using as many natural resources as you can, while they last
+      - Building new things to replace nature
+      - Moving all the animals into zoos
+    answer: 0
+    feedback:
+      '1': Using as much as you can is the opposite. What would be left for the future?
+      '2': Conservation is about keeping what nature already has. Does building replace it?
+      '3': 'Zoos help a few animals. But conservation protects whole systems: land, water and air too.'
+    hints:
+      - The word is like **conserve**, which means to save or keep.
+    solution:
+      - Conservation means **preserving and protecting** Earth’s systems from pollution, depletion (being used up) and extinction.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K5.1]
+    type: multi
+    prompt: Select **every** natural resource.
+    choices:
+      - A forest
+      - Soil
+      - A lake
+      - A plastic toy
+      - A bicycle
+    answer: [0, 1, 2]
+    feedback:
+      '3': Plastic is made in a factory. Does the toy come straight from nature?
+      '4': A bicycle is built by people. Is it straight from nature?
+    hints:
+      - Which ones come from nature, not from a factory?
+    solution:
+      - Forests, soil and water all come from **nature**, so they are natural resources.
+      - A toy and a bicycle are made by people, although they are made **from** natural resources.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K6.3]
+    type: mc
+    prompt: Which of these is a **provincial** park?
+    choices:
+      - Dinosaur Provincial Park
+      - Banff National Park
+      - Jasper National Park
+      - A playground park run by your town
+    answer: 0
+    feedback:
+      '1': Read the whole name. Who creates a national park?
+      '2': Read the whole name. Who creates a national park?
+      '3': A park run by a town is a local park. Who creates a provincial park?
+    hints:
+      - A provincial park is created by the province of Alberta. Look for a clue in the names.
+    solution:
+      - '**Dinosaur Provincial Park** is created by the province of Alberta.'
+      - Banff and Jasper are national parks, and a town park is a local park.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S5.1, K5.1, U5.1]
+    type: mc
+    prompt: A new road is being built near Red Deer. The trucks bring in loads of **gravel** for it. Which natural resource is the gravel?
+    choices: [Minerals, Forests, Organisms, Air]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Forests give us wood. Is gravel made of wood?
+      '2': Organisms are living things. Is gravel alive?
+      '3': Air is a gas. Is gravel a gas?
+    hints:
+      - Gravel is made of small pieces of rock. Which resource is rock?
+    solution:
+      - Gravel is small pieces of rock, dug from the ground. It is a **mineral** resource from the lithosphere.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [K7.1, S7.1]
+    type: number
+    prompt: |-
+      Jamal’s shower uses about **9 litres** of water each minute. He cuts his shower from **10 minutes** to
+      **6 minutes**. About how many litres does he save each shower?
+    answer: 36
+    verify: (10 - 6) * 9
+    unit: L
+    hints:
+      - How many minutes shorter is his shower?
+      - Each of those minutes would have used 9 litres.
+    solution:
+      - His shower is \(10 - 6 = 4\) minutes shorter.
+      - \(4 \times 9 = 36\). He saves about **36 litres** every shower.
+      - That is a personal action that **conserves** water.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [S6.2, U6.1]
+    type: mc
+    prompt: 'At Elk Island National Park, Kai says, “Let’s feed our sandwich to that deer. Helping animals is conservation!” What is wrong with his idea?'
+    choices:
+      - Human food can make wild animals sick and teach them to come close to people.
+      - Nothing. Feeding animals helps them, so it is good conservation.
+      - Deer only eat at night.
+      - Sandwiches are a natural resource, so they should be saved.
+    answer: 0
+    feedback:
+      '1': Kai means well. But what could human food do to a wild animal’s health and habits?
+      '2': The time of day isn’t the problem. What is in a sandwich that a deer never eats in the wild?
+      '3': This isn’t about saving sandwiches. Think about the deer.
+    hints:
+      - What does a deer eat in the wild? Is a sandwich anything like that?
+      - What might happen next time that deer sees people?
+    solution:
+      - Wild animals need their **natural** food. Human food can make them sick.
+      - Fed animals learn to come close to people, which can be dangerous for both.
+      - That’s why feeding wildlife is not allowed in national parks. Kind ideas can still harm.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [S6.1, K6.2, U6.1]
+    type: mc
+    prompt: Each spring, from March to late June, part of the Bow Valley Parkway in Banff is closed to people from 8 p.m. to 8 a.m. Why would a park do that?
+    choices:
+      - Animals like bears and wolves can travel and feed safely at night, when people are away.
+      - The road needs to be cleaned every night.
+      - Parks are only for animals, so people are never allowed.
+      - It is too dark to see the mountains at night.
+    answer: 0
+    feedback:
+      '1': Cleaning wouldn’t need a closure every night for months. Who uses the area when people leave?
+      '2': People can still use the road in the daytime. So who is the night for?
+      '3': Darkness is true every night of the year. Why only in spring?
+    hints:
+      - Who might be using that valley at night, especially in spring?
+    solution:
+      - In spring, many animals are raising young and looking for food.
+      - With people away at night, they can move and feed in peace. People still enjoy the road by day.
+      - This is a **conservation practice** in a natural area.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [U6.2, U6.1, K6.1, S6.1]
+    type: investigation
+    prompt: |-
+      A community woodlot has **50** big trees. Each year, **5** young trees grow big enough to cut.
+
+      - **Plan A:** cut 5 big trees a year.
+      - **Plan B:** cut 15 big trees a year.
+    parts:
+      - type: number
+        prompt: With Plan B, how many big trees are left after **one** year?
+        answer: 40
+        verify: 50 + 5 - 15
+        unit: trees
+        hints:
+          - Start with 50. What gets added, and what gets taken away?
+        solution:
+          - \(50 + 5 - 15 = 40\). Plan B leaves **40** big trees.
+      - type: number
+        prompt: Plan B loses 10 trees each year. How many years until there are **no** big trees left?
+        answer: 5
+        verify: 50 / 10
+        unit: years
+        hints:
+          - How many tens are in 50?
+        solution:
+          - It loses 10 each year, and \(50 \div 10 = 5\). The big trees are gone in **5 years**.
+      - type: mc
+        prompt: Which plan practises conservation, and why?
+        choices:
+          - Plan A, because it takes only as many trees as grow back.
+          - Plan B, because it uses the trees before they get old.
+          - Both, because both plans cut trees.
+        answer: 0
+        feedback:
+          '1': After 5 years, would Plan B leave any big trees for the future?
+          '2': Is cutting trees by itself conservation? What makes one plan last?
+        hints:
+          - How many big trees does Plan A have after one year? After five?
+        solution:
+          - Plan A cuts 5 and 5 grow back, so the woodlot keeps **50** big trees forever.
+          - That is **taking only what is needed**, so the forest lasts for future people too.
+    wrapUp: A resource lasts when we take no more than nature can replace.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [S6.2, K6.2, U6.1]
+    type: mc
+    prompt: |-
+      A provincial park wants a new trail to a wetland. Hikers want to see the birds. Park scientists worry that
+      ducks and grebes nest at the water’s edge in spring. Which plan **best** balances people and nature?
+    choices:
+      - A boardwalk to a viewing deck at the edge, closed during nesting season
+      - A trail right along the water’s edge, so hikers get close to the nests
+      - Close the whole park to everyone forever
+      - No trail at all, so people walk wherever they like
+    answer: 0
+    feedback:
+      '1': Hikers would be happy. What would happen to the nests?
+      '2': The birds would be safe. But are parks only for nature?
+      '3': Would people walking everywhere protect the nests or the plants?
+    hints:
+      - A good plan gives something to both sides. What does each side need?
+    solution:
+      - Hikers need a way to see the wetland. The birds need quiet at the water’s edge in spring.
+      - A boardwalk keeps feet off the wet ground, and a seasonal closure protects the nests.
+      - Parks are for **both** people and nature, and good rules let each one share.

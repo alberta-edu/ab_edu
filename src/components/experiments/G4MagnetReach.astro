@@ -1,0 +1,97 @@
+---
+// Animated experiment: a magnet slides onto a cardboard shelf above a paper clip. With the shelf
+// low, the pull reaches through the cardboard and lifts the clip. With the shelf high, the clip
+// stays put: non-contact forces act through some materials and weaken with distance
+// (SCI4-OI2-GQ1-LO1, K1.1, K1.3, K1.5, K1.6, S1.1).
+---
+<g4-magnet-reach>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-magnet-reach>
+
+<style is:global>
+  g4-magnet-reach { display: block; }
+  g4-magnet-reach svg { background: var(--surface-2); }
+  .g4s-mr-table { fill: #a8743d; }
+  .g4s-mr-card { fill: #d8b77e; stroke: #8a6d3b; stroke-width: 2; }
+  .g4s-mr-leg { fill: #8a6d3b; }
+  .g4s-mr-mag-n { fill: #d23b2e; }
+  .g4s-mr-mag-s { fill: #2f5fd0; }
+  .g4s-mr-mag-t { fill: #fff; font-size: 15px; font-weight: 700; }
+  .g4s-mr-clip { fill: none; stroke: #5a6270; stroke-width: 3.5; stroke-linejoin: round; }
+  .g4s-mr-field { fill: none; stroke: var(--l3); stroke-width: 2; stroke-dasharray: 5 5; }
+  .g4s-mr-gap { stroke: var(--ink-2); stroke-width: 1.5; }
+  .g4s-mr-ok { fill: #fff; font-size: 16px; font-weight: 700; paint-order: stroke; stroke: #0d5132; stroke-width: 4px; }
+  .g4s-mr-same { fill: #fff; font-size: 16px; font-weight: 700; paint-order: stroke; stroke: #3a3a44; stroke-width: 4px; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { clipLifts } from './g4-science.ts';
+
+  const TABLE = 262;
+  const PANELS = [
+    { cx: 165, gap: 2, label: 'Shelf low: 2 cm' },
+    { cx: 495, gap: 8, label: 'Shelf high: 8 cm' },
+  ];
+  const PX_PER_CM = 20;
+
+  class G4MagnetReach extends HTMLElement {
+    private slide = 0; // 0..1: the magnet sliding onto the shelf
+    private lift = [0, 0]; // 0..1: each clip rising to the cardboard
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.slide = 0;
+      this.lift = [0, 0];
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(1400, (t) => {
+        this.slide = t;
+        this.draw();
+      });
+      await wait(400);
+      await tween(450, (t) => {
+        this.lift = PANELS.map((p) => (clipLifts(p.gap) ? t * t : 0));
+        this.draw();
+      });
+      await wait(500);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'With the shelf 2 cm above the clip, the clip jumped up and stuck under the cardboard. With the shelf 8 cm above it, the clip did not move.';
+    }
+
+    private draw() {
+      const out: string[] = [];
+      out.push(`<rect class="g4s-mr-table" x="0" y="${TABLE}" width="660" height="38"/><line class="g4s-mr-gap" x1="330" y1="20" x2="330" y2="${TABLE}" stroke-dasharray="6 6"/>`);
+      PANELS.forEach((p, i) => {
+        const shelf = TABLE - p.gap * PX_PER_CM - 10; // underside of the cardboard
+        // Cardboard shelf on two legs.
+        out.push(`<rect class="g4s-mr-leg" x="${p.cx - 120}" y="${shelf}" width="8" height="${TABLE - shelf}"/><rect class="g4s-mr-leg" x="${p.cx + 112}" y="${shelf}" width="8" height="${TABLE - shelf}"/>`);
+        out.push(`<rect class="g4s-mr-card" x="${p.cx - 126}" y="${shelf - 10}" width="252" height="10"/>`);
+        // The magnet slides in from the side and stops above the clip.
+        const mx = p.cx - 100 + 100 * this.slide;
+        const my = shelf - 10 - 34;
+        out.push(`<rect class="g4s-mr-mag-n" x="${mx - 36}" y="${my}" width="36" height="34" rx="3"/><rect class="g4s-mr-mag-s" x="${mx}" y="${my}" width="36" height="34" rx="3"/>`);
+        out.push(`<text class="g4s-mr-mag-t" x="${mx - 18}" y="${my + 22}" text-anchor="middle">N</text><text class="g4s-mr-mag-t" x="${mx + 18}" y="${my + 22}" text-anchor="middle">S</text>`);
+        // The invisible pull, drawn as dashed rings that reach a short way below the shelf.
+        if (this.slide > 0.95) for (const r of [20, 34, 48]) out.push(`<path class="g4s-mr-field" d="M${p.cx - r},${shelf} A${r},${r} 0 0 0 ${p.cx + r},${shelf}"/>`);
+        // The paper clip.
+        const restY = TABLE - 8;
+        const y = restY + (shelf + 8 - restY) * this.lift[i];
+        out.push(`<path class="g4s-mr-clip" d="M${p.cx - 14},${y - 4} L${p.cx + 12},${y - 4} A4,4 0 0 1 ${p.cx + 12},${y + 4} L${p.cx - 10},${y + 4} A3,3 0 0 1 ${p.cx - 10},${y - 1} L${p.cx + 8},${y - 1}"/>`);
+        // Distance marker.
+        if (!this.done) out.push(`<line class="g4s-mr-gap" x1="${p.cx + 60}" y1="${shelf}" x2="${p.cx + 60}" y2="${TABLE}"/><text class="sci-small" x="${p.cx + 66}" y="${(shelf + TABLE) / 2 + 4}">${p.gap} cm</text>`);
+        out.push(`<text class="sci-text" x="${p.cx}" y="22" text-anchor="middle">${p.label}</text>`);
+        if (this.done) out.push(this.lift[i] > 0 ? `<text class="g4s-mr-ok" x="${p.cx}" y="${TABLE + 26}" text-anchor="middle">✓ Clip pulled up</text>` : `<text class="g4s-mr-same" x="${p.cx}" y="${TABLE + 26}" text-anchor="middle">Clip didn’t move</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-magnet-reach', G4MagnetReach);
+</script>

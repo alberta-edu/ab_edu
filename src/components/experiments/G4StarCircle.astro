@@ -1,0 +1,99 @@
+---
+// Animated experiment: face north on a clear night in Alberta from 9 p.m. to 5 a.m. As Earth
+// rotates, the Big Dipper and Cassiopeia circle around Polaris, which stays in about the same place
+// (SCI4-OI5-GQ1-LO1, K2.4, K2.5, S2.1, U2.1).
+---
+<g4-star-circle>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-star-circle>
+
+<style is:global>
+  g4-star-circle { display: block; }
+  g4-star-circle svg { background: #0f1830; }
+  .g4s-sc-star { fill: #fff; }
+  .g4s-sc-polaris { fill: #ffe27a; }
+  .g4s-sc-line { stroke: #6f86c4; stroke-width: 1.5; }
+  .g4s-sc-trail { fill: none; stroke: #8fb0ff; stroke-width: 1.5; opacity: 0.45; }
+  .g4s-sc-ground { fill: #1b2a1b; }
+  .g4s-sc-lbl { fill: #fff; font-size: 15px; font-weight: 700; }
+  .g4s-sc-clock { fill: #fff; font-size: 20px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { DIPPER, DIPPER_LINES, polarisFrom, turnPerHour } from './g4-science.ts';
+
+  const P = { x: 330, y: 128 }; // Polaris on screen
+  const SCALE = 0.5;
+  const raw = polarisFrom(DIPPER[1], DIPPER[0]);
+  // Star offsets from Polaris, in screen pixels.
+  const DIP = DIPPER.map((s) => ({ dx: (s.x - raw.x) * SCALE, dy: (s.y - raw.y) * SCALE }));
+  const CAS = [
+    [70, -60],
+    [86, -36],
+    [104, -52],
+    [122, -30],
+    [140, -50],
+  ].map(([dx, dy]) => ({ dx, dy }));
+  const HOURS = 8;
+
+  const turn = (o: { dx: number; dy: number }, deg: number) => {
+    // Counterclockwise on screen, as the northern stars turn when you face north.
+    const a = (-deg * Math.PI) / 180;
+    return { x: P.x + o.dx * Math.cos(a) - o.dy * Math.sin(a), y: P.y + o.dx * Math.sin(a) + o.dy * Math.cos(a) };
+  };
+
+  class G4StarCircle extends HTMLElement {
+    private hours = 0;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.hours = 0;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(5200, (t) => ((this.hours = HOURS * t), this.draw()));
+      await wait(200);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'From 9 p.m. to 5 a.m., the Big Dipper and Cassiopeia swung around in a circle, about a third of the way around. Polaris, the North Star, stayed in the same place in the middle.';
+    }
+
+    private draw() {
+      const deg = this.hours * turnPerHour;
+      const out: string[] = [];
+      // Trails: the path each star has followed so far.
+      for (const o of [...DIP, ...CAS]) {
+        if (deg < 1) break;
+        const pts: string[] = [];
+        for (let d = 0; d <= deg; d += 4) {
+          const p = turn(o, d);
+          pts.push(`${p.x.toFixed(1)},${p.y.toFixed(1)}`);
+        }
+        out.push(`<polyline class="g4s-sc-trail" points="${pts.join(' ')}"/>`);
+      }
+      const dip = DIP.map((o) => turn(o, deg));
+      for (const [a, b] of DIPPER_LINES) out.push(`<line class="g4s-sc-line" x1="${dip[a].x.toFixed(1)}" y1="${dip[a].y.toFixed(1)}" x2="${dip[b].x.toFixed(1)}" y2="${dip[b].y.toFixed(1)}"/>`);
+      const cas = CAS.map((o) => turn(o, deg));
+      for (let k = 0; k < cas.length - 1; k++) out.push(`<line class="g4s-sc-line" x1="${cas[k].x.toFixed(1)}" y1="${cas[k].y.toFixed(1)}" x2="${cas[k + 1].x.toFixed(1)}" y2="${cas[k + 1].y.toFixed(1)}"/>`);
+      for (const p of [...dip, ...cas]) out.push(`<circle class="g4s-sc-star" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5"/>`);
+      out.push(`<circle class="g4s-sc-polaris" cx="${P.x}" cy="${P.y}" r="5"/><text class="g4s-sc-lbl" x="${P.x + 10}" y="${P.y - 8}">Polaris</text>`);
+      const mid = (pts: { x: number; y: number }[]) => ({ x: pts.reduce((s, p) => s + p.x, 0) / pts.length, y: pts.reduce((s, p) => s + p.y, 0) / pts.length });
+      const dm = mid(dip);
+      const cm = mid(cas);
+      out.push(`<text class="g4s-sc-lbl" x="${dm.x.toFixed(1)}" y="${(dm.y + 30).toFixed(1)}" text-anchor="middle">Big Dipper</text><text class="g4s-sc-lbl" x="${cm.x.toFixed(1)}" y="${(cm.y - 22).toFixed(1)}" text-anchor="middle">Cassiopeia</text>`);
+      out.push('<path class="g4s-sc-ground" d="M0,300 L0,272 Q60,262 120,270 L160,256 L170,270 Q260,262 330,272 L360,258 L372,272 Q480,262 560,270 L600,256 L612,270 Q640,266 660,268 L660,300 Z"/><text class="g4s-sc-lbl" x="330" y="294" text-anchor="middle">North</text>');
+      const h = 21 + Math.floor(this.hours);
+      const clock = h < 24 ? `${h - 12} p.m.` : h === 24 ? '12 midnight' : `${h - 24} a.m.`;
+      out.push(`<text class="g4s-sc-clock" x="20" y="34">${clock}</text>`);
+      if (this.done) out.push('<text class="g4s-sc-lbl" x="640" y="34" text-anchor="end">Polaris stayed put</text>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-star-circle', G4StarCircle);
+</script>

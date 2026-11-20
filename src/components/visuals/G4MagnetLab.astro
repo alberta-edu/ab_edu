@@ -1,0 +1,127 @@
+---
+// Magnet lab (SCI4-OI2-GQ1-LO1). mode "clips": dip a bar magnet into paper clips; they gather at
+// both ends, where the force is strongest (K2.1, K2.2, K2.4). mode "nail": test a steel nail,
+// stroke it with a magnet in one direction, then test it again (K2.5, S2.2).
+interface Props {
+  mode?: 'clips' | 'nail';
+}
+const { mode = 'clips' } = Astro.props;
+const buttons =
+  mode === 'clips'
+    ? [{ id: 'dip', label: '▶ Dip the magnet in the clips' }]
+    : [
+        { id: 'test', label: 'Test the nail' },
+        { id: 'stroke', label: 'Stroke it with the magnet' },
+      ];
+---
+<g4-magnet-lab data-mode={mode}>
+  <svg class="sci-svg" viewBox="0 0 560 260" role="img" aria-label={mode === 'clips' ? 'A bar magnet above a pile of paper clips' : 'A steel nail beside a bar magnet and a pile of paper clips'} data-g4s="svg"></svg>
+  <div class="control-row">
+    {buttons.map((b) => <button type="button" class="btn btn--small" data-g4s-act={b.id}>{b.label}</button>)}
+  </div>
+  <p class="sci-say" aria-live="polite" data-g4s="say"></p>
+</g4-magnet-lab>
+
+<style is:global>
+  g4-magnet-lab { display: block; }
+  g4-magnet-lab svg { background: var(--surface-2); }
+  .g4s-ml-clip { fill: none; stroke: #5a6270; stroke-width: 3; stroke-linejoin: round; }
+  .g4s-ml-nail { fill: #9aa1ab; stroke: var(--ink-2); stroke-width: 2; }
+  .g4s-ml-glow { fill: none; stroke: var(--l3); stroke-width: 2; stroke-dasharray: 4 4; }
+  .g4s-ml-count { fill: var(--ink); font-size: 18px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from '../experiments/anim.ts';
+  import { barMagnet } from '../experiments/g4-science.ts';
+
+  const PILE = 230;
+  const clip = (x: number, y: number, a = 0) =>
+    `<path class="g4s-ml-clip" transform="rotate(${a} ${x} ${y})" d="M${x - 12},${y - 4} L${x + 10},${y - 4} A4,4 0 0 1 ${x + 10},${y + 4} L${x - 8},${y + 4} A3,3 0 0 1 ${x - 8},${y - 1} L${x + 6},${y - 1}"/>`;
+  /** Clip offsets stuck to the magnet: bunches at the two ends, none in the middle. */
+  const STUCK = [-60, -54, -48, -40, -58, -50, 48, 54, 60, 42, 56, 50];
+
+  class G4MagnetLab extends HTMLElement {
+    private my = 70; // magnet height
+    private carried = false;
+    private strokes = 0;
+    private strokeX = -1;
+    private nailClips = 0;
+    private nailY = 120;
+    private busy = false;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-g4s-act]').forEach((b) =>
+        b.addEventListener('click', () => {
+          if (this.busy) return;
+          this.busy = true;
+          this.act(b.dataset.g4sAct!).finally(() => (this.busy = false));
+        }),
+      );
+      this.say(this.dataset.mode === 'clips' ? 'What will the clips do?' : 'A plain steel nail. Can it pick up a paper clip?');
+      this.draw();
+    }
+
+    private say(t: string) {
+      this.querySelector('[data-g4s="say"]')!.textContent = t;
+    }
+
+    private async act(id: string) {
+      if (id === 'dip') {
+        this.carried = false;
+        this.say('');
+        await tween(700, (t) => ((this.my = 70 + (PILE - 26 - 70) * t), this.draw()));
+        this.carried = true;
+        await wait(150);
+        await tween(800, (t) => ((this.my = PILE - 26 - (PILE - 26 - 70) * t), this.draw()));
+        this.say('The clips bunched up at the two ends, the poles. Hardly any stuck to the middle.');
+      }
+      if (id === 'test') {
+        this.say('');
+        await tween(600, (t) => ((this.nailY = 120 + (PILE - 14 - 120) * t), this.draw()));
+        const stuck = this.strokes >= 20 ? 3 : 0;
+        this.nailClips = stuck;
+        await tween(600, (t) => ((this.nailY = PILE - 14 - (PILE - 14 - 120) * t), this.draw()));
+        this.say(stuck ? 'Now the nail picks up 3 paper clips. It has become a magnet!' : 'Nothing. A plain steel nail doesn’t pick up paper clips.');
+      }
+      if (id === 'stroke') {
+        this.nailClips = 0;
+        this.strokes = 0;
+        this.say('');
+        for (let k = 0; k < 20; k++) {
+          await tween(k < 3 ? 420 : 90, (t) => ((this.strokeX = t), this.draw()));
+          this.strokes = k + 1;
+        }
+        this.strokeX = -1;
+        this.draw();
+        this.say('20 strokes, always from the head to the tip with the same end of the magnet. Now test the nail again.');
+      }
+    }
+
+    private draw() {
+      const out: string[] = [];
+      const mode = this.dataset.mode;
+      // The pile of clips on the table.
+      out.push(`<rect class="sci-ground" x="0" y="${PILE + 10}" width="560" height="${260 - PILE - 10}"/>`);
+      const pile = mode === 'clips' ? 280 : 150;
+      const left = mode === 'clips' && this.carried ? 4 : 14;
+      for (let k = 0; k < left; k++) out.push(clip(pile - 70 + ((k * 37) % 140), PILE - ((k * 7) % 12), (k * 47) % 180));
+      if (mode === 'clips') {
+        out.push(barMagnet(280, this.my, 'N', 150, 36));
+        if (this.carried) STUCK.forEach((dx, k) => out.push(clip(280 + dx, this.my + 26 + (k % 3) * 9, 70 + k * 23)));
+      } else {
+        // The magnet the nail is stroked with, and the nail.
+        const nx = 150;
+        const nailBody = `<rect class="g4s-ml-nail" x="${nx - 90}" y="${this.nailY - 5}" width="170" height="10" rx="2"/><rect class="g4s-ml-nail" x="${nx - 96}" y="${this.nailY - 11}" width="8" height="22" rx="2"/><path class="g4s-ml-nail" d="M${nx + 80},${this.nailY - 5} L${nx + 96},${this.nailY} L${nx + 80},${this.nailY + 5} Z"/>`;
+        out.push(nailBody);
+        for (let k = 0; k < this.nailClips; k++) out.push(clip(nx + 50 + k * 16, this.nailY + 14 + (k % 2) * 6, 80 + k * 30));
+        if (this.strokeX >= 0) out.push(`<g transform="rotate(-90 ${nx - 80 + 170 * this.strokeX} ${this.nailY - 40})">${barMagnet(nx - 80 + 170 * this.strokeX, this.nailY - 40, 'N', 64, 24)}</g>`);
+        else out.push(barMagnet(nx + 300, 60, 'S', 96, 30));
+        if (this.strokes) out.push(`<text class="g4s-ml-count" x="${nx}" y="${this.nailY + 44}" text-anchor="middle">Strokes: ${this.strokes}</text>`);
+        if (this.strokes >= 20 && this.strokeX < 0) out.push(`<path class="g4s-ml-glow" d="M${nx - 100},${this.nailY - 18} L${nx + 104},${this.nailY - 18} M${nx - 100},${this.nailY + 18} L${nx + 104},${this.nailY + 18}"/>`);
+      }
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-magnet-lab', G4MagnetLab);
+</script>

@@ -1,0 +1,367 @@
+id: objects-in-space
+grade: 4
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI4-OI5-GQ1-LO1]
+order: 10
+title: Objects in Space and How We See Them
+shortTitle: Objects in space
+summary: >-
+  Sort stars, planets and moons, watch the stars appear as a day turns to night, compare eyes, binoculars
+  and telescopes, and learn to view the Sun safely.
+
+bigIdea: |-
+  - The **universe** is all of space and everything in it.
+  - It holds the Sun (a star), other stars and their planets, and planets and their moons.
+  - Most objects in space are easier to see at **night**.
+  - Binoculars, telescopes and planetariums help us observe them. Never look straight at the Sun.
+
+lesson:
+  - title: Star, planet or moon?
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: star, label: Star, icon: ⭐ }
+            - { id: planet, label: Planet, icon: 🪐 }
+            - { id: moon, label: Moon, icon: 🌙 }
+          cards:
+            - { text: The Sun, bin: star, why: The Sun is a star. It is the closest star to Earth. }
+            - { text: Earth, bin: planet, why: Earth is a planet that travels around the Sun. }
+            - { text: Our Moon, bin: moon, why: It travels around Earth. }
+            - { text: Jupiter, bin: planet, why: Jupiter is a giant planet that travels around the Sun. }
+            - { text: Io, bin: moon, why: Io is one of the moons that travel around Jupiter. }
+            - { text: Polaris, bin: star, why: 'The North Star is a star, much farther away than the Sun.' }
+        caption: Stars have planets. Planets can have moons.
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: Everything
+        body: The **universe** is all of space and everything in it, from our Moon to the farthest star.
+
+  - title: 'Virtual experiment: from noon to night'
+    blocks:
+      - type: experiment
+        covers: [K1.3, S1.2, U1.1]
+        title: Watch the sky from noon until midnight
+        question: |-
+          Watch the sky over a town from **noon** until **midnight**.
+
+          Where are the stars during the day?
+        animation: g4-day-night-sky
+        predict:
+          choices:
+            - They are still there, but the bright day sky hides them.
+            - They switch off in the daytime and switch on at night.
+            - They all move behind the Sun in the day.
+            - Clouds cover them every day.
+          answer: 0
+        observe: |-
+          - At noon, only the **Sun** and a pale **Moon** showed in the bright blue sky.
+          - As the sky darkened, **stars** appeared, the brightest first.
+          - They appeared in the same places all along.
+        explain: |-
+          - Sunlight lights up the whole daytime sky. It is far brighter than the faraway stars.
+          - At night the sky is dark, so stars and planets are much **easier to see**.
+          - The Moon is bright enough to be seen in both the day and the night.
+
+  - title: Tools for looking up
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.3, K1.2]
+        component: g4-sky-viewer
+        caption: Choose the Moon or Jupiter. Then try each tool. What new things can you see?
+      - type: compare
+        covers: [K1.4, S1.3]
+        columns:
+          - title: Binoculars
+            body: Light and easy to carry. They make things look a few times bigger.
+          - title: Telescope
+            body: Makes things look much bigger and shows faint objects. It is bigger and harder to set up.
+          - title: Planetarium
+            body: A dome-shaped theatre that shows the night sky indoors, any time and in any weather.
+
+  - title: Never look at the Sun
+    blocks:
+      - type: table
+        covers: [K1.5, S1.1]
+        headers: [Safe ✅, Not safe ❌]
+        rows:
+          - ['Special eclipse glasses that meet the safety standard ISO 12312-2', 'Looking straight at the Sun, even for a moment']
+          - ['A pinhole viewer that shines the Sun’s image onto paper', 'Sunglasses, even very dark ones']
+          - ['A telescope with a proper solar filter, set up by an expert', 'Binoculars or a telescope with no solar filter']
+      - type: callout
+        variant: mistake
+        covers: [K1.5]
+        title: Sunglasses are not enough
+        body: The Sun can **damage your eyes** without any pain to warn you. Only proper safety equipment protects them.
+
+  - title: Record what you see
+    blocks:
+      - type: table
+        covers: [S1.1, S1.2]
+        caption: Kai’s sky log for one day
+        headers: [Time, What I saw, Where in the sky]
+        rows:
+          - ['10 a.m.', 'The Sun (seen safely with eclipse glasses). The Moon, pale and half lit.', 'Sun in the southeast. Moon low in the west.']
+          - ['10 p.m.', 'A few bright stars. One very bright “star” that didn’t twinkle: a planet.', 'Stars all over. Planet in the south.']
+      - type: callout
+        variant: tip
+        covers: [S1.1, S1.2]
+        title: A good observation
+        body: Write the **date**, **time**, **what** you saw and **where**. Then draw it. Compare your day and night logs.
+
+keyTerms:
+  - term: Universe
+    covers: [K1.1]
+    definition: All of space and everything in it.
+  - term: Star
+    covers: [K1.2]
+    definition: A huge, glowing ball of hot gas. The Sun is a star.
+  - term: Planet
+    covers: [K1.2]
+    definition: A large object that travels around a star. Earth is a planet.
+  - term: Moon
+    covers: [K1.2]
+    definition: An object that travels around a planet.
+  - term: Planetarium
+    covers: [K1.4]
+    definition: A theatre with a dome-shaped ceiling that shows the night sky indoors.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2]
+    type: mc
+    prompt: What is the Sun?
+    choices: [A star, A planet, A moon, A comet]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Planets travel around a star. Does the Sun travel around something bigger near us?
+      '2': Moons travel around planets. Does the Sun travel around a planet?
+      '3': A comet is a different kind of object. What kind of object glows with its own light, like the Sun?
+    hints:
+      - The Sun makes its own light, like the stars you see at night.
+    solution:
+      - The Sun is a **star**. It is the closest star to Earth, so it looks much bigger and brighter than the others.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.5, S1.1]
+    type: mc
+    prompt: Your class wants to watch the Sun during a partial solar eclipse. Which way is safe?
+    choices:
+      - Wearing eclipse glasses that meet the ISO 12312-2 safety standard
+      - Wearing two pairs of dark sunglasses
+      - Looking through binoculars for just a second
+      - Squinting so only a little light gets in
+    answer: 0
+    feedback:
+      '1': Sunglasses, even two pairs, are not made for looking at the Sun. What is?
+      '2': Binoculars gather even more sunlight into your eyes. Is that safer or more dangerous?
+      '3': Squinting still lets the Sun’s light reach your eyes. What blocks it safely?
+    hints:
+      - Only special safety equipment protects your eyes from the Sun.
+    solution:
+      - Only proper **eclipse glasses** that meet the safety standard, or a pinhole viewer, are safe.
+      - Sunglasses, squinting and binoculars can all let the Sun damage your eyes.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Why can you see many more objects in space at night than in the daytime?
+    choices:
+      - The sky is dark, so faint objects are easier to see.
+      - More stars come out at night.
+      - Stars move closer to Earth at night.
+      - The Moon lights up the stars.
+    answer: 0
+    feedback:
+      '1': In the experiment, were the stars there all along?
+      '2': Stars are always very far away. What changed in the sky instead?
+      '3': A bright Moon actually makes faint stars harder to see. What made them easier to see?
+    hints:
+      - Think about the sky from noon to night in the experiment. What changed?
+    solution:
+      - The stars are always there. In the day, the bright sky hides them.
+      - At night the sky is **dark**, so faint objects stand out.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.4, K1.2]
+    type: multi
+    prompt: Ava wants to see Jupiter’s moons from her backyard. Select **every** tool that would let her see them.
+    choices:
+      - Binoculars, held very steady
+      - A telescope
+      - Her eyes alone
+      - A magnifying glass
+    answer: [0, 1]
+    feedback:
+      '2': With eyes alone, Jupiter looks like one bright star. Can you see its moons?
+      '3': A magnifying glass makes nearby things bigger. Does it help with faraway objects in the sky?
+    hints:
+      - Try Jupiter in the sky viewer with each tool.
+    solution:
+      - Steady **binoculars** show Jupiter’s four biggest moons as tiny dots.
+      - A **telescope** shows them more clearly. With eyes alone, Jupiter is a single point of light.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K1.5, S1.1]
+    type: mc
+    prompt: 'Leo says, “I can look at the Sun through binoculars if I wear my sunglasses too.” What is wrong with his plan?'
+    choices:
+      - Binoculars gather more sunlight into his eyes, and sunglasses can’t stop it. It could damage his eyes.
+      - Nothing. Sunglasses block the dangerous light.
+      - Binoculars only work at night.
+      - The Sun is too far away to see with binoculars.
+    answer: 0
+    feedback:
+      '1': Sunglasses are made for a sunny day, not for staring at the Sun. Does anything else in his plan make it worse?
+      '2': Binoculars work in the daytime too. That’s exactly why this is dangerous.
+      '3': The Sun is very bright and easy to point at. That’s the danger.
+    hints:
+      - What do binoculars do to the light that goes through them?
+    solution:
+      - Binoculars **gather** light, so they send even more sunlight into the eyes.
+      - Sunglasses aren’t safety equipment for the Sun. Leo should use eclipse glasses or a pinhole viewer.
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [S1.2, S1.1, K1.3]
+    type: mc
+    prompt: |-
+      Mira logs what she sees in the sky over one day.
+
+      | Time | What she saw |
+      |---|---|
+      | 9 a.m. | The Sun, and a pale Moon |
+      | 2 p.m. | The Sun |
+      | 10 p.m. | The Moon, many stars, one planet |
+
+      Which statement does her log support?
+    choices:
+      - The Moon can sometimes be seen in the day and at night.
+      - Stars only exist at night.
+      - The Moon is only ever in the sky at night.
+      - Planets are brighter than the Sun.
+    answer: 0
+    feedback:
+      '1': The log shows when she **saw** stars. Does that mean they weren’t there?
+      '2': Check the 9 a.m. row. What did she see besides the Sun?
+      '3': Did she see a planet at 2 p.m., when the Sun was out?
+    hints:
+      - Which object appears in both a daytime row and a nighttime row?
+    solution:
+      - The **Moon** shows up at 9 a.m. and at 10 p.m., so it can be seen in both.
+      - The stars were there in the daytime too, just hidden by the bright sky.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: It has been cloudy all week. Your class wants to see tonight’s stars, and the only time free is Tuesday at 2 p.m. Which technology fits best?
+    choices: [A planetarium, A telescope, Binoculars, A camera pointed at the sky]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A telescope needs a clear, dark sky. Will there be one at 2 p.m. on a cloudy day?
+      '2': Binoculars need a clear, dark sky. Will there be one at 2 p.m. on a cloudy day?
+      '3': A camera can’t see through clouds or a bright day sky either.
+    hints:
+      - Which technology doesn’t need the real sky at all?
+    solution:
+      - A **planetarium** shows the night sky on its dome, indoors, at any time and in any weather.
+      - Telescopes and binoculars need a clear night.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, K1.2, U1.1]
+    type: investigation
+    prompt: |-
+      Here are three facts:
+
+      - **Io** travels around **Jupiter**.
+      - **Jupiter** travels around the **Sun**.
+      - The **Sun** is one of billions of stars, and many of them have planets too.
+    parts:
+      - type: mc
+        prompt: What is Io?
+        choices: [A moon, A planet, A star]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': A planet travels around a star. What does Io travel around?
+          '2': Does Io travel around something? Stars don’t travel around planets.
+        hints:
+          - What do we call an object that travels around a planet?
+        solution:
+          - Io travels around a planet, so it is a **moon**.
+      - type: mc
+        prompt: What is Jupiter?
+        choices: [A planet, A moon, A star]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Jupiter has moons of its own, and it travels around a star. Is that a moon?
+          '2': Does Jupiter travel around another object? Which one?
+        hints:
+          - What do we call an object that travels around a star?
+        solution:
+          - Jupiter travels around a star, the Sun. It is a **planet**, with moons of its own.
+      - type: mc
+        prompt: Which of these is part of the **universe**?
+        choices:
+          - All of them, and the space between them
+          - Only the stars
+          - Only things we can see from Earth
+        answer: 0
+        feedback:
+          '1': The universe is all of space and **everything** in it. Are stars the only things in space?
+          '2': Is something not part of the universe just because we can’t see it?
+        hints:
+          - What does the universe include?
+        solution:
+          - 'The universe is **all of space and everything in it**: Io, Jupiter, the Sun, every star and all the space between.'
+    wrapUp: Moons travel around planets, planets travel around stars, and the universe holds them all.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.3, S1.2, U1.1]
+    type: mc
+    prompt: |-
+      In a **total solar eclipse**, the Moon covers the Sun completely for a few minutes. The sky goes dark in the
+      middle of the day. What else would you expect to see?
+    choices:
+      - Bright stars and planets appear, because the sky is dark.
+      - Nothing else, because stars only come out at night.
+      - The stars move to fill in where the Sun was.
+      - The Moon gets brighter than the Sun.
+    answer: 0
+    feedback:
+      '1': Were the stars there during the day in the experiment? What hides them?
+      '2': Stars don’t move to fill gaps. What changed about the sky?
+      '3': The Moon is in front of the Sun, so its side facing us is dark. What else might show up?
+    hints:
+      - Why can’t you see stars at noon on a normal day?
+      - What happens if that reason goes away for a few minutes?
+    solution:
+      - Stars are always there. Normally the bright day sky hides them.
+      - When the eclipse darkens the sky, the brightest stars and planets **appear**, even at noon.

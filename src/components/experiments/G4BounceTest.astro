@@ -1,0 +1,93 @@
+---
+// Animated experiment: a tennis ball is dropped from 100 cm onto a wooden floor and onto carpet.
+// A metre stick measures each bounce, so the class records the result in words and in numbers
+// (SCI4-OI7-GQ1-LO1, K1.1, K1.2, K1.9, S1.1, S1.2, S1.3). Invented class results: see BOUNCE.
+---
+<g4-bounce-test>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-bounce-test>
+
+<style is:global>
+  g4-bounce-test { display: block; }
+  g4-bounce-test svg { background: var(--surface-2); }
+  .g4s-bt2-stick { fill: #f2d88a; stroke: #8a6d1a; stroke-width: 1.5; }
+  .g4s-bt2-tick { stroke: #8a6d1a; stroke-width: 1.2; }
+  .g4s-bt2-num { fill: #5a4510; font-size: 11px; font-weight: 700; }
+  .g4s-bt2-wood { fill: #a8743d; }
+  .g4s-bt2-carpet { fill: #7a4f9a; }
+  .g4s-bt2-ball { fill: #c8e04a; stroke: #6b7a1a; stroke-width: 2; }
+  .g4s-bt2-mark { stroke: var(--bad); stroke-width: 3; }
+  .g4s-bt2-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-bt2-data { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g4s-bt2-q { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { BOUNCE } from './g4-science.ts';
+
+  const FLOOR = 240;
+  const PX = 1.8; // pixels per cm
+  const PANELS = [
+    { cx: 130, surface: 'wood', label: 'Wooden floor', top: BOUNCE.wood, words: 'bounced high' },
+    { cx: 380, surface: 'carpet', label: 'Carpet', top: BOUNCE.carpet, words: 'bounced low' },
+  ] as const;
+
+  class G4BounceTest extends HTMLElement {
+    private h = [BOUNCE.drop, BOUNCE.drop];
+    private peak: (number | null)[] = [null, null];
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.h = [BOUNCE.drop, BOUNCE.drop];
+      this.peak = [null, null];
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(700, (t) => ((this.h = this.h.map(() => BOUNCE.drop * (1 - t * t))), this.draw()));
+      await tween(800, (t) => {
+        const u = 1 - (1 - t) ** 2;
+        this.h = PANELS.map((p) => p.top * u);
+        this.draw();
+      });
+      this.peak = PANELS.map((p) => p.top);
+      this.draw();
+      await tween(600, (t) => ((this.h = PANELS.map((p) => p.top * (1 - t * t))), this.draw()));
+      await wait(200);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent = `Dropped from 100 cm, the ball bounced to ${BOUNCE.wood} cm on the wooden floor and ${BOUNCE.carpet} cm on the carpet.`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      PANELS.forEach((p, i) => {
+        const sx = p.cx - 60;
+        out.push(`<rect class="g4s-bt2-stick" x="${sx - 14}" y="${FLOOR - 100 * PX}" width="18" height="${100 * PX}"/>`);
+        for (let c = 0; c <= 100; c += 10) {
+          const y = FLOOR - c * PX;
+          out.push(`<line class="g4s-bt2-tick" x1="${sx - 14}" y1="${y}" x2="${sx - (c % 50 ? 6 : 0)}" y2="${y}"/>`);
+          if (c % 20 === 0) out.push(`<text class="g4s-bt2-num" x="${sx - 18}" y="${y + 4}" text-anchor="end">${c}</text>`);
+        }
+        out.push(`<rect class="g4s-bt2-${p.surface}" x="${p.cx - 90}" y="${FLOOR}" width="180" height="14"/>`);
+        if (this.peak[i] !== null) out.push(`<line class="g4s-bt2-mark" x1="${sx}" y1="${FLOOR - (this.peak[i] as number) * PX}" x2="${p.cx + 30}" y2="${FLOOR - (this.peak[i] as number) * PX}"/>`);
+        out.push(`<circle class="g4s-bt2-ball" cx="${p.cx}" cy="${(FLOOR - 9 - this.h[i] * PX).toFixed(1)}" r="9"/>`);
+        out.push(`<text class="g4s-bt2-lbl" x="${p.cx}" y="${FLOOR + 36}" text-anchor="middle">${p.label}</text>`);
+      });
+      // The class record: the same results as words and as numbers.
+      out.push('<text class="g4s-bt2-q" x="530" y="40" text-anchor="middle">Our results</text>');
+      if (this.done)
+        PANELS.forEach((p, i) => {
+          const y = 80 + i * 90;
+          out.push(`<text class="g4s-bt2-data" x="530" y="${y}" text-anchor="middle">${p.label}</text><text class="g4s-bt2-q" x="530" y="${y + 22}" text-anchor="middle">In words: ${p.words}</text><text class="g4s-bt2-q" x="530" y="${y + 44}" text-anchor="middle">In numbers: ${p.top} cm</text>`);
+        });
+      out.push('<line x1="470" y1="20" x2="470" y2="280" style="stroke:var(--line-strong);stroke-width:2;stroke-dasharray:6 6"/>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-bounce-test', G4BounceTest);
+</script>

@@ -1,0 +1,103 @@
+---
+// Animated experiment: the same sheet of paper spans a gap between two stacks of books, once flat
+// and once folded like an accordion. Coins go on one at a time. The flat bridge collapses after 3;
+// the folded bridge holds all 20 (SCI4-OI6-GQ1-LO1, K1.1, S1.3, U1.1). Invented class results.
+---
+<g4-paper-bridge>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-paper-bridge>
+
+<style is:global>
+  g4-paper-bridge { display: block; }
+  g4-paper-bridge svg { background: var(--surface-2); }
+  .g4s-pb-book { fill: #c0563a; stroke: var(--ink-2); stroke-width: 1.5; }
+  .g4s-pb-book2 { fill: #2f5fd0; stroke: var(--ink-2); stroke-width: 1.5; }
+  .g4s-pb-paper { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linejoin: round; }
+  .g4s-pb-coin { fill: #d9b44a; stroke: #8a6d1a; stroke-width: 1.5; }
+  .g4s-pb-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-pb-count { fill: var(--ink); font-size: 22px; font-weight: 700; }
+  .g4s-pb-bad { fill: var(--bad); font-size: 16px; font-weight: 700; }
+  .g4s-pb-ok { fill: var(--ok); font-size: 16px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { BRIDGE } from './g4-science.ts';
+
+  const TOP = 170; // top of the book stacks
+  const PANELS = [
+    { cx: 165, folded: false, label: 'Flat sheet' },
+    { cx: 495, folded: true, label: 'Folded like an accordion' },
+  ];
+  const GAP = 180;
+
+  class G4PaperBridge extends HTMLElement {
+    private coins = [0, 0];
+    private sag = [0, 0];
+    private fallen = false;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.coins = [0, 0];
+      this.sag = [0, 0];
+      this.fallen = false;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      for (let n = 1; n <= BRIDGE.coins; n++) {
+        if (!this.fallen) this.coins[0] = n;
+        this.coins[1] = n;
+        if (!this.fallen && n > BRIDGE.flatHolds) {
+          await tween(500, (t) => ((this.sag[0] = 22 + 60 * t), this.draw()));
+          this.fallen = true;
+        } else if (!this.fallen) this.sag[0] = (n / BRIDGE.flatHolds) * 22;
+        this.sag[1] = n * 0.25;
+        this.draw();
+        await wait(n <= 5 ? 380 : 150);
+      }
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent = `The flat sheet sagged and fell when the ${BRIDGE.flatHolds + 1}th coin went on. The folded sheet held all ${BRIDGE.coins} coins.`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      PANELS.forEach((p, i) => {
+        const l = p.cx - GAP / 2;
+        const r = p.cx + GAP / 2;
+        for (let k = 0; k < 4; k++) {
+          out.push(`<rect class="${k % 2 ? 'g4s-pb-book2' : 'g4s-pb-book'}" x="${l - 60}" y="${TOP + k * 22}" width="64" height="22"/><rect class="${k % 2 ? 'g4s-pb-book' : 'g4s-pb-book2'}" x="${r - 4}" y="${TOP + k * 22}" width="64" height="22"/>`);
+        }
+        const s = this.sag[i];
+        const mid = TOP + s;
+        if (!p.folded) out.push(`<path class="g4s-pb-paper" d="M${l - 30},${TOP - 1} L${l + 4},${TOP - 1} Q${p.cx},${mid + s} ${r - 4},${TOP - 1} L${r + 30},${TOP - 1}"/>`);
+        else {
+          const pts: string[] = [`${l - 30},${TOP - 1}`];
+          for (let k = 0; k <= 16; k++) {
+            const x = l - 10 + ((GAP + 20) * k) / 16;
+            const bend = s * Math.sin((Math.PI * k) / 16);
+            pts.push(`${x.toFixed(1)},${(TOP - 1 - (k % 2 ? 12 : 0) + bend).toFixed(1)}`);
+          }
+          pts.push(`${r + 30},${TOP - 1}`);
+          out.push(`<polyline class="g4s-pb-paper" points="${pts.join(' ')}"/>`);
+        }
+        // Coins stacked in the middle of the bridge.
+        const fallenFlat = !p.folded && this.fallen;
+        for (let k = 0; k < this.coins[i]; k++) {
+          const y = fallenFlat ? TOP + 80 - k * 5 : mid + (p.folded ? -14 : s) - 6 - k * 5;
+          out.push(`<ellipse class="g4s-pb-coin" cx="${p.cx}" cy="${y.toFixed(1)}" rx="13" ry="4"/>`);
+        }
+        out.push(`<text class="g4s-pb-lbl" x="${p.cx}" y="28" text-anchor="middle">${p.label}</text>`);
+        out.push(`<text class="g4s-pb-count" x="${p.cx}" y="60" text-anchor="middle">${this.coins[i]} coin${this.coins[i] === 1 ? '' : 's'}</text>`);
+        if (fallenFlat) out.push(`<text class="g4s-pb-bad" x="${p.cx}" y="${TOP + 118}" text-anchor="middle">✗ Fell with coin ${BRIDGE.flatHolds + 1}</text>`);
+        if (this.done && p.folded) out.push(`<text class="g4s-pb-ok" x="${p.cx}" y="${TOP + 118}" text-anchor="middle">✓ Still holding</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-paper-bridge', G4PaperBridge);
+</script>

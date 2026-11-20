@@ -1,0 +1,96 @@
+---
+// Gravity explorer (SCI4-OI2-GQ1-LO1, K1.2, S1.1, S1.2): let a ball go, toss it up, or roll it off
+// a table. Whatever the ball does, the gravity arrow always points down toward the ground.
+const MOVES = [
+  { id: 'drop', label: 'Let go', say: 'Nothing touches the ball, yet it falls straight down. Gravity pulls it toward the ground.' },
+  { id: 'toss', label: 'Toss it up', say: 'Going up, the ball slows down, stops and falls back. Gravity pulled down the whole time, even on the way up.' },
+  { id: 'roll', label: 'Roll off a table', say: 'Off the edge, the ball keeps moving forward, but its path bends down. Gravity pulls it to the floor.' },
+];
+---
+<g4-gravity-drop data-moves={JSON.stringify(MOVES)}>
+  <svg class="sci-svg" viewBox="0 0 560 280" role="img" aria-label="A ball above the ground, with a gravity arrow pointing down" data-g4s="svg"></svg>
+  <div class="sci-pick" role="group" aria-label="Choose what to do with the ball">
+    {MOVES.map((m) => <button type="button" data-g4s-move={m.id} aria-pressed="false">{m.label}</button>)}
+  </div>
+  <p class="sci-say" aria-live="polite" data-g4s="say">Choose what to do with the ball.</p>
+</g4-gravity-drop>
+
+<style is:global>
+  g4-gravity-drop { display: block; }
+  g4-gravity-drop svg { background: var(--surface-2); }
+  .g4s-gd-ball { fill: #e0533d; stroke: var(--ink); stroke-width: 2; }
+  .g4s-gd-trail { fill: #e0533d; opacity: 0.25; }
+  .g4s-gd-floor { fill: color-mix(in srgb, var(--science) 30%, var(--surface-2)); }
+  .g4s-gd-desk { fill: #a8743d; }
+  .g4s-gd-hand { fill: #e8b98f; stroke: var(--ink-2); stroke-width: 2; }
+</style>
+
+<script>
+  import { forceArrow } from './force-arrows.ts';
+  import { tween, reducedMotion } from '../experiments/anim.ts';
+
+  const FLOOR = 250;
+  const R = 13;
+  interface Move { id: string; label: string; say: string }
+
+  class G4GravityDrop extends HTMLElement {
+    private ball = { x: 160, y: 80 };
+    private trail: { x: number; y: number }[] = [];
+    private desk = false;
+    private busy = false;
+
+    connectedCallback() {
+      const moves = JSON.parse(this.dataset.moves!) as Move[];
+      this.querySelectorAll<HTMLButtonElement>('[data-g4s-move]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          if (this.busy) return;
+          this.querySelectorAll('[data-g4s-move]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          this.play(moves.find((m) => m.id === btn.dataset.g4sMove)!);
+        }),
+      );
+      this.draw();
+    }
+
+    private async play(m: Move) {
+      this.busy = true;
+      this.trail = [];
+      this.desk = m.id === 'roll';
+      const say = this.querySelector('[data-g4s="say"]')!;
+      say.textContent = '';
+      // Positions over time with a steady pull down (y grows like t²), scaled to land on the floor.
+      const path = (t: number) => {
+        if (m.id === 'drop') return { x: 160, y: 80 + (FLOOR - R - 80) * t * t };
+        if (m.id === 'toss') {
+          // Up to the top at t = 0.4, then down to the floor at t = 1.
+          const top = 40;
+          return t < 0.4 ? { x: 160, y: 180 - (180 - top) * (1 - ((0.4 - t) / 0.4) ** 2) } : { x: 160, y: top + (FLOOR - R - top) * ((t - 0.4) / 0.6) ** 2 };
+        }
+        // Roll along the desk, then fall off its edge in a curve.
+        const edge = 230;
+        const deskTop = 140 - R;
+        if (t < 0.35) return { x: 60 + (edge - 60) * (t / 0.35), y: deskTop };
+        const u = (t - 0.35) / 0.65;
+        return { x: edge + 180 * u, y: deskTop + (FLOOR - R - deskTop) * u * u };
+      };
+      const ms = m.id === 'drop' ? 1100 : 1900;
+      await tween(reducedMotion() ? 300 : ms, (t) => {
+        this.ball = path(t);
+        if (Math.round(t * 40) % 3 === 0) this.trail.push({ ...this.ball });
+        this.draw();
+      });
+      say.textContent = m.say;
+      this.busy = false;
+    }
+
+    private draw() {
+      const out: string[] = [`<rect class="g4s-gd-floor" x="0" y="${FLOOR}" width="560" height="${280 - FLOOR}"/>`];
+      if (this.desk) out.push(`<rect class="g4s-gd-desk" x="20" y="140" width="210" height="12"/><rect class="g4s-gd-desk" x="34" y="152" width="10" height="${FLOOR - 152}"/><rect class="g4s-gd-desk" x="206" y="152" width="10" height="${FLOOR - 152}"/>`);
+      for (const p of this.trail) out.push(`<circle class="g4s-gd-trail" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${R}"/>`);
+      out.push(`<circle class="g4s-gd-ball" cx="${this.ball.x.toFixed(1)}" cy="${this.ball.y.toFixed(1)}" r="${R}"/>`);
+      // The gravity arrow always points down, whichever way the ball is moving.
+      if (this.ball.y < FLOOR - R - 2) out.push(forceArrow('weight', this.ball.x + 36, this.ball.y + 4, 46, 'Gravity'));
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-gravity-drop', G4GravityDrop);
+</script>

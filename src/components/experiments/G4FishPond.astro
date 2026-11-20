@@ -1,0 +1,91 @@
+---
+// Animated experiment: two identical ponds start with 20 fish. Each spring the fish increase by
+// half, up to what the pond can hold (30). One family takes only what it needs (5 a year); the
+// other takes as many as it can (15 a year). After five years one pond is still full of fish and
+// the other is empty (SCI4-OI3-GQ1-LO1, K6.1, U6.1, U6.2). The pond is invented; see pondYears.
+---
+<g4-fish-pond>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-fish-pond>
+
+<style is:global>
+  g4-fish-pond { display: block; }
+  .g4s-fp-pond { fill: #3f86c9; stroke: #2b5f8f; stroke-width: 3; }
+  .g4s-fp-fish { fill: #f2a33a; stroke: #8a4f12; stroke-width: 1.2; }
+  .g4s-fp-year { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4s-fp-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-fp-count { fill: #fff; font-size: 18px; font-weight: 700; paint-order: stroke; stroke: #1d3f5f; stroke-width: 4px; }
+  .g4s-fp-note { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { pondYears } from './g4-science.ts';
+
+  const START = 20;
+  const CAP = 30;
+  const YEARS = 5;
+  const PONDS = [
+    { cx: 165, take: 5, label: 'Takes only 5 a year' },
+    { cx: 495, take: 15, label: 'Takes 15 a year' },
+  ];
+  // Fixed spots for up to 30 fish inside a pond, so fish don’t jump around between frames.
+  const SPOTS = Array.from({ length: CAP }, (_, k) => ({ dx: -110 + ((k * 47) % 220), dy: -42 + ((k * 29) % 84), flip: k % 2 }));
+
+  class G4FishPond extends HTMLElement {
+    private year = 0;
+    private counts = [START, START];
+    private note = ['', ''];
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.year = 0;
+      this.counts = [START, START];
+      this.note = ['', ''];
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      this.draw();
+      const runs = PONDS.map((p) => pondYears(START, CAP, p.take, YEARS));
+      for (let y = 1; y <= YEARS; y++) {
+        this.year = y;
+        // Spring: the fish increase.
+        this.counts = this.counts.map((c) => Math.min(CAP, c + Math.floor(c / 2)));
+        this.note = this.counts.map((c) => (c > 0 ? 'spring: young fish hatch' : 'no fish left'));
+        this.draw();
+        await wait(650);
+        // Fishing: each family takes its catch.
+        this.counts = runs.map((r) => r[y - 1]);
+        this.note = PONDS.map((p, i) => ((y === 1 ? START : runs[i][y - 2]) === 0 ? 'no fish left' : `fall: family takes up to ${p.take}`));
+        this.draw();
+        await tween(650, () => {});
+      }
+      this.done = true;
+      this.note = ['', ''];
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'After five years, the pond where the family took only 5 fish a year still had 25 fish. The pond where the family took 15 a year ran out of fish in year 3.';
+    }
+
+    private draw() {
+      const out: string[] = [`<text class="g4s-fp-year" x="330" y="30" text-anchor="middle">${this.year === 0 ? 'Start' : `Year ${this.year}`}</text>`];
+      PONDS.forEach((p, i) => {
+        out.push(`<ellipse class="g4s-fp-pond" cx="${p.cx}" cy="150" rx="140" ry="70"/>`);
+        for (let k = 0; k < this.counts[i]; k++) {
+          const s = SPOTS[k];
+          out.push(`<path class="g4s-fp-fish" transform="translate(${p.cx + s.dx} ${150 + s.dy}) scale(${s.flip ? -1 : 1} 1)" d="M-9,0 q9,-7 18,0 q-9,7 -18,0 Z M9,0 l7,-5 l0,10 Z"/>`);
+        }
+        out.push(`<text class="g4s-fp-count" x="${p.cx}" y="158" text-anchor="middle">${this.counts[i]} fish</text>`);
+        out.push(`<text class="g4s-fp-lbl" x="${p.cx}" y="250" text-anchor="middle">${p.label}</text>`);
+        if (this.note[i]) out.push(`<text class="g4s-fp-note" x="${p.cx}" y="72" text-anchor="middle">${this.note[i]}</text>`);
+        if (this.done) out.push(`<text class="g4s-fp-lbl" x="${p.cx}" y="276" text-anchor="middle" style="fill:${i === 0 ? 'var(--ok)' : 'var(--bad)'}">${i === 0 ? '✓ Still plenty of fish' : '✗ No fish left'}</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-fish-pond', G4FishPond);
+</script>

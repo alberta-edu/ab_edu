@@ -1,0 +1,119 @@
+---
+// Earth's four spheres (SCI4-OI3-GQ1-LO1, K1.1-K1.5): tap a sphere to light up its parts of an
+// Alberta landscape and read what it is. Word roots: Ancient Greek, per en.wiktionary.org.
+const SPHERES = [
+  {
+    id: 'litho',
+    name: 'Lithosphere',
+    root: 'lithos: stone',
+    facts: ['The outer layers of Earth’s surface', 'Made of rock', 'Holds the soil and minerals that help living things grow'],
+  },
+  {
+    id: 'atmo',
+    name: 'Atmosphere',
+    root: 'atmos: vapour, or steam',
+    facts: ['The layer of gases all around Earth', 'Warms Earth’s surface', 'Keeps it from getting too hot or too cold', 'Has the oxygen we breathe'],
+  },
+  {
+    id: 'hydro',
+    name: 'Hydrosphere',
+    root: 'hydor: water',
+    facts: ['Every part of Earth covered with water: oceans, lakes and rivers', 'Living things can’t live without it'],
+  },
+  {
+    id: 'bio',
+    name: 'Biosphere',
+    root: 'bios: life',
+    facts: ['All the life on Earth', 'Every place where life can live: in soil, water and air'],
+  },
+];
+---
+<g4-spheres data-spheres={JSON.stringify(SPHERES)}>
+  <svg class="sci-svg" viewBox="0 0 560 300" role="img" aria-label="A landscape with sky and clouds, mountains and soil, a lake and a river, and trees, a deer, a bird and fish" data-g4s="svg">
+    <g data-sph="atmo">
+      <rect x="0" y="0" width="560" height="190" class="g4s-sp-sky"></rect>
+      <ellipse cx="110" cy="44" rx="46" ry="16" class="g4s-sp-cloud"></ellipse><ellipse cx="140" cy="36" rx="30" ry="14" class="g4s-sp-cloud"></ellipse>
+      <ellipse cx="420" cy="30" rx="40" ry="13" class="g4s-sp-cloud"></ellipse>
+      <text x="530" y="26" text-anchor="end" class="g4s-sp-tag">air</text>
+    </g>
+    <g data-sph="litho">
+      <path d="M0,190 L90,80 L150,140 L230,60 L330,190 Z" class="g4s-sp-rock"></path>
+      <path d="M215,78 L230,60 L246,80 L236,74 L228,82 Z" class="g4s-sp-snow"></path>
+      <rect x="0" y="190" width="560" height="110" class="g4s-sp-soil"></rect>
+      <rect x="0" y="250" width="560" height="50" class="g4s-sp-bedrock"></rect>
+      <circle cx="60" cy="270" r="9" class="g4s-sp-stone"></circle><circle cx="300" cy="280" r="12" class="g4s-sp-stone"></circle><circle cx="500" cy="268" r="8" class="g4s-sp-stone"></circle>
+      <text x="16" y="292" class="g4s-sp-tag">rock and soil</text>
+    </g>
+    <g data-sph="hydro">
+      <path d="M340,190 Q420,182 540,190 Q530,232 440,236 Q350,232 340,190 Z" class="g4s-sp-water"></path>
+      <path d="M150,190 Q190,205 250,198 Q300,192 340,196 L340,204 Q300,200 250,206 Q190,214 150,198 Z" class="g4s-sp-water"></path>
+      <text x="440" y="216" text-anchor="middle" class="g4s-sp-tag">lake</text>
+    </g>
+    <g data-sph="bio">
+      <g class="g4s-sp-tree"><rect x="36" y="160" width="8" height="30" class="g4s-sp-trunk"></rect><path d="M40,120 L60,165 L20,165 Z"></path></g>
+      <g class="g4s-sp-tree"><rect x="96" y="166" width="8" height="24" class="g4s-sp-trunk"></rect><path d="M100,132 L118,170 L82,170 Z"></path></g>
+      <g class="g4s-sp-tree"><rect x="306" y="162" width="8" height="28" class="g4s-sp-trunk"></rect><path d="M310,124 L330,168 L290,168 Z"></path></g>
+      <g class="g4s-sp-deer"><ellipse cx="196" cy="174" rx="17" ry="8"></ellipse><rect x="183" y="176" width="3" height="14"></rect><rect x="189" y="177" width="3" height="13"></rect><rect x="202" y="177" width="3" height="13"></rect><rect x="208" y="176" width="3" height="14"></rect><path d="M208,170 L216,156 L222,158 L214,172 Z"></path><ellipse cx="222" cy="156" rx="7" ry="4"></ellipse><path d="M218,152 l-3,-8 M218,152 l3,-9 M215,147 l-4,-2 M220,146 l4,-3" class="g4s-sp-antler"></path></g>
+      <path d="M400,206 q10,-8 20,0 q-10,8 -20,0 Z M420,206 l7,-5 l0,10 Z" class="g4s-sp-fish"></path>
+      <path d="M470,220 q10,-8 20,0 q-10,8 -20,0 Z M490,220 l7,-5 l0,10 Z" class="g4s-sp-fish"></path>
+      <path d="M300,60 q8,-8 14,0 q6,-8 14,0" class="g4s-sp-bird"></path>
+      <path d="M120,214 q6,-6 12,0 M140,222 q6,-6 12,0 M380,250 q6,-6 12,0" class="g4s-sp-worm"></path>
+    </g>
+  </svg>
+  <div class="sci-pick" role="group" aria-label="Choose a sphere">
+    {SPHERES.map((s) => <button type="button" data-sph-btn={s.id} aria-pressed="false">{s.name}</button>)}
+  </div>
+  <div class="g4s-sp-info" aria-live="polite" data-g4s="info">
+    <p class="g4s-sp-hint">Tap a sphere to light up its parts.</p>
+  </div>
+</g4-spheres>
+
+<style is:global>
+  g4-spheres { display: block; }
+  .g4s-sp-sky { fill: color-mix(in srgb, #7fb2e5 45%, var(--surface)); }
+  .g4s-sp-rock { fill: #8a7f74; stroke: #5d554d; stroke-width: 2; }
+  .g4s-sp-snow { fill: #fff; }
+  .g4s-sp-cloud { fill: #f4f6fa; stroke: #c9d3e0; stroke-width: 1.5; }
+  .g4s-sp-soil { fill: #8b6a45; }
+  .g4s-sp-bedrock { fill: #6e6259; }
+  .g4s-sp-stone { fill: #a39a90; }
+  .g4s-sp-water { fill: #3f86c9; }
+  .g4s-sp-tree path { fill: #3f9a40; }
+  .g4s-sp-trunk { fill: #7a5232; }
+  .g4s-sp-deer { fill: #a0612b; }
+  .g4s-sp-antler { fill: none; stroke: #6b4a2a; stroke-width: 2; stroke-linecap: round; }
+  .g4s-sp-fish { fill: #f2a33a; }
+  .g4s-sp-bird, .g4s-sp-worm { fill: none; stroke: #33302c; stroke-width: 2.5; stroke-linecap: round; }
+  .g4s-sp-worm { stroke: #d17a7a; stroke-width: 3; }
+  .g4s-sp-tag { fill: #fff; font-size: 15px; font-weight: 700; paint-order: stroke; stroke: rgba(0, 0, 0, 0.45); stroke-width: 3px; }
+  g4-spheres [data-sph] { transition: opacity 0.3s; }
+  g4-spheres.is-picking [data-sph]:not(.is-on) { opacity: 0.18; }
+  .g4s-sp-info { margin-top: 0.6rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4s-sp-info h4 { margin: 0 0 0.3rem; font-size: var(--step-1); }
+  .g4s-sp-info ul { margin: 0; padding-left: 1.2rem; }
+  .g4s-sp-root, .g4s-sp-hint { margin: 0.4rem 0 0; color: var(--ink-2); font-size: var(--step--1); }
+  .g4s-sp-hint { margin: 0; }
+  @media (prefers-reduced-motion: reduce) { g4-spheres [data-sph] { transition: none; } }
+</style>
+
+<script>
+  interface Sphere { id: string; name: string; root: string; facts: string[] }
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  class G4Spheres extends HTMLElement {
+    connectedCallback() {
+      const spheres = JSON.parse(this.dataset.spheres!) as Sphere[];
+      this.querySelectorAll<HTMLButtonElement>('[data-sph-btn]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          const s = spheres.find((x) => x.id === btn.dataset.sphBtn)!;
+          this.classList.add('is-picking');
+          this.querySelectorAll('[data-sph-btn]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+          this.querySelectorAll<SVGGElement>('[data-sph]').forEach((g) => g.classList.toggle('is-on', g.dataset.sph === s.id));
+          this.querySelector('[data-g4s="info"]')!.innerHTML =
+            `<h4>${esc(s.name)}</h4><ul>${s.facts.map((f) => `<li>${esc(f)}</li>`).join('')}</ul><p class="g4s-sp-root">Word root: ${esc(s.root)} (Ancient Greek)</p>`;
+        }),
+      );
+    }
+  }
+  customElements.define('g4-spheres', G4Spheres);
+</script>

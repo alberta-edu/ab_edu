@@ -1,0 +1,113 @@
+---
+// Animated experiment: a heavy rain falls on two hillsides above a stream. On the hill where the
+// plants were cleared, soil washes down and muddies the stream; on the hill with plants, roots hold
+// the soil and the stream stays clear (SCI4-OI3-GQ1-LO1, U1.1, K4.1, U4.1, S1.1, S4.1).
+---
+<g4-hill-rain>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-hill-rain>
+
+<style is:global>
+  g4-hill-rain { display: block; }
+  .g4s-hr-soil { fill: #8b6a45; }
+  .g4s-hr-mud { fill: #8b6a45; }
+  .g4s-hr-grass { stroke: #3f9a40; stroke-width: 3; stroke-linecap: round; }
+  .g4s-hr-root { stroke: #c9a46b; stroke-width: 1.5; fill: none; }
+  .g4s-hr-tree { fill: #3f9a40; }
+  .g4s-hr-trunk { fill: #7a5232; }
+  .g4s-hr-rain { stroke: #7fb2e5; stroke-width: 2; stroke-linecap: round; }
+  .g4s-hr-fish { fill: #f2a33a; stroke: #8a4f12; stroke-width: 1.5; }
+  .g4s-hr-stump { fill: #a07a4f; }
+  .g4s-hr-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-hr-res { fill: #fff; font-size: 15px; font-weight: 700; paint-order: stroke; stroke: rgba(0, 0, 0, 0.55); stroke-width: 4px; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const PANELS = [
+    { x0: 10, plants: false, label: 'Plants cleared away' },
+    { x0: 340, plants: true, label: 'Plants left growing' },
+  ];
+  const PW = 310;
+  /** Ground height along the slope, from the hilltop on the left down to the stream bank. */
+  const groundY = (u: number) => 90 + 130 * u; // u from 0 (hilltop) to 1 (bank)
+  const STREAM_Y = 238;
+
+  class G4HillRain extends HTMLElement {
+    private rain = 0;
+    private t = 0;
+    private mud = 0; // 0..1: how muddy the stream on the cleared hill is
+    private grains: { u: number; v: number }[] = [];
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.rain = this.mud = this.t = 0;
+      this.grains = [];
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(4200, (t) => {
+        this.t = t;
+        this.rain = Math.min(1, t * 4) * Math.min(1, (1 - t) * 8);
+        if (t > 0.15 && Math.random() < 0.7) this.grains.push({ u: Math.random() * 0.4, v: 0.012 + Math.random() * 0.01 });
+        this.grains.forEach((g) => (g.u += g.v));
+        this.grains = this.grains.filter((g) => g.u < 1.12);
+        this.mud = Math.max(0, Math.min(1, (t - 0.35) / 0.5));
+        this.draw();
+      });
+      await wait(200);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'On the hill with no plants, the rain washed soil down into the stream. The stream turned muddy and the fish swam away. On the hill with plants, the soil stayed put and the stream stayed clear.';
+    }
+
+    private draw() {
+      const out: string[] = ['<rect class="sci-sky" width="660" height="300"/>'];
+      PANELS.forEach((p) => {
+        const X = (u: number) => p.x0 + u * 230;
+        // Hill and stream bed.
+        out.push(`<path class="g4s-hr-soil" d="M${p.x0},${groundY(0)} L${X(1)},${groundY(1)} L${X(1)},${STREAM_Y} L${p.x0 + PW},${STREAM_Y} L${p.x0 + PW},300 L${p.x0},300 Z"/>`);
+        const muddy = p.plants ? 0 : this.mud;
+        const water = `rgb(${Math.round(63 + (200 - 63) * muddy)},${Math.round(134 + (163 - 134) * muddy)},${Math.round(201 + (104 - 201) * muddy)})`;
+        out.push(`<rect x="${X(1)}" y="${STREAM_Y - 22}" width="${p.x0 + PW - X(1)}" height="22" style="fill:${water};stroke:#2b5f8f;stroke-width:2"/>`);
+        // Fish: stays in clear water, swims off in muddy water.
+        const fx = X(1) + 30 + (p.plants ? 0 : 60 * this.mud);
+        if (p.plants || this.mud < 0.95) out.push(`<path class="g4s-hr-fish" opacity="${p.plants ? 1 : (1 - this.mud).toFixed(2)}" transform="translate(${fx.toFixed(1)} ${STREAM_Y - 11})" d="M0,0 q9,-7 18,0 q-9,7 -18,0 Z M18,0 l7,-5 l0,10 Z"/>`);
+        if (p.plants) {
+          for (let u = 0.04; u < 1; u += 0.06) {
+            const x = X(u);
+            const y = groundY(u);
+            out.push(`<line class="g4s-hr-grass" x1="${x}" y1="${y}" x2="${x - 2}" y2="${y - 10}"/><path class="g4s-hr-root" d="M${x},${y} l-4,14 M${x},${y} l3,16 M${x},${y} l0,20"/>`);
+          }
+          for (const u of [0.15, 0.5, 0.82]) out.push(`<rect class="g4s-hr-trunk" x="${X(u) - 4}" y="${groundY(u) - 28}" width="8" height="28"/><path class="g4s-hr-tree" d="M${X(u)},${groundY(u) - 72} L${X(u) + 22},${groundY(u) - 22} L${X(u) - 22},${groundY(u) - 22} Z"/>`);
+        } else {
+          for (const u of [0.15, 0.5, 0.82]) out.push(`<rect class="g4s-hr-stump" x="${X(u) - 6}" y="${groundY(u) - 8}" width="12" height="8"/>`);
+          // Soil grains washing down the bare slope into the stream.
+          for (const g of this.grains) {
+            const u = Math.min(g.u, 1);
+            const x = g.u <= 1 ? X(u) : X(1) + (g.u - 1) * 260;
+            const y = g.u <= 1 ? groundY(u) - 3 : STREAM_Y - 12;
+            out.push(`<circle class="g4s-hr-mud" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/>`);
+          }
+        }
+        if (this.rain > 0)
+          for (let k = 0; k < 16; k++) {
+            const x = p.x0 + ((k * 41) % PW);
+            const y = 20 + ((k * 67 + this.t * 2600) % 200);
+            out.push(`<line class="g4s-hr-rain" opacity="${this.rain.toFixed(2)}" x1="${x}" y1="${y.toFixed(1)}" x2="${x - 3}" y2="${(y + 11).toFixed(1)}"/>`);
+          }
+        out.push(`<text class="g4s-hr-lbl" x="${p.x0 + PW / 2}" y="24" text-anchor="middle">${p.label}</text>`);
+        if (this.done) out.push(`<text class="g4s-hr-res" x="${p.x0 + PW / 2}" y="${STREAM_Y + 36}" text-anchor="middle">${p.plants ? 'Stream stayed clear' : 'Stream turned muddy'}</text>`);
+      });
+      out.push('<line x1="330" y1="40" x2="330" y2="300" style="stroke:var(--line-strong);stroke-width:2;stroke-dasharray:6 6"/>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-hill-rain', G4HillRain);
+</script>
