@@ -1,0 +1,117 @@
+---
+// Time on an analog clock (MAT4-OI7-GQ1-LO1). "fraction": from an hour, the minute hand sweeps 15,
+// 20, 30, 40 or 45 minutes, shown as a fraction of a full turn and as a time of day. "duration": set a
+// start and an end time and the shaded sweep shows the duration in minutes.
+import { clockSvg, clockText } from './clock.ts';
+
+interface Props {
+  mode?: 'fraction' | 'duration';
+  /** Start time in minutes after midnight, such as 540 for 9:00. */
+  start?: number;
+  minutes?: number;
+}
+const { mode = 'fraction', start = 180, minutes = 15 } = Astro.props;
+const end = start + minutes;
+const steps = [-15, -5, 5, 15];
+---
+<g4m-clock-duration data-mode={mode} data-start={start} data-end={end}>
+  <div class="g4m-cd-layout">
+    <svg class="g4m-cd-svg" viewBox="0 0 240 240" role="img" aria-label={`A clock showing ${clockText(end)}`} data-cd="svg" set:html={clockSvg(start, end)} />
+    <div>
+      <p class="g4m-cd-big" data-cd="big" aria-live="polite"></p>
+      <p class="g4m-cd-say" data-cd="say"></p>
+      {
+        mode === 'fraction' ? (
+          <div class="g4m-cd-chips" role="group" aria-label="Minutes after the hour">
+            {[15, 20, 30, 40, 45, 60].map((m) => <button type="button" class="chip" data-cd-min={m} aria-pressed={String(m === minutes)}>{m} min</button>)}
+          </div>
+        ) : (
+          <div class="g4m-cd-sets">
+            {['start', 'end'].map((which) => (
+              <div class="control">
+                <span class="g4m-cd-lab">{which === 'start' ? 'Start' : 'End'} <b data-cd={`${which}-text`}></b></span>
+                {steps.map((k) => <button type="button" class="icon-btn" data-cd-set={which} data-cd-step={k} aria-label={`${which} time ${k > 0 ? 'plus' : 'minus'} ${Math.abs(k)} minutes`}>{k > 0 ? `+${k}` : `−${-k}`}</button>)}
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</g4m-clock-duration>
+
+<style is:global>
+  g4m-clock-duration { display: block; }
+  .g4m-cd-layout { display: grid; gap: 0.8rem; align-items: center; }
+  @media (min-width: 44rem) { .g4m-cd-layout { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); } }
+  .g4m-cd-svg { display: block; width: 100%; max-width: 17rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g4m-cd-face { fill: var(--surface); stroke: var(--ink); stroke-width: 4; }
+  .g4m-cd-full { fill: color-mix(in srgb, var(--sun) 35%, transparent); }
+  .g4m-cd-sweep { fill: color-mix(in srgb, var(--math) 40%, transparent); stroke: var(--math); stroke-width: 2; }
+  .g4m-cd-tick { stroke: var(--ink-3); stroke-width: 1.2; }
+  .g4m-cd-tick.is-big { stroke: var(--ink); stroke-width: 2.5; }
+  .g4m-cd-num { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .g4m-cd-hour { stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }
+  .g4m-cd-min { stroke: var(--bad); stroke-width: 4; stroke-linecap: round; }
+  .g4m-cd-pin { fill: var(--ink); }
+  .g4m-cd-big { margin: 0; font-size: var(--step-2); font-weight: 700; color: var(--accent, var(--math)); font-variant-numeric: tabular-nums; }
+  .g4m-cd-say { margin: 0.3rem 0 0.6rem; font-weight: 700; }
+  .g4m-cd-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .g4m-cd-chips .chip[aria-pressed='true'] { background: var(--math); color: var(--surface); border-color: var(--math); }
+  .g4m-cd-sets { display: grid; gap: 0.5rem; }
+  .g4m-cd-lab { flex-basis: 100%; }
+  .g4m-cd-lab b { font-size: var(--step-0); font-variant-numeric: tabular-nums; }
+</style>
+
+<script>
+  import { clockSvg, clockText, timeName, turnFraction, durationText, hoursMinutes } from './clock.ts';
+
+  class ClockDuration extends HTMLElement {
+    private start = 0;
+    private end = 0;
+
+    connectedCallback() {
+      this.start = Number(this.dataset.start);
+      this.end = Number(this.dataset.end);
+      this.querySelectorAll<HTMLButtonElement>('[data-cd-min]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-cd-min]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.end = this.start + Number(b.dataset.cdMin);
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-cd-set]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const k = Number(b.dataset.cdStep);
+          if (b.dataset.cdSet === 'start') this.start = Math.max(0, Math.min(this.end - 5, this.start + k));
+          else this.end = Math.max(this.start + 5, Math.min(this.start + 180, this.end + k));
+          this.draw();
+        }),
+      );
+      this.draw();
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-cd="${name}"]`) as HTMLElement;
+    }
+
+    private draw() {
+      const svg = this.q('svg');
+      svg.innerHTML = clockSvg(this.start, this.end);
+      svg.setAttribute('aria-label', `A clock showing ${clockText(this.end)}, with the minute hand’s sweep since ${clockText(this.start)} shaded`);
+      const d = this.end - this.start;
+      if (this.dataset.mode === 'fraction') {
+        const name = timeName(this.end);
+        const frac = turnFraction(d);
+        this.q('big').textContent = name ? `${clockText(this.end)}, ${name}` : clockText(this.end);
+        this.q('say').textContent = frac === '1' ? `60 minutes is one full turn of the minute hand: 1 hour.` : `${d} minutes is ${frac} of a full turn of the minute hand.`;
+      } else {
+        this.q('start-text').textContent = clockText(this.start);
+        this.q('end-text').textContent = clockText(this.end);
+        this.q('big').textContent = hoursMinutes(d);
+        this.q('say').textContent = durationText(this.start, this.end);
+      }
+    }
+  }
+  customElements.define('g4m-clock-duration', ClockDuration);
+</script>

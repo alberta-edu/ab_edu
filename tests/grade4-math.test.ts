@@ -178,3 +178,21 @@ describe('sequences', () => {
     expect(fitStart('times', 5, 3)).toBe(5);
   });
 });
+
+import { clockText, timeName, turnFraction, hoursMinutes, durationText } from '../src/components/visuals/clock.ts';
+
+describe('clock and duration', () => {
+  it('names times of day with fractions of an hour', () => {
+    expect(clockText(545)).toBe('9:05');
+    expect(clockText(13 * 60 + 30)).toBe('1:30');
+    expect(timeName(3 * 60 + 15)).toBe('quarter past 3');
+    expect(timeName(3 * 60 + 30)).toBe('half past 3');
+    expect(timeName(11 * 60 + 45)).toBe('quarter to 12');
+    expect(timeName(12 * 60 + 45)).toBe('quarter to 1');
+  });
+  it('relates minutes to fractions of a turn', () => {
+    expect([15, 20, 30, 40, 45].map(turnFraction)).toEqual(['1/4', '1/3', '1/2', '2/3', '3/4']);
+    expect(hoursMinutes(95)).toBe('1 h 35 min');
+    expect(durationText(9 * 60 + 40, 11 * 60 + 15)).toBe('From 9:40 to 11:15 is 95 minutes (1 h 35 min).');
+  });
+});
