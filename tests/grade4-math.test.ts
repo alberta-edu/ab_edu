@@ -196,3 +196,24 @@ describe('clock and duration', () => {
     expect(durationText(9 * 60 + 40, 11 * 60 + 15)).toBe('From 9:40 to 11:15 is 95 minutes (1 h 35 min).');
   });
 });
+
+import { symbols, scaleAdvice, axisTop, graphSvg } from '../src/components/visuals/graph-scale.ts';
+
+describe('graph scale', () => {
+  it('counts symbols for many-to-one keys', () => {
+    expect(symbols(25, 10)).toEqual({ whole: 2, part: 0.5 });
+    expect(symbols(24, 2)).toEqual({ whole: 12, part: 0 });
+    expect(axisTop([24, 18, 12, 6], 5)).toBe(25);
+  });
+  it('explains how well a scale fits', () => {
+    const v = [24, 18, 12, 6];
+    expect(scaleAdvice(v, 1, 'students')).toMatch(/24 symbols/);
+    expect(scaleAdvice(v, 2, 'students')).toMatch(/fits the data well/);
+    expect(scaleAdvice(v, 5, 'students')).toMatch(/isn’t a half/);
+    expect(scaleAdvice(v, 10, 'students')).toMatch(/hard to see/);
+  });
+  it('keeps clip paths unique per graph', () => {
+    const d = { question: '', labels: ['A'], values: [5], unit: 'votes' };
+    expect(graphSvg(d, 'picto', 2, 'one')).toContain('id="one-c0"');
+  });
+});

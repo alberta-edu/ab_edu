@@ -87,6 +87,7 @@ import TileCover from './visuals/TileCover.astro';
 import AreaSweep from './visuals/AreaSweep.astro';
 import SequenceGrow from './visuals/SequenceGrow.astro';
 import ClockDuration from './visuals/ClockDuration.astro';
+import GraphScale from './visuals/GraphScale.astro';
 import VirtualExperiment from './experiments/VirtualExperiment.astro';
 
 interface Props {
@@ -179,6 +180,7 @@ const visuals = {
   'area-sweep': AreaSweep,
   'sequence-grow': SequenceGrow,
   'clock-duration': ClockDuration,
+  'graph-scale': GraphScale,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

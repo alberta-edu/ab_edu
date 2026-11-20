@@ -1,0 +1,96 @@
+---
+// Scale in graphs (MAT4-OI8-GQ1-LO1: K2.1, K2.2, U2.1, U2.2, S2.1-S2.5). The same survey as a
+// pictograph, a bar graph or a dot plot. Change how many things one symbol, dot or grid step stands
+// for, and see how the picture and its story change.
+import { graphSvg, scaleAdvice, type GraphData, type View } from './graph-scale.ts';
+
+interface Props {
+  data?: GraphData;
+  view?: View;
+  views?: View[];
+  scale?: number;
+  scales?: number[];
+}
+const {
+  data = { question: 'How do you get to school?', labels: ['Walk', 'Bus', 'Car', 'Bike'], values: [24, 18, 12, 6], unit: 'students' },
+  view = 'picto',
+  views = ['picto', 'bar', 'dot'],
+  scale = 2,
+  scales = [1, 2, 5, 10],
+} = Astro.props;
+const uid = `gs${Math.random().toString(36).slice(2, 8)}`;
+const NAMES: Record<View, string> = { picto: 'Pictograph', bar: 'Bar graph', dot: 'Dot plot' };
+---
+<g4m-graph-scale data-uid={uid} data-data={JSON.stringify(data)} data-view={view} data-scale={scale}>
+  <p class="g4m-gs-q">{data.question}</p>
+  {
+    views.length > 1 && (
+      <div class="seg g4m-gs-views" role="group" aria-label="Kind of graph">
+        {views.map((v) => <button type="button" data-gs-view={v} aria-pressed={String(v === view)}>{NAMES[v]}</button>)}
+      </div>
+    )
+  }
+  <div class="g4m-gs-figure" data-gs="figure" set:html={graphSvg(data, view, scale, uid)} />
+  <div class="control">
+    <span id="g4m-gs-scale">Scale: 1 stands for</span>
+    <div class="seg" role="group" aria-labelledby="g4m-gs-scale">
+      {scales.map((k) => <button type="button" data-gs-scale={k} aria-pressed={String(k === scale)}>{k}</button>)}
+    </div>
+  </div>
+  <p class="g4m-gs-say" data-gs="say" aria-live="polite">{scaleAdvice(data.values, scale, data.unit)}</p>
+</g4m-graph-scale>
+
+<style is:global>
+  g4m-graph-scale { display: block; }
+  .g4m-gs-q { margin: 0 0 0.4rem; font-weight: 700; font-size: var(--step-0); }
+  .g4m-gs-views { flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .g4m-gs-figure { margin: 0.3rem 0 0.6rem; }
+  .g4m-gs-svg { display: block; width: 100%; max-width: 30rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g4m-gs-sym { fill: var(--math); }
+  .g4m-gs-ghost { fill: none; stroke: var(--math); stroke-width: 1.2; stroke-dasharray: 2 2; }
+  .g4m-gs-bar { fill: color-mix(in srgb, var(--math) 75%, var(--surface)); }
+  .g4m-gs-grid { stroke: var(--line); stroke-width: 1; }
+  .g4m-gs-axis { stroke: var(--ink); stroke-width: 2; }
+  .g4m-gs-lab { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g4m-gs-tick { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+  .g4m-gs-key { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g4m-gs-say { margin: 0.5rem 0 0; font-weight: 700; min-height: 2.6em; }
+</style>
+
+<script>
+  import { graphSvg, scaleAdvice, type GraphData, type View } from './graph-scale.ts';
+
+  class GraphScale extends HTMLElement {
+    private data!: GraphData;
+    private view: View = 'picto';
+    private scale = 2;
+
+    connectedCallback() {
+      this.data = JSON.parse(this.dataset.data!);
+      this.view = this.dataset.view as View;
+      this.scale = Number(this.dataset.scale);
+      this.querySelectorAll<HTMLButtonElement>('[data-gs-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-gs-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.view = b.dataset.gsView as View;
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-gs-scale]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-gs-scale]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.scale = Number(b.dataset.gsScale);
+          this.draw();
+        }),
+      );
+      this.draw();
+    }
+
+    private draw() {
+      (this.querySelector('[data-gs="figure"]') as HTMLElement).innerHTML = graphSvg(this.data, this.view, this.scale, this.dataset.uid);
+      const say = this.view === 'bar' ? `Each grid step stands for ${this.scale} ${this.data.unit}. A big step makes the bars hard to read exactly. A small step crowds the axis with lines.` : scaleAdvice(this.data.values, this.scale, this.data.unit);
+      (this.querySelector('[data-gs="say"]') as HTMLElement).textContent = say;
+    }
+  }
+  customElements.define('g4m-graph-scale', GraphScale);
+</script>
