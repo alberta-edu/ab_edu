@@ -1,0 +1,209 @@
+id: sharing-grouping
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ3-LO1]
+order: 6
+title: Sharing and Grouping
+shortTitle: Dividing
+summary: >-
+  Divide by sharing, by making groups and by jumping back, decide what a leftover means, and
+  check a division with multiplication.
+
+bigIdea: |-
+  - **Divide** to share equally or to make equal groups.
+  - Sometimes some are **left over**. The story tells you what to do with them.
+  - Multiplying **undoes** dividing, so you can use it to check.
+
+lesson:
+  - title: Share it out
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.5, U2.1]
+        component: g3-groups
+        props: { mode: share, a: 12, b: 3 }
+        caption: Press **Share one round** again and again. Each group gets one at a time, until the pile is empty.
+
+  - title: Make groups
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.5, K2.7]
+        component: g3-groups
+        props: { mode: group, a: 14, b: 4 }
+        caption: |-
+          1. Make groups of 4 until you can’t.
+          2. The 2 left over are the **remainder**.
+
+  - title: Jump back
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.5]
+        component: g3-groups
+        props: { mode: takeaway, a: 20, b: 5 }
+        caption: Take away 5 again and again. Count the jumps to get back to 0.
+
+  - title: What does the leftover mean?
+    blocks:
+      - type: visual
+        covers: [S2.6, K2.7, S2.7, S1.7]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'more', label: 'Add one more', icon: '➕' }
+            - { id: 'out', label: 'Leave them out', icon: '✂️' }
+          cards:
+            - { text: '22 kids ride in cars that hold 4. How many cars?', bin: 'more', why: '5 cars hold 20. The 2 kids left still need a ride, so 6 cars.' }
+            - { text: '22 stickers, 4 on each page. How many full pages?', bin: 'out', why: '5 pages are full. The 2 extra stickers can’t fill a page.' }
+            - { text: '17 campers, 3 in each tent. How many tents?', bin: 'more', why: '5 tents hold 15. The last 2 campers need a tent too.' }
+            - { text: '17 apples, 3 in each bag. How many full bags?', bin: 'out', why: '5 bags are full, and 2 apples are left out.' }
+        caption: Read each story. What happens to the leftovers?
+
+  - title: Multiply to check
+    blocks:
+      - type: figure
+        covers: [K2.5, K1.1, S2.3]
+        figure: |-
+          <svg viewBox="0 0 330 150" class="fig-svg" style="max-width:340px" role="img" aria-label="12 ÷ 3 = 4. 12 is the dividend, 3 is the divisor and 4 is the quotient. Check: 3 × 4 = 12."><g font-size="38" font-weight="700" text-anchor="middle"><text x="50" y="52" style="fill:var(--accent)">12</text><text x="110" y="52" style="fill:var(--ink)">÷</text><text x="165" y="52" style="fill:var(--sun)">3</text><text x="220" y="52" style="fill:var(--ink)">=</text><text x="280" y="52" style="fill:var(--ok)">4</text></g><g font-size="14" font-weight="700" text-anchor="middle"><text x="50" y="80" style="fill:var(--accent)">dividend</text><text x="165" y="80" style="fill:var(--ink-2)">divisor</text><text x="280" y="80" style="fill:var(--ok)">quotient</text></g><text x="165" y="132" text-anchor="middle" font-size="22" font-weight="700" style="fill:var(--ink-2)">Check: 3 × 4 = 12 ✓</text></svg>
+        caption: '3 groups of 4 make 12 again. **Multiplying undoes dividing.**'
+      - type: callout
+        variant: mistake
+        covers: [K1.6, K1.7]
+        title: Order matters
+        body: |-
+          - 12 ÷ 3 = 4, but 3 ÷ 12 can’t share even 1 each.
+          - Dividing by 1 changes nothing: 12 ÷ 1 = 12.
+
+keyTerms:
+  - term: Divide
+    covers: [K1.4]
+    definition: To share into equal groups, or to make groups of the same size.
+  - term: Quotient
+    covers: [K2.5]
+    definition: 'The answer when you divide. In 12 ÷ 3 = 4, the quotient is 4.'
+  - term: Remainder
+    covers: [K2.7]
+    definition: The amount left over when things can’t be shared equally.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.5, K1.4]
+    type: number
+    prompt: '**15** strawberries are shared equally by **3** friends. How many does each friend get?'
+    unit: strawberries
+    answer: 5
+    verify: 15 / 3
+    hints:
+      - Give one to each friend, then again. How many rounds?
+    solution:
+      - 'Each round uses 3 strawberries: 3, 6, 9, 12, 15. That is 5 rounds.'
+      - 'So each friend gets **5**. \(15 \div 3 = 5\).'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K2.5, S2.5]
+    type: mc
+    prompt: In \(20 \div 4 = 5\), which number is the **divisor**?
+    choices: ['4', '20', '5']
+    answer: 0
+    feedback:
+      '1': '20 is the number being shared. That is the dividend.'
+      '2': '5 is the answer. That is the quotient.'
+    hints:
+      - The divisor is the number you divide **by**.
+    solution:
+      - 'You divide 20 **by 4**, so 4 is the divisor.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S2.6, S2.7, K2.7]
+    type: number
+    prompt: '**26** children go to the zoo. Each van holds **8** children. How many vans do they need?'
+    unit: vans
+    answer: 4
+    verify: (26 - 2) / 8 + 1
+    hints:
+      - How many vans can you fill? How many children are left?
+      - Can the leftover children stay home?
+    solution:
+      - '3 vans hold 24 children. 2 children are left over.'
+      - 'They still need a ride, so they need **4 vans**.'
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S2.3, K1.1]
+    type: mc
+    prompt: 'Ava says \(42 \div 6 = 7\). Which fact checks her answer?'
+    choices: ['6 × 7 = 42', '6 + 7 = 13', '42 − 6 = 36']
+    answer: 0
+    feedback:
+      '1': 'Adding doesn’t undo dividing. Which operation does?'
+      '2': 'One jump back of 6 doesn’t tell you how many groups of 6 make 42.'
+    hints:
+      - Which operation undoes dividing?
+    solution:
+      - 'Multiplying undoes dividing. 6 groups of 7 make 42, so **6 × 7 = 42** checks it.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.5, K2.7, S2.6]
+    type: investigation
+    prompt: A baker has **23** cupcakes. She packs them in boxes of **4**.
+    parts:
+      - type: number
+        prompt: How many boxes can she fill?
+        unit: boxes
+        answer: 5
+        verify: (23 - 3) / 4
+        hints:
+          - Count by 4s. How close can you get to 23 without going over?
+        solution:
+          - '4, 8, 12, 16, 20. That is 5 boxes, with 3 left over.'
+      - type: number
+        prompt: How many **more** cupcakes would fill one more box?
+        unit: cupcakes
+        answer: 1
+        verify: 4 - 3
+        hints:
+          - 3 are left over. How many does a box hold?
+        solution:
+          - 'A box holds 4, and 3 are left. **1 more** cupcake fills a sixth box.'
+    wrapUp: The remainder is always less than the size of a group. Otherwise you could make another group.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K2.7, S1.5]
+    type: build
+    prompt: |-
+      Some marbles are shared equally by **5** friends. Each gets at least 1, and **3** are left over.
+      How many marbles could there be? Use **50 or fewer**.
+    fields:
+      - { name: m, label: 'Marbles' }
+    rules:
+      - { test: 'm % 1 == 0 && m <= 50', fail: 'Use a whole number of marbles, 50 or fewer.' }
+      - { test: 'm >= 8', fail: 'Each friend needs at least 1, and 3 are left. Is that enough marbles?' }
+      - { test: 'm % 5 == 3', fail: 'Share your marbles by 5. Are exactly 3 left over?' }
+    examples:
+      - { m: 8 }
+      - { m: 23 }
+      - { m: 48 }
+    counterexamples:
+      - { m: 3 }
+      - { m: 25 }
+      - { m: 21 }
+    hints:
+      - Start with marbles that share with none left, like 5 or 10.
+      - Then add the 3 left over.
+    solution:
+      - '5 marbles share with none left. Add 3 to get **8**: each friend gets 1, and 3 are left.'
+      - '10 + 3 = 13, 20 + 3 = 23, and so on, up to 48.'
+      - 'They all end in 3 or 8, because counting by 5s ends in 0 or 5.'
