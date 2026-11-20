@@ -102,3 +102,14 @@ export function polarisFrom(merak: { x: number; y: number }, dubhe: { x: number;
 
 /** Stars in the northern sky turn once around Polaris in about a day: 15° an hour, counterclockwise. */
 export const turnPerHour = 15;
+
+/**
+ * Moon and calendar (SCI4-OI5-GQ1-LO1, K3.2, K3.5, S3.2): the Moon's cycle of shapes takes about
+ * 29.5 days (29.53, new Moon to new Moon). Twelve cycles take about 354 days, about 11 days
+ * short of the 365-day year of the international standard calendar.
+ */
+export const MOON_CYCLE = 29.53;
+export const YEAR_DAYS = 365;
+export const twelveMoons = () => 12 * MOON_CYCLE;
+/** Days on which each full Moon cycle ends, within the given number of days. */
+export const cycleEnds = (days: number) => Array.from({ length: Math.floor(days / MOON_CYCLE) }, (_, k) => (k + 1) * MOON_CYCLE);
