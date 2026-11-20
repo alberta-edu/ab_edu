@@ -1,0 +1,159 @@
+---
+// Place value chart from thousands to hundredths (MAT4-OI1-GQ1-LO1: K1.1-K1.3, K1.6, S1.1-S1.4,
+// S1.6). Tap a digit to see its value. × 10 and ÷ 10 slide every digit one place left or right,
+// and a toggle shows the English decimal point beside the French comma. With `decimals: false`
+// it shows whole numbers only, for patterns of × 10, × 100 and × 1 000 (MAT4-OI1-GQ4-LO1, S1.2).
+import { PLACES, parsePlace, formatPlace, digitAt } from './tenths-shift.ts';
+import { numberWords } from './number-words.ts';
+
+interface Props {
+  value?: string;
+  decimals?: boolean;
+}
+const { value = '352.7', decimals = true } = Astro.props;
+const places = PLACES.filter((p) => decimals || p.k >= 0);
+const start = parsePlace(value);
+if (!start || (!decimals && start.decimals)) throw new Error(`TenthsShift: can't show ${value}`);
+const text = formatPlace(start);
+---
+<g4m-tenths-shift lang="en" data-value={value} data-decimals={String(decimals)}>
+  <label class="g4m-ts-input">
+    <span>Type a number</span>
+    <input type="text" inputmode="decimal" value={text} data-ts="input" autocomplete="off" spellcheck="false" />
+  </label>
+  <div class="g4m-ts-chart" style={`--cols:${places.length}`}>
+    {places.map((p) => <span class={`g4m-ts-name${p.k === 0 ? ' is-ones' : ''}`}>{p.name.replace('thousands', 'thou­sands').replace(/^hundred/, 'hun­dred')}<small>{p.value}</small></span>)}
+    {
+      places.map((p) => {
+        const lead = p.k > 0 && start.h < 10 ** (p.k + 2);
+        const tail = p.k < 0 && -p.k > start.decimals;
+        return (
+          <button type="button" class={`g4m-ts-digit${p.k === 0 ? ' is-ones' : ''}${p.k === -1 ? ' is-after-point' : ''}${lead || tail ? ' is-empty' : ''}`} data-k={p.k} aria-label={`${p.name} digit`}>
+            {digitAt(start.h, p.k)}
+          </button>
+        );
+      })
+    }
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-ts="times">× 10</button>
+    <button type="button" class="btn btn--ghost btn--small" data-ts="divide">÷ 10</button>
+    {
+      decimals && (
+        <div class="seg" role="group" aria-label="Decimal separator">
+          <button type="button" data-sep="." aria-pressed="true">English 3.5</button>
+          <button type="button" data-sep="," aria-pressed="false">French 3,5</button>
+        </div>
+      )
+    }
+  </div>
+  <p class="g4m-ts-number" data-ts="number" aria-live="polite">{text}</p>
+  <p class="g4m-ts-words" data-ts="words">{numberWords(text)}</p>
+  <p class="g4m-ts-detail" data-ts="detail">Tap a digit to see what it is worth.</p>
+</g4m-tenths-shift>
+
+<style is:global>
+  g4m-tenths-shift { display: block; }
+  .g4m-ts-input { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; font-weight: 700; margin-bottom: 0.6rem; }
+  .g4m-ts-input input { font: inherit; font-size: var(--step-1); width: 9rem; padding: 0.3rem 0.6rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); }
+  .g4m-ts-chart { display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); overflow: hidden; border-radius: var(--radius-sm); }
+  .g4m-ts-name { display: grid; place-items: center; gap: 0.1rem; padding: 0.35rem 0.1rem; min-height: 3.4rem; font-size: clamp(0.56rem, 0.4rem + 0.8vw, 0.72rem); font-weight: 700; line-height: 1.15; hyphens: manual; text-align: center; color: var(--ink-2); background: var(--surface-2); border: 1px solid var(--line); }
+  .g4m-ts-name small { font-size: 0.72rem; color: var(--ink-3); }
+  .g4m-ts-digit { position: relative; font: inherit; font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); font-weight: 700; padding: 0.45rem 0; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-variant-numeric: tabular-nums; }
+  .g4m-ts-digit.is-empty { color: transparent; }
+  .g4m-ts-digit.is-on { outline: 3px solid var(--accent); outline-offset: -3px; }
+  .g4m-ts-name.is-ones, .g4m-ts-digit.is-ones { background: var(--accent-soft, var(--math-soft)); }
+  .g4m-ts-digit.is-after-point::before { content: var(--g4m-sep, '.'); position: absolute; left: -0.2em; bottom: 0; color: var(--bad); font-size: 1.5em; line-height: 1; pointer-events: none; }
+  .g4m-ts-number { margin: 0.3rem 0 0; font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g4m-ts-words { margin: 0.1rem 0 0.3rem; font-size: var(--step-0); font-weight: 700; color: var(--accent); }
+  .g4m-ts-detail { margin: 0; color: var(--ink-2); }
+</style>
+
+<script>
+  import { PLACES, parsePlace, formatPlace, digitAt, shift, digitText, type PlaceNumber } from './tenths-shift.ts';
+  import { numberWords } from './number-words.ts';
+
+  class TenthsShift extends HTMLElement {
+    private n: PlaceNumber = { h: 0, decimals: 0 };
+    private sep: '.' | ',' = '.';
+    private decimals = true;
+    private picked: number | null = null;
+
+    connectedCallback() {
+      this.decimals = this.dataset.decimals === 'true';
+      const input = this.q<HTMLInputElement>('input');
+      input.addEventListener('input', () => {
+        const n = parsePlace(input.value);
+        if (n && (this.decimals || !n.decimals)) this.set(n, null);
+        else this.q('words').textContent = this.decimals ? 'Type a number up to 9 999.99.' : 'Type a whole number up to 9 999.';
+      });
+      this.q('times').addEventListener('click', () => this.move('times'));
+      this.q('divide').addEventListener('click', () => this.move('divide'));
+      this.querySelectorAll<HTMLButtonElement>('.g4m-ts-digit').forEach((b) => b.addEventListener('click', () => this.pick(Number(b.dataset.k))));
+      this.querySelectorAll<HTMLButtonElement>('[data-sep]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.sep = b.dataset.sep as '.' | ',';
+          this.querySelectorAll('[data-sep]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.style.setProperty('--g4m-sep', `'${this.sep}'`);
+          this.render();
+          this.q('detail').textContent = this.sep === ',' ? 'In French, a comma separates the wholes from the parts. The value is the same.' : 'In English, a point separates the wholes from the parts.';
+        }),
+      );
+      this.set(parsePlace(this.dataset.value!)!, null);
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-ts="${name}"]`) as T;
+    }
+
+    private move(dir: 'times' | 'divide') {
+      const next = shift(this.n, dir);
+      if (!next) {
+        this.q('detail').textContent = dir === 'times' ? 'The biggest digit would slide off the chart.' : 'A digit would slide past the last place on the chart.';
+        return;
+      }
+      const before = formatPlace(this.n);
+      this.set(next, dir);
+      this.q<HTMLInputElement>('input').value = formatPlace(next);
+      this.q('detail').textContent = `${before} ${dir === 'times' ? '× 10' : '÷ 10'} = ${formatPlace(next)}. Every digit moved one place ${dir === 'times' ? 'left, so it is worth 10 times as much' : 'right, so it is worth one-tenth as much'}.`;
+    }
+
+    private set(n: PlaceNumber, dir: 'times' | 'divide' | null) {
+      this.n = n;
+      this.picked = null;
+      this.render();
+      if (!dir) this.q('detail').textContent = 'Tap a digit to see what it is worth.';
+      if (dir && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const from = dir === 'times' ? '100%' : '-100%';
+        this.querySelectorAll<HTMLElement>('.g4m-ts-digit:not(.is-empty)').forEach((el) => el.animate([{ transform: `translateX(${from})`, opacity: 0.3 }, { transform: 'none', opacity: 1 }], { duration: 450, easing: 'cubic-bezier(.2,.8,.2,1)' }));
+      }
+    }
+
+    private render() {
+      const n = this.n;
+      this.querySelectorAll<HTMLButtonElement>('.g4m-ts-digit').forEach((b) => {
+        const k = Number(b.dataset.k);
+        b.textContent = String(digitAt(n.h, k));
+        const lead = k > 0 && n.h < 10 ** (k + 2);
+        const tail = k < 0 && -k > n.decimals;
+        b.classList.toggle('is-empty', lead || tail);
+        b.classList.toggle('is-on', k === this.picked);
+      });
+      const text = formatPlace(n, this.sep);
+      this.q('number').textContent = text;
+      this.q('words').textContent = numberWords(formatPlace(n));
+      this.q<HTMLButtonElement>('times').disabled = !shift(n, 'times');
+      this.q<HTMLButtonElement>('divide').disabled = !shift(n, 'divide') || (!this.decimals && n.h % 1000 !== 0);
+    }
+
+    private pick(k: number) {
+      this.picked = k;
+      this.render();
+      const lead = k > 0 && this.n.h < 10 ** (k + 2);
+      const tail = k < 0 && -k > this.n.decimals;
+      const name = PLACES.find((p) => p.k === k)!.name;
+      this.q('detail').textContent = lead || tail ? `This number has no digit in the ${name} place.` : digitText(this.n, k);
+    }
+  }
+  customElements.define('g4m-tenths-shift', TenthsShift);
+</script>

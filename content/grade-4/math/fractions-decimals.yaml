@@ -1,0 +1,280 @@
+id: fractions-decimals
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ5-LO1]
+order: 6
+title: Fractions and Decimals
+shortTitle: Fractions & decimals
+summary: >-
+  See that a decimal is a fraction with a denominator of 10 or 100. Write tenths and hundredths both
+  ways, and find them at the same point on the number line.
+
+bigIdea: |-
+  - A fraction and a decimal can name the **same number**.
+  - Tenths and hundredths can be written as fractions with a denominator of **10** or **100**.
+  - They sit at the **same point** on the number line.
+
+lesson:
+  - title: Two ways to write it
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.2]
+        component: hundredths-grid
+        props: { shaded: 40 }
+        caption: Shade squares. The fraction out of 100 and the decimal always match. Try a whole column, then one square.
+      - type: callout
+        variant: remember
+        covers: [CLrkTvQMl0Oj1FGsDZHeJQ#K1.3, CLrkTvQMl0Oj1FGsDZHeJQ#K1.6]
+        title: Remember from Grade 3
+        body: The denominator tells how many equal parts make the whole. Every fraction has a point on the number line.
+
+  - title: One point, two names
+    blocks:
+      - type: figure
+        covers: [S2.1, U2.2]
+        figure: |-
+          <svg viewBox="0 0 420 120" class="fig-svg" role="img" aria-label="A number line from 0 to 1 in tenths. Fractions are written above the line and decimals below. 3/10 and 0.3 mark the same point, and so do 7/10 and 0.7."><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="60" x2="390" y2="60"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="48" x2="30" y2="72"/><line class="fig-grid" style="stroke:var(--ink)" x1="66" y1="54" x2="66" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="102" y1="54" x2="102" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="138" y1="54" x2="138" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="174" y1="54" x2="174" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="210" y1="54" x2="210" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="246" y1="54" x2="246" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="282" y1="54" x2="282" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="318" y1="54" x2="318" y2="66"/><line class="fig-grid" style="stroke:var(--ink)" x1="354" y1="54" x2="354" y2="66"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="390" y1="48" x2="390" y2="72"/><circle class="cg-pt" cx="138" cy="60" r="7"/><circle class="cg-pt" cx="282" cy="60" r="7"/><text class="fig-label" x="138" y="36" text-anchor="middle">3/10</text><text class="fig-label" x="282" y="36" text-anchor="middle">7/10</text><text class="fig-label" x="138" y="98" text-anchor="middle">0.3</text><text class="fig-label" x="282" y="98" text-anchor="middle">0.7</text><text class="fig-small" x="30" y="98" text-anchor="middle">0</text><text class="fig-small" x="390" y="98" text-anchor="middle">1</text></svg>
+        caption: 'Fractions above the line, decimals below. \(\frac{3}{10}\) and **0.3** are the same point.'
+
+  - title: From decimal to fraction
+    blocks:
+      - type: table
+        covers: [K2.2, S2.2]
+        caption: Look at the place of the last digit that isn’t 0. That place is the denominator.
+        headers: [Decimal, Last non-zero digit is in the, Fraction]
+        rows:
+          - ['0.7', 'tenths', '\(\frac{7}{10}\)']
+          - ['0.07', 'hundredths', '\(\frac{7}{100}\)']
+          - ['0.25', 'hundredths', '\(\frac{25}{100}\)']
+          - ['0.40', 'tenths', '\(\frac{4}{10}\)']
+
+  - title: From fraction to decimal
+    blocks:
+      - type: compare
+        covers: [S2.2, K2.1]
+        columns:
+          - title: Tenths
+            body: |-
+              \(\frac{9}{10} = 0.9\)
+              One place after the point.
+          - title: Hundredths
+            body: |-
+              \(\frac{9}{100} = 0.09\)
+              Two places after the point.
+          - title: Both
+            body: |-
+              \(\frac{30}{100} = \frac{3}{10} = 0.3\)
+              30 hundredths is 3 tenths.
+      - type: callout
+        variant: mistake
+        covers: [S2.2]
+        title: Watch the places
+        body: '\(\frac{9}{100}\) is **0.09**, not 0.9. The 9 must end up in the hundredths place.'
+
+keyTerms:
+  - term: Tenths
+    covers: [K2.2]
+    definition: 'Parts of a whole split into 10. \(\frac{3}{10}\) = 0.3.'
+  - term: Hundredths
+    covers: [K2.2]
+    definition: 'Parts of a whole split into 100. \(\frac{3}{100}\) = 0.03.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S2.2]
+    type: number
+    prompt: 'Write \(\frac{7}{100}\) as a decimal.'
+    answer: 0.07
+    verify: '0.07'
+    hints:
+      - The denominator is 100. Which place is that?
+      - The 7 has to land in the hundredths place, two places after the point.
+    solution:
+      - '7 hundredths goes in the hundredths place, with 0 in the tenths place.'
+      - '\(\frac{7}{100} = 0.07\).'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.2, S2.2]
+    type: fraction
+    prompt: Write **0.6** as a fraction.
+    answer: '6/10'
+    verify: '0.6'
+    hints:
+      - Which place is the 6 in?
+      - The place of the last digit tells you the denominator.
+    solution:
+      - 'The 6 is in the tenths place, so 0.6 is 6 tenths.'
+      - '\(0.6 = \frac{6}{10}\).'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S2.1, U2.2]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 380 92" class="fig-svg" role="img" aria-label="A number line from 0 to 1 split into 10 equal steps. A dot marks the eighth step."><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="50" x2="350" y2="50"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="30" y1="38" x2="30" y2="62"/><line class="fig-grid" style="stroke:var(--ink)" x1="62" y1="44" x2="62" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="94" y1="44" x2="94" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="126" y1="44" x2="126" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="158" y1="44" x2="158" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="190" y1="44" x2="190" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="222" y1="44" x2="222" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="254" y1="44" x2="254" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="286" y1="44" x2="286" y2="56"/><line class="fig-grid" style="stroke:var(--ink)" x1="318" y1="44" x2="318" y2="56"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="350" y1="38" x2="350" y2="62"/><circle class="cg-pt" cx="286" cy="50" r="7"/><text class="fig-label" x="30" y="84" text-anchor="middle">0</text><text class="fig-label" x="350" y="84" text-anchor="middle">1</text></svg>
+    prompt: Which fraction and decimal both name the point on this number line?
+    choices: ['\(\frac{8}{10}\) and 0.8', '\(\frac{8}{10}\) and 0.08', '\(\frac{8}{100}\) and 0.8', '\(\frac{2}{10}\) and 0.2']
+    answer: 0
+    feedback:
+      '1': '0.08 is 8 hundredths, very close to 0. Each step on this line is a tenth.'
+      '2': 'Each step is one of 10 equal parts, so the denominator is 10, not 100.'
+      '3': 'That counts the steps from 1 back to the dot. Count from 0.'
+    hints:
+      - The line from 0 to 1 is split into how many equal steps?
+      - Count the steps from 0 to the dot.
+    solution:
+      - 'The line is split into 10 steps, so each step is 1 tenth.'
+      - 'The dot is 8 steps from 0: \(\frac{8}{10}\), or **0.8**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.1, S2.2]
+    type: fraction
+    prompt: A dime is \(\frac{1}{10}\) of a dollar and a cent is \(\frac{1}{100}\) of a dollar. Ruby has **3 dimes** and **4 cents**. What fraction of a dollar does she have?
+    answer: '34/100'
+    verify: 0.3 + 0.04
+    hints:
+      - How many cents is 3 dimes?
+      - How many cents does Ruby have in all? How many cents make a dollar?
+    solution:
+      - '3 dimes is 30 cents. With 4 more cents, Ruby has 34 cents.'
+      - '100 cents make a dollar, so she has \(\frac{34}{100}\) of a dollar, or $0.34.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K2.2, S2.2]
+    type: mc
+    prompt: 'Jin says \(0.5 = \frac{1}{5}\), "because there is a 5 in it." What do you tell Jin?'
+    choices:
+      - '0.5 means 5 tenths, so it is \(\frac{5}{10}\), the same as one half.'
+      - 'Jin is right. A decimal with a 5 is always one fifth.'
+      - '0.5 means 5 hundredths, so it is \(\frac{5}{100}\).'
+      - '0.5 is \(\frac{1}{5}\), but only when you round it.'
+    answer: 0
+    feedback:
+      '1': 'Where is the 5? Its place tells you the denominator, not the 5 itself.'
+      '2': '0.5 has one place after the point. Which place is that?'
+      '3': 'Rounding doesn’t change what 0.5 means. Which place is the 5 in?'
+    hints:
+      - Which place is the 5 in?
+      - What fraction is 5 tenths?
+    solution:
+      - 'The 5 is in the tenths place, so 0.5 is \(\frac{5}{10}\).'
+      - '\(\frac{5}{10}\) is the same as \(\frac{1}{2}\). One fifth would be \(\frac{2}{10}\), or 0.2.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S2.1, U2.2, K2.1]
+    type: order
+    prompt: Put these numbers in order from **least** to **greatest**.
+    items: ['\(\frac{3}{10}\)', '0.35', '0.4', '\(\frac{45}{100}\)']
+    hints:
+      - Write each number the same way first, such as all as hundredths.
+    solution:
+      - 'As hundredths: \(\frac{3}{10} = 0.30\), 0.35, \(0.4 = 0.40\), \(\frac{45}{100} = 0.45\).'
+      - 'So the order is \(\frac{3}{10}\), 0.35, 0.4, \(\frac{45}{100}\).'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.1]
+    type: number
+    prompt: A jug holds **1 litre** of juice. Mia drinks \(\frac{25}{100}\) of a litre, and Tom drinks **0.3** of a litre. How much do they drink together? Write it as a decimal.
+    unit: L
+    answer: 0.55
+    verify: 0.25 + 0.3
+    hints:
+      - Write Mia’s amount as a decimal first.
+      - Then add the two decimals, with the points lined up.
+    solution:
+      - '\(\frac{25}{100} = 0.25\).'
+      - '\(0.25 + 0.30 = 0.55\). Together they drink **0.55 L**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.1, U2.1, S2.2]
+    type: investigation
+    prompt: |-
+      A class mosaic is a square of **100** tiles. **0.4** of the tiles are blue. \(\frac{35}{100}\) of the tiles are red. The rest are white.
+    parts:
+      - type: number
+        prompt: How many tiles are blue?
+        unit: tiles
+        answer: 40
+        verify: '40'
+        hints:
+          - 0.4 is 4 tenths. How many hundredths is that?
+        solution:
+          - '0.4 = 0.40 = \(\frac{40}{100}\), so **40** tiles are blue.'
+      - type: number
+        prompt: What decimal of the mosaic is **white**?
+        answer: 0.25
+        verify: (100 - 40 - 35) / 100
+        hints:
+          - How many tiles are blue or red? How many are left?
+        solution:
+          - '40 blue and 35 red make 75 tiles. \(100 - 75 = 25\) tiles are white.'
+          - '\(\frac{25}{100} = 0.25\).'
+      - type: mc
+        prompt: 'Mo says, "There are more red tiles than blue, because 35 is more than 4." What went wrong?'
+        choices:
+          - 'Mo compared 35 hundredths with 4, not with 4 tenths. 0.4 is 40 hundredths.'
+          - 'Nothing. 35 is more than 4, so there are more red tiles.'
+          - 'Mo should have compared 35 with 0.4, and 35 is bigger.'
+          - 'You can’t compare a fraction with a decimal.'
+        answer: 0
+        feedback:
+          '1': 'Count the tiles. You found 40 blue tiles. How many are red?'
+          '2': 'Comparing 35 tiles with 0.4 mixes up a count with a part of the mosaic. Write both as hundredths.'
+          '3': 'You can, once both are written the same way, such as both as hundredths.'
+        hints:
+          - Write both amounts as hundredths.
+        solution:
+          - '0.4 is 4 **tenths**, which is 40 hundredths. Mo forgot the place of the 4.'
+          - 'So there are 40 blue tiles and 35 red tiles. Blue wins.'
+    wrapUp: Before comparing a fraction and a decimal, write them the same way. Tenths and hundredths can both be written as hundredths.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.1, U2.2, S2.2]
+    type: build
+    prompt: |-
+      Find a number of hundredths, \(\frac{\Box}{100}\), that is **between 0.6 and \(\frac{7}{10}\)**. It must **not** be a whole number of tenths.
+    fields:
+      - { name: n, label: 'Hundredths (the numerator)' }
+    rules:
+      - { test: 'n % 1 == 0 && n > 0', fail: 'Use a whole number of hundredths.' }
+      - { test: 'n > 60 && n < 70', fail: 'Write 0.6 and 7/10 as hundredths first. Is your number between them?' }
+      - { test: 'n % 10 != 0', fail: 'That is a whole number of tenths. Pick a number that isn’t.' }
+    examples:
+      - { n: 65 }
+      - { n: 61 }
+      - { n: 69 }
+    counterexamples:
+      - { n: 60 }
+      - { n: 70 }
+      - { n: 6 }
+      - { n: 75 }
+    hints:
+      - Write 0.6 and \(\frac{7}{10}\) as hundredths.
+      - Which hundredths are between 60 hundredths and 70 hundredths?
+    solution:
+      - '0.6 = \(\frac{60}{100}\) and \(\frac{7}{10} = \frac{70}{100}\).'
+      - 'Any of \(\frac{61}{100}\) to \(\frac{69}{100}\) works, such as \(\frac{65}{100} = 0.65\).'
+      - 'There was no number of tenths between them, but splitting each tenth into 10 hundredths makes room.'

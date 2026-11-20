@@ -1,0 +1,111 @@
+---
+// Area as a length in motion (MAT4-OI5-GQ1-LO1: U1.2, U1.5, S1.1, S1.6, S1.7, K1.4). Slide a
+// segment across a centimetre grid. Every centimetre it moves adds one more row of square
+// centimetres, so the area is the length times the distance moved.
+interface Props {
+  length?: number;
+  distance?: number;
+}
+const { length = 6, distance = 4 } = Astro.props;
+const C = 30;
+const cols = 10;
+const rows = 8;
+const W = cols * C + 40;
+const H = rows * C + 40;
+---
+<g4m-area-sweep data-length={length} data-distance={distance}>
+  <svg class="g4m-as-svg" viewBox={`0 0 ${W} ${H}`} role="img" aria-label="A centimetre grid with a segment that sweeps out a rectangle" data-as="svg">
+    {Array.from({ length: cols + 1 }, (_, c) => <line class="g4m-as-grid" x1={20 + c * C} y1="20" x2={20 + c * C} y2={20 + rows * C} />)}
+    {Array.from({ length: rows + 1 }, (_, r) => <line class="g4m-as-grid" x1="20" y1={20 + r * C} x2={20 + cols * C} y2={20 + r * C} />)}
+    <rect class="g4m-as-fill" x="20" y="20" width={length * C} height={distance * C} data-as="fill" />
+    <g data-as="cells"></g>
+    <line class="g4m-as-seg" x1="20" y1={20 + distance * C} x2={20 + length * C} y2={20 + distance * C} data-as="seg" />
+    <text class="g4m-as-lab" x={20 + (length * C) / 2} y={14 + distance * C} text-anchor="middle" data-as="lab">{length} cm</text>
+  </svg>
+  <div class="control-row">
+    <div class="control">
+      <span id="g4m-as-l">Length</span>
+      <input type="range" min="1" max={cols} value={length} data-as="len" aria-labelledby="g4m-as-l" />
+    </div>
+    <div class="control">
+      <span id="g4m-as-d">Slide down</span>
+      <input type="range" min="0" max={rows} value={distance} data-as="dist" aria-labelledby="g4m-as-d" />
+    </div>
+    <button type="button" class="btn btn--primary btn--small" data-as="play">Sweep</button>
+  </div>
+  <p class="g4m-as-say" data-as="say" aria-live="polite"></p>
+</g4m-area-sweep>
+
+<style is:global>
+  g4m-area-sweep { display: block; }
+  .g4m-as-svg { display: block; width: 100%; max-width: 26rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g4m-as-grid { stroke: var(--line); stroke-width: 1; }
+  .g4m-as-fill { fill: color-mix(in srgb, var(--math) 35%, transparent); transition: width 0.4s, height 0.4s; }
+  .g4m-as-cells rect, [data-as='cells'] rect { fill: none; stroke: var(--math); stroke-width: 1.5; }
+  .g4m-as-seg { stroke: var(--bad); stroke-width: 6; stroke-linecap: round; transition: all 0.4s; }
+  .g4m-as-lab { fill: var(--bad); font-size: 15px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; transition: all 0.4s; }
+  .g4m-as-say { margin: 0.3rem 0 0; font-weight: 700; min-height: 2.6em; }
+  @media (prefers-reduced-motion: reduce) { .g4m-as-fill, .g4m-as-seg, .g4m-as-lab { transition: none; } }
+</style>
+
+<script>
+  const C = 30;
+
+  class AreaSweep extends HTMLElement {
+    private timer = 0;
+
+    connectedCallback() {
+      const len = this.q<HTMLInputElement>('len');
+      const dist = this.q<HTMLInputElement>('dist');
+      len.addEventListener('input', () => this.draw());
+      dist.addEventListener('input', () => this.draw());
+      this.q('play').addEventListener('click', () => {
+        clearInterval(this.timer);
+        dist.value = '0';
+        this.draw();
+        const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+          dist.value = dist.max;
+          this.draw();
+          return;
+        }
+        this.timer = window.setInterval(() => {
+          dist.value = String(Number(dist.value) + 1);
+          this.draw();
+          if (Number(dist.value) >= Number(dist.max)) clearInterval(this.timer);
+        }, 550);
+      });
+      this.draw();
+    }
+
+    disconnectedCallback() {
+      clearInterval(this.timer);
+    }
+
+    private q<T extends Element = HTMLElement>(name: string) {
+      return this.querySelector(`[data-as="${name}"]`) as T;
+    }
+
+    private draw() {
+      const l = Number(this.q<HTMLInputElement>('len').value);
+      const d = Number(this.q<HTMLInputElement>('dist').value);
+      const fill = this.q<SVGRectElement>('fill');
+      fill.setAttribute('width', String(l * C));
+      fill.setAttribute('height', String(d * C));
+      const seg = this.q<SVGLineElement>('seg');
+      for (const [k, v] of [['x2', 20 + l * C], ['y1', 20 + d * C], ['y2', 20 + d * C]] as const) seg.setAttribute(k, String(v));
+      const lab = this.q<SVGTextElement>('lab');
+      lab.setAttribute('x', String(20 + (l * C) / 2));
+      lab.setAttribute('y', String(14 + d * C));
+      lab.textContent = `${l} cm`;
+      let cells = '';
+      for (let r = 0; r < d; r++) for (let c = 0; c < l; c++) cells += `<rect x="${20 + c * C + 2}" y="${20 + r * C + 2}" width="${C - 4}" height="${C - 4}" rx="3"/>`;
+      this.q('cells').innerHTML = cells;
+      this.q('say').textContent =
+        d === 0
+          ? `A ${l} cm length has no area yet. Slide it down.`
+          : `The ${l} cm length moved ${d} cm. It swept out ${d} row${d === 1 ? '' : 's'} of ${l} square centimetres: ${l} × ${d} = ${l * d} cm².`;
+    }
+  }
+  customElements.define('g4m-area-sweep', AreaSweep);
+</script>

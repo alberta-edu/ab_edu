@@ -1,0 +1,334 @@
+id: factors-primes
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ3-LO1]
+order: 3
+title: Factors, Multiples and Prime Numbers
+shortTitle: Factors & primes
+summary: >-
+  Find the factors of numbers within 100 by building rectangles, sort numbers as prime or composite,
+  list multiples, and find the greatest common factor.
+
+bigIdea: |-
+  - A **factor** divides a number with a remainder of 0. Factors come in pairs that multiply to make the number.
+  - A **prime** number has only two factors, 1 and itself. A **composite** number has more.
+  - Two numbers can share factors. The biggest one they share is their **greatest common factor**.
+
+lesson:
+  - title: Factors make rectangles
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1, S1.1]
+        component: factor-lab
+        props: { mode: arrays, number: 12 }
+        caption: |-
+          1. Each rectangle uses all 12 tiles. Its sides are a **factor pair**.
+          2. Slide to other numbers. Which ones make lots of rectangles?
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI1-GQ3-LO1#S1.6, MAT3-OI1-GQ3-LO1#K1.5]
+        title: Remember from Grade 3
+        body: An **array** shows a multiplication. A 3 by 4 array and a 4 by 3 array have the same number of tiles.
+
+  - title: Prime or composite?
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4, S1.2]
+        component: factor-lab
+        props: { mode: arrays, number: 13 }
+        caption: 13 tiles make only **one** rectangle, a single row. Now try 15. How many rectangles?
+      - type: compare
+        covers: [K1.3, K1.4, K1.5, S1.2]
+        columns:
+          - title: Prime
+            body: |-
+              **Exactly two** factors: 1 and itself.
+              2, 3, 5, 7, 11, 13, 17, 19, 23
+          - title: Composite
+            body: |-
+              **More than two** factors.
+              4, 6, 8, 9, 10, 12, 14, 15, 16
+          - title: Neither
+            body: |-
+              **0** and **1** are neither prime nor composite.
+
+  - title: A remainder of 0
+    blocks:
+      - type: compare
+        covers: [U1.3, K1.1]
+        columns:
+          - title: ✅ 6 is a factor of 24
+            body: |-
+              \[24 \div 6 = 4 \text{ R } 0\]
+              Nothing is left over.
+          - title: ❌ 5 is not a factor of 24
+            body: |-
+              \[24 \div 5 = 4 \text{ R } 4\]
+              4 is left over.
+
+  - title: Multiples
+    blocks:
+      - type: table
+        covers: [S1.3, K1.2]
+        caption: Skip count to list the first five multiples.
+        headers: [Number, First five multiples]
+        rows:
+          - ['3', '3, 6, 9, 12, 15']
+          - ['8', '8, 16, 24, 32, 40']
+          - ['15', '15, 30, 45, 60, 75']
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Factors and multiples go together
+        body: 6 is a factor of 24, so 24 is a **multiple** of 6. A number is a multiple of every one of its factors.
+
+  - title: Common factors
+    blocks:
+      - type: visual
+        covers: [U1.2, S1.4]
+        component: factor-lab
+        props: { mode: common, number: 12, other: 18 }
+        caption: 12 and 18 are different, but they share some factors. Change the numbers and find the **greatest common factor**.
+
+keyTerms:
+  - term: Factor
+    covers: [K1.1, U1.3]
+    definition: A number that divides another number with a remainder of 0.
+  - term: Multiple
+    covers: [K1.2]
+    definition: 'The product of a number and a counting number. 6, 12 and 18 are multiples of 6.'
+  - term: Prime number
+    covers: [K1.3]
+    definition: A number with exactly two factors, 1 and itself.
+  - term: Composite number
+    covers: [K1.4]
+    definition: A number with more than two factors.
+  - term: Greatest common factor
+    covers: [S1.4]
+    definition: The biggest number that is a factor of two numbers.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3, S1.2, K1.5]
+    type: multi
+    prompt: Select **all** the prime numbers.
+    choices: ['2', '17', '29', '9', '21', '1', '51']
+    answer: [0, 1, 2]
+    feedback:
+      '3': '9 is odd, but \(3 \times 3 = 9\). So 9 has three factors: 1, 3 and 9.'
+      '4': '21 is odd, but \(3 \times 7 = 21\). So it has more than two factors.'
+      '5': '1 has only one factor, itself. A prime needs exactly two.'
+      '6': '51 looks prime, but \(3 \times 17 = 51\). Try dividing by 3.'
+    hints:
+      - A prime has exactly two factors. For each number, can you find a factor other than 1 and itself?
+      - Odd numbers are not always prime. Try dividing by 3 and by 7.
+    solution:
+      - '**2, 17 and 29** have only 1 and themselves as factors, so they are prime.'
+      - '9 = 3 × 3, 21 = 3 × 7 and 51 = 3 × 17 are composite.'
+      - '1 is neither prime nor composite.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: Which list shows the **first five multiples** of 6?
+    choices: ['6, 12, 18, 24, 30', '1, 2, 3, 6', '12, 18, 24, 30, 36', '6, 12, 18, 24, 36']
+    answer: 0
+    feedback:
+      '1': 'These are the **factors** of 6, the numbers that divide it. Multiples are what you get when you skip count by 6.'
+      '2': 'This list starts at 12. The first multiple of 6 is \(1 \times 6\).'
+      '3': 'Skip count by 6 and check each step. Did any number get skipped?'
+    hints:
+      - Skip count by 6. What is \(1 \times 6\)? What is \(2 \times 6\)?
+    solution:
+      - 'The multiples of 6 are \(1 \times 6, 2 \times 6, 3 \times 6\), and so on.'
+      - 'The first five are **6, 12, 18, 24 and 30**.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.1, U1.1]
+    type: number
+    prompt: How many factors does **30** have? Count them all.
+    unit: factors
+    answer: 8
+    verify: 2 * 4
+    hints:
+      - Find the factors in pairs. Start with 1 × 30.
+      - Try 2, 3, 4, 5 and 6 in turn. Which ones divide 30 with nothing left over?
+    solution:
+      - 'The factor pairs are 1 × 30, 2 × 15, 3 × 10 and 5 × 6.'
+      - 'That is 4 pairs, so 30 has **8** factors: 1, 2, 3, 5, 6, 10, 15 and 30.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.1, U1.1]
+    type: number
+    prompt: Kai has **18** square tiles. He wants a rectangle patio that uses every tile. How many different rectangles can he make? A 2 by 9 and a 9 by 2 count as the same.
+    unit: rectangles
+    answer: 3
+    verify: '3'
+    hints:
+      - The sides of each rectangle multiply to make 18. What does that make them?
+      - List the factor pairs of 18.
+    solution:
+      - 'The side lengths are a factor pair of 18.'
+      - 'The pairs are 1 × 18, 2 × 9 and 3 × 6, so Kai can make **3** rectangles.'
+      - 'Even the 1 × 18 row counts. It is a very long, thin patio.'
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K1.5, K1.3]
+    type: mc
+    prompt: Ella says, "**1** is prime, because the only numbers that divide it are 1 and itself." What do you tell her?
+    choices:
+      - 1 is not prime. It has only one factor, and a prime needs exactly two.
+      - 1 is prime. It can only be divided by 1 and by itself.
+      - 1 is composite. It is a factor of every number.
+      - 1 is prime, but only because it is odd.
+    answer: 0
+    feedback:
+      '1': 'For 1, "1" and "itself" are the same number. How many different factors does 1 have?'
+      '2': 'A composite number has more than two factors. How many factors does 1 have?'
+      '3': 'Being odd doesn’t make a number prime. 9 and 15 are odd and composite.'
+    hints:
+      - List every factor of 1. How many are there?
+      - How many factors does a prime number have?
+    solution:
+      - 'A prime has **exactly two** different factors, such as 7 with 1 and 7.'
+      - '1 has only **one** factor, itself. So 1 is neither prime nor composite, and neither is 0.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S1.4, U1.2]
+    type: number
+    prompt: Rosa has a **24 cm** ribbon and a **36 cm** ribbon. She cuts both into pieces that are all the **same length**, in whole centimetres, with nothing left over. She wants the pieces as **long** as possible. How long is each piece?
+    unit: cm
+    answer: 12
+    verify: 24 / 2
+    hints:
+      - The piece length must divide 24 and 36 with nothing left over. What does that make it?
+      - List the factors of 24 and of 36. Which ones are on both lists?
+      - Of the common factors, which is the greatest?
+    solution:
+      - 'The piece length has to be a factor of 24 **and** a factor of 36.'
+      - 'Common factors: 1, 2, 3, 4, 6 and 12.'
+      - 'The greatest common factor is **12**, so each piece is 12 cm. Rosa gets 2 pieces and 3 pieces.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [S1.2, K1.4, S1.1]
+    type: build
+    prompt: |-
+      Sam says, "**51** is prime. It is odd, and it isn’t in the 5 times table."
+
+      Prove Sam wrong. Find a factor of 51 that isn’t 1 or 51.
+    fields:
+      - { name: f, label: 'A factor of 51' }
+    rules:
+      - { test: 'f % 1 == 0 && f > 1 && f < 51', fail: 'Choose a whole number between 1 and 51.' }
+      - { test: '51 % f == 0', fail: 'Divide 51 by your number. Is there a remainder?' }
+    examples:
+      - { f: 3 }
+      - { f: 17 }
+    counterexamples:
+      - { f: 5 }
+      - { f: 7 }
+      - { f: 51 }
+    hints:
+      - Sam checked 2 and 5. What other small numbers could you try?
+      - Try 3. Is \(51 \div 3\) a whole number?
+    solution:
+      - '\(51 \div 3 = 17\) with nothing left over, so 3 and 17 are both factors of 51.'
+      - 'So 51 has four factors, 1, 3, 17 and 51. It is **composite**.'
+      - 'Being odd, and not a multiple of 5, isn’t enough. To show a number is prime, check every possible factor.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, U1.2, U1.3]
+    type: investigation
+    prompt: |-
+      Mia has **30 stickers** and **42 pencils**. She wants to make goody bags that are all exactly the same, using every sticker and every pencil.
+    parts:
+      - type: mc
+        prompt: Can Mia make **5** goody bags?
+        choices:
+          - No. The stickers share out, but 42 pencils leave 2 over.
+          - Yes. 30 and 42 are both even, so they share out.
+          - No. 30 stickers don’t share among 5 bags.
+          - Yes. 5 is a factor of 30, so that is enough.
+        answer: 0
+        feedback:
+          '1': 'Being even means you can share by 2. Can 42 be shared into 5 equal groups?'
+          '2': '\(30 \div 5 = 6\), so the stickers do share out. Check the pencils.'
+          '3': 'The pencils must share out too. Is 5 a factor of 42?'
+        hints:
+          - 'Divide both: \(30 \div 5\) and \(42 \div 5\). Any remainders?'
+        solution:
+          - '\(30 \div 5 = 6\) works, but \(42 \div 5 = 8\) R 2. Two pencils would be left over.'
+      - type: number
+        prompt: What is the **greatest** number of goody bags Mia can make?
+        unit: bags
+        answer: 6
+        verify: 30 / 5
+        hints:
+          - The number of bags must be a factor of 30 and of 42.
+        solution:
+          - 'Factors of 30: 1, 2, 3, 5, 6, 10, 15, 30. Factors of 42: 1, 2, 3, 6, 7, 14, 21, 42.'
+          - 'The greatest common factor is **6**, so Mia can make 6 bags.'
+      - type: number
+        prompt: With 6 bags, how many **pencils** go in each bag?
+        unit: pencils
+        answer: 7
+        verify: 42 / 6
+        hints:
+          - Share 42 pencils among 6 bags.
+        solution:
+          - '\(42 \div 6 = 7\) pencils, and \(30 \div 6 = 5\) stickers, in each bag.'
+    wrapUp: The number of bags has to be a factor of both numbers. The greatest common factor gives the most bags.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.4, S1.2, S1.1]
+    type: build
+    prompt: |-
+      Find a **composite** number between **40 and 50**. Prove it by giving a rectangle of tiles that is **not** just one row.
+    fields:
+      - { name: n, label: 'Your number' }
+      - { name: w, label: 'Rows' }
+      - { name: l, label: 'Tiles in each row' }
+    rules:
+      - { test: 'n % 1 == 0 && n > 40 && n < 50', fail: 'Choose a whole number between 40 and 50.' }
+      - { test: 'w % 1 == 0 && l % 1 == 0 && w > 1 && l > 1', fail: 'One row doesn’t prove anything: every number makes that. Use at least 2 rows and at least 2 tiles in each row.' }
+      - { test: 'w * l == n', fail: 'Multiply your rows by the tiles in each row. Does it make your number?' }
+    examples:
+      - { n: 42, w: 6, l: 7 }
+      - { n: 45, w: 5, l: 9 }
+      - { n: 49, w: 7, l: 7 }
+    counterexamples:
+      - { n: 41, w: 1, l: 41 }
+      - { n: 44, w: 4, l: 12 }
+      - { n: 47, w: 2, l: 23 }
+    hints:
+      - Even numbers are easy to start with. Can 42 make 2 rows?
+      - Which numbers between 40 and 50 have a factor other than 1 and themselves?
+      - Three numbers in this range won’t work at all. Which ones, and why?
+    solution:
+      - '42 = 6 × 7, 45 = 5 × 9 and 49 = 7 × 7 all make rectangles with at least 2 rows. So do 44, 46 and 48.'
+      - 'Each one works because it has a factor pair other than 1 and itself. That is what composite means.'
+      - '41, 43 and 47 can only make one row. They are **prime**.'

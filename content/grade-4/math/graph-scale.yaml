@@ -1,0 +1,318 @@
+id: graph-scale
+grade: 4
+subject: math
+organizingIdea: MAT-OI8
+outcomes: [MAT4-OI8-GQ1-LO1]
+order: 17
+title: Scale in Graphs
+shortTitle: Scale in graphs
+summary: >-
+  Answer questions with data, then show it in pictographs, bar graphs and dot plots where one symbol
+  stands for many. Choose a scale and see how it changes a graph.
+
+bigIdea: |-
+  - To answer a question with data: **ask** it, **collect** data, **show** it, then **read** what it tells you.
+  - In a graph, one symbol, dot or grid step can stand for **many** things. That is the **scale**.
+  - A good scale makes a graph easy to draw and read. Different graphs of the same data can tell **different stories**.
+
+lesson:
+  - title: Answering a question with data
+    blocks:
+      - type: compare
+        covers: [K1.1, U1.1, S1.1]
+        columns:
+          - title: 1. Ask
+            body: '"How do Grade 4 students get to school?"'
+          - title: 2. Collect
+            body: Ask every student and tally the answers.
+          - title: 3. Show
+            body: Draw a graph with a scale that fits the numbers.
+          - title: 4. Read
+            body: What does the graph tell you? Does it answer the question?
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI8-GQ1-LO1#S2.2, MAT3-OI8-GQ1-LO1#K1.1]
+        title: Remember from Grade 3
+        body: A **statistical question** can be answered by collecting data. In Grade 3 each dot or bar step stood for **one** thing.
+
+  - title: One symbol for many
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.2]
+        component: graph-scale
+        props: { view: picto, views: [picto], scale: 2 }
+        caption: Each circle stands for **2** students. Change the scale. How many circles does each row need now?
+
+  - title: Choosing a scale
+    blocks:
+      - type: visual
+        covers: [S2.1, S2.3, U2.1]
+        component: graph-scale
+        props: { view: bar, views: [bar], scale: 2 }
+        caption: Try every scale. Which one makes the bars easiest to read, without too many lines?
+      - type: table
+        covers: [S2.1, S2.3]
+        caption: The data is 24, 18, 12 and 6 students.
+        headers: [Scale, What happens]
+        rows:
+          - ['1', '24 symbols in a row, or 24 lines up the side. Slow to draw and count.']
+          - ['2', '12, 9, 6 and 3 symbols. Every bar ends on a line. Easy to read.']
+          - ['5', 'Rows end in parts of a symbol, like \(\frac{4}{5}\). Bars end between lines.']
+          - ['10', 'Rows are very short, and bars end between lines. Hard to read exactly.']
+
+  - title: Three kinds of graphs
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.4, S2.5, U2.2]
+        component: graph-scale
+        props: { view: picto, scale: 2 }
+        caption: Switch between the three graphs. They all show the same data. Which one would you use, and why?
+      - type: compare
+        covers: [S2.4, K2.2]
+        columns:
+          - title: Pictograph
+            body: Fun and quick to read when each symbol stands for a friendly number.
+          - title: Bar graph
+            body: Good for big numbers. The scale on the side lets you read each bar.
+          - title: Dot plot
+            body: Good for small counts, where you can see every dot.
+
+  - title: Reading a graph
+    blocks:
+      - type: example
+        covers: [S2.6, K2.1]
+        title: A half symbol
+        problem: The key says **● = 4 books**. Maya’s row shows **3 and a half** circles. How many books did she read?
+        steps:
+          - '3 whole circles: \(3 \times 4 = 12\) books.'
+          - 'A half circle is half of 4, which is 2 books.'
+          - '\(12 + 2 = 14\).'
+        answer: Maya read **14** books.
+
+keyTerms:
+  - term: Scale
+    covers: [U2.1, S2.1]
+    definition: How many things one symbol, dot or grid step stands for.
+  - term: Key
+    covers: [K2.1]
+    definition: The part of a pictograph or dot plot that tells what one symbol stands for.
+  - term: Pictograph
+    covers: [K2.2]
+    definition: A graph that uses pictures or symbols to show data.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S2.6, K2.1]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 400 224" class="fig-svg" role="img" aria-label="A pictograph of favourite fruits. Apples have 4 circles, bananas 2 and a half, grapes 3, and oranges 1 and a half. The key shows one circle stands for 10 students."><text class="fig-label" style="font-size:14px" x="86" y="34" text-anchor="end">Apples</text><circle class="cg-pt" cx="105.0" cy="28" r="9.0"/><circle class="cg-pt" cx="126.0" cy="28" r="9.0"/><circle class="cg-pt" cx="147.0" cy="28" r="9.0"/><circle class="cg-pt" cx="168.0" cy="28" r="9.0"/><text class="fig-label" style="font-size:14px" x="86" y="78" text-anchor="end">Bananas</text><circle class="cg-pt" cx="105.0" cy="72" r="9.0"/><circle class="cg-pt" cx="126.0" cy="72" r="9.0"/><clipPath id="fruit-c1"><rect x="138.0" y="60" width="9.0" height="24"/></clipPath><circle class="cg-pt" clip-path="url(#fruit-c1)" cx="147.0" cy="72" r="9.0"/><circle style="fill:none;stroke:var(--accent);stroke-width:1.2;stroke-dasharray:2 2" cx="147.0" cy="72" r="9.0"/><text class="fig-label" style="font-size:14px" x="86" y="122" text-anchor="end">Grapes</text><circle class="cg-pt" cx="105.0" cy="116" r="9.0"/><circle class="cg-pt" cx="126.0" cy="116" r="9.0"/><circle class="cg-pt" cx="147.0" cy="116" r="9.0"/><text class="fig-label" style="font-size:14px" x="86" y="166" text-anchor="end">Oranges</text><circle class="cg-pt" cx="105.0" cy="160" r="9.0"/><clipPath id="fruit-c3"><rect x="117.0" y="148" width="9.0" height="24"/></clipPath><circle class="cg-pt" clip-path="url(#fruit-c3)" cx="126.0" cy="160" r="9.0"/><circle style="fill:none;stroke:var(--accent);stroke-width:1.2;stroke-dasharray:2 2" cx="126.0" cy="160" r="9.0"/><circle class="cg-pt" cx="105" cy="204" r="9"/><text class="fig-label" style="font-size:14px" x="122" y="209">= 10 students</text></svg>
+    prompt: This pictograph shows the class’s favourite fruits. How many students chose **bananas**?
+    unit: students
+    answer: 25
+    verify: 10 + 10 + 5
+    hints:
+      - Look at the key. How many students does one circle stand for?
+      - What is half of one circle worth?
+    solution:
+      - 'One circle stands for 10 students, so half a circle stands for 5.'
+      - 'Bananas have 2 and a half circles: \(10 + 10 + 5 = 25\) students.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S2.1, U2.1]
+    type: mc
+    prompt: 'A small survey has these counts: **3, 7, 5 and 2**. Which key is best for a pictograph?'
+    choices: ['● = 1', '● = 10', '● = 5', '● = 100']
+    answer: 0
+    feedback:
+      '1': 'Every count is less than 10, so every row would be only part of one circle.'
+      '2': 'Most counts would need parts of a circle, such as 3 fifths. Is there an easier key?'
+      '3': 'Every row would be a tiny sliver of one circle.'
+    hints:
+      - The counts are small. How many symbols would each key need?
+    solution:
+      - 'The counts are small, so one symbol for each item is easy to draw and read.'
+      - '**● = 1** gives rows of 3, 7, 5 and 2 whole circles.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S2.2, K2.1]
+    type: number
+    prompt: In a pictograph, the key is **■ = 4 cans**. How many squares do you draw to show **28** cans?
+    unit: squares
+    answer: 7
+    verify: 28 / 4
+    hints:
+      - Each square stands for 4 cans. How many fours make 28?
+    solution:
+      - '\(28 \div 4 = 7\), so you draw **7** squares.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S2.3, U2.2, S2.5]
+    type: multi
+    prompt: |-
+      Ravi and Kim graph the same survey: **24** students walk, **18** take the bus and **12** come by car. Ravi’s key is **● = 2**. Kim’s key is **● = 10**.
+
+      Select **all** the true statements.
+    choices:
+      - 'Ravi’s rows have 12, 9 and 6 circles.'
+      - 'Kim’s rows need parts of circles, so they are harder to read exactly.'
+      - 'Kim’s graph shows that fewer students walk.'
+      - 'Ravi’s graph shows more students in all.'
+    answer: [0, 1]
+    feedback:
+      '2': 'Both graphs show the same 24 walkers. Only the number of circles changes.'
+      '3': 'The data is the same, so the total is the same. Only the key is different.'
+    hints:
+      - Work out how many circles each row needs on each graph.
+      - Does changing the key change the number of students?
+    solution:
+      - 'Ravi: \(24 \div 2 = 12\), \(18 \div 2 = 9\), \(12 \div 2 = 6\) circles.'
+      - 'Kim: 2 and 4 tenths, 1 and 8 tenths, and 1 and 2 tenths of a circle. Those parts are hard to draw and read.'
+      - 'The data never changed. The scale changes how the graph looks, not what it shows.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S2.6]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 400 250" class="fig-svg" role="img" aria-label="A bar graph of favourite activities. The scale goes up by 5. Soccer reaches the 25 line, hockey 15, swimming 20 and dance 10."><line class="fig-grid" x1="44" y1="220.0" x2="390" y2="220.0"/><text class="fig-small" x="38" y="224.0" text-anchor="end">0</text><line class="fig-grid" x1="44" y1="180.0" x2="390" y2="180.0"/><text class="fig-small" x="38" y="184.0" text-anchor="end">5</text><line class="fig-grid" x1="44" y1="140.0" x2="390" y2="140.0"/><text class="fig-small" x="38" y="144.0" text-anchor="end">10</text><line class="fig-grid" x1="44" y1="100.0" x2="390" y2="100.0"/><text class="fig-small" x="38" y="104.0" text-anchor="end">15</text><line class="fig-grid" x1="44" y1="60.0" x2="390" y2="60.0"/><text class="fig-small" x="38" y="64.0" text-anchor="end">20</text><line class="fig-grid" x1="44" y1="20.0" x2="390" y2="20.0"/><text class="fig-small" x="38" y="24.0" text-anchor="end">25</text><rect class="fig-rect" style="stroke-width:0" x="66.6" y="20.0" width="58.8" height="200.0"/><text class="fig-label" style="font-size:14px" x="96.0" y="240" text-anchor="middle">Soccer</text><rect class="fig-rect" style="stroke-width:0" x="150.6" y="100.0" width="58.8" height="120.0"/><text class="fig-label" style="font-size:14px" x="180.0" y="240" text-anchor="middle">Hockey</text><rect class="fig-rect" style="stroke-width:0" x="234.6" y="60.0" width="58.8" height="160.0"/><text class="fig-label" style="font-size:14px" x="264.0" y="240" text-anchor="middle">Swim</text><rect class="fig-rect" style="stroke-width:0" x="318.6" y="140.0" width="58.8" height="80.0"/><text class="fig-label" style="font-size:14px" x="348.0" y="240" text-anchor="middle">Dance</text><line style="stroke:var(--ink);stroke-width:2" x1="44" y1="220" x2="390" y2="220"/><line style="stroke:var(--ink);stroke-width:2" x1="44" y1="220" x2="44" y2="20"/></svg>
+    prompt: This bar graph shows favourite activities. How many **more** students chose soccer than hockey?
+    unit: students
+    answer: 10
+    verify: 25 - 15
+    hints:
+      - The scale goes up by 5. Read the top of each bar.
+    solution:
+      - 'Soccer reaches 25 and hockey reaches 15.'
+      - '\(25 - 15 = 10\) more students chose soccer.'
+
+  - id: b3
+    level: 2
+    thinking: decide
+    covers: [S2.4, S2.1]
+    type: mc
+    prompt: A park has **120** maples, **80** spruces and **40** birches. Which graph would show this best?
+    choices:
+      - A bar graph whose scale goes up by 20.
+      - A dot plot where each dot is one tree.
+      - A pictograph where each symbol is one tree.
+      - A bar graph whose scale goes up by 1.
+    answer: 0
+    feedback:
+      '1': 'That is 240 dots. How long would they take to draw and count?'
+      '2': 'That is 120 symbols in one row.'
+      '3': 'The scale would need 120 lines on the side. Is there a friendlier step?'
+    hints:
+      - The numbers are big. What scale would keep the graph simple?
+      - 120, 80 and 40 are all multiples of which number?
+    solution:
+      - 'The numbers are big, so one-to-one graphs would be huge.'
+      - 'They are all multiples of 20, so a **bar graph with a scale of 20** has bars of 6, 4 and 2 steps. Easy to draw and read.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K2.1, S2.6]
+    type: number
+    prompt: A pictograph’s key says **★ = 2 students**. The hockey row has **6** stars. Ana says, "6 students chose hockey." How many really chose hockey?
+    unit: students
+    answer: 12
+    verify: 6 * 2
+    hints:
+      - What does one star stand for?
+    solution:
+      - 'Each star stands for 2 students, not 1.'
+      - '\(6 \times 2 = 12\) students chose hockey. Always read the key first.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.1, S2.1, S2.2]
+    type: investigation
+    prompt: |-
+      The Grade 4 class asks, "Which recess game should we buy new equipment for?" They collect these votes: **tag 14**, **soccer 22**, **skipping 8**, **four square 16**.
+    parts:
+      - type: number
+        prompt: How many students voted?
+        unit: students
+        answer: 60
+        verify: 14 + 22 + 8 + 16
+        hints:
+          - Add all the votes.
+        solution:
+          - '\(14 + 22 + 8 + 16 = 60\) students voted.'
+      - type: build
+        prompt: Choose a pictograph key, **● = ?**. No row may need more than **12** circles, and every row must end in a whole circle or a half circle.
+        fields:
+          - { name: k, label: 'One circle stands for', unit: votes }
+        rules:
+          - { test: 'k % 1 == 0 && k > 0', fail: 'Use a whole number of votes.' }
+          - { test: '22 <= 12 * k', fail: 'Soccer would need more than 12 circles. Try a bigger key.' }
+          - { test: '(2 * 14) % k == 0 && (2 * 22) % k == 0 && (2 * 8) % k == 0 && (2 * 16) % k == 0', fail: 'Some row would end in a part of a circle that isn’t a half. Check each count.' }
+        examples:
+          - { k: 2 }
+          - { k: 4 }
+        counterexamples:
+          - { k: 1 }
+          - { k: 5 }
+          - { k: 8 }
+        hints:
+          - Soccer has 22 votes. What is the smallest key that keeps it to 12 circles or fewer?
+          - Try 2 and 4. Do 14, 22, 8 and 16 each make whole or half circles?
+        solution:
+          - 'A key of 1 needs 22 circles for soccer, which is too many.'
+          - 'A key of **2** gives 7, 11, 4 and 8 circles. A key of **4** gives 3 and a half, 5 and a half, 2 and 4.'
+          - 'A key of 5 or 8 leaves parts like \(\frac{4}{5}\) or \(\frac{3}{4}\), which are hard to read.'
+      - type: mc
+        prompt: What does the data suggest the class should buy?
+        choices: ['Soccer equipment, because it got the most votes', 'Skipping ropes, because they got the fewest votes', 'Tag equipment, because it is in the middle', 'Nothing, because the votes are too close']
+        answer: 0
+        feedback:
+          '1': 'The question asks which game the class wants. Which got the most votes?'
+          '2': 'Tag got 14 votes. Two games got more.'
+          '3': 'Soccer is 6 votes ahead of the next game. That is a clear lead.'
+        hints:
+          - Go back to the question the class asked.
+        solution:
+          - 'Soccer got 22 of the 60 votes, more than any other game. The data answers the question: **soccer equipment**.'
+    wrapUp: The question came first, then the data, then a graph with a scale that fit the numbers. Reading the graph answered the question they asked.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [S2.3, S2.4, U2.2]
+    type: multi
+    prompt: |-
+      Jo surveys her class of **28** students about pets: **12** have a dog, **9** have a cat and **7** have no pet. She draws a pictograph with the key **● = 10 students**.
+
+      Select **all** the good reasons to change her key.
+    choices:
+      - 'Every row needs part of a circle, so the numbers are hard to read.'
+      - 'The rows are so short that the differences are hard to see.'
+      - 'A key of ● = 1 or ● = 2 would fit these small counts better.'
+      - 'A key of 10 changes the number of students who have a dog.'
+      - 'Pictographs can only use keys of 1.'
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'The key changes the picture, not the data. 12 students still have a dog.'
+      '4': 'Pictographs can use any key, such as 2, 5 or 10. The key should fit the numbers.'
+    hints:
+      - How many circles would each row need with a key of 10?
+      - Try a key of 1. How many circles would the longest row have?
+    solution:
+      - 'With ● = 10, the rows are 1 and 2 tenths, 9 tenths and 7 tenths of a circle. They are short and hard to read.'
+      - 'With ● = 1, the rows are 12, 9 and 7 circles, easy to draw and compare.'
+      - 'Changing the key never changes the data. It changes how clearly the graph tells the story.'

@@ -1,0 +1,140 @@
+---
+// Turn a 3D prism and tap a face to see which faces are parallel to it and which are perpendicular
+// (MAT4-OI3-GQ1-LO1, S1.3). A box and a triangular prism, so children can compare them.
+interface Props {
+  shape?: 'box' | 'triangle';
+}
+const { shape = 'box' } = Astro.props;
+---
+<g4m-prism-faces data-shape={shape}>
+  <div class="seg" role="group" aria-label="Choose a prism">
+    <button type="button" data-pf-shape="box" aria-pressed={String(shape === 'box')}>Rectangular prism</button>
+    <button type="button" data-pf-shape="triangle" aria-pressed={String(shape === 'triangle')}>Triangular prism</button>
+  </div>
+  <svg class="g4m-pf-svg" viewBox="0 0 360 260" role="img" aria-label="A prism you can turn. Tap a face to compare it with the others." data-pf="svg"></svg>
+  <div class="control-row">
+    <div class="control" role="group" aria-label="Turn the prism">
+      <button type="button" class="icon-btn" data-pf-turn="-20,0" aria-label="Turn left">◀</button>
+      <button type="button" class="icon-btn" data-pf-turn="20,0" aria-label="Turn right">▶</button>
+      <button type="button" class="icon-btn" data-pf-turn="0,-15" aria-label="Tip up">▲</button>
+      <button type="button" class="icon-btn" data-pf-turn="0,15" aria-label="Tip down">▼</button>
+    </div>
+    <div class="g4m-pf-key" aria-hidden="true">
+      <span><i class="g4m-pf-k g4m-pf-k--self"></i>chosen</span>
+      <span><i class="g4m-pf-k g4m-pf-k--par"></i>parallel</span>
+      <span><i class="g4m-pf-k g4m-pf-k--per"></i>perpendicular</span>
+    </div>
+  </div>
+  <p class="g4m-pf-say" data-pf="say" aria-live="polite">Drag to turn the prism. Tap a face.</p>
+</g4m-prism-faces>
+
+<style is:global>
+  g4m-prism-faces { display: block; }
+  .g4m-pf-svg { display: block; width: 100%; max-width: 26rem; height: auto; margin: 0.4rem auto 0; touch-action: none; cursor: grab; }
+  .g4m-pf-face { stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; fill: var(--surface-2); cursor: pointer; }
+  .g4m-pf-face.is-self { fill: var(--math); }
+  .g4m-pf-face.is-parallel { fill: color-mix(in srgb, var(--ok) 55%, var(--surface)); }
+  .g4m-pf-face.is-perpendicular { fill: color-mix(in srgb, var(--sun) 65%, var(--surface)); }
+  .g4m-pf-key { display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .g4m-pf-k { display: inline-block; width: 0.9rem; height: 0.9rem; border-radius: 3px; margin-right: 0.3rem; vertical-align: -2px; border: 1.5px solid var(--ink); }
+  .g4m-pf-k--self { background: var(--math); }
+  .g4m-pf-k--par { background: color-mix(in srgb, var(--ok) 55%, var(--surface)); }
+  .g4m-pf-k--per { background: color-mix(in srgb, var(--sun) 65%, var(--surface)); }
+  .g4m-pf-say { margin: 0.4rem 0 0; font-weight: 700; min-height: 2.6em; }
+</style>
+
+<script>
+  import { boxFaces, triFaces, relation, relationText, turn, normal, type Face } from './prism.ts';
+
+  class PrismFaces extends HTMLElement {
+    private faces: Face[] = [];
+    private yaw = -35;
+    private pitch = 22;
+    private picked: number | null = null;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-pf-shape]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-pf-shape]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(b.dataset.pfShape!);
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-pf-turn]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const [dy, dp] = b.dataset.pfTurn!.split(',').map(Number);
+          this.yaw += dy;
+          this.pitch = Math.max(-80, Math.min(80, this.pitch + dp));
+          this.draw();
+        }),
+      );
+      const svg = this.q('svg');
+      let last: [number, number] | null = null;
+      let moved = 0;
+      svg.addEventListener('pointerdown', (e) => {
+        last = [e.clientX, e.clientY];
+        moved = 0;
+      });
+      svg.addEventListener('pointermove', (e) => {
+        if (!last) return;
+        const dx = e.clientX - last[0];
+        const dy = e.clientY - last[1];
+        moved += Math.abs(dx) + Math.abs(dy);
+        if (moved < 6) return;
+        svg.setPointerCapture(e.pointerId);
+        this.yaw += dx * 0.6;
+        this.pitch = Math.max(-80, Math.min(80, this.pitch + dy * 0.6));
+        last = [e.clientX, e.clientY];
+        this.draw();
+      });
+      svg.addEventListener('pointerup', (e) => {
+        if (moved < 6) {
+          const f = (e.target as Element).closest('[data-face]') as HTMLElement | null;
+          if (f) this.pick(Number(f.dataset.face));
+        }
+        last = null;
+      });
+      this.load(this.dataset.shape!);
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-pf="${name}"]`) as HTMLElement;
+    }
+
+    private load(shape: string) {
+      this.faces = shape === 'box' ? boxFaces() : triFaces();
+      this.picked = null;
+      this.q('say').textContent = 'Drag to turn the prism. Tap a face.';
+      this.draw();
+    }
+
+    private pick(i: number) {
+      this.picked = i;
+      this.q('say').textContent = relationText(this.faces, i);
+      this.draw();
+    }
+
+    private draw() {
+      const S = 62;
+      const shown = this.faces
+        .map((f, i) => {
+          const pts = f.pts.map((p) => turn(p, this.yaw, this.pitch));
+          const [a, b, c] = pts;
+          const nz = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+          const depth = pts.reduce((s, p) => s + p[2], 0) / pts.length;
+          return { i, pts, nz, depth };
+        })
+        .filter((f) => f.nz > 1e-6)
+        .sort((x, y) => x.depth - y.depth);
+      this.q('svg').innerHTML = shown
+        .map((f) => {
+          const rel = this.picked === null ? '' : ` is-${relation(this.faces[this.picked], this.faces[f.i])}`;
+          const light = Math.round(55 + 45 * turn(normal(this.faces[f.i]), this.yaw, this.pitch)[2]);
+          const shade = rel === '' || rel === ' is-neither' ? ` style="fill: color-mix(in srgb, var(--surface-2) ${light}%, var(--ink-3))"` : '';
+          const pts = f.pts.map((p) => `${(180 + p[0] * S).toFixed(1)},${(130 - p[1] * S).toFixed(1)}`).join(' ');
+          return `<polygon class="g4m-pf-face${rel}" data-face="${f.i}" points="${pts}"${shade}><title>${this.faces[f.i].name}</title></polygon>`;
+        })
+        .join('');
+    }
+  }
+  customElements.define('g4m-prism-faces', PrismFaces);
+</script>

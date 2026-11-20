@@ -1,0 +1,322 @@
+id: triangles-quadrilaterals
+grade: 4
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT4-OI3-GQ1-LO1]
+order: 11
+title: Sorting Triangles and Quadrilaterals
+shortTitle: Triangles & quadrilaterals
+summary: >-
+  Name triangles by their sides and their angles, sort quadrilaterals into a family tree, and check
+  equal sides by turning or flipping a copy.
+
+bigIdea: |-
+  - Triangles are named by their **sides** (equilateral, isosceles, scalene) and by their **angles** (acute, right, obtuse).
+  - Quadrilaterals form a **family tree**. A square is also a rectangle, a rhombus and a parallelogram.
+  - Shape properties can be **measured**, and a turn or a flip of a copy can check them.
+
+lesson:
+  - title: Triangles by their sides
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.4, U1.1]
+        component: quad-family
+        props: { mode: triangles, start: a }
+        caption: Tap each triangle. Tick marks show **equal sides**. The table shows its two names.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI3-GQ1-LO1#K1.5, MAT3-OI3-GQ1-LO1#K1.3]
+        title: Remember from Grade 3
+        body: Triangles and quadrilaterals are **polygons**. **Perpendicular** lines meet at a right angle.
+
+  - title: Triangles by their angles
+    blocks:
+      - type: compare
+        covers: [K1.5, K1.6, S1.4, S1.5]
+        columns:
+          - title: By sides
+            body: |-
+              - **Equilateral**: 3 equal sides
+              - **Isosceles**: 2 equal sides
+              - **Scalene**: no equal sides
+          - title: By angles
+            body: |-
+              - **Acute**: all 3 angles are acute
+              - **Right**: one angle is 90°
+              - **Obtuse**: one angle is obtuse
+      - type: callout
+        variant: mistake
+        covers: [K1.6, S1.5]
+        title: Not every pair works
+        body: An equilateral triangle’s angles all measure **60°**, so it is always acute. There is no right or obtuse equilateral triangle.
+
+  - title: The quadrilateral family
+    blocks:
+      - type: visual
+        covers: [K1.4, U1.2, S1.6, S1.1]
+        component: quad-family
+        props: { mode: quads, start: square }
+        caption: Tap each shape. Arrows mark **parallel** sides, and ticks mark **equal** sides. Watch which families light up.
+      - type: table
+        covers: [K1.4, S1.1]
+        headers: [Shape, What makes it that shape]
+        rows:
+          - ['Parallelogram', '2 pairs of parallel sides']
+          - ['Rectangle', 'A parallelogram with 4 right angles']
+          - ['Rhombus', 'A parallelogram with 4 equal sides']
+          - ['Square', '4 right angles **and** 4 equal sides']
+          - ['Trapezoid', 'Exactly 1 pair of parallel sides']
+
+  - title: Check with a turn or a flip
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.2]
+        component: quad-family
+        props: { mode: quads, start: parallelogram }
+        caption: Press **Turn a copy a half turn**. The copy lands on the parallelogram, so its opposite sides are equal. Then try **Flip a copy**.
+      - type: callout
+        variant: tip
+        covers: [S2.2, K2.2]
+        title: Slide it, too
+        body: Trace one side on thin paper. **Slide** the tracing onto the opposite side. If it matches, the two sides are the same length.
+
+  - title: A square is a rectangle
+    blocks:
+      - type: compare
+        covers: [U1.2, S1.6]
+        columns:
+          - title: ✅ Always
+            body: |-
+              Every **square** is a rectangle. It has 4 right angles.
+              Every **rectangle** is a parallelogram.
+          - title: ❌ Not always
+            body: |-
+              Not every rectangle is a square. Its sides might not all be equal.
+              Not every rhombus is a square.
+
+keyTerms:
+  - term: Parallel
+    covers: [S1.1]
+    definition: Always the same distance apart. Parallel sides never meet.
+  - term: Perpendicular
+    covers: [S1.1]
+    definition: Meeting at a right angle.
+  - term: Equilateral, isosceles, scalene
+    covers: [K1.5]
+    definition: Triangles with 3 equal sides, 2 equal sides, and no equal sides.
+  - term: Parallelogram
+    covers: [K1.4]
+    definition: A quadrilateral with 2 pairs of parallel sides.
+  - term: Trapezoid
+    covers: [K1.4]
+    definition: A quadrilateral with exactly 1 pair of parallel sides.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.5, S1.4]
+    type: mc
+    prompt: A triangle has sides of **5 cm**, **5 cm** and **8 cm**. What is it called, by its sides?
+    choices: ['Isosceles', 'Equilateral', 'Scalene', 'Right']
+    answer: 0
+    feedback:
+      '1': 'Equilateral needs all 3 sides equal. Is 8 cm equal to 5 cm?'
+      '2': 'Scalene means no equal sides. Look again at the lengths.'
+      '3': 'Right is a name by angle, not by sides.'
+    hints:
+      - How many sides are equal?
+    solution:
+      - 'Two sides are 5 cm, so exactly 2 sides are equal. It is **isosceles**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.6, S1.5]
+    type: mc
+    prompt: Ravi measures the corners of a triangle-shaped boat sail with a protractor. He gets **30°**, **60°** and **90°**. Which word names the sail by its angles?
+    choices: ['Right', 'Acute', 'Obtuse', 'Straight']
+    answer: 0
+    feedback:
+      '1': 'An acute triangle has all three angles less than 90°. Look at the biggest angle.'
+      '2': 'An obtuse triangle has an angle bigger than 90°.'
+      '3': 'Straight is a kind of angle, 180°, not a kind of triangle.'
+    hints:
+      - Look at the biggest angle. What kind of angle is it?
+    solution:
+      - 'One angle is exactly 90°, so it is a **right** triangle.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.1, K1.4]
+    type: multi
+    prompt: Select **all** the things that are true for **every** rectangle.
+    choices: ['It has 4 right angles.', 'Its opposite sides are parallel.', 'Its opposite sides are equal.', 'All 4 sides are equal.', 'Exactly one pair of its sides is parallel.']
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'That is true for squares. Think of a long, thin rectangle like a door.'
+      '4': 'A rectangle has 2 pairs of parallel sides, top and bottom, and left and right.'
+    hints:
+      - Picture a door or a sheet of paper. Which things are true?
+    solution:
+      - 'Every rectangle has 4 right angles, 2 pairs of parallel sides, and opposite sides of equal length.'
+      - 'Only some rectangles, the squares, have 4 equal sides.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: why
+    covers: [U1.2, S1.6]
+    type: mc
+    prompt: Mila says, "A square **can’t** be a rectangle. A rectangle has two long sides and two short sides." What do you tell her?
+    choices:
+      - A square is a rectangle. It has 4 right angles, which is all a rectangle needs.
+      - Mila is right. Rectangles must have two long sides.
+      - A square is a rectangle only when it is turned on its side.
+      - A square is a rhombus, so it can’t also be a rectangle.
+    answer: 0
+    feedback:
+      '1': 'Check what makes a rectangle: a parallelogram with 4 right angles. Does a square have those?'
+      '2': 'Turning a shape doesn’t change its sides or angles.'
+      '3': 'A shape can belong to more than one family, like a person can be a sister and a daughter.'
+    hints:
+      - What does a shape need to be a rectangle?
+      - Does a square have all of that?
+    solution:
+      - 'A rectangle is a parallelogram with 4 right angles. Nothing says its sides must be different.'
+      - 'A square has 4 right angles, so it **is** a rectangle. It is a special rectangle with 4 equal sides.'
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S1.4, S1.5, K1.5, K1.6]
+    type: multi
+    prompt: Select **all** the triangles that could really exist.
+    choices: ['A right isosceles triangle', 'An obtuse scalene triangle', 'An acute equilateral triangle', 'A right equilateral triangle', 'An obtuse equilateral triangle']
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'Every angle of an equilateral triangle is 60°. Can one of them be 90°?'
+      '4': 'Every angle of an equilateral triangle is 60°. Can one of them be more than 90°?'
+    hints:
+      - Use the triangle table in the lesson. Which boxes can be filled?
+      - What do you know about the angles of an equilateral triangle?
+    solution:
+      - 'A right isosceles triangle is half of a square. An obtuse scalene triangle and an acute equilateral triangle exist too.'
+      - 'An equilateral triangle’s angles are all 60°, so it can’t be right or obtuse.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S2.2, K2.2]
+    type: mc
+    prompt: Ana traces a four-sided shape, turns the tracing a **half turn**, and it lands exactly on the shape. What has she shown?
+    choices:
+      - Its opposite sides are equal.
+      - All four of its sides are equal.
+      - It has four right angles.
+      - It is a trapezoid.
+    answer: 0
+    feedback:
+      '1': 'A half turn moves each side onto the side across from it. Does it compare sides that are next to each other?'
+      '2': 'A parallelogram with no right angles also lands on itself after a half turn.'
+      '3': 'Turn a copy of the trapezoid in the lesson a half turn. Does it land?'
+    hints:
+      - When the copy turns a half turn, where does the top side end up?
+    solution:
+      - 'A half turn puts each side on the opposite side. They match, so **opposite sides are equal**.'
+      - 'It doesn’t tell us about sides next to each other, or about right angles.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K1.4, S1.1, S1.6]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 300 170" class="fig-svg fig-svg--square" role="img" aria-label="A four-sided shape. The top and bottom sides are parallel. The left and right sides slant outward and are not parallel."><polygon class="cg-poly" points="100,40 200,40 260,140 40,140"/><path style="fill:none;stroke:var(--bad);stroke-width:2.5" d="M144 34 L152 40 L144 46"/><path style="fill:none;stroke:var(--bad);stroke-width:2.5" d="M144 134 L152 140 L144 146"/></svg>
+    prompt: Kim says this shape is a **parallelogram**, "because it has parallel sides." What is wrong with her reason?
+    choices:
+      - A parallelogram needs 2 pairs of parallel sides. This shape has only 1 pair, so it is a trapezoid.
+      - Nothing. Any shape with parallel sides is a parallelogram.
+      - A parallelogram needs 4 right angles.
+      - A parallelogram can’t have a long side and a short side.
+    answer: 0
+    feedback:
+      '1': 'Check the left and right sides. Are they parallel too?'
+      '2': 'That describes a rectangle. A parallelogram can lean.'
+      '3': 'The parallelogram in the lesson has a long side and a short side.'
+    hints:
+      - How many pairs of parallel sides does a parallelogram need?
+      - Are the slanted sides parallel?
+    solution:
+      - 'Only the top and bottom are parallel. The slanted sides spread apart.'
+      - 'With exactly 1 pair of parallel sides, it is a **trapezoid**, not a parallelogram.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [U1.2, S1.6, K1.4]
+    type: investigation
+    prompt: |-
+      **Guess my shape!** Jun is thinking of a quadrilateral. He gives one clue at a time.
+    parts:
+      - type: multi
+        prompt: 'Clue 1: "It has 2 pairs of parallel sides." Select **all** the shapes it could be.'
+        choices: ['Parallelogram', 'Rectangle', 'Rhombus', 'Square', 'Trapezoid']
+        answer: [0, 1, 2, 3]
+        feedback:
+          '4': 'A trapezoid has exactly 1 pair of parallel sides.'
+        hints:
+          - Which shapes are in the parallelogram family?
+        solution:
+          - 'Every parallelogram has 2 pairs of parallel sides, so it could be a **parallelogram, rectangle, rhombus or square**.'
+      - type: multi
+        prompt: 'Clue 2: "All its angles are right angles." Select **all** the shapes it could be now.'
+        choices: ['Parallelogram with no right angles', 'Rectangle', 'Rhombus with no right angles', 'Square']
+        answer: [1, 3]
+        feedback:
+          '0': 'This one has no right angles, so the clue rules it out.'
+          '2': 'This one has no right angles, so the clue rules it out.'
+        hints:
+          - Which shapes always have 4 right angles?
+        solution:
+          - 'Only the **rectangle** and the **square** have 4 right angles.'
+      - type: mc
+        prompt: 'Clue 3: "Two of my sides measure 4 cm and 7 cm." What is the shape?'
+        choices: ['A rectangle that is not a square', 'A square', 'A rhombus', 'There isn’t enough information.']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'A square has 4 equal sides. Could it have a 4 cm side and a 7 cm side?'
+          '2': 'Clue 2 already ruled out rhombuses without right angles, and a rhombus has 4 equal sides.'
+          '3': 'Only two shapes were left. Which one can have sides of different lengths?'
+        hints:
+          - Can a square have sides of different lengths?
+        solution:
+          - 'A square’s sides are all equal, so it can’t have 4 cm and 7 cm sides.'
+          - 'Jun’s shape is **a rectangle that is not a square**.'
+    wrapUp: Each clue picks out a smaller family in the tree. A square fits the first two clues because it belongs to every family above it.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [U1.2, S1.6, S1.5]
+    type: multi
+    prompt: Select **all** the statements that are **always** true.
+    choices: ['Every square is a rhombus.', 'Every rectangle is a parallelogram.', 'Every rhombus is a square.', 'Every parallelogram has a right angle.', 'A triangle can have two right angles.']
+    answer: [0, 1]
+    feedback:
+      '2': 'Only sometimes. A rhombus with no right angles is not a square.'
+      '3': 'Only sometimes. The leaning parallelogram in the lesson has no right angle.'
+      '4': 'Never. Two right angles side by side make arms that are parallel, so the third side could never close the triangle.'
+    hints:
+      - For each statement, try to imagine a shape that breaks it.
+      - If you can find one shape that breaks it, it isn’t always true.
+    solution:
+      - 'A square has 4 equal sides, so it is always a rhombus. A rectangle has 2 pairs of parallel sides, so it is always a parallelogram.'
+      - 'A rhombus is a square only sometimes, and a parallelogram has a right angle only sometimes.'
+      - 'A triangle with two right angles can’t be drawn. Its two arms would be parallel and never meet.'
