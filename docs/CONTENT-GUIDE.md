@@ -18,22 +18,33 @@ Commands:
 
 `gradeProfile` in [`src/site.ts`](../src/site.ts) sets the limits, and `npm run verify` enforces them.
 
-| | Grades 1–2 | Grades 3–6 |
-|---|---|---|
-| Problems | 6: 2 Warm-up, 2 Build, 2 Deep Think | 9: 3, 4, 2 |
-| Unlock the next level after | 1 solved | 2 solved |
-| Investigation parts / Deep Think steps | 2 / 3 | 3 / 5 |
-| Different thinking moves | 3 | 4 |
-| Longest paragraph or list item | 20 words | 40 words |
-| Big idea | at most 3 bullets | 3–4 bullets |
-| Lesson steps | at most 5 | 4–6 |
-| A visual, experiment or figure | in every step | leads each step |
-| Problem prompt | under 30 words | |
+Younger children can't concentrate as long, so each grade below 4 gets clearly less.
 
-- Grades 1–2: show, don't tell. Let the animation carry the idea, with a few words as labels.
+| | Grades 4–6 | Grade 3 | Grade 2 | Grade 1 |
+|---|---|---|---|---|
+| Problems (Warm-up, Build, Deep Think) | 9 (3, 4, 2) | 6 (2, 2, 2) | 4 (2, 1, 1) | 3 (1, 1, 1) |
+| Unlock the next level after | 2 solved | 1 | 1 | 1 |
+| Investigations | up to 3 parts | up to 2 parts | none | none |
+| Different thinking moves | 4 | 3 | 3 | 2 |
+| Lesson steps | 4–6 | up to 5 | up to 4 | up to 3 |
+| Blocks in a step | up to 5 | 3 | 2 | 2 |
+| Longest paragraph, list item or key term | 40 words | 25 | 15 | 10 |
+| Problem prompt | | under 40 words | under 20 | under 12 |
+| Big idea | 3–4 bullets | up to 3 | up to 2 | up to 2 |
+| Key terms | | up to 5 | up to 4 | up to 3 |
+| A visual, experiment or figure | leads each step | in every step | in every step | in every step |
+
+**Grades 1–3: easy and fun.**
+- Show, don't tell. Let an animation or something to tap, drag or build carry each idea, with a few
+  words as labels.
+- One idea per step. A short topic is better than a long one; teach all the statements with more
+  short topics rather than longer ones.
+- Make it a game: a friendly character, a quick win in the first step, and things that move,
+  sort, grow or pop when the child acts.
+- Choices a child can read in a glance: one word, a number or a picture (emoji or a small figure).
 - Use words a child in that grade uses, and that grade's curriculum examples.
-- Math Deep Think in Grades 1–2 needs a non-choice problem (`order`, `number`, `build`), not
-  necessarily an investigation.
+- Math Deep Think in Grades 1–2 needs a non-choice problem (`order`, `number`, `build`); in Grade 3,
+  an investigation or a `build`.
 
 ## Rule 1: only what the curriculum lists
 

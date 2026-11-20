@@ -141,7 +141,8 @@ cause and consequence, perspectives, ethics.
 ## Craft rules
 
 **Stories**
-- At most about 60 words (120 for an investigation), or under 30 in Grades 1–2. The grade's reading
+- At most about 60 words (120 for an investigation). Shorter in Grades 1–3: under 40, 20 and 12
+  words in Grades 3, 2 and 1. The grade's reading
   level. Works on a phone.
 - Every detail earns its place, unless it's extra information to ignore on purpose.
 - Real to a child: school, games, pets, a Chinook, a rink, a road trip. Mix names and families.

@@ -169,8 +169,8 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | ✅ Live since November 17, 2026 |
 | 11 | Grade 4 | 4 subjects | 🔨 In progress |
 | 12 | Grade 3 | 4 subjects | Planned |
-| 13 | Grade 2 | 4 subjects, Grades 1–2 profile: less text, more animation, 6 problems | Planned |
-| 14 | Grade 1 | 4 subjects, Grades 1–2 profile | Planned |
+| 13 | Grade 2 | 4 subjects, Grade 2 profile: much less than Grade 3, 4 problems a topic | Planned |
+| 14 | Grade 1 | 4 subjects, Grade 1 profile: much less than Grade 2, 3 problems a topic | Planned |
 
 ### How Grades 6 to 1 are built
 
@@ -179,9 +179,10 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 - Writing agents run about 4 at a time, then a second model blind-solves each subject for wrong keys
   and above-grade content, as in Phase 7.
 - Grade 5's standards hold: `covers:` on everything, visual first, notes for educators.
-- **Grades 1–2** (`gradeProfile` in `src/site.ts`): 6 problems a topic (2, 2, 2), unlock after 1,
-  paragraphs up to 20 words, prompts under 30 words, a visual in every lesson step. A read-aloud button
-  is not planned for now.
+- **Grades 1–3** (`gradeProfile` in `src/site.ts`, decided November 19, 2026): each younger grade
+  gets less, because younger children can't concentrate as long. Grade 3 has 6 problems a topic,
+  Grade 2 has 4 and Grade 1 has 3, with shorter lessons and fewer words each step down, something to
+  watch or play with in every step, and a game-like feel. A read-aloud button is not planned for now.
 
 ## 5. Decisions
 

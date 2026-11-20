@@ -36,8 +36,10 @@ Rules for this repo. See [README.md](README.md) for commands and layout, and
   - `npm run verify` fails on a 3+ sentence paragraph of 25+ words, or any paragraph or list item
     over 40 words (`src/lib/readability.ts`). Passages and `>` quotes are exempt.
 - **Keep it simple.** No tab, label or panel that repeats the page. Use words a child in that grade uses.
-- **Grades 1–2 read little.** Less text, more animation, 6 problems a topic. Limits are in
-  `gradeProfile` (`src/site.ts`) and the [content guide](docs/CONTENT-GUIDE.md#rule-0-write-for-the-grade).
+- **Each younger grade gets less.** Grade 3 less than Grade 4, Grade 2 much less, Grade 1 much less
+  again: shorter lessons, fewer words, 6, 4 and 3 problems a topic. Keep it easy and fun, with
+  something to watch or play with in every step. Limits are in `gradeProfile` (`src/site.ts`) and the
+  [content guide](docs/CONTENT-GUIDE.md#rule-0-write-for-the-grade).
 
 ## Code
 
