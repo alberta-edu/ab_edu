@@ -116,3 +116,28 @@ describe('suffix builder', () => {
     expect(() => splitJoin('play', 'ful', 'player')).toThrow();
   });
 });
+
+import { FINGERS, KEY_ROWS, reachFor, wordLetters, wordWidth } from '../src/components/visuals/handwriting.ts';
+
+describe('handwriting lab', () => {
+  it('joins the letters of a word one after another', () => {
+    const letters = wordLetters('little', 10, 0, 0);
+    expect(letters.map((l) => l.letter).join('')).toBe('little');
+    expect(letters.every((l, i) => i === 0 || l.x > letters[i - 1].x)).toBe(true);
+    expect(wordWidth('little')).toBeGreaterThan(3);
+  });
+
+  it('refuses letters it cannot draw', () => {
+    expect(() => wordLetters('cat', 10, 0, 0)).toThrow();
+  });
+
+  it('gives every key on the keyboard exactly one finger', () => {
+    for (const k of KEY_ROWS.join('')) expect(FINGERS.filter((f) => f.keys.includes(k)), k).toHaveLength(1);
+  });
+
+  it('describes reaches from the home row', () => {
+    expect(reachFor('R').note).toBe('Left pointer finger reaches up from F, then comes back home.');
+    expect(reachFor('J').note).toMatch(/home key/);
+    expect(reachFor('G').note).toMatch(/sideways from F/);
+  });
+});
