@@ -1,0 +1,121 @@
+---
+// Algorithm builder (SCI4-OI6-GQ1-LO1, K1.3, S1.4): put instructions in order to guide a recycling
+// robot around the puddles to the blue bin, then run the algorithm and watch it follow each step.
+---
+<g4-robot-path>
+  <div class="g4s-rp-layout">
+    <svg class="sci-svg g4s-rp-grid" viewBox="0 0 250 250" role="img" aria-label="A 5 by 5 grid. The robot starts in the bottom left corner, facing up. The blue bin is near the top right. Three puddles block the middle." data-g4s="svg"></svg>
+    <div>
+      <p class="sci-pick-label">Add an instruction</p>
+      <div class="g4s-rp-palette">
+        <button type="button" class="g4s-rp-btn" data-rp-add="forward">⬆️ Forward 1</button>
+        <button type="button" class="g4s-rp-btn" data-rp-add="left">↩️ Turn left</button>
+        <button type="button" class="g4s-rp-btn" data-rp-add="right">↪️ Turn right</button>
+      </div>
+      <p class="sci-pick-label">Your algorithm</p>
+      <ol class="g4s-rp-list" data-g4s="list"></ol>
+      <div class="control-row">
+        <button type="button" class="btn btn--primary btn--small" data-rp="run">▶ Run</button>
+        <button type="button" class="btn btn--ghost btn--small" data-rp="undo">Undo</button>
+        <button type="button" class="btn btn--ghost btn--small" data-rp="clear">Clear</button>
+      </div>
+    </div>
+  </div>
+  <p class="sci-say" aria-live="polite" data-g4s="say">Build a list of instructions that gets the robot to the blue bin.</p>
+</g4-robot-path>
+
+<style is:global>
+  g4-robot-path { display: block; }
+  .g4s-rp-layout { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); align-items: start; }
+  .g4s-rp-grid { max-width: 16rem; margin-inline: auto; background: var(--surface-2); }
+  .g4s-rp-palette { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g4s-rp-btn { border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); font: inherit; font-weight: 700; color: var(--ink); padding: 0.4rem 0.6rem; min-height: 2.6rem; cursor: pointer; }
+  .g4s-rp-list { margin: 0; padding-left: 1.6rem; min-height: 2rem; columns: 2; font-weight: 700; }
+  .g4s-rp-list li.is-now { color: var(--accent); }
+  .g4s-rp-cell { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1; }
+  .g4s-rp-puddle { fill: #7fb2e5; }
+  .g4s-rp-bin { fill: #2f5fd0; }
+  .g4s-rp-robot { fill: #e0b52e; stroke: var(--ink); stroke-width: 2; }
+  .g4s-rp-trail { fill: none; stroke: var(--accent); stroke-width: 3; stroke-dasharray: 5 4; }
+</style>
+
+<script>
+  import { runRobot, ROBOT_GRID, type Step } from './g4-robot.ts';
+  import { tween, wait } from '../experiments/anim.ts';
+
+  const C = 50;
+  const LABEL: Record<Step, string> = { forward: 'Forward 1', left: 'Turn left', right: 'Turn right' };
+  const SAY = {
+    bin: 'It worked! The robot reached the bin. Is there another algorithm that works too?',
+    puddle: 'Splash! The robot drove into a puddle. Find the step where it went wrong, and fix it.',
+    wall: 'Bump! The robot hit the edge. Find the step where it went wrong, and fix it.',
+    short: 'The robot stopped before the bin. What instructions are missing?',
+  };
+
+  class G4RobotPath extends HTMLElement {
+    private program: Step[] = [];
+    private pos = { ...ROBOT_GRID.start, facing: ROBOT_GRID.facing };
+    private trail: { x: number; y: number }[] = [];
+    private busy = false;
+
+    connectedCallback() {
+      this.querySelectorAll<HTMLButtonElement>('[data-rp-add]').forEach((b) =>
+        b.addEventListener('click', () => {
+          if (this.busy || this.program.length >= 12) return;
+          this.program.push(b.dataset.rpAdd as Step);
+          this.reset();
+        }),
+      );
+      this.querySelector('[data-rp="undo"]')!.addEventListener('click', () => !this.busy && (this.program.pop(), this.reset()));
+      this.querySelector('[data-rp="clear"]')!.addEventListener('click', () => !this.busy && ((this.program = []), this.reset()));
+      this.querySelector('[data-rp="run"]')!.addEventListener('click', () => !this.busy && this.run());
+      this.reset();
+    }
+
+    private reset() {
+      this.pos = { ...ROBOT_GRID.start, facing: ROBOT_GRID.facing };
+      this.trail = [];
+      this.list(-1);
+      this.draw();
+    }
+
+    private list(now: number) {
+      this.querySelector('[data-g4s="list"]')!.innerHTML = this.program.map((s, i) => `<li${i === now ? ' class="is-now"' : ''}>${LABEL[s]}</li>`).join('') || '<li>…</li>';
+    }
+
+    private async run() {
+      if (!this.program.length) return;
+      this.busy = true;
+      const { path, outcome } = runRobot(this.program);
+      this.reset();
+      this.trail = [{ ...path[0] }];
+      for (let i = 1; i < path.length; i++) {
+        this.list(i - 1);
+        const from = { ...this.pos };
+        const to = path[i];
+        await tween(320, (t) => {
+          this.pos = { x: from.x + (to.x - from.x) * t, y: from.y + (to.y - from.y) * t, facing: t < 0.5 ? from.facing : to.facing };
+          this.draw();
+        });
+        this.trail.push({ x: to.x, y: to.y });
+        await wait(60);
+      }
+      this.list(-1);
+      this.querySelector('[data-g4s="say"]')!.textContent = SAY[outcome];
+      this.busy = false;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      for (let y = 0; y < ROBOT_GRID.size; y++) for (let x = 0; x < ROBOT_GRID.size; x++) out.push(`<rect class="g4s-rp-cell" x="${x * C}" y="${y * C}" width="${C}" height="${C}"/>`);
+      for (const p of ROBOT_GRID.puddles) out.push(`<ellipse class="g4s-rp-puddle" cx="${p.x * C + 25}" cy="${p.y * C + 27}" rx="20" ry="13"/>`);
+      const b = ROBOT_GRID.bin;
+      out.push(`<rect class="g4s-rp-bin" x="${b.x * C + 13}" y="${b.y * C + 12}" width="24" height="28" rx="3"/><text x="${b.x * C + 25}" y="${b.y * C + 32}" text-anchor="middle" style="fill:#fff;font-size:14px">♻</text>`);
+      if (this.trail.length > 1) out.push(`<polyline class="g4s-rp-trail" points="${this.trail.map((p) => `${p.x * C + 25},${p.y * C + 25}`).join(' ')}"/>`);
+      const { x, y, facing } = this.pos;
+      out.push(`<g transform="translate(${x * C + 25} ${y * C + 25}) rotate(${facing * 90})"><rect class="g4s-rp-robot" x="-14" y="-12" width="28" height="26" rx="6"/><path d="M-8,-12 L0,-22 L8,-12 Z" style="fill:var(--ink)"/></g>`);
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-robot-path', G4RobotPath);
+</script>

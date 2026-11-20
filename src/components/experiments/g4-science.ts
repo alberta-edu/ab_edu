@@ -113,3 +113,10 @@ export const YEAR_DAYS = 365;
 export const twelveMoons = () => 12 * MOON_CYCLE;
 /** Days on which each full Moon cycle ends, within the given number of days. */
 export const cycleEnds = (days: number) => Array.from({ length: Math.floor(days / MOON_CYCLE) }, (_, k) => (k + 1) * MOON_CYCLE);
+
+/**
+ * Paper bridge test (SCI4-OI6-GQ1-LO1, K1.1, S1.3): an invented class test with one sheet of paper
+ * across a 15 cm gap. Flat, it holds 3 coins and falls with the 4th. Folded like an accordion,
+ * the same sheet still holds all 20 coins the class has.
+ */
+export const BRIDGE = { flatHolds: 3, coins: 20 };

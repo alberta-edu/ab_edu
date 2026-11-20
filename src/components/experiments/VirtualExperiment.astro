@@ -29,6 +29,7 @@ import G4BugChoice from './G4BugChoice.astro';
 import G4DayNightSky from './G4DayNightSky.astro';
 import G4StarCircle from './G4StarCircle.astro';
 import G4MoonYear from './G4MoonYear.astro';
+import G4PaperBridge from './G4PaperBridge.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -63,6 +64,7 @@ const animations = {
   'g4-day-night-sky': G4DayNightSky,
   'g4-star-circle': G4StarCircle,
   'g4-moon-year': G4MoonYear,
+  'g4-paper-bridge': G4PaperBridge,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;
