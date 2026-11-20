@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
 import { addFrames, subtractFrames, value, matSvg } from '../src/components/visuals/g3-blocks.ts';
@@ -81,5 +82,24 @@ describe('Grade 3 times table', () => {
     expect(family(3, 4)).toEqual(['3 × 4 = 12', '4 × 3 = 12', '12 ÷ 3 = 4', '12 ÷ 4 = 3']);
     expect(family(5, 5)).toEqual(['5 × 5 = 25', '25 ÷ 5 = 5']);
     expect(rowSeq(4, 5)).toEqual([4, 8, 12, 16, 20]);
+  });
+});
+
+describe('Grade 3 fractions', () => {
+  it('names fractions and builds them from unit fractions', () => {
+    expect(fractionName(3, 8)).toBe('three eighths');
+    expect(fractionName(1, 2)).toBe('one half');
+    expect(fractionName(2, 2)).toBe('two halves');
+    expect(fractionName(1, 12)).toBe('one twelfth');
+    expect(unitSum(3, 8)).toBe('1/8 + 1/8 + 1/8 = 3/8');
+  });
+  it('compares by same denominator or same numerator', () => {
+    expect(compare([3, 8], [5, 8])).toBe('<');
+    expect(compare([2, 3], [2, 5])).toBe('>');
+    expect(compare([4, 4], [6, 6])).toBe('=');
+    expect(compareWhy([5, 8], [3, 8])).toBe('Same size parts. 5/8 has more of them, so 5/8 > 3/8.');
+    expect(compareWhy([2, 5], [2, 3])).toContain('thirds');
+    expect(benchmark(3, 8)).toBe('It is between 0 and 1/2.');
+    expect(benchmark(4, 8)).toBe('It is exactly one half.');
   });
 });

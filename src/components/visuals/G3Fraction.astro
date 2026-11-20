@@ -1,0 +1,180 @@
+---
+// Fractions of one whole, denominators 2 to 12 (outcome CLrkTvQMl0Oj1FGsDZHeJQ).
+// build: tap parts of a bar, a circle or a set to shade them; see the name, the notation and the
+//   unit fractions it is made of. line: slide a fraction along 0 to 1 past the 1/2 mark.
+// compare: two fractions side by side, of the same whole or of different-sized wholes.
+import { barSvg, circleSvg, setSvg, lineSvg, fractionName, unitSum } from './g3-fraction.ts';
+
+interface Props {
+  mode?: 'build' | 'line' | 'compare';
+  n?: number;
+  d?: number;
+  view?: 'bar' | 'circle' | 'set';
+  k?: number;
+  b?: [number, number];
+  sizes?: [number, number];
+}
+const { mode = 'build', n = 3, d = 8, view = 'bar', k = 2, b = [3, 4], sizes = [1, 1] } = Astro.props;
+const first = view === 'circle' ? circleSvg(n, d) : view === 'set' ? setSvg(n, d, k) : barSvg(n, d);
+---
+<g3-fraction data-mode={mode} data-n={n} data-d={d} data-view={view} data-k={k} data-b={JSON.stringify(b)} data-sizes={JSON.stringify(sizes)}>
+  {mode === 'build' && (
+    <div class="seg" role="group" aria-label="Show the whole as">
+      {(['bar', 'circle', 'set'] as const).map((v) => <button type="button" data-view={v} aria-pressed={String(v === view)}>{v === 'bar' ? 'Bar' : v === 'circle' ? 'Circle' : 'Group of things'}</button>)}
+    </div>
+  )}
+  <div class="control-row">
+    <span class="control">{mode === 'compare' ? 'Top' : 'Equal parts'}
+      <button type="button" class="g3m-fr-step" data-fr="d-" aria-label="Fewer equal parts">−</button>
+      <output data-fr="d-out">{d}</output>
+      <button type="button" class="g3m-fr-step" data-fr="d+" aria-label="More equal parts">+</button>
+    </span>
+    {mode !== 'build' && <label class="control"><span>Shaded</span><input type="range" min="0" max={d} value={n} data-fr="n" /></label>}
+  </div>
+  {mode === 'compare' && (
+    <div class="control-row">
+      <span class="control">Bottom
+        <button type="button" class="g3m-fr-step" data-fr="e-" aria-label="Fewer equal parts">−</button>
+        <output data-fr="e-out">{b[1]}</output>
+        <button type="button" class="g3m-fr-step" data-fr="e+" aria-label="More equal parts">+</button>
+      </span>
+      <label class="control"><span>Shaded</span><input type="range" min="0" max={b[1]} value={b[0]} data-fr="m" /></label>
+    </div>
+  )}
+  <div class={`g3m-fr-stage g3m-fr-${mode}`} data-fr="svg" set:html={mode === 'build' ? first : ''} />
+  <div class="g3m-fr-read" data-fr="read" aria-live="polite">
+    <span class="g3m-fr-frac"><span data-fr="top">{n}</span><span data-fr="bot">{d}</span></span>
+    <span class="g3m-fr-words"><strong data-fr="name">{fractionName(n, d)}</strong><span data-fr="sum">{unitSum(n, d)}</span></span>
+  </div>
+  <p class="g3m-fr-say" data-fr="say">{mode === 'build' ? 'Tap the parts to shade them.' : ''}</p>
+</g3-fraction>
+
+<style is:global>
+  g3-fraction { display: block; }
+  .g3m-fr-step { width: 2.3rem; height: 2.3rem; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 1.2rem; font-weight: 700; cursor: pointer; }
+  .g3m-fr-stage svg { display: block; width: 100%; height: auto; margin: 0.4rem auto 0; font-family: var(--font); }
+  .g3m-fr-build svg { max-width: 26rem; max-height: 14rem; }
+  .g3m-fr-part, .g3m-fr-group { fill: var(--surface-2); stroke: var(--ink-2); stroke-width: 2; cursor: pointer; transition: fill 0.25s; }
+  .g3m-fr-part.is-on, .g3m-fr-group.is-on { fill: color-mix(in srgb, var(--accent) 70%, var(--surface)); }
+  .g3m-fr-edge { fill: none; stroke: var(--ink); stroke-width: 3; }
+  .g3m-fr-counter { fill: var(--sun); stroke: var(--ink-2); stroke-width: 1; pointer-events: none; }
+  .g3m-fr-lab { fill: var(--ink); font-size: 20px; font-weight: 800; }
+  .g3m-fr-axis { stroke: var(--ink); stroke-width: 3; }
+  .g3m-fr-tick { stroke: var(--ink-2); stroke-width: 2; }
+  .g3m-fr-half { stroke: var(--sun); stroke-width: 3; stroke-dasharray: 5 4; }
+  .g3m-fr-small { fill: var(--ink-3); font-size: 13px; font-weight: 700; }
+  .g3m-fr-num { fill: var(--ink); font-size: 17px; font-weight: 800; }
+  .g3m-fr-pt { fill: var(--accent); font-size: 16px; font-weight: 800; }
+  .g3m-fr-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 3; }
+  .g3m-fr-read { display: flex; align-items: center; justify-content: center; gap: 0.9rem; margin-top: 0.6rem; }
+  .g3m-fr-frac { display: inline-grid; justify-items: center; font-size: 1.9rem; font-weight: 800; line-height: 1.1; color: var(--accent); }
+  .g3m-fr-frac span:first-child { border-bottom: 3px solid currentColor; padding: 0 0.3rem; }
+  .g3m-fr-words { display: grid; gap: 0.1rem; }
+  .g3m-fr-words span { color: var(--ink-2); font-size: var(--step--1); overflow-wrap: anywhere; }
+  .g3m-fr-say { min-height: 2.6em; margin: 0.4rem 0 0; text-align: center; font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .g3m-fr-part, .g3m-fr-group { transition: none; } }
+</style>
+
+<script>
+  import { barSvg, circleSvg, setSvg, lineSvg, fractionName, unitSum, compareWhy, benchmark } from './g3-fraction.ts';
+
+  class G3Fraction extends HTMLElement {
+    private n = 0;
+    private d = 2;
+    private m = 0;
+    private e = 2;
+    private view = 'bar';
+    private mode = 'build';
+
+    connectedCallback() {
+      this.mode = this.dataset.mode!;
+      this.n = Number(this.dataset.n);
+      this.d = Number(this.dataset.d);
+      [this.m, this.e] = JSON.parse(this.dataset.b!);
+      this.view = this.dataset.view!;
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.view = b.dataset.view!;
+          this.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.draw();
+        }),
+      );
+      const bump = (key: string, by: number) => {
+        if (key === 'd') {
+          this.d = Math.min(12, Math.max(2, this.d + by));
+          this.n = Math.min(this.n, this.d);
+        } else {
+          this.e = Math.min(12, Math.max(2, this.e + by));
+          this.m = Math.min(this.m, this.e);
+        }
+        this.draw();
+      };
+      for (const key of ['d', 'e']) {
+        this.q(`${key}-`)?.addEventListener('click', () => bump(key, -1));
+        this.q(`${key}+`)?.addEventListener('click', () => bump(key, 1));
+      }
+      this.q('n')?.addEventListener('input', () => {
+        this.n = Number((this.q('n') as HTMLInputElement).value);
+        this.draw();
+      });
+      this.q('m')?.addEventListener('input', () => {
+        this.m = Number((this.q('m') as HTMLInputElement).value);
+        this.draw();
+      });
+      this.q('svg').addEventListener('click', (ev) => {
+        if (this.mode !== 'build') return;
+        const p = (ev.target as Element).closest<SVGElement>('[data-part]');
+        if (!p) return;
+        const i = Number(p.dataset.part);
+        this.n = this.n === i + 1 ? i : i + 1;
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-fr="${k}"]`) as HTMLElement;
+    }
+
+    private draw() {
+      const { n, d } = this;
+      this.q('d-out').textContent = String(d);
+      const nIn = this.q('n') as HTMLInputElement | null;
+      if (nIn) {
+        nIn.max = String(d);
+        nIn.value = String(n);
+      }
+      this.q('top').textContent = String(n);
+      this.q('bot').textContent = String(d);
+      this.q('name').textContent = fractionName(n, d);
+      this.q('sum').textContent = unitSum(n, d);
+      const say = this.q('say');
+      if (this.mode === 'build') {
+        const k = Number(this.dataset.k);
+        this.q('svg').innerHTML = this.view === 'circle' ? circleSvg(n, d) : this.view === 'set' ? setSvg(n, d, k) : barSvg(n, d);
+        say.textContent =
+          n === d ? `${d}/${d} is one whole! 🎉` : this.view === 'set' ? `${d * k} things in ${d} equal groups. Each group is 1/${d} of them.` : `${n} of ${d} equal parts. Each part is 1/${d}.`;
+      } else if (this.mode === 'line') {
+        this.q('svg').innerHTML = lineSvg(n, d);
+        say.textContent = benchmark(n, d);
+      } else {
+        this.q('read').hidden = true;
+        const sizes = JSON.parse(this.dataset.sizes!) as [number, number];
+        this.q('e-out').textContent = String(this.e);
+        const mIn = this.q('m') as HTMLInputElement;
+        mIn.max = String(this.e);
+        mIn.value = String(this.m);
+        this.q('svg').innerHTML = barSvg(n, d, sizes[0] * 0.92, `${n}/${d}`) + barSvg(this.m, this.e, sizes[1] * 0.92, `${this.m}/${this.e}`);
+        if (sizes[0] !== sizes[1]) {
+          const same = n * this.e === this.m * d;
+          say.textContent = same
+            ? `Both are ${n}/${d}, but the wholes are different sizes. ${n}/${d} of the bigger whole is more.`
+            : 'The wholes are different sizes, so compare carefully.';
+        } else {
+          say.textContent = compareWhy([n, d], [this.m, this.e]);
+        }
+      }
+    }
+  }
+  customElements.define('g3-fraction', G3Fraction);
+</script>
