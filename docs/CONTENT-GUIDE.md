@@ -78,7 +78,7 @@ Visuals:
 - **Math:** `place-value`, `decimal-zoom`, `column-calc`, `divisibility`, `fraction-explorer`,
   `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`,
   `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`,
-  `data-sorter`, `tenths-shift`, `hundredths-grid`, `factor-lab`, `fraction-split`, `equal-balance`, `angle-turner`, `quad-family`, `prism-faces`, `tile-cover`, `area-sweep`
+  `data-sorter`, `tenths-shift`, `hundredths-grid`, `factor-lab`, `fraction-split`, `equal-balance`, `angle-turner`, `quad-family`, `prism-faces`, `tile-cover`, `area-sweep`, `sequence-grow`
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,

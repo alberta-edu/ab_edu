@@ -156,3 +156,25 @@ describe('tile cover', () => {
     expect(starPieces()).toHaveLength(32);
   });
 });
+
+import { terms, changes, fitStart } from '../src/components/visuals/sequences.ts';
+
+describe('sequences', () => {
+  it('lists the named sequences', () => {
+    expect(terms('square')).toEqual([1, 4, 9, 16, 25]);
+    expect(terms('triangle')).toEqual([1, 3, 6, 10, 15]);
+    expect(terms('fibonacci', 1, 1, 8)).toEqual([1, 1, 2, 3, 5, 8, 13, 21]);
+  });
+  it('builds arithmetic and geometric sequences from a first term and a change', () => {
+    expect(terms('add', 3, 4)).toEqual([3, 7, 11, 15, 19]);
+    expect(terms('add', 30, -5)).toEqual([30, 25, 20, 15, 10]);
+    expect(terms('times', 2, 3)).toEqual([2, 6, 18, 54, 162]);
+    expect(changes('add', [30, 25, 20], -5)).toEqual(['− 5', '− 5']);
+    expect(changes('times', [2, 6, 18], 3)).toEqual(['× 3', '× 3']);
+  });
+  it('keeps terms between 0 and 10 000', () => {
+    expect(fitStart('add', 3, -5)).toBe(20);
+    expect(fitStart('times', 5, 10)).toBe(1);
+    expect(fitStart('times', 5, 3)).toBe(5);
+  });
+});

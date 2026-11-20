@@ -1,0 +1,161 @@
+---
+// Sequences that grow and shrink (MAT4-OI6-GQ1-LO1). Square and triangular numbers as dot
+// pictures, the Fibonacci sequence as squares that fit together, and arithmetic (add or subtract)
+// and geometric (multiply) sequences as bars, each with the change between terms.
+import type { SeqKind } from './sequences.ts';
+
+interface Props {
+  start?: SeqKind;
+  kinds?: SeqKind[];
+  first?: number;
+  change?: number;
+}
+const { start = 'square', kinds = ['square', 'triangle', 'fibonacci', 'add', 'times'], first = 3, change = 4 } = Astro.props;
+const NAMES: Record<SeqKind, string> = { square: 'Square', triangle: 'Triangular', fibonacci: 'Fibonacci', add: 'Arithmetic', times: 'Geometric' };
+---
+<g4m-sequence-grow data-kind={start} data-first={first} data-change={change}>
+  {
+    kinds.length > 1 && (
+      <div class="seg g4m-sg-kinds" role="group" aria-label="Choose a sequence">
+        {kinds.map((k) => <button type="button" data-sg-kind={k} aria-pressed={String(k === start)}>{NAMES[k]}</button>)}
+      </div>
+    )
+  }
+  <svg class="g4m-sg-svg" viewBox="0 0 400 200" role="img" aria-label="Pictures of the first terms of a sequence" data-sg="svg"></svg>
+  <ol class="g4m-sg-terms" data-sg="terms" aria-label="Terms"></ol>
+  <div class="control-row" data-sg="controls" hidden>
+    <div class="control">
+      <span>Start</span>
+      <button type="button" class="icon-btn" data-sg-start="-1" aria-label="Smaller first term">−</button>
+      <b data-sg="start"></b>
+      <button type="button" class="icon-btn" data-sg-start="1" aria-label="Bigger first term">+</button>
+    </div>
+    <div class="control">
+      <span>Change</span>
+      <div class="seg" role="group" aria-label="Change between terms" data-sg="changes"></div>
+    </div>
+  </div>
+  <p class="g4m-sg-say" data-sg="say" aria-live="polite"></p>
+</g4m-sequence-grow>
+
+<style is:global>
+  g4m-sequence-grow { display: block; }
+  .g4m-sg-kinds { flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .g4m-sg-svg { display: block; width: 100%; max-width: 30rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g4m-sg-dot { fill: var(--math); }
+  .g4m-sg-new { fill: var(--sun); stroke: var(--ink); stroke-width: 1; }
+  .g4m-sg-bar { fill: color-mix(in srgb, var(--math) 70%, var(--surface)); }
+  .g4m-sg-sq { fill: color-mix(in srgb, var(--math) 22%, var(--surface)); stroke: var(--ink); stroke-width: 2; }
+  .g4m-sg-sq:last-of-type { fill: color-mix(in srgb, var(--sun) 45%, var(--surface)); }
+  .g4m-sg-num { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g4m-sg-base { stroke: var(--ink-3); stroke-width: 2; }
+  .g4m-sg-terms { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.3rem; list-style: none; padding: 0; margin: 0.4rem 0 0; font-variant-numeric: tabular-nums; }
+  .g4m-sg-terms li { display: inline-flex; align-items: center; gap: 0.3rem; }
+  .g4m-sg-terms b { display: inline-grid; place-items: center; min-width: 2.4rem; height: 2.4rem; padding: 0 0.35rem; border-radius: var(--radius-sm); background: var(--math-soft); font-size: var(--step-0); }
+  .g4m-sg-terms small { color: var(--bad); font-weight: 700; font-size: var(--step--1); }
+  .g4m-sg-say { margin: 0.5rem 0 0; font-weight: 700; }
+  g4m-sequence-grow .seg button:disabled { opacity: 0.35; }
+</style>
+
+<script>
+  import { terms, changes, seqText, fitStart, FIB_SQUARES, type SeqKind } from './sequences.ts';
+
+  const ADD_CHANGES = [-5, -3, -2, 2, 3, 4, 5];
+  const TIMES_CHANGES = [2, 3, 10];
+
+  class SequenceGrow extends HTMLElement {
+    private kind: SeqKind = 'square';
+    private first = 3;
+    private change = 4;
+
+    connectedCallback() {
+      this.kind = this.dataset.kind as SeqKind;
+      this.first = Number(this.dataset.first);
+      this.change = Number(this.dataset.change);
+      this.querySelectorAll<HTMLButtonElement>('[data-sg-kind]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-sg-kind]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.kind = b.dataset.sgKind as SeqKind;
+          if (this.kind === 'add') [this.first, this.change] = [3, 4];
+          if (this.kind === 'times') [this.first, this.change] = [2, 3];
+          this.draw();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-sg-start]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.first = Math.max(this.kind === 'times' ? 1 : 0, Math.min(this.kind === 'times' ? 5 : 40, this.first + Number(b.dataset.sgStart)));
+          this.draw();
+        }),
+      );
+      this.draw();
+    }
+
+    private q(name: string) {
+      return this.querySelector(`[data-sg="${name}"]`) as HTMLElement;
+    }
+
+    private draw() {
+      const k = this.kind;
+      const growing = k === 'add' || k === 'times';
+      if (growing) this.first = fitStart(k, this.first, this.change);
+      const t = k === 'fibonacci' ? terms(k, 1, 1, 8) : terms(k, this.first, this.change);
+      const ch = changes(k, t, this.change);
+      this.q('terms').innerHTML = t.map((v, i) => `<li>${i ? `<small>${ch[i - 1]}</small>` : ''}<b>${v}</b></li>`).join('');
+      this.q('say').textContent = seqText(k, this.first, this.change);
+      this.q('controls').hidden = !growing;
+      if (growing) {
+        this.q('start').textContent = String(this.first);
+        const list = k === 'add' ? ADD_CHANGES : TIMES_CHANGES;
+        this.q('changes').innerHTML = list.map((c) => `<button type="button" data-c="${c}" aria-pressed="${c === this.change}">${k === 'add' ? (c > 0 ? `+${c}` : `−${-c}`) : `×${c}`}</button>`).join('');
+        this.q('changes').querySelectorAll<HTMLButtonElement>('button').forEach((b) =>
+          b.addEventListener('click', () => {
+            this.change = Number(b.dataset.c);
+            this.draw();
+          }),
+        );
+      }
+      this.q('svg').innerHTML = this.picture(t);
+    }
+
+    private picture(t: number[]): string {
+      const k = this.kind;
+      if (k === 'square' || k === 'triangle') {
+        const r = 6;
+        const gap = 16;
+        let x = 10;
+        let out = '';
+        t.forEach((_, idx) => {
+          const n = idx + 1;
+          for (let row = 0; row < n; row++) {
+            const cols = k === 'square' ? n : row + 1;
+            for (let c = 0; c < cols; c++) {
+              const isNew = k === 'square' ? row === n - 1 || c === n - 1 : row === n - 1;
+              const cx = x + c * gap + (k === 'triangle' ? ((n - 1 - row) * gap) / 2 : 0) + r;
+              const cy = 170 - (n - 1 - row) * gap - r;
+              out += `<circle class="${isNew && n > 1 ? 'g4m-sg-new' : 'g4m-sg-dot'}" cx="${cx}" cy="${cy}" r="${r}"/>`;
+            }
+          }
+          out += `<text class="g4m-sg-num" x="${x + (n * gap) / 2}" y="192" text-anchor="middle">${t[idx]}</text>`;
+          x += n * gap + 16;
+        });
+        return out;
+      }
+      if (k === 'fibonacci') {
+        const s = 18;
+        const ox = 200 + 1.5 * s;
+        const oy = 100 + s;
+        return FIB_SQUARES.map(([x, y, n]) => `<rect class="g4m-sg-sq" x="${ox + x * s}" y="${oy + y * s}" width="${n * s}" height="${n * s}"/><text class="g4m-sg-num" x="${ox + (x + n / 2) * s}" y="${oy + (y + n / 2) * s + 5}" text-anchor="middle">${n}</text>`).join('');
+      }
+      const max = Math.max(...t);
+      const w = 50;
+      let out = '<line class="g4m-sg-base" x1="20" y1="175" x2="380" y2="175"/>';
+      t.forEach((v, i) => {
+        const h = max ? Math.max(v ? 3 : 0, (v / max) * 140) : 0;
+        const x = 30 + i * 72;
+        out += `<rect class="g4m-sg-bar" x="${x}" y="${175 - h}" width="${w}" height="${h}" rx="3"/><text class="g4m-sg-num" x="${x + w / 2}" y="${168 - h}" text-anchor="middle">${v}</text>`;
+      });
+      return out;
+    }
+  }
+  customElements.define('g4m-sequence-grow', SequenceGrow);
+</script>
