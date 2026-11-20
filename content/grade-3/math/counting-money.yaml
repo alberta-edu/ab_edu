@@ -1,0 +1,217 @@
+id: counting-money
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ1-LO1]
+order: 3
+title: Counting Coins and Bills
+shortTitle: Counting money
+summary: >-
+  Count nickels, dimes and quarters in cents, count loonies, toonies and bills in dollars, and
+  read prices written the English way and the French way.
+
+bigIdea: |-
+  - Count coins in **cents (¢)**. Start with the coins worth the most.
+  - Count loonies, toonies and bills in **dollars ($)**.
+  - English writes **$5**. French writes **5 $**. Both write the ¢ after the number.
+
+lesson:
+  - title: Count the coins
+    blocks:
+      - type: visual
+        covers: [S1.9, K1.9]
+        component: g3-coin-counter
+        props: { mode: cents, start: [dime, quarter, nickel, quarter] }
+        caption: |-
+          1. Press **Count it**. Watch the biggest coins go first.
+          2. Add more coins and count again.
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ1-LO1#S2.5]
+        title: Remember from Grade 2
+        body: 'You skip counted coins that were all the same: 25, 50, 75, 100.'
+
+  - title: Bigger is not always more
+    blocks:
+      - type: visual
+        covers: [S1.9]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'left', label: 'Left is more' }
+            - { id: 'same', label: 'Same' }
+            - { id: 'right', label: 'Right is more' }
+          cards:
+            - { text: '1 nickel or 1 dime', bin: 'right', why: 'The nickel is the bigger coin, but a dime is worth 10¢ and a nickel only 5¢.' }
+            - { text: '5 nickels or 1 quarter', bin: 'same', why: '5, 10, 15, 20, 25. Five nickels make 25¢.' }
+            - { text: '3 dimes or 1 quarter', bin: 'left', why: '3 dimes make 30¢. That is more than 25¢.' }
+            - { text: '2 dimes and 1 nickel or 1 quarter', bin: 'same', why: '10, 20, 25. That is 25¢, the same as a quarter.' }
+        caption: Which side is worth more money? Count, don’t look at the size.
+
+  - title: Loonies, toonies and bills
+    blocks:
+      - type: visual
+        covers: [S1.10, K1.8]
+        component: g3-coin-counter
+        props: { mode: dollars, start: [toonie, b5, loonie, b10, toonie] }
+        caption: A **loonie** is $1 and a **toonie** is $2. Press **Count it**, then build $50 a new way.
+
+  - title: English and French
+    blocks:
+      - type: visual
+        covers: [K1.8, K1.9, S1.11]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'en', label: 'English' }
+            - { id: 'fr', label: 'French' }
+            - { id: 'both', label: 'Both' }
+          cards:
+            - { text: '$15', bin: 'en', why: 'In English, the $ goes before the number.' }
+            - { text: '15 $', bin: 'fr', why: 'In French, the $ goes after the number.' }
+            - { text: 'The ¢ goes after the number.', bin: 'both', why: 'English writes 75¢ and French writes 75 ¢. The ¢ is after the number in both.' }
+            - { text: '100 $', bin: 'fr', why: 'The $ comes after the number, so this is the French way.' }
+        caption: Canada uses both languages. Sort each price.
+
+keyTerms:
+  - term: Cent (¢)
+    covers: [K1.9, S1.9]
+    definition: 'A small unit of money. A nickel is 5¢, a dime is 10¢ and a quarter is 25¢.'
+  - term: Dollar ($)
+    covers: [K1.8, S1.10]
+    definition: 'A bigger unit of money. A loonie is $1 and a toonie is $2.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.9]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 276 60" class="fig-svg" role="img" aria-label="Coins: 3 quarters, 2 dimes, 1 nickel."><circle cx="27" cy="30" r="21" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="27" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">25¢</text><circle cx="77" cy="30" r="21" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="77" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">25¢</text><circle cx="127" cy="30" r="21" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="127" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">25¢</text><circle cx="171" cy="30" r="15" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="171" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">10¢</text><circle cx="209" cy="30" r="15" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="209" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">10¢</text><circle cx="250" cy="30" r="18" fill="#d9dbe0" stroke="#5d5d66" stroke-width="1.5"/><text x="250" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#1c1b24">5¢</text></svg>
+    prompt: How many **cents** are these coins worth?
+    unit: ¢
+    answer: 100
+    verify: 3 * 25 + 2 * 10 + 5
+    hints:
+      - Start with the quarters. Count by 25s.
+      - Then keep going by 10s for the dimes, and add 5 for the nickel.
+    solution:
+      - 'Quarters: 25, 50, 75.'
+      - 'Dimes: 85, 95. Nickel: **100¢**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.8, S1.11]
+    type: mc
+    prompt: Which shows **twelve dollars** the **French** way?
+    choices: ['12 $', '$12', '12 ¢']
+    answer: 0
+    feedback:
+      '1': 'This is the English way. Where does French put the $?'
+      '2': 'The ¢ sign means cents, not dollars.'
+    hints:
+      - Does French put the $ before or after the number?
+    solution:
+      - 'French puts the dollar sign **after** the number: **12 $**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S1.9]
+    type: mc
+    prompt: |-
+      Nick has **4 nickels**. Dee has **3 dimes**.
+      Nick says, "I have more money. Nickels are bigger!" Who has more?
+    choices: ['Dee', 'Nick', 'Same']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'A coin’s size doesn’t tell its value. Count each person’s cents.'
+      '2': 'Count by 5s for Nick and by 10s for Dee. Do you get the same?'
+    hints:
+      - How much is a nickel worth? A dime?
+      - Count Nick’s coins by 5s and Dee’s coins by 10s.
+    solution:
+      - 'Nick: 5, 10, 15, 20. That is **20¢**.'
+      - 'Dee: 10, 20, 30. That is **30¢**. **Dee** has more.'
+      - 'A nickel is bigger than a dime, but it is worth less.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.10]
+    type: number
+    prompt: |-
+      A game costs **$37**. Hana pays with one $20 bill, one $10 bill and one $5 bill.
+      She adds **toonies** to pay the rest. How many toonies?
+    unit: toonies
+    answer: 1
+    verify: (37 - 20 - 10 - 5) / 2
+    hints:
+      - How much do the three bills make?
+      - How many dollars are still missing? A toonie is $2.
+    solution:
+      - 'Bills: 20, 30, 35. That is $35.'
+      - '$37 is $2 more. One toonie is $2, so she adds **1 toonie**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S1.9]
+    type: build
+    prompt: Make **60¢** with **exactly 8 coins**. Use nickels, dimes and quarters.
+    fields:
+      - { name: q, label: 'Quarters' }
+      - { name: d, label: 'Dimes' }
+      - { name: n, label: 'Nickels' }
+    rules:
+      - { test: 'q % 1 == 0 && d % 1 == 0 && n % 1 == 0 && q >= 0 && d >= 0 && n >= 0', fail: 'Use whole numbers of coins, like 0, 1 or 2.' }
+      - { test: 'q + d + n == 8', fail: 'Count your coins. You need exactly 8.' }
+      - { test: '25 * q + 10 * d + 5 * n == 60', fail: 'You have 8 coins. Count their cents. Is it 60¢?' }
+    examples:
+      - { q: 0, d: 4, n: 4 }
+      - { q: 1, d: 0, n: 7 }
+    counterexamples:
+      - { q: 2, d: 1, n: 0 }
+      - { q: 0, d: 6, n: 2 }
+    hints:
+      - Try 8 coins that are all nickels. How many cents is that? Too many or too few?
+      - Swap a nickel for a dime. Each swap adds 5¢.
+    solution:
+      - '8 nickels make 40¢. We need 20¢ more.'
+      - 'Each nickel swapped for a dime adds 5¢. Swap 4: **4 dimes and 4 nickels** = 40 + 20 = 60¢.'
+      - 'Another way: **1 quarter and 7 nickels**. 25 + 35 = 60¢, with 8 coins.'
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [S1.9]
+    type: investigation
+    prompt: A snack machine takes nickels, dimes and quarters. It gives **no change**. A granola bar costs **85¢**.
+    parts:
+      - type: number
+        prompt: What is the **fewest** coins you can use?
+        unit: coins
+        answer: 4
+        verify: 3 + 1
+        hints:
+          - Use as many quarters as you can without going over 85¢.
+        solution:
+          - '3 quarters make 75¢. One dime makes 85¢.'
+          - 'That is **4 coins**.'
+      - type: number
+        prompt: The machine stops taking **quarters**. Now what is the fewest coins?
+        unit: coins
+        answer: 9
+        verify: 8 + 1
+        hints:
+          - Use as many dimes as you can without going over 85¢.
+        solution:
+          - '8 dimes make 80¢. One nickel makes 85¢.'
+          - 'That is **9 coins**, more than twice as many.'
+    wrapUp: Coins worth more do the same job with fewer coins. Take away the biggest coin, and you need many more.
