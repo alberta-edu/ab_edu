@@ -31,6 +31,7 @@ import G4StarCircle from './G4StarCircle.astro';
 import G4MoonYear from './G4MoonYear.astro';
 import G4PaperBridge from './G4PaperBridge.astro';
 import G4BounceTest from './G4BounceTest.astro';
+import G4RepeatTrials from './G4RepeatTrials.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -67,6 +68,7 @@ const animations = {
   'g4-moon-year': G4MoonYear,
   'g4-paper-bridge': G4PaperBridge,
   'g4-bounce-test': G4BounceTest,
+  'g4-repeat-trials': G4RepeatTrials,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

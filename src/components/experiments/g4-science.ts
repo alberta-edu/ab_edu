@@ -126,3 +126,10 @@ export const BRIDGE = { flatHolds: 3, coins: 20 };
  * from 100 cm bounces to these heights in centimetres, an SI unit.
  */
 export const BOUNCE = { drop: 100, wood: 62, carpet: 24 };
+
+/**
+ * Repeat trials (SCI4-OI7-GQ1-LO1, K2.1, K2.2, S2.1): an invented class test. A toy car rolls down
+ * the same ramp five times, and a measuring tape gives how far it rolls each time, in centimetres.
+ * The results are close but not identical: consistent, so reliable.
+ */
+export const TRIALS = [182, 178, 185, 179, 181];

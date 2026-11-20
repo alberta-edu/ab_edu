@@ -1,0 +1,384 @@
+id: reliable-valid
+grade: 4
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI4-OI7-GQ1-LO1]
+order: 15
+title: Reliable and Valid Evidence
+shortTitle: Reliable and valid
+summary: >-
+  Roll a toy car five times to see why repeated tests build trust, check whether a measurement measures the
+  right thing, and choose tools that make data more accurate.
+
+bigIdea: |-
+  - **Reliable** evidence is consistent. More data, and results others can repeat, make it more reliable.
+  - **Valid** evidence measures what it is supposed to measure, accurately.
+  - **Tools** like rulers, thermometers and stopwatches make data more accurate.
+  - Conclusions must be based on reliable and valid evidence.
+
+lesson:
+  - title: 'Virtual experiment: five trials'
+    blocks:
+      - type: experiment
+        covers: [K2.1, K2.2, S2.1, K2.4]
+        title: Roll the same toy car down the same ramp five times
+        question: |-
+          A toy car rolls down a ramp onto the floor. A measuring tape shows how far it goes.
+
+          The class does it **five times**, the same way each time.
+        animation: g4-repeat-trials
+        predict:
+          choices:
+            - The distances are close, but not exactly the same.
+            - The distance is exactly the same every time.
+            - The distances are completely different every time.
+          answer: 0
+        observe: |-
+          - The car rolled **182, 178, 185, 179 and 181 cm**.
+          - The results were all close together, but no two were exactly the same.
+        explain: |-
+          - Small differences always happen, so one trial can fool you.
+          - Five results that **agree** with each other are **consistent**. That makes the evidence **reliable**.
+          - Measuring with a tape gave accurate numbers, not guesses.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI7-GQ1-LO1#K1.1', 'SCI3-OI7-GQ1-LO1#K1.2']
+        title: From Grade 3
+        body: Accurate data is correct. Good tools and careful measuring improve accuracy.
+
+  - title: Reliable means you can count on it
+    blocks:
+      - type: compare
+        covers: [K2.1, K2.2]
+        columns:
+          - title: Less reliable
+            body: |-
+              - One trial only
+              - Nobody else has tried it
+          - title: More reliable
+            body: |-
+              - Many trials that agree
+              - Another group repeats the test and gets similar results
+      - type: callout
+        variant: tip
+        covers: [K2.2, S2.1]
+        title: Can it be reproduced?
+        body: If another class follows your steps and gets about the same results, your evidence is **reproducible**. That builds trust.
+
+  - title: Valid means it measures the right thing
+    blocks:
+      - type: figure
+        covers: [K2.3, S2.3]
+        figure: >-
+          <svg viewBox="0 0 420 260" class="fig-svg" role="img" aria-label="A bean plant in a pot on a table, with two rulers. Ruler A starts at the table top and measures the pot and the plant together. Ruler B starts at the soil and measures only the plant.">
+          <rect x="0" y="220" width="420" height="40" style="fill:#a8743d"/>
+          <path d="M160,220 L260,220 L270,160 L150,160 Z" style="fill:#c0563a;stroke:#7d2f1c;stroke-width:2"/><rect x="152" y="152" width="116" height="10" style="fill:#5b3a1f"/>
+          <path d="M210,152 Q206,100 212,50" style="fill:none;stroke:#4f9a3a;stroke-width:5"/>
+          <ellipse cx="196" cy="70" rx="16" ry="8" transform="rotate(-25 196 70)" style="fill:#6cbf4a"/><ellipse cx="228" cy="88" rx="16" ry="8" transform="rotate(25 228 88)" style="fill:#6cbf4a"/><ellipse cx="212" cy="46" rx="12" ry="6" style="fill:#6cbf4a"/>
+          <rect x="80" y="40" width="20" height="180" style="fill:#f2d88a;stroke:#8a6d1a"/><text x="90" y="32" text-anchor="middle" class="fig-label">A</text>
+          <rect x="320" y="40" width="20" height="112" style="fill:#f2d88a;stroke:#8a6d1a"/><text x="330" y="32" text-anchor="middle" class="fig-label">B</text>
+          <line x1="100" y1="40" x2="212" y2="40" style="stroke:var(--ink-2);stroke-dasharray:4 4"/><line x1="212" y1="40" x2="320" y2="40" style="stroke:var(--ink-2);stroke-dasharray:4 4"/>
+          <line x1="268" y1="152" x2="320" y2="152" style="stroke:var(--ink-2);stroke-dasharray:4 4"/>
+          <text x="40" y="250" class="fig-small" style="fill:#fff">A: from the table ✗</text><text x="280" y="250" class="fig-small" style="fill:#fff">B: from the soil ✓</text>
+          </svg>
+        caption: To measure how tall the **plant** is, start at the soil. Ruler A measures the pot too, so its number isn’t valid.
+      - type: callout
+        variant: mistake
+        covers: [K2.3, K2.1]
+        title: Reliable isn’t the same as valid
+        body: Measuring from the table five times gives the same wrong number five times. It is consistent, but it doesn’t measure the plant.
+
+  - title: Tools make data more accurate
+    blocks:
+      - type: table
+        covers: [K2.4, S2.4, S2.3]
+        headers: [To find, Less accurate, More accurate]
+        rows:
+          - ['How long a race takes', 'Counting “one-Mississippi, two-Mississippi”', '⏱️ A stopwatch']
+          - ['How far a paper plane flies', 'Counting footsteps', '📏 A measuring tape']
+          - ['How warm the water is', 'Dipping a finger in', '🌡️ A thermometer']
+          - ['How much a pumpkin weighs', 'Lifting it and guessing', '⚖️ A scale']
+      - type: callout
+        variant: tip
+        covers: [S2.3, S2.4]
+        title: Use the tool the right way
+        body: A tool only helps if you use it accurately. Line up the zero, read at eye level, and write down the unit.
+
+  - title: Check the evidence together
+    blocks:
+      - type: example
+        covers: [S2.5, S2.2, U2.1]
+        title: A class checks its data
+        problem: 'Groups measured how far the toy car rolls. Before drawing a conclusion, the class checks each group’s data.'
+        steps:
+          - '**Enough data?** Did they do several trials, or just one?'
+          - '**Repeatable?** Did other groups get similar results?'
+          - '**Valid?** Did they measure from the bottom of the ramp, as planned?'
+          - '**Accurate?** Did they use the measuring tape, not footsteps?'
+          - '**Conclude.** Use only the data that passes these checks.'
+
+keyTerms:
+  - term: Reliable
+    covers: [K2.1, K2.2]
+    definition: Consistent. Reliable evidence comes out about the same when the test is repeated.
+  - term: Valid
+    covers: [K2.3]
+    definition: Accurately shows what it is supposed to describe or measure.
+  - term: Trial
+    covers: [S2.1, K2.2]
+    definition: One run of a test. Scientists often do several trials.
+  - term: Reproduce
+    covers: [K2.2]
+    definition: To repeat someone’s test and get similar results.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: What does it mean when evidence is **reliable**?
+    choices:
+      - It is consistent. Repeating the test gives about the same results.
+      - It came from just one very careful test.
+      - It matches what you predicted.
+      - It uses big numbers.
+    answer: 0
+    feedback:
+      '1': One test, however careful, can be a fluke. What makes evidence trustworthy?
+      '2': Evidence can be reliable even when your prediction was wrong. What does reliable mean?
+      '3': Size doesn’t matter. What matters when you repeat the test?
+    hints:
+      - Think of the five trials of the toy car.
+    solution:
+      - Reliable means **consistent**. Repeating the test gives about the same results.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.4, S2.4]
+    type: mc
+    prompt: The class wants to know exactly how long it takes each student to run around the gym. Which gives the most accurate data?
+    choices:
+      - A stopwatch
+      - Counting out loud
+      - Guessing by watching
+      - Watching the clock on the wall
+    answer: 0
+    feedback:
+      '1': People count at different speeds. Is there a tool made for timing?
+      '2': A guess isn’t a measurement. Which tool times things?
+      '3': A wall clock helps, but it’s hard to read seconds exactly as a runner finishes. Which tool is made for this?
+    hints:
+      - Which tool is made for measuring short times exactly?
+    solution:
+      - A **stopwatch** measures time to the second, or better. Tools make data more accurate.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.3, S2.3]
+    type: mc
+    prompt: Eli wants to know how tall his bean plant is. He measures from the table, under the pot, to the top leaf. Is his measurement valid?
+    choices:
+      - No. It includes the pot, so it doesn’t measure only the plant.
+      - Yes. He used a ruler, so it must be right.
+      - Yes. The top leaf is the right place to stop.
+      - No. Plants can’t be measured with rulers.
+    answer: 0
+    feedback:
+      '1': A ruler is a good tool. But where did he start measuring?
+      '2': Stopping at the top leaf is right. Where should he start?
+      '3': Rulers measure plants well. What did Eli do wrong?
+    hints:
+      - Look at the picture with rulers A and B. Which one is Eli using?
+    solution:
+      - Eli measured the pot **and** the plant. To be **valid**, he should start at the soil.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K2.2, S2.1, S2.2]
+    type: mc
+    prompt: |-
+      Two groups tested how far a ball rolls down a ramp.
+
+      | Group | Distances |
+      |---|---|
+      | Red | 95 cm |
+      | Blue | 92 cm, 96 cm, 94 cm, 93 cm |
+
+      Whose evidence is more **reliable**?
+    choices:
+      - Blue’s, because it has more trials that agree with each other.
+      - Red’s, because it has one clear answer.
+      - Red’s, because 95 cm is the biggest number.
+      - Neither, because the numbers aren’t all the same.
+    answer: 0
+    feedback:
+      '1': One result is clear, but how do you know it wasn’t a fluke?
+      '2': A bigger number isn’t more trustworthy. What makes evidence reliable?
+      '3': Results are never exactly the same. Are Blue’s close together?
+    hints:
+      - Which group did more trials? Do its results agree?
+    solution:
+      - Blue did **4 trials**, and they are close together. That is consistent evidence.
+      - Red’s single trial might be a fluke. More data makes evidence more reliable.
+
+  - id: b2
+    level: 2
+    thinking: whatif
+    covers: [K2.2, U2.1]
+    type: mc
+    prompt: Your class finds that pill bugs choose damp soil. Another class follows your exact steps, but their pill bugs choose dry soil. What should you think?
+    choices:
+      - The evidence isn’t reliable yet. Both classes should check their steps and test again.
+      - Your class is right, because you did it first.
+      - The other class must be wrong, because they disagree with you.
+      - Pill bugs change their minds, so testing is useless.
+    answer: 0
+    feedback:
+      '1': Being first doesn’t make a result right. What does it mean when a test can’t be reproduced?
+      '2': Maybe, maybe not. How could you find out which result holds up?
+      '3': Testing is how we find out. What should happen next?
+    hints:
+      - Reliable evidence can be reproduced. Was it?
+    solution:
+      - If the results can’t be **reproduced**, the evidence isn’t reliable yet.
+      - Both classes should look for differences in how they tested, then repeat the test.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [S2.3, K2.3, K2.4]
+    type: mc
+    prompt: To measure the air temperature outside, Nia holds the bottom of a thermometer tightly in her warm hand. What is the problem?
+    choices:
+      - Her hand warms the thermometer, so it doesn’t show the air’s temperature.
+      - Thermometers can’t measure air.
+      - She should have guessed instead.
+      - Nothing. A thermometer is always accurate.
+    answer: 0
+    feedback:
+      '1': Thermometers measure air temperature all the time. What is touching this one?
+      '2': A tool is more accurate than a guess, if it is used correctly.
+      '3': A tool is only accurate when it’s used the right way. Is she using it the right way?
+    hints:
+      - What is the bottom of the thermometer measuring, the air or her hand?
+    solution:
+      - The thermometer measures what touches it, her **hand**. The reading isn’t **valid** for the air.
+      - She should hold the top and let the bottom hang in the air, out of direct sunlight.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S2.5, S2.3, K2.3]
+    type: mc
+    prompt: Two groups measure the same sunflower. Group 1 gets **140 cm**. Group 2 gets **152 cm**. What is the best thing to do?
+    choices:
+      - Measure again together, from the soil to the top, with the same tape.
+      - Pick the bigger number, since the plant is growing.
+      - Pick the smaller number, to be safe.
+      - Write down both numbers and move on.
+    answer: 0
+    feedback:
+      '1': Picking one number doesn’t explain why they disagree. What could explain it?
+      '2': Picking one number doesn’t explain why they disagree. What could explain it?
+      '3': Two different heights for one plant can’t both be right. How could you find the mistake?
+    hints:
+      - Why might two groups get different numbers for the same plant?
+    solution:
+      - They may have started at different places or read the tape differently.
+      - '**Collaborating** to check how each group measured, then measuring together, gives valid, reliable data.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.2, K2.4, S2.2, U2.1, S2.3]
+    type: investigation
+    prompt: |-
+      Kai says, **“A toy car rolls farther from a high ramp than a low ramp.”** Here is his evidence:
+
+      | Ramp | Trials | Distance |
+      |---|---|---|
+      | Low | 1 | about 90 cm, measured in footsteps |
+      | High | 1 | about 140 cm, measured in footsteps |
+    parts:
+      - type: mc
+        prompt: What makes his evidence **less reliable**?
+        choices:
+          - He did only one trial for each ramp.
+          - He used two different ramp heights.
+          - His numbers end in zero.
+        answer: 0
+        feedback:
+          '1': Comparing two ramp heights is the whole point of his test. What is missing?
+          '2': That doesn’t affect trust in the results. How many times did he test?
+        hints:
+          - Look at the Trials column.
+        solution:
+          - One trial each could be a fluke. **More trials** would make the evidence more reliable.
+      - type: mc
+        prompt: What makes his data **less accurate**?
+        choices:
+          - He measured with footsteps instead of a measuring tape.
+          - He measured in centimetres.
+          - He measured the distance instead of the speed.
+        answer: 0
+        feedback:
+          '1': Centimetres are a good SI unit. How did he actually measure?
+          '2': Distance is what his claim is about. So what made the numbers less accurate?
+        hints:
+          - Footsteps are different sizes. What tool would be better?
+        solution:
+          - Footsteps aren’t all the same size. A **measuring tape** gives accurate centimetres.
+      - type: mc
+        prompt: What is Kai’s best next step before he draws a conclusion?
+        choices:
+          - Repeat each ramp several times, measuring with a tape.
+          - Announce his conclusion, because the difference is big.
+          - Test a third ramp height once with footsteps.
+        answer: 0
+        feedback:
+          '1': A big difference from one weak test can still be wrong. What would make the evidence stronger?
+          '2': More of the same weak evidence won’t help much. What two fixes do you know?
+        hints:
+          - Fix both problems you found.
+        solution:
+          - Do **several trials** for each ramp, and measure with a **tape**. Then the evidence will be reliable and accurate.
+    wrapUp: A conclusion is only as strong as the evidence behind it.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [S2.2, U2.1]
+    type: mc
+    prompt: |-
+      A class timed how long an ice cube took to melt in two places, three times each, with a stopwatch.
+
+      | Place | Trial 1 | Trial 2 | Trial 3 |
+      |---|---|---|---|
+      | Sunny window | 20 min | 21 min | 19 min |
+      | Shady counter | 34 min | 33 min | 35 min |
+
+      Which conclusion does the evidence support?
+    choices:
+      - In this classroom, ice cubes melted faster in the sunny window than on the shady counter.
+      - Ice always melts in exactly 20 minutes.
+      - Ice melts faster in the shade.
+      - Every place in the world melts ice in about 20 minutes.
+    answer: 0
+    feedback:
+      '1': The times were close, but were they exactly 20 every time?
+      '2': Compare the two rows. Which one has smaller times?
+      '3': They only tested two places in one classroom. Can they say that about the whole world?
+    hints:
+      - Which place had the shorter times? Are the trials consistent?
+      - How far does this evidence reach? Only as far as what was tested.
+    solution:
+      - In both places, the three trials agree, so the evidence is **reliable**. A stopwatch made it **accurate**.
+      - The sunny window times are much shorter, so ice melted faster there.
+      - A good conclusion stays inside the evidence. It is about **this** test, not every place in the world.
