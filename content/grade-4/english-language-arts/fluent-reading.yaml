@@ -1,0 +1,411 @@
+id: fluent-reading
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI6
+outcomes: [LANENG4-OI6-GQ1-LO1, LANENG4-OI7-GQ1-LO1]
+order: 9
+title: Reading Fluently and Fixing Confusion
+shortTitle: Fluency & fixing confusion
+summary: >-
+  Read in phrases with expression, let punctuation guide your voice, read dialogue like the characters,
+  and use fix-up strategies when reading gets confusing.
+
+bigIdea: |-
+  - **Fluent** readers read accurately, smoothly and with expression, so they can focus on the meaning.
+  - Good readers **notice** when they get confused, and try a strategy to fix it.
+  - Thinking about your own thinking helps you find the strategies that work for **you**.
+
+lesson:
+  - title: What fluent reading sounds like
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, U1.1]
+        component: phrase-reader
+        props:
+          lines:
+            - Something *scratched* / at the side of the tent. //
+            - Lena sat straight up / in her sleeping bag.
+        caption: Press **Read it** in each mode. Which one helps you understand what is happening?
+      - type: compare
+        covers: [K1.1, U1.1]
+        columns:
+          - title: 🎯 Accuracy
+            body: Reading the words **correctly**.
+          - title: ⚡ Automaticity
+            body: Knowing words **right away**, without stopping to sound them out.
+          - title: 🎭 Prosody
+            body: Reading with **expression**, in phrases, with the right stress and pauses.
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI6-GQ1-LO1#K1.1']
+        title: Remember from Grade 3
+        body: Fluency grows over time with practice.
+
+  - title: Punctuation guides your voice
+    blocks:
+      - type: table
+        covers: [S1.1]
+        caption: Punctuation marks tell your voice what to do.
+        headers: [Mark, Your voice…, Example]
+        rows:
+          - ['**.** period', 'drops a little, then stops.', 'It’s the wind.']
+          - ['**?** question mark', 'rises at the end.', 'Did you hear that?']
+          - ['**!** exclamation mark', 'gets strong and excited.', 'That is NOT the wind!']
+          - ['**,** comma', 'takes a short pause.', 'Scratch, scratch.']
+          - ['**“ ”** quotation marks', 'changes to sound like the character.', '“Go to sleep.”']
+
+  - title: Read the story
+    blocks:
+      - type: passage
+        id: tent
+        title: The Thing in the Tent
+        form: Realistic fiction
+        paragraphs:
+          - Something scratched at the side of the tent. Lena sat straight up in her sleeping bag.
+          - “Did you hear that?” she whispered.
+          - Her brother Kofi didn’t open his eyes. “It’s the wind. Go to sleep.”
+          - Scratch. Scratch, scratch. The tent wall bulged inward, as if something was pushing its nose against it.
+          - “That is NOT the wind!” Lena hissed. She grabbed the flashlight and clicked it on.
+          - A pair of round, shining eyes stared back at her through the mesh window. Then a striped tail flicked, and a raccoon waddled off toward the picnic table, where Kofi had left the marshmallows.
+          - Kofi groaned. “Okay,” he mumbled. “Maybe it wasn’t the wind.”
+        note: An original story written for Alberta Edu. Paragraph numbers help you point to evidence.
+
+  - title: Read dialogue like the characters
+    blocks:
+      - type: visual
+        covers: [S1.2, S1.1]
+        component: phrase-reader
+        props:
+          speakers: [Lena, Kofi, Lena, Kofi]
+          lines:
+            - Did you hear that?
+            - It’s the wind. / Go to sleep.
+            - That is *NOT* / the wind!
+            - Okay. // Maybe / it wasn’t / the wind.
+        caption: Press **Read it**. Then read each line aloud the way that character feels.
+      - type: table
+        covers: [S1.2]
+        caption: The words around the dialogue tell you how to read it.
+        headers: [Line, Clue in the story, How to read it]
+        rows:
+          - ['“Did you hear that?”', '*she whispered*', 'Quiet and worried, rising at the end.']
+          - ['“It’s the wind. Go to sleep.”', '*didn’t open his eyes*', 'Slow, flat and sleepy.']
+          - ['“That is NOT the wind!”', '*Lena hissed*, and NOT in capitals', 'Sharp and scared, with strong stress on NOT.']
+
+  - title: Before, during and after
+    blocks:
+      - type: compare
+        covers: ['LANENG4-OI7-GQ1-LO1#K6.1', 'LANENG4-OI7-GQ1-LO1#K1.1', 'LANENG4-OI7-GQ1-LO1#S1.2']
+        columns:
+          - title: 📘 Before
+            body: Look at the title and pictures. Ask, “What do I already know? What do I want to find out?”
+          - title: 📖 During
+            body: Check yourself. “Does this make sense? What will happen next?”
+          - title: ✅ After
+            body: Ask, “What was it mostly about? What questions do I still have?”
+      - type: callout
+        variant: tip
+        covers: ['LANENG4-OI7-GQ1-LO1#S1.1', 'LANENG4-OI7-GQ1-LO1#U1.1']
+        title: Longer books, same tools
+        body: Chapter books are longer and harder. These strategies help you read them on your own, a chapter at a time.
+
+  - title: When reading gets stuck
+    blocks:
+      - type: visual
+        covers: ['LANENG4-OI7-GQ1-LO1#K6.3', 'LANENG4-OI7-GQ1-LO1#S6.1']
+        component: card-sort
+        props:
+          bins:
+            - { id: reread, label: Reread, icon: 🔁 }
+            - { id: ahead, label: Read ahead, icon: ⏩ }
+            - { id: picture, label: Visualize, icon: 🎨 }
+            - { id: question, label: Ask a question, icon: ❓ }
+            - { id: word, label: Solve the word, icon: 🧩 }
+            - { id: choose, label: Choose another book, icon: 📚 }
+          cards:
+            - { text: I got to the end of the page and I don’t know what happened., bin: reread, why: 'Go back and read it again, more slowly.' }
+            - { text: 'I don’t know the word *mesh*, but the rest of the sentence might help.', bin: ahead, why: 'Keep reading to the end of the sentence. *Window* is a clue.' }
+            - { text: I can’t imagine what the tent wall looked like when it “bulged inward.”, bin: picture, why: 'Make a picture in your mind, or sketch it.' }
+            - { text: Why would anything scratch a tent at night?, bin: question, why: 'Asking a question gives you something to look for as you read.' }
+            - { text: 'I can’t read the word *marshmallows*.', bin: word, why: 'Break it into parts: marsh / mal / lows.' }
+            - { text: Almost every sentence on this page has a word I don’t know., bin: choose, why: 'If most words are too hard, choose a text that fits you better, then come back later.' }
+        caption: What would you try in each case?
+      - type: table
+        covers: ['LANENG4-OI7-GQ1-LO1#K6.2', 'LANENG4-OI7-GQ1-LO1#S6.2']
+        caption: Problems can happen at three levels.
+        headers: [Level, The problem, Try…]
+        rows:
+          - ['**Word**', 'I can’t read or don’t know a word.', 'Solve the word, or read ahead for clues.']
+          - ['**Sentence**', 'I read the words, but the sentence makes no sense.', 'Reread it, or visualize it.']
+          - ['**Whole passage**', 'I can’t say what the story is about.', 'Ask questions, then reread.']
+
+  - title: Think about your thinking
+    blocks:
+      - type: example
+        covers: ['LANENG4-OI7-GQ1-LO1#K6.4', 'LANENG4-OI7-GQ1-LO1#S6.3', 'LANENG4-OI7-GQ1-LO1#U6.1']
+        title: A reader’s thinking, out loud
+        problem: Jo reads paragraph 4 of “The Thing in the Tent.”
+        steps:
+          - '**Notice the problem:** “Wait. I don’t get what *bulged inward* means.”'
+          - '**Consider options:** “I could reread, ask someone, or try to picture it.”'
+          - '**Try one:** “I’ll picture it. Something pushes on the tent from outside, so the wall puffs in.”'
+          - '**Reflect:** “That worked! Picturing helps me most with describing words.”'
+          - '**Adjust:** “Next time I get stuck on a description, I’ll try picturing first.”'
+      - type: callout
+        variant: tip
+        covers: ['LANENG4-OI7-GQ1-LO1#K6.4', 'LANENG4-OI7-GQ1-LO1#S6.3']
+        title: This is metacognition
+        body: '**Metacognition** means being aware of how you think. It helps you learn which strategies work best for you.'
+
+keyTerms:
+  - term: Fluency
+    covers: [K1.1]
+    definition: Reading with accuracy, automaticity and prosody, while focusing on meaning.
+  - term: Automaticity
+    covers: [K1.1]
+    definition: Knowing words right away, without having to stop and sound them out.
+  - term: Prosody
+    covers: [K1.1, S1.1]
+    definition: Reading with expression, using stress, pauses, phrasing and the right tone.
+  - term: Self-monitoring
+    covers: ['LANENG4-OI7-GQ1-LO1#S6.1']
+    definition: Noticing when your reading stops making sense, and fixing it.
+  - term: Metacognition
+    covers: ['LANENG4-OI7-GQ1-LO1#K6.4']
+    definition: Being aware of your own thinking, so you can choose and adjust your strategies.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1]
+    type: mc
+    prompt: How should your voice sound at the end of **“Did you hear that?”**
+    choices:
+      - It should rise, because it is a question.
+      - It should drop and stop, because it is a statement.
+      - It should get loud and strong, because it is an exclamation.
+      - It should stay flat, because punctuation doesn’t change your voice.
+    answer: 0
+    feedback:
+      '1': Look at the mark at the end. Is it a period?
+      '2': Is there an exclamation mark? And Lena is whispering.
+      '3': Read it aloud with a flat voice. Does it sound like a question?
+    hints:
+      - What mark ends the line? What does it tell your voice?
+    solution:
+      - A **question mark** tells your voice to rise at the end, the way people sound when they ask something.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.1, U1.1]
+    type: mc
+    prompt: Ivy reads every word correctly, but slowly, one word at a time, in a flat voice. Which part of fluency does she most need to work on?
+    choices:
+      - Reading in phrases, with expression
+      - Reading every word correctly
+      - Reading a harder book
+      - Reading faster than everyone else
+    answer: 0
+    feedback:
+      '1': She already reads every word correctly. What is missing?
+      '2': A harder book would make it worse. What does her reading sound like?
+      '3': Fluent reading isn’t a race. What would make it sound natural?
+    hints:
+      - She has accuracy. Is her reading smooth? Does it have expression?
+    solution:
+      - Ivy is **accurate**. She needs to group words into phrases and add expression, which is **prosody**, and to know words faster.
+      - Then she can focus on what the words mean.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: ['LANENG4-OI7-GQ1-LO1#K6.3', 'LANENG4-OI7-GQ1-LO1#S6.1']
+    type: mc
+    prompt: You read “The tent wall bulged inward,” and you can’t imagine what that looks like. Which strategy fits best?
+    choices:
+      - Visualize it, or sketch it
+      - Choose a different book
+      - Skip the rest of the story
+      - Read the next chapter first
+    answer: 0
+    feedback:
+      '1': One hard sentence isn’t a reason to give up the book. What could help you see it?
+      '2': Skipping means you might miss what happens. What could help you understand?
+      '3': This book doesn’t have chapters, and this sentence is the problem.
+    hints:
+      - The problem is that you can’t **see** it. Which strategy is about pictures?
+    solution:
+      - '**Visualizing** means making a picture in your mind. Picture something pushing on the tent from outside, so the wall puffs in.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: perspective
+    covers: [S1.2]
+    type: mc
+    prompt: How should you read Kofi’s words in paragraph 3, **“It’s the wind. Go to sleep.”**?
+    choices:
+      - Slow and sleepy, because his eyes are still closed
+      - Loud and scared, because something is outside
+      - Fast and excited, because he loves camping
+      - Whispering and worried, just like his sister
+    answer: 0
+    feedback:
+      '1': Is Kofi scared? What does he think the noise is?
+      '2': Is there any clue that Kofi is excited? Look at his eyes.
+      '3': Lena whispers, but is Kofi worried? He thinks it’s just the wind.
+    hints:
+      - Look at what Kofi is doing just before he talks.
+    solution:
+      - Kofi *didn’t open his eyes*. He is half asleep and not worried at all.
+      - Reading his line slow and sleepy shows that you understand the character.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S1.2, S1.1]
+    type: evidence
+    prompt: Tap the sentence that tells you **how** to say Lena’s line in paragraph 5.
+    passage: tent
+    paragraphs: [5]
+    answer: [p5s2]
+    feedback:
+      p5s1: This is the line itself. The capital letters help, but which sentence tells you how she said it?
+      p5s3: This tells what she does next. Which sentence tells how she spoke?
+    hints:
+      - Look for the speaking word after the line.
+    solution:
+      - '“Lena hissed.” To hiss is to speak in a sharp, angry whisper.'
+      - Read the line sharp and quiet, with strong stress on NOT.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: ['LANENG4-OI7-GQ1-LO1#S6.1', 'LANENG4-OI7-GQ1-LO1#K6.3', 'LANENG4-OI7-GQ1-LO1#S6.2']
+    type: mc
+    prompt: |-
+      Mo reads:
+
+      > A pair of round, shining eyes stared back at her through the mesh window.
+
+      He doesn’t know *mesh*, so he stops reading the story. What would be a better plan?
+    choices:
+      - Read to the end of the sentence. *Through the window* shows that mesh is something you can see through.
+      - Put the book away for good, because it has a word he doesn’t know.
+      - Skip to the last page, to find out how the story ends.
+      - Say *mesh* louder and louder, until it makes sense.
+    answer: 0
+    feedback:
+      '1': One new word isn’t a reason to stop. Is there a clue nearby?
+      '2': He would miss the raccoon! What could help him with the word?
+      '3': Saying it louder doesn’t give the meaning. Where could a clue be?
+    hints:
+      - What words come right after *mesh*?
+    solution:
+      - Noticing he is stuck was good. Stopping for good was not.
+      - Reading ahead gives a clue. You can see eyes **through** the mesh window, so mesh is a net you can see through.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: ['LANENG4-OI7-GQ1-LO1#K6.2', 'LANENG4-OI7-GQ1-LO1#K6.3']
+    type: mc
+    prompt: Jin can read every word of a chapter, but at the end he can’t say what it was about. What level is his problem, and what should he try?
+    choices:
+      - The whole passage. He should ask himself questions as he goes, then reread.
+      - A word. He should break each long word into parts.
+      - A sentence. He should read each sentence faster.
+      - No problem. Reading every word means he understood it.
+    answer: 0
+    feedback:
+      '1': He can read every word. So is the problem a word?
+      '2': Reading faster usually makes this worse. Is the problem one sentence, or the whole thing?
+      '3': Can he say what it was about? Then did he understand it?
+    hints:
+      - He can read the words. What can’t he do?
+    solution:
+      - Jin’s problem is with the **whole passage**. He has the words, but not the meaning.
+      - Asking “What is happening? Who is this?” as he reads, then rereading, helps him follow it.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: ['LANENG4-OI7-GQ1-LO1#K6.4', 'LANENG4-OI7-GQ1-LO1#S6.2', 'LANENG4-OI7-GQ1-LO1#S6.3', 'LANENG4-OI7-GQ1-LO1#S1.1']
+    type: investigation
+    prompt: |-
+      Ana is reading her first long chapter book on her own. In chapter 3, she says:
+
+      > Wait. Who is Theo? And is Jess the cousin or the friend? I’m lost.
+    parts:
+      - type: mc
+        prompt: What problem has Ana **identified**?
+        choices:
+          - She has lost track of who the characters are.
+          - She can’t read the words in the book.
+          - She doesn’t like the story.
+          - She has forgotten which chapter she is on.
+        answer: 0
+        feedback:
+          '1': She can read the names. What is confusing her?
+          '2': She doesn’t say she dislikes it. What does she say?
+          '3': She knows she is in chapter 3. What is she lost about?
+        hints:
+          - Look at her questions. What are they all about?
+        solution:
+          - Her questions are all about **who people are**. She has lost track of the characters.
+      - type: mc
+        prompt: Which option fits **this** problem best?
+        choices:
+          - Make a quick list of each character and who they are, flipping back to find them.
+          - Read the rest of the book much faster, so it all comes together.
+          - Visualize the setting, like the house where the story takes place.
+          - Sound out each character’s name in parts.
+        answer: 0
+        feedback:
+          '1': Reading faster usually makes it harder to keep people straight.
+          '2': Picturing the house is a good strategy, but is the house her problem?
+          '3': She can say the names. She doesn’t know who they are.
+        hints:
+          - Her problem is **who is who**. Which option helps with that?
+        solution:
+          - A character list fixes this exact problem. Choose the strategy that matches the problem.
+      - type: mc
+        prompt: The list helps, and Ana enjoys the rest of the book. What should she **reflect** on, to help her next time?
+        choices:
+          - “Lists help me when a book has lots of characters. I’ll start one in chapter 1 next time.”
+          - “I should only read short books, because long ones have too many people.”
+          - “I was just lucky this time, so it won’t work again.”
+          - “I don’t need to think about it now, because the book is finished.”
+        answer: 0
+        feedback:
+          '1': She just showed she can read a long book. Is this the lesson?
+          '2': She chose a strategy on purpose. Was it luck?
+          '3': Reflecting after reading is what helps next time.
+        hints:
+          - What did she learn about how **she** reads best?
+        solution:
+          - Reflecting means asking what worked and why. Then she can adjust, and start the list earlier next time.
+    wrapUp: Metacognition is a loop. Notice the problem, choose a strategy that fits it, check if it worked, and adjust for next time.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [S1.2, U1.1]
+    type: evidence
+    prompt: At the end, Kofi **mumbles**, “Maybe it wasn’t the wind.” His line should sound a little embarrassed. Tap the sentence that explains **why** he feels that way.
+    passage: tent
+    paragraphs: [3, 6]
+    answer: [p6s1, p6s2]
+    feedback:
+      p3s1: This shows he was too sleepy to look. Which sentence proves he was wrong?
+      p3s2: This is what he said before. Which sentence shows it wasn’t the wind?
+    hints:
+      - What did Kofi say the noise was? What was it really?
+    solution:
+      - Kofi said, “It’s the wind,” without even opening his eyes. Then shining eyes stared through the window, and a **raccoon** waddled off.
+      - Kofi was wrong, and the raccoon went for the marshmallows **he** left out. So his line sounds embarrassed.
+      - Reading a line with the right feeling shows you understand the events of the story.
