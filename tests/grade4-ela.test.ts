@@ -141,3 +141,25 @@ describe('handwriting lab', () => {
     expect(reachFor('G').note).toMatch(/sideways from F/);
   });
 });
+
+import { compareSentence, compareWords } from '../src/components/visuals/compare-scale.ts';
+
+describe('compare scale', () => {
+  const tall = { adjective: 'tall', er: 'taller', est: 'tallest', items: [{ name: 'Ava', icon: '', size: 1 }, { name: 'Ben', icon: '', size: 1.2 }, { name: 'Cal', icon: '', size: 1.4 }] };
+  it('uses -er for two things and -est for three', () => {
+    expect(compareSentence(tall, 2)).toBe('Ben is <mark>taller</mark> than Ava.');
+    expect(compareSentence(tall, 3)).toBe('Cal is the <mark>tallest</mark> of all.');
+  });
+  it('uses more and most for a long adjective', () => {
+    const long = { adjective: 'colourful', long: true, items: tall.items };
+    expect(compareWords(long, 2)).toBe('more colourful');
+    expect(compareWords(long, 3)).toBe('most colourful');
+  });
+});
+
+describe('compare scale names', () => {
+  it('lowercases "The" inside the sentence', () => {
+    const s = { adjective: 'fast', er: 'faster', est: 'fastest', items: [{ name: 'The snail', icon: '', size: 1 }, { name: 'The bike', icon: '', size: 2 }, { name: 'The jet', icon: '', size: 3 }] };
+    expect(compareSentence(s, 2)).toBe('The bike is <mark>faster</mark> than the snail.');
+  });
+});
