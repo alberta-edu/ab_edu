@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
 import { addFrames, subtractFrames, value, matSvg } from '../src/components/visuals/g3-blocks.ts';
 import { compareSign, compareSteps, digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
 
@@ -55,5 +56,21 @@ describe('Grade 3 base-ten blocks', () => {
     expect(f.filter((x) => x.say.includes('Break')).map((x) => x.say)).toEqual(['Not enough ones. Break 1 hundred into 10 tens.', 'Not enough ones. Break 1 ten into 10 ones.']);
     expect(value(subtractFrames(342, 158).at(-1)!)).toBe(184);
     expect(matSvg(f[0])).toContain('g3m-bk-a');
+  });
+});
+
+describe('Grade 3 groups and arrays', () => {
+  it('says multiplication as groups, adding and skip counting', () => {
+    expect(repeatedAdd(3, 4)).toBe('4 + 4 + 4 = 12');
+    expect(skipCount(3, 4)).toBe('4, 8, 12');
+    expect(groupsSay(5, 0)).toContain('5 × 0 = 0');
+    expect(groupsSay(6, 1)).toContain('6 × 1 = 6');
+  });
+  it('shares, groups and takes away with remainders', () => {
+    expect(share(13, 4)).toEqual({ each: 3, left: 1, rounds: 3 });
+    expect(shareSay(12, 4)).toContain('12 ÷ 4 = 3');
+    expect(groupSay(14, 4)).toContain('2 are left over');
+    expect(takeAwaySay(12, 4)).toBe('12 − 4 − 4 − 4 = 0. That is 3 jumps, so 12 ÷ 4 = 3');
+    expect(splitSay(7, 8, 5)).toBe('7 × 8 = 7 × 5 + 7 × 3 = 35 + 21 = 56');
   });
 });
