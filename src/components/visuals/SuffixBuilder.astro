@@ -1,0 +1,88 @@
+---
+// Tap a suffix and watch it join real bases (LANENG4-OI3-GQ1-LO1, K2.1, S2.1, S2.2; LANENG4-OI9-GQ1-LO1,
+// K5.1, S5.2). Kept letters, dropped letters and added letters each have their own look, so students see
+// the meaning change and the spelling change together.
+import { joinNote, splitJoin } from './suffix-builder.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  suffixes: { suffix: string; meaning: string; words: { base: string; word: string; means: string }[] }[];
+  /** Show the spelling note under each word. */
+  spelling?: boolean;
+}
+const { suffixes, spelling = false } = Astro.props;
+const data = suffixes.map((s) => ({
+  suffix: s.suffix,
+  meaning: mdInline(s.meaning),
+  words: s.words.map((w) => {
+    const j = splitJoin(w.base, s.suffix, w.word);
+    return { ...w, means: mdInline(w.means), j, note: spelling ? joinNote(j) : '' };
+  }),
+}));
+---
+<suffix-builder data-suffixes={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a suffix">
+    {suffixes.map((s, i) => <button type="button" data-sb={i} aria-pressed={String(i === 0)}>-{s.suffix}</button>)}
+  </div>
+  <div class="g4e-sb__out" data-sb-out aria-live="polite"></div>
+  <noscript><ul>{suffixes.map((s) => <li><strong>-{s.suffix}</strong> ({s.meaning}): {s.words.map((w) => `${w.base} + ${s.suffix} = ${w.word}`).join('; ')}</li>)}</ul></noscript>
+</suffix-builder>
+
+<style is:global>
+  suffix-builder { display: block; }
+  .g4e-sb__out { margin-top: 0.8rem; display: grid; gap: 0.6rem; }
+  .g4e-sb__mean { margin: 0; font-size: var(--step-1); }
+  .g4e-sb__word { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4e-sb__eq { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; font-size: var(--step-1); }
+  .g4e-sb__tile { padding: 0.2rem 0.55rem; border-radius: 7px; border: 2px solid var(--line-strong); background: var(--surface); font-weight: 700; }
+  .g4e-sb__tile--suf { border-color: var(--accent); background: var(--accent-soft); }
+  .g4e-sb__op { color: var(--ink-3); font-weight: 700; }
+  .g4e-sb__whole { font-weight: 800; letter-spacing: 0.02em; }
+  .g4e-sb__whole .is-suf { color: var(--accent); }
+  .g4e-sb__whole .is-add { background: var(--sun); color: #1c1b24; border-radius: 3px; padding: 0 0.05em; }
+  .g4e-sb__tile del { color: var(--bad); text-decoration-thickness: 3px; }
+  .g4e-sb__def { margin: 0.35rem 0 0; }
+  .g4e-sb__note { margin: 0.2rem 0 0; font-size: var(--step--1); color: var(--ink-2); }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4e-sb__whole { animation: g4e-sb-in 0.45s ease 0.15s backwards; }
+    @keyframes g4e-sb-in { from { opacity: 0; transform: translateX(-10px); } }
+  }
+</style>
+
+<script>
+  type Join = { kept: string; dropped: string; added: string; suffix: string };
+  type Word = { base: string; word: string; means: string; j: Join; note: string };
+  type Suffix = { suffix: string; meaning: string; words: Word[] };
+
+  class SuffixBuilder extends HTMLElement {
+    private data: Suffix[] = [];
+
+    connectedCallback() {
+      this.data = JSON.parse(this.dataset.suffixes!);
+      this.querySelectorAll<HTMLButtonElement>('[data-sb]').forEach((b) => b.addEventListener('click', () => this.show(Number(b.dataset.sb))));
+      this.show(0);
+    }
+
+    private show(i: number) {
+      this.querySelectorAll('[data-sb]').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.getAttribute('data-sb')) === i)));
+      const s = this.data[i];
+      const words = s.words
+        .map(({ j, word, means, note }) => {
+          const base = `${j.kept}${j.dropped ? `<del>${j.dropped}</del>` : ''}`;
+          const whole = `${j.kept}${j.added ? `<span class="is-add">${j.added}</span>` : ''}<span class="is-suf">${j.suffix}</span>`;
+          return `<div class="g4e-sb__word">
+            <div class="g4e-sb__eq" aria-label="${j.kept + j.dropped} plus ${j.suffix} makes ${word}">
+              <span class="g4e-sb__tile">${base}</span><span class="g4e-sb__op">+</span>
+              <span class="g4e-sb__tile g4e-sb__tile--suf">${j.suffix}</span><span class="g4e-sb__op">=</span>
+              <span class="g4e-sb__whole">${whole}</span>
+            </div>
+            <p class="g4e-sb__def">${means}</p>
+            ${note ? `<p class="g4e-sb__note">✏️ ${note}</p>` : ''}
+          </div>`;
+        })
+        .join('');
+      this.querySelector('[data-sb-out]')!.innerHTML = `<p class="g4e-sb__mean"><strong>-${s.suffix}</strong> means ${s.meaning}</p>${words}`;
+    }
+  }
+  customElements.define('suffix-builder', SuffixBuilder);
+</script>

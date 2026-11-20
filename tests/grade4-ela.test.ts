@@ -87,3 +87,32 @@ describe('voice aim', () => {
     expect(projection(true, false, false).reach).toBeGreaterThan(projection(false, false, false).reach);
   });
 });
+
+import { joinNote, splitJoin } from '../src/components/visuals/suffix-builder.ts';
+
+describe('suffix builder', () => {
+  it('joins parts that need no change', () => {
+    expect(splitJoin('rain', 'y', 'rainy')).toEqual({ kept: 'rain', dropped: '', added: '', suffix: 'y' });
+    expect(joinNote(splitJoin('wash', 'able', 'washable'))).toBe('');
+  });
+
+  it('drops a silent e', () => {
+    const j = splitJoin('sense', 'ible', 'sensible');
+    expect([j.kept, j.dropped, j.added]).toEqual(['sens', 'e', '']);
+    expect(joinNote(j)).toBe('The silent e drops.');
+  });
+
+  it('changes y to i', () => {
+    expect(joinNote(splitJoin('happy', 'ly', 'happily'))).toBe('The y changes to i.');
+  });
+
+  it('doubles a last letter', () => {
+    const j = splitJoin('run', 'ing', 'running');
+    expect(j.added).toBe('n');
+    expect(joinNote(j)).toBe('The last letter doubles.');
+  });
+
+  it('refuses a word without its suffix', () => {
+    expect(() => splitJoin('play', 'ful', 'player')).toThrow();
+  });
+});
