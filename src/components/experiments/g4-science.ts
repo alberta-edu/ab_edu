@@ -76,3 +76,29 @@ export const STARS: { x: number; y: number; bright: number }[] = Array.from({ le
   y: (k * 89 + 17) % 200 + 10,
   bright: ((k * 53) % 100) / 100,
 }));
+
+/**
+ * The Big Dipper (SCI4-OI5-GQ1-LO1, K2.1, K2.3, K2.5): positions on a flat sky drawing, and each
+ * star's distance from Earth in trillions of kilometres, rounded to tens. Distances: Hipparcos
+ * parallaxes (van Leeuwen 2007), in light-years (Dubhe 123.6, Merak 79.7, Phecda 83.2, Megrez 80.5,
+ * Alioth 82.6, Mizar 82.9, Alkaid 103.9), times 9.461 trillion km per light-year.
+ */
+export const DIPPER: { name: string; x: number; y: number; tkm: number }[] = [
+  { name: 'Dubhe', x: 190, y: 180, tkm: 1170 },
+  { name: 'Merak', x: 150, y: 210, tkm: 750 },
+  { name: 'Phecda', x: 110, y: 185, tkm: 790 },
+  { name: 'Megrez', x: 148, y: 155, tkm: 760 },
+  { name: 'Alioth', x: 110, y: 128, tkm: 780 },
+  { name: 'Mizar', x: 80, y: 110, tkm: 780 },
+  { name: 'Alkaid', x: 40, y: 112, tkm: 980 },
+];
+/** Lines joining the dipper's stars, by index. */
+export const DIPPER_LINES: [number, number][] = [[0, 1], [1, 2], [2, 3], [3, 0], [3, 4], [4, 5], [5, 6]];
+
+/** Polaris sits about five pointer-gaps beyond Dubhe, along the line from Merak through Dubhe. */
+export function polarisFrom(merak: { x: number; y: number }, dubhe: { x: number; y: number }, gaps = 5) {
+  return { x: dubhe.x + gaps * (dubhe.x - merak.x), y: dubhe.y + gaps * (dubhe.y - merak.y) };
+}
+
+/** Stars in the northern sky turn once around Polaris in about a day: 15° an hour, counterclockwise. */
+export const turnPerHour = 15;

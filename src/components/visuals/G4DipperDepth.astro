@@ -1,0 +1,70 @@
+---
+// Big Dipper from the side (SCI4-OI5-GQ1-LO1, K2.1, K2.3): from Earth the seven stars look like a
+// flat shape. Slide to fly around to the side, and see how far each star really is from Earth.
+---
+<g4-dipper-depth>
+  <svg class="sci-svg g4s-dd-svg" viewBox="0 0 640 300" role="img" aria-label="The seven stars of the Big Dipper. From the side, they are spread out at different distances from Earth." data-g4s="svg"></svg>
+  <div class="control-row">
+    <label class="control g4s-dd-slider">Seen from Earth <input type="range" min="0" max="100" step="1" value="0" data-g4s="turn" aria-label="Fly around to the side" /> From the side</label>
+  </div>
+  <p class="sci-say" aria-live="polite" data-g4s="say">From Earth, the Big Dipper looks like a flat shape. Slide to fly around to the side.</p>
+</g4-dipper-depth>
+
+<style is:global>
+  g4-dipper-depth { display: block; }
+  .g4s-dd-svg { background: #0f1830; }
+  .g4s-dd-star { fill: #fff; }
+  .g4s-dd-line { stroke: #6f86c4; stroke-width: 1.5; }
+  .g4s-dd-name { fill: #fff; font-size: 17px; font-weight: 700; }
+  .g4s-dd-dist { fill: #ffe27a; font-size: 17px; font-weight: 700; }
+  .g4s-dd-axis { stroke: #8fb0ff; stroke-width: 1.5; }
+  .g4s-dd-axis-t { fill: #8fb0ff; font-size: 16px; font-weight: 700; }
+  .g4s-dd-slider { flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+</style>
+
+<script>
+  import { DIPPER, DIPPER_LINES } from '../experiments/g4-science.ts';
+
+  /** Side view: distance from Earth (trillion km) across the screen. */
+  const sideX = (tkm: number) => 80 + ((tkm - 700) / 500) * 520;
+  const frontX = (x: number) => 180 + x * 1.6;
+  const frontY = (y: number) => 30 + (y - 100) * 1.9;
+
+  class G4DipperDepth extends HTMLElement {
+    private t = 0;
+
+    connectedCallback() {
+      const input = this.querySelector<HTMLInputElement>('[data-g4s="turn"]')!;
+      input.addEventListener('input', () => {
+        this.t = Number(input.value) / 100;
+        this.querySelector('[data-g4s="say"]')!.textContent =
+          this.t < 0.95
+            ? 'From Earth, the Big Dipper looks like a flat shape. Slide to fly around to the side.'
+            : 'From the side, the stars are spread far apart. Dubhe is about 420 trillion kilometres farther from Earth than Merak, its neighbour in the picture.';
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private draw() {
+      const t = this.t;
+      const pts = DIPPER.map((s) => ({ x: frontX(s.x) + (sideX(s.tkm) - frontX(s.x)) * t, y: frontY(s.y) }));
+      const out: string[] = [];
+      for (const [a, b] of DIPPER_LINES) out.push(`<line class="g4s-dd-line" opacity="${(1 - t * 0.7).toFixed(2)}" x1="${pts[a].x.toFixed(1)}" y1="${pts[a].y}" x2="${pts[b].x.toFixed(1)}" y2="${pts[b].y}"/>`);
+      DIPPER.forEach((s, i) => {
+        out.push(`<circle class="g4s-dd-star" cx="${pts[i].x.toFixed(1)}" cy="${pts[i].y}" r="5"/><text class="g4s-dd-name" x="${pts[i].x.toFixed(1)}" y="${pts[i].y - 10}" text-anchor="middle">${s.name}</text>`);
+        if (t > 0.95) {
+          const right = pts[i].x < 560;
+          const d = s.tkm >= 1000 ? `${Math.floor(s.tkm / 1000)} ${String(s.tkm % 1000).padStart(3, '0')}` : String(s.tkm);
+          out.push(`<text class="g4s-dd-dist" x="${(pts[i].x + (right ? 10 : -10)).toFixed(1)}" y="${pts[i].y + 6}" text-anchor="${right ? 'start' : 'end'}">${d}</text>`);
+        }
+      });
+      if (t > 0.95) {
+        out.push(`<line class="g4s-dd-axis" x1="60" y1="282" x2="620" y2="282"/><text class="g4s-dd-axis-t" x="60" y="274">← nearer to Earth</text><text class="g4s-dd-axis-t" x="620" y="274" text-anchor="end">farther →</text>`);
+        out.push('<text class="g4s-dd-axis-t" x="320" y="298" text-anchor="middle">Distance from Earth, in trillions of kilometres</text>');
+      }
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-dipper-depth', G4DipperDepth);
+</script>

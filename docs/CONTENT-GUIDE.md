@@ -82,7 +82,7 @@ Visuals:
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,
-  `data-views`, `g4-hazard-symbols`, `g4-gravity-drop`, `g4-magnet-lab`, `g4-spheres`, `g4-sky-viewer`
+  `data-views`, `g4-hazard-symbols`, `g4-gravity-drop`, `g4-magnet-lab`, `g4-spheres`, `g4-sky-viewer`, `g4-dipper-depth`
 - **Social Studies:** `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`,
   `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`,
   `issue-investigator`
@@ -94,7 +94,7 @@ Visuals:
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
-`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`, `g4-fish-pond`, `g4-beak-tools`, `g4-plant-turn`, `g4-bug-choice`, `g4-day-night-sky`.
+`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`, `g4-fish-pond`, `g4-beak-tools`, `g4-plant-turn`, `g4-bug-choice`, `g4-day-night-sky`, `g4-star-circle`.
 
 If an idea would be clearer as an animation, 3D view or manipulative, build it in
 `src/components/visuals/` (lazy-loaded if heavy) instead of describing it.
