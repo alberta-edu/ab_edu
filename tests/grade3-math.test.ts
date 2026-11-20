@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { addFrames, subtractFrames, value, matSvg } from '../src/components/visuals/g3-blocks.ts';
 import { compareSign, compareSteps, digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
 
 describe('Grade 3 place value', () => {
@@ -38,5 +39,21 @@ describe('Grade 3 comparing', () => {
     expect(compareSteps(9870, 10001).at(-1)!.say).toContain('9 870 < 10 001');
     expect(compareSteps(512, 512).at(-1)!.say).toContain('512 = 512');
     expect(compareSign(3, 4)).toBe('<');
+  });
+});
+
+describe('Grade 3 base-ten blocks', () => {
+  it('adds with trades and ends on the sum', () => {
+    const f = addFrames(258, 167);
+    expect(value(f.at(-1)!)).toBe(425);
+    expect(f.filter((x) => x.say.startsWith('Trade')).length).toBe(2);
+    expect(addFrames(999, 1).at(-1)!.say).toBe('999 + 1 = 1000');
+  });
+  it('subtracts, breaking across zeros', () => {
+    const f = subtractFrames(600, 274);
+    expect(value(f.at(-1)!)).toBe(326);
+    expect(f.filter((x) => x.say.includes('Break')).map((x) => x.say)).toEqual(['Not enough ones. Break 1 hundred into 10 tens.', 'Not enough ones. Break 1 ten into 10 ones.']);
+    expect(value(subtractFrames(342, 158).at(-1)!)).toBe(184);
+    expect(matSvg(f[0])).toContain('g3m-bk-a');
   });
 });
