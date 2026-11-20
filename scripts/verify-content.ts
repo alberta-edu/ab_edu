@@ -69,7 +69,7 @@ function verifyNotes(c: Concept, n: EducatorNotes) {
 
 function verifyConcept(c: Concept) {
   const where = (id?: string) => `grade-${c.grade}/${c.subject}/${c.id}${id ? `#${id}` : ''}`;
-  const UNLOCK_AFTER = gradeProfile(c.grade).unlockAfter;
+  const { minPerLevel } = gradeProfile(c.grade);
   const fail = (id: string | undefined, msg: string) => errors.push(`${where(id)}: ${msg}`);
 
   // Roadmap
@@ -77,11 +77,12 @@ function verifyConcept(c: Concept) {
   if (!planned) fail(undefined, `not listed in content/grade-${c.grade}/${c.subject}/_roadmap.yaml`);
   else if (planned.outcomes.join() !== c.outcomes.join()) warnings.push(`${where()}: outcomes differ from roadmap`);
 
-  // Problems per level: enough to unlock the next level
+  // Problems per level: enough to unlock the next level, as many as the grade's profile asks for
   const perLevel = [1, 2, 3].map((l) => c.problems.filter((p) => p.level === l).length);
-  if (perLevel[0] < UNLOCK_AFTER + 1) fail(undefined, `needs at least ${UNLOCK_AFTER + 1} Warm-up problems (has ${perLevel[0]})`);
-  if (perLevel[1] < UNLOCK_AFTER + 1) fail(undefined, `needs at least ${UNLOCK_AFTER + 1} Build problems (has ${perLevel[1]})`);
-  if (perLevel[2] < 2) fail(undefined, `needs at least 2 Deep Think problems (has ${perLevel[2]})`);
+  (['Warm-up', 'Build', 'Deep Think'] as const).forEach((name, i) => {
+    const need = minPerLevel[(i + 1) as 1 | 2 | 3];
+    if (perLevel[i] < need) fail(undefined, `needs at least ${need} ${name} problem${need === 1 ? '' : 's'} (has ${perLevel[i]})`);
+  });
   const order = c.problems.map((p) => p.level);
   if (order.some((l, i) => i > 0 && l < order[i - 1])) fail(undefined, 'problems must be listed in level order');
 

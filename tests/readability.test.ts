@@ -37,6 +37,7 @@ describe('readability', () => {
   it('finds a blob in a lesson block and names its step', () => {
     const c = {
       bigIdea: 'Short.',
+      keyTerms: [],
       lesson: [{ title: 'Rounding', blocks: [{ type: 'callout', variant: 'tip', title: 'How', covers: ['S1.7'], body: "Look at the digit **just to the right** of the place you're rounding to. If it is **5 or more**, round up. If it is **4 or less**, keep the digit." }] }],
     } as unknown as Concept;
     expect(lessonBlobs(c)).toEqual([expect.stringMatching(/^step 1 "Rounding", block 1 \(callout\)/)]);
