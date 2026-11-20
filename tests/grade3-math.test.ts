@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
 import { addFrames, subtractFrames, value, matSvg } from '../src/components/visuals/g3-blocks.ts';
 import { compareSign, compareSteps, digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
@@ -72,5 +73,13 @@ describe('Grade 3 groups and arrays', () => {
     expect(groupSay(14, 4)).toContain('2 are left over');
     expect(takeAwaySay(12, 4)).toBe('12 − 4 − 4 − 4 = 0. That is 3 jumps, so 12 ÷ 4 = 3');
     expect(splitSay(7, 8, 5)).toBe('7 × 8 = 7 × 5 + 7 × 3 = 35 + 21 = 56');
+  });
+});
+
+describe('Grade 3 times table', () => {
+  it('builds fact families', () => {
+    expect(family(3, 4)).toEqual(['3 × 4 = 12', '4 × 3 = 12', '12 ÷ 3 = 4', '12 ÷ 4 = 3']);
+    expect(family(5, 5)).toEqual(['5 × 5 = 25', '25 ÷ 5 = 5']);
+    expect(rowSeq(4, 5)).toEqual([4, 8, 12, 16, 20]);
   });
 });

@@ -1,0 +1,193 @@
+id: times-table-fact-families
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ3-LO1]
+order: 8
+title: The Times Table and Fact Families
+shortTitle: Times table
+summary: >-
+  Explore the times table to 10 × 10, find patterns in its rows, and use fact families to link
+  each multiplication fact to two division facts.
+
+bigIdea: |-
+  - The **times table** shows multiplication facts, and division facts too.
+  - A **fact family** joins 3 numbers: 3 × 4 = 12 and 12 ÷ 4 = 3 are in the same family.
+  - Each row of the table **skip counts**.
+
+lesson:
+  - title: Find a fact
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.3]
+        component: g3-times-table
+        props: { pick: [3, 4] }
+        caption: |-
+          1. Tap **12** in row 3. The yellow path shows 3 × 4.
+          2. Now tap 12 in row 4. It is the twin, 4 × 3.
+
+  - title: Fact families
+    blocks:
+      - type: visual
+        covers: [K3.2, U3.1, S3.2, K3.1]
+        component: g3-times-table
+        props: { pick: [6, 7] }
+        caption: Each product makes a **fact family** triangle. Two times facts and two divide facts share the same 3 numbers.
+
+  - title: Patterns in the table
+    blocks:
+      - type: visual
+        covers: [S3.1]
+        component: g3-times-table
+        props: { row: 5 }
+        caption: |-
+          1. Row 5 ends in 0, 5, 0, 5…
+          2. Tap row 10, then row 2. What pattern do you see?
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ1-LO1#S3.2]
+        title: Remember from Grade 2
+        body: '**Even** numbers make two equal groups. Every number in row 2 is even.'
+
+  - title: Who is in the family?
+    blocks:
+      - type: visual
+        covers: [K3.2, S3.2, U3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'in', label: 'In the 7, 8, 56 family', icon: '👪' }
+            - { id: 'out', label: 'Not in it', icon: '🚫' }
+          cards:
+            - { text: '7 × 8 = 56', bin: 'in', why: 'It uses 7, 8 and 56.' }
+            - { text: '56 ÷ 7 = 8', bin: 'in', why: 'Dividing undoes 7 × 8 = 56.' }
+            - { text: '8 + 7 = 15', bin: 'out', why: 'Adding is not part of a times fact family.' }
+            - { text: '56 ÷ 8 = 7', bin: 'in', why: 'The other division fact.' }
+            - { text: '56 − 8 = 48', bin: 'out', why: 'Subtracting uses a new number, 48.' }
+        caption: Sort each fact.
+
+keyTerms:
+  - term: Times table
+    covers: [K3.1]
+    definition: A chart of multiplication facts. Each product sits where its row and column meet.
+  - term: Fact family
+    covers: [K3.2]
+    definition: 'Facts made from the same 3 numbers, like 3 × 4 = 12 and 12 ÷ 4 = 3.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S3.3]
+    type: number
+    prompt: '\(7 \times 8\) = ?'
+    answer: 56
+    verify: 7 * 8
+    hints:
+      - Do you know 7 × 7 = 49? Add one more 7.
+    solution:
+      - '7 × 7 = 49, and one more 7 makes **56**.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S3.3, U3.1]
+    type: number
+    prompt: '\(6 \times 4 = 24\). Use it to find \(24 \div 6\).'
+    answer: 4
+    verify: 24 / 6
+    hints:
+      - Which fact family do 6, 4 and 24 make?
+    solution:
+      - '6 groups of 4 make 24, so 24 shared by 6 is **4**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: pattern
+    covers: [S3.1]
+    type: mc
+    prompt: Which number is **not** in row 5 of the times table?
+    choices: ['42', '35', '50']
+    answer: 0
+    feedback:
+      '1': '5 × 7 = 35. Look at how row 5 numbers end.'
+      '2': '5 × 10 = 50. Row 5 numbers end in 5 or 0.'
+    hints:
+      - Say row 5 out loud. How do the numbers end?
+    solution:
+      - 'Row 5 goes 5, 10, 15, 20… Every number ends in **5 or 0**.'
+      - '42 ends in 2, so it is not in row 5.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.2, S3.2]
+    type: mc
+    prompt: Which fact is in the same family as **9 × 4 = 36**?
+    choices: ['36 ÷ 9 = 4', '36 ÷ 3 = 12', '9 + 4 = 13']
+    answer: 0
+    feedback:
+      '1': 'A family uses the same 3 numbers. Does 3 or 12 belong?'
+      '2': 'A times fact family uses × and ÷, not +.'
+    hints:
+      - Which 3 numbers are in 9 × 4 = 36?
+    solution:
+      - 'The family uses 9, 4 and 36: 9 × 4, 4 × 9, 36 ÷ 9 = 4 and 36 ÷ 4 = 9.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: pattern
+    covers: [S3.1, K3.1]
+    type: investigation
+    prompt: Some products show up **more than once** in the times table to 10 × 10.
+    parts:
+      - type: number
+        prompt: How many times does **12** appear?
+        answer: 4
+        verify: 2 + 2
+        hints:
+          - Find every pair of factors that makes 12. Don’t forget the twins.
+        solution:
+          - '2 × 6, 6 × 2, 3 × 4 and 4 × 3. That is **4** times.'
+      - type: number
+        prompt: How many times does **16** appear?
+        answer: 3
+        verify: 2 + 1
+        hints:
+          - 2 × 8 has a twin. Does 4 × 4 have a twin?
+        solution:
+          - '2 × 8, 8 × 2 and 4 × 4. That is **3** times.'
+          - '4 × 4 is its own twin, so it is counted once.'
+    wrapUp: Twins come in pairs, so most products show up an even number of times. A product on the diagonal, like 4 × 4, adds just one.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S3.1, K3.1]
+    type: build
+    prompt: 'Find two **different** facts in the table with the **same product**, like 2 × 6 and 3 × 4. Use factors from 1 to 10.'
+    fields:
+      - { name: a, label: 'First fact: a' }
+      - { name: b, label: '× b' }
+      - { name: c, label: 'Second fact: c' }
+      - { name: d, label: '× d' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && d % 1 == 0 && a >= 1 && b >= 1 && c >= 1 && d >= 1 && a <= 10 && b <= 10 && c <= 10 && d <= 10', fail: 'Use whole numbers from 1 to 10.' }
+      - { test: 'a != c && a != d', fail: 'Your facts use the same numbers. Twins don’t count. Find a new pair.' }
+      - { test: 'a * b == c * d', fail: 'Multiply each fact. Are the products the same?' }
+    examples:
+      - { a: 2, b: 6, c: 3, d: 4 }
+      - { a: 4, b: 6, c: 3, d: 8 }
+      - { a: 2, b: 10, c: 4, d: 5 }
+    counterexamples:
+      - { a: 3, b: 4, c: 4, d: 3 }
+      - { a: 2, b: 5, c: 3, d: 4 }
+    hints:
+      - Pick a product that shows up in more than one row, like 18 or 24.
+      - Look along a row for the product, then look for it in another row.
+    solution:
+      - '**2 × 9 = 18** and **3 × 6 = 18**.'
+      - '**4 × 6 = 24** and **3 × 8 = 24**. Also 2 × 10 = 20 and 4 × 5 = 20.'
