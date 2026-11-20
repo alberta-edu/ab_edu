@@ -1,7 +1,7 @@
 // Readability gate: long paragraphs of prose are hard for children (and busy adults) to read.
 // A paragraph that explains a process or lists several ideas belongs in a numbered or bulleted
 // list. npm run verify uses this on lesson text and educator notes.
-// The limits depend on the grade (gradeProfile in src/site.ts): Grades 1 and 2 read much less.
+// The limits depend on the grade (gradeProfile in src/site.ts): each grade below 4 reads less.
 import type { Concept, LessonBlock } from './schema.ts';
 import { gradeProfile } from '../site.ts';
 
@@ -116,7 +116,13 @@ export function lessonBlobs(c: Concept): string[] {
   const bullets = listItems(c.bigIdea).length;
   if (profile.maxBigIdeaBullets && bullets > profile.maxBigIdeaBullets) out.push(`big idea: ${bullets} bullets is too many for Grade ${c.grade}: keep ${profile.maxBigIdeaBullets}`);
   if (c.lesson.length > profile.maxSteps) out.push(`${c.lesson.length} lesson steps is too many for Grade ${c.grade}: keep ${profile.maxSteps} or fewer`);
+  if (profile.maxKeyTerms && c.keyTerms.length > profile.maxKeyTerms) out.push(`${c.keyTerms.length} key terms is too many for Grade ${c.grade}: keep ${profile.maxKeyTerms}`);
+  for (const t of c.keyTerms) {
+    const issue = blobIssue(t.definition, limits);
+    if (issue) out.push(`key term "${t.term}": ${issue}`);
+  }
   c.lesson.forEach((s, i) => {
+    if (s.blocks.length > profile.maxBlocksPerStep) out.push(`step ${i + 1} "${s.title}": ${s.blocks.length} blocks is too many for Grade ${c.grade}: keep ${profile.maxBlocksPerStep}`);
     if (profile.visualEveryStep && !s.blocks.some((b) => LOOK_AT.has(b.type)))
       out.push(`step ${i + 1} "${s.title}": Grade ${c.grade} needs a visual, experiment or figure in every step`);
     s.blocks.forEach((b, j) => {
