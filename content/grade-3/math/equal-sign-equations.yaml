@@ -1,0 +1,240 @@
+id: equal-sign-equations
+grade: 3
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT3-OI2-GQ1-LO1]
+order: 11
+title: Equations and the Equal Sign
+shortTitle: Equations
+summary: >-
+  See the equal sign as a balance, write equations with a number or a sum on either side, and find
+  the number hiding in the mystery box.
+
+bigIdea: |-
+  - **=** means both sides are the **same number**, like a level balance.
+  - The two sides can swap: 7 = 3 + 4 is as true as 3 + 4 = 7.
+  - A box **□** can stand for a number we don’t know yet.
+
+lesson:
+  - title: Is it balanced?
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1, K2.1]
+        component: g3-balance
+        props:
+          examples:
+            - { left: '3 + 4', right: '7' }
+            - { left: '6 + 3', right: '8' }
+            - { left: '5 + 2', right: '4 + 3' }
+        caption: |-
+          1. Pick a pair to put on the pans.
+          2. A **level** beam means both sides are the same number.
+      - type: callout
+        covers: [K1.1]
+        variant: mistake
+        title: = is not “the answer is”
+        body: '**=** means “is the same as”. A sum can go on **both** sides: 5 + 2 = 4 + 3.'
+
+  - title: Swap the sides
+    blocks:
+      - type: visual
+        covers: [K1.2]
+        component: g3-balance
+        props:
+          examples:
+            - { left: '10', right: '6 + 4' }
+        caption: Press **Swap**. 10 = 6 + 4 and 6 + 4 = 10 are both true.
+
+  - title: Many ways to make 12
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'yes', label: 'Makes 12', icon: '✅' }
+            - { id: 'no', label: 'Not 12', icon: '❌' }
+          cards:
+            - { text: '6 + 6', bin: 'yes', why: '6 + 6 = 12.' }
+            - { text: '3 × 4', bin: 'yes', why: '3 groups of 4 make 12.' }
+            - { text: '20 − 9', bin: 'no', why: '20 − 9 = 11. Just one short!' }
+            - { text: '15 − 3', bin: 'yes', why: '15 − 3 = 12.' }
+            - { text: '2 × 5', bin: 'no', why: '2 × 5 = 10.' }
+            - { text: '24 ÷ 2', bin: 'yes', why: 'Half of 24 is 12.' }
+        caption: Any two that make 12 can share an equation, like **6 + 6 = 3 × 4**.
+
+  - title: The mystery box
+    blocks:
+      - type: visual
+        covers: [K2.2, U2.1, S2.1, S2.2]
+        component: g3-balance
+        props:
+          box: 1
+          examples:
+            - { left: '□ + 5', right: '12' }
+            - { left: '15', right: '3 × □' }
+            - { left: '□ − 4', right: '6' }
+        caption: |-
+          1. The gift box hides a number.
+          2. Press **+** or **−** until the beam is level. Then you know what is inside.
+
+  - title: Stories as equations
+    blocks:
+      - type: visual
+        covers: [S2.1, S2.3]
+        component: g3-balance
+        props:
+          box: 4
+          examples:
+            - { left: '□ + 6', right: '14' }
+        caption: Find the box that makes the story balance.
+      - type: example
+        covers: [S2.3, S1.1]
+        title: Ava’s stickers
+        problem: Ava has some stickers. She gets **6** more. Now she has **14**. How many did she have?
+        steps:
+          - 'The stickers she had are the box: **□ + 6 = 14**.'
+          - What plus 6 makes 14? **8 + 6 = 14**.
+        answer: '**□ = 8**. Ava had 8 stickers.'
+
+keyTerms:
+  - term: Equation
+    covers: [K1.1]
+    definition: 'Two sides joined by **=**, like 3 + 4 = 7.'
+  - term: Equal sign
+    covers: [K1.1, U1.1]
+    definition: '**=** means both sides are the same number.'
+  - term: Unknown
+    covers: [K2.2, U2.1]
+    definition: 'A number we don’t know yet. A box **□** can stand for it.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [U1.1, K1.2]
+    type: mc
+    prompt: Which equation is **true**?
+    choices: ['\(9 = 4 + 5\)', '\(4 + 5 = 10\)', '\(9 + 4 = 5\)']
+    answer: 0
+    feedback:
+      '1': 'Work out the left side. Is 4 + 5 really 10?'
+      '2': 'The left side is 9 + 4. Is that the same number as 5?'
+    hints:
+      - Work out each side. Are they the same number?
+    solution:
+      - '4 + 5 is 9, so both sides of **9 = 4 + 5** are 9.'
+      - 'The answer can be on the left. The sides can swap.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.2, K2.2]
+    type: number
+    prompt: 'What number goes in the box? \(\square + 8 = 15\)'
+    answer: 7
+    verify: 15 - 8
+    hints:
+      - What plus 8 makes 15?
+      - Count up from 8 to 15.
+    solution:
+      - 'Count up from 8 to 15: that is 7 jumps.'
+      - '**7** + 8 = 15, so □ = 7.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S2.3, S1.1]
+    type: number
+    prompt: Some children are on a bus. At the next stop, **7** more get on. Now **19** are on the bus. How many were on at the start?
+    unit: children
+    answer: 12
+    verify: 19 - 7
+    hints:
+      - The children at the start are the box. Write it as □ + 7 = 19.
+      - What plus 7 makes 19?
+    solution:
+      - 'The equation is **□ + 7 = 19**.'
+      - '12 + 7 = 19, so **12** children were on at the start.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S2.3, U2.1]
+    type: mc
+    prompt: 'Which story matches \(\square - 5 = 9\)?'
+    choices:
+      - I had some apples. I ate 5. Now I have 9.
+      - I had 9 apples. I ate 5 of them.
+      - I had 5 apples. Then I got 9 more.
+    answer: 0
+    feedback:
+      '1': 'In this story we already know the start, 9. In the equation, the start is the box.'
+      '2': 'Getting more is adding. The equation takes 5 away.'
+    hints:
+      - The box comes first. What don’t we know at the start of the story?
+    solution:
+      - 'The box is the start we don’t know. Then 5 are taken away, and 9 are left.'
+      - '“I had **some** apples, ate 5, and have 9 left” matches.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K1.1, U1.1, S2.2]
+    type: investigation
+    prompt: 'Sam writes \(4 + 5 = 9 + 2 = 11\). He says, “I added 4 and 5. Then I added 2 more.”'
+    parts:
+      - type: mc
+        prompt: 'Is \(4 + 5 = 9 + 2\) true?'
+        choices: ['No', 'Yes']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '4 + 5 is 9. Is 9 + 2 also 9?'
+        hints:
+          - Work out each side by itself.
+        solution:
+          - 'The left side is 9. The right side is 11.'
+          - 'They are not the same number, so it is **not** true.'
+      - type: number
+        prompt: 'Fix it. What number in the box makes \(4 + 5 = \square + 2\) true?'
+        answer: 7
+        verify: 4 + 5 - 2
+        hints:
+          - The left side is 9. What plus 2 makes 9?
+        solution:
+          - '4 + 5 = 9. And 7 + 2 = 9.'
+          - 'So □ = **7**, and both sides are 9.'
+    wrapUp: '= doesn’t mean “the answer comes next”. It means both sides are the same number.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.1, U1.1]
+    type: build
+    prompt: 'Make this true: \(\square + \square = \square \times \square\). Use numbers from **1 to 10**, and don’t multiply by 1.'
+    fields:
+      - { name: a, label: '1st box' }
+      - { name: b, label: '2nd box' }
+      - { name: c, label: '3rd box' }
+      - { name: d, label: '4th box' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && d % 1 == 0 && a >= 1 && b >= 1 && c >= 1 && d >= 1 && a <= 10 && b <= 10 && c <= 10 && d <= 10', fail: 'Use whole numbers from 1 to 10 in every box.' }
+      - { test: 'c >= 2 && d >= 2', fail: 'Don’t multiply by 1. Try 2 or more in the 3rd and 4th boxes.' }
+      - { test: 'a + b == c * d', fail: 'The two sides are not the same number yet. Work out the multiplying side first.' }
+    examples:
+      - { a: 6, b: 6, c: 3, d: 4 }
+      - { a: 5, b: 5, c: 2, d: 5 }
+      - { a: 10, b: 8, c: 3, d: 6 }
+    counterexamples:
+      - { a: 3, b: 4, c: 2, d: 3 }
+      - { a: 4, b: 3, c: 7, d: 1 }
+    hints:
+      - Pick the multiplying side first. What is 2 × 4?
+      - Now find two numbers that add to that.
+    solution:
+      - 'Start on the right: 2 × 4 = 8. Then find two numbers that add to 8: **5 + 3 = 2 × 4**.'
+      - '**6 + 6 = 3 × 4** works too. Both sides are 12.'

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src/components/visuals/g3-equation.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -101,5 +102,38 @@ describe('Grade 3 fractions', () => {
     expect(compareWhy([2, 5], [2, 3])).toContain('thirds');
     expect(benchmark(3, 8)).toBe('It is between 0 and 1/2.');
     expect(benchmark(4, 8)).toBe('It is exactly one half.');
+  });
+});
+
+describe('Grade 3 equations on a balance', () => {
+  it('reads a side with one operation or a box', () => {
+    expect(parseSide('3 + 4')).toEqual({ a: 3, op: '+', b: 4 });
+    expect(parseSide('□ − 4')).toEqual({ a: 'box', op: '−', b: 4 });
+    expect(parseSide('12')).toEqual({ a: 12 });
+    expect(() => parseSide('3 + x')).toThrow();
+    expect(sideValue(parseSide('3 × □'), 5)).toBe(15);
+    expect(sideValue(parseSide('24 ÷ 2'))).toBe(12);
+  });
+
+  it('finds the box and tips toward the heavier side', () => {
+    expect(solveBox(parseSide('□ + 5'), parseSide('12'))).toBe(7);
+    expect(solveBox(parseSide('15'), parseSide('3 × □'))).toBe(5);
+    expect(tilt(9, 8)).toBeLessThan(0);
+    expect(tilt(2, 20)).toBe(14);
+    expect(tilt(7, 7)).toBe(0);
+  });
+
+  it('says what the balance shows', () => {
+    expect(balanceSay(parseSide('5 + 2'), parseSide('4 + 3'), null)).toBe('Balanced! Both sides are 7. So 5 + 2 = 4 + 3.');
+    expect(balanceSay(parseSide('6 + 3'), parseSide('8'), null)).toContain('not equal');
+    expect(balanceSay(parseSide('□ + 5'), parseSide('12'), 9)).toBe('The left side is heavier. Try a smaller number in the box.');
+    expect(balanceSay(parseSide('15'), parseSide('3 × □'), 2)).toBe('The left side is heavier. Try a bigger number in the box.');
+  });
+
+  it('lays out cubes, taken-away cubes and boxes', () => {
+    expect(pieces(parseSide('9 − 4')).filter((p) => p.kind === 'gone')).toHaveLength(4);
+    expect(pieces(parseSide('9 − 4')).filter((p) => p.kind === 'cube')).toHaveLength(5);
+    expect(pieces(parseSide('3 × □')).filter((p) => p.kind === 'box')).toHaveLength(3);
+    expect(pieces(parseSide('2 × 3')).map((p) => (p.kind === 'cube' ? p.group : -1))).toEqual([0, 0, 0, 1, 1, 1]);
   });
 });

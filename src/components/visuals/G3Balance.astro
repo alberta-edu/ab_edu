@@ -1,0 +1,191 @@
+---
+// An equation on a pan balance (MAT3-OI2-GQ1-LO1: K1.1, K1.2, U1.1, K2.1, K2.2, U2.1, S2.1, S2.2).
+// Each pan holds one side: cubes for numbers, a gift box for the unknown □. The beam tips toward
+// the heavier side and levels when both sides are the same number. Swap trades the pans.
+import { parseSide, sideText } from './g3-equation.ts';
+
+interface Props {
+  /** Equations to try, such as { left: '3 + 4', right: '7' } or { left: '□ + 5', right: '12' }. */
+  examples?: { left: string; right: string }[];
+  /** The number in the box at the start. */
+  box?: number;
+}
+const { examples = [{ left: '3 + 4', right: '7' }], box = 1 } = Astro.props;
+for (const e of examples) {
+  parseSide(e.left);
+  parseSide(e.right);
+}
+const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.left))} and ${sideText(parseSide(e.right))}`;
+---
+<g3-balance data-examples={JSON.stringify(examples)} data-box={box}>
+  {examples.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose what goes on the pans">
+      {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{label(e)}</button>)}
+    </div>
+  )}
+  <svg class="g3m-bal-svg" viewBox="0 0 360 230" role="img" aria-label="A pan balance. Each pan holds one side of the equation." data-bal="svg">
+    <path class="g3m-bal-stand" d="M180 76 L150 214 L210 214 Z" />
+    <rect class="g3m-bal-base" x="120" y="210" width="120" height="10" rx="5" />
+    <g class="g3m-bal-beam" data-bal="beam">
+      <rect x="52" y="66" width="256" height="9" rx="4.5" />
+    </g>
+    <circle class="g3m-bal-pin" cx="180" cy="70" r="7" />
+    <g class="g3m-bal-pan" data-bal="pan-l"></g>
+    <g class="g3m-bal-pan" data-bal="pan-r"></g>
+  </svg>
+  <p class="g3m-bal-eq" data-bal="eq" aria-live="polite"></p>
+  <div class="control-row g3m-bal-row">
+    <span class="control" data-bal="boxrow" hidden>
+      <span class="g3m-bal-boxlabel">□ =</span>
+      <button type="button" class="g3m-bal-step" data-bal="minus" aria-label="One less in the box">−</button>
+      <output data-bal="box">{box}</output>
+      <button type="button" class="g3m-bal-step" data-bal="plus" aria-label="One more in the box">+</button>
+    </span>
+    <button type="button" class="btn btn--small" data-bal="swap">⇄ Swap the sides</button>
+  </div>
+  <p class="g3m-bal-say" data-bal="say" aria-live="polite"></p>
+</g3-balance>
+
+<style is:global>
+  g3-balance { display: block; }
+  .g3m-bal-svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.6rem auto 0; font-family: var(--font); overflow: visible; }
+  .g3m-bal-stand { fill: var(--surface-3); stroke: var(--ink-2); stroke-width: 2; }
+  .g3m-bal-base { fill: var(--ink-2); }
+  .g3m-bal-beam { transform-box: view-box; transform-origin: 180px 70px; transition: transform 0.7s cubic-bezier(0.3, 1.5, 0.5, 1); }
+  .g3m-bal-beam rect { fill: var(--ink-2); }
+  .g3m-bal-pin { fill: var(--sun); stroke: var(--ink); stroke-width: 2; }
+  .g3m-bal-pan { transition: transform 0.7s cubic-bezier(0.3, 1.5, 0.5, 1), opacity 0.3s; }
+  .g3m-bal-pan.is-out { opacity: 0; }
+  .g3m-bal-string { stroke: var(--ink-3); stroke-width: 1.5; }
+  .g3m-bal-plate { fill: var(--surface-3); stroke: var(--ink); stroke-width: 2.5; }
+  .g3m-bal-cube { stroke: var(--ink); stroke-width: 1; }
+  .g3m-bal-cube.is-0 { fill: color-mix(in srgb, var(--accent) 65%, var(--surface)); }
+  .g3m-bal-cube.is-1 { fill: var(--sun); }
+  .g3m-bal-gone { fill: none; stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 2 2; }
+  .g3m-bal-x { stroke: var(--bad); stroke-width: 1.5; }
+  .g3m-bal-box { fill: color-mix(in srgb, var(--bad) 55%, var(--surface)); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-bal-ribbon { stroke: var(--sun); stroke-width: 3; }
+  .g3m-bal-q { fill: #fff; font-size: 16px; font-weight: 700; }
+  .g3m-bal-label { fill: var(--ink); font-size: 19px; font-weight: 700; }
+  .g3m-bal-svg.is-even .g3m-bal-plate { fill: var(--ok-soft); stroke: var(--ok); }
+  .g3m-bal-eq { margin: 0.2rem 0 0; text-align: center; font-size: var(--step-2); font-weight: 700; color: var(--accent); min-height: 1.4em; }
+  .g3m-bal-row { justify-content: center; }
+  .g3m-bal-boxlabel { font-size: 1.3rem; font-weight: 700; }
+  .g3m-bal-step { width: 2.3rem; height: 2.3rem; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 1.2rem; font-weight: 700; cursor: pointer; }
+  .g3m-bal-row output { min-width: 2ch; text-align: center; font-size: 1.3rem; font-weight: 700; }
+  .g3m-bal-say { min-height: 2.6em; margin: 0.2rem 0 0; font-weight: 600; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .g3m-bal-beam, .g3m-bal-pan { transition: none; } }
+</style>
+
+<script>
+  import { parseSide, sideValue, sideText, hasBox, tilt, balanceSay, pieces, type Side } from './g3-equation.ts';
+
+  const C = 13; // cube size
+  const BX = 28; // box size
+
+  function panSvg(s: Side, cx: number): string {
+    const plateY = 150;
+    let out = `<line class="g3m-bal-string" x1="${cx}" y1="72" x2="${cx - 50}" y2="${plateY}"/><line class="g3m-bal-string" x1="${cx}" y1="72" x2="${cx + 50}" y2="${plateY}"/>`;
+    const ps = pieces(s);
+    const boxes = ps.filter((p) => p.kind === 'box').length;
+    const small = ps.filter((p) => p.kind !== 'box');
+    let y = plateY - 2;
+    if (boxes) {
+      const w = boxes * (BX + 4) - 4;
+      for (let i = 0; i < boxes; i++) {
+        const x = cx - w / 2 + i * (BX + 4);
+        out += `<rect class="g3m-bal-box" x="${x}" y="${y - BX}" width="${BX}" height="${BX}" rx="3"/><line class="g3m-bal-ribbon" x1="${x + BX / 2}" y1="${y - BX}" x2="${x + BX / 2}" y2="${y}"/><text class="g3m-bal-q" x="${x + BX / 2}" y="${y - BX / 2 + 6}" text-anchor="middle">?</text>`;
+      }
+      y -= BX + 3;
+    }
+    const perRow = 7;
+    small.forEach((p, i) => {
+      const row = Math.floor(i / perRow);
+      const inRow = Math.min(perRow, small.length - row * perRow);
+      const x = cx - (inRow * C) / 2 + (i % perRow) * C;
+      const top = y - (row + 1) * C;
+      out +=
+        p.kind === 'gone'
+          ? `<rect class="g3m-bal-gone" x="${x + 1}" y="${top + 1}" width="${C - 2}" height="${C - 2}"/><line class="g3m-bal-x" x1="${x + 2}" y1="${top + 2}" x2="${x + C - 2}" y2="${top + C - 2}"/>`
+          : `<rect class="g3m-bal-cube is-${p.group}" x="${x + 0.5}" y="${top + 0.5}" width="${C - 1}" height="${C - 1}" rx="2"/>`;
+    });
+    out += `<rect class="g3m-bal-plate" x="${cx - 58}" y="${plateY}" width="116" height="8" rx="4"/>`;
+    out += `<text class="g3m-bal-label" x="${cx}" y="${plateY + 32}" text-anchor="middle">${sideText(s)}</text>`;
+    return out;
+  }
+
+  class G3Balance extends HTMLElement {
+    private examples: { left: string; right: string }[] = [];
+    private l!: Side;
+    private r!: Side;
+    private box = 1;
+    private swapped = false;
+
+    connectedCallback() {
+      this.examples = JSON.parse(this.dataset.examples!);
+      this.box = Number(this.dataset.box);
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(Number(b.dataset.ex));
+        }),
+      );
+      this.q('minus').addEventListener('click', () => this.setBox(this.box - 1));
+      this.q('plus').addEventListener('click', () => this.setBox(this.box + 1));
+      this.q('swap').addEventListener('click', () => this.swap());
+      this.load(0);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-bal="${k}"]`) as HTMLElement;
+    }
+
+    private load(i: number) {
+      const e = this.examples[i];
+      this.l = parseSide(e.left);
+      this.r = parseSide(e.right);
+      this.swapped = false;
+      this.box = Number(this.dataset.box);
+      this.q('boxrow').hidden = !(hasBox(this.l) || hasBox(this.r));
+      this.draw();
+    }
+
+    private setBox(n: number) {
+      this.box = Math.max(0, Math.min(30, n));
+      this.draw();
+    }
+
+    private swap() {
+      const pans = [this.q('pan-l'), this.q('pan-r')];
+      pans.forEach((p) => p.classList.add('is-out'));
+      const done = () => {
+        [this.l, this.r] = [this.r, this.l];
+        this.swapped = !this.swapped;
+        this.draw();
+        pans.forEach((p) => p.classList.remove('is-out'));
+        const L = sideValue(this.l, this.box);
+        if (L === sideValue(this.r, this.box)) this.q('say').textContent = `Swapped! ${sideText(this.l)} = ${sideText(this.r)} is still true. Each side is still ${L}.`;
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) done();
+      else setTimeout(done, 300);
+    }
+
+    private draw() {
+      const boxy = hasBox(this.l) || hasBox(this.r);
+      const L = sideValue(this.l, this.box);
+      const R = sideValue(this.r, this.box);
+      const t = tilt(L, R);
+      const dy = 120 * Math.sin((t * Math.PI) / 180);
+      this.q('pan-l').innerHTML = panSvg(this.l, 60);
+      this.q('pan-r').innerHTML = panSvg(this.r, 300);
+      this.q('beam').style.transform = `rotate(${t}deg)`;
+      this.q('pan-l').style.transform = `translateY(${-dy}px)`;
+      this.q('pan-r').style.transform = `translateY(${dy}px)`;
+      this.q('svg').classList.toggle('is-even', L === R);
+      this.q('box').textContent = String(this.box);
+      this.q('eq').textContent = L === R ? `${sideText(this.l)} = ${sideText(this.r)}` : `${sideText(this.l)}  ?  ${sideText(this.r)}`;
+      this.q('say').textContent = balanceSay(this.l, this.r, boxy ? this.box : null);
+    }
+  }
+  customElements.define('g3-balance', G3Balance);
+</script>
