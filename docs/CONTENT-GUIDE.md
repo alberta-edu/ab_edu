@@ -110,6 +110,7 @@ Visuals:
   their parts), `conflict-map`, `land-globe` (also word origins), `sharing-circle`, `affix-lab`,
   `palindrome-mirror`, `slant-meter` (`[[loaded|neutral]]`), `clause-builder` (`mode: join` or `agree`)
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
+- **Grade 4 ELAL:** `book-index`, `plot-braid`, `text-parts`, `concrete-poem`, `phrase-reader`, `voice-aim`, `word-shades`, `suffix-builder`, `craft-toggles`, `handwriting-lab`, `compare-scale`, `comma-tap`, `pattern-code`
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
 `energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`, `g6-scale-walk`, `g6-orbit-day`, `g6-map-abstract`, `g6-if-robot`, `g6-moon-shadow`, `g6-dark-room`., `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`, `g4-fish-pond`, `g4-beak-tools`, `g4-plant-turn`, `g4-bug-choice`, `g4-day-night-sky`, `g4-star-circle`, `g4-moon-year`, `g4-paper-bridge`, `g4-bounce-test`, `g4-repeat-trials`.

@@ -1,0 +1,151 @@
+---
+// A story's plots as two strands, with a flashback that loops back in time (LANENG4-OI1-GQ1-LO1, K3.3,
+// K3.4, S3.2). Step through the scenes in the order the author tells them. "Time order" slides each
+// scene to when it really happened, so the flashback jumps to the start.
+import { mdInline } from '../../lib/render.ts';
+import { braidLayout, type BraidScene } from './plot-braid.ts';
+
+interface Props {
+  main: string;
+  sub: string;
+  scenes: BraidScene[];
+}
+const { main, sub, scenes } = Astro.props;
+const layout = braidLayout(scenes);
+const data = scenes.map((s, i) => ({ ...s, text: mdInline(s.text), tell: layout.tell[i], time: layout.time[i] }));
+const ROW = { main: 140, sub: 215, flash: 50 } as const;
+const X0 = 40;
+const DX = 580 / Math.max(1, scenes.length - 1);
+const LABEL = { main: main, sub: sub, flash: 'Flashback' };
+---
+<plot-braid data-scenes={JSON.stringify(data)} data-x0={X0} data-dx={DX} data-main={main} data-sub={sub}>
+  <ul class="g4e-pb__key">
+    <li><i class="g4e-pb__sw g4e-pb__sw--main"></i>{main}</li>
+    <li><i class="g4e-pb__sw g4e-pb__sw--sub"></i>{sub}</li>
+    <li><i class="g4e-pb__sw g4e-pb__sw--flash"></i>Flashback: the past</li>
+  </ul>
+  <svg class="sci-svg g4e-pb__svg" viewBox="0 0 660 245" role="img" aria-label={`A story map with two strands: ${main}, and ${sub}. One scene sits above them, as a flashback to the past.`}>
+    <line class="g4e-pb__lane g4e-pb__lane--main" x1="20" x2="640" y1={ROW.main} y2={ROW.main}></line>
+    <line class="g4e-pb__lane g4e-pb__lane--sub" x1="20" x2="640" y1={ROW.sub} y2={ROW.sub}></line>
+    <path class="g4e-pb__loop" data-pb="loop" d=""></path>
+    {data.map((s, i) => (
+      <g class={`g4e-pb__dot g4e-pb__dot--${s.strand}`} data-pb-dot={i} style={`transform: translate(${X0 + s.tell * DX}px, ${ROW[s.strand]}px)`}>
+        <circle r="19"></circle>
+        <text y="5" text-anchor="middle">{i + 1}</text>
+      </g>
+    ))}
+  </svg>
+  <div class="g4e-pb__card" data-pb="card" aria-live="polite">
+    <p class="g4e-pb__tag" data-pb="tag"></p>
+    <p data-pb="text"></p>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-pb="back">◀ Back</button>
+    <button type="button" class="btn btn--primary btn--small" data-pb="next">Next scene ▶</button>
+    <div class="seg" role="group" aria-label="Order of the scenes">
+      <button type="button" data-pb-order="tell" aria-pressed="true">Order told</button>
+      <button type="button" data-pb-order="time" aria-pressed="false">Order it happened</button>
+    </div>
+  </div>
+  <noscript>
+    <ol>{scenes.map((s) => <li><strong>{LABEL[s.strand]}:</strong> <span set:html={mdInline(s.text)} /></li>)}</ol>
+  </noscript>
+</plot-braid>
+
+<style is:global>
+  plot-braid { display: block; }
+  .g4e-pb__lane { stroke-width: 6; stroke-linecap: round; }
+  .g4e-pb__lane--main { stroke: var(--accent); opacity: 0.45; }
+  .g4e-pb__lane--sub { stroke: var(--sun); opacity: 0.7; }
+  .g4e-pb__key { list-style: none; margin: 0 0 0.3rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 1rem; font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  .g4e-pb__key li { display: flex; align-items: center; gap: 0.4rem; }
+  .g4e-pb__sw { display: inline-block; width: 1.6rem; height: 0.45rem; border-radius: 4px; }
+  .g4e-pb__sw--main { background: var(--accent); opacity: 0.6; }
+  .g4e-pb__sw--sub { background: var(--sun); }
+  .g4e-pb__sw--flash { height: 0; border-top: 3px dashed var(--ink-3); border-radius: 0; }
+  .g4e-pb__loop { fill: none; stroke: var(--ink-3); stroke-width: 2.5; stroke-dasharray: 7 6; }
+  .g4e-pb__dot { transition: transform 0.7s ease; }
+  .g4e-pb__dot circle { fill: var(--surface); stroke: var(--line-strong); stroke-width: 3; }
+  .g4e-pb__dot text { fill: var(--ink-2); font-size: 17px; font-weight: 700; }
+  .g4e-pb__dot--main.is-on circle { fill: var(--accent); stroke: var(--accent); }
+  .g4e-pb__dot--sub.is-on circle { fill: var(--sun); stroke: var(--sun); }
+  .g4e-pb__dot--flash.is-on circle { fill: var(--surface-3); stroke: var(--ink-2); stroke-dasharray: 4 3; }
+  .g4e-pb__dot.is-on text { fill: var(--ink); }
+  .g4e-pb__dot--main.is-on text { fill: var(--brand-ink); }
+  .g4e-pb__dot.is-now circle { stroke: var(--ink); stroke-width: 4; }
+  .g4e-pb__card { min-height: 5.5rem; margin-top: 0.4rem; padding: 0.7rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); border-left: 6px solid var(--accent); }
+  .g4e-pb__card--sub { border-left-color: var(--sun); }
+  .g4e-pb__card--flash { border-left-color: var(--ink-3); border-left-style: dashed; }
+  .g4e-pb__card p { margin: 0; }
+  .g4e-pb__tag { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) { .g4e-pb__dot { transition: none; } }
+  @media (max-width: 40rem) { .g4e-pb__dot circle { r: 24px; } .g4e-pb__dot text { font-size: 22px; transform: translateY(2px); } }
+</style>
+
+<script>
+  type Scene = { strand: 'main' | 'sub' | 'flash'; text: string; tell: number; time: number };
+  const ROW = { main: 140, sub: 215, flash: 50 };
+
+  class PlotBraid extends HTMLElement {
+    private scenes: Scene[] = [];
+    private at = 0;
+    private order: 'tell' | 'time' = 'tell';
+    private labels: Record<string, string> = {};
+
+    connectedCallback() {
+      this.scenes = JSON.parse(this.dataset.scenes!);
+      this.labels = { main: this.dataset.main!, sub: this.dataset.sub!, flash: 'Flashback: back in time' };
+      this.part('next').addEventListener('click', () => this.go(this.at + 1));
+      this.part('back').addEventListener('click', () => this.go(this.at - 1));
+      this.querySelectorAll<HTMLButtonElement>('[data-pb-order]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.order = b.dataset.pbOrder as 'tell' | 'time';
+          this.querySelectorAll('[data-pb-order]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.place();
+        }),
+      );
+      this.place();
+      this.go(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-pb="${name}"]`)!;
+    }
+
+    private x(s: Scene) {
+      return Number(this.dataset.x0) + s[this.order] * Number(this.dataset.dx);
+    }
+
+    /** Moves every scene to its place for the chosen order, and draws the flashback loop. */
+    private place() {
+      this.scenes.forEach((s, i) => {
+        const g = this.querySelector<SVGGElement>(`[data-pb-dot="${i}"]`)!;
+        g.style.transform = `translate(${this.x(s)}px, ${ROW[s.strand]}px)`;
+      });
+      const fi = this.scenes.findIndex((s) => s.strand === 'flash');
+      const loop = this.part('loop');
+      if (fi > 0 && this.order === 'tell') {
+        const before = this.scenes[fi - 1];
+        const fx = this.x(this.scenes[fi]);
+        const bx = this.x(before);
+        loop.setAttribute('d', `M${bx} ${ROW[before.strand] - 16} C ${bx} ${ROW.flash - 30}, ${fx - 30} ${ROW.flash - 30}, ${fx - 15} ${ROW.flash}`);
+      } else loop.setAttribute('d', '');
+    }
+
+    private go(i: number) {
+      this.at = Math.max(0, Math.min(this.scenes.length - 1, i));
+      const s = this.scenes[this.at];
+      this.scenes.forEach((_, j) => {
+        const g = this.querySelector(`[data-pb-dot="${j}"]`)!;
+        g.classList.toggle('is-on', j <= this.at);
+        g.classList.toggle('is-now', j === this.at);
+      });
+      this.part('tag').textContent = `Scene ${this.at + 1} · ${this.labels[s.strand]}`;
+      this.part('text').innerHTML = s.text;
+      this.part('card').className = `g4e-pb__card g4e-pb__card--${s.strand}`;
+      (this.part('back') as HTMLButtonElement).disabled = this.at === 0;
+      (this.part('next') as HTMLButtonElement).disabled = this.at === this.scenes.length - 1;
+    }
+  }
+  customElements.define('plot-braid', PlotBraid);
+</script>

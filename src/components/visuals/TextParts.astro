@@ -1,0 +1,75 @@
+---
+// See how a non-fiction text is built (LANENG4-OI1-GQ1-LO1, K4.3, K4.4, S4.1, S4.2). Each sentence has a
+// job, such as introduction or supporting detail, or fact or opinion. Tap a job to light up its sentences.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  title?: string;
+  parts: { id: string; label: string; icon?: string; note: string }[];
+  sentences: { text: string; part: string }[];
+  /** Start a new paragraph before these sentence numbers (1-based). */
+  breaks?: number[];
+}
+const { title, parts, sentences, breaks = [] } = Astro.props;
+for (const s of sentences) if (!parts.some((p) => p.id === s.part)) throw new Error(`text-parts: sentence in unknown part "${s.part}"`);
+const paras: { text: string; part: string; i: number }[][] = [[]];
+sentences.forEach((s, i) => {
+  if (breaks.includes(i + 1) && paras[paras.length - 1].length) paras.push([]);
+  paras[paras.length - 1].push({ text: mdInline(s.text), part: s.part, i });
+});
+const notes = Object.fromEntries(parts.map((p) => [p.id, mdInline(p.note)]));
+---
+<text-parts data-notes={JSON.stringify(notes)}>
+  <div class="g4e-tp__pick" role="group" aria-label="Choose a part">
+    {parts.map((p) => <button type="button" data-tp={p.id} aria-pressed="false">{p.icon && <span aria-hidden="true">{p.icon} </span>}{p.label}</button>)}
+    <button type="button" data-tp="all" aria-pressed="false">Show all</button>
+  </div>
+  <article class="g4e-tp__text">
+    {title && <h3>{title}</h3>}
+    {paras.map((para) => (
+      <p>{para.map((s, j) => <>{j > 0 && ' '}<span class="g4e-tp__s" data-tp-part={s.part} data-tp-n={parts.findIndex((p) => p.id === s.part)} set:html={s.text} /></>)}</p>
+    ))}
+  </article>
+  <p class="g4e-tp__note" data-tp-note aria-live="polite">Tap a part to see which sentences do that job.</p>
+  <noscript><ul>{sentences.map((s) => <li><strong>{parts.find((p) => p.id === s.part)?.label}:</strong> <span set:html={mdInline(s.text)} /></li>)}</ul></noscript>
+</text-parts>
+
+<style is:global>
+  text-parts { display: block; }
+  .g4e-tp__pick { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g4e-tp__pick button { padding: 0.4rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g4e-tp__pick button:hover { border-color: var(--accent); }
+  .g4e-tp__pick button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+  .g4e-tp__text { margin-top: 0.7rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); }
+  .g4e-tp__text h3 { margin: 0 0 0.4rem; }
+  .g4e-tp__text p { margin: 0.4rem 0 0; line-height: 1.7; }
+  .g4e-tp__s { border-radius: 4px; padding: 0.05em 0.1em; transition: background-color 0.3s ease, opacity 0.3s ease; }
+  .g4e-tp__text.is-picking .g4e-tp__s { opacity: 0.45; }
+  .g4e-tp__text.is-picking .g4e-tp__s.is-on { opacity: 1; }
+  .g4e-tp__s.is-on[data-tp-n='0'] { background: var(--l1-soft); box-shadow: inset 0 -3px var(--l1); }
+  .g4e-tp__s.is-on[data-tp-n='1'] { background: var(--l2-soft); box-shadow: inset 0 -3px var(--l2); }
+  .g4e-tp__s.is-on[data-tp-n='2'] { background: var(--warn-soft); box-shadow: inset 0 -3px var(--sun); }
+  .g4e-tp__s.is-on[data-tp-n='3'] { background: var(--l3-soft); box-shadow: inset 0 -3px var(--l3); }
+  .g4e-tp__note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); min-height: 2.6rem; }
+  @media (prefers-reduced-motion: reduce) { .g4e-tp__s { transition: none; } }
+</style>
+
+<script>
+  class TextParts extends HTMLElement {
+    connectedCallback() {
+      const notes: Record<string, string> = JSON.parse(this.dataset.notes!);
+      const text = this.querySelector('.g4e-tp__text')!;
+      const note = this.querySelector<HTMLElement>('[data-tp-note]')!;
+      this.querySelectorAll<HTMLButtonElement>('[data-tp]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const id = b.dataset.tp!;
+          this.querySelectorAll('[data-tp]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          text.classList.toggle('is-picking', id !== 'all');
+          this.querySelectorAll<HTMLElement>('[data-tp-part]').forEach((s) => s.classList.toggle('is-on', id === 'all' || s.dataset.tpPart === id));
+          note.innerHTML = id === 'all' ? 'Each colour is one job. Every sentence has a job to do.' : notes[id];
+        }),
+      );
+    }
+  }
+  customElements.define('text-parts', TextParts);
+</script>

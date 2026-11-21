@@ -1,0 +1,411 @@
+id: sentence-grammar
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG4-OI9-GQ1-LO1]
+order: 14
+title: 'Sentences: Tense, Subjects, Objects and Adjectives'
+shortTitle: Grammar
+summary: >-
+  Sort four kinds of sentences, move a sentence through time, find subjects and objects, use pronouns
+  and possessive adjectives, and compare with -er and -est.
+
+bigIdea: |-
+  - Sentences can tell, ask, exclaim or command. They can be in the **past, present or future**.
+  - The **subject** does the action, and the **object** receives it. Both can be nouns or pronouns.
+  - Adjectives can compare: **-er** for two things, **-est** for three or more.
+
+lesson:
+  - title: Four kinds of sentences
+    blocks:
+      - type: visual
+        covers: [S2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: tell, label: Statement, icon: 💬 }
+            - { id: ask, label: Question, icon: ❓ }
+            - { id: wow, label: Exclamation, icon: ❗ }
+            - { id: do, label: Command, icon: 👉 }
+          cards:
+            - { text: The rink opens at noon., bin: tell, why: 'It tells a fact, and ends with a period.' }
+            - { text: Where are my skates?, bin: ask, why: 'It asks something, and ends with a question mark.' }
+            - { text: What a goal that was!, bin: wow, why: 'It shows strong feeling, and ends with an exclamation mark.' }
+            - { text: Tie your laces tightly., bin: do, why: 'It tells someone to do something.' }
+            - { text: Don’t skate on thin ice., bin: do, why: 'A command can tell someone **not** to do something too.' }
+        caption: What kind of sentence is each one?
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K2.1']
+        title: Remember from Grade 3
+        body: A **command** tells someone to do, or not to do, something.
+
+  - title: Past, present and future
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, K2.3, S2.2]
+        component: sentence-lab
+        props: { mode: tense }
+        caption: Move the sentence through time. Which words change?
+      - type: table
+        covers: [K2.1, K2.2, K2.3, S2.2]
+        caption: Clues to the tense
+        headers: [Tense, It tells…, Example]
+        rows:
+          - ['**Past**', 'what happened', 'We **skated** yesterday.']
+          - ['**Present**', 'facts, or what is happening now', 'We **skate** every Saturday.']
+          - ['**Future**', 'what may happen later', 'We **will skate** tomorrow.']
+
+  - title: Subjects and objects
+    blocks:
+      - type: visual
+        covers: [K2.4, K2.5, K2.6, S2.3, S2.4, S2.5]
+        component: sentence-lab
+        props: { mode: roles }
+        caption: Press the swap button. Nouns become pronouns, but each one keeps its job.
+      - type: compare
+        covers: [K2.7, K2.8, S2.5]
+        columns:
+          - title: 🙋 Subject pronouns
+            body: |-
+              They can be the subject.
+
+              **I, you, he, she, it, we, they**
+
+              > **She** caught the puck.
+          - title: 🎒 Possessive adjectives
+            body: |-
+              They come before a noun to show who owns it.
+
+              **my, your, his, her, its, our, their**
+
+              > Maya packed **her** skates.
+
+  - title: Comparing with adjectives
+    blocks:
+      - type: visual
+        covers: [K2.9, K2.10, S2.6]
+        component: compare-scale
+        props:
+          sets:
+            - adjective: tall
+              er: taller
+              est: tallest
+              items:
+                - { name: The fox, icon: 🦊, size: 0.9 }
+                - { name: The horse, icon: 🐴, size: 1.5 }
+                - { name: The giraffe, icon: 🦒, size: 2.2 }
+            - adjective: fast
+              er: faster
+              est: fastest
+              items:
+                - { name: The snail, icon: 🐌, size: 0.8 }
+                - { name: The bike, icon: 🚲, size: 1.3 }
+                - { name: The jet, icon: ✈️, size: 2 }
+            - adjective: colourful
+              long: true
+              items:
+                - { name: The grey kite, icon: 🪁, size: 1 }
+                - { name: The striped kite, icon: 🪁, size: 1.3 }
+                - { name: The rainbow kite, icon: 🪁, size: 1.6 }
+        caption: Compare 2, then compare 3. How does the adjective change?
+      - type: callout
+        variant: mistake
+        covers: [K2.9, S2.6]
+        title: Not both!
+        body: Use **-er** or **more**, never both. Say *taller*, not *more taller*.
+
+  - title: Join with conjunctions
+    blocks:
+      - type: visual
+        covers: [S2.7]
+        component: sentence-lab
+        props: { mode: join }
+        caption: Choose the connecting word that makes sense.
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K2.5']
+        title: Remember from Grade 3
+        body: '**Conjunctions** connect phrases and sentences: *and, but, or, so, for*.'
+
+  - title: Subjects and verbs agree
+    blocks:
+      - type: compare
+        covers: [S2.8, U2.1]
+        columns:
+          - title: 1️⃣ One
+            body: |-
+              > The dog **barks**.\
+              > She **runs**.
+          - title: 2️⃣ More than one
+            body: |-
+              > The dogs **bark**.\
+              > They **run**.
+      - type: callout
+        variant: tip
+        covers: [S2.8, U2.1]
+        title: Check the subject first
+        body: |-
+          1. Find the subject.
+          2. Is it one, or more than one?
+          3. Make the verb match, so your writing is easy to follow.
+
+keyTerms:
+  - term: Tense
+    covers: [K2.1, K2.2, K2.3]
+    definition: The time a sentence tells about, past, present or future.
+  - term: Subject
+    covers: [K2.4]
+    definition: The person or thing that does the action of the verb.
+  - term: Object
+    covers: [K2.5]
+    definition: The person or thing that receives the action of the verb.
+  - term: Subject pronoun
+    covers: [K2.7]
+    definition: A pronoun that can replace a noun as the subject, such as I, he, she, we or they.
+  - term: Possessive adjective
+    covers: [K2.8]
+    definition: A word before a noun that shows who owns it, such as my, her, its or their.
+  - term: Comparative
+    covers: [K2.9]
+    definition: An adjective that compares two things, using -er or more.
+  - term: Superlative
+    covers: [K2.10]
+    definition: An adjective that compares three or more things, using -est or most.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S2.1]
+    type: mc
+    prompt: What kind of sentence is **“Please close the door.”**?
+    choices:
+      - A command
+      - A question
+      - An exclamation
+      - A statement
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Does it end with a question mark, or ask anything?
+      '2': Does it show strong feeling, with an exclamation mark?
+      '3': Does it tell a fact, or tell someone to do something?
+    hints:
+      - Is someone being told to do something?
+    solution:
+      - It tells someone to do something, so it is a **command**. *Please* makes it polite.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.2, K2.3]
+    type: mc
+    prompt: What tense is **“Our class will plant trees on Friday.”**?
+    choices:
+      - Future
+      - Present
+      - Past
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Is it happening now? Look at the word *will*.
+      '2': Has it already happened? Look at *will* and *Friday*.
+    hints:
+      - Which word tells you it hasn’t happened yet?
+    solution:
+      - '*Will plant* tells what may happen later. That is the **future** tense.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S2.6, K2.9]
+    type: text
+    prompt: |-
+      Fill in the blank with the right form of **fast**.
+
+      > A cheetah is ___ than a horse.
+    accept: [faster]
+    hints:
+      - How many animals are being compared?
+    solution:
+      - Two animals are compared, so add **-er**. A cheetah is **faster** than a horse.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K2.5, S2.4, K2.4]
+    type: mc
+    prompt: In **“The goalie caught the puck,”** what is the **object**?
+    choices:
+      - the puck
+      - The goalie
+      - caught
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The goalie does the catching. That makes it the subject.
+      '2': '*Caught* is the verb, the action itself.'
+    hints:
+      - What receives the action? What got caught?
+    solution:
+      - The goalie (subject) caught (verb) **the puck** (object). The puck receives the action.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S2.8]
+    type: mc
+    prompt: |-
+      Leo wrote:
+
+      > My two sisters plays hockey every weekend.
+
+      What is wrong, and how should he fix it?
+    choices:
+      - The subject is more than one, so the verb should be *play*.
+      - The verb should be *played*, because it is the past.
+      - The subject should be *My two sister*.
+      - Nothing is wrong. The sentence is correct.
+    answer: 0
+    feedback:
+      '1': '*Every weekend* tells you this happens regularly. Is it about the past?'
+      '2': There are two sisters. Should *sister* be singular?
+      '3': Read it aloud. Does *sisters plays* sound right?
+    hints:
+      - Is the subject one sister or more than one?
+    solution:
+      - '*Sisters* is more than one, so the verb must agree: **My two sisters play hockey every weekend.**'
+
+  - id: b3
+    level: 2
+    thinking: decide
+    covers: [K2.8, S2.5]
+    type: mc
+    prompt: |-
+      Which word fits the blank?
+
+      > Mia and Leo forgot ___ lunches on the bus.
+    choices:
+      - their
+      - his
+      - her
+      - its
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*His* is for one boy. Who owns the lunches?'
+      '2': '*Her* is for one girl. Whose lunches are they?'
+      '3': '*Its* is for a thing or an animal. Who owns these?'
+    hints:
+      - Who owns the lunches? One person, or more?
+    solution:
+      - The lunches belong to Mia **and** Leo, two people. The possessive adjective is **their**.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S2.7]
+    type: mc
+    prompt: |-
+      Which conjunction connects these ideas best?
+
+      > We wanted to swim at the lake, ___ the beach was closed for the day.
+    choices:
+      - but
+      - so
+      - or
+      - and
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*So* shows a result. Did wanting to swim cause the beach to close?'
+      '2': '*Or* offers a choice. Is anyone choosing?'
+      '3': '*And* adds an idea, but it hides the surprise. Did things go as they wanted?'
+    hints:
+      - Does the second part agree with the first, or go against it?
+    solution:
+      - What they wanted and what happened don’t match. **But** shows that contrast.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.9, K2.7, K2.8, S2.3, S2.6]
+    type: investigation
+    prompt: |-
+      Help Ana fix her story.
+
+      > Raj and Ana built snow forts. Raj’s fort was **more taller** than Ana’s fort. **Raj and Ana** laughed when a dog ran inside **Raj’s** fort.
+    parts:
+      - type: text
+        prompt: Fix the comparing words. What should *more taller* be?
+        accept: [taller]
+        hints:
+          - Use -er **or** more, not both.
+        solution:
+          - '*Tall* is a short adjective, so just add -er: **taller**.'
+      - type: mc
+        prompt: Which subject pronoun can replace **Raj and Ana** in the last sentence?
+        choices:
+          - They
+          - Them
+          - We
+          - It
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '*Them* can be an object, but this is the subject. Who laughed?'
+          '2': '*We* would include the writer. Is Ana writing about herself here?'
+          '3': '*It* is for one thing. How many people laughed?'
+        hints:
+          - It replaces two people who do the action.
+        solution:
+          - '**They** laughed. *They* is a subject pronoun for more than one person.'
+      - type: mc
+        prompt: Which possessive adjective could replace **Raj’s** in *inside Raj’s fort*?
+        choices:
+          - his
+          - her
+          - their
+          - its
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '*Her* is for a girl. Whose fort is it?'
+          '2': '*Their* means it belongs to both. Whose fort did the dog go into?'
+          '3': '*Its* is for a thing or animal. Who owns the fort?'
+        hints:
+          - The fort belongs to Raj, one boy.
+        solution:
+          - The fort belongs to Raj, so it is **his** fort.
+    wrapUp: Grammar is a set of small choices. Each fix makes the sentence clearer for the reader.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K2.9, K2.10, S2.6]
+    type: mc
+    prompt: |-
+      There are **two** puppies in the box. Nia says:
+
+      > Max is the biggest puppy.
+
+      Her brother says it should be *bigger*. Who is right, and why?
+    choices:
+      - Her brother, because with only two things you use -er.
+      - Nia, because Max is the biggest of all the puppies in the box.
+      - Nia, because -est is always used for animals.
+      - Both are right, because -er and -est mean the same.
+    answer: 0
+    feedback:
+      '1': There are only two puppies. How many things does -est compare?
+      '2': Is there a special rule for animals? What matters is how many things you compare.
+      '3': '*Bigger* and *biggest* compare different numbers of things.'
+    hints:
+      - How many puppies are being compared?
+    solution:
+      - Comparing **two** things uses **-er**. Comparing three or more uses **-est**.
+      - With two puppies, Max is the **bigger** puppy. If a third puppy arrived, Max could be the biggest.

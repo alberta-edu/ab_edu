@@ -1,0 +1,479 @@
+id: spelling-patterns
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG4-OI9-GQ1-LO1]
+order: 16
+title: Spelling Patterns, Suffixes and Homophones
+shortTitle: Spelling
+summary: >-
+  Code spelling patterns like VVCC and VCCe, join suffixes and prefixes, build compound words and plurals,
+  pick the right homophone, and check tricky words.
+
+bigIdea: |-
+  - Most words follow **spelling patterns**. Know one word, and you can spell others like it.
+  - Suffixes and prefixes are spelled the same way in every word.
+  - **Homophones** sound the same but are spelled differently. The spelling shows the meaning.
+  - Some words break the patterns. Learn them, and check them with a tool.
+
+lesson:
+  - title: Spelling patterns
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1]
+        component: pattern-code
+        props:
+          items:
+            - { word: trench, family: [bench, lunch, catch] }
+            - { word: each, family: [beach, teach, coach] }
+            - { word: bounce, family: [pounce, ounce, course] }
+            - { word: wedge, family: [hedge, judge, dance] }
+            - { word: health, family: [wealth, earth, fourth] }
+            - { word: weave, family: [leave, cheese, noise] }
+        caption: Pick a pattern, and watch each letter get its code.
+      - type: example
+        covers: [S3.2, U3.1]
+        title: Spell a word you’ve never written
+        problem: How do you spell the word for a long seat in a park? It rhymes with *trench*.
+        steps:
+          - '**Find a word you know** that sounds the same at the end: *trench*.'
+          - '**Keep the part that matches:** *ench* (VCCC).'
+          - '**Change the start** to the sound you hear: *b*.'
+        answer: '**bench**'
+      - type: callout
+        variant: tip
+        covers: [U4.1, S4.2]
+        title: Patterns make writing faster
+        body: When you spell patterns without stopping to think, your writing flows. Your mind stays on your ideas.
+
+  - title: Suffixes
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.2, S3.3]
+        component: suffix-builder
+        props:
+          spelling: true
+          suffixes:
+            - suffix: er
+              meaning: '“more” or “a person who”'
+              words:
+                - { base: tall, word: taller, means: 'more tall' }
+                - { base: run, word: runner, means: 'a person who runs' }
+            - suffix: r
+              meaning: '“more” or “a person who”, after a silent e'
+              words:
+                - { base: brave, word: braver, means: 'more brave' }
+                - { base: bake, word: baker, means: 'a person who bakes' }
+            - suffix: es
+              meaning: '“more than one”'
+              words:
+                - { base: box, word: boxes, means: 'more than one box' }
+                - { base: wish, word: wishes, means: 'more than one wish' }
+            - suffix: ly
+              meaning: '“in that way”'
+              words:
+                - { base: quick, word: quickly, means: 'in a quick way' }
+                - { base: brave, word: bravely, means: 'in a brave way' }
+            - suffix: ily
+              meaning: '“in that way”, for words that end in y'
+              words:
+                - { base: happy, word: happily, means: 'in a happy way' }
+                - { base: easy, word: easily, means: 'in an easy way' }
+            - suffix: ing
+              meaning: 'an action that is going on'
+              words:
+                - { base: jump, word: jumping, means: '*We are jumping.*' }
+                - { base: make, word: making, means: '*She is making soup.*' }
+                - { base: swim, word: swimming, means: '*They are swimming.*' }
+            - suffix: able
+              meaning: '“can be”'
+              words:
+                - { base: fix, word: fixable, means: 'can be fixed' }
+                - { base: enjoy, word: enjoyable, means: 'can be enjoyed' }
+            - suffix: ible
+              meaning: '“can be”, like -able'
+              words:
+                - { base: flex, word: flexible, means: 'can bend' }
+                - { base: convert, word: convertible, means: 'can be changed, like a car roof that folds down' }
+            - suffix: ar
+              meaning: '“a person who”'
+              words:
+                - { base: beg, word: beggar, means: 'a person who begs' }
+            - suffix: less
+              meaning: '“without”'
+              words:
+                - { base: hope, word: hopeless, means: 'without hope' }
+                - { base: fear, word: fearless, means: 'without fear' }
+        caption: Tap each suffix. Watch for letters that drop, double or change.
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K5.4']
+        title: Remember from Grade 3
+        body: Drop the *e* before adding *-ing* (make → making). Sometimes you double the last letter before *-ing* or *-ed* (swim → swimming).
+      - type: callout
+        variant: tip
+        covers: [U5.1, S3.3]
+        title: Suffix starts with a consonant?
+        body: The base usually stays whole, so *hope* keeps its *e* in **hopeless**. Spelling suffixes the same way every time makes your writing clear.
+
+  - title: Prefixes stay whole
+    blocks:
+      - type: table
+        covers: [S3.3]
+        caption: Join the prefix and the base without changing either one, even if two letters end up side by side.
+        headers: [Prefix, Base, Word]
+        rows:
+          - ['mis', 'spell', '**misspell** (two s’s: one from each part)']
+          - ['un', 'natural', '**unnatural** (two n’s)']
+          - ['dis', 'agree', '**disagree**']
+          - ['re', 'write', '**rewrite**']
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI3-GQ1-LO1#K2.4']
+        title: Remember from Grade 3
+        body: Prefixes like *re-*, *un-*, *dis-* and *mis-* change the meaning of a word when they are added to the beginning of a base.
+
+  - title: Build words
+    blocks:
+      - type: visual
+        covers: [S5.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: compound, label: Compound word, icon: 🧩 }
+            - { id: contraction, label: Contraction, icon: ✂️ }
+            - { id: possessive, label: Possessive, icon: 🎒 }
+            - { id: plural, label: Tricky plural, icon: 👥 }
+          cards:
+            - { text: snowball, bin: compound, why: '*snow* + *ball*: two words joined, with every letter kept.' }
+            - { text: won’t, bin: contraction, why: '*will not* squeezed together. This one changes its spelling, so learn it by heart.' }
+            - { text: Grandpa’s hat, bin: possessive, why: 'One owner, so add **’s**.' }
+            - { text: mice, bin: plural, why: 'More than one *mouse*. The whole word changes.' }
+            - { text: sunflower, bin: compound, why: '*sun* + *flower*.' }
+            - { text: they’ll, bin: contraction, why: '*they will*. The apostrophe takes the place of *wi*.' }
+            - { text: the girls’ team, bin: possessive, why: 'More than one girl owns the team. *Girls* already ends in *s*, so add only **’**.' }
+            - { text: leaves, bin: plural, why: 'More than one *leaf*. The *f* changes to *v*, then add *-es*.' }
+        caption: Where does each word belong?
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K3.2']
+        title: Remember from Grade 3
+        body: Some plurals change (person → people). Some stay the same (moose → moose).
+
+  - title: Homophones
+    blocks:
+      - type: table
+        covers: [K4.1, S4.1]
+        caption: Homophones sound the same, but they are spelled differently and mean different things.
+        headers: [One spelling, Another spelling]
+        rows:
+          - ['👂 **hear** with your ears', '📍 **here**, this place']
+          - ['🧦 a **pair** of socks', '🍐 a juicy **pear**']
+          - ['🌙 a dark **night**', '🛡️ a brave **knight**']
+          - ['🌸 a **flower** in a garden', '🌾 **flour** for baking']
+      - type: visual
+        covers: [S4.1, K4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: there, label: there (a place), icon: 📍 }
+            - { id: their, label: their (belongs to them), icon: 🎒 }
+            - { id: theyre, label: they’re (they are), icon: 👥 }
+          cards:
+            - { text: Put your boots over ___., bin: there, why: 'A place. *There* has *here* inside it.' }
+            - { text: The twins packed ___ lunches., bin: their, why: 'The lunches belong to the twins.' }
+            - { text: ___ going to the rink., bin: theyre, why: 'Read it as *They are going*. It works!' }
+            - { text: ___ dog has spots., bin: their, why: 'The dog belongs to them.' }
+            - { text: I think ___ late!, bin: theyre, why: '*I think they are late.* The apostrophe shows the missing *a*.' }
+            - { text: Is the library over ___?, bin: there, why: 'It names a place.' }
+        caption: Which word fills each blank?
+
+  - title: Tricky words and tools
+    blocks:
+      - type: compare
+        covers: [S3.4, U3.1]
+        columns:
+          - title: 🧩 Follows a pattern
+            body: |-
+              **each, beach, reach, teach**
+
+              Know one, and you can spell them all.
+          - title: 🤪 Breaks the patterns
+            body: |-
+              **said, friend, people, enough**
+
+              These aren’t spelled the way they sound. Learn them by heart.
+      - type: callout
+        variant: tip
+        covers: [S4.2, S3.4]
+        title: Tricks for tricky words
+        body: |-
+          1. **Say it in a silly way:** *Wed-nes-day*.
+          2. **Picture it:** close your eyes and see the letters.
+          3. **Find the tricky part:** *fr**ie**nd*.
+          4. **Try it two ways.** Which one looks right?
+      - type: compare
+        covers: [K4.2, S4.3]
+        columns:
+          - title: 📖 Non-digital tools
+            body: A **dictionary**, a word wall or your own list of tricky words.
+          - title: 💻 Digital tools
+            body: '**Spell-check** underlines words it doesn’t know. An online dictionary shows the spelling and the meaning.'
+      - type: callout
+        variant: mistake
+        covers: [K4.2, K4.1, S4.3]
+        title: Spell-check misses homophones
+        body: '*I can here the bell.* Every word is a real word, so spell-check won’t catch it. You have to read it yourself.'
+
+keyTerms:
+  - term: Spelling pattern
+    covers: [K3.1, S3.1]
+    definition: A way that letters often go together, such as VVCC in *each* and *beach*.
+  - term: Silent e
+    covers: [K3.1]
+    definition: An *e* at the end of a word that you don’t hear, as in *wedge* and *bounce*.
+  - term: Homophones
+    covers: [K4.1]
+    definition: Words that sound the same but have different spellings and meanings, such as *hear* and *here*.
+  - term: Compound word
+    covers: [S5.1]
+    definition: Two words joined to make one, such as *snowball*.
+  - term: Complex plural
+    covers: [S5.1]
+    definition: A plural that doesn’t just add *-s*, such as *mice*, *children* or *leaves*.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K3.1, S3.1]
+    type: mc
+    prompt: '**Wedge** has the pattern **VCCe**. Which word has the same pattern?'
+    choices:
+      - bridge
+      - weave
+      - trench
+      - bounce
+    answer: 0
+    feedback:
+      '1': Start at the first vowel in *weave*. How many vowels are side by side?
+      '2': Does *trench* end with a silent e?
+      '3': Start at the *o* in *bounce*. How many vowels come first?
+    hints:
+      - Start at the first vowel. Name each letter V, C or e.
+    solution:
+      - In *bridge*, start at the *i*. Then come *d*, *g* and a silent *e*.
+      - That’s V, C, C, e, the same as *wedge*. → **bridge**
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K4.1, S4.1]
+    type: mc
+    prompt: |-
+      Which word fills the blank?
+
+      > Come over ___ and look at this beetle!
+    choices:
+      - here
+      - hear
+    answer: 0
+    feedback:
+      '1': '*Hear* is what you do with your ears. Is this sentence about listening?'
+    hints:
+      - Is the blank about a place, or about listening?
+    solution:
+      - The blank names a place, so it’s **here**. *Hear* has *ear* inside it, for listening.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K5.1, S5.2, S3.3]
+    type: text
+    prompt: |-
+      Join the parts.
+
+      **hope** + **less** = ?
+    accept: [hopeless]
+    hints:
+      - Does *-less* start with a vowel or a consonant? Does the *e* need to drop?
+    solution:
+      - '*-less* starts with a consonant, so *hope* stays whole. → **hopeless**'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S3.3]
+    type: mc
+    prompt: |-
+      Ava has a list of tricky words. She wrote:
+
+      > mispell
+
+      Is it right?
+    choices:
+      - No. *Mis-* and *spell* both stay whole, so it needs two s’s.
+      - Yes. A word never has the same letter twice in a row.
+      - No. It should be *mispel*, the way it sounds.
+      - Yes. One *s* drops when a prefix joins a base.
+    answer: 0
+    feedback:
+      '1': Look at *spell*. Are two letters side by side the same?
+      '2': Does *spell* have one *l* or two? Do the parts change?
+      '3': Do prefixes change when they join a base? Look back at *unnatural*.
+    hints:
+      - Pull the word apart. What is the prefix? What is the base?
+    solution:
+      - The parts are *mis* + *spell*. A prefix and a base don’t change when they join.
+      - So you keep the *s* at the end of *mis* and the *s* at the start of *spell*. → **misspell**
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S3.2, U3.1]
+    type: text
+    prompt: |-
+      Mo can spell **health**. Now Mo needs a word for having lots of money.
+
+      It rhymes with *health* and starts with *w*. Type it.
+    accept: [wealth]
+    hints:
+      - Which part of *health* sounds the same in the new word?
+      - Keep that part. Change only the start.
+    solution:
+      - '*Health* and the new word share the same ending, *ealth* (VVCCC).'
+      - Keep *ealth*, and change *h* to *w*. → **wealth**
+
+  - id: b3
+    level: 2
+    thinking: evidence
+    covers: [K4.2, S4.3, K4.1]
+    type: mc
+    prompt: |-
+      Jun typed:
+
+      > We herd the geese before we saw them.
+
+      Spell-check found no mistakes. Is every word spelled right?
+    choices:
+      - No. *Herd* is a real word, a group of animals, so spell-check missed that it should be *heard*.
+      - Yes. Spell-check found no mistakes, so every word must be right.
+      - No. *Geese* is wrong, and the plural of *goose* should be *gooses*.
+      - No. *Saw* is a misspelling, and spell-check should have caught it.
+    answer: 0
+    feedback:
+      '1': Spell-check only knows if a word is real. Read each word. Does each one mean what Jun meant?
+      '2': One goose, two… Is *gooses* a word?
+      '3': Is *saw* spelled right for what Jun saw with his eyes?
+    hints:
+      - Read the sentence slowly. Does any word sound right but mean something else?
+    solution:
+      - '*Herd* and *heard* are homophones. Jun meant *heard*, with his ears.'
+      - Spell-check can’t tell which one you meant, because both are real words. Read your work yourself too.
+
+  - id: b4
+    level: 2
+    thinking: notice
+    covers: [S5.1]
+    type: mc
+    prompt: Which sign is spelled correctly?
+    choices:
+      - Two geese and three mice live at our farm.
+      - Two gooses and three mouses live at our farm.
+      - Two goose’s and three mouse’s live at our farm.
+      - Two geeses and three mices live at our farm.
+    answer: 0
+    feedback:
+      '1': Say *gooses* and *mouses* aloud. Do they sound right?
+      '2': Do the geese own anything? Is a letter missing?
+      '3': '*Geese* already means more than one goose. Does it need another *s*?'
+    hints:
+      - These are tricky plurals. Does the whole word change, or do you add *-s*?
+    solution:
+      - Some plurals change the whole word. One *goose*, two **geese**. One *mouse*, three **mice**.
+      - They don’t need *-s*, and they don’t need an apostrophe, because nobody owns anything.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S3.2, S3.4, K4.2, U3.1]
+    type: investigation
+    prompt: |-
+      Nia is writing a camping story. She needs two words she has never written.
+
+      - **Word 1** means a very bad smell. It starts with *st* and rhymes with *bench*.
+      - **Word 2** fills the blank: *Mom ___ we could toast marshmallows.* It sounds like *sed*.
+    parts:
+      - type: mc
+        prompt: Which word that Nia knows will help her spell **Word 1**?
+        choices:
+          - trench (VCCC)
+          - each (VVCC)
+          - wedge (VCCe)
+          - weave (VVCe)
+        answer: 0
+        feedback:
+          '1': Say *each* and *bench*. Do they end with the same sound?
+          '2': Does *bench* end with a silent e?
+          '3': Say *weave* and *bench*. Do they rhyme?
+        hints:
+          - Which word rhymes with *bench*?
+        solution:
+          - '*Trench* rhymes with *bench*, so it has the same ending, *ench*.'
+      - type: text
+        prompt: Spell **Word 1**.
+        accept: [stench]
+        hints:
+          - Keep *ench* from *trench*. Put *st* in front.
+        solution:
+          - st + ench → **stench**
+      - type: mc
+        prompt: For **Word 2**, Nia uses *bed* and *red* and writes *sed*. Her teacher circles it. Why didn’t the pattern work?
+        choices:
+          - '*Said* is a tricky word that doesn’t follow the pattern, so she should check a dictionary or learn it.'
+          - She picked the wrong rhyme. It should follow *seed*, so it’s spelled *seed*.
+          - Words that rhyme always end the same way, so the teacher made a mistake.
+          - She forgot the silent e. It should be *sede*.
+        answer: 0
+        feedback:
+          '1': '*Seed* is a real word, but it means something else, and it sounds different. Say both.'
+          '2': Do *said* and *bed* rhyme? Are they spelled the same at the end?
+          '3': Would a silent e change how *sed* sounds?
+        hints:
+          - Do all words that sound the same follow the same pattern?
+        solution:
+          - The word is **said**. It sounds like *sed*, but it isn’t spelled the way it sounds.
+          - A pattern can’t help with a tricky word. Learn it by heart, or check it in a dictionary.
+    wrapUp: Patterns help you spell most new words. A few words break the patterns, so learn those and check them with a tool.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K4.1, S4.1, U5.1]
+    type: mc
+    prompt: |-
+      What if *there*, *their* and *they’re* were all spelled the same way? This note would say:
+
+      > Thare going to thare cabin over thare.
+
+      What would readers lose?
+    choices:
+      - They couldn’t see which word means *they are*, which means *belongs to them* and which means *a place*.
+      - Nothing at all, because the three words sound the same, so readers would know anyway.
+      - They couldn’t say the words aloud, because nobody would know how to pronounce *thare*.
+      - Only some time, because the new spelling is longer to read.
+    answer: 0
+    feedback:
+      '1': When you listen, you get help from the sentence. But try reading *thare cabin* on its own. Which one is it?
+      '2': How would you say *thare*? Do all three words sound like that already?
+      '3': Count the letters. Is *thare* longer than *there*?
+    hints:
+      - Read the note slowly. Which *thare* is which?
+      - What does each spelling tell you that sound alone doesn’t?
+    solution:
+      - The three words sound the same. Only the spelling shows which meaning the writer chose.
+      - '*They’re* shows *they are*. *Their* shows who owns it. *There* has *here* inside it, a place.'
+      - Different spellings make writing clear, so readers don’t have to guess.

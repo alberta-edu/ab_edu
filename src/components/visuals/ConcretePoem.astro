@@ -1,0 +1,113 @@
+---
+// Concrete poems (LANENG4-OI1-GQ1-LO1, K5.2, K5.5, S5.2). The words of each poem write themselves along a
+// shape that matches the topic. Switch to plain lines to see what the shape adds.
+import { capacity, shapePath, type PoemShape } from './concrete-poem.ts';
+
+interface Props {
+  poems: { title: string; shape: PoemShape; lines: string[]; art?: string }[];
+}
+const { poems } = Astro.props;
+const pathId = `g4e-cp-${Math.random().toString(36).slice(2, 8)}`;
+const data = poems.map((p) => {
+  const text = p.lines.join(' ');
+  if (text.length > capacity(p.shape)) throw new Error(`concrete-poem: "${p.title}" is too long for its ${p.shape}`);
+  return { ...p, text, path: shapePath(p.shape) };
+});
+---
+<concrete-poem data-poems={JSON.stringify(data)}>
+  <div class="control-row">
+    <div class="seg" role="group" aria-label="Choose a poem">
+      {poems.map((p, i) => <button type="button" data-cp-poem={i} aria-pressed={String(i === 0)}>{p.title}</button>)}
+    </div>
+    <div class="seg" role="group" aria-label="How to show the poem">
+      <button type="button" data-cp-view="shape" aria-pressed="true">As a shape</button>
+      <button type="button" data-cp-view="lines" aria-pressed="false">As lines</button>
+    </div>
+  </div>
+  <div class="g4e-cp__stage">
+    <svg class="g4e-cp__svg" viewBox="0 0 320 320" role="img" data-cp="svg" aria-label="">
+      <text class="g4e-cp__art" data-cp="art" x="160" y="178" text-anchor="middle"></text>
+      <path id={pathId} data-cp="path" fill="none" d=""></path>
+      <text class="g4e-cp__words"><textPath href={`#${pathId}`} data-cp="words"></textPath></text>
+    </svg>
+    <div class="g4e-cp__lines" data-cp="lines" hidden></div>
+  </div>
+  <button type="button" class="btn btn--ghost btn--small" data-cp="replay">↻ Write it again</button>
+  <noscript>{poems.map((p) => <p><strong>{p.title}</strong> ({p.shape}): {p.lines.join(' / ')}</p>)}</noscript>
+</concrete-poem>
+
+<style is:global>
+  concrete-poem { display: block; }
+  .g4e-cp__stage { display: grid; place-items: center; min-height: 18rem; margin: 0.6rem 0; }
+  .g4e-cp__svg { width: min(100%, 22rem); height: auto; }
+  .g4e-cp__words { fill: var(--ink); font-size: 14.5px; font-weight: 600; letter-spacing: 0.02em; }
+  .g4e-cp__art { font-size: 40px; opacity: 0.85; }
+  .g4e-cp__lines { padding: 1rem 1.2rem; border-radius: var(--radius-sm); background: var(--surface-2); font-size: var(--step-1); line-height: 1.6; }
+  .g4e-cp__lines p { margin: 0; }
+</style>
+
+<script>
+  type Poem = { title: string; shape: string; lines: string[]; text: string; path: string; art?: string };
+
+  class ConcretePoem extends HTMLElement {
+    private poems: Poem[] = [];
+    private at = 0;
+    private view: 'shape' | 'lines' = 'shape';
+    private timer = 0;
+
+    connectedCallback() {
+      this.poems = JSON.parse(this.dataset.poems!);
+      this.querySelectorAll<HTMLButtonElement>('[data-cp-poem]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.at = Number(b.dataset.cpPoem);
+          this.querySelectorAll('[data-cp-poem]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.show();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-cp-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.view = b.dataset.cpView as 'shape' | 'lines';
+          this.querySelectorAll('[data-cp-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.show();
+        }),
+      );
+      this.part('replay').addEventListener('click', () => this.show());
+      this.show();
+    }
+
+    disconnectedCallback() {
+      clearInterval(this.timer);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-cp="${name}"]`)!;
+    }
+
+    private show() {
+      clearInterval(this.timer);
+      const p = this.poems[this.at];
+      const shape = this.view === 'shape';
+      this.part('svg').toggleAttribute('hidden', !shape);
+      this.part('lines').hidden = shape;
+      this.part('replay').hidden = !shape;
+      this.part('lines').innerHTML = p.lines.map((l) => `<p>${l}</p>`).join('');
+      if (!shape) return;
+      this.part('svg').setAttribute('aria-label', `The poem ${p.title}, written in the shape of a ${p.shape}: ${p.text}`);
+      this.part('path').setAttribute('d', p.path);
+      this.part('art').textContent = p.art ?? '';
+      const words = this.part('words');
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        words.textContent = p.text;
+        return;
+      }
+      let n = 0;
+      words.textContent = '';
+      this.timer = window.setInterval(() => {
+        n += 2;
+        words.textContent = p.text.slice(0, n);
+        if (n >= p.text.length) clearInterval(this.timer);
+      }, 45);
+    }
+  }
+  customElements.define('concrete-poem', ConcretePoem);
+</script>
