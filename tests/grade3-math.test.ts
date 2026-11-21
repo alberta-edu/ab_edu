@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src/components/visuals/g3-equation.ts';
 import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
 import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES, FIGS, perimeter, walkSay, missingSide, unrollSide, estById, estimateSay } from '../src/components/visuals/g3-length.ts';
+import { at, wedge, vsRight, turnSay, compareSay, PAIRS, SPOTS, angleSvg } from '../src/components/visuals/g3-angle.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -243,5 +244,32 @@ describe('Grade 3 perimeter and estimating', () => {
     expect(estimateSay(estById('canoe'), 5)).toContain('exactly');
     expect(estimateSay(estById('canoe'), 4)).toContain('close');
     expect(estimateSay(estById('marker'), 5)).toContain('Picture the fingernails');
+  });
+});
+
+describe('Grade 3 angles', () => {
+  it('places arms and wedges by turning anticlockwise', () => {
+    const p = at([0, 0], 10, 90);
+    expect(p[0]).toBeCloseTo(0);
+    expect(p[1]).toBeCloseTo(-10);
+    expect(wedge([0, 0], 10, 0, 0)).toBe('');
+    expect(wedge([0, 0], 10, 0, 90)).toContain('A10,10 0 0 0');
+    expect(angleSvg([0, 0], 0, 90, [50, 50])).toContain('g3m-an-rt');
+    expect(angleSvg([0, 0], 0, 60, [50, 50])).toContain('g3m-an-wedge');
+  });
+
+  it('checks angles against a right angle', () => {
+    expect(vsRight(45)).toBe('smaller');
+    expect(vsRight(92)).toBe('right');
+    expect(vsRight(115)).toBe('bigger');
+    expect(turnSay(90, 'door')).toBe('The door made a quarter turn. That is a right angle!');
+    expect(turnSay(0, 'plain')).toContain('No opening');
+  });
+
+  it('compares by the opening, not the arms', () => {
+    for (const p of PAIRS) expect(compareSay(p.a, p.b)).toContain(p.a === p.b ? 'same size' : 'Arm length doesn’t matter');
+    // Every pair puts the longer arm on the smaller or equal angle, so arm length is a trap.
+    expect(PAIRS.every((p) => (p.la > p.lb) === p.a <= p.b)).toBe(true);
+    expect(SPOTS.filter((s) => vsRight(s.deg) === 'right').length).toBeGreaterThan(1);
   });
 });
