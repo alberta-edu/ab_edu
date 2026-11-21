@@ -1,0 +1,140 @@
+---
+// Grade 3: a little town to tap. Each building is a service, such as the fire hall or the library;
+// tap one and the card says who looks after it and why. With `ask` and `answer` it becomes a game:
+// "Tap every place the province looks after." Places come from g3ss-town-data.ts, text from the YAML.
+import { mdInline } from '../../lib/render.ts';
+import { pickSpots } from './g3ss-town-data.ts';
+
+interface Props {
+  spots: { id: string; text: string }[];
+  /** A find game: the question, and the ids that answer it. */
+  ask?: string;
+  answer?: string[];
+}
+const { spots, ask = '', answer = [] } = Astro.props;
+const picked = pickSpots(spots.map((s) => s.id));
+pickSpots(answer);
+const data = spots.map((s, k) => ({ id: s.id, name: picked[k].name, icon: picked[k].icon, text: mdInline(s.text) }));
+---
+<g3ss-town data-spots={JSON.stringify(data)} data-answer={JSON.stringify(answer)}>
+  {ask && <p class="g3ss-tw-ask" set:html={mdInline(ask)} />}
+  <div class="g3ss-tw-scene">
+    <span class="g3ss-tw-cloud" aria-hidden="true">☁️</span>
+    <ul class="g3ss-tw-grid" role="group" aria-label="Places in the town">
+      {
+        data.map((d) => (
+          <li>
+            <button type="button" class="g3ss-tw-spot" data-tw-id={d.id} aria-pressed="false">
+              <span class="g3ss-tw-icon" aria-hidden="true">{d.icon}</span>
+              <span class="g3ss-tw-name">{d.name}</span>
+              <span class="g3ss-tw-mark" aria-hidden="true"></span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="g3ss-tw-road" aria-hidden="true"><span class="g3ss-tw-car">🚌</span></div>
+  </div>
+  <p class="g3ss-tw-score muted" data-tw="score" aria-live="polite">{ask ? `Found 0 of ${answer.length}` : 'Tap a place to visit it.'}</p>
+  <div class="g3ss-tw-card" data-tw="card" aria-live="polite" hidden>
+    <p class="g3ss-tw-card__name"><span data-tw="icon" aria-hidden="true"></span> <span data-tw="name"></span></p>
+    <p data-tw="text"></p>
+  </div>
+</g3ss-town>
+
+<style is:global>
+  g3ss-town { display: block; }
+  .g3ss-tw-ask { margin: 0 0 0.5rem; font-weight: 800; font-size: var(--step-1); }
+  .g3ss-tw-scene { position: relative; padding: 1.6rem 0.5rem 0; border-radius: var(--radius-sm); background: linear-gradient(#cfe8f7 0 40%, #b9d77e 40%); overflow: hidden; }
+  .g3ss-tw-cloud { position: absolute; top: 0.2rem; left: 8%; font-size: 1.4rem; opacity: 0.9; }
+  .g3ss-tw-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; grid-template-columns: repeat(auto-fit, minmax(6.2rem, 1fr)); }
+  .g3ss-tw-spot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.15rem; width: 100%; min-height: 5.6rem; padding: 0.4rem 0.3rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm) var(--radius-sm) 0.3rem 0.3rem; background: var(--surface); color: var(--ink); font: inherit; cursor: pointer; }
+  .g3ss-tw-spot:hover { border-color: var(--social); }
+  .g3ss-tw-spot:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .g3ss-tw-spot[aria-pressed='true'] { border-color: var(--social); background: var(--social-soft); }
+  .g3ss-tw-spot.is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3ss-tw-spot.is-wrong { animation: g3ss-tw-shake 0.35s ease; }
+  .g3ss-tw-icon { font-size: 2.1rem; line-height: 1.1; }
+  .g3ss-tw-spot[aria-pressed='true'] .g3ss-tw-icon { animation: g3ss-tw-bounce 0.4s ease; }
+  .g3ss-tw-name { font-size: var(--step--1); font-weight: 800; line-height: 1.2; text-align: center; }
+  .g3ss-tw-mark { position: absolute; top: 0.15rem; right: 0.3rem; font-weight: 800; color: var(--ok); }
+  .g3ss-tw-road { position: relative; height: 1.9rem; margin: 0.5rem -0.5rem 0; background: #6b6b73; border-top: 3px solid #d9d9de; }
+  .g3ss-tw-road::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 2px dashed #f2c230; }
+  .g3ss-tw-car { position: absolute; top: -0.1rem; left: -2rem; font-size: 1.5rem; z-index: 1; animation: g3ss-tw-drive 9s linear infinite; }
+  .g3ss-tw-score { margin: 0.5rem 0 0; font-weight: 700; }
+  .g3ss-tw-score.is-done { color: var(--ok); }
+  .g3ss-tw-card { margin-top: 0.5rem; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); border: 2px solid var(--accent); background: var(--surface); }
+  .g3ss-tw-card.is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3ss-tw-card.is-wrong { border-color: var(--warn); background: var(--warn-soft); }
+  .g3ss-tw-card p { margin: 0; }
+  .g3ss-tw-card__name { font-weight: 800; font-size: var(--step-1); margin-bottom: 0.3rem !important; }
+  @keyframes g3ss-tw-shake { 25% { translate: -4px 0; } 75% { translate: 4px 0; } }
+  @keyframes g3ss-tw-bounce { 50% { transform: translateY(-0.35rem) scale(1.15); } }
+  @keyframes g3ss-tw-drive { to { left: calc(100% + 2rem); } }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-tw-scene { background: linear-gradient(#20344a 0 40%, #35502a 40%); }
+  }
+  :root[data-theme='dark'] .g3ss-tw-scene { background: linear-gradient(#20344a 0 40%, #35502a 40%); }
+  @media (prefers-reduced-motion: reduce) {
+    .g3ss-tw-car { animation: none; left: 1rem; }
+    .g3ss-tw-spot.is-wrong, .g3ss-tw-spot[aria-pressed='true'] .g3ss-tw-icon { animation: none; }
+  }
+</style>
+
+<script>
+  import { allFound, judge } from './g3ss-town-data.ts';
+
+  interface Spot { id: string; name: string; icon: string; text: string }
+
+  class TownTap extends HTMLElement {
+    private found = new Set<string>();
+    private seen = new Set<string>();
+
+    connectedCallback() {
+      const spots: Spot[] = JSON.parse(this.dataset.spots!);
+      const answer: string[] = JSON.parse(this.dataset.answer!);
+      const game = answer.length > 0;
+      const score = this.querySelector<HTMLElement>('[data-tw="score"]')!;
+      this.querySelectorAll<HTMLButtonElement>('[data-tw-id]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const s = spots.find((x) => x.id === b.dataset.twId)!;
+          if (!game) {
+            this.querySelectorAll('[data-tw-id]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+            this.seen.add(s.id);
+            this.show(s, '');
+            const done = this.seen.size === spots.length;
+            score.textContent = done ? `🎉 You visited all ${spots.length}!` : `Visited ${this.seen.size} of ${spots.length}`;
+            score.classList.toggle('is-done', done);
+            return;
+          }
+          const verdict = judge(s.id, answer, this.found);
+          if (verdict === 'wrong') {
+            b.classList.remove('is-wrong');
+            void b.offsetWidth;
+            b.classList.add('is-wrong');
+            this.show(s, 'is-wrong', 'Not this one. ');
+            return;
+          }
+          this.found.add(s.id);
+          b.classList.add('is-right');
+          b.setAttribute('aria-pressed', 'true');
+          b.querySelector('.g3ss-tw-mark')!.textContent = '✓';
+          this.show(s, 'is-right', '✓ ');
+          const done = allFound(answer, this.found);
+          score.textContent = done ? `🎉 You found all ${answer.length}!` : `Found ${this.found.size} of ${answer.length}`;
+          score.classList.toggle('is-done', done);
+        }),
+      );
+    }
+
+    private show(s: Spot, tone: '' | 'is-right' | 'is-wrong', lead = '') {
+      const card = this.querySelector<HTMLElement>('[data-tw="card"]')!;
+      card.hidden = false;
+      card.className = `g3ss-tw-card ${tone}`.trim();
+      card.querySelector('[data-tw="icon"]')!.textContent = s.icon;
+      card.querySelector('[data-tw="name"]')!.textContent = `${lead}${s.name}`;
+      card.querySelector('[data-tw="text"]')!.innerHTML = s.text;
+    }
+  }
+  customElements.define('g3ss-town', TownTap);
+</script>
