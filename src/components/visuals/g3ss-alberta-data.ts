@@ -51,13 +51,13 @@ export const SIDES_INFO: MapItem[] = [
 
 export const METIS: MapItem[] = [
   { id: 'paddle-prairie', name: 'Paddle Prairie', icon: '🟣', at: pt(57.9, -117.4) },
-  { id: 'peavine', name: 'Peavine', icon: '🟣', at: pt(55.9, -116.3) },
-  { id: 'gift-lake', name: 'Gift Lake', icon: '🟣', at: pt(55.85, -115.6) },
+  { id: 'peavine', name: 'Peavine', icon: '🟣', at: pt(55.9, -116.3), nudge: [-5, 0] },
+  { id: 'gift-lake', name: 'Gift Lake', icon: '🟣', at: pt(55.85, -115.6), nudge: [5, 0] },
   { id: 'east-prairie', name: 'East Prairie', icon: '🟣', at: pt(55.2, -116.2) },
-  { id: 'buffalo-lake', name: 'Buffalo Lake', icon: '🟣', at: pt(54.5, -112.4) },
-  { id: 'kikino', name: 'Kikino', icon: '🟣', at: pt(54.4, -112.0) },
-  { id: 'fishing-lake', name: 'Fishing Lake', icon: '🟣', at: pt(54.0, -110.2) },
-  { id: 'elizabeth', name: 'Elizabeth', icon: '🟣', at: pt(54.15, -110.1) },
+  { id: 'buffalo-lake', name: 'Buffalo Lake', icon: '🟣', at: pt(54.5, -112.4), nudge: [-7, -4] },
+  { id: 'kikino', name: 'Kikino', icon: '🟣', at: pt(54.4, -112.0), nudge: [8, 5] },
+  { id: 'fishing-lake', name: 'Fishing Lake', icon: '🟣', at: pt(54.0, -110.2), nudge: [-6, 8] },
+  { id: 'elizabeth', name: 'Elizabeth', icon: '🟣', at: pt(54.15, -110.1), nudge: [5, -9] },
 ];
 
 /** Named places, shown as icons. A lesson lists the ones it needs. */

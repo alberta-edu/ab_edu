@@ -1,0 +1,77 @@
+---
+// Grade 3: two circles of ways of life slide together, and where they overlap a new, blended way of
+// life appears. Used for Métis culture, which blends First Nations and European traditions.
+// The circles and their words come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+
+interface Side {
+  icon: string;
+  label: string;
+  items: string[];
+}
+interface Props {
+  left: Side;
+  right: Side;
+  middle: Side;
+  start?: string;
+}
+const { left, right, middle, start = '▶ Blend them' } = Astro.props;
+const list = (s: Side) => s.items.map((i) => mdInline(i));
+---
+<g3ss-blend>
+  <div class="g3ss-bl-stage">
+    <section class="g3ss-bl-circle g3ss-bl-left">
+      <p class="g3ss-bl-head"><span aria-hidden="true">{left.icon}</span> {left.label}</p>
+      <ul>{list(left).map((t) => <li set:html={t} />)}</ul>
+    </section>
+    <section class="g3ss-bl-circle g3ss-bl-right">
+      <p class="g3ss-bl-head"><span aria-hidden="true">{right.icon}</span> {right.label}</p>
+      <ul>{list(right).map((t) => <li set:html={t} />)}</ul>
+    </section>
+  </div>
+  <section class="g3ss-bl-middle" data-bl="middle" aria-live="polite">
+    <p class="g3ss-bl-head"><span aria-hidden="true">{middle.icon}</span> {middle.label}</p>
+    <ul>{list(middle).map((t) => <li set:html={t} />)}</ul>
+  </section>
+  <div class="g3ss-bl-buttons">
+    <button type="button" class="btn btn--small" data-bl="run">{start}</button>
+  </div>
+</g3ss-blend>
+
+<style is:global>
+  g3ss-blend { display: block; }
+  .g3ss-bl-stage { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .g3ss-bl-circle { padding: 0.8rem; border-radius: 2rem; border: 3px solid; transition: transform 0.8s ease, opacity 0.8s ease; }
+  .g3ss-bl-left { border-color: #c0632a; background: color-mix(in srgb, #c0632a 12%, var(--surface)); }
+  .g3ss-bl-right { border-color: #2f5fd0; background: color-mix(in srgb, #2f5fd0 12%, var(--surface)); }
+  .g3ss-bl-head { margin: 0 0 0.3rem; font-weight: 800; }
+  .g3ss-bl-circle ul, .g3ss-bl-middle ul { margin: 0; padding-left: 1.1rem; font-size: var(--step--1); }
+  .g3ss-bl-middle { margin: 0.6rem auto 0; max-width: 26rem; padding: 0.8rem 1rem; border-radius: 2rem; border: 3px solid #7a3dc2; background: color-mix(in srgb, #7a3dc2 14%, var(--surface)); opacity: 0; transform: scale(0.6); transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s; }
+  g3ss-blend.is-blended .g3ss-bl-left { transform: translateX(12%); }
+  g3ss-blend.is-blended .g3ss-bl-right { transform: translateX(-12%); }
+  g3ss-blend.is-blended .g3ss-bl-middle { opacity: 1; transform: none; }
+  .g3ss-bl-buttons { margin-top: 0.7rem; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-bl-left { border-color: #f2a65a; }
+    :root:not([data-theme='light']) .g3ss-bl-right { border-color: #8fb0ff; }
+    :root:not([data-theme='light']) .g3ss-bl-middle { border-color: #c5a1f5; }
+  }
+  :root[data-theme='dark'] .g3ss-bl-left { border-color: #f2a65a; }
+  :root[data-theme='dark'] .g3ss-bl-right { border-color: #8fb0ff; }
+  :root[data-theme='dark'] .g3ss-bl-middle { border-color: #c5a1f5; }
+  @media (prefers-reduced-motion: reduce) { .g3ss-bl-circle, .g3ss-bl-middle { transition: none; } }
+</style>
+
+<script>
+  class BlendCircles extends HTMLElement {
+    connectedCallback() {
+      const run = this.querySelector<HTMLButtonElement>('[data-bl="run"]')!;
+      const label = run.textContent;
+      run.addEventListener('click', () => {
+        const on = this.classList.toggle('is-blended');
+        run.textContent = on ? '↺ Pull them apart' : label;
+      });
+    }
+  }
+  customElements.define('g3ss-blend', BlendCircles);
+</script>

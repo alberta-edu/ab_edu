@@ -117,6 +117,7 @@ import AlbertaMap from './visuals/AlbertaMap.astro';
 import StorySteps from './visuals/StorySteps.astro';
 import SymbolCards from './visuals/SymbolCards.astro';
 import CountPop from './visuals/CountPop.astro';
+import BlendCircles from './visuals/BlendCircles.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -235,6 +236,7 @@ const visuals = {
   'g3ss-story-steps': StorySteps,
   'g3ss-symbol-cards': SymbolCards,
   'g3ss-count-pop': CountPop,
+  'g3ss-blend': BlendCircles,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
