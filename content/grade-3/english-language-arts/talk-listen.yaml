@@ -1,0 +1,234 @@
+id: talk-listen
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI2
+outcomes: [LANENG3-OI2-GQ1-LO1]
+order: 7
+title: Talking Together and Listening Well
+shortTitle: Talk & listen
+summary: >-
+  Share ideas, facts and opinions in a dialogue. Listen, stay on topic, ask questions and add your
+  ideas, and find out what good listeners do.
+
+bigIdea: |-
+  - A **dialogue** is people trading ideas, information and opinions.
+  - Good dialogue means listening, staying on topic, asking questions and adding your ideas.
+  - Good listeners know why they listen, ask when they are unsure, and respond kindly.
+
+lesson:
+  - title: What people trade in a talk
+    blocks:
+      - type: visual
+        covers: [K2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: idea, label: An idea, icon: 💡 }
+            - { id: info, label: Information, icon: ℹ️ }
+            - { id: opinion, label: An opinion, icon: 💬 }
+          cards:
+            - { text: “Let’s build a fort with the big box!”, bin: idea, why: 'An idea is something you could do.' }
+            - { text: “Recess starts at 10:15.”, bin: info, why: 'Information is a fact you can check.' }
+            - { text: “I think recess is too short.”, bin: opinion, why: 'An opinion is what someone thinks or feels. *I think* is a clue.' }
+            - { text: “The library closes at 3:00.”, bin: info, why: 'You could check this on the library sign.' }
+            - { text: “Soccer is the best game ever.”, bin: opinion, why: 'Not everyone agrees. It is an opinion.' }
+        caption: In a **dialogue**, people trade these three things. Sort them.
+
+  - title: Good talk
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.1, S2.5]
+        component: talk-it-out
+        props:
+          turns:
+            - speaker: Ella
+              says: What should we plant in our class garden?
+              choices:
+                - { text: 'Sunflowers! They grow really tall.', good: true, reply: '“Ooh, yes!” says Ella.', why: 'You **contributed** an idea, with a reason.' }
+                - { text: 'Did you see the hockey game last night?', good: false, reply: 'Ella blinks. “Um… the garden?”', why: 'That is off topic. Stay on **the topic**: the garden.' }
+            - speaker: Jay
+              says: I want beans, because we can eat them!
+              choices:
+                - { text: 'Beans are smart. How long do they take to grow?', good: true, reply: '“About two months,” says Jay.', why: 'You **listened** and **asked a question**.' }
+                - { text: '(Keep talking about sunflowers.)', good: false, reply: 'Jay stops talking.', why: 'Jay shared an idea. Listen and answer him.' }
+            - speaker: Mia
+              says: Um… maybe tomatoes?
+              choices:
+                - { text: 'Mia, tell us more. Why tomatoes?', good: true, reply: 'Mia smiles. “We could make salsa!”', why: 'You **valued** Mia’s idea, so she shared more.' }
+                - { text: 'We already decided.', good: false, reply: 'Mia looks down.', why: 'Every person’s idea counts. Give it a chance.' }
+          ending: The class plants sunflowers, beans **and** tomatoes. Together, you made a better plan than anyone alone.
+        caption: Pick what to say. Watch how the group feels.
+      - type: callout
+        variant: tip
+        covers: [S2.2, U2.1]
+        title: Why talk together?
+        body: Talking with others helps you learn new things and get along. More voices make more ideas.
+
+  - title: How good listeners listen
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: purpose, label: Know why I listen, icon: 🎯 }
+            - { id: ask, label: Ask a good question, icon: ❓ }
+            - { id: clear, label: Ask to make it clear, icon: 🔁 }
+            - { id: respond, label: Respond, icon: 💬 }
+          cards:
+            - { text: 'Before the talk, I think: “This will tell me how to feed our class fish.”', bin: purpose, why: 'Knowing your **purpose** tells you what to listen for.' }
+            - { text: '“How often do the fish need food?”', bin: ask, why: 'A question about the topic helps you learn more.' }
+            - { text: '“Sorry, did you say two pinches, or ten?”', bin: clear, why: 'You **seek clarification** when you aren’t sure what you heard.' }
+            - { text: 'I nod and say, “Thanks! I’ll feed them on Monday.”', bin: respond, why: 'Your answer shows you listened.' }
+        caption: Match each move to what a good listener is doing.
+
+  - title: Listening grows your mind
+    blocks:
+      - type: visual
+        covers: [K3.2, U3.1]
+        component: text-xray
+        props:
+          button: What did listening build?
+          pages:
+            - label: Story time
+              icon: 🎧
+              parts:
+                - { style: story, text: 'Your teacher reads aloud: “The snowy owl spread its enormous wings and glided over the tundra.”' }
+                - { style: box, text: '*Enormous* means very big!', tag: Vocabulary, job: 'You hear new words.' }
+                - { style: box, text: 'The tundra is in the far north.', tag: Background knowledge, job: 'You learn facts about the world.' }
+                - { style: box, text: 'I saw an owl at the zoo once!', tag: Connection, job: 'You link it to your own life.' }
+                - { style: box, text: 'Where is the owl going? I want to hear more!', tag: Curiosity and interest, job: 'You want to keep listening.' }
+        caption: Listen to the story line. Then tap the button to see what the listener’s brain did.
+
+keyTerms:
+  - term: Dialogue
+    covers: [K2.1]
+    definition: Talking together to trade ideas, information or opinions.
+  - term: Opinion
+    covers: [K2.1]
+    definition: What someone thinks or feels. Others might not agree.
+  - term: On topic
+    covers: [K2.2]
+    definition: Talking about the same thing as everyone else.
+  - term: Clarify
+    covers: [K3.1]
+    definition: To make something clear. You ask when you aren’t sure what you heard.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2]
+    type: mc
+    prompt: Which one helps a **dialogue** go well?
+    choices:
+      - Staying on topic
+      - Talking the whole time
+      - Changing the subject
+      - Looking at a screen
+    answer: 0
+    feedback:
+      '1': If one person talks the whole time, can others share?
+      '2': Changing the subject makes it hard to finish an idea.
+      '3': Can you listen well while you look at a screen?
+    hints:
+      - What keeps everyone talking about the same thing?
+    solution:
+      - '**Staying on topic** keeps everyone working on the same idea.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.1]
+    type: mc
+    prompt: '“I think cats make the best pets.” What is Jo sharing?'
+    choices:
+      - An opinion
+      - Information
+      - A question
+    answer: 0
+    feedback:
+      '1': Can you check it like a fact? Not everyone agrees.
+      '2': Does it end with a question mark?
+    hints:
+      - Look at the words *I think*.
+    solution:
+      - '*I think* tells you it is what Jo believes. It is an **opinion**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K3.1, S3.1]
+    type: mc
+    prompt: Ms. Patel says, “Put your books in the bin.” There are **two** bins. What should Kai do?
+    choices:
+      - Ask, “Which bin do you mean?”
+      - Pick one and hope it is right.
+      - Put the books on the floor.
+    answer: 0
+    feedback:
+      '1': Guessing might be wrong. What could Kai do to be sure?
+      '2': That doesn’t follow what Ms. Patel asked.
+    hints:
+      - What can a listener do when something isn’t clear?
+    solution:
+      - Kai can **ask to make it clear**. Then he knows exactly what to do.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [S2.5, K2.2]
+    type: mc
+    prompt: Your group is planning a skit. Sam has shared three ideas. Lee hasn’t said anything, but looks like she wants to. What could you say?
+    choices:
+      - “Lee, what do you think?”
+      - “Sam, tell us another idea!”
+      - “Let’s just vote now.”
+    answer: 0
+    feedback:
+      '1': Sam has had lots of turns. Who hasn’t had one yet?
+      '2': Voting now means Lee’s idea never gets heard.
+    hints:
+      - Who hasn’t had a turn?
+    solution:
+      - Asking Lee **values** her ideas. Everyone gets to contribute.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K3.1, K2.2]
+    type: mc
+    prompt: 'A park ranger visits to talk about bats. Afterward, Ben asks her, “What is your favourite pizza?” What went wrong?'
+    choices:
+      - His question was not about the topic.
+      - He asked a question at all.
+      - He should have asked before the talk began.
+    answer: 0
+    feedback:
+      '1': Asking questions is great! But what was this one about?
+      '2': A question at the end is fine. What was it about?
+    hints:
+      - What was the talk about? What was Ben’s question about?
+    solution:
+      - A good question is about the **topic**. Ben could ask, “Where do bats sleep in winter?”
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K3.1, S3.1]
+    type: order
+    prompt: A nurse visits to talk about washing hands. Put Jun’s listening moves in order.
+    items:
+      - 'Jun thinks: “I want to learn how to wash my hands well.”'
+      - Jun listens closely and watches her show it.
+      - '“Sorry, how long should we scrub?”'
+      - '“Thank you! I’ll sing a song while I scrub.”'
+    hints:
+      - What does a listener think about **before** the talk starts? What comes at the very end?
+    solution:
+      - '**Before:** know why you are listening.'
+      - '**During:** listen closely, and ask when something isn’t clear.'
+      - '**After:** respond, to show what you learned.'
