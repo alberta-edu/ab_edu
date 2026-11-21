@@ -4,6 +4,7 @@ import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, p
 import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES, FIGS, perimeter, walkSay, missingSide, unrollSide, estById, estimateSay } from '../src/components/visuals/g3-length.ts';
 import { at, wedge, vsRight, turnSay, compareSay, PAIRS, SPOTS, angleSvg } from '../src/components/visuals/g3-angle.ts';
 import { hands, digital, clock12, clock24, french24, since12, since24, pastUntil, pastSay, gone, tickSay, minuteAt, dragTo, parse as parseTime, daylight } from '../src/components/visuals/g3-clock.ts';
+import { most, fewest, total, voteOrder, storySay, graphSvg, top as graphTop, spiral } from '../src/components/visuals/g3-graph.ts';
 import { ordinal, term as seqTerm, lastPos, ruleSay, findSay, isSkip } from '../src/components/visuals/g3-sequence.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
@@ -338,5 +339,41 @@ describe('Grade 3 time', () => {
     expect(dragTo(parseTime('3:55'), 5)).toBe(parseTime('4:05'));
     expect(dragTo(parseTime('4:05'), 55)).toBe(parseTime('3:55'));
     expect(dragTo(parseTime('3:20'), 40)).toBe(parseTime('3:40'));
+  });
+});
+
+describe('Grade 3 data', () => {
+  const spec = { title: 'Pets', axis: 'Pet', count: 'Number of kids', cats: [{ label: 'Dog', icon: '🐶' }, { label: 'Cat' }, { label: 'Fish' }], data: [6, 4, 2] };
+
+  it('finds the story: most, fewest and ties', () => {
+    expect(most([6, 4, 2])).toBe(0);
+    expect(fewest([6, 4, 2])).toBe(2);
+    expect(most([5, 5, 1])).toBe(-1);
+    expect(total([6, 4, 2])).toBe(12);
+    expect(storySay(spec)).toBe('Most: 🐶 Dog, 6. Fewest: Fish, 2.');
+    expect(graphTop([2, 3])).toBe(5);
+  });
+
+  it('asks every kid exactly once, in a mixed-up order', () => {
+    const order = voteOrder([4, 2, 6, 3]);
+    expect(order).toHaveLength(15);
+    expect([0, 1, 2, 3].map((c) => order.filter((x) => x === c).length)).toEqual([4, 2, 6, 3]);
+    expect(order).not.toEqual([...order].sort());
+  });
+
+  it('draws one dot for each one counted, and bars as tall as their count', () => {
+    const dots = graphSvg(spec, 'dots');
+    expect(dots.match(/<circle/g)).toHaveLength(12);
+    expect(dots).toContain('Dot plot: Pets. Dog 6, Cat 4, Fish 2.');
+    const bars = graphSvg(spec, 'bars', [1, 0, 0]);
+    expect(bars).toContain('height="18"');
+    expect(bars).toContain('Number of kids');
+  });
+
+  it('spirals the winter count outward', () => {
+    const pts = spiral(8);
+    expect(pts).toHaveLength(8);
+    const r = pts.map(([x, y]) => Math.hypot(x, y));
+    expect(r.every((v, i) => i === 0 || v > r[i - 1])).toBe(true);
   });
 });
