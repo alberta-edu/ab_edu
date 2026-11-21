@@ -1,0 +1,248 @@
+id: story-elements
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG3-OI1-GQ1-LO1]
+order: 2
+title: Characters, Plot, Circle Stories and Narrators
+shortTitle: Story parts & shapes
+summary: >-
+  Meet the parts of a story: characters, setting and plot. Follow a story from beginning to end, walk a
+  circle story, and find out who is telling it.
+
+bigIdea: |-
+  - A story has **characters**, a **setting** and a **plot**.
+  - Most plots go: beginning, problem, events, solution, ending. A **circular plot** ends back near the start.
+  - The **narrator** tells the story, from inside it or from outside.
+
+lesson:
+  - title: Who, where and what happens
+    blocks:
+      - type: visual
+        covers: [K3.7, K3.8, S3.4, S3.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: character, label: Character, icon: 🧒 }
+            - { id: setting, label: Setting, icon: 🏞️ }
+            - { id: plot, label: Plot, icon: 🎢 }
+          cards:
+            - { text: 'Kai, a boy who loves kites', bin: character, why: 'The story is about Kai’s problem. He is the **major character**.' }
+            - { text: A windy hill in spring, bin: setting, why: 'The setting is where and when the story happens.' }
+            - { text: 'Kai’s kite gets stuck in a tree, and he gets it back', bin: plot, why: 'The plot is what happens.' }
+            - { text: 'Grandma Jo, who lends Kai a rake', bin: character, why: 'Grandma helps, but the story isn’t about her.' }
+            - { text: Saturday morning, bin: setting, why: 'Time is part of the setting too.' }
+        caption: Sort the parts of Kai’s story. Who is it mostly about?
+
+  - title: A story’s path
+    blocks:
+      - type: visual
+        covers: [K1.7, S1.5, S1.6]
+        component: story-path
+        props:
+          stages:
+            - { label: Beginning, text: 'Nell’s tooth is very wiggly.' }
+            - { label: Problem, text: 'It falls out in the deep snow!' }
+            - { label: Events, text: 'Nell digs. Her dog sniffs. Her brother brings a flashlight.' }
+            - { label: Solution, text: 'The light makes the tiny tooth shine.' }
+            - { label: Ending, text: 'Nell puts the tooth under her pillow.' }
+        caption: Press **Next** to walk the story. Which part fixes the problem?
+      - type: callout
+        variant: tip
+        covers: [K1.7, S1.6]
+        title: True stories walk this path too
+        body: Fiction and non-fiction stories can both have a problem and a solution. The path helps you follow them.
+
+  - title: Circle stories
+    blocks:
+      - type: visual
+        covers: [K3.6, K3.9, S3.2, S3.3]
+        component: g3e-story-circle
+        props:
+          hero: 🐿️
+          stages:
+            - { label: Start, text: 'Sam the squirrel naps in his tree.' }
+            - { label: Off he goes, text: 'His tummy rumbles. He sets off to find a nut.' }
+            - { label: Trouble, text: 'A crow chases him across the river!' }
+            - { label: Found it, text: 'Under a log, he finds the biggest nut ever.' }
+            - { label: End, text: 'Sam naps in his tree again, hugging his nut.' }
+        caption: Walk around the circle. Where does Sam end up?
+
+  - title: Chapters and collections
+    blocks:
+      - type: visual
+        covers: [K3.6, S3.2]
+        component: text-xray
+        props:
+          button: Show how it’s built
+          pages:
+            - label: Chapter book
+              icon: 📕
+              parts:
+                - { style: title, text: 'Pepper the Puppy' }
+                - { style: text, text: 'Chapter 1: A New Puppy · Chapter 2: The Chewed Shoe · Chapter 3: Pepper Runs Away · Chapter 4: Home Again', tag: Chapters, job: 'One long story, cut into parts. You can stop at the end of a chapter.' }
+              note: The same characters go from chapter to chapter.
+            - label: Collection
+              icon: 📚
+              parts:
+                - { style: title, text: 'Snow Day Stories' }
+                - { style: text, text: 'The Snow Fort · Grandma’s Sled · The Snowball Fight', tag: Stories on one idea, job: 'Three short stories. Each one is about snow.' }
+              note: A **collection** holds many stories about one idea.
+        caption: Two books. Tap the button. How is each one built?
+
+  - title: Who is telling it?
+    blocks:
+      - type: visual
+        covers: [K3.10, S3.7]
+        component: text-xray
+        props:
+          button: Find the narrator
+          pages:
+            - label: Inside
+              icon: 🙋
+              parts:
+                - { style: text, text: '**I** tripped over my skates. Everyone laughed, and so did **I**.', tag: Narrator inside the story, job: 'A character tells it, using I and me. You hear their thoughts.' }
+            - label: Outside
+              icon: 👀
+              parts:
+                - { style: text, text: '**Zoe** tripped over her skates. Everyone laughed, and so did **she**.', tag: Narrator outside the story, job: 'Someone looking in tells it, using names, she, he and they.' }
+        caption: The same moment, told two ways. Tap each tab, then the button.
+
+keyTerms:
+  - term: Setting
+    covers: [K3.7]
+    definition: Where and when a story happens.
+  - term: Major character
+    covers: [K3.8]
+    definition: The character the story is mostly about. The problem is theirs.
+  - term: Plot
+    covers: [K3.7, K1.7]
+    definition: 'What happens in a story: beginning, problem, events, solution and ending.'
+  - term: Circular plot
+    covers: [K3.9]
+    definition: A plot that ends with the characters back near where they started.
+  - term: Narrator
+    covers: [K3.10]
+    definition: Who tells the story. It can be a character, or someone outside the story.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K3.7, S3.4]
+    type: mc
+    prompt: '*A busy farm, on a hot day in July.* Which part of a story is this?'
+    choices:
+      - The setting
+      - The plot
+      - A character
+    answer: 0
+    feedback:
+      '1': The plot is what happens. Does anything happen here?
+      '2': A character is a person or animal in the story. Is a farm a character?
+    hints:
+      - Does it tell you **who**, **where and when**, or **what happens**?
+    solution:
+      - A place and a time make the **setting**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.7, S1.5]
+    type: order
+    prompt: Put Lily’s story in order, from **beginning** to **ending**.
+    items:
+      - Lily plants a sunflower seed.
+      - Every night, a rabbit nibbles the tiny sprout!
+      - Lily puts up a sign. Then she tries a scarecrow.
+      - Dad helps her build a little fence.
+      - By August, the sunflower is taller than Lily.
+    hints:
+      - Find the problem first. What must come before it?
+    solution:
+      - '**Beginning:** Lily plants a seed. **Problem:** a rabbit eats the sprout.'
+      - '**Events:** a sign, then a scarecrow. **Solution:** a fence keeps the rabbit out.'
+      - '**Ending:** the sunflower grows tall.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K3.10, S3.7]
+    type: mc
+    prompt: |-
+      > I grabbed my skates and raced to the rink. My heart was pounding.
+
+      Who is telling this story?
+    choices:
+      - A character inside the story
+      - Someone outside, looking in
+    answer: 0
+    feedback:
+      '1': Look at the words *I* and *my*. Who would say those?
+    hints:
+      - Which little words tell you who is speaking?
+    solution:
+      - The narrator says **I** and **my**, so a character is telling the story.
+      - We even know what the heart feels like. Only an inside narrator can tell us that.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.6, S3.2]
+    type: mc
+    prompt: A book called **Pet Stories** has five short stories. Each one has different characters, but every story is about a pet. How is it built?
+    choices:
+      - A collection of stories about one idea
+      - A chapter book, with one long story
+      - A circular plot
+    answer: 0
+    feedback:
+      '1': In a chapter book, the same characters go from chapter to chapter. Are they the same here?
+      '2': A circular plot is one story that ends near its start. This book has five stories.
+    hints:
+      - Is it one story, or many? What do they share?
+    solution:
+      - Five different stories about one idea, pets, make a **collection**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K3.9, S3.3]
+    type: mc
+    prompt: Sam the squirrel’s story ends with him napping in his tree again. What if it ended with Sam moving to a **new forest** instead?
+    choices:
+      - It would not be a circular plot any more.
+      - It would still be a circular plot, because it has a nut.
+      - It would still be a circular plot, because Sam is a squirrel.
+      - It would turn into non-fiction.
+    answer: 0
+    feedback:
+      '1': The nut is in the middle of the story. Does the ending go back to the start?
+      '2': Any character can be in a circular plot. What makes the plot a circle?
+      '3': Sam still can’t really talk or think like that. It is still made up.
+    hints:
+      - Where does a circular plot end?
+    solution:
+      - A circular plot ends near where it started.
+      - Sam started napping in his tree. If he ends in a new forest, the circle doesn’t close.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [K3.8, S3.5]
+    type: text
+    prompt: |-
+      **Grandpa’s Boat**
+
+      > Mila wants to fix Grandpa’s old boat. She sands it and paints it blue. At last, Mila rows Grandpa across the lake.
+
+      Who is the **major character**? Type the name.
+    accept: [Mila]
+    hints:
+      - The title names Grandpa. But who has the problem, and who fixes it?
+    solution:
+      - Mila wants something, works at it, and gets it. The story is about **Mila**.
+      - The title is about Grandpa’s boat, but Grandpa only rides in it.
