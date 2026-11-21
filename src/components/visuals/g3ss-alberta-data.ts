@@ -18,6 +18,8 @@ export interface MapItem {
   icon: string;
   /** Where the icon or label sits, in map units. */
   at: [number, number];
+  /** Moves the icon off a crowded spot; a thin line joins it to the real place. */
+  nudge?: [number, number];
 }
 
 const pt = (lat: number, lon: number) => project(lat, lon).map((v) => Math.round(v * 10) / 10) as [number, number];
@@ -71,13 +73,15 @@ export const PLACES: MapItem[] = [
   { id: 'st-paul', name: 'St. Paul', icon: '⚜️', at: pt(54.0, -111.3) },
   { id: 'falher', name: 'Falher', icon: '⚜️', at: pt(55.7, -117.2) },
   // Landmarks and historic sites
-  { id: 'head-smashed-in', name: 'Head-Smashed-In Buffalo Jump', icon: '🦬', at: pt(49.7, -113.65) },
+  { id: 'head-smashed-in', name: 'Head-Smashed-In Buffalo Jump', icon: '🦬', at: pt(49.7, -113.65), nudge: [10, -8] },
   { id: 'writing-on-stone', name: 'Writing-on-Stone (Áísínai’pi)', icon: '🪨', at: pt(49.1, -111.6) },
   { id: 'dinosaur-park', name: 'Dinosaur Provincial Park', icon: '🦕', at: pt(50.8, -111.5) },
-  { id: 'frank-slide', name: 'Frank Slide', icon: '⛰️', at: pt(49.6, -114.4) },
+  { id: 'frank-slide', name: 'Frank Slide', icon: '⛰️', at: pt(49.6, -114.4), nudge: [-4, 20] },
   { id: 'legislature', name: 'Alberta Legislature Building', icon: '🏛️', at: pt(53.5, -113.5) },
   { id: 'rocky-mountain-house', name: 'Rocky Mountain House', icon: '🛶', at: pt(52.4, -114.9) },
   { id: 'lac-ste-anne', name: 'Lac Ste. Anne', icon: '💧', at: pt(53.7, -114.4) },
+  { id: 'lacombe-chapel', name: 'Father Lacombe Chapel', icon: '⛪', at: pt(53.6, -113.6), nudge: [-20, -16] },
+  { id: 'cave-basin', name: 'Cave and Basin', icon: '♨️', at: pt(51.2, -115.6) },
   // Natural resources
   { id: 'oil-sands', name: 'Oil sands', icon: '🛢️', at: pt(57.0, -111.6) },
   { id: 'leduc', name: 'Leduc oil field', icon: '🛢️', at: pt(53.3, -113.6) },

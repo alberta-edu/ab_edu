@@ -79,12 +79,17 @@ const summary = {
         }
         {
           (layer === 'metis' || layer === 'places') &&
-            picked.map((p) => (
-              <g class="g3ss-am-pin" data-am-id={p.id} transform={`translate(${p.at[0]} ${p.at[1]})`}>
-                <circle r={layer === 'metis' ? 8 : 13}></circle>
-                {layer === 'places' && <text y="5.5" class="g3ss-am-emoji">{p.icon}</text>}
-              </g>
-            ))
+            picked.map((p) => {
+              const [dx, dy] = p.nudge ?? [0, 0];
+              return (
+                <g class="g3ss-am-pin" data-am-id={p.id} transform={`translate(${p.at[0]} ${p.at[1]})`}>
+                  {p.nudge && <line class="g3ss-am-leader" x1="0" y1="0" x2={dx} y2={dy}></line>}
+                  {p.nudge && <circle class="g3ss-am-dot" r="2.2"></circle>}
+                  <circle cx={dx} cy={dy} r={layer === 'metis' ? 8 : 11}></circle>
+                  {layer === 'places' && <text x={dx} y={dy + 4.5} class="g3ss-am-emoji g3ss-am-emoji--pin">{p.icon}</text>}
+                </g>
+              );
+            })
         }
         {
           layer === 'border' &&
@@ -153,6 +158,9 @@ const summary = {
   .g3ss-am--metis .g3ss-am-pin circle { fill: color-mix(in srgb, #7a3dc2 22%, transparent); stroke: #7a3dc2; }
   .g3ss-am-tag circle { fill: rgb(255 255 255 / 88%); stroke: rgb(0 0 0 / 25%); stroke-width: 1; }
   .g3ss-am-emoji { font-size: 15px; text-anchor: middle; }
+  .g3ss-am-emoji--pin { font-size: 12.5px; }
+  .g3ss-am-leader { stroke: var(--social); stroke-width: 1.4; }
+  .g3ss-am-pin .g3ss-am-dot { fill: var(--social); stroke: none; }
   .g3ss-am-num { font-size: 14px; font-weight: 800; text-anchor: middle; fill: #1c1b24; }
   .g3ss-am-ref circle { fill: var(--ink); }
   .g3ss-am-ref text { font-size: 10px; font-weight: 700; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
@@ -164,8 +172,8 @@ const summary = {
   .g3ss-am-svg.has-pick .g3ss-am-area:not(.is-on), .g3ss-am-svg.has-pick .g3ss-am-pin:not(.is-on), .g3ss-am-svg.has-pick .g3ss-am-tag:not(.is-on) { opacity: 0.4; }
   .g3ss-am-svg.has-pick.g3ss-am--regions .g3ss-am-land:not(.is-on) { opacity: 0.4; }
   .g3ss-am-area.is-found, .g3ss-am-pin.is-found { opacity: 1 !important; }
-  .g3ss-am-pin.is-on circle, .g3ss-am-pin.is-found circle { stroke-width: 3.5; }
-  .g3ss-am-pin.is-on circle { fill: var(--sun); }
+  .g3ss-am-pin.is-on circle:not(.g3ss-am-dot), .g3ss-am-pin.is-found circle:not(.g3ss-am-dot) { stroke-width: 3.5; }
+  .g3ss-am-pin.is-on circle:not(.g3ss-am-dot) { fill: var(--sun); }
   .g3ss-am-wrong { animation: g3ss-am-shake 0.35s ease; }
   .g3ss-am-pop { animation: g3ss-am-pop 0.45s ease; transform-box: fill-box; transform-origin: center; }
   @keyframes g3ss-am-shake { 25% { translate: -4px 0; } 75% { translate: 4px 0; } }

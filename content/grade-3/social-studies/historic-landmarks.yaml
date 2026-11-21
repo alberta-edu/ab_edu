@@ -1,0 +1,232 @@
+id: historic-landmarks
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [tEnI7u83hUui8ILilKfYZA]
+order: 3
+title: Landmarks and Historic Sites
+shortTitle: Landmarks & historic sites
+summary: >-
+  Sort natural and constructed landmarks, tap Alberta's landmarks on a map to hear their stories, and
+  find out how a landmark becomes a historic site.
+
+bigIdea: |-
+  - A **landmark** can be made by nature, like a cliff, or built by people, like a building.
+  - A landmark with an important story from the past has **historical significance**.
+  - It can be named a **historic site**, so it is protected and its story is shared.
+
+lesson:
+  - title: Nature or people?
+    blocks:
+      - type: visual
+        covers: [K2.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: natural, label: Made by nature, icon: 🏞️ }
+            - { id: built, label: Built by people, icon: 🔨 }
+          cards:
+            - { text: '🦬 Head-Smashed-In Buffalo Jump: a tall cliff', bin: natural, why: 'The cliff is a **natural landmark**, a physical feature.' }
+            - { text: '🏛️ The Alberta Legislature Building', bin: built, why: 'People built it, so it is a **constructed landmark**.' }
+            - { text: '⛰️ Frank Slide: rocks that fell from a mountain', bin: natural, why: 'A mountain and its rocks are **natural**.' }
+            - { text: '⛪ Father Lacombe Chapel', bin: built, why: 'People built this chapel, so it is **constructed**.' }
+            - { text: '♨️ Cave and Basin: warm springs in a cave', bin: natural, why: 'Warm springs and caves are made by **nature**.' }
+        caption: A **landmark** is a place that is easy to recognize. Who made each one?
+
+  - title: Landmarks with a story
+    blocks:
+      - type: visual
+        covers: [K2.4, S2.3, K2.6]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          cities: [calgary]
+          items:
+            - { id: head-smashed-in, text: 'A natural cliff. For about 6,000 years, Plains peoples such as the Blackfoot hunted bison here.' }
+            - { id: writing-on-stone, text: 'Natural sandstone cliffs. The Blackfoot carved and painted pictures on the rock. It is a sacred place.' }
+            - { id: frank-slide, text: 'In 1903, rock from Turtle Mountain slid down and covered part of the town of Frank.' }
+            - { id: cave-basin, text: 'Warm springs in a cave. They led to Canada’s first national park, Banff, in 1885.' }
+            - { id: lacombe-chapel, text: 'Built in 1861 by Father Albert Lacombe. It is the oldest building still standing in Alberta.' }
+            - { id: legislature, text: 'Built by people, and opened in 1912. Alberta’s government meets here.' }
+        caption: Tap each landmark. What happened there long ago?
+
+  - title: Becoming a historic site
+    blocks:
+      - type: visual
+        covers: [K2.5]
+        component: g3ss-story-steps
+        props:
+          walker: 🧒
+          start: ▶ Follow a landmark
+          steps:
+            - { icon: 🦬, when: A landmark, text: 'Head-Smashed-In is a cliff with a long, important story.' }
+            - { icon: 🔍, when: People study it, text: 'Experts and the Blackfoot share what happened there.' }
+            - { icon: 🏅, when: It gets named, text: 'It is named a **historic site**. It is also a World Heritage Site.' }
+            - { icon: 🛡️, when: It is protected, text: 'No one can wreck it. Visitors come to learn its story.' }
+        caption: Walk along. How does a landmark become a historic site?
+      - type: callout
+        variant: tip
+        covers: [K2.5, K2.4]
+        title: Historical significance
+        body: A landmark has **historical significance** when something important happened there, or it tells us about people from the past.
+
+  - title: Find the landmarks
+    blocks:
+      - type: visual
+        covers: [S2.3, K2.6]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          find: true
+          cities: [calgary]
+          items:
+            - { id: legislature, text: 'It is in Edmonton, Alberta’s capital.' }
+            - { id: head-smashed-in, text: 'It is in the south-west, near the foothills.' }
+            - { id: writing-on-stone, text: 'It is in the far south, near the United States.' }
+            - { id: cave-basin, text: 'It is in Banff, in the Rocky Mountains.' }
+        caption: Play the game. Tap the landmark the map asks for.
+
+keyTerms:
+  - term: Landmark
+    covers: [K2.4]
+    definition: A place that is easy to recognize, made by nature or built by people.
+  - term: Historical significance
+    covers: [K2.4, S2.3]
+    definition: Being important because of what happened in the past.
+  - term: Historic site
+    covers: [K2.5]
+    definition: A place that is named and protected because of its history.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.4]
+    type: mc
+    prompt: What kind of landmark is the Alberta Legislature Building?
+    choices: [🔨 Built by people, 🏞️ Made by nature]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Did nature make a building with walls and a dome?
+    hints:
+      - Who made the building?
+    solution:
+      - People built it, so it is a **constructed landmark**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K2.5]
+    type: mc
+    prompt: A landmark has an important story from the past. What can it be named?
+    choices: [🏅 A historic site, 📜 A treaty, 🗺️ A region]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A treaty is an agreement between nations. Is a landmark an agreement?
+      '2': A region is a big area of land with its own landforms. Is one landmark a region?
+    hints:
+      - What is a place called when it is protected because of its history?
+    solution:
+      - It can be named a **historic site**, so it is protected and its story is shared.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S2.3, K2.4]
+    type: mc
+    prompt: Which fact shows that Head-Smashed-In Buffalo Jump has **historical significance**?
+    choices:
+      - People hunted bison there for about 6,000 years.
+      - It is a tall cliff that you can see from far away.
+      - It is in the south-west part of Alberta.
+    answer: 0
+    feedback:
+      '1': Lots of cliffs are tall. Is that about the past?
+      '2': That tells you where it is. Does it tell you what happened there?
+    hints:
+      - Historical significance is about the past. Which fact tells a story from long ago?
+    solution:
+      - A long story of bison hunting is what makes the cliff **important in history**.
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [K2.5, S2.3]
+    type: mc
+    prompt: The town of Frank wants people to always remember the 1903 slide. What would help most?
+    choices:
+      - Name the slide a historic site, and share its story with visitors.
+      - Clear away all the fallen rocks, so the slide is gone.
+      - Build a big new shopping mall on top of the rocks.
+    answer: 0
+    feedback:
+      '1': If the rocks are gone, what is left to see and remember?
+      '2': Would visitors at a mall learn about 1903?
+    hints:
+      - What happens to a place when it is named a historic site?
+    solution:
+      - A **historic site** is protected, and visitors learn its story. That keeps the memory alive.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [K2.4, K2.5]
+    type: mc
+    prompt: A new mall is huge and easy to see. Head-Smashed-In is a historic site, but the mall is not. Why?
+    choices:
+      - The mall has no important story from the past yet.
+      - The mall is too big to be a landmark.
+      - Only landmarks made by nature can be historic sites.
+    answer: 0
+    feedback:
+      '1': Big places can be landmarks. Is size what makes a historic site?
+      '2': The Legislature Building is built by people, and it is historic. So is that the reason?
+    hints:
+      - What makes a landmark historic? Is it size, or something else?
+    solution:
+      - A historic site needs **historical significance**, an important story from the past.
+      - A new mall is easy to see, but nothing important has happened there yet.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K2.4, K2.5, S2.3]
+    type: investigation
+    prompt: |-
+      A made-up town has two famous places:
+
+      - 🚉 A train station, built in 1910, where the first families arrived.
+      - 🪨 A giant boulder where people have met for hundreds of years.
+    parts:
+      - type: mc
+        prompt: Which one is a **natural** landmark?
+        choices: [🪨 The boulder, 🚉 The train station]
+        answer: 0
+        feedback:
+          '1': Who built the train station?
+        hints:
+          - Which one did nature make?
+        solution:
+          - Nature made the boulder, so it is a **natural landmark**. People built the station.
+      - type: mc
+        prompt: Which one could be named a historic site?
+        choices:
+          - Both, because each has an important story from the past.
+          - Only the station, because people built it.
+          - Only the boulder, because nature made it.
+        answer: 0
+        feedback:
+          '1': Can a natural landmark have a story too? Think of Head-Smashed-In.
+          '2': Can a building have a story too? Think of the Legislature Building.
+        hints:
+          - What makes a landmark historic? Does it matter who made it?
+        solution:
+          - Both have **historical significance**. Natural and constructed landmarks can both be historic sites.
+    wrapUp: Who made a landmark doesn't decide if it is historic. Its story from the past does.
+    hints: []
+    solution: []
