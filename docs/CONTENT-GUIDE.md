@@ -99,7 +99,7 @@ Visuals:
   `issue-investigator`, `democracy-globe` (`focus`: a stop id), `athens-assembly`, `democracy-map`
   (`view: greece` or `compare`), `gov-branches` (`set: rome` or `canada`),
   `crown-balance`, `grand-council`, `election-sim`, `charter-check`,
-  `project-path`, `g3ss-alberta-map` (Grade 3: `layer: regions`, `border`, `treaties`, `metis` or `places`; `items: [{ id, text }]`, `find: true` for a game, `cities`), `g3ss-story-steps` (Grade 3: `steps: [{ icon, when, text }]`, `walker`, `start`), `g3ss-symbol-cards` (Grade 3 flip cards: `cards: [{ art, title, text }]`, `art` from `g3ss-symbol-art.ts` or an emoji), `g3ss-count-pop` (Grade 3: `n`, `icon`, `label`, `done`), `g3ss-blend` (Grade 3: `left`, `right` and `middle`, each `{ icon, label, items }`)
+  `project-path`, `g3ss-alberta-map` (Grade 3: `layer: regions`, `border`, `treaties`, `metis` or `places`; `items: [{ id, text }]`, `find: true` for a game, `cities`), `g3ss-story-steps` (Grade 3: `steps: [{ icon, when, text }]`, `walker`, `start`), `g3ss-symbol-cards` (Grade 3 flip cards: `cards: [{ art, title, text }]`, `art` from `g3ss-symbol-art.ts` or an emoji), `g3ss-count-pop` (Grade 3: `n`, `icon`, `label`, `done`), `g3ss-blend` (Grade 3: `left`, `right` and `middle`, each `{ icon, label, items }`), `g3ss-refill` (Grade 3 "use it up?" tanks: `items: [{ icon, label, renew, why }]`)
 - **ELAL:** `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`),
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),

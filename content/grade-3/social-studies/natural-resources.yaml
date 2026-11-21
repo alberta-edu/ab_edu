@@ -1,0 +1,250 @@
+id: natural-resources
+grade: 3
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [gaAMb8SLNEu5W32BwLNWZw]
+order: 9
+title: Renewable and Non-Renewable Resources
+shortTitle: Renewable & non-renewable
+summary: >-
+  Use up some resources and watch which ones nature brings back. Then guess what a day without each
+  would be like, and find the parks that protect Alberta's land.
+
+bigIdea: |-
+  - **Renewable** resources, like water, wind and sun, are replaced by nature.
+  - **Non-renewable** resources, like coal, oil and natural gas, can run out. They helped Alberta grow.
+  - Parks and **protected areas** keep land, water and animals safe.
+
+lesson:
+  - title: Use it up?
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2]
+        component: g3ss-refill
+        props:
+          items:
+            - { icon: ☀️, label: Sun, renew: true, why: 'The sun shines again tomorrow.' }
+            - { icon: 💨, label: Wind, renew: true, why: 'The wind blows again.' }
+            - { icon: 💧, label: Water, renew: true, why: 'Rain and snow fill the rivers again.' }
+            - { icon: ⚫, label: Coal, renew: false, why: 'Coal took millions of years to form.' }
+            - { icon: 🛢️, label: Oil, renew: false, why: 'Oil took millions of years to form.' }
+            - { icon: 🔥, label: Natural gas, renew: false, why: 'Gas took millions of years to form.' }
+        caption: Press ▶ a few times. Which ones does nature bring back?
+      - type: callout
+        variant: remember
+        covers: [CyktPaE92kqDJp6OlSYDKA#K1.4]
+        title: From Grade 2
+        body: '**Natural resources** are things from nature that people use, like forests, fish, oil and gas.'
+
+  - title: What if it were gone?
+    blocks:
+      - type: visual
+        covers: [S1.3, K1.1, K1.2]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 💧, title: No water?, text: 'No drinks and no baths. Farm crops could not grow.' }
+            - { art: ☀️, title: No sun?, text: 'No daylight and no warmth. Plants could not grow.' }
+            - { art: 💨, title: No wind?, text: 'Wind turbines would stop making electricity for lights.' }
+            - { art: 🔥, title: No natural gas?, text: 'Many Alberta homes are heated with gas. They would be cold in winter.' }
+            - { art: 🛢️, title: No oil?, text: 'Gasoline is made from oil. Most cars and buses would stop.' }
+            - { art: ⚫, title: No coal?, text: 'Long ago, coal heated homes and ran the trains in Alberta.' }
+        caption: Guess first, then flip. What would a day be like without each one?
+
+  - title: Parks protect the land
+    blocks:
+      - type: visual
+        covers: [K1.6]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          cities: [edmonton, calgary]
+          items:
+            - { id: banff, text: 'Canada’s first national park, from 1885. It protects mountains, lakes and hot springs.' }
+            - { id: jasper, text: 'A huge national park in the Rocky Mountains, from 1907. Elk and bears live here.' }
+            - { id: waterton, text: 'A national park where the mountains meet the prairie.' }
+            - { id: elk-island, text: 'Land set aside in 1906 to keep elk safe. Bison live here too.' }
+            - { id: wood-buffalo, text: 'Canada’s biggest national park. It protects wood bison.' }
+            - { id: dinosaur-park, text: 'A **provincial park**. It protects badlands full of dinosaur bones.' }
+        caption: Tap each park. What does it protect?
+      - type: compare
+        covers: [K1.6]
+        columns:
+          - title: 🏞️ National parks
+            body: Run by Canada’s government. Alberta has five.
+          - title: 🌲 Provincial parks
+            body: Run by Alberta’s government, like Dinosaur Provincial Park.
+          - title: 🔒 Protected areas
+            body: Wild places kept with few or no roads and buildings.
+
+  - title: Why protect it?
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.6]
+        component: g3ss-story-steps
+        props:
+          walker: 🦌
+          steps:
+            - { icon: 🦌, when: Long ago, text: 'Elk are hunted until only a few are left near Edmonton.' }
+            - { icon: 🚧, when: '1906', text: 'People set aside **Elk Island** and put a fence around it. The elk are safe.' }
+            - { icon: 🦬, when: '1907', text: 'Plains bison arrive. Bison were almost gone from the prairie.' }
+            - { icon: 🌳, when: Today, text: 'Elk, bison, moose, trees and lakes are all protected in the park.' }
+        caption: Press ▶ and walk through Elk Island’s story.
+      - type: callout
+        variant: tip
+        covers: [S1.2]
+        title: Make the case
+        body: |-
+          - Parks keep animals safe, so they don't disappear.
+          - Parks keep land and water clean for the future.
+
+keyTerms:
+  - term: Natural resource
+    covers: [K1.1, K1.2]
+    definition: Something from nature that people use, like water, wind or oil.
+  - term: Renewable resource
+    covers: [K1.1]
+    definition: A resource that nature replaces, like sun, wind and water.
+  - term: Non-renewable resource
+    covers: [K1.2]
+    definition: A resource that can run out, like coal, oil and natural gas.
+  - term: Protected area
+    covers: [K1.6]
+    definition: Land kept safe, so its plants, animals and water stay healthy.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.2]
+    type: multi
+    prompt: Which resources does nature replace? Choose all that apply.
+    choices: [☀️ Sun, ⚫ Coal, 💨 Wind, 🔥 Natural gas]
+    fixedOrder: true
+    answer: [0, 2]
+    feedback:
+      '1': Coal took millions of years to form. Does nature make more quickly?
+      '3': Natural gas comes from deep underground. Can it run out?
+    hints:
+      - Think of the tanks. Which ones filled back up?
+    solution:
+      - The **sun** shines again and the **wind** blows again. They are renewable.
+      - Coal and natural gas can run out. They are non-renewable.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.6]
+    type: mc
+    prompt: Why is Wood Buffalo a national park?
+    choices:
+      - To protect the land and the wood bison
+      - To dig up the land and sell it
+      - To build a big new city there
+    answer: 0
+    feedback:
+      '1': Would digging up the land keep it safe?
+      '2': Would a city keep the land wild for the bison?
+    hints:
+      - What does a park do for the land and animals?
+    solution:
+      - National parks **protect** land and animals. Wood Buffalo keeps the wood bison safe.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: It is −30 °C outside, but Kofi’s house is cozy. His furnace burns a gas from deep underground. Which resource keeps him warm?
+    choices: [🔥 Natural gas, 💨 Wind, 💧 Water]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The furnace burns something. Can you burn the wind?
+      '2': Water comes from rivers and rain. Is it a gas from underground?
+    hints:
+      - Which resource is a gas from deep underground?
+    solution:
+      - Many Alberta homes are heated by **natural gas**. Kofi uses a non-renewable resource every winter day.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S1.2, K1.6]
+    type: mc
+    prompt: Sam says, "Let’s build houses all over Elk Island!" Which reason best shows why it should stay a park?
+    choices:
+      - The elk and bison would lose their safe home.
+      - Parks are only allowed in the mountains.
+      - Nobody ever visits a park.
+    answer: 0
+    feedback:
+      '1': Is Elk Island in the mountains? Where is it?
+      '2': Many families visit parks. Is that a strong reason?
+    hints:
+      - What happened to the elk before the park was made?
+    solution:
+      - The park keeps the elk and bison **safe**. Without it, they could disappear again.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K1.2, K1.1]
+    type: mc
+    prompt: What if a town used only coal, and kept using it for a very long time?
+    choices:
+      - The coal would run out one day.
+      - Nature would make more coal by next year.
+      - The coal would come back after it rained.
+    answer: 0
+    feedback:
+      '1': How long did coal take to form?
+      '2': Rain fills rivers. Does it make coal?
+    hints:
+      - Is coal renewable or non-renewable?
+    solution:
+      - Coal is **non-renewable**. It took millions of years to form, so it can run out.
+      - That is why it matters which resources we choose.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.3]
+    type: investigation
+    prompt: |-
+      A town wants electricity that will never run out. Near the town are:
+
+      - a windy hill
+      - a sunny field
+      - a fast river
+      - an old coal mine
+    parts:
+      - type: multi
+        prompt: Which ones could make electricity that keeps coming back? Choose all that apply.
+        choices: [💨 Windy hill, ☀️ Sunny field, 💧 Fast river, ⚫ Coal mine]
+        fixedOrder: true
+        answer: [0, 1, 2]
+        feedback:
+          '3': Coal makes electricity, but can it run out?
+        hints:
+          - Which ones does nature replace?
+        solution:
+          - Wind, sun and water are **renewable**. Coal is not.
+      - type: mc
+        prompt: One calm night, there is no wind and no sun. What could still make electricity?
+        choices: [💧 The river, ☀️ The sunny field, 💨 The windy hill]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Does the sun shine at night?
+          '2': Is the wind blowing tonight?
+        hints:
+          - Which resource keeps going all night long?
+        solution:
+          - The **river** keeps flowing at night. Using more than one renewable resource helps.
+    wrapUp: Renewable resources keep coming back, but each one works best at different times.
+    hints: []
+    solution: []

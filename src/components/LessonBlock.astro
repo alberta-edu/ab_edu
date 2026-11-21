@@ -118,6 +118,7 @@ import StorySteps from './visuals/StorySteps.astro';
 import SymbolCards from './visuals/SymbolCards.astro';
 import CountPop from './visuals/CountPop.astro';
 import BlendCircles from './visuals/BlendCircles.astro';
+import ResourceRefill from './visuals/ResourceRefill.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -237,6 +238,7 @@ const visuals = {
   'g3ss-symbol-cards': SymbolCards,
   'g3ss-count-pop': CountPop,
   'g3ss-blend': BlendCircles,
+  'g3ss-refill': ResourceRefill,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
