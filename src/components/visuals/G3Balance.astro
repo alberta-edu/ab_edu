@@ -15,12 +15,13 @@ for (const e of examples) {
   parseSide(e.left);
   parseSide(e.right);
 }
-const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.left))} and ${sideText(parseSide(e.right))}`;
+const sq = (t: string) => t.replace(/□/g, '<span class="g3m-bal-sq" role="img" aria-label="box"></span>');
+const label = (e: { left: string; right: string }) => sq(`${sideText(parseSide(e.left))} and ${sideText(parseSide(e.right))}`);
 ---
 <g3-balance data-examples={JSON.stringify(examples)} data-box={box}>
   {examples.length > 1 && (
     <div class="seg" role="group" aria-label="Choose what goes on the pans">
-      {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{label(e)}</button>)}
+      {examples.map((e, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)} set:html={label(e)} />)}
     </div>
   )}
   <svg class="g3m-bal-svg" viewBox="0 0 360 230" role="img" aria-label="A pan balance. Each pan holds one side of the equation." data-bal="svg">
@@ -36,7 +37,7 @@ const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.le
   <p class="g3m-bal-eq" data-bal="eq" aria-live="polite"></p>
   <div class="control-row g3m-bal-row">
     <span class="control" data-bal="boxrow" hidden>
-      <span class="g3m-bal-boxlabel">□ =</span>
+      <span class="g3m-bal-boxlabel"><span class="g3m-bal-sq" role="img" aria-label="box"></span> =</span>
       <button type="button" class="g3m-bal-step" data-bal="minus" aria-label="One less in the box">−</button>
       <output data-bal="box">{box}</output>
       <button type="button" class="g3m-bal-step" data-bal="plus" aria-label="One more in the box">+</button>
@@ -70,7 +71,10 @@ const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.le
   .g3m-bal-svg.is-even .g3m-bal-plate { fill: var(--ok-soft); stroke: var(--ok); }
   .g3m-bal-eq { margin: 0.2rem 0 0; text-align: center; font-size: var(--step-2); font-weight: 700; color: var(--accent); min-height: 1.4em; }
   .g3m-bal-row { justify-content: center; }
+  .g3m-bal-tip { font-size: 0.8em; margin-inline: 0.3em; }
   .g3m-bal-boxlabel { font-size: 1.3rem; font-weight: 700; }
+  .g3m-bal-sq { display: inline-block; width: 0.8em; height: 0.8em; border: 0.12em solid currentColor; border-radius: 0.1em; vertical-align: -0.05em; }
+  .g3m-bal-boxtxt { font-size: 26px; }
   .g3m-bal-step { width: 2.3rem; height: 2.3rem; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 1.2rem; font-weight: 700; cursor: pointer; }
   .g3m-bal-row output { min-width: 2ch; text-align: center; font-size: 1.3rem; font-weight: 700; }
   .g3m-bal-say { min-height: 2.6em; margin: 0.2rem 0 0; font-weight: 600; text-align: center; }
@@ -110,7 +114,7 @@ const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.le
           : `<rect class="g3m-bal-cube is-${p.group}" x="${x + 0.5}" y="${top + 0.5}" width="${C - 1}" height="${C - 1}" rx="2"/>`;
     });
     out += `<rect class="g3m-bal-plate" x="${cx - 58}" y="${plateY}" width="116" height="8" rx="4"/>`;
-    out += `<text class="g3m-bal-label" x="${cx}" y="${plateY + 32}" text-anchor="middle">${sideText(s)}</text>`;
+    out += `<text class="g3m-bal-label" x="${cx}" y="${plateY + 32}" text-anchor="middle">${sideText(s).replace(/□/g, '<tspan class="g3m-bal-boxtxt">□</tspan>')}</text>`;
     return out;
   }
 
@@ -183,7 +187,8 @@ const label = (e: { left: string; right: string }) => `${sideText(parseSide(e.le
       this.q('pan-r').style.transform = `translateY(${dy}px)`;
       this.q('svg').classList.toggle('is-even', L === R);
       this.q('box').textContent = String(this.box);
-      this.q('eq').textContent = L === R ? `${sideText(this.l)} = ${sideText(this.r)}` : `${sideText(this.l)}  ?  ${sideText(this.r)}`;
+      const sq = (t: string) => t.replace(/□/g, '<span class="g3m-bal-sq" role="img" aria-label="box"></span>');
+      this.q('eq').innerHTML = sq(L === R ? `${sideText(this.l)} = ${sideText(this.r)}` : `${sideText(this.l)} <span class="g3m-bal-tip" role="img" aria-label="is not balanced with">⚖️</span> ${sideText(this.r)}`);
       this.q('say').textContent = balanceSay(this.l, this.r, boxy ? this.box : null);
     }
   }
