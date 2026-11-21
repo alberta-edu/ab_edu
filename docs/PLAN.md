@@ -5,21 +5,24 @@ Social Studies. Grade 5 came first; Grades 6, 4, 3, 2 and 1 follow. Kindergarten
 
 ## Where we are now
 
-*Last updated: November 17, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 20, 2026. Update this section whenever a phase or batch finishes.*
 
 **Grades 5 and 6 are live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 4 to 1 (Phases 11–14).**
 
 - Phase 9 (`feature/multi-grade`) was merged and deployed on November 13, 2026.
 - Phase 10 (Grade 6) was merged and deployed on November 17, 2026.
 - **In progress:** Grade 4 (Phase 11), one agent per subject (`feature/g4-*`), merged into
-  `feature/grade-4` as each finishes. Social Studies is in. Grade 3 Math has started.
+  `feature/grade-4` as each finishes. Math, Science and Social Studies are in. ELAL has 15 of
+  16 concepts written.
+- **In progress:** Grade 3 (Phase 12). Math has 10 of 20 concepts written. Science and Social
+  Studies have started.
 
 | Grade | Outcomes | Statements | Status |
 |---|---|---|---|
 | 5 | 32 | 674 | ✅ Live |
 | 6 | 33 | 763 | ✅ Live: 55 concepts, 495 problems, 763 of 763 taught |
-| 4 | 32 | 651 | 🔨 In progress (Phase 11) |
-| 3 | 30 | 749 | 🔨 Math started (Phase 12) |
+| 4 | 32 | 651 | 🔨 Math, Science, Social Studies in; ELAL in progress (Phase 11) |
+| 3 | 30 | 749 | 🔨 All four subjects in progress (Phase 12) |
 | 2 | 28 | 596 | Phase 13 |
 | 1 | 28 | 565 | Phase 14 |
 
@@ -167,8 +170,8 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 8 | Release | Make the repo public, turn on Pages, publish | ✅ Live since November 4, 2026 |
 | 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | ✅ Merged November 13, 2026 |
 | 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | ✅ Live since November 17, 2026 |
-| 11 | Grade 4 | 4 subjects | 🔨 In progress |
-| 12 | Grade 3 | 4 subjects | Planned |
+| 11 | Grade 4 | 4 subjects | 🔨 In progress: 3 of 4 subjects merged into `feature/grade-4` |
+| 12 | Grade 3 | 4 subjects, Grade 3 profile: less than Grade 4, 6 problems a topic | 🔨 In progress |
 | 13 | Grade 2 | 4 subjects, Grade 2 profile: much less than Grade 3, 4 problems a topic | Planned |
 | 14 | Grade 1 | 4 subjects, Grade 1 profile: much less than Grade 2, 3 problems a topic | Planned |
 
