@@ -127,6 +127,8 @@ import G3Ruler from './visuals/G3Ruler.astro';
 import G3Perimeter from './visuals/G3Perimeter.astro';
 import G3Angle from './visuals/G3Angle.astro';
 import G3Sequence from './visuals/G3Sequence.astro';
+import G3Clock from './visuals/G3Clock.astro';
+import G3Graph from './visuals/G3Graph.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -255,6 +257,8 @@ const visuals = {
   'g3-perimeter': G3Perimeter,
   'g3-angle': G3Angle,
   'g3-sequence': G3Sequence,
+  'g3-clock': G3Clock,
+  'g3-graph': G3Graph,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

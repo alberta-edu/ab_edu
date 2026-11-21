@@ -1,0 +1,217 @@
+id: telling-time
+grade: 3
+subject: math
+organizingIdea: MAT-OI7
+outcomes: [MAT3-OI7-GQ1-LO1]
+order: 19
+title: Telling Time on Clocks
+shortTitle: Telling time
+summary: >-
+  Watch 60 seconds make a minute and 60 minutes make an hour, tell time on analog and digital
+  clocks, and name times of day with a.m., p.m. and the 24-hour clock.
+
+bigIdea: |-
+  - 60 **seconds** make 1 minute. 60 **minutes** make 1 hour.
+  - Analog and digital clocks both tell the time of day.
+  - A day is two 12-hour cycles, **a.m.** and **p.m.**, or one 24-hour cycle.
+
+lesson:
+  - title: Tick, tick, tick
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, K1.3, K1.4, S1.1]
+        component: g3-clock
+        props: { mode: tick }
+        caption: |-
+          1. Press **Run**. Each tick of the red hand is 1 **second**, 1/60 of a minute.
+          2. Try **Fast**. 60 seconds make 1 **minute**.
+          3. Try **Super fast**. 60 minutes make 1 **hour**.
+      - type: callout
+        covers: [MAT2-OI7-GQ1-LO1#S2.1]
+        variant: remember
+        title: Remember from Grade 2
+        body: Days, weeks, months and years are units of time too.
+
+  - title: Make the time
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.4, U1.1]
+        component: g3-clock
+        props: { mode: set, goals: ['4:35', '9:10', '11:50'] }
+        caption: |-
+          - The short hand shows the **hour**. The long hand shows the **minutes**.
+          - The digital clock shows the same time with numbers.
+      - type: callout
+        covers: [S1.4]
+        variant: tip
+        title: Count by 5
+        body: The long hand moves 5 minutes from one number to the next. Skip count by 5 to read it.
+
+  - title: Minutes past, minutes until
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.4]
+        component: g3-clock
+        props: { mode: past, start: '3:20' }
+        caption: Move the minute hand. Minutes **past** 3 and minutes **until** 4 always make 60.
+
+  - title: a.m. and p.m.
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.3, K1.5]
+        component: g3-clock
+        props: { mode: day, start: '7:00' }
+        caption: |-
+          - A day has two 12-hour cycles. The hour hand goes around twice.
+          - **a.m.** times count from 12:00 midnight. **p.m.** times count from 12:00 noon.
+
+  - title: The 24-hour clock
+    blocks:
+      - type: visual
+        covers: [K1.7, S1.5]
+        component: g3-clock
+        props: { mode: day, start: '15:20', show24: true }
+        caption: |-
+          - A **24-hour clock** counts every hour of the day from 0:00, midnight.
+          - After noon it keeps counting: 1:00 p.m. is 13:00.
+          - French often uses it. 15 h 20 means 3:20 p.m.
+
+keyTerms:
+  - term: Second
+    covers: [K1.2, K1.3]
+    definition: 'The basic unit of time. 60 seconds make 1 minute.'
+  - term: Minute
+    covers: [K1.4, K1.1]
+    definition: '60 seconds. 60 minutes make 1 hour.'
+  - term: a.m.
+    covers: [S1.3, K1.6]
+    definition: 'The 12 hours from midnight to noon.'
+  - term: p.m.
+    covers: [S1.3, K1.6]
+    definition: 'The 12 hours from noon to midnight.'
+  - term: 24-hour clock
+    covers: [K1.7, S1.5]
+    definition: 'Counts the hours of a day from 0:00 to 23:59.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.4, K1.5]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 200 200" class="fig-svg fig-svg--square" role="img" aria-label="An analog clock showing 4:35"><circle cx="100" cy="100" r="94" style="fill:var(--surface);stroke:var(--ink);stroke-width:5"/><path d="M109,18L109,12M117,19L119,13M126,21L128,15M134,24L136,19M149,33L152,28M156,38L160,34M162,45L166,40M167,51L172,48M176,66L181,64M179,74L185,73M181,83L187,82M183,91L189,91M183,109L189,109M181,117L187,119M179,126L185,128M176,134L181,136M167,149L172,152M162,156L166,160M156,162L160,166M149,167L152,172M134,176L136,181M126,179L128,185M117,181L119,187M109,183L109,189M91,183L91,189M83,181L82,187M74,179L73,185M66,176L64,181M51,167L48,172M45,162L40,166M38,156L34,160M33,149L28,152M24,134L19,136M21,126L15,128M19,117L13,119M18,109L12,109M18,91L12,91M19,83L13,82M21,74L15,73M24,66L19,64M33,51L28,48M38,45L34,40M45,38L40,34M51,33L48,28M66,24L64,19M74,21L73,15M83,19L82,13M91,18L91,12" style="stroke:var(--ink);stroke-width:1.2"/><path d="M100,22L100,11M139,33L145,23M168,61L177,56M178,100L189,100M168,139L177,145M139,168L145,177M100,178L100,189M61,168L56,177M33,139L23,145M22,100L11,100M33,61L23,56M61,33L56,23" style="stroke:var(--ink);stroke-width:3"/><text class="fig-label" x="132" y="45" text-anchor="middle" dominant-baseline="central">1</text><text class="fig-label" x="155" y="68" text-anchor="middle" dominant-baseline="central">2</text><text class="fig-label" x="164" y="100" text-anchor="middle" dominant-baseline="central">3</text><text class="fig-label" x="155" y="132" text-anchor="middle" dominant-baseline="central">4</text><text class="fig-label" x="132" y="155" text-anchor="middle" dominant-baseline="central">5</text><text class="fig-label" x="100" y="164" text-anchor="middle" dominant-baseline="central">6</text><text class="fig-label" x="68" y="155" text-anchor="middle" dominant-baseline="central">7</text><text class="fig-label" x="45" y="132" text-anchor="middle" dominant-baseline="central">8</text><text class="fig-label" x="36" y="100" text-anchor="middle" dominant-baseline="central">9</text><text class="fig-label" x="45" y="68" text-anchor="middle" dominant-baseline="central">10</text><text class="fig-label" x="68" y="45" text-anchor="middle" dominant-baseline="central">11</text><text class="fig-label" x="100" y="36" text-anchor="middle" dominant-baseline="central">12</text><line class="g3m-ck-hh" x1="100" y1="100" x2="129.7" y2="132.4" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/><line class="g3m-ck-mh" x1="100" y1="100" x2="63.0" y2="164.1" style="stroke:var(--accent);stroke-width:5;stroke-linecap:round"/><circle cx="100" cy="100" r="5" style="fill:var(--ink)"/></svg>
+    prompt: What time does this clock show?
+    choices: ['4:35', '7:20', '5:35']
+    answer: 0
+    feedback:
+      '1': 'You read the hands the other way round. The short hand shows the hour.'
+      '2': 'The short hand is between 4 and 5. It has not reached 5, so the hour is still 4.'
+    hints:
+      - Find the short hand first. Which number has it passed?
+      - The long hand is on 7. Count by 5 from 12.
+    solution:
+      - 'The short hand has passed 4, so the hour is **4**.'
+      - 'The long hand is on 7: 5, 10, 15, 20, 25, 30, 35. The time is **4:35**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.3, S1.1]
+    type: mc
+    prompt: The second hand goes all the way around the clock once. How much time is that?
+    choices: ['1 minute', '1 second', '1 hour']
+    answer: 0
+    feedback:
+      '1': 'One tick is 1 second. All the way around is 60 ticks.'
+      '2': 'In 1 hour, the minute hand goes all the way around.'
+    hints:
+      - How many ticks does the second hand make to go around?
+    solution:
+      - 'The second hand makes 60 ticks to go around.'
+      - '60 seconds make **1 minute**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.2, K1.4]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 200 200" class="fig-svg fig-svg--square" role="img" aria-label="An analog clock showing 3:40"><circle cx="100" cy="100" r="94" style="fill:var(--surface);stroke:var(--ink);stroke-width:5"/><path d="M109,18L109,12M117,19L119,13M126,21L128,15M134,24L136,19M149,33L152,28M156,38L160,34M162,45L166,40M167,51L172,48M176,66L181,64M179,74L185,73M181,83L187,82M183,91L189,91M183,109L189,109M181,117L187,119M179,126L185,128M176,134L181,136M167,149L172,152M162,156L166,160M156,162L160,166M149,167L152,172M134,176L136,181M126,179L128,185M117,181L119,187M109,183L109,189M91,183L91,189M83,181L82,187M74,179L73,185M66,176L64,181M51,167L48,172M45,162L40,166M38,156L34,160M33,149L28,152M24,134L19,136M21,126L15,128M19,117L13,119M18,109L12,109M18,91L12,91M19,83L13,82M21,74L15,73M24,66L19,64M33,51L28,48M38,45L34,40M45,38L40,34M51,33L48,28M66,24L64,19M74,21L73,15M83,19L82,13M91,18L91,12" style="stroke:var(--ink);stroke-width:1.2"/><path d="M100,22L100,11M139,33L145,23M168,61L177,56M178,100L189,100M168,139L177,145M139,168L145,177M100,178L100,189M61,168L56,177M33,139L23,145M22,100L11,100M33,61L23,56M61,33L56,23" style="stroke:var(--ink);stroke-width:3"/><text class="fig-label" x="132" y="45" text-anchor="middle" dominant-baseline="central">1</text><text class="fig-label" x="155" y="68" text-anchor="middle" dominant-baseline="central">2</text><text class="fig-label" x="164" y="100" text-anchor="middle" dominant-baseline="central">3</text><text class="fig-label" x="155" y="132" text-anchor="middle" dominant-baseline="central">4</text><text class="fig-label" x="132" y="155" text-anchor="middle" dominant-baseline="central">5</text><text class="fig-label" x="100" y="164" text-anchor="middle" dominant-baseline="central">6</text><text class="fig-label" x="68" y="155" text-anchor="middle" dominant-baseline="central">7</text><text class="fig-label" x="45" y="132" text-anchor="middle" dominant-baseline="central">8</text><text class="fig-label" x="36" y="100" text-anchor="middle" dominant-baseline="central">9</text><text class="fig-label" x="45" y="68" text-anchor="middle" dominant-baseline="central">10</text><text class="fig-label" x="68" y="45" text-anchor="middle" dominant-baseline="central">11</text><text class="fig-label" x="100" y="36" text-anchor="middle" dominant-baseline="central">12</text><line class="g3m-ck-hh" x1="100" y1="100" x2="141.3" y2="115.0" style="stroke:var(--ink);stroke-width:8;stroke-linecap:round"/><line class="g3m-ck-mh" x1="100" y1="100" x2="35.9" y2="137.0" style="stroke:var(--accent);stroke-width:5;stroke-linecap:round"/><circle cx="100" cy="100" r="5" style="fill:var(--ink)"/></svg>
+    prompt: It is 3:40. How many minutes until 4:00?
+    unit: minutes
+    answer: 20
+    verify: 60 - 40
+    hints:
+      - Minutes past and minutes until make 60.
+      - Count by 5 from the long hand up to 12.
+    solution:
+      - 'It is 40 minutes past 3.'
+      - '40 + **20** = 60, so it is 20 minutes until 4:00.'
+
+  - id: b2
+    level: 2
+    thinking: apply
+    covers: [S1.3, K1.6]
+    type: mc
+    prompt: School ends 3 hours after 12:00 noon. What time is that?
+    choices: ['3:00 p.m.', '3:00 a.m.', '9:00 a.m.']
+    answer: 0
+    feedback:
+      '1': 'a.m. times count from midnight. This time is after noon.'
+      '2': '9:00 a.m. is 3 hours before noon, not after.'
+    hints:
+      - Times after noon are p.m. times.
+    solution:
+      - 'p.m. times count from 12:00 noon.'
+      - '3 hours after noon is **3:00 p.m.**'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: pattern
+    covers: [S1.5, K1.7, S1.3]
+    type: investigation
+    prompt: A train in Québec leaves at **15 h 20**. That is a time on the 24-hour clock.
+    parts:
+      - type: mc
+        prompt: What time is that on a 12-hour clock?
+        choices: ['3:20 p.m.', '5:20 p.m.', '3:20 a.m.']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Use the whole 15. After noon, 13 is 1, 14 is 2, 15 is …'
+          '2': 'On the 24-hour clock, hours after 12 come after noon.'
+        hints:
+          - 12:00 is noon. Count on from 12 to 15.
+        solution:
+          - '13 is 1 p.m., 14 is 2 p.m., 15 is 3 p.m.'
+          - '15 h 20 is **3:20 p.m.**'
+      - type: number
+        prompt: Bedtime is 8:00 p.m. What hour is that on the 24-hour clock?
+        answer: 20
+        verify: 12 + 8
+        hints:
+          - The 24-hour clock is 12 more than a p.m. hour.
+        solution:
+          - 'Noon is 12. 8 hours after noon is 12 + 8.'
+          - '8:00 p.m. is **20:00**.'
+    wrapUp: After noon, the 24-hour clock is 12 more than the p.m. hour.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [S1.2, K1.4]
+    type: number
+    prompt: It is after 6:00 and before 7:00. The minutes until 7 are **10 more** than the minutes past 6. How many minutes past 6 is it?
+    unit: minutes
+    answer: 25
+    verify: (60 - 10) / 2
+    hints:
+      - At 6:30 the two are the same, 30 and 30. Should the minute hand go back or forward?
+      - Try 6:20. That is 20 past and 40 until. 40 is 20 more, too many.
+    solution:
+      - 'Try 6:25. It is 25 minutes past 6 and 35 minutes until 7.'
+      - '25 + 35 = 60, and 35 is 10 more than 25. It is **25** minutes past 6.'

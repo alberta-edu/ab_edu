@@ -3,6 +3,7 @@ import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src
 import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
 import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES, FIGS, perimeter, walkSay, missingSide, unrollSide, estById, estimateSay } from '../src/components/visuals/g3-length.ts';
 import { at, wedge, vsRight, turnSay, compareSay, PAIRS, SPOTS, angleSvg } from '../src/components/visuals/g3-angle.ts';
+import { hands, digital, clock12, clock24, french24, since12, since24, pastUntil, pastSay, gone, tickSay, minuteAt, dragTo, parse as parseTime, daylight } from '../src/components/visuals/g3-clock.ts';
 import { ordinal, term as seqTerm, lastPos, ruleSay, findSay, isSkip } from '../src/components/visuals/g3-sequence.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
@@ -293,5 +294,49 @@ describe('Grade 3 sequences', () => {
     expect(isSkip(by5)).toBe(true);
     expect(findSay(by5, 7)).toBe('The 7th term of counting by 5 is 7 × 5 = 35.');
     expect(findSay({ label: '', start: 50, step: -5, n: 6, hide: 4 }, 4)).toBe('Subtract 5 each time. 40 − 5 = 35. The 4th term is 35.');
+  });
+});
+
+describe('Grade 3 time', () => {
+  it('turns hands in base 60', () => {
+    expect(hands(parseTime('3:00'))).toEqual({ hour: 90, minute: 0, second: 0 });
+    expect(hands(parseTime('4:30')).hour).toBe(135);
+    expect(hands(parseTime('4:30'), 30).second).toBe(180);
+    expect(gone(3725)).toEqual({ h: 1, m: 2, s: 5 });
+    expect(tickSay(59, 60)).toContain('60 seconds make 1 minute');
+    expect(tickSay(3599, 3636)).toContain('60 minutes make 1 hour');
+    expect(tickSay(10, 11)).toBe('');
+  });
+
+  it('reads 12-hour and 24-hour times from midnight and noon', () => {
+    expect(digital(parseTime('16:35'))).toBe('4:35');
+    expect(digital(parseTime('0:05'))).toBe('12:05');
+    expect(clock12(parseTime('15:20'))).toBe('3:20 p.m.');
+    expect(clock12(parseTime('7:00'))).toBe('7:00 a.m.');
+    expect(clock12(0)).toBe('12:00 midnight');
+    expect(clock12(720)).toBe('12:00 noon');
+    expect(clock24(parseTime('20:00'))).toBe('20:00');
+    expect(french24(parseTime('15:20'))).toBe('15 h 20');
+    expect(since12(parseTime('15:20'))).toBe('3 hours 20 minutes after 12:00 noon');
+    expect(since12(parseTime('0:40'))).toBe('40 minutes after 12:00 midnight');
+    expect(since24(parseTime('15:20'))).toBe('15 hours 20 minutes after 0:00');
+    expect(daylight(0)).toBe(0);
+    expect(daylight(720)).toBe(1);
+  });
+
+  it('splits an hour into minutes past and until', () => {
+    expect(pastUntil(parseTime('3:40'))).toEqual({ past: 40, until: 20 });
+    expect(pastSay(parseTime('3:20'))).toBe('20 minutes past 3. 40 minutes until 4. 20 + 40 = 60.');
+    expect(pastSay(parseTime('12:00'))).toBe('Exactly 12:00. It is 60 minutes until 1:00.');
+    expect(pastSay(parseTime('12:10'))).toContain('until 1.');
+  });
+
+  it('drags the minute hand and carries the hour across 12', () => {
+    expect(minuteAt(0, -10)).toBe(0);
+    expect(minuteAt(10, 0)).toBe(15);
+    expect(minuteAt(0, 10)).toBe(30);
+    expect(dragTo(parseTime('3:55'), 5)).toBe(parseTime('4:05'));
+    expect(dragTo(parseTime('4:05'), 55)).toBe(parseTime('3:55'));
+    expect(dragTo(parseTime('3:20'), 40)).toBe(parseTime('3:40'));
   });
 });
