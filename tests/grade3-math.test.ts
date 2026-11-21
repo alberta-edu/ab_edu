@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src/components/visuals/g3-equation.ts';
 import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
+import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES } from '../src/components/visuals/g3-length.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -187,5 +188,27 @@ describe('Grade 3 polygon properties', () => {
     expect(shapeSvg(shapeById('square').pts, 'right').match(/g3m-sh-rt/g)).toHaveLength(4);
     expect(shapeSvg(shapeById('tri-reg').pts, 'right').match(/✗/g)).toHaveLength(3);
     expect(shapeSvg(shapeById('rectangle').pts, 'parallel').match(/g3m-sh-chev/g)).toHaveLength(6);
+  });
+});
+
+describe('Grade 3 length', () => {
+  it('reads lengths without decimals', () => {
+    expect(readSay(thingById('pencil'), 'cm')).toBe('The pencil is 12 cm long.');
+    expect(readSay(thingById('crayon'), 'cm')).toBe('The crayon is between 7 cm and 8 cm. Millimetres give a closer answer: 75 mm.');
+    expect(readSay(thingById('crayon'), 'mm')).toBe('The crayon is 75 mm long.');
+    expect(wrongRead(thingById('pencil'))).toBeCloseTo(14.2);
+  });
+
+  it('keeps the worm the same length as it straightens', () => {
+    const L = 231;
+    for (const s of [0, 0.5, 1]) expect(pathLength(wormPoints(L, s))).toBeCloseTo(L, 6);
+    const straight = wormPoints(L, 1);
+    expect(straight[straight.length - 1][0]).toBeCloseTo(L, 6);
+    expect(wormPoints(L, 0)[40][0]).toBeLessThan(L * 0.85);
+  });
+
+  it('relates the units', () => {
+    expect(PER_METRE).toEqual({ dm: 10, cm: 100, mm: 1000 });
+    expect(MATCHES.every((m) => Math.abs(m.a.cm - m.b.cm) / m.b.cm < 0.1)).toBe(true);
   });
 });

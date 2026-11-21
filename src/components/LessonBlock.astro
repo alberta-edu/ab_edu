@@ -123,6 +123,7 @@ import G3TimesTable from './visuals/G3TimesTable.astro';
 import G3Fraction from './visuals/G3Fraction.astro';
 import G3Balance from './visuals/G3Balance.astro';
 import G3Shapes from './visuals/G3Shapes.astro';
+import G3Ruler from './visuals/G3Ruler.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -247,6 +248,7 @@ const visuals = {
   'g3-fraction': G3Fraction,
   'g3-balance': G3Balance,
   'g3-shapes': G3Shapes,
+  'g3-ruler': G3Ruler,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
