@@ -1,0 +1,241 @@
+id: solids-liquids-gases
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 2
+title: Solids, Liquids and Gases
+shortTitle: Solids, liquids, gases
+summary: >-
+  Find out what matter is, then watch a solid, a liquid and a gas move into a new container to see
+  how each one's shape and volume behave.
+
+bigIdea: |-
+  - **Matter** is anything that takes up space and has weight.
+  - A **solid** keeps its shape. A **liquid** takes the shape of its container.
+  - A **gas** spreads out to fill its whole container.
+
+lesson:
+  - title: What is matter?
+    blocks:
+      - type: visual
+        covers: [K2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Matter, icon: '✅' }
+            - { id: no, label: Not matter, icon: '❌' }
+          cards:
+            - { text: '🪨 A rock', bin: yes, why: 'A rock takes up space and has weight.' }
+            - { text: '🧃 Juice', bin: yes, why: 'Juice fills a box and makes it heavy.' }
+            - { text: '🎈 The air in a balloon', bin: yes, why: 'Air takes up space. That is what makes the balloon big.' }
+            - { text: '👤 A shadow', bin: no, why: 'A shadow takes up no space and has no weight.' }
+            - { text: '🎵 A song', bin: no, why: 'You can hear a song, but it takes up no space and has no weight.' }
+        caption: Does it **take up space** and have **weight**? Then it is matter.
+
+  - title: Solid, liquid or gas
+    blocks:
+      - type: experiment
+        covers: [K2.2, K3.1, K3.3, K3.5, S3.2, U3.1]
+        title: Into a new box
+        question: A **solid**, a **liquid** and a **gas** each move from a tall box into a wide one. Which one keeps its shape?
+        animation: g3s-scene
+        props: { scene: new-container }
+        predict:
+          choices: ['🧊 The solid', '🧃 The liquid', '💨 The gas']
+          answer: 0
+        observe: |-
+          - The **solid** stayed the same shape.
+          - The **liquid** spread flat across the bottom.
+          - The **gas** spread out to fill the **whole** box.
+        explain: |-
+          - A solid has its **own shape**.
+          - A liquid **flows** and takes the shape of its container.
+          - A gas flows easily and **spreads** to fill its container.
+
+  - title: Liquids keep their volume
+    blocks:
+      - type: visual
+        covers: [K3.2, K3.3, K3.6]
+        component: g3s-play
+        props: { scene: juice-volume }
+        caption: Tap each container. The **shape** changes. The **amount** of juice does not.
+      - type: callout
+        variant: mistake
+        covers: [K3.2, K3.6]
+        title: Taller is not more
+        body: Juice in a thin bottle looks like more. It takes up the **same space**, so it is the same **volume**.
+
+  - title: Gases fill any space
+    blocks:
+      - type: visual
+        covers: [K3.4, K3.5, K3.6]
+        component: g3s-play
+        props: { scene: gas-fills }
+        caption: Press **Next** to open the jar, then make the box bigger.
+
+  - title: Shape and volume
+    blocks:
+      - type: figure
+        covers: [S3.1, K3.1, K3.2, K3.4]
+        figure: |-
+          <svg viewBox="0 0 360 120" class="fig-svg" role="img" aria-label="Three boxes. A solid ice cube sits in the first. A liquid lies flat on the bottom of the second. A gas fills all of the third."><rect class="g3s-ice" x="40" y="54" width="40" height="40" rx="4"/><rect class="g3s-juice" x="132" y="70" width="96" height="24"/><rect class="g3s-gas" x="252" y="22" width="96" height="72"/><rect class="g3s-box" x="10" y="20" width="100" height="76" rx="4"/><rect class="g3s-box" x="130" y="20" width="100" height="76" rx="4"/><rect class="g3s-box" x="250" y="20" width="100" height="76" rx="4"/><text class="fig-label" x="60" y="116" text-anchor="middle">Solid</text><text class="fig-label" x="180" y="116" text-anchor="middle">Liquid</text><text class="fig-label" x="300" y="116" text-anchor="middle">Gas</text></svg>
+        caption: The same box, three states of matter.
+      - type: table
+        covers: [S3.1, K3.1, K3.2, K3.4, U3.1]
+        headers: ['', Own shape?, Same volume?]
+        rows:
+          - ['🧊 Solid', '✅ Yes', '✅ Yes']
+          - ['🧃 Liquid', '❌ No, takes the container’s shape', '✅ Yes']
+          - ['💨 Gas', '❌ No', '❌ No, fills the container']
+
+keyTerms:
+  - term: Matter
+    covers: [K2.1]
+    definition: Anything that takes up space and has weight.
+  - term: Solid
+    covers: [K3.1]
+    definition: Matter with its own shape and volume.
+  - term: Liquid
+    covers: [K3.2, K3.3]
+    definition: Matter with its own volume but no shape of its own. It flows and takes the shape of its container.
+  - term: Gas
+    covers: [K3.4, K3.5]
+    definition: Matter with no shape or volume of its own. It spreads to fill its container.
+  - term: Volume
+    covers: [K3.6]
+    definition: The amount of space something takes up.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2, K3.2]
+    type: mc
+    prompt: Which one is a **liquid**?
+    choices: ['🥛 Milk', '🪨 A pebble', '🎈 The air in a balloon']
+    answer: 0
+    feedback:
+      '1': A pebble keeps its own shape. What state is that?
+      '2': Air spreads to fill the whole balloon. What state is that?
+    hints:
+      - Which one flows and takes the shape of its cup?
+    solution:
+      - Milk flows and takes the shape of its glass, so it is a **liquid**.
+      - The pebble is a solid. The air is a gas.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K3.2, K3.6]
+    type: mc
+    prompt: Ana pours **1 cup** of water from a tall glass into a wide bowl. How much water is in the bowl?
+    choices: ['1 cup', 'Less than 1 cup', 'More than 1 cup']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The water looks lower in the wide bowl. Did any of it disappear?
+      '2': Did Ana add any water?
+    hints:
+      - Did the water spill, or did anyone add some?
+    solution:
+      - The water’s shape changed, but none was added or lost.
+      - A liquid keeps its volume, so there is still **1 cup**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K3.2, K3.3, S3.1]
+    type: mc
+    prompt: It takes the shape of its jar, but it does **not** fill the jar to the top. What could it be?
+    choices: ['🍯 Honey', '🪵 A wood block', '💨 Air']
+    answer: 0
+    feedback:
+      '1': A wood block keeps its own shape in any jar. Does it take the jar’s shape?
+      '2': Air does take the jar’s shape, but how much of the jar does it fill?
+    hints:
+      - Which state takes the shape of its container but keeps its own volume?
+    solution:
+      - Taking the jar’s shape rules out the wood block, a solid.
+      - Not filling the whole jar rules out air, a gas.
+      - '**Honey** is a liquid: it takes the jar’s shape and keeps its volume.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.5, K3.4]
+    type: mc
+    prompt: Dad opens a jar of pickles in the kitchen. Soon Sam can smell them in the hallway. Why?
+    choices:
+      - The smell is a gas, and it spreads out.
+      - The smell is a liquid, and it flows along the floor.
+      - The smell is a solid, and it sticks to Sam.
+    answer: 0
+    feedback:
+      '1': A liquid stays at the bottom of its container. Could it climb up to Sam’s nose?
+      '2': A solid keeps its own shape and stays where it is. Could it travel down the hall?
+    hints:
+      - Which state flows easily and spreads to fill a space?
+    solution:
+      - The smell is a gas.
+      - A gas flows easily and spreads out to fill all the space it can, even the hallway.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S3.1, S3.2, K3.1, K3.2, K3.4]
+    type: investigation
+    prompt: |-
+      Zoe tips three sealed mystery bags into a big box.
+      - **A** keeps its cube shape.
+      - **B** spreads across the bottom.
+      - **C** spreads to fill the whole box.
+    parts:
+      - type: mc
+        prompt: Which one is a **gas**?
+        choices: [A, B, C]
+        fixedOrder: true
+        answer: 2
+        feedback:
+          '0': A kept its own shape. Which state does that?
+          '1': B spread across the bottom only. Which state does that?
+        hints:
+          - Which state fills its whole container?
+        solution:
+          - A gas spreads out to fill its whole container. That is **C**.
+      - type: multi
+        prompt: Which ones kept the **same volume** in the big box? Pick **all** of them.
+        choices: [A, B, C]
+        fixedOrder: true
+        answer: [0, 1]
+        feedback:
+          '2': C now takes up the whole big box. Did it keep the same amount of space?
+        hints:
+          - Volume is the space something takes up. Which ones took up the same space as before?
+        solution:
+          - A, the solid, and B, the liquid, both keep their volume.
+          - C, the gas, spread out to take up more space.
+    wrapUp: Shape and volume are clues. They tell you if matter is a solid, a liquid or a gas.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K3.1, K3.3, S3.1]
+    type: mc
+    prompt: Leo pours sand into a cup. “It flows and takes the cup’s shape,” he says. “Sand is a liquid!” What did Leo miss?
+    choices:
+      - Each grain of sand keeps its own shape.
+      - Sand is heavier than water.
+      - Sand fills the whole cup.
+    answer: 0
+    feedback:
+      '1': Being heavy doesn’t make something a solid or a liquid. Look closely at one grain.
+      '2': Does sand spread out to fill the cup to the top, like a gas would?
+    hints:
+      - Look at one grain of sand with a magnifying glass. Does it change shape?
+    solution:
+      - Sand pours because the tiny **grains** slide past each other.
+      - Each grain keeps its own shape, so each grain is a **solid**. Poured on a plate, sand makes a pile. Water would spread flat.
