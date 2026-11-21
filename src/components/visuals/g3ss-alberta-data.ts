@@ -72,6 +72,11 @@ export const PLACES: MapItem[] = [
   { id: 'bonnyville', name: 'Bonnyville', icon: '⚜️', at: pt(54.3, -110.7) },
   { id: 'st-paul', name: 'St. Paul', icon: '⚜️', at: pt(54.0, -111.3) },
   { id: 'falher', name: 'Falher', icon: '⚜️', at: pt(55.7, -117.2) },
+  { id: 'amber-valley', name: 'Amber Valley', icon: '🏘️', at: pt(54.7, -113.0) },
+  { id: 'vegreville', name: 'Vegreville', icon: '🥚', at: pt(53.5, -112.05) },
+  { id: 'star', name: 'Star', icon: '⛪', at: pt(53.75, -112.75) },
+  { id: 'cardston', name: 'Cardston', icon: '🏘️', at: pt(49.2, -113.3) },
+  { id: 'chinatown', name: 'Calgary’s Chinatown', icon: '🏮', at: pt(51.05, -114.06) },
   // Landmarks and historic sites
   { id: 'head-smashed-in', name: 'Head-Smashed-In Buffalo Jump', icon: '🦬', at: pt(49.7, -113.65), nudge: [10, -8] },
   { id: 'writing-on-stone', name: 'Writing-on-Stone (Áísínai’pi)', icon: '🪨', at: pt(49.1, -111.6) },
