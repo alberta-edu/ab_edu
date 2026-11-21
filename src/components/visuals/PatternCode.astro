@@ -1,0 +1,122 @@
+---
+// Spot a word's spelling pattern (LANENG4-OI9-GQ1-LO1, K3.1, S3.1, U3.1). A word appears as letter
+// tiles. The student picks its pattern, then each tile flips to show V, C or a silent e, and words with
+// the same pattern appear, so one known word unlocks others.
+import { PATTERNS, codeWord } from './pattern-code.ts';
+
+interface Props {
+  items: { word: string; family: string[] }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => {
+  const c = codeWord(it.word);
+  if (!(PATTERNS as readonly string[]).includes(c.pattern)) throw new Error(`pattern-code: "${it.word}" codes as ${c.pattern}`);
+  for (const f of it.family) if (codeWord(f).pattern !== c.pattern) throw new Error(`pattern-code: "${f}" is not ${c.pattern} like "${it.word}"`);
+  return { ...c, word: it.word, family: it.family };
+});
+---
+<pattern-code data-items={JSON.stringify(data)}>
+  <p class="g4e-pc__key">
+    <span class="g4e-pc__chip is-V">V</span> vowel
+    <span class="g4e-pc__chip is-C">C</span> consonant
+    <span class="g4e-pc__chip is-e">e</span> silent e
+  </p>
+  <p class="g4e-pc__count muted" data-pc="count"></p>
+  <div class="g4e-pc__word" data-pc="word" aria-live="polite"></div>
+  <p class="sci-pick-label">Which pattern is it?</p>
+  <div class="sci-pick" role="group" aria-label="Choose the spelling pattern">
+    {PATTERNS.map((p) => <button type="button" data-pc-pick={p} aria-pressed="false">{p}</button>)}
+  </div>
+  <p class="g4e-pc__note" data-pc="note" aria-live="polite">Start at the first vowel. Then name each letter.</p>
+  <button type="button" class="btn btn--ghost btn--small" data-pc="next">Next word ▶</button>
+  <noscript><ul>{data.map((d) => <li>{d.word}: {d.pattern} (like {d.family.join(', ')})</li>)}</ul></noscript>
+</pattern-code>
+
+<style is:global>
+  pattern-code { display: block; }
+  .g4e-pc__key { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem 0.5rem; margin: 0 0 0.6rem; font-size: var(--step--1); color: var(--ink-2); }
+  .g4e-pc__chip { display: inline-grid; place-items: center; min-width: 1.6rem; height: 1.6rem; border-radius: 6px; font-weight: 800; color: var(--ink); }
+  .g4e-pc__chip.is-V, .g4e-pc__tile.is-V { background: var(--ela-soft); box-shadow: inset 0 0 0 2px var(--ela); }
+  .g4e-pc__chip.is-C, .g4e-pc__tile.is-C { background: var(--math-soft); box-shadow: inset 0 0 0 2px var(--math); }
+  .g4e-pc__chip.is-e, .g4e-pc__tile.is-e { background: var(--surface-3); box-shadow: inset 0 0 0 2px var(--line-strong); color: var(--ink-3); }
+  .g4e-pc__count { margin: 0; font-size: var(--step--1); }
+  .g4e-pc__word { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: flex-start; margin: 0.5rem 0 0.4rem; min-height: 5.2rem; }
+  .g4e-pc__cell { display: grid; justify-items: center; gap: 0.25rem; }
+  .g4e-pc__tile { display: grid; place-items: center; width: 2.9rem; height: 3.2rem; border-radius: 9px; background: var(--surface); box-shadow: inset 0 0 0 2px var(--line-strong); font-size: var(--step-2); font-weight: 700; color: var(--ink); }
+  .g4e-pc__tile.is-start { background: var(--surface-2); box-shadow: none; color: var(--ink-3); }
+  .g4e-pc__code { min-height: 1.4rem; font-weight: 800; color: var(--ink-2); }
+  .g4e-pc__note { margin: 0.7rem 0 0.6rem; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4e-pc__note.is-right { background: var(--ok-soft); }
+  .sci-pick button.is-right { border-color: var(--ok); background: var(--ok-soft); color: var(--ink); }
+  .sci-pick button.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  @media (max-width: 420px) {
+    .g4e-pc__tile { width: 2.4rem; height: 2.8rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4e-pc__tile.is-flip { animation: g4e-pc-flip 0.35s ease backwards; animation-delay: calc(var(--i) * 0.12s); }
+    @keyframes g4e-pc-flip { from { transform: rotateY(90deg); } }
+  }
+</style>
+
+<script>
+  type Item = { word: string; start: string; letters: { ch: string; code: string }[]; pattern: string; family: string[] };
+
+  class PatternCode extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.querySelectorAll<HTMLButtonElement>('[data-pc-pick]').forEach((b) => b.addEventListener('click', () => this.pick(b)));
+      this.part('next').addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-pc="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      const it = this.items[i];
+      this.part('count').textContent = `Word ${i + 1} of ${this.items.length}`;
+      const start = [...it.start].map((ch) => `<span class="g4e-pc__cell"><span class="g4e-pc__tile is-start">${ch}</span><span class="g4e-pc__code"></span></span>`);
+      const rest = it.letters.map((l, j) => `<span class="g4e-pc__cell" data-code="${l.code}" style="--i:${j}"><span class="g4e-pc__tile">${l.ch}</span><span class="g4e-pc__code"></span></span>`);
+      const word = this.part('word');
+      word.innerHTML = [...start, ...rest].join('');
+      word.setAttribute('aria-label', `The word ${it.word}`);
+      this.querySelectorAll<HTMLButtonElement>('[data-pc-pick]').forEach((b) => {
+        b.disabled = false;
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('is-right', 'is-wrong');
+      });
+      const note = this.part('note');
+      note.className = 'g4e-pc__note';
+      note.textContent = 'Start at the first vowel. Then name each letter.';
+    }
+
+    private pick(b: HTMLButtonElement) {
+      const it = this.items[this.at];
+      const right = b.dataset.pcPick === it.pattern;
+      this.querySelectorAll<HTMLButtonElement>('[data-pc-pick]').forEach((x) => {
+        x.disabled = true;
+        x.setAttribute('aria-pressed', String(x === b));
+        if (x.dataset.pcPick === it.pattern) x.classList.add('is-right');
+      });
+      if (!right) b.classList.add('is-wrong');
+      this.querySelectorAll<HTMLElement>('[data-code]').forEach((cell) => {
+        const code = cell.dataset.code!;
+        const tile = cell.querySelector('.g4e-pc__tile')!;
+        tile.classList.add(`is-${code}`, 'is-flip');
+        cell.querySelector('.g4e-pc__code')!.textContent = code;
+      });
+      const same = `Same pattern: <strong>${it.family.join(', ')}</strong>.`;
+      const note = this.part('note');
+      note.className = `g4e-pc__note${right ? ' is-right' : ''}`;
+      note.innerHTML = right
+        ? `✓ <strong>${it.word}</strong> is <strong>${it.pattern}</strong>. ${same}`
+        : `Not quite. Read the code under each letter: <strong>${it.word}</strong> is <strong>${it.pattern}</strong>. ${same}`;
+    }
+  }
+  customElements.define('pattern-code', PatternCode);
+</script>

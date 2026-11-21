@@ -175,3 +175,19 @@ describe('comma tap', () => {
     expect(checkCommas([0], [0])).toEqual({ missing: [], extra: [] });
   });
 });
+
+import { codeWord } from '../src/components/visuals/pattern-code.ts';
+
+describe('pattern code', () => {
+  it('codes the curriculum examples', () => {
+    expect(['each', 'weave', 'wedge', 'trench', 'bounce', 'health'].map((w) => codeWord(w).pattern)).toEqual(['VVCC', 'VVCe', 'VCCe', 'VCCC', 'VVCCe', 'VVCCC']);
+  });
+  it('skips the letters before the first vowel', () => {
+    expect(codeWord('trench')).toMatchObject({ start: 'tr', pattern: 'VCCC' });
+    expect(codeWord('each').start).toBe('');
+  });
+  it('treats only a final e after a consonant as silent', () => {
+    expect(codeWord('cheese').pattern).toBe('VVCe');
+    expect(codeWord('tree').pattern).toBe('VV');
+  });
+});
