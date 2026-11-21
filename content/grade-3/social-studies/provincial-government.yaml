@@ -1,0 +1,238 @@
+id: provincial-government
+grade: 3
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [_XseQ8wNwUa9Ay2CnSzd2w]
+order: 12
+title: Alberta's Provincial Government
+shortTitle: Provincial government
+summary: >-
+  Find where Alberta's government meets, flip cards about its leaders, find the services the province
+  runs, and blend MLAs and council members to see how they are alike.
+
+bigIdea: |-
+  - Alberta’s **provincial government** makes decisions for the whole province. It meets at the Legislative Assembly in Edmonton.
+  - Its leaders include the **premier**, **MLAs** and ministers.
+  - The province runs education, health care and provincial parks.
+
+lesson:
+  - title: Alberta’s capital
+    blocks:
+      - type: visual
+        covers: [K1.9]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          cities: [calgary, red-deer, lethbridge, grande-prairie]
+          items:
+            - { id: legislature, text: 'Alberta’s **Legislative Assembly** meets here, in Edmonton. Edmonton is Alberta’s **capital**.' }
+        caption: Tap the building. Where does Alberta’s government meet?
+      - type: callout
+        variant: tip
+        covers: [K1.5]
+        title: For all of Alberta
+        body: The **provincial government** makes decisions on issues for the whole province, not just one town.
+
+  - title: Alberta’s leaders
+    blocks:
+      - type: visual
+        covers: [K1.8]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🧑‍💼, title: Premier, text: 'The **leader** of the province.' }
+            - { art: 🙋, title: MLAs, text: '**Members of the Legislative Assembly.** Each one represents the people of one area. They debate and vote.' }
+            - { art: 📁, title: Ministers, text: 'Each one is in charge of one area, like education or health care.' }
+            - { art: 👥, title: Cabinet, text: 'All the ministers, working together.' }
+            - { art: 👑, title: Lieutenant-governor, text: 'Represents the **Crown**, the King, in Alberta.' }
+        caption: Flip each card. Who does what?
+      - type: callout
+        variant: remember
+        covers: [jK83s4ttGUWTJP6BujE61g#K1.5]
+        title: From Grade 2
+        body: The leader of a provincial government is a **premier**.
+
+  - title: Town or province?
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.6]
+        component: g3ss-town
+        props:
+          ask: Tap the **3** places the **province** looks after.
+          answer: [school, hospital, provpark]
+          spots:
+            - { id: fire, text: 'The fire hall is a **local** service.' }
+            - { id: school, text: '**Education** is a provincial service. Local school boards help run each school.' }
+            - { id: library, text: 'The library is a **local** service.' }
+            - { id: hospital, text: '**Health care** is a provincial service.' }
+            - { id: road, text: 'Town streets and sidewalks are a **local** service.' }
+            - { id: provpark, text: '**Provincial parks**, like Dinosaur Provincial Park, are run by the province.' }
+        caption: The province and the town both give services. Which ones belong to the province?
+
+  - title: Alike and different
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.1]
+        component: g3ss-blend
+        props:
+          left: { icon: 🏙️, label: Council member, items: ['Meets at the town hall', 'Decides for one town or city'] }
+          right: { icon: 🏛️, label: MLA, items: ['Meets at the Legislative Assembly', 'Decides for all of Alberta'] }
+          middle: { icon: 🤝, label: Both, items: ['Chosen by voters', 'Represent the people', 'Meet, debate and vote'] }
+          start: ▶ What is the same?
+        caption: Press ▶. How are council members and MLAs alike?
+      - type: callout
+        variant: tip
+        covers: [U1.1]
+        title: Two levels, one job
+        body: Both levels of government give **services** and **leadership** to communities.
+
+keyTerms:
+  - term: Provincial government
+    covers: [K1.5, K1.6]
+    definition: The government that makes decisions and gives services for the whole province.
+  - term: Legislative Assembly
+    covers: [K1.9, K1.8]
+    definition: Where Alberta’s MLAs meet, in Edmonton, the capital.
+  - term: Premier
+    covers: [K1.8]
+    definition: The leader of a province.
+  - term: MLA
+    covers: [K1.8]
+    definition: A Member of the Legislative Assembly, chosen to represent the people of one area.
+  - term: Lieutenant-governor
+    covers: [K1.8]
+    definition: The person who represents the Crown in a province.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.9]
+    type: mc
+    prompt: Where does Alberta’s provincial government meet?
+    choices:
+      - 🏛️ The Legislative Assembly, in Edmonton
+      - 🏙️ City hall, in Calgary
+      - 🏢 The town hall, in every town
+    answer: 0
+    feedback:
+      '1': Calgary is Alberta’s biggest city. Is it the capital?
+      '2': Town councils meet at town halls. Where do MLAs meet?
+    hints:
+      - Think of the building on the map. Which city is it in?
+    solution:
+      - The provincial government meets at the **Legislative Assembly** in Edmonton, the capital.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.6, S1.2]
+    type: mc
+    prompt: Noor breaks her arm and goes to the hospital. Which government runs health care?
+    choices: [🏛️ The provincial government, 🏙️ The town council, 🏫 The school board]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The town runs the fire hall and library. Does it run hospitals?
+      '2': The school board makes decisions about schools. Is a hospital a school?
+    hints:
+      - Look back at the town. Which places did the province look after?
+    solution:
+      - '**Health care** is a provincial service. The provincial government runs it.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.8]
+    type: mc
+    prompt: Voters in her area chose Ms. Ito. She speaks for them and votes in the Legislative Assembly. What is she?
+    choices: [🙋 An MLA, 👑 The lieutenant-governor, 🏙️ A mayor]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The lieutenant-governor represents the Crown. Does she represent one area’s voters?
+      '2': A mayor leads a town council. Does a mayor work at the Legislative Assembly?
+    hints:
+      - Who represents the people of one area at the Legislative Assembly?
+    solution:
+      - She is a **Member of the Legislative Assembly**, or MLA.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.2, K1.6]
+    type: mc
+    prompt: Leo says, "The province runs everything in my town, even the library." What is wrong?
+    choices:
+      - The library is a local service, run by the town.
+      - The library is run by the hospital.
+      - Nothing. Leo is right.
+    answer: 0
+    feedback:
+      '1': Is a library part of health care?
+      '2': Did the province look after every place in the town?
+    hints:
+      - Which government looks after libraries?
+    solution:
+      - The province runs education, health care and provincial parks. The **library** is a local service.
+      - Each level of government has its own services.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S1.1, K1.8]
+    type: mc
+    prompt: How is a council member like an MLA?
+    choices:
+      - Both are chosen by voters and meet to make decisions.
+      - Both meet at the Legislative Assembly.
+      - Both make decisions for all of Alberta.
+    answer: 0
+    feedback:
+      '1': Where does a town council meet?
+      '2': Does a town council decide for all of Alberta?
+    hints:
+      - Think of the blended circle. What was in the middle?
+    solution:
+      - Both are **representatives**. Voters choose them, and they meet to debate and decide.
+      - They are different in where they meet and who they decide for.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [S1.2, K1.6, K1.2]
+    type: investigation
+    prompt: |-
+      Near the town of Hillview there are two parks:
+
+      - Hillview Park, in the middle of town, needs new swings.
+      - Red Rock Provincial Park, just outside town, needs a new trail.
+    parts:
+      - type: mc
+        prompt: Who looks after the swings in Hillview Park?
+        choices: [🏙️ The town, 🏛️ The province]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Is Hillview Park a provincial park, or a local park?
+        hints:
+          - Which government runs local parks?
+        solution:
+          - It is a **local park**. The town looks after it.
+      - type: mc
+        prompt: Who looks after the trail in Red Rock Provincial Park?
+        choices: [🏛️ The province, 🏙️ The town]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Read the park’s full name. What kind of park is it?
+        hints:
+          - Look closely at the park’s name.
+        solution:
+          - It is a **provincial** park, so the province looks after it, even though it is near the town.
+    wrapUp: Both are parks, but two different governments look after them. Ask what kind of service it is.
+    hints: []
+    solution: []
