@@ -1,0 +1,220 @@
+id: melting-boiling-points
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 4
+title: Melting and Boiling Points
+shortTitle: Melting and boiling points
+summary: >-
+  Warm ice, gallium and salt to see that each substance melts at its own temperature, and learn
+  water's melting point of 0 °C and boiling point of 100 °C.
+
+bigIdea: |-
+  - Each **substance** changes state at its own temperatures.
+  - It melts and freezes at the **same** temperature, its melting point.
+  - Water melts and freezes at **0 °C** and boils at **100 °C**.
+
+lesson:
+  - title: One substance or mixed?
+    blocks:
+      - type: visual
+        covers: [K4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: one, label: One substance, icon: '1️⃣' }
+            - { id: mix, label: Mixed, icon: '🥣' }
+          cards:
+            - { text: '💧 Pure water', bin: one, why: 'Water with nothing mixed in is a substance.' }
+            - { text: '🧂 Salt', bin: one, why: 'Salt on its own is a substance.' }
+            - { text: '🥗 Salad', bin: mix, why: 'A salad is lettuce, tomatoes and more, all mixed together.' }
+            - { text: '🔩 Iron', bin: one, why: 'Iron on its own is a substance.' }
+            - { text: '🧃 Lemonade', bin: mix, why: 'Lemonade is water, lemon juice and sugar mixed together.' }
+        caption: A **substance** is matter that has not been mixed with any other matter.
+
+  - title: Each one melts at its own temperature
+    blocks:
+      - type: experiment
+        covers: [K4.2, U4.1, S4.1]
+        title: The warming tray
+        question: '**Ice**, a metal called **gallium**, and **salt** warm on a tray from 0 °C to 100 °C. Which melts first?'
+        animation: g3s-scene
+        props: { scene: melt-tray }
+        predict:
+          choices: ['🧊 Ice', '🪙 Gallium', '🧂 Salt']
+          answer: 0
+        observe: |-
+          - **Ice** melted first, at 0 °C.
+          - **Gallium** melted at about 30 °C.
+          - **Salt** was still solid at 100 °C.
+        explain: |-
+          - Each substance has its own **melting point**.
+          - Salt’s melting point is 801 °C, far hotter than this tray.
+      - type: callout
+        variant: tip
+        covers: [S4.1]
+        title: Stay safe
+        body: Only a grown-up uses a stove or oven. Melt things like ice or chocolate in a warm spot instead.
+
+  - title: Heating water
+    blocks:
+      - type: visual
+        covers: [K4.6, K4.7, K4.5]
+        component: g3s-play
+        props: { scene: heat-water }
+        caption: Press **Heat** and watch the thermometer.
+
+  - title: Melting point, freezing point, boiling point
+    blocks:
+      - type: figure
+        covers: [K4.3, K4.4, K4.5, K4.6, K4.7]
+        figure: |-
+          <svg viewBox="0 0 320 230" class="fig-svg" role="img" aria-label="A thermometer. At 100 degrees Celsius, water boils. At 0 degrees Celsius, ice melts and water freezes."><rect class="g3s-tube" x="40" y="14" width="26" height="180" rx="13"/><circle class="g3s-merc" cx="53" cy="202" r="20"/><rect class="g3s-merc" x="46" y="110" width="14" height="80"/><line class="g3s-line" x1="70" y1="40" x2="110" y2="40"/><line class="g3s-line" x1="70" y1="160" x2="110" y2="160"/><text class="fig-label" x="118" y="36">100 °C</text><text class="fig-label" x="118" y="58">💨 Water boils</text><text class="fig-label" x="118" y="156">0 °C</text><text class="fig-label" x="118" y="178">🧊 Ice melts</text><text class="fig-label" x="118" y="200">💧 Water freezes</text></svg>
+        caption: Ice melts and water freezes at the **same** temperature, 0 °C.
+      - type: table
+        covers: [S4.2, U4.1, K4.6, K4.7]
+        caption: Melting and boiling points
+        headers: [Substance, 'Melts and freezes at', Boils at]
+        rows:
+          - ['💧 Water', '0 °C', '100 °C']
+          - ['🧂 Salt', '801 °C', '1465 °C']
+          - ['🔩 Iron', '1538 °C', '2861 °C']
+
+keyTerms:
+  - term: Substance
+    covers: [K4.1]
+    definition: Matter that has not been mixed with any other matter, like pure water.
+  - term: Melting point
+    covers: [K4.2, K4.4]
+    definition: The temperature at which a substance melts. It is also the temperature at which it freezes.
+  - term: Freezing point
+    covers: [K4.3]
+    definition: The temperature at which a substance changes from liquid to solid.
+  - term: Boiling point
+    covers: [K4.5]
+    definition: The temperature at which a substance changes from liquid to gas.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.7]
+    type: number
+    prompt: At what temperature does water **boil**?
+    unit: °C
+    answer: 100
+    verify: '100'
+    hints:
+      - Look at the top of the thermometer picture in the lesson.
+    solution:
+      - Water’s boiling point is **100 °C**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K4.4, K4.6]
+    type: number
+    prompt: Water **freezes** at 0 °C. At what temperature does ice **melt**?
+    unit: °C
+    answer: 0
+    verify: '0'
+    hints:
+      - A substance melts and freezes at the same temperature.
+    solution:
+      - The melting point and the freezing point are the **same** temperature.
+      - So ice melts at **0 °C**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K4.2, U4.1]
+    type: mc
+    prompt: |-
+      It is **35 °C** on a hot day. Ty leaves two spoons in the sun.
+      - A gallium spoon. Gallium melts at about 30 °C.
+      - An iron spoon. Iron melts at 1538 °C.
+
+      What happens?
+    choices: ['Only the gallium spoon melts', 'Only the iron spoon melts', 'Both spoons melt']
+    answer: 0
+    feedback:
+      '1': Iron melts at 1538 °C. Is 35 °C anywhere near that hot?
+      '2': Is 35 °C as hot as iron’s melting point?
+    hints:
+      - Compare 35 °C with each melting point.
+    solution:
+      - 35 °C is hotter than gallium’s melting point, so the gallium spoon melts.
+      - 35 °C is far colder than 1538 °C, so the iron spoon stays solid.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K4.1]
+    type: mc
+    prompt: Which one is a **substance**, with nothing mixed in?
+    choices: ['💧 Pure water', '🧃 Lemonade', '🥜 Trail mix']
+    answer: 0
+    feedback:
+      '1': Lemonade is water, lemon juice and sugar. Is anything mixed in?
+      '2': Trail mix has nuts, raisins and more. Is anything mixed in?
+    hints:
+      - Which one is made of only one kind of matter?
+    solution:
+      - Lemonade and trail mix are each several things mixed together.
+      - '**Pure water** has nothing mixed in, so it is a substance.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [S4.2, U4.1, K4.2]
+    type: investigation
+    prompt: |-
+      A scientist safely heats a white, solid mystery substance. It melts at **801 °C**. Use the table in the lesson.
+    parts:
+      - type: mc
+        prompt: Could the mystery substance be ice?
+        choices: ['No', 'Yes']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Ice is white and solid. But at what temperature does ice melt?
+        hints:
+          - What is the melting point of ice?
+        solution:
+          - Ice melts at 0 °C, not 801 °C. So it is **not** ice.
+      - type: mc
+        prompt: Which substance could it be?
+        choices: ['🧂 Salt', '🔩 Iron', '🪙 Gallium']
+        answer: 0
+        feedback:
+          '1': Iron melts at 1538 °C. Does that match?
+          '2': Gallium melts at about 30 °C. Does that match?
+        hints:
+          - Find the substance in the table that melts at 801 °C.
+        solution:
+          - Salt melts at **801 °C**. It is also white and solid, so the mystery substance could be salt.
+    wrapUp: A melting point is like a fingerprint. It can help you tell which substance something is.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K4.4, K4.3, K4.6]
+    type: mc
+    prompt: Max says, “Ice melts at 0 °C. So water must freeze at a **colder** temperature.” What is wrong?
+    choices:
+      - Water freezes at 0 °C too.
+      - Water freezes at a warmer temperature.
+      - Water can’t freeze at all.
+    answer: 0
+    feedback:
+      '1': Then a glass of water at 10 °C would freeze. Does it?
+      '2': Ice cubes come from water, so water can freeze. At what temperature?
+    hints:
+      - Compare the melting point and the freezing point of a substance.
+    solution:
+      - A substance melts and freezes at the **same** temperature.
+      - So water freezes at 0 °C, the same as ice melts.
