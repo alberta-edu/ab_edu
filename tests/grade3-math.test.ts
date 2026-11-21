@@ -3,6 +3,7 @@ import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src
 import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
 import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES, FIGS, perimeter, walkSay, missingSide, unrollSide, estById, estimateSay } from '../src/components/visuals/g3-length.ts';
 import { at, wedge, vsRight, turnSay, compareSay, PAIRS, SPOTS, angleSvg } from '../src/components/visuals/g3-angle.ts';
+import { ordinal, term as seqTerm, lastPos, ruleSay, findSay, isSkip } from '../src/components/visuals/g3-sequence.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -271,5 +272,26 @@ describe('Grade 3 angles', () => {
     // Every pair puts the longer arm on the smaller or equal angle, so arm length is a trap.
     expect(PAIRS.every((p) => (p.la > p.lb) === p.a <= p.b)).toBe(true);
     expect(SPOTS.filter((s) => vsRight(s.deg) === 'right').length).toBeGreaterThan(1);
+  });
+});
+
+describe('Grade 3 sequences', () => {
+  it('names positions with ordinals', () => {
+    expect([1, 2, 3, 4, 11, 12, 13, 21, 22, 23].map(ordinal)).toEqual(['1st', '2nd', '3rd', '4th', '11th', '12th', '13th', '21st', '22nd', '23rd']);
+  });
+
+  it('finds terms and knows when a countdown ends', () => {
+    const countdown = { label: '', start: 10, step: -1, n: 4, finite: true };
+    expect(lastPos(countdown)).toBe(11);
+    expect(seqTerm(countdown, 11)).toBe(0);
+    expect(lastPos({ label: '', start: 1, step: 1, n: 5 })).toBe(Infinity);
+    expect(ruleSay(-5)).toBe('Subtract 5 each time.');
+  });
+
+  it('uses multiplication for skip counting and the rule otherwise', () => {
+    const by5 = { label: '', start: 5, step: 5, n: 8, hide: 7 };
+    expect(isSkip(by5)).toBe(true);
+    expect(findSay(by5, 7)).toBe('The 7th term of counting by 5 is 7 × 5 = 35.');
+    expect(findSay({ label: '', start: 50, step: -5, n: 6, hide: 4 }, 4)).toBe('Subtract 5 each time. 40 − 5 = 35. The 4th term is 35.');
   });
 });
