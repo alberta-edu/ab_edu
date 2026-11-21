@@ -114,6 +114,7 @@ import PrismBuilder from './visuals/PrismBuilder.astro';
 import FunctionMachine from './visuals/FunctionMachine.astro';
 import ChanceLab from './visuals/ChanceLab.astro';
 import AlbertaMap from './visuals/AlbertaMap.astro';
+import StorySteps from './visuals/StorySteps.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -229,6 +230,7 @@ const visuals = {
   'function-machine': FunctionMachine,
   'chance-lab': ChanceLab,
   'g3ss-alberta-map': AlbertaMap,
+  'g3ss-story-steps': StorySteps,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

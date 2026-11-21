@@ -1,0 +1,145 @@
+---
+// Grade 3: a story told one stop at a time. A little traveller walks along a path; each stop pops
+// open with its picture and a line or two. Used for timelines (treaties, Francophone communities)
+// and for how things happen (a council decision). Steps come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  steps: { icon: string; when: string; text: string }[];
+  /** The traveller that walks the path. */
+  walker?: string;
+  /** Label for the first press. */
+  start?: string;
+}
+const { steps, walker = '🚶', start = '▶ Start' } = Astro.props;
+const data = steps.map((s) => ({ ...s, text: mdInline(s.text) }));
+---
+<g3ss-story-steps data-steps={JSON.stringify(data)} data-start={start} style={`--g3ss-ss-n:${steps.length}`}>
+  <div class="g3ss-ss-track">
+    <span class="g3ss-ss-walker" data-ss="walker" aria-hidden="true">{walker}</span>
+    <div class="g3ss-ss-line" aria-hidden="true"><span data-ss="fill"></span></div>
+    <ol class="g3ss-ss-stops">
+      {
+        steps.map((s, i) => (
+          <li>
+            <button type="button" class="g3ss-ss-stop" data-ss-stop={i} disabled aria-label={`${s.when}`}>
+              <span class="g3ss-ss-icon" aria-hidden="true">{s.icon}</span>
+            </button>
+            <span class="g3ss-ss-when">{s.when}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <div class="g3ss-ss-card" data-ss="card" aria-live="polite" hidden>
+    <p class="g3ss-ss-card__when"><span data-ss="icon" aria-hidden="true"></span> <span data-ss="when"></span></p>
+    <p data-ss="text"></p>
+  </div>
+  <div class="g3ss-ss-buttons">
+    <button type="button" class="btn btn--small" data-ss="next">{start}</button>
+    <button type="button" class="btn btn--small btn--ghost" data-ss="again" hidden>↺ Start again</button>
+  </div>
+  <noscript>
+    <ol>{data.map((s) => <li><strong>{s.icon} {s.when}:</strong> <span set:html={s.text} /></li>)}</ol>
+  </noscript>
+</g3ss-story-steps>
+
+<style is:global>
+  g3ss-story-steps { display: block; }
+  .g3ss-ss-track { position: relative; padding-top: 2.4rem; }
+  .g3ss-ss-walker { position: absolute; top: 0; left: 0; width: calc(100% / var(--g3ss-ss-n)); text-align: center; font-size: 1.8rem; line-height: 1; transition: transform 0.9s ease-in-out; }
+  .g3ss-ss-walker.is-hop { animation: g3ss-ss-hop 0.45s ease 2; }
+  @keyframes g3ss-ss-hop { 50% { translate: 0 -8px; } }
+  .g3ss-ss-line { position: absolute; left: calc(50% / var(--g3ss-ss-n)); right: calc(50% / var(--g3ss-ss-n)); top: calc(2.4rem + 1.55rem); height: 6px; border-radius: 3px; background: var(--surface-3); }
+  .g3ss-ss-line span { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--social); transition: width 0.9s ease-in-out; }
+  .g3ss-ss-stops { position: relative; display: grid; grid-template-columns: repeat(var(--g3ss-ss-n), minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+  .g3ss-ss-stops li { display: grid; justify-items: center; gap: 0.25rem; text-align: center; }
+  .g3ss-ss-stop { width: 3.1rem; height: 3.1rem; border-radius: 50%; border: 3px solid var(--line-strong); background: var(--surface-2); font-size: 1.5rem; display: grid; place-items: center; cursor: pointer; padding: 0; }
+  .g3ss-ss-stop:disabled { cursor: default; }
+  .g3ss-ss-stop:disabled .g3ss-ss-icon { opacity: 0.25; filter: grayscale(1); }
+  .g3ss-ss-stop.is-reached { border-color: var(--social); background: var(--social-soft); }
+  .g3ss-ss-stop.is-current { box-shadow: 0 0 0 4px color-mix(in srgb, var(--social) 30%, transparent); }
+  .g3ss-ss-stop.is-pop { animation: g3ss-ss-pop 0.45s ease; }
+  @keyframes g3ss-ss-pop { 50% { transform: scale(1.25); } }
+  .g3ss-ss-when { font-size: var(--step--1); font-weight: 700; color: var(--ink-2); line-height: 1.2; }
+  .g3ss-ss-card { margin-top: 0.8rem; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); border: 2px solid var(--social); background: var(--surface); }
+  .g3ss-ss-card p { margin: 0; }
+  .g3ss-ss-card__when { font-weight: 800; font-size: var(--step-1); margin-bottom: 0.25rem !important; }
+  .g3ss-ss-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+  @media (max-width: 30rem) { .g3ss-ss-stop { width: 2.6rem; height: 2.6rem; font-size: 1.25rem; } .g3ss-ss-line { top: calc(2.4rem + 1.3rem); } }
+  @media (prefers-reduced-motion: reduce) {
+    .g3ss-ss-walker, .g3ss-ss-line span { transition: none; }
+    .g3ss-ss-walker.is-hop, .g3ss-ss-stop.is-pop { animation: none; }
+  }
+</style>
+
+<script>
+  type Step = { icon: string; when: string; text: string };
+
+  class StorySteps extends HTMLElement {
+    private steps: Step[] = [];
+    private at = -1;
+    private reached = -1;
+
+    connectedCallback() {
+      this.steps = JSON.parse(this.dataset.steps!);
+      this.part('next').addEventListener('click', () => this.go(this.reached + 1));
+      this.part('again').addEventListener('click', () => this.reset());
+      this.querySelectorAll<HTMLButtonElement>('[data-ss-stop]').forEach((b) => b.addEventListener('click', () => this.go(Number(b.dataset.ssStop))));
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-ss="${name}"]`)!;
+    }
+
+    private reset() {
+      this.at = -1;
+      this.reached = -1;
+      this.querySelectorAll<HTMLButtonElement>('[data-ss-stop]').forEach((b) => {
+        b.disabled = true;
+        b.classList.remove('is-reached', 'is-current');
+      });
+      this.part('walker').style.transform = '';
+      this.part('fill').style.width = '0';
+      this.part('card').hidden = true;
+      this.part('again').hidden = true;
+      const next = this.part('next') as HTMLButtonElement;
+      next.hidden = false;
+      next.textContent = this.dataset.start!;
+    }
+
+    private go(i: number) {
+      if (i < 0 || i >= this.steps.length) return;
+      this.at = i;
+      this.reached = Math.max(this.reached, i);
+      const n = this.steps.length;
+      const walker = this.part('walker');
+      walker.style.transform = `translateX(${i * 100}%)`;
+      walker.classList.remove('is-hop');
+      void walker.offsetWidth;
+      walker.classList.add('is-hop');
+      this.part('fill').style.width = n > 1 ? `${(this.reached / (n - 1)) * 100}%` : '100%';
+      this.querySelectorAll<HTMLButtonElement>('[data-ss-stop]').forEach((b, k) => {
+        b.disabled = k > this.reached;
+        b.classList.toggle('is-reached', k <= this.reached);
+        b.classList.toggle('is-current', k === i);
+        if (k === i) {
+          b.classList.remove('is-pop');
+          void b.offsetWidth;
+          b.classList.add('is-pop');
+        }
+      });
+      const s = this.steps[i];
+      this.part('card').hidden = false;
+      this.part('icon').textContent = s.icon;
+      this.part('when').textContent = s.when;
+      this.part('text').innerHTML = s.text;
+      const next = this.part('next') as HTMLButtonElement;
+      const done = this.reached >= n - 1;
+      next.hidden = done;
+      next.textContent = 'Next ▶';
+      this.part('again').hidden = !done;
+    }
+  }
+  customElements.define('g3ss-story-steps', StorySteps);
+</script>
