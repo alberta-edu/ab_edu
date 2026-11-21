@@ -1,0 +1,237 @@
+id: changing-earth
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 12
+title: Earth's Surface Changes
+shortTitle: Earth's surface changes
+summary: >-
+  Watch a mountain wear down over a million years and Turtle Mountain slide in two minutes, then
+  hear how science and a Blackfoot story tell of Big Rock.
+
+bigIdea: |-
+  - Earth’s surface is always **changing**.
+  - Some changes are **slow**, like a mountain wearing down. Some are **fast**, like a landslide.
+  - We learn about these changes from **science**, **stories** and **traditional knowledge**.
+
+lesson:
+  - title: A mountain wears down
+    blocks:
+      - type: experiment
+        covers: [K1.1, U1.1, S1.1]
+        title: The shrinking mountain
+        question: Rain, snow and wind hit a tall, sharp mountain. How long until it is low and round?
+        animation: g3s-scene
+        props: { scene: mountain-wear }
+        predict:
+          choices: ['A very long time', 'One day', 'One winter']
+          answer: 0
+        observe: |-
+          - Tiny bits of rock broke off and rolled down, a little at a time.
+          - After about a **million years**, the mountain was low and round.
+        explain: |-
+          - Some changes to Earth’s surface are very **slow**.
+          - They take thousands, or even millions, of years.
+
+  - title: Other slow changes
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1]
+        component: g3s-play
+        props: { scene: slow-changes }
+        caption: Tap each one. What changed, over many years?
+
+  - title: Fast changes
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1]
+        component: g3s-play
+        props: { scene: fast-changes }
+        caption: Tap each one. These changes happen in seconds, hours or days.
+      - type: visual
+        covers: [K1.1, K1.2, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: fast, label: Fast, icon: '⚡' }
+            - { id: slow, label: Slow, icon: '🐌' }
+          cards:
+            - { text: 'A volcano erupts', bin: fast, why: 'Melted rock pours out and changes the land in days.' }
+            - { text: 'A glacier melts back', bin: slow, why: 'Glaciers move forward and melt back over many years.' }
+            - { text: 'A river moves to a new path', bin: slow, why: 'A river wears its banks away little by little, over many years.' }
+            - { text: 'A landslide covers a road', bin: fast, why: 'Rocks and soil slide down in minutes.' }
+            - { text: 'A mountain wears down', bin: slow, why: 'It takes millions of years.' }
+            - { text: 'A flood covers a field', bin: fast, why: 'A river can spill over its banks in hours.' }
+        caption: Is each change **fast** or **slow**?
+
+  - title: The Frank Slide
+    blocks:
+      - type: experiment
+        covers: [S1.3, K1.2, S1.1]
+        title: Turtle Mountain, 1903
+        question: In 1903, a huge piece of Turtle Mountain, near Frank, Alberta, broke off. How long did it take to slide down?
+        animation: g3s-scene
+        props: { scene: frank-slide }
+        predict:
+          choices: ['Under 2 minutes', 'A whole day', 'A hundred years']
+          answer: 0
+        observe: |-
+          - The rock broke off and slid into the valley.
+          - In **less than two minutes**, broken rock covered the valley.
+        explain: |-
+          - A **landslide** is a fast change to Earth’s surface.
+          - You can still see the rocks of the Frank Slide in the Crowsnest Pass today.
+
+  - title: Big Rock, told two ways
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2, U1.2]
+        component: g3s-play
+        props: { scene: big-rock }
+        caption: Step through how science and a Blackfoot story tell of Big Rock.
+      - type: callout
+        variant: tip
+        covers: [U1.2, K1.3]
+        title: Passed down
+        body: Many First Nations, Métis and Inuit learn about changes to the land from **Elders**, who learned from their own Elders.
+
+keyTerms:
+  - term: Earth’s surface
+    covers: [U1.1]
+    definition: The outside of Earth, like land, rocks, mountains, rivers and lakes.
+  - term: Landslide
+    covers: [K1.2]
+    definition: Rocks and soil suddenly sliding down a hill or mountain.
+  - term: Glacier
+    covers: [K1.1]
+    definition: A huge, thick mass of ice that moves very slowly over land.
+  - term: Traditional knowledge
+    covers: [K1.3, U1.2]
+    definition: Knowledge of the land that a people passes down from Elders to children.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2]
+    type: mc
+    prompt: Which change to Earth’s surface can happen in just a few minutes?
+    choices: ['A landslide', 'A mountain wearing down', 'A glacier melting back']
+    answer: 0
+    feedback:
+      '1': The mountain in the experiment took about a million years. Is that minutes?
+      '2': Glaciers move and melt back over many years. Is that minutes?
+    hints:
+      - Think about the Frank Slide.
+    solution:
+      - A **landslide** can happen in minutes. The Frank Slide took less than two.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.1]
+    type: mc
+    prompt: Next to a river is an old, dry, curvy ditch, shaped just like the river. What happened?
+    choices: ['The river changed course', 'A volcano erupted', 'A tsunami hit']
+    answer: 0
+    feedback:
+      '1': A volcano leaves new rock behind. Does that look like a river path?
+      '2': A tsunami comes from the sea. Is there a sea here?
+    hints:
+      - Who made a path shaped like a river?
+    solution:
+      - The ditch is the river’s **old path**.
+      - Over many years, the river **changed course** to where it is now.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [S1.3, K1.2]
+    type: mc
+    prompt: Below Turtle Mountain, giant broken rocks cover the valley floor. What put them there?
+    choices: ['A landslide', 'A flood', 'A tsunami']
+    answer: 0
+    feedback:
+      '1': A flood brings water and mud. Could it carry rocks as big as houses down a mountain?
+      '2': A tsunami is a wave from the sea. Is Turtle Mountain by the sea?
+    hints:
+      - The rocks came down from the mountain above.
+    solution:
+      - Rocks that fall and slide down a mountain are a **landslide**.
+      - This one is the **Frank Slide**, from 1903.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Which is the **Blackfoot story** of how Big Rock was split?
+    choices:
+      - Napi took back his robe, and bats split the rock.
+      - A glacier carried the rock from near Jasper.
+      - People rolled the rock to Okotoks.
+    answer: 0
+    feedback:
+      '1': This is how scientific knowledge explains it. Who is in the Blackfoot story?
+      '2': Neither science nor the story says people moved it. Who is in the Blackfoot story?
+    hints:
+      - The Blackfoot story has Napi in it.
+    solution:
+      - In the Blackfoot story, the rock rolled after **Napi**, and **bats** split it.
+      - The glacier is how **scientific knowledge** tells it.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: model
+    covers: [S1.1, K1.2, K1.1]
+    type: investigation
+    prompt: |-
+      Sam models the land. He builds a sand hill next to a pretend river in a tray.
+    parts:
+      - type: mc
+        prompt: He pours a big jug of water fast, all at once. What happens to the sand?
+        choices: ['Some washes away', 'It turns to rock', 'Nothing']
+        answer: 0
+        feedback:
+          '1': Can water turn sand into rock in a few seconds?
+          '2': Think of a flood. Does fast water carry soil away?
+        hints:
+          - What does fast flood water do to soil?
+        solution:
+          - Fast water carries sand away. It is a model of a **flood**.
+      - type: mc
+        prompt: Next, he drips water on a new sand hill, a drop at a time, for a week. Which change is this like?
+        choices: ['A mountain wearing down', 'An earthquake', 'A volcano']
+        answer: 0
+        feedback:
+          '1': An earthquake is fast shaking. Is a drop at a time fast?
+          '2': A volcano brings melted rock. Is that like water drops?
+        hints:
+          - Is a drop at a time a fast change or a slow one?
+        solution:
+          - A little water for a long time slowly wears the hill down, like rain on a **mountain**.
+    wrapUp: A model shows in minutes what can take nature days, or millions of years.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [U1.1, K1.1]
+    type: mc
+    prompt: Ella says, “Land never changes. These mountains have always looked like this.” What did she miss?
+    choices:
+      - Mountains change too slowly to see.
+      - Mountains only change in summer.
+      - Nothing. She is right.
+    answer: 0
+    feedback:
+      '1': Rain, snow and wind hit mountains all year. Do they only change in summer?
+      '2': Think of the shrinking mountain. Did it stay the same?
+    hints:
+      - Think of the mountain that wore down.
+    solution:
+      - Mountains **do** change. Rain, snow and wind wear them down.
+      - It is so slow that it takes thousands of lifetimes to see.
