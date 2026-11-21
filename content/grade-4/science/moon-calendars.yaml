@@ -1,0 +1,353 @@
+id: moon-calendars
+grade: 4
+subject: science
+organizingIdea: SCI-OI5
+outcomes: [SCI4-OI5-GQ1-LO1]
+order: 12
+title: The Moon, Calendars and Time
+shortTitle: Moon and calendars
+summary: >-
+  Count Moon cycles through a year, compare lunar calendars with the one on your wall, and meet Plains
+  Cree moon names that follow the seasons.
+
+bigIdea: |-
+  - People have used the **Moon** to measure time throughout history.
+  - The **international standard calendar** follows Earth’s trip around the Sun: 365 days.
+  - A **lunar calendar** follows the Moon’s pattern of shapes, about 29½ days for each cycle.
+  - Many cultures connect the Moon and stars to seasons, plants and animals.
+
+lesson:
+  - title: A pattern in the sky
+    blocks:
+      - type: figure
+        covers: [K3.1, K3.5]
+        figure: { kind: moons, ages: [3, 7.4, 14.8, 22.1, 3], labels: ['Day 1', 'Day 5', 'Day 13', 'Day 20', 'Day 31'] }
+        caption: Ana drew the Moon on five nights. By day 31, its shape was back to where it started.
+      - type: callout
+        variant: tip
+        covers: [K3.1]
+        title: Moon and month
+        body: The English word **month** comes from the Old English word for a month, which is related to the word **moon**.
+
+  - title: 'Virtual experiment: Moons in a year'
+    blocks:
+      - type: experiment
+        covers: [K3.2, K3.5, S3.2]
+        title: Count Moon cycles through one year
+        question: |-
+          One cycle of the Moon’s shapes takes about **29½ days**. A year on the international standard calendar has
+          **365 days**.
+
+          Do 12 Moon cycles fill the year exactly?
+        animation: g4-moon-year
+        predict:
+          choices:
+            - 12 cycles end about 11 days before the year does.
+            - 12 cycles fill the year exactly.
+            - 12 cycles go past the end of the year.
+          answer: 0
+        observe: |-
+          - Each cycle of the Moon’s shapes took about **29½ days**.
+          - Twelve cycles ended on about **day 354**.
+          - That left **11 days** of the year over.
+        explain: |-
+          - The international standard calendar follows **Earth’s trip around the Sun**, not the Moon.
+          - That’s why its months have 28 to 31 days and don’t match the Moon’s cycle.
+          - A lunar year of 12 Moon cycles is about **11 days shorter** than a 365-day year.
+
+  - title: Two kinds of calendars
+    blocks:
+      - type: table
+        covers: [S3.2, K3.2, K3.3, K3.5]
+        headers: [Compare, International standard calendar, Lunar calendar]
+        rows:
+          - ['**Follows**', 'Earth’s revolution around the Sun', 'The Moon’s pattern of shapes']
+          - ['**A month**', '28 to 31 days', '29 or 30 days, one Moon cycle']
+          - ['**A year**', '365 days, or 366 in a leap year', 'About 354 days for 12 months']
+          - ['**Used by**', 'Most people, in daily life', 'Some cultures, alongside the international calendar']
+      - type: compare
+        covers: [K3.4, K3.5]
+        columns:
+          - title: 🌙 The Islamic calendar
+            body: |-
+              - A lunar calendar. Each month starts with a new crescent Moon.
+              - Ramadan starts about **11 days earlier** each year on the international calendar.
+          - title: 🧧 The Chinese calendar
+            body: |-
+              - Its months follow the Moon.
+              - It adds an extra month every few years, so Lunar New Year always falls in late January or February.
+
+  - title: Moons of the seasons
+    blocks:
+      - type: table
+        covers: [S3.1, U3.1, K3.1]
+        caption: Some Plains Cree moon names, from the itwêwina Plains Cree dictionary. Names and their months vary between communities.
+        headers: [Plains Cree name, Meaning, About when]
+        rows:
+          - ['mikisiwi-pîsim', 'Eagle Moon', 'February']
+          - ['niski-pîsim', 'Goose Moon', 'March']
+          - ['ayîki-pîsim', 'Frog Moon', 'April']
+          - ['sâkipakâwi-pîsim', 'Leaf-Budding Moon', 'May']
+          - ['pâskâwihowi-pîsim', 'Egg-Hatching Moon', 'June']
+          - ['ohpahowi-pîsim', 'Flying-Up Moon', 'August']
+          - ['pimahamowi-pîsim', 'Migrating Moon', 'October']
+      - type: callout
+        variant: tip
+        covers: [U3.1, S3.1]
+        title: A calendar you can see outside
+        body: Each name tells what is happening on the land. **pîsim** means month, and it also means the Moon and the Sun.
+
+  - title: Make your own sky calendar
+    blocks:
+      - type: example
+        covers: [S3.1, K3.5]
+        title: A sky and nature calendar
+        problem: Keep a calendar that connects the sky to what you see around you.
+        steps:
+          - Each clear night, draw the Moon’s shape in a box for that date.
+          - In the same box, add one thing you notice outside, like geese flying over or the first crocus.
+          - After a month, look for the day the Moon’s shape came back to where it started.
+          - Give that Moon a name that fits what you saw.
+
+keyTerms:
+  - term: Calendar
+    covers: [K3.2]
+    definition: A way of organizing days into weeks, months and years.
+  - term: International standard calendar
+    covers: [K3.2, K3.3]
+    definition: The calendar most people use every day, based on the 365 days Earth takes to go around the Sun. It is also called the Gregorian calendar.
+  - term: Lunar calendar
+    covers: [K3.4, K3.5]
+    definition: A calendar whose months follow the pattern of the Moon’s shapes, about 29½ days each.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K3.2]
+    type: mc
+    prompt: The international standard calendar is based on…
+    choices:
+      - the time Earth takes to travel around the Sun.
+      - the Moon’s pattern of shapes.
+      - the number of stars in the sky.
+      - how long a day of sunlight lasts.
+    answer: 0
+    feedback:
+      '1': That is what a lunar calendar follows. What does the calendar on your wall follow?
+      '2': Stars don’t set the length of a calendar. What takes 365 days?
+      '3': Daylight changes all through the year. What takes 365 days?
+    hints:
+      - What takes about 365 days?
+    solution:
+      - The international standard calendar follows Earth’s **revolution** around the Sun, about 365 days.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K3.5, K3.1]
+    type: mc
+    prompt: There is a full Moon on **March 3**. About when will the next full Moon be?
+    choices: [About April 1, About March 10, About March 17, About May 3]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': One week later, the Moon has changed shape, but it isn’t full again yet. How long is a whole cycle?
+      '2': Two weeks later, the Moon is about halfway through its cycle. How long is a whole cycle?
+      '3': That is about two cycles later. Is there a full Moon before then?
+    hints:
+      - One cycle of the Moon’s shapes takes about 29½ days.
+    solution:
+      - About 29½ days after March 3 is about **April 1**.
+      - That’s why full Moons don’t land on the same date each month.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K3.4, K3.5]
+    type: mc
+    prompt: Which calendar is a **lunar** calendar?
+    choices:
+      - The Islamic calendar, whose months begin with a new crescent Moon
+      - The calendar on a school wall, with 365 days
+      - A weekly schedule of hockey practices
+      - A birthday list
+    answer: 0
+    feedback:
+      '1': The 365-day calendar follows Earth around the Sun. Which one follows the Moon?
+      '2': A schedule uses the calendar, but does it follow the Moon?
+      '3': A birthday list uses dates, but does it follow the Moon?
+    hints:
+      - Lunar means “of the Moon”. Which one follows the Moon?
+    solution:
+      - The **Islamic calendar** starts each month with a new crescent Moon, so it is a lunar calendar.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S3.2, K3.2, K3.5]
+    type: number
+    prompt: |-
+      A lunar calendar has 12 months. **6** months have **29** days and **6** have **30** days. How many days
+      **shorter** is this lunar year than a 365-day year?
+    answer: 11
+    verify: 365 - (6 * 29 + 6 * 30)
+    unit: days
+    hints:
+      - First find the length of the lunar year.
+      - 'Then compare: how far is it from that number to 365?'
+    solution:
+      - \(6 \times 29 = 174\) and \(6 \times 30 = 180\).
+      - \(174 + 180 = 354\) days in the lunar year.
+      - \(365 - 354 = 11\). The lunar year is **11 days shorter**.
+
+  - id: b2
+    level: 2
+    thinking: whatif
+    covers: [K3.4, S3.2]
+    type: mc
+    prompt: In 2025, the month of Ramadan began at the start of March. The Islamic calendar is a lunar calendar. About when did Ramadan begin in 2026?
+    choices:
+      - About mid-February 2026
+      - The start of March again
+      - About mid-March 2026
+      - In the summer
+    answer: 0
+    feedback:
+      '1': That would be true if the Islamic year were 365 days long. Is it?
+      '2': A lunar year is shorter. Would Ramadan come earlier or later?
+      '3': A lunar year is only about 11 days shorter. How far would that move it?
+    hints:
+      - A lunar year is about 11 days shorter than 365 days.
+    solution:
+      - The lunar year ends about **11 days earlier**, so Ramadan began about 11 days before the start of March.
+      - That is about **mid-February** 2026. Over many years, Ramadan moves through every season.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S3.1, U3.1]
+    type: mc
+    prompt: In Plains Cree, **niski-pîsim** means Goose Moon. It is the Moon around March. Why does the name fit?
+    choices:
+      - Canada geese fly back north to Alberta in early spring.
+      - Geese are easiest to see on the Moon in March.
+      - Geese lay their eggs in the snow in December.
+      - Geese only fly at night, under the full Moon.
+    answer: 0
+    feedback:
+      '1': The name is about life on the land, not about the Moon’s surface. What do geese do in spring?
+      '2': Is the Goose Moon in December? What happens with geese around March?
+      '3': Geese fly by day too. What are they doing around March?
+    hints:
+      - What do you notice geese doing as winter ends?
+    solution:
+      - In early spring, Canada geese **return north**. People saw them arrive at about this Moon.
+      - The name connects the Moon’s cycle to the **seasons and animals** of the area.
+
+  - id: b4
+    level: 2
+    thinking: pattern
+    covers: [K3.5, K3.1]
+    type: mc
+    prompt: |-
+      Lee draws the Moon every few nights.
+
+      | Day | Moon’s shape |
+      |---|---|
+      | 1 | thin crescent |
+      | 8 | half |
+      | 15 | full |
+      | 23 | half |
+      | 31 | thin crescent |
+
+      What pattern does Lee’s log show?
+    choices:
+      - The shapes repeat, about once every 30 days.
+      - The Moon is full most of the time.
+      - The Moon’s shape changes at random.
+      - The Moon is always a different shape on day 1 of a month.
+    answer: 0
+    feedback:
+      '1': How many of Lee’s five drawings were full?
+      '2': Look at days 1 and 31. Do the shapes match?
+      '3': Lee’s log covers one month. Can it tell you about every month’s day 1?
+    hints:
+      - Compare the first and last rows.
+    solution:
+      - Day 31 looks like day 1, so the shapes **repeat** after about 30 days.
+      - This pattern is what lunar calendars use to keep time.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S3.2, K3.5, K3.4, S3.1]
+    type: investigation
+    prompt: |-
+      Ali plans a garden calendar with only **12 Moon cycles** a year. Each lunar year is about **11 days**
+      shorter than a 365-day year.
+    parts:
+      - type: number
+        prompt: After **3** years, about how many days earlier does Ali’s calendar start than the international calendar’s year?
+        answer: 33
+        verify: 3 * 11
+        unit: days
+        hints:
+          - It slips 11 days every year.
+        solution:
+          - \(3 \times 11 = 33\) days. That is more than a whole Moon cycle.
+      - type: mc
+        prompt: Ali named one Moon the Goose Moon, because geese came back during it. After 3 years, what problem will she have?
+        choices:
+          - Her Goose Moon will come about a month early, before the geese return.
+          - Nothing, because the Moon controls when the geese come back.
+          - Her Goose Moon will come a month later, after the geese leave again.
+        answer: 0
+        feedback:
+          '1': The geese follow the seasons, which follow Earth’s trip around the Sun. Does Ali’s calendar keep up?
+          '2': Ali’s calendar slips earlier, not later. Which way did the 33 days go?
+        hints:
+          - The geese come back with the seasons. Does Ali’s calendar stay with the seasons?
+        solution:
+          - Her calendar is 33 days ahead of the seasons, so the Goose Moon comes about a month **before** the geese.
+      - type: mc
+        prompt: How does the Chinese calendar solve this problem?
+        choices:
+          - It adds an extra month every few years.
+          - It skips the Moon and uses the Sun only.
+          - It makes every month 31 days long.
+        answer: 0
+        feedback:
+          '1': The Chinese calendar still follows the Moon. What could it add to catch up?
+          '2': Then the months wouldn’t follow the Moon any more. What keeps both?
+        hints:
+          - After 3 years, Ali’s calendar is about one month off. What could she add?
+        solution:
+          - Every few years it **adds an extra month**. That lets the months follow the Moon and still keeps up with the seasons.
+    wrapUp: Moon months and Sun years don’t fit together exactly, so every calendar has to choose, or add a month now and then.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K3.1, K3.3, K3.4, U3.1]
+    type: mc
+    prompt: 'Jo says, “Nobody uses the Moon to measure time any more. Everyone just uses the calendar on the wall.” Which reply best shows the flaw?'
+    choices:
+      - Many people also use lunar calendars, for holidays like Ramadan and Lunar New Year.
+      - Jo is right. Lunar calendars stopped being used long ago.
+      - The calendar on the wall follows the Moon too.
+      - Nobody uses the calendar on the wall.
+    answer: 0
+    feedback:
+      '1': Ramadan and Lunar New Year move around the international calendar each year. What does that tell you?
+      '2': What does the wall calendar follow, the Moon or the Sun?
+      '3': Most people do use it. What else do some people use?
+    hints:
+      - Jo is partly right. Most people use the international calendar. What did Jo leave out?
+    solution:
+      - Most people do use the international standard calendar in daily life.
+      - But some cultures **also** use a lunar calendar, for example to set Ramadan or Lunar New Year.
+      - So the Moon still helps many people measure time.

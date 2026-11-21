@@ -1,0 +1,282 @@
+id: time-duration
+grade: 4
+subject: math
+organizingIdea: MAT-OI7
+outcomes: [MAT4-OI7-GQ1-LO1]
+order: 16
+title: Time and Duration
+shortTitle: Time & duration
+summary: >-
+  See minutes as parts of a turn of the minute hand, use quarter past and quarter to, find how long
+  events last, and convert hours, minutes and seconds.
+
+bigIdea: |-
+  - The minute hand makes **one full turn** each hour. 15 minutes is \(\frac{1}{4}\) of a turn, and 30 minutes is \(\frac{1}{2}\).
+  - A **duration** is how long something lasts: the difference between the start time and the end time.
+  - **1 hour = 60 minutes** and **1 minute = 60 seconds**.
+
+lesson:
+  - title: Minutes as parts of a turn
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.1, K1.1]
+        component: clock-duration
+        props: { mode: fraction, start: 180, minutes: 15 }
+        caption: Start at 3:00. Tap each number of minutes and watch how much of the clock the minute hand sweeps.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI7-GQ1-LO1#K1.4, MAT3-OI7-GQ1-LO1#S1.2]
+        title: Remember from Grade 3
+        body: One minute is \(\frac{1}{60}\) of an hour. 20 minutes past an hour is 40 minutes until the next hour.
+
+  - title: Quarter past, half past, quarter to
+    blocks:
+      - type: table
+        covers: [K1.1, S1.2]
+        headers: [Time, Say it, Minute hand has turned]
+        rows:
+          - ['3:15', 'quarter past 3', '\(\frac{1}{4}\) of a turn']
+          - ['3:30', 'half past 3', '\(\frac{1}{2}\) of a turn']
+          - ['3:45', 'quarter to 4', '\(\frac{3}{4}\) of a turn']
+      - type: callout
+        variant: tip
+        covers: [S1.2, K1.1]
+        title: Why "quarter to"?
+        body: At 3:45 a quarter of the hour is still left before 4:00. So it is a quarter **to** 4.
+
+  - title: How long does it last?
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.3, U1.1]
+        component: clock-duration
+        props: { mode: duration, start: 580, minutes: 95 }
+        caption: Change the start and end times. Yellow shows a full turn of the minute hand (1 hour). Blue shows the minutes after that.
+      - type: example
+        covers: [S1.4, K1.2]
+        title: From 9:40 to 11:15
+        problem: How long is it from **9:40** to **11:15**?
+        steps:
+          - 'Jump to the next hour: 9:40 to 10:00 is **20 min**.'
+          - 'Jump whole hours: 10:00 to 11:00 is **60 min**.'
+          - 'Jump the rest: 11:00 to 11:15 is **15 min**.'
+          - '\(20 + 60 + 15 = 95\) minutes.'
+        answer: '**95 minutes**, or 1 h 35 min.'
+
+  - title: Hours, minutes and seconds
+    blocks:
+      - type: table
+        covers: [S1.5]
+        headers: [This, is the same as]
+        rows:
+          - ['1 h', '60 min']
+          - ['1 min', '60 s']
+          - ['2 h 15 min', '\(60 + 60 + 15 = 135\) min']
+          - ['3 min', '\(3 \times 60 = 180\) s']
+          - ['90 min', '1 h 30 min']
+
+  - title: Which takes longer?
+    blocks:
+      - type: example
+        covers: [S1.6, S1.7, S1.5]
+        title: Two movies
+        problem: One movie lasts **1 h 45 min**. Another lasts **100 min**. Which is longer?
+        steps:
+          - 'Write both in minutes. 1 h 45 min is \(60 + 45 = 105\) min.'
+          - '105 min is more than 100 min.'
+        answer: The **1 h 45 min** movie is longer, by 5 minutes.
+
+keyTerms:
+  - term: Duration
+    covers: [K1.2]
+    definition: How long something lasts, from its start time to its end time.
+  - term: Quarter past, quarter to
+    covers: [K1.1]
+    definition: 15 minutes after the hour, and 15 minutes before the next hour.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.1]
+    type: mc
+    prompt: In **20 minutes**, what fraction of a full turn does the minute hand make?
+    choices: ['\(\frac{1}{3}\)', '\(\frac{1}{4}\)', '\(\frac{1}{5}\)', '\(\frac{2}{3}\)']
+    answer: 0
+    feedback:
+      '1': 'A quarter turn is 15 minutes. 20 minutes is a little more.'
+      '2': 'It isn’t one fifth just because 20 has a 2. How many 20-minute parts make 60 minutes?'
+      '3': 'Two thirds of a turn would be 40 minutes.'
+    hints:
+      - A full turn is 60 minutes. How many 20s make 60?
+    solution:
+      - '\(3 \times 20 = 60\), so 20 minutes is one of 3 equal parts of the hour: \(\frac{1}{3}\) of a turn.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.5]
+    type: number
+    prompt: How many **seconds** are in **4 minutes**?
+    unit: s
+    answer: 240
+    verify: 4 * 60
+    hints:
+      - How many seconds are in 1 minute?
+    solution:
+      - '1 minute is 60 seconds, so 4 minutes is \(4 \times 60 = 240\) seconds.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [S1.2, K1.1]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 180 180" class="fig-svg fig-svg--square" role="img" aria-label="An analog clock. The minute hand points at the 9. The hour hand is three quarters of the way from the 7 to the 8."><circle cx="90" cy="90" r="84" style="fill:var(--surface);stroke:var(--ink);stroke-width:4"/><line style="stroke:var(--ink);stroke-width:2" x1="90.0" y1="10.0" x2="90.0" y2="18.0"/><line style="stroke:var(--ink);stroke-width:2" x1="130.0" y1="20.7" x2="126.0" y2="27.6"/><line style="stroke:var(--ink);stroke-width:2" x1="159.3" y1="50.0" x2="152.4" y2="54.0"/><line style="stroke:var(--ink);stroke-width:2" x1="170.0" y1="90.0" x2="162.0" y2="90.0"/><line style="stroke:var(--ink);stroke-width:2" x1="159.3" y1="130.0" x2="152.4" y2="126.0"/><line style="stroke:var(--ink);stroke-width:2" x1="130.0" y1="159.3" x2="126.0" y2="152.4"/><line style="stroke:var(--ink);stroke-width:2" x1="90.0" y1="170.0" x2="90.0" y2="162.0"/><line style="stroke:var(--ink);stroke-width:2" x1="50.0" y1="159.3" x2="54.0" y2="152.4"/><line style="stroke:var(--ink);stroke-width:2" x1="20.7" y1="130.0" x2="27.6" y2="126.0"/><line style="stroke:var(--ink);stroke-width:2" x1="10.0" y1="90.0" x2="18.0" y2="90.0"/><line style="stroke:var(--ink);stroke-width:2" x1="20.7" y1="50.0" x2="27.6" y2="54.0"/><line style="stroke:var(--ink);stroke-width:2" x1="50.0" y1="20.7" x2="54.0" y2="27.6"/><text class="fig-label" style="font-size:15px" x="119.0" y="44.8" text-anchor="middle">1</text><text class="fig-label" style="font-size:15px" x="140.2" y="66" text-anchor="middle">2</text><text class="fig-label" style="font-size:15px" x="148.0" y="95" text-anchor="middle">3</text><text class="fig-label" style="font-size:15px" x="140.2" y="124" text-anchor="middle">4</text><text class="fig-label" style="font-size:15px" x="119.0" y="145.2" text-anchor="middle">5</text><text class="fig-label" style="font-size:15px" x="90.0" y="153" text-anchor="middle">6</text><text class="fig-label" style="font-size:15px" x="61.0" y="145.2" text-anchor="middle">7</text><text class="fig-label" style="font-size:15px" x="39.8" y="124" text-anchor="middle">8</text><text class="fig-label" style="font-size:15px" x="32.0" y="95" text-anchor="middle">9</text><text class="fig-label" style="font-size:15px" x="39.8" y="66" text-anchor="middle">10</text><text class="fig-label" style="font-size:15px" x="61.0" y="44.8" text-anchor="middle">11</text><text class="fig-label" style="font-size:15px" x="90.0" y="37" text-anchor="middle">12</text><line style="stroke:var(--ink);stroke-width:6;stroke-linecap:round" x1="90" y1="90" x2="58.3" y2="114.4"/><line style="stroke:var(--bad);stroke-width:3.5;stroke-linecap:round" x1="90" y1="90" x2="24.0" y2="90.0"/><circle cx="90" cy="90" r="4" style="fill:var(--ink)"/></svg>
+    prompt: What time does this clock show?
+    choices: ['Quarter to 8', 'Quarter past 7', 'Quarter to 7', 'Half past 7']
+    answer: 0
+    feedback:
+      '1': 'Quarter past would put the minute hand on the 3. Where is it?'
+      '2': 'The hour hand is almost at the 8, so the next hour is 8.'
+      '3': 'Half past would put the minute hand on the 6.'
+    hints:
+      - The minute hand is on the 9. How many minutes is that?
+      - Which hour is the hour hand moving toward?
+    solution:
+      - 'The minute hand is on the 9, so it is 45 minutes after the hour. That is 3 quarters of a turn.'
+      - 'The hour hand is between 7 and 8. It is 7:45, a **quarter to 8**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.3, S1.7, K1.2]
+    type: number
+    prompt: Hockey practice starts at **4:35** and ends at **6:05**. How many minutes long is practice?
+    unit: min
+    answer: 90
+    verify: 25 + 60 + 5
+    hints:
+      - Jump from 4:35 to the next hour first.
+      - Then jump to 6:00, then to 6:05.
+    solution:
+      - '4:35 to 5:00 is 25 min. 5:00 to 6:00 is 60 min. 6:00 to 6:05 is 5 min.'
+      - '\(25 + 60 + 5 = 90\), so practice is **90 minutes** long.'
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [S1.4, S1.7]
+    type: text
+    prompt: Lia’s bus ride to school takes **45 minutes**. She gets to school at **9:10**. What time did she get on the bus? Type it like **7:35**.
+    accept: ['8:25']
+    hints:
+      - Count back from 9:10. Go back to 9:00 first.
+      - 10 minutes back gets you to 9:00. How many minutes are still to go back?
+    solution:
+      - 'Count back 10 minutes, from 9:10 to 9:00. There are 35 minutes left to count back.'
+      - '35 minutes before 9:00 is **8:25**.'
+      - 'Check: 8:25 to 9:00 is 35 min, plus 10 min is 45 min ✓'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [S1.6, S1.5]
+    type: order
+    prompt: Four friends time how long they can keep a hacky sack up over a week of practice. Put their total times in order from **shortest** to **longest**.
+    items: ['100 min', '1 h 45 min', '6 600 s', '2 h']
+    hints:
+      - Write every time in minutes.
+      - 60 seconds make 1 minute, so 6 000 seconds make 100 minutes. What about the other 600 seconds?
+    solution:
+      - '1 h 45 min = 105 min. 2 h = 120 min.'
+      - '6 000 s = 100 min, and 600 s = 10 min, so 6 600 s = 110 min.'
+      - 'The order is 100 min, 1 h 45 min, 6 600 s, 2 h.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [S1.4, S1.3]
+    type: number
+    prompt: Sam wants to know how long it is from **2:50** to **3:10**. He works out \(310 - 250 = 60\) and says, "60 minutes." How long is it really?
+    unit: min
+    answer: 20
+    verify: 10 + 10
+    hints:
+      - Picture the minute hand. How far is it from 2:50 to 3:00?
+      - Does an hour have 100 minutes, as Sam’s subtraction pretends?
+    solution:
+      - '2:50 to 3:00 is 10 minutes. 3:00 to 3:10 is 10 more. That is **20 minutes**.'
+      - 'Sam subtracted as if an hour had 100 minutes. It has 60, so times don’t subtract like ordinary numbers.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.7, S1.6, S1.4, S1.5]
+    type: investigation
+    prompt: |-
+      Movie night! The first movie lasts **1 h 38 min** and starts at **6:45**. The second movie lasts **95 min**.
+    parts:
+      - type: text
+        prompt: When does the first movie end? Type it like **7:35**.
+        accept: ['8:23']
+        hints:
+          - Add 1 hour first, then 38 minutes.
+        solution:
+          - '6:45 plus 1 hour is 7:45. 15 more minutes is 8:00, and 23 more is **8:23**.'
+      - type: number
+        prompt: Which movie is longer, and by how many minutes?
+        unit: min
+        answer: 3
+        verify: 60 + 38 - 95
+        hints:
+          - Write 1 h 38 min in minutes.
+        solution:
+          - '1 h 38 min = 98 min. \(98 - 95 = 3\). The first movie is **3 minutes** longer.'
+      - type: mc
+        prompt: The second movie starts as soon as the first ends. Bedtime is **10:00**. Does it end before bedtime?
+        choices: ['Yes, it ends at 9:58.', 'No, it ends at 10:18.', 'Yes, it ends at 9:18.', 'No, it ends at 10:03.']
+        answer: 0
+        feedback:
+          '1': 'Check the jump: 8:23 plus 95 minutes. Jump to 9:00 first. How many minutes is that?'
+          '2': '9:18 is only 55 minutes after 8:23. The movie is longer than that.'
+          '3': 'Count on from 8:23: 37 minutes to 9:00, then 58 more.'
+        hints:
+          - 'Count on 95 minutes from 8:23: first to 9:00.'
+        solution:
+          - '8:23 to 9:00 is 37 minutes. \(95 - 37 = 58\) more minutes takes it to **9:58**.'
+          - 'It ends 2 minutes before bedtime.'
+    wrapUp: Breaking a duration into jumps, to the next hour, whole hours, then the rest, makes time problems easier. An hour has 60 minutes, not 100.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.7, S1.4, S1.5]
+    type: build
+    prompt: |-
+      A field trip bus leaves school at **9:15** and must be back by **12:00**. The museum visit takes **1 h 30 min**, and lunch takes **20 min**. The drive there takes as long as the drive back.
+
+      How long could **each** drive be, in whole minutes?
+    fields:
+      - { name: d, label: 'Each drive', unit: min }
+    rules:
+      - { test: 'd % 1 == 0 && d > 0', fail: 'Use a whole number of minutes, more than 0.' }
+      - { test: '2 * d + 90 + 20 <= 165', fail: 'That trip gets back after 12:00. How many minutes are there from 9:15 to 12:00?' }
+    examples:
+      - { d: 20 }
+      - { d: 27 }
+      - { d: 10 }
+    counterexamples:
+      - { d: 28 }
+      - { d: 40 }
+    hints:
+      - How many minutes are there from 9:15 to 12:00?
+      - The museum and lunch use 90 + 20 minutes. How much time is left for both drives?
+    solution:
+      - '9:15 to 12:00 is 45 + 60 + 60 = 165 minutes.'
+      - 'The museum and lunch use 110 minutes, so 55 minutes are left for two drives.'
+      - 'Each drive can be up to 27 minutes, since \(2 \times 27 = 54\). 10, 20 and 27 minutes all work. 28 minutes is too long, because \(2 \times 28 = 56\).'

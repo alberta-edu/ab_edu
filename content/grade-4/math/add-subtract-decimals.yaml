@@ -1,0 +1,316 @@
+id: add-subtract-decimals
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ2-LO1]
+order: 2
+title: Adding and Subtracting within 10 000
+shortTitle: Adding & subtracting
+summary: >-
+  Add and subtract numbers within 10 000, including decimals to hundredths, with the standard
+  algorithms. Estimate to check, and solve money problems.
+
+bigIdea: |-
+  - The standard algorithms work on **place value**: ones with ones, tenths with tenths.
+  - Line up the **decimal points**, and they work for decimals too.
+  - An **estimate** tells you whether an answer is reasonable.
+
+lesson:
+  - title: Line up the places
+    blocks:
+      - type: compare
+        covers: [K1.1, S1.1]
+        columns:
+          - title: ❌ Last digits lined up
+            body: |-
+              \[\begin{array}{rr} & 24.6 \\ + & 5.38 \end{array}\]
+              The 6 tenths sits over 8 hundredths. That mixes up the places.
+          - title: ✅ Points lined up
+            body: |-
+              \[\begin{array}{rr} & 24.60 \\ + & 5.38 \end{array}\]
+              Tenths are over tenths. An empty place gets a 0.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI1-GQ2-LO1#K1.2, MAT3-OI1-GQ2-LO1#S1.4]
+        title: Remember from Grade 3
+        body: You used the standard algorithms to add and subtract whole numbers. They work **one place at a time**, from the right.
+
+  - title: Adding, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '+', a: '2 456.75', b: '1 378.5' }
+            - { op: '+', a: '3 685', b: '4 547' }
+            - { op: '+', a: '6.8', b: '2.45' }
+        caption: Press **Next step** to see each column. Watch where every carry goes.
+
+  - title: Subtracting, step by step
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: column-calc
+        props:
+          examples:
+            - { op: '-', a: '5 003.2', b: '1 846.75' }
+            - { op: '-', a: '8 000', b: '2 637' }
+            - { op: '-', a: '9.4', b: '3.67' }
+        caption: When the top digit is too small, **regroup** from the place to its left, even across zeros.
+
+  - title: Is it reasonable?
+    blocks:
+      - type: table
+        covers: [K1.2, S1.2]
+        caption: Round to friendly numbers, then compare the estimate with the answer.
+        headers: [Calculation, Estimate, Answer, Reasonable?]
+        rows:
+          - ['2 456.75 + 1 378.5', '2 500 + 1 400 = 3 900', '3 835.25', '✅ close to 3 900']
+          - ['9.4 − 3.67', '9 − 4 = 5', '5.73', '✅ close to 5']
+          - ['24.6 + 5.38', '25 + 5 = 30', '7.84', '❌ far from 30, so check again']
+
+  - title: Money problems
+    blocks:
+      - type: example
+        covers: [S1.3, S1.2]
+        title: How much change?
+        problem: Jonah pays with a **$20** bill for a puzzle that costs **$12.85**. How much change does he get?
+        steps:
+          - 'Write $20 as **20.00**, so every place has a digit.'
+          - '\(20.00 - 12.85 = 7.15\)'
+          - 'Estimate: \(20 - 13 = 7\). Close to $7.15 ✓'
+        answer: Jonah gets **$7.15** in change.
+
+keyTerms:
+  - term: Standard algorithm
+    covers: [K1.1]
+    definition: A step-by-step way to calculate, one place at a time, from the right.
+  - term: Regroup
+    covers: [S1.1]
+    definition: 'Trade 1 of a place for 10 of the next smaller place, like 1 tenth for 10 hundredths.'
+  - term: Estimate
+    covers: [K1.2, S1.2]
+    definition: A close answer, made with rounded numbers, to check that an exact answer makes sense.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.1]
+    type: number
+    prompt: Add. \(1\,375.6 + 2\,408.75\)
+    answer: 3784.35
+    verify: 1375.6 + 2408.75
+    hints:
+      - How many places after the point does each number have?
+      - Write 1 375.6 as 1 375.60. Then add from the right.
+    solution:
+      - 'Line up the points: 1 375.60 + 2 408.75.'
+      - 'Hundredths: 0 + 5 = 5. Tenths: 6 + 7 = 13, so write 3 and carry 1. Ones: 5 + 8 + 1 = 14, so write 4 and carry 1.'
+      - 'Tens: 7 + 0 + 1 = 8. Hundreds: 3 + 4 = 7. Thousands: 1 + 2 = 3. The sum is **3 784.35**.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.1, S1.3]
+    type: number
+    prompt: The school orders **4 000** stickers and hands out **1 268** on sports day. How many stickers are left?
+    unit: stickers
+    answer: 2732
+    verify: 4000 - 1268
+    hints:
+      - The ones place has 0. Where can you regroup from?
+      - 4 000 is 3 thousands, 9 hundreds, 9 tens and 10 ones.
+    solution:
+      - 'Subtract: \(4\,000 - 1\,268\). The ones, tens and hundreds are all 0, so regroup from the thousands.'
+      - 'Think of 4 000 as 3 thousands, 9 hundreds, 9 tens and 10 ones.'
+      - 'Then \(10 - 8 = 2\), \(9 - 6 = 3\), \(9 - 2 = 7\) and \(3 - 1 = 2\). There are **2 732** stickers left.'
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Pia adds \(36.5 + 8.27\) and gets **11.92**. What went wrong?
+    choices:
+      - She lined up the last digits, not the decimal points.
+      - She forgot to carry from the tenths to the ones.
+      - She should have subtracted the smaller number.
+      - She added the right digits, but put the point in the wrong spot.
+    answer: 0
+    feedback:
+      '1': 'A missing carry changes one digit by 1. Is 11.92 close to what the sum should be?'
+      '2': 'The question asks for a sum, so adding is right. Look at how the two numbers were lined up.'
+      '3': 'Moving the point in 11.92 can’t give the right sum. Try lining up the numbers yourself.'
+    hints:
+      - Estimate first. About how big is \(36.5 + 8.27\)?
+      - Line up the points. Is the 5 above the 2 or above the 7?
+    solution:
+      - 'Estimate: \(37 + 8 = 45\). The answer 11.92 is far too small.'
+      - 'Pia put the 5 over the 7, so she added tenths to hundredths. That is like adding 365 + 827.'
+      - 'With the points lined up: \(36.50 + 8.27 = 44.77\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.3, S1.1]
+    type: number
+    prompt: Ari has **$20.00**. He buys a book for **$8.75** and a juice for **$3.60**. How much money does he have left?
+    unit: $
+    answer: 7.65
+    verify: 20 - 8.75 - 3.6
+    hints:
+      - Two things are bought. What could you work out first?
+      - Add the two prices, then take the total away from $20.00.
+    solution:
+      - 'Add what he spends: \(8.75 + 3.60 = 12.35\).'
+      - 'Take it away from what he had: \(20.00 - 12.35 = 7.65\).'
+      - 'Estimate: \(9 + 4 = 13\), and \(20 - 13 = 7\). Ari has **$7.65** left.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.1, K1.1]
+    type: number
+    prompt: |-
+      Tess works out \(7.40 - 2.65\) like this. In each column, she takes the smaller digit away from the bigger one.
+
+      Hundredths: 5 − 0 = 5. Tenths: 6 − 4 = 2. Ones: 7 − 2 = 5. Her answer is **5.25**.
+
+      What is the right answer?
+    answer: 4.75
+    verify: 7.40 - 2.65
+    hints:
+      - In the hundredths column, which digit is on top?
+      - When the top digit is too small, you can’t flip the subtraction. What can you do instead?
+    solution:
+      - 'In the hundredths, the top digit is 0. You can’t take 5 from 0, and flipping it to 5 − 0 changes the question.'
+      - 'Regroup: 7.40 is 7 ones, 3 tenths and 10 hundredths. Then \(10 - 5 = 5\).'
+      - 'Tenths: 3 is too small, so regroup a one. \(13 - 6 = 7\). Ones: \(6 - 2 = 4\). The answer is **4.75**.'
+
+  - id: b3
+    level: 2
+    thinking: estimate
+    covers: [S1.2, K1.2]
+    type: mc
+    prompt: |-
+      At the farmers’ market, Mei buys honey for **$4.89**, bread for **$12.15** and apples for **$2.98**. The screen says the total is **$29.02**.
+
+      Mei estimates in her head. What should she say?
+    choices:
+      - That’s too much. It should be about $20.
+      - That looks right. It should be about $30.
+      - That’s too little. It should be about $40.
+      - I can’t tell without adding it all exactly.
+    answer: 0
+    feedback:
+      '1': 'Round each price to the nearest dollar first. What do $5, $12 and $3 add up to?'
+      '2': 'Round each price to the nearest dollar first. Is the total bigger or smaller than $29.02?'
+      '3': 'An estimate can catch a mistake this big. Round each price to a whole dollar and add.'
+    hints:
+      - Round each price to the nearest dollar.
+      - 'Add the rounded prices: 5 + 12 + 3.'
+    solution:
+      - 'Round: $4.89 is about $5, $12.15 is about $12 and $2.98 is about $3.'
+      - '\(5 + 12 + 3 = 20\). The screen’s $29.02 is about $9 too much, so she should ask.'
+      - 'The exact total is \(4.89 + 12.15 + 2.98 = 20.02\). Someone typed a 9 instead of a 0.'
+
+  - id: b4
+    level: 2
+    thinking: backwards
+    covers: [S1.3, S1.1]
+    type: number
+    prompt: After spending **$13.85** at the bookstore, Dev has **$6.40** left. How much money did Dev have before?
+    unit: $
+    answer: 20.25
+    verify: 13.85 + 6.40
+    hints:
+      - Before he spent anything, his money was split into two parts. What are they?
+      - What he spent and what he kept together make what he started with.
+    solution:
+      - 'Dev’s money became two parts: what he spent and what he kept.'
+      - 'Put them back together: \(13.85 + 6.40 = 20.25\).'
+      - 'Check: \(20.25 - 13.85 = 6.40\) ✓. Dev had **$20.25**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.3, S1.2, S1.1]
+    type: investigation
+    prompt: |-
+      The Grade 4 class is saving for a **$250.00** telescope. The bottle drive raised **$87.45**. The bake sale raised **$112.80**.
+    parts:
+      - type: number
+        prompt: How much has the class raised so far?
+        unit: $
+        answer: 200.25
+        verify: 87.45 + 112.80
+        hints:
+          - Put both amounts together, with the points lined up.
+        solution:
+          - '\(87.45 + 112.80 = 200.25\). The class has **$200.25**.'
+      - type: number
+        prompt: How much more does the class need?
+        unit: $
+        answer: 49.75
+        verify: 250 - 200.25
+        hints:
+          - Write $250 as 250.00, then take away what they have.
+        solution:
+          - '\(250.00 - 200.25 = 49.75\). They need **$49.75** more.'
+      - type: mc
+        prompt: A neighbour offers **$49**. Ruby says, "We have about $200 and need about $50. So $49 is close enough." What do you think?
+        choices:
+          - Ruby is wrong. They need $49.75, so $49 is 75 cents short.
+          - Ruby is right. Estimates are always good enough for money.
+          - Ruby is right. $49 is more than they really need.
+          - Ruby is wrong. They need about $100 more.
+        answer: 0
+        feedback:
+          '1': 'An estimate tells you about how much. Here the gift and the need are very close. Is "about" good enough?'
+          '2': 'Compare $49.00 with $49.75. Which is more?'
+          '3': 'The telescope costs $250, and they already have about $200. How much is still missing?'
+        hints:
+          - Compare $49.00 with the exact amount you found.
+        solution:
+          - '$49.00 is less than $49.75, so they would still be **75 cents** short.'
+          - 'An estimate is great for checking. When two amounts are this close, you need the exact numbers.'
+    wrapUp: An estimate checks that an answer makes sense. When the answer must be exactly enough, like paying for something, work it out exactly.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.1, K1.1]
+    type: build
+    prompt: |-
+      Find two numbers that add up to exactly **10**. Each one must have **two places after the point**, and **no digit can be 0**.
+    fields:
+      - { name: a, label: 'First number' }
+      - { name: b, label: 'Second number' }
+    rules:
+      - { test: 'a > 1 && b > 1 && a < 10 && b < 10', fail: 'Each number needs a ones digit that isn’t 0. Use numbers between 1 and 10.' }
+      - { test: 'a * 100 % 1 == 0 && b * 100 % 1 == 0 && a * 100 % 10 != 0 && b * 100 % 10 != 0', fail: 'Each number needs two places after the point, and its hundredths digit can’t be 0.' }
+      - { test: '(a * 100 - a * 100 % 10) / 10 % 10 != 0 && (b * 100 - b * 100 % 10) / 10 % 10 != 0', fail: 'A tenths digit is 0. Every digit must be 1 to 9.' }
+      - { test: 'a + b == 10', fail: 'Add your numbers with the points lined up. Do you get exactly 10.00?' }
+    examples:
+      - { a: 4.56, b: 5.44 }
+      - { a: 1.11, b: 8.89 }
+      - { a: 7.35, b: 2.65 }
+    counterexamples:
+      - { a: 5.5, b: 4.5 }
+      - { a: 4.06, b: 5.94 }
+      - { a: 3.25, b: 6.85 }
+    hints:
+      - The sum is 10.00. What must the two hundredths digits add up to, if neither is 0?
+      - The hundredths make a carry. Then what must the two tenths digits add up to?
+      - 'Try a pattern: hundredths add to 10, tenths add to 9, ones add to 9.'
+    solution:
+      - 'The hundredths can’t add to 0, so they must add to **10**. Write 0, carry 1.'
+      - 'Then the tenths plus the carry must make 10, so the tenths add to **9**. The ones do the same, adding to 9.'
+      - '4.56 + 5.44, 1.11 + 8.89 and 7.35 + 2.65 all work: hundredths make 10, tenths make 9, ones make 9.'

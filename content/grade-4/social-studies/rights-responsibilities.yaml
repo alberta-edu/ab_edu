@@ -1,0 +1,338 @@
+id: rights-responsibilities
+grade: 4
+subject: social-studies
+organizingIdea: mHPvaWAVOU-k7Fefv9hAWw
+outcomes: [T9D6ixz0A02x1TS5l6YV-A]
+order: 7
+title: Rights and Responsibilities
+shortTitle: Rights & responsibilities
+summary: >-
+  Sort rights, freedoms and responsibilities, balance each right with the responsibility that protects it, and
+  decide why rights are worth protecting.
+
+bigIdea: |-
+  - Citizens in Canada have **rights**, **freedoms** and **responsibilities**.
+  - One right is to be **treated equally**, no matter how you are different.
+  - Responsibilities include **contributing to the community**, **respecting the rights of others** and **voting**.
+  - Rights come with responsibilities. When everyone does their part, everyone’s rights are protected.
+
+lesson:
+  - title: What you have, what you do
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.1, K1.2, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: have, label: A right or freedom, icon: 🎁 }
+            - { id: do, label: A responsibility, icon: 💪 }
+          cards:
+            - { text: Being treated equally at school and in the community, bin: have, why: 'Everyone in Canada has the right to be treated equally, no matter how they are different.' }
+            - { text: Saying what you think about a new plan for the park, bin: have, why: 'You are free to share your opinion. That is a freedom.' }
+            - { text: Picking up litter at the playground, bin: do, why: 'This is contributing to your community. That is a responsibility.' }
+            - { text: Letting a classmate finish speaking before you answer, bin: do, why: 'This respects their freedom to speak. Respecting others’ rights is a responsibility.' }
+            - { text: Voting in an election when you are 18, bin: do, why: 'Voting is both a right and a responsibility of citizens. Here, it is something citizens do for their country.' }
+            - { text: Following your own religion or beliefs, bin: have, why: 'You are free to follow your own beliefs. That is a freedom.' }
+        caption: Some things you have. Some things you do. Sort each card.
+      - type: compare
+        covers: [K1.3, K1.1, K1.2]
+        columns:
+          - title: 🎁 Rights and freedoms
+            body: What every citizen is **entitled to**, such as being treated equally and saying what you think.
+          - title: 💪 Responsibilities
+            body: What every citizen **should do**, such as helping the community, respecting others’ rights and voting.
+
+  - title: Every right has a partner
+    blocks:
+      - type: visual
+        covers: [S1.2, U1.1, K1.2]
+        component: rights-scale
+        caption: A right on its own tips the scale. Choose the responsibility that balances it.
+      - type: callout
+        variant: tip
+        covers: [U1.1, S1.2]
+        title: Two sides of one coin
+        body: My right to be treated equally is safe only if everyone, including me, treats others equally. **Rights come with responsibilities.**
+
+  - title: Rights in your life
+    blocks:
+      - type: table
+        covers: [S1.1, S1.2]
+        caption: The same idea in three places
+        headers: [Where, A right I have, A responsibility I have]
+        rows:
+          - ['🏠 **At home**', 'To be heard when I share an idea', 'To listen when others share theirs']
+          - ['🏫 **At school**', 'To be included, whoever I am', 'To include others in games and groups']
+          - ['🏘️ **In my community**', 'To enjoy parks, libraries and rinks', 'To keep them clean and help out']
+      - type: callout
+        variant: tip
+        covers: [S1.1]
+        title: Think about you
+        body: Which right matters most to you? What responsibility goes with it, and when did you last do it?
+
+  - title: Why protect rights?
+    blocks:
+      - type: example
+        covers: [S1.3, K1.1, K1.2]
+        title: The hockey team
+        problem: 'In a made-up town, a coach says, “Only kids who speak English at home can join the team.” Why should anyone care, even kids who can join?'
+        steps:
+          - '**Which right is broken?** The right to be treated equally, no matter how you are different.'
+          - '**Who is hurt?** The kids left out. But the team loses good players too.'
+          - '**Who could be next?** If one group can be left out, any group could be.'
+          - '**What can citizens do?** Respect others’ rights, speak up, and tell an adult who can change the rule.'
+        answer: Protecting everyone’s rights keeps your own rights safe too.
+      - type: callout
+        variant: mistake
+        covers: [S1.3, U1.1]
+        title: “It’s not my problem”
+        body: Rights only work if people protect them. Respecting the rights of others is one of every citizen’s responsibilities.
+
+keyTerms:
+  - term: Citizen
+    covers: [K1.3]
+    definition: A member of a country, with rights, freedoms and responsibilities.
+  - term: Right
+    covers: [K1.1, K1.3]
+    definition: Something every person is entitled to, such as being treated equally.
+  - term: Freedom
+    covers: [K1.3]
+    definition: Being able to choose for yourself, such as what to say or what to believe.
+  - term: Responsibility
+    covers: [K1.2, K1.3]
+    definition: Something you should do, such as helping your community or respecting others’ rights.
+  - term: Vote
+    covers: [K1.2]
+    definition: To make a choice in an election. Citizens 18 and older can vote.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1]
+    type: mc
+    prompt: Which is an example of the right to be **treated equally**, no matter how you are different?
+    choices:
+      - A library gives every child a card, whatever language they speak at home.
+      - A library lets only children who read well borrow books.
+      - A library charges more to children who live far away.
+      - A library lets children from one school go to the front of the line.
+    answer: 0
+    feedback:
+      '1': Some children are left out because of how they are different. Is that equal?
+      '2': Some children pay more than others. Is everyone treated the same?
+      '3': One group gets something better than others. Is that equal?
+    hints:
+      - In which story is every child treated the same?
+    solution:
+      - Every child gets a card, whatever language they speak. That is **equal treatment**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.2]
+    type: multi
+    prompt: Which are **responsibilities** of citizens in Canada? Choose all that are.
+    choices:
+      - Contributing to the community
+      - Respecting the rights of others
+      - Voting
+      - Being treated equally
+      - Getting whatever you want
+    answer: [0, 1, 2]
+    feedback:
+      '3': This is something you are entitled to. Is it something you do, or something you have?
+      '4': No one gets whatever they want. Is this a right or a responsibility at all?
+    hints:
+      - A responsibility is something you should do.
+    solution:
+      - '**Contributing**, **respecting others’ rights** and **voting** are responsibilities.'
+      - Being treated equally is a right.
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.3, U1.1]
+    type: mc
+    prompt: Citizens in Canada have rights and freedoms. What else do they have?
+    choices:
+      - Responsibilities
+      - Nothing else
+      - Only privileges they must pay for
+      - The power to make their own laws alone
+    answer: 0
+    feedback:
+      '1': Look at the second bin of the card sort. What else does every citizen have?
+      '2': Rights and freedoms aren’t bought. What comes with them?
+      '3': Laws are made by governments. What does every citizen have, along with rights?
+    hints:
+      - Rights come with…
+    solution:
+      - Citizens have **rights, freedoms and responsibilities**. Rights come with responsibilities.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S1.2, U1.1]
+    type: mc
+    prompt: At a class meeting, Arjun says, “I have the freedom to say what I think!” Then he talks over everyone, so no one else is heard. What has Arjun forgotten?
+    choices:
+      - Others have the same freedom, so he has to let them speak.
+      - Freedom to speak only counts if you speak loudly.
+      - Class meetings don’t have any rights at all.
+      - He should never say what he thinks again.
+    answer: 0
+    feedback:
+      '1': If loud voices always won, would everyone have the same freedom?
+      '2': Rights don’t stop at the classroom door. What does everyone at the meeting have?
+      '3': Arjun’s freedom is real. What responsibility comes with it?
+    hints:
+      - Does everyone at the meeting have the same freedom as Arjun?
+    solution:
+      - Arjun’s freedom is real, but so is everyone else’s.
+      - His responsibility is to **respect the rights of others**, by letting them speak too.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.1, K1.1]
+    type: mc
+    prompt: Your class is writing rules for recess. Which rule best protects the right to be **treated equally**?
+    choices:
+      - Anyone who wants to play can join the game.
+      - The oldest kids pick the game every day.
+      - Kids who run fastest go first in every game.
+      - Only kids who brought a ball can play ball.
+    answer: 0
+    feedback:
+      '1': The same group decides every time. Is everyone treated equally?
+      '2': Some kids always get more because of how they are different. Is that equal?
+      '3': Kids without a ball are left out. Is that equal?
+    hints:
+      - Which rule leaves nobody out because of how they are different?
+    solution:
+      - Letting anyone join treats everyone **equally**.
+      - The other rules give some kids more, because of their age, speed or what they own.
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [K1.2]
+    type: mc
+    prompt: In a made-up town, people voted on where to build a new rink. Only **3 out of every 10** people who could vote did. Why is this a problem?
+    choices:
+      - The choice may not show what most people in town want.
+      - The rink can’t be built until everyone has voted.
+      - The people who voted chose the wrong place.
+      - Voting is only a right, so not voting is fine.
+    answer: 0
+    feedback:
+      '1': The town can still decide. What is the problem with the decision itself?
+      '2': We don’t know if the place is good or bad. What don’t we know?
+      '3': Voting is a right and also a responsibility. What happens when most people skip it?
+    hints:
+      - How many people didn’t vote? Could their wishes be different?
+    solution:
+      - 7 out of every 10 people didn’t vote. Their wishes weren’t counted.
+      - That is why **voting is a responsibility**. A decision is fairer when more citizens take part.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [K1.2, S1.2]
+    type: mc
+    prompt: Lin loves skating at the community rink. Every winter, she helps her neighbours flood it and clear the snow. Which responsibility is Lin doing?
+    choices:
+      - Contributing to the community
+      - Voting
+      - Being treated equally
+      - Saying what she thinks
+    answer: 0
+    feedback:
+      '1': Lin isn’t choosing anything in an election. What is she doing for the rink?
+      '2': This is a right. What is Lin giving?
+      '3': Lin isn’t sharing an opinion. What is she doing with her time?
+    hints:
+      - What does Lin give to the rink that everyone uses?
+    solution:
+      - Lin gives her time to keep a shared place going. She is **contributing to the community**.
+      - She enjoys the rink, and she helps keep it. That is a right and a responsibility, side by side.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [S1.3, K1.1, K1.2]
+    type: investigation
+    prompt: |-
+      In a made-up town, a new art club says: **“No one who uses a wheelchair can join. Our room is upstairs.”**
+
+      Maya can join. Her friend Sam uses a wheelchair and can’t.
+    parts:
+      - type: mc
+        prompt: Which right does the club’s rule break?
+        choices:
+          - The right to be treated equally, no matter how you are different
+          - The freedom to follow your own beliefs
+          - The right to vote
+        answer: 0
+        feedback:
+          '1': The rule isn’t about beliefs. What is it about?
+          '2': This isn’t an election. Who is being left out, and why?
+        hints:
+          - Why is Sam left out?
+        solution:
+          - Sam is left out because of how he is different. That breaks the right to be **treated equally**.
+      - type: mc
+        prompt: Maya says, “It’s not my problem. I can join.” Which reason best shows why Maya should care?
+        choices:
+          - If one group can be left out today, any group could be left out tomorrow.
+          - Maya will get in trouble if she joins the club.
+          - The club will close if Maya doesn’t care.
+        answer: 0
+        feedback:
+          '1': The story doesn’t say that. Why would a right matter to everyone?
+          '2': The story doesn’t say that. Think about whose rights are safe if this rule stands.
+        hints:
+          - If rights aren’t protected for Sam, are they safe for Maya?
+        solution:
+          - Rights protect everyone only when everyone protects them. Next time, Maya could be the one left out.
+      - type: mc
+        prompt: What is the **best** thing Maya can do?
+        choices:
+          - Speak up, and ask the club to meet downstairs so Sam can join.
+          - Join the club and say nothing, since the rule isn’t hers.
+          - Quit and tell everyone the club is terrible.
+        answer: 0
+        feedback:
+          '1': Saying nothing lets the rule stay. Which responsibility could she use here?
+          '2': Quitting doesn’t help Sam join. Is there a way to fix the problem?
+        hints:
+          - Which responsibility is about other people’s rights?
+        solution:
+          - Maya can **respect the rights of others** by speaking up, and suggest a fix that includes Sam.
+    wrapUp: Protecting rights is a responsibility for everyone, not only for the person left out. When citizens speak up for each other, everyone’s rights are safer.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [U1.1, S1.3]
+    type: mc
+    prompt: Imagine a made-up country where everyone has rights, but **nobody** has any responsibilities. What would most likely happen?
+    choices:
+      - People’s rights would not be safe, because no one would protect them.
+      - Everyone would be happier, with no jobs to do.
+      - Nothing would change, because rights protect themselves.
+      - People would have even more rights than before.
+    answer: 0
+    feedback:
+      '1': If no one let others speak, would anyone’s freedom to speak be safe?
+      '2': Who would make sure your right to be treated equally was respected?
+      '3': Rights on paper aren’t the same as rights in real life. Who makes them real?
+    hints:
+      - Try it with one right. Who would respect your freedom to speak?
+    solution:
+      - Rights only work when people respect them. With no responsibilities, no one would.
+      - That is why rights come with responsibilities.

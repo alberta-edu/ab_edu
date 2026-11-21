@@ -1,0 +1,296 @@
+id: percentages
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [0zWkCgBoa02WpE4F9KEh7Q]
+order: 7
+title: Percentages
+shortTitle: Percentages
+summary: >-
+  Learn that one percent is one hundredth. Find percentages in everyday life, change decimals to
+  percentages and back, and compare percentages up to 100%.
+
+bigIdea: |-
+  - **Percent** means "out of 100". **1%** is one hundredth of a whole.
+  - A fraction, a decimal and a percentage can name the **same part** of a whole.
+  - Multiply a decimal by 100 to get a percentage. Divide a percentage by 100 to get a decimal.
+
+lesson:
+  - title: Out of 100
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.1, U1.1]
+        component: hundredths-grid
+        props: { shaded: 25, percent: true }
+        caption: Each square is **1%** of the whole grid. Shade squares and watch all three names change.
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: The % sign
+        body: 'The sign **%** means percent. 25% is said "twenty-five percent".'
+
+  - title: Percentages around you
+    blocks:
+      - type: table
+        covers: [S1.1]
+        headers: [Where you see it, What it means]
+        rows:
+          - ['🔋 A tablet battery shows **80%**', '80 of 100 equal parts of a full charge are left.']
+          - ['🧃 A juice box says **100% juice**', 'All of the drink is juice.']
+          - ['⬇️ A download bar shows **45%**', '45 of 100 equal parts are done.']
+          - ['🗳️ **60%** of the class voted for skating', '60 out of every 100 votes were for skating.']
+
+  - title: Decimals and percentages
+    blocks:
+      - type: compare
+        covers: [K1.2, K1.3]
+        columns:
+          - title: Decimal → percent
+            body: |-
+              \[0.35 \times 100 = 35\]
+              So 0.35 is **35%**. The digits move two places left.
+          - title: Percent → decimal
+            body: |-
+              \[35 \div 100 = 0.35\]
+              So 35% is **0.35**. The digits move two places right.
+      - type: callout
+        variant: mistake
+        covers: [K1.2]
+        title: Watch the places
+        body: '0.5 is 5 **tenths**, which is 50 hundredths. So 0.5 is **50%**, not 5%.'
+
+  - title: Three names for one part
+    blocks:
+      - type: table
+        covers: [S1.3, U1.1]
+        headers: [Fraction, Decimal, Percent]
+        rows:
+          - ['\(\frac{1}{2} = \frac{50}{100}\)', '0.5', '50%']
+          - ['\(\frac{1}{4} = \frac{25}{100}\)', '0.25', '25%']
+          - ['\(\frac{3}{10} = \frac{30}{100}\)', '0.3', '30%']
+          - ['\(\frac{7}{100}\)', '0.07', '7%']
+
+  - title: Comparing percentages
+    blocks:
+      - type: example
+        covers: [S1.2]
+        title: Which jar is fullest?
+        problem: Three jars of beads are **45%**, **5%** and **54%** full. Order them from least to most full.
+        steps:
+          - 'Each percentage is out of the same 100, so compare them like whole numbers.'
+          - '5 < 45 < 54.'
+        answer: '**5%**, **45%**, **54%**. Every percent here is less than 100%, a full jar.'
+
+keyTerms:
+  - term: Percent (%)
+    covers: [K1.1, K1.4]
+    definition: Out of 100. 1% is one hundredth of a whole.
+  - term: Percentage
+    covers: [U1.1, S1.3]
+    definition: 'A part of a whole written as a number out of 100, such as 25%.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: mc
+    prompt: What does **1%** of a whole mean?
+    choices: ['One hundredth of the whole', 'One tenth of the whole', 'One whole', 'One part out of 1 000']
+    answer: 0
+    feedback:
+      '1': 'One tenth is 10 of 100 parts. How many parts is 1%?'
+      '2': 'The whole is 100%. 1% is a tiny part of it.'
+      '3': 'Percent means "out of 100", not out of 1 000.'
+    hints:
+      - Percent means "out of" what number?
+    solution:
+      - 'Percent means **out of 100**.'
+      - 'So 1% is 1 out of 100 equal parts: **one hundredth** of the whole.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.2, S1.3]
+    type: number
+    prompt: Write **0.62** as a percentage.
+    unit: '%'
+    answer: 62
+    verify: '62'
+    hints:
+      - 0.62 is how many hundredths?
+      - Percent means hundredths.
+    solution:
+      - '0.62 is 62 hundredths.'
+      - '\(0.62 \times 100 = 62\), so 0.62 is **62%**.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.3, S1.3]
+    type: number
+    prompt: Write **8%** as a decimal.
+    answer: 0.08
+    verify: '0.08'
+    hints:
+      - 8% means 8 hundredths. Which place does the 8 go in?
+    solution:
+      - '8% is 8 hundredths, so the 8 goes in the hundredths place.'
+      - '\(8 \div 100 = 0.08\).'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.1, S1.3, U1.1]
+    type: fraction
+    prompt: Ivy’s tablet battery shows **35%**. What fraction of a full charge has she **used**? Write it out of 100.
+    answer: '65/100'
+    verify: (100 - 35) / 100
+    hints:
+      - A full charge is 100%. How much is left?
+      - What percent has been used? Write it as a fraction out of 100.
+    solution:
+      - 'A full battery is 100%. 35% is left, so \(100 - 35 = 65\)% has been used.'
+      - '65% is \(\frac{65}{100}\) of a full charge.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.2, U1.1]
+    type: order
+    prompt: Put these in order from **least** to **greatest**.
+    items: ['9%', '0.4', '45%', '\(\frac{1}{2}\)', '75%']
+    hints:
+      - Write every number as a percentage first.
+    solution:
+      - '0.4 = 40%, and \(\frac{1}{2} = \frac{50}{100}\) = 50%.'
+      - 'Compare 9%, 40%, 45%, 50% and 75%.'
+      - 'The order is 9%, 0.4, 45%, \(\frac{1}{2}\), 75%.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.2, K1.4]
+    type: mc
+    prompt: 'Raj says **0.5 = 5%**, "because you just put a % sign after the 5." What do you tell Raj?'
+    choices:
+      - 0.5 is 5 tenths, which is 50 hundredths. So it is 50%.
+      - Raj is right. The digit after the point becomes the percent.
+      - 0.5 is 500%, because you multiply by 100 and add two zeros.
+      - 0.5 is 0.5%, because the % sign goes at the end.
+    answer: 0
+    feedback:
+      '1': 'Test the rule on 0.9 and 0.09. Raj’s rule would call both 9%.'
+      '2': '0.5 is less than 1 whole, so it must be less than 100%. Check the places.'
+      '3': '0.5% would be half of one hundredth. Is 0.5 that small?'
+    hints:
+      - How many hundredths are in 0.5?
+      - Write 0.5 as 0.50.
+    solution:
+      - '0.5 = 0.50, which is 50 hundredths.'
+      - 'Percent means hundredths, so 0.5 = **50%**. Shade half of a hundred grid to check: 50 squares.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.1, U1.1]
+    type: number
+    prompt: The school asks **100** Grade 4 students how they get to school. **48** walk and **27** take the bus. The rest come by car. What percent come by car?
+    unit: '%'
+    answer: 25
+    verify: 100 - 48 - 27
+    hints:
+      - How many students come by car?
+      - There are exactly 100 students. What does that make easy?
+    solution:
+      - '\(100 - 48 - 27 = 25\) students come by car.'
+      - '25 out of 100 is **25%**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.3, S1.2, U1.1]
+    type: investigation
+    prompt: |-
+      Three friends play ring toss at the fun fair. Each plays a different number of tosses.
+
+      - Ana gets **7** rings on out of **10** tosses.
+      - Bo gets **18** rings on out of **25** tosses.
+      - Cy gets **36** rings on out of **50** tosses.
+    parts:
+      - type: number
+        prompt: What percent of her tosses did Ana get on?
+        unit: '%'
+        answer: 70
+        verify: 7 * 10
+        hints:
+          - Write \(\frac{7}{10}\) as hundredths.
+        solution:
+          - '\(\frac{7}{10} = \frac{70}{100}\), so Ana got **70%**.'
+      - type: number
+        prompt: What percent did Bo get on?
+        unit: '%'
+        answer: 72
+        verify: 18 * 4
+        hints:
+          - What do you multiply 25 by to make 100? Do the same to 18.
+        solution:
+          - '\(25 \times 4 = 100\), so \(\frac{18}{25} = \frac{72}{100}\). Bo got **72%**.'
+      - type: mc
+        prompt: 'Cy says, "I got the most rings, 36, so I am the best tosser." Who did best for the number of tosses?'
+        choices: ['Bo and Cy tie, with 72% each.', 'Cy, because 36 is the most rings.', 'Ana, because 10 is the fewest tosses.', 'Bo, with 72%, beats Cy.']
+        answer: 0
+        feedback:
+          '1': 'Cy also tossed the most times. Write \(\frac{36}{50}\) out of 100 and compare.'
+          '2': 'Fewer tosses doesn’t mean a better score. Compare the percentages.'
+          '3': 'What do you get when you write \(\frac{36}{50}\) out of 100?'
+        hints:
+          - Write Cy’s score out of 100.
+        solution:
+          - '\(\frac{36}{50} = \frac{72}{100}\), so Cy got 72%, the same as Bo.'
+          - 'Ana got 70%. **Bo and Cy tie** for the best score.'
+    wrapUp: When the totals are different, counts can mislead. Writing each score out of 100 makes them fair to compare.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.3, U1.1, S1.2]
+    type: build
+    prompt: |-
+      Design a flag on a grid of **100** squares, using red, white and blue. Colour every square.
+
+      - Red covers **more than** \(\frac{1}{4}\) of the flag.
+      - White covers **less than 0.3** of the flag.
+      - Blue covers **at least 40%** of the flag.
+    fields:
+      - { name: r, label: 'Red squares' }
+      - { name: w, label: 'White squares' }
+      - { name: b, label: 'Blue squares' }
+    rules:
+      - { test: 'r % 1 == 0 && w % 1 == 0 && b % 1 == 0 && r > 0 && w > 0 && b > 0', fail: 'Use a whole number of squares for each colour, and use all three colours.' }
+      - { test: 'r + w + b == 100', fail: 'Every square gets one colour. Do your three numbers add up to 100?' }
+      - { test: 'r > 25', fail: 'Red must cover more than 1/4. How many squares out of 100 is 1/4?' }
+      - { test: 'w < 30', fail: 'White must cover less than 0.3. How many squares out of 100 is 0.3?' }
+      - { test: 'b >= 40', fail: 'Blue must cover at least 40%. That is at least 40 squares.' }
+    examples:
+      - { r: 30, w: 20, b: 50 }
+      - { r: 26, w: 29, b: 45 }
+      - { r: 50, w: 10, b: 40 }
+    counterexamples:
+      - { r: 25, w: 25, b: 50 }
+      - { r: 30, w: 30, b: 40 }
+      - { r: 40, w: 25, b: 30 }
+      - { r: 30, w: 20, b: 40 }
+    hints:
+      - Write each rule as a number of squares out of 100.
+      - Red more than 25, white less than 30, blue at least 40. What must the three add up to?
+      - Start with blue at 50. How can you split the other 50 squares?
+    solution:
+      - '\(\frac{1}{4} = \frac{25}{100}\), and 0.3 is 30 hundredths. So red is more than 25 squares, white is less than 30 squares and blue is at least 40 squares.'
+      - '30 red, 20 white and 50 blue works. So do 26, 29 and 45, and 50, 10 and 40.'
+      - 'Each one works because the rules are all out of the same 100 squares, so fractions, decimals and percents become counts.'

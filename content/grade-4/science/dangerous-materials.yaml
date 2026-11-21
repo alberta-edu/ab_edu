@@ -1,0 +1,374 @@
+id: dangerous-materials
+grade: 4
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI4-OI1-GQ1-LO1]
+order: 2
+title: Dangerous Materials and Hazard Symbols
+shortTitle: Hazard symbols
+summary: >-
+  Read Canada's four hazard symbols, find dangerous materials at home and school, and watch what happens
+  when paint goes down a storm drain.
+
+bigIdea: |-
+  - Some natural and processed materials can harm our health.
+  - **Hazard symbols** warn us: poisonous, flammable, corrosive or explosive.
+  - Using these materials carefully and getting rid of them safely protects people, animals, land and water.
+
+lesson:
+  - title: Four hazard symbols
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, S2.1]
+        component: g4-hazard-symbols
+        caption: Tap each symbol. Find out what it warns about and where you might see it.
+      - type: callout
+        variant: tip
+        covers: [K2.2, S2.1]
+        title: Look before you touch
+        body: If you see one of these symbols, **don’t open it**. Leave it where it is and tell an adult.
+
+  - title: The frame tells you more
+    blocks:
+      - type: compare
+        covers: [K2.2, K2.3]
+        columns:
+          - title: Octagon
+            figure: '<svg viewBox="0 0 120 108" class="fig-svg" style="max-width:8rem" role="img" aria-label="Hazard symbols. drops falling and eating into a surface in an octagon."><svg x="10" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="92.5,67.6 67.6,92.5 32.4,92.5 7.5,67.6 7.5,32.4 32.4,7.5 67.6,7.5 92.5,32.4"/><g style="fill:var(--ink)"><rect x="30" y="20" width="14" height="22" rx="2"/><path d="M37,44 l-3,6 a3,3 0 1,0 6,0 Z"/><path d="M37,56 l-2,4 a2,2 0 1,0 4,0 Z"/><path d="M22,74 L46,66 L50,70 L56,64 L60,70 L78,64 L78,74 Z"/></g></svg></svg>'
+            body: Shaped like a **stop sign**. What is **inside** the container is dangerous.
+          - title: Upside-down triangle
+            figure: '<svg viewBox="0 0 120 108" class="fig-svg" style="max-width:8rem" role="img" aria-label="Hazard symbols. a container bursting into pieces in an upside-down triangle."><svg x="10" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="5,10 95,10 50,93"/><g style="fill:var(--ink)"><g transform="translate(50 40) scale(0.62) translate(-50 -50)"><path d="M50,26 L55,42 L72,34 L62,50 L78,56 L60,60 L64,76 L50,64 L36,76 L40,60 L22,56 L38,50 L28,34 L45,42 Z"/><rect x="14" y="22" width="6" height="6" transform="rotate(20 17 25)"/><rect x="80" y="70" width="6" height="6" transform="rotate(30 83 73)"/><rect x="80" y="24" width="5" height="5"/></g></g></svg></svg>'
+            body: Shaped like a **yield sign**. The **container** itself is dangerous. It can burst if it gets hot or gets a hole in it.
+
+  - title: Natural or processed, both can harm
+    blocks:
+      - type: visual
+        covers: [K2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: natural, label: Natural, icon: 🌿 }
+            - { id: processed, label: Processed, icon: 🏭 }
+          cards:
+            - { text: Water hemlock, bin: natural, why: A wild plant that grows near water in Alberta. Every part of it is very poisonous. }
+            - { text: Drain cleaner, bin: processed, why: It is made in a factory. It is corrosive and can burn skin. }
+            - { text: Some wild mushrooms, bin: natural, why: They grow on their own in nature. Some kinds are poisonous to eat. }
+            - { text: Gasoline, bin: processed, why: It is made from oil in a factory. It is flammable. }
+            - { text: Bug spray in a spray can, bin: processed, why: It is made in a factory. The can can burst if it gets hot. }
+        caption: Is each dangerous material natural, or processed by people?
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI1-GQ1-LO1#K1.1']
+        title: From Grade 3
+        body: Processed materials are changed from natural materials by people. They don’t occur in nature.
+
+  - title: 'Virtual experiment: down the storm drain'
+    blocks:
+      - type: experiment
+        covers: [U2.1, S2.2]
+        title: Pour leftover paint into a storm drain, then let it rain
+        question: |-
+          Someone pours leftover paint into the **storm drain** on the street. Then it rains.
+
+          Where does the paint go?
+        animation: g4-storm-drain
+        predict:
+          choices:
+            - Straight into a river
+            - To a plant that cleans it first
+            - Deep underground, where it disappears
+          answer: 0
+        observe: |-
+          - The rain washed the paint into the storm drain.
+          - It ran through the storm pipe and poured **straight into the river**.
+          - Nothing cleaned it on the way, and the fish swam away from it.
+        explain: |-
+          - Storm drains carry rain and snowmelt to rivers and streams. In Calgary, that water is **not cleaned** first.
+          - Paint, oil and cleaners can harm fish, plants and the people who use the river.
+          - Leftover dangerous materials belong at a **household hazardous waste drop-off**.
+      - type: callout
+        variant: mistake
+        covers: [U2.1, S2.2]
+        title: The garbage isn’t safe either
+        body: In a landfill, leaking paint or batteries can soak into soil and water. That’s why they go to a special drop-off.
+
+  - title: Use it safely, get rid of it safely
+    blocks:
+      - type: table
+        covers: [S2.2, U2.1]
+        headers: [Do this, Why]
+        rows:
+          - ['Keep it in its **original container**', 'The label and symbol stay with it, so everyone knows what it is.']
+          - ['Store it **up high or locked away**', 'Young children and pets can’t reach it.']
+          - ['**Never mix** products', 'Some, like bleach and ammonia, make a poisonous gas together.']
+          - ['Let an **adult** use it, and follow the label', 'The label says how to use it safely.']
+          - ['Take leftovers to a **drop-off**', 'Calgary has Eco Centres and fire-station drop-offs. Edmonton has Eco Stations.']
+      - type: table
+        covers: [S2.1, K2.3]
+        caption: Where you might see hazard symbols
+        headers: [Place, Example, Symbol]
+        rows:
+          - ['🏠 Home', 'Oven cleaner under the sink', 'Corrosive']
+          - ['🏫 School', 'Spray paint in the art room', 'Explosive']
+          - ['⛽ Community', 'Gasoline at a gas station', 'Flammable']
+
+keyTerms:
+  - term: Dangerous material
+    covers: [K2.1]
+    definition: A natural or processed material that can harm people’s health.
+  - term: Hazard symbol
+    covers: [K2.2, K2.3]
+    definition: A picture on a label that warns that a material is dangerous, and how.
+  - term: Flammable
+    covers: [K2.3]
+    definition: Catches fire very easily.
+  - term: Corrosive
+    covers: [K2.3]
+    definition: Can burn and eat away at skin, eyes and other materials.
+  - term: Explosive
+    covers: [K2.3]
+    definition: Can burst apart suddenly, for example if it gets hot.
+  - term: Poisonous
+    covers: [K2.3]
+    definition: Can make you very sick, or kill you, if it gets inside your body.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.3, S2.1]
+    type: mc
+    figure: '<svg viewBox="0 0 120 108" class="fig-svg" style="max-width:8rem" role="img" aria-label="Hazard symbols. a flame in an octagon."><svg x="10" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="92.5,67.6 67.6,92.5 32.4,92.5 7.5,67.6 7.5,32.4 32.4,7.5 67.6,7.5 92.5,32.4"/><g style="fill:var(--ink)"><path d="M50,22 Q66,40 62,56 Q70,52 68,44 Q80,60 70,74 Q60,82 50,82 Q36,82 30,72 Q24,60 34,48 Q34,58 40,60 Q36,40 50,22 Z"/></g></svg></svg>'
+    prompt: A can in the garage has this symbol on it. What is it warning you about?
+    choices:
+      - It can catch fire very easily.
+      - It can burn your skin.
+      - The container can burst.
+      - It is poisonous to swallow.
+    answer: 0
+    feedback:
+      '1': That is the corrosive symbol, which shows drops eating into a surface. What picture is on this one?
+      '2': The bursting symbol sits in an upside-down triangle. What shape is this frame?
+      '3': The poison symbol is a skull and crossbones. What picture is on this one?
+    hints:
+      - What is the picture inside the frame?
+    solution:
+      - The picture is a **flame**, so the product is **flammable**. It can catch fire very easily.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.2, K2.3, S2.1]
+    type: mc
+    figure: '<svg viewBox="0 0 120 108" class="fig-svg" style="max-width:8rem" role="img" aria-label="Hazard symbols. a container bursting into pieces in an upside-down triangle."><svg x="10" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="5,10 95,10 50,93"/><g style="fill:var(--ink)"><g transform="translate(50 40) scale(0.62) translate(-50 -50)"><path d="M50,26 L55,42 L72,34 L62,50 L78,56 L60,60 L64,76 L50,64 L36,76 L40,60 L22,56 L38,50 L28,34 L45,42 Z"/><rect x="14" y="22" width="6" height="6" transform="rotate(20 17 25)"/><rect x="80" y="70" width="6" height="6" transform="rotate(30 83 73)"/><rect x="80" y="24" width="5" height="5"/></g></g></svg></svg>'
+    prompt: This symbol is in an **upside-down triangle**, not an octagon. What does that frame tell you?
+    choices:
+      - The container itself is dangerous.
+      - What is inside is safe to touch.
+      - The product is only a little bit dangerous.
+      - The product is poisonous.
+    answer: 0
+    feedback:
+      '1': The frame is a warning, not a promise. Which part does a triangle frame warn about?
+      '2': The frame shape doesn’t say how dangerous. It says what is dangerous. What is that?
+      '3': Poison has its own picture, a skull and crossbones. What does the triangle frame tell you?
+    hints:
+      - An octagon warns about what is **inside**. What does the triangle warn about?
+    solution:
+      - An upside-down triangle, like a yield sign, means the **container** is dangerous.
+      - Here it can burst if it gets hot or is punched with a hole.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K2.1]
+    type: mc
+    prompt: Which dangerous material is **natural**, not processed?
+    choices:
+      - Water hemlock, a wild plant
+      - Drain cleaner
+      - Gasoline
+      - Spray paint
+    answer: 0
+    feedback:
+      '1': Drain cleaner is made in a factory. Is that natural or processed?
+      '2': Gasoline is made from oil in a factory. Was it changed by people?
+      '3': Spray paint is made in a factory. Does it occur in nature?
+    hints:
+      - A natural material is found in nature. Which one grows on its own?
+    solution:
+      - Water hemlock grows on its own in nature, so it is **natural**. It is very poisonous.
+      - 'The other three are **processed**: people make them in factories.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [S2.2, U2.1]
+    type: multi
+    prompt: Sam’s family is cleaning out the garage. Select every item that should go to a **household hazardous waste drop-off**, not the garbage or the recycling.
+    choices:
+      - Half a can of old paint
+      - Used batteries
+      - Leftover windshield washer fluid
+      - An empty cardboard box
+      - Old newspapers
+    answer: [0, 1, 2]
+    feedback:
+      '3': Cardboard isn’t dangerous. Which bin does it go in?
+      '4': Newspapers aren’t dangerous. Which bin do they go in?
+    hints:
+      - Which items could harm the soil or water if they leaked?
+    solution:
+      - Paint, batteries and washer fluid are **dangerous materials**. In a landfill they could leak into soil and water.
+      - Cardboard and newspapers are safe, so they go in the recycling.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [S2.2, K2.2]
+    type: mc
+    prompt: Dad wants to pour leftover cleaner into an old juice bottle to save space. Why is it safer to keep it in its **original container**?
+    choices:
+      - The label and hazard symbol stay with it, so nobody mistakes it for juice.
+      - The cleaner works better in its own bottle.
+      - Juice bottles make cleaners turn poisonous.
+      - The original container is bigger.
+    answer: 0
+    feedback:
+      '1': The cleaner is the same in any bottle. What would someone see on a juice bottle?
+      '2': The bottle doesn’t change the cleaner. What could go wrong when someone sees a juice bottle?
+      '3': The story says Dad wants to save space, so the juice bottle may be smaller. Is size the safety problem?
+    hints:
+      - Picture someone thirsty opening the fridge. What would they think the bottle holds?
+    solution:
+      - The original container has the **label and the hazard symbol**. They tell everyone what is inside and how it is dangerous.
+      - In a juice bottle, someone could drink it by mistake.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [S2.2]
+    type: mc
+    prompt: 'Jess says, “I’ll mix the bleach and the other cleaner together. Then I’ll have a super-strong cleaner!” What is the problem?'
+    choices:
+      - Mixing some cleaners makes a poisonous gas.
+      - Mixed cleaners always stop working.
+      - There is no problem, as long as she wears gloves.
+      - Bleach is flammable, so it might catch fire.
+    answer: 0
+    feedback:
+      '1': The danger isn’t about cleaning power. What can some mixed products make?
+      '2': Gloves protect your hands. Would they protect you from something you breathe in?
+      '3': Bleach doesn’t carry a flame symbol. What does the lesson say about mixing products?
+    hints:
+      - What does the safety table say about mixing products?
+    solution:
+      - '**Never mix** products. Some, like bleach and ammonia, make a **poisonous gas** together.'
+      - A gas spreads through the air, so gloves wouldn’t help. Use one product at a time, as the label says.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [U2.1, S2.2]
+    type: mc
+    prompt: Mr. Cole washes his oily car tools on the driveway. The dirty water runs down the street into a **storm drain**. Where does it end up?
+    choices:
+      - In a river or stream, without being cleaned
+      - At a plant that cleans it before it reaches the river
+      - In the city’s drinking water tank
+      - Soaked into the driveway, where it stays
+    answer: 0
+    feedback:
+      '1': Remember the paint in the experiment. Did anything clean it on the way?
+      '2': Storm drains carry water away from the streets. Where did the pipe lead in the experiment?
+      '3': The water ran away down the street. Did it stay on the driveway?
+    hints:
+      - This is just like the paint in the virtual experiment. Where did the storm pipe go?
+    solution:
+      - Storm drains carry water **straight to rivers and streams**, without cleaning it.
+      - The oil could harm fish and plants. Wiping the tools with a rag first keeps the oil off the street.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.2, K2.3, S2.1, S2.2]
+    type: investigation
+    figure: '<svg viewBox="0 0 360 136" class="fig-svg" style="max-width:24rem" role="img" aria-label="Hazard symbols. Spray paint: a container bursting into pieces in an upside-down triangle. Gasoline: a flame in an octagon. Antifreeze: a skull and crossbones in an octagon."><svg x="10" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="5,10 95,10 50,93"/><g style="fill:var(--ink)"><g transform="translate(50 40) scale(0.62) translate(-50 -50)"><path d="M50,26 L55,42 L72,34 L62,50 L78,56 L60,60 L64,76 L50,64 L36,76 L40,60 L22,56 L38,50 L28,34 L45,42 Z"/><rect x="14" y="22" width="6" height="6" transform="rotate(20 17 25)"/><rect x="80" y="70" width="6" height="6" transform="rotate(30 83 73)"/><rect x="80" y="24" width="5" height="5"/></g></g></svg><text class="fig-label" x="60" y="128" text-anchor="middle">Spray paint</text><svg x="130" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="92.5,67.6 67.6,92.5 32.4,92.5 7.5,67.6 7.5,32.4 32.4,7.5 67.6,7.5 92.5,32.4"/><g style="fill:var(--ink)"><path d="M50,22 Q66,40 62,56 Q70,52 68,44 Q80,60 70,74 Q60,82 50,82 Q36,82 30,72 Q24,60 34,48 Q34,58 40,60 Q36,40 50,22 Z"/></g></svg><text class="fig-label" x="180" y="128" text-anchor="middle">Gasoline</text><svg x="250" y="4" width="100" height="100" viewBox="0 0 100 100"><polygon style="fill:var(--surface);stroke:var(--ink);stroke-width:5;stroke-linejoin:round" points="92.5,67.6 67.6,92.5 32.4,92.5 7.5,67.6 7.5,32.4 32.4,7.5 67.6,7.5 92.5,32.4"/><g style="fill:var(--ink)"><circle cx="50" cy="40" r="15"/><rect x="42" y="50" width="16" height="9" rx="2"/><circle cx="44" cy="39" r="4" style="fill:var(--surface)"/><circle cx="56" cy="39" r="4" style="fill:var(--surface)"/><line x1="30" y1="62" x2="70" y2="76" style="stroke:var(--ink);stroke-width:7;stroke-linecap:round"/><line x1="70" y1="62" x2="30" y2="76" style="stroke:var(--ink);stroke-width:7;stroke-linecap:round"/></g></svg><text class="fig-label" x="300" y="128" text-anchor="middle">Antifreeze</text></svg>'
+    prompt: |-
+      Kim’s family is putting three products away in the garage. There is a **heater** in one corner. Kim’s little
+      cousin often visits.
+    parts:
+      - type: mc
+        prompt: Which product’s danger is about its **container**?
+        choices: [Spray paint, Gasoline, Antifreeze]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Gasoline’s flame is in an octagon. What does an octagon warn about?
+          '2': Antifreeze’s skull is in an octagon. What does an octagon warn about?
+        hints:
+          - Find the frame shaped like a yield sign.
+        solution:
+          - The spray paint symbol is in an **upside-down triangle**, so the can itself is dangerous. It can burst.
+      - type: multi
+        prompt: Select **every** product that must be kept far from the heater.
+        choices: [Spray paint, Gasoline, Antifreeze]
+        fixedOrder: true
+        answer: [0, 1]
+        feedback:
+          '2': The skull warns about swallowing or breathing it. Does heat make that danger worse, according to its symbol?
+        hints:
+          - Which symbols warn about heat, flames or sparks?
+        solution:
+          - The spray can can **burst** if it gets hot.
+          - Gasoline is **flammable**, so it can catch fire near heat.
+      - type: mc
+        prompt: 'Kim says, “Antifreeze has no fire or bursting symbol, so it’s fine on the floor.” What is wrong with Kim’s idea?'
+        choices:
+          - Its skull means it is poisonous, so it must be up high or locked away from her cousin.
+          - Antifreeze is also flammable, so it must go near the door.
+          - Nothing is wrong. Only fire and bursting are real dangers.
+        answer: 0
+        feedback:
+          '1': The antifreeze shows one symbol only. What picture is it?
+          '2': Each symbol warns about a different danger. What does a skull and crossbones warn about?
+        hints:
+          - What does the skull and crossbones warn about? Who might pick it up off the floor?
+        solution:
+          - The skull and crossbones means **poisonous**. Swallowing it could kill.
+          - A young child could reach it on the floor, so it must be stored up high or locked away.
+    wrapUp: Each symbol warns about a different danger, so each one needs a different kind of care.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [U2.1, S2.2]
+    type: mc
+    prompt: |-
+      Three neighbours each have half a can of old paint.
+
+      - **Ava** pours hers into the storm drain.
+      - **Ben** puts the open can in his black garbage cart.
+      - **Cal** takes his to a household hazardous waste drop-off.
+
+      Which choice is best, and why?
+    choices:
+      - Cal’s, because the paint is kept out of the river and the landfill.
+      - Ben’s, because the garbage truck takes it far away.
+      - Ava’s, because rainwater will wash it away and make it weaker.
+      - They are all the same, because the paint ends up somewhere anyway.
+    answer: 0
+    feedback:
+      '1': Far away isn’t gone. What can leaking paint do in a landfill?
+      '2': Where did the storm pipe lead in the experiment? Did the paint disappear?
+      '3': Where it ends up is the point. Which place is set up to deal with dangerous materials safely?
+    hints:
+      - For each neighbour, follow the paint. Where does it end up?
+      - Which place keeps it away from soil, water and living things?
+    solution:
+      - Ava’s paint flows **straight into the river**.
+      - Ben’s paint can **leak** in the landfill, into soil and water.
+      - Cal’s choice is best. A drop-off handles dangerous materials safely, so the paint doesn’t reach the land or water.

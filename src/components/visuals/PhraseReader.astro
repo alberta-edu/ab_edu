@@ -1,0 +1,159 @@
+---
+// Read it like a robot, or read it in phrases (LANENG4-OI6-GQ1-LO1, S1.1, S1.2; LANENG4-OI2-GQ1-LO1,
+// K2.2, S2.3, S5.3). "Word by word" lights each word at the same speed. "In phrases" scoops the words into
+// groups, rests at each pause and leans on stressed words. "Learn by heart" fades the words out in steps.
+import { parsePhrases } from './phrase-reader.ts';
+
+interface Props {
+  title?: string;
+  /** Lines marked with / (short pause), // (long pause) and *stressed* words. */
+  lines: string[];
+  /** Who says each line, for dialogue. */
+  speakers?: string[];
+  memorize?: boolean;
+}
+const { title, lines, speakers = [], memorize = false } = Astro.props;
+const phrases = parsePhrases(lines);
+let w = 0;
+const shown = lines.map((_, li) => phrases.map((p, pi) => ({ p, pi })).filter(({ p }) => p.line === li));
+---
+<phrase-reader data-phrases={JSON.stringify(phrases)}>
+  <div class="control-row">
+    <div class="seg" role="group" aria-label="How to read">
+      <button type="button" data-pr-mode="robot" aria-pressed="false">🤖 Word by word</button>
+      <button type="button" data-pr-mode="phrase" aria-pressed="true">🎭 In phrases</button>
+      {memorize && <button type="button" data-pr-mode="memory" aria-pressed="false">🧠 Learn by heart</button>}
+    </div>
+  </div>
+  <div class="g4e-pr__page g4e-pr--phrase" data-pr="page">
+    {title && <h3 class="g4e-pr__title">{title}</h3>}
+    {shown.map((row, li) => (
+      <p class="g4e-pr__line">
+        {speakers[li] && <span class="g4e-pr__who">{speakers[li]}:</span>}
+        {row.map(({ p, pi }) => (
+          <>
+            <span class="g4e-pr__phrase" data-pr-phrase={pi}>{p.words.map((word, j) => <>{j > 0 && ' '}<span class={word.stress ? 'g4e-pr__w g4e-pr__w--stress' : 'g4e-pr__w'} data-pr-w={w++}>{word.text}</span></>)}</span>{' '}<span class={`g4e-pr__pause g4e-pr__pause--${p.pause}`} aria-hidden="true">{p.pause === 2 ? '‖' : '|'}</span>{' '}
+          </>
+        ))}
+      </p>
+    ))}
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-pr="play">▶ Read it</button>
+    <span class="g4e-pr__level" data-pr="levels" hidden>
+      <button type="button" class="btn btn--ghost btn--small" data-pr="fewer">Hide more words</button>
+      <button type="button" class="btn btn--ghost btn--small" data-pr="more">Show more words</button>
+    </span>
+    <span class="g4e-pr__say" data-pr="say" aria-live="polite"></span>
+  </div>
+  <p class="g4e-pr__key" data-pr="key"><b>|</b> short pause · <b>‖</b> long pause · <strong>bold</strong> = stress the word</p>
+</phrase-reader>
+
+<style is:global>
+  phrase-reader { display: block; }
+  .g4e-pr__page { margin: 0.7rem 0; padding: 0.9rem 1rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 2.3; }
+  .g4e-pr__title { margin: 0 0 0.2rem; font-size: var(--step-1); }
+  .g4e-pr__line { margin: 0; }
+  .g4e-pr__who { font-weight: 700; color: var(--accent); margin-right: 0.3em; }
+  .g4e-pr__w { padding: 0.05em 0.12em; border-radius: 5px; transition: background-color 0.2s ease, opacity 0.3s ease; }
+  .g4e-pr__pause { color: var(--accent); font-weight: 700; margin-right: 0.2em; }
+  .g4e-pr--phrase .g4e-pr__phrase { padding-bottom: 0.15em; border-bottom: 3px solid var(--accent); border-radius: 0 0 40% 40%; }
+  .g4e-pr--phrase .g4e-pr__w--stress { font-weight: 800; }
+  .g4e-pr--robot .g4e-pr__pause { display: none; }
+  .g4e-pr--robot .g4e-pr__w { margin-right: 0.3em; }
+  .g4e-pr__w.is-now { background: var(--sun); color: #1c1b24; }
+  .g4e-pr__phrase.is-now .g4e-pr__w { background: var(--sun); color: #1c1b24; }
+  .g4e-pr__w.is-hidden { color: transparent; background: var(--surface-3); cursor: pointer; }
+  .g4e-pr--memory .g4e-pr__pause { opacity: 0.4; }
+  .g4e-pr__say { font-size: var(--step--1); color: var(--ink-2); }
+  .g4e-pr__key { margin: 0; font-size: var(--step--1); color: var(--ink-2); }
+  .g4e-pr__key b { color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) { .g4e-pr__w { transition: none; } }
+</style>
+
+<script>
+  import { phraseTime, type Phrase } from './phrase-reader.ts';
+  import { isHidden } from './writing-tools.ts';
+  import { canSpeak, speak, stopSpeaking, whenHidden } from './voice.ts';
+
+  class PhraseReader extends HTMLElement {
+    private phrases: Phrase[] = [];
+    private mode: 'robot' | 'phrase' | 'memory' = 'phrase';
+    private level = 0;
+    private run = 0;
+
+    connectedCallback() {
+      this.phrases = JSON.parse(this.dataset.phrases!);
+      this.querySelectorAll<HTMLButtonElement>('[data-pr-mode]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.mode = b.dataset.prMode as 'robot' | 'phrase' | 'memory';
+          this.querySelectorAll('[data-pr-mode]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.stop();
+          this.level = this.mode === 'memory' ? 1 : 0;
+          this.paint();
+        }),
+      );
+      this.part('play').addEventListener('click', () => this.play());
+      this.part('fewer').addEventListener('click', () => this.setLevel(this.level + 1));
+      this.part('more').addEventListener('click', () => this.setLevel(this.level - 1));
+      this.querySelectorAll<HTMLElement>('[data-pr-w]').forEach((el) => el.addEventListener('click', () => el.classList.remove('is-hidden')));
+      whenHidden(this, () => this.stop());
+      this.paint();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-pr="${name}"]`)!;
+    }
+
+    private setLevel(n: number) {
+      this.level = Math.max(1, Math.min(4, n));
+      this.paint();
+    }
+
+    private paint() {
+      const page = this.part('page');
+      page.className = `g4e-pr__page g4e-pr--${this.mode}`;
+      const memory = this.mode === 'memory';
+      this.part('levels').hidden = !memory;
+      this.part('play').hidden = memory;
+      this.part('key').hidden = this.mode === 'robot';
+      this.querySelectorAll<HTMLElement>('[data-pr-w]').forEach((el) => el.classList.toggle('is-hidden', memory && isHidden(Number(el.dataset.prW), this.level)));
+      const say = this.part('say');
+      if (memory) say.textContent = this.level >= 4 ? 'Every word is hidden. Say the whole poem from memory!' : 'Say it aloud, filling in the gaps. Tap a gap to peek.';
+      else say.textContent = this.mode === 'robot' ? 'Every word gets the same time. Does it sound natural?' : 'Words travel in groups, with rests between them.';
+    }
+
+    private stop() {
+      this.run++;
+      stopSpeaking();
+      this.querySelectorAll('.is-now').forEach((el) => el.classList.remove('is-now'));
+    }
+
+    private async play() {
+      this.stop();
+      const run = this.run;
+      const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
+      const sound = canSpeak();
+      if (this.mode === 'robot') {
+        const words = [...this.querySelectorAll<HTMLElement>('[data-pr-w]')];
+        for (const el of words) {
+          if (run !== this.run) return;
+          el.classList.add('is-now');
+          await Promise.all([sound ? speak(el.textContent!, { rate: 0.8 }) : Promise.resolve(), wait(420)]);
+          el.classList.remove('is-now');
+        }
+        return;
+      }
+      for (const [i, p] of this.phrases.entries()) {
+        if (run !== this.run) return;
+        const el = this.querySelector(`[data-pr-phrase="${i}"]`)!;
+        el.classList.add('is-now');
+        const text = p.words.map((w) => w.text).join(' ');
+        await Promise.all([sound ? speak(text) : Promise.resolve(), wait(phraseTime(p) - (p.pause === 2 ? 700 : 300))]);
+        el.classList.remove('is-now');
+        await wait(p.pause === 2 ? 700 : 300);
+      }
+    }
+  }
+  customElements.define('phrase-reader', PhraseReader);
+</script>

@@ -1,0 +1,432 @@
+id: writing-paragraphs
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI8
+outcomes: [LANENG4-OI8-GQ1-LO1]
+order: 11
+title: The Writing Process and Paragraphs
+shortTitle: Writing process & paragraphs
+summary: >-
+  Follow one piece of writing from plan to publication, build paragraphs with topic and concluding
+  sentences, and vary your sentences so your writing reads smoothly.
+
+bigIdea: |-
+  - Writers work in stages: **planning, drafting, revising, editing and publishing**.
+  - A **paragraph** has a topic sentence, supporting details and a concluding sentence.
+  - Sentences that start differently and change in length make writing smooth and interesting.
+
+lesson:
+  - title: One piece, five stages
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.8, K1.9, S1.3, S1.8, S1.9, S1.10, S1.11]
+        component: writing-path
+        props:
+          stages:
+            - icon: 🗺️
+              label: Plan
+              job: Think about your audience and purpose. Make a list, and picture your idea.
+              page: |-
+                **Audience:** our principal. **Purpose:** to persuade. **Form:** a letter.
+
+                **List:** beanbags, a rug, a quiet spot, more reading time, a book swap
+
+                **Picture it:** a cozy corner by the big window, with sun on the rug
+            - icon: ✏️
+              label: Draft
+              job: Get your ideas down. Don’t stop to fix anything yet.
+              page: |-
+                we want a reading corner. it would be cozy. it would be quiet. my brother has a bunk bed. we would read more because it would be cozy.
+            - icon: 🔧
+              label: Revise
+              job: Reread. Add or remove words and sentences to make it clearer and smoother.
+              page: |-
+                we want a reading corner ++by the big window++. ~~it would be cozy. it would be quiet.~~ ++With beanbags and a rug, it would be a cozy, quiet place to read.++ ~~my brother has a bunk bed.~~ we would read more ~~because it would be cozy~~ ++if reading felt this good++.
+            - icon: 🔍
+              label: Edit
+              job: Fix spelling, punctuation and grammar.
+              page: |-
+                ~~w~~++W++e want a reading corner by the big window. With beanbags and a rug, it would be a cozy, quiet place to read. ~~w~~++W++e would read more if reading felt this good.
+            - icon: 🚀
+              label: Publish
+              job: Make a final copy. Add text features, like a picture and a caption, to help your reader.
+              page: |-
+                ### Our Reading Corner
+
+                We want a reading corner by the big window. With beanbags and a rug, it would be a cozy, quiet place to read. We would read more if reading felt this good.
+
+                *🖍️ Drawing: our reading corner, with two beanbags and a rug.*
+        caption: Tap each stage. In Revise and Edit, **red** words are cut and **green** words are new.
+      - type: callout
+        variant: tip
+        covers: [K1.1, U1.1]
+        title: One job at a time
+        body: Ideas first, fixes later. Writing in stages makes it easier to share your ideas, be creative and connect with your reader.
+
+  - title: Plan with lists and pictures
+    blocks:
+      - type: compare
+        covers: [K1.2, S1.3, S1.1]
+        columns:
+          - title: 📝 Make a list
+            body: Jot every idea, fast. Circle the best ones later.
+          - title: 🎨 Visualize
+            body: Close your eyes and picture it. What do you see, hear and feel? Those details go in your writing.
+          - title: 🎯 Know your reader
+            body: Ask, “Who will read this, and why?” A letter to the principal sounds different from a note to a friend.
+      - type: callout
+        variant: tip
+        covers: [S1.4, S1.2]
+        title: Stay focused
+        body: When you share your view on a topic, keep every sentence about it. Choose the form, like a letter or a poster, that fits your purpose.
+
+  - title: Build a paragraph
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.5, K1.6, S1.7]
+        component: text-parts
+        props:
+          title: Snow Days
+          parts:
+            - { id: topic, label: Topic sentence, icon: 🎯, note: 'The **topic sentence** tells what the paragraph is going to be about.' }
+            - { id: detail, label: Supporting details, icon: 🧱, note: '**Supporting details** give facts, examples or reasons about the topic.' }
+            - { id: end, label: Concluding sentence, icon: 🏁, note: 'The **concluding sentence** wraps up the main idea, without adding anything new.' }
+          sentences:
+            - { text: 'A snow day is the best surprise of winter.', part: topic }
+            - { text: 'You wake up, look outside, and the whole street is white.', part: detail }
+            - { text: 'Instead of math, you build a fort in the backyard.', part: detail }
+            - { text: 'Then you come in for hot chocolate with frozen fingers.', part: detail }
+            - { text: 'No other day feels quite as magical as a snow day.', part: end }
+        caption: Tap each part. What job does each sentence do?
+      - type: callout
+        variant: mistake
+        covers: [K1.6]
+        title: No new ideas at the end
+        body: A concluding sentence brings the paragraph to a close. If you add a brand-new idea at the end, like *Also, I got a new sled*, your reader is left hanging.
+
+  - title: Group ideas into paragraphs
+    blocks:
+      - type: visual
+        covers: [S1.6, S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: food, label: 'Paragraph 1: Food', icon: 🍲 }
+            - { id: games, label: 'Paragraph 2: Games', icon: 🛷 }
+            - { id: art, label: 'Paragraph 3: Art', icon: ❄️ }
+          cards:
+            - { text: Families shared bannock and soup by the fire., bin: food, why: 'It is about food.' }
+            - { text: The hot chocolate stand ran out by noon., bin: food, why: 'It is about food.' }
+            - { text: Kids raced on toboggans down the big hill., bin: games, why: 'It is about a game.' }
+            - { text: The tug-of-war ended with everyone in the snow., bin: games, why: 'It is about a game.' }
+            - { text: Artists carved a giant moose out of snow., bin: art, why: 'It is about art.' }
+            - { text: Ice lanterns glowed along the path at night., bin: art, why: 'It is about art.' }
+        caption: These notes are for a report on a winter festival. Group them, so each paragraph has one topic.
+
+  - title: Vary your sentences
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.5, K1.7]
+        component: sentence-rhythm
+        props:
+          examples:
+            - { label: All the same, text: 'I went to the park. I saw a dog. I threw a ball. The dog ran fast. I went home.' }
+            - { label: Varied, text: 'After school, I went to the park. A shaggy dog trotted up to me. When I threw a ball, it raced off like a rocket! Then I went home.' }
+        caption: Each bar is one sentence. Compare the two. Then try your own sentences.
+      - type: table
+        covers: [K1.3, S1.5]
+        caption: Ways to start a sentence, and kinds of sentences to try
+        headers: [Try…, Example]
+        rows:
+          - ['A time word', '**After school,** I went to the park.']
+          - ['A sound', '**Splash!** The dog jumped into the pond.']
+          - ['A feeling word', '**Happily,** I threw the ball again.']
+          - ['A question', '**Have you ever** seen a dog smile?']
+          - ['An exclamation', '**What a fast dog!**']
+
+  - title: Read it aloud
+    blocks:
+      - type: compare
+        covers: [K1.7, S1.9]
+        columns:
+          - title: 🤖 Bumpy
+            body: '*The game was close. The game was fun. We won the game. The game ended at 5.*'
+          - title: 🎶 Smooth
+            body: '*The game was close all the way to the end. When the final buzzer went at 5:00, we had won!*'
+      - type: callout
+        variant: tip
+        covers: [K1.7, S1.8]
+        title: Your ears are an editor
+        body: Read your writing aloud. If you stumble, or it sounds bumpy, that is a place to revise.
+
+keyTerms:
+  - term: Writing process
+    covers: [K1.1]
+    definition: 'The stages of writing: planning, drafting, revising, editing and publishing.'
+  - term: Topic sentence
+    covers: [K1.5]
+    definition: The sentence that tells what a paragraph is going to be about.
+  - term: Concluding sentence
+    covers: [K1.6]
+    definition: The sentence that closes a paragraph by wrapping up the main idea, without adding new information.
+  - term: Revising
+    covers: [K1.8]
+    definition: Adding or removing words or sentences to make writing clearer or smoother.
+  - term: Editing
+    covers: [S1.10]
+    definition: Fixing spelling, punctuation and grammar.
+  - term: Fluent writing
+    covers: [K1.7]
+    definition: Writing that is smooth, natural and easy to read aloud.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1]
+    type: order
+    prompt: Put the stages of the writing process in order.
+    items:
+      - Planning
+      - Drafting
+      - Revising
+      - Editing
+      - Publishing
+    hints:
+      - What do you do before you write anything? What do you do last?
+    solution:
+      - '**Plan** your ideas, **draft** them, **revise** to make them clearer, **edit** for mistakes, then **publish** a final copy.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.5, S1.7]
+    type: mc
+    prompt: |-
+      These are the supporting details of a paragraph:
+
+      - Our class plants seeds in cups every spring.
+      - We water them each morning.
+      - By June, we have tall bean plants.
+
+      Which is the best **topic sentence**?
+    choices:
+      - Growing beans is a spring tradition in our class.
+      - Beans are green.
+      - We water our plants every morning.
+      - I like pizza more than beans.
+    answer: 0
+    feedback:
+      '1': This is true, but is it what the details are about?
+      '2': This is already one of the details. What do all three have in common?
+      '3': This is about pizza. Does it fit the details at all?
+    hints:
+      - What are **all three** details about?
+    solution:
+      - All three details are about growing beans in class each spring. The topic sentence tells the reader that.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K1.6, S1.7]
+    type: mc
+    prompt: |-
+      > Our school garden is a great place to learn. We grow carrots and learn how roots work. We count the bees that visit the flowers. We measure how fast the sunflowers grow.
+
+      Which is the best **concluding sentence**?
+    choices:
+      - In the garden, every day is a lesson.
+      - We also have a fish tank in our class.
+      - Sunflowers can grow very tall.
+      - Next, I will tell you about our field trip.
+    answer: 0
+    feedback:
+      '1': This adds a brand-new topic at the end. Does it wrap up the garden?
+      '2': This is another detail. Does it close the whole paragraph?
+      '3': This starts something new. A concluding sentence brings closure.
+    hints:
+      - Which sentence wraps up the main idea, without adding anything new?
+    solution:
+      - '*In the garden, every day is a lesson* repeats the main idea in a new way, and adds nothing new. That brings the paragraph to a close.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K1.8, S1.8, S1.9]
+    type: mc
+    prompt: |-
+      Rereading her paragraph, Mira feels something is off.
+
+      > (1) Hockey practice starts at 6 a.m. (2) We lace up our skates in the cold dressing room. (3) My cousin’s cat is named Pickles. (4) Then we skate laps until our legs burn.
+
+      What should she do when she revises?
+    choices:
+      - Remove sentence 3, because it isn’t about hockey practice.
+      - Remove sentence 1, because it is too short.
+      - Add more sentences about the cat.
+      - Move sentence 4 to the start.
+    answer: 0
+    feedback:
+      '1': Sentence 1 is short, but it tells when practice starts. Is it off topic?
+      '2': Is the paragraph about the cat? What is it about?
+      '3': '*Then* shows that sentence 4 comes after the others. Would it make sense first?'
+    hints:
+      - Which sentence isn’t about hockey practice?
+    solution:
+      - Every sentence should be about hockey practice. The cat is off topic, so Mira should **remove** sentence 3.
+      - Revising means adding **or removing** sentences to make writing clearer.
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [K1.3, S1.5]
+    type: mc
+    prompt: |-
+      Tom’s draft:
+
+      > I went to the lake. I saw a loon. I heard it call. I took a picture.
+
+      Every sentence starts with *I*. Which revision makes it most interesting?
+    choices:
+      - At the lake, I saw a loon. Its call echoed over the water, so I grabbed my camera and took a picture.
+      - I went to the lake and I saw a loon and I heard it call and I took a picture.
+      - I, Tom, went to the lake. I saw a loon. I heard it call. I took a picture.
+      - Lake. Loon. Call. Picture.
+    answer: 0
+    feedback:
+      '1': This is now one long sentence, and it still starts with *I* over and over. Is it more interesting?
+      '2': The name is new, but every sentence still starts the same way.
+      '3': This is shorter, but are these even sentences?
+    hints:
+      - Look for different sentence beginnings **and** different lengths.
+    solution:
+      - The revision starts with *At the lake* and *Its call*, and mixes a short sentence with a long one.
+      - Varied beginnings and lengths create interest.
+
+  - id: b3
+    level: 2
+    thinking: model
+    covers: [S1.1, S1.2, S1.4]
+    type: mc
+    prompt: Ana wants the **Grade 1 class** to remember to wash their hands before lunch. Which form fits her audience and purpose best?
+    choices:
+      - A bright poster with a big picture and four simple words
+      - A long letter with three paragraphs about germs
+      - A journal entry about her own lunch yesterday
+      - A poem with no pictures, printed in small letters
+    answer: 0
+    feedback:
+      '1': Can most six-year-olds read three paragraphs?
+      '2': A journal entry is for the writer’s own thoughts. Does it remind anyone?
+      '3': Would small print with no pictures catch a Grade 1 student’s eye?
+    hints:
+      - Who will read it? How much can they read?
+    solution:
+      - Grade 1 readers need a few simple words and a big picture. A **poster** fits that audience and purpose.
+
+  - id: b4
+    level: 2
+    thinking: connect
+    covers: [S1.11, K1.9]
+    type: mc
+    prompt: |-
+      Lea’s report on birds says:
+
+      > We counted birds at our feeder each day: 3 on Monday, 7 on Tuesday, 5 on Wednesday, 12 on Thursday and 9 on Friday.
+
+      When she publishes it, which text feature would make this easiest to understand?
+    choices:
+      - A bar graph showing the number of birds each day
+      - A photo of one bird at the feeder
+      - A bigger, bolder title at the top
+      - A longer sentence with even more numbers
+    answer: 0
+    feedback:
+      '1': A photo is nice, but does it show how the numbers change?
+      '2': A title helps readers find the topic. Does it help with the numbers?
+      '3': More numbers in a sentence are harder to compare. What would show them at a glance?
+    hints:
+      - Which feature lets you compare five numbers at a glance?
+    solution:
+      - A **bar graph** shows all five days side by side. Readers can see that Thursday was the busiest day.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.7, S1.8, S1.9, K1.6, K1.4]
+    type: investigation
+    prompt: |-
+      Help Kai revise his paragraph.
+
+      > (1) Our dog Maple is a great swimmer. (2) Every summer, she jumps off the dock at the lake. (3) She paddles after sticks for hours. (4) My dad likes fishing. (5) It was good.
+    parts:
+      - type: mc
+        prompt: Which sentence should Kai **remove**?
+        choices:
+          - Sentence 4, because it isn’t about Maple swimming
+          - Sentence 1, because it is the first sentence
+          - Sentence 2, because it is a detail
+          - Sentence 3, because it says “for hours”
+        answer: 0
+        feedback:
+          '1': Sentence 1 tells us what the paragraph is about. Is that off topic?
+          '2': Details are what hold up the topic. Is this one about Maple swimming?
+          '3': '“For hours” shows how much she loves it. Is it off topic?'
+        hints:
+          - Which sentence is not about Maple’s swimming?
+        solution:
+          - Sentence 4 is about Dad, not Maple. Remove it to keep the paragraph focused.
+      - type: mc
+        prompt: Which **detail** could Kai add to support the topic sentence?
+        choices:
+          - She can even swim out to the island and back.
+          - She is a golden retriever with brown eyes.
+          - We drive to the lake in a blue van.
+          - My sister is scared of the lake.
+        answer: 0
+        feedback:
+          '1': This describes Maple, but does it show she’s a great swimmer?
+          '2': This is about the drive. Is it about swimming?
+          '3': This is about the sister. Who is the paragraph about?
+        hints:
+          - The topic is that Maple is a great **swimmer**. Which detail proves it?
+        solution:
+          - Swimming to the island and back shows how strong a swimmer Maple is.
+      - type: open
+        prompt: Sentence 5, “It was good,” is the concluding sentence. Rewrite it so that it wraps up the main idea **without** adding anything new.
+        modelAnswer: No one at the lake loves the water more than Maple does.
+        rubric:
+          - My sentence wraps up the idea that Maple is a great swimmer.
+          - It doesn’t add a new topic.
+          - It says more than “It was good.”
+    wrapUp: Revising is more than fixing spelling. Remove what doesn’t belong, add details that help, and make the ending wrap it all up.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.7, K1.3, S1.9]
+    type: mc
+    prompt: |-
+      **Version A:** The wind blew. The snow fell. The bus was late. We waited. We were cold.
+
+      **Version B:** As the wind howled, snow piled up at the stop. The bus was late. We waited, stamping our frozen feet.
+
+      Read both aloud. Why does Version B sound smoother?
+    choices:
+      - Its sentences change in length and start in different ways.
+      - It has more sentences, so it takes longer to read.
+      - Every sentence in it is exactly the same length.
+      - It uses only short sentences, so it is easy to say.
+    answer: 0
+    feedback:
+      '1': Count the sentences. Does B have more?
+      '2': Count the words. Are B’s sentences all the same length?
+      '3': Version A is all short sentences. Which version sounds bumpy?
+    hints:
+      - Count the words in each sentence of each version.
+    solution:
+      - Version A has five short sentences, so it sounds bumpy, like a robot.
+      - Version B mixes a long sentence with short ones, and starts each sentence differently. It is smooth and natural to read aloud. That is **fluent writing**.

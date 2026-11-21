@@ -27,6 +27,7 @@ const PROP_CHOICES: Record<string, Record<string, string[]>> = {
   'democracy-globe': { focus: ['athens', 'rome', 'runnymede', 'westminster', 'onondaga', 'ottawa', 'edmonton'] },
   'gov-branches': { set: ['rome', 'canada'] },
   'clause-builder': { mode: ['join', 'agree'] },
+  'g4-magnet-lab': { mode: ['clips', 'nail'] },
 };
 
 /** A comma in an unquoted `{ text: a, b }` splits the text and leaves `b` as a key with no value. */

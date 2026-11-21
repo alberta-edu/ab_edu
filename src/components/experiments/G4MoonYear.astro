@@ -1,0 +1,78 @@
+---
+// Animated experiment: count Moon cycles through one year of the international standard calendar.
+// Each cycle of the Moon's shapes takes about 29½ days. Twelve cycles end on about day 354, about
+// 11 days before the 365-day year is over (SCI4-OI5-GQ1-LO1, K3.2, K3.5, S3.2).
+---
+<g4-moon-year>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-moon-year>
+
+<style is:global>
+  g4-moon-year { display: block; }
+  g4-moon-year svg { background: #0f1830; }
+  .g4s-my-bar { fill: #24304f; stroke: #5b6890; stroke-width: 1.5; }
+  .g4s-my-fill { fill: #3f6fb3; }
+  .g4s-my-tick { stroke: #ffe27a; stroke-width: 2.5; }
+  .g4s-my-gap { fill: #d23b2e; opacity: 0.85; }
+  .g4s-my-t { fill: #fff; font-size: 16px; font-weight: 700; }
+  .g4s-my-big { fill: #fff; font-size: 22px; font-weight: 700; }
+  .g4s-my-small { fill: #c9d3f0; font-size: 13px; font-weight: 700; }
+  .g4s-my-warn { fill: #ffb4a8; font-size: 16px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { moonFace } from '../visuals/moon.ts';
+  import { MOON_CYCLE, YEAR_DAYS, cycleEnds } from './g4-science.ts';
+
+  const BAR = { x: 40, y: 190, w: 580, h: 28 };
+  const MONTHS = ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'];
+  const dayX = (d: number) => BAR.x + (BAR.w * d) / YEAR_DAYS;
+
+  class G4MoonYear extends HTMLElement {
+    private day = 0;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.day = 0;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await tween(6000, (t) => ((this.day = YEAR_DAYS * t), this.draw()));
+      await wait(250);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'Each cycle of the Moon’s shapes took about 29 and a half days. Twelve cycles ended on about day 354, so 11 days of the year were left over.';
+    }
+
+    private draw() {
+      const d = this.day;
+      const ends = cycleEnds(d);
+      const out: string[] = [];
+      // Tonight’s Moon, starting from a new Moon on January 1.
+      out.push(moonFace(d % MOON_CYCLE, 110, 92, 52));
+      out.push(`<text class="g4s-my-big" x="200" y="70">Day ${Math.max(1, Math.ceil(d))} of ${YEAR_DAYS}</text>`);
+      out.push(`<text class="g4s-my-t" x="200" y="102">Moon cycles finished: ${ends.length}</text>`);
+      // The year as a bar, with month letters and a mark at the end of every Moon cycle.
+      out.push(`<rect class="g4s-my-bar" x="${BAR.x}" y="${BAR.y}" width="${BAR.w}" height="${BAR.h}" rx="4"/><rect class="g4s-my-fill" x="${BAR.x}" y="${BAR.y}" width="${(dayX(d) - BAR.x).toFixed(1)}" height="${BAR.h}" rx="4"/>`);
+      MONTHS.forEach((m, k) => out.push(`<text class="g4s-my-small" x="${(dayX(k * 30.4 + 15)).toFixed(1)}" y="${BAR.y + BAR.h + 18}" text-anchor="middle">${m}</text>`));
+      ends.forEach((e, k) => {
+        const x = dayX(e);
+        out.push(`<line class="g4s-my-tick" x1="${x.toFixed(1)}" y1="${BAR.y - 6}" x2="${x.toFixed(1)}" y2="${BAR.y + BAR.h + 2}"/><text class="g4s-my-small" x="${x.toFixed(1)}" y="${BAR.y - 10}" text-anchor="middle">${k + 1}</text>`);
+      });
+      if (this.done) {
+        const last = dayX(12 * MOON_CYCLE);
+        out.push(`<rect class="g4s-my-gap" x="${last.toFixed(1)}" y="${BAR.y}" width="${(dayX(YEAR_DAYS) - last).toFixed(1)}" height="${BAR.h}"/>`);
+        out.push(`<text class="g4s-my-t" x="${BAR.x}" y="${BAR.y + 70}">12 Moon cycles: about 354 days</text>`);
+        out.push(`<text class="g4s-my-warn" x="${BAR.x + BAR.w}" y="${BAR.y + 70}" text-anchor="end">11 days left over</text>`);
+      }
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-moon-year', G4MoonYear);
+</script>

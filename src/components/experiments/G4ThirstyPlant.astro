@@ -1,0 +1,101 @@
+---
+// Animated experiment: two bean plants in the same sunny window. One is watered every day, one gets
+// no water. Over ten days the dry plant wilts (SCI4-OI3-GQ1-LO1, K3.1, S3.1).
+---
+<g4-thirsty-plant>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-thirsty-plant>
+
+<style is:global>
+  g4-thirsty-plant { display: block; }
+  g4-thirsty-plant svg { background: var(--surface-2); }
+  .g4s-tp-pot { fill: #c0563a; stroke: #7d2f1c; stroke-width: 2; }
+  .g4s-tp-soil { fill: #5b3a1f; }
+  .g4s-tp-stem { fill: none; stroke-width: 5; stroke-linecap: round; }
+  .g4s-tp-can { fill: #4a7fb5; stroke: var(--ink-2); stroke-width: 2; }
+  .g4s-tp-drop { fill: #3f86c9; }
+  .g4s-tp-day { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4s-tp-lbl { fill: var(--ink); font-size: 16px; font-weight: 700; }
+  .g4s-tp-res { fill: var(--ink-2); font-size: 15px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const POT_TOP = 220;
+  const PANELS = [
+    { cx: 180, water: true, label: 'Watered every day' },
+    { cx: 480, water: false, label: 'No water' },
+  ];
+
+  /** Green to yellow-brown as the plant dries out (d from 0 to 1). */
+  const leafColour = (d: number) => `rgb(${Math.round(63 + (176 - 63) * d)},${Math.round(154 + (140 - 154) * d)},${Math.round(64 + (60 - 64) * d)})`;
+
+  class G4ThirstyPlant extends HTMLElement {
+    private day = 1;
+    private t = 0;
+    private pour = 0;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.day = 1;
+      this.t = 0;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      for (let d = 1; d <= 10; d++) {
+        this.day = d;
+        await tween(380, (k) => {
+          this.pour = Math.sin(k * Math.PI);
+          this.t = (d - 1 + k) / 10;
+          this.draw();
+        });
+      }
+      this.pour = 0;
+      await wait(200);
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'After ten days, the watered bean plant stood tall with green leaves. The plant with no water drooped over, and its leaves turned yellow and brown.';
+    }
+
+    private plant(cx: number, grow: number, dry: number) {
+      // dry 0..1 bends the stem over and droops the leaves.
+      const h = 110 + 30 * grow - 20 * dry;
+      const tipX = cx + 70 * dry;
+      const tipY = POT_TOP - h + 60 * dry * dry;
+      const col = leafColour(dry);
+      const stem = `<path class="g4s-tp-stem" style="stroke:${col}" d="M${cx},${POT_TOP} Q${cx},${POT_TOP - h * 0.7} ${tipX.toFixed(1)},${tipY.toFixed(1)}"/>`;
+      const leaf = (x: number, y: number, ang: number) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="22" ry="10" transform="rotate(${ang.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})" style="fill:${col};stroke:#3a5a24;stroke-width:1.5"/>`;
+      const midY = POT_TOP - h * 0.5;
+      return (
+        stem +
+        leaf(cx - 22, midY, -25 + 70 * dry) +
+        leaf(cx + 22, midY - 10, 25 + 60 * dry) +
+        leaf(tipX - 18, tipY + 6, -30 + 80 * dry) +
+        leaf(tipX + 18, tipY + 2, 30 + 50 * dry)
+      );
+    }
+
+    private draw() {
+      const out: string[] = [`<text class="g4s-tp-day" x="330" y="30" text-anchor="middle">Day ${this.day}</text>`];
+      PANELS.forEach((p) => {
+        const dry = p.water ? 0 : Math.max(0, (this.t - 0.25) / 0.75);
+        out.push(this.plant(p.cx, p.water ? this.t : 0, dry));
+        out.push(`<rect class="g4s-tp-soil" x="${p.cx - 44}" y="${POT_TOP - 4}" width="88" height="10"/><path class="g4s-tp-pot" d="M${p.cx - 50},${POT_TOP} L${p.cx + 50},${POT_TOP} L${p.cx + 38},${POT_TOP + 50} L${p.cx - 38},${POT_TOP + 50} Z"/>`);
+        if (p.water && this.pour > 0.05) {
+          out.push(`<g transform="rotate(${(-30 * this.pour).toFixed(1)} ${p.cx + 90} ${POT_TOP - 70})"><rect class="g4s-tp-can" x="${p.cx + 74}" y="${POT_TOP - 90}" width="44" height="34" rx="5"/><path class="g4s-tp-can" d="M${p.cx + 74},${POT_TOP - 80} L${p.cx + 48},${POT_TOP - 96} L${p.cx + 50},${POT_TOP - 100} L${p.cx + 76},${POT_TOP - 88} Z"/></g>`);
+          for (let k = 0; k < 3; k++) out.push(`<circle class="g4s-tp-drop" cx="${p.cx + 40 - k * 6}" cy="${POT_TOP - 70 + k * 18 * this.pour}" r="3"/>`);
+        }
+        out.push(`<text class="g4s-tp-lbl" x="${p.cx}" y="${POT_TOP + 72}" text-anchor="middle">${p.label}</text>`);
+        if (this.done) out.push(`<text class="g4s-tp-res" x="${p.cx}" y="58" text-anchor="middle">${p.water ? 'Tall and green' : 'Drooping and yellow'}</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-thirsty-plant', G4ThirstyPlant);
+</script>

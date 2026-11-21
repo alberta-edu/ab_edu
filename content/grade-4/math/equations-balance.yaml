@@ -1,0 +1,291 @@
+id: equations-balance
+grade: 4
+subject: math
+organizingIdea: MAT-OI2
+outcomes: [MAT4-OI2-GQ1-LO1]
+order: 9
+title: Keeping Equations Balanced
+shortTitle: Balanced equations
+summary: >-
+  Use a pan balance to see that doing the same thing to both sides keeps an equation true, then find
+  unknown values and write equations for stories.
+
+bigIdea: |-
+  - An equation is like a **level balance**: both sides are equal.
+  - Add, subtract, multiply or divide **both sides** by the same number, and they stay equal.
+  - To **solve** an equation, find the unknown value that makes both sides equal.
+
+lesson:
+  - title: Equal means balanced
+    blocks:
+      - type: visual
+        covers: [S2.2, S2.3, K2.1]
+        component: equal-balance
+        props: { mode: keep, left: [5, 3] }
+        caption: |-
+          1. Try each move. Does the balance stay level?
+          2. Then try **Add 2 to the left only**. What happens?
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI2-GQ1-LO1#K2.1, MAT3-OI2-GQ1-LO1#K2.2]
+        title: Remember from Grade 3
+        body: A balance can model an equation. A symbol, such as □, can stand for an **unknown** number.
+
+  - title: Find the mystery number
+    blocks:
+      - type: visual
+        covers: [S2.4, U2.1, K2.1]
+        component: equal-balance
+        props:
+          mode: solve
+          examples: [{ op: '+', k: 5, total: 12 }, { op: '×', k: 3, total: 12 }, { op: '+', k: 9, total: 20 }]
+        caption: Press **Next step**. Each step does the same thing to both sides, until the box is alone.
+
+  - title: Undo the operation
+    blocks:
+      - type: table
+        covers: [K2.1, S2.4]
+        caption: Do the opposite operation to both sides.
+        headers: [Equation, Do this to both sides, Unknown]
+        rows:
+          - ['\(\Box + 6 = 15\)', 'subtract 6', '\(\Box = 9\)']
+          - ['\(\Box - 4 = 9\)', 'add 4', '\(\Box = 13\)']
+          - ['\(5 \times \Box = 35\)', 'divide by 5', '\(\Box = 7\)']
+          - ['\(\Box \div 3 = 6\)', 'multiply by 3', '\(\Box = 18\)']
+      - type: callout
+        variant: tip
+        covers: [U2.1]
+        title: Always check
+        body: 'Put your number back in the box. For \(9 + 6 = 15\), both sides are equal, so 9 is right.'
+
+  - title: Write the equation
+    blocks:
+      - type: example
+        covers: [S2.1, S2.5]
+        title: Hockey cards
+        problem: Jess has some hockey cards. Her uncle gives her **8** more. Now she has **23**. How many did she have at first?
+        steps:
+          - 'Use □ for the cards at first. Write the story as an equation: \(\Box + 8 = 23\).'
+          - 'Subtract 8 from both sides: \(\Box = 23 - 8 = 15\).'
+          - 'Check: \(15 + 8 = 23\) ✓'
+        answer: Jess had **15** cards at first.
+
+keyTerms:
+  - term: Equation
+    covers: [U2.1]
+    definition: 'A statement that two sides are equal, like \(\Box + 5 = 12\).'
+  - term: Unknown
+    covers: [U2.1, S2.4]
+    definition: A number we don’t know yet, often shown with a symbol like □.
+  - term: Balance
+    covers: [S2.2, K2.1]
+    definition: A model of an equation. It stays level when both sides are equal.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S2.4]
+    type: number
+    prompt: 'Find the unknown. \(\Box + 17 = 42\)'
+    answer: 25
+    verify: 42 - 17
+    hints:
+      - What can you do to both sides to get the box alone?
+    solution:
+      - 'Subtract 17 from both sides: \(\Box = 42 - 17 = 25\).'
+      - 'Check: \(25 + 17 = 42\) ✓'
+
+  - id: w2
+    level: 1
+    thinking: whatif
+    covers: [S2.2, K2.1]
+    type: mc
+    prompt: A balance has **3 + 4** cubes on the left and **7** cubes on the right. Mo adds **2** cubes to the **left side only**. What happens?
+    choices: ['The left side goes down.', 'The balance stays level.', 'The right side goes down.']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'It would stay level only if both sides changed the same way. Only one side got more cubes.'
+      '2': 'The right side still has 7 cubes. Which side is heavier now?'
+    hints:
+      - How many cubes are on each side after Mo adds 2?
+    solution:
+      - 'Now the left has 9 cubes and the right has 7.'
+      - 'The left is heavier, so **the left side goes down**. To keep it level, Mo must add 2 to both sides.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S2.4, U2.1]
+    type: mc
+    prompt: 'Which number makes \(4 \times \Box = 28\) true?'
+    choices: ['7', '24', '32', '112']
+    answer: 0
+    feedback:
+      '1': '24 is \(28 - 4\). But the equation multiplies. What is \(4 \times 24\)?'
+      '2': '32 is \(28 + 4\). Check: what is \(4 \times 32\)?'
+      '3': '112 is \(28 \times 4\). Check: what is \(4 \times 112\)?'
+    hints:
+      - The box is multiplied by 4. What is the opposite of multiplying?
+    solution:
+      - 'Divide both sides by 4: \(\Box = 28 \div 4 = 7\).'
+      - 'Check: \(4 \times 7 = 28\) ✓'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S2.1, S2.5]
+    type: mc
+    prompt: Lina has some stickers. Her friend gives her **15** more. Now she has **41**. Which equation fits the story?
+    choices: ['\(\Box + 15 = 41\)', '\(\Box - 15 = 41\)', '\(41 + 15 = \Box\)', '\(15 - \Box = 41\)']
+    answer: 0
+    feedback:
+      '1': 'Her friend **gave** her stickers. Did her number go up or down?'
+      '2': 'In this equation, □ would be 56. But Lina ends with 41, not 56.'
+      '3': '15 take away something can’t make 41. Which number in the story is the unknown?'
+    hints:
+      - What don’t you know? Put □ there.
+      - She started with □, then got 15 more, and ended with 41.
+    solution:
+      - 'Lina started with an unknown number, □. Getting 15 more is \(\Box + 15\). That equals 41.'
+      - 'So \(\Box + 15 = 41\), and \(\Box = 41 - 15 = 26\) stickers.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S2.5, S2.1, S2.4]
+    type: number
+    prompt: Juice boxes come in packs of **6**. Ms. Diaz buys enough packs to get **48** juice boxes for the class picnic. How many packs does she buy?
+    unit: packs
+    answer: 8
+    verify: 48 / 6
+    hints:
+      - 'Write an equation: packs times 6 makes 48.'
+      - 'Solve \(\Box \times 6 = 48\) by dividing both sides by 6.'
+    solution:
+      - 'The equation is \(\Box \times 6 = 48\).'
+      - 'Divide both sides by 6: \(\Box = 8\). She buys **8** packs.'
+      - 'Check: \(8 \times 6 = 48\) ✓'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K2.1, S2.4]
+    type: number
+    prompt: 'To solve \(\Box - 7 = 12\), Zoe subtracts 7 from both sides and gets \(\Box = 5\). Check her answer. What is the real unknown?'
+    answer: 19
+    verify: 12 + 7
+    hints:
+      - Put 5 back in the box. Is \(5 - 7\) equal to 12?
+      - What undoes "take away 7"?
+    solution:
+      - 'Check Zoe’s answer: \(5 - 7\) is not 12. So 5 is wrong.'
+      - '"Take away 7" is undone by **adding** 7. Add 7 to both sides: \(\Box = 12 + 7 = 19\).'
+      - 'Check: \(19 - 7 = 12\) ✓'
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [S2.3, K2.1]
+    type: mc
+    prompt: 'Start with \(12 + 6 = 18\). Which new equation is **still true**?'
+    choices:
+      - '\(12 + 6 - 4 = 18 - 4\)'
+      - '\(12 + 6 - 4 = 18\)'
+      - '\(12 + 6 \times 2 = 18 \times 2\)'
+      - '\(12 + 6 + 4 = 18 - 4\)'
+    answer: 0
+    feedback:
+      '1': 'Only the left side changed. Work out both sides: 14 and 18.'
+      '2': 'Use the order of operations: \(12 + 6 \times 2 = 12 + 12 = 24\), but \(18 \times 2 = 36\). Only the 6 got doubled, not the whole side.'
+      '3': 'One side got 4 more and the other got 4 less. Work out both sides: 22 and 14.'
+    hints:
+      - Work out the value of each side.
+    solution:
+      - '\(12 + 6 - 4 = 14\) and \(18 - 4 = 14\). Both sides took away 4, so they stay equal.'
+      - 'Watch out for \(12 + 6 \times 2\). Multiplying comes first, so only the 6 is doubled.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.4, S2.5, U2.1]
+    type: investigation
+    prompt: |-
+      At the science centre, three balances are level. All the boxes weigh the same, and all the balls weigh the same.
+
+      - **Balance A:** 1 box and 9 cubes balance 25 cubes.
+      - **Balance B:** 1 ball balances 2 boxes.
+      - **Balance C:** 1 ball and some cubes balance 40 cubes.
+    parts:
+      - type: number
+        prompt: How many cubes does one **box** weigh?
+        unit: cubes
+        answer: 16
+        verify: 25 - 9
+        hints:
+          - 'Balance A says \(\Box + 9 = 25\).'
+        solution:
+          - 'Take 9 cubes off both sides of Balance A: \(\Box = 25 - 9 = 16\) cubes.'
+      - type: number
+        prompt: How many cubes does one **ball** weigh?
+        unit: cubes
+        answer: 32
+        verify: 2 * 16
+        hints:
+          - The ball balances 2 boxes. You know what one box weighs.
+        solution:
+          - 'One ball = 2 boxes = \(2 \times 16 = 32\) cubes.'
+      - type: number
+        prompt: How many cubes are with the ball on Balance C?
+        unit: cubes
+        answer: 8
+        verify: 40 - 32
+        hints:
+          - 'Swap the ball for 32 cubes. Then \(32 + \Box = 40\).'
+        solution:
+          - 'The ball weighs 32 cubes, so \(32 + \Box = 40\).'
+          - 'Subtract 32 from both sides: \(\Box = 8\) cubes.'
+    wrapUp: Each balance is an equation with one operation. Solving one gave a number you could use in the next, because equal things can be swapped.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.4, U2.1, K2.1]
+    type: build
+    prompt: |-
+      Make two equations with the **same right side** and the **same answer** for □. One multiplies and one adds.
+
+      - \(\Box \times \text{?} = \text{right side}\)
+      - \(\Box + \text{?} = \text{right side}\)
+
+      Use whole numbers. Multiply by more than 1, and keep the right side at 100 or less.
+    fields:
+      - { name: a, label: 'Multiply □ by' }
+      - { name: c, label: 'Add to □' }
+      - { name: n, label: 'Right side of both' }
+    rules:
+      - { test: 'a % 1 == 0 && c % 1 == 0 && n % 1 == 0 && a > 1 && c > 0 && n > 0 && n <= 100', fail: 'Use whole numbers. Multiply by more than 1, add more than 0, and keep the right side at 100 or less.' }
+      - { test: 'n % a == 0', fail: 'Solve the multiplying equation. Does the right side divide with no remainder?' }
+      - { test: 'n / a + c == n', fail: 'Solve each equation. Do both give the same number for □?' }
+    examples:
+      - { a: 3, c: 8, n: 12 }
+      - { a: 2, c: 5, n: 10 }
+      - { a: 4, c: 15, n: 20 }
+    counterexamples:
+      - { a: 3, c: 3, n: 12 }
+      - { a: 5, c: 10, n: 12 }
+      - { a: 1, c: 0, n: 7 }
+    hints:
+      - Pick the right side and what to multiply by first. Solve that equation. What is □?
+      - Now make the adding equation work with that same □. What must you add?
+      - 'Try a right side of 12 and multiply by 3. Then □ = 4, and \(4 + \text{?} = 12\).'
+    solution:
+      - 'Pick the multiplying equation first and solve it. Then add whatever takes that □ up to the same right side.'
+      - '\(4 \times 3 = 12\) and \(4 + 8 = 12\). \(5 \times 2 = 10\) and \(5 + 5 = 10\). \(5 \times 4 = 20\) and \(5 + 15 = 20\).'
+      - 'In each pair, the box is the same number, so both equations are true at once.'

@@ -1,0 +1,122 @@
+---
+// The Two Row Wampum (Gaswéñdah). Two rows of purple beads on white: a Haudenosaunee canoe and a
+// European ship travel down the river side by side, and neither steers the other. Press "What if"
+// to see what breaks the agreement. Meaning as described by the Onondaga Nation (Haudenosaunee).
+// Outcome XiuhdUoB8EacTXvZQi9Djw, K1.2 and S1.2.
+const COLS = 20;
+const ROWS = 7;
+const B = 20;
+const purple = new Set([2, 4]);
+---
+<two-row>
+  <div class="g4ss-tr-frame">
+    <svg class="sci-svg g4ss-tr-svg" viewBox={`0 0 ${COLS * B} ${ROWS * B + 40}`} role="img" aria-label="A wampum belt of white beads with two rows of purple beads. A canoe travels along one purple row and a ship along the other, side by side.">
+      <g transform="translate(0 20)">
+        {
+          Array.from({ length: ROWS }, (_, r) =>
+            Array.from({ length: COLS }, (_, c) => (
+              <rect class={purple.has(r) ? 'g4ss-tr-p' : 'g4ss-tr-w'} x={c * B + 1} y={r * B + 1} width={B - 2} height={B - 2} rx="4"></rect>
+            )),
+          )
+        }
+        <text class="g4ss-tr-boat" data-tr="canoe" x="30" y={2 * B + 10} text-anchor="middle" dominant-baseline="middle">🛶</text>
+        <text class="g4ss-tr-boat" data-tr="ship" x="30" y={4 * B + 10} text-anchor="middle" dominant-baseline="middle">⛵</text>
+        <text class="g4ss-tr-bump" data-tr="bump" x="0" y={3 * B + 10} text-anchor="middle" dominant-baseline="middle">💥</text>
+      </g>
+    </svg>
+  </div>
+  <div class="g4ss-bar g4ss-tr-bar">
+    <button type="button" class="btn btn--small" data-tr="side">▶ Side by side</button>
+    <button type="button" class="btn btn--small" data-tr="whatif">What if the ship steers into the canoe’s row?</button>
+  </div>
+  <p class="sci-say g4ss-tr-say" data-tr="say" aria-live="polite">Two vessels travel down the same river, side by side.</p>
+  <ul class="g4ss-tr-key">
+    <li><span class="g4ss-tr-chip g4ss-tr-p" aria-hidden="true"></span><strong>Two purple rows:</strong> a Haudenosaunee canoe and a European ship. Each carries its own people, laws and ways of life.</li>
+    <li><span class="g4ss-tr-chip g4ss-tr-w" aria-hidden="true"></span><strong>White rows:</strong> the river they share. The agreement was to last in friendship and peace, forever.</li>
+  </ul>
+</two-row>
+
+<style is:global>
+  two-row { display: block; }
+  .g4ss-tr-frame { max-width: 30rem; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; background: color-mix(in srgb, var(--math) 12%, var(--surface)); }
+  .g4ss-tr-svg { display: block; border-radius: 0; }
+  .g4ss-tr-w { fill: #f4f1ea; stroke: #d8d2c4; stroke-width: 1; background: #f4f1ea; }
+  .g4ss-tr-p { fill: #4b2a6b; stroke: #3a1f54; stroke-width: 1; background: #4b2a6b; }
+  .g4ss-tr-boat { font-size: 28px; }
+  .g4ss-tr-bump { font-size: 34px; opacity: 0; transition: opacity 0.2s; }
+  .g4ss-tr-bump.is-on { opacity: 1; }
+  .g4ss-tr-bar { margin-top: 0.6rem; }
+  .g4ss-tr-key { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 0.4rem; }
+  .g4ss-tr-chip { display: inline-block; width: 1rem; height: 1rem; border-radius: 4px; margin-right: 0.4rem; vertical-align: -0.15rem; }
+  @media (max-width: 40rem) {
+    svg .g4ss-tr-boat { font-size: 32px; }
+  }
+</style>
+
+<script>
+  import { reducedMotion, tween } from '../experiments/anim.ts';
+
+  class TwoRow extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      this.querySelector('[data-tr="side"]')!.addEventListener('click', () => this.side());
+      this.querySelector('[data-tr="whatif"]')!.addEventListener('click', () => this.whatif());
+      new IntersectionObserver((entries, io) => {
+        if (entries[0].isIntersecting) {
+          io.disconnect();
+          if (!this.run) this.side();
+        }
+      }).observe(this);
+    }
+
+    private el(name: string) {
+      return this.querySelector<SVGTextElement>(`[data-tr="${name}"]`)!;
+    }
+
+    private place(name: string, x: number, y: number) {
+      const t = this.el(name);
+      t.setAttribute('x', x.toFixed(1));
+      t.setAttribute('y', y.toFixed(1));
+    }
+
+    private say(text: string) {
+      this.el('say').textContent = text;
+    }
+
+    private async side() {
+      const token = ++this.run;
+      this.el('bump').classList.remove('is-on');
+      this.say('Two vessels travel down the same river, side by side.');
+      if (reducedMotion()) {
+        this.place('canoe', 200, 50);
+        this.place('ship', 200, 90);
+        return;
+      }
+      await tween(5000, (f) => {
+        if (token !== this.run) return;
+        const x = 30 + f * 340;
+        this.place('canoe', x, 50);
+        this.place('ship', x, 90);
+      });
+      if (token === this.run) this.say('Neither one steers the other. Each keeps its own ways, in peace and friendship.');
+    }
+
+    private async whatif() {
+      const token = ++this.run;
+      this.el('bump').classList.remove('is-on');
+      this.say('The ship turns toward the canoe’s row…');
+      await tween(3000, (f) => {
+        if (token !== this.run) return;
+        const x = 30 + f * 170;
+        this.place('canoe', x, 50);
+        this.place('ship', x, 90 - 40 * Math.max(0, (f - 0.4) / 0.6));
+      });
+      if (token !== this.run) return;
+      this.place('bump', 205, 70);
+      this.el('bump').classList.add('is-on');
+      this.say('They crash. Steering the other’s vessel breaks the agreement.');
+    }
+  }
+  customElements.define('two-row', TwoRow);
+</script>

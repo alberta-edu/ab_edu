@@ -1,0 +1,289 @@
+id: angle-pairs-prisms
+grade: 4
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT4-OI3-GQ1-LO1]
+order: 12
+title: Angle Pairs, Prisms and Shapes Around Us
+shortTitle: Angle pairs & prisms
+summary: >-
+  Find complementary and supplementary angles, compare angles in polygons, find parallel and
+  perpendicular faces of prisms, and spot near-polygons.
+
+bigIdea: |-
+  - Two angles that make **90°** are **complementary**. Two angles that make **180°** are **supplementary**.
+  - Faces of a prism can be **parallel** or **perpendicular**, and you can check by measuring.
+  - Many things **look like** polygons. If a side is curved or a corner is rounded, it is only a **close approximation**.
+
+lesson:
+  - title: Complementary angles
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.1]
+        component: angle-turner
+        props: { mode: pair, total: 90, angle: 30 }
+        caption: Slide the middle arm. The two angles change, but together they always make **90°**.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI3-GQ1-LO1#K1.3]
+        title: Remember from Grade 3
+        body: '**Perpendicular** lines meet at a right angle, 90°.'
+
+  - title: Supplementary angles
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.1]
+        component: angle-turner
+        props: { mode: pair, total: 180, angle: 120 }
+        caption: Now the outside arms make a straight line. The two angles always add to **180°**.
+      - type: table
+        covers: [K1.2, K1.3]
+        headers: [Angle, Complementary angle, Supplementary angle]
+        rows:
+          - ['30°', '60°, because 30 + 60 = 90', '150°, because 30 + 150 = 180']
+          - ['45°', '45°', '135°']
+          - ['80°', '10°', '100°']
+
+  - title: Angles inside polygons
+    blocks:
+      - type: figure
+        covers: [S1.2, U1.1]
+        figure: |-
+          <svg viewBox="0 0 320 170" class="fig-svg" role="img" aria-label="A parallelogram with angles of 60°, 120°, 60° and 120° measured at its corners."><polygon class="cg-poly" points="90,30 290,30 230,140 30,140"/><text class="fig-label" x="64" y="132">60°</text><text class="fig-label" x="212" y="132">120°</text><text class="fig-label" x="250" y="54">60°</text><text class="fig-label" x="96" y="54">120°</text></svg>
+        caption: Measured with a protractor, this parallelogram’s angles are 60°, 120°, 60° and 120°.
+      - type: compare
+        covers: [S1.2]
+        columns:
+          - title: Equal angles
+            body: Angles across from each other match. **60° and 60°**, **120° and 120°**.
+          - title: Supplementary angles
+            body: Angles next to each other add to 180°. **60° + 120° = 180°**.
+
+  - title: Faces of a prism
+    blocks:
+      - type: visual
+        covers: [S1.3]
+        component: prism-faces
+        props: { shape: box }
+        caption: |-
+          1. Drag to turn the box. Tap the top face.
+          2. Then switch to the triangular prism. Which faces are parallel now?
+
+  - title: Close, but not a polygon
+    blocks:
+      - type: compare
+        covers: [K2.1, U2.1, S2.1]
+        columns:
+          - title: 🍕 Pizza slice
+            body: Looks like a triangle, but the crust is **curved**. A polygon’s sides are all straight.
+          - title: 📱 Tablet screen
+            body: Looks like a rectangle, but its corners are **rounded**. A rectangle has 4 square corners.
+          - title: 🛑 Stop sign
+            body: Close to an **octagon**, with 8 straight sides. Look closely at its corners, which are a little rounded.
+
+keyTerms:
+  - term: Complementary angles
+    covers: [K1.2]
+    definition: 'Two angles that make 90° together.'
+  - term: Supplementary angles
+    covers: [K1.3]
+    definition: 'Two angles that make 180° together.'
+  - term: Close approximation
+    covers: [U2.1, S2.1]
+    definition: A shape that looks like a polygon, but doesn’t have all its properties.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.2]
+    type: number
+    prompt: An angle measures **35°**. What angle is **complementary** to it?
+    unit: °
+    answer: 55
+    verify: 90 - 35
+    hints:
+      - Complementary angles make what together?
+    solution:
+      - 'Complementary angles make 90°. \(90 - 35 = 55\), so the answer is **55°**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.3]
+    type: mc
+    prompt: Which pair of angles is **supplementary**?
+    choices: ['120° and 60°', '45° and 45°', '100° and 100°', '30° and 60°']
+    answer: 0
+    feedback:
+      '1': '45° + 45° = 90°. That pair is complementary.'
+      '2': '100° + 100° = 200°. That is more than a straight angle.'
+      '3': '30° + 60° = 90°. That pair is complementary.'
+    hints:
+      - Supplementary angles add up to what?
+    solution:
+      - 'Supplementary angles make 180°. Only \(120 + 60 = 180\).'
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [S1.3]
+    type: number
+    prompt: A cereal box is a rectangular prism. How many of its faces are **parallel** to its top face?
+    unit: faces
+    answer: 1
+    verify: '1'
+    hints:
+      - Parallel faces never meet. Which face never touches the top?
+    solution:
+      - 'The bottom face is the only one that never meets the top. So **1** face is parallel to the top.'
+      - 'The other 4 faces meet the top at right angles. They are perpendicular to it.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.3, S1.2]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 320 120" class="fig-svg" role="img" aria-label="A ramp rising to the right from a straight flat road. The angle between the ramp and the road on its right is 25 degrees. The angle between the ramp and the road on its left is marked with a question mark."><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="10" y1="100" x2="310" y2="100"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="60" y1="100" x2="260" y2="7"/><text class="fig-label" x="112" y="94">25°</text><text class="fig-label" x="34" y="90">?</text></svg>
+    prompt: A skateboard ramp rests on a flat, straight road. It makes a **25°** angle with the road. What is the angle on the other side, marked **?**
+    unit: °
+    answer: 155
+    verify: 180 - 25
+    hints:
+      - The road is a straight line. What do the two angles make together?
+    solution:
+      - 'The two angles sit on a straight line, so they are supplementary. They make 180°.'
+      - '\(180 - 25 = 155\), so the angle is **155°**.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S2.1, U2.1, K2.1]
+    type: multi
+    prompt: Select **all** the things that are only **close approximations** of a polygon.
+    choices: ['A slice of bread with a rounded top', 'A tablet screen with rounded corners', 'A pizza slice with a curved crust', 'A hexagon drawn with a ruler', 'A triangle cut from paper with straight cuts']
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'A ruler gives straight sides and sharp corners. This is a real hexagon.'
+      '4': 'Straight cuts give straight sides. This is a real triangle.'
+    hints:
+      - What must every side of a polygon be?
+      - Look for curved sides or rounded corners.
+    solution:
+      - 'The bread, the tablet and the pizza each have a curved side or rounded corners, so they only look like polygons.'
+      - 'The ruled hexagon and the cut triangle have straight sides and real corners. They are polygons.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [S1.3]
+    type: mc
+    prompt: Tom says, "A triangular prism is like a box. Its three rectangle faces come in **parallel pairs**." Use the prism in the lesson to check. Which faces of a triangular prism are parallel?
+    choices: ['Only the two triangle ends', 'Two of the rectangle faces', 'All three rectangle faces', 'No faces at all']
+    answer: 0
+    feedback:
+      '1': 'Turn the triangular prism and tap a rectangle face. Is any other rectangle face parallel to it?'
+      '2': 'Three faces can’t all face each other in pairs. Tap a rectangle face to check.'
+      '3': 'Tap one triangle end. Is the other end parallel to it?'
+    hints:
+      - Tap each rectangle face. Does any other face turn green?
+      - Then tap a triangle end.
+    solution:
+      - 'The rectangle faces lean toward each other, so none of them are parallel.'
+      - '**Only the two triangle ends** are parallel. A box has 3 pairs of parallel faces, but a triangular prism has just 1.'
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S1.2, K1.2]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 260 180" class="fig-svg fig-svg--square" role="img" aria-label="A square corner of a sheet of paper. A fold line from the corner splits the square corner into two angles. One angle is 28 degrees. The other is marked with a question mark."><path class="cg-poly" d="M30 160 L30 20 L240 20"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="30" y1="160" x2="30" y2="20"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:4" x1="30" y1="20" x2="240" y2="20"/><line class="fig-arrow" style="stroke:var(--ink);stroke-width:3" x1="30" y1="20" x2="230" y2="126"/><path class="fig-grid" style="fill:none;stroke:var(--ink)" d="M30 40 L50 40 L50 20"/><text class="fig-label" x="120" y="48">28°</text><text class="fig-label" x="64" y="112">?</text></svg>
+    prompt: A fold line splits the **square corner** of a sheet of paper into two angles. One angle is **28°**. What is the other angle?
+    unit: °
+    answer: 62
+    verify: 90 - 28
+    hints:
+      - What does a square corner measure?
+      - The two angles together make the whole corner.
+    solution:
+      - 'A square corner is 90°, so the two angles are complementary.'
+      - '\(90 - 28 = 62\), so the other angle is **62°**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.3]
+    type: investigation
+    prompt: |-
+      A tissue box is a rectangular prism. A chocolate box is a triangular prism. Use the prism explorer in the lesson to help.
+    parts:
+      - type: number
+        prompt: How many faces of the tissue box are **perpendicular** to its top face?
+        unit: faces
+        answer: 4
+        verify: 6 - 2
+        hints:
+          - The top has one parallel face. What about the rest?
+        solution:
+          - 'The box has 6 faces. The top is one, and the bottom is parallel to it. The other **4** meet the top at right angles.'
+      - type: number
+        prompt: How many **pairs** of parallel faces does the tissue box have?
+        unit: pairs
+        answer: 3
+        verify: 6 / 2
+        hints:
+          - Top and bottom are one pair. What other pairs are there?
+        solution:
+          - 'Top and bottom, front and back, left and right: **3** pairs.'
+      - type: mc
+        prompt: How many pairs of parallel faces does the chocolate box have?
+        choices: ['1 pair', '0 pairs', '2 pairs', '3 pairs']
+        answer: 0
+        feedback:
+          '1': 'Look at the two triangle ends. Are they parallel?'
+          '2': 'The three rectangle faces lean toward each other. Are any two of them parallel?'
+          '3': 'A box has 3 pairs. Does a triangular prism have the same faces?'
+        hints:
+          - Which faces never meet?
+        solution:
+          - 'Only the two triangle ends are parallel: **1 pair**.'
+    wrapUp: A rectangular prism has 3 pairs of parallel faces. A triangular prism has only 1 pair, its two ends. The shape of the ends decides which side faces can be parallel.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.3, K1.1]
+    type: build
+    prompt: |-
+      Design a pair of **supplementary** angles. One must be **acute** and the other **obtuse**. The obtuse angle must be **less than 150°**. Use multiples of 5°.
+    fields:
+      - { name: a, label: 'Acute angle', unit: '°' }
+      - { name: b, label: 'Obtuse angle', unit: '°' }
+    rules:
+      - { test: 'a % 5 == 0 && b % 5 == 0 && a > 0 && b > 0', fail: 'Use multiples of 5°, such as 35° or 140°.' }
+      - { test: 'a + b == 180', fail: 'Supplementary angles make 180° together. Add your two angles.' }
+      - { test: 'a < 90 && b > 90', fail: 'The first angle must be acute, less than 90°. The second must be obtuse, more than 90°.' }
+      - { test: 'b < 150', fail: 'The obtuse angle has to be less than 150°. What does that mean for the acute angle?' }
+    examples:
+      - { a: 40, b: 140 }
+      - { a: 60, b: 120 }
+      - { a: 85, b: 95 }
+    counterexamples:
+      - { a: 30, b: 150 }
+      - { a: 90, b: 90 }
+      - { a: 50, b: 120 }
+      - { a: 20, b: 160 }
+    hints:
+      - If the obtuse angle is less than 150°, the acute angle must be more than what?
+      - Try an acute angle of 40°. What makes 180° with it?
+    solution:
+      - 'The obtuse angle is less than 150°, so the acute angle is more than \(180 - 150 = 30\)°.'
+      - '40° and 140°, 60° and 120°, and 85° and 95° all work.'
+      - 'Any acute angle from 35° to 85° works. Its partner is what makes 180°.'

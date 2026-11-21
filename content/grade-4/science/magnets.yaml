@@ -1,0 +1,388 @@
+id: magnets
+grade: 4
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI4-OI2-GQ1-LO1]
+order: 4
+title: Magnets and Magnetic Poles
+shortTitle: Magnets
+summary: >-
+  Test which materials a magnet pulls, see paper clips crowd onto the poles, watch magnet carts attract
+  and repel, and turn a steel nail into a magnet.
+
+bigIdea: |-
+  - Magnets pull on **magnetic materials**: ones that contain iron, cobalt or nickel.
+  - Every magnet has a **north** pole and a **south** pole, where its force is strongest.
+  - **Opposite** poles attract. **Like** poles repel. Both poles attract magnetic materials.
+  - Some materials, like a steel nail, can **become magnets**.
+
+lesson:
+  - title: What does a magnet pull?
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4, S1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Magnet pulls it, icon: 🧲 }
+            - { id: no, label: Magnet doesn’t, icon: ✋ }
+          cards:
+            - { text: An iron nail, bin: yes, why: Iron is a magnetic material. }
+            - { text: An aluminum pop can, bin: no, why: 'Aluminum is a metal, but it has no iron, cobalt or nickel.' }
+            - { text: A steel paper clip, bin: yes, why: Steel is made mostly of iron. }
+            - { text: A copper wire, bin: no, why: 'Copper is a metal, but it is not magnetic.' }
+            - { text: A wooden pencil, bin: no, why: Wood is not magnetic. }
+            - { text: A steel soup can, bin: yes, why: The steel in it contains iron. }
+            - { text: A plastic button, bin: no, why: Plastic is not magnetic. }
+        caption: Would a magnet pull each one? Not every metal is magnetic.
+      - type: callout
+        variant: tip
+        covers: [K1.4]
+        title: The magnetic three
+        body: Magnetic materials contain **iron**, **cobalt** or **nickel**. Steel is mostly iron, so it is magnetic too.
+
+  - title: Strongest at the poles
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, K2.4]
+        component: g4-magnet-lab
+        props: { mode: clips }
+        caption: Dip the magnet into the paper clips. Where do the clips gather?
+      - type: compare
+        covers: [K2.1, K2.2]
+        columns:
+          - title: North pole (N)
+            body: One end of the magnet. Its force is **strongest** here.
+          - title: South pole (S)
+            body: The other end. Its force is **strongest** here too.
+
+  - title: 'Virtual experiment: magnet carts'
+    blocks:
+      - type: experiment
+        covers: [K2.2, K2.3, S2.1, U2.1, S1.3]
+        title: Let go of two pairs of magnet carts
+        question: |-
+          Each toy cart carries a bar magnet. The carts start close together, and then you let go.
+
+          - **Top pair:** a north pole faces a south pole.
+          - **Bottom pair:** a north pole faces a north pole.
+        animation: g4-magnet-poles
+        predict:
+          choices:
+            - The top pair rolls together. The bottom pair rolls apart.
+            - Both pairs roll together.
+            - Both pairs roll apart.
+            - The top pair rolls apart. The bottom pair rolls together.
+          answer: 0
+        observe: |-
+          - **Top pair:** the carts rolled toward each other, and the magnets snapped together.
+          - **Bottom pair:** the carts rolled away from each other.
+        explain: |-
+          - **Opposite** poles (north and south) **attract** each other.
+          - **Like** poles (north and north, or south and south) **repel** each other.
+          - The carts moved before the magnets touched, because magnetic force is a non-contact force.
+
+  - title: The pole rules
+    blocks:
+      - type: table
+        covers: [K2.3, K2.4, S2.1]
+        headers: [What meets, What happens]
+        rows:
+          - ['N and S', '🧲 Attract']
+          - ['S and N', '🧲 Attract']
+          - ['N and N', '↔️ Repel']
+          - ['S and S', '↔️ Repel']
+          - ['N or S and a paper clip', '🧲 Attract: **both** poles pull magnetic materials']
+      - type: callout
+        variant: mistake
+        covers: [K2.3, K2.4, S2.1]
+        title: Only a magnet can repel
+        body: A paper clip is pulled by **both** poles. So if something pushes your magnet away, it must be **another magnet**.
+
+  - title: Make a magnet
+    blocks:
+      - type: visual
+        covers: [K2.5, S2.2]
+        component: g4-magnet-lab
+        props: { mode: nail }
+        caption: Test the nail first. Then stroke it with the magnet, and test it again.
+      - type: example
+        covers: [S2.2, K2.5]
+        title: Magnetize a steel nail
+        problem: You need a strong magnet, a steel nail and some paper clips.
+        steps:
+          - Hold the nail by its head. Touch one end of the magnet to the head.
+          - Slide the magnet along the nail to the tip.
+          - Lift the magnet away, and bring it back to the head.
+          - Repeat about 20 times, always in the **same direction**.
+          - Test it. Can the nail pick up a paper clip now?
+
+keyTerms:
+  - term: Magnetic material
+    covers: [K1.4]
+    definition: A material that magnets pull on. It contains iron, cobalt or nickel.
+  - term: Magnetic pole
+    covers: [K2.1, K2.2]
+    definition: One of the two ends of a magnet, called north and south, where its force is strongest.
+  - term: Attract
+    covers: [K2.3]
+    definition: To pull toward each other.
+  - term: Repel
+    covers: [K2.3]
+    definition: To push away from each other.
+  - term: Magnetize
+    covers: [K2.5]
+    definition: To turn a material into a magnet, for example by stroking it with a magnet.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4, K1.3]
+    type: mc
+    prompt: Which object would a magnet pull on?
+    choices:
+      - An iron frying pan
+      - An aluminum pie plate
+      - A glass marble
+      - A copper bracelet
+    answer: 0
+    feedback:
+      '1': Aluminum is a metal. Does it contain iron, cobalt or nickel?
+      '2': Glass isn’t a metal at all. Is it a magnetic material?
+      '3': Copper is a metal. Does it contain iron, cobalt or nickel?
+    hints:
+      - Magnetic materials contain one of three metals. Which object is made of one of them?
+    solution:
+      - The frying pan is made of **iron**, a magnetic material.
+      - Aluminum, glass and copper are not magnetic.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.3, S2.1]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 420 70" class="fig-svg" role="img" aria-label="Two bar magnets in a line. The left magnet is S then N. The right magnet is N then S. Their north poles face each other.">
+      <rect x="20" y="18" width="70" height="34" rx="3" style="fill:#2f5fd0"/><rect x="90" y="18" width="70" height="34" rx="3" style="fill:#d23b2e"/>
+      <rect x="260" y="18" width="70" height="34" rx="3" style="fill:#d23b2e"/><rect x="330" y="18" width="70" height="34" rx="3" style="fill:#2f5fd0"/>
+      <g style="fill:#fff;font-size:18px;font-weight:700" text-anchor="middle"><text x="55" y="42">S</text><text x="125" y="42">N</text><text x="295" y="42">N</text><text x="365" y="42">S</text></g>
+      </svg>
+    prompt: You slide these two magnets toward each other. What will happen?
+    choices:
+      - They push each other away.
+      - They pull together and stick.
+      - Nothing, until they touch.
+    answer: 0
+    feedback:
+      '1': Look at the two ends that face each other. Are they the same pole or opposite poles?
+      '2': Magnetic force acts without touching. What do two north poles do?
+    hints:
+      - Which poles face each other in the middle?
+    solution:
+      - Two **north** poles face each other. Like poles **repel**, so the magnets push each other away.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.1, K2.2]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 420 110" class="fig-svg" role="img" aria-label="A bar magnet held up with paper clips hanging from it. Six clips hang from the left end, six from the right end, and none from the middle.">
+      <rect x="80" y="14" width="130" height="34" rx="3" style="fill:#d23b2e"/><rect x="210" y="14" width="130" height="34" rx="3" style="fill:#2f5fd0"/>
+      <g style="fill:#fff;font-size:18px;font-weight:700" text-anchor="middle"><text x="145" y="38">N</text><text x="275" y="38">S</text></g>
+      <g style="fill:none;stroke:#5a6270;stroke-width:3"><path d="M86,52 v26 a4,4 0 0 0 8,0 v-22"/><path d="M98,52 v34 a4,4 0 0 0 8,0 v-30"/><path d="M110,52 v24 a4,4 0 0 0 8,0 v-20"/><path d="M80,74 v24 a4,4 0 0 0 8,0 v-20"/><path d="M96,90 v14 a4,4 0 0 0 8,0 v-10"/><path d="M122,52 v18 a4,4 0 0 0 8,0 v-14"/>
+      <path d="M326,52 v26 a4,4 0 0 0 8,0 v-22"/><path d="M314,52 v34 a4,4 0 0 0 8,0 v-30"/><path d="M302,52 v24 a4,4 0 0 0 8,0 v-20"/><path d="M332,74 v24 a4,4 0 0 0 8,0 v-20"/><path d="M316,90 v14 a4,4 0 0 0 8,0 v-10"/><path d="M290,52 v18 a4,4 0 0 0 8,0 v-14"/></g>
+      </svg>
+    prompt: A magnet was dipped into a box of paper clips. What does the picture tell you about the magnetic force?
+    choices:
+      - It is strongest at the two poles.
+      - It is strongest in the middle of the magnet.
+      - It is only at the north pole.
+      - It is the same everywhere on the magnet.
+    answer: 0
+    feedback:
+      '1': How many clips hang from the middle?
+      '2': Look at the south end too. Are there clips there?
+      '3': If the force were the same everywhere, where would the clips be?
+    hints:
+      - Where did the clips gather, and where are there none?
+    solution:
+      - The clips gather at **both ends** and none hang from the middle.
+      - So the force is **strongest at the poles**, north and south.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: |-
+      Liam says, “Magnets pull on all metals.” He tests some metal things.
+
+      | Object | Pulled by the magnet? |
+      |---|---|
+      | Steel spoon | Yes |
+      | Aluminum foil | No |
+      | Iron key | Yes |
+      | Copper wire | No |
+
+      What does his test show?
+    choices:
+      - Liam is wrong. Only metals with iron, cobalt or nickel are magnetic.
+      - Liam is right. The magnet was just too weak for the foil and the wire.
+      - Liam is wrong. Magnets only pull on spoons and keys.
+      - Liam is right, because most of the metals were pulled.
+    answer: 0
+    feedback:
+      '1': A weak magnet would pull less, not nothing. And would a strong magnet pick up foil?
+      '2': Spoons and keys can be made of other metals too. What do the steel spoon and the iron key share?
+      '3': Two out of four is not all. What does one “No” do to Liam’s claim?
+    hints:
+      - Liam said **all** metals. How many examples does it take to show that’s wrong?
+      - What do the two “Yes” objects have in common?
+    solution:
+      - Aluminum and copper are metals, but the magnet didn’t pull them. So not **all** metals are magnetic.
+      - Steel and iron both contain **iron**, so they are magnetic materials.
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [K2.3, S2.1, U2.1]
+    type: mc
+    prompt: Zoe has a magnet with no letters on it. When she brings one end near the **north** pole of a labelled magnet, they **repel**. What is that end?
+    choices:
+      - A north pole
+      - A south pole
+      - You can’t tell from this test.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A south pole near a north pole would do the opposite. What would it do?
+      '2': Repelling only happens one way. Which poles repel each other?
+    hints:
+      - Like poles repel. What is like a north pole?
+    solution:
+      - Like poles repel, and opposite poles attract.
+      - It repelled a north pole, so that end must be a **north** pole too.
+
+  - id: b3
+    level: 2
+    thinking: whatif
+    covers: [K2.4, K2.2]
+    type: mc
+    prompt: A magnet’s **north** pole picks up a paper clip. Jay flips the magnet around and touches the clip with the **south** pole. What happens?
+    choices:
+      - The south pole picks up the clip too.
+      - The south pole pushes the clip away.
+      - The clip spins but doesn’t move.
+      - Only the north pole works on paper clips.
+    answer: 0
+    feedback:
+      '1': Only magnets repel. Is a paper clip a magnet?
+      '2': Is the clip a magnet, with poles of its own to spin?
+      '3': Look at the picture of clips on a magnet. Which ends had clips?
+    hints:
+      - Which pole, or poles, attract magnetic materials?
+    solution:
+      - '**Both** poles attract magnetic materials.'
+      - A paper clip isn’t a magnet, so it can’t be repelled. The south pole picks it up too.
+
+  - id: b4
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.5]
+    type: order
+    prompt: Put the steps for **magnetizing a steel nail** in order.
+    items:
+      - Test the nail with a paper clip. Nothing sticks.
+      - Touch one end of the magnet to the head of the nail.
+      - Slide the magnet along the nail to the tip.
+      - Lift the magnet away and bring it back to the head.
+      - Repeat about 20 times in the same direction.
+      - Test the nail again. Now it picks up a paper clip.
+    hints:
+      - How would you know the nail changed? You need a test before and after.
+    solution:
+      - Test first, so you know the nail isn’t a magnet yet.
+      - Stroke it many times, always the **same direction**, lifting the magnet away each time.
+      - Test again. The nail picking up a clip shows it has been **magnetized**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.3, K2.4, S2.1, U2.1, S1.3]
+    type: investigation
+    prompt: |-
+      Three grey bars look exactly the same: **A**, **B** and **C**. Two of them are magnets. One is a plain steel
+      bar. You can only use the bars to find out which is which.
+    parts:
+      - type: mc
+        prompt: An end of **A** pulls on an end of **B**, and they stick. Can you tell yet which bar is the plain steel?
+        choices:
+          - No. A magnet pulls steel, and opposite poles pull too.
+          - Yes. Sticking means both bars are magnets.
+          - Yes. Sticking means B is the plain steel bar.
+        answer: 0
+        feedback:
+          '1': Would a magnet stick to a plain steel bar as well?
+          '2': Could two magnets with opposite poles facing also stick?
+        hints:
+          - List every way two bars could pull together.
+        solution:
+          - Two magnets with opposite poles facing attract. A magnet and plain steel attract too.
+          - So pulling together doesn’t tell you which is which.
+      - type: mc
+        prompt: Next, an end of **A** pushes away an end of **C**. Now which bar is the plain steel?
+        choices: ['B', 'A', 'C']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Could A push anything away if it weren’t a magnet?
+          '2': Could C be pushed away if it weren’t a magnet?
+        hints:
+          - Can plain steel ever repel? What must A and C be?
+        solution:
+          - Only a magnet can repel, and only another magnet. So **A** and **C** are both magnets.
+          - That leaves **B** as the plain steel bar.
+      - type: mc
+        prompt: How could you check your answer using a paper clip?
+        choices:
+          - Touch each end of B to the clip. A plain steel bar won’t pick it up.
+          - Hang the clip from A. If it sticks, B is plain steel.
+          - Put the clip between A and C. It will float.
+        answer: 0
+        feedback:
+          '1': A is a magnet, so it will pick up the clip. Does that tell you anything about B?
+          '2': Would the clip float, or be pulled to one of the magnets?
+        hints:
+          - What can a magnet do that a plain steel bar can’t?
+        solution:
+          - A magnet picks up a paper clip with either end. A plain steel bar doesn’t.
+          - If neither end of B picks up the clip, B is the plain steel.
+    wrapUp: Attracting can fool you, because magnets also pull on plain steel. Only repelling proves both things are magnets.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [K2.5, S2.2, K2.4]
+    type: mc
+    prompt: Ella strokes a steel nail with a magnet. Which result **proves** the nail has become a magnet?
+    choices:
+      - The nail now picks up a paper clip on its own.
+      - The nail sticks to the magnet.
+      - The nail feels a little warm.
+      - The nail looks shinier than before.
+    answer: 0
+    feedback:
+      '1': A plain steel nail sticks to a magnet too. Does sticking tell you anything new?
+      '2': Rubbing can warm things, but does warmth make a nail pull on clips?
+      '3': Does shininess change what a nail can pull?
+    hints:
+      - Which result would a plain steel nail **also** give? Rule those out.
+    solution:
+      - A plain steel nail already sticks to a magnet, so that proves nothing.
+      - Picking up a paper clip **on its own** is something only a magnet can do.
+      - So that result is the evidence that the nail was **magnetized**.

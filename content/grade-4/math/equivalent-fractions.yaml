@@ -1,0 +1,304 @@
+id: equivalent-fractions
+grade: 4
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT4-OI1-GQ5-LO1]
+order: 5
+title: Equivalent Fractions and Simplest Form
+shortTitle: Equivalent fractions
+summary: >-
+  Make equivalent fractions by splitting equal parts, find them at one point on the number line,
+  simplify to simplest form, and compare and order fractions.
+
+bigIdea: |-
+  - **Equivalent fractions** name the same amount and the same point on the number line.
+  - Split every part the same way to **multiply** the numerator and denominator by the same number.
+  - **Divide** both by a common factor to simplify. Divide by the greatest common factor to reach **simplest form**.
+
+lesson:
+  - title: Split every part
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, S1.1, S1.2]
+        component: fraction-split
+        props: { numerator: 2, denominator: 3 }
+        caption: |-
+          1. Split each part into 2. The shaded amount stays the same.
+          2. Split again. Watch the numerator and denominator.
+      - type: callout
+        variant: remember
+        covers: [CLrkTvQMl0Oj1FGsDZHeJQ#K1.3]
+        title: Remember from Grade 3
+        body: The **denominator** is the number of equal parts in the whole. The **numerator** is how many of those parts you have.
+
+  - title: The same point on the number line
+    blocks:
+      - type: figure
+        covers: [K1.1, S1.3]
+        figure: |-
+          <svg viewBox="0 0 400 210" class="fig-svg" role="img" aria-label="Three number lines from 0 to 1, split into halves, fourths and eighths. 1/2, 2/4 and 4/8 all line up at the same point."><line class="fig-arrow" style="stroke:var(--sun);stroke-width:3" x1="200" y1="14" x2="200" y2="196"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="40" x2="360" y2="40"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="28" x2="40" y2="52"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="360" y1="28" x2="360" y2="52"/><line class="fig-grid" style="stroke:var(--ink)" x1="200" y1="32" x2="200" y2="48"/><circle class="cg-pt" cx="200" cy="40" r="7"/><text class="fig-label" x="226" y="34">1/2</text><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="105" x2="360" y2="105"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="93" x2="40" y2="117"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="360" y1="93" x2="360" y2="117"/><line class="fig-grid" style="stroke:var(--ink)" x1="120" y1="97" x2="120" y2="113"/><line class="fig-grid" style="stroke:var(--ink)" x1="200" y1="97" x2="200" y2="113"/><line class="fig-grid" style="stroke:var(--ink)" x1="280" y1="97" x2="280" y2="113"/><circle class="cg-pt" cx="200" cy="105" r="7"/><text class="fig-label" x="226" y="99">2/4</text><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="170" x2="360" y2="170"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="40" y1="158" x2="40" y2="182"/><line class="fig-grid" style="stroke:var(--ink);stroke-width:2" x1="360" y1="158" x2="360" y2="182"/><line class="fig-grid" style="stroke:var(--ink)" x1="80" y1="163" x2="80" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="120" y1="163" x2="120" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="160" y1="163" x2="160" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="200" y1="163" x2="200" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="240" y1="163" x2="240" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="280" y1="163" x2="280" y2="177"/><line class="fig-grid" style="stroke:var(--ink)" x1="320" y1="163" x2="320" y2="177"/><circle class="cg-pt" cx="200" cy="170" r="7"/><text class="fig-label" x="226" y="164">4/8</text><text class="fig-small" x="40" y="70" text-anchor="middle">0</text><text class="fig-small" x="360" y="70" text-anchor="middle">1</text><text class="fig-small" x="40" y="135" text-anchor="middle">0</text><text class="fig-small" x="360" y="135" text-anchor="middle">1</text><text class="fig-small" x="40" y="200" text-anchor="middle">0</text><text class="fig-small" x="360" y="200" text-anchor="middle">1</text></svg>
+        caption: '\(\frac{1}{2}\), \(\frac{2}{4}\) and \(\frac{4}{8}\) sit at the **same point**. They are equivalent.'
+      - type: callout
+        variant: tip
+        covers: [U1.1]
+        title: A family that never ends
+        body: '\(\frac{1}{2} = \frac{2}{4} = \frac{3}{6} = \frac{4}{8} = \frac{5}{10} = \dots\) You can always split the parts again, so there are **infinitely many** equivalent fractions.'
+
+  - title: Join parts to simplify
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.4, S1.5]
+        component: fraction-split
+        props: { numerator: 6, denominator: 8 }
+        caption: 6 and 8 share the factor 2, so you can **join** every 2 parts. Which joins work, and which don’t?
+      - type: compare
+        covers: [S1.4, K1.4]
+        columns:
+          - title: Common factor
+            body: '\(\frac{6}{8}\): 6 and 8 share the factor **2**. It can be simplified.'
+          - title: No common factor
+            body: '\(\frac{5}{8}\): 5 and 8 share only the factor 1. It can’t be simplified.'
+
+  - title: Simplest form
+    blocks:
+      - type: example
+        covers: [K1.5, K1.6, U1.2, S1.6]
+        title: Simplify 12/18
+        problem: 'Write \(\frac{12}{18}\) in simplest form.'
+        steps:
+          - 'Factors of 12: 1, 2, 3, 4, 6, 12. Factors of 18: 1, 2, 3, 6, 9, 18.'
+          - 'The greatest common factor is **6**.'
+          - '\(\frac{12 \div 6}{18 \div 6} = \frac{2}{3}\). Now 2 and 3 have no common factor except 1.'
+        answer: '\(\frac{12}{18} = \frac{2}{3}\) in simplest form.'
+      - type: callout
+        variant: tip
+        covers: [U1.2, K1.4]
+        title: Small steps work too
+        body: 'Divide by 2 to get \(\frac{6}{9}\), then by 3 to get \(\frac{2}{3}\). Every path ends at the **same** simplest form.'
+
+  - title: Compare and order
+    blocks:
+      - type: example
+        covers: [S1.7, S1.2]
+        title: Which is more, 2/3 or 3/4?
+        problem: 'Compare \(\frac{2}{3}\) and \(\frac{3}{4}\).'
+        steps:
+          - 'Find equivalent fractions with the **same denominator**. 12 is a multiple of 3 and of 4.'
+          - '\(\frac{2}{3} = \frac{8}{12}\) and \(\frac{3}{4} = \frac{9}{12}\).'
+          - '9 twelfths is more than 8 twelfths.'
+        answer: '\(\frac{3}{4} > \frac{2}{3}\)'
+
+keyTerms:
+  - term: Equivalent fractions
+    covers: [K1.1, S1.2]
+    definition: Fractions that name the same amount, at the same point on the number line.
+  - term: Common factor
+    covers: [S1.4, K1.4]
+    definition: A factor that two numbers share. 2 is a common factor of 6 and 8.
+  - term: Simplest form
+    covers: [K1.5, S1.6]
+    definition: A fraction whose numerator and denominator have no common factor except 1.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.3]
+    type: number
+    prompt: 'Find the missing numerator. \(\frac{3}{4} = \frac{\Box}{12}\)'
+    answer: 9
+    verify: 3 * 3
+    hints:
+      - What was 4 multiplied by to make 12?
+      - Multiply the numerator by the same number.
+    solution:
+      - '\(4 \times 3 = 12\), so every fourth was split into 3 parts.'
+      - 'The numerator is multiplied by 3 too: \(3 \times 3 = 9\). So \(\frac{3}{4} = \frac{9}{12}\).'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.5, S1.4]
+    type: multi
+    prompt: Select **all** the fractions that are already in **simplest form**.
+    choices: ['\(\frac{3}{8}\)', '\(\frac{5}{7}\)', '\(\frac{7}{12}\)', '\(\frac{4}{10}\)', '\(\frac{6}{9}\)', '\(\frac{9}{12}\)']
+    answer: [0, 1, 2]
+    feedback:
+      '3': '4 and 10 are both even, so they share the factor 2.'
+      '4': '6 and 9 are both in the 3 times table. What factor do they share?'
+      '5': '9 and 12 share the factor 3.'
+    hints:
+      - For each fraction, look for a number other than 1 that divides both the top and the bottom.
+    solution:
+      - '\(\frac{3}{8}\), \(\frac{5}{7}\) and \(\frac{7}{12}\): the top and bottom share only the factor 1. They are in simplest form.'
+      - '\(\frac{4}{10}\) shares 2, and \(\frac{6}{9}\) and \(\frac{9}{12}\) share 3. They can be simplified.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.6, K1.6]
+    type: text
+    prompt: 'Write \(\frac{12}{16}\) in simplest form. Type it like **2/5**.'
+    accept: ['3/4']
+    hints:
+      - What is the greatest common factor of 12 and 16?
+      - Divide the numerator and the denominator by it.
+    solution:
+      - 'The greatest common factor of 12 and 16 is 4.'
+      - '\(\frac{12 \div 4}{16 \div 4} = \frac{3}{4}\). 3 and 4 share no factor except 1, so it is **3/4**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.1, S1.3, S1.2]
+    type: multi
+    prompt: 'On sports day, Sasha runs \(\frac{4}{6}\) of the track. Select **all** the friends who run exactly the **same distance** as Sasha.'
+    choices: ['Liam, \(\frac{6}{9}\)', 'Ben, \(\frac{8}{12}\)', 'Kim, \(\frac{2}{3}\)', 'Ava, \(\frac{3}{4}\)', 'Jo, \(\frac{5}{7}\)']
+    answer: [0, 1, 2]
+    feedback:
+      '3': '4 sixths and 3 fourths are not the same. Write both with 12 as the denominator.'
+      '4': 'Adding 1 to the top and bottom of 4/6 doesn’t make an equivalent fraction. Equivalent fractions multiply or divide both by the same number.'
+    hints:
+      - Write \(\frac{4}{6}\) in simplest form first.
+      - Which other fractions simplify to the same thing?
+    solution:
+      - '\(\frac{4}{6}\) simplifies to \(\frac{2}{3}\).'
+      - '\(\frac{6}{9}\) and \(\frac{8}{12}\) also simplify to \(\frac{2}{3}\). They all land on the same point of the number line.'
+      - 'So **Liam, Ben and Kim** run the same distance as Sasha.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.7, S1.2]
+    type: mc
+    prompt: 'Ana eats \(\frac{3}{8}\) of a pizza. Joe eats \(\frac{1}{4}\) of a pizza the same size. Who eats more?'
+    choices: ['Ana eats more.', 'Joe eats more.', 'They eat the same amount.']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Fourths are bigger slices than eighths, but how many slices does each person eat? Write \(\frac{1}{4}\) in eighths.'
+      '2': '\(\frac{1}{4}\) is the same as how many eighths?'
+    hints:
+      - Split each fourth into 2 equal slices. How many eighths is \(\frac{1}{4}\)?
+    solution:
+      - 'Split each fourth in 2: \(\frac{1}{4} = \frac{2}{8}\).'
+      - '\(\frac{3}{8} > \frac{2}{8}\), so **Ana** eats more.'
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K1.3, K1.2]
+    type: mc
+    prompt: 'Max says \(\frac{2}{3} = \frac{4}{5}\), because he added 2 to the top and 2 to the bottom. What is wrong with his idea?'
+    choices:
+      - Equivalent fractions multiply or divide the top and bottom by the same number. Adding changes the amount.
+      - Nothing. Doing the same thing to the top and bottom always makes an equivalent fraction.
+      - He should have added 2 to the top only.
+      - He should have added 3 to the bottom, to match the denominator.
+    answer: 0
+    feedback:
+      '1': 'Test it with 1/2. Add 1 to the top and bottom to get 2/3. Is 2/3 the same amount as 1/2?'
+      '2': 'Adding to only the top makes the fraction bigger, so it can’t be equivalent.'
+      '3': 'Adding to the top and bottom doesn’t keep the amount. How are equivalent fractions really made?'
+    hints:
+      - Think of the bar. What happens to the parts when you split every part into 2?
+      - 'Compare \(\frac{2}{3}\) and \(\frac{4}{5}\) on a number line. Are they at the same point?'
+    solution:
+      - 'Splitting every part into 2 **multiplies** both by 2: \(\frac{2}{3} = \frac{4}{6}\), not \(\frac{4}{5}\).'
+      - 'Adding the same number to the top and bottom changes the amount. \(\frac{2}{3}\) is less than \(\frac{4}{5}\).'
+
+  - id: b4
+    level: 2
+    thinking: apply
+    covers: [S1.7]
+    type: order
+    prompt: 'Four ribbons are cut from the same roll. Order their lengths from **shortest** to **longest**.'
+    items: ['\(\frac{3}{8}\) m', '\(\frac{1}{2}\) m', '\(\frac{5}{8}\) m', '\(\frac{3}{4}\) m']
+    hints:
+      - Write every length in eighths.
+    solution:
+      - '\(\frac{1}{2} = \frac{4}{8}\) and \(\frac{3}{4} = \frac{6}{8}\).'
+      - 'Now compare eighths: 3, 4, 5 and 6.'
+      - 'The order is \(\frac{3}{8}\), \(\frac{1}{2}\), \(\frac{5}{8}\), \(\frac{3}{4}\).'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [U1.2, K1.6, S1.5, S1.6]
+    type: investigation
+    prompt: |-
+      A chocolate bar has **24** squares. Zane eats **18** of them, which is \(\frac{18}{24}\) of the bar. Three friends simplify it:
+
+      - Ana divides the top and bottom by 2.
+      - Ben divides the top and bottom by 3.
+      - Cy divides the top and bottom by 6.
+    parts:
+      - type: multi
+        prompt: Select **all** the friends whose new fraction is still equivalent to \(\frac{18}{24}\).
+        choices: ['Ana, \(\frac{9}{12}\)', 'Ben, \(\frac{6}{8}\)', 'Cy, \(\frac{3}{4}\)']
+        answer: [0, 1, 2]
+        hints:
+          - Each friend divided the top and bottom by the same common factor.
+        solution:
+          - 'All three divided both numbers by a common factor, so **all three** are equivalent to \(\frac{18}{24}\).'
+      - type: text
+        prompt: Ana and Ben keep simplifying until they can’t go any further. What fraction do they each end with? Type it like **2/5**.
+        accept: ['3/4']
+        hints:
+          - What common factor do 9 and 12 share? What about 6 and 8?
+        solution:
+          - 'Ana: \(\frac{9}{12}\) ÷ 3 gives \(\frac{3}{4}\). Ben: \(\frac{6}{8}\) ÷ 2 gives \(\frac{3}{4}\).'
+          - 'Both end at **3/4**, the same as Cy.'
+      - type: mc
+        prompt: Why did Cy finish in one step?
+        choices:
+          - 6 is the greatest common factor of 18 and 24.
+          - 6 is the biggest number that divides 24.
+          - Cy was lucky. Any number works in one step.
+          - 6 is half of 12, so it is a special number.
+        answer: 0
+        feedback:
+          '1': '24 can be divided by 8, 12 and 24 too. But do those divide 18?'
+          '2': 'Try dividing both by 2. You get \(\frac{9}{12}\), which is not finished.'
+          '3': 'Being half of 12 doesn’t matter here. What do 18 and 24 share?'
+        hints:
+          - List the common factors of 18 and 24. Which one is the greatest?
+        solution:
+          - 'The common factors of 18 and 24 are 1, 2, 3 and 6. The **greatest** is 6.'
+          - 'Dividing by the greatest common factor reaches simplest form in one step.'
+    wrapUp: There are many paths, but only one simplest form. Dividing by the greatest common factor gets there in a single step.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, U1.1, K1.3]
+    type: build
+    prompt: |-
+      Find a fraction **equivalent to** \(\frac{3}{5}\) whose denominator is **between 30 and 50**.
+    fields:
+      - { name: n, label: 'Numerator' }
+      - { name: d, label: 'Denominator' }
+    rules:
+      - { test: 'n % 1 == 0 && d % 1 == 0 && n > 0', fail: 'Use whole numbers.' }
+      - { test: 'd > 30 && d < 50', fail: 'The denominator has to be between 30 and 50.' }
+      - { test: 'n * 5 == d * 3', fail: 'That fraction isn’t equal to 3/5. What did you multiply 5 by? Multiply 3 by the same number.' }
+    examples:
+      - { n: 21, d: 35 }
+      - { n: 24, d: 40 }
+      - { n: 27, d: 45 }
+    counterexamples:
+      - { n: 18, d: 30 }
+      - { n: 23, d: 37 }
+      - { n: 30, d: 50 }
+    hints:
+      - The denominator must be a multiple of 5. Which multiples of 5 are between 30 and 50?
+      - What do you multiply 5 by to get your denominator? Multiply 3 by the same number.
+    solution:
+      - 'The denominator is \(5 \times\) something. Between 30 and 50, that gives 35, 40 and 45.'
+      - '\(\frac{3 \times 7}{5 \times 7} = \frac{21}{35}\), \(\frac{24}{40}\) and \(\frac{27}{45}\) all work.'
+      - 'Each one splits every fifth into the same number of parts, so the amount never changes.'

@@ -1,0 +1,102 @@
+---
+// Sky viewer (SCI4-OI5-GQ1-LO1, K1.2, K1.4, S1.3): look at the Moon or Jupiter with your eyes,
+// binoculars or a telescope. Binoculars show the Moon's dark patches and Jupiter's four largest moons
+// as tiny dots; a telescope shows craters and Jupiter's cloud bands.
+const TOOLS = [
+  { id: 'eyes', label: '👀 Eyes' },
+  { id: 'bino', label: 'Binoculars' },
+  { id: 'scope', label: '🔭 Telescope' },
+];
+const TARGETS = [
+  { id: 'moon', label: '🌕 The Moon' },
+  { id: 'jupiter', label: '🪐 Jupiter' },
+];
+const SAY: Record<string, string> = {
+  'moon-eyes': 'With just your eyes, the Moon is a small bright disk with some dark patches.',
+  'moon-bino': 'Binoculars make it bigger. The dark patches are clearer, and a few craters show near the edge of the light.',
+  'moon-scope': 'A telescope makes it much bigger. You can see hundreds of craters and mountains.',
+  'jupiter-eyes': 'With just your eyes, Jupiter looks like a bright star.',
+  'jupiter-bino': 'Held very steady, binoculars show a tiny disk with up to four dots in a line: Jupiter’s four biggest moons.',
+  'jupiter-scope': 'A telescope shows Jupiter’s stripes of clouds, with its moons lined up beside it.',
+};
+---
+<g4-sky-viewer data-say={JSON.stringify(SAY)}>
+  <div class="sci-pick" role="group" aria-label="What to look at">
+    {TARGETS.map((t, i) => <button type="button" data-sv-target={t.id} aria-pressed={String(i === 0)}>{t.label}</button>)}
+  </div>
+  <svg class="sci-svg g4s-sv-svg" viewBox="0 0 300 300" role="img" aria-label="The view through the chosen tool" data-g4s="svg"></svg>
+  <div class="sci-pick" role="group" aria-label="How to look">
+    {TOOLS.map((t, i) => <button type="button" data-sv-tool={t.id} aria-pressed={String(i === 0)}>{t.label}</button>)}
+  </div>
+  <p class="sci-say" aria-live="polite" data-g4s="say">{SAY['moon-eyes']}</p>
+</g4-sky-viewer>
+
+<style is:global>
+  g4-sky-viewer { display: block; }
+  .g4s-sv-svg { max-width: 18rem; margin: 0.6rem auto; background: transparent; }
+  .g4s-sv-sky { fill: #0f1830; }
+  .g4s-sv-rim { fill: none; stroke: var(--ink-2); stroke-width: 10; }
+  .g4s-sv-moon { fill: #e9e5d6; }
+  .g4s-sv-mare { fill: #b9b3a0; }
+  .g4s-sv-crater { fill: none; stroke: #a8a290; stroke-width: 1.5; }
+  .g4s-sv-jup { fill: #e8d3ad; }
+  .g4s-sv-band { fill: #b98a5a; }
+  .g4s-sv-dot { fill: #fff; }
+</style>
+
+<script>
+  class G4SkyViewer extends HTMLElement {
+    private target = 'moon';
+    private tool = 'eyes';
+
+    connectedCallback() {
+      const say = JSON.parse(this.dataset.say!) as Record<string, string>;
+      const pick = (attr: string, set: (v: string) => void) =>
+        this.querySelectorAll<HTMLButtonElement>(`[${attr}]`).forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll(`[${attr}]`).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            set(b.getAttribute(attr)!);
+            this.querySelector('[data-g4s="say"]')!.textContent = say[`${this.target}-${this.tool}`];
+            this.draw();
+          }),
+        );
+      pick('data-sv-target', (v) => (this.target = v));
+      pick('data-sv-tool', (v) => (this.tool = v));
+      this.draw();
+    }
+
+    private draw() {
+      const zoom = { eyes: 1, bino: 3.2, scope: 8 }[this.tool]!;
+      const out: string[] = ['<clipPath id="g4s-sv-clip"><circle cx="150" cy="150" r="140"/></clipPath><g clip-path="url(#g4s-sv-clip)"><rect class="g4s-sv-sky" width="300" height="300"/>'];
+      if (this.target === 'moon') {
+        const r = 12 * zoom;
+        out.push(`<circle class="g4s-sv-moon" cx="150" cy="150" r="${r}"/>`);
+        // Dark patches, always visible.
+        for (const [dx, dy, s] of [[-0.3, -0.35, 0.3], [0.15, -0.3, 0.22], [0.3, 0.05, 0.2], [-0.15, 0.1, 0.25]])
+          out.push(`<ellipse class="g4s-sv-mare" cx="${150 + dx * r}" cy="${150 + dy * r}" rx="${s * r}" ry="${s * r * 0.75}"/>`);
+        // Craters: a few with binoculars, many with a telescope.
+        const n = { eyes: 0, bino: 6, scope: 40 }[this.tool]!;
+        for (let k = 0; k < n; k++) {
+          const a = k * 2.4;
+          const d = ((k * 37) % 90) / 100;
+          out.push(`<circle class="g4s-sv-crater" cx="${(150 + Math.cos(a) * d * r).toFixed(1)}" cy="${(150 + Math.sin(a) * d * r).toFixed(1)}" r="${(r * (0.03 + ((k * 7) % 5) / 100)).toFixed(1)}"/>`);
+        }
+      } else {
+        const r = { eyes: 3, bino: 6, scope: 34 }[this.tool]!;
+        out.push(`<circle class="g4s-sv-jup" cx="150" cy="150" r="${r}"/>`);
+        if (this.tool === 'scope') {
+          out.push(`<clipPath id="g4s-sv-jclip"><circle cx="150" cy="150" r="${r}"/></clipPath><g clip-path="url(#g4s-sv-jclip)">`);
+          for (const dy of [-0.35, 0.05, 0.4]) out.push(`<rect class="g4s-sv-band" x="${150 - r}" y="${150 + dy * r - 3}" width="${2 * r}" height="6"/>`);
+          out.push('</g>');
+        }
+        if (this.tool !== 'eyes') {
+          const spread = this.tool === 'bino' ? 1 : 2.4;
+          for (const dx of [-38, -18, 22, 48]) out.push(`<circle class="g4s-sv-dot" cx="${150 + dx * spread}" cy="150" r="${this.tool === 'bino' ? 1.6 : 2.6}"/>`);
+        }
+      }
+      out.push('</g><circle class="g4s-sv-rim" cx="150" cy="150" r="144"/>');
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-sky-viewer', G4SkyViewer);
+</script>

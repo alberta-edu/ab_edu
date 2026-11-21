@@ -1,0 +1,313 @@
+id: sequences
+grade: 4
+subject: math
+organizingIdea: MAT-OI6
+outcomes: [MAT4-OI6-GQ1-LO1]
+order: 15
+title: Arithmetic and Geometric Sequences
+shortTitle: Sequences
+summary: >-
+  Explore square, triangular and Fibonacci numbers. Build arithmetic sequences that add or subtract,
+  and geometric sequences that multiply.
+
+bigIdea: |-
+  - A sequence can **increase** or **decrease**. Pictures, numbers and bars show it in different ways.
+  - An **arithmetic** sequence adds or subtracts the **same number** each time.
+  - A **geometric** sequence multiplies by the **same number** each time, starting from a number that isn’t 0.
+  - Square, triangular and Fibonacci numbers grow, but by a change that doesn’t stay the same.
+
+lesson:
+  - title: Square and triangular numbers
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.3, U1.2]
+        component: sequence-grow
+        props: { start: square, kinds: [square, triangle] }
+        caption: The yellow dots are the ones added each time. Switch to **Triangular**. How does each picture grow?
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI6-GQ1-LO1#S2.1, MAT3-OI6-GQ1-LO1#S2.3]
+        title: Remember from Grade 3
+        body: Skip counting makes a sequence, like 5, 10, 15, 20. You described the change from one term to the next.
+
+  - title: The Fibonacci sequence
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1, U1.2]
+        component: sequence-grow
+        props: { start: fibonacci, kinds: [fibonacci] }
+        caption: Each new square has a side as long as the two squares before it put together. The side lengths are the Fibonacci numbers.
+      - type: compare
+        covers: [K1.2]
+        columns:
+          - title: 🌲 Pine cones
+            body: The scales often spiral **8** one way and **13** the other.
+          - title: 🌻 Sunflowers
+            body: The seeds often make **34** spirals one way and **55** the other.
+          - title: 🌼 Buttercups
+            body: A buttercup flower usually has **5** petals.
+
+  - title: Arithmetic sequences
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, U2.1, S2.2, S2.3, U1.1, S1.2]
+        component: sequence-grow
+        props: { start: add, kinds: [add], first: 3, change: 4 }
+        caption: |-
+          1. Change the **start** and the **change**. The difference between terms stays the same.
+          2. Try a minus change. Now the sequence decreases.
+      - type: table
+        covers: [S2.2, S2.3, K2.2]
+        headers: [First term, Constant change, First five terms]
+        rows:
+          - ['5', 'add 5', '5, 10, 15, 20, 25 (skip counting by 5)']
+          - ['3', 'add 4', '3, 7, 11, 15, 19']
+          - ['50', 'subtract 6', '50, 44, 38, 32, 26']
+
+  - title: Geometric sequences
+    blocks:
+      - type: visual
+        covers: [K2.3, U2.2, S2.4, S2.5]
+        component: sequence-grow
+        props: { start: times, kinds: [times], first: 2, change: 3 }
+        caption: Each term is the one before **multiplied** by the same number. Compare how fast the bars grow with an arithmetic sequence.
+      - type: callout
+        variant: tip
+        covers: [K2.4]
+        title: Never start at 0
+        body: 'Start at 0 and multiply by 2: 0, 0, 0, 0, 0. Nothing ever changes, so a geometric sequence begins at a number other than 0.'
+
+  - title: Which kind is it?
+    blocks:
+      - type: visual
+        covers: [S2.1, U2.1, U2.2, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: arith, label: 'Arithmetic', icon: '➕' }
+            - { id: geo, label: 'Geometric', icon: '✖️' }
+            - { id: neither, label: 'Neither', icon: '🔀' }
+          cards:
+            - { text: '5, 10, 15, 20, 25', bin: arith, why: 'It adds 5 each time. Skip counting is arithmetic.' }
+            - { text: '3, 6, 12, 24, 48', bin: geo, why: 'It multiplies by 2 each time.' }
+            - { text: '40, 35, 30, 25, 20', bin: arith, why: 'It subtracts 5 each time, so it decreases.' }
+            - { text: '1, 4, 9, 16, 25', bin: neither, why: 'The changes are +3, +5, +7, +9. They don’t stay the same.' }
+            - { text: '1, 10, 100, 1 000, 10 000', bin: geo, why: 'It multiplies by 10 each time.' }
+            - { text: '1, 1, 2, 3, 5', bin: neither, why: 'Each term adds the two before it, so the change keeps growing.' }
+        caption: Look at the change from each term to the next. Is it the same every time?
+
+keyTerms:
+  - term: Term
+    covers: [S2.3]
+    definition: One number in a sequence.
+  - term: Arithmetic sequence
+    covers: [K2.1, U2.1]
+    definition: A sequence that adds or subtracts the same number each time.
+  - term: Geometric sequence
+    covers: [K2.3, U2.2]
+    definition: A sequence that multiplies by the same number each time.
+  - term: Fibonacci sequence
+    covers: [K1.2]
+    definition: '1, 1, 2, 3, 5, 8, … Each term is the sum of the two terms before it.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: pattern
+    covers: [K1.1, S1.3]
+    type: number
+    prompt: The triangular numbers are 1, 3, 6, 10, 15. What is the **next** triangular number?
+    answer: 21
+    verify: 15 + 6
+    hints:
+      - Look at the change between terms. What gets added each time?
+      - Picture the triangle of dots. How many dots does the next row add?
+    solution:
+      - 'The changes are +2, +3, +4, +5. The next change is +6.'
+      - '\(15 + 6 = 21\). The next triangle has a new row of 6 dots.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.3, S2.2]
+    type: number
+    prompt: An arithmetic sequence starts at **7** and adds **6** each time. What is its **fifth** term?
+    answer: 31
+    verify: 7 + 6 + 6 + 6 + 6
+    hints:
+      - Write the terms one at a time. The first term is 7.
+    solution:
+      - 'The first five terms are 7, 13, 19, 25, 31.'
+      - 'The fifth term is **31**.'
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [S2.1, K2.3]
+    type: mc
+    prompt: Which sequence is **geometric**?
+    choices: ['2, 6, 18, 54', '2, 6, 10, 14', '2, 4, 7, 11', '2, 3, 5, 8']
+    answer: 0
+    feedback:
+      '1': 'This one adds 4 each time. That makes it arithmetic.'
+      '2': 'The change is +2, then +3, then +4. It isn’t the same each time.'
+      '3': 'Each term adds the two before it, like Fibonacci. Nothing is multiplied.'
+    hints:
+      - A geometric sequence multiplies by the same number each time.
+    solution:
+      - '2 × 3 = 6, 6 × 3 = 18, 18 × 3 = 54. **2, 6, 18, 54** multiplies by 3 each time, so it is geometric.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.2, S1.1]
+    type: number
+    prompt: Mei counts the spirals on a pine cone. **8** spirals go one way. The spirals going the other way are the **next** Fibonacci number after 8. How many spirals go the other way?
+    unit: spirals
+    answer: 13
+    verify: 5 + 8
+    hints:
+      - The Fibonacci sequence is 1, 1, 2, 3, 5, 8, … How do you get the next term?
+    solution:
+      - 'Each Fibonacci number is the sum of the two before it.'
+      - 'The two before the next one are 5 and 8, so \(5 + 8 = 13\) spirals.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S2.3, U1.1, K2.1]
+    type: number
+    prompt: A Chinook blows into Calgary. A snowman is **90 cm** tall in the morning, and it shrinks by **8 cm** every hour. How tall is it after **4 hours**?
+    unit: cm
+    answer: 58
+    verify: 90 - 8 - 8 - 8 - 8
+    hints:
+      - The height makes a sequence. What is the first term, and what is the change?
+      - 'Write the heights: 90, 82, … one for each hour.'
+    solution:
+      - 'Start at 90 and subtract 8 each hour: 90, 82, 74, 66, 58.'
+      - 'After 4 hours, the snowman is **58 cm** tall. This arithmetic sequence decreases.'
+
+  - id: b3
+    level: 2
+    thinking: notice
+    covers: [S2.4, U2.2, S2.1]
+    type: mc
+    prompt: Leo folds a sheet of paper in half again and again. He counts the layers after each fold. Counting the unfolded sheet first, he gets **1, 2, 4, 8, 16**. Which describes this sequence?
+    choices:
+      - Geometric. It starts at 1 and multiplies by 2 each time.
+      - Arithmetic. It starts at 1 and adds 2 each time.
+      - Arithmetic. It starts at 2 and adds 2 each time.
+      - Geometric. It starts at 2 and multiplies by 1 each time.
+    answer: 0
+    feedback:
+      '1': 'Adding 2 to 1 gives 3, not 2. Check the change between each pair of terms.'
+      '2': 'The first term is 1. Also, 4 to 8 is +4, not +2.'
+      '3': 'Multiplying by 1 never changes a number. What does each fold do to the layers?'
+    hints:
+      - What happens to the number of layers each time Leo folds?
+    solution:
+      - 'Each fold doubles the layers: 1 × 2 = 2, 2 × 2 = 4, 4 × 2 = 8, 8 × 2 = 16.'
+      - 'It is **geometric**, starting at 1 and multiplying by 2.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [U2.1, S2.1, K1.1]
+    type: mc
+    prompt: Ella says, "The square numbers 1, 4, 9, 16, 25 are an **arithmetic** sequence, because they always increase." What is wrong with her reason?
+    choices:
+      - The change is +3, +5, +7, +9. It isn’t the same each time, so the sequence isn’t arithmetic.
+      - Nothing. Any sequence that increases is arithmetic.
+      - Square numbers decrease, so they can’t be arithmetic.
+      - The square numbers multiply by 4 each time, so they are geometric.
+    answer: 0
+    feedback:
+      '1': 'Geometric sequences increase too. What else does an arithmetic sequence need?'
+      '2': 'Look at the terms: 1, 4, 9, 16, 25. They get bigger.'
+      '3': 'Check: 4 × 4 = 16, not 9.'
+    hints:
+      - Find the change between each pair of neighbouring terms.
+    solution:
+      - 'The changes are +3, +5, +7 and +9.'
+      - 'An arithmetic sequence has a **constant** change. Increasing isn’t enough.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [S2.3, S2.5, U2.1, U2.2]
+    type: investigation
+    prompt: |-
+      Two saving plans for a class bake sale jar:
+
+      - **Plan A:** put in $10 the first week, then $10 more than the week before, each week.
+      - **Plan B:** put in $1 the first week, then double the week before, each week.
+    parts:
+      - type: number
+        prompt: How much does Plan A put in during week **5**?
+        unit: $
+        answer: 50
+        verify: 10 + 10 + 10 + 10 + 10
+        hints:
+          - 'Write the weeks: 10, 20, …'
+        solution:
+          - 'Plan A: 10, 20, 30, 40, 50. In week 5 it puts in **$50**.'
+      - type: number
+        prompt: How much does Plan B put in during week **5**?
+        unit: $
+        answer: 16
+        verify: 2 * 2 * 2 * 2
+        hints:
+          - 'Write the weeks: 1, 2, …'
+        solution:
+          - 'Plan B: 1, 2, 4, 8, 16. In week 5 it puts in **$16**.'
+      - type: number
+        prompt: Both plans keep going. In which week does Plan B **first** put in more than Plan A does that week?
+        unit: week
+        answer: 8
+        verify: '8'
+        hints:
+          - Keep both lists going, week by week, and compare them.
+        solution:
+          - 'Plan A: 10, 20, 30, 40, 50, 60, 70, 80.'
+          - 'Plan B: 1, 2, 4, 8, 16, 32, 64, 128.'
+          - 'In week 7, Plan B puts in $64 and Plan A $70. In week **8**, Plan B puts in $128 and Plan A $80.'
+    wrapUp: An arithmetic sequence grows by the same amount each time. A geometric sequence grows by the same multiplier, so its jumps get bigger and bigger. It can start far behind and still win.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.5, K2.4, S1.2]
+    type: build
+    prompt: |-
+      Design a **geometric** sequence. Choose a first term that isn’t 0 and a whole number to multiply by each time, at least 2. Its **fifth** term must be between **100 and 1 000**.
+    fields:
+      - { name: a, label: 'First term' }
+      - { name: r, label: 'Multiply by' }
+    rules:
+      - { test: 'a % 1 == 0 && a > 0', fail: 'The first term must be a whole number other than 0.' }
+      - { test: 'r % 1 == 0 && r >= 2', fail: 'Multiply by a whole number, 2 or more, so the sequence grows.' }
+      - { test: 'a * r * r * r * r >= 100', fail: 'Write out five terms. The fifth one is less than 100. Try a bigger start or a bigger multiplier.' }
+      - { test: 'a * r * r * r * r <= 1000', fail: 'Write out five terms. The fifth one is more than 1 000. Try a smaller start or a smaller multiplier.' }
+    examples:
+      - { a: 2, r: 3 }
+      - { a: 1, r: 4 }
+      - { a: 7, r: 2 }
+      - { a: 5, r: 3 }
+    counterexamples:
+      - { a: 1, r: 3 }
+      - { a: 1, r: 10 }
+      - { a: 100, r: 1 }
+      - { a: 0, r: 5 }
+    hints:
+      - Try a start of 1 and multiply by 2. Write five terms. Is the fifth big enough?
+      - A bigger multiplier grows much faster. Try 3 or 4.
+    solution:
+      - 'Write five terms and check the last one.'
+      - '2, 6, 18, 54, **162**. 1, 4, 16, 64, **256**. 7, 14, 28, 56, **112**. 5, 15, 45, 135, **405**.'
+      - 'Each one multiplies by the same number every time, and its fifth term lands between 100 and 1 000.'

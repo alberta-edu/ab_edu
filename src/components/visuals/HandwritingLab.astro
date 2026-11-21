@@ -1,0 +1,167 @@
+---
+// Two writing tools (LANENG4-OI8-GQ1-LO1, K4.1 to K4.3, S4.1 to S4.3). "cursive": a word writes itself in
+// joined letters on guide lines, and switches show size, proportion and slant, next to a messy copy.
+// "keys": tap a key to see which finger reaches it from the home row.
+import { FINGERS, KEY_ROWS, wordLetters, wordWidth } from './handwriting.ts';
+
+interface Props {
+  mode: 'cursive' | 'keys';
+  word?: string;
+}
+const { mode, word = 'little' } = Astro.props;
+const S = 44;
+const OX = 40;
+const OY = 120;
+const letters = mode === 'cursive' ? wordLetters(word, S, OX, OY) : [];
+const W = OX * 2 + wordWidth(word) * S + 30;
+// The messy copy: each letter gets its own size and lean.
+const MESS = [
+  { lean: -28, size: 1.15 },
+  { lean: 2, size: 0.75 },
+  { lean: -6, size: 1.25 },
+  { lean: -32, size: 0.9 },
+  { lean: 8, size: 1.1 },
+  { lean: -20, size: 0.7 },
+];
+const slants = Array.from({ length: Math.ceil(W / 40) + 2 }, (_, i) => i * 40);
+---
+<handwriting-lab data-mode={mode}>
+  {
+    mode === 'cursive' && (
+      <>
+        <div class="control-row g4e-hw__switches">
+          <div class="seg" role="group" aria-label="Neat or messy">
+            <button type="button" data-hw-style="neat" aria-pressed="true">✨ Neat</button>
+            <button type="button" data-hw-style="messy" aria-pressed="false">🌪️ Messy</button>
+          </div>
+          <label class="control"><input type="checkbox" data-hw="lines" checked /> Guide lines</label>
+          <label class="control"><input type="checkbox" data-hw="slant" /> Slant lines</label>
+        </div>
+        <svg class="g4e-hw__svg" viewBox={`0 0 ${W} 160`} role="img" aria-label={`The word ${word} in cursive, on three guide lines.`}>
+          <g data-hw="guides">
+            <line class="g4e-hw__line g4e-hw__line--top" x1="0" x2={W} y1={OY - 2 * S} y2={OY - 2 * S}></line>
+            <line class="g4e-hw__line g4e-hw__line--mid" x1="0" x2={W} y1={OY - S} y2={OY - S}></line>
+            <line class="g4e-hw__line g4e-hw__line--base" x1="0" x2={W} y1={OY} y2={OY}></line>
+          </g>
+          <g data-hw="slants" hidden>
+            {slants.map((x) => <line class="g4e-hw__slant" x1={x} y1={OY + 10} x2={x + (2 * S + 20) * Math.tan((15 * Math.PI) / 180)} y2={OY - 2 * S - 10}></line>)}
+          </g>
+          <g class="g4e-hw__word" style={`transform-origin: ${OX}px ${OY}px`}>
+            {letters.map((l, i) => (
+              <g class="g4e-hw__letter" data-hw-letter={i} data-lean={MESS[i % MESS.length].lean} data-size={MESS[i % MESS.length].size} style={`transform-origin: ${(OX + (l.x + 0.3) * S).toFixed(1)}px ${OY}px`}>
+                <path class="g4e-hw__ink" d={l.d} pathLength="1" style={`--d:${i * 0.45}s`}></path>
+                {l.marks && <path class="g4e-hw__ink g4e-hw__mark" d={l.marks} pathLength="1" style={`--d:${i * 0.45 + 0.35}s`}></path>}
+              </g>
+            ))}
+          </g>
+        </svg>
+        <ul class="g4e-hw__checks" data-hw="checks">
+          <li><b>Formation:</b> each letter is made with the right strokes, and they join smoothly.</li>
+          <li><b>Size:</b> tall letters like <i>l</i> reach the top line.</li>
+          <li><b>Proportion:</b> small letters like <i>i</i> and <i>e</i> fill only up to the middle line.</li>
+          <li><b>Slant:</b> every letter leans the same way.</li>
+        </ul>
+        <button type="button" class="btn btn--ghost btn--small" data-hw="again">↻ Write it again</button>
+      </>
+    )
+  }
+  {
+    mode === 'keys' && (
+      <>
+        <div class="g4e-hw__keyboard" role="group" aria-label="Keyboard">
+          {KEY_ROWS.map((row, r) => (
+            <div class="g4e-hw__row" style={`--indent:${r * 0.5}`}>
+              {[...row].map((k) => {
+                const fi = FINGERS.findIndex((f) => f.keys.includes(k));
+                return <button type="button" class={`g4e-hw__key g4e-hw__f${fi}${k === 'F' || k === 'J' ? ' g4e-hw__bump' : ''}`} data-hw-key={k}>{k}</button>;
+              })}
+            </div>
+          ))}
+        </div>
+        <p class="g4e-hw__note" data-hw="note" aria-live="polite">Tap a key to see which finger reaches it. Your fingers rest on the middle row, the <b>home row</b>.</p>
+      </>
+    )
+  }
+</handwriting-lab>
+
+<style is:global>
+  handwriting-lab { display: block; }
+  .g4e-hw__switches { flex-wrap: wrap; }
+  .g4e-hw__svg { width: 100%; height: auto; margin: 0.4rem 0; background: var(--surface); border-radius: var(--radius-sm); }
+  .g4e-hw__line { stroke: var(--line-strong); stroke-width: 1.5; }
+  .g4e-hw__line--mid { stroke-dasharray: 6 6; }
+  .g4e-hw__line--base { stroke: var(--ink-3); stroke-width: 2; }
+  .g4e-hw__slant { stroke: var(--accent); stroke-width: 1; opacity: 0.35; }
+  .g4e-hw__word { transform: skewX(-15deg); transition: transform 0.5s ease; }
+  .g4e-hw__letter { transition: transform 0.5s ease; }
+  .g4e-hw__ink { fill: none; stroke: var(--ink); stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 0; }
+  handwriting-lab.is-writing .g4e-hw__ink { animation: g4e-hw-draw 0.45s ease-in-out var(--d) backwards; }
+  @keyframes g4e-hw-draw { from { stroke-dashoffset: 1; } }
+  handwriting-lab.is-writing .g4e-hw__mark { animation: g4e-hw-pop 0.2s ease var(--d) backwards; }
+  @keyframes g4e-hw-pop { from { opacity: 0; } }
+  .g4e-hw__checks { margin: 0.4rem 0; padding-left: 1.2rem; }
+  .g4e-hw__checks li { margin: 0.15rem 0; }
+  handwriting-lab.is-messy .g4e-hw__checks b { color: var(--bad); }
+  .g4e-hw__keyboard { display: grid; gap: 0.3rem; margin: 0.4rem 0; }
+  .g4e-hw__row { display: flex; gap: 0.25rem; padding-left: calc(var(--indent) * 1.3rem); }
+  .g4e-hw__key { flex: 1 1 0; max-width: 3rem; min-width: 0; aspect-ratio: 1; border: 2px solid var(--line-strong); border-radius: 7px; font: inherit; font-weight: 700; font-size: var(--step--1); color: #1c1b24; cursor: pointer; padding: 0; }
+  .g4e-hw__key.is-on { outline: 3px solid var(--ink); outline-offset: 1px; }
+  .g4e-hw__key.is-home { box-shadow: inset 0 0 0 3px var(--ink); }
+  .g4e-hw__bump { text-decoration: underline; text-underline-offset: 3px; }
+  .g4e-hw__f0, .g4e-hw__f7 { background: #f9c9d4; }
+  .g4e-hw__f1, .g4e-hw__f6 { background: #fbe0a8; }
+  .g4e-hw__f2, .g4e-hw__f5 { background: #c7e8c9; }
+  .g4e-hw__f3, .g4e-hw__f4 { background: #c6dcf7; }
+  .g4e-hw__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  @media (prefers-reduced-motion: reduce) {
+    .g4e-hw__word, .g4e-hw__letter { transition: none; }
+    handwriting-lab.is-writing .g4e-hw__ink { animation: none; }
+  }
+</style>
+
+<script>
+  import { reachFor } from './handwriting.ts';
+
+  class HandwritingLab extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.mode === 'keys') return this.keys();
+      this.querySelectorAll<HTMLButtonElement>('[data-hw-style]').forEach((b) => b.addEventListener('click', () => this.style(b.dataset.hwStyle === 'messy')));
+      this.part('lines').addEventListener('change', (e) => this.part('guides').toggleAttribute('hidden', !(e.target as HTMLInputElement).checked));
+      this.part('slant').addEventListener('change', (e) => this.part('slants').toggleAttribute('hidden', !(e.target as HTMLInputElement).checked));
+      this.part('again').addEventListener('click', () => this.write());
+      this.write();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-hw="${name}"]`)!;
+    }
+
+    private write() {
+      this.classList.remove('is-writing');
+      void this.offsetWidth;
+      this.classList.add('is-writing');
+    }
+
+    private style(messy: boolean) {
+      this.querySelectorAll('[data-hw-style]').forEach((b) => b.setAttribute('aria-pressed', String((b.getAttribute('data-hw-style') === 'messy') === messy)));
+      this.classList.toggle('is-messy', messy);
+      this.querySelectorAll<SVGGElement>('[data-hw-letter]').forEach((g) => {
+        g.style.transform = messy ? `skewX(${Number(g.dataset.lean) + 15}deg) scale(${g.dataset.size})` : '';
+      });
+    }
+
+    private keys() {
+      const note = this.part('note');
+      this.querySelectorAll<HTMLButtonElement>('[data-hw-key]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const r = reachFor(b.dataset.hwKey!);
+          this.querySelectorAll('.is-on, .is-home').forEach((x) => x.classList.remove('is-on', 'is-home'));
+          b.classList.add('is-on');
+          this.querySelector(`[data-hw-key="${r.home}"]`)!.classList.add('is-home');
+          note.textContent = `${b.dataset.hwKey}: ${r.note}`;
+        }),
+      );
+    }
+  }
+  customElements.define('handwriting-lab', HandwritingLab);
+</script>

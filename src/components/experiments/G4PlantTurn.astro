@@ -1,0 +1,82 @@
+---
+// Animated experiment: a bean seedling grows in a dark box with one hole in its side. Over five
+// days the stem bends toward the light from the hole, while the roots grow down
+// (SCI4-OI4-GQ1-LO1, K2.1, S2.1, U2.1).
+---
+<g4-plant-turn>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-plant-turn>
+
+<style is:global>
+  g4-plant-turn { display: block; }
+  g4-plant-turn svg { background: var(--surface-2); }
+  .g4s-pt-box { fill: #c9a46b; stroke: #7a5a2f; stroke-width: 3; }
+  .g4s-pt-inside { fill: #3a3128; }
+  .g4s-pt-light { fill: #ffe27a; opacity: 0.55; }
+  .g4s-pt-sun { fill: #ffcf3d; stroke: #e0a400; stroke-width: 2; }
+  .g4s-pt-pot { fill: #c0563a; stroke: #7d2f1c; stroke-width: 2; }
+  .g4s-pt-soil { fill: #5b3a1f; }
+  .g4s-pt-stem { fill: none; stroke: #6cbf4a; stroke-width: 5; stroke-linecap: round; }
+  .g4s-pt-leaf { fill: #6cbf4a; stroke: #3a6a2a; stroke-width: 1.5; }
+  .g4s-pt-root { fill: none; stroke: #e8dcc0; stroke-width: 2.5; stroke-linecap: round; }
+  .g4s-pt-day { fill: var(--ink); font-size: 20px; font-weight: 700; }
+  .g4s-pt-lbl { fill: var(--ink); font-size: 15px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+
+  const BOX = { x: 180, y: 50, w: 260, h: 200 };
+  const HOLE_Y = 110;
+  const BASE = { x: 270, y: 200 }; // where the stem leaves the soil
+
+  class G4PlantTurn extends HTMLElement {
+    private t = 0;
+    private done = false;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.t = 0;
+      this.done = false;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      await wait(200);
+      await tween(4200, (t) => ((this.t = t), this.draw()));
+      this.done = true;
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent =
+        'Over five days, the stem grew up and then bent toward the hole, where the light came in. Its leaves ended up near the hole. The roots grew down into the soil.';
+    }
+
+    private draw() {
+      const t = this.t;
+      const out: string[] = [];
+      const day = Math.min(5, 1 + Math.floor(t * 5));
+      out.push(`<text class="g4s-pt-day" x="330" y="32" text-anchor="middle">Day ${day}</text>`);
+      // Sun outside, shining through the hole in the right-hand side of the box.
+      out.push(`<circle class="g4s-pt-sun" cx="590" cy="${HOLE_Y}" r="28"/>`);
+      out.push(`<rect class="g4s-pt-box" x="${BOX.x}" y="${BOX.y}" width="${BOX.w}" height="${BOX.h}"/><rect class="g4s-pt-inside" x="${BOX.x + 8}" y="${BOX.y + 8}" width="${BOX.w - 16}" height="${BOX.h - 16}"/>`);
+      out.push(`<polygon class="g4s-pt-light" points="${BOX.x + BOX.w},${HOLE_Y - 12} ${BOX.x + BOX.w},${HOLE_Y + 12} ${BOX.x + 60},${HOLE_Y + 70} ${BOX.x + 60},${HOLE_Y - 30}"/>`);
+      out.push(`<rect x="${BOX.x + BOX.w - 8}" y="${HOLE_Y - 12}" width="8" height="24" style="fill:#ffe27a"/>`);
+      // Pot and soil, with roots growing down.
+      out.push(`<rect class="g4s-pt-soil" x="${BASE.x - 34}" y="${BASE.y}" width="68" height="10"/><path class="g4s-pt-pot" d="M${BASE.x - 40},${BASE.y + 4} L${BASE.x + 40},${BASE.y + 4} L${BASE.x + 30},${BASE.y + 40} L${BASE.x - 30},${BASE.y + 40} Z"/>`);
+      const r = 8 + 24 * t;
+      out.push(`<path class="g4s-pt-root" d="M${BASE.x},${BASE.y + 8} l0,${r.toFixed(1)} M${BASE.x},${BASE.y + 14} l-${(r * 0.5).toFixed(1)},${(r * 0.8).toFixed(1)} M${BASE.x},${BASE.y + 14} l${(r * 0.5).toFixed(1)},${(r * 0.8).toFixed(1)}"/>`);
+      // Stem: grows up first, then its top bends toward the hole.
+      const h = 30 + 70 * Math.min(1, t * 1.4);
+      const bend = Math.max(0, (t - 0.25) / 0.75);
+      const tipX = BASE.x + 110 * bend;
+      const tipY = BASE.y - h + 10 * bend;
+      const ctrlY = BASE.y - h * 0.8;
+      out.push(`<path class="g4s-pt-stem" d="M${BASE.x},${BASE.y} Q${BASE.x},${ctrlY.toFixed(1)} ${tipX.toFixed(1)},${tipY.toFixed(1)}"/>`);
+      out.push(`<ellipse class="g4s-pt-leaf" cx="${(tipX + 10).toFixed(1)}" cy="${(tipY - 8).toFixed(1)}" rx="14" ry="7" transform="rotate(${(-30 + 20 * bend).toFixed(1)} ${(tipX + 10).toFixed(1)} ${(tipY - 8).toFixed(1)})"/><ellipse class="g4s-pt-leaf" cx="${(tipX + 6).toFixed(1)}" cy="${(tipY + 10).toFixed(1)}" rx="14" ry="7" transform="rotate(${(30 + 10 * bend).toFixed(1)} ${(tipX + 6).toFixed(1)} ${(tipY + 10).toFixed(1)})"/>`);
+      out.push(`<text class="g4s-pt-lbl" x="${BOX.x + BOX.w + 14}" y="${HOLE_Y + 40}">Hole</text>`);
+      if (this.done) out.push(`<text class="g4s-pt-lbl" x="${BOX.x - 12}" y="${BOX.y + 100}" text-anchor="end">Stem bent</text><text class="g4s-pt-lbl" x="${BOX.x - 12}" y="${BOX.y + 120}" text-anchor="end">toward the light</text><text class="g4s-pt-lbl" x="${BOX.x - 12}" y="${BOX.y + 180}" text-anchor="end">Roots grew down</text>`);
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-plant-turn', G4PlantTurn);
+</script>

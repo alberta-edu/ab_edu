@@ -1,0 +1,382 @@
+id: suffixes-word-origins
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG4-OI3-GQ1-LO1]
+order: 8
+title: Suffixes and Where Words Come From
+shortTitle: Suffixes & word origins
+summary: >-
+  Join suffixes like -y, -ish, -able and -ful to bases, predict what new words mean, and find words that
+  came from other languages, places and brand names.
+
+bigIdea: |-
+  - A **suffix** at the end of a base changes the word’s meaning.
+  - If you know the base and the suffix, you can often **predict** what a new word means.
+  - English words come from many places: **other languages, technology, place names, brand names and the things people do**.
+
+lesson:
+  - title: Suffixes change meaning
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI3-GQ1-LO1#K2.2', 'LANENG3-OI3-GQ1-LO1#K2.3']
+        title: Remember from Grade 3
+        body: A **base** is a word or word part with meaning. An **affix** is added to it. A suffix goes at the end.
+      - type: visual
+        covers: [K2.1, S2.1, S2.2, U2.1]
+        component: suffix-builder
+        props:
+          suffixes:
+            - suffix: y
+              meaning: '“full of” or “having”'
+              words:
+                - { base: rain, word: rainy, means: 'having lots of rain' }
+                - { base: salt, word: salty, means: 'full of salt' }
+                - { base: noise, word: noisy, means: 'full of noise' }
+            - suffix: ish
+              meaning: '“a little” or “like”'
+              words:
+                - { base: red, word: reddish, means: 'a little red' }
+                - { base: child, word: childish, means: 'like a young child' }
+            - suffix: able
+              meaning: '“can be”'
+              words:
+                - { base: wash, word: washable, means: 'can be washed' }
+                - { base: break, word: breakable, means: 'can be broken' }
+            - suffix: ible
+              meaning: '“can be”, like -able'
+              words:
+                - { base: flex, word: flexible, means: 'can bend' }
+                - { base: reverse, word: reversible, means: 'can be turned inside out and worn the other way' }
+            - suffix: ful
+              meaning: '“full of”'
+              words:
+                - { base: help, word: helpful, means: 'full of help' }
+                - { base: cheer, word: cheerful, means: 'full of cheer' }
+            - suffix: ant
+              meaning: '“a person who” or “being”'
+              words:
+                - { base: serve, word: servant, means: 'a person who serves' }
+                - { base: observe, word: observant, means: 'being quick to observe, or notice, things' }
+            - suffix: ent
+              meaning: '“a thing that” or “being”, like -ant'
+              words:
+                - { base: absorb, word: absorbent, means: 'being able to absorb, or soak up, liquid' }
+                - { base: differ, word: different, means: 'being not the same' }
+        caption: Tap a suffix. How does it change each base? A red letter drops, and a yellow letter is added.
+
+  - title: One base, many words
+    blocks:
+      - type: table
+        covers: [S2.2, S2.1, K2.1]
+        caption: The base stays the same. The suffix changes the meaning.
+        headers: [Word, Base + suffix, Meaning]
+        rows:
+          - ['**playful**', 'play + -ful', 'full of play: *a playful puppy*']
+          - ['**playable**', 'play + -able', 'can be played: *a playable game*']
+          - ['**snowy**', 'snow + -y', 'having snow: *a snowy day*']
+          - ['**snowish**', 'snow + -ish', 'not a real word! Not every suffix fits every base.']
+      - type: callout
+        variant: mistake
+        covers: [S2.2]
+        title: Check that the word is real
+        body: If a word you built sounds strange, check it in a dictionary. *Snowish* isn’t a word, but *snowy* is.
+
+  - title: Predict a new word
+    blocks:
+      - type: example
+        covers: [S2.3, S2.1]
+        title: What does reversible mean?
+        problem: 'The tag on your new jacket says: **Reversible**.'
+        steps:
+          - '**Find the base:** *revers(e)*, which means to turn the other way.'
+          - '**Find the suffix:** *-ible*, which means “can be.”'
+          - '**Put them together:** can be turned the other way.'
+          - '**Check:** inside the jacket is a different colour. You can turn it inside out and wear it! ✓'
+        answer: '**Reversible** means it can be turned inside out and worn either way.'
+
+  - title: Where do words come from?
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: lang, label: Other languages, icon: 🌍 }
+            - { id: tech, label: Technology, icon: 💻 }
+            - { id: place, label: Place names, icon: 📍 }
+            - { id: brand, label: Brand names, icon: ™️ }
+            - { id: social, label: Social practices, icon: 🤝 }
+          cards:
+            - { text: '**kayak**', bin: lang, why: 'From the Inuktitut word *qajaq*, “hunter’s boat.”' }
+            - { text: '**moose**', bin: lang, why: 'From an Eastern Algonquian language name for the animal.' }
+            - { text: '**email**', bin: tech, why: 'Short for *electronic mail*.' }
+            - { text: '**blog**', bin: tech, why: 'Short for *weblog*, a log or diary on the web.' }
+            - { text: '**denim**', bin: place, why: 'From French *de Nîmes*, “from Nîmes,” the town in France where the cloth was first made.' }
+            - { text: '**hamburger**', bin: place, why: 'Named after the city of Hamburg, in Germany.' }
+            - { text: '**zipper**', bin: brand, why: 'A company registered *Zipper* as the name of its rubber boots in 1925.' }
+            - { text: '**escalator**', bin: brand, why: '*Escalator* was the trademark, or brand name, of the first moving stairs. Now anyone can use the word.' }
+            - { text: '**goodbye**', bin: social, why: 'People used to say “God be with you” when they parted. Over time it got shorter.' }
+        caption: Guess where each word came from. The explanation tells you if you were right.
+
+  - title: Origins help with spelling
+    blocks:
+      - type: table
+        covers: [S2.4, K2.2]
+        caption: Knowing where a word came from can explain its spelling.
+        headers: [Word, Where it came from, Spelling clue]
+        rows:
+          - ['**denim**', '*de Nîmes*, “from Nîmes”', 'It starts with **de**, like the French.']
+          - ['**email**', '*electronic mail*', 'The **e** stands for *electronic*.']
+          - ['**goodbye**', '*God be with you*', 'The **bye** came from *be with ye*.']
+      - type: callout
+        variant: tip
+        covers: [S2.4]
+        title: Look it up
+        body: Many dictionaries tell you where a word came from. Look for a note called the word’s **origin**.
+
+keyTerms:
+  - term: Suffix
+    covers: [K2.1]
+    definition: A word part added to the end of a base that changes its meaning, such as -ful or -able.
+  - term: Morphology
+    covers: [U2.1]
+    definition: The study of words and word parts, and how they are related.
+  - term: Word origin
+    covers: [K2.2, S2.4]
+    definition: Where a word came from, such as another language, a place or a brand name.
+  - term: Trademark
+    covers: [K2.2]
+    definition: A name that a company owns for its product. Some trademarks become everyday words.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: The soup was **salty**. What does the suffix *-y* add to *salt*?
+    choices:
+      - full of, or having
+      - a person who
+      - not
+      - can be
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': That is what *-ant* can mean, as in *servant*. Is the soup a person?
+      '2': Salty soup has lots of salt, not no salt.
+      '3': That is what *-able* means. Can the soup be salted, or does it have salt?
+    hints:
+      - Think of *rainy* and *snowy*. What do they have in common?
+    solution:
+      - Salty soup is **full of** salt. The suffix *-y* means “full of” or “having.”
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.2]
+    type: text
+    prompt: You can wash this jacket in the washing machine. It is ___. (Add a suffix to *wash*.)
+    accept: [washable]
+    hints:
+      - Which suffix means “can be”?
+    solution:
+      - wash + -able = **washable**, which means “can be washed.”
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K2.2, S2.4]
+    type: mc
+    prompt: The word **kayak** comes from the Inuktitut word *qajaq*. Where did it come from?
+    choices:
+      - Another language
+      - Technology
+      - A place name
+      - A brand name
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A kayak is a kind of boat, but did its name come from a new invention or computer word?
+      '2': Is Qajaq the name of a town?
+      '3': Is it a company’s name for its product?
+    hints:
+      - Inuktitut is a language. What does that tell you?
+    solution:
+      - Inuktitut is the language of the Inuit. English borrowed **kayak** from another language.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S2.3, K2.1]
+    type: mc
+    prompt: |-
+      > This towel is very **absorbent**.
+
+      You know that *absorb* means “soak up.” What does *absorbent* most likely mean?
+    choices:
+      - Good at soaking up water
+      - Not able to soak up water
+      - A person who soaks things up
+      - Full of holes and very thin
+    answer: 0
+    feedback:
+      '1': There is no “not” part in this word. What do the base and the suffix say?
+      '2': '*-ent* can mean “a person who,” but is a towel a person? It can also mean “being.”'
+      '3': Does the word have any part that means holes? Look at the base.
+    hints:
+      - Find the base, then the suffix. Put their meanings together.
+    solution:
+      - '*absorb* (soak up) + *-ent* (being, or doing) = **being good at soaking things up**.'
+      - That fits a towel. You predicted the meaning from the word’s parts.
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S2.2, K2.1]
+    type: mc
+    prompt: Ben reads that the sky was **reddish** at sunset. He says, “That means the sky was very, very red.” What did Ben get wrong?
+    choices:
+      - '*-ish* means “a little,” so the sky was only a little red.'
+      - '*-ish* means “full of,” so the sky was full of red birds.'
+      - '*-ish* means “not,” so the sky was not red at all.'
+      - Nothing, because *-ish* always makes a word stronger.
+    answer: 0
+    feedback:
+      '1': That is what *-ful* means. Is anything about birds in the word?
+      '2': Think of *smallish*. Does it mean “not small”?
+      '3': Think of *smallish* or *greenish*. Are those stronger or weaker?
+    hints:
+      - What does *greenish* water look like? Very green, or a little green?
+    solution:
+      - The suffix *-ish* means “a little” or “sort of.” A **reddish** sky is a little bit red.
+      - Ben guessed the suffix made the word stronger, but it makes it weaker.
+
+  - id: b3
+    level: 2
+    thinking: decide
+    covers: [S2.2, S2.1, K2.1]
+    type: mc
+    prompt: Which pair of sentences uses the right words?
+    choices:
+      - The playful kitten chased its tail. The game is playable on any tablet.
+      - The playable kitten chased its tail. The game is playful on any tablet.
+      - The playful kitten chased its tail. The game is playful on any tablet.
+      - The playable kitten chased its tail. The game is playable on any tablet.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Can a kitten “be played”? Can a game be “full of play” on a tablet?
+      '2': The kitten is right. Is a game “full of play” on a tablet, or “can be played” on it?
+      '3': The game is right. Is the kitten “able to be played,” or “full of play”?
+    hints:
+      - '*-ful* means “full of.” *-able* means “can be.” Test each word in its sentence.'
+    solution:
+      - A kitten is **playful**, full of play. A game is **playable**, it can be played.
+      - Same base, different suffix, different meaning.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [S2.4, K2.2]
+    type: mc
+    prompt: Why does the word **email** start with an *e*?
+    choices:
+      - It is short for *electronic mail*, a technology word.
+      - It comes from a French word that starts with *é*.
+      - The *e* was added to make it sound more like *mail*.
+      - It was named after a place called Email.
+    answer: 0
+    feedback:
+      '1': Is *email* an old French word? When did people start sending email?
+      '2': Does the *e* make it sound more like *mail*? What could the *e* stand for?
+      '3': Is there a famous place called Email? Think about how email is sent.
+    hints:
+      - How is email sent? What kind of mail is it?
+    solution:
+      - '*Email* is short for **electronic mail**. It came from technology.'
+      - Knowing the origin explains the spelling. The *e* stands for a whole word.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S2.3, S2.1, K2.1]
+    type: investigation
+    prompt: |-
+      > The **observant** hiker stopped. Tiny tracks in the mud led under a log.
+
+      You might not know *observant*. Let’s work it out.
+    parts:
+      - type: text
+        prompt: What is the base of *observant*? Type the base word, with its silent e.
+        accept: [observe]
+        hints:
+          - Take off the suffix *-ant*. What word is left? It lost an e when the suffix joined.
+        solution:
+          - observant = observ(e) + -ant. The base is **observe**, which means to watch or notice.
+      - type: mc
+        prompt: Here *-ant* means “being.” So what does *observant* mean?
+        choices:
+          - Quick to notice things
+          - A person who watches TV
+          - Not able to see well
+          - Afraid of small animals
+        answer: 0
+        feedback:
+          '1': Where is TV in the sentence? Use the base *observe*.
+          '2': Is there a “not” part in the word?
+          '3': Does any part of the word mean afraid?
+        hints:
+          - Put *observe* and “being” together.
+        solution:
+          - Being someone who observes means being **quick to notice things**.
+      - type: mc
+        prompt: How does the sentence **prove** your prediction?
+        choices:
+          - The hiker noticed tiny tracks that most people would miss.
+          - The hiker was walking on a trail in the forest.
+          - The tracks led under a log.
+          - The hiker stopped walking for a moment.
+        answer: 0
+        feedback:
+          '1': Anyone can walk on a trail. What does this hiker do that shows the word?
+          '2': That is where the tracks went. Who noticed them?
+          '3': People stop for many reasons. Why did this hiker stop?
+        hints:
+          - What did the hiker notice?
+        solution:
+          - Spotting **tiny** tracks shows someone who notices things. The context confirms the meaning.
+    wrapUp: To work out a new word, take it apart, put the meanings together, and check that the sentence agrees.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [K2.2, S2.4]
+    type: mc
+    prompt: |-
+      Leo and Ana argue about where the word **zipper** came from.
+
+      - **Leo:** “From technology, because a zipper is an invention.”
+      - **Ana:** “From a brand name. A company used it first.”
+
+      Which fact would **settle** the argument?
+    choices:
+      - In 1925, a company registered *Zipper* as the name of its rubber boots.
+      - Zippers are made of metal or plastic teeth that lock together.
+      - Most jackets and backpacks have at least one zipper today.
+      - The word *zipper* has two p’s in the middle.
+    answer: 0
+    feedback:
+      '1': This tells how a zipper works. Does it say where its **name** came from?
+      '2': This shows zippers are common now. Does it tell how the word began?
+      '3': This is about spelling, not origin. Which fact tells who used the word first?
+    hints:
+      - The argument is about the **word**, not the object. Which fact is about the name?
+    solution:
+      - The question is where the **word** came from. Only the first fact is about the name.
+      - A company owned *Zipper* as a trade name, so the word began as a **brand name**. Leo is right that zippers are inventions, but that doesn’t tell us where the word came from.

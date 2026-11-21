@@ -1,0 +1,401 @@
+id: design-process
+grade: 4
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI4-OI6-GQ1-LO1]
+order: 13
+title: Design Processes and Algorithms
+shortTitle: Design and algorithms
+summary: >-
+  Follow the design process from problem to test, troubleshoot a paper bridge, weigh materials and cost,
+  and build an algorithm that guides a robot to a recycling bin.
+
+bigIdea: |-
+  - Design turns **ideas into artifacts** that meet needs.
+  - Designers understand the problem, form ideas, plan, create, test, analyze and troubleshoot.
+  - **Feedback**, available materials and cost all shape a design.
+  - An **algorithm** is a sequence of instructions. It is one kind of artifact.
+
+lesson:
+  - title: The design process
+    blocks:
+      - type: figure
+        covers: [K1.1, U1.1]
+        figure: >-
+          <svg viewBox="0 0 440 300" class="fig-svg" role="img" aria-label="The design process as a loop of seven steps: understand the problem, form ideas, plan, create, test, analyze, troubleshoot, and back to form ideas.">
+          <defs><marker id="g4s-dp-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 Z" style="fill:var(--ink-2)"/></marker></defs>
+          <ellipse cx="220" cy="150" rx="150" ry="104" style="fill:none;stroke:var(--line-strong);stroke-width:3;stroke-dasharray:7 6"/>
+          <g style="fill:var(--science-soft);stroke:var(--science);stroke-width:2">
+          <rect x="150" y="18" width="140" height="40" rx="10"/><rect x="300" y="60" width="130" height="40" rx="10"/><rect x="314" y="150" width="116" height="40" rx="10"/>
+          <rect x="250" y="234" width="120" height="40" rx="10"/><rect x="70" y="234" width="120" height="40" rx="10"/><rect x="10" y="150" width="116" height="40" rx="10"/><rect x="10" y="60" width="130" height="40" rx="10"/></g>
+          <g class="fig-small" text-anchor="middle" style="fill:var(--ink);font-weight:700">
+          <text x="220" y="43">1 Understand</text><text x="365" y="85">2 Form ideas</text><text x="372" y="175">3 Plan</text>
+          <text x="310" y="259">4 Create</text><text x="130" y="259">5 Test</text><text x="68" y="175">6 Analyze</text><text x="75" y="85">7 Troubleshoot</text></g>
+          <text x="220" y="146" text-anchor="middle" class="fig-label">Fix it, and</text><text x="220" y="166" text-anchor="middle" class="fig-label">try again</text>
+          </svg>
+        caption: Designers go around the loop again and again. Troubleshooting leads back to new ideas.
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI6-GQ1-LO1#K1.1', 'SCI3-OI6-GQ1-LO1#K2.2']
+        title: From Grade 3
+        body: Break a big task into smaller chunks. Come up with many different ideas.
+
+  - title: 'Virtual experiment: the paper bridge'
+    blocks:
+      - type: experiment
+        covers: [K1.1, S1.3, U1.1, S1.1]
+        title: Test a flat bridge and a folded bridge
+        question: |-
+          **Need:** a bridge that holds 20 coins over a gap between two stacks of books.
+
+          The class tests the same sheet of paper two ways:
+
+          - laid **flat** across the gap
+          - **folded** like an accordion
+        animation: g4-paper-bridge
+        predict:
+          choices:
+            - The folded bridge holds many more coins.
+            - The flat bridge holds more coins.
+            - They hold the same, because it’s the same paper.
+          answer: 0
+        observe: |-
+          - The **flat** sheet sagged more with each coin, and fell when the 4th coin went on.
+          - The **folded** sheet held all **20** coins.
+        explain: |-
+          - **Testing** showed the flat bridge didn’t meet the need.
+          - **Analyzing** found the problem: the flat sheet bent too easily.
+          - **Troubleshooting** fixed it. Folds made the same paper much stiffer.
+
+  - title: Feedback helps
+    blocks:
+      - type: table
+        covers: [K1.2, S1.2]
+        caption: Helpful feedback is kind, specific and useful.
+        headers: [Start with, Example]
+        rows:
+          - ['**I notice…**', 'I notice your bridge sags in the middle.']
+          - ['**I wonder…**', 'I wonder if it needs to hold a toy car, too.']
+          - ['**What if…**', 'What if you fold the edges up to make walls?']
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Why ask others?
+        body: Other people notice **needs** you missed, like “It has to fit in my backpack.”
+
+  - title: Materials and cost
+    blocks:
+      - type: table
+        covers: [K1.7, S1.5]
+        caption: Choosing materials for a model bridge
+        headers: [Material, Cost, Available?, Notes]
+        rows:
+          - ['Paper', 'Free in class', 'Yes, lots', 'Light. Folds make it strong.']
+          - ['Craft sticks', '$3 a box', 'Order from a store', 'Strong, but needs glue to dry.']
+          - ['Cardboard', 'Free from the recycling', 'Yes, some', 'Strong. Hard to cut.']
+          - ['Metal wire', '$8 a roll', 'Not at school', 'Very strong. Needs an adult to cut.']
+      - type: callout
+        variant: tip
+        covers: [K1.7, S1.5]
+        title: The best material isn’t always the strongest
+        body: Designers ask, **What do we have? What can we afford?** A cheap, available material can meet the need.
+
+  - title: Algorithms
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.4, K1.5]
+        component: g4-robot-path
+        caption: Work with a partner. One person says each instruction, and the other taps it in. Can you find two different algorithms that work?
+      - type: callout
+        variant: remember
+        covers: ['SCI3-OI6-GQ1-LO1#K2.1']
+        title: From Grade 3
+        body: The same outcome, like getting to school, can be reached in different ways.
+
+  - title: Design makes many artifacts
+    blocks:
+      - type: table
+        covers: [K1.4, K1.5, K1.6]
+        caption: An artifact is anything made by humans, machines or computers through design.
+        headers: [Artifact, Example]
+        rows:
+          - ['**Algorithm**', 'The steps for the robot to reach the bin']
+          - ['**Model**', 'A small model of a bridge for a creek']
+          - ['**Prototype**', 'The first working version of a new backpack hook, made to test']
+          - ['**Blueprint**', 'A drawing of a birdhouse with every measurement labelled']
+          - ['**Program**', 'A game app on a tablet']
+          - ['**Experiment**', 'A planned test of which bridge holds more coins']
+          - ['**Object**', 'A chair, a lunch box or a pair of skates']
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: Big problems too
+        body: Design can deal with **complex** problems, like a playground every child can use, including children who use wheelchairs.
+
+keyTerms:
+  - term: Design process
+    covers: [K1.1, U1.1]
+    definition: The steps people follow to turn an idea into something that meets a need.
+  - term: Artifact
+    covers: [K1.4]
+    definition: An object or product made by humans, machines or computers through design.
+  - term: Algorithm
+    covers: [K1.3]
+    definition: A sequence of instructions.
+  - term: Prototype
+    covers: [K1.5]
+    definition: An early version of a design, made to test whether it works.
+  - term: Troubleshoot
+    covers: [K1.1]
+    definition: To find out what is going wrong and fix it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4, K1.5]
+    type: mc
+    prompt: Which of these is an **artifact**?
+    choices:
+      - A blueprint for a treehouse
+      - A pine tree growing in a forest
+      - A river
+      - A rock on a beach
+    answer: 0
+    feedback:
+      '1': The tree grew on its own. Did a person design it?
+      '2': A river forms in nature. Did a person design it?
+      '3': The rock formed in nature. Did a person design it?
+    hints:
+      - An artifact is made by humans, machines or computers through design.
+    solution:
+      - A **blueprint** is made by a person through design, so it is an artifact.
+      - Trees, rivers and rocks come from nature.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3]
+    type: mc
+    prompt: Which of these is an **algorithm**?
+    choices:
+      - '1. Wet your toothbrush. 2. Add toothpaste. 3. Brush for two minutes. 4. Rinse.'
+      - A drawing of a toothbrush
+      - A toothbrush
+      - A list of your favourite toothpastes
+    answer: 0
+    feedback:
+      '1': A drawing is an artifact, but does it give instructions in order?
+      '2': A toothbrush is an object. Does it tell you what to do, step by step?
+      '3': A list of favourites isn’t instructions. What makes an algorithm?
+    hints:
+      - An algorithm is a sequence of instructions.
+    solution:
+      - The numbered steps are a **sequence of instructions**, so they are an algorithm.
+
+  - id: w3
+    level: 1
+    thinking: notice
+    covers: [K1.1]
+    type: mc
+    prompt: Mei’s birdfeeder spills seeds when the wind blows. She studies why and adds a lip around the edge. Which design step is fixing the problem?
+    choices: [Troubleshooting, Understanding the problem, Forming ideas, Planning]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Understanding the problem comes first, before anything is built. Is the feeder already built?
+      '2': Forming ideas is coming up with possible designs. Is she fixing something that already exists?
+      '3': Planning comes before creating. Is the feeder already built and tested?
+    hints:
+      - The feeder already exists, and it has a problem. Which step finds and fixes problems?
+    solution:
+      - Finding out what is going wrong and fixing it is **troubleshooting**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [S1.4, K1.3]
+    type: mc
+    figure: >-
+      <svg viewBox="0 0 250 250" class="fig-svg" style="max-width:14rem" role="img" aria-label="A 5 by 5 grid. The robot starts in the bottom left corner, facing up. The bin is in the second row from the top, fourth column. Puddles are in the second row from the bottom, columns 2 and 3, and in the middle row, column 3.">
+      <g style="fill:var(--surface);stroke:var(--line-strong)"><rect x="0" y="0" width="250" height="250"/><path d="M50,0 V250 M100,0 V250 M150,0 V250 M200,0 V250 M0,50 H250 M0,100 H250 M0,150 H250 M0,200 H250"/></g>
+      <g style="fill:#7fb2e5"><ellipse cx="75" cy="177" rx="20" ry="13"/><ellipse cx="125" cy="177" rx="20" ry="13"/><ellipse cx="125" cy="127" rx="20" ry="13"/></g>
+      <rect x="163" y="62" width="24" height="28" rx="3" style="fill:#2f5fd0"/>
+      <rect x="11" y="213" width="28" height="26" rx="6" style="fill:#e0b52e;stroke:var(--ink);stroke-width:2"/><path d="M17,213 L25,203 L33,213 Z" style="fill:var(--ink)"/>
+      </svg>
+    prompt: |-
+      Jin writes this algorithm to get the robot to the bin:
+
+      1. Forward 1
+      2. Forward 1
+      3. Forward 1
+      4. Turn left
+      5. Forward 1
+      6. Forward 1
+      7. Forward 1
+
+      The robot bumps into the edge of the grid. Which step is wrong?
+    choices: [Step 4, Step 3, Step 5, Step 7]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Trace it. After step 3, is the robot in a good spot, just above the puddles?
+      '2': Step 5 moves the robot forward. Which way is it facing when it does?
+      '3': Does the robot even get to step 7?
+    hints:
+      - Put your finger on the robot and follow each step, one square at a time.
+      - After step 3, which way does the robot need to face to reach the bin?
+    solution:
+      - Steps 1 to 3 take the robot up three squares, just above the puddles. Good so far.
+      - The bin is to the **right**, but step 4 turns the robot **left**. Step 5 then drives it into the edge.
+      - Change step 4 to **Turn right**, and the robot drives straight to the bin. Then test it again.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [S1.2, K1.2]
+    type: mc
+    prompt: Your friend shows you her paper bridge. It sags in the middle. Which feedback is most helpful?
+    choices:
+      - I notice it sags in the middle. What if you folded the paper?
+      - It’s bad.
+      - I like the colour.
+      - Mine is better.
+    answer: 0
+    feedback:
+      '1': Is it kind? Does it tell her what to change?
+      '2': It’s kind, but does it help her make the bridge hold more?
+      '3': Would this help her improve her design?
+    hints:
+      - Helpful feedback is kind, specific and useful.
+    solution:
+      - The first one says **what you noticed** and gives an idea to try. It is kind, specific and useful.
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [K1.5, K1.4]
+    type: mc
+    prompt: Omar draws a plan for a bird feeder. He labels every length and shows where each piece goes. What kind of artifact has he made?
+    choices: [A blueprint, A program, A prototype, An experiment]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A program runs on a computer. Is Omar’s plan on a computer?
+      '2': A prototype is a first working version you can test. Is a drawing something birds can use?
+      '3': An experiment is a planned test. Is Omar testing anything yet?
+    hints:
+      - A drawing with all the measurements, used to build something, is called a…
+    solution:
+      - A detailed drawing with measurements is a **blueprint**.
+      - Next, he could build a **prototype** from it and test it.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [K1.7, S1.5]
+    type: mc
+    prompt: |-
+      Your class must build a model bridge **this week**, and has **no money** to spend. Look at the materials
+      table. Which material should you choose?
+    choices:
+      - Paper, folded to make it strong
+      - Metal wire, because it is the strongest
+      - Craft sticks, because they are strong
+      - Wait until next month for a better material
+    answer: 0
+    feedback:
+      '1': Wire is strong. But what does the table say about its cost and whether the school has it?
+      '2': Sticks cost $3 a box and have to be ordered. Does that fit this class?
+      '3': The bridge is due this week. Does waiting meet the need?
+    hints:
+      - Check two columns in the table, cost and available.
+    solution:
+      - Paper is **free** and **available** now, and folding makes it strong enough.
+      - The strongest material isn’t useful if you can’t get it or afford it.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.3, S1.1, U1.1]
+    type: investigation
+    prompt: |-
+      A class needs a paper bridge that holds a toy truck as heavy as **30 coins**.
+
+      | Version | Design | Coins held |
+      |---|---|---|
+      | 1 | Flat sheet | 3 |
+      | 2 | Folded like an accordion | 25 |
+    parts:
+      - type: number
+        prompt: How many more coins did version 2 hold than version 1?
+        answer: 22
+        verify: 25 - 3
+        unit: coins
+        hints:
+          - Subtract the smaller number from the bigger one.
+        solution:
+          - \(25 - 3 = 22\). Folding made a big difference.
+      - type: mc
+        prompt: Does version 2 meet the need?
+        choices:
+          - No. It holds 25 coins, and the truck is as heavy as 30.
+          - Yes. It held far more than version 1.
+          - Yes. It didn’t fall down before the test ended.
+        answer: 0
+        feedback:
+          '1': Better than before isn’t the same as good enough. What does the need say?
+          '2': Check the number in the table against the need.
+        hints:
+          - Compare 25 with the need in the story.
+        solution:
+          - The need is **30** coins. Version 2 holds only 25, so it **doesn’t meet the need** yet.
+      - type: mc
+        prompt: What should the class do next?
+        choices:
+          - Troubleshoot. Try one more change, like a second folded sheet, then test again.
+          - Stop. Version 2 is good enough.
+          - Go back to the flat sheet, since it was simpler.
+        answer: 0
+        feedback:
+          '1': Would a bridge that holds 25 coins carry a truck as heavy as 30?
+          '2': The flat sheet held only 3 coins. Would that be closer to the need?
+        hints:
+          - Which design step comes after a test that falls short?
+        solution:
+          - When a test falls short, designers **analyze** it and **troubleshoot**.
+          - A new change means a new test, to confirm it meets the need.
+    wrapUp: A test tells you two things, how good a design is and whether it is good enough yet.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.5, K1.7, S1.1]
+    type: build
+    prompt: |-
+      You have **$12** for a craft-stick bridge. Craft sticks cost **$3 a box**. Glue costs **$2 a bottle**.
+      You need at least **2 boxes** of sticks and at least **1 bottle** of glue. Plan what to buy.
+    fields:
+      - { name: s, label: 'Boxes of sticks' }
+      - { name: g, label: 'Bottles of glue' }
+    rules:
+      - { test: 's >= 2', fail: 'You need at least 2 boxes of sticks to build the bridge.' }
+      - { test: 'g >= 1', fail: 'Without glue, the sticks won’t hold together.' }
+      - { test: '3 * s + 2 * g <= 12', fail: 'Add up the cost of the sticks and the glue. Is it more than $12?' }
+    examples:
+      - { s: 2, g: 1 }
+      - { s: 2, g: 3 }
+      - { s: 3, g: 1 }
+    counterexamples:
+      - { s: 3, g: 2 }
+      - { s: 1, g: 4 }
+      - { s: 4, g: 0 }
+    hints:
+      - How much do 2 boxes of sticks cost? How much is left for glue?
+    solution:
+      - 2 boxes and 1 bottle cost \(6 + 2 = 8\) dollars. That works, with $4 left over.
+      - 2 boxes and 3 bottles cost \(6 + 6 = 12\) dollars. That works too.
+      - 3 boxes and 1 bottle cost \(9 + 2 = 11\) dollars. It also works. There is more than one good plan.

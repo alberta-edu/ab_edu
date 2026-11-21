@@ -1,0 +1,82 @@
+---
+// Comparing with adjectives (LANENG4-OI9-GQ1-LO1, K2.9, K2.10, S2.6). Pick two things and the sentence uses
+// -er or "more". Pick all three and it uses -est or "most". The pictures grow to match.
+import { compareSentence, type CompareSet } from './compare-scale.ts';
+
+interface Props {
+  sets: CompareSet[];
+}
+const { sets } = Astro.props;
+const data = sets.map((s) => ({ ...s, two: compareSentence(s, 2), three: compareSentence(s, 3) }));
+---
+<compare-scale data-sets={JSON.stringify(data)}>
+  <div class="control-row">
+    <div class="sci-pick" role="group" aria-label="Choose an adjective">
+      {sets.map((s, i) => <button type="button" data-cs2-set={i} aria-pressed={String(i === 0)}>{s.adjective}</button>)}
+    </div>
+    <div class="seg" role="group" aria-label="How many things to compare">
+      <button type="button" data-cs2-n="2" aria-pressed="true">Compare 2</button>
+      <button type="button" data-cs2-n="3" aria-pressed="false">Compare 3</button>
+    </div>
+  </div>
+  <div class="g4e-cs__stage" data-cs2="stage" aria-hidden="true"></div>
+  <p class="g4e-cs__sentence" data-cs2="sentence" aria-live="polite"></p>
+  <p class="g4e-cs__rule" data-cs2="rule"></p>
+</compare-scale>
+
+<style is:global>
+  compare-scale { display: block; }
+  .g4e-cs__stage { display: flex; justify-content: center; align-items: flex-end; gap: 1.2rem; min-height: 9rem; margin-top: 0.6rem; padding: 0.6rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4e-cs__item { display: grid; justify-items: center; gap: 0.2rem; transition: opacity 0.3s ease; }
+  .g4e-cs__item span { line-height: 1; transition: font-size 0.4s ease; }
+  .g4e-cs__item small { font-weight: 700; color: var(--ink-2); }
+  .g4e-cs__item.is-off { opacity: 0.2; }
+  .g4e-cs__item.is-top small { color: var(--accent); }
+  .g4e-cs__sentence { margin: 0.7rem 0 0.2rem; font-size: var(--step-1); text-align: center; }
+  .g4e-cs__sentence mark { background: var(--accent-soft); color: var(--ink); font-weight: 800; padding: 0 0.2em; border-radius: 5px; }
+  .g4e-cs__rule { margin: 0; text-align: center; color: var(--ink-2); font-size: var(--step--1); }
+</style>
+
+<script>
+  type Item = { name: string; icon: string; size: number };
+  type Set = { adjective: string; items: Item[]; two: string; three: string; long?: boolean };
+
+  class CompareScale extends HTMLElement {
+    private sets: Set[] = [];
+    private at = 0;
+    private n = 2;
+
+    connectedCallback() {
+      this.sets = JSON.parse(this.dataset.sets!);
+      this.querySelectorAll<HTMLButtonElement>('[data-cs2-set]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.at = Number(b.dataset.cs2Set);
+          this.querySelectorAll('[data-cs2-set]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.paint();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-cs2-n]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.n = Number(b.dataset.cs2N);
+          this.querySelectorAll('[data-cs2-n]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.paint();
+        }),
+      );
+      this.paint();
+    }
+
+    private paint() {
+      const s = this.sets[this.at];
+      const shown = this.n === 2 ? [0, 1] : [0, 1, 2];
+      const top = shown.reduce((a, b) => (s.items[b].size > s.items[a].size ? b : a), shown[0]);
+      this.querySelector('[data-cs2="stage"]')!.innerHTML = s.items
+        .map((it, i) => `<div class="g4e-cs__item${shown.includes(i) ? '' : ' is-off'}${i === top ? ' is-top' : ''}"><span style="font-size:${(2 * it.size).toFixed(2)}rem">${it.icon}</span><small>${it.name}</small></div>`)
+        .join('');
+      this.querySelector('[data-cs2="sentence"]')!.innerHTML = this.n === 2 ? s.two : s.three;
+      const long = s.long;
+      this.querySelector('[data-cs2="rule"]')!.textContent =
+        this.n === 2 ? (long ? 'Two things: use “more” before a long adjective.' : 'Two things: add -er.') : long ? 'Three or more things: use “most” before a long adjective.' : 'Three or more things: add -est.';
+    }
+  }
+  customElements.define('compare-scale', CompareScale);
+</script>

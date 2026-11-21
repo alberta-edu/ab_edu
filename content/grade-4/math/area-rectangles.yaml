@@ -1,0 +1,269 @@
+id: area-rectangles
+grade: 4
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT4-OI5-GQ1-LO1]
+order: 14
+title: Area of Rectangles
+shortTitle: Area of rectangles
+summary: >-
+  See area as a length sliding across a surface, picture a rectangle as rows of square centimetres,
+  and find its area by multiplying its side lengths.
+
+bigIdea: |-
+  - Slide a length across a surface, and it sweeps out an **area**.
+  - A rectangle is **rows** of square units, like an array.
+  - Its area is the **product** of its two side lengths: length × width.
+
+lesson:
+  - title: Slide a length
+    blocks:
+      - type: visual
+        covers: [U1.2, S1.1]
+        component: area-sweep
+        props: { length: 6, distance: 0 }
+        caption: |-
+          1. Press **Sweep**. The red length slides down and paints the area behind it.
+          2. Change the length and try again.
+      - type: callout
+        variant: remember
+        covers: [MAT3-OI1-GQ3-LO1#K1.3, MAT3-OI1-GQ3-LO1#S1.6]
+        title: Remember from Grade 3
+        body: A multiplication can be shown as an **array** of rows, or as an **area**.
+
+  - title: Rows of square centimetres
+    blocks:
+      - type: figure
+        covers: [U1.5, S1.6]
+        figure: { kind: rect, w: 6, h: 4, unit: cm }
+        caption: 'Picture this rectangle covered in square centimetres: **4 rows** with **6** squares in each row.'
+      - type: compare
+        covers: [U1.5, S1.7]
+        columns:
+          - title: Count one by one
+            body: 1, 2, 3, … 24. Slow, and easy to lose your place.
+          - title: Count rows
+            body: '4 rows of 6 is \(4 \times 6 = 24\). The area is **24 cm²**.'
+
+  - title: Multiply the sides
+    blocks:
+      - type: example
+        covers: [K1.4, S1.7]
+        title: A photo
+        problem: A photo is **9 cm** long and **7 cm** wide. What is its area?
+        steps:
+          - 'The sides meet at a right angle, so the photo is rows of square centimetres.'
+          - '7 rows of 9: \(9 \times 7 = 63\).'
+        answer: The area is **63 cm²**.
+      - type: callout
+        variant: mistake
+        covers: [K1.4]
+        title: Multiply, don’t add
+        body: Adding the sides, \(9 + 7 = 16\), gives a length, not an area. Area counts squares, so multiply.
+
+  - title: Solving area problems
+    blocks:
+      - type: example
+        covers: [S1.8, S1.7]
+        title: The sticker on the card
+        problem: A **4 cm** by **3 cm** sticker is stuck on a **10 cm** by **8 cm** card. How much of the card is **not** covered?
+        steps:
+          - 'Card: \(10 \times 8 = 80\) cm².'
+          - 'Sticker: \(4 \times 3 = 12\) cm².'
+          - 'Not covered: \(80 - 12 = 68\) cm².'
+        answer: '**68 cm²** of the card is not covered.'
+
+keyTerms:
+  - term: Area of a rectangle
+    covers: [K1.4, S1.7]
+    definition: 'Length × width, in square units such as cm².'
+  - term: Array
+    covers: [U1.5, S1.6]
+    definition: Equal rows of objects or squares. A rectangle’s square units make an array.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.7, K1.4]
+    type: number
+    figure: { kind: rect, w: 7, h: 5, unit: cm }
+    prompt: What is the area of this rectangle?
+    unit: cm²
+    answer: 35
+    verify: 7 * 5
+    hints:
+      - How many rows of square centimetres? How many in each row?
+    solution:
+      - '5 rows of 7 square centimetres: \(7 \times 5 = 35\).'
+      - 'The area is **35 cm²**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [U1.5, S1.6]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 230 180" class="fig-svg fig-svg--square" role="img" aria-label="A rectangle being covered with square centimetres. Only the top row of 8 squares and the left column of 6 squares are drawn."><rect class="fig-rect" x="10" y="10" width="208" height="156"/><rect class="fig-hl" x="10" y="10" width="26" height="26"/><rect class="fig-hl" x="36" y="10" width="26" height="26"/><rect class="fig-hl" x="62" y="10" width="26" height="26"/><rect class="fig-hl" x="88" y="10" width="26" height="26"/><rect class="fig-hl" x="114" y="10" width="26" height="26"/><rect class="fig-hl" x="140" y="10" width="26" height="26"/><rect class="fig-hl" x="166" y="10" width="26" height="26"/><rect class="fig-hl" x="192" y="10" width="26" height="26"/><rect class="fig-hl" x="10" y="36" width="26" height="26"/><rect class="fig-hl" x="10" y="62" width="26" height="26"/><rect class="fig-hl" x="10" y="88" width="26" height="26"/><rect class="fig-hl" x="10" y="114" width="26" height="26"/><rect class="fig-hl" x="10" y="140" width="26" height="26"/></svg>
+    prompt: Only some square centimetres are drawn. How many would cover the **whole** rectangle?
+    unit: cm²
+    answer: 48
+    verify: 8 * 6
+    hints:
+      - How many squares fit along the top? How many rows go down?
+    solution:
+      - 'The top row has 8 squares, and there are 6 rows.'
+      - '\(8 \times 6 = 48\), so **48** square centimetres cover it.'
+
+  - id: w3
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: mc
+    prompt: A rectangle is **6 cm** long and **4 cm** wide. Which calculation gives its area?
+    choices: ['\(6 \times 4\)', '\(6 + 4\)', '\(6 + 4 + 6 + 4\)', '\(6 \times 4 \times 2\)']
+    answer: 0
+    feedback:
+      '1': 'Adding two sides gives a length. Area counts the squares inside.'
+      '2': 'That is the distance around the rectangle, its perimeter.'
+      '3': 'Picture the rows: 4 rows of 6. Why would you double that?'
+    hints:
+      - Picture the rectangle as rows of square centimetres.
+    solution:
+      - '4 rows of 6 square centimetres: **\(6 \times 4\)** = 24 cm².'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.8, S1.7]
+    type: number
+    prompt: A sheet of tiny square stickers is **12 cm** long and **9 cm** wide. Each sticker is **1 cm²**, and they cover the whole sheet. How many stickers are on the sheet?
+    unit: stickers
+    answer: 108
+    verify: 12 * 9
+    hints:
+      - Each sticker is one square centimetre. What does the number of stickers tell you?
+    solution:
+      - 'The number of stickers is the area of the sheet in cm².'
+      - '\(12 \times 9 = 108\), so there are **108** stickers.'
+
+  - id: b2
+    level: 2
+    thinking: backwards
+    covers: [S1.8, K1.4]
+    type: number
+    prompt: A rectangle-shaped bookmark has an area of **48 cm²**. It is **4 cm** wide. How long is it?
+    unit: cm
+    answer: 12
+    verify: 48 / 4
+    hints:
+      - Length × 4 = 48. What times 4 makes 48?
+    solution:
+      - 'Area = length × width, so length × 4 = 48.'
+      - '\(48 \div 4 = 12\). The bookmark is **12 cm** long.'
+
+  - id: b3
+    level: 2
+    thinking: connect
+    covers: [U1.2, S1.1, S1.7]
+    type: number
+    prompt: A tiny paint roller is **8 cm** wide. Nia rolls it in a straight line for **9 cm** across a sheet of paper. What area does she paint?
+    unit: cm²
+    answer: 72
+    verify: 8 * 9
+    hints:
+      - The roller is a length that slides. What shape does it paint?
+    solution:
+      - 'The 8 cm roller slides 9 cm, so it paints a rectangle 8 cm by 9 cm.'
+      - '\(8 \times 9 = 72\), so Nia paints **72 cm²**.'
+
+  - id: b4
+    level: 2
+    thinking: flaw
+    covers: [K1.4, S1.7]
+    type: number
+    prompt: Jae measures a rectangle **6 cm** by **5 cm**. He says, "The area is 22 cm². I added up the sides." What is the real area?
+    unit: cm²
+    answer: 30
+    verify: 6 * 5
+    hints:
+      - What did Jae really find by adding the four sides?
+      - Picture the square centimetres inside. How many rows? How many in each row?
+    solution:
+      - 'Adding the sides, \(6 + 5 + 6 + 5 = 22\), finds the length around the rectangle, not the space inside.'
+      - 'Inside, there are 5 rows of 6 square centimetres: \(6 \times 5 = 30\). The area is **30 cm²**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.8, S1.7]
+    type: investigation
+    prompt: |-
+      Ravi glues a photo **10 cm** long and **8 cm** wide onto a card **12 cm** long and **10 cm** wide. The card shows as a border around the photo.
+    parts:
+      - type: number
+        prompt: What is the area of the card?
+        unit: cm²
+        answer: 120
+        verify: 12 * 10
+        hints:
+          - Multiply the card’s length by its width.
+        solution:
+          - '\(12 \times 10 = 120\) cm².'
+      - type: number
+        prompt: What is the area of the photo?
+        unit: cm²
+        answer: 80
+        verify: 10 * 8
+        hints:
+          - Multiply the photo’s length by its width.
+        solution:
+          - '\(10 \times 8 = 80\) cm².'
+      - type: number
+        prompt: What is the area of the border that still shows?
+        unit: cm²
+        answer: 40
+        verify: 120 - 80
+        hints:
+          - The border is the card without the photo.
+        solution:
+          - '\(120 - 80 = 40\) cm² of the card still shows.'
+    wrapUp: A shape that isn’t a rectangle, like a border, can still be found from rectangles. Take the area you don’t want away from the whole.
+    hints: []
+    solution: []
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.7, K1.4, U1.5]
+    type: build
+    prompt: |-
+      Design **two different** rectangles with the **same area**. The area must be between **20 and 30 cm²**. Use whole centimetres.
+    fields:
+      - { name: a, label: 'Rectangle 1 length', unit: cm }
+      - { name: b, label: 'Rectangle 1 width', unit: cm }
+      - { name: c, label: 'Rectangle 2 length', unit: cm }
+      - { name: d, label: 'Rectangle 2 width', unit: cm }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && d % 1 == 0 && a > 0 && b > 0 && c > 0 && d > 0', fail: 'Use whole centimetres for every side.' }
+      - { test: 'a * b >= 20 && a * b <= 30', fail: 'Rectangle 1 needs an area between 20 and 30 cm².' }
+      - { test: 'a * b == c * d', fail: 'Multiply the sides of each rectangle. Do the areas match?' }
+      - { test: 'a != c && a != d', fail: 'Those are the same rectangle, maybe turned. Make the second one a different shape.' }
+    examples:
+      - { a: 4, b: 6, c: 3, d: 8 }
+      - { a: 2, b: 12, c: 4, d: 6 }
+      - { a: 4, b: 5, c: 2, d: 10 }
+    counterexamples:
+      - { a: 4, b: 6, c: 6, d: 4 }
+      - { a: 3, b: 5, c: 5, d: 3 }
+      - { a: 4, b: 6, c: 5, d: 5 }
+    hints:
+      - Pick an area between 20 and 30 that has many factor pairs.
+      - '24 is a good choice. Which pairs of numbers multiply to make 24?'
+    solution:
+      - 'Pick an area with more than one factor pair, then use two of the pairs.'
+      - '24 cm²: 4 by 6 and 3 by 8. 20 cm²: 4 by 5 and 2 by 10. 30 cm²: 5 by 6 and 3 by 10.'
+      - 'The rectangles look very different, but each one has the same number of square centimetres.'

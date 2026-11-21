@@ -1,0 +1,85 @@
+---
+// Animated experiment: a toy car rolls down the same ramp five times. A measuring tape records
+// each distance. The results are close together but not exactly the same, which is what makes them
+// reliable evidence (SCI4-OI7-GQ1-LO1, K2.1, K2.2, K2.4, S2.1). Invented class results: see TRIALS.
+---
+<g4-repeat-trials>
+  <svg class="sci-svg" viewBox="0 0 660 300" aria-hidden="true" data-g4s="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g4s="live"></p>
+</g4-repeat-trials>
+
+<style is:global>
+  g4-repeat-trials { display: block; }
+  g4-repeat-trials svg { background: var(--surface-2); }
+  .g4s-rt-ramp { fill: #c9a46b; stroke: #7a5a2f; stroke-width: 2; }
+  .g4s-rt-floor { fill: color-mix(in srgb, var(--ink) 10%, var(--surface)); }
+  .g4s-rt-tape { fill: #f2d88a; stroke: #8a6d1a; stroke-width: 1.5; }
+  .g4s-rt-tick { stroke: #8a6d1a; stroke-width: 1.2; }
+  .g4s-rt-num { fill: #5a4510; font-size: 11px; font-weight: 700; }
+  .g4s-rt-car { fill: #d23b2e; stroke: var(--ink); stroke-width: 1.5; }
+  .g4s-rt-wheel { fill: var(--ink); }
+  .g4s-rt-dot { fill: var(--accent); }
+  .g4s-rt-lbl { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g4s-rt-row { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { TRIALS } from './g4-science.ts';
+
+  const FLOOR = 150;
+  const X0 = 150; // bottom of the ramp, where the tape starts at 0 cm
+  const PX = 2.5; // px per cm along the floor
+  const cmX = (cm: number) => X0 + cm * PX;
+
+  class G4RepeatTrials extends HTMLElement {
+    private carX = 40;
+    private carY = FLOOR - 70;
+    private shown = 0;
+
+    connectedCallback() {
+      this.draw();
+    }
+
+    async run() {
+      this.shown = 0;
+      this.querySelector('[data-g4s="live"]')!.textContent = '';
+      for (let i = 0; i < TRIALS.length; i++) {
+        // Down the ramp, then along the floor, slowing to a stop.
+        await tween(i === 0 ? 450 : 250, (t) => ((this.carX = 40 + (X0 - 40) * t), (this.carY = FLOOR - 70 + 70 * t), this.draw()));
+        await tween(i === 0 ? 900 : 500, (t) => ((this.carX = X0 + (cmX(TRIALS[i]) - X0) * (1 - (1 - t) ** 2)), this.draw()));
+        this.shown = i + 1;
+        this.draw();
+        await wait(i === 0 ? 400 : 200);
+        this.carX = 40;
+        this.carY = FLOOR - 70;
+      }
+      this.draw();
+      this.querySelector('[data-g4s="live"]')!.textContent = `In five trials, the car rolled ${TRIALS.join(', ')} centimetres. The distances were close together, but not exactly the same.`;
+    }
+
+    private draw() {
+      const out: string[] = [];
+      out.push(`<rect class="g4s-rt-floor" x="0" y="${FLOOR}" width="660" height="30"/>`);
+      out.push(`<path class="g4s-rt-ramp" d="M20,${FLOOR - 70} L${X0},${FLOOR} L20,${FLOOR} Z"/>`);
+      // Measuring tape from the bottom of the ramp, 0 to 200 cm.
+      out.push(`<rect class="g4s-rt-tape" x="${X0}" y="${FLOOR + 4}" width="${200 * PX}" height="16"/>`);
+      for (let c = 0; c <= 200; c += 10) {
+        out.push(`<line class="g4s-rt-tick" x1="${cmX(c)}" y1="${FLOOR + 4}" x2="${cmX(c)}" y2="${FLOOR + (c % 50 ? 10 : 20)}"/>`);
+        if (c % 50 === 0) out.push(`<text class="g4s-rt-num" x="${cmX(c)}" y="${FLOOR + 32}" text-anchor="middle">${c} cm</text>`);
+      }
+      // The car.
+      out.push(`<g transform="translate(${this.carX.toFixed(1)} ${(this.carY - 10).toFixed(1)})"><rect class="g4s-rt-car" x="-16" y="-8" width="32" height="12" rx="4"/><circle class="g4s-rt-wheel" cx="-9" cy="6" r="4"/><circle class="g4s-rt-wheel" cx="9" cy="6" r="4"/></g>`);
+      // Results so far: a list, and a dot for each trial on a line plot from 170 to 195 cm.
+      const plotX = (cm: number) => 390 + ((cm - 170) / 25) * 240;
+      out.push(`<text class="g4s-rt-lbl" x="20" y="222">Trial results</text><line x1="${plotX(170)}" y1="262" x2="${plotX(195)}" y2="262" style="stroke:var(--ink-2);stroke-width:2"/>`);
+      for (const c of [170, 175, 180, 185, 190, 195]) out.push(`<line x1="${plotX(c)}" y1="258" x2="${plotX(c)}" y2="266" style="stroke:var(--ink-2);stroke-width:1.5"/><text class="g4s-rt-num" x="${plotX(c)}" y="282" text-anchor="middle">${c} cm</text>`);
+      TRIALS.slice(0, this.shown).forEach((d, i) => {
+        out.push(`<circle class="g4s-rt-dot" cx="${plotX(d).toFixed(1)}" cy="248" r="7"/>`);
+        out.push(`<text class="g4s-rt-row" x="${20 + (i % 3) * 120}" y="${250 + Math.floor(i / 3) * 24}">Trial ${i + 1}: ${d} cm</text>`);
+      });
+      this.querySelector('[data-g4s="svg"]')!.innerHTML = out.join('');
+    }
+  }
+  customElements.define('g4-repeat-trials', G4RepeatTrials);
+</script>

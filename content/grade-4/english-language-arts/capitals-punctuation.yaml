@@ -1,0 +1,386 @@
+id: capitals-punctuation
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG4-OI9-GQ1-LO1]
+order: 15
+title: Capitals, Commas, Quotation Marks and Apostrophes
+shortTitle: Capitals & punctuation
+summary: >-
+  Capitalize abbreviations, end sentences in different ways, tap commas into place, use quotation marks
+  for speakers and special words, and add apostrophes.
+
+bigIdea: |-
+  - **Capitals** and **punctuation** make writing clear, precise and creative.
+  - Commas show a pause, separate items in a list, and follow a transition word.
+  - Quotation marks show a speaker’s words. Apostrophes show missing letters or who owns something.
+
+lesson:
+  - title: Capitals for abbreviations
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: punct-lab
+        props:
+          mode: capitals
+          sentence: Dr. Singh drove down Elm St. to Red Deer, AB, on Mon. morning.
+        caption: Look closely at the abbreviations. Do they need capitals too?
+      - type: table
+        covers: [K1.2, K1.1]
+        caption: Abbreviations are short forms of words. Most start with a capital letter.
+        headers: [Abbreviation, Stands for]
+        rows:
+          - ['**Rd.**', 'Road']
+          - ['**St.**', 'Street']
+          - ['**AB**', 'Alberta (two capitals, no period)']
+          - ['**Dr.**', 'Doctor']
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K5.1']
+        title: Remember from Grade 3
+        body: Abbreviations can be used for titles, days of the week, times, measurements and addresses.
+
+  - title: Ending a sentence
+    blocks:
+      - type: compare
+        covers: [S1.2, K1.3]
+        columns:
+          - title: '. Period'
+            body: |-
+              Tells or commands.
+
+              > The bus is here.
+          - title: '? Question mark'
+            body: |-
+              Asks.
+
+              > Is the bus here?
+          - title: '! Exclamation mark'
+            body: |-
+              Shows strong feeling.
+
+              > The bus is here!
+
+  - title: Commas
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.3]
+        component: comma-tap
+        props:
+          items:
+            - { sentence: 'We packed apples, crackers, cheese and juice.', job: 'Commas **separate items in a list**.' }
+            - { sentence: 'First, preheat the oven.', job: 'A comma **follows a transition word** like *First*, *Next* or *Finally*.' }
+            - { sentence: 'When the bell rang, everyone cheered.', job: 'A comma shows **a pause between parts** of a sentence.' }
+            - { sentence: 'Finally, we found the cat, the dog and the hamster.', job: 'One comma follows the transition word. The others separate items in a list.' }
+        caption: Each sentence shows a different job for commas. Read it aloud to hear the pauses.
+
+  - title: Quotation marks
+    blocks:
+      - type: compare
+        covers: [S1.4]
+        columns:
+          - title: 💬 A speaker’s words
+            body: |-
+              > “Watch out for the puddle!” yelled Sam.
+
+              The marks go around the exact words someone says.
+          - title: ✨ A word used in a special way
+            body: |-
+              > My brother calls his messy room “organized.”
+
+              The marks show that the word isn’t meant in the usual way.
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI9-GQ1-LO1#K1.4']
+        title: Remember from Grade 3
+        body: Quotation marks identify a speaker’s words or bring attention to a special word.
+
+  - title: Apostrophes
+    blocks:
+      - type: table
+        covers: [S1.5]
+        caption: Apostrophes have two jobs.
+        headers: [Example, How it works]
+        rows:
+          - ['do not → **don’t**', '**Contraction**: the apostrophe takes the place of *o*.']
+          - ['we are → **we’re**', '**Contraction**: the apostrophe takes the place of *a*.']
+          - ['the **dog’s** bowl', '**Possession**: one dog owns it, so add **’s**.']
+          - ['the **dogs’** bowls', '**Possession**: *dogs* already ends in *s*, so add only **’**.']
+      - type: callout
+        variant: mistake
+        covers: [S1.5]
+        title: Plurals don’t need apostrophes
+        body: '*Three dogs barked.* No one owns anything, and no letters are missing, so there is no apostrophe.'
+
+  - title: Punctuation changes meaning
+    blocks:
+      - type: compare
+        covers: [K1.3, U1.1]
+        columns:
+          - title: 😱 Without a comma
+            body: '> Let’s eat Grandma!'
+          - title: 😊 With a comma
+            body: '> Let’s eat, Grandma!'
+      - type: callout
+        variant: tip
+        covers: [K1.3, U1.1]
+        title: Clear, precise and creative
+        body: Punctuation tells readers how to read your words. It helps your writing flow, and it can even save Grandma!
+
+keyTerms:
+  - term: Abbreviation
+    covers: [K1.2]
+    definition: A shortened form of a word or words, such as Rd., St. or AB.
+  - term: Comma
+    covers: [K1.4]
+    definition: 'A mark ( , ) that shows a pause, separates items in a list, or follows a transition word.'
+  - term: Transition word
+    covers: [K1.4]
+    definition: A word like First, Next or Finally that shows how ideas connect.
+  - term: Contraction
+    covers: [S1.5]
+    definition: Two words joined into one, with an apostrophe in place of the missing letters, such as don’t.
+  - term: Possessive
+    covers: [S1.5]
+    definition: A word with an apostrophe that shows who owns something, such as the dog’s bowl.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, K1.2, S1.1]
+    type: text
+    caseSensitive: true
+    prompt: |-
+      Type this address with the right capital letters.
+
+      > 12 maple rd., calgary, ab
+    accept: ['12 Maple Rd., Calgary, AB']
+    hints:
+      - Which words are names? Which abbreviation is all capitals?
+    solution:
+      - '*Maple Rd.* is the name of a road, and *Calgary* is a city, so both get capitals.'
+      - '**AB** is the abbreviation for Alberta. Both letters are capitals. → **12 Maple Rd., Calgary, AB**'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.2]
+    type: mc
+    prompt: Which sentence should end with a **question mark**?
+    choices:
+      - Did you feed the fish
+      - Please feed the fish
+      - I fed the fish
+      - What a hungry fish
+    answer: 0
+    feedback:
+      '1': This tells someone to do something. Which mark ends a command?
+      '2': This tells something that happened. Is it asking?
+      '3': This shows strong feeling. Which mark shows that?
+    hints:
+      - Which sentence asks something?
+    solution:
+      - '*Did you feed the fish?* asks a question, so it ends with a **question mark**.'
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S1.5]
+    type: mc
+    prompt: What two words make the contraction **can’t**?
+    choices:
+      - can not
+      - can it
+      - could not
+      - can that
+    answer: 0
+    feedback:
+      '1': Where would the *it* be in *can’t*?
+      '2': '*Could not* makes *couldn’t*.'
+      '3': Where are the letters of *that*?
+    hints:
+      - Which letters does the apostrophe take the place of?
+    solution:
+      - '*Can’t* is **can not** squeezed together. The apostrophe replaces the missing letters.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: Which sentence uses a comma correctly after a **transition word**?
+    choices:
+      - Next, we mixed the flour and eggs.
+      - Next we, mixed the flour and eggs.
+      - Next we mixed, the flour and eggs.
+      - Next we mixed the flour, and, eggs.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Read it aloud. Do you pause after *we*?
+      '2': Does *mixed the flour* need to be split?
+      '3': Two commas around *and*? Read it aloud.
+    hints:
+      - Which word is the transition word? Where does the comma go?
+    solution:
+      - '*Next* is a transition word. The comma comes right after it: **Next, we mixed the flour and eggs.**'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.5]
+    type: mc
+    prompt: |-
+      Sam wrote:
+
+      > The dog’s are barking at the mail carrier.
+
+      What is wrong?
+    choices:
+      - '*Dogs* is just a plural here, so it needs no apostrophe.'
+      - The apostrophe should go after the *s*, so it should be *dogs’*.
+      - It needs another apostrophe, so it should be *dog’s’*.
+      - Nothing, because you always add an apostrophe before an *s*.
+    answer: 0
+    feedback:
+      '1': '*Dogs’* shows that the dogs own something. Do they own anything here?'
+      '2': Two apostrophes is never right. Is anything owned, or any letter missing?
+      '3': Many words end in *s* without any apostrophe, like *cats* and *buses*.
+    hints:
+      - Do the dogs own anything? Are any letters missing?
+    solution:
+      - There is no owner and no missing letter. *Dogs* is just more than one dog.
+      - '**The dogs are barking at the mail carrier.**'
+
+  - id: b3
+    level: 2
+    thinking: why
+    covers: [S1.4, K1.3]
+    type: mc
+    prompt: |-
+      > Dad called our tiny tent a “palace.”
+
+      Why did the writer put **palace** in quotation marks?
+    choices:
+      - To show the word is used in a special, joking way, because the tent isn’t a palace.
+      - To show that Dad said every word in the sentence.
+      - Because every noun needs quotation marks.
+      - To show that *palace* is spelled wrong.
+    answer: 0
+    feedback:
+      '1': If Dad said all the words, where would the marks go?
+      '2': Is *tent* in quotation marks?
+      '3': Is *palace* spelled correctly?
+    hints:
+      - Is the tent really a palace?
+    solution:
+      - A tiny tent isn’t a palace. The quotation marks show that the word is used in a **special way**, here as a joke.
+
+  - id: b4
+    level: 2
+    thinking: whatif
+    covers: [K1.3, K1.4, U1.1]
+    type: mc
+    prompt: |-
+      What if you take the comma out?
+
+      > Come and eat, Sam.\
+      > Come and eat Sam.
+    choices:
+      - Without the comma, it sounds like someone should eat Sam!
+      - Nothing changes, because commas are only decoration.
+      - Without the comma, it becomes a question.
+      - Without the comma, Sam is the one doing the eating.
+    answer: 0
+    feedback:
+      '1': Read both aloud. Do they mean the same thing?
+      '2': Is there a question mark?
+      '3': Who is being told to come and eat? Who is being eaten?
+    hints:
+      - Read the second sentence aloud with no pause. What does it say?
+    solution:
+      - With the comma, you are talking **to** Sam. Without it, Sam becomes the food!
+      - Punctuation adds **clarity**. One comma changes the meaning.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, S1.5, S1.2, S1.3]
+    type: investigation
+    prompt: |-
+      Mia wrote this, but forgot most of the punctuation.
+
+      > lenas puppy is lost said Mia
+    parts:
+      - type: mc
+        prompt: Where do the **quotation marks** go?
+        choices:
+          - Around *lenas puppy is lost*, the words Mia says
+          - Around *said Mia*
+          - Around the whole sentence
+          - Around *puppy* only
+        answer: 0
+        feedback:
+          '1': '*Said Mia* tells who spoke. Are those her words?'
+          '2': Did Mia say *said Mia*?
+          '3': Is *puppy* used in a special way?
+        hints:
+          - Which words did Mia actually say?
+        solution:
+          - Quotation marks go around the **exact words spoken**, *Lena’s puppy is lost*.
+      - type: text
+        prompt: The puppy belongs to Lena. Type *lenas* correctly, with a capital and an apostrophe.
+        caseSensitive: true
+        accept: [Lena’s, Lena's]
+        hints:
+          - It’s a name, and Lena owns the puppy.
+        solution:
+          - '**Lena’s**: a capital for the name, and ’s because one person owns the puppy.'
+      - type: mc
+        prompt: Mia is shouting, because she is worried. Which is the best way to punctuate the whole sentence?
+        choices:
+          - '“Lena’s puppy is lost!” said Mia.'
+          - '“Lena’s puppy is lost?” said Mia.'
+          - Lena’s puppy is lost said Mia.
+          - '“Lena’s puppy, is, lost,” said Mia.'
+        answer: 0
+        feedback:
+          '1': Is Mia asking a question?
+          '2': Where are the quotation marks and the comma?
+          '3': Read it aloud. Do you pause after every word?
+        hints:
+          - Which end mark shows strong feeling?
+        solution:
+          - An exclamation mark inside the quotation marks shows Mia’s worried shout.
+    wrapUp: Each mark has a job. Together, they show who is speaking, who owns what and how the words should sound.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [S1.5, K1.3]
+    type: mc
+    prompt: |-
+      Kai wrote:
+
+      > The cat licked its paw.
+
+      Sam says, “You need an apostrophe: *it’s paw*.” Who is right?
+    choices:
+      - Kai, because *it’s* means *it is*, and *it is paw* makes no sense.
+      - Sam, because the paw belongs to the cat, so it needs an apostrophe.
+      - Sam, because every word ending in *s* needs an apostrophe.
+      - Both, because *its* and *it’s* mean exactly the same thing.
+    answer: 0
+    feedback:
+      '1': Ownership usually means ’s, so Sam’s idea makes sense. But try reading *it’s* as *it is*.
+      '2': Do *cats* and *bus* need apostrophes?
+      '3': Read *it’s* as *it is*. Does *the cat licked it is paw* make sense?
+    hints:
+      - What does *it’s* stand for?
+    solution:
+      - '*It’s* is a contraction for **it is**. *The cat licked it is paw* makes no sense.'
+      - '*Its* already shows ownership, like *his* and *her*, so it needs no apostrophe. Kai is right.'

@@ -1,0 +1,376 @@
+id: poetry-forms
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG4-OI1-GQ1-LO1]
+order: 4
+title: Verse, Free Verse and Concrete Poems
+shortTitle: Poetry forms
+summary: >-
+  Hear the beat and rhyme of verse, the freedom of free verse, and watch a concrete poem draw its own
+  shape. Then see how figurative language makes a poem come alive.
+
+bigIdea: |-
+  - **Verse** has a steady rhythm, and it usually rhymes.
+  - **Free verse** has no rhyme and no regular rhythm.
+  - A **concrete poem** makes a picture with its words.
+  - Poets use **figurative language** to help you see, feel and imagine.
+
+lesson:
+  - title: A poem you can see
+    blocks:
+      - type: visual
+        covers: [K5.5, K5.2, S5.2]
+        component: concrete-poem
+        props:
+          poems:
+            - title: Snail
+              shape: spiral
+              art: 🐌
+              lines:
+                - Slowly, slowly, up the garden wall,
+                - the little snail carries her whole house,
+                - round and round and round,
+                - and never once stops to complain.
+            - title: Sun
+              shape: circle
+              art: ☀️
+              lines:
+                - the sun rolls up over the prairie
+                - and paints every field gold
+        caption: Watch each poem write itself. Then switch to **As lines**. What does the shape add?
+      - type: callout
+        variant: tip
+        covers: [K5.5]
+        title: Shape and topic match
+        body: In a **concrete poem**, the shape of the words matches what the poem is about. A poem about a snail curls like its shell.
+
+  - title: Verse has a beat and a rhyme
+    blocks:
+      - type: compare
+        covers: [K5.3, K5.2]
+        columns:
+          - title: 🛷 Toboggan (verse)
+            body: |-
+              > The snow is deep, the hill is **high**,\
+              > My red toboggan wants to **fly**.\
+              > We zoom and bump and spin a**round**,\
+              > Then land in one big snowy **mound**.
+          - title: 🥁 Clap the beat
+            body: |-
+              > the **SNOW** is **DEEP**, the **HILL** is **HIGH**
+
+              - Every line has the same beat: da-DUM, da-DUM, da-DUM, da-DUM.
+              - Lines end in **rhymes**: *high* and *fly*, *around* and *mound*.
+
+  - title: Free verse breaks the rules
+    blocks:
+      - type: compare
+        covers: [K5.4, K5.2, S5.2]
+        columns:
+          - title: 🛷 Toboggan Run (free verse)
+            body: |-
+              > Top of the hill.\
+              > Cold air in my nose.\
+              > One push,\
+              > and the whole white world\
+              > rushes past me\
+              > like a river.\
+              > Then, quiet.\
+              > Snow down my neck.
+          - title: 🔍 What’s different?
+            body: |-
+              - **No rhymes.**
+              - **No regular rhythm.** Some lines are long and some are tiny.
+              - Short lines make you **pause**, like the quiet at the bottom of the hill.
+      - type: callout
+        variant: tip
+        covers: [S5.2, U5.1]
+        title: Same topic, different feeling
+        body: |-
+          - The verse sounds bouncy and fun.
+          - The free verse feels like the ride itself: fast, then still.
+
+  - title: Figurative language in poems
+    blocks:
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI3-GQ1-LO1#K1.3', 'LANENG3-OI3-GQ1-LO1#K1.6']
+        title: Remember from Grade 3
+        body: Figurative language includes **imagery**, **hyperbole** (exaggeration) and **similes**, which compare using *like* or *as*.
+      - type: table
+        covers: [K5.1, S5.1]
+        caption: Poets use figurative language to create an effect.
+        headers: [In the poem, What the poet did, The effect]
+        rows:
+          - ['“the whole white world rushes past me like a river”', 'A **simile**: the world is compared to a river.', 'You feel the speed, and the way everything blurs.']
+          - ['“My red toboggan wants to fly”', 'The toboggan **wants** something, as if it were alive.', 'The ride feels wild, like it can’t be held back.']
+          - ['“the sun … paints every field gold”', 'The sun is a painter.', 'You can picture the golden morning light.']
+
+  - title: Try each form yourself
+    blocks:
+      - type: example
+        covers: [S5.3, K5.2]
+        title: One idea, three poems
+        problem: 'Idea: a cat sleeping in a sunny window.'
+        steps:
+          - '**Verse:** The cat is curled up on the sill, / So warm and soft and very still.'
+          - '**Free verse:** Sun on the sill. / One orange cat, / a puddle of fur, / not moving at all.'
+          - '**Concrete:** write the words in a curled-up circle, the shape of a sleeping cat.'
+      - type: callout
+        variant: tip
+        covers: [U5.1]
+        title: Poems connect us
+        body: A poem about a snowy hill might remind you of your own sledding day, or of a friend you went with. Poetry connects you to people, places and feelings.
+
+keyTerms:
+  - term: Verse
+    covers: [K5.3]
+    definition: Poetry with a steady rhythm, which usually rhymes.
+  - term: Free verse
+    covers: [K5.4]
+    definition: Poetry that does not rhyme or have a regular rhythm.
+  - term: Concrete poem
+    covers: [K5.5]
+    definition: A poem whose words or symbols make a picture that matches its topic.
+  - term: Rhythm
+    covers: [K5.3]
+    definition: The beat you hear when you read a poem aloud.
+  - term: Figurative language
+    covers: [K5.1]
+    definition: Words used in a non-literal way, to create an effect.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K5.3, K5.2]
+    type: mc
+    prompt: Which of these is **verse**?
+    choices:
+      - "My puppy has a muddy nose, / From digging up the garden rows."
+      - "Puppy. / Muddy nose. / Sniffing, sniffing, / every row of the garden."
+      - "The puppy sniffed every row in the garden and got mud on his nose."
+    answer: 0
+    feedback:
+      '1': Read it aloud. Does it rhyme? Does it have a steady beat?
+      '2': This is a sentence, written across the page. Is it a poem at all?
+    hints:
+      - Read each one aloud. Which has a steady beat and a rhyme?
+    solution:
+      - '*Nose* and *rows* rhyme, and both lines have the same beat. That is **verse**.'
+      - The second is free verse. The third is a plain sentence.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K5.5, K5.2]
+    type: mc
+    prompt: Which poem is a **concrete poem**?
+    choices:
+      - A poem about a ladder, with each line written as one rung going up the page
+      - A poem about a ladder, written in four lines that all rhyme with *climb*
+      - A poem about a ladder, with short lines and no rhymes at all
+      - A poem about a ladder, read aloud by a whole class together
+    answer: 0
+    feedback:
+      '1': Rhyming lines make verse. Does this one make a picture?
+      '2': Short lines with no rhyme make free verse. Does it make a picture?
+      '3': Reading together is a way to share a poem. Is the poem itself a shape?
+    hints:
+      - Which poem makes a **picture** with its words?
+    solution:
+      - Lines written as rungs make a picture of a ladder. The shape matches the topic, so it is a **concrete poem**.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [S5.3, K5.3]
+    type: text
+    prompt: |-
+      Finish this verse with a word that **rhymes**.
+
+      > The moon rose up so round and bright,\
+      > The stars came out to fill the ___.
+    accept: [night]
+    hints:
+      - What word sounds like *bright* and means the dark part of the day?
+    solution:
+      - '*Bright* and **night** rhyme, and the line keeps the beat: the STARS came OUT to FILL the NIGHT.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K5.1, S5.1]
+    type: mc
+    prompt: |-
+      In “Toboggan Run,” the poet writes:
+
+      > and the whole white world\
+      > rushes past me\
+      > like a river.
+
+      What does the simile help you feel?
+    choices:
+      - How fast the ride is, with everything blurring past
+      - How cold and wet the river water would be
+      - How quiet it is at the bottom of the hill
+      - How heavy the toboggan is to pull back up
+    answer: 0
+    feedback:
+      '1': There is no real river here. What does a river do that is like the ride?
+      '2': The quiet comes later, in a different line. What is happening in these lines?
+      '3': Is anyone pulling the toboggan in these lines?
+    hints:
+      - What does a river do? How is the ride like that?
+    solution:
+      - A river rushes and never stops. Comparing the world to a river helps you feel the **speed** of the ride.
+
+  - id: b2
+    level: 2
+    thinking: whatif
+    covers: [K5.5, S5.2]
+    type: mc
+    prompt: What if “Snail” were written in plain lines instead of a spiral? What would the poem **lose**?
+    choices:
+      - The picture of the snail’s curled shell, made by the words themselves
+      - The rhymes at the end of each line, which only work in a spiral
+      - The meaning of the words, which change when they move around
+      - Nothing at all, because the shape of a poem never matters
+    answer: 0
+    feedback:
+      '1': Does “Snail” rhyme? Read its lines again.
+      '2': Switch to **As lines** in the lesson. Do the words mean something different?
+      '3': In a concrete poem, the shape is part of the poem. What does this shape show?
+    hints:
+      - Switch between the shape and the lines in the lesson. What changes?
+    solution:
+      - The words stay the same. But the spiral shows a snail’s shell, and it makes you read round and round, as slowly as a snail.
+      - In a concrete poem, the shape **matches the topic**. Without it, the picture is gone.
+
+  - id: b3
+    level: 2
+    thinking: flaw
+    covers: [K5.2, K5.4]
+    type: mc
+    prompt: Jay says, “‘Toboggan Run’ isn’t a real poem. It doesn’t even rhyme!” What is wrong with Jay’s thinking?
+    choices:
+      - Free verse is a real poetic form, and it doesn’t rhyme on purpose.
+      - It does rhyme, but the rhyming words are hidden in the middle of the lines.
+      - Jay is right, because all poems need rhymes to be real poems.
+      - It is a concrete poem, so it doesn’t have to rhyme.
+    answer: 0
+    feedback:
+      '1': Read the ends of the lines. Do any of them rhyme?
+      '2': Do all poems need rhymes? Think of the forms in this lesson.
+      '3': Does “Toboggan Run” make a picture with its shape?
+    hints:
+      - Which poetry form has no rhyme and no regular rhythm?
+    solution:
+      - '“Toboggan Run” is **free verse**. It has no rhyme and no regular rhythm, and that is its form.'
+      - Jay is thinking only of verse. Poems come in many forms.
+
+  - id: b4
+    level: 2
+    thinking: decide
+    covers: [K5.2, K5.3, S5.2]
+    type: mc
+    prompt: Sam is writing a poem about galloping horses. He wants it to **sound like hooves**, with a steady da-DUM, da-DUM. Which form fits best?
+    choices:
+      - Verse
+      - Free verse
+      - Concrete poem
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Free verse has no regular rhythm. Would it sound like steady hooves?
+      '2': A concrete poem makes a picture. Sam wants a sound.
+    hints:
+      - Which form has a steady beat?
+    solution:
+      - '**Verse** has a regular rhythm, so it can sound like hooves: da-DUM, da-DUM.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S5.3, K5.3, K5.1, S5.1]
+    type: investigation
+    prompt: |-
+      Help finish this verse.
+
+      > The wind came racing down the street,\
+      > It tugged my hat and pushed my feet.\
+      > It rattled every window pane,\
+      > ___
+    parts:
+      - type: mc
+        prompt: The first two lines rhyme (*street*, *feet*). Which word should end the last line?
+        choices:
+          - rain
+          - door
+          - wind
+          - cold
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Say *pane* and *door* together. Do they sound alike at the end?
+          '2': Say *pane* and *wind*. Do they rhyme?
+          '3': Say *pane* and *cold*. Do they rhyme?
+        hints:
+          - Which word sounds like *pane*?
+        solution:
+          - '*Pane* and **rain** rhyme, just as *street* and *feet* do.'
+      - type: mc
+        prompt: 'Which last line keeps the beat? (Each line has four beats: da-DUM, da-DUM, da-DUM, da-DUM.)'
+        choices:
+          - Then raced away to bring the rain.
+          - And then it flew off very far to somewhere new and brought the rain.
+          - Rain.
+          - It brought the rain.
+        answer: 0
+        feedback:
+          '1': Clap it. This line has far more beats than the others.
+          '2': It rhymes, but it has just one beat. Does it match the other lines?
+          '3': Clap it. How many da-DUMs does it have?
+        hints:
+          - Clap each line. Count the da-DUMs.
+        solution:
+          - then RACED a-WAY to BRING the RAIN has four beats, like every other line. It rhymes too.
+      - type: mc
+        prompt: The poet says the wind came **racing** and **tugged** a hat. What does this figurative language do?
+        choices:
+          - It makes the wind seem alive and playful, like a person running past.
+          - It tells us the exact speed of the wind that day.
+          - It shows that a person was really running down the street.
+          - It makes the poem rhyme better at the end of each line.
+        answer: 0
+        feedback:
+          '1': Is there a number or a fact about speed? What picture do the words give you?
+          '2': Who is doing the racing and tugging in the poem?
+          '3': '*Racing* and *tugged* are in the middle of the lines. Do they make the rhymes?'
+        hints:
+          - What can race and tug in real life? What is doing it in the poem?
+        solution:
+          - People race and tug. Here, the wind does it, so you picture the wind as a lively, playful character.
+    wrapUp: Writing verse is like building with three tools at once. The rhyme, the beat and figurative language all work together.
+
+  - id: d2
+    level: 3
+    thinking: pattern
+    covers: [K5.3, S5.2]
+    type: order
+    prompt: These four lines of verse got mixed up. Put them in order. Use the **rhymes** and the story to help you.
+    items:
+      - A spider spun a silver thread
+      - Above the pillow on my bed.
+      - By morning, there were ten threads more,
+      - A web from ceiling down to floor.
+    hints:
+      - Find the two pairs of rhyming words. Which pair belongs together?
+      - Which line has to come first, before there can be *more* threads?
+    solution:
+      - The rhymes come in pairs. *Thread* and *bed* go together, and *more* and *floor* go together.
+      - One thread comes before ten threads more. So the *thread* pair goes first.

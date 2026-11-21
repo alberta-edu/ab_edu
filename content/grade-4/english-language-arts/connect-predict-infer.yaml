@@ -1,0 +1,392 @@
+id: connect-predict-infer
+grade: 4
+subject: english-language-arts
+organizingIdea: LANENG-OI7
+outcomes: [LANENG4-OI7-GQ1-LO1]
+order: 10
+title: Connect, Predict, Infer and Summarize
+shortTitle: Connect, predict & infer
+summary: >-
+  Make connections, predict and change your mind, infer causes and hidden ideas, combine clues from
+  two sources, and sum up a story in your own words.
+
+bigIdea: |-
+  - Good readers **connect** a text to themselves, to other texts and to the world.
+  - They **predict**, then confirm or change their predictions as they read.
+  - They **infer** what the author doesn’t say, and **summarize** the key ideas in their own words.
+
+lesson:
+  - title: Read between the lines
+    blocks:
+      - type: visual
+        covers: [K4.1, S4.4, U4.1]
+        component: inference-equation
+        props:
+          examples:
+            - clue: Jun’s backpack is soaked, and his hair is dripping.
+              know: People get wet when they walk in the rain.
+              inference: It is raining outside.
+            - clue: The cake has a big piece missing, and the dog has icing on its nose.
+              know: Dogs eat food they can reach.
+              inference: The dog ate the cake!
+            - clue: Priya keeps looking at the door and checking the clock.
+              know: People do that when they are waiting for someone.
+              inference: Priya is waiting for someone to arrive.
+        caption: Press the button to build each inference, one part at a time.
+      - type: callout
+        variant: remember
+        covers: ['LANENG3-OI7-GQ1-LO1#K4.1']
+        title: Remember from Grade 3
+        body: An **inference** is a conclusion drawn from facts or evidence.
+
+  - title: Read the story
+    blocks:
+      - type: text
+        covers: [K3.1, S3.1]
+        body: As you read, **predict** who is emptying the feeder. Watch for new clues that might change your mind.
+      - type: passage
+        id: feeder
+        title: The Empty Feeder
+        form: Realistic fiction
+        paragraphs:
+          - Every morning before school, Maya filled the bird feeder outside the kitchen window. Chickadees came first, then the noisy blue jays.
+          - On Monday, the feeder was empty by lunch. On Tuesday, it was empty by ten o’clock. Seeds were scattered across the snow, and the feeder was swinging, even though there was no wind.
+          - “Those jays are greedy,” said her dad.
+          - Maya wasn’t so sure. Jays were loud, but they were small. She went outside and looked at the snow under the feeder. There were tracks, with four toes on the front feet and five on the back feet.
+          - That night, Maya set up her tablet by the window to record the feeder. Then she taped a big plastic bowl upside down on the pole, just under the feeder.
+          - In the morning, she pressed play. At 6:12, a grey shape climbed up the pole on four legs. It bumped its head on the bowl, reached around it, and slid back down. It tried again, and slid down again. Then it sat in the snow, with its bushy tail twitching, and stared up at the feeder.
+          - Maya laughed. “Sorry, squirrel,” she said. “Breakfast is for the birds.”
+        note: An original story written for Alberta Edu. Paragraph numbers help you point to evidence.
+
+  - title: Predict, then check
+    blocks:
+      - type: table
+        covers: [K3.1, U3.1, S3.1, S3.2]
+        caption: A prediction combines clues, what you know, and what would make sense next.
+        headers: [After paragraph…, A reader predicts…, Then the story shows…, So the reader…]
+        rows:
+          - ['3', 'The jays are emptying the feeder.', 'Paragraph 4: the tracks have four and five toes.', '**Revises** the prediction.']
+          - ['5', 'The video will show who it is.', 'Paragraph 6: a grey animal climbs the pole.', '**Confirms** the prediction.']
+      - type: callout
+        variant: tip
+        covers: [S3.2, U3.1]
+        title: Changing your mind is good reading
+        body: Predicting keeps you reading closely, and checking your predictions helps you understand. A changed prediction means you noticed a new clue.
+
+  - title: Combine two sources
+    blocks:
+      - type: compare
+        covers: [S4.3, K4.1, S4.2]
+        columns:
+          - title: 📖 Source 1, the story
+            body: The tracks under the feeder had **four toes on the front feet and five on the back**.
+          - title: 🗂️ Source 2, a fact card
+            body: |-
+              - **Squirrel tracks:** 4 toes on the front feet, 5 on the back feet.
+              - **Blue jay tracks:** 3 toes pointing forward, 1 pointing back.
+          - title: 💡 Conclusion
+            body: The tracks match a **squirrel**, not a jay. Neither source says that alone.
+      - type: callout
+        variant: tip
+        covers: [S4.2]
+        title: Infer beyond your own life
+        body: You may never have seen squirrel tracks. You can still infer, by combining clues in the text with new information.
+
+  - title: Cause and effect
+    blocks:
+      - type: table
+        covers: [S4.1, K4.1]
+        caption: Some causes aren’t stated. You infer them.
+        headers: [Effect in the story, Inferred cause]
+        rows:
+          - ['The feeder was swinging with no wind.', 'Something heavy was climbing on it.']
+          - ['The seeds were scattered across the snow.', 'An animal knocked them out while it ate.']
+          - ['The grey shape slid back down the pole.', 'The bowl blocked its way to the feeder.']
+
+  - title: Make connections
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, S2.3, U2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: self, label: Text to self, icon: 🙋 }
+            - { id: text, label: Text to text, icon: 📚 }
+            - { id: world, label: Text to world, icon: 🌎 }
+          cards:
+            - { text: 'My grandma has a bird feeder, and she says squirrels steal from it too.', bin: self, why: 'It links the story to your own life.' }
+            - { text: 'Maya solves the mystery with clues, just like the kids in the detective book I read.', bin: text, why: 'It links this story to another text.' }
+            - { text: 'In city parks, squirrels have learned to find food from people.', bin: world, why: 'It links the story to the wider world.' }
+            - { text: 'I once set up a camera to see who was eating my strawberries, and it was a rabbit!', bin: self, why: 'It is your own experience. It helps you understand why Maya used a camera.' }
+        caption: Sort each connection. Which ones help you understand the story best?
+      - type: callout
+        variant: tip
+        covers: [S2.2, S2.3]
+        title: Compare inside and between texts
+        body: |-
+          - **Inside one text:** compare Dad’s idea with Maya’s.
+          - **Between texts:** compare Maya with another story’s detective.
+
+  - title: Summarize and synthesize
+    blocks:
+      - type: example
+        covers: [K5.1, S5.1]
+        title: Summarize “The Empty Feeder”
+        problem: Tell the key ideas, in order, in your own words.
+        steps:
+          - '**Find the key ideas:** someone empties the feeder; Dad blames the jays; Maya investigates; a squirrel is caught.'
+          - '**Leave out small details:** the time 6:12, the chickadees.'
+          - '**Put them in order**, and **paraphrase**, using your own words.'
+        answer: |-
+          - Maya’s feeder kept getting emptied, and her dad blamed the jays.
+          - Maya found tracks and recorded the feeder.
+          - The video showed a squirrel, and her bowl stopped it.
+      - type: compare
+        covers: [K5.2, S5.2, U5.1]
+        columns:
+          - title: 🧩 Synthesize
+            body: Combine what you knew with what the text taught you, to build a **new** idea. *Blaming someone is easy, but clues can show who it really was.*
+          - title: 💬 Respond
+            body: Share your own response, built from the text. *I liked that Maya found an answer that was kind to the squirrel and to the birds.*
+
+keyTerms:
+  - term: Text-to-self connection
+    covers: [K2.1]
+    definition: A link between a text and your own life.
+  - term: Prediction
+    covers: [K3.1, S3.1]
+    definition: A guess about what will happen, built from clues, what you know, and what would make sense.
+  - term: Inference
+    covers: [K4.1, S4.4]
+    definition: An idea you work out from clues, because the author doesn’t say it directly.
+  - term: Summary
+    covers: [K5.1]
+    definition: The key ideas of a text, in order, told briefly in your own words.
+  - term: Paraphrase
+    covers: [K5.1]
+    definition: To say something in your own words, keeping the same meaning.
+  - term: Synthesize
+    covers: [K5.2]
+    definition: To combine what you already know with new information from a text, to make a new understanding.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: '“This story reminds me of the time our cat knocked over Grandpa’s bird feeder.” What kind of connection is this?'
+    choices:
+      - Text to self
+      - Text to text
+      - Text to world
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Is the reader linking it to another book or story?
+      '2': Is the reader talking about the wider world, or something that happened to them?
+    hints:
+      - Whose cat is it?
+    solution:
+      - The reader links the story to their own life. That is a **text-to-self** connection.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S4.4, S4.1]
+    type: mc
+    prompt: |-
+      > The feeder was swinging, even though there was no wind.
+
+      What can you **infer**?
+    choices:
+      - Something had just been on the feeder, moving it.
+      - The wind had started to blow very hard.
+      - Maya’s dad had just filled the feeder.
+      - The feeder was broken and falling down.
+    answer: 0
+    feedback:
+      '1': The sentence says there was **no** wind.
+      '2': Is there any clue that Dad touched it?
+      '3': Is there any clue that it was broken? Feeders swing when something moves them.
+    hints:
+      - What makes a hanging feeder swing? The sentence rules out one cause.
+    solution:
+      - If not the wind, then **something** moved it, maybe something heavy climbing on it.
+      - The text doesn’t say this. You infer it from the clue and what you know.
+
+  - id: w3
+    level: 1
+    thinking: apply
+    covers: [K5.1, S5.1]
+    type: mc
+    prompt: Which is the best **summary** of “The Empty Feeder”?
+    choices:
+      - Maya’s feeder kept being emptied. She found tracks and filmed it, and discovered a squirrel, not the jays.
+      - Chickadees come first, then the noisy blue jays, and Maya fills the feeder every morning before school.
+      - At 6:12, a grey shape climbed up the pole on four legs and bumped its head on a plastic bowl.
+      - Maya has a tablet, a dad, a bowl, a pole and a feeder, and it was snowy outside.
+    answer: 0
+    feedback:
+      '1': This is only the beginning. Does it tell what happens in the story?
+      '2': This is one detail from near the end. Does it sum up the whole story?
+      '3': This lists things in the story. Does it tell what happened, in order?
+    hints:
+      - A summary tells the key ideas from beginning to end, briefly.
+    solution:
+      - A summary gives the **key ideas in order**, in your own words. The first choice covers the problem, the investigation and the answer.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [S4.4, K4.1]
+    type: evidence
+    prompt: Maya doesn’t believe her dad. Tap the sentence that shows **why**, using what she already knew about jays.
+    passage: feeder
+    paragraphs: [4]
+    answer: [p4s2]
+    feedback:
+      p4s1: This tells us she doubts him. Which sentence gives her reason?
+      p4s3: This is what she did next. What made her doubt him first?
+      p4s4: This is a new clue she found. What did she already know?
+    hints:
+      - Which sentence is something Maya knew before she went outside?
+    solution:
+      - '“Jays were loud, but they were small.”'
+      - Small birds probably couldn’t swing a feeder or empty it so fast. Maya combined her background knowledge with the clues.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S4.3, S4.2, K4.1]
+    type: mc
+    prompt: |-
+      Use **both** sources. The story says the tracks had four toes on the front feet and five on the back feet. A fact card says:
+
+      > Rabbit tracks: big back feet land **in front of** the small front feet.\
+      > Squirrel tracks: 4 toes on the front feet, 5 on the back feet.
+
+      What can you conclude?
+    choices:
+      - The tracks were made by a squirrel.
+      - The tracks were made by a rabbit.
+      - The tracks were made by a blue jay.
+      - You can’t conclude anything from tracks.
+    answer: 0
+    feedback:
+      '1': Does the card say anything about counting a rabbit’s toes? Which animal matches four and five?
+      '2': Do jays have four legs? The tracks have front and back feet.
+      '3': The two sources together do point to one animal. Which one?
+    hints:
+      - Match the story’s clue to one line of the fact card.
+    solution:
+      - The story gives the toe count. The fact card says which animal has that count. Together they point to a **squirrel**.
+      - Neither source says it alone. You drew the conclusion by combining them.
+
+  - id: b3
+    level: 2
+    thinking: decide
+    covers: [S3.1, S3.2, K3.1]
+    type: mc
+    prompt: After paragraph 3, Jon predicted, “The video will catch the jays.” He has just read paragraph 4. What should he do with his prediction?
+    choices:
+      - Revise it, because the tracks have four and five toes, and birds don’t.
+      - Keep it, because Dad said the jays were greedy.
+      - Keep it, because predictions should never change.
+      - Stop predicting, because his first guess might be wrong.
+    answer: 0
+    feedback:
+      '1': Dad said so, but did he look at any clues? What did Maya find?
+      '2': Good readers change predictions when they find new clues.
+      '3': Being wrong at first is fine. What should he do with the new clue?
+    hints:
+      - What new information is in paragraph 4?
+    solution:
+      - Paragraph 4 adds new information. Jays are small, and the tracks have toes on front **and** back feet, like an animal with four legs.
+      - Jon should **revise** his prediction. Changing your mind for a good reason helps you understand the story.
+
+  - id: b4
+    level: 2
+    thinking: why
+    covers: [S4.1, S4.4]
+    type: mc
+    prompt: In paragraph 6, the grey shape keeps sliding back down the pole. What **caused** this?
+    choices:
+      - The upside-down bowl blocked its way to the feeder.
+      - The pole was too cold for it to hold on to.
+      - Maya scared it away from the window.
+      - It was too tired to climb all the way.
+    answer: 0
+    feedback:
+      '1': Does the story say anything about the pole being cold? What did Maya put on it?
+      '2': Maya was asleep. She watched the video in the morning.
+      '3': It tried again right away. Does that sound tired?
+    hints:
+      - What did Maya do to the pole in paragraph 5?
+    solution:
+      - Maya taped a bowl upside down under the feeder. The animal **bumped its head on the bowl** and couldn’t get around it.
+      - The story never says “the bowl worked.” You infer the cause from what Maya did and what happened.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K5.2, S5.2, U5.1, S2.2]
+    type: investigation
+    prompt: Let’s think about what “The Empty Feeder” teaches, beyond squirrels.
+    parts:
+      - type: mc
+        prompt: Compare Dad and Maya. How did each one decide who was emptying the feeder?
+        choices:
+          - Dad guessed without looking. Maya looked for clues and tested her idea.
+          - Dad used the video, and Maya used her guess.
+          - They both looked at the tracks in the snow.
+          - Dad asked the neighbours, and Maya asked her teacher.
+        answer: 0
+        feedback:
+          '1': Who set up the tablet? Who said “Those jays are greedy”?
+          '2': Who went outside to look at the snow?
+          '3': Does anyone ask a neighbour or a teacher?
+        hints:
+          - What did Dad do before he decided? What did Maya do?
+        solution:
+          - Dad decided right away. Maya looked at tracks, then set up a camera to check.
+      - type: mc
+        prompt: Which idea **synthesizes** the story, combining it with what you already know?
+        choices:
+          - It’s easy to blame someone, but clues can show what really happened.
+          - Squirrels are grey and have bushy tails.
+          - Maya fills the feeder every morning before school.
+          - Blue jays are noisy birds that visit feeders.
+        answer: 0
+        feedback:
+          '1': This is a detail from the story. Is it a new idea?
+          '2': This is in the story already. What new understanding do you build?
+          '3': You knew this, and it’s in the story. What bigger idea comes from putting it together?
+        hints:
+          - What could this story teach you about things in your own life?
+        solution:
+          - You know that people sometimes blame others too quickly. The story shows clues finding the real answer.
+          - Put together, that makes a **new understanding** that goes beyond the story.
+    wrapUp: Synthesizing joins what you knew with what you read, to make an idea that is bigger than either one.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [S4.4, S4.2, S3.1]
+    type: evidence
+    prompt: Maya doesn’t say *squirrel* until the last paragraph. Tap a sentence in paragraph 6 that **proves** the visitor is not a bird.
+    passage: feeder
+    paragraphs: [6]
+    answer: [p6s2, p6s5]
+    feedback:
+      p6s1: This is Maya starting the video. What does the video show?
+      p6s3: A bird could bump its head too. What does this animal have that a bird doesn’t?
+      p6s4: Trying again doesn’t prove what it is. Look for a body part.
+    hints:
+      - What does this animal have that birds don’t?
+    solution:
+      - Birds have two legs and no bushy tail. *Climbed up the pole on four legs* or *its bushy tail twitching* proves it isn’t a bird.
+      - The author let you infer it before Maya said it.

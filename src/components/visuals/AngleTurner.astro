@@ -1,0 +1,126 @@
+---
+// Angle turner (MAT4-OI5-GQ2-LO1; MAT4-OI3-GQ1-LO1 K1.1-K1.3). "measure": drag an arm around a
+// vertex from 0° to 360°, read it on the protractor, name it, and see 90°, 180°, 270° and 360° as
+// fractions of a full turn. With `hide`, the measure stays hidden so the child estimates from
+// benchmarks first. "pair": two angles share an arm and make 90° or 180° together.
+import { angleSvg, pairSvg, angleType, turnText, pairText } from './angles.ts';
+
+interface Props {
+  mode?: 'measure' | 'pair';
+  angle?: number;
+  hide?: boolean;
+  total?: 90 | 180;
+}
+const { mode = 'measure', angle = 60, hide = false, total = 90 } = Astro.props;
+const max = mode === 'pair' ? total - 5 : 360;
+const min = mode === 'pair' ? 5 : 0;
+---
+<g4m-angle-turner data-mode={mode} data-angle={angle} data-hide={String(hide)} data-total={total}>
+  <div class="g4m-at-read" aria-live="polite">
+    <b data-at="deg">{mode === 'pair' ? pairText(angle, total) : hide ? '?°' : `${angle}°`}</b>
+    {mode === 'measure' && <span data-at="type">{hide ? 'Estimate first, then press Show.' : `${angleType(angle)}${turnText(angle) ? `, ${turnText(angle)}` : ''}`}</span>}
+  </div>
+  <svg class="g4m-at-svg" viewBox={mode === 'pair' ? '0 0 400 180' : '0 0 400 320'} role="img" aria-label="An angle with a protractor" data-at="svg" set:html={mode === 'pair' ? pairSvg(angle, total) : angleSvg(angle)} />
+  <div class="control-row">
+    <div class="control">
+      <span id={`g4m-at-l-${mode}`}>Turn</span>
+      <button type="button" class="icon-btn" data-at-step="-5" aria-label="Turn back 5 degrees">−5</button>
+      <input type="range" min={min} max={max} step="1" value={angle} data-at="range" aria-labelledby={`g4m-at-l-${mode}`} />
+      <button type="button" class="icon-btn" data-at-step="5" aria-label="Turn on 5 degrees">+5</button>
+    </div>
+  </div>
+  {
+    mode === 'measure' && (
+      <div class="g4m-at-bench">
+        <span>Benchmarks:</span>
+        {[45, 90, 180, 270, 360].map((b) => <button type="button" class="chip" data-at-bench={b}>{b}°</button>)}
+        {hide && <button type="button" class="btn btn--ghost btn--small" data-at="new">New angle</button>}
+        {hide && <button type="button" class="btn btn--primary btn--small" data-at="show">Show</button>}
+      </div>
+    )
+  }
+</g4m-angle-turner>
+
+<style is:global>
+  g4m-angle-turner { display: block; }
+  .g4m-at-read { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 0.8rem; min-height: 2.4rem; }
+  .g4m-at-read b { font-size: var(--step-2); color: var(--accent, var(--math)); }
+  .g4m-at-read span { font-weight: 700; color: var(--ink-2); }
+  g4m-angle-turner[data-mode='pair'] .g4m-at-read b { font-size: var(--step-0); color: var(--ink); }
+  .g4m-at-svg { display: block; width: 100%; max-width: 26rem; height: auto; margin-inline: auto; touch-action: none; cursor: grab; font-family: var(--font); }
+  .g4m-at-pro { fill: color-mix(in srgb, var(--sun) 18%, transparent); stroke: var(--ink-3); stroke-width: 1.5; }
+  .g4m-at-tick { stroke: var(--ink-2); stroke-width: 1.2; }
+  .g4m-at-deg { fill: var(--ink-2); font-size: 12px; font-weight: 700; }
+  .g4m-at-dot { fill: var(--ink-3); }
+  .g4m-at-fill { fill: color-mix(in srgb, var(--math) 45%, transparent); stroke: var(--math); stroke-width: 2; }
+  .g4m-at-fill2 { fill: color-mix(in srgb, var(--sun) 60%, transparent); stroke: var(--ink-2); stroke-width: 2; }
+  .g4m-at-square { fill: none; stroke: var(--ink); stroke-width: 2; }
+  .g4m-at-arm { stroke: var(--ink); stroke-width: 5; stroke-linecap: round; }
+  .g4m-at-base { stroke: var(--ink-2); }
+  .g4m-at-handle { fill: var(--math); stroke: var(--surface); stroke-width: 3; }
+  .g4m-at-vertex { fill: var(--ink); }
+  .g4m-at-lab { fill: var(--ink); font-size: 16px; font-weight: 700; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
+  .g4m-at-bench { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: var(--step--1); font-weight: 700; }
+</style>
+
+<script>
+  import { angleSvg, pairSvg, angleType, turnText, pairText, angleAt } from './angles.ts';
+
+  class AngleTurner extends HTMLElement {
+    private a = 0;
+    private hidden = false;
+
+    connectedCallback() {
+      const range = this.q<HTMLInputElement>('range');
+      this.hidden = this.dataset.hide === 'true';
+      range.addEventListener('input', () => this.set(Number(range.value)));
+      this.querySelectorAll<HTMLButtonElement>('[data-at-step]').forEach((b) => b.addEventListener('click', () => this.set(this.a + Number(b.dataset.atStep))));
+      this.querySelectorAll<HTMLButtonElement>('[data-at-bench]').forEach((b) => b.addEventListener('click', () => this.set(Number(b.dataset.atBench), true)));
+      this.q('show')?.addEventListener('click', () => {
+        this.hidden = false;
+        this.set(this.a);
+      });
+      this.q('new')?.addEventListener('click', () => {
+        this.hidden = true;
+        this.set(5 * (2 + Math.floor(Math.random() * 68)));
+      });
+      const svg = this.q('svg') as unknown as SVGSVGElement;
+      let dragging = false;
+      const move = (e: PointerEvent) => {
+        const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM()!.inverse());
+        let d = angleAt(p.x, p.y);
+        if (this.dataset.mode !== 'pair' && this.a > 300 && d < 60) d = 360;
+        this.set(d);
+      };
+      svg.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        svg.setPointerCapture(e.pointerId);
+        move(e);
+      });
+      svg.addEventListener('pointermove', (e) => dragging && move(e));
+      svg.addEventListener('pointerup', () => (dragging = false));
+      this.set(Number(this.dataset.angle));
+    }
+
+    private q<T extends HTMLElement = HTMLElement>(name: string) {
+      return this.querySelector(`[data-at="${name}"]`) as T;
+    }
+
+    private set(a: number, bench = false) {
+      const range = this.q<HTMLInputElement>('range');
+      this.a = Math.max(Number(range.min), Math.min(Number(range.max), Math.round(a)));
+      range.value = String(this.a);
+      if (this.dataset.mode === 'pair') {
+        const total = Number(this.dataset.total) as 90 | 180;
+        this.q('svg').innerHTML = pairSvg(this.a, total);
+        this.q('deg').textContent = pairText(this.a, total);
+        return;
+      }
+      this.q('svg').innerHTML = angleSvg(this.a);
+      const turn = turnText(this.a);
+      this.q('deg').textContent = this.hidden ? '?°' : `${this.a}°`;
+      this.q('type').textContent = this.hidden ? 'Estimate first. Compare it with a benchmark, then press Show.' : `${angleType(this.a)}${turn ? `, ${turn}` : ''}`;
+    }
+  }
+  customElements.define('g4m-angle-turner', AngleTurner);
+</script>

@@ -30,7 +30,7 @@ function audit(GRADE: number, s: SubjectInfo) {
           earlier.push(`| ${c.subject}/${c.id} | ${where} | Grade ${st.grade.toUpperCase()} ${st.outcomeCode} ${st.ref} | ${st.text} |`);
           continue;
         }
-        const k = `${c.subject}|${st.outcomeCode}|${st.ref}`;
+        const k = `${c.subject}|${st.outcomeCode}|${st.ref.replace(/^.*#/, '')}`;
         uses.set(k, [...(uses.get(k) ?? []), `${c.id}: ${where}`]);
       }
     };

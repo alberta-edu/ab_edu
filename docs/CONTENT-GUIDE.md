@@ -89,17 +89,19 @@ Visuals:
 - **Math:** `place-value`, `decimal-zoom`, `column-calc`, `divisibility`, `fraction-explorer`,
   `fraction-regroup`, `fraction-add`, `ratio-explorer`, `expression-steps`, `mystery-bags`,
   `balance-scale`, `symmetry-explorer`, `coordinate-grid`, `rectangle-builder`, `sequence-builder`,
-  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`, `transform-lab` (`move: translate`, `reflect` or `rotate`), `parallelogram-area` (`mode: parallelogram` or `triangle`), `prism-builder`, `function-machine`, `chance-lab` (`start: coin`, `die` or `spinner`)
+  `data-sorter`, `integer-line` (Grade 6: `mode: opposites` or `compare`, `view`), `zero-pairs`, `factor-tree`, `fair-share`, `common-denominators`, `fraction-times` (`mode: groups` or `part`), `double-line` (`mode: ratio` or `percent`), `algebra-tiles`, `shape-mapper`, `tessellation`, `cartesian-plane`, `transform-lab` (`move: translate`, `reflect` or `rotate`), `parallelogram-area` (`mode: parallelogram` or `triangle`), `prism-builder`, `function-machine`, `chance-lab` (`start: coin`, `die` or `spinner`), `tenths-shift`, `hundredths-grid`, `factor-lab`, `fraction-split`, `equal-balance`, `angle-turner`, `quad-family`, `prism-faces`, `tile-cover`, `area-sweep`, `sequence-grow`, `clock-duration`, `graph-scale`
 - **Science:** `particle-model`, `measure-tools`, `density-balance`, `flight-forces`, `float-lab`,
   `energy-map`, `weather-station`, `climate-graph`, `weather-map`, `harvest-sim`, `body-systems`,
   `plant-transport`, `seasons-orbit`, `moon-phases`, `aurora`, `block-code`, `design-lab`, `fair-test`,
-  `data-views`, `g6-heat-particles`, `g6-force-shapes`, `g6-solar-system`
+  `data-views`, `g6-heat-particles`, `g6-force-shapes`, `g6-solar-system`, `g4-hazard-symbols`, `g4-gravity-drop`, `g4-magnet-lab`, `g4-spheres`, `g4-sky-viewer`, `g4-dipper-depth`, `g4-robot-path`
 - **Social Studies:** `globe`, `latlong-map`, `civ-timeline`, `rise-fall-city`, `then-now`,
   `social-scientists`, `village-city`, `nilometer`, `trade-map`, `social-pyramid`, `empire-map`,
   `issue-investigator`, `democracy-globe` (`focus`: a stop id), `athens-assembly`, `democracy-map`
   (`view: greece` or `compare`), `gov-branches` (`set: rome` or `canada`),
   `crown-balance`, `grand-council`, `election-sim`, `charter-check`,
-  `project-path`
+  `project-path`, `canada-map` (`mode: explorers`, `colonies`, `borders` with optional `eras`,
+  or `dots` with `set: settlements` or `posts`), `two-row`, `fur-trade` (`mode: ocean`, `post` or
+  `fort`), `law-lens`, `parliament`, `rights-scale`
 - **ELAL:** `inference-equation`, `story-path`, `page-explorer` (`set: forms` or `features`),
   `poem-reader`, `script-stage`, `voice-lab`, `voice-reach`, `talk-it-out`, `word-builder`,
   `word-journey`, `figure-lens`, `perspective-lens`, `writing-path` (`~~cut~~`, `++added++`),
@@ -108,9 +110,10 @@ Visuals:
   their parts), `conflict-map`, `land-globe` (also word origins), `sharing-circle`, `affix-lab`,
   `palindrome-mirror`, `slant-meter` (`[[loaded|neutral]]`), `clause-builder` (`mode: join` or `agree`)
 - **Any subject:** `card-sort` (`props: { bins: [{ id, label, icon }], cards: [{ text, bin, why }] }`)
+- **Grade 4 ELAL:** `book-index`, `plot-braid`, `text-parts`, `concrete-poem`, `phrase-reader`, `voice-aim`, `word-shades`, `suffix-builder`, `craft-toggles`, `handwriting-lab`, `compare-scale`, `comma-tap`, `pattern-code`
 
 Experiments: `container-swap`, `liquid-layers`, `syringe-squeeze`, `arrow-flight`, `egg-float`,
-`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`, `g6-scale-walk`, `g6-orbit-day`, `g6-map-abstract`, `g6-if-robot`, `g6-moon-shadow`, `g6-dark-room`.
+`energy-run`, `soil-storm`, `body-trip`, `celery-dye`, `sun-path`, `eclipses`, `scroll-scan`, `echo-room`, `g6-melt-scale`, `g6-bottle-thermo`, `g6-pond-freeze`, `g6-friction-slide`, `g6-skate-push`, `g6-stretch-test`, `g6-wind-two-ways`, `g6-greenhouse`, `g6-sea-rise`, `g6-radar`, `g6-wetland-drought`, `g6-pondweed`, `g6-sealed-jars`, `g6-scale-walk`, `g6-orbit-day`, `g6-map-abstract`, `g6-if-robot`, `g6-moon-shadow`, `g6-dark-room`., `g4-compost-bin`, `g4-storm-drain`, `g4-magnet-reach`, `g4-magnet-poles`, `g4-hill-rain`, `g4-sun-angle`, `g4-thirsty-plant`, `g4-fish-pond`, `g4-beak-tools`, `g4-plant-turn`, `g4-bug-choice`, `g4-day-night-sky`, `g4-star-circle`, `g4-moon-year`, `g4-paper-bridge`, `g4-bounce-test`, `g4-repeat-trials`.
 
 If an idea would be clearer as an animation, 3D view or manipulative, build it in
 `src/components/visuals/` (lazy-loaded if heavy) instead of describing it.

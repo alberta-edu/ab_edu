@@ -1,0 +1,120 @@
+---
+// Projection: directing your voice to the listener you mean to reach (LANENG4-OI2-GQ1-LO1, K2.3, K2.4,
+// S2.4). Breath sends the sound further, clarity makes the words sharp, and intention aims them at the
+// target. Only all three together reach the back row clearly.
+interface Props {
+  /** What the speaker says. */
+  line: string;
+  /** Who the speaker means to reach, at the back of the room. */
+  target: string;
+}
+const { line, target } = Astro.props;
+const JOBS = {
+  breath: 'Breathe in deep, low in your belly, so there is plenty of air behind your words.',
+  clarity: 'Say every sound clearly, so the words don’t blur together.',
+  intent: `Choose who you are speaking to, ${target}, and send your voice right to them.`,
+};
+const rows = [250, 370, 490];
+---
+<voice-aim data-jobs={JSON.stringify(JOBS)} data-target={target}>
+  <div class="control-row g4e-va__switches">
+    <label class="control"><input type="checkbox" data-va="breath" /> 🌬️ Breath</label>
+    <label class="control"><input type="checkbox" data-va="clarity" /> 🔤 Clarity</label>
+    <label class="control"><input type="checkbox" data-va="intent" /> 🎯 Intention</label>
+  </div>
+  <svg class="sci-svg g4e-va__svg" viewBox="0 0 660 230" role="img" aria-label={`A speaker on the left of a room, and three rows of listeners. ${target} sits in the back row.`}>
+    <rect class="g4e-va__floor" x="0" y="196" width="660" height="34"></rect>
+    <g class="g4e-va__person g4e-va__speaker">
+      <circle cx="80" cy="104" r="20"></circle>
+      <path d="M56 196 q2 -64 24 -70 q22 6 24 70 Z"></path>
+    </g>
+    {rows.map((x, i) => (
+      <g class={`g4e-va__person${i === 2 ? ' g4e-va__target' : ''}`}>
+        <circle cx={x} cy="130" r="16"></circle>
+        <path d={`M${x - 19} 196 q2 -46 19 -50 q17 4 19 50 Z`}></path>
+      </g>
+    ))}
+    <text class="g4e-va__name" x={rows[2]} y="222" text-anchor="middle">{target}</text>
+    <g data-va="waves" class="g4e-va__waves">
+      {[0, 1, 2, 3, 4].map((i) => <path class="g4e-va__wave" style={`--i:${i}`} d=""></path>)}
+    </g>
+    <g data-va="bubble" class="g4e-va__bubble">
+      <rect x="110" y="8" width="460" height="60" rx="16"></rect>
+      <text x="340" y="47" text-anchor="middle">{line}</text>
+    </g>
+  </svg>
+  <p class="g4e-va__note" data-va="note" aria-live="polite">Switch on each part of projection. Can {target} hear you?</p>
+</voice-aim>
+
+<style is:global>
+  voice-aim { display: block; }
+  .g4e-va__switches { flex-wrap: wrap; }
+  .g4e-va__floor { fill: var(--surface-2); }
+  .g4e-va__person circle, .g4e-va__person path { fill: var(--line-strong); }
+  .g4e-va__speaker circle, .g4e-va__speaker path { fill: var(--accent); }
+  .g4e-va__target circle, .g4e-va__target path { fill: var(--ink-3); }
+  .g4e-va__target.is-reached circle, .g4e-va__target.is-reached path { fill: var(--ok); }
+  .g4e-va__name { fill: var(--ink-2); font-size: 24px; font-weight: 700; }
+  .g4e-va__wave { fill: none; stroke: var(--accent); stroke-width: 4; stroke-linecap: round; opacity: calc(1 - var(--i) * 0.15); transition: d 0.6s ease; }
+  .g4e-va__bubble rect { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+  .g4e-va__bubble text { fill: var(--ink); font-size: 28px; font-weight: 700; transition: filter 0.4s ease, letter-spacing 0.4s ease; }
+  .g4e-va__bubble.is-blurry text { filter: blur(3px); letter-spacing: -0.06em; }
+  .g4e-va__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4e-va__note.is-done { background: var(--ok-soft); }
+  @media (prefers-reduced-motion: no-preference) {
+    .g4e-va__wave { animation: g4e-va-pulse 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * 0.15s); }
+    @keyframes g4e-va-pulse { 50% { opacity: 0.25; } }
+  }
+  @media (prefers-reduced-motion: reduce) { .g4e-va__wave, .g4e-va__bubble text { transition: none; } }
+</style>
+
+<script>
+  import { projection } from './voice-aim.ts';
+
+  class VoiceAim extends HTMLElement {
+    connectedCallback() {
+      this.querySelectorAll('input').forEach((i) => i.addEventListener('change', () => this.paint()));
+      this.paint();
+    }
+
+    private on(name: string) {
+      return this.querySelector<HTMLInputElement>(`input[data-va="${name}"]`)!.checked;
+    }
+
+    private paint() {
+      const jobs: Record<string, string> = JSON.parse(this.dataset.jobs!);
+      const breath = this.on('breath');
+      const clarity = this.on('clarity');
+      const intent = this.on('intent');
+      const p = projection(breath, clarity, intent);
+      // Arcs centred on the speaker's mouth. Aimed arcs are narrow and point at the back row;
+      // unaimed arcs spread wide and droop toward the floor.
+      const waves = this.querySelectorAll<SVGPathElement>('.g4e-va__wave');
+      waves.forEach((w, i) => {
+        const r = 40 + ((p.reach - 40) * (i + 1)) / waves.length;
+        const spread = p.aimed ? 0.32 : 0.95;
+        const tilt = p.aimed ? -0.05 : 0.45;
+        const a0 = tilt - spread;
+        const a1 = tilt + spread;
+        const cx = 100;
+        const cy = 108;
+        const x0 = cx + r * Math.cos(a0);
+        const y0 = cy + r * Math.sin(a0);
+        const x1 = cx + r * Math.cos(a1);
+        const y1 = cy + r * Math.sin(a1);
+        w.setAttribute('d', `M${x0.toFixed(1)} ${y0.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`);
+      });
+      this.querySelector('[data-va="bubble"]')!.classList.toggle('is-blurry', !clarity);
+      this.querySelector('.g4e-va__target')!.classList.toggle('is-reached', p.heard);
+      const note = this.querySelector<HTMLElement>('[data-va="note"]')!;
+      const tips = [breath && jobs.breath, clarity && jobs.clarity, intent && jobs.intent].filter(Boolean);
+      note.classList.toggle('is-done', p.heard);
+      note.textContent = p.heard
+        ? `${this.dataset.target} hears every word! Breath, clarity and intention work together.`
+        : tips.length
+          ? `${tips[tips.length - 1]} Still missing: ${p.missing.join(', ')}.`
+          : `Switch on each part of projection. Can ${this.dataset.target} hear you?`;
+    }
+  }
+  customElements.define('voice-aim', VoiceAim);
+</script>
