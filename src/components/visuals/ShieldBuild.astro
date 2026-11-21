@@ -1,0 +1,111 @@
+---
+// Grade 3: build Alberta's shield one part at a time. Press ▶ and the next part drops into place, with
+// a line about what it shows. When the shield is whole, the child sees the picture that is on
+// Alberta's flag and coat of arms. Parts come from g3ss-shield.ts, text from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+import { PARTS, SHIELD_PATH, pickParts } from './g3ss-shield.ts';
+
+interface Props {
+  parts: { id: string; text: string }[];
+  done?: string;
+  start?: string;
+}
+const { parts, done = '', start = '▶ Add a part' } = Astro.props;
+const picked = pickParts(parts.map((p) => p.id));
+const data = parts.map((p, k) => ({ id: p.id, name: picked[k].name, text: mdInline(p.text) }));
+const drawOrder = Object.keys(PARTS).filter((id) => parts.some((p) => p.id === id));
+---
+<g3ss-shield-build data-parts={JSON.stringify(data)}>
+  <div class="g3ss-sb">
+    <svg class="g3ss-sb-svg" viewBox="-4 -4 128 146" role="img" aria-label="Alberta’s shield, built one part at a time: a red cross, mountains, hills, prairie and a wheat field.">
+      <clipPath id="g3ss-sb-clip"><path d={SHIELD_PATH}></path></clipPath>
+      <path class="g3ss-sb-empty" d={SHIELD_PATH}></path>
+      <g clip-path="url(#g3ss-sb-clip)">
+        {drawOrder.map((id) => <g class="g3ss-sb-part" data-sb-part={id} set:html={PARTS[id].svg} />)}
+      </g>
+      <path class="g3ss-sb-edge" d={SHIELD_PATH}></path>
+    </svg>
+    <div class="g3ss-sb-panel">
+      <ol class="g3ss-sb-list">
+        {data.map((d) => <li data-sb-item={d.id}>{d.name}</li>)}
+      </ol>
+      <div class="g3ss-sb-card" data-sb="card" aria-live="polite" hidden>
+        <p class="g3ss-sb-card__name" data-sb="name"></p>
+        <p data-sb="text"></p>
+      </div>
+      <p class="g3ss-sb-done" data-sb="done" hidden set:html={mdInline(done)} />
+      <div class="g3ss-sb-buttons">
+        <button type="button" class="btn btn--small" data-sb="next">{start}</button>
+        <button type="button" class="btn btn--small btn--ghost" data-sb="again" hidden>↺ Start again</button>
+      </div>
+    </div>
+  </div>
+</g3ss-shield-build>
+
+<style is:global>
+  g3ss-shield-build { display: block; }
+  .g3ss-sb { display: grid; grid-template-columns: minmax(8rem, 12rem) 1fr; gap: 1rem; align-items: start; }
+  @media (max-width: 30rem) { .g3ss-sb { grid-template-columns: 1fr; } .g3ss-sb-svg { max-width: 10rem; margin: 0 auto; } }
+  .g3ss-sb-svg { display: block; width: 100%; }
+  .g3ss-sb-empty { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .g3ss-sb-edge { fill: none; stroke: #1c1b24; stroke-width: 2.5; opacity: 0; transition: opacity 0.4s; }
+  g3ss-shield-build.is-whole .g3ss-sb-edge { opacity: 1; }
+  .g3ss-sb-part { opacity: 0; transform: translateY(-30px); transition: opacity 0.45s ease, transform 0.45s ease; }
+  .g3ss-sb-part.is-on { opacity: 1; transform: none; }
+  .g3ss-sb-list { margin: 0 0 0.5rem; padding-left: 1.3rem; color: var(--ink-3); font-weight: 700; }
+  .g3ss-sb-list li.is-on { color: var(--ink); }
+  .g3ss-sb-list li.is-on::marker { color: var(--ok); }
+  .g3ss-sb-card { padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); border: 2px solid var(--social); background: var(--social-soft); }
+  .g3ss-sb-card p { margin: 0; }
+  .g3ss-sb-card__name { font-weight: 800; margin-bottom: 0.2rem !important; }
+  .g3ss-sb-done { margin: 0.5rem 0 0; font-weight: 700; color: var(--ok); }
+  .g3ss-sb-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-sb-edge { stroke: #e8e6f0; }
+  }
+  :root[data-theme='dark'] .g3ss-sb-edge { stroke: #e8e6f0; }
+  @media (prefers-reduced-motion: reduce) { .g3ss-sb-part, .g3ss-sb-edge { transition: none; } }
+</style>
+
+<script>
+  interface Part { id: string; name: string; text: string }
+
+  class ShieldBuild extends HTMLElement {
+    private at = 0;
+
+    connectedCallback() {
+      const parts: Part[] = JSON.parse(this.dataset.parts!);
+      const next = this.querySelector<HTMLButtonElement>('[data-sb="next"]')!;
+      const again = this.querySelector<HTMLButtonElement>('[data-sb="again"]')!;
+      const card = this.querySelector<HTMLElement>('[data-sb="card"]')!;
+      const done = this.querySelector<HTMLElement>('[data-sb="done"]')!;
+      const label = next.textContent;
+      next.addEventListener('click', () => {
+        const p = parts[this.at++];
+        this.querySelector(`[data-sb-part="${p.id}"]`)!.classList.add('is-on');
+        this.querySelector(`[data-sb-item="${p.id}"]`)!.classList.add('is-on');
+        card.hidden = false;
+        card.querySelector('[data-sb="name"]')!.textContent = p.name;
+        card.querySelector('[data-sb="text"]')!.innerHTML = p.text;
+        next.textContent = '▶ Add the next part';
+        if (this.at === parts.length) {
+          this.classList.add('is-whole');
+          next.hidden = true;
+          again.hidden = false;
+          if (done.innerHTML.trim()) done.hidden = false;
+        }
+      });
+      again.addEventListener('click', () => {
+        this.at = 0;
+        this.classList.remove('is-whole');
+        this.querySelectorAll('.is-on').forEach((el) => el.classList.remove('is-on'));
+        card.hidden = true;
+        done.hidden = true;
+        next.hidden = false;
+        next.textContent = label;
+        again.hidden = true;
+      });
+    }
+  }
+  customElements.define('g3ss-shield-build', ShieldBuild);
+</script>
