@@ -25,7 +25,8 @@ const data = items.map((it) => ({ ...commaGaps(it.sentence), job: mdInline(it.jo
   comma-tap { display: block; }
   .g4e-cm__count { margin: 0; font-size: var(--step--1); }
   .g4e-cm__sentence { margin: 0.6rem 0; padding: 0.9rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 2.2; }
-  .g4e-cm__gap { display: inline-block; min-width: 1.1rem; height: 1.8rem; margin: 0 0.05rem; padding: 0; vertical-align: middle; border: 0; border-bottom: 2px dotted var(--line-strong); background: none; font: inherit; font-weight: 800; color: var(--accent); cursor: pointer; }
+  .g4e-cm__w { white-space: nowrap; }
+  .g4e-cm__gap { display: inline-block; min-width: 1.6rem; height: 1.8rem; margin: 0 0.05rem; padding: 0; vertical-align: middle; border: 0; border-bottom: 2px dotted var(--line-strong); background: none; font: inherit; font-weight: 800; color: var(--accent); cursor: pointer; }
   .g4e-cm__gap:hover { background: var(--accent-soft); }
   .g4e-cm__gap.is-on { border-bottom-color: transparent; }
   .g4e-cm__gap.is-missing { background: var(--warn-soft); border-bottom: 3px solid var(--warn); }
@@ -61,7 +62,7 @@ const data = items.map((it) => ({ ...commaGaps(it.sentence), job: mdInline(it.jo
       this.part('count').textContent = `Sentence ${i + 1} of ${this.items.length}`;
       const s = this.part('sentence');
       s.innerHTML = it.words
-        .map((w, j) => (j < it.words.length - 1 ? `${w}<button type="button" class="g4e-cm__gap" data-gap="${j}" aria-label="Space after ${w.replace(/"/g, '')}"></button>` : w))
+        .map((w, j) => (j < it.words.length - 1 ? `<span class="g4e-cm__w">${w}<button type="button" class="g4e-cm__gap" data-gap="${j}" aria-label="Space after ${w.replace(/"/g, '')}"></button></span>` : w))
         .join(' ');
       s.querySelectorAll<HTMLButtonElement>('[data-gap]').forEach((b) =>
         b.addEventListener('click', () => {
