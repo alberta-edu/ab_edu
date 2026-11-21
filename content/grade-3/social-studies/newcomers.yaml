@@ -1,0 +1,249 @@
+id: newcomers
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [C_WNkKO6SkOOEOWyK5nq7g]
+order: 8
+title: Newcomers and Belonging
+shortTitle: Newcomers & belonging
+summary: >-
+  Sort why people move to Alberta, flip cards about the cultures and languages newcomers bring, and see
+  how learning about each other builds empathy and unity.
+
+bigIdea: |-
+  - People move to Alberta for **jobs**, **family**, **land** and **religious freedom**.
+  - Newcomers bring their beliefs, cultures and languages. They make Alberta more **diverse**.
+  - Learning about each other builds **empathy** and **unity**.
+
+lesson:
+  - title: Why people move here
+    blocks:
+      - type: visual
+        covers: [K1.17, S1.8]
+        component: card-sort
+        props:
+          bins:
+            - { id: job, label: A job, icon: 💼 }
+            - { id: family, label: Family, icon: 👪 }
+            - { id: land, label: Land, icon: 🌾 }
+            - { id: faith, label: Religious freedom, icon: 🕊️ }
+          cards:
+            - { text: 'Maria’s mom gets a job as a nurse in Red Deer.', bin: job, why: 'People move for **job opportunities**.' }
+            - { text: 'Raj moves to Calgary to live near his grandparents.', bin: family, why: 'People move to be with **family**.' }
+            - { text: 'The Novak family buys a farm near Lethbridge.', bin: land, why: 'People move to get **land**.' }
+            - { text: 'Back home, Sara’s family could not practise their faith safely.', bin: faith, why: 'People move for **religious protection**, to follow their beliefs safely.' }
+            - { text: 'Ali’s dad starts work as an engineer in Fort McMurray.', bin: job, why: 'Another **job** brought this family.' }
+        caption: Why did each family move to Alberta?
+
+  - title: Many cultures
+    blocks:
+      - type: visual
+        covers: [K1.18, U1.5, K1.1]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🕎, title: Jewish, text: 'Jewish families have lived in Alberta for over 100 years. Many light a menorah at Hanukkah.' }
+            - { art: 🏮, title: Chinese, text: 'Lunar New Year parades fill the Chinatowns in Calgary and Edmonton.' }
+            - { art: 🕌, title: Muslim and Arab, text: 'Canada’s first mosque opened in Edmonton in 1938. Arab Muslim families built it.' }
+            - { art: 🪔, title: Hindu, text: 'Many Hindu families light lamps for **Diwali**, the festival of lights.' }
+            - { art: 🍲, title: Sikh, text: 'At a Sikh gurdwara, anyone can share a free meal, called **langar**.' }
+            - { art: 💬, title: Filipino, text: 'Many Filipino families live in Alberta. Many speak **Tagalog**.' }
+        caption: Newcomers bring their beliefs and cultures. Flip each card.
+
+  - title: Hello in Alberta
+    blocks:
+      - type: visual
+        covers: [S1.7, K1.1]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 👋, title: Tânisi, text: 'Hello in **Cree**.' }
+            - { art: 👋, title: Oki, text: 'Hello in **Blackfoot**.' }
+            - { art: 👋, title: Bonjour, text: 'Hello in **French**.' }
+            - { art: 👋, title: Kumusta, text: 'Hello in **Tagalog**.' }
+            - { art: 👋, title: Sat Sri Akal, text: 'Hello in **Punjabi**, used by many Sikh families.' }
+            - { art: 👋, title: Salaam, text: 'Peace, a greeting in **Arabic**.' }
+        caption: You might hear all of these in Alberta. Which language is each one?
+      - type: callout
+        variant: tip
+        covers: [S1.7]
+        title: Think about you
+        body: |-
+          - Which languages do you hear at home or at school?
+          - What does your family celebrate?
+
+  - title: Fair or unfair?
+    blocks:
+      - type: visual
+        covers: [K1.20, K1.21]
+        component: card-sort
+        props:
+          bins:
+            - { id: unfair, label: Unfair, icon: 💔 }
+            - { id: unity, label: Builds unity, icon: 🤝 }
+          cards:
+            - { text: 'Laughing at a classmate’s lunch from home', bin: unfair, why: 'This treats someone badly because of their **culture**.' }
+            - { text: 'Asking a friend to teach you a word in their language', bin: unity, why: 'Learning about another culture builds **empathy**.' }
+            - { text: 'Leaving someone out because of their clothes', bin: unfair, why: 'This treats someone badly because of their **appearance**.' }
+            - { text: 'Going to a friend’s Diwali party', bin: unity, why: 'Spending time with people from other backgrounds builds **unity**.' }
+            - { text: 'Making fun of how someone prays', bin: unfair, why: 'This treats someone badly because of their **beliefs**.' }
+        caption: Which actions hurt, and which bring people together?
+      - type: callout
+        variant: mistake
+        covers: [K1.20]
+        title: It still happens
+        body: In Alberta, some people have been treated unfairly because of their culture, beliefs or appearance. It still happens today, and we can help change it.
+
+keyTerms:
+  - term: Immigrant
+    covers: [K1.17, S1.8]
+    definition: A person who moves to a new country to live there.
+  - term: Diversity
+    covers: [K1.18, K1.1]
+    definition: Many different kinds of people, cultures and beliefs in one place.
+  - term: Empathy
+    covers: [K1.21]
+    definition: Understanding how someone else feels.
+  - term: Unity
+    covers: [K1.21]
+    definition: Being joined together as one group.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.17]
+    type: mc
+    prompt: Lin’s family moves to Edmonton so her dad can work at the hospital. Why did they move?
+    choices: [💼 A job, 👪 Family, 🕊️ Religious freedom]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Did they move to be with family members?
+      '2': Is the story about practising their faith?
+    hints:
+      - What will Lin’s dad do in Edmonton?
+    solution:
+      - Lin’s dad will work at the hospital. They moved for a **job**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.21]
+    type: mc
+    prompt: Which action builds **empathy** and **unity**?
+    choices:
+      - Learning about a friend’s holiday
+      - Laughing at a friend’s clothes
+      - Only playing with kids who are like you
+    answer: 0
+    feedback:
+      '1': How would your friend feel? Does that bring people together?
+      '2': Do you learn about other people that way?
+    hints:
+      - Which one helps you understand someone else?
+    solution:
+      - Learning about other cultures helps you understand others. That builds **empathy** and **unity**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K1.18, U1.5, S1.8]
+    type: mc
+    prompt: Edmonton has a mosque from 1938, Chinese New Year parades and Sikh gurdwaras. What does this show?
+    choices:
+      - Immigrants have made Alberta more diverse.
+      - Everyone in Edmonton shares one religion.
+      - Newcomers only came to Alberta very recently.
+    answer: 0
+    feedback:
+      '1': Are a mosque and a gurdwara for the same religion?
+      '2': When did the first mosque open?
+    hints:
+      - How many different cultures and beliefs can you count?
+    solution:
+      - Each place comes from a different culture or belief. Immigrants have made Alberta **diverse**.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [K1.20, K1.21]
+    type: mc
+    prompt: Priya brings dal and rice for lunch. Some kids say, "Eww!" How might Priya feel, and what could you do?
+    choices:
+      - Hurt. Sit with her and ask about her lunch.
+      - Happy. Laugh along with the other kids.
+      - Fine. Say nothing, because it isn’t your problem.
+    answer: 0
+    feedback:
+      '1': Would being laughed at make you happy?
+      '2': Could a friend help Priya feel she belongs?
+    hints:
+      - Imagine it was your lunch. How would you feel?
+    solution:
+      - Priya is being treated unfairly because of her **culture**. She might feel hurt.
+      - Showing interest in her lunch builds **empathy**, and helps her feel she belongs.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [U1.5, K1.18, S1.8]
+    type: mc
+    prompt: What if no one had ever moved to Alberta from another country? What would be missing?
+    choices:
+      - Many languages, foods, beliefs and celebrations we have now
+      - Nothing, because everything here started in Alberta
+      - Only the weather, which would be different
+    answer: 0
+    feedback:
+      '1': Where did the mosque, the gurdwara and Lunar New Year parades come from?
+      '2': Would the weather change because of who moved here?
+    hints:
+      - Think of the cards you flipped. Where did each culture come from?
+    solution:
+      - Immigrants brought many cultures, beliefs and languages. Without them, Alberta would be much **less diverse**.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.17, S1.8, K1.21]
+    type: investigation
+    prompt: |-
+      Three new kids join your class:
+
+      - Ana came because her mom found work.
+      - Omar came to join his grandparents.
+      - Kai came so his family could worship safely.
+    parts:
+      - type: mc
+        prompt: Which reason for moving to Alberta is **not** in these three stories?
+        choices: [🌾 Land, 💼 A job, 👪 Family]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Why did Ana come? Check her story again.
+          '2': Why did Omar come? Check his story again.
+        hints:
+          - Name each kid’s reason. Which one from the lesson is left over?
+        solution:
+          - 'Ana: a job. Omar: family. Kai: religious freedom. **Land** is the reason that is missing.'
+      - type: mc
+        prompt: What would help all three feel welcome?
+        choices:
+          - Ask each one about their language and culture.
+          - Tell them to act just like everyone else.
+          - Wait until they find friends by themselves.
+        answer: 0
+        feedback:
+          '1': Would they feel welcome if they had to hide who they are?
+          '2': Is there something you could do?
+        hints:
+          - What builds empathy and unity?
+        solution:
+          - Learning about each other builds **empathy**. That helps everyone feel they belong.
+    wrapUp: People come for different reasons, but everyone wants to belong. Getting to know each other helps.
+    hints: []
+    solution: []
