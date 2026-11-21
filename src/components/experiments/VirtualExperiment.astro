@@ -34,6 +34,7 @@ import MapAbstract from './MapAbstract.astro';
 import IfRobot from './IfRobot.astro';
 import MoonShadow from './MoonShadow.astro';
 import DarkRoom from './DarkRoom.astro';
+import G3Scene from './G3Scene.astro';
 
 interface Props {
   block: Extract<LessonBlock, { type: 'experiment' }>;
@@ -73,6 +74,7 @@ const animations = {
   'g6-if-robot': IfRobot,
   'g6-moon-shadow': MoonShadow,
   'g6-dark-room': DarkRoom,
+  'g3s-scene': G3Scene,
 };
 const Animation = animations[block.animation];
 const name = `predict-${uid}`;

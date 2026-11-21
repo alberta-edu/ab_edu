@@ -1,0 +1,109 @@
+---
+// Grade 3 science visuals: tap a button and the picture moves to the next state (heat the ice,
+// follow the water, visit a dig site). `scene` names a file in ./g3-plays/, which holds the
+// sprites, the states and what to say at each one (see g3-sprites.ts). Only that file loads.
+import './g3-sprites.css';
+
+interface Props {
+  scene: string;
+  /** State to show first. */
+  start?: number;
+}
+const { scene, start = 0 } = Astro.props;
+const files = import.meta.glob('./g3-plays/*.ts');
+if (!files[`./g3-plays/${scene}.ts`]) throw new Error(`g3-play: no scene "${scene}" in src/components/visuals/g3-plays/`);
+---
+<g3-play data-scene={scene} data-start={start}>
+  <svg class="g3s-svg" viewBox="0 0 480 300" aria-hidden="true" data-g3="svg"></svg>
+  <div class="g3s-buttons" role="group" aria-label="Change the picture" data-g3="buttons"></div>
+  <p class="sci-say g3s-say" aria-live="polite" data-g3="say"></p>
+</g3-play>
+
+<style is:global>
+  g3-play { display: block; }
+  .g3s-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+  .g3s-buttons button { flex: 1 1 auto; min-height: 3rem; padding: 0.45rem 0.9rem; border: 2px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: inherit; font-weight: 700; font-size: var(--step-0); color: var(--ink); cursor: pointer; }
+  .g3s-buttons button:hover:not(:disabled) { border-color: var(--accent); }
+  .g3s-buttons button[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3s-buttons button:disabled { opacity: 0.45; cursor: default; }
+  .g3s-say { min-height: 3.2em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .g3s-say.is-new { animation: rise 0.3s ease; }
+  }
+</style>
+
+<script>
+  import { tween } from '../experiments/anim.ts';
+  import { sceneSvg, type PlayScene } from './g3-sprites.ts';
+
+  const plays = import.meta.glob<{ default: PlayScene }>('./g3-plays/*.ts');
+
+  class G3Play extends HTMLElement {
+    private sc!: PlayScene;
+    private t = 0;
+    private at = 0;
+    private busy = false;
+
+    async connectedCallback() {
+      this.sc = (await plays[`./g3-plays/${this.dataset.scene}.ts`]()).default;
+      this.querySelector('[data-g3="svg"]')!.setAttribute('viewBox', `0 0 ${this.sc.w} ${this.sc.h}`);
+      this.at = this.t = Math.min(Number(this.dataset.start) || 0, this.sc.states.length - 1);
+      this.buttons();
+      this.draw();
+      this.say(false);
+    }
+
+    private buttons() {
+      const box = this.querySelector('[data-g3="buttons"]')!;
+      const make = (label: string, go: () => number, act?: number) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        if (act !== undefined) b.dataset.state = String(act);
+        b.addEventListener('click', () => this.go(go()));
+        box.append(b);
+      };
+      if (this.sc.mode === 'steps') {
+        make(this.sc.back ?? '◀ Back', () => this.at - 1);
+        make(this.sc.next ?? 'Next ▶', () => this.at + 1);
+      } else this.sc.states.forEach((s, i) => make(s.label, () => i, i));
+      this.sync();
+    }
+
+    private sync() {
+      const bs = [...this.querySelectorAll<HTMLButtonElement>('[data-g3="buttons"] button')];
+      if (this.sc.mode === 'steps') {
+        bs[0].disabled = this.at <= 0;
+        bs[1].disabled = this.at >= this.sc.states.length - 1;
+      } else bs.forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.state) === this.at)));
+    }
+
+    private async go(to: number) {
+      if (this.busy || to < 0 || to >= this.sc.states.length || to === this.at) return;
+      this.busy = true;
+      const from = this.t;
+      this.at = to;
+      this.sync();
+      await tween(Math.min(1800, 900 * Math.abs(to - from)), (k) => {
+        this.t = from + (to - from) * k;
+        this.draw();
+      });
+      this.t = to;
+      this.draw();
+      this.say(true);
+      this.busy = false;
+    }
+
+    private draw() {
+      this.querySelector('[data-g3="svg"]')!.innerHTML = sceneSvg(this.sc, this.t);
+    }
+
+    private say(fresh: boolean) {
+      const p = this.querySelector<HTMLElement>('[data-g3="say"]')!;
+      p.textContent = this.sc.states[this.at].say;
+      p.classList.remove('is-new');
+      if (fresh) requestAnimationFrame(() => p.classList.add('is-new'));
+    }
+  }
+  customElements.define('g3-play', G3Play);
+</script>
