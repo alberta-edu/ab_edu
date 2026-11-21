@@ -1,0 +1,334 @@
+---
+// Grade 3: a map of Alberta to tap and explore. One layer at a time: natural regions, treaty areas,
+// Métis Settlements, the borders (drawn one side at a time) or named places. Tap a chip or the map,
+// and the card says what it is. With `find: true` it becomes a game: "Find Treaty 7!"
+// Shapes come from Government of Alberta open data; the lesson's YAML gives each item's text.
+import { mdInline } from '../../lib/render.ts';
+import { BORDER, SIDES, TREATY_SHAPES, REGION_SHAPES, METIS_SHAPES } from './g3ss-alberta-shapes.ts';
+import { pickItems, PLACES, type Layer } from './g3ss-alberta-data.ts';
+
+interface Props {
+  layer: Layer;
+  items: { id: string; text: string }[];
+  /** Play "find it" instead of exploring. */
+  find?: boolean;
+  /** Place ids to show as small labelled dots, to help a child find their way. */
+  cities?: string[];
+  /** Button label for drawing the borders (border layer only). */
+  run?: string;
+}
+const { layer, items, find = false, cities = [], run = '▶ Draw the borders' } = Astro.props;
+const picked = pickItems(layer, items.map((i) => i.id));
+const data = items.map((it, k) => ({ id: it.id, name: picked[k].name, icon: picked[k].icon, text: mdInline(it.text) }));
+const refs = pickItems('places', cities);
+const isArea = layer === 'regions' || layer === 'treaties';
+const labelOf = (id: string) => picked.find((p) => p.id === id)!;
+const shown = new Set(items.map((i) => i.id));
+const summary = {
+  regions: 'A map of Alberta coloured by natural region.',
+  treaties: 'A map of Alberta showing the areas of Treaties 4, 6, 7, 8 and 10.',
+  metis: 'A map of Alberta with its eight Métis Settlements marked.',
+  border: 'A map of Alberta. Three sides are straight lines. The south-west side follows the Rocky Mountains.',
+  places: `A map of Alberta marking ${picked.map((p) => p.name).join(', ')}.`,
+}[layer];
+---
+<g3ss-alberta-map data-layer={layer} data-find={find ? '1' : ''} data-items={JSON.stringify(data)}>
+  <div class="g3ss-am">
+    <div class="g3ss-am-stage">
+      {find && <p class="g3ss-am-ask" data-am="ask" aria-live="polite"></p>}
+      <svg class={`sci-svg g3ss-am-svg g3ss-am--${layer}`} viewBox="0 0 280 460" role="img" aria-label={summary}>
+        <path class="g3ss-am-land" d={BORDER} data-am-id={layer === 'regions' && shown.has('boreal') ? 'boreal' : undefined}></path>
+        {
+          layer === 'regions' &&
+            Object.entries(REGION_SHAPES)
+              .filter(([id]) => shown.has(id))
+              .map(([id, paths]) => (
+                <g class={`g3ss-am-area g3ss-am-r-${id}`} data-am-id={id}>
+                  {paths.map((d) => <path d={d} fill-rule="evenodd"></path>)}
+                </g>
+              ))
+        }
+        {
+          layer === 'treaties' &&
+            Object.entries(TREATY_SHAPES)
+              .filter(([id]) => shown.has(id))
+              .map(([id, d]) => <path class={`g3ss-am-area g3ss-am-${id}`} data-am-id={id} d={d}></path>)
+        }
+        {layer === 'metis' && Object.entries(METIS_SHAPES).map(([id, d]) => <path class="g3ss-am-metis" data-am-shape={id} d={d}></path>)}
+        {
+          layer === 'border' &&
+            Object.entries(SIDES).map(([id, d]) => <path class={`g3ss-am-side g3ss-am-side--${id}`} data-am-id={id} d={d} pathLength="1"></path>)
+        }
+        <path class="g3ss-am-outline" d={BORDER}></path>
+        {
+          refs.map((c) => (
+            <g class="g3ss-am-ref" transform={`translate(${c.at[0]} ${c.at[1]})`}>
+              <circle r="3.2"></circle>
+              <text x="6" y="4">{c.name}</text>
+            </g>
+          ))
+        }
+        {
+          isArea &&
+            picked.map((p) => (
+              <g class="g3ss-am-tag" data-am-tag={p.id} transform={`translate(${p.at[0]} ${p.at[1]})`}>
+                <circle r={layer === 'treaties' ? 13 : 14}></circle>
+                <text y={layer === 'treaties' ? 5 : 6} class={layer === 'treaties' ? 'g3ss-am-num' : 'g3ss-am-emoji'}>{p.icon}</text>
+              </g>
+            ))
+        }
+        {
+          (layer === 'metis' || layer === 'places') &&
+            picked.map((p) => (
+              <g class="g3ss-am-pin" data-am-id={p.id} transform={`translate(${p.at[0]} ${p.at[1]})`}>
+                <circle r={layer === 'metis' ? 8 : 13}></circle>
+                {layer === 'places' && <text y="5.5" class="g3ss-am-emoji">{p.icon}</text>}
+              </g>
+            ))
+        }
+        {
+          layer === 'border' &&
+            picked.map((p) => (
+              <g class="g3ss-am-tag g3ss-am-tag--side" data-am-tag={p.id} transform={`translate(${p.at[0]} ${p.at[1]})`}>
+                <circle r="12"></circle>
+                <text y="5" class="g3ss-am-emoji">{p.icon}</text>
+              </g>
+            ))
+        }
+      </svg>
+      <p class="muted g3ss-am-note">Simplified map from Government of Alberta data.{layer === 'treaties' && ' Treaty borders are approximate.'}</p>
+    </div>
+    <div class="g3ss-am-panel">
+      {layer === 'border' && <button type="button" class="btn btn--small g3ss-am-run" data-am="run">{run}</button>}
+      {
+        find ? (
+          <p class="g3ss-am-score" data-am="score" aria-live="polite"></p>
+        ) : (
+          <div class="sci-pick" role="group" aria-label="Choose a place on the map">
+            {data.map((d) => (
+              <button type="button" data-am-pick={d.id} aria-pressed="false">
+                {layer === 'treaties' ? '📜' : layer === 'metis' ? '🟣' : d.icon} {d.name}
+              </button>
+            ))}
+          </div>
+        )
+      }
+      <div class="g3ss-am-card" data-am="card" aria-live="polite" hidden>
+        <p class="g3ss-am-card__name"><span data-am="icon" aria-hidden="true"></span> <span data-am="name"></span></p>
+        <p data-am="text"></p>
+      </div>
+      {find && <button type="button" class="btn btn--small" data-am="again" hidden>↺ Play again</button>}
+    </div>
+  </div>
+  <noscript>
+    <ul>{data.map((d) => <li><strong>{d.name}:</strong> <span set:html={d.text} /></li>)}</ul>
+  </noscript>
+</g3ss-alberta-map>
+
+<style is:global>
+  g3ss-alberta-map { display: block; }
+  .g3ss-am { display: grid; gap: 0.8rem; }
+  @media (min-width: 46rem) { .g3ss-am { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); align-items: start; } }
+  .g3ss-am-stage { max-width: 19rem; width: 100%; margin-inline: auto; }
+  .g3ss-am-svg { overflow: visible; }
+  .g3ss-am-land { fill: color-mix(in srgb, var(--surface-3) 80%, #d9cfb8); }
+  .g3ss-am--regions .g3ss-am-land { fill: #3f8a57; }
+  .g3ss-am-outline { fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
+  .g3ss-am-area, .g3ss-am-pin, .g3ss-am-tag, .g3ss-am--regions .g3ss-am-land { cursor: pointer; transition: opacity 0.25s; }
+  .g3ss-am-area:focus-visible, .g3ss-am-pin:focus-visible, .g3ss-am-land:focus-visible { outline: none; }
+  .g3ss-am-area:focus-visible, .g3ss-am-pin:focus-visible circle { stroke: var(--focus); stroke-width: 3; }
+  .g3ss-am-r-grassland { fill: #e8c468; }
+  .g3ss-am-r-parkland { fill: #b9d77e; }
+  .g3ss-am-r-foothills { fill: #79a95c; }
+  .g3ss-am-r-rocky { fill: #a99c8c; }
+  .g3ss-am-r-shield { fill: #d1a3a3; }
+  .g3ss-am-t4 { fill: #f2a65a; }
+  .g3ss-am-t6 { fill: #8fc6e3; }
+  .g3ss-am-t7 { fill: #eacb6e; }
+  .g3ss-am-t8 { fill: #a9c95f; }
+  .g3ss-am-t10 { fill: #c9aee0; }
+  .g3ss-am--treaties .g3ss-am-area { stroke: #fff; stroke-width: 1.2; stroke-linejoin: round; }
+  .g3ss-am-metis { fill: #7a3dc2; pointer-events: none; }
+  .g3ss-am-pin circle { fill: var(--surface); stroke: var(--social); stroke-width: 2; }
+  .g3ss-am--metis .g3ss-am-pin circle { fill: color-mix(in srgb, #7a3dc2 22%, transparent); stroke: #7a3dc2; }
+  .g3ss-am-tag circle { fill: rgb(255 255 255 / 88%); stroke: rgb(0 0 0 / 25%); stroke-width: 1; }
+  .g3ss-am-emoji { font-size: 15px; text-anchor: middle; }
+  .g3ss-am-num { font-size: 14px; font-weight: 800; text-anchor: middle; fill: #1c1b24; }
+  .g3ss-am-ref circle { fill: var(--ink); }
+  .g3ss-am-ref text { font-size: 10px; font-weight: 700; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+  .g3ss-am-side { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 0.02 0.02; cursor: pointer; }
+  .g3ss-am-side.is-drawn, .g3ss-am-side.is-on { stroke: var(--social); stroke-width: 5; stroke-dasharray: 1; stroke-dashoffset: 0; stroke-linecap: round; }
+  .g3ss-am-side.is-drawing { stroke: var(--social); stroke-width: 5; stroke-dasharray: 1; stroke-dashoffset: 1; stroke-linecap: round; animation: g3ss-am-draw 1.2s ease-out forwards; }
+  .g3ss-am-side--rockies.is-drawn, .g3ss-am-side--rockies.is-on, .g3ss-am-side--rockies.is-drawing { stroke: #6b5a45; }
+  @keyframes g3ss-am-draw { to { stroke-dashoffset: 0; } }
+  .g3ss-am-svg.has-pick .g3ss-am-area:not(.is-on), .g3ss-am-svg.has-pick .g3ss-am-pin:not(.is-on), .g3ss-am-svg.has-pick .g3ss-am-tag:not(.is-on) { opacity: 0.4; }
+  .g3ss-am-svg.has-pick.g3ss-am--regions .g3ss-am-land:not(.is-on) { opacity: 0.4; }
+  .g3ss-am-area.is-found, .g3ss-am-pin.is-found { opacity: 1 !important; }
+  .g3ss-am-pin.is-on circle, .g3ss-am-pin.is-found circle { stroke-width: 3.5; }
+  .g3ss-am-pin.is-on circle { fill: var(--sun); }
+  .g3ss-am-wrong { animation: g3ss-am-shake 0.35s ease; }
+  .g3ss-am-pop { animation: g3ss-am-pop 0.45s ease; transform-box: fill-box; transform-origin: center; }
+  @keyframes g3ss-am-shake { 25% { translate: -4px 0; } 75% { translate: 4px 0; } }
+  @keyframes g3ss-am-pop { 50% { scale: 1.12; } }
+  .g3ss-am-note { margin: 0.3rem 0 0; font-size: var(--step--1); text-align: center; }
+  .g3ss-am-panel { display: grid; gap: 0.6rem; align-content: start; }
+  .g3ss-am-ask { margin: 0 0 0.4rem; padding: 0.5rem 0.8rem; border-radius: var(--radius-sm); background: var(--accent-soft); font-weight: 800; font-size: var(--step-1); text-align: center; }
+  .g3ss-am-score { margin: 0; font-weight: 700; color: var(--ink-2); }
+  .g3ss-am-card { padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); border: 2px solid var(--accent); background: var(--surface); }
+  .g3ss-am-card.is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3ss-am-card.is-wrong { border-color: var(--warn); background: var(--warn-soft); }
+  .g3ss-am-card p { margin: 0; }
+  .g3ss-am-card__name { font-weight: 800; font-size: var(--step-1); margin-bottom: 0.3rem !important; }
+  .g3ss-am-run { justify-self: start; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-am-land { fill: #4a4636; }
+    :root:not([data-theme='light']) .g3ss-am--regions .g3ss-am-land { fill: #2f7046; }
+    :root:not([data-theme='light']) .g3ss-am-metis { fill: #c5a1f5; }
+  }
+  :root[data-theme='dark'] .g3ss-am-land { fill: #4a4636; }
+  :root[data-theme='dark'] .g3ss-am--regions .g3ss-am-land { fill: #2f7046; }
+  :root[data-theme='dark'] .g3ss-am-metis { fill: #c5a1f5; }
+  @media (prefers-reduced-motion: reduce) {
+    .g3ss-am-side.is-drawing { animation: none; stroke-dashoffset: 0; }
+    .g3ss-am-wrong, .g3ss-am-pop { animation: none; }
+  }
+</style>
+
+<script>
+  import { nextTarget } from './g3ss-alberta-data.ts';
+
+  type Item = { id: string; name: string; icon: string; text: string };
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait = (ms: number) => new Promise((r) => setTimeout(r, reduced() ? Math.min(ms, 600) : ms));
+
+  class AlbertaMap extends HTMLElement {
+    private items: Item[] = [];
+    private find = false;
+    private found = new Set<string>();
+    private run = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.find = this.dataset.find === '1';
+      const ids = new Set(this.items.map((i) => i.id));
+      // Every shape, pin and tag for an item can be tapped, and reached with the keyboard.
+      this.querySelectorAll<SVGElement>('[data-am-id]').forEach((el) => {
+        const id = el.dataset.amId!;
+        if (!ids.has(id)) return;
+        el.setAttribute('tabindex', '0');
+        el.setAttribute('role', 'button');
+        el.setAttribute('aria-label', this.item(id).name);
+        el.addEventListener('click', () => this.tap(id));
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.tap(id);
+          }
+        });
+      });
+      this.querySelectorAll<SVGElement>('[data-am-tag]').forEach((el) => el.addEventListener('click', () => this.tap(el.dataset.amTag!)));
+      this.querySelectorAll<HTMLButtonElement>('[data-am-pick]').forEach((b) => b.addEventListener('click', () => this.tap(b.dataset.amPick!)));
+      this.querySelector('[data-am="run"]')?.addEventListener('click', () => this.drawBorders());
+      this.querySelector('[data-am="again"]')?.addEventListener('click', () => this.startFind());
+      if (this.find) this.startFind();
+    }
+
+    private item(id: string) {
+      return this.items.find((i) => i.id === id)!;
+    }
+
+    private part<T extends Element = HTMLElement>(name: string) {
+      return this.querySelector<T & HTMLElement>(`[data-am="${name}"]`)!;
+    }
+
+    private els(id: string) {
+      return [...this.querySelectorAll<SVGElement>(`[data-am-id="${id}"], [data-am-tag="${id}"]`)];
+    }
+
+    private show(id: string, tone: '' | 'is-right' | 'is-wrong' = '', note = '') {
+      const it = this.item(id);
+      const card = this.part('card');
+      card.hidden = false;
+      card.className = `g3ss-am-card ${tone}`;
+      this.part('icon').textContent = tone === 'is-wrong' ? '🤔' : tone === 'is-right' ? '🎉' : it.icon.length < 3 && /\d/.test(it.icon) ? '📜' : it.icon;
+      this.part('name').textContent = note || it.name;
+      this.part('text').innerHTML = tone === 'is-wrong' ? 'Try again!' : it.text;
+    }
+
+    private highlight(id: string | null) {
+      const svg = this.querySelector('svg')!;
+      svg.classList.toggle('has-pick', !!id && !this.find);
+      this.querySelectorAll('.is-on').forEach((e) => e.classList.remove('is-on'));
+      if (id) this.els(id).forEach((e) => e.classList.add('is-on'));
+      this.querySelectorAll<HTMLButtonElement>('[data-am-pick]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.amPick === id)));
+    }
+
+    private pop(id: string, cls: string) {
+      this.els(id).forEach((e) => {
+        e.classList.remove(cls);
+        void (e as unknown as HTMLElement).getBoundingClientRect();
+        e.classList.add(cls);
+      });
+    }
+
+    private tap(id: string) {
+      if (!this.find) {
+        this.highlight(id);
+        this.pop(id, 'g3ss-am-pop');
+        this.show(id);
+        return;
+      }
+      const target = nextTarget(this.items.map((i) => i.id), this.found);
+      if (!target) return;
+      if (id !== target) {
+        this.pop(id, 'g3ss-am-wrong');
+        this.show(id, 'is-wrong', `That is ${this.item(id).name}.`);
+        return;
+      }
+      this.found.add(id);
+      this.els(id).forEach((e) => e.classList.add('is-found'));
+      this.pop(id, 'g3ss-am-pop');
+      this.show(id, 'is-right', `Yes! ${this.item(id).name}`);
+      this.askNext();
+    }
+
+    private startFind() {
+      this.found.clear();
+      this.querySelectorAll('.is-found').forEach((e) => e.classList.remove('is-found'));
+      this.part('card').hidden = true;
+      this.part('again').hidden = true;
+      this.askNext();
+    }
+
+    private askNext() {
+      const order = this.items.map((i) => i.id);
+      const target = nextTarget(order, this.found);
+      this.part('score').textContent = `Found ${this.found.size} of ${order.length}`;
+      if (!target) {
+        this.part('ask').textContent = '🎉 You found them all!';
+        this.part('again').hidden = false;
+        return;
+      }
+      this.part('ask').textContent = `Find ${this.item(target).name}!`;
+    }
+
+    private async drawBorders() {
+      const id = ++this.run;
+      const btn = this.part<HTMLButtonElement>('run');
+      btn.disabled = true;
+      this.highlight(null);
+      const sides = [...this.querySelectorAll<SVGPathElement>('.g3ss-am-side')];
+      sides.forEach((s) => s.classList.remove('is-drawn', 'is-drawing'));
+      for (const it of this.items) {
+        if (id !== this.run) return;
+        const side = this.querySelector(`.g3ss-am-side[data-am-id="${it.id}"]`);
+        side?.classList.add('is-drawing');
+        this.show(it.id);
+        await wait(2600);
+        side?.classList.replace('is-drawing', 'is-drawn');
+      }
+      btn.disabled = false;
+    }
+  }
+  customElements.define('g3ss-alberta-map', AlbertaMap);
+</script>
