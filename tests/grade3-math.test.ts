@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src/components/visuals/g3-equation.ts';
 import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
-import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES } from '../src/components/visuals/g3-length.ts';
+import { readSay, thingById, wrongRead, wormPoints, pathLength, PER_METRE, MATCHES, FIGS, perimeter, walkSay, missingSide, unrollSide, estById, estimateSay } from '../src/components/visuals/g3-length.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -210,5 +210,38 @@ describe('Grade 3 length', () => {
   it('relates the units', () => {
     expect(PER_METRE).toEqual({ dm: 10, cm: 100, mm: 1000 });
     expect(MATCHES.every((m) => Math.abs(m.a.cm - m.b.cm) / m.b.cm < 0.1)).toBe(true);
+  });
+});
+
+describe('Grade 3 perimeter and estimating', () => {
+  it('draws every shape to scale with its labels', () => {
+    for (const f of FIGS) {
+      const n = f.pts.length;
+      f.pts.forEach((p, i) => {
+        const q = f.pts[(i + 1) % n];
+        expect(Math.hypot(q[0] - p[0], q[1] - p[1])).toBeCloseTo(f.sides[i], 2);
+      });
+    }
+  });
+
+  it('adds the sides as the ladybug walks', () => {
+    expect(walkSay([4, 3, 5], 2, 'cm')).toBe('4 + 3 = 7 cm so far.');
+    expect(walkSay([4, 3, 5], 3, 'cm')).toBe('4 + 3 + 5 = 12 cm. The perimeter is 12 cm.');
+    expect(perimeter([2, 3, 3, 2, 5, 5])).toBe(20);
+    expect(missingSide(16, [3, 3, 3, 3])).toBe(4);
+  });
+
+  it('keeps each side the same length while it unrolls', () => {
+    for (const t of [0, 0.3, 0.7, 1]) {
+      const [a, b] = unrollSide([10, 10], [40, 50], 30, 224, 50, t);
+      expect(Math.hypot(b[0] - a[0], b[1] - a[1])).toBeCloseTo(50, 6);
+    }
+    expect(unrollSide([10, 10], [40, 50], 30, 224, 50, 1)).toEqual([[30, 224], [80, 224]]);
+  });
+
+  it('says how close an estimate was', () => {
+    expect(estimateSay(estById('canoe'), 5)).toContain('exactly');
+    expect(estimateSay(estById('canoe'), 4)).toContain('close');
+    expect(estimateSay(estById('marker'), 5)).toContain('Picture the fingernails');
   });
 });
