@@ -1,0 +1,119 @@
+---
+// Grade 3: a town grows around a resource. Press ▶ and the resource is found: a well or mine pops up,
+// then new homes, shops and a school pop in one at a time while the population counter climbs.
+// It shows that settlement follows natural resources. Numbers and years come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** The town's name. */
+  place: string;
+  /** The resource found, such as { icon: 🛢️, label: Oil }. */
+  resource: { icon: string; label: string };
+  /** People before and after, with their census years. */
+  from: { year: number; people: number };
+  to: { year: number; people: number };
+  /** What starts in the town, and what pops in as it grows. */
+  start: string[];
+  grow: string[];
+  done?: string;
+  run?: string;
+}
+const { place, resource, from, to, start, grow, done = '', run = '▶ Find it!' } = Astro.props;
+const fmt = (n: number) => n.toLocaleString('en-CA');
+---
+<g3ss-boomtown data-from={from.people} data-to={to.people} data-year-from={from.year} data-year-to={to.year}>
+  <p class="g3ss-bt-count" aria-live="polite">
+    <span class="g3ss-bt-place">{place}, <span data-bt="year">{from.year}</span>:</span>
+    <span class="g3ss-bt-num" data-bt="num">{fmt(from.people)}</span> people
+  </p>
+  <div class="g3ss-bt-scene" aria-hidden="true">
+    <span class="g3ss-bt-sun">☀️</span>
+    <ul class="g3ss-bt-town">
+      {start.map((b) => <li class="is-on">{b}</li>)}
+      <li class="g3ss-bt-res" data-bt="res">{resource.icon}</li>
+      {grow.map((b) => <li class="g3ss-bt-new">{b}</li>)}
+    </ul>
+    <span class="g3ss-bt-ground"></span>
+  </div>
+  <p class="g3ss-bt-done" data-bt="done" hidden set:html={mdInline(done)} />
+  <div class="g3ss-bt-buttons">
+    <button type="button" class="btn btn--small" data-bt="run">{run}</button>
+    <button type="button" class="btn btn--small btn--ghost" data-bt="again" hidden>↺ Start again</button>
+  </div>
+  <p class="sr-only">{`${place} had ${fmt(from.people)} people in ${from.year}. After ${resource.label.toLowerCase()} was found, it had ${fmt(to.people)} people in ${to.year}.`}</p>
+</g3ss-boomtown>
+
+<style is:global>
+  g3ss-boomtown { display: block; }
+  .g3ss-bt-count { margin: 0 0 0.4rem; font-weight: 800; font-size: var(--step-1); }
+  .g3ss-bt-place { color: var(--ink-2); }
+  .g3ss-bt-num { display: inline-block; min-width: 4ch; font-size: var(--step-2); color: var(--social); }
+  .g3ss-bt-scene { position: relative; padding: 2.2rem 0.6rem 0.9rem; border-radius: var(--radius-sm); background: linear-gradient(#cfe8f7 0 70%, #b9d77e 70%); overflow: hidden; }
+  .g3ss-bt-sun { position: absolute; top: 0.3rem; right: 0.6rem; font-size: 1.6rem; }
+  .g3ss-bt-town { position: relative; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; gap: 0.15rem 0.3rem; min-height: 5.5rem; font-size: 2rem; line-height: 1.1; }
+  .g3ss-bt-town li { display: none; }
+  .g3ss-bt-town li.is-on { display: block; animation: g3ss-bt-pop 0.35s ease; }
+  .g3ss-bt-res.is-on { font-size: 2.8rem; animation: g3ss-bt-gush 0.7s ease; }
+  .g3ss-bt-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 0.5rem; background: #8a6a4a; }
+  .g3ss-bt-done { margin: 0.6rem 0 0; font-weight: 700; color: var(--ok); }
+  .g3ss-bt-buttons { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+  @keyframes g3ss-bt-pop { 0% { transform: scale(0); } 70% { transform: scale(1.25); } }
+  @keyframes g3ss-bt-gush { 0% { transform: translateY(1.5rem) scale(0.3); } 60% { transform: translateY(-0.4rem) scale(1.3); } }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-bt-scene { background: linear-gradient(#20344a 0 70%, #35502a 70%); }
+  }
+  :root[data-theme='dark'] .g3ss-bt-scene { background: linear-gradient(#20344a 0 70%, #35502a 70%); }
+  @media (prefers-reduced-motion: reduce) { .g3ss-bt-town li.is-on, .g3ss-bt-res.is-on { animation: none; } }
+</style>
+
+<script>
+  import { countAt } from './g3ss-boomtown.ts';
+
+  class BoomTown extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      this.querySelector('[data-bt="run"]')!.addEventListener('click', () => this.go());
+      this.querySelector('[data-bt="again"]')!.addEventListener('click', () => this.reset());
+    }
+
+    private set(people: number, year: number) {
+      this.querySelector('[data-bt="num"]')!.textContent = people.toLocaleString('en-CA');
+      this.querySelector('[data-bt="year"]')!.textContent = String(year);
+    }
+
+    private reset() {
+      ++this.run;
+      this.querySelectorAll('.g3ss-bt-new, .g3ss-bt-res').forEach((li) => li.classList.remove('is-on'));
+      this.set(Number(this.dataset.from), Number(this.dataset.yearFrom));
+      this.querySelector<HTMLElement>('[data-bt="done"]')!.hidden = true;
+      this.querySelector<HTMLButtonElement>('[data-bt="run"]')!.hidden = false;
+      this.querySelector<HTMLElement>('[data-bt="again"]')!.hidden = true;
+    }
+
+    private async go() {
+      const id = ++this.run;
+      const from = Number(this.dataset.from);
+      const to = Number(this.dataset.to);
+      const runBtn = this.querySelector<HTMLButtonElement>('[data-bt="run"]')!;
+      runBtn.hidden = true;
+      const fast = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const sleep = (ms: number) => new Promise((r) => setTimeout(r, fast ? 0 : ms));
+      this.querySelector('[data-bt="res"]')!.classList.add('is-on');
+      await sleep(800);
+      const news = [...this.querySelectorAll('.g3ss-bt-new')];
+      for (let i = 0; i < news.length; i++) {
+        if (id !== this.run) return;
+        news[i].classList.add('is-on');
+        this.set(countAt(from, to, (i + 1) / news.length), Number(this.dataset.yearFrom));
+        await sleep(260);
+      }
+      if (id !== this.run) return;
+      this.set(to, Number(this.dataset.yearTo));
+      const done = this.querySelector<HTMLElement>('[data-bt="done"]')!;
+      if (done.innerHTML.trim()) done.hidden = false;
+      this.querySelector<HTMLElement>('[data-bt="again"]')!.hidden = false;
+    }
+  }
+  customElements.define('g3ss-boomtown', BoomTown);
+</script>

@@ -119,6 +119,7 @@ import SymbolCards from './visuals/SymbolCards.astro';
 import CountPop from './visuals/CountPop.astro';
 import BlendCircles from './visuals/BlendCircles.astro';
 import ResourceRefill from './visuals/ResourceRefill.astro';
+import BoomTown from './visuals/BoomTown.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -239,6 +240,7 @@ const visuals = {
   'g3ss-count-pop': CountPop,
   'g3ss-blend': BlendCircles,
   'g3ss-refill': ResourceRefill,
+  'g3ss-boomtown': BoomTown,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
