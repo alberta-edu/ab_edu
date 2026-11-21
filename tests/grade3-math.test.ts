@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseSide, sideValue, solveBox, tilt, balanceSay, pieces } from '../src/components/visuals/g3-equation.ts';
+import { shapeById, rightAngles, equalSides, parallelPairs, isRegular, angles, propertySay, follows, SORTS, RULES, moveAt, sideLengths, distances, shapeSvg } from '../src/components/visuals/g3-shapes.ts';
 import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/components/visuals/g3-fraction.ts';
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
@@ -135,5 +136,56 @@ describe('Grade 3 equations on a balance', () => {
     expect(pieces(parseSide('9 − 4')).filter((p) => p.kind === 'cube')).toHaveLength(5);
     expect(pieces(parseSide('3 × □')).filter((p) => p.kind === 'box')).toHaveLength(3);
     expect(pieces(parseSide('2 × 3')).map((p) => (p.kind === 'cube' ? p.group : -1))).toEqual([0, 0, 0, 1, 1, 1]);
+  });
+});
+
+describe('Grade 3 polygon properties', () => {
+  it('finds right angles, equal sides and parallel sides', () => {
+    expect(rightAngles(shapeById('tri-right').pts)).toEqual([1]);
+    expect(rightAngles(shapeById('diamond').pts)).toEqual([]);
+    expect(equalSides(shapeById('rectangle').pts)).toEqual([[0, 2], [1, 3]]);
+    expect(parallelPairs(shapeById('trapezoid').pts)).toEqual([[0, 2]]);
+    expect(parallelPairs(shapeById('hex-reg').pts)).toHaveLength(3);
+    expect(parallelPairs(shapeById('pent-reg').pts)).toEqual([]);
+  });
+
+  it('reads a dented corner as more than 180 degrees', () => {
+    const a = angles(shapeById('hex-l').pts).map(Math.round);
+    expect(a.filter((x) => x === 270)).toHaveLength(1);
+    expect(rightAngles(shapeById('hex-l').pts)).toHaveLength(5);
+  });
+
+  it('needs equal sides and equal angles to be regular', () => {
+    expect(['tri-reg', 'square', 'pent-reg', 'hex-reg', 'oct-reg'].every((id) => isRegular(shapeById(id).pts))).toBe(true);
+    expect(isRegular(shapeById('diamond').pts)).toBe(false);
+    expect(isRegular(shapeById('rectangle').pts)).toBe(false);
+    expect(propertySay(shapeById('diamond'), 'regular')).toBe('Sides all equal ✓ Angles all equal ✗ It is irregular.');
+    expect(propertySay(shapeById('oct-reg'), 'sides')).toBe('8 straight sides and 8 corners. It is an octagon.');
+    expect(propertySay(shapeById('square'), 'sides')).toBe('4 straight sides and 4 corners. It is a square, a kind of quadrilateral.');
+  });
+
+  it('has exactly one rule for each sorting puzzle', () => {
+    for (const p of SORTS) {
+      const fits = RULES.filter((r) => p.shapes.every((id) => follows(shapeById(id), r.id) === follows(shapeById(id), p.rule)));
+      expect(fits.map((r) => r.id)).toEqual([p.rule]);
+      expect(p.shapes.some((id) => follows(shapeById(id), p.rule))).toBe(true);
+      expect(p.shapes.some((id) => !follows(shapeById(id), p.rule))).toBe(true);
+    }
+  });
+
+  it('keeps every length through slides, turns and flips', () => {
+    const pts = shapeById('hex-l').pts;
+    for (const m of ['slide', 'turn', 'flip'] as const) {
+      expect(distances(moveAt(pts, m, 1))).toEqual(distances(pts));
+      expect(sideLengths(moveAt(pts, m, 1)).map((l) => Math.round(l * 100))).toEqual(sideLengths(pts).map((l) => Math.round(l * 100)));
+    }
+    expect(moveAt([[0, 0], [2, 0], [0, 1]], 'slide', 1, 5)).toEqual([[5, 0], [7, 0], [5, 1]]);
+    expect(moveAt([[0, 0], [2, 0], [0, 1]], 'flip', 1)).toEqual([[2, 0], [0, 0], [2, 1]]);
+  });
+
+  it('draws marks for each view', () => {
+    expect(shapeSvg(shapeById('square').pts, 'right').match(/g3m-sh-rt/g)).toHaveLength(4);
+    expect(shapeSvg(shapeById('tri-reg').pts, 'right').match(/✗/g)).toHaveLength(3);
+    expect(shapeSvg(shapeById('rectangle').pts, 'parallel').match(/g3m-sh-chev/g)).toHaveLength(6);
   });
 });
