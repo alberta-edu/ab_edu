@@ -82,6 +82,16 @@ export const PLACES: MapItem[] = [
   { id: 'lac-ste-anne', name: 'Lac Ste. Anne', icon: '💧', at: pt(53.7, -114.4) },
   { id: 'lacombe-chapel', name: 'Father Lacombe Chapel', icon: '⛪', at: pt(53.6, -113.6), nudge: [-20, -16] },
   { id: 'cave-basin', name: 'Cave and Basin', icon: '♨️', at: pt(51.2, -115.6) },
+  // First Nations, by the language many people there speak (Government of Alberta reserve data)
+  { id: 'siksika', name: 'Siksika Nation', icon: '🟡', at: pt(50.85, -112.8) },
+  { id: 'kainai', name: 'Kainai Nation', icon: '🟡', at: pt(49.3, -113.2), nudge: [8, 2] },
+  { id: 'piikani', name: 'Piikani Nation', icon: '🟡', at: pt(49.55, -113.75) },
+  { id: 'maskwacis', name: 'Maskwacîs', icon: '🔵', at: pt(52.85, -113.45) },
+  { id: 'saddle-lake', name: 'Saddle Lake Cree Nation', icon: '🔵', at: pt(53.95, -111.65) },
+  { id: 'kapaweno', name: 'Kapawe’no First Nation', icon: '🔵', at: pt(55.55, -116.15) },
+  { id: 'cold-lake', name: 'Cold Lake First Nations', icon: '🟢', at: pt(54.35, -110.3) },
+  { id: 'athabasca-chipewyan', name: 'Athabasca Chipewyan First Nation', icon: '🟢', at: pt(58.7, -111.15) },
+  { id: 'dene-tha', name: 'Dene Tha’ First Nation', icon: '🟢', at: pt(58.9, -117.8) },
   // Natural resources
   { id: 'oil-sands', name: 'Oil sands', icon: '🛢️', at: pt(57.0, -111.6) },
   { id: 'leduc', name: 'Leduc oil field', icon: '🛢️', at: pt(53.3, -113.6) },

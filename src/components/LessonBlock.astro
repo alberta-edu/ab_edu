@@ -115,6 +115,8 @@ import FunctionMachine from './visuals/FunctionMachine.astro';
 import ChanceLab from './visuals/ChanceLab.astro';
 import AlbertaMap from './visuals/AlbertaMap.astro';
 import StorySteps from './visuals/StorySteps.astro';
+import SymbolCards from './visuals/SymbolCards.astro';
+import CountPop from './visuals/CountPop.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -231,6 +233,8 @@ const visuals = {
   'chance-lab': ChanceLab,
   'g3ss-alberta-map': AlbertaMap,
   'g3ss-story-steps': StorySteps,
+  'g3ss-symbol-cards': SymbolCards,
+  'g3ss-count-pop': CountPop,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
