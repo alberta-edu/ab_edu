@@ -81,6 +81,7 @@ const t0 = mode === 'tick' ? parse('3:00') : mode === 'set' ? parse('12:00') : p
         <button type="button" class="btn btn--small" data-step="-1">◀ 1</button>
         <button type="button" class="btn btn--small" data-step="1">1 ▶</button>
         <button type="button" class="btn btn--small" data-step="5">5 min ▶</button>
+        {mode === 'set' && <button type="button" class="btn btn--small" data-step="60">60 min ▶</button>}
       </div>
     )}
     {mode === 'set' && <button type="button" class="btn btn--primary btn--small" data-ck="next" hidden>Next time ▶</button>}
@@ -277,7 +278,7 @@ const t0 = mode === 'tick' ? parse('3:00') : mode === 'set' ? parse('12:00') : p
       } else {
         const g = parse(this.goals[this.goal]) % 60;
         const m = this.t % 60;
-        this.say(m === g ? 'The minutes match. Now check the hour.' : m < g ? 'Keep turning the minute hand forward.' : 'Turn the minute hand back a little, or keep going around.');
+        this.say(m === g ? 'The minutes match. Now check the hour. 60 min ▶ turns the long hand all the way around.' : m < g ? 'Keep turning the minute hand forward.' : 'Turn the minute hand back a little, or keep going around.');
       }
     }
 

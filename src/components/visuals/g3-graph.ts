@@ -91,7 +91,7 @@ export function graphSvg(spec: GraphSpec, view: View, shown: number[] = spec.dat
     for (let v = 0; v <= max; v++) {
       const y = base - v * U;
       p.push(`<line x1="${x0}" y1="${y}" x2="${w - 8}" y2="${y}" style="stroke:var(--line-strong);stroke-width:${v === 0 ? 0 : 1}"/>`);
-      if (max <= 12 || v % 2 === 0) p.push(`<text x="${x0 - 7}" y="${y}" text-anchor="end" dominant-baseline="central" style="${ink};font-size:12px">${v}</text>`);
+      if (max <= 12 || v % 2 === 0) p.push(`<text x="${x0 - 7}" y="${y}" text-anchor="end" dominant-baseline="central" style="${ink};font-size:13px">${v}</text>`);
     }
     p.push(`<line x1="${x0}" y1="${TOP - 6}" x2="${x0}" y2="${base}" style="stroke:var(--ink);stroke-width:2"/>`);
     const my = (TOP + base) / 2;
@@ -110,10 +110,10 @@ export function graphSvg(spec: GraphSpec, view: View, shown: number[] = spec.dat
       g.push(`<rect x="${cx - 22}" y="${base - n * U}" width="44" height="${n * U}" rx="3" style="fill:${fill}"/>`);
     }
     g.push(`<rect x="${cx - COL / 2}" y="${TOP - 10}" width="${COL}" height="${base - TOP + 40}" style="fill:transparent"/>`);
-    g.push(`<text x="${cx}" y="${base + 20}" text-anchor="middle" style="${ink};font-size:13px;font-weight:${on ? 700 : 600}">${esc(name(c))}</text>`);
+    g.push(`<text x="${cx}" y="${base + 20}" text-anchor="middle" style="${ink};font-size:15px;font-weight:${on ? 700 : 600}">${esc(name(c))}</text>`);
     p.push(`<g data-cat="${i}">${g.join('')}</g>`);
   });
-  p.push(`<text x="${x0 + (w - 8 - x0) / 2}" y="${base + 46}" text-anchor="middle" style="${ink};font-size:13px;font-weight:600">${esc(spec.axis)}</text>`);
+  p.push(`<text x="${x0 + (w - 8 - x0) / 2}" y="${base + 46}" text-anchor="middle" style="${ink};font-size:14px;font-weight:600">${esc(spec.axis)}</text>`);
   const label = `${view === 'dots' ? 'Dot plot' : 'Bar graph'}: ${spec.title}. ${spec.cats.map((c, i) => `${c.label} ${shown[i] ?? 0}`).join(', ')}.`;
   return `<svg viewBox="0 0 ${w} ${h}" class="fig-svg" role="img" aria-label="${esc(label)}">${p.join('')}</svg>`;
 }
@@ -123,14 +123,14 @@ export interface Pic {
   label: string;
 }
 
-/** A pretend winter count for a class, one picture for each year, spiralling out from the centre. */
-export function spiral(n: number, r0 = 22, gap = 30) {
-  const pts: [number, number][] = [];
+/** A pretend winter count, one picture for each winter, spiralling out from the centre. */
+export function spiral(n: number, r0 = 34, gap = 32) {
+  const pts: [number, number][] = n > 0 ? [[0, 0]] : [];
   let a = 0;
-  for (let i = 0; i < n; i++) {
+  for (let i = 1; i < n; i++) {
     const r = r0 + (gap * a) / (2 * Math.PI);
     pts.push([r * Math.cos(a), r * Math.sin(a)]);
-    a += (gap * 1.15) / r;
+    a += (gap * 1.1) / r;
   }
   return pts;
 }
