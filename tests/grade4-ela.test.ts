@@ -163,3 +163,15 @@ describe('compare scale names', () => {
     expect(compareSentence(s, 2)).toBe('The bike is <mark>faster</mark> than the snail.');
   });
 });
+
+import { checkCommas, commaGaps } from '../src/components/visuals/comma-tap.ts';
+
+describe('comma tap', () => {
+  it('finds the gaps that hold commas', () => {
+    expect(commaGaps('First, we packed apples, pears and grapes.')).toEqual({ words: ['First', 'we', 'packed', 'apples', 'pears', 'and', 'grapes.'], commas: [0, 3] });
+  });
+  it('reports missing and extra commas', () => {
+    expect(checkCommas([0, 3], [3, 5])).toEqual({ missing: [0], extra: [5] });
+    expect(checkCommas([0], [0])).toEqual({ missing: [], extra: [] });
+  });
+});

@@ -1,0 +1,98 @@
+---
+// Tap to place commas (LANENG4-OI9-GQ1-LO1, K1.4, S1.3). Each sentence is shown without commas. Tap a gap
+// between two words to add or remove a comma, then check. The explanation names the comma's job.
+import { commaGaps } from './comma-tap.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  items: { sentence: string; job: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => ({ ...commaGaps(it.sentence), job: mdInline(it.job) }));
+---
+<comma-tap data-items={JSON.stringify(data)}>
+  <p class="g4e-cm__count muted" data-cm="count"></p>
+  <p class="g4e-cm__sentence" data-cm="sentence"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-cm="check">Check my commas</button>
+    <button type="button" class="btn btn--ghost btn--small" data-cm="next">Next sentence ▶</button>
+  </div>
+  <p class="g4e-cm__note" data-cm="note" aria-live="polite">Tap the space between two words to add a comma. Tap again to take it away.</p>
+  <noscript><ul>{items.map((it) => <li>{it.sentence}</li>)}</ul></noscript>
+</comma-tap>
+
+<style is:global>
+  comma-tap { display: block; }
+  .g4e-cm__count { margin: 0; font-size: var(--step--1); }
+  .g4e-cm__sentence { margin: 0.6rem 0; padding: 0.9rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 2.2; }
+  .g4e-cm__gap { display: inline-block; min-width: 1.1rem; height: 1.8rem; margin: 0 0.05rem; padding: 0; vertical-align: middle; border: 0; border-bottom: 2px dotted var(--line-strong); background: none; font: inherit; font-weight: 800; color: var(--accent); cursor: pointer; }
+  .g4e-cm__gap:hover { background: var(--accent-soft); }
+  .g4e-cm__gap.is-on { border-bottom-color: transparent; }
+  .g4e-cm__gap.is-missing { background: var(--warn-soft); border-bottom: 3px solid var(--warn); }
+  .g4e-cm__gap.is-extra { background: var(--bad-soft); }
+  .g4e-cm__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g4e-cm__note.is-right { background: var(--ok-soft); }
+</style>
+
+<script>
+  import { checkCommas } from './comma-tap.ts';
+  type Item = { words: string[]; commas: number[]; job: string };
+
+  class CommaTap extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+    private chosen = new Set<number>();
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.part('check').addEventListener('click', () => this.check());
+      this.part('next').addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-cm="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      this.chosen.clear();
+      const it = this.items[i];
+      this.part('count').textContent = `Sentence ${i + 1} of ${this.items.length}`;
+      const s = this.part('sentence');
+      s.innerHTML = it.words
+        .map((w, j) => (j < it.words.length - 1 ? `${w}<button type="button" class="g4e-cm__gap" data-gap="${j}" aria-label="Space after ${w.replace(/"/g, '')}"></button>` : w))
+        .join(' ');
+      s.querySelectorAll<HTMLButtonElement>('[data-gap]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const g = Number(b.dataset.gap);
+          if (this.chosen.has(g)) this.chosen.delete(g);
+          else this.chosen.add(g);
+          b.classList.toggle('is-on', this.chosen.has(g));
+          b.textContent = this.chosen.has(g) ? ',' : '';
+          b.classList.remove('is-missing', 'is-extra');
+        }),
+      );
+      const note = this.part('note');
+      note.className = 'g4e-cm__note';
+      note.textContent = 'Tap the space between two words to add a comma. Tap again to take it away.';
+    }
+
+    private check() {
+      const it = this.items[this.at];
+      const { missing, extra } = checkCommas(it.commas, [...this.chosen]);
+      this.querySelectorAll<HTMLElement>('[data-gap]').forEach((b) => {
+        const g = Number(b.dataset.gap);
+        b.classList.toggle('is-missing', missing.includes(g));
+        b.classList.toggle('is-extra', extra.includes(g));
+      });
+      const note = this.part('note');
+      const right = !missing.length && !extra.length;
+      note.className = `g4e-cm__note${right ? ' is-right' : ''}`;
+      note.innerHTML = right
+        ? `✓ ${it.job}`
+        : `${missing.length ? `${missing.length} comma${missing.length > 1 ? 's are' : ' is'} missing (yellow). ` : ''}${extra.length ? `${extra.length} comma${extra.length > 1 ? 's don’t' : ' doesn’t'} belong (red). ` : ''}Read it aloud. Where do you pause?`;
+    }
+  }
+  customElements.define('comma-tap', CommaTap);
+</script>
