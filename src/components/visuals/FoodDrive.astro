@@ -1,0 +1,112 @@
+---
+// Grade 3: run a food bank. "Donate food" (charity) puts cans in the bin; "Volunteer" (giving time)
+// packs cans into a hamper for a family. Donations pile up with no one to pack them, and volunteers
+// have nothing to pack without donations, so the child sees that charity and volunteering need each other.
+import { BIN } from './g3ss-food-drive.ts';
+
+interface Props {
+  /** Families to feed before the drive is done. */
+  goal?: number;
+}
+const { goal = 4 } = Astro.props;
+---
+<g3ss-food-drive data-goal={goal}>
+  <div class="g3ss-fd">
+    <section class="g3ss-fd-box">
+      <p class="g3ss-fd-head">🧺 Food bank bin</p>
+      <ul class="g3ss-fd-cans" aria-hidden="true">{Array.from({ length: BIN }, () => <li>🥫</li>)}</ul>
+      <p class="g3ss-fd-small muted"><span data-fd="cans">0</span> cans</p>
+    </section>
+    <section class="g3ss-fd-box">
+      <p class="g3ss-fd-head">🏠 Families with food</p>
+      <ul class="g3ss-fd-homes" aria-hidden="true">{Array.from({ length: goal }, () => <li><span>🏠</span><span class="g3ss-fd-gift">🧺</span></li>)}</ul>
+      <p class="g3ss-fd-small muted"><span data-fd="fed">0</span> of {goal}</p>
+    </section>
+  </div>
+  <div class="g3ss-fd-buttons">
+    <button type="button" class="btn btn--small" data-fd="give">🎁 Donate food</button>
+    <button type="button" class="btn btn--small" data-fd="help">🙋 Volunteer</button>
+    <button type="button" class="btn btn--small btn--ghost" data-fd="again" hidden>↺ Start again</button>
+  </div>
+  <p class="g3ss-fd-msg" data-fd="msg" aria-live="polite">Feed {goal} families. Try each button. What does each one do?</p>
+</g3ss-food-drive>
+
+<style is:global>
+  g3ss-food-drive { display: block; }
+  .g3ss-fd { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  @media (max-width: 26rem) { .g3ss-fd { grid-template-columns: 1fr; } }
+  .g3ss-fd-box { padding: 0.6rem; border-radius: var(--radius-sm); border: 2px solid var(--line-strong); background: var(--surface); text-align: center; }
+  .g3ss-fd-head { margin: 0 0 0.4rem; font-weight: 800; }
+  .g3ss-fd-small { margin: 0.3rem 0 0; font-weight: 700; }
+  .g3ss-fd-cans, .g3ss-fd-homes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem; font-size: 1.6rem; line-height: 1.2; min-height: 2.2rem; }
+  .g3ss-fd-cans li { opacity: 0.12; filter: grayscale(1); }
+  .g3ss-fd-cans li.is-on { opacity: 1; filter: none; animation: g3ss-fd-pop 0.3s ease; }
+  .g3ss-fd-homes li { position: relative; opacity: 0.35; filter: grayscale(1); }
+  .g3ss-fd-homes li.is-on { opacity: 1; filter: none; animation: g3ss-fd-pop 0.4s ease; }
+  .g3ss-fd-gift { position: absolute; right: -0.3rem; bottom: -0.2rem; font-size: 0.9rem; display: none; }
+  .g3ss-fd-homes li.is-on .g3ss-fd-gift { display: inline; }
+  .g3ss-fd-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+  .g3ss-fd-msg { margin: 0.6rem 0 0; font-weight: 700; }
+  .g3ss-fd-msg.is-warn { color: var(--warn); }
+  .g3ss-fd-msg.is-done { color: var(--ok); }
+  @keyframes g3ss-fd-pop { 50% { transform: scale(1.35); } }
+  @media (prefers-reduced-motion: reduce) { .g3ss-fd-cans li.is-on, .g3ss-fd-homes li.is-on { animation: none; } }
+</style>
+
+<script>
+  import { donate, volunteer, GIVE, type Drive } from './g3ss-food-drive.ts';
+
+  class FoodDrive extends HTMLElement {
+    private d: Drive = { cans: 0, hampers: 0 };
+
+    connectedCallback() {
+      const goal = Number(this.dataset.goal);
+      const msg = this.querySelector<HTMLElement>('[data-fd="msg"]')!;
+      const give = this.querySelector<HTMLButtonElement>('[data-fd="give"]')!;
+      const help = this.querySelector<HTMLButtonElement>('[data-fd="help"]')!;
+      const again = this.querySelector<HTMLButtonElement>('[data-fd="again"]')!;
+      const start = msg.textContent;
+      const say = (text: string, tone = '') => {
+        msg.textContent = text;
+        msg.className = `g3ss-fd-msg ${tone}`.trim();
+      };
+      const draw = () => {
+        this.querySelectorAll('.g3ss-fd-cans li').forEach((li, i) => li.classList.toggle('is-on', i < this.d.cans));
+        this.querySelectorAll('.g3ss-fd-homes li').forEach((li, i) => li.classList.toggle('is-on', i < this.d.hampers));
+        this.querySelector('[data-fd="cans"]')!.textContent = String(this.d.cans);
+        this.querySelector('[data-fd="fed"]')!.textContent = String(this.d.hampers);
+      };
+      give.addEventListener('click', () => {
+        const r = donate(this.d);
+        this.d = r.drive;
+        draw();
+        if (r.result === 'full') say('The bin is full! Volunteers are needed to pack it.', 'is-warn');
+        else say(`🎁 Thank you! ${GIVE} cans went into the bin.`);
+      });
+      help.addEventListener('click', () => {
+        const r = volunteer(this.d);
+        this.d = r.drive;
+        draw();
+        if (r.result === 'empty') return say('🙋 A volunteer came, but there is nothing to pack! The food bank needs donations.', 'is-warn');
+        if (this.d.hampers >= goal) {
+          say(`🎉 ${goal} families have food! Givers and volunteers did it together.`, 'is-done');
+          give.disabled = true;
+          help.disabled = true;
+          again.hidden = false;
+          return;
+        }
+        say('🙋 A volunteer packed a hamper. A family gets food!');
+      });
+      again.addEventListener('click', () => {
+        this.d = { cans: 0, hampers: 0 };
+        draw();
+        say(start ?? '');
+        give.disabled = false;
+        help.disabled = false;
+        again.hidden = true;
+      });
+      draw();
+    }
+  }
+  customElements.define('g3ss-food-drive', FoodDrive);
+</script>

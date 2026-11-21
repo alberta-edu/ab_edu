@@ -1,0 +1,231 @@
+id: volunteer-charity
+grade: 3
+subject: social-studies
+organizingIdea: mHPvaWAVOU-k7Fefv9hAWw
+outcomes: [szaTLb84c0ie7-Z6oA2LDA]
+order: 15
+title: Volunteering and Charity
+shortTitle: Volunteering & charity
+summary: >-
+  Sort giving time from giving things, run a food bank where donors and volunteers need each other,
+  meet groups you can help, and make a plan to volunteer.
+
+bigIdea: |-
+  - **Volunteering** is giving your time to help. **Charity** is giving things or money to help.
+  - Groups like food banks and animal shelters need both.
+  - You can plan a way to volunteer at school or in your community.
+
+lesson:
+  - title: Time or things?
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: time, label: Volunteering, icon: ⏰ }
+            - { id: give, label: Charity, icon: 🎁 }
+          cards:
+            - { text: 'Walk dogs at the animal shelter', bin: time, why: 'You give your **time**. That is volunteering.' }
+            - { text: 'Give canned food to the food bank', bin: give, why: 'You give **things**. That is charity.' }
+            - { text: 'Read to kids at the library', bin: time, why: 'You give your **time** to help them.' }
+            - { text: 'Give your old winter coat to a coat drive', bin: give, why: 'You give a **thing** someone needs.' }
+            - { text: 'Help sort food at the food bank', bin: time, why: 'Same food bank, but now you give **time**!' }
+            - { text: 'Give bake sale money to a children’s hospital', bin: give, why: 'Giving **money** is charity too.' }
+        caption: Are you giving your time, or giving things?
+
+  - title: Run a food bank
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.3, K1.4]
+        component: g3ss-food-drive
+        props:
+          goal: 4
+        caption: Try only one button, then both. What does the food bank need?
+      - type: callout
+        variant: tip
+        covers: [S1.3]
+        title: Which would you choose?
+        body: Some people like to give time. Some like to give things. Both help.
+
+  - title: Groups you can help
+    blocks:
+      - type: visual
+        covers: [S1.3]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🥫, title: Food bank, text: 'Collects food for families who need it. Edmonton’s Food Bank, from 1981, was Canada’s first.' }
+            - { art: 🐾, title: Animal shelter, text: 'Cares for lost and homeless pets until they find a home.' }
+            - { art: ⛑️, title: Red Cross, text: 'The Canadian Red Cross helps families when a flood or storm hits.' }
+            - { art: 🏥, title: Children’s hospital, text: 'Gifts of money help buy toys and equipment for sick kids.' }
+        caption: Flip each card. Would you give time or things to each one?
+
+  - title: Make a plan
+    blocks:
+      - type: visual
+        covers: [S1.4, K1.3]
+        component: g3ss-story-steps
+        props:
+          walker: 🧒
+          start: ▶ Start the plan
+          steps:
+            - { icon: 👀, when: Notice, text: 'Spot a problem, like a messy schoolyard.' }
+            - { icon: 💡, when: Choose, text: 'Pick a way to help, like a clean-up.' }
+            - { icon: 📅, when: Plan, text: 'Decide when, where and who will help. Ask an adult.' }
+            - { icon: 🧹, when: Do it, text: 'Volunteer your time!' }
+            - { icon: ⭐, when: Look back, text: 'What changed? What would you do next time?' }
+        caption: Walk through a plan to volunteer at your school.
+
+keyTerms:
+  - term: Volunteering
+    covers: [K1.3]
+    definition: Spending your time helping other people or groups.
+  - term: Charity
+    covers: [K1.4]
+    definition: Giving things or money to help other people or groups.
+  - term: Donate
+    covers: [K1.4, S1.3]
+    definition: To give something, like food, clothes or money, to help.
+  - term: Organization
+    covers: [S1.3]
+    definition: A group of people working together for a goal, like a food bank.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.3]
+    type: mc
+    prompt: Mila spends Saturday morning helping at the animal shelter. What is she doing?
+    choices: [⏰ Volunteering, 🎁 Giving to charity, 🛒 Shopping]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Charity is giving things or money. What is Mila giving?
+      '2': Is Mila buying something?
+    hints:
+      - Is Mila giving her time or giving things?
+    solution:
+      - Mila gives her **time** to help. That is **volunteering**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: mc
+    prompt: Which is an act of **charity**?
+    choices:
+      - 🎁 Giving toys to a toy drive
+      - 📖 Reading to a younger student
+      - ⚽ Playing soccer with friends
+    answer: 0
+    feedback:
+      '1': That is kind! But are you giving time or things?
+      '2': That is fun. Does it help a person or group in need?
+    hints:
+      - Charity means giving things or money.
+    solution:
+      - Giving toys is **charity**. Reading to a younger student is volunteering.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.3]
+    type: mc
+    prompt: Jae wants to help families who don’t have enough food. Where should he give?
+    choices: [🥫 A food bank, 🐾 An animal shelter, ⛑️ The Red Cross after a storm]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': An animal shelter helps pets. Who does Jae want to help?
+      '2': The Red Cross helps after a storm. Is there a storm in Jae’s story?
+    hints:
+      - Which group collects food for families?
+    solution:
+      - A **food bank** collects food for families who need it.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [S1.3]
+    type: mc
+    prompt: |-
+      Zoe: "Volunteering is better. You meet the people you help."
+
+      Omar: "Donating is better. Money can buy what is needed most."
+
+      Who is right?
+    choices:
+      - Both give good reasons. Both ways help.
+      - Only Zoe. Money never helps.
+      - Only Omar. Time never helps.
+    answer: 0
+    feedback:
+      '1': Think of the food bank. Could volunteers pack food that nobody gave?
+      '2': Think of the food bank. Could donations get packed with no volunteers?
+    hints:
+      - Look for a good reason in each friend’s idea.
+    solution:
+      - Zoe and Omar each give a **reason**. Groups need both time and things, so you can choose what suits you.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: model
+    covers: [S1.4, K1.3]
+    type: order
+    prompt: The school reading corner is messy, and some books are torn. Put Kai’s plan to fix it in order.
+    items:
+      - 👀 Notice the messy corner and torn books.
+      - 💡 Choose to tidy up and tape the books.
+      - 📅 Ask the teacher, pick a day and find helpers.
+      - 🧹 Do the work at recess.
+      - ⭐ Check if the corner is better.
+    hints:
+      - What must Kai do before he can choose a way to help?
+      - When can he check if it worked?
+    solution:
+      - First **notice** the problem, then **choose** a way to help.
+      - Next **plan** when and who, then **do** it. Last, **look back** at what changed.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [S1.2, K1.3, K1.4]
+    type: investigation
+    prompt: A food bank needs donations and volunteers.
+    parts:
+      - type: mc
+        prompt: What if people donate lots of food, but no volunteers come?
+        choices:
+          - The food sits in the bin, and nobody packs it.
+          - Families still get their food right away.
+          - The food packs itself into hampers.
+        answer: 0
+        feedback:
+          '1': Who carries and packs the food for families?
+          '2': Can cans pack themselves?
+        hints:
+          - Think back to the food bank. What happened when you only pressed Donate?
+        solution:
+          - Without **volunteers**, the food gets stuck in the bin.
+      - type: mc
+        prompt: What if many volunteers come, but nobody donates?
+        choices:
+          - The volunteers have nothing to pack.
+          - The volunteers pack lots of food.
+          - The bin fills up by itself.
+        answer: 0
+        feedback:
+          '1': Where would the food come from?
+          '2': Who puts food in the bin?
+        hints:
+          - What happened when you only pressed Volunteer?
+        solution:
+          - Without **charity**, there is nothing to give out.
+    wrapUp: Charity and volunteering need each other. Giving things and giving time work best together.
+    hints: []
+    solution: []
