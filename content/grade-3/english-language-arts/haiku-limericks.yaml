@@ -1,0 +1,239 @@
+id: haiku-limericks
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG3-OI1-GQ1-LO1]
+order: 5
+title: Haiku and Limericks
+shortTitle: Haiku & limericks
+summary: >-
+  Clap the 5, 7 and 5 syllables of a haiku, hear the rhymes of a silly limerick, spot words used in
+  playful ways, and write a haiku of your own.
+
+bigIdea: |-
+  - A **haiku** is a short Japanese poem: three lines of 5, 7 and 5 syllables, often about nature.
+  - A **limerick** has five lines. The rhymes go A, A, B, B, A.
+  - Poets play with words to make pictures and feelings.
+
+lesson:
+  - title: Clap a haiku
+    blocks:
+      - type: visual
+        covers: [K5.2, K5.3]
+        component: g3e-syllable-clap
+        props:
+          poem: true
+          items:
+            - { text: 'Fros·ty mor·ning light', goal: 5 }
+            - { text: 'a jack·rab·bit stops and looks', goal: 7 }
+            - { text: 'white fur on white snow', goal: 5, note: 'That’s a **haiku**: 5, 7, 5.' }
+        caption: Tap each beat, or press **Clap**. Count the beats in each line.
+
+  - title: What makes a haiku
+    blocks:
+      - type: visual
+        covers: [K5.3, S5.2, U5.1]
+        component: text-xray
+        props:
+          button: Show the haiku parts
+          pages:
+            - label: Winter Hare
+              icon: 🐇
+              parts:
+                - { style: text, text: 'Frosty morning light', tag: 5 syllables, job: 'Line 1 is short.' }
+                - { style: text, text: 'a jackrabbit stops and looks', tag: 7 syllables, job: 'Line 2 is the longest.' }
+                - { style: text, text: 'white fur on white snow', tag: 5 syllables, job: 'Line 3 is short again.' }
+              note: 'Seventeen syllables, and one clear picture from **nature**. Haiku come from Japan.'
+        caption: Tap the button. What does each line do?
+
+  - title: A limerick’s rhymes
+    blocks:
+      - type: visual
+        covers: [K5.2, K5.4, S5.2]
+        component: text-xray
+        props:
+          button: Show the rhymes
+          pages:
+            - label: The Goose from Red Deer
+              icon: 🪿
+              parts:
+                - { style: text, text: 'There once was a goose from Red **Deer**', tag: A, job: 'Rhyme A' }
+                - { style: text, text: 'who honked every day of the **year**.', tag: A, job: 'Rhymes with line 1.' }
+                - { style: text, text: 'She honked at the **moon**,', tag: B, job: 'A new rhyme, B. Short line.' }
+                - { style: text, text: 'she honked at a **spoon**,', tag: B, job: 'Rhymes with line 3. Short line.' }
+                - { style: text, text: 'and she honked in her grandmother’s **ear**!', tag: A, job: 'Back to rhyme A, for a funny ending.' }
+              note: Five lines, rhyming **AABBA**. Limericks are often silly.
+        caption: Read it aloud with a bouncy beat. Then tap the button.
+
+  - title: Words at play
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.1]
+        component: figure-lens
+        props:
+          items:
+            - { phrase: Snow as soft as sugar, kind: Simile, picture: ❄️🍬, literally: 'Snow made of sugar that you could eat.', means: 'The snow is soft, white and sparkly.', because: 'It compares two unlike things with **as**.' }
+            - { phrase: The goose honked a million times!, kind: Hyperbole, picture: 🪿📢, literally: 'Someone counted one million honks.', means: 'The goose honked a lot.', because: 'It stretches the truth to be funny.' }
+            - { phrase: Crunchy yellow leaves, kind: Imagery, picture: 🍂👂, literally: 'Leaves that are yellow and crunch when you step.', means: 'You can see and hear fall.', because: 'Imagery paints a picture in your mind.' }
+        caption: Poets use words in new ways. Tap to see each one read **literally**, then what it means.
+
+  - title: Make your own
+    blocks:
+      - type: visual
+        covers: [S5.3, K5.3]
+        component: g3e-syllable-clap
+        props:
+          items:
+            - { text: 'Ducks on the cold lake', note: 'Five beats. It could start a haiku.' }
+            - { text: 'They pad·dle and quack and dive', note: 'Seven beats. A good middle line!' }
+            - { text: 'The big black bear sleeps', note: 'Five beats. A good last line.' }
+        caption: Clap each line. Which line could go where?
+      - type: example
+        covers: [S5.3]
+        title: Build a haiku
+        problem: Write a haiku about something in nature.
+        steps:
+          - Pick one thing to look at, like a duck or a leaf.
+          - Write 5 beats about what you see.
+          - Write 7 beats about what it does.
+          - End with 5 beats. Clap each line to check.
+
+keyTerms:
+  - term: Haiku
+    covers: [K5.3]
+    definition: A short Japanese poem of three lines, with 5, 7 and 5 syllables, often about nature.
+  - term: Limerick
+    covers: [K5.4]
+    definition: A five-line poem with the rhyme scheme AABBA. It is often funny.
+  - term: Syllable
+    covers: [K5.3]
+    definition: One beat in a word. *Rab-bit* has two.
+  - term: Figurative language
+    covers: [K5.1]
+    definition: Words used in a new way, not their exact meaning, to make a picture or feeling.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K5.3]
+    type: number
+    prompt: A haiku has lines of 5, 7 and 5 syllables. How many syllables is that **in all**?
+    answer: 17
+    verify: 5 + 7 + 5
+    hints:
+      - Add the three lines together.
+    solution:
+      - '5 + 7 + 5 = 17 syllables.'
+
+  - id: w2
+    level: 1
+    thinking: pattern
+    covers: [K5.4]
+    type: mc
+    prompt: |-
+      A limerick’s lines end with these words:
+
+      **cat, hat, run, fun, ___**
+
+      Which word could end line 5?
+    choices:
+      - mat
+      - sun
+      - dog
+    answer: 0
+    feedback:
+      '1': '*Sun* rhymes with lines 3 and 4. Which lines does line 5 rhyme with?'
+      '2': '*Dog* doesn’t rhyme with any line.'
+    hints:
+      - The rhymes go A, A, B, B, A. Which rhyme is A?
+    solution:
+      - Lines 1, 2 and 5 rhyme (A). Lines 3 and 4 rhyme (B).
+      - So line 5 rhymes with *cat* and *hat*. **Mat** works.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K5.3, S5.2]
+    type: mc
+    prompt: Which line has **5 syllables**, so it could start a haiku? Clap them!
+    choices:
+      - Snow falls softly down
+      - The sun is shining brightly
+      - Ducks fly south
+      - Leaves
+    answer: 0
+    feedback:
+      '1': Clap it. The-sun-is-shi-ning-bright-ly. That is 7.
+      '2': Ducks-fly-south. That is only 3.
+      '3': Leaves is just 1 beat.
+    hints:
+      - Clap each word. Some words have two beats, like *soft-ly*.
+    solution:
+      - Snow (1) falls (1) soft-ly (2) down (1) = **5**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K5.1, S5.1]
+    type: mc
+    prompt: A poem says, *The pond was as smooth as glass.* What is the poet doing?
+    choices:
+      - Comparing two unlike things to make a picture
+      - Telling you the pond is made of glass
+      - Counting syllables
+    answer: 0
+    feedback:
+      '1': Is the pond really glass? Read it **literally**, then think again.
+      '2': Counting beats is for the shape of a haiku. What do the words *as smooth as* do?
+    hints:
+      - Look for the word *as*. What two things are being compared?
+    solution:
+      - The poet compares the pond to glass with **as**. That is a **simile**.
+      - It helps you picture a still, flat pond.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K5.4, S5.3]
+    type: mc
+    prompt: |-
+      Zara’s limerick has lines that end with:
+
+      **frog, log, pond, lake, bog**
+
+      She says it’s a limerick. What is wrong?
+    choices:
+      - Lines 3 and 4 should rhyme with each other.
+      - Line 5 should rhyme with line 3.
+      - A limerick needs 17 syllables.
+      - Limericks can’t be about animals.
+    answer: 0
+    feedback:
+      '1': Line 5 goes back to rhyme A, like *frog*. *Bog* is right.
+      '2': That is a haiku. A limerick is about rhymes.
+      '3': Limericks can be about anything, especially silly animals.
+    hints:
+      - Write A or B under each word. Which pair doesn’t work?
+    solution:
+      - '*Frog, log, bog* rhyme. That is A, A, A. Good.'
+      - But *pond* and *lake* don’t rhyme. Lines 3 and 4 need their own rhyme, B, like *pond* and *beyond*.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S5.3, K5.3]
+    type: open
+    prompt: Write your own **haiku** about a season. Clap each line to check its beats.
+    modelAnswer: |-
+      Crunchy yellow leaves
+      dance down from the tall old tree.
+      Fall is here at last.
+    rubric:
+      - Line 1 has 5 syllables.
+      - Line 2 has 7 syllables.
+      - Line 3 has 5 syllables.
+      - It paints one picture from nature.
