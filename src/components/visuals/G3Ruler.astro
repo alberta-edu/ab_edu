@@ -101,8 +101,8 @@ const mlist = matches.map((id) => MATCHES.find((m) => m.id === id)!);
   const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /** A ruler body with ticks: `n` units of `px` pixels, `minor` small ticks per unit. */
-  function ruler(x: number, y: number, n: number, px: number, minor: number, label: (i: number) => string, h = 34): string {
-    let s = `<rect class="g3m-ru-body" x="${x - 6}" y="${y}" width="${n * px + 12}" height="${h}" rx="3"/>`;
+  function ruler(x: number, y: number, n: number, px: number, minor: number, label: (i: number) => string, h = 34, padR = 6): string {
+    let s = `<rect class="g3m-ru-body" x="${x - 6}" y="${y}" width="${n * px + 6 + padR}" height="${h}" rx="3"/>`;
     for (let i = 0; i <= n * minor; i++) {
       const tx = x + (i * px) / minor;
       const major = i % minor === 0;
@@ -197,7 +197,7 @@ const mlist = matches.map((id) => MATCHES.find((m) => m.id === id)!);
       let s = '';
       if (level === 0) {
         s += `<path class="g3m-ru-brace" d="M20,52 v-10 h312 v10"/><text class="g3m-ru-big" x="176" y="32" text-anchor="middle">1 foot</text>`;
-        s += ruler(20, 62, 12, 26, 4, (i) => String(i), 40);
+        s += ruler(20, 62, 12, 26, 4, (i) => String(i), 40, 12);
         s += `<text class="g3m-ru-big" x="176" y="135" text-anchor="middle">inches (in)</text>`;
       } else {
         const w = 104;
@@ -289,7 +289,7 @@ const mlist = matches.map((id) => MATCHES.find((m) => m.id === id)!);
       const t = this.thing;
       const left = X0 + startMm * MM;
       const g = thingSvg(t, left, t.curve ? straight : 1);
-      let s = ruler(X0, 92, 15, 10 * MM, 10, (i) => (this.unit === 'cm' ? String(i) : i % 2 === 0 ? String(i * 10) : ''), 36);
+      let s = ruler(X0, 92, 15, 10 * MM, 10, (i) => (this.unit === 'cm' ? String(i) : i % 2 === 0 ? String(i * 10) : ''), 36, 12);
       s += `<text class="g3m-ru-num" x="${X0 + 15 * 10 * MM + 2}" y="146" text-anchor="end">${this.unit}</text>`;
       s += g.svg;
       const lined = this.stage === 2 && startMm === 0;
