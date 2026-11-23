@@ -36,7 +36,7 @@ export const REGIONS: MapItem[] = [
 export const TREATIES: MapItem[] = [
   { id: 't8', name: 'Treaty 8 (1899)', icon: '8', at: pt(57.6, -115.2) },
   { id: 't10', name: 'Treaty 10 (1906)', icon: '10', at: pt(55.0, -110.6) },
-  { id: 't6', name: 'Treaty 6 (1876)', icon: '6', at: pt(53.2, -113.3) },
+  { id: 't6', name: 'Treaty 6 (1876)', icon: '6', at: pt(52.7, -111.8) },
   { id: 't7', name: 'Treaty 7 (1877)', icon: '7', at: pt(50.5, -113.3) },
   { id: 't4', name: 'Treaty 4 (1874)', icon: '4', at: pt(49.85, -110.45) },
 ];
@@ -68,7 +68,7 @@ export const PLACES: MapItem[] = [
   { id: 'lethbridge', name: 'Lethbridge', icon: '🏙️', at: pt(49.7, -112.8) },
   { id: 'red-deer', name: 'Red Deer', icon: '🏙️', at: pt(52.3, -113.8) },
   { id: 'grande-prairie', name: 'Grande Prairie', icon: '🏙️', at: pt(55.2, -118.8) },
-  { id: 'st-albert', name: 'St. Albert', icon: '⛪', at: pt(53.6, -113.6) },
+  { id: 'st-albert', name: 'St. Albert', icon: '⛪', at: pt(53.6, -113.6), nudge: [6, -18] },
   { id: 'bonnyville', name: 'Bonnyville', icon: '⚜️', at: pt(54.3, -110.7) },
   { id: 'st-paul', name: 'St. Paul', icon: '⚜️', at: pt(54.0, -111.3) },
   { id: 'falher', name: 'Falher', icon: '⚜️', at: pt(55.7, -117.2) },
@@ -99,9 +99,9 @@ export const PLACES: MapItem[] = [
   { id: 'dene-tha', name: 'Dene Tha’ First Nation', icon: '🟢', at: pt(58.9, -117.8) },
   // Natural resources
   { id: 'oil-sands', name: 'Oil sands', icon: '🛢️', at: pt(57.0, -111.6) },
-  { id: 'leduc', name: 'Leduc oil field', icon: '🛢️', at: pt(53.3, -113.6) },
+  { id: 'leduc', name: 'Leduc oil field', icon: '🛢️', at: pt(53.3, -113.6), nudge: [-4, 18] },
   { id: 'gas-medicine-hat', name: 'Medicine Hat gas', icon: '🔥', at: pt(50.0, -110.7) },
-  { id: 'coal-crowsnest', name: 'Crowsnest Pass coal', icon: '⚫', at: pt(49.6, -114.5) },
+  { id: 'coal-crowsnest', name: 'Crowsnest Pass coal', icon: '⚫', at: pt(49.6, -114.5), nudge: [5, -20] },
   { id: 'coal-drumheller', name: 'Drumheller coal', icon: '⚫', at: pt(51.5, -112.7) },
   { id: 'wind-pincher', name: 'Pincher Creek wind', icon: '💨', at: pt(49.5, -114.0) },
   { id: 'sun-south', name: 'Sunny south', icon: '☀️', at: pt(50.2, -112.6) },
@@ -110,7 +110,7 @@ export const PLACES: MapItem[] = [
   { id: 'banff', name: 'Banff National Park', icon: '🏞️', at: pt(51.5, -116.0) },
   { id: 'jasper', name: 'Jasper National Park', icon: '🏞️', at: pt(52.9, -118.1) },
   { id: 'waterton', name: 'Waterton Lakes National Park', icon: '🏞️', at: pt(49.1, -113.9) },
-  { id: 'elk-island', name: 'Elk Island National Park', icon: '🦬', at: pt(53.6, -112.9) },
+  { id: 'elk-island', name: 'Elk Island National Park', icon: '🦬', at: pt(53.6, -112.9), nudge: [6, -17] },
   { id: 'wood-buffalo', name: 'Wood Buffalo National Park', icon: '🦬', at: pt(59.0, -112.8) },
 ];
 
