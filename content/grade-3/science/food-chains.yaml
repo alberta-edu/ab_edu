@@ -1,0 +1,190 @@
+id: food-chains
+grade: 3
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI3-OI4-GQ1-LO1]
+order: 18
+title: Food Chains
+shortTitle: Food chains
+summary: >-
+  See what a dry summer does to a prairie hawk, show a food chain four ways, and follow food chains
+  from the prairie to the Arctic.
+
+bigIdea: |-
+  - A **food chain** shows who eats what, in order.
+  - Plants and animals **depend** on each other for food.
+  - Each plant or animal is part of **many** food chains.
+
+lesson:
+  - title: A dry summer
+    blocks:
+      - type: experiment
+        covers: [K1.1, U1.1]
+        title: When the grass dries up
+        question: Ground squirrels eat grass, and hawks eat ground squirrels. What happens to the hawk if the grass dries up?
+        animation: g3s-scene
+        props: { scene: chain-drought }
+        predict:
+          choices: ['Less food for it', 'More food for it', 'Nothing']
+          answer: 0
+        observe: |-
+          - The grass dried up, so there were **fewer** ground squirrels.
+          - The hawk found little to eat.
+        explain: |-
+          - The hawk **depends** on the squirrels, and the squirrels depend on the grass.
+          - A **food chain** shows this order: grass, ground squirrel, hawk.
+
+  - title: Four ways to show it
+    blocks:
+      - type: visual
+        covers: [K1.2]
+        component: g3s-play
+        props: { scene: chain-ways }
+        caption: Tap each way. They all show the same food chain.
+
+  - title: Food chains in Canada
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: g3s-play
+        props: { scene: canada-chains }
+        caption: Tap each place. Follow the arrows.
+
+  - title: One mouse, many chains
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.3]
+        component: g3s-play
+        props: { scene: many-chains }
+        caption: Step through. Who eats the mouse?
+      - type: callout
+        variant: tip
+        covers: [K1.3]
+        title: Just one way
+        body: A food chain shows **one** way plants and animals connect. There are many more.
+
+keyTerms:
+  - term: Food chain
+    covers: [K1.1]
+    definition: The order in which plants and animals depend on each other for food.
+  - term: Depend
+    covers: [K1.1]
+    definition: To need something or someone, like food.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: mc
+    prompt: What does a food chain show?
+    choices: ['Who eats what', 'How tall animals are', 'Where animals sleep']
+    answer: 0
+    feedback:
+      '1': A food chain is about food. Does it show size?
+      '2': A food chain is about food. Does it show homes?
+    hints:
+      - Look at the word **food** in food chain.
+    solution:
+      - A food chain shows **who eats what**, in order.
+
+  - id: w2
+    level: 1
+    thinking: model
+    covers: [S1.1, K1.1]
+    type: order
+    prompt: Put this forest food chain in order. Start with the plant.
+    items:
+      - 🌿 Willow
+      - 🐇 Snowshoe hare
+      - 🐈 Lynx
+    hints:
+      - Who eats the willow? Who eats the hare?
+    solution:
+      - Snowshoe hares eat willow. Lynx eat snowshoe hares.
+      - The chain is **willow, snowshoe hare, lynx**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K1.2]
+    type: mc
+    prompt: Ali writes, “One night, a hungry fox caught a mouse that was eating seeds.” How did Ali show a food chain?
+    choices: ['As a story', 'As a diagram', 'As a picture']
+    answer: 0
+    feedback:
+      '1': A diagram uses arrows. Did Ali draw arrows?
+      '2': Ali wrote it. Did Ali draw a picture?
+    hints:
+      - Does it tell what happened, like a tale?
+    solution:
+      - Ali told what happened, so it is a **story**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.4]
+    type: multi
+    prompt: A deer mouse eats seeds. Tap **all** the animals that eat deer mice.
+    choices: ['🦉 Owl', '🦊 Fox', '🦡 Badger', '🌾 Grass']
+    answer: [0, 1, 2]
+    hints:
+      - Look back at the mouse in the lesson. How many chains was it in?
+    solution:
+      - Owls, foxes and badgers all eat deer mice. Grass doesn’t eat anything!
+      - The mouse is part of **many** food chains.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K1.1, U1.1]
+    type: investigation
+    prompt: |-
+      In the mountains, bighorn sheep eat grass. Cougars eat bighorn sheep.
+    parts:
+      - type: mc
+        prompt: What if the bighorn sheep all moved away?
+        choices: ['Cougars have less food', 'Cougars have more food', 'Nothing changes']
+        answer: 0
+        feedback:
+          '1': Cougars eat the sheep. Can they eat more if the sheep are gone?
+          '2': Cougars depend on the sheep. Would they notice?
+        hints:
+          - What do cougars eat?
+        solution:
+          - Cougars depend on the sheep. With no sheep, cougars have **less food**.
+      - type: mc
+        prompt: What would happen to the grass?
+        choices: ['More would grow', 'It would all die', 'Nothing']
+        answer: 0
+        feedback:
+          '1': The sheep ate the grass. Without them, would the grass die?
+          '2': Something was eating the grass. Is it still being eaten?
+        hints:
+          - Who was eating the grass?
+        solution:
+          - No sheep are eating it, so **more** grass grows.
+    wrapUp: When one part of a food chain changes, the others change too.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.3, K1.4]
+    type: mc
+    prompt: Zoe draws grass, a mouse, then a fox. She says, “Now I know everything a fox eats.” What did she miss?
+    choices:
+      - A food chain shows just one thing a fox eats.
+      - Foxes only eat grass.
+      - Foxes don’t eat mice.
+    answer: 0
+    feedback:
+      '1': In Zoe’s chain, the fox eats the mouse, not the grass.
+      '2': Look at Zoe’s chain. Does the fox eat a mouse?
+    hints:
+      - Is a fox part of only one food chain?
+    solution:
+      - A food chain shows **one** way plants and animals connect.
+      - A fox is part of many food chains.
