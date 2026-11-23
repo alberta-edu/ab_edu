@@ -1,0 +1,194 @@
+id: soil
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 17
+title: "Soil: A Living Layer"
+shortTitle: Soil
+summary: >-
+  Shake soil in a jar to see what it is made of, visit the animals that live in it, and watch worms
+  and roots change it.
+
+bigIdea: |-
+  - Soil is a mix of **rock bits**, **living** and **decaying** plants and animals, **air** and **water**.
+  - Soil is a **habitat**, a home for many animals.
+  - Plants and animals keep **changing** soil.
+
+lesson:
+  - title: Soil in a jar
+    blocks:
+      - type: experiment
+        covers: [K5.1, S5.1]
+        title: Shake and settle
+        question: We shake garden soil in a jar of water, then let it sit. What will we see?
+        animation: g3s-scene
+        props: { scene: soil-jar }
+        predict:
+          choices: ['Layers', 'Clear water', 'Only mud']
+          answer: 0
+        observe: |-
+          - Rock bits sank into **layers**: pebbles, then sand, then mud.
+          - Bits of dead leaves **floated**. Air **bubbles** rose out of the soil.
+        explain: |-
+          - Soil is a **mix** of many things.
+          - Shaking it in water lets us see the parts.
+
+  - title: What is in soil?
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.1]
+        component: g3s-play
+        props: { scene: in-the-soil }
+        caption: Tap each part. Can you find it in the soil?
+
+  - title: Homes in the soil
+    blocks:
+      - type: visual
+        covers: [K5.2, K5.3, S5.2]
+        component: g3s-play
+        props: { scene: soil-homes }
+        caption: Tap each animal to visit its home.
+
+  - title: Soil keeps changing
+    blocks:
+      - type: visual
+        covers: [K5.4, U5.1, S5.3]
+        component: g3s-play
+        props: { scene: soil-changes }
+        caption: Step through a year in the soil.
+      - type: callout
+        variant: tip
+        covers: [U5.1]
+        title: Always changing
+        body: Soil is the top layer of Earth’s surface. Plants and animals change it **every day**.
+
+keyTerms:
+  - term: Soil
+    covers: [K5.1, U5.1]
+    definition: The top layer of the ground, made of rock bits, living and dead things, air and water.
+  - term: Decaying
+    covers: [K5.1]
+    definition: Rotting away slowly, after a plant or animal has died.
+  - term: Habitat
+    covers: [K5.3]
+    definition: A place where a plant or animal makes its home.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K5.1]
+    type: multi
+    prompt: Tap **everything** that is part of soil.
+    choices: ['🪨 Rock bits', '💨 Air', '💧 Water', '🍂 Rotting leaves', '🥤 A plastic cup']
+    answer: [0, 1, 2, 3]
+    hints:
+      - Think of the soil in the jar. What sank, floated and bubbled up?
+    solution:
+      - Soil has rock bits, air, water, and living and decaying plants and animals.
+      - A plastic cup is garbage. It is **not** part of soil.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K5.2, K5.3]
+    type: mc
+    prompt: A ground squirrel lives in a burrow it dug in the soil. What is the soil for the squirrel?
+    choices: ['A habitat', 'A crop', 'A fossil']
+    answer: 0
+    feedback:
+      '1': A crop is a plant that farmers grow. Is the squirrel growing the soil?
+      '2': A fossil is something from long ago that turned to stone. Is the burrow a fossil?
+    hints:
+      - The squirrel makes its **home** there.
+    solution:
+      - A place where an animal makes its home is a **habitat**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K5.4, S5.3]
+    type: mc
+    prompt: In fall, Lia’s garden is covered in dead leaves. In spring, most are gone, and the soil is full of worm holes. What happened?
+    choices: ['Worms pulled them down and ate them', 'The leaves turned to rock', 'Nothing happened']
+    answer: 0
+    feedback:
+      '1': Rock takes a very long time to form. Could leaves turn into rock in one winter?
+      '2': The leaves are gone, and there are new holes. Did something happen?
+    hints:
+      - Look at the clue about the holes.
+    solution:
+      - Worms pulled the leaves into their holes and **ate** them.
+      - This changed the soil.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K5.4, S5.3]
+    type: mc
+    prompt: How do worm tunnels change the soil?
+    choices: ['They let in air and water', 'They make it hard as rock', 'They keep rain out']
+    answer: 0
+    feedback:
+      '1': Tunnels are holes. Do holes make soil harder?
+      '2': Rain can run down the tunnels. Do they keep it out?
+    hints:
+      - What can move through an open tunnel?
+    solution:
+      - Worm tunnels let **air** and **water** into the soil and mix it up.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [K5.1, S5.1]
+    type: investigation
+    prompt: |-
+      Ben shakes some soil from his yard in a jar of water. Then he lets it sit.
+    parts:
+      - type: mc
+        prompt: Bits of dead leaves float to the top. Which part of soil are they?
+        choices: ['Decaying plants', 'Rock bits', 'Air']
+        answer: 0
+        feedback:
+          '1': Rock bits are heavy. Did they float or sink?
+          '2': Air makes bubbles. Are these bits of leaf bubbles?
+        hints:
+          - The leaves died and are rotting away.
+        solution:
+          - Dead leaves rotting in soil are **decaying plants**.
+      - type: mc
+        prompt: Tiny bubbles rise out of the soil. What do they show?
+        choices: ['Soil has air in it', 'The water is boiling', 'Soil is alive']
+        answer: 0
+        feedback:
+          '1': The water was never heated. Can it be boiling?
+          '2': Some things in soil are alive, but what are bubbles made of?
+        hints:
+          - What is inside a bubble?
+        solution:
+          - The bubbles are **air** that was in tiny spaces in the soil.
+    wrapUp: A jar of soil shows that soil is a mix of many parts.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [U5.1, K5.4]
+    type: mc
+    prompt: Kai says, “Soil never changes. It is just dirt.” What did he miss?
+    choices:
+      - Plants and animals keep changing it.
+      - Soil is made of only rock.
+      - Soil is always dry.
+    answer: 0
+    feedback:
+      '1': Think of the leaves and bubbles in the jar. Is soil only rock?
+      '2': Rain soaks into soil. Is it always dry?
+    hints:
+      - What do worms and roots do to soil?
+    solution:
+      - Worms tunnel and eat, and plant roots grow through the soil.
+      - Soil is **always changing**.
