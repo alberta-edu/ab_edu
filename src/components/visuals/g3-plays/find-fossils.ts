@@ -17,7 +17,7 @@ const scene: PlayScene = {
     // a bare hill, a bone on the ground
     only({ kind: 'path', d: 'M0,250 L0,150 Q150,70 300,160 Q380,200 480,190 L480,250 Z', cls: 'g3s-l1' }, 0, n),
     only({ kind: 'path', d: 'M0,190 Q150,120 300,190 Q380,225 480,220', cls: 'g3s-thin' }, 0, n),
-    only({ kind: 'emoji', text: '🦴', x: 330, y: 184, size: 34 }, 0, n),
+    only({ kind: 'emoji', text: '🦴', x: 330, y: 180, size: 44 }, 0, n),
     only({ kind: 'emoji', text: '🧑‍🔬', x: 400, y: 160, size: 56 }, 0, n),
     only({ kind: 'emoji', text: '🌧️', x: 140, y: 50, size: 50 }, 0, n),
     // a dig pit through the layers
@@ -25,7 +25,7 @@ const scene: PlayScene = {
     only({ kind: 'rect', x: 0, y: 150, w: 480, h: 50, cls: 'g3s-l2' }, 1, n),
     only({ kind: 'rect', x: 0, y: 200, w: 480, h: 50, cls: 'g3s-l4' }, 1, n),
     only({ kind: 'rect', x: 170, y: 110, w: 160, h: 110, cls: 'g3s-sky' }, 1, n),
-    only({ kind: 'emoji', text: '🦴', x: 250, y: 214, size: 36 }, 1, n),
+    only({ kind: 'emoji', text: '🦴', x: 250, y: 214, size: 44 }, 1, n),
     only({ kind: 'emoji', text: '🧑‍🔬', x: 210, y: 180, size: 50 }, 1, n),
     only({ kind: 'emoji', text: '⛏️', x: 290, y: 190, size: 36 }, 1, n),
     only({ kind: 'emoji', text: '🖌️', x: 120, y: 90, size: 34 }, 1, n),

@@ -20,8 +20,8 @@ const scene: RunScene = {
   bg: '<rect class="g3s-sky" width="480" height="290"/><rect class="g3s-water" x="40" y="40" width="400" height="222"/><rect class="g3s-rock" x="40" y="262" width="400" height="20"/><path class="g3s-box" d="M40,30 V282 H440 V30"/>',
   sprites: [
     ...layers,
-    showFrom({ kind: 'emoji', text: '🐚', x: 120, y: BASE - 20, size: 24 }, start(0) + 0.1),
-    showFrom({ kind: 'emoji', text: '🦴', x: 300, y: BASE - H - 20, size: 28 }, start(1) + 0.1),
+    showFrom({ kind: 'emoji', text: '🐚', x: 120, y: BASE - 20, size: 34 }, start(0) + 0.1),
+    showFrom({ kind: 'emoji', text: '🦴', x: 300, y: BASE - H - 20, size: 36 }, start(1) + 0.1),
     ...falling('💧', 10, 60, 420, 42, 76, 0.05, 0.85, 16),
     showFrom({ kind: 'text', text: 'Oldest', x: 430, y: BASE - 19, size: 18, anchor: 'end', cls: 'g3s-label' }, 0.88),
     showFrom({ kind: 'text', text: 'Newest', x: 430, y: BASE - H * 4 - 19, size: 18, anchor: 'end', cls: 'g3s-label' }, 0.88),

@@ -24,12 +24,12 @@ const scene: PlayScene = {
     only({ kind: 'emoji', text: '🦴', x: 300, y: 210, size: 34 }, 0, n),
     only({ kind: 'text', text: 'Older ▼', x: 460, y: 140, size: 18, anchor: 'end', cls: 'g3s-label' }, 0, n),
     ...cliff(1),
-    ...[0, 1, 2, 3, 4, 5].map((k) => only({ kind: 'text', text: '⏳', x: 240, y: 57 + k * 34, size: 20 }, 1, n)),
+    ...[0, 1, 2, 3, 4, 5].map((k) => only({ kind: 'emoji', text: '⏳', x: 240, y: 57 + k * 34, size: 28 }, 1, n)),
     only({ kind: 'text', text: 'Millions of years', x: 240, y: 20, size: 20, cls: 'g3s-label' }, 1, n),
-    only({ kind: 'emoji', text: '🌎', x: 100, y: 130, size: 100 }, 2, n),
-    only({ kind: 'emoji', text: '🌍', x: 240, y: 130, size: 100 }, 2, n),
-    only({ kind: 'emoji', text: '🌏', x: 380, y: 130, size: 100 }, 2, n),
-    ...[[80, 110], [120, 150], [230, 110], [260, 160], [370, 120], [400, 165]].map(([x, y]) => only({ kind: 'emoji', text: '🦴', x, y, size: 26 }, 2, n)),
+    only({ kind: 'emoji', text: '🌎', x: 100, y: 120, size: 100 }, 2, n),
+    only({ kind: 'emoji', text: '🌍', x: 240, y: 120, size: 100 }, 2, n),
+    only({ kind: 'emoji', text: '🌏', x: 380, y: 120, size: 100 }, 2, n),
+    ...[[100, 205], [240, 205], [380, 205]].map(([x, y]) => only({ kind: 'emoji', text: '🦴', x, y, size: 40 }, 2, n)),
   ],
 };
 export default scene;
