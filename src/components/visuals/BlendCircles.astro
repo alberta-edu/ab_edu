@@ -46,10 +46,14 @@ const list = (s: Side) => s.items.map((i) => mdInline(i));
   .g3ss-bl-right { border-color: #2f5fd0; background: color-mix(in srgb, #2f5fd0 12%, var(--surface)); }
   .g3ss-bl-head { margin: 0 0 0.3rem; font-weight: 800; }
   .g3ss-bl-circle ul, .g3ss-bl-middle ul { margin: 0; padding-left: 1.1rem; font-size: var(--step--1); }
-  .g3ss-bl-middle { margin: 0.6rem auto 0; max-width: 26rem; padding: 0.8rem 1rem; border-radius: 2rem; border: 3px solid #7a3dc2; background: color-mix(in srgb, #7a3dc2 14%, var(--surface)); opacity: 0; transform: scale(0.6); transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s; }
+  .g3ss-bl-middle { position: relative; margin: 0.6rem auto 0; max-width: 26rem; padding: 0.8rem 1rem; border-radius: 2rem; border: 3px dashed #7a3dc2; background: transparent; transition: background 0.6s ease 0.6s; }
+  .g3ss-bl-middle > * { opacity: 0; transform: scale(0.8); transition: opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s; }
+  .g3ss-bl-middle::after { content: '?'; position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.2rem; font-weight: 800; color: var(--ink); opacity: 0.35; transition: opacity 0.3s ease; }
   g3ss-blend.is-blended .g3ss-bl-left { transform: translateX(12%); }
   g3ss-blend.is-blended .g3ss-bl-right { transform: translateX(-12%); }
-  g3ss-blend.is-blended .g3ss-bl-middle { opacity: 1; transform: none; }
+  g3ss-blend.is-blended .g3ss-bl-middle { border-style: solid; background: color-mix(in srgb, #7a3dc2 14%, var(--surface)); }
+  g3ss-blend.is-blended .g3ss-bl-middle > * { opacity: 1; transform: none; }
+  g3ss-blend.is-blended .g3ss-bl-middle::after { opacity: 0; }
   .g3ss-bl-buttons { margin-top: 0.7rem; }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme='light']) .g3ss-bl-left { border-color: #f2a65a; }
@@ -59,7 +63,7 @@ const list = (s: Side) => s.items.map((i) => mdInline(i));
   :root[data-theme='dark'] .g3ss-bl-left { border-color: #f2a65a; }
   :root[data-theme='dark'] .g3ss-bl-right { border-color: #8fb0ff; }
   :root[data-theme='dark'] .g3ss-bl-middle { border-color: #c5a1f5; }
-  @media (prefers-reduced-motion: reduce) { .g3ss-bl-circle, .g3ss-bl-middle { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .g3ss-bl-circle, .g3ss-bl-middle, .g3ss-bl-middle > *, .g3ss-bl-middle::after { transition: none; } }
 </style>
 
 <script>
