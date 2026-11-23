@@ -74,10 +74,12 @@ export function groupsSvg(groups: number, size: number, filled: number[] = Array
     const cy = top + 40 + Math.floor(g / perRow) * 76;
     s += `<circle class="g3m-gr-plate" cx="${cx}" cy="${cy}" r="${R}"/>`;
     const n = filled[g] ?? 0;
+    // Centre the dots on the plate, using the full group size so dots don't shift as they arrive.
+    const y0 = cy - ((Math.ceil(Math.max(size, n, 1) / 3) - 1) * 13) / 2;
     for (let d = 0; d < n; d++) {
       const col = d % 3;
       const row = Math.floor(d / 3);
-      s += dot(cx - 14 + col * 14, cy - 18 + row * 12, 'g3m-gr-dot', 6);
+      s += dot(cx - 14 + col * 14, y0 + row * 13, 'g3m-gr-dot', 6);
     }
   }
   const H = top + Math.ceil(Math.max(groups, 1) / perRow) * 76 + 6;

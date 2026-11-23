@@ -147,22 +147,22 @@ const k0 = Math.min(5, b - 1);
         if (b > a) b = a;
         const { each, left } = share(a, b);
         const r = Math.min(this.step, each);
-        svg.innerHTML = groupsSvg(b, r, Array(b).fill(r), a - r * b);
-        math.textContent = r === each ? (left ? `${a} ÷ ${b} → ${each} each, ${left} left over` : `${a} ÷ ${b} = ${each}`) : `Round ${r}: each group has ${r}`;
+        svg.innerHTML = groupsSvg(b, each, Array(b).fill(r), a - r * b);
+        math.textContent = r === each ? (left ? `${a} ÷ ${b} → ${each} each, ${left} left over` : `${a} ÷ ${b} = ${each}`) : r === 0 ? `${a} ÷ ${b} = ?` : `Round ${r}: each group has ${r}`;
         say.textContent = r === each ? shareSay(a, b) : 'Give one to each group, then do it again.';
         if (go) go.disabled = r === each;
       } else if (this.mode === 'group') {
         const n = Math.floor(a / b);
         const k = Math.min(this.step, n);
         svg.innerHTML = groupsSvg(k, b, Array(k).fill(b), a - k * b);
-        math.textContent = k === n ? (a % b ? `${a} ÷ ${b} → ${n} groups, ${a % b} left over` : `${a} ÷ ${b} = ${n}`) : `${k} group${k === 1 ? '' : 's'} so far`;
+        math.textContent = k === n ? (a % b ? `${a} ÷ ${b} → ${n} groups, ${a % b} left over` : `${a} ÷ ${b} = ${n}`) : k === 0 ? `${a} ÷ ${b} = ?` : `${k} group${k === 1 ? '' : 's'} so far`;
         say.textContent = k === n ? groupSay(a, b) : `Put ${b} in a group. How many groups can you make?`;
         if (go) go.disabled = k === n;
       } else if (this.mode === 'takeaway') {
         const n = Math.floor(a / b);
         const k = Math.min(this.step, n);
         svg.innerHTML = jumpsSvg(a, b, k);
-        math.textContent = `${a}` + ` − ${b}`.repeat(k) + ` = ${a - k * b}`;
+        math.textContent = k === 0 ? `${a} ÷ ${b} = ?` : `${a}` + ` − ${b}`.repeat(k) + ` = ${a - k * b}`;
         say.textContent = k === n ? takeAwaySay(a, b) : `Jump back ${b}. Count your jumps.`;
         if (go) go.disabled = k === n;
       } else {

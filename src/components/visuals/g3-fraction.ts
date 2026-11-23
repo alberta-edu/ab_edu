@@ -74,15 +74,20 @@ export function circleSvg(n: number, d: number): string {
 export function setSvg(n: number, d: number, k: number): string {
   const gw = 64;
   const perRow = 6;
+  const W = Math.max(Math.min(d, perRow), 4) * gw + 10;
+  const off = (W - Math.min(d, perRow) * gw - 10) / 2;
   let s = '';
   for (let g = 0; g < d; g++) {
-    const x = 8 + (g % perRow) * gw;
+    const x = off + 8 + (g % perRow) * gw;
     const y = 8 + Math.floor(g / perRow) * 64;
     s += `<rect class="g3m-fr-group${g < n ? ' is-on' : ''}" data-part="${g}" x="${x}" y="${y}" width="${gw - 8}" height="56" rx="10"/>`;
-    for (let j = 0; j < k; j++) s += `<circle class="g3m-fr-counter" cx="${x + 14 + (j % 3) * 14}" cy="${y + 16 + Math.floor(j / 3) * 14}" r="5.5"/>`;
+    // Counters in rows of 3, centred in their group.
+    const x0 = x + 28 - ((Math.min(k, 3) - 1) * 14) / 2;
+    const y0 = y + 28 - ((Math.ceil(k / 3) - 1) * 14) / 2;
+    for (let j = 0; j < k; j++) s += `<circle class="g3m-fr-counter" cx="${x0 + (j % 3) * 14}" cy="${y0 + Math.floor(j / 3) * 14}" r="5.5"/>`;
   }
   const H = Math.ceil(d / perRow) * 64 + 10;
-  return `<svg viewBox="0 0 ${perRow * gw + 10} ${H}" role="img" aria-label="${d * k} counters in ${d} equal groups, ${n} groups shaded.">${s}</svg>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${d * k} counters in ${d} equal groups, ${n} groups shaded.">${s}</svg>`;
 }
 
 /** Number line from 0 to 1 in d steps, with a dot at n/d and the 1/2 mark. */

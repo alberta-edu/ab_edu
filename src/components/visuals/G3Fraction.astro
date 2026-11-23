@@ -24,7 +24,7 @@ const first = view === 'circle' ? circleSvg(n, d) : view === 'set' ? setSvg(n, d
     </div>
   )}
   <div class="control-row">
-    <span class="control">{mode === 'compare' ? 'Top' : 'Equal parts'}
+    <span class="control">{mode === 'compare' ? 'Top bar parts' : 'Equal parts'}
       <button type="button" class="g3m-fr-step" data-fr="d-" aria-label="Fewer equal parts">−</button>
       <output data-fr="d-out">{d}</output>
       <button type="button" class="g3m-fr-step" data-fr="d+" aria-label="More equal parts">+</button>
@@ -33,7 +33,7 @@ const first = view === 'circle' ? circleSvg(n, d) : view === 'set' ? setSvg(n, d
   </div>
   {mode === 'compare' && (
     <div class="control-row">
-      <span class="control">Bottom
+      <span class="control">Bottom bar parts
         <button type="button" class="g3m-fr-step" data-fr="e-" aria-label="Fewer equal parts">−</button>
         <output data-fr="e-out">{b[1]}</output>
         <button type="button" class="g3m-fr-step" data-fr="e+" aria-label="More equal parts">+</button>
