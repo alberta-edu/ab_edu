@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { circlePoint, letterTeams, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
+import { circlePoint, letterTeams, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
 
 describe('story circle', () => {
   it('starts at the top and goes clockwise', () => {
@@ -73,5 +73,31 @@ describe('squeeze', () => {
   it('refuses a short form that can’t come from the long one', () => {
     expect(() => squeeze('will not', 'won’t')).toThrow();
     expect(() => squeeze('can not', 'xyz')).toThrow();
+  });
+});
+
+describe('picture words', () => {
+  const s = 'A {fluffy white|☁️} dog napped {under a red umbrella|☂️}.';
+  it('finds the details and their icons', () => {
+    const { pieces, details } = pictureWords(s);
+    expect(details).toBe(2);
+    expect(pieces).toEqual([
+      { text: 'A ' },
+      { text: 'fluffy white', detail: 0, icon: '☁️' },
+      { text: ' dog napped ' },
+      { text: 'under a red umbrella', detail: 1, icon: '☂️' },
+      { text: '.' },
+    ]);
+  });
+  it('closes up the gaps a hidden detail leaves', () => {
+    const { pieces } = pictureWords(s);
+    expect(pictureSentence(pieces, [false, false])).toBe('A dog napped.');
+    expect(pictureSentence(pieces, [true, false])).toBe('A fluffy white dog napped.');
+    expect(pictureSentence(pieces, [true, true])).toBe('A fluffy white dog napped under a red umbrella.');
+  });
+  it('rejects broken braces', () => {
+    expect(() => pictureWords('A {big dog.')).toThrow();
+    expect(() => pictureWords('A big} dog.')).toThrow();
+    expect(() => pictureWords('A {} dog.')).toThrow();
   });
 });

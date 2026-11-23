@@ -1,0 +1,124 @@
+---
+// Words that paint a picture (LANENG3-OI3-GQ1-LO1, K1.3, K1.4, S1.5; also describing words in writing).
+// A plain sentence makes a blurry, grey picture. Tap each detail to add its words to the sentence: the
+// picture sharpens, gains colour, and the detail's icon pops in.
+import { pictureWords } from './g3e-ela.ts';
+
+interface Props {
+  /** Each set: a big picture (emoji), and a sentence with details in braces: "A {fluffy white|☁️} dog napped." */
+  sets: { label: string; picture: string; sentence: string }[];
+  /** What the note says once every detail is on. */
+  done?: string;
+}
+const { sets, done = 'Now you can really see it! Words that paint a picture like this are called imagery.' } = Astro.props;
+const data = sets.map((s) => {
+  const { pieces, details } = pictureWords(s.sentence);
+  if (!details) throw new Error(`picture-words: "${s.sentence}" has no {details}`);
+  return { label: s.label, picture: s.picture, pieces, details };
+});
+---
+<g3e-picture-words data-sets={JSON.stringify(data)} data-done={done}>
+  {sets.length > 1 && (
+    <div class="sci-pick" role="group" aria-label="Choose a picture">
+      {sets.map((s, i) => <button type="button" data-pw-set={i} aria-pressed={i === 0 ? 'true' : 'false'}>{s.label}</button>)}
+    </div>
+  )}
+  <div class="g3e-pw__stage" data-pw="stage" aria-hidden="true"></div>
+  <p class="g3e-pw__sentence" data-pw="sentence" aria-live="polite"></p>
+  <div class="g3e-pw__chips" role="group" aria-label="Picture words" data-pw="chips"></div>
+  <p class="g3e-pw__note" data-pw="note"></p>
+  <noscript><ul>{sets.map((s) => <li>{s.sentence.replace(/\|[^}]*\}/g, '').replace(/[{}]/g, '')}</li>)}</ul></noscript>
+</g3e-picture-words>
+
+<style is:global>
+  g3e-picture-words { display: block; }
+  .g3e-pw__stage { position: relative; height: 9rem; margin-top: 0.6rem; border-radius: var(--radius-sm); background: var(--surface-2); overflow: hidden; }
+  .g3e-pw__main { position: absolute; left: 50%; top: 50%; font-size: 4.2rem; line-height: 1; transform: translate(-50%, -50%); transition: filter 0.5s ease; }
+  .g3e-pw__icon { position: absolute; font-size: 2.2rem; line-height: 1; transform: translate(-50%, -50%) scale(0); opacity: 0; transition: transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1), opacity 0.3s ease; }
+  .g3e-pw__icon.is-on { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  .g3e-pw__sentence { margin: 0.7rem 0 0.5rem; font-size: var(--step-1); font-weight: 600; line-height: 1.5; }
+  .g3e-pw__sentence mark { padding: 0 0.15rem; border-radius: 4px; background: var(--accent-soft); color: inherit; box-shadow: inset 0 -3px var(--accent); }
+  .g3e-pw__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g3e-pw__chips button { padding: 0.4rem 0.75rem; border: 2px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: inherit; font-size: var(--step--1); font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g3e-pw__chips button:hover { border-color: var(--accent); }
+  .g3e-pw__chips button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+  .g3e-pw__note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-pw__note.is-done { background: var(--ok-soft); }
+  @media (prefers-reduced-motion: reduce) { .g3e-pw__main, .g3e-pw__icon { transition: none; } }
+</style>
+
+<script>
+  type Piece = { text: string; detail?: number; icon?: string };
+  type Set = { label: string; picture: string; pieces: Piece[]; details: number };
+  const SPOTS = [
+    [20, 26],
+    [80, 28],
+    [22, 76],
+    [79, 74],
+    [50, 14],
+  ];
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  class G3ePictureWords extends HTMLElement {
+    private sets: Set[] = [];
+    private at = 0;
+    private on: boolean[] = [];
+
+    connectedCallback() {
+      this.sets = JSON.parse(this.dataset.sets!);
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-pw-set]')];
+      tabs.forEach((t) =>
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.setAttribute('aria-pressed', String(b === t)));
+          this.show(Number(t.dataset.pwSet));
+        }),
+      );
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-pw="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      const s = this.sets[i];
+      this.on = Array(s.details).fill(false);
+      const details = s.pieces.filter((p) => p.detail !== undefined);
+      this.part('stage').innerHTML =
+        `<span class="g3e-pw__main" data-pw="main">${s.picture}</span>` +
+        details.map((p, k) => (p.icon ? `<span class="g3e-pw__icon" data-pw-icon="${p.detail}" style="left:${SPOTS[k % SPOTS.length][0]}%;top:${SPOTS[k % SPOTS.length][1]}%">${p.icon}</span>` : '')).join('');
+      const chips = this.part('chips');
+      chips.innerHTML = details.map((p) => `<button type="button" data-pw-detail="${p.detail}" aria-pressed="false">+ ${esc(p.text)}</button>`).join('');
+      chips.querySelectorAll<HTMLButtonElement>('[data-pw-detail]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const d = Number(b.dataset.pwDetail);
+          this.on[d] = !this.on[d];
+          this.update(d);
+        }),
+      );
+      this.update(-1);
+    }
+
+    private update(changed: number) {
+      const s = this.sets[this.at];
+      const count = this.on.filter(Boolean).length;
+      const left = 1 - count / s.details;
+      this.part('main').style.filter = left ? `blur(${(left * 7).toFixed(1)}px) grayscale(${left.toFixed(2)})` : 'none';
+      this.querySelectorAll<HTMLElement>('[data-pw-icon]').forEach((el) => el.classList.toggle('is-on', this.on[Number(el.dataset.pwIcon)]));
+      this.querySelectorAll<HTMLButtonElement>('[data-pw-detail]').forEach((b) => b.setAttribute('aria-pressed', String(this.on[Number(b.dataset.pwDetail)])));
+      this.part('sentence').innerHTML = s.pieces
+        .filter((p) => p.detail === undefined || this.on[p.detail])
+        .map((p) => (p.detail === undefined ? esc(p.text) : `<mark${p.detail === changed ? ' class="is-new"' : ''}>${esc(p.text)}</mark>`))
+        .join('')
+        .replace(/\s+/g, ' ')
+        .replace(/\s+(?=[.,!?])/g, '')
+        .trim();
+      const note = this.part('note');
+      note.className = `g3e-pw__note${count === s.details ? ' is-done' : ''}`;
+      note.textContent =
+        count === 0 ? 'Plain words make a blurry picture. Tap a word button to add a detail.' : count === s.details ? this.dataset.done! : 'Clearer! Add more details.';
+    }
+  }
+  customElements.define('g3e-picture-words', G3ePictureWords);
+</script>

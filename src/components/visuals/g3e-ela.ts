@@ -102,3 +102,46 @@ export const squeezed = (tiles: SqueezeTile[]) => tiles.filter((t) => !t.drop).m
 
 /** The long form the tiles start as: kept and dropped tiles, in order. */
 export const unsqueezed = (tiles: SqueezeTile[]) => tiles.filter((t) => !t.add).map((t) => t.ch).join('');
+
+/** One piece of a picture-words sentence: plain text, or a detail (index `detail`) with an optional icon. */
+export type PicturePiece = { text: string; detail?: number; icon?: string };
+
+/**
+ * A sentence with its picture words in braces: "A {fluffy white|☁️} dog napped {under a red umbrella|☂️}."
+ * The words after | are an icon that pops into the picture. Returns the pieces in order and the number of
+ * details. Throws on unbalanced braces or an empty detail.
+ */
+export function pictureWords(marked: string): { pieces: PicturePiece[]; details: number } {
+  const pieces: PicturePiece[] = [];
+  let details = 0;
+  let i = 0;
+  while (i < marked.length) {
+    const open = marked.indexOf('{', i);
+    const stray = marked.indexOf('}', i);
+    if (stray >= 0 && (open < 0 || stray < open)) throw new Error(`picture-words: "${marked}" has a stray }`);
+    if (open < 0) {
+      pieces.push({ text: marked.slice(i) });
+      break;
+    }
+    if (open > i) pieces.push({ text: marked.slice(i, open) });
+    const close = marked.indexOf('}', open + 1);
+    if (close < 0) throw new Error(`picture-words: "${marked}" has an unclosed {`);
+    const [text, icon] = marked.slice(open + 1, close).split('|').map((s) => s.trim());
+    if (!text) throw new Error(`picture-words: "${marked}" has an empty detail`);
+    pieces.push(icon ? { text, detail: details, icon } : { text, detail: details });
+    details++;
+    i = close + 1;
+  }
+  return { pieces, details };
+}
+
+/** The sentence with only the details that are switched on. Extra spaces left by hidden details are closed up. */
+export function pictureSentence(pieces: PicturePiece[], on: boolean[]): string {
+  return pieces
+    .filter((p) => p.detail === undefined || on[p.detail])
+    .map((p) => p.text)
+    .join('')
+    .replace(/\s+/g, ' ')
+    .replace(/\s+([.,!?])/g, '$1')
+    .trim();
+}
