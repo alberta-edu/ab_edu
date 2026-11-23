@@ -1,0 +1,200 @@
+id: layers-fossils
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 15
+title: Rock Layers and Fossils
+shortTitle: Layers and fossils
+summary: >-
+  Watch layers of mud pile up in an old lake, see a dinosaur bone turn to stone, and find out how
+  paleontologists dig it up.
+
+bigIdea: |-
+  - Earth’s surface has **layers** that piled up over a very long time.
+  - Deeper layers are **older**. They hold clues about the past.
+  - **Fossil** dinosaur bones show that dinosaurs lived millions of years ago.
+
+lesson:
+  - title: Layer by layer
+    blocks:
+      - type: experiment
+        covers: [K4.1, U4.1, S4.1]
+        title: Flood after flood
+        question: Floods drop mud and sand in a lake, again and again. Which layer will be the oldest?
+        animation: g3s-scene
+        props: { scene: layer-cake }
+        predict:
+          choices: ['The bottom one', 'The top one', 'The middle one']
+          answer: 0
+        observe: |-
+          - Each flood laid a new **layer** on top of the last one.
+          - A shell and a bone got buried in the layers.
+        explain: |-
+          - The bottom layer came first, so it is the **oldest**.
+          - Layers show what happened, in order, long ago.
+
+  - title: A bone turns to stone
+    blocks:
+      - type: visual
+        covers: [K4.2, K4.1, S4.2]
+        component: g3s-play
+        props: { scene: fossil-forms }
+        caption: Step through millions of years.
+
+  - title: Finding fossils
+    blocks:
+      - type: visual
+        covers: [K4.4, K4.9]
+        component: g3s-play
+        props: { scene: find-fossils }
+        caption: Tap each one. How do paleontologists find and study fossils?
+
+  - title: How do we know?
+    blocks:
+      - type: visual
+        covers: [S4.2, K4.2, U4.1]
+        component: g3s-play
+        props: { scene: how-we-know }
+        caption: Step through the clues.
+      - type: callout
+        variant: tip
+        covers: [S4.2, K4.2]
+        title: Bones in old layers
+        body: Dinosaur bones are found in very **old**, deep layers. That is how paleontologists know dinosaurs lived **millions** of years ago.
+
+keyTerms:
+  - term: Layer
+    covers: [K4.1]
+    definition: One flat band of rock or soil, lying on top of another.
+  - term: Fossil
+    covers: [K4.2]
+    definition: The remains of a plant or animal from long ago that have turned to stone.
+  - term: Excavate
+    covers: [K4.4]
+    definition: To dig carefully down through the layers to find something.
+  - term: Paleontologist
+    covers: [K4.9]
+    definition: A scientist who studies fossil dinosaur bones.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.9]
+    type: mc
+    prompt: What do we call a scientist who studies fossil dinosaur bones?
+    choices: ['Paleontologist', 'Astronaut', 'Chef']
+    answer: 0
+    feedback:
+      '1': An astronaut goes to space. Who digs up dinosaur bones?
+      '2': A chef cooks food. Who studies fossils?
+    hints:
+      - Think of the scientist in the lab, looking at bones.
+    solution:
+      - A **paleontologist** studies fossil dinosaur bones.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K4.1, S4.1]
+    type: mc
+    prompt: A shell is in the **top** layer of a cliff. A bone is in the **bottom** layer. Which is older?
+    choices: ['🦴 The bone', '🐚 The shell', 'Same age']
+    answer: 0
+    feedback:
+      '1': The top layer landed last. Is it older or newer?
+      '2': The layers piled up one at a time. Did they all land at once?
+    hints:
+      - Which layer came first?
+    solution:
+      - The bottom layer came first, so the **bone** is older.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K4.2, S4.2]
+    type: order
+    prompt: How does a dinosaur bone become a fossil that we find? Put the steps in order.
+    items:
+      - A dinosaur dies beside a river.
+      - Mud and sand cover its bones.
+      - Layers pile up, and the bones turn to stone.
+      - Wind and water wear the top layers away.
+    hints:
+      - The bones must be buried before they can turn to stone.
+    solution:
+      - The dinosaur dies, and mud and sand bury its bones.
+      - Over millions of years, more layers pile up and the bones turn to stone.
+      - Wind and water wear the layers away, and the fossil shows.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [S4.2, K4.2]
+    type: mc
+    prompt: How do paleontologists know that dinosaurs lived millions of years ago?
+    choices: ['Their bones are in very old layers', 'A person saw one', 'Their bones look new']
+    answer: 0
+    feedback:
+      '1': People were not alive when dinosaurs were. Could anyone have seen one?
+      '2': Fossil bones have turned to stone. Do they look new?
+    hints:
+      - Where are dinosaur bones found?
+    solution:
+      - Dinosaur bones are found deep in **very old** rock layers.
+      - Those layers took millions of years to pile up.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K4.1, K4.4, U4.1]
+    type: investigation
+    prompt: |-
+      A paleontologist digs into a cliff. She finds a fossil fish **low down** and a dinosaur bone **higher up**.
+    parts:
+      - type: mc
+        prompt: Which fossil is older?
+        choices: ['🐟 The fish', '🦴 The bone', 'Same age']
+        answer: 0
+        feedback:
+          '1': The bone is in a higher layer. Did higher layers come first or last?
+          '2': They are in different layers. Did the layers land at the same time?
+        hints:
+          - Lower layers came first.
+        solution:
+          - The fish is in a lower layer, so it is **older**.
+      - type: mc
+        prompt: She wants to find an even older fossil. Where should she dig?
+        choices: ['Deeper, below the fish', 'Higher, above the bone', 'Anywhere']
+        answer: 0
+        feedback:
+          '1': Higher layers are newer. Will they hold older fossils?
+          '2': Layers are in order from oldest to newest. Does it matter where she digs?
+        hints:
+          - Where are the oldest layers?
+        solution:
+          - The deepest layers are the oldest. She should dig **deeper**.
+    wrapUp: Layers are like pages in a history book. The deeper you dig, the further back you go.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K4.2]
+    type: mc
+    prompt: Ella says, “Dinosaur bones are only ever found in Alberta.” What did she miss?
+    choices:
+      - They are found in many places around the world.
+      - They are only found in museums.
+      - Dinosaurs never lived in Alberta.
+    answer: 0
+    feedback:
+      '1': Museums show fossils. Where did the fossils come from first?
+      '2': Many dinosaur bones are found in Alberta, so dinosaurs did live here. What did Ella miss?
+    hints:
+      - Think of the three globes in the lesson.
+    solution:
+      - Dinosaur bones are found in **many places around the world**, on every continent.
