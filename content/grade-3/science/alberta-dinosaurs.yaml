@@ -1,0 +1,197 @@
+id: alberta-dinosaurs
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 16
+title: Alberta's Dinosaurs
+shortTitle: Alberta's dinosaurs
+summary: >-
+  Travel back 75 million years to a warm, green Alberta, meet four of its dinosaurs, and find
+  where their bones are dug up and shown today.
+
+bigIdea: |-
+  - Long ago, Alberta had warm **forests** and an **inland sea**, where dinosaurs lived.
+  - Dinosaur fossils are found in many places in Alberta, like the **badlands**.
+  - You can see them in museums like the **Royal Tyrrell Museum**.
+
+lesson:
+  - title: Alberta long ago
+    blocks:
+      - type: experiment
+        covers: [K4.3]
+        title: Back in time
+        question: We go back about 75 million years. What will Alberta look like?
+        animation: g3s-scene
+        props: { scene: alberta-long-ago }
+        predict:
+          choices: ['🌴 Warm forest by a sea', '❄️ Icy and snowy', 'Just like today']
+          answer: 0
+        observe: |-
+          - The dry badlands turned into a lush, **tropical** forest.
+          - An **inland sea** covered part of the land. Dinosaurs walked by its shores.
+        explain: |-
+          - The forests and sea gave dinosaurs food and water.
+          - Mud by the sea and rivers buried their bones, so they became fossils.
+
+  - title: Meet the dinosaurs
+    blocks:
+      - type: visual
+        covers: [K4.7, S4.3]
+        component: g3s-play
+        props: { scene: alberta-dinos }
+        caption: Tap each dinosaur. All four lived in Alberta.
+
+  - title: Where bones are found
+    blocks:
+      - type: visual
+        covers: [K4.5, K4.6, S4.4]
+        component: g3s-play
+        props: { scene: fossil-map }
+        caption: Tap each place on the map of Alberta.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI3-GQ1-LO1#K2.4]
+        title: Remember from Grade 2
+        body: Alberta has UNESCO World Heritage Sites, like Dinosaur Provincial Park.
+
+  - title: See them in a museum
+    blocks:
+      - type: visual
+        covers: [K4.8, S4.4]
+        component: g3s-play
+        props: { scene: dino-museums }
+        caption: Tap each museum to visit it.
+
+keyTerms:
+  - term: Inland sea
+    covers: [K4.3]
+    definition: A sea in the middle of the land, far from the ocean’s edge.
+  - term: Tropical
+    covers: [K4.3]
+    definition: Warm and wet all year, with lots of green plants.
+  - term: World Heritage Site
+    covers: [K4.6]
+    definition: A place so special that UNESCO says the whole world should protect it.
+  - term: Museum
+    covers: [K4.8]
+    definition: A building where people go to see and learn about special objects, like fossils.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.7]
+    type: mc
+    prompt: Which dinosaur is named after Alberta?
+    choices: ['Albertosaurus', 'Edmontosaurus', 'Tyrannosaurus']
+    answer: 0
+    feedback:
+      '1': Edmontosaurus is named after a city. Which city?
+      '2': Tyrannosaurus means “tyrant lizard.” Which name sounds like Alberta?
+    hints:
+      - Listen for the start of each name.
+    solution:
+      - '**Albertosaurus** means “Alberta lizard.”'
+
+  - id: w2
+    level: 1
+    thinking: connect
+    covers: [K4.8, S4.4]
+    type: mc
+    prompt: Sam lives in Grande Prairie. Which dinosaur museum is close to his home?
+    choices: ['Philip J. Currie Dinosaur Museum', 'Royal Tyrrell Museum']
+    answer: 0
+    feedback:
+      '1': The Royal Tyrrell Museum is in Drumheller, far to the south. Which one is in Wembley?
+    hints:
+      - Look at the map. Which museum is near Grande Prairie?
+    solution:
+      - The **Philip J. Currie Dinosaur Museum** is in Wembley, near Grande Prairie.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K4.3]
+    type: mc
+    prompt: Fossil sea shells are found in Alberta rock, far from any ocean. What does that tell us?
+    choices: ['A sea once covered the land', 'Shells can walk', 'Someone dropped them']
+    answer: 0
+    feedback:
+      '1': Sea shells were made by sea animals. Can they walk far from the water?
+      '2': These shells have turned to stone in the rock layers. Could someone have dropped them?
+    hints:
+      - Where do sea shells come from?
+    solution:
+      - Sea animals made the shells, so a **sea** once covered that land.
+      - Millions of years ago, an inland sea covered part of Alberta.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K4.6]
+    type: mc
+    prompt: Why is Dinosaur Provincial Park a UNESCO World Heritage Site?
+    choices: ['Its fossils are special to the world', 'It has a big playground', 'It is in a city']
+    answer: 0
+    feedback:
+      '1': World Heritage Sites are special to the whole world. Is a playground that special?
+      '2': The park is in the badlands, not a city. What is special there?
+    hints:
+      - What is found in the park?
+    solution:
+      - The park holds many dinosaur fossils. They are special to the **whole world**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: connect
+    covers: [K4.3, K4.5, K4.4]
+    type: investigation
+    prompt: |-
+      Near Fort McMurray, a mine worker digging deep found a **nodosaur**. It lay in rock that was once the floor of the sea.
+    parts:
+      - type: mc
+        prompt: How was this fossil collected?
+        choices: ['By digging into the layers', 'It lay on the surface', 'It was in a museum']
+        answer: 0
+        feedback:
+          '1': The worker was digging deep. Was the fossil on the ground?
+          '2': It went to a museum after it was found. How was it found?
+        hints:
+          - Read the first sentence again.
+        solution:
+          - The worker was digging. The fossil was **excavated** from deep layers.
+      - type: mc
+        prompt: Nodosaurs lived on land. What does sea-floor rock tell us about the area long ago?
+        choices: ['A sea was nearby', 'It was icy', 'It was a desert']
+        answer: 0
+        feedback:
+          '1': Dinosaurs lived in warm forests. Was Alberta icy then?
+          '2': This rock was once the floor of the sea. Is a desert full of water?
+        hints:
+          - What covered part of Alberta when dinosaurs lived?
+        solution:
+          - The inland **sea** was nearby. The nodosaur’s body ended up in the sea mud.
+    wrapUp: Where a fossil is found tells a story about the land long ago.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K4.7, S4.3]
+    type: mc
+    prompt: Jay says, “Tyrannosaurus rex never lived in Alberta.” What did he miss?
+    choices:
+      - T. rex fossils have been found in Alberta.
+      - T. rex only lived in the sea.
+      - T. rex lived here last year.
+    answer: 0
+    feedback:
+      '1': T. rex walked on land. Did it live in the sea?
+      '2': Dinosaurs lived millions of years ago. Could one have lived here last year?
+    hints:
+      - Think of Black Beauty.
+    solution:
+      - T. rex fossils, like **Black Beauty**, have been found in Alberta.
