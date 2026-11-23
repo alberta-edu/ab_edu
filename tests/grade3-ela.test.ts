@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { circlePoint, isCompound, letterTeams, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
+import { circlePoint, isCompound, letterTeams, runOn, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
 
 describe('story circle', () => {
   it('starts at the top and goes clockwise', () => {
@@ -108,5 +108,18 @@ describe('word snap', () => {
     expect(isCompound('Sun', 'flower', 'sunflower')).toBe(true);
     expect(isCompound('sun', 'flower', 'sunflowers')).toBe(false);
     expect(isCompound('', 'man', 'man')).toBe(false);
+  });
+});
+
+describe('run-on fixer', () => {
+  it('finds the stops and the capitals that follow them', () => {
+    const r = runOn('we went sledding | it was so fast | I fell off');
+    expect(r.stops).toEqual([2, 6]);
+    expect(r.words.join(' ')).toBe('we went sledding it was so fast I fell off');
+    expect(r.fixed.join(' ')).toBe('We went sledding It was so fast I fell off');
+  });
+  it('needs words on both sides of each stop', () => {
+    expect(() => runOn('one sentence only')).toThrow();
+    expect(() => runOn('we went | ')).toThrow();
   });
 });

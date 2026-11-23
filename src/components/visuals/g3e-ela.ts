@@ -150,3 +150,27 @@ export function pictureSentence(pieces: PicturePiece[], on: boolean[]): string {
 export function isCompound(a: string, b: string, word: string): boolean {
   return Boolean(a.trim()) && Boolean(b.trim()) && (a + b).toLowerCase() === word.toLowerCase();
 }
+
+/**
+ * A run-on sentence with | where each sentence should stop: "we went sledding | it was so fast".
+ * Returns the words as shown in the run-on (a sentence's first word in lower case, unless it is "I"), the
+ * gaps (after word i) that need a stop, and each word as it is written once fixed (capital after a stop).
+ * Other words keep their case, so names stay capitalized.
+ */
+export function runOn(marked: string): { words: string[]; fixed: string[]; stops: number[] } {
+  const parts = marked.split('|').map((p) => p.trim().split(/\s+/).filter(Boolean));
+  if (parts.length < 2 || parts.some((p) => !p.length)) throw new Error(`run-on: "${marked}" needs words on each side of every |`);
+  const words: string[] = [];
+  const fixed: string[] = [];
+  const stops: number[] = [];
+  parts.forEach((p, k) => {
+    p.forEach((w, j) => {
+      const first = j === 0;
+      const isI = w === 'I' || w.startsWith('I’') || w.startsWith("I'");
+      words.push(first && !isI ? w[0].toLowerCase() + w.slice(1) : w);
+      fixed.push(first ? w[0].toUpperCase() + w.slice(1) : w);
+    });
+    if (k < parts.length - 1) stops.push(words.length - 1);
+  });
+  return { words, fixed, stops };
+}
