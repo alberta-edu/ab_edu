@@ -39,9 +39,10 @@ const data = items.map((it) => ({ label: it.label.toLowerCase(), renew: it.renew
   .g3ss-rf-tank { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem 0.3rem; border-radius: var(--radius-sm); border: 2px solid var(--line); background: var(--surface); text-align: center; }
   .g3ss-rf-icon { font-size: 2rem; line-height: 1; }
   .g3ss-rf-bar { position: relative; width: 2.2rem; height: 5rem; border-radius: 0.5rem; border: 2px solid var(--line-strong); background: var(--surface-2); overflow: hidden; }
-  .g3ss-rf-fill { position: absolute; left: 0; right: 0; bottom: 0; height: var(--g3ss-rf-level, 100%); transition: height 0.7s ease; }
-  .is-renew .g3ss-rf-fill { background: #3fa45b; }
-  .is-once .g3ss-rf-fill { background: #8a6a4a; }
+  .g3ss-rf-fill { position: absolute; left: 0; right: 0; bottom: 0; height: var(--g3ss-rf-level, 100%); background: #5b84b8; transition: height 0.7s ease, background 0.4s ease; }
+  /* Every tank looks the same until the first run, so the colours don't give the answer away. */
+  .is-shown .is-renew .g3ss-rf-fill { background: #3fa45b; }
+  .is-shown .is-once .g3ss-rf-fill { background: #8a6a4a; }
   .g3ss-rf-label { font-weight: 800; }
   .g3ss-rf-tag { min-height: 1.3em; font-size: var(--step--1); font-weight: 800; }
   .g3ss-rf-tag.is-back { color: var(--ok); animation: g3ss-rf-pop 0.4s ease; }
@@ -56,11 +57,13 @@ const data = items.map((it) => ({ label: it.label.toLowerCase(), renew: it.renew
   @keyframes g3ss-rf-pop { 50% { transform: scale(1.3); } }
   @keyframes g3ss-rf-wiggle { 25% { transform: rotate(-12deg) scale(1.15); } 75% { transform: rotate(12deg) scale(1.15); } }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) .is-renew .g3ss-rf-fill { background: #5cc278; }
-    :root:not([data-theme='light']) .is-once .g3ss-rf-fill { background: #b08d68; }
+    :root:not([data-theme='light']) .g3ss-rf-fill { background: #8fb0e0; }
+    :root:not([data-theme='light']) .is-shown .is-renew .g3ss-rf-fill { background: #5cc278; }
+    :root:not([data-theme='light']) .is-shown .is-once .g3ss-rf-fill { background: #b08d68; }
   }
-  :root[data-theme='dark'] .is-renew .g3ss-rf-fill { background: #5cc278; }
-  :root[data-theme='dark'] .is-once .g3ss-rf-fill { background: #b08d68; }
+  :root[data-theme='dark'] .g3ss-rf-fill { background: #8fb0e0; }
+  :root[data-theme='dark'] .is-shown .is-renew .g3ss-rf-fill { background: #5cc278; }
+  :root[data-theme='dark'] .is-shown .is-once .g3ss-rf-fill { background: #b08d68; }
   @media (prefers-reduced-motion: reduce) {
     .g3ss-rf-fill { transition: none; }
     .g3ss-rf-tag.is-back, .g3ss-rf-tank.is-back .g3ss-rf-icon { animation: none; }
@@ -118,6 +121,7 @@ const data = items.map((it) => ({ label: it.label.toLowerCase(), renew: it.renew
       const wait = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1100;
       await new Promise((r) => setTimeout(r, wait));
       this.levels = this.levels.map((lv, i) => afterNature(lv, this.items[i].renew));
+      this.classList.add('is-shown');
       this.draw(true);
       const renew = this.items.filter((it) => it.renew).map((it) => it.label);
       const other = this.items.filter((it) => !it.renew).map((it) => it.label);
@@ -132,6 +136,7 @@ const data = items.map((it) => ({ label: it.label.toLowerCase(), renew: it.renew
 
     private reset() {
       this.levels = this.items.map(() => 100);
+      this.classList.remove('is-shown');
       this.draw();
       this.querySelectorAll<HTMLElement>('[data-rf="why"]').forEach((w) => (w.hidden = true));
       const run = this.querySelector<HTMLButtonElement>('[data-rf="run"]')!;
