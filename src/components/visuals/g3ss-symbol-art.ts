@@ -36,7 +36,7 @@ export const ART: Record<string, string> = {
     return `<circle cx="${(50 + Math.cos(a) * 20).toFixed(1)}" cy="${(48 + Math.sin(a) * 20).toFixed(1)}" r="18" fill="#f49ac1" stroke="#d6649b" stroke-width="1.5"/>`;
   }).join('')}<circle cx="50" cy="48" r="10" fill="#f2c230"/><g fill="#c98a00">${Array.from({ length: 8 }, (_, i) => `<circle cx="${(50 + Math.cos(i) * 6).toFixed(1)}" cy="${(48 + Math.sin(i) * 6).toFixed(1)}" r="1.4"/>`).join('')}</g><path d="M50 72 Q48 86 40 96" stroke="#3f8a3f" stroke-width="3" fill="none"/>`,
   'blue-gold': `<rect x="8" y="22" width="40" height="56" rx="6" fill="#1f4fa3"/><rect x="52" y="22" width="40" height="56" rx="6" fill="#e8b830"/><text x="28" y="92" font-size="10" text-anchor="middle" fill="currentColor">sky</text><text x="72" y="92" font-size="10" text-anchor="middle" fill="currentColor">prairie</text>`,
-  motto: `<path d="M6 40 H94 L86 52 L94 64 H6 L14 52 Z" fill="#e8b830" stroke="#9a6a00" stroke-width="1.5"/><text x="50" y="57" font-size="11" font-weight="700" font-style="italic" text-anchor="middle" fill="#1c1b24">Fortis et liber</text>`,
+  motto: `<path d="M6 40 H94 L86 52 L94 64 H6 L14 52 Z" fill="#e8b830" stroke="#9a6a00" stroke-width="1.5"/><text x="50" y="56" font-size="9.5" font-weight="700" font-style="italic" text-anchor="middle" textLength="66" lengthAdjust="spacingAndGlyphs" fill="#1c1b24">Fortis et liber</text>`,
   'ab-flag': `<rect x="4" y="25" width="92" height="46" fill="#1f3f8f"/>${shield(38, 29, 24)}`,
   shield: shield(22, 6, 56),
 };

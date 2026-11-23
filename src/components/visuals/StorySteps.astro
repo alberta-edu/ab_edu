@@ -52,7 +52,7 @@ const data = steps.map((s) => ({ ...s, text: mdInline(s.text) }));
   @keyframes g3ss-ss-hop { 50% { translate: 0 -8px; } }
   .g3ss-ss-line { position: absolute; left: calc(50% / var(--g3ss-ss-n)); right: calc(50% / var(--g3ss-ss-n)); top: calc(2.4rem + 1.55rem); height: 6px; border-radius: 3px; background: var(--surface-3); }
   .g3ss-ss-line span { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--social); transition: width 0.9s ease-in-out; }
-  .g3ss-ss-stops { position: relative; display: grid; grid-template-columns: repeat(var(--g3ss-ss-n), minmax(0, 1fr)); list-style: none; margin: 0; padding: 0; }
+  .g3ss-ss-stops { position: relative; display: grid; grid-template-columns: repeat(var(--g3ss-ss-n), minmax(0, 1fr)); column-gap: 0.4rem; list-style: none; margin: 0; padding: 0; }
   .g3ss-ss-stops li { display: grid; justify-items: center; gap: 0.25rem; text-align: center; }
   .g3ss-ss-stop { width: 3.1rem; height: 3.1rem; border-radius: 50%; border: 3px solid var(--line-strong); background: var(--surface-2); font-size: 1.5rem; display: grid; place-items: center; cursor: pointer; padding: 0; }
   .g3ss-ss-stop:disabled { cursor: default; }
