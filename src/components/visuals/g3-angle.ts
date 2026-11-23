@@ -24,12 +24,12 @@ export function rightMark(c: P, from: number, s = 14): string {
   return `M${f(a[0])},${f(a[1])} L${f(b[0])},${f(b[1])} L${f(d[0])},${f(d[1])}`;
 }
 
-/** An angle as SVG: two arms, a vertex dot and a shaded opening. */
-export function angleSvg(c: P, from: number, deg: number, len: [number, number], cls = 'a'): string {
+/** An angle as SVG: two arms, a vertex dot and a shaded opening. `mark90: false` hides the right-angle square. */
+export function angleSvg(c: P, from: number, deg: number, len: [number, number], cls = 'a', mark90 = true): string {
   const a = at(c, len[0], from);
   const b = at(c, len[1], from + deg);
   const r = Math.min(28, len[0] * 0.4, len[1] * 0.4);
-  const mark = Math.abs(deg - 90) < 0.5 ? `<path class="g3m-an-rt" d="${rightMark(c, from)}"/>` : `<path class="g3m-an-wedge is-${cls}" d="${wedge(c, r, from, deg)}"/>`;
+  const mark = mark90 && Math.abs(deg - 90) < 0.5 ? `<path class="g3m-an-rt" d="${rightMark(c, from)}"/>` : `<path class="g3m-an-wedge is-${cls}" d="${wedge(c, r, from, deg)}"/>`;
   return `${mark}<line class="g3m-an-arm is-${cls}" x1="${f(c[0])}" y1="${f(c[1])}" x2="${f(a[0])}" y2="${f(a[1])}"/><line class="g3m-an-arm is-${cls}" x1="${f(c[0])}" y1="${f(c[1])}" x2="${f(b[0])}" y2="${f(b[1])}"/><circle class="g3m-an-vx" cx="${f(c[0])}" cy="${f(c[1])}" r="5"/>`;
 }
 

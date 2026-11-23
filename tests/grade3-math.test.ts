@@ -130,7 +130,7 @@ describe('Grade 3 equations on a balance', () => {
   });
 
   it('says what the balance shows', () => {
-    expect(balanceSay(parseSide('5 + 2'), parseSide('4 + 3'), null)).toBe('Balanced! Both sides are 7. So 5 + 2 = 4 + 3.');
+    expect(balanceSay(parseSide('5 + 2'), parseSide('4 + 3'), null)).toBe('Balanced! Both sides are 7. So 5 + 2 = 4 + 3.');
     expect(balanceSay(parseSide('6 + 3'), parseSide('8'), null)).toContain('not equal');
     expect(balanceSay(parseSide('□ + 5'), parseSide('12'), 9)).toBe('The left side is heavier. Try a smaller number in the box.');
     expect(balanceSay(parseSide('15'), parseSide('3 × □'), 2)).toBe('The left side is heavier. Try a bigger number in the box.');
@@ -259,6 +259,7 @@ describe('Grade 3 angles', () => {
     expect(wedge([0, 0], 10, 0, 90)).toContain('A10,10 0 0 0');
     expect(angleSvg([0, 0], 0, 90, [50, 50])).toContain('g3m-an-rt');
     expect(angleSvg([0, 0], 0, 60, [50, 50])).toContain('g3m-an-wedge');
+    expect(angleSvg([0, 0], 0, 90, [50, 50], 'a', false)).not.toContain('g3m-an-rt');
   });
 
   it('checks angles against a right angle', () => {

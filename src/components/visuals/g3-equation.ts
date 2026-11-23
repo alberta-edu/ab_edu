@@ -56,7 +56,8 @@ export function balanceSay(l: Side, r: Side, box: number | null): string {
   const R = sideValue(r, box ?? 0);
   const boxy = hasBox(l) || hasBox(r);
   if (L === R) {
-    const eq = `${sideText(l)} = ${sideText(r)}`;
+    // Non-breaking spaces keep the equation on one line.
+    const eq = `${sideText(l)} = ${sideText(r)}`.replace(/ /g, ' ');
     return boxy ? `Balanced! The box holds ${box}. So ${BOX} = ${box} makes ${eq} true.` : `Balanced! Both sides are ${L}. So ${eq}.`;
   }
   const heavy = L > R ? 'left' : 'right';

@@ -226,8 +226,12 @@ const slist = spots.map((id) => SPOTS.find((s) => s.id === id)!);
       const mode = this.dataset.mode;
       if (mode === 'compare') {
         const p = PAIRS[this.pair];
-        // Each label sits at the end of its flat arm, so A's label never covers B's once A moves.
-        this.q('svg').innerHTML = `<g>${angleSvg([195, 200], 0, p.b, [p.lb, p.lb], 'b')}<text class="g3m-an-big" x="${195 + p.lb + 6}" y="208">B</text></g><g class="g3m-an-move" data-an="a">${angleSvg([25, 200], 0, p.a, [p.la, p.la])}<text class="g3m-an-big" x="${25 + p.la + 6}" y="${p.la > p.lb ? 230 : 208}">A</text></g>`;
+        // Each label sits just past the tip of its turning arm, so it is clear which angle it names.
+        const tag = (c: P, len: number, deg: number, name: string) => {
+          const t = at(c, len + 16, deg);
+          return `<text class="g3m-an-big" x="${t[0].toFixed(1)}" y="${t[1].toFixed(1)}" text-anchor="middle" dominant-baseline="central">${name}</text>`;
+        };
+        this.q('svg').innerHTML = `<g>${angleSvg([195, 200], 0, p.b, [p.lb, p.lb], 'b')}${tag([195, 200], p.lb, p.b, 'B')}</g><g class="g3m-an-move" data-an="a">${angleSvg([25, 200], 0, p.a, [p.la, p.la])}${tag([25, 200], p.la, p.a, 'A')}</g>`;
         this.q('svg').setAttribute('aria-label', 'Two angles, A and B, with arms of different lengths.');
         this.q('say').textContent = 'Which angle opens wider? Guess, then lay A on top of B.';
       }
@@ -240,7 +244,7 @@ const slist = spots.map((id) => SPOTS.find((s) => s.id === id)!);
       }
       if (mode === 'right') {
         const s = this.spot;
-        this.q('svg').innerHTML = `<text class="g3m-an-big" x="180" y="30" text-anchor="middle">${s.icon} ${s.name}</text>${angleSvg([110, 210], 0, s.deg, [190, 160])}<g class="g3m-an-move" data-an="corner" style="transform: translate(120px, -40px); opacity: 0"><path class="g3m-an-corner" d="M110,210 h90 v-90 h-90 Z"/></g>`;
+        this.q('svg').innerHTML = `<text class="g3m-an-big" x="180" y="30" text-anchor="middle">${s.icon} ${s.name}</text>${angleSvg([110, 210], 0, s.deg, [190, 160], 'a', false)}<g class="g3m-an-move" data-an="corner" style="transform: translate(120px, -40px); opacity: 0"><path class="g3m-an-corner" d="M110,210 h90 v-90 h-90 Z"/></g>`;
         this.q('svg').setAttribute('aria-label', `The angle of: ${s.name}.`);
         this.q('say').textContent = 'Is it smaller than, the same as, or bigger than a right angle? Guess first.';
       }
