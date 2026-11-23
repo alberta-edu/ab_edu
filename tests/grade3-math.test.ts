@@ -10,6 +10,8 @@ import { fractionName, unitSum, compare, compareWhy, benchmark } from '../src/co
 import { family, rowSeq } from '../src/components/visuals/g3-table.ts';
 import { repeatedAdd, skipCount, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from '../src/components/visuals/g3-groups.ts';
 import { addFrames, subtractFrames, value, matSvg } from '../src/components/visuals/g3-blocks.ts';
+import { renderProblem } from '../src/lib/problem-html.ts';
+import { loadConcept } from '../src/lib/content.ts';
 import { compareSign, compareSteps, digitsOf, expanded, fmt, roundTo, roundSay, step, words } from '../src/components/visuals/g3-place.ts';
 
 describe('Grade 3 place value', () => {
@@ -376,5 +378,15 @@ describe('Grade 3 data', () => {
     expect(pts).toHaveLength(8);
     const r = pts.map(([x, y]) => Math.hypot(x, y));
     expect(r.every((v, i) => i === 0 || v > r[i - 1])).toBe(true);
+  });
+});
+
+describe('Grade 3 fraction answers', () => {
+  it('give typing help without mixed numbers', () => {
+    const concept = loadConcept('naming-fractions');
+    const p = concept.problems.find((x) => x.type === 'fraction')!;
+    const html = renderProblem(concept, p, 1);
+    expect(html).toContain('<kbd>3/4</kbd>');
+    expect(html).not.toContain('mixed number');
   });
 });

@@ -104,7 +104,10 @@ function answerArea(concept: Concept, p: Exclude<Problem, { type: 'investigation
         key,
         'text',
         undefined,
-        'Type a fraction like <kbd>11/4</kbd> or a mixed number like <kbd>2 3/4</kbd> (whole number, space, fraction).',
+        // Grade 3 fractions are less than or equal to one whole, so its help names no mixed numbers.
+        concept.grade <= 3
+          ? 'Type a fraction like <kbd>3/4</kbd>: the top number, a slash, then the bottom number.'
+          : 'Type a fraction like <kbd>11/4</kbd> or a mixed number like <kbd>2 3/4</kbd> (whole number, space, fraction).',
       );
       spec = { type: 'fraction', answer: p.answer, form: p.form };
       break;
