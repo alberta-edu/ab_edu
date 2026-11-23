@@ -27,7 +27,7 @@ const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
       </tbody>
     </table>
   </div>
-  <div class="g3m-tt-out" aria-live="polite">
+  <div class="g3m-tt-out" aria-live="polite" hidden={row ? true : undefined}>
     <div class="g3m-tt-svg" data-tt="tri" set:html={triangleSvg(pick[0], pick[1])} />
     <ul class="g3m-tt-fam" data-tt="fam">{family(pick[0], pick[1]).map((f) => <li>{f}</li>)}</ul>
   </div>
@@ -36,15 +36,16 @@ const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 <style is:global>
   g3-times-table { display: block; }
-  .g3m-tt-wrap { overflow-x: auto; }
+  .g3m-tt-wrap { overflow-x: auto; container-type: inline-size; }
   .g3m-tt { border-collapse: separate; border-spacing: 2px; margin-inline: auto; font-variant-numeric: tabular-nums; }
   .g3m-tt th, .g3m-tt td { padding: 0; }
-  .g3m-tt button { width: clamp(1.65rem, 7.4vw, 2.4rem); height: clamp(1.65rem, 7.4vw, 2.2rem); border: 0; border-radius: 0.35rem; background: var(--surface-2); color: var(--ink); font: inherit; font-size: clamp(0.68rem, 2.6vw, 0.9rem); font-weight: 600; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+  .g3m-tt button { width: clamp(1.4rem, calc((100cqi - 26px) / 11), 2.4rem); height: clamp(1.5rem, calc((100cqi - 26px) / 11), 2.2rem); border: 0; border-radius: 0.35rem; background: var(--surface-2); color: var(--ink); font: inherit; font-size: clamp(0.62rem, calc((100cqi - 26px) / 26), 0.9rem); font-weight: 600; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
   .g3m-tt th button { background: var(--accent-soft); color: var(--accent); font-weight: 800; }
   .g3m-tt thead th:first-child { font-weight: 800; color: var(--ink-3); }
   .g3m-tt button.is-line { background: color-mix(in srgb, var(--sun) 35%, var(--surface)); }
   .g3m-tt button.is-pick { background: var(--accent); color: var(--surface); transform: scale(1.12); }
   .g3m-tt button.is-twin { background: color-mix(in srgb, var(--accent) 45%, var(--surface)); }
+  .g3m-tt-out[hidden] { display: none; }
   .g3m-tt-out { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.4rem 1.4rem; margin-top: 0.7rem; }
   .g3m-tt-svg svg { width: 8.5rem; height: auto; display: block; font-family: var(--font); }
   .g3m-tt-tri { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
@@ -85,6 +86,7 @@ const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         if (r === b && c === a) x.classList.add('is-twin');
       });
       this.querySelector(`[data-r="${a}"][data-c="${b}"]`)!.classList.add('is-pick');
+      (this.querySelector('.g3m-tt-out') as HTMLElement).hidden = false;
       this.querySelector('[data-tt="tri"]')!.innerHTML = triangleSvg(a, b);
       this.querySelector('[data-tt="fam"]')!.innerHTML = family(a, b).map((f) => `<li>${f}</li>`).join('');
       this.querySelector('[data-tt="say"]')!.textContent =
@@ -94,6 +96,8 @@ const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     private line(kind: 'r' | 'c', n: number) {
       this.clear();
       this.querySelectorAll<HTMLElement>(`[data-${kind}="${n}"]`).forEach((x) => x.classList.add('is-line'));
+      // A skip-counting line has no fact family to show.
+      (this.querySelector('.g3m-tt-out') as HTMLElement).hidden = true;
       this.querySelector('[data-tt="say"]')!.textContent = `${kind === 'r' ? 'Row' : 'Column'} ${n} skip counts by ${n}: ${rowSeq(n).join(', ')}`;
     }
   }
