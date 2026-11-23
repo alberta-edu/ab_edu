@@ -1,0 +1,216 @@
+id: connect-predict
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI7
+outcomes: [LANENG3-OI7-GQ1-LO1]
+order: 15
+title: Making Connections and Predictions
+shortTitle: Connect & predict
+summary: >-
+  Link what you read to yourself, to other texts and to the world. Use clues to predict what happens
+  next, then keep or change your prediction as you read.
+
+bigIdea: |-
+  - Connect a text to **yourself**, to **another text** or to **the world**: before, during and after reading.
+  - Predict with **clues** from the text plus what you already **know**.
+  - Read on to check. Keep your prediction, or change it.
+
+lesson:
+  - title: Before, during, after
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, U2.1]
+        component: story-path
+        props:
+          stages:
+            - { label: Before, text: 'The cover shows a girl with a new puppy. *I got a puppy last year!*' }
+            - { label: During, text: 'The puppy chews her shoe. *Mine chewed my mitts. I was so mad!*' }
+            - { label: After, text: 'She trains the puppy. *I could try that with mine.*' }
+        caption: Press **Next**. A reader connects before, during and after reading.
+
+  - title: Three kinds of connections
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.1, S2.2, S2.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: me, label: Text to me, icon: 🙋 }
+            - { id: text, label: Text to text, icon: 📚 }
+            - { id: world, label: Text to world, icon: 🌎 }
+          cards:
+            - { text: 'Nia is nervous on her first day. I was nervous on mine too!', bin: me, why: 'You linked the story to **your own** feelings.' }
+            - { text: 'This is like the book where the bear moves to a new forest.', bin: text, why: 'You linked it to **another book**.' }
+            - { text: 'Long ago, many children went to one-room schools.', bin: world, why: 'A link to the world, in the **past**.' }
+            - { text: 'Lots of families move to new cities every year.', bin: world, why: 'A link to the world **today**.' }
+            - { text: 'Nia’s school looks like the school in the last book I read.', bin: text, why: 'You linked a part of this text to a part of another.' }
+        caption: A story about Nia’s first day at a new school. What kind of connection is each one?
+
+  - title: Predict, then turn the page
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1, S3.3, S3.4, U3.1]
+        component: g3e-page-turn
+        props:
+          title: The Kite in the Tree
+          pages:
+            - icon: 🪁
+              text: Leo’s kite got stuck high in a tree. Dark clouds rolled in.
+              ask: What will happen next?
+              choices: [It will rain, It will snow candy, The tree will walk away]
+              answer: 0
+              clue: '*Dark clouds* were the clue. You know that dark clouds often bring rain.'
+            - icon: 🌧️
+              text: Drip, drop! Rain began to fall. Leo’s sister ran out with a long broom.
+              ask: What will she do with the broom?
+              choices: [Sweep the steps, Poke the kite down, Paint the fence]
+              answer: 1
+              clue: '*Long* broom and a kite *high* in a tree. What can a long thing reach?'
+            - icon: 🏠
+              text: She poked the kite. It tumbled down, wet but safe. They ran inside, laughing.
+        caption: Pick a prediction. Then **turn the page**. Were you right?
+
+  - title: Clue or wild guess?
+    blocks:
+      - type: visual
+        covers: [S3.2, K3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: clue, label: Uses a clue, icon: 🔍 }
+            - { id: wild, label: Wild guess, icon: 🎲 }
+          cards:
+            - { text: 'The cover shows a dog in a cape. It will be a superhero dog!', bin: clue, why: 'The cape on the cover is the clue.' }
+            - { text: 'The book is about owls. I bet it has pirates.', bin: wild, why: 'Nothing about owls points to pirates.' }
+            - { text: 'Sam packed a tent and a flashlight. He will go camping.', bin: clue, why: 'A tent and a flashlight are clues. You know people take them camping.' }
+            - { text: 'Sam packed a tent. He will go to the moon.', bin: wild, why: 'A tent is not a clue for a moon trip.' }
+        caption: A good prediction uses a **clue** from the text and what you **know**. Sort them.
+
+keyTerms:
+  - term: Connection
+    covers: [K2.1, S2.1]
+    definition: A link between what you read and yourself, another text, or the world.
+  - term: Prediction
+    covers: [K3.1, S3.1]
+    definition: A smart guess about what will happen next, using clues and what you know.
+  - term: Clue
+    covers: [S3.2]
+    definition: A detail in the text or pictures that helps you figure something out.
+  - term: Background knowledge
+    covers: [K3.1, U2.1]
+    definition: What you already know from your life, other books and the world.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: When can you make connections to a text?
+    choices:
+      - Before, during and after reading
+      - Only after you finish
+      - Only before you start
+    answer: 0
+    feedback:
+      '1': Can a page in the middle remind you of something?
+      '2': Can the ending remind you of something too?
+    hints:
+      - Think of the girl with the new puppy.
+    solution:
+      - You can connect **before**, **during** and **after** reading.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.2, S2.1]
+    type: mc
+    prompt: 'Tia reads about a puppy that hides during storms. She says, “My dog hides under the bed when it thunders!” What kind of connection is that?'
+    choices:
+      - Text to me
+      - Text to text
+      - Text to world
+    answer: 0
+    feedback:
+      '1': Is she thinking of another book?
+      '2': Is she thinking about the whole world, or her own dog?
+    hints:
+      - Whose dog is she talking about?
+    solution:
+      - She linked the story to **her own life**. That is **text to me**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S3.1, S3.2, K3.1]
+    type: mc
+    prompt: The book is called *The Lost Mitten*. On the cover, a mouse peeks out of a mitten in the snow. What is the **best** prediction?
+    choices:
+      - A mouse will make a home in the mitten
+      - A boy will build a sandcastle
+      - A dog will lose its ball
+    answer: 0
+    feedback:
+      '1': Is there a beach or sand on the cover?
+      '2': Is there a dog or a ball on the cover?
+    hints:
+      - What two clues do the title and the cover give you?
+    solution:
+      - The title says *mitten*. The cover shows a **mouse** in it.
+      - So a good prediction is that the mouse will make a home in the mitten.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K2.2, S2.3]
+    type: mc
+    prompt: Ravi reads a story about a girl who saves water in a dry summer. Which is a **text-to-world** connection?
+    choices:
+      - Some places today don’t have enough water
+      - I had a water fight last summer
+      - This is like the book about the thirsty camel
+    answer: 0
+    feedback:
+      '1': That is about Ravi’s own life. Which one is about the world?
+      '2': That links to another book. Which one is about the world?
+    hints:
+      - Which one is about people and places in the world?
+    solution:
+      - '**Text to world** links a story to things happening in the world.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [S3.3, S3.4]
+    type: mc
+    prompt: 'Sam predicted, “The snowman will last all week.” Then he read, “The next morning, the sun came out, hot and bright.” What should Sam do?'
+    choices:
+      - Change his prediction. The snowman will melt.
+      - Keep it. A prediction can’t change.
+      - Stop reading, because he was wrong.
+    answer: 0
+    feedback:
+      '1': Good readers change predictions when they learn something new. Do you?
+      '2': Being wrong is part of predicting. What can Sam do with the new clue?
+    hints:
+      - What happens to snow in hot sun?
+    solution:
+      - The new clue, a hot sun, changes things. Snow melts in the sun.
+      - Good readers **change** their predictions when they get new information.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [S3.1, S3.2, K3.1]
+    type: text
+    prompt: 'Mia grabbed her skates, her helmet and her hockey stick. She ran out the door. Predict: **where** is she going? Type one place.'
+    accept: [rink, the rink, a rink, ice rink, the ice rink, skating rink, the skating rink, arena, the arena, an arena, hockey rink, the hockey rink, outdoor rink, the outdoor rink, pond, the pond, a pond, frozen pond, the frozen pond, lake, the lake, frozen lake, the frozen lake, hockey, hockey practice, practice, a hockey game, hockey game, the hockey game, ice, the ice, hockey arena, the hockey arena, skating]
+    hints:
+      - What clues did the writer give you?
+      - Where do people use skates and a hockey stick?
+    solution:
+      - The clues are **skates**, a **helmet** and a **hockey stick**.
+      - You know people use those on ice. So she is going to a **rink** or a frozen pond.
