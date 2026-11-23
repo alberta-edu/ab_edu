@@ -145,3 +145,8 @@ export function pictureSentence(pieces: PicturePiece[], on: boolean[]): string {
     .replace(/\s+([.,!?])/g, '$1')
     .trim();
 }
+
+/** A compound word is two words joined with nothing between them: snow + man = snowman. */
+export function isCompound(a: string, b: string, word: string): boolean {
+  return Boolean(a.trim()) && Boolean(b.trim()) && (a + b).toLowerCase() === word.toLowerCase();
+}

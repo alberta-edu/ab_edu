@@ -1,0 +1,228 @@
+id: suffixes-compounds
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG3-OI3-GQ1-LO1]
+order: 12
+title: Suffixes, Compound Words and Syllables
+shortTitle: Suffixes & compounds
+summary: >-
+  Add -ly to tell how, when or in what order. Add -er, -or, -ar or -ist to name a person. Snap two words
+  into one, and clap the syllables.
+
+bigIdea: |-
+  - A **suffix** goes at the **end** of a base. **-ly** makes words that tell how, when or in what order.
+  - **-er**, **-or**, **-ar** and **-ist** name a person who does something.
+  - A **compound word** is two words joined into one.
+
+lesson:
+  - title: Add -ly
+    blocks:
+      - type: visual
+        covers: [K2.5, S2.2, K2.3]
+        component: suffix-builder
+        props:
+          suffixes:
+            - suffix: ly
+              meaning: '“in a way”, “every” or “in order”'
+              words:
+                - { base: quick, word: quickly, means: 'in a quick way' }
+                - { base: soft, word: softly, means: 'in a soft way' }
+                - { base: week, word: weekly, means: 'every week' }
+                - { base: last, word: lastly, means: 'at the very end' }
+        caption: Tap **-ly**. Watch it join each base.
+
+  - title: How, when or in what order?
+    blocks:
+      - type: visual
+        covers: [S2.2, K2.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: how, label: How?, icon: 🐢 }
+            - { id: when, label: When?, icon: 📅 }
+            - { id: order, label: In what order?, icon: 🔢 }
+          cards:
+            - { text: She whispered **softly**., bin: how, why: '*Softly* tells how she whispered.' }
+            - { text: We swim **weekly**., bin: when, why: '*Weekly* means every week. It tells when.' }
+            - { text: '**Firstly**, wash your hands.', bin: order, why: '*Firstly* tells this step comes first.' }
+            - { text: Dad drove **carefully**., bin: how, why: '*Carefully* tells how Dad drove.' }
+            - { text: The paper comes **daily**., bin: when, why: '*Daily* means every day.' }
+            - { text: '**Lastly**, add the cheese.', bin: order, why: '*Lastly* tells this step comes last.' }
+        caption: Each **-ly** word tells something about the action. What does it tell?
+
+  - title: A person who…
+    blocks:
+      - type: visual
+        covers: [K2.6, S2.3, S2.1]
+        component: suffix-builder
+        props:
+          suffixes:
+            - suffix: er
+              meaning: '“a person who”'
+              words:
+                - { base: teach, word: teacher, means: 'a person who teaches' }
+                - { base: farm, word: farmer, means: 'a person who farms' }
+            - suffix: or
+              meaning: '“a person who”'
+              words:
+                - { base: act, word: actor, means: 'a person who acts' }
+                - { base: sail, word: sailor, means: 'a person who sails' }
+            - suffix: ar
+              meaning: '“a person who”'
+              words:
+                - { base: lie, word: liar, means: 'a person who tells lies' }
+            - suffix: ist
+              meaning: '“a person who”'
+              words:
+                - { base: art, word: artist, means: 'a person who makes art' }
+                - { base: piano, word: pianist, means: 'a person who plays the piano' }
+                - { base: cycle, word: cyclist, means: 'a person who rides a bike' }
+        caption: Four suffixes that name a **person who does something**. Try each one.
+
+  - title: Snap two words together
+    blocks:
+      - type: visual
+        covers: [S2.4]
+        component: g3e-word-snap
+        props:
+          items:
+            - { a: snow, aIcon: ❄️, b: man, bIcon: 🧍, word: snowman, icon: ⛄, means: 'a man made of snow.' }
+            - { a: tooth, aIcon: 🦷, b: brush, bIcon: 🖌️, word: toothbrush, icon: 🪥, means: 'a brush for your teeth.' }
+            - { a: sun, aIcon: ☀️, b: flower, bIcon: 🌼, word: sunflower, icon: 🌻, means: 'a big flower that turns to face the sun.' }
+            - { a: rain, aIcon: 🌧️, b: bow, bIcon: 🏹, word: rainbow, icon: 🌈, means: 'a curved bow of colours in the sky, after rain.' }
+            - { a: butter, aIcon: 🧈, b: fly, bIcon: 🪰, word: butterfly, icon: 🦋, means: 'an insect with big, bright wings. It is **not** a fly made of butter!' }
+        caption: A **compound word** is two words snapped into one. Guess the meaning first. Then press **Snap!**
+
+  - title: Clap the syllables
+    blocks:
+      - type: visual
+        covers: [S2.5]
+        component: g3e-syllable-clap
+        props:
+          items:
+            - { text: 'rain·bow', note: 'Two beats, one for each small word.' }
+            - { text: 'quick·ly', note: 'Two beats. The suffix *-ly* is its own beat.' }
+            - { text: 'sun·flow·er', note: 'Three beats.' }
+            - { text: 'pi·a·nist', note: 'Three beats.' }
+        caption: Each **syllable** is one beat, with one vowel sound. Clap each word.
+
+keyTerms:
+  - term: Suffix
+    covers: [K2.3, K2.5, K2.6]
+    definition: An affix at the end of a base, like **-ly** in *quickly*. It changes the meaning.
+  - term: Adverb
+    covers: [K2.5]
+    definition: A word that tells about an action. Many end in **-ly**, like *softly* and *daily*.
+  - term: Compound word
+    covers: [S2.4]
+    definition: Two words joined to make one new word, like *snow* + *man* = *snowman*.
+  - term: Syllable
+    covers: [S2.5]
+    definition: One beat in a word. *Rainbow* has two syllables.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.6, S2.3]
+    type: text
+    prompt: A person who **paints** is a ___. Add a suffix and type the word.
+    accept: [painter]
+    hints:
+      - Think of *teacher* and *farmer*.
+    solution:
+      - '**paint + -er = painter**, a person who paints.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S2.2, K2.5]
+    type: mc
+    prompt: 'Which word tells **when**? *We go skating ___.*'
+    choices:
+      - weekly
+      - quickly
+      - lastly
+    answer: 0
+    feedback:
+      '1': '*Quickly* tells **how** you skate.'
+      '2': '*Lastly* tells the **order** of steps.'
+    hints:
+      - Which word means *every week*?
+    solution:
+      - '**Weekly** means every week. It tells **when**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.6, S2.3, S2.1]
+    type: mc
+    prompt: A **pianist** plays the piano. Ana plays the violin. What is she?
+    choices:
+      - a violinist
+      - a violiner
+      - a violinly
+    answer: 0
+    feedback:
+      '1': Is it a real word? Look at how *pianist* is built.
+      '2': '**-ly** doesn’t name a person. Which suffix does *pianist* use?'
+    hints:
+      - What suffix is at the end of *pianist*?
+    solution:
+      - '*Pianist* is **piano + -ist**. So **violin + -ist = violinist**.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S2.4, K2.3]
+    type: mc
+    prompt: Which one is a **compound word**?
+    choices:
+      - sunflower
+      - flowers
+      - sunny
+    answer: 0
+    feedback:
+      '1': '*Flowers* is **flower** + **-s**. Is *-s* a word on its own?'
+      '2': '*Sunny* is **sun** + a suffix. Is the end a word on its own?'
+    hints:
+      - A compound word is made of **two whole words**.
+    solution:
+      - '**sun + flower** are two whole words. *Sunflower* is a compound word.'
+      - '*Flowers* and *sunny* are a base with a suffix.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [S2.4]
+    type: mc
+    prompt: 'Leo says, “A **butterfly** is a fly made of butter.” What is wrong with his thinking?'
+    choices:
+      - A compound word’s meaning isn’t always its two parts added up
+      - Butterfly is not a compound word
+      - Nothing. That is what it means.
+    answer: 0
+    feedback:
+      '1': '*Butter* and *fly* are both whole words. So it is a compound word.'
+      '2': Is a butterfly made of butter?
+    hints:
+      - Think of a real butterfly. Is it made of butter?
+    solution:
+      - Many compound words mean their two parts, like *snowman*.
+      - Some don’t, like *butterfly*. Check that the meaning makes sense.
+
+  - id: d2
+    level: 3
+    thinking: pattern
+    covers: [S2.2, K2.5]
+    type: text
+    prompt: 'Our class gets new books **every month**. Add **-ly** to make one word that says when: *We get new books ___.*'
+    accept: [monthly]
+    hints:
+      - '*Every week* is *weekly*. *Every day* is *daily*.'
+    solution:
+      - '*Weekly* means every week. So *every month* is **month + -ly = monthly**.'

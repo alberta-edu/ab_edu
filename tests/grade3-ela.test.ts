@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { circlePoint, letterTeams, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
+import { circlePoint, isCompound, letterTeams, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
 
 describe('story circle', () => {
   it('starts at the top and goes clockwise', () => {
@@ -99,5 +99,14 @@ describe('picture words', () => {
     expect(() => pictureWords('A {big dog.')).toThrow();
     expect(() => pictureWords('A big} dog.')).toThrow();
     expect(() => pictureWords('A {} dog.')).toThrow();
+  });
+});
+
+describe('word snap', () => {
+  it('checks that two words make the compound', () => {
+    expect(isCompound('snow', 'man', 'snowman')).toBe(true);
+    expect(isCompound('Sun', 'flower', 'sunflower')).toBe(true);
+    expect(isCompound('sun', 'flower', 'sunflowers')).toBe(false);
+    expect(isCompound('', 'man', 'man')).toBe(false);
   });
 });
