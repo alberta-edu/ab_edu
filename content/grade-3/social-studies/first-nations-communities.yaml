@@ -1,0 +1,224 @@
+id: first-nations-communities
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [C_WNkKO6SkOOEOWyK5nq7g]
+order: 4
+title: First Nations Communities
+shortTitle: First Nations communities
+summary: >-
+  Count Alberta's 48 First Nations, find where Cree, Blackfoot and Dene are spoken, and flip cards
+  about First Nations symbols and town names.
+
+bigIdea: |-
+  - Alberta has **48** First Nations communities. Each has its own language, culture and history.
+  - Languages spoken include **Cree**, **Blackfoot** and **Dene**.
+  - Symbols, words and names from First Nations are part of who Alberta is.
+
+lesson:
+  - title: 48 First Nations
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.1]
+        component: g3ss-count-pop
+        props:
+          n: 48
+          icon: 🏘️
+          label: First Nations communities in Alberta
+          done: Each one is its own nation, with its own **language**, **culture** and **history**.
+        caption: One house for each First Nations community.
+      - type: callout
+        variant: tip
+        covers: [K1.3, K1.1]
+        title: Each one is different
+        body: First Nations are not all the same. Each community has its own way of life and its own story.
+
+  - title: Many languages
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.1, K1.3]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          items:
+            - { id: siksika, text: 'Many people here speak **Blackfoot** (Niitsitapi).' }
+            - { id: kainai, text: 'Many people here speak **Blackfoot** (Niitsitapi).' }
+            - { id: piikani, text: 'Many people here speak **Blackfoot** (Niitsitapi).' }
+            - { id: maskwacis, text: 'Four Cree Nations live here. Many people speak **Cree** (Nehiyaw).' }
+            - { id: saddle-lake, text: 'Many people here speak **Cree** (Nehiyaw).' }
+            - { id: kapaweno, text: 'Many people here speak **Cree** (Nehiyaw).' }
+            - { id: cold-lake, text: 'Many people here speak **Dene**.' }
+            - { id: athabasca-chipewyan, text: 'Many people here speak **Dene**.' }
+            - { id: dene-tha, text: 'Many people here speak **Dene**.' }
+        caption: '🟡 Blackfoot · 🔵 Cree · 🟢 Dene. Tap a First Nation to see its language.'
+
+  - title: Symbols tell stories
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.2]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: tipi-ring, title: Tipi ring, text: 'It is on the **Blackfoot Confederacy** flag. Long ago, a ring of stones held down the edges of a tipi. Many rings are still on the land.' }
+            - { art: standing-bear, title: Standing bear, text: 'It is on the flag of the **Kapawe’no First Nation**, a Cree nation in northern Alberta.' }
+        caption: Two symbols from First Nations flags.
+      - type: callout
+        variant: tip
+        covers: [S1.2, K1.5]
+        title: Ask about a symbol
+        body: |-
+          - What do I see?
+          - What might it mean to the people who chose it?
+
+  - title: Names all around us
+    blocks:
+      - type: visual
+        covers: [U1.1, K1.3]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🕊️, title: Wetaskiwin, text: 'From a **Cree** word: "the hills where peace was made".' }
+            - { art: 🦌, title: Ponoka, text: 'The **Blackfoot** word for "elk".' }
+            - { art: 🪨, title: Okotoks, text: 'From the **Blackfoot** word for "rock".' }
+        caption: These Alberta towns have First Nations names. Flip each card to find out what it means.
+
+keyTerms:
+  - term: First Nations community
+    covers: [K1.2, K1.3]
+    definition: A First Nation's people and the place where they live together.
+  - term: Culture
+    covers: [K1.3]
+    definition: A group's way of life, such as its language, foods, stories and celebrations.
+  - term: Symbol
+    covers: [K1.5]
+    definition: A picture or object that stands for an idea, a people or a place.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: multi
+    prompt: Which are First Nations languages spoken in Alberta? Choose all that apply.
+    choices: [Cree, Blackfoot, Dene, French]
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': French is spoken in Alberta, but it came from Europe. Is it a First Nations language?
+    hints:
+      - Look back at the map’s three colours.
+    solution:
+      - '**Cree** (Nehiyaw), **Blackfoot** (Niitsitapi) and **Dene** are First Nations languages spoken in Alberta.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.1, K1.4]
+    type: mc
+    prompt: Ava visits the Siksika Nation in southern Alberta. Which language do many people there speak?
+    choices: [Blackfoot, Dene, Cree]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Dene is spoken by many people in the north. Is the Siksika Nation in the north?
+      '2': Cree is spoken by many people in central and northern Alberta. Where is the Siksika Nation?
+    hints:
+      - Find the Siksika Nation on the map. What colour is its dot?
+    solution:
+      - The Siksika Nation is part of the Blackfoot Confederacy. Many people there speak **Blackfoot**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.5, S1.2]
+    type: mc
+    prompt: Jonah finds a big circle of stones on the prairie. His aunt says it is very old. What could it be?
+    choices:
+      - A tipi ring, where stones once held down a tipi
+      - A fence that a farmer built for cows
+      - A pile of rocks that rolled down a hill
+    answer: 0
+    feedback:
+      '1': Could a ring of loose stones keep cows in?
+      '2': Do rolling rocks land in a neat circle?
+    hints:
+      - Which symbol on a First Nations flag is a circle of stones?
+    solution:
+      - It could be a **tipi ring**. Stones held down the edges of a tipi, and many rings are still on the land.
+      - The tipi ring is a symbol on the Blackfoot Confederacy flag.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [U1.1, K1.3]
+    type: mc
+    prompt: Wetaskiwin is a Cree name. Ponoka and Okotoks are Blackfoot names. What do these town names show?
+    choices:
+      - First Nations languages are part of Alberta.
+      - Only Cree people live in Wetaskiwin today.
+      - Cree and Blackfoot are the same language.
+    answer: 0
+    feedback:
+      '1': A name can come from a language long ago. Does it tell you who lives there now?
+      '2': Each name comes from a different language. Are they the same?
+    hints:
+      - Where do these names come from? What does that say about Alberta?
+    solution:
+      - Names from Cree and Blackfoot are on Alberta’s map. First Nations languages are part of **who Alberta is**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [K1.5, K1.3, S1.2]
+    type: mc
+    prompt: The Blackfoot Confederacy flag shows a tipi ring. The Kapawe’no First Nation flag shows a standing bear. Why are their symbols different?
+    choices:
+      - Each nation has its own culture and history to show.
+      - One nation copied a flag, and the other didn’t.
+      - Flags are picked at random, so they have no meaning.
+    answer: 0
+    feedback:
+      '1': Do the two flags look alike? Is one a copy?
+      '2': A symbol stands for something. Would a nation pick its flag at random?
+    hints:
+      - What does a symbol stand for?
+      - Are all First Nations the same?
+    solution:
+      - Each First Nation is **distinct**, with its own culture and history. So each chooses its own symbols.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.2, K1.3, U1.1]
+    type: investigation
+    prompt: Your class is making a poster called "First Nations of Alberta".
+    parts:
+      - type: number
+        prompt: How many First Nations communities should the poster show?
+        answer: 48
+        verify: '48'
+        unit: communities
+        hints:
+          - Think back to the counting at the start of the lesson.
+        solution:
+          - Alberta has **48** First Nations communities.
+      - type: mc
+        prompt: 'Leo draws one tipi and writes, "This is how all First Nations live." What is the problem?'
+        choices:
+          - Each of the 48 has its own language, culture and history.
+          - The poster needs more tipis, all drawn the same way.
+          - Nothing. One drawing can show all 48 communities.
+        answer: 0
+        feedback:
+          '1': More of the same drawing still shows them all as one. Are they all the same?
+          '2': Do all 48 communities speak the same language?
+        hints:
+          - Think of the map. Did every First Nation speak the same language?
+        solution:
+          - First Nations are **diverse**. One picture can’t show 48 different languages, cultures and histories.
+    wrapUp: There is no single First Nations way of life. Forty-eight communities means forty-eight stories.
+    hints: []
+    solution: []

@@ -1,0 +1,233 @@
+id: local-government
+grade: 3
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [_XseQ8wNwUa9Ay2CnSzd2w]
+order: 11
+title: Local Government
+shortTitle: Local government
+summary: >-
+  Tap the places your town looks after, sort mayors, reeves and Chiefs, and watch how citizens vote for
+  a council that meets to make decisions.
+
+bigIdea: |-
+  - Your **municipal government** runs local services, like fire halls, libraries and roads.
+  - Leaders can be a **mayor**, a **reeve** or a **Chief**.
+  - Citizens vote for council members. The council meets to make decisions.
+
+lesson:
+  - title: What does the town do?
+    blocks:
+      - type: visual
+        covers: [K1.2]
+        component: g3ss-town
+        props:
+          spots:
+            - { id: fire, text: 'Firefighters put out fires and help in emergencies.' }
+            - { id: police, text: 'Local police help keep people safe.' }
+            - { id: library, text: 'Borrow books for free, and come to story time.' }
+            - { id: park, text: 'A place to play, have a picnic and walk the dog.' }
+            - { id: water, text: 'Clean water comes to your taps. Used water is taken away.' }
+            - { id: road, text: 'Crews fix roads and sidewalks, and clear the snow.' }
+        caption: Your **municipal government** runs all of these. Tap each one.
+      - type: callout
+        variant: remember
+        covers: [jK83s4ttGUWTJP6BujE61g#K1.2]
+        title: From Grade 2
+        body: Canada has three levels of government. The **local**, or municipal, level is closest to home.
+
+  - title: Who leads?
+    blocks:
+      - type: visual
+        covers: [S1.4, K1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: mayor, label: Mayor, icon: 🏙️ }
+            - { id: reeve, label: Reeve, icon: 🚜 }
+            - { id: chief, label: Chief, icon: 🪶 }
+          cards:
+            - { text: 'The City of Calgary', bin: mayor, why: 'A city council is led by a **mayor**.' }
+            - { text: 'Rocky View County', bin: reeve, why: 'Many counties and municipal districts are led by a **reeve**.' }
+            - { text: 'Siksika Nation', bin: chief, why: 'A First Nation’s council is led by a **Chief**.' }
+            - { text: 'The Town of Canmore', bin: mayor, why: 'A town council is led by a **mayor** too.' }
+            - { text: 'Lethbridge County', bin: reeve, why: 'This county’s council is led by a **reeve**.' }
+            - { text: 'Tsuut’ina Nation', bin: chief, why: 'Tsuut’ina Nation is led by a **Chief** and council.' }
+        caption: Who leads each community? Look at what kind of place it is.
+
+  - title: Choose the council
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4]
+        component: g3ss-story-steps
+        props:
+          walker: 🧑
+          steps:
+            - { icon: 🗳️, when: Vote, text: 'On election day, citizens **vote** for the people they want on council.' }
+            - { icon: 🏆, when: Win, text: 'The people with the most votes become the **representatives**.' }
+            - { icon: 🪑, when: Meet, text: 'The council meets to talk about issues, like a busy road.' }
+            - { icon: ✋, when: Decide, text: 'They vote to decide, such as adding a crosswalk.' }
+        caption: Press ▶ and follow a council from election day to a decision.
+
+  - title: Kinds of local government
+    blocks:
+      - type: visual
+        covers: [K1.7]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🏙️, title: Town or city council, text: 'Makes decisions for a town or city. A **mayor** leads it.' }
+            - { art: 🚜, title: Municipal district, text: 'Makes decisions for farms and small places in the countryside. Often a **reeve** leads it.' }
+            - { art: 🏫, title: School board, text: 'Citizens vote for school **trustees**. The board makes decisions about local schools.' }
+        caption: Flip each card. All three are local governments.
+
+keyTerms:
+  - term: Municipal government
+    covers: [K1.2, K1.7]
+    definition: The local government of a city, town, county or district.
+  - term: Council
+    covers: [K1.4]
+    definition: A group of representatives who meet to talk about issues and make decisions.
+  - term: Election
+    covers: [K1.3]
+    definition: A time when citizens vote to choose their representatives.
+  - term: School board
+    covers: [K1.7]
+    definition: A group of trustees, chosen by voters, who make decisions about local schools.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, S1.4]
+    type: mc
+    prompt: Who leads the council of the City of Red Deer?
+    choices: [🏙️ A mayor, 🚜 A reeve, 🪶 A Chief]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Many counties have a reeve. Is Red Deer a county?
+      '2': A Chief leads a First Nation. Is Red Deer a First Nation?
+    hints:
+      - What kind of place is Red Deer?
+    solution:
+      - Red Deer is a **city**. A city council is led by a **mayor**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.3]
+    type: mc
+    prompt: How are council members chosen?
+    choices:
+      - 🗳️ Citizens vote for them.
+      - 🙋 The mayor picks them.
+      - ✍️ Anyone who signs up gets the job.
+    answer: 0
+    feedback:
+      '1': The mayor is one council member. Who chooses all of them?
+      '2': If many people want the job, how is it decided?
+    hints:
+      - What happens on election day?
+    solution:
+      - Citizens **vote** in an election. The people with the most votes join the council.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.4, K1.2]
+    type: mc
+    prompt: Sasha’s town might build a new splash park. Who decides?
+    choices:
+      - The town council, at a meeting
+      - The workers at the library
+      - Sasha’s teacher at school
+    answer: 0
+    feedback:
+      '1': Library workers run the library. Do they decide about parks?
+      '2': A teacher decides things in class. Who decides for the whole town?
+    hints:
+      - Who meets to make decisions for the town?
+    solution:
+      - Local parks are a town service. The **town council** talks about it at a meeting, then decides.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.4, K1.1]
+    type: mc
+    prompt: Ben lives on a farm in Lethbridge County. Lily lives in the City of Lethbridge. Whose council is led by a reeve?
+    choices: [🚜 Ben’s, 🏙️ Lily’s, 🤝 Both]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Lily lives in a city. Who leads a city council?
+      '2': The names look alike. Are both places the same kind of community?
+    hints:
+      - Look closely. Which one is a county, and which one is a city?
+    solution:
+      - Lethbridge **County** is led by a **reeve**. The City of Lethbridge is led by a mayor.
+      - Same name, but two different communities.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: perspective
+    covers: [K1.4, K1.3]
+    type: mc
+    prompt: The council can fix the old library or build a skatepark, but not both. What should they do before deciding?
+    choices:
+      - Listen to many citizens at a meeting
+      - Ask only the kids who skate
+      - Do whatever the mayor likes best
+    answer: 0
+    feedback:
+      '1': Skaters want the skatepark. Who else uses the library?
+      '2': The mayor is one person. Who chose the whole council?
+    hints:
+      - Who uses the library? Who would use the skatepark?
+    solution:
+      - Council members **represent** all the citizens who voted. Hearing many people helps them choose fairly.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.7, K1.2, K1.1]
+    type: investigation
+    prompt: |-
+      There are two problems near the town of Pine Valley:
+
+      - The town school needs more desks.
+      - A county road outside town has potholes.
+    parts:
+      - type: mc
+        prompt: Who decides about the school desks?
+        choices: [🏫 The school board, 🏙️ The town council, 🚜 The reeve]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': The town council runs town services. Who makes decisions about local schools?
+          '2': The reeve leads a county. Who is in charge of schools?
+        hints:
+          - Which local government is all about schools?
+        solution:
+          - The **school board** makes decisions about local schools.
+      - type: mc
+        prompt: The road is in the county, outside town. Whose council decides?
+        choices:
+          - 🚜 The county council, led by a reeve
+          - 🏙️ The town council, led by a mayor
+          - 🏫 The school board
+        answer: 0
+        feedback:
+          '1': The road is outside town. Does the town council look after it?
+          '2': Is a road part of a school?
+        hints:
+          - Where is the road? Which community is it in?
+        solution:
+          - The road is in the **county**. The county council, led by the reeve, fixes it.
+    wrapUp: Each local government has its own job and its own place. First ask what the problem is, and where it is.
+    hints: []
+    solution: []

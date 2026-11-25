@@ -1,0 +1,152 @@
+---
+// Grade 3: "Use it up?" Each resource is a tank. Press ▶ and every tank drains a little. Then nature
+// works: the sun, wind and water tanks fill back up, while coal, oil and gas stay down, until they
+// run out. It shows renewable and non-renewable resources as something to watch.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  items: { icon: string; label: string; renew: boolean; why: string }[];
+  start?: string;
+}
+const { items, start = '▶ Use some' } = Astro.props;
+const data = items.map((it) => ({ label: it.label.toLowerCase(), renew: it.renew }));
+---
+<g3ss-refill data-items={JSON.stringify(data)}>
+  <ul class="g3ss-rf-tanks" style={`--g3ss-rf-n:${Math.min(items.length, 6)}`}>
+    {
+      items.map((it, i) => (
+        <li class={`g3ss-rf-tank ${it.renew ? 'is-renew' : 'is-once'}`} data-rf-tank={i}>
+          <span class="g3ss-rf-icon" aria-hidden="true">{it.icon}</span>
+          <span class="g3ss-rf-bar" aria-hidden="true"><span class="g3ss-rf-fill" data-rf="fill"></span></span>
+          <span class="g3ss-rf-label">{it.label}</span>
+          <span class="g3ss-rf-tag" data-rf="tag" aria-hidden="true"></span>
+          <span class="g3ss-rf-why" data-rf="why" hidden set:html={mdInline(it.why)} />
+        </li>
+      ))
+    }
+  </ul>
+  <p class="g3ss-rf-msg" data-rf="msg" aria-live="polite">Guess first: which ones will come back? Then press ▶.</p>
+  <div class="g3ss-rf-buttons">
+    <button type="button" class="btn btn--small" data-rf="run">{start}</button>
+    <button type="button" class="btn btn--small btn--ghost" data-rf="reset" hidden>↺ Fill them up</button>
+  </div>
+</g3ss-refill>
+
+<style is:global>
+  g3ss-refill { display: block; }
+  .g3ss-rf-tanks { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; grid-template-columns: repeat(var(--g3ss-rf-n), minmax(0, 1fr)); }
+  @media (max-width: 34rem) { .g3ss-rf-tanks { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .g3ss-rf-tank { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.5rem 0.3rem; border-radius: var(--radius-sm); border: 2px solid var(--line); background: var(--surface); text-align: center; }
+  .g3ss-rf-icon { font-size: 2rem; line-height: 1; }
+  .g3ss-rf-bar { position: relative; width: 2.2rem; height: 5rem; border-radius: 0.5rem; border: 2px solid var(--line-strong); background: var(--surface-2); overflow: hidden; }
+  .g3ss-rf-fill { position: absolute; left: 0; right: 0; bottom: 0; height: var(--g3ss-rf-level, 100%); background: #5b84b8; transition: height 0.7s ease, background 0.4s ease; }
+  /* Every tank looks the same until the first run, so the colours don't give the answer away. */
+  .is-shown .is-renew .g3ss-rf-fill { background: #3fa45b; }
+  .is-shown .is-once .g3ss-rf-fill { background: #8a6a4a; }
+  .g3ss-rf-label { font-weight: 800; }
+  .g3ss-rf-tag { min-height: 1.3em; font-size: var(--step--1); font-weight: 800; }
+  .g3ss-rf-tag.is-back { color: var(--ok); animation: g3ss-rf-pop 0.4s ease; }
+  .g3ss-rf-tag.is-gone { color: var(--bad); }
+  .g3ss-rf-tag.is-low { color: var(--warn); }
+  .g3ss-rf-why { font-size: var(--step--1); line-height: 1.3; color: var(--ink-2); }
+  .g3ss-rf-tank.is-back .g3ss-rf-icon { animation: g3ss-rf-wiggle 0.6s ease; }
+  .g3ss-rf-tank.is-gone { opacity: 0.7; }
+  .g3ss-rf-msg { margin: 0.7rem 0 0; font-weight: 700; }
+  .g3ss-rf-msg.is-done { color: var(--ok); }
+  .g3ss-rf-buttons { display: flex; gap: 0.5rem; margin-top: 0.6rem; flex-wrap: wrap; }
+  @keyframes g3ss-rf-pop { 50% { transform: scale(1.3); } }
+  @keyframes g3ss-rf-wiggle { 25% { transform: rotate(-12deg) scale(1.15); } 75% { transform: rotate(12deg) scale(1.15); } }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .g3ss-rf-fill { background: #8fb0e0; }
+    :root:not([data-theme='light']) .is-shown .is-renew .g3ss-rf-fill { background: #5cc278; }
+    :root:not([data-theme='light']) .is-shown .is-once .g3ss-rf-fill { background: #b08d68; }
+  }
+  :root[data-theme='dark'] .g3ss-rf-fill { background: #8fb0e0; }
+  :root[data-theme='dark'] .is-shown .is-renew .g3ss-rf-fill { background: #5cc278; }
+  :root[data-theme='dark'] .is-shown .is-once .g3ss-rf-fill { background: #b08d68; }
+  @media (prefers-reduced-motion: reduce) {
+    .g3ss-rf-fill { transition: none; }
+    .g3ss-rf-tag.is-back, .g3ss-rf-tank.is-back .g3ss-rf-icon { animation: none; }
+  }
+</style>
+
+<script>
+  import { afterNature, afterUse, message, status } from './g3ss-refill.ts';
+
+  const TAGS = { full: '', back: '♻️ Back!', low: '📉 Less', gone: '❌ Gone' } as const;
+
+  class ResourceRefill extends HTMLElement {
+    private levels: number[] = [];
+    private items: { label: string; renew: boolean }[] = [];
+    private busy = false;
+    private startLabel = '';
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.startLabel = this.querySelector('[data-rf="run"]')!.textContent ?? '';
+      this.levels = this.items.map(() => 100);
+      this.querySelector('[data-rf="run"]')!.addEventListener('click', () => this.use());
+      this.querySelector('[data-rf="reset"]')!.addEventListener('click', () => this.reset());
+      this.draw();
+    }
+
+    private tank(i: number) {
+      return this.querySelector<HTMLElement>(`[data-rf-tank="${i}"]`)!;
+    }
+
+    private draw(showTags = false) {
+      this.levels.forEach((lv, i) => {
+        const t = this.tank(i);
+        const s = status(lv, this.items[i].renew);
+        t.style.setProperty('--g3ss-rf-level', `${lv}%`);
+        t.classList.toggle('is-back', showTags && s === 'back');
+        t.classList.toggle('is-gone', s === 'gone');
+        const tag = t.querySelector<HTMLElement>('[data-rf="tag"]')!;
+        tag.textContent = showTags ? TAGS[s] : '';
+        tag.className = `g3ss-rf-tag${showTags ? ` is-${s}` : ''}`;
+        if (showTags) t.querySelector<HTMLElement>('[data-rf="why"]')!.hidden = false;
+      });
+    }
+
+    private async use() {
+      if (this.busy) return;
+      this.busy = true;
+      const run = this.querySelector<HTMLButtonElement>('[data-rf="run"]')!;
+      const msg = this.querySelector<HTMLElement>('[data-rf="msg"]')!;
+      run.disabled = true;
+      this.levels = this.levels.map(afterUse);
+      this.draw();
+      msg.textContent = '⏳ Wait and watch…';
+      msg.classList.remove('is-done');
+      const wait = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1100;
+      await new Promise((r) => setTimeout(r, wait));
+      this.levels = this.levels.map((lv, i) => afterNature(lv, this.items[i].renew));
+      this.classList.add('is-shown');
+      this.draw(true);
+      const renew = this.items.filter((it) => it.renew).map((it) => it.label);
+      const other = this.items.filter((it) => !it.renew).map((it) => it.label);
+      const allGone = this.items.every((it, i) => it.renew || this.levels[i] === 0);
+      msg.textContent = message(renew, other, allGone);
+      msg.classList.toggle('is-done', allGone);
+      run.disabled = allGone;
+      run.textContent = allGone ? this.startLabel : '▶ Use some more';
+      this.querySelector<HTMLElement>('[data-rf="reset"]')!.hidden = false;
+      this.busy = false;
+    }
+
+    private reset() {
+      this.levels = this.items.map(() => 100);
+      this.classList.remove('is-shown');
+      this.draw();
+      this.querySelectorAll<HTMLElement>('[data-rf="why"]').forEach((w) => (w.hidden = true));
+      const run = this.querySelector<HTMLButtonElement>('[data-rf="run"]')!;
+      run.disabled = false;
+      run.textContent = this.startLabel;
+      const msg = this.querySelector<HTMLElement>('[data-rf="msg"]')!;
+      msg.textContent = 'Guess first: which ones will come back? Then press ▶.';
+      msg.classList.remove('is-done');
+      this.querySelector<HTMLElement>('[data-rf="reset"]')!.hidden = true;
+    }
+  }
+  customElements.define('g3ss-refill', ResourceRefill);
+</script>

@@ -182,6 +182,17 @@ import G3eRunOn from './visuals/G3eRunOn.astro';
 import G3eQuoteCatch from './visuals/G3eQuoteCatch.astro';
 import G3eOwner from './visuals/G3eOwner.astro';
 import G3eWhere from './visuals/G3eWhere.astro';
+import AlbertaMap from './visuals/AlbertaMap.astro';
+import StorySteps from './visuals/StorySteps.astro';
+import SymbolCards from './visuals/SymbolCards.astro';
+import CountPop from './visuals/CountPop.astro';
+import BlendCircles from './visuals/BlendCircles.astro';
+import ResourceRefill from './visuals/ResourceRefill.astro';
+import BoomTown from './visuals/BoomTown.astro';
+import TownTap from './visuals/TownTap.astro';
+import ShieldBuild from './visuals/ShieldBuild.astro';
+import LifeMeter from './visuals/LifeMeter.astro';
+import FoodDrive from './visuals/FoodDrive.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -365,6 +376,17 @@ const visuals = {
   'g3e-quote-catch': G3eQuoteCatch,
   'g3e-owner': G3eOwner,
   'g3e-where': G3eWhere,
+  'g3ss-alberta-map': AlbertaMap,
+  'g3ss-story-steps': StorySteps,
+  'g3ss-symbol-cards': SymbolCards,
+  'g3ss-count-pop': CountPop,
+  'g3ss-blend': BlendCircles,
+  'g3ss-refill': ResourceRefill,
+  'g3ss-boomtown': BoomTown,
+  'g3ss-town': TownTap,
+  'g3ss-shield-build': ShieldBuild,
+  'g3ss-life-meter': LifeMeter,
+  'g3ss-food-drive': FoodDrive,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

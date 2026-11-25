@@ -30,7 +30,8 @@ function audit(GRADE: number, s: SubjectInfo) {
           earlier.push(`| ${c.subject}/${c.id} | ${where} | Grade ${st.grade.toUpperCase()} ${st.outcomeCode} ${st.ref} | ${st.text} |`);
           continue;
         }
-        const k = `${c.subject}|${st.outcomeCode}|${st.ref.replace(/^.*#/, '')}`;
+        // A concept's second outcome gives refs like "CODE#K1.19"; the audit lists them as "K1.19".
+        const k = `${c.subject}|${st.outcomeCode}|${st.ref.split('#').pop()}`;
         uses.set(k, [...(uses.get(k) ?? []), `${c.id}: ${where}`]);
       }
     };

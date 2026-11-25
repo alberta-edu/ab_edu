@@ -1,0 +1,240 @@
+id: metis-alberta
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [C_WNkKO6SkOOEOWyK5nq7g]
+order: 5
+title: Métis Culture and Settlements
+shortTitle: Métis culture & Settlements
+summary: >-
+  Watch First Nations and European ways blend into Métis culture, flip cards for the sash and the Red
+  River cart, and find Alberta's eight Métis Settlements.
+
+bigIdea: |-
+  - The **Métis** have their own culture. It blends First Nations and European ways.
+  - The **sash** and the **Red River cart** are Métis symbols. Many Métis speak **Michif**.
+  - In Alberta's eight **Métis Settlements**, Métis people govern themselves.
+
+lesson:
+  - title: A blended way of life
+    blocks:
+      - type: visual
+        covers: [K1.9, K1.7, U1.2]
+        component: g3ss-blend
+        props:
+          left: { icon: 🪶, label: First Nations ways, items: ['Hunting and trapping', 'The Cree language'] }
+          right: { icon: ⛵, label: European ways, items: ['Farming', 'The French language'] }
+          middle: { icon: ♾️, label: Métis ways, items: ['Farming, hunting and trapping', '**Michif**, a language that mixes Cree and French'] }
+        caption: Press ▶ and watch two ways of life blend into something new.
+      - type: callout
+        variant: remember
+        covers: [gYX2AoeJmEOgIv0JRUC3Cg#K1.3]
+        title: From Grade 2
+        body: Métis traditions and languages, such as Michif, have both **First Nations** and **European** roots.
+
+  - title: Métis symbols
+    blocks:
+      - type: visual
+        covers: [K1.8, S1.2, S1.4]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: sash, title: The sash, text: 'A bright belt, woven by hand. It could also be a rope or a strap. It blends First Nations and European weaving.' }
+            - { art: red-river-cart, title: Red River cart, text: 'Made of wood and rawhide, with no metal. Métis families used it to carry goods across the prairie.' }
+        caption: Two symbols of Métis culture. What does each one tell you?
+      - type: callout
+        variant: tip
+        covers: [U1.2, K1.8]
+        title: A distinct culture
+        body: Métis culture is not First Nations and not European. It is its own, with its own history.
+
+  - title: Métis Settlements
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.3]
+        component: g3ss-alberta-map
+        props:
+          layer: metis
+          cities: [edmonton]
+          items:
+            - { id: paddle-prairie, text: 'The farthest north of the eight Settlements.' }
+            - { id: peavine, text: 'In the north-west, near High Prairie.' }
+            - { id: gift-lake, text: 'In the north, east of Peavine.' }
+            - { id: east-prairie, text: 'South of the town of High Prairie.' }
+            - { id: buffalo-lake, text: 'North-east of Edmonton.' }
+            - { id: kikino, text: 'Right beside Buffalo Lake Settlement.' }
+            - { id: fishing-lake, text: 'Near the Saskatchewan border.' }
+            - { id: elizabeth, text: 'Also near the Saskatchewan border.' }
+        caption: Tap each purple dot. Alberta is the only province with Métis Settlements.
+      - type: callout
+        variant: tip
+        covers: [K1.6]
+        title: Self-government
+        body: People in each Settlement elect their own council. The council makes decisions for the community.
+
+  - title: Find the Settlements
+    blocks:
+      - type: visual
+        covers: [S1.3]
+        component: g3ss-alberta-map
+        props:
+          layer: metis
+          find: true
+          cities: [edmonton]
+          items:
+            - { id: paddle-prairie, text: 'The farthest north.' }
+            - { id: buffalo-lake, text: 'North-east of Edmonton.' }
+            - { id: east-prairie, text: 'The one farthest south in the west.' }
+            - { id: elizabeth, text: 'On the east side, near Saskatchewan.' }
+        caption: Play the game. Tap the Settlement the map asks for.
+
+keyTerms:
+  - term: Métis
+    covers: [K1.9, U1.2]
+    definition: A people with their own culture that blends First Nations and European ways.
+  - term: Michif
+    covers: [K1.7]
+    definition: A Métis language that mixes Cree and French.
+  - term: Métis Settlement
+    covers: [K1.6]
+    definition: A community in Alberta where Métis people govern themselves.
+  - term: Self-government
+    covers: [K1.6]
+    definition: When a community makes its own decisions and chooses its own leaders.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.7]
+    type: mc
+    prompt: Which Métis language mixes Cree and French?
+    choices: [Michif, Blackfoot, Dene]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Blackfoot is a First Nations language. Does it mix in French?
+      '2': Dene is a First Nations language. Does it mix in French?
+    hints:
+      - Look back at the middle circle in the lesson.
+    solution:
+      - '**Michif** mixes Cree and French. It is a Métis language.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.3, K1.6]
+    type: mc
+    prompt: Look at the map. Each purple dot is a Métis Settlement. Where are they?
+    figure: |-
+      <svg viewBox="0 0 280 460" class="fig-svg fig-svg--square" role="img" aria-label="A map of Alberta with eight purple dots for the Métis Settlements. All eight are in the northern half of Alberta, north of Edmonton."><path d="M256.0,12.0 24.0,12.0 24.0,256.9 30.5,264.4 25.9,264.4 26.3,268.0 38.2,274.3 41.2,281.4 52.1,282.2 56.0,293.2 61.6,294.4 65.3,313.4 70.6,308.2 76.0,311.8 74.6,319.3 86.2,320.5 95.5,339.5 101.0,335.5 108.4,348.9 109.6,352.5 124.9,367.5 127.0,371.8 125.2,373.8 132.8,378.6 135.1,386.1 139.5,384.1 145.3,392.8 148.6,417.7 145.8,422.4 150.0,424.4 149.5,431.1 161.6,446.5 256.0,446.5Z" fill="#e6e0d2"/><path d="M256.0,12.0 24.0,12.0 24.0,256.9 30.5,264.4 25.9,264.4 26.3,268.0 38.2,274.3 41.2,281.4 52.1,282.2 56.0,293.2 61.6,294.4 65.3,313.4 70.6,308.2 76.0,311.8 74.6,319.3 86.2,320.5 95.5,339.5 101.0,335.5 108.4,348.9 109.6,352.5 124.9,367.5 127.0,371.8 125.2,373.8 132.8,378.6 135.1,386.1 139.5,384.1 145.3,392.8 148.6,417.7 145.8,422.4 150.0,424.4 149.5,431.1 161.6,446.5 256.0,446.5Z" fill="none" stroke="#4a4858" stroke-width="1.6"/><circle cx="84.3" cy="95" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="109.8" cy="174" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="126.1" cy="175.9" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="112.2" cy="201.6" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="200.3" cy="229.3" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="209.6" cy="233.2" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="251.4" cy="249" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><circle cx="253.7" cy="243.1" r="6" fill="#7a3dc2" stroke="#fff" stroke-width="1.5"/><g transform="translate(174.8 268.8)"><circle r="3.5" fill="#1c1b24"/><text x="6" y="4" font-size="11" font-weight="700" fill="#1c1b24" stroke="#fff" stroke-width="3" paint-order="stroke">Edmonton</text></g><g transform="translate(160.9 367.5)"><circle r="3.5" fill="#1c1b24"/><text x="6" y="4" font-size="11" font-weight="700" fill="#1c1b24" stroke="#fff" stroke-width="3" paint-order="stroke">Calgary</text></g></svg>
+    choices: [In the northern half, In the far south, In the mountains]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Find Calgary. Are any dots near it or south of it?
+      '2': The mountains are along the south-west side. Are the dots there?
+    hints:
+      - Find Edmonton. Are the dots above it or below it?
+    solution:
+      - All eight Métis Settlements are in the **northern half** of Alberta, north of Edmonton.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.9, U1.2]
+    type: mc
+    prompt: Long ago, Marie’s Métis family farmed in summer and hunted and trapped in winter. What does this show?
+    choices:
+      - Métis ways of living blend First Nations and European ways.
+      - Métis families only farmed, like European settlers did.
+      - Métis families only hunted, like some First Nations did.
+    answer: 0
+    feedback:
+      '1': Did Marie’s family only farm?
+      '2': Did Marie’s family only hunt?
+    hints:
+      - Which of Marie’s family’s ways came from European roots? Which came from First Nations roots?
+    solution:
+      - Farming has European roots. Hunting and trapping have First Nations roots.
+      - Marie’s family did both. That **blend** is a Métis way of living.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.8, S1.2]
+    type: mc
+    prompt: At a Métis celebration, a fiddler wears a bright, woven belt with long fringes. What is it?
+    choices: [🧣 A Métis sash, 🛞 A Red River cart, 🪨 A tipi ring]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A Red River cart has wheels. Can you wear it?
+      '2': A tipi ring is a circle of stones. Is it a woven belt?
+    hints:
+      - Which Métis symbol is woven by hand?
+    solution:
+      - It is a **sash**, a Métis symbol woven by hand.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [K1.6]
+    type: mc
+    prompt: People in each Métis Settlement elect their own council. Why does that matter?
+    choices:
+      - Métis people make decisions for their own community.
+      - People from far away make all the decisions for them.
+      - Nobody makes any decisions in a Métis Settlement.
+    answer: 0
+    feedback:
+      '1': Who elects the council, and who does it work for?
+      '2': What does a council do?
+    hints:
+      - Who chooses the council? What does the council do?
+    solution:
+      - The people elect the council, and the council makes decisions for the Settlement.
+      - That is **self-government**. Métis people run their own community.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.8, S1.4]
+    type: investigation
+    prompt: |-
+      A Métis family crosses the prairie long ago. Their Red River cart is made only of **wood** and **rawhide**. A wheel breaks!
+    parts:
+      - type: mc
+        prompt: What if the cart were made of metal parts instead? What would be harder?
+        choices:
+          - Fixing it, because there was no metal to find on the prairie.
+          - Pulling it, because metal is lighter than wood.
+          - Nothing at all would change for the family.
+        answer: 0
+        feedback:
+          '1': Is metal lighter than wood?
+          '2': Could the family find metal parts on the prairie?
+        hints:
+          - What could the family find on the prairie to make a new wheel?
+        solution:
+          - Wood and rawhide came from the land around them. With metal, they could not fix it on the trail.
+      - type: mc
+        prompt: Why is the Red River cart a Métis symbol?
+        choices:
+          - It shows Métis history and a way of life on the prairie.
+          - It was the only cart that anyone in the world used.
+          - It was invented in Europe and never used in Alberta.
+        answer: 0
+        feedback:
+          '1': Lots of people used carts. What makes this one special to Métis people?
+          '2': Where did Métis families use this cart?
+        hints:
+          - What does a symbol do?
+        solution:
+          - A symbol stands for something. The cart shows **Métis history** and how families lived and travelled.
+    wrapUp: The Red River cart was built from the land, for life on the land. That is why it tells the story of Métis culture.
+    hints: []
+    solution: []

@@ -1,0 +1,230 @@
+id: quality-of-life
+grade: 3
+subject: social-studies
+organizingIdea: mHPvaWAVOU-k7Fefv9hAWw
+outcomes: [szaTLb84c0ie7-Z6oA2LDA]
+order: 14
+title: Making Life Better Together
+shortTitle: Making life better
+summary: >-
+  Tap kind actions and watch quality-of-life meters fill. Flip cards about community events, sort who
+  each action helps, and watch a whole class help.
+
+bigIdea: |-
+  - **Quality of life** is feeling safe, comfortable, healthy and happy.
+  - Your actions, and community events, can make life better for you and for others.
+  - When many **active citizens** help, the whole community gets stronger.
+
+lesson:
+  - title: Fill the meters
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2]
+        component: g3ss-life-meter
+        props:
+          actions:
+            - { icon: 🧤, label: Shovel a neighbour’s walk, adds: [safety, comfort], text: 'Nobody slips on the ice.' }
+            - { icon: 🚲, label: Wear a bike helmet, adds: [safety, health], text: 'It protects **your own** head.' }
+            - { icon: 🥕, label: Grow a class garden, adds: [health, happiness], text: 'Fresh food, and fun outside.' }
+            - { icon: 🧣, label: Give warm clothes, adds: [comfort, health], text: 'Someone stays warm all winter.' }
+            - { icon: 👋, label: Invite someone to play, adds: [happiness], text: 'Nobody feels left out.' }
+            - { icon: 🚶, label: Walk to school with a friend, adds: [safety, happiness], text: 'Safer, and more fun, together.' }
+        caption: Tap each action. Which parts of **quality of life** go up?
+
+  - title: Community events
+    blocks:
+      - type: visual
+        covers: [K1.5, K1.6]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: 🎪, title: Heritage Festival, text: 'Every August in Edmonton, families share food, music and dance from many cultures.' }
+            - { art: 🤠, title: Calgary Stampede, text: 'Parades every July. Treaty 7 First Nations share their culture at Elbow River Camp.' }
+            - { art: 🧹, title: Clean-up day, text: 'Neighbours pick up litter together each spring. The park is clean for everyone.' }
+            - { art: ⛸️, title: Skating party, text: 'Neighbours flood an outdoor rink and skate together. Everyone gets fresh air and fun.' }
+        caption: Flip each card. How does each event make life better?
+
+  - title: Who does it help?
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: one, label: One person, icon: 🙋 }
+            - { id: all, label: The whole community, icon: 🏘️ }
+          cards:
+            - { text: 'Carry a neighbour’s groceries', bin: one, why: 'A kind action that helps **one** person.' }
+            - { text: 'Plant flowers in the town park', bin: all, why: 'Everyone who visits the park enjoys them.' }
+            - { text: 'Read to a younger buddy', bin: one, why: 'It helps **one** buddy learn to read.' }
+            - { text: 'Pick up litter at the playground', bin: all, why: 'Every child who plays there is **safer**.' }
+            - { text: 'Make a get-well card', bin: one, why: 'It cheers up **one** person.' }
+            - { text: 'Help at a school family night', bin: all, why: 'Many families come and have fun.' }
+        caption: Both kinds of action matter. Which one helps more people?
+
+  - title: Many helpers
+    blocks:
+      - type: visual
+        covers: [U1.1]
+        component: g3ss-count-pop
+        props:
+          n: 24
+          icon: 🙋
+          label: helpers
+          start: ▶ Everyone helps!
+          done: 'One helper makes a small change. A whole class makes a **big** one!'
+        caption: What if everyone in your class helped? Press ▶.
+      - type: callout
+        variant: tip
+        covers: [U1.1]
+        title: Active citizens
+        body: An **active citizen** takes part and helps. Many active citizens make a stronger community.
+
+keyTerms:
+  - term: Quality of life
+    covers: [K1.1]
+    definition: A sense of safety, comfort, health and happiness.
+  - term: Community event
+    covers: [K1.5, K1.6]
+    definition: A time when people in a community get together, like a festival or a clean-up.
+  - term: Civic action
+    covers: [S1.1, K1.2]
+    definition: Something you do to help your community.
+  - term: Active citizen
+    covers: [U1.1]
+    definition: A person who takes part and helps make their community better.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: multi
+    prompt: Which are part of **quality of life**? Choose all that apply.
+    choices: [🛡️ Safety, 💪 Health, 🧸 Having the most toys, 😊 Happiness]
+    fixedOrder: true
+    answer: [0, 1, 3]
+    feedback:
+      '2': Toys can be fun. But does having the most of them make you safe, healthy or comfortable?
+    hints:
+      - Think of the four meters. What were their names?
+    solution:
+      - Quality of life is a sense of **safety**, **comfort**, **health** and **happiness**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.2]
+    type: mc
+    prompt: Ana shovels the snow off her neighbour’s steps, and feels proud. Whose quality of life gets better?
+    choices: [🤝 Both of theirs, 👵 Only the neighbour’s, 🙅 Nobody’s]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': How does Ana feel after helping?
+      '2': Could the neighbour slip on snowy steps?
+    hints:
+      - How does the neighbour feel? How does Ana feel?
+    solution:
+      - The neighbour is **safer**, and Ana is **happier**. Helping others can help you too.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.6, K1.5]
+    type: mc
+    prompt: At the Heritage Festival, Leo eats Ukrainian perogies and watches a Filipino dance. How does this event help the community?
+    choices:
+      - People share and enjoy each other’s cultures.
+      - Everyone learns that one culture is best.
+      - Only Ukrainian families are allowed to come.
+    answer: 0
+    feedback:
+      '1': Leo tried things from two cultures. Was one called the best?
+      '2': Is Leo Ukrainian? Who can come to the festival?
+    hints:
+      - How many cultures did Leo see in one day?
+    solution:
+      - The festival lets people **share** and **appreciate** many cultures. That brings the community together.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.1, K1.5]
+    type: mc
+    prompt: Which action helps the most people in a town?
+    choices:
+      - 🧹 A whole-town clean-up day
+      - 🎂 Baking a cake for your brother
+      - 💌 Writing a thank-you note to a friend
+    answer: 0
+    feedback:
+      '1': That is kind! How many people does it help?
+      '2': That is kind too. How many people does it help?
+    hints:
+      - Count who each action helps. One person, or many?
+    solution:
+      - All three are kind. A **clean-up day** helps everyone who uses the town’s streets and parks.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [U1.1, K1.2]
+    type: mc
+    prompt: Max says, "I’m only one kid, so nothing I do can help my community." What is wrong?
+    choices:
+      - Small actions add up, especially when many people help.
+      - Nothing. Only adults can help a community.
+      - Only the mayor can make a community better.
+    answer: 0
+    feedback:
+      '1': Can a kid shovel a walk or pick up litter?
+      '2': The mayor leads the council. Who else can help?
+    hints:
+      - Think of the 24 helpers. What happened when they all helped?
+    solution:
+      - One kid can make a small change. When many **active citizens** help, the change is big.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [S1.1, K1.2, U1.1]
+    type: investigation
+    prompt: |-
+      The park by your school is full of litter. Three ideas:
+
+      - 📋 Make a poster: "Use the garbage cans!"
+      - 🧹 Hold a class clean-up day.
+      - 🙈 Do nothing. Someone else will do it.
+    parts:
+      - type: multi
+        prompt: Which ideas are actions that help the community? Choose all that apply.
+        choices: [📋 Poster, 🧹 Clean-up day, 🙈 Do nothing]
+        fixedOrder: true
+        answer: [0, 1]
+        feedback:
+          '2': If everyone waits for someone else, who cleans the park?
+        hints:
+          - Which ideas mean your class takes part?
+        solution:
+          - The **poster** and the **clean-up** are civic actions. Doing nothing helps no one.
+      - type: mc
+        prompt: Why might doing both the poster and the clean-up work best?
+        choices:
+          - The clean-up fixes it now, and the poster helps keep it clean.
+          - Posters pick up litter by themselves.
+          - Doing one action is always enough.
+        answer: 0
+        feedback:
+          '1': Can a poster pick anything up?
+          '2': If the park is cleaned once, could it get messy again?
+        hints:
+          - What does each idea do? When does each one help?
+        solution:
+          - The **clean-up** helps today. The **poster** helps people keep the park clean later.
+    wrapUp: Different civic actions help in different ways. Together, they can make a bigger change.
+    hints: []
+    solution: []
