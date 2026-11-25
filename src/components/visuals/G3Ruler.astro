@@ -1,0 +1,351 @@
+---
+// Length with standard units (MAT3-OI5-GQ1-LO1).
+// zoom: zoom into a metre: 10 dm, then 10 cm in a decimetre, then 10 mm in a centimetre.
+// measure: slide a thing to 0 on a ruler (and straighten a curvy worm) to read its length.
+// imperial: a 12-inch ruler is a foot; three of them make a yard.
+// convert: metric and imperial lengths side by side: 2½ cm and 1 in, 30 cm and 1 ft, 1 m and 1 yd.
+import { ZOOM, THINGS, IMPERIAL, MATCHES } from './g3-length.ts';
+
+interface Props {
+  mode?: 'zoom' | 'measure' | 'imperial' | 'convert';
+  /** measure: the things to choose from. */
+  things?: string[];
+  /** measure: the unit to read in first. */
+  unit?: 'cm' | 'mm';
+  /** convert: the matches to offer. */
+  matches?: string[];
+}
+const { mode = 'zoom', things = THINGS.map((t) => t.id), unit = 'cm', matches = MATCHES.map((m) => m.id) } = Astro.props;
+const list = things.map((id) => THINGS.find((t) => t.id === id)!);
+const mlist = matches.map((id) => MATCHES.find((m) => m.id === id)!);
+---
+<g3-ruler data-mode={mode} data-things={JSON.stringify(things)} data-unit={unit} data-matches={JSON.stringify(matches)}>
+  {mode === 'measure' && (
+    <div class="control-row g3m-ru-row">
+      {list.length > 1 && (
+        <div class="seg" role="group" aria-label="What to measure">
+          {list.map((t, i) => <button type="button" data-thing={t.id} aria-pressed={String(i === 0)}>{t.icon} {t.name}</button>)}
+        </div>
+      )}
+      <div class="seg" role="group" aria-label="Unit">
+        {(['cm', 'mm'] as const).map((u) => <button type="button" data-unit={u} aria-pressed={String(u === unit)}>{u}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'convert' && mlist.length > 1 && (
+    <div class="control-row g3m-ru-row">
+      <div class="seg" role="group" aria-label="Choose a match">
+        {mlist.map((m, i) => <button type="button" data-match={m.id} aria-pressed={String(i === 0)}>{m.label}</button>)}
+      </div>
+    </div>
+  )}
+  <p class="g3m-ru-total" data-ru="total" aria-live="polite">{mode === 'zoom' ? ZOOM[0].total : mode === 'imperial' ? IMPERIAL[0].total : ''}</p>
+  <svg class="g3m-ru-svg" viewBox="0 0 360 170" role="img" aria-label="A ruler" data-ru="svg"></svg>
+  <p class="g3m-ru-say" data-ru="say" aria-live="polite"></p>
+  <div class="control-row g3m-ru-row">
+    {(mode === 'zoom' || mode === 'imperial') && (
+      <>
+        <button type="button" class="btn btn--ghost btn--small" data-ru="back">◀ Back</button>
+        <button type="button" class="btn btn--primary btn--small" data-ru="next">{mode === 'zoom' ? '🔍 Zoom in' : 'Next ▶'}</button>
+      </>
+    )}
+    {mode === 'measure' && (
+      <>
+        <button type="button" class="btn btn--primary btn--small" data-ru="go">Line up at 0</button>
+        <button type="button" class="btn btn--ghost btn--small" data-ru="reset">Start over</button>
+      </>
+    )}
+    {mode === 'convert' && <button type="button" class="btn btn--small" data-ru="again">↺ Grow them again</button>}
+  </div>
+</g3-ruler>
+
+<style is:global>
+  g3-ruler { display: block; }
+  .g3m-ru-row { justify-content: center; }
+  .g3m-ru-total { margin: 0.4rem 0 0; text-align: center; font-size: var(--step-2); font-weight: 700; color: var(--accent); min-height: 1.3em; }
+  .g3m-ru-svg { display: block; width: 100%; max-width: 34rem; height: auto; margin: 0 auto; font-family: var(--font); overflow: visible; }
+  .g3m-ru-body { fill: color-mix(in srgb, var(--sun) 45%, var(--surface)); stroke: var(--ink-2); stroke-width: 1.5; }
+  .g3m-ru-tick { stroke: var(--ink); stroke-width: 1; }
+  .g3m-ru-num { fill: var(--ink); font-size: 12.5px; font-weight: 700; }
+  .g3m-ru-big { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g3m-ru-seg { stroke: var(--ink); stroke-width: 1.5; transform-box: fill-box; transform-origin: left center; transition: transform 0.7s ease-in-out, opacity 0.4s; }
+  .g3m-ru-seg.is-a { fill: color-mix(in srgb, var(--accent) 55%, var(--surface)); }
+  .g3m-ru-seg.is-b { fill: color-mix(in srgb, var(--accent) 20%, var(--surface)); }
+  .g3m-ru-seg.is-grow { transform: scaleX(10); }
+  .g3m-ru-fade { transition: opacity 0.4s; }
+  .g3m-ru-svg.is-zooming .g3m-ru-fade { opacity: 0; }
+  .g3m-ru-brace { fill: none; stroke: var(--ink-2); stroke-width: 2; }
+  .g3m-ru-pencil { fill: var(--sun); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-ru-crayon { fill: var(--bad); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-ru-leaf { fill: var(--ok); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-ru-lead { fill: var(--ink-2); }
+  .g3m-ru-worm { fill: none; stroke: #d98a8a; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+  .g3m-ru-eye { fill: var(--ink); }
+  .g3m-ru-end { stroke: var(--accent); stroke-width: 2; stroke-dasharray: 4 3; }
+  .g3m-ru-read { fill: var(--accent); font-size: 15px; font-weight: 700; }
+  .g3m-ru-bar { transform-box: fill-box; transform-origin: left center; }
+  .g3m-ru-svg.is-growing .g3m-ru-bar { animation: g3m-ru-grow 1.2s ease-out backwards; }
+  .g3m-ru-svg.is-growing .g3m-ru-bar.is-second { animation-delay: 0.9s; }
+  .g3m-ru-metric { fill: color-mix(in srgb, var(--accent) 55%, var(--surface)); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-ru-imperial { fill: color-mix(in srgb, var(--bad) 45%, var(--surface)); stroke: var(--ink); stroke-width: 1.5; }
+  @keyframes g3m-ru-grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .g3m-ru-say { min-height: 2.6em; margin: 0.3rem 0 0; font-weight: 600; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .g3m-ru-seg { transition: none; } .g3m-ru-svg.is-growing .g3m-ru-bar { animation: none; } }
+</style>
+
+<script>
+  import { ZOOM, THINGS, IMPERIAL, MATCHES, readSay, wormPoints, type Thing } from './g3-length.ts';
+
+  const X0 = 20;
+  const MM = 2.1; // px per millimetre on the measuring ruler
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /** A ruler body with ticks: `n` units of `px` pixels, `minor` small ticks per unit. */
+  function ruler(x: number, y: number, n: number, px: number, minor: number, label: (i: number) => string, h = 34, padR = 6): string {
+    let s = `<rect class="g3m-ru-body" x="${x - 6}" y="${y}" width="${n * px + 6 + padR}" height="${h}" rx="3"/>`;
+    for (let i = 0; i <= n * minor; i++) {
+      const tx = x + (i * px) / minor;
+      const major = i % minor === 0;
+      const mid = minor === 10 && i % 5 === 0;
+      const len = major ? 14 : mid ? 10 : 6;
+      s += `<line class="g3m-ru-tick" x1="${tx.toFixed(1)}" y1="${y}" x2="${tx.toFixed(1)}" y2="${y + len}"/>`;
+      if (major) s += `<text class="g3m-ru-num" x="${tx.toFixed(1)}" y="${y + 27}" text-anchor="middle">${label(i / minor)}</text>`;
+    }
+    return s;
+  }
+
+  function thingSvg(t: Thing, left: number, straight: number): { svg: string; right: number } {
+    const L = t.mm * MM;
+    const y = 62;
+    if (t.curve) {
+      const pts = wormPoints(L, straight);
+      const d = pts.map((p, i) => `${i ? 'L' : 'M'}${(left + p[0]).toFixed(1)},${(y + p[1]).toFixed(1)}`).join(' ');
+      const end = pts[pts.length - 1];
+      return { svg: `<path class="g3m-ru-worm" d="${d}"/><circle class="g3m-ru-eye" cx="${(left + end[0] - 3).toFixed(1)}" cy="${(y + end[1] - 1).toFixed(1)}" r="1.6"/>`, right: left + end[0] };
+    }
+    if (t.id === 'leaf') {
+      return { svg: `<path class="g3m-ru-leaf" d="M${left},${y} Q${left + L * 0.45},${y - 22} ${left + L},${y} Q${left + L * 0.45},${y + 22} ${left},${y} Z"/><line class="g3m-ru-tick" x1="${left}" y1="${y}" x2="${left + L}" y2="${y}"/>`, right: left + L };
+    }
+    const cls = t.id === 'crayon' ? 'g3m-ru-crayon' : 'g3m-ru-pencil';
+    const tip = L * (t.id === 'crayon' ? 0.12 : 0.15);
+    return {
+      svg: `<path class="${cls}" d="M${left},${y - 8} L${left + L - tip},${y - 8} L${left + L},${y} L${left + L - tip},${y + 8} L${left},${y + 8} Z"/><path class="g3m-ru-lead" d="M${left + L - tip * 0.35},${y - 2.8} L${left + L},${y} L${left + L - tip * 0.35},${y + 2.8} Z"/>`,
+      right: left + L,
+    };
+  }
+
+  class G3Ruler extends HTMLElement {
+    private level = 0;
+    private thing!: Thing;
+    private unit: 'cm' | 'mm' = 'cm';
+    private stage = 0; // measure: 0 = where it lies, 1 = straightened, 2 = lined up
+    private match = MATCHES[0];
+
+    connectedCallback() {
+      const mode = this.dataset.mode;
+      if (mode === 'zoom') this.setupZoom();
+      if (mode === 'imperial') this.setupImperial();
+      if (mode === 'measure') this.setupMeasure();
+      if (mode === 'convert') this.setupConvert();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-ru="${k}"]`) as HTMLElement;
+    }
+
+    // ------------------------------------------------ zoom
+    private setupZoom() {
+      this.q('next').addEventListener('click', () => {
+        if (this.level >= ZOOM.length - 1) return;
+        const svg = this.q('svg');
+        if (reduced()) return this.drawZoom(this.level + 1);
+        svg.classList.add('is-zooming');
+        svg.querySelector('[data-first]')!.classList.add('is-grow');
+        setTimeout(() => this.drawZoom(this.level + 1), 750);
+      });
+      this.q('back').addEventListener('click', () => this.level > 0 && this.drawZoom(this.level - 1));
+      this.drawZoom(0);
+    }
+
+    private drawZoom(level: number) {
+      this.level = level;
+      const z = ZOOM[level];
+      const svg = this.q('svg');
+      svg.classList.remove('is-zooming');
+      let s = `<path class="g3m-ru-brace g3m-ru-fade" d="M20,52 v-10 h320 v10"/><text class="g3m-ru-big g3m-ru-fade" x="180" y="32" text-anchor="middle">${z.whole}</text>`;
+      for (let i = 0; i < 10; i++) s += `<rect class="g3m-ru-seg ${i % 2 ? 'is-b' : 'is-a'}${i ? ' g3m-ru-fade' : ''}"${i ? '' : ' data-first'} x="${20 + i * 32}" y="60" width="32" height="40"/>`;
+      for (let i = 0; i <= 10; i++) s += `<text class="g3m-ru-num g3m-ru-fade" x="${20 + i * 32}" y="118" text-anchor="middle">${i}</text>`;
+      s += `<text class="g3m-ru-big g3m-ru-fade" x="180" y="145" text-anchor="middle">${z.part} (${z.short})</text>`;
+      svg.innerHTML = s;
+      svg.setAttribute('aria-label', `${z.whole} split into 10 ${z.part}.`);
+      this.q('total').textContent = z.total;
+      this.q('say').textContent = z.say;
+      (this.q('next') as HTMLButtonElement).disabled = level === ZOOM.length - 1;
+      (this.q('back') as HTMLButtonElement).disabled = level === 0;
+    }
+
+    // ------------------------------------------------ imperial
+    private setupImperial() {
+      this.q('next').addEventListener('click', () => this.level < IMPERIAL.length - 1 && this.drawImperial(this.level + 1));
+      this.q('back').addEventListener('click', () => this.level > 0 && this.drawImperial(this.level - 1));
+      this.drawImperial(0);
+    }
+
+    private drawImperial(level: number) {
+      this.level = level;
+      const svg = this.q('svg');
+      let s = '';
+      if (level === 0) {
+        s += `<path class="g3m-ru-brace" d="M20,52 v-10 h312 v10"/><text class="g3m-ru-big" x="176" y="32" text-anchor="middle">1 foot</text>`;
+        s += ruler(20, 62, 12, 26, 4, (i) => String(i), 40, 12);
+        s += `<text class="g3m-ru-big" x="176" y="135" text-anchor="middle">inches (in)</text>`;
+      } else {
+        const w = 104;
+        s += `<path class="g3m-ru-brace" d="M20,52 v-10 h${3 * w} v10"/><text class="g3m-ru-big" x="${20 + 1.5 * w}" y="32" text-anchor="middle">1 yard</text>`;
+        for (let k = 0; k < 3; k++) {
+          s += ruler(20 + k * w + 3, 62, 12, (w - 6) / 12, 1, (i) => (level === 2 ? (i % 12 === 0 ? String(k * 12 + i) : '') : i === 0 || i === 12 ? String(i) : ''), 34);
+          s += `<text class="g3m-ru-big" x="${20 + k * w + w / 2}" y="${level === 2 ? 125 : 120}" text-anchor="middle">${level === 2 ? '12 in' : '1 ft'}</text>`;
+        }
+        if (level === 2) s += `<text class="g3m-ru-big" x="${20 + 1.5 * w}" y="152" text-anchor="middle">12 + 12 + 12 = 36</text>`;
+      }
+      svg.innerHTML = s;
+      svg.setAttribute('aria-label', IMPERIAL[level].say);
+      this.q('total').textContent = IMPERIAL[level].total;
+      this.q('say').textContent = IMPERIAL[level].say;
+      (this.q('next') as HTMLButtonElement).disabled = level === IMPERIAL.length - 1;
+      (this.q('back') as HTMLButtonElement).disabled = level === 0;
+    }
+
+    // ------------------------------------------------ measure
+    private setupMeasure() {
+      const ids: string[] = JSON.parse(this.dataset.things!);
+      this.thing = THINGS.find((t) => t.id === ids[0])!;
+      this.unit = this.dataset.unit as 'cm' | 'mm';
+      this.querySelectorAll<HTMLButtonElement>('[data-thing]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-thing]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.thing = THINGS.find((t) => t.id === b.dataset.thing)!;
+          this.resetMeasure();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-unit]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-unit]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.unit = b.dataset.unit as 'cm' | 'mm';
+          this.drawMeasure(this.stage === 2 ? 0 : this.thing.start, this.stage >= 1 ? 1 : 0);
+        }),
+      );
+      this.q('go').addEventListener('click', () => this.advance());
+      this.q('reset').addEventListener('click', () => this.resetMeasure());
+      this.resetMeasure();
+    }
+
+    private resetMeasure() {
+      this.stage = this.thing.curve ? 0 : 1;
+      this.q('go').textContent = this.thing.curve ? 'Straighten it' : 'Line up at 0';
+      (this.q('go') as HTMLButtonElement).disabled = false;
+      this.drawMeasure(this.thing.start, 0);
+    }
+
+    private advance() {
+      const t = this.thing;
+      const from = this.stage;
+      const run = (draw: (e: number) => void, done: () => void) => {
+        if (reduced()) {
+          draw(1);
+          return done();
+        }
+        const t0 = performance.now();
+        const tick = (now: number) => {
+          const k = Math.min(1, (now - t0) / 1000);
+          draw(k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2);
+          if (k < 1) requestAnimationFrame(tick);
+          else done();
+        };
+        requestAnimationFrame(tick);
+      };
+      (this.q('go') as HTMLButtonElement).disabled = true;
+      if (from === 0)
+        run(
+          (e) => this.drawMeasure(t.start, e),
+          () => {
+            this.stage = 1;
+            this.drawMeasure(t.start, 1);
+            this.q('go').textContent = 'Line up at 0';
+            (this.q('go') as HTMLButtonElement).disabled = false;
+          },
+        );
+      else
+        run(
+          (e) => this.drawMeasure(t.start * (1 - e), 1),
+          () => {
+            this.stage = 2;
+            this.drawMeasure(0, 1);
+          },
+        );
+    }
+
+    private drawMeasure(startMm: number, straight: number) {
+      const t = this.thing;
+      const left = X0 + startMm * MM;
+      const g = thingSvg(t, left, t.curve ? straight : 1);
+      let s = ruler(X0, 92, 15, 10 * MM, 10, (i) => (this.unit === 'cm' ? String(i) : i % 2 === 0 ? String(i * 10) : ''), 36, 12);
+      s += `<text class="g3m-ru-num" x="${X0 + 15 * 10 * MM + 2}" y="146" text-anchor="end">${this.unit}</text>`;
+      s += g.svg;
+      const lined = this.stage === 2 && startMm === 0;
+      if (lined) {
+        s += `<line class="g3m-ru-end" x1="${g.right.toFixed(1)}" y1="44" x2="${g.right.toFixed(1)}" y2="${92}"/>`;
+        s += `<text class="g3m-ru-read" x="${Math.min(g.right, 300).toFixed(1)}" y="36" text-anchor="middle">${this.unit === 'cm' && t.mm % 10 ? `between ${Math.floor(t.mm / 10)} and ${Math.floor(t.mm / 10) + 1} cm` : this.unit === 'cm' ? `${t.mm / 10} cm` : `${t.mm} mm`}</text>`;
+      }
+      this.q('svg').innerHTML = s;
+      this.q('svg').setAttribute('aria-label', `A ${t.name.toLowerCase()} above a ruler marked in ${this.unit === 'cm' ? 'centimetres' : 'millimetres'}.`);
+      this.q('say').textContent = lined
+        ? readSay(t, this.unit)
+        : t.curve && this.stage === 0
+          ? 'A ruler is straight, but this worm is curvy. Straighten it first. Its length won’t change.'
+          : t.curve
+            ? 'Now it is straight, and just as long. Slide it so one end is at 0.'
+            : `The ${t.name.toLowerCase()} doesn’t start at 0. Slide it so one end is at 0.`;
+    }
+
+    // ------------------------------------------------ convert
+    private setupConvert() {
+      const ids: string[] = JSON.parse(this.dataset.matches!);
+      this.match = MATCHES.find((m) => m.id === ids[0])!;
+      this.querySelectorAll<HTMLButtonElement>('[data-match]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-match]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.match = MATCHES.find((m) => m.id === b.dataset.match)!;
+          this.drawConvert();
+        }),
+      );
+      this.q('again').addEventListener('click', () => this.drawConvert());
+      this.drawConvert();
+    }
+
+    private drawConvert() {
+      const m = this.match;
+      const px = 300 / Math.max(m.a.cm, m.b.cm);
+      const bar = (y: number, cm: number, cls: string, name: string, second: boolean, ticks: number) => {
+        let s = `<g class="g3m-ru-bar${second ? ' is-second' : ''}"><rect class="${cls}" x="${X0}" y="${y}" width="${(cm * px).toFixed(1)}" height="30" rx="3"/>`;
+        if (ticks > 0) for (let x = ticks; x < cm - 0.01; x += ticks) s += `<line class="g3m-ru-tick" x1="${(X0 + x * px).toFixed(1)}" y1="${y}" x2="${(X0 + x * px).toFixed(1)}" y2="${y + 10}"/>`;
+        s += `</g><text class="g3m-ru-big" x="${X0 + 6}" y="${y + 21}">${name}</text>`;
+        return s;
+      };
+      const mt = m.a.cm <= 30 ? 1 : 10;
+      const it = m.id === 'feet' ? 30.48 : m.b.cm <= 31 ? 2.54 : 0;
+      const svg = this.q('svg');
+      svg.innerHTML =
+        bar(36, m.a.cm, 'g3m-ru-metric', m.a.name, false, m.a.cm <= 3 ? 0 : mt) +
+        bar(96, m.b.cm, 'g3m-ru-imperial', m.b.name, true, m.b.cm <= 3 ? 0 : it) +
+        `<text class="g3m-ru-num" x="${X0}" y="26">Metric</text><text class="g3m-ru-num" x="${X0}" y="86">Imperial</text>`;
+      svg.setAttribute('aria-label', `${m.a.name} and ${m.b.name} side by side.`);
+      svg.classList.remove('is-growing');
+      void svg.getBoundingClientRect();
+      svg.classList.add('is-growing');
+      this.q('total').textContent = `${m.a.name} ≈ ${m.b.name}`;
+      this.q('say').textContent = m.say;
+    }
+  }
+  customElements.define('g3-ruler', G3Ruler);
+</script>

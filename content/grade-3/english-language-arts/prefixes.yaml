@@ -1,0 +1,256 @@
+id: prefixes
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG3-OI3-GQ1-LO1]
+order: 11
+title: Bases and Prefixes
+shortTitle: Prefixes
+summary: >-
+  Snap a prefix onto a base and watch the meaning change. Meet re-, un-, dis-, in-, non-, mis-, mal-,
+  sub- and super-, and spot letters that only look like a prefix.
+
+bigIdea: |-
+  - A **base** is a word or word part with meaning.
+  - A **prefix** goes at the **beginning** of a base and changes its meaning.
+  - Know the prefix, and you can work out new words.
+
+lesson:
+  - title: Snap on a prefix
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, K2.3, K2.4, S2.1]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: re
+              kind: prefix
+              meaning: again
+              words:
+                - { base: fill, baseMeaning: make full, word: refill, meaning: fill again }
+                - { base: tell, baseMeaning: say, word: retell, meaning: tell again }
+            - affix: un
+              kind: prefix
+              meaning: not
+              words:
+                - { base: happy, baseMeaning: glad, word: unhappy, meaning: not happy }
+                - { base: safe, baseMeaning: out of danger, word: unsafe, meaning: not safe }
+        caption: Tap **re-** or **un-**. Watch the prefix snap onto each base.
+
+  - title: Prefixes that mean not
+    blocks:
+      - type: visual
+        covers: [K2.4, S2.1]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: dis
+              kind: prefix
+              meaning: not, or the opposite
+              words:
+                - { base: like, baseMeaning: enjoy, word: dislike, meaning: not like }
+                - { base: agree, baseMeaning: think the same, word: disagree, meaning: not agree }
+            - affix: in
+              kind: prefix
+              meaning: not
+              words:
+                - { base: correct, baseMeaning: right, word: incorrect, meaning: not right }
+                - { base: complete, baseMeaning: finished, word: incomplete, meaning: not finished }
+            - affix: non
+              kind: prefix
+              meaning: not
+              words:
+                - { base: stop, baseMeaning: end, word: nonstop, meaning: without stopping }
+                - { base: fiction, baseMeaning: made-up story, word: non-fiction, meaning: not made up }
+        caption: Three more prefixes that flip a meaning. Try each one.
+
+  - title: Wrong, bad, under, over
+    blocks:
+      - type: visual
+        covers: [K2.4, S2.1]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: mis
+              kind: prefix
+              meaning: wrongly
+              words:
+                - { base: spell, baseMeaning: write the letters, word: misspell, meaning: spell wrongly }
+                - { base: place, baseMeaning: put, word: misplace, meaning: put in the wrong place }
+            - affix: mal
+              kind: prefix
+              meaning: badly
+              words:
+                - { base: function, baseMeaning: work, word: malfunction, meaning: 'work badly, like a broken robot' }
+            - affix: sub
+              kind: prefix
+              meaning: under
+              words:
+                - { base: marine, baseMeaning: sea, word: submarine, meaning: a ship that goes under the sea }
+                - { base: way, baseMeaning: road, word: subway, meaning: a train that runs under the ground }
+            - affix: super
+              kind: prefix
+              meaning: over, or more than
+              words:
+                - { base: hero, baseMeaning: brave helper, word: superhero, meaning: a hero with more than normal powers }
+                - { base: star, baseMeaning: famous person, word: superstar, meaning: a star who is more famous than most }
+        caption: Tap each prefix. What does it add to the base?
+
+  - title: Take words apart
+    blocks:
+      - type: visual
+        covers: [S2.1, U2.1, K2.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: again, label: again, icon: 🔁 }
+            - { id: not, label: not, icon: 🚫 }
+            - { id: under, label: under, icon: ⬇️ }
+            - { id: wrong, label: wrongly, icon: ❌ }
+          cards:
+            - { text: rewrite, bin: again, why: 're- + write. Write it again.' }
+            - { text: unkind, bin: not, why: 'un- + kind. Not kind.' }
+            - { text: subzero, bin: under, why: 'sub- + zero. Under zero degrees. Brrr!' }
+            - { text: misread, bin: wrong, why: 'mis- + read. Read it wrongly.' }
+            - { text: dishonest, bin: not, why: 'dis- + honest. Not honest.' }
+        caption: Find the prefix. What does it add? Sort each word by its prefix’s meaning.
+
+  - title: Prefix or just letters?
+    blocks:
+      - type: visual
+        covers: [S2.1, K2.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Prefix + base, icon: 🧩 }
+            - { id: no, label: Just letters, icon: 🔤 }
+          cards:
+            - { text: unhappy, bin: yes, why: 'un- + happy. *Happy* is a base with meaning.' }
+            - { text: uncle, bin: no, why: 'Take away *un*. Is *cle* a word part with meaning? No.' }
+            - { text: redo, bin: yes, why: 're- + do. Do it again.' }
+            - { text: ready, bin: no, why: '*Ready* doesn’t mean “ady again”. The *re* is just letters.' }
+            - { text: dislike, bin: yes, why: 'dis- + like. Not like.' }
+            - { text: dish, bin: no, why: 'Take away *dis* and only *h* is left. No base!' }
+        caption: Cover the first letters. Is a **base** left over?
+
+keyTerms:
+  - term: Morpheme
+    covers: [K2.1]
+    definition: The smallest part of a word that has meaning. Bases and affixes are morphemes.
+  - term: Base
+    covers: [K2.2]
+    definition: A word or word part that has meaning. You can add affixes to it.
+  - term: Affix
+    covers: [K2.3]
+    definition: Letters added to the beginning or end of a base. An affix has its own meaning.
+  - term: Prefix
+    covers: [K2.3, K2.4]
+    definition: An affix at the beginning of a base, like **re-** in *redo*. It changes the meaning.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.4, S2.1]
+    type: mc
+    prompt: What does **re-** mean in *repaint*?
+    choices:
+      - again
+      - not
+      - under
+    answer: 0
+    feedback:
+      '1': That’s **un-**. Does *repaint* mean “not paint”?
+      '2': That’s **sub-**. Do you paint under something?
+    hints:
+      - Think of *refill* and *retell*.
+    solution:
+      - '**re-** means **again**. To repaint is to paint again.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.4, K2.3]
+    type: text
+    prompt: 'Add a **prefix** so the word means **not kind**. Type the whole word.'
+    accept: [unkind]
+    hints:
+      - Which prefix means *not* and goes with *happy* and *safe*?
+    solution:
+      - '**un-** means not. **un- + kind = unkind**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.4, S2.1]
+    type: mc
+    prompt: Ella read the sign wrong and walked the wrong way. Which word tells what she did?
+    choices:
+      - misread
+      - reread
+      - unread
+    answer: 0
+    feedback:
+      '1': '*Reread* means read again. Did she read it twice?'
+      '2': '*Unread* means not read yet. Did she read it?'
+    hints:
+      - Which prefix means *wrongly*?
+    solution:
+      - '**mis-** means wrongly. To **misread** is to read something wrongly.'
+
+  - id: b2
+    level: 2
+    thinking: pattern
+    covers: [K2.4, U2.1]
+    type: mc
+    prompt: A **sub**marine goes under the sea. A **sub**way is a train. Where does a subway train run?
+    choices:
+      - Under the ground
+      - Over the houses
+      - The wrong way
+    answer: 0
+    feedback:
+      '1': That would be **super-**, which means over. What does **sub-** mean?
+      '2': That sounds like **mis-**. What does **sub-** mean?
+    hints:
+      - What does **sub-** mean in *submarine*?
+    solution:
+      - '**sub-** means **under**, so a subway runs under the ground.'
+      - Knowing one prefix helps you work out many new words.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K2.2, S2.1]
+    type: mc
+    prompt: 'Max says, “**Uncle** means *not a cle*, because **un-** means not.” What is wrong?'
+    choices:
+      - '*cle* is not a base, so *un* is just letters here'
+      - '**un-** really means again'
+      - Nothing. Max is right.
+    answer: 0
+    feedback:
+      '1': '**un-** does mean not, as in *unhappy*. Look at what is left after *un*.'
+      '2': Does *cle* mean anything on its own?
+    hints:
+      - Cover *un*. What is left? Does it have a meaning?
+    solution:
+      - A prefix is added to a **base**, a part with meaning.
+      - In *uncle*, *cle* has no meaning. So *un* is not a prefix here. It is just letters.
+
+  - id: d2
+    level: 3
+    thinking: pattern
+    covers: [K2.4, S2.1]
+    type: text
+    prompt: 'One prefix makes **all three** of these words mean the opposite. Which prefix? *___like, ___agree, ___obey*'
+    accept: [dis, dis-]
+    hints:
+      - Try **un-** on each word. Do all three make real words?
+      - Try another prefix that means *not*, or the opposite.
+    solution:
+      - '**dis-** works for all three: *dislike*, *disagree*, *disobey*.'
+      - '**un-** fails: *unagree* and *unobey* are not words.'

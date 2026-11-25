@@ -1,0 +1,206 @@
+id: francophone-alberta
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [C_WNkKO6SkOOEOWyK5nq7g]
+order: 6
+title: Francophone Alberta
+shortTitle: Francophone Alberta
+summary: >-
+  Follow how Alberta's French-speaking communities began and grew, find Francophone towns, and spin a
+  globe to see where French speakers come from.
+
+bigIdea: |-
+  - French was the **first European language** spoken in Alberta.
+  - Francophone communities began with French-speaking **Catholic missionaries**, then grew.
+  - Today, Francophones in Alberta come from **many parts of the world**.
+
+lesson:
+  - title: How it began
+    blocks:
+      - type: visual
+        covers: [K1.11, K1.10, S1.5, K1.12]
+        component: g3ss-story-steps
+        props:
+          steps:
+            - { icon: 🗣️, when: Long ago, text: '**French** is the first European language spoken here.' }
+            - { icon: ⛪, when: 1840s, text: 'French-speaking **Catholic missionaries** come. They start a mission at Lac Ste. Anne.' }
+            - { icon: 🏘️, when: '1861', text: 'Father Albert Lacombe starts a mission at **St. Albert**. A French-speaking community grows.' }
+            - { icon: 🌾, when: Early 1900s, text: 'More French-speaking families come. They build towns like Bonnyville, St. Paul and Falher.' }
+            - { icon: 🌍, when: Today, text: 'French speakers come from Quebec, France, Africa, Haiti and many other places.' }
+        caption: Press ▶ and follow how Francophone communities grew.
+      - type: callout
+        variant: remember
+        covers: [gYX2AoeJmEOgIv0JRUC3Cg#K1.4]
+        title: From Grade 2
+        body: The first settlements and the French language are part of **Francophone heritage**.
+
+  - title: Francophone places
+    blocks:
+      - type: visual
+        covers: [K1.10, S1.5]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          cities: [edmonton]
+          items:
+            - { id: lac-ste-anne, text: 'Missionaries started a mission here in the 1840s.' }
+            - { id: st-albert, text: 'Father Lacombe started a mission here in 1861. His chapel still stands.' }
+            - { id: bonnyville, text: 'French-speaking families settled here in the early 1900s.' }
+            - { id: st-paul, text: 'A town with French roots in east-central Alberta.' }
+            - { id: falher, text: 'French-speaking farm families settled here, in the north.' }
+        caption: Tap each place. A **Francophone** is a person who speaks French.
+
+  - title: The fleur-de-lis
+    blocks:
+      - type: visual
+        covers: [K1.13, S1.2, U1.3]
+        component: g3ss-symbol-cards
+        props:
+          cards:
+            - { art: ⚜️, title: Fleur-de-lis, text: 'A symbol of the **Francophonie**, French speakers around the world. It is on the Franco-Albertan flag.' }
+            - { art: wild-rose, title: Wild rose, text: 'Alberta’s flower. It is on the Franco-Albertan flag too, next to the fleur-de-lis.' }
+        caption: Both are on the Franco-Albertan flag. What could that mean?
+
+  - title: From many places
+    blocks:
+      - type: visual
+        covers: [K1.12, U1.3]
+        component: land-globe
+        props:
+          groupLabels: { fnmi: In Canada, world: Around the world }
+          readLabel: 'Alberta link:'
+          sites:
+            - { id: quebec, name: Quebec, icon: 🍁, group: fnmi, where: Canada, lat: 46.8, lon: -71.2, what: 'Most people speak French.', meaning: 'Many Francophone Albertans have family from Quebec.' }
+            - { id: france, name: France, icon: 🗼, group: world, where: Europe, lat: 48.9, lon: 2.4, what: 'French began here.', meaning: 'Some Francophone Albertans have family from France.' }
+            - { id: cameroon, name: Cameroon, icon: 🌍, group: world, where: Africa, lat: 3.9, lon: 11.5, what: 'Many people speak French.', meaning: 'Some Francophone Albertans came from Cameroon.' }
+            - { id: congo, name: DR Congo, icon: 🌍, group: world, where: Africa, lat: -4.3, lon: 15.3, what: 'Many people speak French.', meaning: 'Some Francophone Albertans came from the Democratic Republic of the Congo.' }
+            - { id: haiti, name: Haiti, icon: 🌴, group: world, where: The Caribbean, lat: 18.5, lon: -72.3, what: 'Many people speak French.', meaning: 'Some Francophone Albertans came from Haiti.' }
+        caption: Spin the globe and tap each place. French speakers came to Alberta from all of them.
+
+keyTerms:
+  - term: Francophone
+    covers: [K1.10, K1.12]
+    definition: A person who speaks French.
+  - term: Missionary
+    covers: [K1.10]
+    definition: A person sent to share their religion in a new place.
+  - term: Fleur-de-lis
+    covers: [K1.13]
+    definition: A flower-shaped symbol of French speakers around the world.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.11]
+    type: mc
+    prompt: What was the first European language spoken in Alberta?
+    choices: [French, English, German]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': English is spoken by most Albertans today. Was it first?
+      '2': German-speaking settlers came later. Which language came first?
+    hints:
+      - Look back at the first stop on the lesson’s path.
+    solution:
+      - '**French** was the first European language spoken in Alberta.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.13]
+    type: mc
+    prompt: Which symbol stands for French speakers around the world?
+    choices: [⚜️ Fleur-de-lis, 🧣 Métis sash, 🪨 Tipi ring]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The sash is a Métis symbol. Which one stands for French speakers?
+      '2': The tipi ring is on the Blackfoot Confederacy flag. Which one stands for French speakers?
+    hints:
+      - Which symbol looks like a flower?
+    solution:
+      - The **fleur-de-lis** is a symbol of the Francophonie, French speakers around the world.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.10, S1.5]
+    type: mc
+    prompt: St. Albert has a very old chapel and many French street names. How did its French-speaking community begin?
+    choices:
+      - A French-speaking missionary started a mission there.
+      - French speakers moved there last year for new jobs.
+      - Everyone in Alberta spoke French before 1900.
+    answer: 0
+    feedback:
+      '1': The chapel is very old. Did the community start last year?
+      '2': Many peoples lived in Alberta long ago, speaking many languages. Did everyone speak French?
+    hints:
+      - Who built the old chapel in St. Albert?
+    solution:
+      - Father Albert Lacombe, a French-speaking **missionary**, started the mission at St. Albert in 1861.
+      - A French-speaking community grew around it.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.12, U1.3]
+    type: mc
+    prompt: Amina speaks French. Her family came to Edmonton from Cameroon. Luc speaks French too. His family came from Quebec. What does this show?
+    choices:
+      - Francophones in Alberta come from many places.
+      - All Francophones in Alberta come from Quebec.
+      - Only people born in France can speak French.
+    answer: 0
+    feedback:
+      '1': Where did Amina’s family come from?
+      '2': Were Amina or Luc born in France?
+    hints:
+      - Are Amina’s and Luc’s families from the same place?
+    solution:
+      - Amina’s family came from Africa, and Luc’s from Quebec. Francophone Alberta is **diverse**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K1.12, S1.5]
+    type: mc
+    prompt: 'Theo says, "Francophone Alberta hasn’t changed since the missionaries came." What is wrong with his idea?'
+    choices:
+      - It grew, and now has French speakers from all over the world.
+      - It got smaller, and nobody in Alberta speaks French today.
+      - Nothing. Only missionaries speak French in Alberta today.
+    answer: 0
+    feedback:
+      '1': Think about Amina and Luc. Does anyone speak French in Alberta today?
+      '2': Who else speaks French in Alberta today?
+    hints:
+      - Look at the last stop on the lesson’s path. What changed?
+    solution:
+      - Francophone communities began with missionaries. Then families came and built towns.
+      - Today, French speakers come from Quebec, France, Africa, Haiti and more. It **grew and changed**.
+
+  - id: d2
+    level: 3
+    thinking: connect
+    covers: [S1.5, K1.10, K1.11, K1.12]
+    type: order
+    prompt: Put the story of Francophone Alberta in order, from first to last.
+    items:
+      - French is the first European language spoken here.
+      - Missionaries start a mission at St. Albert.
+      - French-speaking families build farm towns like Falher.
+      - French speakers arrive from Cameroon, Haiti and many other places.
+    hints:
+      - What had to happen before a community could grow around a mission?
+      - Which one is still happening today?
+    solution:
+      - French was spoken here first. Then missionaries started missions, such as St. Albert in 1861.
+      - More families came and built towns in the early 1900s.
+      - Today, French speakers keep arriving from all over the world.

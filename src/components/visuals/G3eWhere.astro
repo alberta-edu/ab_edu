@@ -1,0 +1,57 @@
+---
+// Where is the cat? (LANENG3-OI9-GQ1-LO1, K2.10, S2.9). Tap a preposition and the cat walks to that
+// place: on, under, beside or behind the table, or with the dog. The sentence changes to match.
+import { WHERE_SPOTS, whereSentence } from './g3e-ela.ts';
+---
+<g3e-where data-spots={JSON.stringify(WHERE_SPOTS)}>
+  <div class="sci-pick" role="group" aria-label="Choose a preposition">
+    {WHERE_SPOTS.map((s, i) => <button type="button" data-wh={s.word} aria-pressed={i === 0 ? 'true' : 'false'}>{s.word}</button>)}
+  </div>
+  <svg class="g3e-wh__svg" viewBox="0 0 360 190" role="img" aria-label="A cat, a table and a dog. The cat moves to the place the preposition names.">
+    <line class="g3e-wh__floor" x1="10" y1="172" x2="350" y2="172"></line>
+    <g class="g3e-wh__cat" data-wh="cat" style={`transform: translate(${WHERE_SPOTS[0].x}px, ${WHERE_SPOTS[0].y}px) scale(${WHERE_SPOTS[0].scale ?? 1})`}>
+      <text x="0" y="0" text-anchor="middle" font-size="40">🐱</text>
+    </g>
+    <rect class="g3e-wh__wood" x="120" y="95" width="125" height="11" rx="3"></rect>
+    <rect class="g3e-wh__wood" x="130" y="104" width="9" height="68"></rect>
+    <rect class="g3e-wh__wood" x="226" y="104" width="9" height="68"></rect>
+    <text x="315" y="168" text-anchor="middle" font-size="40">🐶</text>
+  </svg>
+  <p class="g3e-wh__sentence" data-wh="sentence" aria-live="polite" set:html={whereSentence(WHERE_SPOTS[0].word)}></p>
+  <noscript><ul>{WHERE_SPOTS.map((s) => <li set:html={whereSentence(s.word)}></li>)}</ul></noscript>
+</g3e-where>
+
+<style is:global>
+  g3e-where { display: block; }
+  .g3e-wh__svg { display: block; width: 100%; max-width: 30rem; margin: 0.6rem auto 0; background: var(--surface); border: 2px solid var(--line); border-radius: var(--radius-sm); }
+  .g3e-wh__floor { stroke: var(--line-strong); stroke-width: 3; }
+  .g3e-wh__wood { fill: var(--warn); }
+  .g3e-wh__cat { transition: transform 0.6s cubic-bezier(0.4, 1.4, 0.5, 1); }
+  .g3e-wh__sentence { margin: 0.6rem 0 0; text-align: center; font-size: var(--step-1); }
+  .g3e-wh__sentence b { padding: 0 0.25rem; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) { .g3e-wh__cat { transition: none; } }
+</style>
+
+<script>
+  import { whereSentence } from './g3e-ela.ts';
+
+  type Spot = { word: string; x: number; y: number; scale?: number };
+
+  class G3eWhere extends HTMLElement {
+    connectedCallback() {
+      const spots: Spot[] = JSON.parse(this.dataset.spots!);
+      const cat = this.querySelector<SVGGElement>('[data-wh="cat"]')!;
+      const sentence = this.querySelector<HTMLElement>('[data-wh="sentence"]')!;
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-wh]')].filter((b) => b.tagName === 'BUTTON');
+      buttons.forEach((b) =>
+        b.addEventListener('click', () => {
+          buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+          const s = spots.find((p) => p.word === b.dataset.wh)!;
+          cat.style.transform = `translate(${s.x}px, ${s.y}px) scale(${s.scale ?? 1})`;
+          sentence.innerHTML = whereSentence(s.word);
+        }),
+      );
+    }
+  }
+  customElements.define('g3e-where', G3eWhere);
+</script>

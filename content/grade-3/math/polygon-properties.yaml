@@ -1,0 +1,231 @@
+id: polygon-properties
+grade: 3
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT3-OI3-GQ1-LO1]
+order: 12
+title: Polygons and Their Properties
+shortTitle: Polygons
+summary: >-
+  Name polygons by their sides, test corners for right angles, find parallel and equal sides, and
+  sort polygons into regular and irregular.
+
+bigIdea: |-
+  - Polygons are named by their sides: triangle, quadrilateral, pentagon, hexagon, octagon.
+  - **Properties** tell how sides and corners relate: parallel, perpendicular, equal.
+  - A **regular** polygon has all sides equal **and** all angles equal.
+
+lesson:
+  - title: Name the polygon
+    blocks:
+      - type: visual
+        covers: [K1.5]
+        component: g3-shapes
+        props: { mode: props, views: [sides], shapes: [tri-reg, square, pent-reg, hex-reg, oct-reg, house] }
+        caption: |-
+          Tap a shape and watch the sides get counted.
+          - 3 sides: **triangle**. 4 sides: **quadrilateral**.
+          - 5: **pentagon**. 6: **hexagon**. 8: **octagon**.
+      - type: callout
+        covers: [MAT2-OI3-GQ1-LO1#K1.1]
+        variant: remember
+        title: Remember from Grade 2
+        body: Shapes have **sides** and **vertices**, or corners.
+
+  - title: Square corners
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2]
+        component: g3-shapes
+        props: { mode: props, views: [right], shapes: [square, tri-right, house, tri-reg, rectangle, diamond] }
+        caption: A paper corner is a **right angle**, 90°. Watch it try every corner.
+      - type: compare
+        covers: [K1.4]
+        columns:
+          - { title: '📄 Paper', body: 'The corner of a sheet of paper.' }
+          - { title: '🕒 Clock', body: 'The hands at 3:00.' }
+          - { title: '🔠 Letter L', body: 'The corner of a capital **L**.' }
+
+  - title: Parallel sides
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1]
+        component: g3-shapes
+        props: { mode: props, views: [parallel], shapes: [rectangle, trapezoid, hex-reg, tri-reg, house, oct-reg] }
+        caption: '**Parallel** sides never meet. They stay the same distance apart, like train tracks.'
+
+  - title: Regular or irregular?
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.3, S1.5, U1.1]
+        component: g3-shapes
+        props: { mode: props, views: [regular], shapes: [tri-reg, tri-right, square, rectangle, pent-reg, house, hex-reg, hex-l] }
+        caption: |-
+          - **Regular**: all sides equal **and** all angles equal.
+          - A rectangle has equal angles but not equal sides. It is irregular.
+
+  - title: Guess the rule
+    blocks:
+      - type: visual
+        covers: [S1.4, U1.2]
+        component: g3-shapes
+        props: { mode: sort }
+        caption: Someone sorted these shapes. Find the rule that puts each one in its box.
+
+keyTerms:
+  - term: Polygon
+    covers: [K1.5]
+    definition: 'A flat, closed shape with straight sides.'
+  - term: Right angle
+    covers: [K1.3, K1.4]
+    definition: 'A square corner, 90°, like the corner of a page.'
+  - term: Perpendicular
+    covers: [K1.3]
+    definition: 'Two lines that meet at a right angle.'
+  - term: Parallel
+    covers: [K1.2]
+    definition: 'Lines that are always the same distance apart. They never meet.'
+  - term: Regular polygon
+    covers: [K1.6]
+    definition: 'A polygon with all sides equal and all angles equal.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.5]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 220 220" class="fig-svg fig-svg--square" role="img" aria-label="A shape with 8 equal sides, like a stop sign."><polygon class="fig-rect" points="141,35.2 184.8,79 184.8,141 141,184.8 79,184.8 35.2,141 35.2,79 79,35.2"/></svg>
+    prompt: What is this polygon called?
+    choices: ['Octagon', 'Hexagon', 'Pentagon']
+    answer: 0
+    feedback:
+      '1': 'A hexagon has 6 sides. Count the sides again.'
+      '2': 'A pentagon has 5 sides. This shape has more.'
+    hints:
+      - Count the sides. Put a finger on one to start.
+    solution:
+      - 'It has **8** sides, so it is an **octagon**, like a stop sign.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.4]
+    type: multi
+    prompt: Which ones show a **right angle**? Pick all that do.
+    choices: ['The corner of a page', 'A capital L', 'Clock hands at 3:00', 'Clock hands at 1:00', 'A capital V']
+    fixedOrder: true
+    answer: [0, 1, 2]
+    feedback:
+      '3': 'At 1:00 the hands are close together. That corner is smaller than a square corner.'
+      '4': 'The two lines of a V meet at a sharp point, smaller than a square corner.'
+    hints:
+      - Picture a paper corner. Which ones would it fit exactly?
+    solution:
+      - 'A page corner, a capital L and the hands at 3:00 all make a square corner.'
+      - 'At 1:00 and in a V, the angle is smaller than a right angle.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S1.5, K1.6]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 240 250" class="fig-svg fig-svg--square" role="img" aria-label="A house-shaped pentagon. Its sides are 4 cm, 3 cm, 6 cm, 3 cm and 4 cm."><polygon class="fig-rect" points="120,35 210,95 210,185 30,185 30,95"/><text class="fig-small" x="175.6" y="57.3" text-anchor="middle">4 cm</text><text class="fig-small" x="226.1" y="148.7" text-anchor="middle">3 cm</text><text class="fig-small" x="120" y="206.5" text-anchor="middle">6 cm</text><text class="fig-small" x="13.9" y="148.7" text-anchor="middle">3 cm</text><text class="fig-small" x="64.4" y="57.3" text-anchor="middle">4 cm</text></svg>
+    prompt: Is this pentagon **regular**?
+    choices: ['No. Its sides are not all equal.', 'Yes. It has 5 sides.', 'Yes. It has right angles.']
+    answer: 0
+    feedback:
+      '1': 'Every pentagon has 5 sides. What does regular need?'
+      '2': 'Right angles don’t make a shape regular. Look at the side lengths.'
+    hints:
+      - Regular means all the sides are equal and all the angles are equal.
+    solution:
+      - 'The sides are 4, 3, 6, 3 and 4 cm. They are not all equal.'
+      - So it is an **irregular** pentagon.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.1, K1.1]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 220 220" class="fig-svg fig-svg--square" role="img" aria-label="A regular hexagon: 6 equal sides."><polygon class="fig-rect" points="149,42.4 188,110 149,177.6 71,177.6 32,110 71,42.4"/></svg>
+    prompt: This is a regular hexagon. How many **pairs** of parallel sides does it have?
+    unit: pairs
+    answer: 3
+    verify: 6 / 2
+    hints:
+      - Find the top side. Which side goes the same way, and never meets it?
+      - Each side has a partner across the shape.
+    solution:
+      - 'The top and bottom sides are parallel. So are the two upper slanted sides and the two lower ones.'
+      - '6 sides make **3** pairs.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S1.3, S1.5, K1.6, U1.2]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 440 150" class="fig-svg" role="img" aria-label="Four shapes. A is a square. B is a long rectangle. C is a diamond shape. D has a short top side and a long bottom side."><polygon class="fig-rect" points="22,22 90,22 90,90 22,90"/><text class="fig-label" x="56" y="131" text-anchor="middle">A</text><polygon class="fig-rect" points="115,30.5 217,30.5 217,81.5 115,81.5"/><text class="fig-label" x="166" y="131" text-anchor="middle">B</text><polygon class="fig-rect" points="225,56 276,22 327,56 276,90"/><text class="fig-label" x="276" y="131" text-anchor="middle">C</text><polygon class="fig-rect" points="360.5,30.5 411.5,30.5 437,81.5 335,81.5"/><text class="fig-label" x="386" y="131" text-anchor="middle">D</text></svg>
+    prompt: Look closely at shapes **A**, **B**, **C** and **D**.
+    parts:
+      - type: multi
+        prompt: Which shapes have **4 equal sides**?
+        choices: ['A', 'B', 'C', 'D']
+        fixedOrder: true
+        answer: [0, 2]
+        feedback:
+          '1': 'B is long and thin. Are its long sides the same as its short sides?'
+          '3': 'D’s top side is much shorter than its bottom side.'
+        hints:
+          - Compare the sides of each shape. Are they all the same length?
+        solution:
+          - 'A and C each have 4 sides of the same length.'
+      - type: mc
+        prompt: Shape **C** has 4 equal sides. Is it a **regular** polygon?
+        choices: ['No', 'Yes']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Check the angles too. Are all 4 corners the same?'
+        hints:
+          - Try a paper corner in each corner of C.
+        solution:
+          - 'C has two wide corners and two narrow ones. Its angles are not equal.'
+          - 'So C is **not** regular. A, the square, is.'
+    wrapUp: Equal sides are not enough. A regular polygon needs equal sides and equal angles.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.1, S1.5, K1.6]
+    type: build
+    prompt: Ben draws a **rectangle** that is **not regular**. What could its sides be, in cm? Go around it in order.
+    fields:
+      - { name: a, label: 'Top', unit: cm }
+      - { name: b, label: 'Right', unit: cm }
+      - { name: c, label: 'Bottom', unit: cm }
+      - { name: d, label: 'Left', unit: cm }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && c % 1 == 0 && d % 1 == 0 && a >= 1 && b >= 1 && c >= 1 && d >= 1 && a <= 20 && b <= 20 && c <= 20 && d <= 20', fail: 'Use whole numbers of centimetres, from 1 to 20.' }
+      - { test: 'a == c && b == d', fail: 'In a rectangle, the top and bottom match, and so do the two sides.' }
+      - { test: 'a != b', fail: 'All 4 sides are equal. That is a square, and a square is regular.' }
+    examples:
+      - { a: 6, b: 3, c: 6, d: 3 }
+      - { a: 2, b: 5, c: 2, d: 5 }
+    counterexamples:
+      - { a: 4, b: 4, c: 4, d: 4 }
+      - { a: 6, b: 3, c: 5, d: 3 }
+    hints:
+      - Which sides of a rectangle are the same length?
+      - Make the top and the sides different lengths.
+    solution:
+      - 'Opposite sides of a rectangle match. Its angles are all right angles.'
+      - '**6, 3, 6, 3** works: the angles are equal, but the sides are not, so it is irregular.'
+      - '**2, 5, 2, 5** works too. 4, 4, 4, 4 is a square, which is regular.'

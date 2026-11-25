@@ -1,0 +1,246 @@
+id: fluent-reading
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI6
+outcomes: [LANENG3-OI6-GQ1-LO1, LANENG3-OI7-GQ1-LO1]
+order: 14
+title: Reading Smoothly and Fixing Confusion
+shortTitle: Fluent reading
+summary: >-
+  Read words at a glance, group words into phrases, let your voice follow the punctuation, and know what
+  to do when a page stops making sense.
+
+bigIdea: |-
+  - Fluent reading is **correct**, **quick** and **full of expression**.
+  - It grows with practice, one book at a time.
+  - Lost? Notice where, then reread, read ahead, or make a picture in your mind.
+
+lesson:
+  - title: Words at a glance
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, U2.1, S1.1]
+        component: g3e-flash
+        props:
+          words: [because, people, again, could, friend, there, were, said]
+        caption: Can you read each word **in a flash**? Words you know by sight make reading smooth.
+      - type: callout
+        variant: remember
+        covers: ['LANENG2-OI6-GQ1-LO1#S2.1']
+        title: Remember from Grade 2
+        body: You learned to read many **high-frequency words** right away, like *said* and *were*.
+
+  - title: Robot or reader?
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.2, U1.1]
+        component: phrase-reader
+        props:
+          lines:
+            - The puppy / grabbed my *sock* / and ran! //
+            - I chased him / around the table, / under the bed, / and out the door.
+        caption: Press **Read it** both ways. Which one is easier to understand?
+      - type: compare
+        covers: [K1.2, K1.1]
+        columns:
+          - title: 🎯 Accuracy
+            body: Read the words **correctly**.
+          - title: ⚡ Automaticity
+            body: Know the words **right away**.
+          - title: 🎭 Prosody
+            body: Read with **expression**, in phrases, with pauses.
+
+  - title: Let punctuation lead
+    blocks:
+      - type: visual
+        covers: [S1.3, S1.2, K1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: up, label: Voice goes up, icon: ⤴️ }
+            - { id: strong, label: Voice gets strong, icon: 💥 }
+            - { id: stop, label: Voice drops and stops, icon: ⏹️ }
+          cards:
+            - { text: Can we go now?, bin: up, why: 'A question mark: your voice rises at the end.' }
+            - { text: Look out!, bin: strong, why: 'An exclamation mark: say it with strong feeling.' }
+            - { text: The bus is late., bin: stop, why: 'A period: your voice drops a little, then stops.' }
+            - { text: Is that a moose?, bin: up, why: 'A question. Let your voice rise.' }
+            - { text: We won!, bin: strong, why: 'Excited! Say it strongly.' }
+        caption: Read each one aloud. What does your voice do at the end?
+
+  - title: When reading gets stuck
+    blocks:
+      - type: visual
+        covers: ['LANENG3-OI7-GQ1-LO1#K6.1', 'LANENG3-OI7-GQ1-LO1#S6.1', 'LANENG3-OI7-GQ1-LO1#S6.2']
+        component: card-sort
+        props:
+          bins:
+            - { id: reread, label: Reread, icon: 🔁 }
+            - { id: ahead, label: Read ahead, icon: ⏩ }
+            - { id: picture, label: Picture it, icon: 🎨 }
+            - { id: ask, label: Ask how or why, icon: ❓ }
+          cards:
+            - { text: I read the page but I don’t know what happened., bin: reread, why: 'Go back and read it again, a bit slower.' }
+            - { text: 'I don’t know the word *burrow*, but the next sentence might help.', bin: ahead, why: 'Keep reading. *It dug deep under the ground* is a clue.' }
+            - { text: I can’t tell what the tree house looks like., bin: picture, why: 'Make a picture in your mind from the words.' }
+            - { text: Why did the fox run away?, bin: ask, why: 'Asking how or why gives you something to look for as you read.' }
+        caption: First, **notice** where it stops making sense. Then pick a fix. What would you try?
+      - type: callout
+        variant: tip
+        covers: ['LANENG3-OI7-GQ1-LO1#U6.1', 'LANENG3-OI7-GQ1-LO1#S6.2']
+        title: Find your best fix
+        body: Which fix works best for **you**? Try them all, and remember which ones help.
+
+  - title: Every kind of text
+    blocks:
+      - type: visual
+        covers: [S1.3, U1.1, 'LANENG3-OI7-GQ1-LO1#S1.1']
+        component: card-sort
+        props:
+          bins:
+            - { id: steady, label: Calm and clear, icon: 📋 }
+            - { id: fun, label: Bouncy and fun, icon: 🎵 }
+            - { id: hush, label: Quiet and worried, icon: 🤫 }
+          cards:
+            - { text: 'Step 2: Stir for one minute.', bin: steady, why: 'Instructions need a clear, steady voice so people can follow.' }
+            - { text: 'Hickory, dickory, dock! / The mouse ran up the clock.', bin: fun, why: 'A rhyme has a bouncy beat.' }
+            - { text: '“Did you hear that?” Ava whispered.', bin: hush, why: '*Whispered* tells you to read it quietly.' }
+            - { text: Moose can swim very well., bin: steady, why: 'A fact book: read it clearly, so listeners learn.' }
+        caption: Different texts need different voices. How would you read each one?
+      - type: callout
+        variant: tip
+        covers: [K1.1, 'LANENG3-OI7-GQ1-LO1#K1.1']
+        title: Practice makes fluent
+        body: The more you read, the smoother you get. Longer books get easier, too.
+
+keyTerms:
+  - term: Fluency
+    covers: [K1.2]
+    definition: Reading correctly, smoothly and with expression.
+  - term: Expression
+    covers: [K1.2]
+    definition: Using your voice to show feeling as you read. Also called **prosody**.
+  - term: High-frequency word
+    covers: [K2.1]
+    definition: A word that shows up a lot in reading, like *the*, *said* and *because*.
+  - term: Reread
+    covers: ['LANENG3-OI7-GQ1-LO1#K6.1']
+    definition: Go back and read a part again, to help it make sense.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2, U1.1]
+    type: mc
+    prompt: What does **fluent** reading sound like?
+    choices:
+      - Smooth, with expression
+      - As fast as you can go
+      - One word at a time
+    answer: 0
+    feedback:
+      '1': Racing makes it hard to understand. Is fast enough?
+      '2': Word by word sounds like a robot. Is that smooth?
+    hints:
+      - Think of the two ways the puppy story was read.
+    solution:
+      - Fluent reading is **correct**, **smooth** and **full of expression**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.2, S1.3]
+    type: mc
+    prompt: 'How should your voice sound at the end of *Can I have a turn?*'
+    choices:
+      - It goes up
+      - It drops and stops
+      - It gets loud and strong
+    answer: 0
+    feedback:
+      '1': That’s for a period. What mark ends this one?
+      '2': That’s for an exclamation mark. What mark ends this one?
+    hints:
+      - Look at the last mark.
+    solution:
+      - It is a **question**, so your voice goes **up** at the end.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: ['LANENG3-OI7-GQ1-LO1#K6.1', 'LANENG3-OI7-GQ1-LO1#S6.2']
+    type: mc
+    prompt: Kai finished a page, but he can’t say what happened. What should he try first?
+    choices:
+      - Reread the page, a bit slower
+      - Read faster to finish the book
+      - Skip to the last page
+    answer: 0
+    feedback:
+      '1': Reading faster helps if he already understands. Does he?
+      '2': Will the end make sense if the middle didn’t?
+    hints:
+      - He missed what happened. How can he get it back?
+    solution:
+      - '**Rereading** helps you catch what you missed the first time.'
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: ['LANENG3-OI7-GQ1-LO1#K6.1', 'LANENG3-OI7-GQ1-LO1#S6.1']
+    type: mc
+    prompt: 'Max reads, “The bear **ambled** to the creek. It walked slowly, sniffing the air.” He doesn’t know *ambled*. What helps?'
+    choices:
+      - Read ahead. *Walked slowly* is a clue.
+      - Give up on the page.
+      - Read the word louder.
+    answer: 0
+    feedback:
+      '1': Is there a clue right after the word?
+      '2': Saying it louder doesn’t tell you what it means.
+    hints:
+      - Look at the next sentence.
+    solution:
+      - '**Reading ahead** helps. *It walked slowly* tells you *ambled* means walked slowly.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: ['LANENG3-OI7-GQ1-LO1#K6.1', 'LANENG3-OI7-GQ1-LO1#S6.1', 'LANENG3-OI7-GQ1-LO1#S6.2']
+    type: order
+    prompt: Put a good reader’s steps in order, for when a page stops making sense.
+    items:
+      - Notice where it stops making sense.
+      - Pick a fix, like rereading.
+      - Try the fix.
+      - Check that it makes sense now.
+    hints:
+      - What must you do before you can fix something?
+      - What is the very last thing to do?
+    solution:
+      - First you **notice** the spot. Then you pick a fix and try it.
+      - Last, check. If it still doesn’t make sense, try another fix.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.2, U1.1, S1.2]
+    type: mc
+    prompt: 'Ben reads super fast, with no pauses. He says, “I’m the best reader. I’m the fastest!” What is wrong with his thinking?'
+    choices:
+      - Good reading needs pauses and expression, not only speed
+      - Nothing. The fastest reader is always the best.
+      - Good readers read as slowly as they can
+    answer: 0
+    feedback:
+      '1': Can listeners follow, or feel the story, if there are no pauses?
+      '2': Very slow reading is choppy too. Is there a better pace?
+    hints:
+      - Think about the three parts of fluent reading.
+    solution:
+      - Fluent reading is **correct**, **quick** and **full of expression**.
+      - Speed alone isn’t enough. Pauses help listeners, and you, understand.

@@ -1,0 +1,199 @@
+id: what-animals-eat
+grade: 3
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI3-OI4-GQ1-LO1]
+order: 19
+title: Carnivores, Herbivores and Omnivores
+shortTitle: What animals eat
+summary: >-
+  Watch a deer, a wolf and a bear find lunch, sort Alberta animals by what they eat, and name each
+  animal in a prairie food chain.
+
+bigIdea: |-
+  - **Herbivores** eat only plants.
+  - **Carnivores** eat mostly meat.
+  - **Omnivores** eat both plants and meat.
+
+lesson:
+  - title: Lunch time
+    blocks:
+      - type: experiment
+        covers: [K2.1, K2.2, K2.3, U2.1]
+        title: Who eats what?
+        question: A deer, a wolf and a bear are hungry. Which one will eat both plants and meat?
+        animation: g3s-scene
+        props: { scene: who-eats-what }
+        predict:
+          choices: ['🐻 Bear', '🦌 Deer', '🐺 Wolf']
+          answer: 0
+        observe: |-
+          - The deer ate only leaves. The wolf ate the hare.
+          - The bear ate berries **and** a fish.
+        explain: |-
+          - We can sort animals by what they eat.
+          - Deer are **herbivores**, wolves are **carnivores**, and bears are **omnivores**.
+
+  - title: Sort the animals
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.2, K2.3, U2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: herb, label: Herbivore, icon: '🌿' }
+            - { id: carn, label: Carnivore, icon: '🍖' }
+            - { id: omni, label: Omnivore, icon: '🍽️' }
+          cards:
+            - { text: '🫎 Moose: willow twigs and water plants', bin: herb, why: 'Moose eat only plants, so they are herbivores.' }
+            - { text: '🐈 Lynx: snowshoe hares', bin: carn, why: 'Lynx eat mostly meat, so they are carnivores.' }
+            - { text: '🐻 Black bear: berries, roots, insects and fish', bin: omni, why: 'Black bears eat plants and meat, so they are omnivores.' }
+            - { text: '🦬 Bison: grass', bin: herb, why: 'Bison eat only plants, so they are herbivores.' }
+            - { text: '🦉 Owl: mice and rabbits', bin: carn, why: 'Owls eat mostly meat, so they are carnivores.' }
+            - { text: '🦝 Raccoon: frogs, eggs, berries and corn', bin: omni, why: 'Raccoons eat plants and meat, so they are omnivores.' }
+        caption: What does each animal eat? Sort it.
+
+  - title: Name them in a food chain
+    blocks:
+      - type: visual
+        covers: [S2.1, U2.1]
+        component: g3s-play
+        props: { scene: chain-eaters }
+        caption: Step along the chain. What kind of eater is each one?
+      - type: callout
+        variant: tip
+        covers: [K2.1]
+        title: Mostly meat
+        body: A wolf might eat a few berries. It still eats **mostly** meat, so it is a carnivore.
+
+keyTerms:
+  - term: Herbivore
+    covers: [K2.2]
+    definition: An animal that eats only plants.
+  - term: Carnivore
+    covers: [K2.1]
+    definition: An animal that eats mostly meat.
+  - term: Omnivore
+    covers: [K2.3]
+    definition: An animal that eats both plants and meat.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2]
+    type: mc
+    prompt: What does a **herbivore** eat?
+    choices: ['Only plants', 'Mostly meat', 'Plants and meat']
+    answer: 0
+    feedback:
+      '1': An animal that eats mostly meat is a carnivore.
+      '2': An animal that eats both is an omnivore.
+    hints:
+      - Think of the deer in the experiment.
+    solution:
+      - A **herbivore** eats only plants.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: A lynx eats snowshoe hares. What is a lynx?
+    choices: ['🍖 Carnivore', '🌿 Herbivore', '🍽️ Omnivore']
+    answer: 0
+    feedback:
+      '1': A herbivore eats only plants. Is a hare a plant?
+      '2': An omnivore eats plants too. Does this lynx eat plants?
+    hints:
+      - Is a snowshoe hare a plant or an animal?
+    solution:
+      - A lynx eats meat, so it is a **carnivore**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K2.3, U2.1]
+    type: mc
+    prompt: A raccoon eats frogs, eggs, berries and corn. What is a raccoon?
+    choices: ['🍽️ Omnivore', '🍖 Carnivore', '🌿 Herbivore']
+    answer: 0
+    feedback:
+      '1': Berries and corn are plants. Does a carnivore eat many plants?
+      '2': Frogs and eggs come from animals. Does a herbivore eat them?
+    hints:
+      - Sort the foods into plants and meat.
+    solution:
+      - Frogs and eggs come from animals. Berries and corn are plants.
+      - The raccoon eats both, so it is an **omnivore**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S2.1, K2.2]
+    type: mc
+    prompt: 'Here is a food chain: grass → elk → wolf. Which one is the herbivore?'
+    choices: ['Elk', 'Wolf', 'Grass']
+    answer: 0
+    feedback:
+      '1': The wolf eats the elk. Does it eat only plants?
+      '2': Grass is a plant. Is a plant an eater?
+    hints:
+      - A herbivore is an animal that eats plants.
+    solution:
+      - The **elk** eats grass, a plant. It is the herbivore.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K2.3, U2.1]
+    type: investigation
+    prompt: |-
+      A grizzly bear eats roots, berries, ground squirrels and fish.
+    parts:
+      - type: mc
+        prompt: What kind of eater is a grizzly bear?
+        choices: ['🍽️ Omnivore', '🍖 Carnivore', '🌿 Herbivore']
+        answer: 0
+        feedback:
+          '1': Roots and berries are plants. Do carnivores eat many plants?
+          '2': Ground squirrels and fish are animals. Do herbivores eat them?
+        hints:
+          - Does it eat plants, meat, or both?
+        solution:
+          - It eats plants **and** meat, so it is an **omnivore**.
+      - type: mc
+        prompt: One dry summer, there are almost no berries. What can the grizzly do?
+        choices: ['Eat more meat and roots', 'Nothing, it only eats berries', 'Eat rocks']
+        answer: 0
+        feedback:
+          '1': Look at its list of foods again. Are berries its only food?
+          '2': Bears don’t eat rocks. What else is on its list?
+        hints:
+          - What else does a grizzly eat?
+        solution:
+          - An omnivore eats many kinds of food. It can eat **more meat and roots** instead.
+    wrapUp: Eating both plants and meat gives an omnivore many choices.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K2.1, K2.3]
+    type: mc
+    prompt: Max sees a wolf eat a few berries. He says, “Wolves are omnivores!” What did he miss?
+    choices:
+      - Wolves eat mostly meat, so they are carnivores.
+      - Wolves eat only berries.
+      - Wolves don’t eat at all.
+    answer: 0
+    feedback:
+      '1': Wolves hunt elk and deer. Do they eat only berries?
+      '2': Every animal needs food. What do wolves eat most?
+    hints:
+      - What does a wolf eat **most** of the time?
+    solution:
+      - Wolves eat **mostly** meat. A few berries don’t change that.
+      - They are carnivores.

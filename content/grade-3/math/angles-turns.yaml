@@ -1,0 +1,208 @@
+id: angles-turns
+grade: 3
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [Fw_y7H1B706duQqzDkWglA]
+order: 17
+title: Angles, Turns and Right Angles
+shortTitle: Angles
+summary: >-
+  See an angle as two arms meeting at a vertex or as a turn, compare angles by laying one on
+  another, and find right angles with a paper corner.
+
+bigIdea: |-
+  - An **angle** is made where two arms meet at a **vertex**. A turn makes an angle too.
+  - Lay one angle on another to compare them. Arm length doesn’t matter.
+  - A paper corner is a referent for a **right angle**, 90°.
+
+lesson:
+  - title: Make an angle
+    blocks:
+      - type: visual
+        covers: [U1.1, K1.2, K1.3, U1.2, S1.2]
+        component: g3-angle
+        props: { mode: turn }
+        caption: |-
+          1. Slide **Turn** to open the angle.
+          2. Try the door and the clock. Each one turns around a vertex.
+
+  - title: Angles around you
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'yes', label: 'Has an angle', icon: '📐' }
+            - { id: 'no', label: 'No angle', icon: '➖' }
+          cards:
+            - { text: 'Two roads crossing', bin: 'yes', why: 'Where lines cross, they make angles.' }
+            - { text: 'A straight stick', bin: 'no', why: 'A straight stick has no corner or bend.' }
+            - { text: 'Your bent knee', bin: 'yes', why: 'A bend makes an angle. Your knee is the vertex.' }
+            - { text: 'A ramp', bin: 'yes', why: 'A slope makes an angle with the ground.' }
+            - { text: 'A spinning ride', bin: 'yes', why: 'A turn makes an angle as it goes around.' }
+        caption: Angles hide in corners, bends, turns, crossings and slopes.
+
+  - title: Which is bigger?
+    blocks:
+      - type: visual
+        covers: [S2.1, K2.1, S2.3, U2.1]
+        component: g3-angle
+        props: { mode: compare }
+        caption: Guess first. Then lay A on top of B, vertex on vertex.
+
+  - title: Copy and carry
+    blocks:
+      - type: visual
+        covers: [S2.2, U2.1]
+        component: g3-angle
+        props: { mode: trace, trace: [60, 75] }
+        caption: When two angles can’t move, trace one and carry the copy to the other.
+
+  - title: Find right angles
+    blocks:
+      - type: visual
+        covers: [S2.4, S2.5, K2.2, S2.3]
+        component: g3-angle
+        props: { mode: right }
+        caption: Pick a thing. Guess, then check it with a paper corner.
+
+keyTerms:
+  - term: Angle
+    covers: [U1.1, U1.2]
+    definition: 'The opening where two arms meet. A turn makes one too.'
+  - term: Vertex
+    covers: [K1.3]
+    definition: 'The point where the two arms of an angle meet.'
+  - term: Arm
+    covers: [K1.2]
+    definition: 'One of the two straight lines that make an angle.'
+  - term: Superimpose
+    covers: [K2.1]
+    definition: 'Lay one angle on top of another to compare them.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3, U1.1]
+    type: mc
+    prompt: What is the point called where the two arms of an angle meet?
+    choices: ['Vertex', 'Arm', 'Slope']
+    answer: 0
+    feedback:
+      '1': 'The arms are the two lines. Where do they meet?'
+      '2': 'A slope can make an angle, but it is not the meeting point.'
+    hints:
+      - It is a corner point.
+    solution:
+      - 'The arms meet at the **vertex**.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.4, S2.5]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 420 170" class="fig-svg" role="img" aria-label="Three angles. A is narrow. B is a square corner. C is wide."><path style="fill:var(--sun);opacity:0.6" d="M20.0,130.0 L46.0,130.0 A26,26 0 0 0 39.9,113.3 Z"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="20" y1="130" x2="120.0" y2="130.0"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="20" y1="130" x2="96.6" y2="65.7"/><circle style="fill:var(--ink)" cx="20" cy="130" r="4"/><text class="fig-label" x="16" y="156">A</text><path style="fill:var(--sun);opacity:0.6" d="M170.0,130.0 L196.0,130.0 A26,26 0 0 0 170.0,104.0 Z"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="170" y1="130" x2="270.0" y2="130.0"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="170" y1="130" x2="170.0" y2="30.0"/><circle style="fill:var(--ink)" cx="170" cy="130" r="4"/><text class="fig-label" x="166" y="156">B</text><path style="fill:var(--sun);opacity:0.6" d="M310.0,130.0 L336.0,130.0 A26,26 0 0 0 291.6,111.6 Z"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="310" y1="130" x2="410.0" y2="130.0"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="310" y1="130" x2="239.3" y2="59.3"/><circle style="fill:var(--ink)" cx="310" cy="130" r="4"/><text class="fig-label" x="306" y="156">C</text></svg>
+    prompt: Which angle is a **right angle**?
+    choices: ['B', 'A', 'C']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'A paper corner would stick out past A’s arm. A is smaller.'
+      '2': 'C opens wider than a paper corner. C is bigger.'
+    hints:
+      - Picture the corner of a page on each one.
+    solution:
+      - 'A page corner fits **B** exactly, like a capital L.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [S2.3, U2.1, K1.2]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 420 180" class="fig-svg" role="img" aria-label="Angle A has short arms and opens wide. Angle B has long arms and opens a little."><path style="fill:var(--sun);opacity:0.6" d="M30.0,150.0 L56.0,150.0 A26,26 0 0 0 36.7,124.9 Z"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="30" y1="150" x2="100.0" y2="150.0"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="30" y1="150" x2="48.1" y2="82.4"/><circle style="fill:var(--ink)" cx="30" cy="150" r="4"/><text class="fig-label" x="26" y="176">A</text><path style="fill:var(--sun);opacity:0.6" d="M190.0,150.0 L216.0,150.0 A26,26 0 0 0 209.9,133.3 Z"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="190" y1="150" x2="400.0" y2="150.0"/><line style="stroke:var(--ink);stroke-width:4;stroke-linecap:round" x1="190" y1="150" x2="350.9" y2="15.0"/><circle style="fill:var(--ink)" cx="190" cy="150" r="4"/><text class="fig-label" x="186" y="176">B</text></svg>
+    prompt: Which angle is **bigger**?
+    choices: ['A', 'B', 'They are the same']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'B has longer arms. Does that make it open wider?'
+      '2': 'Look at how far each one opens, not at the arms.'
+    hints:
+      - Look only at the opening near each vertex.
+      - Picture laying A on B, vertex on vertex.
+    solution:
+      - 'A’s arms are short, but A opens wider.'
+      - 'The size of an angle is how wide it opens, so **A** is bigger.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S2.2, U2.1]
+    type: mc
+    prompt: Ben wants to compare a corner on a classroom poster with a corner on his bike. He can’t bring them together. What can he do?
+    choices: ['Trace one corner and carry the copy', 'Compare the lengths of the arms', 'Guess from far away']
+    answer: 0
+    feedback:
+      '1': 'Arm length doesn’t tell you how wide an angle opens.'
+      '2': 'A guess is a start, but he can check it.'
+    hints:
+      - Can he make a copy of one angle that can move?
+    solution:
+      - 'Trace the poster corner on paper. Carry the copy to the bike and lay it on.'
+      - 'Comparing with a **third** angle works when the two can’t move.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [S1.2, U1.2, S2.4, S2.3]
+    type: investigation
+    prompt: At **3:00**, the hands of a clock make a right angle.
+    parts:
+      - type: mc
+        prompt: What about at **2:00**? Is the angle smaller or bigger than a right angle?
+        choices: ['Smaller', 'Bigger', 'The same']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'At 2:00 the hour hand hasn’t turned as far from 12 as at 3:00.'
+          '2': 'The hour hand points at a different number than at 3:00.'
+        hints:
+          - Picture the hour hand moving from 3 back to 2. Does the opening get wider or narrower?
+        solution:
+          - 'At 2:00 the hour hand has turned less from 12, so the angle is **smaller**.'
+      - type: mc
+        prompt: At which time do the hands make a right angle **too**?
+        choices: ['9:00', '6:00', '12:00']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'At 6:00 the hands point opposite ways, in one straight line.'
+          '2': 'At 12:00 both hands point up. There is no opening.'
+        hints:
+          - At 3:00 the hour hand is a quarter turn from 12. Where else is a quarter turn away?
+        solution:
+          - 'At 9:00 the hour hand is a quarter turn the other way. That is a **right angle** too.'
+    wrapUp: The angle is the turn between the hands. A quarter turn, either way, is a right angle.
+
+  - id: d2
+    level: 3
+    thinking: connect
+    covers: [U1.2, S1.2, S2.4]
+    type: number
+    prompt: The minute hand turns from 12 to 3. That is a quarter turn, a right angle. How many right angles does it sweep from 12 all the way back to 12?
+    unit: right angles
+    answer: 4
+    verify: 12 / 3
+    hints:
+      - From 12 to 3 is one. Where does the next quarter turn end?
+      - 12 to 3, 3 to 6, 6 to 9, …
+    solution:
+      - '12 to 3, 3 to 6, 6 to 9 and 9 to 12.'
+      - 'A full turn is **4** right angles.'

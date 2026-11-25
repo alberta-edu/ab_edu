@@ -1,0 +1,225 @@
+id: add-subtract-1000
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ2-LO1]
+order: 4
+title: Adding and Subtracting Within 1000
+shortTitle: Add & subtract
+summary: >-
+  Add and subtract three-digit numbers with base-ten blocks and the standard algorithm, trade 10
+  for 1, and estimate to check that an answer makes sense.
+
+bigIdea: |-
+  - Add or subtract **one place at a time**: ones, tens, then hundreds.
+  - **Trade** 10 for 1 when a place gets too full. **Break** 1 into 10 when it runs short.
+  - **Estimate** to check that your answer makes sense.
+
+lesson:
+  - title: Trade 10 for 1
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.2]
+        component: g3-blocks
+        props:
+          examples: [{ op: '+', a: 258, b: 167 }, { op: '+', a: 475, b: 348 }]
+        caption: Press **Next step**. When a place has 10 or more, **10 of them trade for 1** of the next place.
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ2-LO1#S2.3, MAT2-OI1-GQ2-LO1#K2.1]
+        title: Remember from Grade 2
+        body: You added and subtracted within 100. Facts like 8 + 7 = 15 still do the work in every place.
+
+  - title: Break 1 into 10
+    blocks:
+      - type: visual
+        covers: [S1.2, K1.2]
+        component: g3-blocks
+        props:
+          examples: [{ op: '−', a: 342, b: 158 }, { op: '−', a: 600, b: 274 }]
+        caption: |-
+          1. Not enough ones? **Break 1 ten into 10 ones.**
+          2. Try 600 − 274. It has to break twice.
+
+  - title: The standard algorithm
+    blocks:
+      - type: visual
+        covers: [S1.3, S1.4, U1.2, K1.2]
+        component: column-calc
+        props:
+          examples:
+            - { op: '+', a: '258', b: '167' }
+            - { op: '-', a: '342', b: '158' }
+            - { op: '-', a: '600', b: '274' }
+        caption: The algorithm does the same trades on paper. The small 1 is the ten you traded.
+
+  - title: Same trick, bigger numbers
+    blocks:
+      - type: figure
+        covers: [S1.1, U1.1, K1.1]
+        figure: |-
+          <svg viewBox="0 0 380 220" class="fig-svg" role="img" aria-label="Open number lines: 36 jump +30 to 66, then −1 to 65; 360 jump +300 to 660, then −10 to 650."><line x1="14" y1="70" x2="366" y2="70" style="stroke:var(--ink);stroke-width:2"/><path d="M30 70 Q165.0 -5 300 70" style="fill:none;stroke:var(--accent);stroke-width:2.5"/><text class="fig-label" x="165.0" y="28" text-anchor="middle" style="fill:var(--accent)">+30</text><path d="M300 70 Q280.0 104 260 70" style="fill:none;stroke:var(--sun);stroke-width:2.5"/><text class="fig-label" x="280.0" y="110" text-anchor="middle">−1</text><circle class="cg-pt" cx="30" cy="70" r="5"/><circle class="cg-pt" cx="300" cy="70" r="5"/><circle class="cg-pt" cx="260" cy="70" r="5"/><text class="fig-label" x="30" y="94" text-anchor="middle">36</text><text class="fig-label" x="308" y="60">66</text><text class="fig-label" x="254" y="94" text-anchor="end" style="font-weight:700">65</text><line x1="14" y1="170" x2="366" y2="170" style="stroke:var(--ink);stroke-width:2"/><path d="M30 170 Q165.0 95 300 170" style="fill:none;stroke:var(--accent);stroke-width:2.5"/><text class="fig-label" x="165.0" y="128" text-anchor="middle" style="fill:var(--accent)">+300</text><path d="M300 170 Q280.0 204 260 170" style="fill:none;stroke:var(--sun);stroke-width:2.5"/><text class="fig-label" x="280.0" y="210" text-anchor="middle">−10</text><circle class="cg-pt" cx="30" cy="170" r="5"/><circle class="cg-pt" cx="300" cy="170" r="5"/><circle class="cg-pt" cx="260" cy="170" r="5"/><text class="fig-label" x="30" y="194" text-anchor="middle">360</text><text class="fig-label" x="308" y="160">660</text><text class="fig-label" x="254" y="194" text-anchor="end" style="font-weight:700">650</text></svg>
+        caption: '29 is close to 30, so add 30 and take 1 back. With 290, add 300 and take 10 back.'
+      - type: callout
+        variant: tip
+        covers: [U1.1]
+        title: Pick a way that fits the numbers
+        body: Numbers near a ten or a hundred are easy to jump to. Other numbers may be easier with the algorithm.
+
+  - title: Estimate to check
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'ok', label: 'Makes sense', icon: '👍' }
+            - { id: 'no', label: 'Can’t be right', icon: '🤔' }
+          cards:
+            - { text: '412 + 289 = 701', bin: 'ok', why: '400 + 300 = 700. 701 is close.' }
+            - { text: '412 + 289 = 6 101', bin: 'no', why: 'The sum should be about 700. 6 101 is far too big.' }
+            - { text: '503 − 198 = 305', bin: 'ok', why: '500 − 200 = 300. 305 is close.' }
+            - { text: '503 − 198 = 701', bin: 'no', why: 'Taking away can’t give more than 503. Did someone add?' }
+        caption: Round to the nearest hundred, then check each answer.
+
+keyTerms:
+  - term: Regroup
+    covers: [S1.2]
+    definition: To trade 10 of one place for 1 of the next place, or 1 for 10.
+  - term: Standard algorithm
+    covers: [K1.2, S1.3]
+    definition: A step-by-step way to add or subtract on paper, one place at a time.
+  - term: Estimate
+    covers: [K1.3, S1.5]
+    definition: To find an answer that is close, often by rounding first.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.4]
+    type: number
+    prompt: '\(476 + 348\) = ?'
+    answer: 824
+    verify: 476 + 348
+    hints:
+      - 'Ones first: 6 + 8 = 14. What do you trade?'
+      - 'Tens: 7 + 4 and the traded ten.'
+    solution:
+      - 'Ones: 6 + 8 = 14. Write 4, trade 1 ten.'
+      - 'Tens: 7 + 4 + 1 = 12. Write 2, trade 1 hundred.'
+      - 'Hundreds: 4 + 3 + 1 = 8. The sum is **824**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.2, S1.3]
+    type: mc
+    prompt: 'To find \(703 - 256\), what do you do **first**?'
+    choices: ['Break 1 hundred into 10 tens', 'Break 1 ten into 10 ones', 'Take 3 away from 6']
+    answer: 0
+    feedback:
+      '1': 'Look at the tens place of 703. Is there a ten to break?'
+      '2': 'You always take the bottom number away from the top. Can you take 6 ones from 3 ones?'
+    hints:
+      - Can you take 6 ones from 3 ones?
+      - Look at the tens place of 703. How many tens are there?
+    solution:
+      - '3 ones is not enough to take away 6, so you need more ones.'
+      - 'There are **0 tens** to break. So first break 1 hundred into 10 tens.'
+      - 'Then break 1 of those tens into 10 ones. The answer is 447.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: estimate
+    covers: [K1.3, S1.5]
+    type: mc
+    prompt: Mia says \(389 + 412 = 1\,201\). Round to the nearest hundred. About what should the answer be?
+    choices: ['About 800', 'About 1 200', 'About 400']
+    answer: 0
+    feedback:
+      '1': 'That is Mia’s answer. Round 389 and 412 first, then add the round numbers.'
+      '2': 'That is about the size of one of the numbers. Add both of them.'
+    hints:
+      - 389 rounds to 400. What does 412 round to?
+    solution:
+      - '389 is about 400, and 412 is about 400. 400 + 400 = 800.'
+      - 'So the sum is **about 800**, and 1 201 can’t be right. The real sum is 801.'
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.6, S1.4]
+    type: number
+    prompt: |-
+      In a game, Ana scores **275** points on level 1 and **348** on level 2.
+      She needs **700** points to open a new world. How many more points does she need?
+    unit: points
+    answer: 77
+    verify: 700 - (275 + 348)
+    hints:
+      - First, how many points does she have now?
+      - Then, how far is that from 700?
+    solution:
+      - 'Points so far: 275 + 348 = 623.'
+      - 'Still needed: 700 − 623 = **77** points.'
+      - 'Check: 623 + 77 = 700.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: backwards
+    covers: [S1.3, S1.2]
+    type: investigation
+    prompt: |-
+      Two digits are hidden in this sum.
+      \[\begin{array}{rr} & 4\,\square\,7 \\ + & 2\,8\,\square \\ \hline & 7\,1\,3 \end{array}\]
+    parts:
+      - type: number
+        prompt: Which digit is hidden in the **ones** place?
+        answer: 6
+        verify: 13 - 7
+        hints:
+          - 7 + ☐ ends in 3. What number ending in 3 could 7 + ☐ make?
+        solution:
+          - '7 + ☐ can’t be 3, so it must be 13. The digit is **6**, and 1 ten is traded.'
+      - type: number
+        prompt: Which digit is hidden in the **tens** place?
+        answer: 2
+        verify: 11 - 8 - 1
+        hints:
+          - 'Tens: ☐ + 8 + the traded ten ends in 1.'
+        solution:
+          - '☐ + 8 + 1 must be 11, so the digit is **2**. Another ten is traded.'
+          - 'Check the hundreds: 4 + 2 + 1 = 7. It works: 427 + 286 = 713.'
+    wrapUp: The traded 1s are clues. Each place tells you about the place to its left.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, U1.2]
+    type: build
+    prompt: Find two 3-digit numbers that add to exactly **1 000**. **No digit can be 0.**
+    fields:
+      - { name: a, label: 'First number' }
+      - { name: b, label: 'Second number' }
+    rules:
+      - { test: 'a % 1 == 0 && b % 1 == 0 && a >= 100 && a <= 999 && b >= 100 && b <= 999', fail: 'Use two 3-digit numbers, from 100 to 999.' }
+      - { test: 'a % 10 != 0 && ((a - a % 10) / 10) % 10 != 0 && b % 10 != 0 && ((b - b % 10) / 10) % 10 != 0', fail: 'Check every digit. None of them can be 0.' }
+      - { test: 'a + b == 1000', fail: 'Add your numbers. Do you get exactly 1 000?' }
+    examples:
+      - { a: 456, b: 544 }
+      - { a: 111, b: 889 }
+      - { a: 725, b: 275 }
+    counterexamples:
+      - { a: 500, b: 500 }
+      - { a: 455, b: 544 }
+    hints:
+      - 'The ones can’t both be 0, so they must make 10. What must the tens make?'
+      - 'Ones make 10. Tens make 9, plus the traded ten. Hundreds make 9, plus the traded hundred.'
+    solution:
+      - 'The ones add to **10**, so 1 ten is traded.'
+      - 'The tens add to **9**, plus that ten makes 10. The hundreds do the same.'
+      - 'So 456 + 544 works. So do 111 + 889 and 725 + 275.'

@@ -1,0 +1,199 @@
+id: forces-change-motion
+grade: 3
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI3-OI2-GQ1-LO1]
+order: 9
+title: Forces Start, Stop and Steer
+shortTitle: Forces change movement
+summary: >-
+  Watch a hockey puck stay still until it is hit, then slide until something stops it, and see how
+  forces start, stop, speed up and turn objects.
+
+bigIdea: |-
+  - A still object **stays still** until a force makes it move.
+  - A moving object **keeps moving** until a force stops it.
+  - Forces can **start**, **stop**, **speed up**, **slow down** or **turn** an object.
+
+lesson:
+  - title: Still until pushed
+    blocks:
+      - type: experiment
+        covers: [K1.2, S1.4, S1.5]
+        title: The hockey puck
+        question: A puck sits on smooth ice. A stick hits it. When will the puck stop?
+        animation: g3s-scene
+        props: { scene: puck-slide }
+        predict:
+          choices: ['When it hits the boards', 'Right after the hit', 'Halfway across']
+          answer: 0
+        observe: |-
+          - The puck stayed **still** until the stick hit it.
+          - Then it **kept sliding** across the ice.
+          - It stopped only when the **boards** pushed back.
+        explain: |-
+          - A still object stays still until a **force** makes it move.
+          - A moving object keeps moving until a **force** stops it.
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: A famous idea
+        body: Scientists call this **Newton’s first law**, after Isaac Newton, who wrote it down long ago.
+
+  - title: What can a force do?
+    blocks:
+      - type: visual
+        covers: [K1.8, U1.1]
+        component: g3s-play
+        props: { scene: motion-changes }
+        caption: Tap each one. What does the force do to the ball?
+
+  - title: Name the change
+    blocks:
+      - type: visual
+        covers: [K1.8, S1.4, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: start, label: Start, icon: '▶️' }
+            - { id: stop, label: Stop, icon: '⏹️' }
+            - { id: speed, label: Change speed, icon: '⏩' }
+            - { id: turn, label: Change direction, icon: '↩️' }
+          cards:
+            - { text: 'A push gets a swing going.', bin: start, why: 'The swing was still. The push started it moving.' }
+            - { text: 'A goalie catches the puck.', bin: stop, why: 'The goalie’s glove stops the moving puck.' }
+            - { text: 'A cyclist pedals harder.', bin: speed, why: 'A stronger push on the pedals makes the bike go faster.' }
+            - { text: 'A ball bounces off a wall.', bin: turn, why: 'The wall pushes the ball and sends it a new way.' }
+            - { text: 'Brakes slow a bike down.', bin: speed, why: 'Slowing down is a change in speed too.' }
+        caption: Which change did the force make?
+
+keyTerms:
+  - term: Newton’s first law
+    covers: [K1.2]
+    definition: A still object stays still, and a moving object keeps moving, until a force changes it.
+  - term: Speed
+    covers: [K1.8]
+    definition: How fast something moves.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.2]
+    type: mc
+    prompt: A ball sits still on the floor. Nobody and nothing touches it. What will it do?
+    choices: ['Stay still', 'Start rolling', 'Roll away slowly']
+    answer: 0
+    feedback:
+      '1': What would make it start rolling? Is anything pushing it?
+      '2': Even rolling slowly needs a force to start. Is there one?
+    hints:
+      - Is there any force on the ball to make it move?
+    solution:
+      - A still object stays still until a force makes it move.
+      - Nothing pushes or pulls the ball, so it **stays still**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.8]
+    type: mc
+    prompt: A goalie catches a flying hockey puck. What did the goalie’s force do to the puck?
+    choices: ['Stopped it', 'Started it', 'Sped it up']
+    answer: 0
+    feedback:
+      '1': The puck was already flying. Did the goalie start it?
+      '2': After the catch, is the puck going faster?
+    hints:
+      - Is the puck moving after the catch?
+    solution:
+      - The puck was moving. The goalie’s glove pushed against it and **stopped** it.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.8, S1.5]
+    type: mc
+    prompt: A bowling ball rolls straight, hits the side bumper, and rolls off a new way. What did the bumper’s push change?
+    choices: ['Its direction', 'Its colour', 'Nothing']
+    answer: 0
+    feedback:
+      '1': A push changes how something moves. Can it change a colour?
+      '2': The ball rolled off a new way. Did nothing change?
+    hints:
+      - Which way was the ball going before? After?
+    solution:
+      - The ball went one way, then another way.
+      - The bumper’s push **changed its direction**.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S1.4, K1.8, K1.6]
+    type: mc
+    prompt: A toy car rolls slowly across the floor. Jo gives it a push **from behind**. Predict what happens.
+    choices: ['It speeds up', 'It stops', 'It turns around']
+    answer: 0
+    feedback:
+      '1': To stop it, which way would the push need to come from?
+      '2': The push is in the same direction the car is going. Would it turn the car around?
+    hints:
+      - The push is in the same direction the car is already going.
+    solution:
+      - The push from behind is in the **same direction** the car is moving.
+      - So it makes the car go faster. It **speeds up**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: connect
+    covers: [K1.2, S1.4, U1.1]
+    type: investigation
+    prompt: |-
+      In space, nothing rubs on or bumps into things. An astronaut gives a ball a gentle push. Nothing is in its way.
+    parts:
+      - type: mc
+        prompt: What does the ball do?
+        choices: ['Keeps moving in a straight line', 'Slows down and stops', 'Floats back to the astronaut']
+        answer: 0
+        feedback:
+          '1': What would make it slow down? Is anything touching it?
+          '2': To come back, it would need to change direction. What would push it?
+        hints:
+          - A moving object keeps moving until what happens?
+        solution:
+          - Nothing pushes or pulls the ball, so it **keeps moving**, straight ahead.
+      - type: mc
+        prompt: What could stop the ball?
+        choices: ['Another astronaut catching it', 'Waiting a long time', 'Nothing can stop it']
+        answer: 0
+        feedback:
+          '1': Waiting doesn’t push or pull the ball. What is needed to stop it?
+          '2': A moving object keeps moving until something happens. What?
+        hints:
+          - What is needed to stop a moving object?
+        solution:
+          - Stopping needs a **force**. A catch pushes against the ball and stops it.
+    wrapUp: Moving things keep moving until a force stops them. On Earth, things rub and bump all the time, so we rarely see it.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.2, U1.1, S1.5]
+    type: mc
+    prompt: Maya rolls a ball across the grass. It slows down and stops. She says, “It stopped all by itself, with no force.” What did Maya miss?
+    choices:
+      - The grass rubbing on the ball is a force.
+      - Balls get tired after rolling a while.
+      - The ball had used up all its moving.
+    answer: 0
+    feedback:
+      '1': A ball isn’t alive. Can it get tired?
+      '2': A puck on smooth ice kept going a long way. What was different about the grass?
+    hints:
+      - Think about the puck on smooth ice. What is different about grass?
+    solution:
+      - A moving object keeps moving until a **force** stops it.
+      - The grass rubs on the ball as it rolls. That rubbing is a force that slows it and stops it.

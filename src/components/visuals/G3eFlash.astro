@@ -1,0 +1,102 @@
+---
+// Words at a glance (LANENG3-OI6-GQ1-LO1, K1.2, K2.1, S1.1, S2.1). A word flashes for a moment, then
+// hides. Could you read it that fast? Each word read at a glance fills a star. Practice makes them faster.
+interface Props {
+  words: string[];
+  /** How long each word shows, in milliseconds. */
+  ms?: number;
+}
+const { words, ms = 900 } = Astro.props;
+if (!words.length) throw new Error('flash: needs words');
+---
+<g3e-flash data-words={JSON.stringify(words)} data-ms={ms}>
+  <div class="g3e-fl__stars" data-fl="stars" aria-hidden="true">{words.map(() => <span>☆</span>)}</div>
+  <div class="g3e-fl__card" data-fl="card" aria-live="polite"><span class="muted">Ready?</span></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-fl="go">⚡ Flash a word</button>
+    <button type="button" class="btn btn--ghost btn--small" data-fl="yes" hidden>✅ I read it!</button>
+    <button type="button" class="btn btn--ghost btn--small" data-fl="again" hidden>🔁 Show it again</button>
+  </div>
+  <p class="g3e-fl__note" data-fl="note">Press <strong>Flash</strong>. The word shows for less than a second. Read it before it hides!</p>
+  <noscript><p>{words.join(', ')}</p></noscript>
+</g3e-flash>
+
+<style is:global>
+  g3e-flash { display: block; }
+  .g3e-fl__stars { display: flex; flex-wrap: wrap; gap: 0.2rem; font-size: 1.3rem; color: var(--ink-3); }
+  .g3e-fl__stars .is-on { color: var(--accent); animation: g3e-fl-pop 0.35s ease; }
+  .g3e-fl__card { display: grid; place-items: center; min-height: 6.5rem; margin: 0.6rem 0; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-4); font-weight: 700; }
+  .g3e-fl__card.is-hidden { background: var(--surface-2); color: var(--ink-3); }
+  .g3e-fl__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-fl__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-fl-pop { 50% { transform: scale(1.5); } }
+  @media (prefers-reduced-motion: reduce) { .g3e-fl__stars .is-on { animation: none; } }
+</style>
+
+<script>
+  class G3eFlash extends HTMLElement {
+    private words: string[] = [];
+    private ms = 900;
+    private at = 0;
+    private read = 0;
+    private timer = 0;
+
+    connectedCallback() {
+      this.words = JSON.parse(this.dataset.words!);
+      this.ms = Number(this.dataset.ms) || 900;
+      this.part('go').addEventListener('click', () => this.flash());
+      this.part('again').addEventListener('click', () => this.flash());
+      this.part('yes').addEventListener('click', () => this.got());
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-fl="${name}"]`)!;
+    }
+
+    private buttons(go: boolean, answer: boolean) {
+      this.part('go').hidden = !go;
+      this.part('yes').hidden = !answer;
+      this.part('again').hidden = !answer;
+    }
+
+    private flash() {
+      clearTimeout(this.timer);
+      if (this.at >= this.words.length) {
+        this.at = 0;
+        this.read = 0;
+        this.querySelectorAll('.g3e-fl__stars span').forEach((s) => ((s.textContent = '☆'), s.classList.remove('is-on')));
+      }
+      const card = this.part('card');
+      card.className = 'g3e-fl__card';
+      card.textContent = this.words[this.at];
+      this.buttons(false, false);
+      const note = this.part('note');
+      note.className = 'g3e-fl__note';
+      note.textContent = `Word ${this.at + 1} of ${this.words.length}…`;
+      this.timer = window.setTimeout(() => {
+        card.className = 'g3e-fl__card is-hidden';
+        card.textContent = '?';
+        note.textContent = 'Did you read it? Say it out loud.';
+        this.buttons(false, true);
+      }, this.ms);
+    }
+
+    private got() {
+      const star = this.querySelectorAll<HTMLElement>('.g3e-fl__stars span')[this.at];
+      star.textContent = '★';
+      star.classList.add('is-on');
+      this.read++;
+      const card = this.part('card');
+      card.className = 'g3e-fl__card';
+      card.textContent = this.words[this.at];
+      this.at++;
+      const done = this.at >= this.words.length;
+      const note = this.part('note');
+      note.className = `g3e-fl__note${done ? ' is-done' : ''}`;
+      note.textContent = done ? `All ${this.read} words at a glance! Words you know by sight let you read smoothly.` : 'Check: was that the word? Flash the next one.';
+      (this.part('go') as HTMLButtonElement).textContent = done ? '↺ Play again' : '⚡ Flash a word';
+      this.buttons(true, false);
+    }
+  }
+  customElements.define('g3e-flash', G3eFlash);
+</script>

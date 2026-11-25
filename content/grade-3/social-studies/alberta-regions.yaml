@@ -1,0 +1,244 @@
+id: alberta-regions
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [tEnI7u83hUui8ILilKfYZA]
+order: 1
+title: Alberta's Borders and Regions
+shortTitle: Borders & regions
+summary: >-
+  Draw Alberta's borders from 1905, see which side follows the Rocky Mountains, then explore and find
+  Alberta's six physical regions on a map.
+
+bigIdea: |-
+  - Alberta's borders were set in **1905**, when it became a province.
+  - Three sides are straight lines. The south-west side follows the **Rocky Mountains**.
+  - Inside the borders are six **physical regions**, each with its own landforms and water.
+
+lesson:
+  - title: Draw Alberta
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.6, S2.1]
+        component: g3ss-alberta-map
+        props:
+          layer: border
+          cities: [edmonton, calgary]
+          items:
+            - { id: south, text: 'A straight line drawn on a map. The United States is on the other side.' }
+            - { id: east, text: 'Another straight line. Saskatchewan is on the other side.' }
+            - { id: north, text: 'A straight line again. The Northwest Territories are on the other side.' }
+            - { id: west, text: 'A straight line in the north-west. British Columbia is on the other side.' }
+            - { id: rockies, text: 'This side follows the tops of the **Rocky Mountains**. A landform makes this border!' }
+        caption: 'Press ▶ and watch each border appear. Then tap a border to read about it.'
+      - type: callout
+        variant: tip
+        covers: [K2.1]
+        title: 'In 1905'
+        body: Alberta became a province in **1905**. Its borders, or **political boundaries**, were set then.
+
+  - title: Lines and landforms
+    blocks:
+      - type: figure
+        covers: [S2.1, K2.6]
+        figure: |-
+          <svg viewBox="0 0 420 120" class="fig-svg" role="img" aria-label="Left: flat green land with a dashed border line and a small sign. Right: tall grey mountains with a dashed border line along their tops.">
+            <rect width="200" height="110" rx="8" fill="#cfe8f7"/>
+            <rect y="62" width="200" height="48" fill="#b9d77e"/>
+            <line x1="100" y1="62" x2="100" y2="110" stroke="#a35405" stroke-width="3" stroke-dasharray="6 5"/>
+            <rect x="108" y="40" width="44" height="18" rx="3" fill="#fff" stroke="#1c1b24"/>
+            <line x1="130" y1="58" x2="130" y2="74" stroke="#1c1b24" stroke-width="2"/>
+            <text x="130" y="53" font-size="9" text-anchor="middle" fill="#1c1b24">Border</text>
+            <g transform="translate(220 0)">
+              <rect width="200" height="110" rx="8" fill="#cfe8f7"/>
+              <polygon points="0,110 45,40 75,70 110,22 145,64 175,38 200,70 200,110" fill="#a99c8c"/>
+              <polygon points="45,40 37,53 53,53" fill="#fff"/><polygon points="110,22 100,37 120,37" fill="#fff"/><polygon points="175,38 167,50 183,50" fill="#fff"/>
+              <polyline points="0,104 45,40 75,70 110,22 145,64 175,38 200,70" fill="none" stroke="#a35405" stroke-width="3" stroke-dasharray="6 5"/>
+            </g>
+          </svg>
+        caption: Two kinds of border. The dashed line shows where each one runs.
+      - type: compare
+        covers: [S2.1, K2.1]
+        columns:
+          - title: 📏 A straight border
+            body: People drew it on a map. On the land, you might only see a sign.
+          - title: 🏔️ A mountain border
+            body: It follows a real **physical feature**, the tops of the Rocky Mountains. You can see it from far away.
+
+  - title: Six regions
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, K2.6, U2.1]
+        component: g3ss-alberta-map
+        props:
+          layer: regions
+          cities: [edmonton, calgary]
+          items:
+            - { id: rocky, text: 'Tall, rocky peaks with snow and ice. Many rivers start here.' }
+            - { id: foothills, text: 'Rolling hills between the mountains and the flatter land.' }
+            - { id: grassland, text: 'Flat, dry prairie with very few trees. Rivers cut deep valleys.' }
+            - { id: parkland, text: 'Gentle hills, patches of trees and many small lakes.' }
+            - { id: boreal, text: 'The biggest region. Forests, wetlands and many lakes and rivers.' }
+            - { id: shield, text: 'Old, hard rock poking out of the ground, with many lakes.' }
+        caption: Tap each region. What landforms and water does it have?
+      - type: callout
+        variant: remember
+        covers: [CyktPaE92kqDJp6OlSYDKA#K1.3]
+        title: From Grade 2
+        body: '**Physical features** are landforms, like hills, and bodies of water, like lakes.'
+
+  - title: Find the regions
+    blocks:
+      - type: visual
+        covers: [S2.2, K2.6]
+        component: g3ss-alberta-map
+        props:
+          layer: regions
+          find: true
+          items:
+            - { id: rocky, text: 'Mountains make it easy to spot.' }
+            - { id: grassland, text: 'The flat, dry south-east.' }
+            - { id: boreal, text: 'It covers most of the north.' }
+            - { id: foothills, text: 'Hills hug the mountains.' }
+            - { id: parkland, text: 'It curves between the grassland and the forest.' }
+            - { id: shield, text: 'A small corner of old rock in the north-east.' }
+        caption: Play the game. Tap the region the map asks for.
+
+keyTerms:
+  - term: Political boundary
+    covers: [K2.1]
+    definition: A border that shows where a province or country ends.
+  - term: Physical region
+    covers: [K2.2, K2.3]
+    definition: An area of land with its own kinds of landforms and bodies of water.
+  - term: Physical feature
+    covers: [K2.3, S2.1]
+    definition: A landform, like a mountain, or a body of water, like a lake or river.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: number
+    prompt: In what year did Alberta become a province and get its borders?
+    answer: 1905
+    verify: '1905'
+    hints:
+      - Look back at the first step of the lesson. The year is in the tip.
+    solution:
+      - Alberta became a province in **1905**. Its political boundaries were set that year.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.3, S2.2]
+    type: mc
+    prompt: Lena sees tall, snowy peaks and a lake of icy blue water. Which region is she in?
+    choices: [🏔️ Rocky Mountains, 🌾 Grassland, 🌳 Parkland, 🪨 Canadian Shield]
+    answer: 0
+    feedback:
+      '1': The grassland is flat and dry. Can you see snowy peaks there?
+      '2': The parkland has gentle hills. Are they tall and snowy?
+      '3': The Canadian Shield has old rock and lakes, but no tall peaks. Which clue is the big one?
+    hints:
+      - Which clue is a landform? Which region has that landform?
+    solution:
+      - Tall, snowy peaks are mountains. Lena is in the **Rocky Mountains** region.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: flaw
+    covers: [K2.2, U2.1]
+    type: multi
+    prompt: Max says, "All of Alberta is flat prairie." Which regions show that Max is wrong? Choose all that apply.
+    choices: [🏔️ Rocky Mountains, ⛰️ Foothills, 🌾 Grassland]
+    fixedOrder: true
+    answer: [0, 1]
+    feedback:
+      '2': The grassland really is flat prairie. Does it show that Max is wrong?
+    hints:
+      - Which regions have land that goes up and down?
+    solution:
+      - The **Rocky Mountains** have tall peaks, and the **Foothills** have rolling hills.
+      - Max is thinking of the grassland. Alberta has six different regions, not one.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K2.6]
+    type: mc
+    prompt: Nadia wants to know which region her cousin’s farm is in. Which map should she use?
+    choices:
+      - 🗺️ A map coloured by physical region
+      - 📏 A map with only Alberta’s borders
+      - 🛣️ A map of the streets in the town
+    answer: 0
+    feedback:
+      '1': That map shows where Alberta ends. Does it show the regions inside?
+      '2': A street map helps you find a house. Does it show landforms and water?
+    hints:
+      - What does Nadia want to find out? Which map shows that?
+    solution:
+      - Maps can show many things. A map **coloured by physical region** shows which region each place is in.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S2.1, K2.1]
+    type: mc
+    prompt: Ella hikes up a mountain at the edge of Alberta. There is no sign. How can she tell that she has reached the British Columbia border?
+    choices:
+      - She is at the very top, where the border follows the peaks.
+      - She is at the bottom, where the hills begin.
+      - She cannot tell without a sign, because every border is a line on a map.
+    answer: 0
+    feedback:
+      '1': The hills are on the Alberta side. Where does the mountain border run?
+      '2': That is true for the straight borders. Is the mountain border a line people drew?
+    hints:
+      - Which side of Alberta follows a landform?
+      - Which part of the mountains does that border follow?
+    solution:
+      - The south-west border follows the **tops of the Rocky Mountains**.
+      - So the peaks themselves show Ella where the border is. A straight border has no landform to follow, so it needs a sign.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K2.3, S2.2, S2.1]
+    type: investigation
+    prompt: |-
+      Grandpa sends a postcard: "The land here is **flat** and **dry**, with almost **no trees**. A river runs in a **deep valley**. Tomorrow I drive east to Saskatchewan!"
+    parts:
+      - type: mc
+        prompt: Which region is Grandpa in?
+        choices: [🌾 Grassland, 🌲 Boreal Forest, ⛰️ Foothills]
+        answer: 0
+        feedback:
+          '1': The boreal forest has many trees. What did Grandpa say about trees?
+          '2': The foothills are hilly. What did Grandpa say about the land?
+        hints:
+          - Read the clues in bold. Which region matches all of them?
+        solution:
+          - Flat, dry land with almost no trees is the **grassland**.
+      - type: mc
+        prompt: How will Grandpa know when he crosses into Saskatchewan?
+        choices:
+          - He will pass a sign, because the east border is a straight line.
+          - He will drive over tall mountains, because borders follow mountains.
+          - He will see the land change from grassland to forest.
+        answer: 0
+        feedback:
+          '1': Only one side of Alberta follows mountains. Is it the east side?
+          '2': A straight border doesn’t follow the land. Does the land have to change there?
+        hints:
+          - Which kind of border is on the east side of Alberta?
+        solution:
+          - The east border is a **straight line** on a map. The flat land keeps going, so a sign tells him he has crossed.
+    wrapUp: Regions are about the land. Most of Alberta's borders are lines people drew, so the land can stay the same on both sides.
+    hints: []
+    solution: []

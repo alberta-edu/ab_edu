@@ -1,0 +1,219 @@
+id: place-value-100000
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ1-LO1]
+order: 1
+title: Place Value to 100 000
+shortTitle: Place value
+summary: >-
+  Build, read and write numbers up to 100 000, find what each digit is worth, and see why each
+  place is worth 10 times the place to its right.
+
+bigIdea: |-
+  - **10** of one place make **1** of the next place to the left.
+  - A digit is worth **digit × its place**. The 4 in 45 306 is worth 40 000.
+  - You can build the same number in **many ways**.
+
+lesson:
+  - title: Ten makes one
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, U1.1, S1.2]
+        component: g3-place-chart
+        props: { value: 45306 }
+        caption: |-
+          1. Press ▲ under the **ones** until you pass 9.
+          2. Watch: 10 ones jump into the tens as **1 ten**.
+          3. Try it with the tens and the hundreds.
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ1-LO1#K1.2, MAT2-OI1-GQ1-LO1#K1.3]
+        title: Remember from Grade 2
+        body: A number like 306 has **hundreds, tens and ones**. The 0 holds the tens place.
+
+  - title: What is each digit worth?
+    blocks:
+      - type: visual
+        covers: [K1.3, U1.2, S1.1, S1.3]
+        component: g3-place-chart
+        props: { value: 63208 }
+        caption: Tap each digit. Its value is **the digit × its place**, like 3 × 1 000 = 3 000.
+      - type: callout
+        variant: mistake
+        covers: [U1.2]
+        title: Same digit, different value
+        body: In **5**3, the 5 is worth 50. In 3**5**, it is worth 5.
+
+  - title: Reading big numbers
+    blocks:
+      - type: visual
+        covers: [S1.4, U1.3, K1.7]
+        component: g3-place-chart
+        props: { value: 70019 }
+        caption: |-
+          1. Read the number **before the space**, then say "thousand".
+          2. Read the last three digits: seventy thousand **nineteen**.
+          3. Tap a pale 0 on the left. It changes nothing.
+
+  - title: One number, many ways
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.5, K1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'yes', label: "Is 4 506", icon: '✅' }
+            - { id: 'no', label: "Is not 4 506", icon: '❌' }
+          cards:
+            - { text: '4 thousands, 5 hundreds, 6 ones', bin: 'yes', why: '4 000 + 500 + 6 = 4 506.' }
+            - { text: '45 hundreds and 6 ones', bin: 'yes', why: '1 thousand is 10 hundreds. So 4 thousands and 5 hundreds make 45 hundreds.' }
+            - { text: '45 tens and 6 ones', bin: 'no', why: '45 tens is only 450. So this is 456.' }
+            - { text: '450 tens and 6 ones', bin: 'yes', why: '450 tens is 4 500. Add 6 to get 4 506.' }
+            - { text: '4 thousands and 56 ones', bin: 'no', why: '56 ones is 5 tens and 6 ones. That makes 4 056.' }
+        caption: Sort each card. Which ones are another way to build **4 506**?
+
+keyTerms:
+  - term: Digit
+    covers: [K1.2]
+    definition: 'One of the symbols 0 to 9. A digit tells how many groups are in its place.'
+  - term: Place value
+    covers: [U1.2, K1.3]
+    definition: 'What a digit is worth because of its place. The 4 in 45 306 is worth 40 000.'
+  - term: Base ten
+    covers: [U1.1, K1.1]
+    definition: 'Our way of writing numbers. Each place is worth 10 times the place to its right.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.3, K1.3]
+    type: number
+    prompt: In **63 208**, what is the digit **3** worth?
+    answer: 3000
+    verify: 3 * 1000
+    hints:
+      - Which place is the 3 in? Count places from the ones.
+      - The 3 is in the thousands place. What is 3 × 1 000?
+    solution:
+      - 'From the right: 8 ones, 0 tens, 2 hundreds, **3 thousands**, 6 ten thousands.'
+      - 'So the 3 is worth \(3 \times 1\,000 = 3\,000\).'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.2]
+    type: number
+    prompt: Write **forty thousand six hundred eight** as a number.
+    answer: 40608
+    verify: 40000 + 600 + 8
+    hints:
+      - Which places are named? Which place is missing?
+      - A place with nothing in it still needs a digit. Which digit?
+    solution:
+      - 'Forty thousand is 40 000. Six hundred eight is 608.'
+      - 'There are no tens, so the tens place gets a 0: **40 608**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.4, S1.5, K1.1]
+    type: number
+    prompt: |-
+      A craft store has **3 450** beads. It packs them in bags of **100**.
+      How many **full** bags can it make?
+    unit: bags
+    answer: 34
+    verify: 30 + 4
+    hints:
+      - How many hundreds make 1 thousand?
+      - 3 thousands is how many hundreds? Then add the 4 hundreds.
+    solution:
+      - '3 450 is 3 thousands, 4 hundreds and 5 tens.'
+      - '1 thousand is 10 hundreds, so 3 thousands is 30 hundreds.'
+      - '30 + 4 = **34 hundreds**. That is 34 full bags, with 50 beads left.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [K1.7, U1.3]
+    type: mc
+    prompt: |-
+      A pinball game shows **08 450** for Ali and **9 120** for Sam.
+      Ali says, "Mine has more digits, so I won." Who won?
+    choices: ['Sam', 'Ali', 'A tie']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'Read 08 450 out loud. Do you say the 0? Then compare the thousands.'
+      '2': 'The numbers are not the same. Drop the 0 on the left, then compare.'
+    hints:
+      - Read 08 450 out loud. Do you say the 0?
+      - Now compare 8 450 and 9 120. Start with the thousands.
+    solution:
+      - 'A 0 at the far left changes nothing. 08 450 is just **8 450**.'
+      - 'Thousands: 8 and 9. So 8 450 is less than 9 120. **Sam** won.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.5, K1.7, K1.2]
+    type: investigation
+    prompt: |-
+      You have five digit cards: **0**, **2**, **5**, **7** and **9**.
+      Use **every card once** to make a 5-digit number.
+    parts:
+      - type: number
+        prompt: What is the **smallest** 5-digit number you can make?
+        answer: 20579
+        verify: 20000 + 500 + 70 + 9
+        hints:
+          - 'If the 0 goes first, is it still a 5-digit number?'
+        solution:
+          - '02 579 is really 2 579. That has only 4 digits.'
+          - 'So 2 goes first. Then 0, 5, 7, 9: **20 579**.'
+      - type: number
+        prompt: Which number you can make is **closest to 50 000**?
+        answer: 50279
+        verify: 50000 + 200 + 70 + 9
+        hints:
+          - Can you start with 4? If not, start with 5.
+          - Keep the other digits as small as you can.
+        solution:
+          - 'There is no 4 card, so the closest numbers start with 5.'
+          - 'Keep the rest small: 0, 2, 7, 9. **50 279** is only 279 away.'
+    wrapUp: Big places matter most. Where you put a digit decides what it is worth.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.2, K1.4]
+    type: build
+    prompt: |-
+      Build a number with **exactly 7 blocks**. Use thousands, hundreds and ones blocks, but **no tens**.
+      Your number must be between **3 000** and **4 000**.
+    fields:
+      - { name: n, label: 'Your number' }
+    rules:
+      - { test: 'n % 1 == 0 && n >= 3000 && n < 4000', fail: 'Your number should be between 3 000 and 4 000.' }
+      - { test: '((n - n % 10) / 10) % 10 == 0', fail: 'Look at the tens place. There are no tens blocks, so what digit goes there?' }
+      - { test: '(n - n % 1000) / 1000 + ((n - n % 100) / 100) % 10 + n % 10 == 7', fail: 'Count your blocks: one for each thousand, hundred and one. Is it exactly 7?' }
+    examples:
+      - { n: 3400 }
+      - { n: 3301 }
+      - { n: 3004 }
+    counterexamples:
+      - { n: 3310 }
+      - { n: 3500 }
+      - { n: 4300 }
+    hints:
+      - Between 3 000 and 4 000 means 3 thousands blocks. How many blocks are left?
+      - Share the 4 other blocks between the hundreds and the ones.
+    solution:
+      - '3 thousands blocks use 3. That leaves 4 blocks for hundreds and ones.'
+      - '4 hundreds: **3 400**. 3 hundreds and 1 one: **3 301**.'
+      - 'Also 3 202, 3 103 and 3 004. Each digit counts the blocks in its place.'

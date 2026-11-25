@@ -1,0 +1,236 @@
+id: early-settlers
+grade: 3
+subject: social-studies
+organizingIdea: 24yj47y-kUyqX3wgOASE9A
+outcomes: [C_WNkKO6SkOOEOWyK5nq7g]
+order: 7
+title: Early Settlers
+shortTitle: Early settlers
+summary: >-
+  Spin a globe to see where Alberta's early settlers came from, follow a family's homestead story, sort
+  the challenges they faced and find the communities they built.
+
+bigIdea: |-
+  - Settlers came from many countries, because Canada offered **free or cheap farmland**.
+  - They faced hard **challenges**: isolation, a new land, and new languages and ways.
+  - The communities they built are part of who Alberta is.
+
+lesson:
+  - title: From many countries
+    blocks:
+      - type: visual
+        covers: [K1.14, K1.16, U1.4]
+        component: land-globe
+        props:
+          groupLabels: { fnmi: From North America, world: From Europe and Asia }
+          readLabel: 'In Alberta:'
+          sites:
+            - { id: oklahoma, name: Black settlers, icon: 🏘️, group: fnmi, where: 'Oklahoma, United States', lat: 35.5, lon: -97.5, what: 'Black families left Oklahoma to find land and a fairer life.', meaning: 'They built Amber Valley, north of Edmonton.' }
+            - { id: utah, name: Mormons, icon: ⛪, group: fnmi, where: 'Utah, United States', lat: 40.8, lon: -111.9, what: 'Mormon families came north looking for farmland.', meaning: 'They started the town of Cardston in 1887.' }
+            - { id: ukraine, name: Ukrainians, icon: 🥚, group: world, where: 'Ukraine, Eastern Europe', lat: 49.0, lon: 25.0, what: 'Farm families came for land of their own.', meaning: 'They settled east of Edmonton, around Star and Vegreville.' }
+            - { id: britain, name: Western Europeans, icon: 🏰, group: world, where: 'Britain and other Western European countries', lat: 52.5, lon: -1.5, what: 'Many families came from Britain, Germany and other countries.', meaning: 'They farmed across Alberta and built new towns.' }
+            - { id: hutterites, name: Hutterites, icon: 🌾, group: world, where: Europe, lat: 47.3, lon: 11.4, what: 'Hutterites have their roots in Europe. Many came to Alberta in 1918.', meaning: 'They live and farm together in colonies.' }
+            - { id: china, name: Chinese settlers, icon: 🏮, group: world, where: 'China, Asia', lat: 23.1, lon: 113.3, what: 'Chinese settlers came to build new lives.', meaning: 'They built communities such as Calgary’s Chinatown.' }
+            - { id: india, name: Hindu settlers, icon: 🪔, group: world, where: 'India, Asia', lat: 28.6, lon: 77.2, what: 'Hindu settlers came from India.', meaning: 'They brought their own language and beliefs.' }
+        caption: Spin the globe and tap each group. How far did each one travel?
+
+  - title: A homestead story
+    blocks:
+      - type: visual
+        covers: [K1.16, K1.15, S1.6]
+        component: g3ss-story-steps
+        props:
+          walker: 👨‍👩‍👧
+          start: ▶ Start the trip
+          steps:
+            - { icon: 📰, when: The offer, text: 'Canada offers farmland: 160 acres for a **$10** fee.' }
+            - { icon: 🚢, when: The trip, text: 'The family travels for weeks by ship and train.' }
+            - { icon: 🏕️, when: Arriving, text: 'There are no roads, no stores and no neighbours nearby.' }
+            - { icon: 🏠, when: First home, text: 'They build a small house from blocks of sod, cut from the prairie.' }
+            - { icon: 🌾, when: Three years later, text: 'They have cleared and farmed the land. Now it is theirs!' }
+        caption: Walk with a settler family. Which parts were hard?
+
+  - title: Hard times
+    blocks:
+      - type: visual
+        covers: [K1.15]
+        component: card-sort
+        props:
+          bins:
+            - { id: alone, label: Far from others, icon: 🏝️ }
+            - { id: land, label: A new land, icon: ❄️ }
+            - { id: words, label: New language and ways, icon: 💬 }
+          cards:
+            - { text: 'The nearest neighbour lives a long walk away.', bin: alone, why: 'Being far from other people is called **isolation**.' }
+            - { text: 'No doctor lives anywhere close.', bin: alone, why: 'Help was far away. That is **isolation** too.' }
+            - { text: 'Winter is much colder than back home.', bin: land, why: 'The weather was new to them: an **unfamiliar environment**.' }
+            - { text: 'Nobody knows which plants grow well here.', bin: land, why: 'The land was new to them, so farming was a guess at first.' }
+            - { text: 'The store sign is in English, but the family speaks Ukrainian.', bin: words, why: 'This is a **language barrier**.' }
+            - { text: 'Neighbours have different holidays and foods.', bin: words, why: 'Different ways of life can be a **culture barrier** at first.' }
+        caption: Which kind of challenge is each card?
+
+  - title: Communities they built
+    blocks:
+      - type: visual
+        covers: [U1.4, S1.6, K1.14]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          items:
+            - { id: amber-valley, text: 'Black settlers from Oklahoma built farms, a school and a church here.' }
+            - { id: star, text: 'Ukrainian settlers came here in 1892. It was their first settlement in Canada.' }
+            - { id: vegreville, text: 'A giant pysanka, a Ukrainian Easter egg, honours the Ukrainian settlers.' }
+            - { id: cardston, text: 'Mormon settlers from Utah started this town in 1887.' }
+            - { id: chinatown, text: 'Chinese settlers built shops and homes here.' }
+        caption: Tap each place. What did each group bring to Alberta?
+
+keyTerms:
+  - term: Settler
+    covers: [K1.14]
+    definition: A person who moves to a new place to build a home and a community.
+  - term: Homestead
+    covers: [K1.16]
+    definition: Farmland given to settlers who built a home and farmed it.
+  - term: Isolation
+    covers: [K1.15]
+    definition: Being far away from other people and help.
+  - term: Language barrier
+    covers: [K1.15]
+    definition: When people can't understand each other because they speak different languages.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.16]
+    type: mc
+    prompt: Why did many early settlers come to Alberta?
+    choices:
+      - Canada offered free or cheap farmland.
+      - There were big cities with lots of jobs.
+      - The weather was warm all year.
+    answer: 0
+    feedback:
+      '1': Were there big cities here when the settlers came?
+      '2': Think about the cold winters in the card sort.
+    hints:
+      - What did Canada offer at the start of the homestead story?
+    solution:
+      - Canada offered **free or cheap farmland**, so settlers came from many countries.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.15]
+    type: mc
+    prompt: Ada’s family settles near Amber Valley. Their nearest neighbour lives far away. Which challenge is this?
+    choices: [🏝️ Isolation, 💬 A language barrier, ❄️ Cold winters]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Is Ada’s family having trouble understanding someone?
+      '2': Is the problem the weather, or the distance?
+    hints:
+      - What is the problem about? Distance, words or weather?
+    solution:
+      - Living far from other people is **isolation**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.16, S1.6]
+    type: mc
+    prompt: |-
+      Which family crossed an ocean to get to Alberta?
+
+      | Family | Came from |
+      |---|---|
+      | The Melnyks | Ukraine |
+      | The Bells | Oklahoma |
+      | The Cards | Utah |
+    choices: [The Melnyks, The Bells, The Cards]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Oklahoma is in the United States. Is there an ocean between it and Alberta?
+      '2': Utah is in the United States, south of Alberta. Is there an ocean on the way?
+    hints:
+      - Find each place on the globe. Which one is on another continent?
+    solution:
+      - Ukraine is in Europe, across the Atlantic Ocean. The **Melnyks** crossed an ocean.
+      - Oklahoma and Utah are in the United States, so those families could come by land.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [U1.4, S1.6]
+    type: mc
+    prompt: Vegreville has a giant pysanka, a Ukrainian Easter egg. What does it show?
+    choices:
+      - Ukrainian settlers are part of Alberta’s story.
+      - Everyone in Alberta is Ukrainian.
+      - Pysanky are only made in Vegreville.
+    answer: 0
+    feedback:
+      '1': Settlers came from many countries. Is everyone Ukrainian?
+      '2': Who brought pysanky to Alberta? Where did they come from?
+    hints:
+      - Who was the giant egg made to honour?
+    solution:
+      - The pysanka honours the Ukrainian settlers. Their culture is part of **Alberta’s identity**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: perspective
+    covers: [K1.15, S1.6]
+    type: mc
+    prompt: In 1900, Olena speaks only Ukrainian. The store owner speaks only English. What would help Olena most?
+    choices:
+      - A neighbour who speaks both languages comes along.
+      - The store owner speaks English louder and faster.
+      - Olena stays home and never goes to the store.
+    answer: 0
+    feedback:
+      '1': If you didn’t know a language, would louder words help?
+      '2': Then how would Olena’s family get what they need?
+    hints:
+      - What is Olena’s problem? What would fix it?
+    solution:
+      - Olena faces a **language barrier**. Someone who speaks both languages can help them understand each other.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.16, K1.15]
+    type: investigation
+    prompt: |-
+      A homestead costs a **$10** fee. To keep it, a family must build a home and farm the land within **3 years**.
+    parts:
+      - type: number
+        prompt: The Melnyks pay their fee in 1905. By what year must they finish?
+        answer: 1908
+        verify: 1905 + 3
+        hints:
+          - Count on 3 years from 1905.
+        solution:
+          - 1905 + 3 = **1908**.
+      - type: mc
+        prompt: Why would Canada give away farmland for only $10?
+        choices:
+          - To bring in settlers who would farm and build communities.
+          - Because nobody wanted to live in Canada at all.
+          - Because the land was too poor for anything to grow.
+        answer: 0
+        feedback:
+          '1': Settlers came from many countries. Did nobody want to come?
+          '2': Would families stay three years to farm land where nothing grows?
+        hints:
+          - What did Canada want people to do with the land?
+        solution:
+          - Canada wanted **settlers** to farm the land and build communities. Cheap land brought them.
+    wrapUp: The offer was cheap, but the work was hard. Settlers had three years to turn wild prairie into a farm.
+    hints: []
+    solution: []

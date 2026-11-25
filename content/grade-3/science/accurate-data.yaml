@@ -1,0 +1,215 @@
+id: accurate-data
+grade: 3
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI3-OI7-GQ1-LO1]
+order: 24
+title: Collecting Accurate Data
+shortTitle: Accurate data
+summary: >-
+  Measure a table with hands and with a metre stick, pick the right tool, measure carefully, and
+  write down what really happened.
+
+bigIdea: |-
+  - **Accurate** data is correct. It matches what really happened.
+  - Choose the right **tool** and measure carefully.
+  - Be **objective**: write what you see, not what you hoped for.
+
+lesson:
+  - title: Hands or a metre stick?
+    blocks:
+      - type: experiment
+        covers: [K1.1, K1.2, S1.2]
+        title: Measure the table
+        question: Lee and Mo measure the same table with their hands. Will they get the same number?
+        animation: g3s-scene
+        props: { scene: hand-spans }
+        predict:
+          choices: ['✅ Yes', '❌ No']
+          answer: 1
+        observe: |-
+          - Lee got **6 hands**. Mo has bigger hands and got **4 hands**.
+          - With a metre stick, they both got **90 cm**.
+        explain: |-
+          - Hands are different sizes, so they aren’t a good tool for this.
+          - A metre stick is the right **tool**. It gives **accurate** data.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI7-GQ1-LO1#K2.2]
+        title: Remember from Grade 2
+        body: If you do an investigation again, the data should be about the same.
+
+  - title: The right tool
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.2]
+        component: g3s-play
+        props: { scene: right-tool }
+        caption: Tap each question. Which tool measures it?
+
+  - title: Measure carefully
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.2]
+        component: g3s-play
+        props: { scene: measure-carefully }
+        caption: Tap each one. How do you measure carefully?
+
+  - title: Be objective
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Objective, icon: '✅' }
+            - { id: no, label: Not objective, icon: '❌' }
+          cards:
+            - { text: '✍️ Writing the real number, even if you hoped for more', bin: yes, why: 'You wrote what really happened.' }
+            - { text: '🌱 “My plant is the best, so I’ll say it grew the most.”', bin: no, why: 'A feeling changed the data. Measure it instead.' }
+            - { text: '🐦 Counting every bird you see, not just your favourites', bin: yes, why: 'Every bird counts, even the ones you don’t like as much.' }
+            - { text: '🏃 Saying your friend won the race because they’re your friend', bin: no, why: 'Who got there first is what counts.' }
+            - { text: '⏱️ Writing 10 minutes because the timer said 10', bin: yes, why: 'The timer, not a guess, gave the number.' }
+            - { text: '🗑️ Crossing out a result because it surprised you', bin: no, why: 'A surprise is still real data. Keep it and check it.' }
+        caption: Is it **objective**? Tap a bin for each card.
+
+keyTerms:
+  - term: Data
+    covers: [K1.2]
+    definition: Facts and numbers you collect, like measurements and counts.
+  - term: Accurate
+    covers: [K1.2]
+    definition: Correct. Accurate data matches what really happened.
+  - term: Objective
+    covers: [K1.3]
+    definition: Not letting your feelings or hopes change what you write down.
+  - term: Tool
+    covers: [K1.1]
+    definition: Something you use to do a job, like a ruler or a thermometer.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1, S1.2]
+    type: mc
+    prompt: Your class wants to know how warm the pond water is. Which tool should you use?
+    choices: ['🌡️ Thermometer', '📏 Ruler', '⏱️ Timer']
+    answer: 0
+    feedback:
+      '1': A ruler measures how long something is. What measures how warm it is?
+      '2': A timer measures time. What measures how warm it is?
+    hints:
+      - Which tool measures temperature?
+    solution:
+      - A **thermometer** measures how warm or cold something is.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.1, K1.2]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 320 90" class="fig-svg" role="img" aria-label="A crayon on a ruler. The crayon starts at the 2 and ends at the 9."><rect x="10" y="44" width="300" height="40" rx="4" fill="#f2c230" stroke="#6b4423" stroke-width="2"/>
+      <g stroke="#3a3f47" stroke-width="2"><line x1="20" y1="44" x2="20" y2="56"/><line x1="50" y1="44" x2="50" y2="56"/><line x1="80" y1="44" x2="80" y2="56"/><line x1="110" y1="44" x2="110" y2="56"/><line x1="140" y1="44" x2="140" y2="56"/><line x1="170" y1="44" x2="170" y2="56"/><line x1="200" y1="44" x2="200" y2="56"/><line x1="230" y1="44" x2="230" y2="56"/><line x1="260" y1="44" x2="260" y2="56"/><line x1="290" y1="44" x2="290" y2="56"/></g>
+      <g font-size="14" text-anchor="middle" fill="#3a3f47"><text x="20" y="74">0</text><text x="50" y="74">1</text><text x="80" y="74">2</text><text x="110" y="74">3</text><text x="140" y="74">4</text><text x="170" y="74">5</text><text x="200" y="74">6</text><text x="230" y="74">7</text><text x="260" y="74">8</text><text x="290" y="74">9</text></g>
+      <rect x="80" y="20" width="196" height="20" fill="#d23b2e" stroke="#7a1f17" stroke-width="2"/><polygon points="276,20 290,30 276,40" fill="#d23b2e" stroke="#7a1f17" stroke-width="2"/></svg>
+    prompt: Jin didn’t start his crayon at 0. It starts at the 2 and ends at the 9. How long is it really?
+    unit: cm
+    answer: 7
+    verify: '9 - 2'
+    hints:
+      - Count the spaces from the 2 to the 9.
+    solution:
+      - From the 2 to the 9 is **7 cm**.
+      - Starting at 0 makes it easier to measure carefully.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: decide
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Ana hopes her bean plant is the tallest. It is 8 cm. Kim’s is 10 cm. What should Ana write for her plant?
+    choices: ['8 cm', '11 cm', 'The tallest one']
+    answer: 0
+    feedback:
+      '1': Is 11 cm what the ruler showed?
+      '2': Kim’s plant is taller. Is that what really happened?
+    hints:
+      - What did the ruler say?
+    solution:
+      - Ana writes **8 cm**. Being **objective** means writing what really happened.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K1.1, K1.2]
+    type: mc
+    prompt: Tom counts birds at the feeder for 5 minutes. But he keeps looking away to talk. Is his count likely accurate?
+    choices: ['No, he may have missed some birds', 'Yes, counting is always right', 'Yes, if he guesses the rest']
+    answer: 0
+    feedback:
+      '1': Can you count a bird you didn’t see?
+      '2': Is a guess the same as what really happened?
+    hints:
+      - What happens to the birds that come while he looks away?
+    solution:
+      - Tom may have **missed** birds. To be accurate, he needs to watch carefully the whole time.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K1.1, K1.2, S1.2]
+    type: investigation
+    prompt: |-
+      Three friends roll the same toy car down the same ramp. They measure how far it goes:
+
+      | Friend | Distance |
+      |---|---|
+      | Rosa | 80 cm |
+      | Jack | 51 cm |
+      | Lena | 50 cm |
+    parts:
+      - type: mc
+        prompt: Which result does NOT look accurate?
+        choices: ['Rosa’s', 'Jack’s', 'Lena’s']
+        answer: 0
+        feedback:
+          '1': Jack and Lena got almost the same. Who is far from the others?
+          '2': Jack and Lena got almost the same. Who is far from the others?
+        hints:
+          - Which number is very different from the other two?
+        solution:
+          - Rosa’s **80 cm** is far from the others.
+      - type: mc
+        prompt: What might Rosa have done?
+        choices: ['Started measuring at the top of the ramp', 'Used a metre stick', 'Measured carefully']
+        answer: 0
+        feedback:
+          '1': A metre stick is a good tool. What else could go wrong?
+          '2': Careful measuring helps. What mistake would add extra?
+        hints:
+          - Where should you start measuring from?
+        solution:
+          - She likely started at the **top** of the ramp, not the bottom. That added extra length.
+    wrapUp: A result far from the others is a clue to check how it was measured.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.2]
+    type: order
+    prompt: Put the steps in order to measure a plant accurately.
+    items:
+      - Pick a ruler.
+      - Put the 0 at the soil.
+      - Look at the top of the plant at eye level.
+      - Write the number down.
+    hints:
+      - You need the tool first. Writing comes last.
+    solution:
+      - Pick the right tool, then line up the 0 with the soil.
+      - Read it at eye level, then write it down right away.

@@ -1,0 +1,218 @@
+id: phonics
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI5
+outcomes: [LANENG3-OI5-GQ1-LO1]
+order: 13
+title: Blends, Digraphs, Silent Letters and Chunks
+shortTitle: Phonics
+summary: >-
+  Find blends at the start and end of words, two letters that make one new sound, and letters that
+  make no sound. Then break big words into chunks to read them.
+
+bigIdea: |-
+  - In a **blend**, you hear every letter. In a **digraph**, two letters make **one new** sound.
+  - Some letters are **silent**, like the **k** in *know*.
+  - Break a big word into **chunks**, read each one, then put them together.
+
+lesson:
+  - title: Blends
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.2, S1.1, K1.6]
+        component: g3e-letter-teams
+        props:
+          items:
+            - { word: '{fr}o{st}', note: 'One blend at the **start**, one at the **end**.' }
+            - { word: '{pl}a{nt}', note: '*pl* starts it. *nt* ends it.' }
+            - { word: '{spr}i{nt}', note: 'Three letters can blend: *s-p-r*.' }
+            - { word: '{sk}u{nk}', note: 'Blends at both ends!' }
+        caption: Tap a letter. Is it part of a **blend**?
+
+  - title: Two letters, one sound
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.2, K1.6]
+        component: g3e-letter-teams
+        props:
+          items:
+            - { word: '[ph]one', note: '*ph* sounds like **f**.' }
+            - { word: '[wh]ale', note: '*wh* sounds like **w**.' }
+            - { word: 'lau[gh]', note: 'Here *gh* sounds like **f**, too!' }
+            - { word: '[ch]ef', note: 'Here *ch* sounds like **sh**.' }
+        caption: Tap the letters. Which two make **one new sound**?
+
+  - title: Silent letters
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.3]
+        component: g3e-letter-teams
+        props:
+          items:
+            - { word: '(k)now', note: 'You say *no*, but you write **k-n-o-w**.' }
+            - { word: '(w)rite', note: 'The **w** is silent.' }
+            - { word: 'lam(b)', note: 'The **b** after **m** is silent.' }
+            - { word: '[wh]is(t)le', note: 'A digraph **and** a silent **t**!' }
+        caption: Find the letter you can see but can’t hear. 👻
+
+  - title: Chunk big words
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.5]
+        component: g3e-syllable-clap
+        props:
+          items:
+            - { text: 'fan·tas·tic', note: 'Three small chunks: *fan*, *tas*, *tic*.' }
+            - { text: 'grass·hop·per', note: '*grass* + *hop* + *per*.' }
+            - { text: 'cat·er·pil·lar', note: 'Four chunks. Read each, then blend them.' }
+        caption: Tap each chunk. Read it. Then read the whole word.
+      - type: callout
+        variant: tip
+        covers: [K1.5, S1.5, U1.1]
+        title: Stuck on a big word?
+        body: |-
+          1. Cover all but the first chunk. Read it.
+          2. Read the next chunk, and the next.
+          3. Blend them together.
+          4. Does it make sense in the sentence?
+
+  - title: Long or short?
+    blocks:
+      - type: visual
+        covers: [S1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: long, label: Says its name (long), icon: 📣 }
+            - { id: short, label: Short sound, icon: 🤏 }
+          cards:
+            - { text: '**ti**·ger', bin: long, why: '*ti* ends with the vowel. The **i** says its name.' }
+            - { text: '**nap**·kin', bin: short, why: '*nap* ends with a consonant. The **a** is short.' }
+            - { text: '**ro**·bot', bin: long, why: '*ro* ends with the vowel. The **o** says its name.' }
+            - { text: '**mit**·ten', bin: short, why: '*mit* ends with a consonant. The **i** is short.' }
+            - { text: '**pa**·per', bin: long, why: '*pa* ends with the vowel. The **a** says its name.' }
+        caption: Look at the **first chunk**. Does its vowel say its name, or make a short sound?
+
+keyTerms:
+  - term: Blend
+    covers: [K1.1, K1.2]
+    definition: Two or three consonants side by side. You hear each one, like **st** in *stop*.
+  - term: Digraph
+    covers: [K1.3]
+    definition: Two consonants that make one new sound, like **sh** in *ship*.
+  - term: Silent letter
+    covers: [K1.4]
+    definition: A letter you see but don’t hear, like the **k** in *know*.
+  - term: Chunking
+    covers: [K1.5]
+    definition: Breaking a big word into small parts to read it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: Which word has a **silent letter**?
+    choices:
+      - knot
+      - not
+      - nut
+    answer: 0
+    feedback:
+      '1': Say *not*. Do you hear every letter?
+      '2': Say *nut*. Do you hear every letter?
+    hints:
+      - Say each word. Which one has a letter you can’t hear?
+    solution:
+      - In **knot**, the **k** is silent. It sounds just like *not*.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.3, S1.2]
+    type: mc
+    prompt: Which two letters make **one new sound** in *photo*?
+    choices:
+      - ph
+      - ot
+      - to
+    answer: 0
+    feedback:
+      '1': You hear both **o** and **t**. Do they make a new sound?
+      '2': You hear both **t** and **o**. Do they make a new sound?
+    hints:
+      - Say *photo*. What sound does it start with?
+    solution:
+      - '**ph** says **f**. It is a **digraph**: two letters, one new sound.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K1.1, S1.1]
+    type: text
+    prompt: Type the **blend** at the start of *splash*.
+    accept: [spl]
+    hints:
+      - Say it slowly. Which letters do you hear, one after another, before the **a**?
+      - The **sh** at the end is a digraph, not a blend.
+    solution:
+      - You hear **s**, **p** and **l**, said fast together. **spl** is the blend.
+
+  - id: b2
+    level: 2
+    thinking: breakdown
+    covers: [K1.5, S1.5]
+    type: mc
+    prompt: Which way breaks *pumpkin* into chunks you can read?
+    choices:
+      - pump·kin
+      - pu·mpkin
+      - pumpk·in
+    answer: 0
+    feedback:
+      '1': Can you say *mpkin* as one chunk?
+      '2': Can you say *pumpk* as one chunk?
+    hints:
+      - Each chunk needs one vowel sound you can say.
+    solution:
+      - '**pump** + **kin**. Each chunk has one vowel, and is easy to say.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K1.4, S1.3]
+    type: mc
+    prompt: What if you took the silent **k** off *knight*? How would the new word **sound**?
+    choices:
+      - The same as before
+      - It would start with a **k** sound
+      - It would lose its last sound
+    answer: 0
+    feedback:
+      '1': The **k** was silent. Did you ever hear it?
+      '2': Which letter did you take away? Was it at the end?
+    hints:
+      - Say *knight*. Do you hear the **k**?
+    solution:
+      - The **k** was silent, so *night* sounds just the same as *knight*.
+      - You still need the **k** to spell *knight*, a soldier in armour.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.3, K1.1, K1.6]
+    type: number
+    prompt: '*Shrimp* has 6 letters. How many **sounds** does it have?'
+    answer: 5
+    verify: 6 - 1
+    hints:
+      - Say it slowly. Which two letters make one sound together?
+      - '**sh** is one sound. Count the rest.'
+    solution:
+      - '**sh** is a digraph: one sound.'
+      - '**r**, **i**, **m** and **p** are four more sounds. You hear each one.'
+      - So *shrimp* has **5** sounds.

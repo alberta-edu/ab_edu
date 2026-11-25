@@ -1,0 +1,119 @@
+---
+// Clap the syllables (LANENG3-OI3-GQ1-LO1, S2.5; LANENG3-OI1-GQ1-LO1, K5.3; LANENG3-OI5-GQ1-LO1, K1.5).
+// Each word or line is split into beats. Tap a beat, or press Clap, and the next beat pops and is counted.
+// With a goal, such as 5 or 7 for a haiku line, the count turns green when it matches.
+import { syllables } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** Text with · between syllables: "but·ter·fly" or "Snow·flakes on my nose". */
+  items: { text: string; goal?: number; note?: string }[];
+  /** Show every item at once, as the lines of a poem. Otherwise one at a time. */
+  poem?: boolean;
+}
+const { items, poem = false } = Astro.props;
+const data = items.map((it) => {
+  const s = syllables(it.text);
+  if (it.goal && it.goal !== s.beats) throw new Error(`syllable-clap: "${it.text}" has ${s.beats} beats, not ${it.goal}`);
+  return { ...s, goal: it.goal, note: it.note ? mdInline(it.note) : '' };
+});
+---
+<g3e-syllable-clap data-items={JSON.stringify(data)} data-poem={poem ? '1' : ''}>
+  {!poem && <p class="g3e-sy__count muted" data-sy="which"></p>}
+  <div class="g3e-sy__rows" data-sy="rows"></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-sy="clap">👏 Clap</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sy="again">↺ Again</button>
+    {!poem && items.length > 1 && <button type="button" class="btn btn--ghost btn--small" data-sy="next">Next word ▶</button>}
+  </div>
+  <p class="g3e-sy__note" data-sy="note" aria-live="polite">Tap each beat, or press Clap.</p>
+  <noscript><ul>{items.map((it) => <li>{it.text.replace(/·/g, '-')}</li>)}</ul></noscript>
+</g3e-syllable-clap>
+
+<style is:global>
+  g3e-syllable-clap { display: block; }
+  .g3e-sy__count { margin: 0; font-size: var(--step--1); }
+  .g3e-sy__rows { display: grid; gap: 0.5rem; margin: 0.6rem 0; }
+  .g3e-sy__row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.8rem; padding: 0.6rem 0.7rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); }
+  .g3e-sy__word { display: inline-flex; gap: 0.15rem; }
+  .g3e-sy__beat { padding: 0.25rem 0.45rem; border: 0; border-radius: 999px; background: var(--surface-2); color: var(--ink); font: inherit; font-size: var(--step-1); font-weight: 600; cursor: pointer; transition: transform 0.15s ease, background 0.2s ease; }
+  .g3e-sy__beat:hover { background: var(--accent-soft); }
+  .g3e-sy__beat.is-on { background: var(--accent); color: var(--brand-ink); animation: g3e-sy-pop 0.3s ease; }
+  .g3e-sy__tally { margin-left: auto; min-width: 2.6rem; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--surface-2); font-weight: 800; text-align: center; }
+  .g3e-sy__tally.is-goal { background: var(--ok-soft); color: var(--ok); }
+  .g3e-sy__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-sy__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-sy-pop { 50% { transform: scale(1.25); } }
+  @media (prefers-reduced-motion: reduce) { .g3e-sy__beat.is-on { animation: none; } .g3e-sy__beat { transition: none; } }
+</style>
+
+<script>
+  type Item = { words: string[][]; beats: number; goal?: number; note: string };
+
+  class G3eSyllableClap extends HTMLElement {
+    private items: Item[] = [];
+    private poem = false;
+    private at = 0;
+    private clapped = 0;
+    private beats: HTMLButtonElement[] = [];
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.poem = !!this.dataset.poem;
+      this.part('clap').addEventListener('click', () => this.clap());
+      this.part('again').addEventListener('click', () => this.show(this.at));
+      this.querySelector('[data-sy="next"]')?.addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-sy="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      this.clapped = 0;
+      const items = this.poem ? this.items : [this.items[i]];
+      const which = this.querySelector('[data-sy="which"]');
+      if (which) which.textContent = `Word ${i + 1} of ${this.items.length}`;
+      this.part('rows').innerHTML = items
+        .map(
+          (it, r) =>
+            `<div class="g3e-sy__row" data-row="${r}">${it.words
+              .map((w) => `<span class="g3e-sy__word">${w.map((s) => `<button type="button" class="g3e-sy__beat">${s}</button>`).join('')}</span>`)
+              .join(' ')}<span class="g3e-sy__tally" data-tally="${r}">0</span></div>`,
+        )
+        .join('');
+      this.beats = [...this.querySelectorAll<HTMLButtonElement>('.g3e-sy__beat')];
+      this.beats.forEach((b) => b.addEventListener('click', () => this.clap()));
+      const note = this.part('note');
+      note.className = 'g3e-sy__note';
+      note.textContent = 'Tap each beat, or press Clap.';
+      (this.part('clap') as HTMLButtonElement).disabled = false;
+    }
+
+    private clap() {
+      if (this.clapped >= this.beats.length) return;
+      const b = this.beats[this.clapped++];
+      b.classList.add('is-on');
+      const row = b.closest<HTMLElement>('[data-row]')!;
+      const r = Number(row.dataset.row);
+      const tally = this.querySelector<HTMLElement>(`[data-tally="${r}"]`)!;
+      const count = row.querySelectorAll('.is-on').length;
+      tally.textContent = String(count);
+      const items = this.poem ? this.items : [this.items[this.at]];
+      const it = items[r];
+      if (count === it.beats) tally.classList.toggle('is-goal', !it.goal || it.goal === count);
+      if (this.clapped === this.beats.length) {
+        (this.part('clap') as HTMLButtonElement).disabled = true;
+        const note = this.part('note');
+        note.className = 'g3e-sy__note is-done';
+        const total = items.map((x) => x.beats);
+        note.innerHTML = this.poem
+          ? `👏 ${total.join(' + ')} beats. ${this.items.map((x) => x.note).filter(Boolean).join(' ')}`
+          : `👏 ${it.beats} beat${it.beats === 1 ? '' : 's'}! ${it.note}`;
+      }
+    }
+  }
+  customElements.define('g3e-syllable-clap', G3eSyllableClap);
+</script>

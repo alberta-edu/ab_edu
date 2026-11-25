@@ -1,0 +1,79 @@
+---
+// Grade 3: flip cards for symbols. The front shows a picture and a name; tap to flip it and read what
+// the symbol stands for. A counter cheers when every card is turned. Cards come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+import { artFor } from './g3ss-symbol-art.ts';
+
+interface Props {
+  cards: { art: string; title: string; text: string }[];
+}
+const { cards } = Astro.props;
+---
+<g3ss-symbol-cards data-n={cards.length}>
+  <p class="g3ss-sc-count muted" data-sc="count" aria-live="polite">Tap a card to flip it.</p>
+  <ul class="g3ss-sc-grid" style={`--g3ss-sc-n:${Math.min(cards.length, 3)}`}>
+    {
+      cards.map((c) => (
+        <li>
+          <button type="button" class="g3ss-sc-card" aria-pressed="false" aria-label={`${c.title}. Tap to flip.`}>
+            <span class="g3ss-sc-inner">
+              <span class="g3ss-sc-face g3ss-sc-front">
+                <Fragment set:html={artFor(c.art)} />
+                <span class="g3ss-sc-title">{c.title}</span>
+              </span>
+              <span class="g3ss-sc-face g3ss-sc-back">
+                <span class="g3ss-sc-title">{c.title}</span>
+                <span class="g3ss-sc-text" set:html={mdInline(c.text)} />
+              </span>
+            </span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</g3ss-symbol-cards>
+
+<style is:global>
+  g3ss-symbol-cards { display: block; }
+  .g3ss-sc-count { margin: 0 0 0.5rem; font-weight: 700; }
+  .g3ss-sc-count.is-done { color: var(--ok); }
+  .g3ss-sc-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; grid-template-columns: repeat(var(--g3ss-sc-n), minmax(0, 1fr)); }
+  @media (max-width: 34rem) { .g3ss-sc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .g3ss-sc-card { display: block; width: 100%; min-height: 11.5rem; height: 100%; padding: 0; border: 0; background: none; cursor: pointer; perspective: 800px; font: inherit; color: inherit; text-align: center; }
+  .g3ss-sc-inner { position: relative; display: block; width: 100%; height: 100%; min-height: 11.5rem; transition: transform 0.5s ease; transform-style: preserve-3d; }
+  .g3ss-sc-card[aria-pressed='true'] .g3ss-sc-inner { transform: rotateY(180deg); }
+  .g3ss-sc-face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.35rem; padding: 0.6rem; border-radius: var(--radius-sm); border: 2px solid var(--line-strong); background: var(--surface); backface-visibility: hidden; }
+  .g3ss-sc-front { background: var(--social-soft); }
+  .g3ss-sc-back { transform: rotateY(180deg); border-color: var(--social); }
+  .g3ss-sc-card:hover .g3ss-sc-face { border-color: var(--social); }
+  .g3ss-sc-card:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+  .g3ss-sc-art { width: 5.5rem; height: 5.5rem; color: var(--ink-2); }
+  .g3ss-sc-title { font-weight: 800; line-height: 1.2; }
+  .g3ss-sc-text { font-size: var(--step--1); line-height: 1.35; }
+  @media (prefers-reduced-motion: reduce) {
+    .g3ss-sc-inner { transition: none; }
+  }
+</style>
+
+<script>
+  class SymbolCards extends HTMLElement {
+    private seen = new Set<number>();
+
+    connectedCallback() {
+      const n = Number(this.dataset.n);
+      const count = this.querySelector<HTMLElement>('[data-sc="count"]')!;
+      this.querySelectorAll<HTMLButtonElement>('.g3ss-sc-card').forEach((b, i) =>
+        b.addEventListener('click', () => {
+          const open = b.getAttribute('aria-pressed') !== 'true';
+          b.setAttribute('aria-pressed', String(open));
+          if (!open) return;
+          this.seen.add(i);
+          const done = this.seen.size === n;
+          count.textContent = done ? `🎉 You flipped all ${n}!` : `Flipped ${this.seen.size} of ${n}`;
+          count.classList.toggle('is-done', done);
+        }),
+      );
+    }
+  }
+  customElements.define('g3ss-symbol-cards', SymbolCards);
+</script>

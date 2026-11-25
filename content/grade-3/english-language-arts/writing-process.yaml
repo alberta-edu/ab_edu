@@ -1,0 +1,259 @@
+id: writing-process
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI8
+outcomes: [LANENG3-OI8-GQ1-LO1]
+order: 17
+title: Plan, Draft, Revise, Edit and Share
+shortTitle: Writing process
+summary: >-
+  Follow one story from plan to share. Think about your reader, fix run-on sentences, build a paragraph,
+  and read your writing aloud to check it.
+
+bigIdea: |-
+  - Writers **plan**, **draft**, **revise**, **edit** and **share**, one job at a time.
+  - Each sentence tells one idea. Stop a run-on with a period.
+  - A **paragraph** is three to five sentences about one idea, in order.
+
+lesson:
+  - title: One story, five stages
+    blocks:
+      - type: visual
+        covers: [K1.1, K1.4, K1.9, S1.7, S1.8, S1.10, U1.1]
+        component: writing-path
+        props:
+          stages:
+            - icon: 🗺️
+              label: Plan
+              job: Think about who will read it and why. Sketch your idea.
+              page: |-
+                **Who will read it?** My class. **Why?** To make them laugh. **Form:** A story.
+
+                **Sketch:** 🐕 + 🥪 + 🟫 (my dog, my sandwich, the mud)
+            - icon: ✏️
+              label: Draft
+              job: Get your ideas down on paper. Don’t stop to fix them yet.
+              page: |-
+                my dog ate my sandwhich and then he ran outside and then he jumped in the mud and then he jumped in the mud again.
+            - icon: 🔧
+              label: Revise
+              job: Reread. Add, remove or change words to make it clearer.
+              page: |-
+                my dog ++Rex++ ~~ate~~ ++gobbled up++ my sandwhich. ~~and then~~ ++Next,++ he ran outside and ~~then he~~ jumped in the mud. ~~and then he jumped in the mud again.~~ ++He looked like a chocolate dog!++
+            - icon: 🔍
+              label: Edit
+              job: Fix spelling, capitals and punctuation.
+              page: |-
+                ~~m~~++M++y dog Rex gobbled up my ~~sandwhich~~ ++sandwich++. Next, he ran outside and jumped in the mud. He looked like a chocolate dog!
+            - icon: 🎉
+              label: Share
+              job: Make a neat copy. Share it in a way that fits its purpose.
+              page: |-
+                ### The Mud Puppy
+
+                My dog Rex gobbled up my sandwich. Next, he ran outside and jumped in the mud. He looked like a chocolate dog!
+
+                *🖍️ Read aloud at class story time, with a drawing of Rex.*
+        caption: Tap each stage. **Red** words are cut. **Green** words are new.
+
+  - title: Plan for your reader
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1, S1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: who, label: Audience (who reads it), icon: 👀 }
+            - { id: why, label: Purpose (why), icon: 🎯 }
+            - { id: form, label: Form (what kind), icon: 📄 }
+          cards:
+            - { text: my grandma, bin: who, why: 'Grandma is the person who will read it.' }
+            - { text: to say thank you, bin: why, why: 'That is the reason for writing.' }
+            - { text: a letter, bin: form, why: 'A letter is a kind of writing.' }
+            - { text: my class, bin: who, why: 'Your class will read it.' }
+            - { text: to tell how to make slime, bin: why, why: 'That is the reason: to teach how.' }
+            - { text: a list of steps, bin: form, why: 'Steps are a kind of writing.' }
+        caption: Before you write, ask **who**, **why** and **what kind**. Sort these.
+      - type: callout
+        variant: tip
+        covers: [K1.3, S1.3]
+        title: Plan with a picture
+        body: |-
+          - **Sketch** your idea first.
+          - Or fill in a **web**: your topic in the middle, ideas all around.
+
+  - title: Stop the run-on!
+    blocks:
+      - type: visual
+        covers: [K1.6, K1.7, S1.4]
+        component: g3e-run-on
+        props:
+          items:
+            - { text: 'my brother built a snow fort | it had two doors | we hid inside all afternoon', note: 'Each sentence tells one idea.' }
+            - { text: 'the puppy chewed my shoe | then it chewed my hat | I hid my mitts', note: 'Three ideas, three sentences.' }
+        caption: A **run-on** never stops, so readers don’t know where to pause. Fix it!
+      - type: callout
+        variant: mistake
+        covers: [K1.7, S1.4]
+        title: And then… and then… and then…
+        body: Saying the same words again and again tires out your reader. Try **First**, **Next** and **Last** instead.
+
+  - title: Build a paragraph
+    blocks:
+      - type: visual
+        covers: [K1.8, S1.6]
+        component: text-parts
+        props:
+          title: Our Class Garden
+          parts:
+            - { id: topic, label: Main idea, icon: 🎯, note: 'The first sentence tells what the paragraph is about.' }
+            - { id: detail, label: Details, icon: 🧱, note: 'These sentences add details, **in order**.' }
+            - { id: end, label: Ending, icon: 🏁, note: 'The last sentence wraps it up.' }
+          sentences:
+            - { text: 'Our class planted a garden this spring.', part: topic }
+            - { text: 'First, we dug the soil by the fence.', part: detail }
+            - { text: 'Next, we planted bean seeds in rows.', part: detail }
+            - { text: 'Every day, we took turns watering them.', part: detail }
+            - { text: 'Now our garden is green and full of beans!', part: end }
+        caption: Five sentences about **one idea** make a paragraph. Tap each part.
+
+  - title: Read it aloud
+    blocks:
+      - type: visual
+        covers: [K1.10, S1.9, K1.9, S1.7]
+        component: card-sort
+        props:
+          bins:
+            - { id: smooth, label: Sounds smooth, icon: 🌊 }
+            - { id: bumpy, label: Sounds bumpy, icon: 🪨 }
+          cards:
+            - { text: The big dog ran to the gate., bin: smooth, why: 'It sounds like talking.' }
+            - { text: The. Big dog. Ran to. The gate., bin: bumpy, why: 'Too many stops. Join the words into one sentence.' }
+            - { text: I like I like the park., bin: bumpy, why: '*I like* is there twice. Remove one.' }
+            - { text: We swung on the swings and slid down the slide., bin: smooth, why: 'It flows like talking.' }
+        caption: Fluent writing sounds like talking. Read each one aloud. How does it sound?
+
+keyTerms:
+  - term: Draft
+    covers: [K1.4]
+    definition: Your first try at writing. Get the ideas down; fix them later.
+  - term: Revise
+    covers: [K1.9]
+    definition: Add, remove or change words and sentences to make your writing better.
+  - term: Edit
+    covers: [S1.8]
+    definition: Fix spelling, capitals, punctuation and grammar.
+  - term: Run-on sentence
+    covers: [K1.6]
+    definition: Two or more sentences joined with no stop. Readers can’t tell where to pause.
+  - term: Paragraph
+    covers: [K1.8]
+    definition: Three to five sentences about one idea.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: order
+    prompt: Put the stages of writing in order.
+    items:
+      - Plan
+      - Draft
+      - Revise
+      - Edit
+      - Share
+    hints:
+      - What do you do before you write anything?
+      - What do you do last?
+    solution:
+      - '**Plan**, **draft**, **revise**, **edit**, then **share**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.8, K1.1]
+    type: mc
+    prompt: Mia fixes her capitals and her spelling. Which stage is she in?
+    choices:
+      - Edit
+      - Plan
+      - Draft
+    answer: 0
+    feedback:
+      '1': When you plan, you haven’t written much yet. What do you fix?
+      '2': In a draft, you get ideas down and fix them later.
+    hints:
+      - Which stage fixes spelling and punctuation?
+    solution:
+      - Fixing spelling, capitals and punctuation is **editing**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: decide
+    covers: [K1.2, S1.1, S1.2]
+    type: mc
+    prompt: Leo wants to show his class how to fold a paper boat. Which form fits best?
+    choices:
+      - Steps in order, with pictures
+      - A poem about the sea
+      - A thank-you letter
+    answer: 0
+    feedback:
+      '1': A poem is fun, but can his class fold a boat from it?
+      '2': Is Leo saying thank you to someone?
+    hints:
+      - What is his **purpose**? What will his class need?
+    solution:
+      - To teach **how**, use **steps in order**. Pictures help readers follow.
+
+  - id: b2
+    level: 2
+    thinking: apply
+    covers: [K1.7, S1.4, S1.7]
+    type: mc
+    prompt: 'Ana wrote, “My cat is soft. My cat is fluffy. My cat is grey.” How could she **revise** it?'
+    choices:
+      - My cat is soft, fluffy and grey.
+      - My cat is soft. My cat is soft.
+      - Cat soft fluffy grey.
+    answer: 0
+    feedback:
+      '1': Is it still repeating?
+      '2': Does this sound like talking? Words are missing.
+    hints:
+      - Which words does she repeat three times?
+    solution:
+      - '*My cat is* is said three times. Join the ideas: **My cat is soft, fluffy and grey.**'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K1.6, S1.4]
+    type: text
+    caseSensitive: true
+    prompt: 'Fix the run-on: *we built a snow fort it had two doors.* Type the word that should **start** the second sentence, with its capital.'
+    accept: [It]
+    hints:
+      - Read it aloud. Where do you stop for a breath?
+      - A new sentence starts with a capital letter.
+    solution:
+      - '*We built a snow fort.* is one idea. *It had two doors.* is another.'
+      - 'So the second sentence starts with **It**.'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.8, S1.4, S1.9, S1.6]
+    type: open
+    prompt: Write a short paragraph about a place you love. Then read it aloud and fix any run-ons.
+    modelAnswer: |-
+      My favourite place is my grandpa’s farm. First, I feed the chickens. Next, I ride in the big red tractor. At night, we watch the stars. I wish I could go every day!
+    rubric:
+      - The first sentence tells the place.
+      - The other sentences add details in order.
+      - Every sentence ends with a stop.
+      - It doesn’t repeat the same words again and again.

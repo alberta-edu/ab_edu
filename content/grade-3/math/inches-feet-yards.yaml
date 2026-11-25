@@ -1,0 +1,214 @@
+id: inches-feet-yards
+grade: 3
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT3-OI5-GQ1-LO1]
+order: 15
+title: Inches, Feet and Yards
+shortTitle: Imperial length
+summary: >-
+  Build a foot from 12 inches and a yard from 3 feet, tell metric units from imperial ones, and
+  match lengths roughly: 30 cm is about a foot.
+
+bigIdea: |-
+  - 12 inches make 1 foot. 3 feet, or 36 inches, make 1 yard.
+  - Metric and imperial are two ways to measure length.
+  - Rough matches help: 2½ cm ≈ 1 in, 30 cm ≈ 1 ft, 1 m ≈ 1 yd ≈ 3 ft.
+
+lesson:
+  - title: From inches to a yard
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.2]
+        component: g3-ruler
+        props: { mode: imperial }
+        caption: A ruler is often 12 inches long. Press **Next** to build a yard.
+
+  - title: Metric or imperial?
+    blocks:
+      - type: visual
+        covers: [S1.5, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'met', label: 'Metric', icon: '📏' }
+            - { id: 'imp', label: 'Imperial', icon: '🦶' }
+          cards:
+            - { text: '3 ft', bin: 'imp', why: 'ft is short for feet.' }
+            - { text: '20 cm', bin: 'met', why: 'cm is short for centimetres.' }
+            - { text: '1 yd', bin: 'imp', why: 'yd is short for yard.' }
+            - { text: '5 mm', bin: 'met', why: 'mm is short for millimetres.' }
+            - { text: '8 in', bin: 'imp', why: 'in is short for inches.' }
+            - { text: '2 m', bin: 'met', why: 'm is short for metres.' }
+        caption: Both measure length. The unit tells you which one it is.
+
+  - title: Small matches
+    blocks:
+      - type: visual
+        covers: [K1.6]
+        component: g3-ruler
+        props: { mode: convert, matches: [inch, foot] }
+        caption: The two bars are almost the same length.
+      - type: example
+        covers: [S1.6, K1.6]
+        title: A 10 cm crayon
+        problem: About how many inches long is a 10 cm crayon?
+        steps:
+          - 'Every 2½ cm is about 1 inch.'
+          - '2½ + 2½ + 2½ + 2½ = 10. That is 4 jumps.'
+        answer: The crayon is about **4 inches** long.
+
+  - title: Big matches
+    blocks:
+      - type: visual
+        covers: [K1.6]
+        component: g3-ruler
+        props: { mode: convert, matches: [yard, feet] }
+        caption: A metre stick is just a little longer than a yardstick.
+      - type: example
+        covers: [S1.6, K1.6]
+        title: A door
+        problem: A door is about 2 m tall. About how many feet is that?
+        steps:
+          - '1 m is about 3 ft.'
+          - '2 m is about 3 + 3 = 6 ft.'
+        answer: The door is about **6 feet** tall.
+
+keyTerms:
+  - term: Inch (in)
+    covers: [K1.5]
+    definition: 'A small imperial unit. About 2½ cm.'
+  - term: Foot (ft)
+    covers: [K1.5]
+    definition: '12 inches. About 30 cm.'
+  - term: Yard (yd)
+    covers: [K1.5]
+    definition: '3 feet, or 36 inches. About 1 metre.'
+  - term: Imperial units
+    covers: [U1.1, S1.5]
+    definition: 'Inches, feet and yards: another way to measure length.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.5, S1.2]
+    type: number
+    prompt: How many **feet** are in 1 yard?
+    unit: ft
+    answer: 3
+    verify: 36 / 12
+    hints:
+      - How many 12-inch rulers make a yardstick?
+    solution:
+      - '3 rulers of 12 inches make a yardstick, so 1 yard = **3 feet**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.5]
+    type: multi
+    prompt: Which lengths are **imperial**? Pick all of them.
+    choices: ['4 ft', '4 m', '9 in', '9 cm', '2 yd']
+    fixedOrder: true
+    answer: [0, 2, 4]
+    feedback:
+      '1': 'm is short for metre. Metres are metric.'
+      '3': 'cm is short for centimetre. That is metric.'
+    hints:
+      - Look only at the units. Which ones are inches, feet or yards?
+    solution:
+      - 'ft, in and yd are imperial: **4 ft**, **9 in** and **2 yd**.'
+      - 'm and cm are metric.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: estimate
+    covers: [S1.6, K1.6]
+    type: number
+    prompt: A bean is **5 cm** long. About how many **inches** is that?
+    unit: in
+    answer: 2
+    verify: 5 / (5/2)
+    hints:
+      - About how many centimetres make 1 inch?
+      - How many 2½ cm jumps make 5 cm?
+    solution:
+      - '2½ cm is about 1 inch. 2½ + 2½ = 5.'
+      - 'So 5 cm is about **2 inches**.'
+
+  - id: b2
+    level: 2
+    thinking: decide
+    covers: [K1.6, S1.6, U1.1]
+    type: mc
+    prompt: Kai is **4 ft** tall. His little sister Mae is **1 m** tall. Who is taller?
+    choices: ['Kai', 'Mae', 'They are the same']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '1 is less than 4, but the units are different. About how many feet is 1 m?'
+      '2': 'The numbers are different and so are the units. Change 1 m into feet first.'
+    hints:
+      - 1 m is about how many feet?
+    solution:
+      - '1 m is about 3 ft.'
+      - 'Kai is 4 ft, which is more than 3 ft. **Kai** is taller.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.2, K1.5, K1.6]
+    type: investigation
+    prompt: Lia lays 1-foot rulers end to end along a rug **3 yards** long.
+    parts:
+      - type: number
+        prompt: How many rulers does she need?
+        unit: rulers
+        answer: 9
+        verify: 3 * 3
+        hints:
+          - Each yard is how many feet?
+        solution:
+          - 'Each yard is 3 feet, so each yard takes 3 rulers.'
+          - '3 + 3 + 3 = **9** rulers.'
+      - type: mc
+        prompt: About how long is the rug in **metres**?
+        choices: ['About 3 m', 'About 9 m', 'About 36 m']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': '9 is the number of feet. Is a metre as small as a foot?'
+          '2': '36 is the number of inches in one yard. A metre is much bigger than an inch.'
+        hints:
+          - 1 m is about 1 yd.
+        solution:
+          - '1 m is about 1 yd, so 3 yd is about **3 m**.'
+    wrapUp: Big units need fewer of them. 3 yards, 9 feet and about 3 metres are all the same rug.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.2, K1.5]
+    type: build
+    prompt: Two ribbons make exactly **1 yard** together. One is measured in **feet**, the other in **inches**. How long could each be?
+    fields:
+      - { name: f, label: 'Ribbon 1', unit: ft }
+      - { name: i, label: 'Ribbon 2', unit: in }
+    rules:
+      - { test: 'f % 1 == 0 && i % 1 == 0 && f >= 1 && i >= 1', fail: 'Use whole numbers, and give both ribbons some length.' }
+      - { test: 'f * 12 + i == 36', fail: 'Together they are not 1 yard yet. How many inches is your ribbon in feet?' }
+    examples:
+      - { f: 1, i: 24 }
+      - { f: 2, i: 12 }
+    counterexamples:
+      - { f: 1, i: 2 }
+      - { f: 3, i: 0 }
+    hints:
+      - 1 yard is 36 inches. How many inches is 1 foot?
+    solution:
+      - '1 ft is 12 in. 12 + **24** = 36, so **1 ft and 24 in** works.'
+      - '**2 ft and 12 in** works too: 24 + 12 = 36.'

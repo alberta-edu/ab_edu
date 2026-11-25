@@ -1,0 +1,237 @@
+id: water-safety
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 6
+title: Water and Ice Through the Seasons
+shortTitle: Water and ice safety
+summary: >-
+  Watch an Alberta lake freeze and melt through the year, check when ice is safe, and learn how to
+  stay safe near water and respect it in every season.
+
+bigIdea: |-
+  - In Alberta, the tops of many lakes and rivers **freeze** in winter and **melt** in spring.
+  - Ice is safe only when a grown-up checks it is **thick enough**.
+  - Be safe near water in **every season**, and keep it clean.
+
+lesson:
+  - title: A lake through the year
+    blocks:
+      - type: experiment
+        covers: [K5.5, K5.3, S5.3]
+        title: Watch a year go by
+        question: Watch an Alberta lake from summer to summer. What is the lake like in February?
+        animation: g3s-scene
+        props: { scene: lake-year }
+        predict:
+          choices: ['Ice on top, water below', 'Frozen to the bottom', 'All liquid water']
+          answer: 0
+        observe: |-
+          - In the fall, the **top** of the lake froze.
+          - All winter, **liquid water** stayed under the ice. The fish kept swimming.
+          - In spring, the ice **melted**.
+        explain: |-
+          - Cold winter air cools the water at the top until it **freezes**.
+          - Warm spring days heat the ice until it **melts**.
+
+  - title: Is the ice safe?
+    blocks:
+      - type: visual
+        covers: [S5.4]
+        component: g3s-play
+        props: { scene: ice-check }
+        caption: Tap each kind of ice. Which one is safe?
+      - type: callout
+        variant: tip
+        covers: [S5.4]
+        title: Ice rules
+        body: |-
+          - Never go on ice alone.
+          - A grown-up checks that it is at least **15 cm** thick.
+          - Stay off grey ice.
+
+  - title: Safe near water all year
+    blocks:
+      - type: visual
+        covers: [S5.5]
+        component: g3s-play
+        props: { scene: water-seasons }
+        caption: Tap each season to see how to stay safe.
+
+  - title: Changes you can see
+    blocks:
+      - type: visual
+        covers: [S5.3, K5.3, K5.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: melt, label: Melting, icon: '💧' }
+            - { id: freeze, label: Freezing, icon: '🧊' }
+            - { id: evap, label: Evaporating, icon: '♨️' }
+          cards:
+            - { text: 'Icicles drip on a warm Chinook day.', bin: melt, why: 'The warm wind melts the solid ice into liquid water.' }
+            - { text: 'A puddle turns hard overnight in November.', bin: freeze, why: 'Cold night air freezes the liquid water into ice.' }
+            - { text: 'A wet sidewalk dries after a summer rain.', bin: evap, why: 'The sun turns the liquid water into water vapour.' }
+            - { text: 'The river ice breaks up in April.', bin: melt, why: 'Spring warmth melts the ice back into liquid water.' }
+        caption: Which change of state is happening near you?
+
+  - title: Respect the water
+    blocks:
+      - type: visual
+        covers: [S5.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Respects water, icon: '💙' }
+            - { id: no, label: Harms water, icon: '⚠️' }
+          cards:
+            - { text: 'Picking up litter by a creek', bin: yes, why: 'Litter can wash into the water and hurt animals.' }
+            - { text: 'Pouring paint into a storm drain', bin: no, why: 'Storm drains carry water straight to rivers. The paint would go too.' }
+            - { text: 'Turning off the tap while brushing teeth', bin: yes, why: 'It saves clean water.' }
+            - { text: 'Leaving fishing line on the shore', bin: no, why: 'Birds and animals can get tangled in it.' }
+        caption: Does it **respect** the water, or **harm** it?
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI4-GQ1-LO1#K1.2]
+        title: Remember from Grade 2
+        body: Littering and polluting harm the plants and animals that need clean water.
+
+keyTerms:
+  - term: Ice-covered water
+    covers: [K5.5]
+    definition: A lake, pond or river whose top has frozen solid, with liquid water still underneath.
+  - term: Chinook
+    covers: [S5.3]
+    definition: A warm wind in southern Alberta that can melt snow and ice in winter.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K5.5]
+    type: mc
+    prompt: In Alberta, what happens to the top of many lakes in winter?
+    choices: ['It freezes into ice', 'It dries up', 'It gets warmer']
+    answer: 0
+    feedback:
+      '1': Water evaporates faster when it is warm. Is winter warm?
+      '2': Winter air is cold. What does cold do to water?
+    hints:
+      - Is winter in Alberta warm or cold? What does cold do to water?
+    solution:
+      - Cold winter air cools the lake until the top **freezes** into ice.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S5.4]
+    type: mc
+    prompt: Pond ice is **8 cm** thick. Is it safe for one person to skate on?
+    choices: ['No, it should be at least 15 cm', 'Yes, all ice is safe', 'Yes, if they skate fast']
+    answer: 0
+    feedback:
+      '1': Thin ice can break. How thick does ice need to be for one person?
+      '2': Skating fast doesn’t make ice stronger. How thick should it be?
+    hints:
+      - Look at the ice rules in the lesson.
+    solution:
+      - Ice should be at least **15 cm** thick for one person, and a grown-up should check it.
+      - 8 cm is too thin. It is **not** safe.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: decide
+    covers: [S5.5]
+    type: mc
+    prompt: It is April. The river is high and fast from melting snow. Sam wants to see it. What is the safest plan?
+    choices:
+      - Watch from far back with a grown-up.
+      - Stand right at the edge to see better.
+      - Walk out on the ice still near the shore.
+    answer: 0
+    feedback:
+      '1': Spring riverbanks can be slippery and crumbly. What could happen at the edge?
+      '2': In spring, ice is melting and weak. Is it safe to stand on?
+    hints:
+      - What makes rivers dangerous in spring?
+    solution:
+      - In spring, rivers are high, fast and very cold, and the edges are slippery.
+      - Watching from **far back** with a grown-up is safest.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S5.2]
+    type: multi
+    prompt: Which actions **respect** the water in a creek near your home? Pick **all** of them.
+    choices:
+      - Putting trash in a garbage can
+      - Washing a bike with soap in the creek
+      - Picking up a plastic bag on the bank
+      - Dumping grass clippings into the water
+    answer: [0, 2]
+    feedback:
+      '1': Soap washes into the creek. Is that good for the fish?
+      '3': Piles of clippings rot in the water. Who lives there?
+    hints:
+      - For each one, ask, “Does this keep the water clean?”
+    solution:
+      - Putting trash away and picking up litter keep the creek **clean**.
+      - Soap and grass clippings both pollute the water.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [S5.4]
+    type: investigation
+    prompt: |-
+      A grown-up checks three spots on a pond.
+      - **A:** clear ice, 16 cm thick
+      - **B:** grey ice, 18 cm thick
+      - **C:** clear ice, 9 cm thick
+    parts:
+      - type: mc
+        prompt: Which spot is safe for one skater?
+        choices: [A, B, C]
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': B is the thickest. But what colour is it?
+          '2': C is clear, but is it at least 15 cm thick?
+        hints:
+          - Check two things for each spot. Is it clear? Is it at least 15 cm?
+        solution:
+          - A is clear and more than 15 cm thick, so it is **safe** for one skater.
+      - type: mc
+        prompt: B is the thickest ice. Why is it **not** safe?
+        choices: ['Grey ice has water in it and is weak', 'It is too thick to skate on', 'Grey ice is too slippery']
+        answer: 0
+        feedback:
+          '1': Thick ice is usually stronger. What else is different about B?
+          '2': Is slipping the danger here, or breaking through?
+        hints:
+          - Look at the ice rules again. What do they say about colour?
+        solution:
+          - Grey ice has water mixed in, so it is **weak** even when it is thick.
+    wrapUp: Ice safety needs more than one clue. Check the thickness **and** the colour, with a grown-up.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K5.5, S5.3, S5.4]
+    type: mc
+    prompt: In January, a Chinook warms Calgary for three days. What happens to the ice on a pond?
+    choices: ['It starts to melt and gets weaker', 'It gets thicker and stronger', 'Nothing changes in winter']
+    answer: 0
+    feedback:
+      '1': Ice gets thicker when it is cold. Is a Chinook cold?
+      '2': It is still winter, but is the air still cold?
+    hints:
+      - A Chinook is a warm wind. What does warmth do to ice?
+    solution:
+      - The warm Chinook heats the ice, so it starts to **melt**.
+      - Melting ice is thinner and weaker. It may not be safe, even in January.

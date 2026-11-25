@@ -1,0 +1,121 @@
+---
+// Catch the quoted words (LANENG3-OI9-GQ1-LO1, K1.4, S1.4, S1.5). With a speaker, a speech bubble shows
+// what they said: tap those words in the sentence, and quotation marks pop in around them. Without a
+// speaker, find the word used in a special way, and the marks pop in around it.
+import { quoteSpan, spokenWords } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** Sentences with [ ] around the quoted words: "[Look at the moose!] shouted Ben." */
+  items: { text: string; who?: string; icon?: string; note?: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => {
+  const q = quoteSpan(it.text);
+  return { ...q, who: it.who ?? '', icon: it.icon ?? '', said: it.icon ? spokenWords(q) : '', note: it.note ? mdInline(it.note) : '' };
+});
+const quoted = (d: (typeof data)[number]) => d.words.map((w, i) => (i === d.from ? '“' : '') + w + (i === d.to ? '”' : '')).join(' ');
+---
+<g3e-quote-catch data-items={JSON.stringify(data)}>
+  <p class="g3e-qc__count muted" data-qc="count"></p>
+  <div class="g3e-qc__speaker" data-qc="speaker">
+    <span class="g3e-qc__icon" data-qc="icon" aria-hidden="true"></span>
+    <p class="g3e-qc__bubble" data-qc="bubble"></p>
+  </div>
+  <p class="g3e-qc__text" data-qc="text"></p>
+  <div class="control-row">
+    {items.length > 1 && <button type="button" class="btn btn--ghost btn--small" data-qc="next">Next one ▶</button>}
+  </div>
+  <p class="g3e-qc__note" data-qc="note" aria-live="polite"></p>
+  <noscript><ul>{data.map((d) => <li>{quoted(d)}</li>)}</ul></noscript>
+</g3e-quote-catch>
+
+<style is:global>
+  g3e-quote-catch { display: block; }
+  .g3e-qc__count { margin: 0; font-size: var(--step--1); }
+  .g3e-qc__speaker { display: flex; align-items: flex-end; gap: 0.6rem; margin-top: 0.6rem; }
+  .g3e-qc__speaker[hidden] { display: none; }
+  .g3e-qc__icon { font-size: 2.6rem; line-height: 1; }
+  .g3e-qc__bubble { position: relative; margin: 0 0 1.4rem; padding: 0.6rem 0.9rem; border-radius: 1rem; background: var(--l2-soft); border: 2px solid var(--l2); font-size: var(--step-1); font-weight: 700; }
+  .g3e-qc__bubble::after { content: ''; position: absolute; left: -0.55rem; bottom: 0.5rem; border: 0.5rem solid transparent; border-right-color: var(--l2); border-left: 0; }
+  .g3e-qc__text { margin: 0.6rem 0; padding: 0.9rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 2.2; }
+  .g3e-qc__w { padding: 0.1rem 0.25rem; border: 0; border-radius: 6px; background: none; font: inherit; color: inherit; cursor: pointer; }
+  .g3e-qc__w:hover { background: var(--accent-soft); }
+  .g3e-qc__w.is-wrong { background: var(--bad-soft); animation: g3e-qc-shake 0.35s ease; }
+  .g3e-qc__w.is-in { background: var(--l2-soft); color: var(--l2); font-weight: 700; }
+  .g3e-qc__mark { display: inline-block; font-size: var(--step-2); font-weight: 800; line-height: 1; color: var(--accent); }
+  g3e-quote-catch.is-done .g3e-qc__w { cursor: default; }
+  .g3e-qc__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-qc__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-qc-shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+  @keyframes g3e-qc-pop { 0% { transform: scale(0) translateY(-0.6rem); } 70% { transform: scale(1.4); } 100% { transform: none; } }
+  @media (prefers-reduced-motion: no-preference) { .g3e-qc__mark { animation: g3e-qc-pop 0.45s ease; } }
+  @media (prefers-reduced-motion: reduce) { .g3e-qc__w.is-wrong { animation: none; } }
+</style>
+
+<script>
+  type Item = { words: string[]; from: number; to: number; who: string; icon: string; said: string; note: string };
+
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  class G3eQuoteCatch extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.querySelector('[data-qc="next"]')?.addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-qc="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      this.classList.remove('is-done');
+      const it = this.items[i];
+      this.part('count').textContent = this.items.length > 1 ? `Sentence ${i + 1} of ${this.items.length}` : '';
+      this.part('speaker').hidden = !it.icon;
+      this.part('icon').textContent = it.icon;
+      this.part('bubble').textContent = it.said;
+      const text = this.part('text');
+      text.innerHTML = it.words.map((w, k) => `<button type="button" class="g3e-qc__w" data-qc-w="${k}">${esc(w)}</button>`).join(' ');
+      text.querySelectorAll<HTMLButtonElement>('[data-qc-w]').forEach((b) => b.addEventListener('click', () => this.tap(b)));
+      const note = this.part('note');
+      note.className = 'g3e-qc__note';
+      note.textContent = it.icon
+        ? `Look at the bubble. Tap a word that ${it.who || 'they'} said.`
+        : 'Which word is used in a special way? Tap it.';
+    }
+
+    private tap(b: HTMLButtonElement) {
+      if (this.classList.contains('is-done')) return;
+      const it = this.items[this.at];
+      const k = Number(b.dataset.qcW);
+      const note = this.part('note');
+      if (k < it.from || k > it.to) {
+        b.classList.remove('is-wrong');
+        void b.offsetWidth;
+        b.classList.add('is-wrong');
+        note.innerHTML = it.icon
+          ? `Did ${esc(it.who || 'they')} say <em>${esc(b.textContent!)}</em>? Look at the bubble again.`
+          : `<em>${esc(b.textContent!)}</em> means just what it says. Which word doesn’t?`;
+        return;
+      }
+      this.classList.add('is-done');
+      const buttons = [...this.querySelectorAll<HTMLButtonElement>('[data-qc-w]')];
+      buttons.forEach((w, j) => {
+        w.classList.remove('is-wrong');
+        w.classList.toggle('is-in', j >= it.from && j <= it.to);
+      });
+      buttons[it.from].insertAdjacentHTML('beforebegin', '<span class="g3e-qc__mark" aria-hidden="true">“</span>');
+      buttons[it.to].insertAdjacentHTML('afterend', '<span class="g3e-qc__mark" aria-hidden="true">”</span>');
+      const words = it.words.map((w, j) => (j === it.from ? '“' : '') + w + (j === it.to ? '”' : '')).join(' ');
+      note.className = 'g3e-qc__note is-done';
+      note.innerHTML = `✅ <strong>${esc(words)}</strong> ${it.note}`;
+    }
+  }
+  customElements.define('g3e-quote-catch', G3eQuoteCatch);
+</script>

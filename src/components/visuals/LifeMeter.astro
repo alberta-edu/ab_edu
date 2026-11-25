@@ -1,0 +1,128 @@
+---
+// Grade 3: quality of life as four meters: safety, comfort, health and happiness. Tap an action,
+// such as shovelling a neighbour's walk, and the meters it helps fill up with a pop. It shows that
+// small actions add up to a better life for yourself and others. Actions come from the lesson's YAML.
+import { mdInline } from '../../lib/render.ts';
+import { METERS, checkActions } from './g3ss-life.ts';
+
+interface Props {
+  actions: { icon: string; label: string; adds: string[]; text: string }[];
+}
+const { actions } = Astro.props;
+checkActions(actions);
+const data = actions.map((a) => ({ adds: a.adds, label: a.label, icon: a.icon, text: mdInline(a.text) }));
+---
+<g3ss-life-meter data-actions={JSON.stringify(data)}>
+  <ul class="g3ss-lm-meters" aria-label="Quality of life">
+    {
+      METERS.map((m) => (
+        <li class="g3ss-lm-meter" data-lm-meter={m.id}>
+          <span class="g3ss-lm-icon" aria-hidden="true">{m.icon}</span>
+          <span class="g3ss-lm-name">{m.name}</span>
+          <span class="g3ss-lm-bar" aria-hidden="true"><span class="g3ss-lm-fill"></span></span>
+        </li>
+      ))
+    }
+  </ul>
+  <ul class="g3ss-lm-actions" role="group" aria-label="Actions">
+    {
+      data.map((a, i) => (
+        <li>
+          <button type="button" class="g3ss-lm-act" data-lm-act={i} aria-pressed="false">
+            <span class="g3ss-lm-act__icon" aria-hidden="true">{a.icon}</span>
+            <span>{a.label}</span>
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="g3ss-lm-card" data-lm="card" aria-live="polite" hidden>
+    <p class="g3ss-lm-card__name" data-lm="name"></p>
+    <p data-lm="text"></p>
+  </div>
+  <p class="g3ss-lm-score muted" data-lm="score" aria-live="polite">Tap an action. Which meters go up?</p>
+  <button type="button" class="btn btn--small btn--ghost" data-lm="again" hidden>↺ Start again</button>
+</g3ss-life-meter>
+
+<style is:global>
+  g3ss-life-meter { display: block; }
+  .g3ss-lm-meters { list-style: none; margin: 0 0 0.7rem; padding: 0.6rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; border-radius: var(--radius-sm); background: var(--social-soft); }
+  @media (max-width: 30rem) { .g3ss-lm-meters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .g3ss-lm-meter { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0.1rem 0.35rem; }
+  .g3ss-lm-icon { grid-row: span 2; font-size: 1.6rem; }
+  .g3ss-lm-meter.is-up .g3ss-lm-icon { animation: g3ss-lm-pop 0.45s ease; }
+  .g3ss-lm-name { font-size: var(--step--1); font-weight: 800; }
+  .g3ss-lm-bar { height: 0.7rem; border-radius: 999px; background: var(--surface); border: 1px solid var(--line-strong); overflow: hidden; }
+  .g3ss-lm-fill { display: block; height: 100%; width: var(--g3ss-lm-level, 0%); background: var(--ok); transition: width 0.5s ease; }
+  .g3ss-lm-actions { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); }
+  .g3ss-lm-act { display: flex; align-items: center; gap: 0.45rem; width: 100%; min-height: 3rem; padding: 0.4rem 0.6rem; border: 2px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+  .g3ss-lm-act:hover { border-color: var(--social); }
+  .g3ss-lm-act:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .g3ss-lm-act[aria-pressed='true'] { border-color: var(--ok); background: var(--ok-soft); }
+  .g3ss-lm-act__icon { font-size: 1.5rem; }
+  .g3ss-lm-card { margin-top: 0.6rem; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); border: 2px solid var(--social); background: var(--surface); }
+  .g3ss-lm-card p { margin: 0; }
+  .g3ss-lm-card__name { font-weight: 800; margin-bottom: 0.2rem !important; }
+  .g3ss-lm-score { margin: 0.5rem 0; font-weight: 700; }
+  .g3ss-lm-score.is-done { color: var(--ok); }
+  @keyframes g3ss-lm-pop { 50% { transform: scale(1.4); } }
+  @media (prefers-reduced-motion: reduce) { .g3ss-lm-fill { transition: none; } .g3ss-lm-meter.is-up .g3ss-lm-icon { animation: none; } }
+</style>
+
+<script>
+  import { METERS, levels } from './g3ss-life.ts';
+
+  interface Act { adds: string[]; label: string; icon: string; text: string }
+
+  class LifeMeter extends HTMLElement {
+    private done = new Set<number>();
+
+    connectedCallback() {
+      const acts: Act[] = JSON.parse(this.dataset.actions!);
+      const card = this.querySelector<HTMLElement>('[data-lm="card"]')!;
+      const score = this.querySelector<HTMLElement>('[data-lm="score"]')!;
+      const again = this.querySelector<HTMLButtonElement>('[data-lm="again"]')!;
+      const draw = (bumped: string[] = []) => {
+        const lv = levels(acts, this.done);
+        for (const m of METERS) {
+          const el = this.querySelector<HTMLElement>(`[data-lm-meter="${m.id}"]`)!;
+          el.style.setProperty('--g3ss-lm-level', `${Math.round(lv[m.id] * 100)}%`);
+          el.classList.remove('is-up');
+          if (bumped.includes(m.id)) {
+            void el.offsetWidth;
+            el.classList.add('is-up');
+          }
+        }
+      };
+      this.querySelectorAll<HTMLButtonElement>('[data-lm-act]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const i = Number(b.dataset.lmAct);
+          const a = acts[i];
+          const fresh = !this.done.has(i);
+          this.done.add(i);
+          b.setAttribute('aria-pressed', 'true');
+          draw(fresh ? a.adds : []);
+          card.hidden = false;
+          const names = METERS.filter((m) => a.adds.includes(m.id)).map((m) => `${m.icon} ${m.name}`).join(' · ');
+          card.querySelector('[data-lm="name"]')!.textContent = `${a.icon} ${a.label}: ${names} ⬆️`;
+          card.querySelector('[data-lm="text"]')!.innerHTML = a.text;
+          const all = this.done.size === acts.length;
+          score.textContent = all ? '🎉 Every meter is full! Life is better for everyone.' : `Done ${this.done.size} of ${acts.length}`;
+          score.classList.toggle('is-done', all);
+          again.hidden = !all;
+        }),
+      );
+      again.addEventListener('click', () => {
+        this.done.clear();
+        this.querySelectorAll('[data-lm-act]').forEach((b) => b.setAttribute('aria-pressed', 'false'));
+        draw();
+        card.hidden = true;
+        score.textContent = 'Tap an action. Which meters go up?';
+        score.classList.remove('is-done');
+        again.hidden = true;
+      });
+      draw();
+    }
+  }
+  customElements.define('g3ss-life-meter', LifeMeter);
+</script>

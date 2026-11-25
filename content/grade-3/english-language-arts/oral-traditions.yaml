@@ -1,0 +1,257 @@
+id: oral-traditions
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI2
+outcomes: [LANENG3-OI2-GQ1-LO1]
+order: 6
+title: Stories Passed Down by Speaking
+shortTitle: Oral traditions
+summary: >-
+  Find out how people spoke long before they wrote, how stories travel from grandparents to children,
+  and how to listen to and share them with respect.
+
+bigIdea: |-
+  - People spoke and told stories long before anyone wrote.
+  - An **oral tradition** passes stories and knowledge from one **generation** to the next, by listening and speaking.
+  - These stories bring people together and teach us how to live. We share them with respect.
+
+lesson:
+  - title: Talking came first
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1]
+        component: story-path
+        props:
+          stages:
+            - { label: Long ago, text: 'People talked, sang and told stories. Nobody wrote anything down.' }
+            - { label: Remembering, text: 'They kept knowledge safe by listening closely and remembering.' }
+            - { label: Much later, text: 'People made marks and letters. Writing began.' }
+            - { label: Today, text: 'We talk, write and record. And we still tell stories out loud.' }
+        caption: Press **Next**. Which came first, speaking or writing?
+
+  - title: From grandparents to you
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, U1.1]
+        component: story-path
+        props:
+          stages:
+            - { label: Ancestors, text: 'A great-great-grandmother tells how her family crossed a wide river.' }
+            - { label: Grandparents, text: 'Her grandson hears it many times. When he is old, he tells it to his kids.' }
+            - { label: Parents, text: 'Mom tells it at bedtime, just the way Grandpa did.' }
+            - { label: Children, text: 'Now you know it. One day, you might tell it too.' }
+        caption: One story, passed down through four **generations**.
+
+  - title: Many ways to pass it on
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.4]
+        component: text-xray
+        props:
+          button: How is it shared?
+          pages:
+            - label: Blackfoot
+              icon: 🔥
+              parts:
+                - { style: kicker, text: 'Blackfoot people, Alberta' }
+                - { style: text, text: 'Napi, or Old Man, is a figure in Blackfoot stories. People have gathered for a very long time to hear them.', tag: Stories told aloud, job: 'Told by speakers and heard by listeners, year after year.' }
+              note: 'The book *Napi: The Trickster*, by Hugh A. Dempsey, shares these stories by permission of Blackfoot Elders.'
+            - label: West Africa
+              icon: 🎶
+              parts:
+                - { style: kicker, text: 'Griots, West Africa' }
+                - { style: text, text: 'A **griot** keeps history in songs and stories. Many play a harp-like instrument called a kora.', tag: Songs and music, job: 'History can be sung, not only told.' }
+                - { style: text, text: 'Griots learn from their parents and pass it on to their children.', tag: Passed down in families, job: 'Each generation teaches the next.' }
+            - label: Ancient Greece
+              icon: 🏛️
+              parts:
+                - { style: kicker, text: 'Ancient Greece' }
+                - { style: text, text: 'Poets sang very long stories, like the adventures of Odysseus, from memory.', tag: Long poems from memory, job: 'They were sung aloud long before they were written down.' }
+        caption: Oral traditions come in different forms. Tap each tab, then the button.
+
+  - title: Listening with respect
+    blocks:
+      - type: passage
+        id: snow
+        title: The Big Snow
+        form: A family story, told aloud
+        paragraphs:
+          - When my mother was small, a big snow buried the farm. The snow was higher than the fence.
+          - Her family had lots of firewood. The neighbours had none.
+          - So her father pulled a sled of wood across the fields to them. Both families stayed warm.
+          - That is why our family always helps the neighbours.
+        note: An original family story written for Alberta Edu, told by a grandfather.
+      - type: visual
+        covers: [S1.2, K1.4]
+        component: talk-it-out
+        props:
+          turns:
+            - speaker: Grandpa
+              says: 'Come, sit. I’ll tell you the story my mother told me about the big snow.'
+              choices:
+                - { text: '(Put my tablet away and sit close.)', good: true, reply: 'Grandpa smiles and begins.', why: 'Giving the teller your full attention shows respect.' }
+                - { text: 'Can I watch my show while you talk?', good: false, reply: 'Grandpa stops and waits.', why: 'A story passed down is a gift. It needs your listening.' }
+            - speaker: Grandpa
+              says: '…and that is how our family learned to always help the neighbours.'
+              choices:
+                - { text: 'Thank you, Grandpa. Can I tell this story at school?', good: true, reply: '“Yes. Tell it the way I told you.”', why: 'You thanked him, and asked before sharing his story.' }
+                - { text: 'I’ll change the ending to make it funnier.', good: false, reply: 'Grandpa frowns.', why: 'Keep the story true to how it was told. It carries the family’s knowledge.' }
+          ending: Stories that are passed down **build community** and **guide us**. Listening, thanking and asking first show respect.
+        caption: What do you say? Watch how Grandpa feels.
+
+  - title: Your family’s stories
+    blocks:
+      - type: visual
+        covers: [S1.3, K1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: passed, label: Passed down, icon: 🎁 }
+            - { id: today, label: Just from today, icon: 📅 }
+          cards:
+            - { text: A song Grandma learned from her mother, bin: passed, why: 'It has travelled through three generations.' }
+            - { text: What I ate for lunch, bin: today, why: 'It matters today, but it wasn’t passed down.' }
+            - { text: How our family chose my name, bin: passed, why: 'A family story that older relatives tell.' }
+            - { text: A game Dad learned from his uncle, bin: passed, why: 'Kin pass on games, too.' }
+            - { text: A video I watched today, bin: today, why: 'Nobody handed this down to you.' }
+        caption: Which ones are passed down from older family members?
+      - type: callout
+        variant: tip
+        covers: [S1.3]
+        title: Be a story keeper
+        body: Ask an older relative, “What did your family tell you when you were little?” Share it, with their OK.
+
+keyTerms:
+  - term: Oral tradition
+    covers: [U1.1]
+    definition: Passing stories and knowledge from one generation to the next, by speaking and listening.
+  - term: Generation
+    covers: [K1.3]
+    definition: 'People born around the same time: children, parents and grandparents are three generations.'
+  - term: Ancestors
+    covers: [K1.3]
+    definition: Family members who lived long before your grandparents.
+  - term: Griot
+    covers: [K1.4]
+    definition: A storyteller and singer in West Africa who keeps history alive.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: mc
+    prompt: Which came **first** for people, long ago?
+    choices:
+      - Speaking
+      - Writing
+      - They began at the same time.
+    answer: 0
+    feedback:
+      '1': Writing came much later. How did people share stories before letters?
+      '2': People spoke for a very long time before anyone wrote.
+    hints:
+      - Before letters, how could people share a story?
+    solution:
+      - Languages were **spoken** long before they were written.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.3, K1.2]
+    type: order
+    prompt: A story is passed down. Put the people in order, from the **oldest** generation to the **youngest**.
+    items:
+      - 👵 Great-grandma
+      - 👴 Grandpa
+      - 👩 Mom
+      - 🧒 You
+    hints:
+      - Who was born first?
+    solution:
+      - Great-grandma told Grandpa. Grandpa told Mom. Mom told you.
+      - Each **generation** passes it to the next.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.4, S1.1]
+    type: mc
+    prompt: A griot in West Africa sings the history of a family, playing a kora. What does this show about oral traditions?
+    choices:
+      - They can be shared in different forms, like songs.
+      - They must always be written in a book.
+      - They are only told at bedtime.
+    answer: 0
+    feedback:
+      '1': An oral tradition is passed on by speaking and listening. Is a book needed?
+      '2': Is the griot telling a bedtime story? Look at **how** the history is shared.
+    hints:
+      - Is the griot telling, writing or singing?
+    solution:
+      - The griot **sings**. Oral traditions can be stories, songs and more.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [S1.2]
+    type: mc
+    prompt: Nadia’s grandmother told her a story that her family has shared for many years. Nadia wants to tell it at school. What should she do **first**?
+    choices:
+      - Ask her grandmother if it is OK to share
+      - Change the parts she doesn’t like
+      - Tell it, but say it is her own story
+    answer: 0
+    feedback:
+      '1': The story carries the family’s knowledge. Changing it would lose some of that.
+      '2': Whose story is it? Saying it is yours would not be fair.
+    hints:
+      - Whose story is it?
+    solution:
+      - It is her grandmother’s family story. Asking first shows **respect** for it.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [K1.2, U1.1, K1.1]
+    type: mc
+    prompt: Long ago, a story was told for hundreds of years and **never written down**. How could it last so long?
+    choices:
+      - People listened closely, remembered it, and told it to the next generation.
+      - It was kept safe in a library.
+      - Each person made up a brand new story.
+      - It was recorded on a phone.
+    answer: 0
+    feedback:
+      '1': It was never written down, so could it be on a shelf?
+      '2': Then it would not be the same story any more.
+      '3': Long ago, there were no phones.
+    hints:
+      - Without writing, where is a story kept?
+    solution:
+      - The story was kept in people’s **memories**.
+      - Each generation listened, remembered and told it again. That is an **oral tradition**.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [K1.4, S1.2]
+    type: evidence
+    prompt: Stories passed down can **guide** how a family lives. Tap the sentence in “The Big Snow” that shows what the story teaches.
+    passage: snow
+    paragraphs: [1, 2, 3, 4]
+    answer: [p4s1]
+    feedback:
+      p1s1: This sets the scene. What lesson does the family keep?
+      p1s2: This shows how deep the snow was. Is it a lesson?
+      p2s1: This is part of what happened. Look for the lesson.
+      p2s2: This is the problem. What did the family learn from it?
+      p3s1: This is a kind act. Which sentence says what the family **always** does now?
+      p3s2: This is how the story ends. Which sentence turns it into a lesson?
+    hints:
+      - Look for a sentence about what the family does **now**, because of the story.
+    solution:
+      - '“That is why our family always helps the neighbours.” The story still guides the family today.'

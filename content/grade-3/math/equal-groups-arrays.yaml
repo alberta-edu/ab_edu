@@ -1,0 +1,215 @@
+id: equal-groups-arrays
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ3-LO1]
+order: 5
+title: Equal Groups and Arrays
+shortTitle: Groups & arrays
+summary: >-
+  See multiplication as equal groups, arrays and areas, link it to adding and skip counting, and
+  find out what happens when you multiply by 0 or 1.
+
+bigIdea: |-
+  - **Multiply** to find how many in equal groups: 3 groups of 4 is 3 × 4 = 12.
+  - Turn an array and the product stays the same: **3 × 4 = 4 × 3**.
+  - Any number × 0 is **0**. Any number × 1 is **the same number**.
+
+lesson:
+  - title: Equal groups
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.2, S1.3, K1.2, K1.3]
+        component: g3-groups
+        props: { mode: groups, a: 3, b: 4 }
+        caption: |-
+          1. Slide to make **5 groups of 2**.
+          2. Count by 2s, then check the adding.
+      - type: callout
+        variant: remember
+        covers: [MAT2-OI1-GQ1-LO1#K2.1]
+        title: Remember from Grade 2
+        body: You skip counted by 2s, 5s and 10s. Skip counting is a fast way to count equal groups.
+
+  - title: Arrays and areas
+    blocks:
+      - type: visual
+        covers: [S1.6, K1.3, K1.5, U1.1]
+        component: g3-groups
+        props: { mode: groups, a: 3, b: 6, view: array }
+        caption: |-
+          1. Press **Turn it**. 3 rows of 6 become 6 rows of 3.
+          2. Same dots, same product: **3 × 6 = 6 × 3**.
+          3. Switch to **Area** to see the dots as squares.
+
+  - title: Groups of 0 and groups of 1
+    blocks:
+      - type: visual
+        covers: [S1.4, K1.7]
+        component: g3-groups
+        props: { mode: groups, a: 5, b: 0 }
+        caption: |-
+          1. 5 empty plates hold **0**: 5 × 0 = 0.
+          2. Slide to 1 in each group. 5 × 1 = 5.
+
+  - title: Writing it with ×
+    blocks:
+      - type: figure
+        covers: [K2.4, S2.5]
+        figure: |-
+          <svg viewBox="0 0 300 110" class="fig-svg" style="max-width:320px" role="img" aria-label="3 × 4 = 12. 3 and 4 are factors. 12 is the product."><text x="60" y="58" text-anchor="middle" font-size="40" font-weight="700" style="fill:var(--accent)">3</text><text x="105" y="58" text-anchor="middle" font-size="40" font-weight="700" style="fill:var(--ink)">×</text><text x="150" y="58" text-anchor="middle" font-size="40" font-weight="700" style="fill:var(--accent)">4</text><text x="195" y="58" text-anchor="middle" font-size="40" font-weight="700" style="fill:var(--ink)">=</text><text x="250" y="58" text-anchor="middle" font-size="40" font-weight="700" style="fill:var(--ok)">12</text><text x="105" y="98" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--accent)">factors</text><path d="M60 70 L95 82 M150 70 L115 82" style="stroke:var(--accent);stroke-width:2"/><text x="250" y="98" text-anchor="middle" font-size="16" font-weight="700" style="fill:var(--ok)">product</text></svg>
+        caption: The numbers you multiply are **factors**. The answer is the **product**.
+      - type: visual
+        covers: [S2.5, S1.7, K1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'a', label: '4 × 3 = 12' }
+            - { id: 'b', label: '2 × 5 = 10' }
+          cards:
+            - { text: '4 bags with 3 apples in each', bin: 'a', why: '4 equal groups of 3.' }
+            - { text: '2 hands with 5 fingers each', bin: 'b', why: '2 equal groups of 5.' }
+            - { text: '3 + 3 + 3 + 3', bin: 'a', why: 'Four 3s added together.' }
+            - { text: 'Skip count: 5, 10', bin: 'b', why: 'Two jumps of 5.' }
+            - { text: '4 rows of 3 chairs', bin: 'a', why: 'An array with 4 rows of 3.' }
+        caption: Which number sentence matches each card?
+
+keyTerms:
+  - term: Factor
+    covers: [K2.4]
+    definition: 'A number you multiply. In 3 × 4 = 12, the factors are 3 and 4.'
+  - term: Product
+    covers: [K2.4]
+    definition: 'The answer when you multiply. In 3 × 4 = 12, the product is 12.'
+  - term: Array
+    covers: [S1.6]
+    definition: Things set out in equal rows and columns.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.2, K1.2]
+    type: mc
+    prompt: Which adding is the same as **4 × 6**?
+    choices: ['6 + 6 + 6 + 6', '4 + 6', '6 + 6 + 6 + 6 + 6 + 6']
+    answer: 0
+    feedback:
+      '1': 'That adds 4 and 6 once. 4 × 6 means 4 groups of 6.'
+      '2': 'Count the 6s. Six of them is 6 × 6.'
+    hints:
+      - 4 × 6 means 4 groups of 6. How many 6s is that?
+    solution:
+      - '4 × 6 is 4 groups of 6: 6 + 6 + 6 + 6 = 24.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S1.6, K1.3]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 204 92" class="fig-svg" style="max-width:224px" role="img" aria-label="An array of dots: 3 rows of 7."><circle cx="18.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="46.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="74.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="102.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="130.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="158.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="186.0" cy="18.0" r="10" style="fill:var(--accent)"/><circle cx="18.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="46.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="74.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="102.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="130.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="158.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="186.0" cy="46.0" r="10" style="fill:var(--accent)"/><circle cx="18.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="46.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="74.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="102.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="130.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="158.0" cy="74.0" r="10" style="fill:var(--accent)"/><circle cx="186.0" cy="74.0" r="10" style="fill:var(--accent)"/></svg>
+    prompt: How many dots are in this array?
+    answer: 21
+    verify: 3 * 7
+    hints:
+      - How many rows? How many dots in each row?
+      - Skip count by 7s, once for each row.
+    solution:
+      - '3 rows of 7: 7, 14, 21.'
+      - '\(3 \times 7 = 21\) dots.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [S1.7, K1.3, U1.1]
+    type: number
+    prompt: A muffin tray has **3 rows of 4** muffins. Dad bakes **2 full trays**. How many muffins?
+    unit: muffins
+    answer: 24
+    verify: 2 * (3 * 4)
+    hints:
+      - How many muffins fit in one tray?
+      - Now you have 2 equal groups of that many.
+    solution:
+      - 'One tray: 3 × 4 = 12 muffins.'
+      - 'Two trays: 12 + 12 = **24** muffins.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [S1.4]
+    type: mc
+    prompt: Leo says **8 × 0 = 8**. What would you tell him?
+    choices: ['8 groups of nothing is 0', 'He is right', '8 × 0 is 80']
+    answer: 0
+    feedback:
+      '1': 'Picture 8 empty plates. How many things are on them?'
+      '2': 'Multiplying is not the same as writing a 0 on the end. Picture 8 groups of 0.'
+    hints:
+      - 8 × 0 means 8 groups of 0. Draw 8 empty plates.
+    solution:
+      - '8 × 0 is 8 groups with 0 in each. That is **0**.'
+      - 'Leo was thinking of 8 × 1 = 8. One in each group keeps the 8.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S1.6, U1.1, S1.1]
+    type: build
+    prompt: |-
+      Set out **24 chairs** in equal rows for a class play.
+      The room fits **at most 10 rows** and **at most 10 chairs** in a row. Design an array.
+    fields:
+      - { name: r, label: 'Rows' }
+      - { name: c, label: 'Chairs in each row' }
+    rules:
+      - { test: 'r % 1 == 0 && c % 1 == 0 && r >= 1 && c >= 1', fail: 'Use whole numbers of rows and chairs.' }
+      - { test: 'r <= 10 && c <= 10', fail: 'The room fits at most 10 rows and 10 chairs in a row.' }
+      - { test: 'r * c == 24', fail: 'Multiply your rows by your chairs in each row. Do you get 24?' }
+    examples:
+      - { r: 3, c: 8 }
+      - { r: 4, c: 6 }
+      - { r: 6, c: 4 }
+      - { r: 8, c: 3 }
+    counterexamples:
+      - { r: 2, c: 12 }
+      - { r: 5, c: 5 }
+    hints:
+      - Try 2 rows. How many chairs in each row? Does it fit?
+      - Try 3 rows, then 4 rows. Which ones share 24 equally?
+    solution:
+      - '**3 rows of 8** and **4 rows of 6** both make 24.'
+      - 'Turn them and you get 8 rows of 3 and 6 rows of 4.'
+      - '2 rows of 12 makes 24 too, but 12 chairs won’t fit in a row.'
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.5, S1.6]
+    type: investigation
+    prompt: Sam’s garden has **4 rows of 7** carrots.
+    parts:
+      - type: number
+        prompt: How many carrots are there?
+        unit: carrots
+        answer: 28
+        verify: 4 * 7
+        hints:
+          - Skip count by 7s, once for each row.
+        solution:
+          - '7, 14, 21, 28. \(4 \times 7 = 28\) carrots.'
+      - type: number
+        prompt: Sam plants the same carrots in **7 rows** instead. How many carrots are in each row?
+        unit: carrots
+        answer: 4
+        verify: 28 / 7
+        hints:
+          - Picture the garden turned on its side. What were the columns before?
+        solution:
+          - 'Turn the 4 rows of 7. Now there are 7 rows of **4**.'
+          - '\(7 \times 4 = 28\). Same carrots, same product.'
+    wrapUp: Turning an array swaps rows and columns, but the product stays the same.

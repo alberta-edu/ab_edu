@@ -1,0 +1,222 @@
+id: wind-water-ice
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 13
+title: Wind, Water and Ice Shape the Land
+shortTitle: Wind, water and ice
+summary: >-
+  Watch rain and wind carve hoodoos, follow glacier meltwater down the Athabasca River to the
+  Arctic Ocean, and see why glaciers are shrinking.
+
+bigIdea: |-
+  - **Wind**, **water** and **ice** move rock and soil, and shape the land.
+  - Glaciers are what is left of the ice that once covered all of Canada.
+  - Melting glaciers feed many of Alberta’s **rivers**, and they are melting **faster** now.
+
+lesson:
+  - title: Hoodoos
+    blocks:
+      - type: experiment
+        covers: [K2.1, K2.5, S2.1, U2.1]
+        title: Rain, wind and soft rock
+        question: Rain and wind wear away soft rock, but not the hard stones on top. What will be left?
+        animation: g3s-scene
+        props: { scene: hoodoos }
+        predict:
+          choices: ['Tall pillars', 'Flat ground', 'A deep lake']
+          answer: 0
+        observe: |-
+          - Rain and wind carried the soft rock away, bit by bit.
+          - Under each hard stone, a tall pillar was left. These are **hoodoos**.
+        explain: |-
+          - Wind and water move rock and soil away as they flow.
+          - They shaped Alberta’s **badlands**, near Drumheller.
+
+  - title: Three land movers
+    blocks:
+      - type: visual
+        covers: [K2.1, K2.5, U2.1]
+        component: g3s-play
+        props: { scene: land-movers }
+        caption: Tap each one. How does it move the land?
+
+  - title: When ice covered Canada
+    blocks:
+      - type: visual
+        covers: [K2.2]
+        component: g3s-play
+        props: { scene: ice-sheets }
+        caption: Step through to see where today’s glaciers came from.
+
+  - title: From glacier to ocean
+    blocks:
+      - type: experiment
+        covers: [S2.2, K2.3, S2.3]
+        title: Follow the meltwater
+        question: Summer sun melts ice on the Columbia Icefield, in the Rocky Mountains. Where does the water end up?
+        animation: g3s-scene
+        props: { scene: glacier-to-ocean }
+        predict:
+          choices: ['🌊 The Arctic Ocean', '🧊 It stays as ice', 'It sinks into the ground']
+          answer: 0
+        observe: |-
+          - The meltwater ran into the **Athabasca River**.
+          - The river carried it north, all the way to the **Arctic Ocean**.
+        explain: |-
+          - Melting glacier ice **forms** many of Alberta’s big rivers and **keeps them flowing**.
+          - Rivers carry the water downhill to an ocean.
+      - type: callout
+        variant: tip
+        covers: [S2.3, K2.3]
+        title: Glacier-fed rivers in Alberta
+        body: |-
+          - The **Bow River** starts at the Bow Glacier and flows through Calgary.
+          - The **North Saskatchewan River** starts at a glacier and flows through Edmonton.
+
+  - title: Glaciers are shrinking
+    blocks:
+      - type: visual
+        covers: [K2.4]
+        component: g3s-play
+        props: { scene: shrinking-glacier }
+        caption: Step through the Athabasca Glacier, near Jasper.
+
+keyTerms:
+  - term: Hoodoo
+    covers: [K2.5]
+    definition: A tall pillar of soft rock with a hard stone on top, shaped by wind and water.
+  - term: Badlands
+    covers: [K2.5]
+    definition: Dry land with steep, bare hills that wind and water have carved, like near Drumheller.
+  - term: Ice sheet
+    covers: [K2.2]
+    definition: A giant layer of ice that covers a huge area of land.
+  - term: Meltwater
+    covers: [K2.3]
+    definition: Water from melting snow or ice.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: What can wind, water and ice all do to the land?
+    choices: ['Move rock and soil', 'Make rocks grow', 'Nothing']
+    answer: 0
+    feedback:
+      '1': Do rocks grow bigger in the wind and rain?
+      '2': Think of the hoodoos. Did the land stay the same?
+    hints:
+      - Think of the hoodoos and the glacier.
+    solution:
+      - Wind, water and ice all **move** rock and soil as they flow.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.3, S2.3]
+    type: mc
+    prompt: The Bow River starts at the Bow Glacier. Where does the river’s first water come from?
+    choices: ['Melting ice', 'The ocean', 'A volcano']
+    answer: 0
+    feedback:
+      '1': Oceans are far from the mountains. Is the river’s start near an ocean?
+      '2': There are no volcanoes in the Rockies. What is a glacier made of?
+    hints:
+      - What is a glacier made of?
+    solution:
+      - A glacier is ice. When it melts, the **meltwater** starts the river.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.5, K2.1]
+    type: mc
+    prompt: The badlands near Drumheller have steep, bare hills and hoodoos. What shaped them?
+    choices: ['Wind and water', 'People with shovels', 'A volcano']
+    answer: 0
+    feedback:
+      '1': The badlands are huge. Could people dig them all with shovels?
+      '2': A volcano makes new rock. Did the badlands get new rock, or lose it?
+    hints:
+      - Think of the hoodoo experiment.
+    solution:
+      - Wind and water carried soft rock away for thousands of years.
+      - They carved the **badlands** and their hoodoos.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [S2.2, K2.3]
+    type: order
+    prompt: Put a drop of meltwater’s trip in order, from first to last.
+    items:
+      - Ice melts on a glacier.
+      - The water trickles into a stream.
+      - The stream joins a big river.
+      - The river reaches the ocean.
+    hints:
+      - Water always flows downhill. Where does it start?
+    solution:
+      - Ice melts on a glacier, high in the mountains.
+      - The water flows downhill into a stream, then a big river.
+      - The river carries it to the **ocean**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K2.4, K2.3]
+    type: investigation
+    prompt: |-
+      The Athabasca Glacier has melted back more than **1.5 km** in about 125 years.
+    parts:
+      - type: mc
+        prompt: Earth keeps warming up. What will happen to the glacier?
+        choices: ['It will melt faster', 'It will grow bigger', 'Nothing']
+        answer: 0
+        feedback:
+          '1': Does warmth make ice grow or melt?
+          '2': It already melted back 1.5 km. Will more warmth stop that?
+        hints:
+          - What does warmth do to ice?
+        solution:
+          - Warmer years melt ice faster, so the glacier will **shrink faster**.
+      - type: mc
+        prompt: What if Alberta’s glaciers were gone? What would happen to glacier-fed rivers in late summer?
+        choices: ['Less water', 'More water', 'No change']
+        answer: 0
+        feedback:
+          '1': Where does extra water come from when there’s no ice left to melt?
+          '2': Glacier meltwater keeps these rivers flowing. What if it stopped?
+        hints:
+          - Where does a glacier-fed river get its water in summer?
+        solution:
+          - Melting glacier ice keeps these rivers flowing.
+          - With no glaciers, the rivers would have **less water**.
+    wrapUp: Glaciers, rivers and the warming Earth are all connected.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K2.2]
+    type: mc
+    prompt: Max says, “Canada has only ever had ice on the tops of mountains.” What did he miss?
+    choices:
+      - Long ago, thick ice sheets covered all of Canada.
+      - Canada never had any ice.
+      - Ice only forms in the ocean.
+    answer: 0
+    feedback:
+      '1': Glaciers are in the Rockies today. Is there no ice at all?
+      '2': Glaciers sit on mountains, not in the ocean. Where did they come from?
+    hints:
+      - Where did today’s glaciers come from?
+    solution:
+      - Long ago, very thick **ice sheets** covered all of Canada.
+      - Today’s glaciers are what is left of them.

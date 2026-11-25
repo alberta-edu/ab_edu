@@ -1,0 +1,210 @@
+id: resources-growth
+grade: 3
+subject: social-studies
+organizingIdea: kogCCyLxG0WbndPR9zs-xQ
+outcomes: [gaAMb8SLNEu5W32BwLNWZw]
+order: 10
+title: How Resources Help Alberta Grow
+shortTitle: Resources & growth
+summary: >-
+  Find Alberta's resources on a map, watch Leduc grow after oil was found, match jobs to the land, and
+  follow how resources help pay for schools and roads.
+
+bigIdea: |-
+  - Each region has different **natural resources**.
+  - People settle where the resources are, and towns grow there.
+  - Resources make jobs and money, and that helps Alberta **prosper**.
+
+lesson:
+  - title: Where are the resources?
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.1]
+        component: g3ss-alberta-map
+        props:
+          layer: places
+          cities: [edmonton, calgary]
+          items:
+            - { id: oil-sands, text: 'Oil sands lie under the **boreal forest**, near Fort McMurray. Many people moved there to work.' }
+            - { id: leduc, text: 'In 1947, oil gushed from a well near Leduc, in the **parkland**.' }
+            - { id: gas-medicine-hat, text: 'In 1883, workers drilling for water found natural gas, on the **grassland**.' }
+            - { id: coal-crowsnest, text: 'Coal is found here, in the **Rocky Mountains**.' }
+            - { id: coal-drumheller, text: 'Coal lies under the badlands near Drumheller, on the **grassland**.' }
+            - { id: wind-pincher, text: 'Strong winds blow down from the mountains. Wind turbines spin here.' }
+            - { id: sun-south, text: 'The south gets lots of sunshine for solar panels.' }
+            - { id: water-bow, text: 'Dams on the Bow River use moving water to make electricity.' }
+        caption: Tap each resource. Which region is it in?
+
+  - title: A town grows
+    blocks:
+      - type: visual
+        covers: [K1.4, U1.1]
+        component: g3ss-boomtown
+        props:
+          place: Leduc
+          resource: { icon: 🛢️, label: Oil }
+          from: { year: 1946, people: 920 }
+          to: { year: 1951, people: 1842 }
+          start: [🏡, 🌾, 🏡, 🌾]
+          grow: [🏠, 🏠, 🏪, 🏠, 🏫, 🏠, 🏠, ⛪, 🏠, 🏪, 🏠]
+          done: 'Oil was found in 1947. Workers and families came, and Leduc **doubled** in size!'
+          run: '▶ Find oil!'
+        caption: Leduc was a small farm town. Press ▶. What happens when oil is found?
+
+  - title: Jobs from the land
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.5, K1.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: rocky, label: Mountains, icon: 🏔️ }
+            - { id: grass, label: Grassland, icon: 🌾 }
+            - { id: boreal, label: Boreal forest, icon: 🌲 }
+          cards:
+            - { text: 'Miners dug coal in the Crowsnest Pass.', bin: rocky, why: 'The mountains there have **coal**.' }
+            - { text: 'A farmer grows wheat on flat, sunny land.', bin: grass, why: 'The grassland has rich soil and lots of **sun**.' }
+            - { text: 'A rancher raises cattle on dry, grassy land.', bin: grass, why: 'Cattle eat the **grass** of the prairie.' }
+            - { text: 'A worker digs oil sands near Fort McMurray.', bin: boreal, why: 'The **oil sands** lie under the boreal forest.' }
+            - { text: 'A logger cuts trees for lumber.', bin: boreal, why: 'The boreal forest has many **trees**.' }
+        caption: Where would each job be? The land and its resources decide.
+
+  - title: Resources help Alberta
+    blocks:
+      - type: visual
+        covers: [S1.4, K1.5, U1.1]
+        component: g3ss-story-steps
+        props:
+          walker: 🛢️
+          start: ▶ Follow the oil
+          steps:
+            - { icon: 🛢️, when: Found, text: 'Alberta has lots of oil and natural gas under the ground.' }
+            - { icon: 👷, when: Jobs, text: 'Many people get jobs finding, moving and selling it.' }
+            - { icon: 💵, when: Money, text: 'Companies pay Alberta’s government to use these resources.' }
+            - { icon: 🏫, when: Shared, text: 'That money helps pay for schools, hospitals and roads.' }
+        caption: How does oil under the ground help a child in Alberta?
+      - type: callout
+        variant: tip
+        covers: [S1.4]
+        title: Prosperity
+        body: When people have jobs and good services, a province **prospers**. Resources help Alberta prosper.
+
+keyTerms:
+  - term: Settlement
+    covers: [K1.4]
+    definition: A place where people come to live and build homes.
+  - term: Prosperity
+    covers: [S1.4]
+    definition: Doing well, with jobs, money and what people need.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3]
+    type: mc
+    prompt: Which region are Alberta’s oil sands in?
+    choices: [🌲 Boreal Forest, 🌾 Grassland, 🏔️ Rocky Mountains]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': The grassland has coal and natural gas. Where are the oil sands?
+      '2': The mountains have coal. Look in the north-east of the map.
+    hints:
+      - The oil sands are near Fort McMurray. Which region is that?
+    solution:
+      - The oil sands lie under the **boreal forest**, near Fort McMurray.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.4]
+    type: mc
+    prompt: Leduc had 920 people in 1946 and 1,842 people in 1951. What happened after oil was found?
+    choices: [📈 It grew, 📉 It got smaller, ➡️ It stayed the same]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Is 1,842 more or less than 920?
+      '2': Are the two numbers the same?
+    hints:
+      - Compare the two numbers. Which one is bigger?
+    solution:
+      - 1,842 is about twice 920. Leduc **grew** as people came for oil jobs.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.1, K1.5]
+    type: mc
+    prompt: Ayla lives on flat, sunny land with rich soil. What job do many people near her do?
+    choices: [🌾 Farming, ⛏️ Coal mining, 🪵 Logging]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Coal mining needs coal under the ground. Do the clues say coal?
+      '2': Logging needs a big forest. Do the clues say trees?
+    hints:
+      - Which job needs sun and rich soil?
+    solution:
+      - Sun and rich soil are just right for crops. Many people near Ayla are **farmers**.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.4, U1.1]
+    type: mc
+    prompt: Mia says, "People settle where the natural resources are." Which fact backs her up?
+    choices:
+      - Fort McMurray grew as people came to work in the oil sands.
+      - Banff is a national park in the mountains.
+      - The sun shines a lot in southern Alberta.
+    answer: 0
+    feedback:
+      '1': That is true. Does it show people moving to a resource?
+      '2': That is true too. Does it say anything about where people settle?
+    hints:
+      - Mia’s idea is about people moving. Which fact has people moving?
+    solution:
+      - People moved to **Fort McMurray** to work in the oil sands. That shows settlement following a resource.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S1.4, K1.5]
+    type: mc
+    prompt: A new school opens in Alberta. How can oil deep under the ground help pay for it?
+    choices:
+      - Companies pay the government to use the oil. That money helps build schools.
+      - The school is built out of oil.
+      - Oil workers pay for every school by themselves.
+    answer: 0
+    feedback:
+      '1': Are walls and desks made of oil? Think about money instead.
+      '2': Who did the companies pay in the lesson? Who pays for schools?
+    hints:
+      - Follow the oil again. Who gets money, and what does it pay for?
+    solution:
+      - Companies pay **Alberta’s government** to use the oil and gas.
+      - The government uses that money for schools, hospitals and roads. That is how resources help Alberta **prosper**.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.4, K1.5]
+    type: order
+    prompt: Put the story of a coal town in order.
+    items:
+      - ⛏️ Coal is found under the hills.
+      - 👷 A mine opens and needs workers.
+      - 🏠 Families move in and build a school.
+      - 🚚 Years later, the mine closes, and some families leave.
+    hints:
+      - What has to happen before a mine can open?
+      - Why would families leave when the mine closes?
+    solution:
+      - The **resource** comes first. A mine needs coal, and workers need a mine.
+      - Families came for the jobs. When the jobs end, some families move away to find work.

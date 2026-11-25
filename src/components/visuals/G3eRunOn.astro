@@ -1,0 +1,126 @@
+---
+// Fix a run-on sentence (LANENG3-OI8-GQ1-LO1, K1.6, K1.7, S1.4). The words run on with no stops, so the
+// reader can't tell where to pause. Tap a gap to put a period there: the next word jumps up to a capital.
+// Check shows which stops are right.
+import { runOn } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** Run-ons with | where each sentence should stop: "we went sledding | it was so fast". */
+  items: { text: string; note?: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => ({ ...runOn(it.text), note: it.note ? mdInline(it.note) : '' }));
+---
+<g3e-run-on data-items={JSON.stringify(data)}>
+  <p class="g3e-ro__count muted" data-ro="count"></p>
+  <p class="g3e-ro__text" data-ro="text"></p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-ro="check">Check my stops</button>
+    {items.length > 1 && <button type="button" class="btn btn--ghost btn--small" data-ro="next">Next one ▶</button>}
+  </div>
+  <p class="g3e-ro__note" data-ro="note" aria-live="polite"></p>
+  <noscript><ul>{data.map((d) => <li>{d.fixed.join(' ')}</li>)}</ul></noscript>
+</g3e-run-on>
+
+<style is:global>
+  g3e-run-on { display: block; }
+  .g3e-ro__count { margin: 0; font-size: var(--step--1); }
+  .g3e-ro__text { margin: 0.6rem 0; padding: 0.9rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 2.2; }
+  .g3e-ro__w { display: inline-block; transition: transform 0.25s ease; }
+  .g3e-ro__w.is-cap { transform: translateY(-3px); color: var(--accent); font-weight: 700; }
+  .g3e-ro__gap { display: inline-block; min-width: 1.4rem; height: 1.8rem; margin: 0 0.05rem; padding: 0; vertical-align: middle; border: 0; border-bottom: 2px dotted var(--line-strong); background: none; font: inherit; font-size: var(--step-2); font-weight: 800; line-height: 1; color: var(--accent); cursor: pointer; }
+  .g3e-ro__gap:hover { background: var(--accent-soft); }
+  .g3e-ro__gap.is-on { border-bottom-color: var(--accent); }
+  .g3e-ro__gap.is-good { color: var(--ok); border-bottom-color: var(--ok); }
+  .g3e-ro__gap.is-bad { color: var(--bad); border-bottom-color: var(--bad); animation: g3e-ro-shake 0.4s ease; }
+  .g3e-ro__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-ro__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-ro-shake { 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+  @media (prefers-reduced-motion: reduce) { .g3e-ro__w { transition: none; } .g3e-ro__gap.is-bad { animation: none; } }
+</style>
+
+<script>
+  type Item = { words: string[]; fixed: string[]; stops: number[]; note: string };
+
+  class G3eRunOn extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+    private chosen = new Set<number>();
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.part('check').addEventListener('click', () => this.check());
+      this.querySelector('[data-ro="next"]')?.addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-ro="${name}"]`)!;
+    }
+
+    private word(i: number) {
+      const it = this.items[this.at];
+      const w = it.words[i];
+      return i === 0 || this.chosen.has(i - 1) ? w[0].toUpperCase() + w.slice(1) : w;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      this.chosen.clear();
+      const it = this.items[i];
+      this.part('count').textContent = this.items.length > 1 ? `Run-on ${i + 1} of ${this.items.length}` : '';
+      const text = this.part('text');
+      text.innerHTML = it.words
+        .map((_, k) => `<span class="g3e-ro__w" data-ro-w="${k}"></span>` + (k < it.words.length - 1 ? `<button type="button" class="g3e-ro__gap" data-ro-gap="${k}" aria-label="Stop after word ${k + 1}"></button>` : '.'))
+        .join('');
+      text.querySelectorAll<HTMLButtonElement>('[data-ro-gap]').forEach((b) =>
+        b.addEventListener('click', () => {
+          const g = Number(b.dataset.roGap);
+          if (this.chosen.has(g)) this.chosen.delete(g);
+          else this.chosen.add(g);
+          this.paint();
+        }),
+      );
+      const note = this.part('note');
+      note.className = 'g3e-ro__note';
+      note.textContent = 'Read it aloud. Where should a sentence stop? Tap that space to add a period.';
+      this.paint();
+    }
+
+    private paint() {
+      this.querySelectorAll<HTMLElement>('[data-ro-w]').forEach((el) => {
+        const k = Number(el.dataset.roW);
+        el.textContent = this.word(k);
+        el.classList.toggle('is-cap', k > 0 && this.chosen.has(k - 1));
+      });
+      this.querySelectorAll<HTMLButtonElement>('[data-ro-gap]').forEach((b) => {
+        const on = this.chosen.has(Number(b.dataset.roGap));
+        b.textContent = on ? '.' : '';
+        b.className = `g3e-ro__gap${on ? ' is-on' : ''}`;
+        b.setAttribute('aria-pressed', String(on));
+      });
+    }
+
+    private check() {
+      const it = this.items[this.at];
+      const missed = it.stops.filter((g) => !this.chosen.has(g));
+      const extra = [...this.chosen].filter((g) => !it.stops.includes(g));
+      this.querySelectorAll<HTMLButtonElement>('[data-ro-gap]').forEach((b) => {
+        const g = Number(b.dataset.roGap);
+        if (this.chosen.has(g)) b.classList.add(it.stops.includes(g) ? 'is-good' : 'is-bad');
+      });
+      const note = this.part('note');
+      if (!missed.length && !extra.length) {
+        note.className = 'g3e-ro__note is-done';
+        note.innerHTML = `✅ ${it.stops.length + 1} clear sentences! Now a reader knows where to stop. ${it.note}`;
+        return;
+      }
+      note.className = 'g3e-ro__note';
+      note.textContent = extra.length
+        ? 'A red period cuts a sentence in the middle. Does each part make sense on its own?'
+        : `Almost! ${missed.length === 1 ? 'One more stop is' : `${missed.length} more stops are`} missing. Read it aloud. Where do you stop for a breath?`;
+    }
+  }
+  customElements.define('g3e-run-on', G3eRunOn);
+</script>

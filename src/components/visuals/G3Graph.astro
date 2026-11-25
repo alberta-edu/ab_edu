@@ -1,0 +1,287 @@
+---
+// Data and graphs (MAT3-OI8-GQ1-LO1).
+// collect: guess the answer to a question, ask each kid, and watch one dot (or one square of a bar)
+//   appear for each answer. Switch between a dot plot and a bar graph of the same data.
+// show: someone else's data (second-hand) as a dot plot or bar graph, with its source. Tap to read.
+// winter: a winter count records one picture for each winter, so counting pictures counts winters.
+import { graphSvg, spiral, type GraphSpec, type View, type Pic } from './g3-graph.ts';
+
+interface Props {
+  mode?: 'collect' | 'show' | 'winter';
+  spec?: GraphSpec;
+  /** The views to offer; the first is shown first. */
+  views?: View[];
+  /** show: what one count is, like "medals". */
+  unit?: string;
+  /** show: where the data came from. */
+  source?: string;
+  /** winter: the pictures, one for each winter. */
+  pics?: Pic[];
+}
+const DEFAULT_SPEC: GraphSpec = {
+  title: 'Our favourite fruit',
+  axis: 'Fruit',
+  count: 'Number of kids',
+  cats: [{ label: 'Apple', icon: '🍎' }, { label: 'Banana', icon: '🍌' }, { label: 'Berry', icon: '🍓' }, { label: 'Grape', icon: '🍇' }],
+  data: [4, 2, 6, 3],
+};
+const DEFAULT_PICS: Pic[] = [
+  { icon: '❄️', label: 'Deep snow' },
+  { icon: '🦬', label: 'Many bison' },
+  { icon: '🌊', label: 'Big flood' },
+  { icon: '🌠', label: 'Stars fell' },
+  { icon: '☀️', label: 'Dry summer' },
+  { icon: '🐎', label: 'New horses' },
+  { icon: '🔥', label: 'Prairie fire' },
+  { icon: '🌨️', label: 'Long winter' },
+];
+const { mode = 'collect', spec = DEFAULT_SPEC, views = ['dots', 'bars'], unit = 'kids', source, pics = DEFAULT_PICS } = Astro.props;
+const VIEW = { dots: 'Dot plot', bars: 'Bar graph' };
+const empty = spec.data.map(() => 0);
+const kids = spec.data.reduce((a, b) => a + b, 0);
+const pts = spiral(pics.length);
+const R = Math.ceil(Math.max(...pts.map(([x, y]) => Math.hypot(x, y)))) + 26;
+---
+<g3-graph data-mode={mode} data-spec={JSON.stringify(spec)} data-view={views[0]} data-unit={unit} data-pics={JSON.stringify(pics)}>
+  {mode === 'collect' && (
+    <div class="g3m-gr-guess" role="group" aria-label="Your guess">
+      <span>Guess first: which will most kids pick?</span>
+      <div class="g3m-gr-picks">
+        {spec.cats.map((c, i) => <button type="button" class="g3m-gr-pick" data-guess={i} aria-pressed="false">{c.icon} {c.label}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'collect' && (
+    <ol class="g3m-gr-kids" data-gr="kids" aria-label="The kids in the class">
+      {Array.from({ length: kids }, () => <li class="g3m-gr-kid">🙂</li>)}
+    </ol>
+  )}
+  {mode !== 'winter' && views.length > 1 && (
+    <div class="control-row g3m-gr-row">
+      <div class="seg" role="group" aria-label="Choose a graph">
+        {views.map((v, i) => <button type="button" data-view={v} aria-pressed={String(i === 0)}>{VIEW[v]}</button>)}
+      </div>
+    </div>
+  )}
+  {mode !== 'winter' && (
+    <div class="g3m-gr-graph" data-gr="graph" set:html={graphSvg(spec, views[0], mode === 'collect' ? empty : spec.data)}></div>
+  )}
+  {mode === 'show' && source && <p class="g3m-gr-src">Source: {source}</p>}
+  {mode === 'winter' && (
+    <div class="g3m-gr-hide">
+      <svg viewBox={`${-R} ${-R} ${2 * R} ${2 * R}`} class="g3m-gr-wc" role="img" aria-label="A pretend winter count. Pictures spiral out from the middle, one for each winter." data-gr="wc">
+        <path class="g3m-gr-skin" d={`M0,${-R} C${R * 0.7},${-R} ${R},${-R * 0.6} ${R * 0.95},0 C${R},${R * 0.7} ${R * 0.6},${R} 0,${R * 0.95} C${-R * 0.7},${R} ${-R},${R * 0.6} ${-R * 0.95},0 C${-R},${-R * 0.7} ${-R * 0.6},${-R} 0,${-R} Z`} />
+        {pics.map((p, i) => (
+          <g class="g3m-gr-pic" data-pic={i} tabindex="0" role="button" aria-label={`Winter ${i + 1}: ${p.label}`} visibility={i === 0 ? 'visible' : 'hidden'}>
+            <circle cx={pts[i][0].toFixed(1)} cy={pts[i][1].toFixed(1)} r="14" />
+            <text x={pts[i][0].toFixed(1)} y={pts[i][1].toFixed(1)} text-anchor="middle" dominant-baseline="central">{p.icon}</text>
+          </g>
+        ))}
+      </svg>
+      <p class="g3m-gr-n">Winters: <strong data-gr="n">1</strong></p>
+    </div>
+  )}
+  <p class="g3m-gr-say" data-gr="say" aria-live="polite"></p>
+  <div class="control-row g3m-gr-row">
+    {mode === 'collect' && (
+      <>
+        <button type="button" class="btn btn--primary btn--small" data-gr="ask">🙋 Ask the next kid</button>
+        <button type="button" class="btn btn--small" data-gr="all">Ask everyone</button>
+        <button type="button" class="btn btn--ghost btn--small" data-gr="reset">Start over</button>
+      </>
+    )}
+    {mode === 'winter' && (
+      <>
+        <button type="button" class="btn btn--primary btn--small" data-gr="add">Add a winter ▶</button>
+        <button type="button" class="btn btn--ghost btn--small" data-gr="reset">Start over</button>
+      </>
+    )}
+  </div>
+</g3-graph>
+
+<style is:global>
+  g3-graph { display: block; }
+  .g3m-gr-row { justify-content: center; }
+  .g3m-gr-guess { display: grid; justify-items: center; gap: 0.35rem; font-weight: 600; text-align: center; }
+  .g3m-gr-picks { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; }
+  .g3m-gr-pick { padding: 0.3rem 0.6rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+  .g3m-gr-pick[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3m-gr-kids { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem; list-style: none; margin: 0.6rem 0 0; padding: 0; }
+  .g3m-gr-kid { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--surface-2, var(--surface)); border: 2px solid var(--line-strong); font-size: 1.1rem; }
+  .g3m-gr-kid.is-asked { border-color: var(--accent); animation: g3m-gr-pop 0.4s; }
+  .g3m-gr-kid.is-now { transform: scale(1.2); border-color: var(--sun); }
+  .g3m-gr-graph { margin-top: 0.5rem; }
+  .g3m-gr-graph svg { display: block; width: 100%; max-width: 26rem; height: auto; margin: 0 auto; overflow: visible; }
+  .g3m-gr-graph [data-cat] { cursor: pointer; }
+  .g3m-gr-src { margin: 0.3rem 0 0; font-size: 0.85rem; color: var(--ink-3); text-align: center; }
+  .g3m-gr-say { min-height: 2.6em; margin: 0.5rem 0 0; font-weight: 600; text-align: center; }
+  .g3m-gr-hide { display: grid; justify-items: center; }
+  .g3m-gr-wc { display: block; width: 100%; max-width: 19rem; height: auto; font-family: var(--font); }
+  .g3m-gr-skin { fill: color-mix(in srgb, #c89b6a 55%, var(--surface)); stroke: #8a6239; stroke-width: 3; }
+  .g3m-gr-pic circle { fill: var(--surface); stroke: #8a6239; stroke-width: 2; }
+  .g3m-gr-pic text { font-size: 15px; }
+  .g3m-gr-pic { cursor: pointer; }
+  .g3m-gr-pic.is-new { animation: g3m-gr-pop 0.4s; transform-box: fill-box; transform-origin: center; }
+  .g3m-gr-pic.is-lit circle { stroke: var(--accent); stroke-width: 4; }
+  .g3m-gr-pic:focus-visible circle { stroke: var(--accent); stroke-width: 4; }
+  .g3m-gr-n { margin: 0.3rem 0 0; font-size: 1.1rem; font-weight: 600; }
+  .g3m-gr-n strong { font-size: 1.5rem; }
+  @keyframes g3m-gr-pop { from { transform: scale(0.4); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .g3m-gr-kid.is-asked, .g3m-gr-pic.is-new { animation: none; } }
+</style>
+
+<script>
+  import { graphSvg, voteOrder, storySay, most, total, type GraphSpec, type View, type Pic } from './g3-graph.ts';
+
+  class G3Graph extends HTMLElement {
+    private spec!: GraphSpec;
+    private view: View = 'dots';
+    private shown: number[] = [];
+    private order: number[] = [];
+    private asked = 0;
+    private guess = -1;
+    private hi = -1;
+    private pics: Pic[] = [];
+    private winters = 1;
+
+    connectedCallback() {
+      const mode = this.dataset.mode!;
+      this.spec = JSON.parse(this.dataset.spec!);
+      this.view = this.dataset.view as View;
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.view = b.dataset.view as View;
+          this.draw();
+          this.say(this.view === 'dots' ? 'A dot plot: one dot for each one counted.' : 'A bar graph: the bar goes up 1 square for each one counted.');
+        }),
+      );
+      this.q('graph')?.addEventListener('click', (e) => {
+        const g = (e.target as Element).closest('[data-cat]');
+        if (!g) return;
+        this.hi = Number(g.getAttribute('data-cat'));
+        this.draw();
+        const c = this.spec.cats[this.hi];
+        const n = this.shown[this.hi] ?? 0;
+        this.say(`${c.icon ?? ''} ${c.label}: ${n} ${n === 1 ? this.dataset.unit!.replace(/s$/, '') : this.dataset.unit}.`);
+      });
+      if (mode === 'collect') this.setupCollect();
+      if (mode === 'show') {
+        this.shown = this.spec.data;
+        this.say(`Tap a ${this.view === 'dots' ? 'column' : 'bar'} to read it. ${storySay(this.spec)}`);
+      }
+      if (mode === 'winter') this.setupWinter();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-gr="${k}"]`) as HTMLElement;
+    }
+
+    private say(s: string) {
+      this.q('say').textContent = s;
+    }
+
+    private draw() {
+      this.q('graph').innerHTML = graphSvg(this.spec, this.view, this.shown, this.hi);
+    }
+
+    // ---- collect
+    private setupCollect() {
+      this.order = voteOrder(this.spec.data);
+      this.reset();
+      this.querySelectorAll<HTMLButtonElement>('[data-guess]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-guess]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.guess = Number(b.dataset.guess);
+          if (this.asked === 0) this.say('Good guess! Now ask the kids.');
+        }),
+      );
+      this.q('ask').addEventListener('click', () => this.ask(1));
+      this.q('all').addEventListener('click', () => this.ask(this.order.length));
+      this.q('reset').addEventListener('click', () => this.reset());
+    }
+
+    private reset() {
+      this.asked = 0;
+      this.hi = -1;
+      this.shown = this.spec.data.map(() => 0);
+      this.querySelectorAll('.g3m-gr-kid').forEach((k) => {
+        k.textContent = '🙂';
+        k.className = 'g3m-gr-kid';
+      });
+      (this.q('ask') as HTMLButtonElement).disabled = false;
+      (this.q('all') as HTMLButtonElement).disabled = false;
+      this.draw();
+      this.say('Pick a guess, then ask the kids one at a time.');
+    }
+
+    private ask(k: number) {
+      const kids = this.querySelectorAll('.g3m-gr-kid');
+      let last = -1;
+      for (let i = 0; i < k && this.asked < this.order.length; i++) {
+        last = this.order[this.asked];
+        this.shown[last]++;
+        kids.forEach((x) => x.classList.remove('is-now'));
+        const kid = kids[this.asked];
+        kid.textContent = this.spec.cats[last].icon ?? '•';
+        kid.classList.add('is-asked', 'is-now');
+        this.asked++;
+      }
+      this.hi = -1;
+      this.draw();
+      const c = this.spec.cats[last];
+      const done = this.asked >= this.order.length;
+      (this.q('ask') as HTMLButtonElement).disabled = done;
+      (this.q('all') as HTMLButtonElement).disabled = done;
+      if (!done) return this.say(`${c.icon ?? ''} ${c.label}! That is 1 more ${this.view === 'dots' ? 'dot' : 'square'}.`);
+      const m = most(this.spec.data);
+      const right = this.guess >= 0 && this.guess === m;
+      const g = this.guess >= 0 ? (right ? ' Your guess was right! 🎉' : ` You guessed ${this.spec.cats[this.guess].label}. The data tells us the answer.`) : '';
+      this.say(`All ${total(this.spec.data)} kids answered. ${storySay(this.spec)}${g}`);
+    }
+
+    // ---- winter
+    private setupWinter() {
+      this.pics = JSON.parse(this.dataset.pics!);
+      this.say('One picture stands for one winter.');
+      this.q('add').addEventListener('click', () => {
+        if (this.winters >= this.pics.length) return;
+        const g = this.querySelector(`[data-pic="${this.winters}"]`)!;
+        g.setAttribute('visibility', 'visible');
+        g.classList.add('is-new');
+        this.winters++;
+        this.q('n').textContent = String(this.winters);
+        const p = this.pics[this.winters - 1];
+        this.say(`Winter ${this.winters}: ${p.icon} ${p.label}. ${this.winters} pictures, ${this.winters} winters.`);
+        (this.q('add') as HTMLButtonElement).disabled = this.winters >= this.pics.length;
+      });
+      this.q('reset').addEventListener('click', () => {
+        this.winters = 1;
+        this.querySelectorAll('[data-pic]').forEach((g, i) => {
+          g.setAttribute('visibility', i === 0 ? 'visible' : 'hidden');
+          g.classList.remove('is-new', 'is-lit');
+        });
+        this.q('n').textContent = '1';
+        (this.q('add') as HTMLButtonElement).disabled = false;
+        this.say('One picture stands for one winter.');
+      });
+      const pick = (g: Element) => {
+        const i = Number(g.getAttribute('data-pic'));
+        this.querySelectorAll('[data-pic]').forEach((x) => x.classList.toggle('is-lit', x === g));
+        this.say(`Winter ${i + 1}: ${this.pics[i].icon} ${this.pics[i].label}.`);
+      };
+      this.q('wc').addEventListener('click', (e) => {
+        const g = (e.target as Element).closest('[data-pic]');
+        if (g) pick(g);
+      });
+      this.q('wc').addEventListener('keydown', (e) => {
+        const g = (e.target as Element).closest('[data-pic]');
+        if (g && (e.key === 'Enter' || e.key === ' ')) {
+          e.preventDefault();
+          pick(g);
+        }
+      });
+    }
+  }
+  customElements.define('g3-graph', G3Graph);
+</script>

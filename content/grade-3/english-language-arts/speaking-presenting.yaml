@@ -1,0 +1,257 @@
+id: speaking-presenting
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI2
+outcomes: [LANENG3-OI2-GQ1-LO1]
+order: 8
+title: Speaking Clearly and Presenting
+shortTitle: Speaking & presenting
+summary: >-
+  Get calm and ready, speak loud and clear, let your body match your words, pause in the right places,
+  plan a talk in order, and be a great audience.
+
+bigIdea: |-
+  - Relax, breathe and stand tall. Then speak **loud** enough and **clear** enough.
+  - Your face and body should match your words. **Pauses** help listeners follow.
+  - Plan your ideas in order, and think about your **audience**.
+
+lesson:
+  - title: Calm body, clear voice
+    blocks:
+      - type: visual
+        covers: [K4.2, S4.2]
+        component: voice-aim
+        props:
+          line: Our bake sale starts at noon!
+          target: Mr. Diaz
+        caption: Can Mr. Diaz hear you at the back? Switch on all three.
+      - type: callout
+        variant: tip
+        covers: [K2.5, K5.1, S2.4]
+        title: Before you speak
+        body: |-
+          1. Drop your shoulders and relax.
+          2. Take a slow, deep breath.
+          3. Stand tall, with both feet flat.
+          4. Focus on your first words.
+
+  - title: Words and body together
+    blocks:
+      - type: visual
+        covers: [K4.1, U4.1, S4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: match, label: Body matches the words, icon: ✅ }
+            - { id: clash, label: Body doesn’t match, icon: ❌ }
+          cards:
+            - { text: '“I’m so excited!” with a big smile', bin: match, why: 'The smile shows the excitement too.' }
+            - { text: '“It was this big!” with arms stretched wide', bin: match, why: 'Your arms show the size.' }
+            - { text: '“I’m so excited!” in a flat voice, looking at the floor', bin: clash, why: 'Listeners believe the body. They will think you are bored.' }
+            - { text: '“Please be quiet.” with a finger on your lips', bin: match, why: 'The finger says it too.' }
+            - { text: '“I’m sorry.” while laughing', bin: clash, why: 'The laugh makes the sorry hard to believe.' }
+        caption: '**Verbal** means words. **Non-verbal** means face and body. Do they match?'
+
+  - title: Phrases and pauses
+    blocks:
+      - type: visual
+        covers: [K2.3, K2.4, S2.3, S5.4]
+        component: phrase-reader
+        props:
+          title: Catching Snow
+          memorize: true
+          lines:
+            - Snow is falling, / soft and slow, //
+            - on the rooftops, / on the road. //
+            - I tip my head / and stick out my tongue… //
+            - '*One* / cold / *flake!*'
+        caption: Press **Read it** both ways. Then try **Learn by heart** and say it from memory.
+
+  - title: Plan your talk
+    blocks:
+      - type: visual
+        covers: [K5.4, S5.1, S5.5]
+        component: story-path
+        props:
+          stages:
+            - { label: Hello, text: 'Hi! I’m Ava. My talk is about my dog, Pepper.' }
+            - { label: First, text: 'Pepper is small and brown, with one floppy ear.' }
+            - { label: Next, text: 'She can sit, roll over and fetch the mail.' }
+            - { label: Last, text: 'She sleeps at the end of my bed.' }
+            - { label: Wrap up, text: 'That’s why Pepper is my best friend. Thank you!' }
+        caption: An **oral report** in order. Press **Next**.
+      - type: table
+        covers: [K5.2, K5.3, S5.2, S5.3, U5.1]
+        caption: Ways to present. You can plan ahead (**prepared**) or make it up as you go (**improvised**).
+        headers: [Way, What you do]
+        rows:
+          - ['🎤 Oral report', 'Tell facts about a topic.']
+          - ['📜 Readers’ theatre', 'Read a script aloud, each person reading a part.']
+          - ['🎭 Dramatization', 'Act out characters and events from a story.']
+          - ['🎞️ Digital story', 'Put pictures together with your recorded voice.']
+          - ['🎙️ Recorded interview', 'Ask someone questions and record the answers.']
+
+  - title: A great audience
+    blocks:
+      - type: visual
+        covers: [K5.6, S5.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: help, label: Helps the speaker, icon: 👍 }
+            - { id: hurt, label: Makes it harder, icon: 👎 }
+          cards:
+            - { text: Eyes on the speaker, bin: help, why: 'The speaker feels heard.' }
+            - { text: Whispering to a friend, bin: hurt, why: 'It distracts the speaker and the people near you.' }
+            - { text: Clapping at the end, bin: help, why: 'It says thank you.' }
+            - { text: Tapping a pencil, bin: hurt, why: 'The noise pulls everyone’s attention away.' }
+            - { text: Asking a question after the talk, bin: help, why: 'It shows you were listening.' }
+        caption: The audience changes how a talk goes. Sort these.
+      - type: callout
+        variant: tip
+        covers: [K5.5]
+        title: Know your audience
+        body: |-
+          Think about who is listening, and how they feel.
+
+          - Little kids need short words.
+          - A grandparent might need you to speak up.
+
+keyTerms:
+  - term: Audible
+    covers: [K4.2]
+    definition: Loud enough to be heard.
+  - term: Non-verbal
+    covers: [K4.1]
+    definition: Sharing a message with your face, hands and body, not words.
+  - term: Pause
+    covers: [K2.4]
+    definition: A short stop when you speak. It helps listeners follow, or makes a word stand out.
+  - term: Audience
+    covers: [K5.5]
+    definition: The people who listen to or watch a talk.
+  - term: Readers’ theatre
+    covers: [K5.3]
+    definition: Reading a script aloud in parts, using your voice to show the characters.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.5, K5.1]
+    type: mc
+    prompt: You feel nervous before your talk. What helps?
+    choices:
+      - Take a slow, deep breath
+      - Hold your breath
+      - Talk as fast as you can
+      - Hunch over and look down
+    answer: 0
+    feedback:
+      '1': Holding your breath makes your body tighter. What lets it relax?
+      '2': Talking fast makes words hard to hear.
+      '3': Standing tall helps your voice come out.
+    hints:
+      - What does your body need to relax?
+    solution:
+      - A **slow, deep breath** relaxes your body and gives your voice air.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K2.3, S2.3]
+    type: mc
+    prompt: Which way groups the words best? The **/** shows a pause.
+    choices:
+      - After lunch, / we played tag.
+      - After / lunch we / played tag.
+      - After lunch we played / tag.
+    answer: 0
+    feedback:
+      '1': Read it aloud. Does *lunch we* go together?
+      '2': Read it aloud. Why stop before the very last word?
+    hints:
+      - Read each one aloud. Which pause sounds natural?
+    solution:
+      - '*After lunch* is one chunk. *We played tag* is another. Pause between them.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K5.3, S5.3]
+    type: mc
+    prompt: Mia’s group reads a script out loud. Each person reads one character’s lines. They don’t act or move. What is it?
+    choices:
+      - Readers’ theatre
+      - An oral report
+      - A recorded interview
+    answer: 0
+    feedback:
+      '1': An oral report tells facts about a topic. Is there a script with characters?
+      '2': In an interview, someone asks questions and someone answers.
+    hints:
+      - Look for the words *script* and *reads*.
+    solution:
+      - Reading a script aloud in parts is **readers’ theatre**.
+
+  - id: b2
+    level: 2
+    thinking: perspective
+    covers: [K5.5]
+    type: mc
+    prompt: Raj will tell his favourite story to the **kindergarten** class. What should he change?
+    choices:
+      - Use short, simple words they know
+      - Use the longest words he knows
+      - Speak very quietly, so they lean in
+    answer: 0
+    feedback:
+      '1': Will five-year-olds understand very long words?
+      '2': If they can’t hear, can they enjoy the story?
+    hints:
+      - Think about who is listening. What do five-year-olds need?
+    solution:
+      - Good speakers think about their **audience**. Little kids need short, simple words.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: model
+    covers: [K5.4, S5.1, S5.5]
+    type: order
+    prompt: Put Noah’s talk about his trip to the farm in a **logical order**.
+    items:
+      - Hi! Today I’ll tell you about my trip to a farm.
+      - First, we fed the chickens.
+      - Next, we picked carrots.
+      - Last, we rode on a tractor.
+      - That was my best day of the summer!
+    hints:
+      - How does a talk start? How does it end?
+      - Look for *First*, *Next* and *Last*.
+    solution:
+      - Start by saying what the talk is about.
+      - Then tell the events in the order they happened.
+      - End by wrapping it up.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K4.1, U4.1, S4.1]
+    type: mc
+    prompt: Lily says, “I’m so happy to be here!” But she frowns, crosses her arms and speaks very quietly. What will the audience **believe**?
+    choices:
+      - That she is not happy, because her body says so
+      - That she is happy, because she said so
+      - Nothing, because the body doesn’t matter
+    answer: 0
+    feedback:
+      '1': She said it. But what do her face, arms and voice tell you?
+      '2': Do you notice when someone frowns at you?
+    hints:
+      - What do her face and arms say?
+    solution:
+      - When words and body don’t match, people usually believe the **body**.
+      - To be believed, Lily should smile and speak up.

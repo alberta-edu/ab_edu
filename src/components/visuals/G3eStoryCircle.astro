@@ -1,0 +1,126 @@
+---
+// A circular plot (LANENG3-OI1-GQ1-LO1, K3.9, S3.3). The story's stops sit around a circle. A character
+// walks from stop to stop, and at the end lands back beside where it started, so the loop closes.
+import { circlePoint } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  stages: { label: string; text: string }[];
+  /** The walker, an emoji. */
+  hero?: string;
+}
+const { stages, hero = '🐿️' } = Astro.props;
+const C = 150;
+const R = 108;
+const n = stages.length + 1; // one empty slot, so the last stop lands just before the start
+const pts = stages.map((_, i) => circlePoint(i, n, C + 30, C, R));
+const data = { n, stages: stages.map((s) => ({ label: s.label, text: mdInline(s.text) })) };
+---
+<g3e-story-circle data-story={JSON.stringify(data)}>
+  <svg class="sci-svg g3e-sc__svg" viewBox="0 0 360 300" aria-hidden="true">
+    <circle class="g3e-sc__track" cx={C + 30} cy={C} r={R}></circle>
+    <path class="g3e-sc__close" data-sc="close" d={`M${pts[pts.length - 1][0]} ${pts[pts.length - 1][1]} A ${R} ${R} 0 0 1 ${pts[0][0]} ${pts[0][1]}`}></path>
+    {
+      pts.map(([x, y], i) => (
+        <g class="g3e-sc__stop" data-stop={i}>
+          <circle cx={x} cy={y} r="17"></circle>
+          <text class="g3e-sc__num" x={x} y={y + 6} text-anchor="middle">{i + 1}</text>
+        </g>
+      ))
+    }
+    <text class="g3e-sc__hero" data-sc="hero" x={pts[0][0]} y={pts[0][1] - 22} text-anchor="middle">{hero}</text>
+    <text class="g3e-sc__mid" data-sc="mid" x={C + 30} y={C + 8} text-anchor="middle"></text>
+  </svg>
+  <div class="g3e-sc__card" aria-live="polite">
+    <h3 data-sc="label"></h3>
+    <p data-sc="text"></p>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-sc="back">◀ Back</button>
+    <button type="button" class="btn btn--primary btn--small" data-sc="next">Next ▶</button>
+  </div>
+  <noscript><ol>{stages.map((s) => <li><strong>{s.label}:</strong> <span set:html={mdInline(s.text)} /></li>)}</ol></noscript>
+</g3e-story-circle>
+
+<style is:global>
+  g3e-story-circle { display: block; }
+  .g3e-sc__svg { max-width: 26rem; margin: 0 auto; }
+  .g3e-sc__track { fill: none; stroke: var(--line-strong); stroke-width: 5; stroke-dasharray: 2 10; stroke-linecap: round; }
+  .g3e-sc__close { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; opacity: 0; transition: opacity 0.4s ease; }
+  g3e-story-circle.is-closed .g3e-sc__close { opacity: 1; }
+  .g3e-sc__stop circle { fill: var(--surface); stroke: var(--line-strong); stroke-width: 3; transition: fill 0.3s ease; }
+  .g3e-sc__stop.is-on circle { fill: var(--accent); stroke: var(--accent); }
+  .g3e-sc__num { fill: var(--ink-2); font-size: 16px; font-weight: 700; }
+  .g3e-sc__stop.is-on .g3e-sc__num { fill: var(--brand-ink); }
+  .g3e-sc__hero { font-size: 30px; }
+  .g3e-sc__mid { fill: var(--accent); font-size: 15px; font-weight: 800; }
+  .g3e-sc__card { min-height: 5.5rem; margin-top: 0.6rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-sc__card.is-end { background: var(--accent-soft); }
+  .g3e-sc__card h3 { margin: 0 0 0.25rem; }
+  .g3e-sc__card p { margin: 0; }
+  @media (prefers-reduced-motion: reduce) { .g3e-sc__close, .g3e-sc__stop circle { transition: none; } }
+</style>
+
+<script>
+  import { circlePoint } from './g3e-ela.ts';
+  type Data = { n: number; stages: { label: string; text: string }[] };
+
+  class G3eStoryCircle extends HTMLElement {
+    private data!: Data;
+    private at = 0;
+    private shown = 0; // the hero's position, in stops, while it walks
+    private frame = 0;
+
+    connectedCallback() {
+      this.data = JSON.parse(this.dataset.story!);
+      this.part('next').addEventListener('click', () => this.go(this.at + 1));
+      this.part('back').addEventListener('click', () => this.go(this.at - 1));
+      this.go(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-sc="${name}"]`)!;
+    }
+
+    private place(stop: number) {
+      const [x, y] = circlePoint(stop, this.data.n, 180, 150, 108);
+      const hero = this.part('hero');
+      hero.setAttribute('x', String(x));
+      hero.setAttribute('y', String(y - 22));
+    }
+
+    private walk(to: number) {
+      cancelAnimationFrame(this.frame);
+      const from = this.shown;
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        this.shown = to;
+        this.place(to);
+        return;
+      }
+      const start = performance.now();
+      const step = (t: number) => {
+        const k = Math.min(1, (t - start) / 600);
+        this.shown = from + (to - from) * (1 - (1 - k) * (1 - k));
+        this.place(this.shown);
+        if (k < 1) this.frame = requestAnimationFrame(step);
+      };
+      this.frame = requestAnimationFrame(step);
+    }
+
+    private go(i: number) {
+      const { stages } = this.data;
+      this.at = Math.max(0, Math.min(stages.length - 1, i));
+      this.walk(this.at);
+      this.querySelectorAll<SVGElement>('[data-stop]').forEach((g) => g.classList.toggle('is-on', Number(g.dataset.stop) <= this.at));
+      const end = this.at === stages.length - 1;
+      this.classList.toggle('is-closed', end);
+      this.part('mid').textContent = end ? 'Back to the start!' : '';
+      this.part('label').textContent = stages[this.at].label;
+      this.part('text').innerHTML = stages[this.at].text;
+      this.querySelector('.g3e-sc__card')!.classList.toggle('is-end', end);
+      (this.part('back') as HTMLButtonElement).disabled = this.at === 0;
+      (this.part('next') as HTMLButtonElement).disabled = end;
+    }
+  }
+  customElements.define('g3e-story-circle', G3eStoryCircle);
+</script>

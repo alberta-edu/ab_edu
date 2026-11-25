@@ -1,0 +1,324 @@
+---
+// Telling time (MAT3-OI7-GQ1-LO1).
+// tick: run a clock and watch 60 seconds make a minute and 60 minutes make an hour.
+// set: drag the minute hand (or use the buttons) to make the analog clock match a digital time.
+// past: the face shades minutes past the hour and minutes until the next hour; they make 60.
+// day: slide through one day; see a.m. and p.m. from 12:00, and the 24-hour clock from 0:00.
+import { clockSvg, parse, digital, clock12, since12, clock24, since24, french24, DAY_EVENTS, type DayEvent } from './g3-clock.ts';
+
+interface Props {
+  mode?: 'tick' | 'set' | 'past' | 'day';
+  /** set: digital times to make, like '4:35'. */
+  goals?: string[];
+  /** past and day: the time to start at. */
+  start?: string;
+  /** day: also show the 24-hour clock. */
+  show24?: boolean;
+  /** day: times to jump to. */
+  events?: DayEvent[];
+}
+const { mode = 'tick', goals = ['4:35', '9:10', '11:50'], start, show24 = false, events = DAY_EVENTS } = Astro.props;
+const t0 = mode === 'tick' ? parse('3:00') : mode === 'set' ? parse('12:00') : parse(start ?? (mode === 'past' ? '3:20' : '7:00'));
+---
+<g3-clock data-mode={mode} data-goals={JSON.stringify(goals)} data-t={t0} data-show24={String(show24)}>
+  {mode === 'set' && (
+    <p class="g3m-ck-goal">Make the clock say <strong data-ck="goal">{goals[0]}</strong></p>
+  )}
+  {mode === 'day' && (
+    <div class="g3m-ck-sky" data-ck="sky" aria-hidden="true">
+      <span class="g3m-ck-body" data-ck="body">☀️</span>
+      <span class="g3m-ck-ground"></span>
+    </div>
+  )}
+  <div class={`g3m-ck-stage${mode === 'day' ? ' is-day' : ''}`}>
+    <div class="g3m-ck-face" data-ck="face" set:html={clockSvg(t0, { second: mode === 'tick', split: mode === 'past', cls: 'g3m-ck-svg' })}></div>
+    {mode === 'tick' && (
+      <div class="g3m-ck-gone" aria-label="Time gone by">
+        <span class="g3m-ck-gone-t">Time gone by</span>
+        <div class="g3m-ck-boxes">
+          <span class="g3m-ck-box"><b data-ck="h">0</b>hours</span>
+          <span class="g3m-ck-box"><b data-ck="m">0</b>minutes</span>
+          <span class="g3m-ck-box is-s"><b data-ck="s">0</b>seconds</span>
+        </div>
+      </div>
+    )}
+    {(mode === 'set' || mode === 'past') && (
+      <div class="g3m-ck-digi" aria-label="The same time on a digital clock"><span data-ck="digi">{digital(t0)}</span></div>
+    )}
+    {mode === 'day' && (
+      <div class="g3m-ck-read">
+        <p class="g3m-ck-big" data-ck="t12">{clock12(t0)}</p>
+        <p class="g3m-ck-small" data-ck="s12">{since12(t0)}</p>
+        {show24 && (
+          <>
+            <p class="g3m-ck-big is-24"><span data-ck="t24">{clock24(t0)}</span> <span class="g3m-ck-tag">24-hour</span></p>
+            <p class="g3m-ck-small" data-ck="s24">{since24(t0)}</p>
+            <p class="g3m-ck-small">In French: <strong data-ck="fr">{french24(t0)}</strong></p>
+          </>
+        )}
+      </div>
+    )}
+  </div>
+  {mode === 'past' && (
+    <p class="g3m-ck-key"><span class="g3m-ck-sw is-past"></span>past the hour <span class="g3m-ck-sw is-until"></span>until the next hour</p>
+  )}
+  <p class="g3m-ck-say" data-ck="say" aria-live="polite"></p>
+  <div class="control-row g3m-ck-row">
+    {mode === 'tick' && (
+      <>
+        <button type="button" class="btn btn--primary btn--small" data-ck="run">▶ Run</button>
+        <div class="seg" role="group" aria-label="How fast">
+          <button type="button" data-speed="1" aria-pressed="true">🐢 Real</button>
+          <button type="button" data-speed="60" aria-pressed="false">🐇 Fast</button>
+          <button type="button" data-speed="720" aria-pressed="false">🚀 Super fast</button>
+        </div>
+        <button type="button" class="btn btn--ghost btn--small" data-ck="reset">Start over</button>
+      </>
+    )}
+    {(mode === 'set' || mode === 'past') && (
+      <div class="g3m-ck-steps" role="group" aria-label="Move the minute hand">
+        <button type="button" class="btn btn--small" data-step="-5">◀ 5 min</button>
+        <button type="button" class="btn btn--small" data-step="-1">◀ 1</button>
+        <button type="button" class="btn btn--small" data-step="1">1 ▶</button>
+        <button type="button" class="btn btn--small" data-step="5">5 min ▶</button>
+        {mode === 'set' && <button type="button" class="btn btn--small" data-step="60">60 min ▶</button>}
+      </div>
+    )}
+    {mode === 'set' && <button type="button" class="btn btn--primary btn--small" data-ck="next" hidden>Next time ▶</button>}
+    {mode === 'day' && (
+      <>
+        <label class="control g3m-ck-slide"><span>Time of day</span><input type="range" min="0" max="1435" step="5" value={t0} data-ck="slide" aria-label="Time of day" /></label>
+        <div class="g3m-ck-events" role="group" aria-label="Jump to a time">
+          {events.map((e) => <button type="button" class="g3m-ck-ev" data-t={parse(e.t)}>{e.icon} {e.label}</button>)}
+        </div>
+      </>
+    )}
+  </div>
+</g3-clock>
+
+<style is:global>
+  g3-clock { display: block; }
+  .g3m-ck-row { justify-content: center; }
+  .g3m-ck-stage { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.8rem 1.5rem; margin-top: 0.4rem; }
+  .g3m-ck-face svg { display: block; width: 13.5rem; max-width: 100%; height: auto; touch-action: none; }
+  .g3m-ck-stage.is-day .g3m-ck-face svg { width: 8rem; }
+  .g3m-ck-face.is-drag svg { cursor: grab; }
+  .g3m-ck-face.is-pop svg { animation: g3m-ck-pop 0.5s; }
+  .g3m-ck-goal { margin: 0; text-align: center; font-size: 1.15rem; font-weight: 600; }
+  .g3m-ck-goal strong { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 0.5rem; background: var(--accent-soft); font-size: 1.4rem; font-variant-numeric: tabular-nums; }
+  .g3m-ck-digi { padding: 0.4rem 1rem; border: 3px solid var(--ink-2); border-radius: 0.8rem; background: var(--ink); color: var(--surface); font-size: 2.4rem; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 6.5rem; text-align: center; }
+  .g3m-ck-digi.is-match { border-color: var(--ok); box-shadow: 0 0 0 4px var(--ok-soft); }
+  .g3m-ck-gone { display: grid; justify-items: center; gap: 0.3rem; }
+  .g3m-ck-gone-t { font-weight: 700; color: var(--ink-2); }
+  .g3m-ck-boxes { display: flex; gap: 0.4rem; }
+  .g3m-ck-box { display: grid; justify-items: center; min-width: 4.4rem; padding: 0.3rem 0.4rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); font-size: 0.8rem; font-weight: 700; color: var(--ink-3); }
+  .g3m-ck-box b { font-size: 1.7rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .g3m-ck-box.is-s b { color: var(--bad); }
+  .g3m-ck-box.is-pop { animation: g3m-ck-pop 0.5s; border-color: var(--ok); }
+  .g3m-ck-say { min-height: 2.6em; margin: 0.5rem 0 0; font-weight: 600; text-align: center; }
+  .g3m-ck-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; }
+  .g3m-ck-key { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.3rem 0.5rem; margin: 0.4rem 0 0; font-size: 0.9rem; font-weight: 600; }
+  .g3m-ck-sw { display: inline-block; width: 1rem; height: 1rem; border-radius: 0.25rem; }
+  .g3m-ck-sw.is-past { background: color-mix(in srgb, var(--accent) 45%, var(--surface)); }
+  .g3m-ck-sw.is-until { background: color-mix(in srgb, var(--sun) 60%, var(--surface)); margin-left: 0.5rem; }
+  .g3m-ck-sky { position: relative; height: 6.5rem; border-radius: 0.8rem; overflow: hidden; background: rgb(var(--g3m-sky, 120 180 235)); transition: background 0.3s; }
+  .g3m-ck-body { position: absolute; font-size: 2rem; transform: translate(-50%, -50%); transition: left 0.3s, top 0.3s; }
+  .g3m-ck-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 1.2rem; background: #5b8f4e; }
+  .g3m-ck-read { display: grid; gap: 0.15rem; text-align: center; }
+  .g3m-ck-read p { margin: 0; }
+  .g3m-ck-big { font-size: 1.9rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g3m-ck-big.is-24 { margin-top: 0.4rem !important; color: var(--accent); }
+  .g3m-ck-tag { font-size: 0.8rem; font-weight: 700; color: var(--ink-3); vertical-align: middle; }
+  .g3m-ck-small { font-size: 0.95rem; color: var(--ink-2); }
+  .g3m-ck-slide { flex: 1 1 100%; justify-content: center; }
+  .g3m-ck-slide input { width: min(100%, 22rem); }
+  .g3m-ck-events { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; }
+  .g3m-ck-ev { padding: 0.3rem 0.6rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+  .g3m-ck-ev[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  @keyframes g3m-ck-pop { 50% { transform: scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .g3m-ck-face.is-pop svg, .g3m-ck-box.is-pop { animation: none; } .g3m-ck-sky, .g3m-ck-body { transition: none; } }
+</style>
+
+<script>
+  import { clockSvg, digital, clock12, since12, clock24, since24, french24, parse, pastSay, minuteAt, dragTo, gone, tickSay, daylight, DAY } from './g3-clock.ts';
+
+  class G3Clock extends HTMLElement {
+    private mode = 'tick';
+    private t = 0;
+    private secs = 0;
+    private speed = 1;
+    private timer = 0;
+    private goals: string[] = [];
+    private goal = 0;
+
+    connectedCallback() {
+      this.mode = this.dataset.mode!;
+      this.t = Number(this.dataset.t);
+      this.goals = JSON.parse(this.dataset.goals!);
+      if (this.mode === 'tick') this.setupTick();
+      if (this.mode === 'set' || this.mode === 'past') this.setupHands();
+      if (this.mode === 'day') this.setupDay();
+    }
+
+    disconnectedCallback() {
+      clearInterval(this.timer);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-ck="${k}"]`) as HTMLElement;
+    }
+
+    private say(s: string) {
+      this.q('say').textContent = s;
+    }
+
+    private face(secs = 0) {
+      this.q('face').innerHTML = clockSvg(this.t + Math.floor(secs / 60), { second: this.mode === 'tick', secs: secs % 60, split: this.mode === 'past', cls: 'g3m-ck-svg' });
+    }
+
+    private pop(el: HTMLElement) {
+      el.classList.remove('is-pop');
+      void el.offsetWidth;
+      el.classList.add('is-pop');
+    }
+
+    // ---- tick
+    private setupTick() {
+      this.say('Press Run. Watch the red second hand.');
+      this.q('run').addEventListener('click', () => (this.timer ? this.stop() : this.go()));
+      this.q('reset').addEventListener('click', () => {
+        this.stop();
+        this.secs = 0;
+        this.drawTick();
+        this.say('Press Run. Watch the red second hand.');
+      });
+      this.querySelectorAll<HTMLButtonElement>('[data-speed]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-speed]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.speed = Number(b.dataset.speed);
+          if (this.timer) {
+            this.stop();
+            this.go();
+          }
+        }),
+      );
+    }
+
+    private go() {
+      this.q('run').textContent = '⏸ Pause';
+      const every = this.speed === 1 ? 1000 : 50;
+      const add = this.speed === 1 ? 1 : (this.speed * every) / 1000;
+      if (this.speed === 1) this.say('Each tick is 1 second, 1/60 of a minute.');
+      this.timer = window.setInterval(() => {
+        const from = this.secs;
+        this.secs += add;
+        this.drawTick();
+        const msg = tickSay(from, this.secs);
+        if (msg && (this.speed < 720 || msg.includes('hour'))) {
+          this.say(msg);
+          this.pop(this.q(msg.includes('hour') ? 'h' : 'm').parentElement!);
+        }
+      }, every);
+    }
+
+    private stop() {
+      clearInterval(this.timer);
+      this.timer = 0;
+      this.q('run').textContent = '▶ Run';
+    }
+
+    private drawTick() {
+      const g = gone(this.secs);
+      this.q('h').textContent = String(g.h);
+      this.q('m').textContent = String(g.m);
+      this.q('s').textContent = String(g.s);
+      this.face(this.secs);
+    }
+
+    // ---- set and past
+    private setupHands() {
+      this.querySelectorAll<HTMLButtonElement>('[data-step]').forEach((b) => b.addEventListener('click', () => this.setT(this.t + Number(b.dataset.step))));
+      const face = this.q('face');
+      face.classList.add('is-drag');
+      let dragging = false;
+      const move = (e: PointerEvent) => {
+        const r = face.getBoundingClientRect();
+        this.setT(dragTo(this.t, minuteAt(e.clientX - r.left - r.width / 2, e.clientY - r.top - r.height / 2)));
+      };
+      face.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        face.setPointerCapture(e.pointerId);
+        move(e);
+      });
+      face.addEventListener('pointermove', (e) => dragging && move(e));
+      face.addEventListener('pointerup', () => (dragging = false));
+      if (this.mode === 'set') {
+        this.say('Drag the long blue minute hand, or use the buttons.');
+        this.q('next').addEventListener('click', () => {
+          this.goal = (this.goal + 1) % this.goals.length;
+          this.q('goal').textContent = this.goals[this.goal];
+          this.q('next').hidden = true;
+          this.setT(parse('12:00'));
+          this.say('Drag the long blue minute hand, or use the buttons.');
+        });
+      } else this.say(pastSay(this.t));
+    }
+
+    private setT(t: number) {
+      this.t = ((t % (12 * 60)) + 12 * 60) % (12 * 60) || 12 * 60;
+      this.face();
+      this.q('digi').textContent = digital(this.t);
+      if (this.mode === 'past') return this.say(pastSay(this.t));
+      const match = digital(this.t) === this.goals[this.goal];
+      this.q('digi').parentElement!.classList.toggle('is-match', match);
+      if (match) {
+        this.say(`🎉 You made ${this.goals[this.goal]}! The short hand points to the hour.`);
+        this.pop(this.q('face'));
+        this.q('next').hidden = false;
+      } else {
+        const g = parse(this.goals[this.goal]) % 60;
+        const m = this.t % 60;
+        this.say(m === g ? 'The minutes match. Now check the hour. 60 min ▶ turns the long hand all the way around.' : m < g ? 'Keep turning the minute hand forward.' : 'Turn the minute hand back a little, or keep going around.');
+      }
+    }
+
+    // ---- day
+    private setupDay() {
+      const slide = this.q('slide') as HTMLInputElement;
+      slide.addEventListener('input', () => this.drawDay(Number(slide.value), null));
+      this.querySelectorAll<HTMLButtonElement>('.g3m-ck-ev').forEach((b) =>
+        b.addEventListener('click', () => {
+          slide.value = b.dataset.t!;
+          this.drawDay(Number(b.dataset.t), b);
+        }),
+      );
+      this.drawDay(this.t, null);
+    }
+
+    private drawDay(t: number, ev: HTMLButtonElement | null) {
+      this.t = t;
+      this.querySelectorAll('.g3m-ck-ev').forEach((x) => x.setAttribute('aria-pressed', String(x === ev)));
+      this.face();
+      this.q('t12').textContent = clock12(t);
+      this.q('s12').textContent = since12(t);
+      if (this.dataset.show24 === 'true') {
+        this.q('t24').textContent = clock24(t);
+        this.q('s24').textContent = since24(t);
+        this.q('fr').textContent = french24(t);
+      }
+      // Sky: dark at night, blue by day. The sun crosses from 6:00 to 18:00, the moon at night.
+      const light = daylight(t);
+      const mix = (a: number, b: number) => Math.round(a + (b - a) * light);
+      this.q('sky').style.setProperty('--g3m-sky', `${mix(20, 120)} ${mix(28, 185)} ${mix(70, 240)}`);
+      const day = t >= 6 * 60 && t < 18 * 60;
+      const f = day ? (t - 6 * 60) / (12 * 60) : (((t - 18 * 60 + DAY) % DAY) / (12 * 60));
+      const body = this.q('body');
+      body.textContent = day ? '☀️' : '🌙';
+      body.style.left = `${8 + f * 84}%`;
+      body.style.top = `${75 - Math.sin(f * Math.PI) * 55}%`;
+      const ap = t < 12 * 60 ? 'a.m. runs from 12:00 midnight until noon.' : 'p.m. runs from 12:00 noon until midnight.';
+      this.say(t === 0 ? 'Midnight. A new day starts.' : t === 12 * 60 ? 'Noon. The p.m. hours start.' : ap);
+    }
+  }
+  customElements.define('g3-clock', G3Clock);
+</script>

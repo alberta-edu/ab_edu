@@ -1,0 +1,291 @@
+id: fiction-nonfiction
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG3-OI1-GQ1-LO1]
+order: 1
+title: Fiction, Non-fiction and Why Texts Are Made
+shortTitle: Fiction & non-fiction
+summary: >-
+  Find out what a text is, why texts are made, how fiction and non-fiction are different, and meet
+  three forms: drama, short stories and images.
+
+bigIdea: |-
+  - A **text** is anything with meaning: a book, a sign, a video or a picture.
+  - Texts are made to **inform** us or to give us **enjoyment**.
+  - **Fiction** comes from imagination. **Non-fiction** tells facts.
+
+lesson:
+  - title: What is a text?
+    blocks:
+      - type: visual
+        covers: [K1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: digital, label: On a screen, icon: 💻 }
+            - { id: paper, label: Not on a screen, icon: 📄 }
+          cards:
+            - { text: 📖 A comic book, bin: paper, why: 'You hold it in your hands. It is a text.' }
+            - { text: 📺 A video about frogs, bin: digital, why: 'A video is a digital text.' }
+            - { text: 🛑 A stop sign, bin: paper, why: 'A sign has meaning too. It tells drivers to stop.' }
+            - { text: 💻 A web page about dinosaurs, bin: digital, why: 'A web page is a digital text.' }
+            - { text: 🖍️ A drawing on the fridge, bin: paper, why: 'A picture can be a text. It means something to the person who drew it.' }
+            - { text: 📱 A message from Grandma, bin: digital, why: 'A message on a phone is a digital text.' }
+        caption: Every card is a **text**. Sort them. Is each one on a screen or not?
+
+  - title: Why was it made?
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: inform, label: To inform, icon: 📘 }
+            - { id: enjoy, label: For enjoyment, icon: 🎉 }
+          cards:
+            - { text: 🗺️ A map of the zoo, bin: inform, why: 'It tells you where the animals are.' }
+            - { text: 😂 A book of jokes, bin: enjoy, why: 'It is there to make you laugh.' }
+            - { text: 🕒 A sign with the pool times, bin: inform, why: 'It gives facts you need.' }
+            - { text: 🐉 A story about a dragon who hates the dark, bin: enjoy, why: 'You read it for fun.' }
+            - { text: 🍪 Steps for baking cookies, bin: inform, why: 'It teaches you how to do something.' }
+            - { text: 🎵 A silly song about socks, bin: enjoy, why: 'It is there to make you smile.' }
+        caption: What did the maker want each text to do?
+
+  - title: Made up or true?
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4, K1.5, S1.3]
+        component: text-xray
+        props:
+          button: Show made-up and true
+          pages:
+            - label: Fiction
+              icon: 🐉
+              parts:
+                - { style: title, text: 'Bella’s Big Night' }
+                - { style: text, text: 'Bella the beaver put on her red hat.', tag: Made up, job: 'Real beavers don’t wear hats.' }
+                - { style: text, text: '“Tonight I will build a castle!” she said.', tag: Made up, job: 'Real beavers can’t talk.' }
+              note: '**Fiction** uses imagination to tell a story.'
+            - label: Non-fiction
+              icon: 🦫
+              parts:
+                - { style: title, text: 'All About Beavers' }
+                - { style: text, text: 'Beavers have big orange front teeth.', tag: Fact, job: 'You can check this in a book or with an expert.' }
+                - { style: text, text: 'They chew down trees to build dams.', tag: Fact, job: 'This is true about real beavers.' }
+              note: '**Non-fiction** gives information and facts.'
+        caption: Two texts about beavers. Tap the button. Which one is made up?
+      - type: passage
+        id: bella
+        title: Bella’s Busy Night
+        form: Fiction
+        paragraphs:
+          - Bella the beaver woke up when the sun went down. She chewed a tree with her strong front teeth.
+          - '“This tree will make a fine dam,” Bella told the moon. The moon winked back at her.'
+          - Bella dragged the tree to the pond. Then she sang a song to the sleepy fish.
+        note: An original story written for Alberta Edu.
+
+  - title: Three forms
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.4, U1.1]
+        component: text-xray
+        props:
+          button: Show the parts
+          pages:
+            - label: Drama
+              icon: 🎭
+              parts:
+                - { style: title, text: 'The Lost Mitten' }
+                - { style: box, text: '*A snowy park. Mia looks under a bench.*', tag: What actors do, job: 'Tells the actors where they are and what to do.' }
+                - { style: text, text: '**MIA:** Where did my mitten go?', tag: Who speaks, job: 'The name shows who says the line.' }
+                - { style: text, text: '**LEO:** Look! The dog is wearing it!', tag: Who speaks, job: 'Each actor reads their own lines.' }
+              note: A **drama** is a story for actors to act out.
+            - label: Short story
+              icon: 📖
+              parts:
+                - { style: title, text: 'The Lost Mitten' }
+                - { style: text, text: 'Mia looked under every bench in the park. Her mitten was gone.', tag: Beginning, job: 'A short story starts the problem fast.' }
+                - { style: text, text: 'Then Leo laughed. The dog was wearing it like a hat!', tag: Ending, job: 'It ends in a few pages, or even a few lines.' }
+              note: A **short story** is a story you can read in one go.
+            - label: Image
+              icon: 🖼️
+              parts:
+                - style: figure
+                  svg: '<svg viewBox="0 0 300 110" role="img" aria-label="Three pictures: a girl looks for a mitten, a dog runs by, the dog wears the mitten on its head"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="92" height="100" rx="8"/><rect x="104" y="4" width="92" height="100" rx="8"/><rect x="204" y="4" width="92" height="100" rx="8"/></g><g font-size="40" text-anchor="middle"><text x="50" y="70">👧🔍</text><text x="150" y="70">🐕💨</text><text x="250" y="70">🐕🧤</text></g></svg>'
+                  text: No words at all!
+                  tag: Pictures in order
+                  job: 'You read the story by looking, from left to right.'
+              note: An **image** can be a text. These pictures tell the whole story.
+        caption: One story told three ways. Tap each tab, then tap the button.
+
+  - title: What do you like to read?
+    blocks:
+      - type: visual
+        covers: [S1.2]
+        component: talk-it-out
+        props:
+          turns:
+            - speaker: Ana
+              says: What book do you love to read just for fun?
+              choices:
+                - { text: '*Pip the Penguin*, because it makes me laugh out loud!', good: true, reply: 'Ana grins. “I love funny books too!”', why: 'You named the book **and** said why you like it.' }
+                - { text: '*Pip the Penguin*.', good: false, reply: '“Why do you like it?” Ana asks.', why: 'Add a reason. Start it with **because**.' }
+                - { text: 'I don’t know. Books.', good: false, reply: 'Ana shrugs.', why: 'Think of one book you enjoyed. How did it make you feel?' }
+            - speaker: Ana
+              says: I like scary stories best. They make my heart go fast!
+              choices:
+                - { text: 'Scary stories are bad.', good: false, reply: 'Ana frowns.', why: 'People like different books, and that’s OK.' }
+                - { text: 'Cool! I like funny ones more, because laughing feels good.', good: true, reply: '“Let’s swap books!” says Ana.', why: 'You listened, then gave your own reason.' }
+          ending: Everyone likes different books. A good reason starts with **because**.
+        caption: Pick what to say. Which answers give a reason?
+
+keyTerms:
+  - term: Text
+    covers: [K1.1]
+    definition: Anything that has meaning, such as a book, a sign, a video or a picture.
+  - term: Purpose
+    covers: [K1.2]
+    definition: The reason a text was made, such as to inform or to give enjoyment.
+  - term: Fiction
+    covers: [K1.4]
+    definition: A text that uses imagination to tell a story.
+  - term: Non-fiction
+    covers: [K1.5]
+    definition: A text that gives information and facts.
+  - term: Drama
+    covers: [K1.6]
+    definition: A story written for actors to act out, with lines for each character.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: Which text was made mostly for **enjoyment**?
+    choices:
+      - 😂 A book of jokes
+      - 🗺️ A map of the zoo
+      - 🚌 A bus timetable
+      - 🍪 Steps for baking cookies
+    answer: 0
+    feedback:
+      '1': A map helps you find your way. What is it for?
+      '2': A timetable gives facts you need. Is it there to make you smile?
+      '3': Steps teach you how to do something. That is to inform.
+    hints:
+      - Which one would you read just to have fun?
+    solution:
+      - A joke book is made to make you laugh. That is **enjoyment**.
+      - The map, the timetable and the steps all give facts. They **inform**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.3, K1.5, S1.3]
+    type: multi
+    prompt: Tap **every** book that is **non-fiction**.
+    choices:
+      - 🦫 How Beavers Build Dams
+      - 🐉 The Dragon Who Loved Socks
+      - 🌧️ Why It Rains
+      - 🚀 Max and the Talking Rocket
+    answer: [0, 2]
+    feedback:
+      '1': Do real dragons wear socks? This story comes from someone’s imagination.
+      '3': Can rockets talk? This one is made up.
+    hints:
+      - Which books tell true facts about the real world?
+    solution:
+      - '*How Beavers Build Dams* and *Why It Rains* give facts. They are **non-fiction**.'
+      - A talking rocket and a sock-loving dragon are made up. They are **fiction**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K1.4, S1.3]
+    type: evidence
+    prompt: “Bella’s Busy Night” is **fiction**. Tap a sentence that could **only** happen in a made-up story.
+    passage: bella
+    paragraphs: [1, 2, 3]
+    answer: [p2s1, p2s2, p3s2]
+    feedback:
+      p1s1: Real beavers do wake up at night. That part could be true.
+      p1s2: Real beavers chew trees with strong teeth. That is a fact.
+      p3s1: Real beavers drag trees to the water. Look for something a real beaver can’t do.
+    hints:
+      - Which sentences show Bella doing something a real beaver can’t do?
+    solution:
+      - Real beavers can’t talk, sing, or get a wink from the moon.
+      - Those parts come from the writer’s imagination, so the story is **fiction**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.6, S1.4]
+    type: mc
+    prompt: Jo wants her friends to **act out** her story. Each friend will say lines. Which form should she write?
+    choices:
+      - A drama
+      - A short story
+      - An image
+    answer: 0
+    feedback:
+      '1': A short story is for reading. Does it show who says each line?
+      '2': An image has no lines to say. What do actors need?
+    hints:
+      - Which form shows each character’s name before their lines?
+    solution:
+      - A **drama** is written for actors. Each line has the name of who says it.
+      - It also tells the actors what to do.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K1.3, K1.4, K1.5, S1.3]
+    type: mc
+    prompt: |-
+      Two books are about wolves.
+
+      - 📗 A wolf pup gets lost and asks a crow for help.
+      - 📘 What wolves eat and where they live.
+
+      Sam says, “Both are non-fiction, because both are about wolves.” What is wrong?
+    choices:
+      - The first book is made up. Talking to a crow is not a fact.
+      - Both books are fiction, because wolves are wild.
+      - Sam is right. A book about a real animal is always non-fiction.
+      - The second book is fiction, because it has no story.
+    answer: 0
+    feedback:
+      '1': Does the second book give facts? Facts make it non-fiction.
+      '2': Can a real wolf pup talk to a crow? Look at what happens, not only the animal.
+      '3': A text with no story can still be non-fiction. That is often how facts are shared.
+    hints:
+      - Don’t look at the animal. Look at what each book tells you.
+      - Could the first book really happen?
+    solution:
+      - Fiction and non-fiction are about the **content**, not the topic.
+      - A pup talking to a crow comes from imagination, so the first book is **fiction**.
+      - Facts about what wolves eat make the second book **non-fiction**.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K1.3, K1.5, U1.1]
+    type: evidence
+    prompt: “Bella’s Busy Night” is fiction, but the writer put **true facts** in it too. Tap one.
+    passage: bella
+    paragraphs: [1, 3]
+    answer: [p1s1, p1s2, p3s1]
+    feedback:
+      p3s2: Do real beavers sing to fish? This part is made up.
+    hints:
+      - What do real beavers do? Think about teeth, trees and night.
+    solution:
+      - Beavers really are awake at night. They chew trees with strong teeth and drag them to the water.
+      - A writer can mix true facts into a made-up story. The talking and singing make it **fiction**.

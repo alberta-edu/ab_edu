@@ -1,0 +1,122 @@
+---
+// Grade 3 place value chart to 100 000 (MAT3-OI1-GQ1-LO1: K1.1-K1.4, K1.7, U1.1, U1.2, S1.1-S1.5).
+// Step any digit up or down. Past 9 it regroups: 10 ones make 1 ten. Each digit shows its value as
+// digit × place value, with the expanded form and the number in words underneath.
+import { PLACES, digitsOf, fmt, expanded, words } from './g3-place.ts';
+
+interface Props {
+  value?: number;
+}
+const { value = 45_306 } = Astro.props;
+const d = digitsOf(value);
+const lead = (i: number) => d.slice(0, i + 1).every((x) => x === 0) && i < 5;
+---
+<g3-place-chart data-value={value}>
+  <div class="g3m-pc-scroll">
+    <div class="g3m-pc-grid" role="group" aria-label="Place value chart">
+      <div class="g3m-pc-times" aria-hidden="true">
+        {PLACES.slice(0, 5).map(() => <span>×10</span>)}
+      </div>
+      {
+        PLACES.map((p, i) => (
+          <div class="g3m-pc-col" data-i={i}>
+            <span class="g3m-pc-name" set:html={p.name.replace('thousands', 'thou&shy;sands').replace('hundreds', 'hun&shy;dreds')} />
+            <button type="button" class="g3m-pc-btn" data-dir="1" aria-label={`One more ${p.name.replace(/s$/, '')}`}>▲</button>
+            <button type="button" class={`g3m-pc-digit${lead(i) ? ' is-lead' : ''}`} data-digit aria-label={`${p.name} digit`}>{d[i]}</button>
+            <button type="button" class="g3m-pc-btn" data-dir="-1" aria-label={`One less ${p.name.replace(/s$/, '')}`}>▼</button>
+            <span class="g3m-pc-value" data-val>{d[i] ? fmt(d[i] * p.value) : ''}</span>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <p class="g3m-pc-num" data-pc="num">{fmt(value)}</p>
+  <p class="g3m-pc-exp" data-pc="exp">{fmt(value)} = {expanded(value)}</p>
+  <p class="g3m-pc-words" data-pc="words">{words(value)}</p>
+  <p class="g3m-pc-note" data-pc="note" aria-live="polite">Tap a digit to see what it is worth. Press ▲ or ▼ to change it.</p>
+</g3-place-chart>
+
+<style is:global>
+  g3-place-chart { display: block; }
+  .g3m-pc-scroll { overflow-x: auto; padding-bottom: 0.25rem; }
+  .g3m-pc-grid { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.25rem; padding-top: 1.4rem; }
+  .g3m-pc-times { position: absolute; inset: 0 0 auto 0; display: grid; grid-template-columns: repeat(6, 1fr); pointer-events: none; }
+  .g3m-pc-times span { grid-column: span 1; transform: translateX(50%); text-align: center; font-size: 0.72rem; font-weight: 700; color: var(--accent); }
+  .g3m-pc-col { display: grid; justify-items: center; gap: 0.2rem; min-width: 0; padding: 0.35rem 0.1rem 0.5rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+  .g3m-pc-col:last-child { background: var(--accent-soft); }
+  .g3m-pc-name { min-height: 2.5em; display: grid; place-items: center; text-align: center; font-size: clamp(0.6rem, 0.5rem + 0.4vw, 0.72rem); hyphens: manual; font-weight: 700; line-height: 1.15; color: var(--ink-2); }
+  .g3m-pc-btn { width: min(2.4rem, 100%); height: 2rem; border: 1px solid var(--line-strong); border-radius: 0.6rem; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 0.8rem; cursor: pointer; }
+  .g3m-pc-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .g3m-pc-btn:disabled { opacity: 0.35; cursor: default; }
+  .g3m-pc-digit { border: 0; background: none; color: var(--ink); font-family: inherit; cursor: pointer; padding: 0 0.2rem; border-radius: 0.4rem; font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.3rem); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .g3m-pc-digit.is-lead { color: var(--ink-3); opacity: 0.45; }
+  .g3m-pc-digit.is-bump { animation: g3m-pc-bump 0.45s ease; }
+  .g3m-pc-value { min-height: 1.3em; font-size: clamp(0.6rem, 0.52rem + 0.3vw, 0.75rem); font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .g3m-pc-num { margin: 0.8rem 0 0.1rem; font-size: var(--step-2); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g3m-pc-exp { margin: 0; font-weight: 700; color: var(--accent); }
+  .g3m-pc-words { margin: 0.2rem 0 0.4rem; color: var(--ink-2); }
+  .g3m-pc-note { min-height: 2.6em; margin: 0; padding: 0.5rem 0.7rem; border-radius: var(--radius-sm); background: var(--surface-2); font-size: var(--step--1); }
+  @keyframes g3m-pc-bump { 40% { transform: scale(1.35); color: var(--accent); } }
+  @media (prefers-reduced-motion: reduce) { .g3m-pc-digit.is-bump { animation: none; } }
+</style>
+
+<script>
+  import { PLACES, digitsOf, fmt, expanded, words, step, MAX } from './g3-place.ts';
+
+  class G3PlaceChart extends HTMLElement {
+    private n = 0;
+
+    connectedCallback() {
+      this.n = Number(this.dataset.value);
+      this.querySelectorAll<HTMLElement>('.g3m-pc-col').forEach((col) => {
+        const i = Number(col.dataset.i);
+        col.querySelectorAll<HTMLButtonElement>('[data-dir]').forEach((b) =>
+          b.addEventListener('click', () => {
+            const r = step(this.n, i, Number(b.dataset.dir) as 1 | -1);
+            if (!r) return;
+            const before = digitsOf(this.n);
+            this.n = r.n;
+            this.draw(before);
+            this.q('note').textContent = r.note || (this.n === MAX ? '100 000 is as far as this chart goes.' : `The ${PLACES[i].name} digit is now ${digitsOf(this.n)[i]}.`);
+          }),
+        );
+      });
+      this.querySelectorAll<HTMLElement>('[data-digit]').forEach((b, i) =>
+        b.addEventListener('click', () => {
+          const d = digitsOf(this.n)[i];
+          const lead = i < 5 && digitsOf(this.n).slice(0, i + 1).every((x) => x === 0);
+          this.q('note').textContent = lead
+            ? `This 0 is at the far left, so it changes nothing. You don’t even say it.`
+            : `The ${d} is in the ${PLACES[i].name} place. ${d} × ${fmt(PLACES[i].value)} = ${fmt(d * PLACES[i].value)}.`;
+        }),
+      );
+      this.draw();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-pc="${k}"]`) as HTMLElement;
+    }
+
+    private draw(before?: number[]) {
+      const d = digitsOf(this.n);
+      this.querySelectorAll<HTMLElement>('.g3m-pc-col').forEach((col) => {
+        const i = Number(col.dataset.i);
+        const digit = col.querySelector<HTMLElement>('[data-digit]')!;
+        digit.textContent = String(d[i]);
+        digit.classList.toggle('is-lead', i < 5 && d.slice(0, i + 1).every((x) => x === 0));
+        if (before && before[i] !== d[i]) {
+          digit.classList.remove('is-bump');
+          void digit.offsetWidth;
+          digit.classList.add('is-bump');
+        }
+        col.querySelector<HTMLElement>('[data-val]')!.textContent = d[i] ? fmt(d[i] * PLACES[i].value) : '';
+        col.querySelector<HTMLButtonElement>('[data-dir="1"]')!.disabled = !step(this.n, i, 1);
+        col.querySelector<HTMLButtonElement>('[data-dir="-1"]')!.disabled = !step(this.n, i, -1);
+      });
+      this.q('num').textContent = fmt(this.n);
+      this.q('exp').textContent = `${fmt(this.n)} = ${expanded(this.n)}`;
+      this.q('words').textContent = words(this.n);
+    }
+  }
+  customElements.define('g3-place-chart', G3PlaceChart);
+</script>

@@ -1,0 +1,65 @@
+---
+// Grade 3: makes a big number something to watch. Press ▶ and the icons pop in one at a time while
+// a counter climbs, so "48 First Nations" or "8 Métis Settlements" can be seen and counted.
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  n: number;
+  icon: string;
+  /** What is being counted, shown after the number, such as "First Nations". */
+  label: string;
+  /** Shown when the count finishes. */
+  done?: string;
+  start?: string;
+}
+const { n, icon, label, done = '', start = '▶ Count them' } = Astro.props;
+---
+<g3ss-count-pop data-n={n}>
+  <p class="g3ss-cp-total"><span class="g3ss-cp-num" data-cp="num">0</span> <span>{label}</span></p>
+  <ul class="g3ss-cp-grid" aria-hidden="true">
+    {Array.from({ length: n }, () => <li>{icon}</li>)}
+  </ul>
+  <button type="button" class="btn btn--small" data-cp="run">{start}</button>
+  {done && <p class="g3ss-cp-done" data-cp="done" aria-live="polite" hidden set:html={mdInline(done)} />}
+</g3ss-count-pop>
+
+<style is:global>
+  g3ss-count-pop { display: block; text-align: center; }
+  .g3ss-cp-total { margin: 0 0 0.5rem; font-weight: 800; font-size: var(--step-1); }
+  .g3ss-cp-num { display: inline-block; min-width: 2ch; font-size: var(--step-3); color: var(--social); }
+  .g3ss-cp-grid { list-style: none; margin: 0 auto 0.7rem; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.2rem; max-width: 26rem; font-size: 1.5rem; line-height: 1.2; }
+  .g3ss-cp-grid li { opacity: 0.12; filter: grayscale(1); transition: opacity 0.2s, filter 0.2s; }
+  .g3ss-cp-grid li.is-on { opacity: 1; filter: none; animation: g3ss-cp-pop 0.3s ease; }
+  @keyframes g3ss-cp-pop { 50% { transform: scale(1.4); } }
+  .g3ss-cp-done { margin: 0.6rem 0 0; font-weight: 700; }
+  @media (prefers-reduced-motion: reduce) { .g3ss-cp-grid li.is-on { animation: none; } }
+</style>
+
+<script>
+  class CountPop extends HTMLElement {
+    private run = 0;
+
+    connectedCallback() {
+      this.querySelector('[data-cp="run"]')!.addEventListener('click', () => this.go());
+    }
+
+    private async go() {
+      const id = ++this.run;
+      const n = Number(this.dataset.n);
+      const items = [...this.querySelectorAll('.g3ss-cp-grid li')];
+      const num = this.querySelector('[data-cp="num"]')!;
+      const done = this.querySelector<HTMLElement>('[data-cp="done"]');
+      items.forEach((li) => li.classList.remove('is-on'));
+      if (done) done.hidden = true;
+      const step = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : Math.max(40, 2400 / n);
+      for (let i = 0; i < n; i++) {
+        if (id !== this.run) return;
+        items[i].classList.add('is-on');
+        num.textContent = String(i + 1);
+        if (step) await new Promise((r) => setTimeout(r, step));
+      }
+      if (done) done.hidden = false;
+    }
+  }
+  customElements.define('g3ss-count-pop', CountPop);
+</script>

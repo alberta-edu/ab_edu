@@ -1,0 +1,271 @@
+id: nonfiction-features
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG3-OI1-GQ1-LO1]
+order: 4
+title: How Non-fiction Is Built, and Text Features
+shortTitle: Non-fiction & features
+summary: >-
+  Meet kinds of non-fiction, find the main idea and its details, follow steps in a line or in a circle,
+  compare two things, and use maps, graphs and contents pages.
+
+bigIdea: |-
+  - Non-fiction shares facts about real people, places, things and events.
+  - It can be built around a **main idea**, **steps in order**, a **cycle**, or **comparing** two things.
+  - **Text features**, like maps and graphs, add facts the main text doesn’t say.
+
+lesson:
+  - title: Where facts come from
+    blocks:
+      - type: visual
+        covers: [K4.1, K4.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: bio, label: A life story, icon: 👤 }
+            - { id: subject, label: A school subject, icon: 📗 }
+            - { id: people, label: Talking with people, icon: 🗣️ }
+            - { id: land, label: The land, icon: 🌾 }
+          cards:
+            - { text: A book about the life of Terry Fox, bin: bio, why: 'A **biography** tells the true story of a real person’s life.' }
+            - { text: A science book about how plants grow, bin: subject, why: 'A **content-area text** is from a subject like science.' }
+            - { text: A page about mixing paint colours in art class, bin: subject, why: 'Fine arts is a school subject too.' }
+            - { text: Your aunt tells how she learned to be a nurse, bin: people, why: 'You learn true things by talking with people.' }
+            - { text: Geese flying south tell you that winter is coming, bin: land, why: 'You can learn facts by watching the land and its animals.' }
+        caption: Non-fiction can come from many places. Sort them.
+
+  - title: The main idea
+    blocks:
+      - type: visual
+        covers: [K4.3, U4.1]
+        component: text-parts
+        props:
+          title: Moose in Winter
+          parts:
+            - { id: main, label: Main idea, icon: 🎯, note: 'The **main idea** is what the whole text is about.' }
+            - { id: detail, label: Supporting details, icon: 🧱, note: '**Supporting details** are facts that hold up the main idea.' }
+          sentences:
+            - { text: 'Moose are built for cold, snowy places.', part: main }
+            - { text: 'Their long legs help them walk through deep snow.', part: detail }
+            - { text: 'A thick coat keeps them warm.', part: detail }
+            - { text: 'Wide hooves help them stand on soft snow.', part: detail }
+        caption: Tap **Main idea**, then **Supporting details**. Which sentences light up?
+
+  - title: In a line, or in a circle?
+    blocks:
+      - type: visual
+        covers: [K4.3, S4.2]
+        component: story-path
+        props:
+          stages:
+            - { label: First, text: 'Fill a cup with soil.' }
+            - { label: Next, text: 'Push a bean seed in, one finger deep.' }
+            - { label: Then, text: 'Water it and set it in the sun.' }
+            - { label: Last, text: 'Watch for a sprout in about a week.' }
+        caption: '**Linear** steps go in a line, from first to last.'
+      - type: visual
+        covers: [K4.3, S4.2]
+        component: g3e-story-circle
+        props:
+          hero: 🐸
+          stages:
+            - { label: Eggs, text: 'A frog lays eggs in a pond.' }
+            - { label: Tadpole, text: 'A tadpole hatches. It swims with a tail.' }
+            - { label: Froglet, text: 'It grows legs. Its tail gets shorter.' }
+            - { label: Frog, text: 'The grown frog hops out of the water.' }
+            - { label: Eggs again, text: 'The frog lays eggs, and the cycle starts again.' }
+        caption: A **cycle** goes around and around, and never really ends.
+
+  - title: Alike and different
+    blocks:
+      - type: visual
+        covers: [K4.3, S4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: frog, label: Frogs only, icon: 🐸 }
+            - { id: both, label: Both, icon: 🤝 }
+            - { id: toad, label: Toads only, icon: 🟤 }
+          cards:
+            - { text: 'Smooth, wet skin', bin: frog, why: 'Frogs’ skin is smooth and damp.' }
+            - { text: Lay eggs in water, bin: both, why: 'Frogs and toads both lay their eggs in water.' }
+            - { text: 'Dry, bumpy skin', bin: toad, why: 'Toads have drier, bumpy skin.' }
+            - { text: Long legs for big jumps, bin: frog, why: 'Frogs leap. Toads have shorter legs and take small hops.' }
+            - { text: Start life as tadpoles, bin: both, why: 'Both grow from tadpoles.' }
+        caption: A **compare and contrast** text shows how two things are alike and different.
+
+  - title: Text features
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1, S2.1]
+        component: text-xray
+        props:
+          button: What does it add?
+          pages:
+            - label: Contents
+              icon: 📑
+              parts:
+                - { style: heading, text: Contents }
+                - { style: text, text: "- Frogs ........ 2\n- Toads ........ 6\n- Ponds ........ 10", tag: Table of contents, job: 'Shows what is in the book, and on which page.' }
+            - label: Map
+              icon: 🗺️
+              parts:
+                - style: figure
+                  svg: '<svg viewBox="0 0 260 140" role="img" aria-label="Map of a park: a pond in the middle, a playground on the left, a splash pad on the right"><rect x="4" y="4" width="252" height="132" rx="10" fill="none" stroke="currentColor" stroke-width="2"/><ellipse cx="130" cy="72" rx="46" ry="26" fill="#7fb8e8"/><text x="130" y="77" text-anchor="middle" font-size="13" fill="#123">Pond</text><text x="44" y="60" text-anchor="middle" font-size="28">🛝</text><text x="44" y="92" text-anchor="middle" font-size="12" fill="currentColor">Playground</text><text x="216" y="60" text-anchor="middle" font-size="28">💦</text><text x="216" y="92" text-anchor="middle" font-size="12" fill="currentColor">Splash pad</text></svg>'
+                  text: Map of Willow Park
+                  tag: Map
+                  job: 'Shows where things are.'
+            - label: Graph
+              icon: 📊
+              parts:
+                - style: figure
+                  svg: '<svg viewBox="0 0 260 150" role="img" aria-label="Bar graph of birds at our feeder: Monday 3, Tuesday 5, Wednesday 2, Thursday 8, Friday 6"><line x1="20" y1="120" x2="250" y2="120" stroke="currentColor" stroke-width="2"/><g fill="#d4689a"><rect x="30" y="78" width="30" height="42"/><rect x="75" y="50" width="30" height="70"/><rect x="120" y="92" width="30" height="28"/><rect x="165" y="8" width="30" height="112"/><rect x="210" y="36" width="30" height="84"/></g><g font-size="12" text-anchor="middle" fill="currentColor"><text x="45" y="138">Mon</text><text x="90" y="138">Tue</text><text x="135" y="138">Wed</text><text x="180" y="138">Thu</text><text x="225" y="138">Fri</text></g></svg>'
+                  text: Birds at our feeder
+                  tag: Graph
+                  job: 'Shows numbers as bars, so you can compare them.'
+            - label: Image
+              icon: 🖼️
+              parts:
+                - { style: figure, text: 'A wood frog. Its dark mask helps you tell it apart.', svg: '<svg viewBox="0 0 120 70" role="img" aria-label="A frog"><text x="60" y="55" text-anchor="middle" font-size="54">🐸</text></svg>', tag: Image and caption, job: 'Shows what it looks like. The caption adds a fact.' }
+        caption: Tap each tab, then the button. What does each feature tell you?
+      - type: callout
+        variant: tip
+        covers: [S2.2]
+        title: Use them in your writing
+        body: Add a picture with a caption, a map or a graph. It helps your reader understand.
+
+keyTerms:
+  - term: Biography
+    covers: [K4.1]
+    definition: A true story about a real person’s life.
+  - term: Main idea
+    covers: [K4.3]
+    definition: What a whole text is mostly about.
+  - term: Cycle
+    covers: [K4.3]
+    definition: Steps that go around and around, starting again at the end.
+  - term: Text feature
+    covers: [K2.1]
+    definition: A part like a map, graph, picture or table of contents that adds information.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: Which text feature is at the **front** of a book, and lists what is inside with page numbers?
+    choices:
+      - Table of contents
+      - Map
+      - Graph
+      - Caption
+    answer: 0
+    feedback:
+      '1': A map shows where places are.
+      '2': A graph shows numbers as bars or lines.
+      '3': A caption tells about one picture.
+    hints:
+      - Which feature helps you find the right page?
+    solution:
+      - The **table of contents** lists what is in the book and the page each part starts on.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K4.3, S4.2]
+    type: order
+    prompt: Put a butterfly’s **life cycle** in order, starting with the egg.
+    items:
+      - Egg
+      - Caterpillar
+      - Chrysalis
+      - Butterfly
+    hints:
+      - What hatches out of the egg?
+    solution:
+      - Egg, caterpillar, chrysalis, butterfly.
+      - Then the butterfly lays eggs, and the cycle starts again.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K4.3, U4.1]
+    type: mc
+    prompt: |-
+      > Beavers are great builders. They cut down trees with their teeth. They pile up sticks and mud to make dams. They build lodges to live in.
+
+      What is the **main idea**?
+    choices:
+      - Beavers are great builders.
+      - Beavers cut down trees.
+      - Beavers live in lodges.
+      - Beavers use mud.
+    answer: 0
+    feedback:
+      '1': That is true, but it is one detail. What are all the sentences about?
+      '2': That is one detail. Does it cover the dams too?
+      '3': Mud is one small detail. What is the big idea?
+    hints:
+      - Which sentence do all the others help to prove?
+    solution:
+      - Cutting trees, making dams and building lodges are all **details** about building.
+      - So the main idea is *Beavers are great builders.*
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K4.3, S4.1, S4.2]
+    type: mc
+    prompt: Ava is writing how water goes from a lake up to the clouds, falls as rain, and goes back into the lake, again and again. How should she organize it?
+    choices:
+      - As a cycle
+      - As steps in a line, from first to last
+      - As a compare and contrast
+    answer: 0
+    feedback:
+      '1': Steps in a line stop at the last step. Does Ava’s water stop?
+      '2': Is Ava comparing two things?
+    hints:
+      - Look at the words *again and again*.
+    solution:
+      - The water ends up back where it started, then goes around again. That is a **cycle**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [S2.2, K2.1, U2.1]
+    type: mc
+    prompt: Leo is writing about his town’s new park. He wants readers to find the **splash pad** quickly. Which feature should he add?
+    choices:
+      - A map of the park
+      - A graph of how many people came
+      - A table of contents
+      - A bigger title
+    answer: 0
+    feedback:
+      '1': A graph shows numbers. Does it show **where** things are?
+      '2': A table of contents helps in a long book. Leo is writing one page.
+      '3': A bigger title helps people notice the page. Does it show the way?
+    hints:
+      - What is the reader trying to do? Which feature shows **where**?
+    solution:
+      - A **map** shows where things are, so readers can find the splash pad fast.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [U2.1, S2.1]
+    type: text
+    figure: '<svg viewBox="0 0 260 150" role="img" aria-label="Bar graph of birds at the feeder for Monday to Friday"><line x1="20" y1="120" x2="250" y2="120" stroke="currentColor" stroke-width="2"/><g fill="#d4689a"><rect x="30" y="78" width="30" height="42"/><rect x="75" y="50" width="30" height="70"/><rect x="120" y="92" width="30" height="28"/><rect x="165" y="8" width="30" height="112"/><rect x="210" y="36" width="30" height="84"/></g><g font-size="12" text-anchor="middle" fill="currentColor"><text x="45" y="138">Mon</text><text x="90" y="138">Tue</text><text x="135" y="138">Wed</text><text x="180" y="138">Thu</text><text x="225" y="138">Fri</text></g></svg>'
+    prompt: The main text only says, “Many birds came to our feeder this week.” The graph tells more. On which **day** did the most birds come?
+    accept: [Thursday, Thu, Thurs]
+    hints:
+      - Find the tallest bar. Which day is under it?
+    solution:
+      - The tallest bar is over **Thursday**.
+      - The main text never says that. The graph adds a fact.

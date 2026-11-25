@@ -1,0 +1,118 @@
+---
+// Letter teams to find (LANENG3-OI5-GQ1-LO1, K1.1 to K1.4, K1.6, S1.1 to S1.3). A word appears as letter
+// tiles. Tap a tile: if it belongs to a blend, a digraph or a silent letter, the whole team lights up in
+// its own colour and says what it does. Blends hold hands, a digraph fuses into one sound, a silent
+// letter turns into a ghost.
+import { letterTeams, plainWord } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  /** Words marked with {bl} for a blend, [sh] for a digraph and (k) for a silent letter. */
+  items: { word: string; note?: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => ({ pieces: letterTeams(it.word), word: plainWord(it.word), note: it.note ? mdInline(it.note) : '' }));
+---
+<g3e-letter-teams data-items={JSON.stringify(data)}>
+  <div class="g3e-lt__key" aria-hidden="true">
+    <span class="g3e-lt__chip is-blend">🤝 Blend</span>
+    <span class="g3e-lt__chip is-digraph">🔗 Digraph</span>
+    <span class="g3e-lt__chip is-silent">👻 Silent</span>
+  </div>
+  <p class="g3e-lt__count muted" data-lt="count"></p>
+  <div class="g3e-lt__word" data-lt="word"></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--ghost btn--small" data-lt="show">Show me</button>
+    <button type="button" class="btn btn--primary btn--small" data-lt="next">Next word ▶</button>
+  </div>
+  <p class="g3e-lt__note" data-lt="note" aria-live="polite"></p>
+  <noscript><ul>{data.map((d) => <li>{d.word}</li>)}</ul></noscript>
+</g3e-letter-teams>
+
+<style is:global>
+  g3e-letter-teams { display: block; }
+  .g3e-lt__key { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g3e-lt__chip { padding: 0.15rem 0.6rem; border-radius: 999px; font-size: var(--step--1); font-weight: 700; }
+  .g3e-lt__chip.is-blend, .g3e-lt__tile.is-found.is-blend { background: var(--l1-soft); color: var(--l1); }
+  .g3e-lt__chip.is-digraph, .g3e-lt__tile.is-found.is-digraph { background: var(--l2-soft); color: var(--l2); }
+  .g3e-lt__chip.is-silent, .g3e-lt__tile.is-found.is-silent { background: var(--l3-soft); color: var(--l3); }
+  .g3e-lt__count { margin: 0.6rem 0 0; font-size: var(--step--1); }
+  .g3e-lt__word { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; margin: 0.6rem 0; padding: 1rem 0.5rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); }
+  .g3e-lt__tile { min-width: 2.6rem; padding: 0.4rem 0.5rem; border: 2px solid var(--line-strong); border-radius: 10px; background: var(--surface-2); color: var(--ink); font: inherit; font-size: var(--step-2); font-weight: 700; cursor: pointer; transition: transform 0.2s ease, opacity 0.3s ease; }
+  .g3e-lt__tile:hover { border-color: var(--accent); }
+  .g3e-lt__tile.is-found { border-color: currentColor; }
+  .g3e-lt__tile.is-found.is-blend { letter-spacing: 0.35em; }
+  .g3e-lt__tile.is-found.is-digraph { animation: g3e-lt-fuse 0.4s ease; }
+  .g3e-lt__tile.is-found.is-silent { opacity: 0.45; border-style: dashed; animation: g3e-lt-ghost 0.6s ease; }
+  .g3e-lt__tile.is-plain-tap { animation: g3e-lt-wiggle 0.3s ease; }
+  .g3e-lt__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-lt__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-lt-fuse { 50% { transform: scale(1.2); } }
+  @keyframes g3e-lt-ghost { 50% { transform: translateY(-8px); } }
+  @keyframes g3e-lt-wiggle { 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+  @media (prefers-reduced-motion: reduce) { .g3e-lt__tile { animation: none !important; transition: none; } }
+</style>
+
+<script>
+  type Piece = { text: string; kind: 'plain' | 'blend' | 'digraph' | 'silent' };
+  type Item = { pieces: Piece[]; word: string; note: string };
+  const SAYS = {
+    blend: (t: string) => `🤝 <strong>${t}</strong> is a blend. You hear every letter, said fast together.`,
+    digraph: (t: string) => `🔗 <strong>${t}</strong> is a digraph. Two letters make one new sound.`,
+    silent: (t: string) => `👻 <strong>${t}</strong> is silent. You see it, but you don’t hear it.`,
+  };
+
+  class G3eLetterTeams extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.part('next').addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.part('show').addEventListener('click', () => this.querySelectorAll<HTMLElement>('[data-kind]').forEach((t) => this.find(t)));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-lt="${name}"]`)!;
+    }
+
+    private teams() {
+      return this.items[this.at].pieces.filter((p) => p.kind !== 'plain').length;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      const it = this.items[i];
+      this.part('count').textContent = `Word ${i + 1} of ${this.items.length}: find ${this.teams() === 1 ? 'the letter team' : `all ${this.teams()} letter teams`}.`;
+      const word = this.part('word');
+      word.innerHTML = it.pieces
+        .flatMap((p, j) => (p.kind === 'plain' ? [...p.text].map((ch) => `<button type="button" class="g3e-lt__tile">${ch}</button>`) : [`<button type="button" class="g3e-lt__tile" data-kind="${p.kind}" data-team="${j}">${p.text}</button>`]))
+        .join('');
+      word.querySelectorAll<HTMLElement>('.g3e-lt__tile').forEach((t) =>
+        t.addEventListener('click', () => {
+          if (t.dataset.kind) this.find(t);
+          else {
+            t.classList.remove('is-plain-tap');
+            void t.offsetWidth;
+            t.classList.add('is-plain-tap');
+          }
+        }),
+      );
+      const note = this.part('note');
+      note.className = 'g3e-lt__note';
+      note.textContent = 'Tap a letter. Is it part of a team?';
+    }
+
+    private find(t: HTMLElement) {
+      const kind = t.dataset.kind as keyof typeof SAYS;
+      t.classList.add('is-found', `is-${kind}`);
+      const found = this.querySelectorAll('.is-found').length;
+      const note = this.part('note');
+      const done = found === this.teams();
+      note.className = `g3e-lt__note${done ? ' is-done' : ''}`;
+      note.innerHTML = SAYS[kind](t.textContent ?? '') + (done ? ` ${this.items[this.at].note}` : '');
+    }
+  }
+  customElements.define('g3e-letter-teams', G3eLetterTeams);
+</script>

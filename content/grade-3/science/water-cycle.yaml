@@ -1,0 +1,217 @@
+id: water-cycle
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 5
+title: The Water Cycle
+shortTitle: The water cycle
+summary: >-
+  Watch water evaporate, condense into clouds and fall as rain or snow, then follow it back downhill
+  in the water cycle that never stops.
+
+bigIdea: |-
+  - Water on Earth moves **around and around** between water, land and air.
+  - It **evaporates**, **condenses** into clouds and falls as rain or snow.
+  - Water changes state back and forth: solid, liquid, gas and back again.
+
+lesson:
+  - title: A water cycle in a bag
+    blocks:
+      - type: experiment
+        covers: [K5.2, K5.4, U5.1, S5.1]
+        title: The sunny window
+        question: A sealed bag with some water in it is taped to a sunny window. What will you see after a few hours?
+        animation: g3s-scene
+        props: { scene: bag-cycle }
+        predict:
+          choices: ['Drops near the top', 'Nothing new', 'Ice in the water']
+          answer: 0
+        observe: |-
+          - Water **evaporated** from the bottom of the bag.
+          - **Drops** formed near the top.
+          - The drops **ran back down** to the water.
+        explain: |-
+          - The sun heated the water, and it became water vapour.
+          - The vapour cooled near the top and **condensed** into drops. Then the drops fell, like rain.
+
+  - title: Around and around
+    blocks:
+      - type: visual
+        covers: [K5.1, K5.2, U5.1, S5.1]
+        component: g3s-play
+        props: { scene: water-cycle }
+        caption: Press **Next** to follow the water all the way around.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI3-GQ1-LO1#K3.2]
+        title: Remember from Grade 2
+        body: Water flows downhill, from creeks to streams to rivers, and on to larger bodies of water.
+
+  - title: Rain or snow?
+    blocks:
+      - type: visual
+        covers: [K5.2, K5.3]
+        component: card-sort
+        props:
+          bins:
+            - { id: liq, label: Liquid, icon: '💧' }
+            - { id: sol, label: Solid, icon: '🧊' }
+          cards:
+            - { text: '🌧️ Rain', bin: liq, why: 'Rain is liquid water falling from clouds.' }
+            - { text: '❄️ Snow', bin: sol, why: 'Snowflakes are tiny pieces of ice, a solid.' }
+            - { text: '🧊 Hail', bin: sol, why: 'Hailstones are balls of ice.' }
+            - { text: '🌦️ Drizzle', bin: liq, why: 'Drizzle is very small drops of liquid water.' }
+        caption: Precipitation is water falling from clouds. Is each kind a **liquid** or a **solid**?
+
+  - title: Back and forth
+    blocks:
+      - type: figure
+        covers: [K5.3, K5.4]
+        figure: |-
+          <svg viewBox="0 0 360 150" class="fig-svg" role="img" aria-label="Ice, water and water vapour in a row. Ice melts to water and water freezes to ice. Water evaporates to vapour and vapour condenses to water."><text x="50" y="80" font-size="44" text-anchor="middle">🧊</text><text x="180" y="80" font-size="44" text-anchor="middle">💧</text><text x="310" y="80" font-size="44" text-anchor="middle">☁️</text><path class="g3s-hot-line" d="M80,46 Q115,22 150,46"/><path class="g3s-cold-line" d="M150,98 Q115,122 80,98"/><path class="g3s-hot-line" d="M210,46 Q245,22 280,46"/><path class="g3s-cold-line" d="M280,98 Q245,122 210,98"/><text class="fig-label" x="115" y="18" text-anchor="middle">melts</text><text class="fig-label" x="115" y="140" text-anchor="middle">freezes</text><text class="fig-label" x="245" y="18" text-anchor="middle">evaporates</text><text class="fig-label" x="245" y="140" text-anchor="middle">condenses</text></svg>
+        caption: Water can go from **solid to liquid** and back, and from **liquid to gas** and back.
+
+keyTerms:
+  - term: Water cycle
+    covers: [K5.1, U5.1]
+    definition: The way water on Earth moves around and around between bodies of water, land and air.
+  - term: Precipitation
+    covers: [K5.2]
+    definition: Water falling from clouds to Earth, as liquid rain or solid snow and hail.
+  - term: Cloud
+    covers: [K5.2]
+    definition: Lots of tiny drops of water in the sky, made by condensation.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K5.2]
+    type: mc
+    prompt: In the water cycle, which change makes **clouds**?
+    choices: [Condensation, Evaporation, Melting]
+    answer: 0
+    feedback:
+      '1': Evaporation turns water into an invisible gas. Can you see a cloud?
+      '2': Melting turns solid ice into water. Is there ice in the air?
+    hints:
+      - Clouds are tiny drops of liquid. Which change turns a gas into a liquid?
+    solution:
+      - Water vapour high in the air cools and turns into tiny drops. That is **condensation**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K5.2, K5.3]
+    type: mc
+    prompt: Snow falls from a cloud. What state is the water in?
+    choices: [Solid, Liquid, Gas]
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Rain is liquid. Is snow wet and runny when it lands?
+      '2': A gas can’t be seen. Can you see snowflakes?
+    hints:
+      - Snowflakes are tiny pieces of what?
+    solution:
+      - Snowflakes are tiny pieces of ice, so snow is a **solid**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K5.1, U5.1]
+    type: mc
+    prompt: A puddle in the schoolyard is gone by recess. Where is that water now?
+    choices:
+      - In the air. Later it may be part of a cloud.
+      - Gone forever. Water that dries up is used up.
+      - Deep under the school. It soaked all the way down.
+    answer: 0
+    feedback:
+      '1': The water cycle never stops. Can water really disappear?
+      '2': Puddles also dry on plates, where nothing can soak in. Where else could the water go?
+    hints:
+      - Which change happens to a puddle in the sun?
+    solution:
+      - The puddle **evaporated** into the air as water vapour.
+      - That vapour may condense into a cloud, then fall as rain again. The water keeps moving in the cycle.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K5.4, K5.3]
+    type: mc
+    prompt: Which pair shows water going from **liquid to gas** and back again?
+    choices:
+      - A puddle dries up, then a cloud forms.
+      - A pond freezes, then it melts in spring.
+      - Snow falls, then it melts into a puddle.
+    answer: 0
+    feedback:
+      '1': Freezing and melting go between liquid and solid. Is there a gas?
+      '2': Snow is a solid that melts into a liquid. Is there a gas?
+    hints:
+      - Look for evaporation and then condensation.
+    solution:
+      - The puddle **evaporates** into a gas, then the gas **condenses** into a cloud.
+      - The pond and the snow go between solid and liquid instead.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: model
+    covers: [K5.2, U5.1, S5.1]
+    type: investigation
+    prompt: |-
+      Eli has a little garden in a closed glass jar. In the morning, drops cover the inside of the lid. By noon, the drops have dripped onto the plants.
+    parts:
+      - type: mc
+        prompt: Where did the drops on the lid come from?
+        choices:
+          - Water from the soil evaporated, then condensed on the lid.
+          - Water leaked in through the glass lid.
+          - The plants made brand-new water.
+        answer: 0
+        feedback:
+          '1': The jar is closed, and glass doesn’t let water through. Where is there water inside the jar?
+          '2': The water was already in the jar. Where was it before the morning?
+        hints:
+          - The jar is closed. So the water was already inside it. Where?
+        solution:
+          - Water in the soil evaporated into the air in the jar.
+          - The vapour cooled on the lid and condensed into drops.
+      - type: mc
+        prompt: The drops fall onto the plants. Which part of the water cycle is that like?
+        choices: [Precipitation, Evaporation, Condensation]
+        answer: 0
+        feedback:
+          '1': Evaporation makes water rise as a gas. These drops are falling.
+          '2': Condensation made the drops. What is it called when they fall?
+        hints:
+          - What do we call rain falling from clouds?
+        solution:
+          - Water falling from above is like **precipitation**, the rain in the water cycle.
+    wrapUp: The jar is a tiny water cycle. The same water goes around and around, just like on Earth.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K5.1, U5.1]
+    type: mc
+    prompt: Owen says, “The water cycle **starts** in the ocean and **ends** when rain falls.” What is wrong?
+    choices:
+      - It never ends. The rain goes around again.
+      - It starts with rain, not in the ocean.
+      - It ends when the rain turns to snow.
+    answer: 0
+    feedback:
+      '1': Rain comes from clouds. Where did the water in the clouds come from?
+      '2': Snow melts and flows back to lakes and oceans. Does it stop there?
+    hints:
+      - Where does rain go after it lands?
+    solution:
+      - Rain flows back to rivers, lakes and oceans, and evaporates again.
+      - The water cycle goes **around and around**. It has no start and no end.

@@ -1,0 +1,105 @@
+---
+// Split a sentence in two (LANENG3-OI9-GQ1-LO1, K2.2 to K2.4, S2.2, S2.3). Tap the gap where the subject
+// ends. The right tap snaps the sentence apart: the subject (who or what) on one side, the predicate
+// (what it does or is) on the other.
+import { subjectSplit } from './g3e-ela.ts';
+
+interface Props {
+  /** Sentences with | between the subject and the predicate. */
+  items: string[];
+}
+const { items } = Astro.props;
+const data = items.map((s) => subjectSplit(s));
+---
+<g3e-sentence-split data-items={JSON.stringify(data)}>
+  <p class="g3e-ss__count muted" data-ss="count"></p>
+  <div class="g3e-ss__sentence" data-ss="sentence"></div>
+  <div class="g3e-ss__labels" data-ss="labels" hidden>
+    <span class="g3e-ss__label is-subj">👤 Subject: who or what</span>
+    <span class="g3e-ss__label is-pred">🏃 Predicate: what it does or is</span>
+  </div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-ss="next">Next sentence ▶</button>
+  </div>
+  <p class="g3e-ss__note" data-ss="note" aria-live="polite"></p>
+  <noscript><ul>{items.map((s) => <li>{s}</li>)}</ul></noscript>
+</g3e-sentence-split>
+
+<style is:global>
+  g3e-sentence-split { display: block; }
+  .g3e-ss__count { margin: 0; font-size: var(--step--1); }
+  .g3e-ss__sentence { display: flex; flex-wrap: wrap; align-items: center; row-gap: 0.4rem; margin: 0.6rem 0; padding: 0.9rem 0.6rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); }
+  .g3e-ss__w { padding: 0.15rem 0.3rem; border-radius: 6px; transition: background 0.3s ease, color 0.3s ease; }
+  .g3e-ss__gap { width: 1.2rem; height: 2rem; margin: 0 0.1rem; padding: 0; border: 0; border-radius: 6px; background: none; cursor: pointer; position: relative; transition: width 0.3s ease; }
+  .g3e-ss__gap::after { content: ''; position: absolute; left: 50%; top: 0.3rem; bottom: 0.3rem; border-left: 2px dotted var(--line-strong); }
+  .g3e-ss__gap:hover { background: var(--accent-soft); }
+  .g3e-ss__gap.is-wrong { animation: g3e-ss-shake 0.3s ease; background: var(--bad-soft); }
+  .g3e-ss__gap.is-split { width: 2.4rem; }
+  .g3e-ss__gap.is-split::after { border-left: 3px solid var(--accent); }
+  g3e-sentence-split.is-done .g3e-ss__gap:not(.is-split) { pointer-events: none; }
+  .g3e-ss__w.is-subj { background: var(--l2-soft); color: var(--l2); font-weight: 700; }
+  .g3e-ss__w.is-pred { background: var(--warn-soft); color: var(--warn); font-weight: 700; }
+  .g3e-ss__labels { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g3e-ss__label { padding: 0.15rem 0.6rem; border-radius: 999px; font-size: var(--step--1); font-weight: 700; }
+  .g3e-ss__label.is-subj { background: var(--l2-soft); color: var(--l2); }
+  .g3e-ss__label.is-pred { background: var(--warn-soft); color: var(--warn); }
+  .g3e-ss__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-ss__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-ss-shake { 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+  @media (prefers-reduced-motion: reduce) { .g3e-ss__gap, .g3e-ss__w { transition: none; animation: none !important; } }
+</style>
+
+<script>
+  type Item = { words: string[]; split: number };
+
+  class G3eSentenceSplit extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      this.part('next').addEventListener('click', () => this.show((this.at + 1) % this.items.length));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-ss="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      this.classList.remove('is-done');
+      const it = this.items[i];
+      this.part('count').textContent = `Sentence ${i + 1} of ${this.items.length}`;
+      const s = this.part('sentence');
+      s.innerHTML = it.words
+        .map((w, j) => `<span class="g3e-ss__w" data-w="${j}">${w}</span>${j < it.words.length - 1 ? `<button type="button" class="g3e-ss__gap" data-gap="${j}" aria-label="Split after ${w.replace(/"/g, '')}"></button>` : ''}`)
+        .join('');
+      s.querySelectorAll<HTMLButtonElement>('[data-gap]').forEach((b) => b.addEventListener('click', () => this.tap(b)));
+      this.part('labels').hidden = true;
+      const note = this.part('note');
+      note.className = 'g3e-ss__note';
+      note.textContent = 'Tap the space where the subject ends.';
+    }
+
+    private tap(b: HTMLButtonElement) {
+      const it = this.items[this.at];
+      const g = Number(b.dataset.gap);
+      const note = this.part('note');
+      if (g !== it.split) {
+        b.classList.remove('is-wrong');
+        void b.offsetWidth;
+        b.classList.add('is-wrong');
+        note.textContent = g < it.split ? 'Not yet. Who or what is the sentence about? Keep all of it together.' : 'Too far. That part tells what the subject does.';
+        return;
+      }
+      b.classList.add('is-split');
+      this.classList.add('is-done');
+      this.querySelectorAll<HTMLElement>('[data-w]').forEach((w) => w.classList.add(Number(w.dataset.w) <= g ? 'is-subj' : 'is-pred'));
+      this.part('labels').hidden = false;
+      note.className = 'g3e-ss__note is-done';
+      note.textContent = `✓ Subject: “${it.words.slice(0, g + 1).join(' ')}”. Predicate: “${it.words.slice(g + 1).join(' ')}”`;
+    }
+  }
+  customElements.define('g3e-sentence-split', G3eSentenceSplit);
+</script>

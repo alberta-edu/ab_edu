@@ -1,0 +1,91 @@
+---
+// Base-ten blocks on a place mat (MAT3-OI1-GQ2-LO1: K1.2, S1.2, S1.3). Add: count each place and
+// trade 10 for 1. Subtract: break 1 into 10 when a place runs short, then take away.
+import { addFrames, subtractFrames, matSvg } from './g3-blocks.ts';
+
+interface Props {
+  examples?: { op: '+' | '−'; a: number; b: number }[];
+}
+const { examples = [{ op: '+', a: 258, b: 167 }] } = Astro.props;
+const e = examples[0];
+const first = (e.op === '+' ? addFrames(e.a, e.b) : subtractFrames(e.a, e.b))[0];
+---
+<g3-blocks data-examples={JSON.stringify(examples)}>
+  {examples.length > 1 && (
+    <div class="seg" role="group" aria-label="Choose a sum">
+      {examples.map((x, i) => <button type="button" data-ex={i} aria-pressed={String(i === 0)}>{x.a} {x.op} {x.b}</button>)}
+    </div>
+  )}
+  <div class="g3m-bk-stage" data-bk="svg" set:html={matSvg(first)} />
+  <p class="g3m-bk-say" data-bk="say" aria-live="polite">{first.say}</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-bk="next">Next step ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-bk="reset">Start over</button>
+  </div>
+</g3-blocks>
+
+<style is:global>
+  g3-blocks { display: block; }
+  .g3m-bk-stage svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.6rem auto 0; font-family: var(--font); }
+  .g3m-bk-col { fill: var(--surface-2); stroke: var(--line); stroke-width: 1.5; transition: fill 0.3s; }
+  .g3m-bk-col.is-focus { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 2.5; }
+  .g3m-bk-name { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+  .g3m-bk-count { fill: var(--ink); font-size: 18px; font-weight: 700; }
+  .g3m-bk-blk rect { stroke: rgb(0 0 0 / 40%); stroke-width: 1; }
+  .g3m-bk-blk path { stroke: rgb(0 0 0 / 22%); stroke-width: 0.7; fill: none; }
+  .g3m-bk-a rect { fill: #7fa6f0; }
+  .g3m-bk-b rect { fill: #f4c55a; }
+  .g3m-bk-n rect { fill: #6cc79a; }
+  .g3m-bk-n { animation: g3m-bk-pop 0.45s ease both; transform-box: fill-box; transform-origin: center; }
+  .g3m-bk-x { opacity: 0.25; }
+  .g3m-bk-x rect { fill: var(--bad) !important; }
+  .g3m-bk-say { min-height: 2.8em; margin: 0.5rem 0 0; text-align: center; font-weight: 700; font-size: var(--step-0); }
+  @keyframes g3m-bk-pop { from { transform: scale(0.3); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .g3m-bk-n { animation: none; } .g3m-bk-col { transition: none; } }
+</style>
+
+<script>
+  import { addFrames, subtractFrames, matSvg, type Frame } from './g3-blocks.ts';
+
+  class G3Blocks extends HTMLElement {
+    private frames: Frame[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      const examples = JSON.parse(this.dataset.examples!) as { op: string; a: number; b: number }[];
+      const load = (i: number) => {
+        const e = examples[i];
+        this.frames = e.op === '+' ? addFrames(e.a, e.b) : subtractFrames(e.a, e.b);
+        this.at = 0;
+        this.draw();
+      };
+      this.querySelectorAll<HTMLButtonElement>('[data-ex]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-ex]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          load(Number(b.dataset.ex));
+        }),
+      );
+      this.q('next').addEventListener('click', () => {
+        if (this.at < this.frames.length - 1) this.at++;
+        this.draw();
+      });
+      this.q('reset').addEventListener('click', () => {
+        this.at = 0;
+        this.draw();
+      });
+      load(0);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-bk="${k}"]`) as HTMLElement;
+    }
+
+    private draw() {
+      const f = this.frames[this.at];
+      this.q('svg').innerHTML = matSvg(f);
+      this.q('say').textContent = f.say + (this.at === this.frames.length - 1 ? ' 🎉' : '');
+      (this.q('next') as HTMLButtonElement).disabled = this.at === this.frames.length - 1;
+    }
+  }
+  customElements.define('g3-blocks', G3Blocks);
+</script>
