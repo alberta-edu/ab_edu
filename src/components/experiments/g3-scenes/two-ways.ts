@@ -14,11 +14,11 @@ const label = (y: number, text: string, size = 19): Sprite => ({ kind: 'text', t
 
 const scene: RunScene = {
   w: 480,
-  h: 290,
+  h: 250,
   ms: 8000,
   live: 'Ava went up 2, then right 3, and got to school. Ben went right 3, then up 2, and got to school too. Two different sets of steps had the same outcome.',
   bg:
-    '<rect class="g3s-sky" width="480" height="290"/>' +
+    '<rect class="g3s-sky" width="480" height="250"/>' +
     [0, 1, 2].map((r) => [0, 1, 2, 3].map((c) => `<rect class="g3s-chip" x="${22 + 60 * c}" y="${62 + 60 * r}" width="56" height="56" rx="6"/>`).join('')).join('') +
     '<rect class="g3s-grass" x="82" y="122" width="116" height="56" rx="6"/>' +
     '<rect class="g3s-plate" x="286" y="62" width="186" height="176" rx="10"/>',
@@ -39,9 +39,9 @@ const scene: RunScene = {
       kind: 'emoji', text: '👦', x: cx(0), y: cy(2), size: 36,
       keys: [{ t: B, x: cx(0), y: cy(2) }, { t: B + 0.16, x: cx(3), y: cy(2) }, { t: B + 0.18, y: cy(2) }, { t: B + 0.32, y: cy(0) }, { t: B + 0.34, o: 1 }, { t: B + 0.37, o: 0 }],
     }, B - 0.04),
-    label(92, '👧 Ava'),
+    { ...label(92, '👧 Ava'), cls: 'g3s-push' },
     label(120, 'Up 2, Right 3', 17),
-    label(172, '👦 Ben'),
+    { ...label(172, '👦 Ben'), cls: 'g3s-pull' },
     label(200, 'Right 3, Up 2', 17),
     showFrom({ kind: 'emoji', text: '✅', x: 446, y: 92, size: 26 }, A + 0.34),
     showFrom({ kind: 'emoji', text: '✅', x: 446, y: 172, size: 26 }, B + 0.34),

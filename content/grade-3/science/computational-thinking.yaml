@@ -155,20 +155,20 @@ problems:
     covers: [K1.1, S1.2]
     type: mc
     prompt: |-
-      Leo plants a row of seeds:
+      Leo sets the table for his family:
 
-      dig, drop, cover, dig, drop, cover, dig, …
+      plate, fork, cup, plate, fork, cup, plate, …
 
       What comes next?
-    choices: ['Drop', 'Dig', 'Cover']
+    choices: ['🍴 Fork', '🍽️ Plate', '🥤 Cup']
     answer: 0
     feedback:
-      '1': He just dug a hole. What goes in it?
-      '2': Can you cover a hole before a seed is in it?
+      '1': He just put down a plate. What came after each plate before?
+      '2': Look at the pattern. Does a cup come right after a plate?
     hints:
-      - Which three steps repeat?
+      - Which three things repeat, in order?
     solution:
-      - The **pattern** is dig, drop, cover. After dig comes **drop**.
+      - The **pattern** is plate, fork, cup. After plate comes **fork**.
 
   - id: b2
     level: 2

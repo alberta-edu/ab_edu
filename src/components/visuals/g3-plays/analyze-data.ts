@@ -25,7 +25,7 @@ const scene: PlayScene = {
       `<text class="g3s-label" x="${70 + 66 * i}" y="${BASE - 16 - 22 * cm}" font-size="15" font-weight="700" text-anchor="middle">${cm} cm</text>`).join(''),
   sprites: [
     // changes
-    only({ kind: 'arrow', x: 60, y: 160, w: 150, h: 8, r: -30, cls: 'g3s-push' }, 0, n),
+    only({ kind: 'arrow', x: 254, y: 186, w: 110, h: 8, r: -90, cls: 'g3s-push' }, 0, n),
     only({ kind: 'emoji', text: '🌱', x: 360, y: 110, size: 90 }, 0, n),
     // compare
     ...[['👧 Mira', 80], ['👦 Sam', 150]].flatMap(([who, y]): Sprite[] => [

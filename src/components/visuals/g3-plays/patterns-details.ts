@@ -5,9 +5,9 @@ import { only, type PlayScene, type Sprite } from '../g3-sprites.ts';
 
 const n = 2;
 const seedRow = [90, 240, 390].flatMap((x): Sprite[] => [
-  only({ kind: 'rect', x: x - 62, y: 60, w: 124, h: 110, rx: 10, cls: 'g3s-plate' }, 0, n),
+  only({ kind: 'rect', x: x - 70, y: 60, w: 140, h: 110, rx: 10, cls: 'g3s-plate' }, 0, n),
   only({ kind: 'emoji', text: '🌱', x, y: 104, size: 46 }, 0, n),
-  only({ kind: 'text', text: 'Dig, drop, cover', x, y: 150, size: 16, cls: 'g3s-label' }, 0, n),
+  only({ kind: 'text', text: 'Dig, drop, cover', x, y: 150, size: 15, cls: 'g3s-label' }, 0, n),
 ]);
 const note = (y: number, text: string, keep: boolean): Sprite[] => [
   only({ kind: 'rect', x: 60, y: y - 20, w: 360, h: 40, rx: 8, cls: keep ? 'g3s-hl' : 'g3s-plate' }, 1, n),

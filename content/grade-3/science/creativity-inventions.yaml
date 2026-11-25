@@ -162,7 +162,7 @@ problems:
   - id: d1
     level: 3
     thinking: ways
-    covers: [K2.1, S2.1, U2.1]
+    covers: [K2.1, K2.2, S2.1, U2.1]
     type: investigation
     figure: |-
       <svg viewBox="0 0 200 200" class="fig-svg" role="img" aria-label="A grid of 3 by 3 squares. The robot is in the bottom left square. The cookie is 2 squares up and 1 square right."><g fill="none" stroke="var(--line-strong)" stroke-width="2">
@@ -183,16 +183,17 @@ problems:
         solution:
           - '**Right 1, then Up 2** also reaches the cookie.'
       - type: mc
-        prompt: Ella’s and Jay’s steps are different. What about the outcome?
-        choices: ['It is the same', 'Only Ella’s works', 'Only Jay’s works']
+        prompt: Can you find a third way that also reaches the cookie?
+        choices: ['Up 1, Right 1, Up 1', 'Up 3, Right 1', 'Right 1, Up 1']
         answer: 0
         feedback:
-          '1': Follow Jay’s steps on the grid. Where does the robot end up?
-          '2': Follow Ella’s steps on the grid. Where does the robot end up?
+          '1': Count the squares. Is the cookie 3 up?
+          '2': Count the squares. Where does the robot stop after Up 1?
         hints:
-          - Where does the robot end up each time?
+          - Follow each one on the grid with your finger.
         solution:
-          - Both reach the cookie. Different steps, **same outcome**.
+          - '**Up 1, Right 1, Up 1** reaches the cookie too.'
+          - Three different ways, the **same outcome**.
     wrapUp: Creative thinking can find more than one way to get the same outcome.
 
   - id: d2

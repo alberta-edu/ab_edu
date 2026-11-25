@@ -35,16 +35,15 @@ const hl: Sprite = {
 
 const scene: RunScene = {
   w: 480,
-  h: 290,
+  h: 250,
   ms: 9000,
   live: 'The robot went forward 2, turned left, and bumped into the rock. That was a bug. Working backward, step 1 was wrong. It was changed to forward 4. Then the robot reached the apple.',
   bg:
-    '<rect class="g3s-sky" width="480" height="290"/>' +
+    '<rect class="g3s-sky" width="480" height="250"/>' +
     [0, 1, 2].map((r) => [0, 1, 2, 3, 4].map((c) => `<rect class="g3s-chip" x="${22 + 60 * c}" y="${62 + 60 * r}" width="56" height="56" rx="6"/>`).join('')).join('') +
     '<rect class="g3s-plate" x="334" y="62" width="140" height="176" rx="10"/>',
   sprites: [
     { kind: 'emoji', text: '🪨', x: cx(2), y: cy(1), size: 40 },
-    { kind: 'emoji', text: '🍎', x: cx(4), y: cy(0), size: 40, keys: [{ t: 0.92, s: 1 }, { t: 0.97, s: 1.4 }] },
     hl,
     { ...line(0, '1. Forward 2'), keys: [{ t: FIX - 0.03, o: 1 }, { t: FIX, o: 0 }] },
     showFrom({ ...line(0, '1. Forward 4'), cls: 'g3s-push' }, FIX + 0.03, undefined, 0.03),
@@ -52,6 +51,7 @@ const scene: RunScene = {
     line(2, '3. Forward 2'),
     facing,
     robot,
+    { kind: 'emoji', text: '🍎', x: cx(4), y: cy(0), size: 40, keys: [{ t: 0.92, s: 1 }, { t: 0.97, s: 1.4 }] },
     showFrom({ kind: 'emoji', text: '💥', x: cx(2), y: cy(1.4), size: 34 }, 0.33, 0.44),
     ticker(240, 28, [[0, 'Get the robot to the apple'], [0.33, 'Oops! A bug.'], [0.46, 'Work backward…'], [FIX, 'Fix step 1'], [0.66, 'Try again'], [0.92, 'It worked!']], 20, 'middle'),
   ],
