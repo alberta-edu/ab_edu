@@ -205,3 +205,18 @@ export const spokenWords = (q: { words: string[]; from: number; to: number }) =>
 export function possessive(noun: string, plural: boolean): string {
   return plural && /s$/i.test(noun) ? `${noun}’` : `${noun}’s`;
 }
+
+/** Where the cat goes for each preposition, in the picture's units (the text baseline of the cat). */
+export const WHERE_SPOTS: { word: string; x: number; y: number; scale?: number }[] = [
+  { word: 'on', x: 182, y: 95 },
+  { word: 'under', x: 182, y: 168 },
+  { word: 'beside', x: 75, y: 168 },
+  { word: 'with', x: 270, y: 168 },
+];
+
+/** The sentence for a spot, with the preposition in bold: "The cat is <b>under</b> the table." */
+export function whereSentence(word: string): string {
+  const spot = WHERE_SPOTS.find((s) => s.word === word);
+  if (!spot) throw new Error(`where: no spot for "${word}"`);
+  return `The cat is <b>${word}</b> the ${word === 'with' ? 'dog' : 'table'}.`;
+}

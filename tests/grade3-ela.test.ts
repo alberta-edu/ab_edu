@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { circlePoint, isCompound, letterTeams, runOn, pictureSentence, pictureWords, plainWord, possessive, quoteSpan, spokenWords, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
+import { circlePoint, isCompound, letterTeams, runOn, pictureSentence, pictureWords, plainWord, possessive, quoteSpan, spokenWords, squeeze, squeezed, subjectSplit, syllables, unsqueezed, WHERE_SPOTS, whereSentence } from '../src/components/visuals/g3e-ela.ts';
 
 describe('story circle', () => {
   it('starts at the top and goes clockwise', () => {
@@ -144,5 +144,13 @@ describe('possessives', () => {
     expect(possessive('dog', false)).toBe('dog’s');
     expect(possessive('dogs', true)).toBe('dogs’');
     expect(possessive('children', true)).toBe('children’s');
+  });
+});
+describe('where is the cat', () => {
+  it('has a sentence for every preposition', () => {
+    expect(whereSentence('under')).toBe('The cat is <b>under</b> the table.');
+    expect(whereSentence('with')).toBe('The cat is <b>with</b> the dog.');
+    expect(WHERE_SPOTS.map((s) => s.word)).toEqual(['on', 'under', 'beside', 'with']);
+    expect(() => whereSentence('over')).toThrow();
   });
 });
