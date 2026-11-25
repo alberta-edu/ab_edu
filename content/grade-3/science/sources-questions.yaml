@@ -1,0 +1,217 @@
+id: sources-questions
+grade: 3
+subject: science
+organizingIdea: SCI-OI7
+outcomes: [SCI3-OI7-GQ1-LO1]
+order: 25
+title: Sources, Analyzing and New Questions
+shortTitle: Sources and new questions
+summary: >-
+  Test an idea about seeds in the dark, find where data comes from, choose trustworthy sources, and
+  analyze data to ask new questions.
+
+bigIdea: |-
+  - An investigation can **support** what we think, or **contradict** it. Either way, we learn.
+  - Data comes from many **sources**. Some are more **trustworthy** than others.
+  - **Analyzing** data often sparks a new question to investigate.
+
+lesson:
+  - title: Seeds in the dark
+    blocks:
+      - type: experiment
+        covers: [U1.1, S1.1, K1.7, S1.5]
+        title: Do seeds need light to sprout?
+        question: Mira plants a bean in a sunny window and one in a dark cupboard. What will happen?
+        animation: g3s-scene
+        props: { scene: seed-dark }
+        predict:
+          choices: ['☀️ Only the sunny one sprouts', '🌱 Both sprout', '❌ Neither sprouts']
+          answer: 1
+        observe: |-
+          - **Both** beans sprouted.
+          - The one in the dark grew tall and **pale**.
+        explain: |-
+          - The data **contradicted** Mira’s idea. Now she knows more than before.
+          - It also sparked a **new question**: why is the dark one pale?
+
+  - title: Where data comes from
+    blocks:
+      - type: visual
+        covers: [K1.4]
+        component: g3s-play
+        props: { scene: data-sources }
+        caption: Tap each one. Where can data come from?
+
+  - title: Can you trust it?
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: trust, label: Trustworthy, icon: '✅' }
+            - { id: check, label: Check it first, icon: '🤔' }
+          cards:
+            - { text: '📗 A science textbook', bin: trust, why: 'Experts write and check textbooks.' }
+            - { text: '📺 An ad that says a cereal makes you run faster', bin: check, why: 'An ad wants to sell you something.' }
+            - { text: '🍁 A Government of Canada website', bin: trust, why: 'Official government websites are trustworthy sources.' }
+            - { text: '💬 A post by someone you don’t know', bin: check, why: 'Anyone can post anything. Check it in a trustworthy source.' }
+            - { text: '🧓 An Elder or Knowledge Keeper', bin: trust, why: 'Elders and Knowledge Keepers hold knowledge passed down over a long time.' }
+            - { text: '🔬 A science article checked by other scientists', bin: trust, why: 'Other scientists checked it before it was shared.' }
+        caption: Is it **trustworthy**, or should you check it first?
+
+  - title: Analyze the data
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.3, K1.7, S1.5]
+        component: g3s-play
+        props: { scene: analyze-data }
+        caption: Tap each one. How can you make sense of data?
+
+keyTerms:
+  - term: Source
+    covers: [K1.4]
+    definition: Where data or facts come from, like a book, a website or a person.
+  - term: Trustworthy
+    covers: [K1.5]
+    definition: Able to be trusted to give correct facts.
+  - term: Knowledge Keeper
+    covers: [K1.4, K1.5]
+    definition: A person trusted by their First Nations, Métis or Inuit community to hold and share its knowledge.
+  - term: Analyze
+    covers: [K1.6, S1.3]
+    definition: To look closely at data to find out what it shows.
+  - term: Contradict
+    covers: [U1.1]
+    definition: To show that an idea is not right.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.5]
+    type: mc
+    prompt: Which source can you trust for facts about Alberta’s birds?
+    choices: ['📗 A science textbook', '📺 An ad for bird food', '💬 A post by a stranger']
+    answer: 0
+    feedback:
+      '1': An ad wants to sell you something. Is that the best place for facts?
+      '2': Anyone can post anything. Who checked it?
+    hints:
+      - Which one do experts write and check?
+    solution:
+      - A **textbook** is a trustworthy source.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.4]
+    type: mc
+    prompt: Nico looks at the moon from his window every night and draws it. Where is his data from?
+    choices: ['👀 His own observations', '📚 A book', '💻 A website']
+    answer: 0
+    feedback:
+      '1': Did Nico read about the moon?
+      '2': Did Nico look it up?
+    hints:
+      - Who is doing the looking?
+    solution:
+      - Nico watched the moon himself. That is data from his **own observations**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.6, S1.3]
+    type: number
+    prompt: |-
+      Jade measured her sunflower.
+
+      | Day | Height |
+      |---|---|
+      | Day 1 | 4 cm |
+      | Day 3 | 6 cm |
+      | Day 5 | 9 cm |
+
+      How much did it grow from Day 3 to Day 5?
+    unit: cm
+    answer: 3
+    verify: '9 - 6'
+    hints:
+      - Look at Day 3 and Day 5. How far is it from 6 to 9?
+    solution:
+      - It went from 6 cm to 9 cm. It grew **3 cm**.
+      - Noticing changes is one way to **analyze** data.
+
+  - id: b2
+    level: 2
+    thinking: evidence
+    covers: [K1.5, S1.4]
+    type: mc
+    prompt: Lucy wants to know if it will snow tomorrow. Which source is most trustworthy?
+    choices: ['🍁 The Government of Canada weather website', '🧒 Her cousin’s guess', '🏷️ A sticker that says “Snow day!”']
+    answer: 0
+    feedback:
+      '1': A guess isn’t data. Who measures and checks the weather?
+      '2': A sticker is just for fun. Where are the weather facts?
+    hints:
+      - Official government websites are trustworthy.
+    solution:
+      - The **Government of Canada** weather website uses real weather data.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [U1.1, S1.1, K1.7, S1.5]
+    type: investigation
+    prompt: |-
+      Owen thinks ice melts faster in the sun than in the shade. He tests it.
+
+      | Ice cube | Time to melt |
+      |---|---|
+      | In the sun | 20 minutes |
+      | In the shade | 45 minutes |
+    parts:
+      - type: mc
+        prompt: Does Owen’s data support his idea, or contradict it?
+        choices: ['Support', 'Contradict']
+        answer: 0
+        feedback:
+          '1': Which cube melted first? Is that what Owen thought?
+        hints:
+          - Is 20 minutes faster than 45 minutes?
+        solution:
+          - The sun cube melted first. The data **supports** Owen’s idea.
+      - type: mc
+        prompt: Which is a good new question to investigate next?
+        choices: ['Does ice melt faster on a black plate or a white plate?', 'Is ice cold?', 'What is ice?']
+        answer: 0
+        feedback:
+          '1': Owen already knows ice is cold. What could he test next?
+          '2': Owen already knows ice is frozen water. What could he test next?
+        hints:
+          - A good question is one you can test, and don’t know yet.
+        solution:
+          - Testing black and white plates builds on what Owen found. It is a **new question** to test.
+    wrapUp: An investigation builds on what we knew, and often gives us a new question.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K1.5, S1.4]
+    type: mc
+    prompt: Bea reads a post by a stranger. It says worms come out after rain because they like to swim. What should Bea do?
+    choices:
+      - Check a trustworthy source, like a science book.
+      - Believe it, because it is online.
+      - Tell everyone right away.
+    answer: 0
+    feedback:
+      '1': Anyone can post online. Does that make it true?
+      '2': What if it isn’t true? What should she do first?
+    hints:
+      - Is a stranger’s post a trustworthy source?
+    solution:
+      - A stranger’s post may not be right. Bea should **check** it in a trustworthy source first.
