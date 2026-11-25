@@ -174,3 +174,34 @@ export function runOn(marked: string): { words: string[]; fixed: string[]; stops
   });
   return { words, fixed, stops };
 }
+
+/**
+ * A sentence with [ ] around the words that go inside quotation marks: "[Look at the moose!] shouted Ben."
+ * or "Dad calls our tent a [palace]." Returns the words (brackets removed), and the first and last word
+ * inside the marks. Punctuation touching the last word stays with it, so the closing mark goes after it.
+ */
+export function quoteSpan(marked: string): { words: string[]; from: number; to: number } {
+  const open = marked.indexOf('[');
+  const close = marked.indexOf(']');
+  if (open < 0 || close < open || marked.includes('[', open + 1) || marked.includes(']', close + 1)) {
+    throw new Error(`quote: "${marked}" needs one [ ] around the quoted words`);
+  }
+  const count = (s: string) => s.split(/\s+/).filter(Boolean).length;
+  const inside = count(marked.slice(open + 1, close));
+  if (!inside) throw new Error(`quote: "${marked}" has nothing inside [ ]`);
+  const from = count(marked.slice(0, open));
+  const words = marked.replace(/[[\]]/g, '').split(/\s+/).filter(Boolean);
+  return { words, from, to: from + inside - 1 };
+}
+
+/** The words inside the quotation marks, as a speech bubble shows them: without a trailing comma. */
+export const spokenWords = (q: { words: string[]; from: number; to: number }) =>
+  q.words.slice(q.from, q.to + 1).join(' ').replace(/,$/, '');
+
+/**
+ * The possessive form of a noun: add ’s, or only ’ to a plural that already ends in s (K3.3, K3.4).
+ * "dog" → "dog’s", "dogs" (plural) → "dogs’", "children" (plural) → "children’s".
+ */
+export function possessive(noun: string, plural: boolean): string {
+  return plural && /s$/i.test(noun) ? `${noun}’` : `${noun}’s`;
+}

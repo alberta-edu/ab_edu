@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { circlePoint, isCompound, letterTeams, runOn, pictureSentence, pictureWords, plainWord, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
+import { circlePoint, isCompound, letterTeams, runOn, pictureSentence, pictureWords, plainWord, possessive, quoteSpan, spokenWords, squeeze, squeezed, subjectSplit, syllables, unsqueezed } from '../src/components/visuals/g3e-ela.ts';
 
 describe('story circle', () => {
   it('starts at the top and goes clockwise', () => {
@@ -121,5 +121,28 @@ describe('run-on fixer', () => {
   it('needs words on both sides of each stop', () => {
     expect(() => runOn('one sentence only')).toThrow();
     expect(() => runOn('we went | ')).toThrow();
+  });
+});
+
+describe('quote catch', () => {
+  it('finds the quoted words', () => {
+    const q = quoteSpan('[Look at the moose!] shouted Ben.');
+    expect(q).toEqual({ words: ['Look', 'at', 'the', 'moose!', 'shouted', 'Ben.'], from: 0, to: 3 });
+    expect(spokenWords(q)).toBe('Look at the moose!');
+    expect(quoteSpan('Dad calls our tent a [palace].')).toMatchObject({ from: 5, to: 5 });
+    expect(spokenWords(quoteSpan('[We are lost,] said Mia.'))).toBe('We are lost');
+  });
+  it('needs exactly one pair of brackets around some words', () => {
+    expect(() => quoteSpan('No quote here.')).toThrow();
+    expect(() => quoteSpan('[One] and [two].')).toThrow();
+    expect(() => quoteSpan('Empty [ ] here.')).toThrow();
+  });
+});
+
+describe('possessives', () => {
+  it('adds an apostrophe and s, or only an apostrophe after a plural s', () => {
+    expect(possessive('dog', false)).toBe('dog’s');
+    expect(possessive('dogs', true)).toBe('dogs’');
+    expect(possessive('children', true)).toBe('children’s');
   });
 });

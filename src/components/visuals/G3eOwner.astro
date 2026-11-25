@@ -1,0 +1,102 @@
+---
+// Who owns it? (LANENG3-OI9-GQ1-LO1, K1.5, K3.3, K3.4, S1.7, S3.4, S3.5, S5.5). Switch between one owner
+// and more than one. The picture fills with owners, and the apostrophe hops into place: the dog’s bowl,
+// the dogs’ bowls. A plural that already ends in s gets only an apostrophe.
+import { possessive } from './g3e-ela.ts';
+
+interface Props {
+  items: { owner: string; owners: string; thing: string; things: string; icon: string; thingIcon: string }[];
+}
+const { items } = Astro.props;
+const data = items.map((it) => ({
+  ...it,
+  one: possessive(it.owner, false),
+  many: possessive(it.owners, true),
+}));
+---
+<g3e-owner data-items={JSON.stringify(data)}>
+  {items.length > 1 && (
+    <div class="sci-pick" role="group" aria-label="Choose an owner">
+      {items.map((it, i) => <button type="button" data-ow-item={i} aria-pressed={i === 0 ? 'true' : 'false'}><span aria-hidden="true">{it.icon}</span> {it.owner}</button>)}
+    </div>
+  )}
+  <div class="seg g3e-ow__seg" role="group" aria-label="How many owners?">
+    <button type="button" data-ow-num="one" aria-pressed="true">One owner</button>
+    <button type="button" data-ow-num="many" aria-pressed="false">More than one</button>
+  </div>
+  <div class="g3e-ow__pic" data-ow="pic" aria-hidden="true"></div>
+  <p class="g3e-ow__phrase" data-ow="phrase" aria-live="polite"></p>
+  <p class="g3e-ow__note" data-ow="note"></p>
+  <noscript><ul>{data.map((d) => <li>the {d.one} {d.thing}; the {d.many} {d.things}</li>)}</ul></noscript>
+</g3e-owner>
+
+<style is:global>
+  g3e-owner { display: block; }
+  .g3e-ow__seg { margin-top: 0.6rem; }
+  .g3e-ow__pic { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; min-height: 5rem; margin: 0.7rem 0; padding: 0.8rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); }
+  .g3e-ow__pair { display: flex; flex-direction: column; align-items: center; font-size: 2.2rem; line-height: 1.1; }
+  .g3e-ow__pair small { font-size: 1.4rem; }
+  .g3e-ow__phrase { margin: 0; text-align: center; font-size: var(--step-2); font-weight: 700; }
+  .g3e-ow__mark { display: inline-block; padding: 0 0.1rem; border-radius: 5px; background: var(--accent-soft); color: var(--accent); }
+  .g3e-ow__note { margin: 0.6rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  @keyframes g3e-ow-hop { 0% { transform: translateY(-0.9rem) scale(0.4); opacity: 0; } 70% { transform: translateY(0.1rem) scale(1.2); opacity: 1; } 100% { transform: none; } }
+  @keyframes g3e-ow-in { from { transform: scale(0.3); opacity: 0; } to { transform: none; opacity: 1; } }
+  @media (prefers-reduced-motion: no-preference) {
+    .g3e-ow__mark { animation: g3e-ow-hop 0.5s ease; }
+    .g3e-ow__pair { animation: g3e-ow-in 0.35s ease backwards; }
+  }
+</style>
+
+<script>
+  type Item = { owner: string; owners: string; thing: string; things: string; icon: string; thingIcon: string; one: string; many: string };
+
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  class G3eOwner extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+    private many = false;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      const pick = (sel: string, on: (b: HTMLButtonElement) => void) => {
+        const buttons = [...this.querySelectorAll<HTMLButtonElement>(sel)];
+        buttons.forEach((b) =>
+          b.addEventListener('click', () => {
+            buttons.forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+            on(b);
+          }),
+        );
+      };
+      pick('[data-ow-item]', (b) => {
+        this.at = Number(b.dataset.owItem);
+        this.draw();
+      });
+      pick('[data-ow-num]', (b) => {
+        this.many = b.dataset.owNum === 'many';
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-ow="${name}"]`)!;
+    }
+
+    private draw() {
+      const it = this.items[this.at];
+      const n = this.many ? 3 : 1;
+      this.part('pic').innerHTML = Array.from({ length: n }, (_, i) => `<span class="g3e-ow__pair" style="animation-delay:${i * 0.12}s">${it.icon}<small>${it.thingIcon}</small></span>`).join('');
+      const word = this.many ? it.many : it.one;
+      const base = this.many ? it.owners : it.owner;
+      const mark = word.slice(base.length);
+      this.part('phrase').innerHTML = `the ${esc(base)}<span class="g3e-ow__mark">${esc(mark)}</span> ${esc(this.many ? it.things : it.thing)}`;
+      this.part('note').innerHTML = !this.many
+        ? `One ${esc(it.owner)} owns it. Add <strong>’s</strong>.`
+        : mark === '’'
+          ? `More than one ${esc(it.owner)}. <em>${esc(it.owners)}</em> already ends in <strong>s</strong>, so add only <strong>’</strong>.`
+          : `<em>${esc(it.owners)}</em> doesn’t end in <strong>s</strong>, so add <strong>’s</strong>.`;
+    }
+  }
+  customElements.define('g3e-owner', G3eOwner);
+</script>

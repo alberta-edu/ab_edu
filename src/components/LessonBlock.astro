@@ -162,6 +162,8 @@ import G3eWordSnap from './visuals/G3eWordSnap.astro';
 import G3eFlash from './visuals/G3eFlash.astro';
 import G3ePageTurn from './visuals/G3ePageTurn.astro';
 import G3eRunOn from './visuals/G3eRunOn.astro';
+import G3eQuoteCatch from './visuals/G3eQuoteCatch.astro';
+import G3eOwner from './visuals/G3eOwner.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -325,6 +327,8 @@ const visuals = {
   'g3e-flash': G3eFlash,
   'g3e-page-turn': G3ePageTurn,
   'g3e-run-on': G3eRunOn,
+  'g3e-quote-catch': G3eQuoteCatch,
+  'g3e-owner': G3eOwner,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---
