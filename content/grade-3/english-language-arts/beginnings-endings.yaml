@@ -1,0 +1,220 @@
+id: beginnings-endings
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI8
+outcomes: [LANENG3-OI8-GQ1-LO1]
+order: 19
+title: Beginnings, Dialogue and Endings
+shortTitle: Beginnings & endings
+summary: >-
+  Hook your reader from the first line, let characters talk, use punctuation for effect, and end in a
+  way that ties things up or leaves readers wondering.
+
+bigIdea: |-
+  - A great **beginning** hooks your reader.
+  - **Dialogue** and **punctuation** make writing lively.
+  - A good **ending** ties things up, or leaves readers wondering.
+
+lesson:
+  - title: Hook your reader
+    blocks:
+      - type: visual
+        covers: [S2.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: hook, label: Hooks me!, icon: 🎣 }
+            - { id: meh, label: Ho-hum, icon: 😴 }
+          cards:
+            - { text: '*Pop!* My tooth flew across the kitchen.', bin: hook, why: 'A **sound** grabs your ears.' }
+            - { text: This story is about my tooth., bin: meh, why: 'It tells you, but doesn’t make you curious.' }
+            - { text: Have you ever seen a moose up close?, bin: hook, why: 'A **question** makes you think of your own answer.' }
+            - { text: One day I went to the park., bin: meh, why: 'Lots of stories start this way. What happened?' }
+            - { text: '“Don’t push that button!” Dad yelled.', bin: hook, why: '**Dialogue** drops you right into the action.' }
+        caption: Which beginnings make you want to read more?
+
+  - title: Let them talk
+    blocks:
+      - type: visual
+        covers: [K2.7, S2.7]
+        component: craft-toggles
+        props:
+          parts:
+            - { id: mom, label: Mom, icon: 👩, plain: 'Mom asked if we were ready to jump.', crafted: '“Ready to jump?” Mom asked.', why: 'Now we **hear** Mom.' }
+            - { id: me, label: Me, icon: 🧒, plain: 'I said yes.', crafted: '“Ready!” I shouted.', why: '*Shouted* shows how excited I am.' }
+            - { id: bro, label: Brother, icon: 👦, plain: 'My brother said he was scared.', crafted: '“I’m s-s-scared,” my brother squeaked.', why: 'The stutter shows how he feels.' }
+        caption: Switch on **dialogue** for each person. Which version feels alive?
+
+  - title: Punctuation for effect
+    blocks:
+      - type: visual
+        covers: [S2.8]
+        component: punct-lab
+        props:
+          mode: effect
+          versions:
+            - { text: 'The box moved.', effect: 'A period is calm. Nothing special.' }
+            - { text: 'The box moved!', effect: 'An exclamation mark adds surprise.' }
+            - { text: 'The box moved?', effect: 'A question mark shows you can’t believe it.' }
+            - { text: 'The box moved…', effect: 'Three dots make you wait. What is inside?' }
+        caption: Same words, new punctuation. How does each one make you feel?
+
+  - title: Strong endings
+    blocks:
+      - type: visual
+        covers: [S2.9]
+        component: card-sort
+        props:
+          bins:
+            - { id: tie, label: Ties it up, icon: 🎀 }
+            - { id: wonder, label: Leaves you wondering, icon: 🤔 }
+          cards:
+            - { text: 'Max found his dog, and they walked home together.', bin: tie, why: 'The problem is solved.' }
+            - { text: 'That night, Max heard scratching under his bed again…', bin: wonder, why: 'What is it? You keep thinking.' }
+            - { text: We cleaned up the mess and laughed about it all week., bin: tie, why: 'Everything is wrapped up.' }
+            - { text: The egg in the nest began to crack. What would come out?, bin: wonder, why: 'The question stays with you.' }
+        caption: Two kinds of good endings. Sort these last lines.
+
+  - title: Ready to share
+    blocks:
+      - type: visual
+        covers: [S2.10, K1.11, S1.2]
+        component: text-xray
+        props:
+          button: Show the text features
+          pages:
+            - label: Story page
+              icon: 📖
+              parts:
+                - { style: title, text: 'The Night the Egg Cracked', tag: Title, job: 'Tells what the story is about, and makes readers curious.' }
+                - { style: box, text: '🪺🐣 *A drawing of a robin chick, just out of its egg*', tag: Picture, job: 'Helps readers see the story.' }
+                - { style: caption, text: 'Our robin chick, the morning it hatched.', tag: Caption, job: 'Tells what the picture shows.' }
+                - { style: text, text: '*Tap, tap, crack!* A tiny beak poked out of the blue egg.', tag: Story, job: 'Your writing, with a hook.' }
+        caption: Text features make writing ready to share. You can share as a class book, a poster or a reading.
+
+keyTerms:
+  - term: Hook
+    covers: [S2.5]
+    definition: A beginning that grabs readers and makes them want to keep reading.
+  - term: Dialogue
+    covers: [K2.7]
+    definition: The words characters say, inside quotation marks.
+  - term: Ending
+    covers: [S2.9]
+    definition: The last part of a story. It ties things up, or leaves readers wondering.
+  - term: Text feature
+    covers: [K1.11]
+    definition: A part like a title, picture or caption that helps readers.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S2.5]
+    type: mc
+    prompt: Which beginning **hooks** you the most?
+    choices:
+      - '*Crash!* The shelf fell over.'
+      - This is a story about a shelf.
+      - One day there was a shelf.
+    answer: 0
+    feedback:
+      '1': Does it make you curious, or just tell you?
+      '2': Does anything happen yet?
+    hints:
+      - Which one starts with a sound?
+    solution:
+      - '*Crash!* is a **sound**. It makes you want to know what happened.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S2.9]
+    type: mc
+    prompt: Which ending **leaves you wondering**?
+    choices:
+      - Then the box began to wiggle…
+      - We all went to bed. The end.
+      - And everyone was happy.
+    answer: 0
+    feedback:
+      '1': Is anything left to wonder about?
+      '2': This ties it up. Which one makes you ask a question?
+    hints:
+      - Which one makes you ask, “What happens next?”
+    solution:
+      - A wiggling box leaves you **wondering** what is inside.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: whatif
+    covers: [S2.8]
+    type: mc
+    prompt: 'Ivy wants readers to **wait** and wonder. How should she end this line? *The door creaked open___*'
+    choices:
+      - '…'
+      - '.'
+      - '?'
+    answer: 0
+    feedback:
+      '1': A period is calm. Does it make you wait?
+      '2': A question mark asks something. Is the door asking a question?
+    hints:
+      - Which mark makes your voice trail off?
+    solution:
+      - Three dots, **…**, make readers wait. Who is behind the door?
+
+  - id: b2
+    level: 2
+    thinking: apply
+    covers: [K2.7, S2.7]
+    type: mc
+    prompt: 'Turn this telling into **dialogue**: *Kim told us to watch out.*'
+    choices:
+      - '“Watch out!” Kim yelled.'
+      - Kim yelled to watch out.
+      - Kim was scared.
+    answer: 0
+    feedback:
+      '1': Do you hear Kim’s own words?
+      '2': Is anyone talking here?
+    hints:
+      - Dialogue shows the exact words a character says.
+    solution:
+      - '“Watch out!” shows **Kim’s own words**. That is dialogue.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S2.9]
+    type: mc
+    prompt: 'Leo’s exciting pirate story ends, “Then I woke up. It was all a dream.” Readers feel let down. **Why**?'
+    choices:
+      - It makes the whole adventure not count
+      - Endings must always be sad
+      - It is too short to be an ending
+    answer: 0
+    feedback:
+      '1': Can a happy ending work? Think of Max and his dog.
+      '2': Short endings can be great. What is the real problem?
+    hints:
+      - How would you feel after a great adventure, if it was all a dream?
+    solution:
+      - Readers cared about the adventure. *It was a dream* makes it not matter.
+      - A thoughtful ending **ties up** the real story, or leaves readers wondering.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.5, K2.7]
+    type: open
+    prompt: 'Rewrite this beginning so it **hooks** your reader: *This story is about a lost dog.*'
+    modelAnswer: |-
+      “Biscuit! Where are you?” I called, but the backyard was empty.
+    rubric:
+      - It is still about a lost dog.
+      - It uses a hook, like a sound, a question, dialogue or action.
+      - It makes a reader want to keep reading.
