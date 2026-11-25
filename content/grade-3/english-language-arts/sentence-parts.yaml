@@ -1,0 +1,219 @@
+id: sentence-parts
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG3-OI9-GQ1-LO1]
+order: 23
+title: Sentence Types, Subjects and Predicates
+shortTitle: Sentence parts
+summary: >-
+  Sort sentences that tell, ask, command and exclaim. Split sentences into a subject and a predicate,
+  and make subjects and verbs agree.
+
+bigIdea: |-
+  - Sentences can **tell**, **ask**, **command** or **exclaim**.
+  - Every sentence has a **subject** (who or what) and a **predicate** (what it does or is).
+  - The subject and verb **agree**: *the dog barks*, *the dogs bark*.
+
+lesson:
+  - title: Four kinds of sentences
+    blocks:
+      - type: visual
+        covers: [S2.1, K2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: tell, label: Tells, icon: 💬 }
+            - { id: ask, label: Asks, icon: ❓ }
+            - { id: command, label: Commands, icon: 👉 }
+            - { id: exclaim, label: Exclaims, icon: 🎉 }
+          cards:
+            - { text: The bus is late., bin: tell, why: 'It tells a fact.' }
+            - { text: Is the bus late?, bin: ask, why: 'It asks something.' }
+            - { text: Wait for the bus., bin: command, why: 'It tells someone **to do** something.' }
+            - { text: What a long wait!, bin: exclaim, why: 'It shows a strong feeling.' }
+            - { text: Don’t run near the pool., bin: command, why: 'It tells someone **not to do** something.' }
+        caption: Read each sentence. What is it doing?
+      - type: callout
+        variant: tip
+        covers: [K2.1]
+        title: Bossy sentences
+        body: 'A **command** tells someone to do, or not to do, something: *Shut the door. Don’t touch!*'
+
+  - title: Split it in two
+    blocks:
+      - type: visual
+        covers: [K2.2, K2.3, K2.4, S2.2, S2.3]
+        component: g3e-sentence-split
+        props:
+          items:
+            - 'The fluffy puppy | chewed my sock.'
+            - 'Grandpa | makes pancakes on Sundays.'
+            - 'The tall trees | sway in the wind.'
+            - 'My cat | is sleepy.'
+        caption: Tap the gap where **who or what** ends, and **what it does or is** begins.
+      - type: callout
+        variant: tip
+        covers: [K2.2, U2.1]
+        title: Two parts, every time
+        body: |-
+          - **Subject**: who or what the sentence is about.
+          - **Predicate**: what the subject does or is.
+
+  - title: Make them agree
+    blocks:
+      - type: visual
+        covers: [K2.8, S2.7]
+        component: clause-builder
+        props:
+          mode: agree
+          items:
+            - { one: { s: The dog, v: barks }, many: { s: The dogs, v: bark }, rest: at the mail carrier. }
+            - { one: { s: My friend, v: plays }, many: { s: My friends, v: play }, rest: hockey. }
+            - { one: { s: The bird, v: is }, many: { s: The birds, v: are }, rest: in the tree. }
+        caption: Switch between **one** and **more than one**. Watch the verb change to match.
+
+  - title: Does it agree?
+    blocks:
+      - type: visual
+        covers: [S2.7, K2.8]
+        component: card-sort
+        props:
+          bins:
+            - { id: yes, label: Agrees, icon: ✅ }
+            - { id: no, label: Doesn’t agree, icon: ❌ }
+          cards:
+            - { text: The cats play., bin: yes, why: 'More than one cat, and *play* fits.' }
+            - { text: The cat play., bin: no, why: 'One cat *plays*.' }
+            - { text: My brothers runs fast., bin: no, why: 'More than one brother *run*.' }
+            - { text: Ella sings., bin: yes, why: 'One person, and *sings* fits.' }
+        caption: Read each one aloud. Does it sound right?
+
+keyTerms:
+  - term: Command
+    covers: [K2.1]
+    definition: A sentence that tells someone to do, or not to do, something.
+  - term: Subject
+    covers: [K2.3]
+    definition: Who or what the sentence is about.
+  - term: Predicate
+    covers: [K2.4]
+    definition: What the subject is doing or being.
+  - term: Agree
+    covers: [K2.8]
+    definition: When the subject and verb match. One goes with one, more than one with more than one.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S2.1, K2.1]
+    type: mc
+    prompt: Which sentence is a **command**?
+    choices:
+      - Close the gate.
+      - The gate is closed.
+      - Is the gate closed?
+    answer: 0
+    feedback:
+      '1': This tells a fact. Does it tell someone to do something?
+      '2': This asks a question.
+    hints:
+      - Which one tells someone what to do?
+    solution:
+      - '*Close the gate.* tells someone what to do. It is a **command**.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S2.2, K2.3]
+    type: mc
+    prompt: 'What is the **subject**? *The hungry bear ate the berries.*'
+    choices:
+      - The hungry bear
+      - ate the berries
+      - the berries
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': That tells what the bear did. That is the predicate.
+      '2': Who did the eating?
+    hints:
+      - Who or what is the sentence about?
+    solution:
+      - The sentence is about **the hungry bear**. That is the subject.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [S2.3, K2.4]
+    type: text
+    prompt: 'Type the **predicate**: *My sister plays hockey.*'
+    accept: [plays hockey]
+    hints:
+      - Find the subject first. Who is it about?
+      - What does she do?
+    solution:
+      - The subject is *My sister*. What she does is the predicate, **plays hockey**.
+
+  - id: b2
+    level: 2
+    thinking: pattern
+    covers: [S2.7, K2.8]
+    type: mc
+    prompt: 'Which word fits? *The puppies ___ in the snow.*'
+    choices:
+      - roll
+      - rolls
+      - is rolling
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*Rolls* goes with one puppy. How many puppies are there?'
+      '2': '*Is* goes with one. Try *The puppies is rolling* aloud.'
+    hints:
+      - Is there one puppy, or more than one?
+    solution:
+      - '*Puppies* is more than one, so the verb is **roll**: *The puppies roll in the snow.*'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [S2.7, K2.8]
+    type: mc
+    prompt: |-
+      Leo wrote:
+
+      > My friends was at the park.
+
+      What is wrong?
+    choices:
+      - '*Friends* is more than one, so it should be *were*.'
+      - '*Park* needs a capital letter.'
+      - Nothing is wrong.
+    answer: 0
+    feedback:
+      '1': '*Park* isn’t a name. Look at the subject and the verb.'
+      '2': Read it aloud. Does *my friends was* sound right?
+    hints:
+      - Is the subject one friend, or more than one?
+    solution:
+      - '*Was* goes with one. *Friends* is more than one, so use **were**.'
+      - '**My friends were at the park.**'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K2.1, S2.1, K2.2]
+    type: open
+    prompt: You are a lifeguard at the pool. Write a **command** that tells kids **not** to do something. Then write a **question** you could ask them.
+    modelAnswer: |-
+      Don’t run on the wet deck.
+      Do you have your swim cap?
+    rubric:
+      - The first sentence tells someone not to do something.
+      - The second sentence asks something, and ends with a question mark.
+      - Each sentence starts with a capital and has an end mark.
