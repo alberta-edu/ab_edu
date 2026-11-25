@@ -5,26 +5,41 @@ Social Studies. Grade 5 came first; Grades 6, 4, 3, 2 and 1 follow. Kindergarten
 
 ## Where we are now
 
-*Last updated: November 20, 2026. Update this section whenever a phase or batch finishes.*
+*Last updated: November 24, 2026. Update this section whenever a phase or batch finishes.*
 
-**Grades 4, 5 and 6 are live at https://alberta-edu.github.io/ab_edu/. Now adding Grades 3 to 1 (Phases 12–14).**
+**Grades 3, 4, 5 and 6 are live at https://alberta-edu.github.io/ab_edu/. Next: Grade 2 (Phase 13).**
 
 - Phase 9 (`feature/multi-grade`) was merged and deployed on November 13, 2026.
 - Phase 10 (Grade 6) was merged and deployed on November 17, 2026.
-- Phase 11 (Grade 4) was merged and deployed on November 20, 2026. `npm run check` passes
-  (158 concepts, 1421 problems, 406 tests). A browser script solved all 495 Grade 4 problems, and
-  all Grade 5 and 6 problems again, at phone width with no page errors.
-- **In progress:** Grade 3 (Phase 12). Math has 10 of 20 concepts written. Science and Social
-  Studies have started.
+- Phase 11 (Grade 4) was merged and deployed on November 20, 2026.
+- Phase 12 (Grade 3) was merged and deployed on November 24, 2026. `npm run check` passes
+  (244 concepts, 1937 problems, 574 tests). A browser script solved all 516 Grade 3 problems at
+  phone width with no page errors.
 
 | Grade | Outcomes | Statements | Status |
 |---|---|---|---|
 | 5 | 32 | 674 | ✅ Live |
 | 6 | 33 | 763 | ✅ Live: 55 concepts, 495 problems, 763 of 763 taught |
 | 4 | 32 | 651 | ✅ Live: 55 concepts, 495 problems, 651 of 651 taught |
-| 3 | 30 | 749 | 🔨 All four subjects in progress (Phase 12) |
+| 3 | 30 | 749 | ✅ Live: 86 concepts, 516 problems, 749 of 749 taught |
 | 2 | 28 | 596 | Phase 13 |
 | 1 | 28 | 565 | Phase 14 |
+
+Grade 3 detail (6 problems a topic):
+
+| Subject | Concepts | Statements taught | Problems |
+|---|---|---|---|
+| Math | 20 | 198 of 198 ✅ | 120 |
+| Science | 25 | 173 of 173 ✅ | 150 |
+| Social Studies | 15 | 88 of 88 ✅ | 90 |
+| ELAL | 26 | 290 of 290 ✅ | 156 |
+
+Facts the writing agents flagged in Grade 3, worth a second look:
+- **Science:** Canadarm (Spar Aerospace with the NRC, first used on STS-2 in 1981); Velcro and
+  George de Mestral; Hymen Lipman's 1858 eraser-pencil patent; Elder and Knowledge Keeper content
+  kept general, with a note to follow the school's protocol.
+- **ELAL:** a made-up library book (*All About Beavers*) in the research example; "for" used to
+  mean "because" to teach all five conjunctions; a deliberately loose doubling rule (*run*, *hop*).
 
 Grade 6 detail:
 
@@ -171,7 +186,7 @@ Problems follow [QUESTION-STANDARD.md](QUESTION-STANDARD.md). The file format is
 | 9 | Multi-grade | Routes, checks, review and progress for Grades 1–6; Kindergarten removed; Grades 1–2 profile | ✅ Merged November 13, 2026 |
 | 10 | Grade 6 | 4 subjects, one branch each, merged in `feature/grade-6` | ✅ Live since November 17, 2026 |
 | 11 | Grade 4 | 4 subjects, merged in `feature/grade-4` | ✅ Live since November 20, 2026 |
-| 12 | Grade 3 | 4 subjects, Grade 3 profile: less than Grade 4, 6 problems a topic | 🔨 In progress |
+| 12 | Grade 3 | 4 subjects, Grade 3 profile: less than Grade 4, 6 problems a topic | ✅ Live since November 24, 2026 |
 | 13 | Grade 2 | 4 subjects, Grade 2 profile: much less than Grade 3, 4 problems a topic | Planned |
 | 14 | Grade 1 | 4 subjects, Grade 1 profile: much less than Grade 2, 3 problems a topic | Planned |
 
