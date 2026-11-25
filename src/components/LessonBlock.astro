@@ -169,6 +169,19 @@ import G3Sequence from './visuals/G3Sequence.astro';
 import G3Clock from './visuals/G3Clock.astro';
 import G3Graph from './visuals/G3Graph.astro';
 import G3Play from './visuals/G3Play.astro';
+import G3eStoryCircle from './visuals/G3eStoryCircle.astro';
+import G3eSyllableClap from './visuals/G3eSyllableClap.astro';
+import G3eLetterTeams from './visuals/G3eLetterTeams.astro';
+import G3eSentenceSplit from './visuals/G3eSentenceSplit.astro';
+import G3eSqueeze from './visuals/G3eSqueeze.astro';
+import G3ePictureWords from './visuals/G3ePictureWords.astro';
+import G3eWordSnap from './visuals/G3eWordSnap.astro';
+import G3eFlash from './visuals/G3eFlash.astro';
+import G3ePageTurn from './visuals/G3ePageTurn.astro';
+import G3eRunOn from './visuals/G3eRunOn.astro';
+import G3eQuoteCatch from './visuals/G3eQuoteCatch.astro';
+import G3eOwner from './visuals/G3eOwner.astro';
+import G3eWhere from './visuals/G3eWhere.astro';
 interface Props {
   block: LessonBlock;
   concept: Concept;
@@ -339,6 +352,19 @@ const visuals = {
   'g3-clock': G3Clock,
   'g3-graph': G3Graph,
   'g3s-play': G3Play,
+  'g3e-story-circle': G3eStoryCircle,
+  'g3e-syllable-clap': G3eSyllableClap,
+  'g3e-letter-teams': G3eLetterTeams,
+  'g3e-sentence-split': G3eSentenceSplit,
+  'g3e-squeeze': G3eSqueeze,
+  'g3e-picture-words': G3ePictureWords,
+  'g3e-word-snap': G3eWordSnap,
+  'g3e-flash': G3eFlash,
+  'g3e-page-turn': G3ePageTurn,
+  'g3e-run-on': G3eRunOn,
+  'g3e-quote-catch': G3eQuoteCatch,
+  'g3e-owner': G3eOwner,
+  'g3e-where': G3eWhere,
 };
 const calloutIcon = { tip: '💡', mistake: '⚠️', remember: '📌' } as const;
 ---

@@ -1,0 +1,221 @@
+id: quotes-apostrophes
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG3-OI9-GQ1-LO1]
+order: 22
+title: Quotation Marks and Apostrophes
+shortTitle: Quotes & apostrophes
+summary: >-
+  Catch a speaker’s words in quotation marks, spot a word used in a special way, squeeze two words into a
+  contraction, and show who owns what.
+
+bigIdea: |-
+  - **Quotation marks** go around a speaker’s exact words, or a word used in a special way.
+  - An **apostrophe** takes the place of missing letters: *do not* → *don’t*.
+  - An apostrophe and **s** show who owns something: *the dog’s bowl*.
+
+lesson:
+  - title: Who said it?
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.4, S1.4]
+        component: g3e-quote-catch
+        props:
+          items:
+            - { text: '[Look at the moose!] shouted Ben.', who: Ben, icon: 🧒, note: 'The marks hug the words Ben said.' }
+            - { text: 'Grandma said, [Supper is ready.]', who: Grandma, icon: 👵, note: 'The speaker can come first, too.' }
+            - { text: '[Can I come too?] asked Mia.', who: Mia, icon: 👧, note: 'The question mark goes inside the marks.' }
+        caption: The bubble shows what they said. Find those words in the sentence.
+
+  - title: A word used in a special way
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.5]
+        component: g3e-quote-catch
+        props:
+          items:
+            - { text: 'Dad calls our tiny tent a [palace].', note: 'The tent isn’t really a palace. It’s a joke!' }
+            - { text: 'Our puppy [helped] us rake the leaves.', note: 'The puppy didn’t really help. It jumped in the pile!' }
+        caption: Nobody is talking here. One word doesn’t mean what it usually means. Which one?
+
+  - title: Squeeze two words
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.6, S5.2]
+        component: g3e-squeeze
+        props:
+          items:
+            - { from: do not, to: don’t, note: 'The apostrophe takes the place of **o**.' }
+            - { from: I am, to: I’m, note: 'The apostrophe takes the place of **a**.' }
+            - { from: it is, to: it’s, note: 'The apostrophe takes the place of **i**.' }
+            - { from: we will, to: we’ll, note: 'The apostrophe takes the place of **wi**.' }
+            - { from: they are, to: they’re, note: 'The apostrophe takes the place of **a**.' }
+        caption: A **contraction** squeezes two words into one. Watch the apostrophe pop in.
+
+  - title: Who owns it?
+    blocks:
+      - type: visual
+        covers: [K1.5, K3.3, K3.4, S1.7, S3.4, S3.5, S5.5]
+        component: g3e-owner
+        props:
+          items:
+            - { owner: dog, owners: dogs, thing: bowl, things: bowls, icon: 🐕, thingIcon: 🥣 }
+            - { owner: bird, owners: birds, thing: nest, things: nests, icon: 🐦, thingIcon: 🪺 }
+            - { owner: girl, owners: girls, thing: bike, things: bikes, icon: 👧, thingIcon: 🚲 }
+        caption: Switch between one owner and more than one. Watch where the apostrophe goes.
+
+  - title: Apostrophe or not?
+    blocks:
+      - type: visual
+        covers: [S1.6, S1.7, K1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: missing, label: Missing letters, icon: ✂️ }
+            - { id: owner, label: Shows an owner, icon: 🏷️ }
+            - { id: plural, label: No apostrophe, icon: 🚫 }
+          cards:
+            - { text: 'don’t', bin: missing, why: '*Do not*. The apostrophe replaces **o**.' }
+            - { text: 'Sam’s hat', bin: owner, why: 'The hat belongs to Sam.' }
+            - { text: 'three cats', bin: plural, why: 'Just more than one cat. Nobody owns anything.' }
+            - { text: 'we’re', bin: missing, why: '*We are*. The apostrophe replaces **a**.' }
+            - { text: 'the birds’ nests', bin: owner, why: 'The nests belong to the birds.' }
+            - { text: 'two hats', bin: plural, why: 'More than one hat. No letters are missing.' }
+        caption: Does it need an apostrophe? Why?
+      - type: callout
+        variant: mistake
+        covers: [S1.7]
+        title: More than one isn’t owning
+        body: '*Two dogs barked.* No one owns anything, and no letters are missing. So, no apostrophe!'
+
+keyTerms:
+  - term: Quotation marks
+    covers: [K1.4]
+    definition: 'Marks ( “ ” ) around a speaker’s exact words, or a word used in a special way.'
+  - term: Apostrophe
+    covers: [K1.2]
+    definition: 'A mark ( ’ ) that takes the place of missing letters, or shows an owner.'
+  - term: Contraction
+    covers: [S1.6, S5.2]
+    definition: Two words squeezed into one, like *don’t* for *do not*.
+  - term: Possessive
+    covers: [K1.5]
+    definition: A word that shows who owns something, like *the dog’s bowl*.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.4, K1.4]
+    type: mc
+    prompt: 'Mom said, *Time for bed.* Which is written the right way?'
+    choices:
+      - '“Time for bed,” said Mom.'
+      - '“Time for bed, said Mom.”'
+      - 'Time for bed, “said Mom.”'
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Did Mom say *said Mom*?
+      '2': The marks are around *said Mom*. What did Mom really say?
+    hints:
+      - Which words did Mom say? The marks go around just those.
+    solution:
+      - 'Mom said *Time for bed*, so the marks go around those words: **“Time for bed,” said Mom.**'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S1.6, S5.2]
+    type: mc
+    prompt: Which two words make **we’re**?
+    choices:
+      - we are
+      - we were
+      - we here
+    answer: 0
+    feedback:
+      '1': '*We were* has an extra *w* and *e*. Look at the letters in *we’re*.'
+      '2': Where is the *h* in *we’re*?
+    hints:
+      - Which letter does the apostrophe take the place of?
+    solution:
+      - '*We’re* is **we are**. The apostrophe takes the place of *a*.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: why
+    covers: [S1.5, K1.4]
+    type: mc
+    prompt: |-
+      > Our cat “sang” all night.
+
+      **Why** is *sang* in quotation marks?
+    choices:
+      - The cat didn’t really sing. It’s a funny, special word.
+      - The cat said the word *sang*.
+      - It is spelled wrong.
+    answer: 0
+    feedback:
+      '1': Can a cat say words?
+      '2': Is *sang* spelled right?
+    hints:
+      - Can a cat really sing?
+    solution:
+      - The cat was meowing loudly, not singing. The marks show *sang* is used in a **special way**.
+
+  - id: b2
+    level: 2
+    thinking: apply
+    covers: [S1.7, S3.4, K3.3, S5.5]
+    type: text
+    caseSensitive: true
+    prompt: 'The hat belongs to **Sam**. Type the missing word: *___ hat*'
+    accept: [Sam’s, Sam's]
+    hints:
+      - One person owns it. What do you add to *Sam*?
+    solution:
+      - 'One owner, so add an apostrophe and **s**: **Sam’s** hat.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [S1.7, K1.5]
+    type: mc
+    prompt: |-
+      Ava wrote:
+
+      > The bird’s are singing.
+
+      What is wrong?
+    choices:
+      - '*Birds* just means more than one bird. It needs no apostrophe.'
+      - It should be *birds’*.
+      - Nothing is wrong.
+    answer: 0
+    feedback:
+      '1': '*Birds’* shows that birds own something. Do they own anything here?'
+      '2': Do the birds own anything? Are any letters missing?
+    hints:
+      - Do the birds own something? Are letters missing?
+    solution:
+      - Nothing is owned and no letters are missing. *Birds* is just more than one.
+      - '**The birds are singing.**'
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [S3.5, K3.4, S5.5]
+    type: text
+    prompt: 'Three **boys** own these bikes. Type the missing word: *the ___ bikes*'
+    accept: [boys’, boys']
+    hints:
+      - Is there one boy or more than one? Write that word first.
+      - Does *boys* already end in **s**? Then what do you add?
+    solution:
+      - More than one boy is *boys*. It already ends in **s**.
+      - 'So add only an apostrophe: **the boys’ bikes**.'

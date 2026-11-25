@@ -1,0 +1,233 @@
+id: infer-summarize
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI7
+outcomes: [LANENG3-OI7-GQ1-LO1]
+order: 16
+title: Inferring and Summarizing
+shortTitle: Infer & summarize
+summary: >-
+  Add clues from the text to what you already know to figure out what the writer didn’t say. Then pick
+  out the big ideas and retell them in order, in your own words.
+
+bigIdea: |-
+  - **Infer**: clues in the text + what you know = an idea the writer didn’t say.
+  - A character’s actions show how they **feel** and **why** they act.
+  - A **summary** tells only the important ideas, in order, in your own words.
+
+lesson:
+  - title: Clue + what I know
+    blocks:
+      - type: visual
+        covers: [K4.1, S4.1, U4.1]
+        component: inference-equation
+        props:
+          examples:
+            - clue: Juno’s boots were muddy and her coat was dripping.
+              know: Rain makes puddles and mud.
+              inference: It was **raining** outside.
+            - clue: Max’s cheeks were red, and he was out of breath.
+              know: People puff and turn red after they run.
+              inference: Max had been **running**.
+            - clue: Grandpa wiped his eyes and smiled at the end of the movie.
+              know: People sometimes cry when they are touched or happy.
+              inference: The ending **moved** him.
+        caption: The writer doesn’t say it. You figure it out! Build each inference.
+
+  - title: Actions show feelings
+    blocks:
+      - type: visual
+        covers: [S4.2, K4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: mad, label: Angry, icon: 😠 }
+            - { id: nervous, label: Nervous, icon: 😬 }
+            - { id: happy, label: Happy, icon: 😄 }
+          cards:
+            - { text: Ali stomped up the stairs and slammed his door., bin: mad, why: 'Stomping and slamming show anger.' }
+            - { text: Bea bit her nails while she waited for her turn., bin: nervous, why: 'Biting nails while waiting shows worry.' }
+            - { text: Cal hopped and twirled all the way home., bin: happy, why: 'Hopping and twirling show joy.' }
+            - { text: Dee’s voice shook as she said hello to the new class., bin: nervous, why: 'A shaky voice in front of new people shows nerves.' }
+        caption: The writer never names the feeling. What do the actions tell you?
+
+  - title: Ways to read between the lines
+    blocks:
+      - type: visual
+        covers: [K4.2, U4.1, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: connect, label: Connect, icon: 🔗 }
+            - { id: ask, label: Ask, icon: ❓ }
+            - { id: predict, label: Predict, icon: 🔮 }
+            - { id: picture, label: Picture it, icon: 🎨 }
+          cards:
+            - { text: 'This reminds me of when my cat got lost.', bin: connect, why: 'You linked the story to your own life.' }
+            - { text: 'Why is she hiding the note?', bin: ask, why: 'A question gives you something to look for.' }
+            - { text: 'I bet he will say sorry next.', bin: predict, why: 'You guessed what will happen, from clues.' }
+            - { text: 'I can see the dark, dusty attic.', bin: picture, why: 'You made a picture in your mind.' }
+        caption: Each of these thoughts helps a reader infer. Which way is each reader thinking?
+
+  - title: Big ideas or small details?
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: key, label: Big idea, icon: ⭐ }
+            - { id: detail, label: Small detail, icon: 🔹 }
+          cards:
+            - { text: Frogs start life as eggs in water., bin: key, why: 'This is how a frog’s life begins. It matters.' }
+            - { text: One egg was a bit bigger than the rest., bin: detail, why: 'Interesting, but you don’t need it to understand frogs.' }
+            - { text: Tadpoles hatch and swim with their tails., bin: key, why: 'The next big stage.' }
+            - { text: Tadpoles grow legs and become frogs., bin: key, why: 'The last big change.' }
+            - { text: Some frogs are bright green., bin: detail, why: 'True, but this text is about how frogs grow.' }
+        caption: A text about how frogs grow. Which ideas belong in a **summary**?
+
+  - title: Retell it in order
+    blocks:
+      - type: visual
+        covers: [K5.1, S5.2, S5.3, U5.1]
+        component: story-path
+        props:
+          stages:
+            - { label: First, text: Pip the puppy found a red ball. }
+            - { label: Next, text: She chased it into the pond. }
+            - { label: Then, text: A duck pushed it back to shore with its beak. }
+            - { label: Last, text: Pip and the duck played catch. }
+        caption: A summary of *Pip’s Big Splash*. Only the big events, in order. Press **Next**.
+      - type: callout
+        variant: tip
+        covers: [K5.1, S5.3]
+        title: Write a summary
+        body: |-
+          1. Find the big ideas.
+          2. Put them in order.
+          3. Say them in **your own words**.
+
+keyTerms:
+  - term: Infer
+    covers: [K4.1]
+    definition: To figure out something the writer didn’t say, using clues and what you know.
+  - term: Evidence
+    covers: [K4.1, S4.2]
+    definition: Words in the text that show your idea is right.
+  - term: Summary
+    covers: [K5.1]
+    definition: A short retelling of the big ideas, in order, in your own words.
+  - term: Key idea
+    covers: [K5.1, S5.1]
+    definition: An important idea you need to understand the text.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.1, S4.1]
+    type: mc
+    prompt: To make an **inference**, you use…
+    choices:
+      - clues in the text + what you know
+      - only the pictures
+      - a wild guess
+    answer: 0
+    feedback:
+      '1': Pictures can help. But what else do you use?
+      '2': A guess with no clues is not an inference.
+    hints:
+      - Think of the inference equation.
+    solution:
+      - '**Clue + what I know = inference.**'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [S5.1, K5.1]
+    type: mc
+    prompt: A text tells how bees make honey. Which idea is **most important** for a summary?
+    choices:
+      - Bees turn nectar from flowers into honey.
+      - One bee had a bent wing.
+      - I like honey on toast.
+    answer: 0
+    feedback:
+      '1': Is one bee’s wing needed to understand how honey is made?
+      '2': That’s your own connection. Is it in the text?
+    hints:
+      - What is the text mostly about?
+    solution:
+      - The text is about making honey. **Bees turn nectar into honey** is the big idea.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [S4.2, K4.1]
+    type: mc
+    prompt: Zoe’s hands shook. She read her poem so quietly that no one could hear. How did Zoe feel?
+    choices:
+      - nervous
+      - bored
+      - angry
+    answer: 0
+    feedback:
+      '1': Do bored people’s hands shake?
+      '2': Do angry people usually speak so quietly?
+    hints:
+      - What do shaking hands and a tiny voice tell you?
+    solution:
+      - Shaking hands and a quiet voice are clues. Zoe felt **nervous**.
+
+  - id: b2
+    level: 2
+    thinking: breakdown
+    covers: [S5.2, S5.3]
+    type: order
+    prompt: Put the big events of Omar’s story in order, for a summary.
+    items:
+      - Omar planted a seed.
+      - He watered it every day.
+      - A tiny sprout came up.
+      - It grew into a tall sunflower.
+    hints:
+      - What has to happen before a sprout can come up?
+    solution:
+      - Plant, water, sprout, grow. A summary keeps the big events **in order**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: perspective
+    covers: [S4.2, S4.1]
+    type: mc
+    prompt: Dev’s little sister dropped her ice cream and cried. Dev looked at his own cone. Then he held it out to her. **Why**?
+    choices:
+      - He wanted to cheer her up
+      - He didn’t like ice cream
+      - He wanted to trade for something
+    answer: 0
+    feedback:
+      '1': Is there any clue that Dev doesn’t like ice cream?
+      '2': Does Dev ask for anything back?
+    hints:
+      - What was his sister doing? What did Dev do right after?
+    solution:
+      - His sister was crying. He looked at his cone, then gave it to her.
+      - The clues show he wanted to **cheer her up**. He cared about her.
+
+  - id: d2
+    level: 3
+    thinking: evidence
+    covers: [S4.1, K4.1, U4.1]
+    type: text
+    prompt: 'Nora put on her mitts, her toque and her scarf. Her breath made little clouds. What was the weather like? Type one word.'
+    accept: [cold, freezing, chilly, frosty, icy, wintry, snowy, winter, freezing cold, very cold, really cold, cold out, cold outside, cool, frigid, wintery]
+    hints:
+      - When do you wear mitts, a toque and a scarf?
+      - When can you see your breath?
+    solution:
+      - 'Clues: mitts, a toque, a scarf, and breath you can see.'
+      - You know those happen when it is **cold**. So it was cold outside.

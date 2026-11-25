@@ -1,0 +1,253 @@
+id: fiction-kinds
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI1
+outcomes: [LANENG3-OI1-GQ1-LO1]
+order: 3
+title: Myths, Mysteries and Other Kinds of Fiction
+shortTitle: Kinds of fiction
+summary: >-
+  Tell realistic fiction from historical fiction, meet a myth with a brave hero, solve a mystery with
+  clues, then act out a scene with your voice and body.
+
+bigIdea: |-
+  - Fiction comes in kinds: **realistic fiction**, **historical fiction**, **myths** and **mysteries**.
+  - Look at **when** and **where** it happens, **who** is in it, and **what** happens.
+  - All of them come from imagination, even when they feel real.
+
+lesson:
+  - title: Today or long ago?
+    blocks:
+      - type: visual
+        covers: [K3.1, K3.3, K3.4, S3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: real, label: Realistic fiction, icon: 🏫 }
+            - { id: past, label: Historical fiction, icon: 🕰️ }
+          cards:
+            - { text: Zoe feels nervous on her first day at a new school., bin: real, why: 'It is set today, and it could really happen.' }
+            - { text: 'In 1910, Anna rides a wagon to her new prairie farm.', bin: past, why: 'It is set in the past.' }
+            - { text: Ben’s tablet runs out of power on a long car trip., bin: real, why: 'Tablets and cars are part of life today.' }
+            - { text: 'Long ago, Tom carries water from the well for his family.', bin: past, why: '*Long ago* tells you it is set in the past.' }
+        caption: Is each story set today, or long ago?
+
+  - title: A myth
+    blocks:
+      - type: visual
+        covers: [K3.1, K3.2, S3.1]
+        component: text-xray
+        props:
+          button: Show what makes it a myth
+          pages:
+            - label: Hou Yi and the Ten Suns
+              icon: ☀️
+              parts:
+                - { style: kicker, text: A myth from China }
+                - { style: text, text: 'Long, long ago, there were ten suns. They took turns crossing the sky.', tag: Told for a very long time, job: 'A myth is a traditional story, retold for many years.' }
+                - { style: text, text: 'One day, all ten suns rose at once! The earth grew hot and dry.', tag: A big event, job: 'Myths often tell about something huge that happens.' }
+                - { style: text, text: 'A brave archer named Hou Yi shot down the suns, one by one, until only one was left.', tag: A brave hero, job: 'Myths often have a courageous hero or heroine.' }
+              note: That is why, in the myth, we have just one sun.
+        caption: Read the myth. Then tap the button.
+
+  - title: A mystery
+    blocks:
+      - type: visual
+        covers: [K3.1, K3.5]
+        component: inference-equation
+        props:
+          examples:
+            - clue: Muddy paw prints lead from the back door.
+              know: Dogs have paws, and they track in mud.
+              inference: A dog came inside!
+            - clue: There is red wool stuck on the doghouse.
+              know: Dad’s missing hat is made of red wool.
+              inference: The hat is in the doghouse!
+        caption: A **mystery** has a secret to work out. Build the clues to solve it.
+      - type: passage
+        id: hat
+        title: The Missing Hat
+        form: Mystery
+        paragraphs:
+          - Dad’s red hat was gone. It was not on the hook. It was not in the closet.
+          - Jada looked for clues. She saw muddy paw prints by the back door. She saw red wool on the doghouse.
+          - Jada peeked into the doghouse. Biscuit the puppy was asleep on the red hat!
+        note: An original mystery written for Alberta Edu.
+
+  - title: Sort all four
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1, U3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: real, label: Realistic, icon: 🏫 }
+            - { id: past, label: Historical, icon: 🕰️ }
+            - { id: myth, label: Myth, icon: ⚡ }
+            - { id: mystery, label: Mystery, icon: 🔍 }
+          cards:
+            - { text: 'Who broke the window? Nora finds a baseball under the bush.', bin: mystery, why: 'There is a secret to work out, with clues.' }
+            - { text: An old story of a brave hero who tames the wild wind., bin: myth, why: 'A traditional story with a hero and a big event.' }
+            - { text: Raj and his friends build a snow fort at recess., bin: real, why: 'It is set today, and it could happen.' }
+            - { text: 'In 1885, a girl watches the first train come to town.', bin: past, why: 'It is set in the past.' }
+        caption: Look at the time, the place, the characters and what happens.
+      - type: callout
+        variant: tip
+        covers: [U3.1]
+        title: Still made up!
+        body: Historical fiction can feel true. But its characters and events come from the writer’s imagination.
+
+  - title: Act it out
+    blocks:
+      - type: visual
+        covers: [S3.6, K3.7]
+        component: script-stage
+        props:
+          characters: [Jada, Dad]
+          lines:
+            - { who: 1, say: 'My red hat is gone!', body: 'Pats his head, then looks around.', voice: 'Loud and surprised.', pose: still }
+            - { who: 0, say: 'Don’t worry. I’ll find the clues.', body: 'Stands tall, like a detective.', voice: 'Calm and sure.', pose: up }
+            - { who: 0, say: 'Paw prints… and red wool on the doghouse!', body: 'Bends down and points.', voice: 'Slow, then excited.', pose: lean }
+            - { who: 1, say: 'Biscuit! You sneaky puppy!', body: 'Shakes his head and laughs.', voice: 'Pretend cross, then happy.', pose: away }
+        caption: Press through the scene. How do the body and voice show each character?
+
+keyTerms:
+  - term: Realistic fiction
+    covers: [K3.3]
+    definition: A made-up story set today, with characters and events that could really happen.
+  - term: Historical fiction
+    covers: [K3.4]
+    definition: A made-up story set in the past.
+  - term: Myth
+    covers: [K3.2]
+    definition: A traditional story, often about a brave hero or heroine, or a big event.
+  - term: Mystery
+    covers: [K3.5]
+    definition: A story about solving a crime or working out a secret.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K3.4, S3.1]
+    type: mc
+    prompt: '*In 1920, Rosa rides a horse to her one-room school.* What kind of fiction is this?'
+    choices:
+      - Historical fiction
+      - Realistic fiction
+      - A mystery
+      - A myth
+    answer: 0
+    feedback:
+      '1': Realistic fiction is set today. When is this set?
+      '2': Is there a secret to solve?
+      '3': Is there a big event or a legendary hero?
+    hints:
+      - Look at the year. Is it today, or long ago?
+    solution:
+      - '1920 is long ago, so this is **historical fiction**.'
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K3.5, S3.1]
+    type: mc
+    prompt: Which book is most likely a **mystery**?
+    choices:
+      - 🔍 The Secret of the Locked Box
+      - 🏒 Our Hockey Team
+      - ⚡ The Hero Who Tamed the Wind
+      - 🕰️ A Pioneer Winter
+    answer: 0
+    feedback:
+      '1': This sounds like a story set today. Is there a secret?
+      '2': A hero and a huge event sound like a myth.
+      '3': This sounds like a story set long ago.
+    hints:
+      - Which title has a secret to work out?
+    solution:
+      - A **secret** and a locked box to open sound like a mystery.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K3.5]
+    type: evidence
+    prompt: In “The Missing Hat”, which clue points Jada to the **doghouse**? Tap it.
+    passage: hat
+    paragraphs: [2]
+    answer: [p2s3]
+    feedback:
+      p2s1: This tells you Jada is looking. What did she find?
+      p2s2: Paw prints tell you a dog came in. But do they lead to the doghouse?
+    hints:
+      - Which clue is right **on** the doghouse?
+    solution:
+      - Red wool on the doghouse matches Dad’s red hat.
+      - So Jada knows where to look.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.2, S3.1]
+    type: mc
+    prompt: People have told this story for hundreds of years. A brave girl climbs a mountain and stops a giant from hiding the moon. What kind of fiction is it?
+    choices:
+      - A myth
+      - Realistic fiction
+      - Historical fiction
+      - A mystery
+    answer: 0
+    feedback:
+      '1': Could this happen today? Look at the giant.
+      '2': Historical fiction is set in a real past. Are giants part of the real past?
+      '3': Is there a secret or a crime to work out?
+    hints:
+      - Is it old? Is there a brave hero? Is there a big event?
+    solution:
+      - It has been told for a long time. It has a brave heroine and a huge event.
+      - That makes it a **myth**.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [U3.1, K3.4]
+    type: mc
+    prompt: Mo says, “This book is historical fiction, so everything in it really happened.” What is wrong?
+    choices:
+      - It is set in the past, but its characters and events are made up.
+      - Historical fiction is set in the future, not the past.
+      - Nothing. Historical fiction is a kind of non-fiction.
+      - Historical fiction is always about a crime.
+    answer: 0
+    feedback:
+      '1': Historical fiction is set in the **past**.
+      '2': Look at the word *fiction*. Is fiction made up or true?
+      '3': That is a mystery. Historical fiction can be about anything in the past.
+    hints:
+      - What does the word *fiction* tell you?
+    solution:
+      - Historical fiction is set in a real time long ago, so it can feel true.
+      - But it is still **fiction**. The writer imagined the characters and what happens.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K3.5]
+    type: evidence
+    prompt: A mystery ends when the secret comes out. Tap the sentence that **solves** “The Missing Hat”.
+    passage: hat
+    paragraphs: [1, 2, 3]
+    answer: [p3s2]
+    feedback:
+      p1s1: This is where the mystery starts.
+      p2s2: This is a clue, but we don’t know yet where the hat is.
+      p2s3: This is a strong clue. But has Jada found the hat yet?
+      p3s1: Jada is about to find out. What does she see?
+    hints:
+      - Where do we finally **see** the hat?
+    solution:
+      - Biscuit asleep on the red hat solves it. Now we know who took the hat and where it is.

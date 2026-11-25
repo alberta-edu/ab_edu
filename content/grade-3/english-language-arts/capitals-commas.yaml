@@ -1,0 +1,223 @@
+id: capitals-commas
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG3-OI9-GQ1-LO1]
+order: 21
+title: Capitals, End Marks, Commas and Abbreviations
+shortTitle: Capitals & commas
+summary: >-
+  Tap capitals into place, end sentences three ways, add commas for pauses and lists, and squeeze long
+  words into short abbreviations.
+
+bigIdea: |-
+  - **Capitals** start sentences, names, days and headings.
+  - End a sentence with a **period**, a **question mark** or an **exclamation mark**.
+  - **Commas** show a pause or split up a list. **Abbreviations** are short forms of words.
+
+lesson:
+  - title: Capitals
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.1]
+        component: punct-lab
+        props:
+          mode: capitals
+          sentence: On Saturday, Mia and I saw Grandpa in Edmonton.
+        caption: Tap each word that needs a capital letter.
+      - type: callout
+        variant: tip
+        covers: [K1.1, S1.1]
+        title: Headings get capitals too
+        body: 'A heading starts with a capital. Important words often get one too: **Where Moose Live**.'
+
+  - title: Three ways to end
+    blocks:
+      - type: visual
+        covers: [S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: period, label: '. Tells', icon: 🟢 }
+            - { id: question, label: '? Asks', icon: 🟡 }
+            - { id: excl, label: '! Strong feeling', icon: 🔴 }
+          cards:
+            - { text: My cat is asleep, bin: period, why: 'It tells something, so it ends with a **period**.' }
+            - { text: Where is my hat, bin: question, why: 'It asks something, so it ends with a **question mark**.' }
+            - { text: Watch out for the puck, bin: excl, why: 'It shows a strong feeling, so it ends with an **exclamation mark**.' }
+            - { text: Can we go skating, bin: question, why: 'It asks, so it needs a **question mark**.' }
+            - { text: We ate soup for lunch, bin: period, why: 'It tells, so a **period** ends it.' }
+        caption: Each sentence is missing its end mark. Which mark fits?
+
+  - title: Commas
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, S1.3]
+        component: comma-tap
+        props:
+          items:
+            - { sentence: 'We packed mitts, hats, scarves and snacks.', job: 'Commas **split up a list**.' }
+            - { sentence: 'After lunch, we went sledding.', job: 'A comma shows a **pause** between parts of a sentence.' }
+            - { sentence: 'When the snow stopped, we built a fort, a slide and a snowman.', job: 'One comma is a pause. The others split up a list.' }
+        caption: Tap the gaps where a comma belongs. Read it aloud to hear the pauses.
+
+  - title: Short forms
+    blocks:
+      - type: visual
+        covers: [K5.1, K5.2, S5.1]
+        component: g3e-squeeze
+        props:
+          button: Shorten it!
+          items:
+            - { from: Doctor, to: Dr., note: 'A **title**, before a name: *Dr. Lee*.' }
+            - { from: Monday, to: Mon., note: 'A **day of the week**.' }
+            - { from: minutes, to: min, note: '**Time**: *20 min*. No period here.' }
+            - { from: centimetres, to: cm, note: 'A **measurement**: *30 cm*. No period here.' }
+            - { from: Street, to: St., note: 'Part of an **address**: *12 Pine St.*' }
+            - { from: Alberta, to: AB, note: 'An **address** too. Two capitals, no period.' }
+        caption: An **abbreviation** is a short form of a word. Pick a word and shorten it.
+
+  - title: Marks help readers
+    blocks:
+      - type: visual
+        covers: [U1.1, S1.1, S1.2, S1.3, S5.1]
+        component: craft-toggles
+        props:
+          parts:
+            - { id: caps, label: Capitals, icon: 🔠, plain: 'on monday mr. ray read to us', crafted: 'On Monday, Mr. Ray read to us.', why: 'Capitals start the sentence, the day and the name.' }
+            - { id: comma, label: Commas, icon: '🔸', plain: 'he brought a book a puppet and a drum', crafted: 'He brought a book, a puppet and a drum.', why: 'Commas split up the list.' }
+            - { id: end, label: End marks, icon: '❗', plain: 'what a fun day', crafted: 'What a fun day!', why: 'An exclamation mark shows how excited we were.' }
+        caption: Switch on each fix. Which note is easier to read?
+
+keyTerms:
+  - term: Capital letter
+    covers: [S1.1, K1.1]
+    definition: A big letter, like **M**. It starts sentences, names, days and headings.
+  - term: End mark
+    covers: [S1.2]
+    definition: The mark at the end of a sentence, a period, question mark or exclamation mark.
+  - term: Comma
+    covers: [K1.3]
+    definition: 'A mark ( , ) that shows a pause, or splits up a list.'
+  - term: Abbreviation
+    covers: [K5.2]
+    definition: A short form of a word, like **St.** for *Street*.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [S1.2]
+    type: mc
+    prompt: 'Which mark ends this sentence? *Can I pet your dog___*'
+    choices:
+      - '?'
+      - '.'
+      - '!'
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': A period ends a telling sentence. Is this one telling or asking?
+      '2': Does it show a strong feeling, or ask something?
+    hints:
+      - Is the sentence telling, asking or showing a strong feeling?
+    solution:
+      - It **asks** something, so it ends with a **question mark**.
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K5.2, S5.1]
+    type: mc
+    prompt: Which is the abbreviation for **Doctor**?
+    choices:
+      - Dr.
+      - Doc
+      - DR
+    answer: 0
+    feedback:
+      '1': '*Doc* is a nickname. An abbreviation for a title ends with a period.'
+      '2': Only the first letter is a capital. What goes at the end?
+    hints:
+      - It keeps the first and last letters, then adds a period.
+    solution:
+      - '**Dr.** is the short form of *Doctor*, as in *Dr. Lee*.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K1.1, S1.1]
+    type: text
+    caseSensitive: true
+    prompt: 'Ty’s report heading is *where moose live*. Type it with the right capitals.'
+    accept: [Where Moose Live, Where moose live]
+    hints:
+      - Every heading starts with a capital letter.
+    solution:
+      - A heading starts with a capital. Important words can get one too.
+      - '**Where Moose Live**'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K1.3, S1.3]
+    type: mc
+    prompt: Which sentence uses **commas** in a list the right way?
+    choices:
+      - I packed mitts, a hat and a scarf.
+      - I packed, mitts a hat, and a scarf.
+      - I, packed mitts a hat and a scarf.
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Read it aloud. Do you pause after *packed*?
+      '2': Read it aloud. Do you pause after *I*?
+    hints:
+      - What are the things in the list? Commas go between them.
+    solution:
+      - '*Mitts*, *a hat* and *a scarf* are the list. A comma goes after *mitts*.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K1.3, U1.1]
+    type: mc
+    prompt: |-
+      What if you take the comma out?
+
+      > After we ate, the dog licked the plates.\
+      > After we ate the dog licked the plates.
+    choices:
+      - It sounds like we ate the dog!
+      - Nothing changes.
+      - It turns into a question.
+    answer: 0
+    feedback:
+      '1': Read the second one aloud with no pause. What did we eat?
+      '2': Is there a question mark?
+    hints:
+      - Read the second sentence aloud, with no pause.
+    solution:
+      - Without the pause, *we ate the dog* reads as one idea. Oh no!
+      - The comma shows readers where to **pause**, so the meaning is clear.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K5.1, K5.2, S5.1]
+    type: text
+    caseSensitive: true
+    prompt: |-
+      Shorten this address. Use the abbreviations for **Street** and **Alberta**.
+
+      > 14 Pine Street, Red Deer, Alberta
+    accept: ['14 Pine St., Red Deer, AB']
+    hints:
+      - Shorten one word at a time.
+      - '*Street* becomes *St.* What two letters stand for *Alberta*?'
+    solution:
+      - '*Street* → **St.** *Alberta* → **AB**.'
+      - '**14 Pine St., Red Deer, AB**'

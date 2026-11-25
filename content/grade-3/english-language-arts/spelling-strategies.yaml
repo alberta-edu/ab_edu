@@ -1,0 +1,236 @@
+id: spelling-strategies
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG3-OI9-GQ1-LO1]
+order: 26
+title: Spelling Strategies and Tricky Words
+shortTitle: Spelling strategies
+summary: >-
+  Spot spelling patterns, keep prefixes and suffixes the same, snap compound words, find tricky words,
+  and choose a strategy or a tool when you’re stuck.
+
+bigIdea: |-
+  - Use words and patterns you know to spell new words.
+  - Prefixes, suffixes and compound words keep their spelling. Some words are just tricky.
+  - Stuck? Say it slowly, picture it, try it a few ways, or check with a tool.
+
+lesson:
+  - title: Spot the pattern
+    blocks:
+      - type: visual
+        covers: [S3.1, S3.2, U3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: ight, label: '-ight', icon: 💡 }
+            - { id: ake, label: '-ake', icon: 🎂 }
+            - { id: ould, label: '-ould', icon: 🤔 }
+          cards:
+            - { text: night, bin: ight, why: 'n + **ight**' }
+            - { text: snake, bin: ake, why: 'sn + **ake**' }
+            - { text: could, bin: ould, why: 'c + **ould**' }
+            - { text: bright, bin: ight, why: 'br + **ight**' }
+            - { text: would, bin: ould, why: 'w + **ould**' }
+            - { text: cake, bin: ake, why: 'c + **ake**' }
+        caption: Words in a family share a pattern. Which family is each word in?
+      - type: callout
+        variant: tip
+        covers: [S3.2, K4.1]
+        title: Use a word you know
+        body: Can you spell *light*? Then you can spell *night*, *fight* and *flight*!
+
+  - title: Parts keep their spelling
+    blocks:
+      - type: visual
+        covers: [K3.5, S3.6]
+        component: affix-lab
+        props:
+          affixes:
+            - affix: un
+              kind: prefix
+              meaning: not
+              words:
+                - { base: lock, baseMeaning: close with a key, word: unlock, meaning: open the lock }
+                - { base: kind, baseMeaning: nice, word: unkind, meaning: not kind }
+            - affix: ful
+              kind: suffix
+              meaning: full of
+              note: '*-ful* has only **one** *l*.'
+              words:
+                - { base: help, baseMeaning: do something useful, word: helpful, meaning: full of help }
+                - { base: care, baseMeaning: thought and attention, word: careful, meaning: full of care }
+        caption: Tap **un-** or **-ful**. The part is spelled the same in every word.
+
+  - title: Snap compound words
+    blocks:
+      - type: visual
+        covers: [S5.4]
+        component: g3e-word-snap
+        props:
+          items:
+            - { a: pop, aIcon: 💥, b: corn, bIcon: 🌽, word: popcorn, icon: 🍿, means: 'corn that pops when it’s hot.' }
+            - { a: cup, aIcon: ☕, b: cake, bIcon: 🍰, word: cupcake, icon: 🧁, means: 'a little cake, the size of a cup.' }
+            - { a: mail, aIcon: ✉️, b: box, bIcon: 📦, word: mailbox, icon: 📫, means: 'a box for mail.' }
+        caption: Spell each small word. Then snap them together, keeping **every** letter.
+
+  - title: Tricky words
+    blocks:
+      - type: visual
+        covers: [K3.6, S3.7]
+        component: card-sort
+        props:
+          bins:
+            - { id: fair, label: Spelled like it sounds, icon: ✅ }
+            - { id: tricky, label: Tricky, icon: 🤪 }
+          cards:
+            - { text: stop, bin: fair, why: 's-t-o-p. Every sound has its letter.' }
+            - { text: said, bin: tricky, why: 'It sounds like *sed*, but it’s spelled with **ai**.' }
+            - { text: friend, bin: tricky, why: 'You can’t hear the **i**.' }
+            - { text: jump, bin: fair, why: 'j-u-m-p. Just like it sounds.' }
+            - { text: two, bin: tricky, why: 'You can’t hear the **w**.' }
+            - { text: because, bin: tricky, why: 'It sounds like *becuz*. Learn how it looks.' }
+        caption: Say each word slowly. Can you hear every letter?
+
+  - title: Stuck? Try a strategy
+    blocks:
+      - type: visual
+        covers: [K4.1, S4.1, U4.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: say, label: Say it slowly, icon: 🗣️ }
+            - { id: see, label: Picture it, icon: 👀 }
+            - { id: know, label: Use a word I know, icon: 🔗 }
+            - { id: try, label: Try a few ways, icon: ✍️ }
+          cards:
+            - { text: 'Ty stretches out *s-p-l-a-sh*, one sound at a time.', bin: say, why: 'Saying it slowly helps you hear each sound.' }
+            - { text: 'Mia shuts her eyes and sees *because* on the word wall.', bin: see, why: 'She pictures how the word looks.' }
+            - { text: 'Ana knows *cake*, so she can spell *rake*.', bin: know, why: 'She uses a word she already knows.' }
+            - { text: 'Leo writes *frend*, *freind* and *friend*, then picks the one that looks right.', bin: try, why: 'Trying a few ways is called **trial and error**.' }
+        caption: Each child uses a different strategy. Which one?
+      - type: callout
+        variant: tip
+        covers: [K4.2, S4.2]
+        title: Check with a tool
+        body: |-
+          - A **dictionary** or a **word wall**.
+          - **Spell check** on a tablet or computer.
+
+keyTerms:
+  - term: Spelling pattern
+    covers: [S3.1]
+    definition: Letters that show up the same way in many words, like **ight** in *night* and *bright*.
+  - term: Tricky word
+    covers: [K3.6]
+    definition: A word that isn’t spelled the way it sounds, like *said* or *two*.
+  - term: Trial and error
+    covers: [K4.1]
+    definition: Trying a word a few ways, then picking the one that looks right.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K3.6, S3.7]
+    type: mc
+    prompt: Which word is **tricky**, not spelled the way it sounds?
+    choices:
+      - said
+      - sun
+      - dog
+    answer: 0
+    feedback:
+      '1': s-u-n. Can you hear every letter?
+      '2': d-o-g. Is any letter hiding?
+    hints:
+      - Say each word slowly. Which one surprises you?
+    solution:
+      - '*Said* sounds like *sed*, but it’s spelled with **ai**. It’s tricky.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S5.4]
+    type: text
+    prompt: Snap **rain** + **coat** into one compound word. Type it.
+    accept: [raincoat]
+    hints:
+      - Keep every letter of both words.
+    solution:
+      - '*rain* + *coat* = **raincoat**'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S3.2, S3.1, K4.1]
+    type: mc
+    prompt: Ana can spell **make**. Which spelling of 🐍 uses the same pattern?
+    choices:
+      - snake
+      - snaik
+      - snayk
+    answer: 0
+    feedback:
+      '1': '*Make* doesn’t have *ai*. Look at its ending.'
+      '2': Does *make* end in *yk*?
+    hints:
+      - '*Make* and the animal rhyme. They end the same way.'
+    solution:
+      - '*m + ake* → *sn + ake*: **snake**.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K3.5, S3.6]
+    type: mc
+    prompt: Add **-ful** to *help*. Which spelling is right?
+    choices:
+      - helpful
+      - helpfull
+      - helpfill
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*Full* has two *l*s, but the suffix doesn’t. How many *l*s does *-ful* have?'
+      '2': The suffix is *-ful*, not *-fill*.
+    hints:
+      - The suffix *-ful* is spelled the same in every word.
+    solution:
+      - '*-ful* has only one *l*: **helpful**, like *careful*.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [K4.1, S4.1, K3.6]
+    type: mc
+    prompt: Jun can’t spell **because**. Sounding it out gives *becuz*. He has seen *because* in lots of books. Which strategy fits best?
+    choices:
+      - Picture how the word looks.
+      - Sound it out again, letter by letter.
+      - Skip the word.
+    answer: 0
+    feedback:
+      '1': He already tried that. Is *because* spelled the way it sounds?
+      '2': He needs the word in his story. Which strategy could help?
+    hints:
+      - Is *because* a tricky word? Where has Jun seen it?
+    solution:
+      - '*Because* is tricky, so sounding it out doesn’t work. Jun has seen it lots.'
+      - '**Picturing** how it looks can help him spell it.'
+
+  - id: d2
+    level: 3
+    thinking: ways
+    covers: [K4.2, S4.2, K4.1]
+    type: open
+    prompt: You wrote *dinosore*, but it doesn’t look right. Name **two** different ways to check the spelling.
+    modelAnswer: |-
+      1. Look it up in a dictionary.
+      2. Use spell check on a tablet.
+    rubric:
+      - It names two different ways.
+      - Each one is a real way to check, like a dictionary, a word wall, spell check or trying a few spellings.

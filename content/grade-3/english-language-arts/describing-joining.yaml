@@ -1,0 +1,243 @@
+id: describing-joining
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI9
+outcomes: [LANENG3-OI9-GQ1-LO1]
+order: 24
+title: Adjectives, Adverbs, Possessives, Conjunctions and Prepositions
+shortTitle: Describing & joining
+summary: >-
+  Describe nouns with adjectives and verbs with adverbs. Show who owns what, move a cat with prepositions,
+  and join sentences with and, but, or, so and for.
+
+bigIdea: |-
+  - **Adjectives** describe nouns. **Adverbs** describe verbs.
+  - **Possessives** show who owns something. **Prepositions** show time or place.
+  - **Conjunctions** like *and*, *but* and *so* join ideas.
+
+lesson:
+  - title: Describe the noun
+    blocks:
+      - type: visual
+        covers: [K2.6, S2.5]
+        component: g3e-picture-words
+        props:
+          done: Each new word is an adjective. It describes a noun.
+          sets:
+            - label: Kitten
+              picture: 🐱
+              sentence: 'A {tiny} {fluffy} {orange|🟠} kitten napped.'
+            - label: Truck
+              picture: 🚒
+              sentence: 'A {huge} {shiny|✨} {red} truck zoomed by.'
+        caption: Tap each word. Which noun does it describe?
+
+  - title: Describe the verb
+    blocks:
+      - type: visual
+        covers: [K2.7, S2.6]
+        component: g3e-picture-words
+        props:
+          done: Each new word is an adverb. It tells how the action happens.
+          sets:
+            - label: Bunny
+              picture: 🐇
+              sentence: 'The bunny hopped {quickly|💨}.'
+            - label: Owl
+              picture: 🦉
+              sentence: 'The owl hooted {softly|🌙}.'
+        caption: Tap the word. How did the bunny hop? How did the owl hoot?
+      - type: callout
+        variant: tip
+        covers: [K2.7]
+        title: Look for -ly
+        body: Many adverbs end in **-ly**, like *quickly*, *softly* and *happily*.
+
+  - title: Whose is it?
+    blocks:
+      - type: visual
+        covers: [K2.9, S2.8]
+        component: card-sort
+        props:
+          bins:
+            - { id: noun, label: Noun + ’s, icon: 🏷️ }
+            - { id: adj, label: Before a noun, icon: 👉 }
+            - { id: pron, label: On its own, icon: 🙋 }
+          cards:
+            - { text: '**Sam’s** kite', bin: noun, why: 'A name plus **’s**. A possessive noun.' }
+            - { text: '**my** kite', bin: adj, why: '*My* comes before the noun *kite*. A possessive adjective.' }
+            - { text: 'The kite is **mine**.', bin: pron, why: '*Mine* stands alone, with no noun after it. A possessive pronoun.' }
+            - { text: '**their** boots', bin: adj, why: '*Their* comes before *boots*.' }
+            - { text: 'The boots are **hers**.', bin: pron, why: '*Hers* stands on its own.' }
+            - { text: 'the **dog’s** bone', bin: noun, why: '*Dog* plus **’s**.' }
+        caption: Each one shows who owns something. How does it do it?
+      - type: table
+        covers: [K2.9, S2.8]
+        caption: Three ways to show who owns it
+        headers: [Kind, Words]
+        rows:
+          - ['**Possessive noun**', '*Sam’s*, *the dog’s*']
+          - ['**Possessive adjective**, before a noun', '*my, your, his, her, its, our, their*']
+          - ['**Possessive pronoun**, on its own', '*mine, yours, his, hers, ours, theirs*']
+
+  - title: Where and when?
+    blocks:
+      - type: visual
+        covers: [K2.10, S2.9]
+        component: g3e-where
+        caption: Tap a word. Where does the cat go?
+      - type: visual
+        covers: [K2.10, S2.9]
+        component: card-sort
+        props:
+          bins:
+            - { id: where, label: Where, icon: 📍 }
+            - { id: when, label: When, icon: ⏰ }
+          cards:
+            - { text: '**under** the bed', bin: where, why: '*Under* tells a place.' }
+            - { text: '**after** school', bin: when, why: '*After* tells a time.' }
+            - { text: '**before** lunch', bin: when, why: '*Before* tells a time.' }
+            - { text: '**beside** the door', bin: where, why: '*Beside* tells a place.' }
+        caption: A **preposition** can tell where or when. Sort them.
+
+  - title: Join two ideas
+    blocks:
+      - type: visual
+        covers: [K2.5, S2.4]
+        component: craft-toggles
+        props:
+          parts:
+            - { id: and, label: and, icon: ➕, plain: 'We went to the lake. We had a picnic.', crafted: 'We went to the lake, **and** we had a picnic.', why: '*And* adds one more idea.' }
+            - { id: but, label: but, icon: ↔️, plain: 'I wanted to swim. The water was cold.', crafted: 'I wanted to swim, **but** the water was cold.', why: '*But* shows a surprise or a change.' }
+            - { id: or, label: or, icon: 🔀, plain: 'Should we stay? Should we go?', crafted: 'Should we stay, **or** should we go?', why: '*Or* gives a choice.' }
+            - { id: so, label: so, icon: ➡️, plain: 'It started to rain. We ran to the car.', crafted: 'It started to rain, **so** we ran to the car.', why: '*So* tells what happened because of it.' }
+            - { id: for, label: for, icon: 💛, plain: 'We were happy. It was a great day.', crafted: 'We were happy, **for** it was a great day.', why: '*For* gives a reason. It means *because*.' }
+        caption: Switch on each **conjunction**. Watch two short sentences join into one.
+
+keyTerms:
+  - term: Adjective
+    covers: [K2.6]
+    definition: A word that describes a noun, like *fluffy* or *red*.
+  - term: Adverb
+    covers: [K2.7]
+    definition: A word that describes a verb, like *quickly* or *softly*.
+  - term: Preposition
+    covers: [K2.10]
+    definition: A word like *under*, *with*, *before* or *after* that shows place or time.
+  - term: Conjunction
+    covers: [K2.5]
+    definition: A joining word, like *and*, *but*, *or*, *so* or *for*.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [K2.6, S2.5]
+    type: mc
+    prompt: 'Which word is an **adjective**? *I rode my shiny bike.*'
+    choices:
+      - shiny
+      - rode
+      - I
+    answer: 0
+    feedback:
+      '1': '*Rode* is what I did. It is a verb.'
+      '2': Does *I* describe the bike?
+    hints:
+      - Which word tells what the bike is like?
+    solution:
+      - '**Shiny** describes the noun *bike*. It is an adjective.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.10, S2.9]
+    type: mc
+    prompt: 'Which word tells **when**? *We ate popcorn after the movie.*'
+    choices:
+      - after
+      - popcorn
+      - ate
+    answer: 0
+    feedback:
+      '1': Popcorn is a thing. Which word tells the time?
+      '2': '*Ate* is what we did. When did we do it?'
+    hints:
+      - When did we eat the popcorn?
+    solution:
+      - '**After** is a preposition. *After the movie* tells when.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K2.7, S2.6]
+    type: mc
+    prompt: 'Which **adverb** tells how the snail moved? *The snail moved ___.*'
+    choices:
+      - slowly
+      - green
+      - shell
+    answer: 0
+    feedback:
+      '1': '*Green* tells what the snail looks like. How did it **move**?'
+      '2': A shell is a thing. Does it tell how it moved?
+    hints:
+      - Many adverbs end in **-ly**.
+    solution:
+      - '**Slowly** tells how the snail moved. It describes the verb *moved*.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [K2.9, S2.8]
+    type: mc
+    prompt: 'Which word finishes the sentence? *That red mitt is ___.*'
+    choices:
+      - mine
+      - my
+      - me
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': '*My* needs a noun after it, like *my mitt*.'
+      '2': Does *That red mitt is me* make sense?
+    hints:
+      - No noun comes after the blank. Which word can stand on its own?
+    solution:
+      - '**Mine** is a possessive pronoun. It stands on its own: *That red mitt is mine.*'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [K2.5, S2.4]
+    type: mc
+    prompt: 'Which conjunction joins these best? *I wanted to play outside, ___ it was raining.*'
+    choices:
+      - but
+      - so
+      - and
+    answer: 0
+    feedback:
+      '1': Did the rain make me want to go out? Read it aloud with *so*.
+      '2': '*And* just adds an idea. Is the rain a surprise or a change?'
+    hints:
+      - The second idea gets in the way of the first. Which word shows that?
+    solution:
+      - The rain gets in the way of playing. **But** shows that change.
+      - '*I wanted to play outside, but it was raining.*'
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.5, S2.6, S2.9]
+    type: open
+    prompt: Write one sentence about a dog. Use an **adjective**, an **adverb** and a **preposition**.
+    modelAnswer: |-
+      The muddy dog ran quickly under the table.
+    rubric:
+      - It has an adjective that describes the dog, like *muddy*.
+      - It has an adverb that tells how, like *quickly*.
+      - It has a preposition that tells where or when, like *under*.

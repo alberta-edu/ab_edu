@@ -1,0 +1,253 @@
+id: word-meanings
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI3
+outcomes: [LANENG3-OI3-GQ1-LO1]
+order: 9
+title: Synonyms, Antonyms, Homophones and Words with Two Meanings
+shortTitle: Word meanings
+summary: >-
+  Match synonyms and antonyms, pick strong words, sort sound-alike homophones, use clues to tell a bat
+  from a bat, and collect the special words of each subject.
+
+bigIdea: |-
+  - **Synonyms** mean the same. **Antonyms** mean the opposite.
+  - **Homophones** sound the same but are spelled differently. **Homographs** are spelled the same but mean different things.
+  - The words around a word help you know which meaning it has.
+
+lesson:
+  - title: Same or opposite?
+    blocks:
+      - type: visual
+        covers: [S1.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: same, label: Synonyms (same), icon: 🟰 }
+            - { id: opp, label: Antonyms (opposite), icon: ↔️ }
+          cards:
+            - { text: big · large, bin: same, why: 'They mean the same thing.' }
+            - { text: hot · cold, bin: opp, why: 'They are opposites.' }
+            - { text: quick · fast, bin: same, why: 'Both mean speedy.' }
+            - { text: empty · full, bin: opp, why: 'Opposites.' }
+            - { text: start · begin, bin: same, why: 'Both mean to get going.' }
+            - { text: laugh · cry, bin: opp, why: 'Opposite feelings.' }
+        caption: Is each pair the same, or opposite?
+
+  - title: Pick a strong word
+    blocks:
+      - type: visual
+        covers: [S1.1, S1.6, U1.1]
+        component: word-shades
+        props:
+          sets:
+            - plain: ran
+              sentence: The puppy ___ across the yard.
+              icon: 🐕
+              words:
+                - { word: trotted, note: 'Quick little steps, but not in a hurry.' }
+                - { word: dashed, move: bounce, note: 'Very fast, all of a sudden!' }
+                - { word: zoomed, move: bounce, size: 1.3, note: 'So fast it’s almost a blur.' }
+            - plain: big
+              sentence: A ___ whale swam past our boat.
+              icon: 🐋
+              words:
+                - { word: large, size: 1.4, note: 'Bigger than most.' }
+                - { word: huge, size: 1.9, note: 'Much bigger than most.' }
+                - { word: enormous, size: 2.4, note: 'So big the boat looks tiny!' }
+        caption: Slide to swap the plain word for a **synonym**. How does the picture change?
+
+  - title: Sound-alikes
+    blocks:
+      - type: visual
+        covers: [S1.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: two, label: two, icon: 2️⃣ }
+            - { id: to, label: to, icon: ➡️ }
+            - { id: too, label: too, icon: ➕ }
+          cards:
+            - { text: I have ___ cats., bin: two, why: '*Two* is the number 2.' }
+            - { text: We walked ___ the park., bin: to, why: '*To* shows where you are going.' }
+            - { text: Can I come ___?, bin: too, why: '*Too* means also.' }
+            - { text: The soup is ___ hot!, bin: too, why: '*Too* can mean more than you want.' }
+            - { text: ___ ducks swam by., bin: two, why: 'Count them. Two ducks.' }
+        caption: These **homophones** sound the same. Which one fits each sentence?
+
+  - title: Same spelling, new meaning
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: animal, label: 'bat: animal', icon: 🦇 }
+            - { id: stick, label: 'bat: for baseball', icon: ⚾ }
+            - { id: air, label: 'wind: blowing air', icon: 🌬️ }
+            - { id: turn, label: 'wind: to turn', icon: 🔄 }
+          cards:
+            - { text: The bat flew out of the cave., bin: animal, why: '*Flew* and *cave* tell you it is the animal.' }
+            - { text: Grab your bat and glove!, bin: stick, why: '*Glove* tells you it is for baseball.' }
+            - { text: The wind blew my hat off., bin: air, why: '*Blew* tells you it is moving air. This *wind* rhymes with *pinned*.' }
+            - { text: Wind the string around the stick., bin: turn, why: '*Around* tells you it means turn. This *wind* rhymes with *find*.' }
+        caption: '**Homographs** are spelled the same but mean different things. Use the words around them.'
+
+  - title: Subject words
+    blocks:
+      - type: visual
+        covers: [S1.2, S1.3, S1.4]
+        component: card-sort
+        props:
+          bins:
+            - { id: sci, label: Science, icon: 🔬 }
+            - { id: soc, label: Social studies, icon: 🗺️ }
+            - { id: math, label: Math, icon: ➗ }
+          cards:
+            - { text: liquid, bin: sci, why: 'You learn about liquids and solids in science.' }
+            - { text: community, bin: soc, why: 'Social studies is about people and communities.' }
+            - { text: fraction, bin: math, why: 'A fraction is part of a whole, in math.' }
+            - { text: habitat, bin: sci, why: 'A habitat is where an animal lives. That is science.' }
+            - { text: perimeter, bin: math, why: 'Perimeter is the distance around a shape, in math.' }
+        caption: Each subject has its own special words. Where would you learn each one?
+      - type: callout
+        variant: tip
+        covers: [S1.4, S1.1]
+        title: Use your new words everywhere
+        body: |-
+          Found a great word in a book?
+
+          - Say it at dinner.
+          - Write it in a story.
+
+          Each use helps it stick.
+
+keyTerms:
+  - term: Synonym
+    covers: [S1.6]
+    definition: A word that means the same, or almost the same, as another word.
+  - term: Antonym
+    covers: [S1.6]
+    definition: A word that means the opposite of another word.
+  - term: Homophone
+    covers: [S1.6]
+    definition: A word that sounds like another word, but is spelled differently and means something else.
+  - term: Homograph
+    covers: [S1.6]
+    definition: A word spelled like another word, but with a different meaning.
+  - term: Context
+    covers: [K1.1]
+    definition: The words and ideas around a word that help you know its meaning.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [S1.6]
+    type: mc
+    prompt: Which word is an **antonym** of *empty*?
+    choices:
+      - full
+      - bare
+      - hollow
+    answer: 0
+    feedback:
+      '1': A bare shelf has nothing on it. Is that the opposite of empty?
+      '2': Something hollow has empty space inside. Is that the opposite?
+    hints:
+      - An antonym means the opposite.
+    solution:
+      - The opposite of *empty* is **full**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.6]
+    type: mc
+    prompt: 'Which word fits? *I ate ___ cookies.*'
+    choices:
+      - two
+      - to
+      - too
+    answer: 0
+    feedback:
+      '1': '*To* shows where you go. Can you eat “to” cookies?'
+      '2': '*Too* means also, or more than you want. How many cookies?'
+    hints:
+      - Is it a number?
+    solution:
+      - '**Two** is the number 2. *I ate two cookies.*'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K1.1, S1.6]
+    type: mc
+    prompt: In which sentence is **bat** the animal?
+    choices:
+      - A bat hung upside down in the barn.
+      - Jo swung the bat and hit the ball.
+      - The coach gave everyone a new bat.
+    answer: 0
+    feedback:
+      '1': '*Swung* and *hit the ball* tell you this is a baseball bat.'
+      '2': A coach handing out bats? Think baseball.
+    hints:
+      - Look at the words around *bat*.
+    solution:
+      - Hanging upside down in a barn is what the **animal** does.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S1.2]
+    type: mc
+    prompt: Which word would you most likely learn in **math** class?
+    choices:
+      - perimeter
+      - habitat
+      - community
+    answer: 0
+    feedback:
+      '1': A habitat is where an animal lives. Which class studies animals?
+      '2': Communities are people living together. Which class is that?
+    hints:
+      - Which word is about shapes or numbers?
+    solution:
+      - '**Perimeter** is the distance around a shape. That is a math word.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [S1.1, S1.6, U1.1]
+    type: mc
+    prompt: 'Max wrote, “I saw a big moose.” He wants readers to know it was **really, really** big. Which synonym is best?'
+    choices:
+      - enormous
+      - large
+      - tiny
+    answer: 0
+    feedback:
+      '1': '*Large* means big. Does it say *really, really* big?'
+      '2': '*Tiny* is an antonym of big.'
+    hints:
+      - Which word sounds the biggest?
+    solution:
+      - '*Large* and *enormous* are both synonyms of *big*. But **enormous** means very, very big.'
+      - Picking the strongest synonym shows exactly what you mean.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S1.6, S1.1]
+    type: text
+    prompt: Type a **synonym** for *happy*. There are lots of right answers!
+    accept: [glad, cheerful, joyful, pleased, merry, delighted, jolly, thrilled, content, joyous, cheery, overjoyed, upbeat, sunny, chipper, gleeful, elated, ecstatic]
+    hints:
+      - How else could you say *I am happy*? *I am ___.*
+    solution:
+      - '*Glad*, *cheerful*, *joyful*, *delighted* and *thrilled* all mean happy.'
+      - Some are stronger than others. *Thrilled* is very, very happy.

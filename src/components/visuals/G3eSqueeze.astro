@@ -1,0 +1,95 @@
+---
+// Squeeze a long form into a short one (LANENG3-OI9-GQ1-LO1). Contractions: "do not" becomes "don’t", as
+// the o drops out and an apostrophe pops into its place (K1.2, S1.6, S5.2). Abbreviations: "Street"
+// becomes "St.", as letters drop and a period is added (K5.1, K5.2, S5.1).
+import { squeeze, unsqueezed } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  items: { from: string; to: string; note?: string }[];
+  /** Words on the button, such as "Squeeze!" or "Shorten it". */
+  button?: string;
+}
+const { items, button = 'Squeeze!' } = Astro.props;
+const data = items.map((it) => {
+  const tiles = squeeze(it.from, it.to);
+  if (unsqueezed(tiles) !== it.from) throw new Error(`squeeze: "${it.to}" doesn’t come from "${it.from}"`);
+  return { tiles, from: it.from, to: it.to, note: it.note ? mdInline(it.note) : '' };
+});
+---
+<g3e-squeeze data-items={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a word">
+    {data.map((d, i) => <button type="button" data-sq-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>{d.from}</button>)}
+  </div>
+  <div class="g3e-sq__word" data-sq="word" aria-live="polite"></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-sq="go">🗜️ {button}</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sq="back">↺ Stretch it back</button>
+  </div>
+  <p class="g3e-sq__note" data-sq="note"></p>
+  <noscript><ul>{items.map((it) => <li>{it.from} → {it.to}</li>)}</ul></noscript>
+</g3e-squeeze>
+
+<style is:global>
+  g3e-squeeze { display: block; }
+  .g3e-sq__word { display: flex; justify-content: center; align-items: flex-end; min-height: 5.5rem; margin: 0.7rem 0; padding: 1.4rem 0.5rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); }
+  .g3e-sq__t { display: inline-block; overflow: hidden; max-width: 2.2rem; padding: 0.3rem 0.12rem; font-size: var(--step-3); font-weight: 700; line-height: 1; text-align: center; transition: max-width 0.5s ease 0.35s, opacity 0.35s ease, transform 0.35s ease; }
+  .g3e-sq__t.is-space { min-width: 0.7rem; }
+  .g3e-sq__t.is-drop { color: var(--ink-3); }
+  .g3e-sq__t.is-add { max-width: 0; opacity: 0; color: var(--accent); transform: translateY(-1.4rem); }
+  g3e-squeeze.is-squeezed .g3e-sq__t.is-drop { max-width: 0; padding-inline: 0; min-width: 0; opacity: 0; transform: translateY(1.2rem); }
+  g3e-squeeze.is-squeezed .g3e-sq__t.is-add { max-width: 2.2rem; opacity: 1; transform: none; transition: max-width 0.4s ease 0.5s, opacity 0.3s ease 0.8s, transform 0.4s cubic-bezier(0.3, 1.6, 0.5, 1) 0.8s; }
+  .g3e-sq__short, g3e-squeeze.is-squeezed .g3e-sq__long { display: none; }
+  g3e-squeeze.is-squeezed .g3e-sq__short { display: inline; }
+  .g3e-sq__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-sq__note.is-done { background: var(--ok-soft); }
+  @media (prefers-reduced-motion: reduce) { .g3e-sq__t, g3e-squeeze.is-squeezed .g3e-sq__t.is-add { transition: none; } }
+</style>
+
+<script>
+  type Tile = { ch: string; short?: string; drop?: boolean; add?: boolean };
+  type Item = { tiles: Tile[]; from: string; to: string; note: string };
+
+  class G3eSqueeze extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-sq-tab]')];
+      tabs.forEach((t) =>
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.setAttribute('aria-pressed', String(b === t)));
+          this.show(Number(t.dataset.sqTab));
+        }),
+      );
+      this.part('go').addEventListener('click', () => this.set(true));
+      this.part('back').addEventListener('click', () => this.set(false));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-sq="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      const esc = (c: string) => (c === '<' ? '&lt;' : c === '&' ? '&amp;' : c);
+      this.part('word').innerHTML = this.items[i].tiles
+        .map((t) => `<span class="g3e-sq__t${t.drop ? ' is-drop' : ''}${t.add ? ' is-add' : ''}${t.ch === ' ' ? ' is-space' : ''}">${t.ch === ' ' ? '&nbsp;' : t.short ? `<span class="g3e-sq__long">${esc(t.ch)}</span><span class="g3e-sq__short">${esc(t.short)}</span>` : esc(t.ch)}</span>`)
+        .join('');
+      this.set(false);
+    }
+
+    private set(on: boolean) {
+      this.classList.toggle('is-squeezed', on);
+      const it = this.items[this.at];
+      (this.part('go') as HTMLButtonElement).disabled = on;
+      (this.part('back') as HTMLButtonElement).disabled = !on;
+      const note = this.part('note');
+      note.className = `g3e-sq__note${on ? ' is-done' : ''}`;
+      note.innerHTML = on ? `<strong>${it.from}</strong> → <strong>${it.to}</strong>${it.to.endsWith('.') ? '' : '.'} ${it.note}` : `Watch the letters in <strong>${it.from}</strong>. Which ones will drop out?`;
+    }
+  }
+  customElements.define('g3e-squeeze', G3eSqueeze);
+</script>

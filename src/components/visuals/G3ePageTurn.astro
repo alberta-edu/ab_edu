@@ -1,0 +1,128 @@
+---
+// Predict, then turn the page (LANENG3-OI7-GQ1-LO1, K3.1, U3.1, S3.1 to S3.4). A short story is read one
+// page at a time. Before each page turn the child picks a prediction. The next page shows what happened,
+// says whether the prediction matched, and points to the clue, so the child keeps or changes it.
+import { mdInline } from '../../lib/render.ts';
+
+interface Page {
+  text: string;
+  icon: string;
+  /** The question before the page turn, its choices, and which one the next page shows. */
+  ask?: string;
+  choices?: string[];
+  answer?: number;
+  clue?: string;
+}
+interface Props {
+  title: string;
+  pages: Page[];
+}
+const { title, pages } = Astro.props;
+pages.forEach((p, i) => {
+  const last = i === pages.length - 1;
+  if (!last && (!p.ask || !p.choices?.length || p.answer === undefined || !p.choices[p.answer])) throw new Error(`page-turn: page ${i + 1} needs ask, choices and answer`);
+  if (last && p.ask) throw new Error('page-turn: the last page has no page to turn to');
+});
+const data = pages.map((p) => ({ ...p, text: mdInline(p.text), clue: p.clue ? mdInline(p.clue) : '' }));
+---
+<g3e-page-turn data-pages={JSON.stringify(data)}>
+  <p class="g3e-pt__title">📖 {title}</p>
+  <div class="g3e-pt__pages" data-pt="pages"></div>
+  <p class="g3e-pt__note" data-pt="note" aria-live="polite"></p>
+  <div class="g3e-pt__ask" data-pt="ask"></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-pt="turn" disabled>Turn the page ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-pt="again" hidden>↺ Read it again</button>
+  </div>
+  <noscript>{pages.map((p) => <p set:html={mdInline(p.text)} />)}</noscript>
+</g3e-page-turn>
+
+<style is:global>
+  g3e-page-turn { display: block; }
+  .g3e-pt__title { margin: 0; font-weight: 800; }
+  .g3e-pt__pages { display: grid; gap: 0.5rem; margin: 0.6rem 0; }
+  .g3e-pt__page { display: flex; gap: 0.7rem; align-items: center; padding: 0.7rem 0.9rem; border-radius: var(--radius-sm); background: var(--surface); border: 2px solid var(--line); font-size: var(--step-1); line-height: 1.45; transform-origin: left center; }
+  .g3e-pt__page > span { font-size: 2rem; line-height: 1; }
+  .g3e-pt__page p { margin: 0; }
+  .g3e-pt__page.is-new { animation: g3e-pt-turn 0.6s ease; }
+  .g3e-pt__page.is-old { opacity: 0.6; font-size: var(--step-0); }
+  .g3e-pt__q { margin: 0 0 0.4rem; font-weight: 700; }
+  .g3e-pt__choices { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .g3e-pt__choices button { padding: 0.4rem 0.8rem; border: 2px solid var(--line-strong); border-radius: 999px; background: var(--surface); font: inherit; font-weight: 700; color: var(--ink); cursor: pointer; }
+  .g3e-pt__choices button:hover { border-color: var(--accent); }
+  .g3e-pt__choices button[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+  .g3e-pt__note { margin: 0.6rem 0 0.4rem; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-pt__note:empty { display: none; }
+  .g3e-pt__note.is-match { background: var(--ok-soft); }
+  @keyframes g3e-pt-turn { from { transform: perspective(600px) rotateY(-70deg); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .g3e-pt__page.is-new { animation: none; } }
+</style>
+
+<script>
+  type Page = { text: string; icon: string; ask?: string; choices?: string[]; answer?: number; clue: string };
+  const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+  class G3ePageTurn extends HTMLElement {
+    private pages: Page[] = [];
+    private at = 0;
+    private pick = -1;
+
+    connectedCallback() {
+      this.pages = JSON.parse(this.dataset.pages!);
+      this.part('turn').addEventListener('click', () => this.turn());
+      this.part('again').addEventListener('click', () => this.start());
+      this.start();
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-pt="${name}"]`)!;
+    }
+
+    private start() {
+      this.at = 0;
+      this.part('pages').innerHTML = '';
+      this.part('note').textContent = '';
+      this.part('note').className = 'g3e-pt__note';
+      this.part('again').hidden = true;
+      this.part('turn').hidden = false;
+      this.addPage();
+    }
+
+    private addPage() {
+      const box = this.part('pages');
+      box.querySelectorAll('.g3e-pt__page').forEach((p) => (p.classList.remove('is-new'), p.classList.add('is-old')));
+      const p = this.pages[this.at];
+      box.insertAdjacentHTML('beforeend', `<div class="g3e-pt__page is-new"><span aria-hidden="true">${p.icon}</span><p>${p.text}</p></div>`);
+      this.pick = -1;
+      const ask = this.part('ask');
+      const turn = this.part('turn') as HTMLButtonElement;
+      turn.disabled = true;
+      if (!p.ask) {
+        ask.innerHTML = '';
+        turn.hidden = true;
+        this.part('again').hidden = false;
+        return;
+      }
+      ask.innerHTML = `<p class="g3e-pt__q">🔮 ${esc(p.ask)}</p><div class="g3e-pt__choices" role="group" aria-label="Your prediction">${p.choices!.map((c, i) => `<button type="button" data-pt-pick="${i}" aria-pressed="false">${esc(c)}</button>`).join('')}</div>`;
+      ask.querySelectorAll<HTMLButtonElement>('[data-pt-pick]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.pick = Number(b.dataset.ptPick);
+          ask.querySelectorAll('[data-pt-pick]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          turn.disabled = false;
+        }),
+      );
+    }
+
+    private turn() {
+      const p = this.pages[this.at];
+      if (this.pick < 0) return;
+      const match = this.pick === p.answer;
+      this.at++;
+      this.addPage();
+      const note = this.part('note');
+      note.className = `g3e-pt__note${match ? ' is-match' : ''}`;
+      note.innerHTML = (match ? '✅ Your prediction matched! ' : '🔄 The story went another way. Change your prediction and read on. ') + p.clue;
+    }
+  }
+  customElements.define('g3e-page-turn', G3ePageTurn);
+</script>

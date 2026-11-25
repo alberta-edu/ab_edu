@@ -1,0 +1,104 @@
+---
+// Compound words (LANENG3-OI3-GQ1-LO1, S2.4). Two small words, each with a picture, slide together and
+// snap into one word with a new picture and its meaning. Some, like butterfly, mean more than their parts.
+import { isCompound } from './g3e-ela.ts';
+import { mdInline } from '../../lib/render.ts';
+
+interface Props {
+  items: { a: string; aIcon: string; b: string; bIcon: string; word: string; icon: string; means: string }[];
+}
+const { items } = Astro.props;
+for (const it of items) if (!isCompound(it.a, it.b, it.word)) throw new Error(`word-snap: ${it.a} + ${it.b} is not ${it.word}`);
+const data = items.map((it) => ({ ...it, means: mdInline(it.means) }));
+---
+<g3e-word-snap data-items={JSON.stringify(data)}>
+  <div class="sci-pick" role="group" aria-label="Choose a compound word">
+    {items.map((it, i) => <button type="button" data-ws-tab={i} aria-pressed={i === 0 ? 'true' : 'false'}>{it.a} + {it.b}</button>)}
+  </div>
+  <div class="g3e-wsn__stage" data-wsn="stage" aria-live="polite"></div>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-wsn="go">🧲 Snap!</button>
+    <button type="button" class="btn btn--ghost btn--small" data-wsn="back">↺ Pull apart</button>
+  </div>
+  <p class="g3e-wsn__note" data-wsn="note"></p>
+  <noscript><ul>{items.map((it) => <li>{it.a} + {it.b} = {it.word}</li>)}</ul></noscript>
+</g3e-word-snap>
+
+<style is:global>
+  g3e-word-snap { display: block; }
+  .g3e-wsn__stage { display: flex; justify-content: center; align-items: center; gap: 2.2rem; min-height: 8.5rem; margin: 0.7rem 0; padding: 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); transition: gap 0.5s ease; }
+  .g3e-wsn__tile { display: grid; justify-items: center; gap: 0.2rem; padding: 0.5rem 0.7rem; border-radius: 10px; background: var(--surface); border: 2px solid var(--line-strong); transition: border-radius 0.4s ease, border-color 0.4s ease; }
+  .g3e-wsn__tile span { font-size: 2.4rem; line-height: 1; transition: opacity 0.3s ease; }
+  .g3e-wsn__tile b { font-size: var(--step-2); }
+  .g3e-wsn__whole { display: none; justify-items: center; gap: 0.2rem; }
+  .g3e-wsn__whole span { font-size: 3.4rem; line-height: 1; }
+  .g3e-wsn__whole b { font-size: var(--step-2); color: var(--accent); }
+  g3e-word-snap.is-snapped .g3e-wsn__stage { gap: 0; }
+  g3e-word-snap.is-snapped .g3e-wsn__tile { border-color: var(--accent); }
+  g3e-word-snap.is-snapped .g3e-wsn__tile:first-child { border-radius: 10px 0 0 10px; border-right-width: 0; }
+  g3e-word-snap.is-snapped .g3e-wsn__tile:nth-child(2) { border-radius: 0 10px 10px 0; border-left-width: 0; }
+  g3e-word-snap.is-done .g3e-wsn__tile { display: none; }
+  g3e-word-snap.is-done .g3e-wsn__whole { display: grid; animation: g3e-wsn-pop 0.4s ease; }
+  .g3e-wsn__note { margin: 0.5rem 0 0; padding: 0.6rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3e-wsn__note.is-done { background: var(--ok-soft); }
+  @keyframes g3e-wsn-pop { from { transform: scale(0.6); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .g3e-wsn__stage, .g3e-wsn__tile { transition: none; } g3e-word-snap.is-done .g3e-wsn__whole { animation: none; } }
+</style>
+
+<script>
+  type Item = { a: string; aIcon: string; b: string; bIcon: string; word: string; icon: string; means: string };
+
+  class G3eWordSnap extends HTMLElement {
+    private items: Item[] = [];
+    private at = 0;
+    private timer = 0;
+
+    connectedCallback() {
+      this.items = JSON.parse(this.dataset.items!);
+      const tabs = [...this.querySelectorAll<HTMLButtonElement>('[data-ws-tab]')];
+      tabs.forEach((t) =>
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.setAttribute('aria-pressed', String(b === t)));
+          this.show(Number(t.dataset.wsTab));
+        }),
+      );
+      this.part('go').addEventListener('click', () => this.set(true));
+      this.part('back').addEventListener('click', () => this.set(false));
+      this.show(0);
+    }
+
+    private part(name: string) {
+      return this.querySelector<HTMLElement>(`[data-wsn="${name}"]`)!;
+    }
+
+    private show(i: number) {
+      this.at = i;
+      const it = this.items[i];
+      this.part('stage').innerHTML =
+        `<span class="g3e-wsn__tile"><span aria-hidden="true">${it.aIcon}</span><b>${it.a}</b></span>` +
+        `<span class="g3e-wsn__tile"><span aria-hidden="true">${it.bIcon}</span><b>${it.b}</b></span>` +
+        `<span class="g3e-wsn__whole"><span aria-hidden="true">${it.icon}</span><b>${it.word}</b></span>`;
+      this.set(false);
+    }
+
+    private set(on: boolean) {
+      clearTimeout(this.timer);
+      const it = this.items[this.at];
+      this.classList.toggle('is-snapped', on);
+      this.classList.remove('is-done');
+      (this.part('go') as HTMLButtonElement).disabled = on;
+      (this.part('back') as HTMLButtonElement).disabled = !on;
+      const note = this.part('note');
+      note.className = 'g3e-wsn__note';
+      note.innerHTML = `What could <strong>${it.a}</strong> + <strong>${it.b}</strong> mean? Guess, then press Snap!`;
+      if (!on) return;
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      this.timer = window.setTimeout(() => {
+        this.classList.add('is-done');
+        note.className = 'g3e-wsn__note is-done';
+        note.innerHTML = `<strong>${it.word}</strong>: ${it.means}`;
+      }, reduce ? 0 : 650);
+    }
+  }
+  customElements.define('g3e-word-snap', G3eWordSnap);
+</script>
