@@ -1,0 +1,181 @@
+---
+// Multiplying and dividing within 100 (MAT3-OI1-GQ3-LO1), five ways:
+// groups: equal groups, an array or an area, with repeated addition and skip counting; turn the
+//   array to see 3 × 4 = 4 × 3; try groups of 0 and of 1.
+// share: deal things one at a time into equal groups. group: make groups of a size.
+// takeaway: jump back by the same amount. split: cut an array in two and multiply in parts.
+interface Props {
+  mode?: 'groups' | 'share' | 'group' | 'takeaway' | 'split';
+  a?: number;
+  b?: number;
+  view?: 'groups' | 'array' | 'area';
+}
+const { mode = 'groups', a = 3, b = 4, view = 'groups' } = Astro.props;
+const labels = {
+  groups: ['Groups', 'In each group'],
+  share: ['Things to share', 'Groups'],
+  group: ['Things', 'In each group'],
+  takeaway: ['Start at', 'Jump back by'],
+  split: ['Rows', 'Columns'],
+}[mode];
+const ranges = {
+  groups: [[1, 10], [0, 10]],
+  share: [[1, 40], [1, 8]],
+  group: [[1, 40], [1, 10]],
+  takeaway: [[1, 40], [1, 10]],
+  split: [[2, 10], [2, 10]],
+}[mode];
+const go = { groups: '', share: 'Share one round ▶', group: 'Make a group ▶', takeaway: 'Jump ▶', split: '' }[mode];
+const viewName = { groups: 'Equal groups', array: 'Array', area: 'Area' };
+const k0 = Math.min(5, b - 1);
+---
+<g3-groups data-mode={mode} data-view={view}>
+  {mode === 'groups' && (
+    <div class="seg" role="group" aria-label="Show it as">
+      {(['groups', 'array', 'area'] as const).map((v) => <button type="button" data-view={v} aria-pressed={String(v === view)}>{viewName[v]}</button>)}
+    </div>
+  )}
+  <div class="control-row">
+    <label class="control"><span>{labels[0]}</span><input type="range" min={ranges[0][0]} max={ranges[0][1]} value={a} data-gr="a" /><output data-gr="a-out">{a}</output></label>
+    <label class="control"><span>{labels[1]}</span><input type="range" min={ranges[1][0]} max={ranges[1][1]} value={b} data-gr="b" /><output data-gr="b-out">{b}</output></label>
+    {mode === 'split' && (
+      <label class="control"><span>Cut after column</span><input type="range" min="1" max={b - 1} value={k0} data-gr="k" /><output data-gr="k-out">{k0}</output></label>
+    )}
+  </div>
+  <div class="g3m-gr-stage" data-gr="svg" aria-hidden="true"></div>
+  <p class="g3m-gr-math" data-gr="math"></p>
+  <p class="g3m-gr-say" data-gr="say" aria-live="polite"></p>
+  <div class="control-row">
+    {go && <button type="button" class="btn btn--primary btn--small" data-gr="go">{go}</button>}
+    {mode === 'groups' && <button type="button" class="btn btn--primary btn--small" data-gr="turn">Turn it ↻</button>}
+    {go && <button type="button" class="btn btn--ghost btn--small" data-gr="reset">Start over</button>}
+  </div>
+</g3-groups>
+
+<style is:global>
+  g3-groups { display: block; }
+  .g3m-gr-stage svg { display: block; width: 100%; max-width: 26rem; max-height: 22rem; height: auto; margin: 0.4rem auto 0; font-family: var(--font); }
+  .g3m-gr-stage.is-turning svg { animation: g3m-gr-turn 0.6s ease; }
+  .g3m-gr-plate { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 2; }
+  .g3m-gr-dot { fill: var(--accent); }
+  .g3m-gr-dot.g3m-gr-b { fill: var(--sun); }
+  .g3m-gr-pile { fill: var(--ink-3); }
+  .g3m-gr-sq { fill: color-mix(in srgb, var(--accent) 35%, var(--surface)); stroke: var(--surface); stroke-width: 2; }
+  .g3m-gr-sq.g3m-gr-b { fill: color-mix(in srgb, var(--sun) 60%, var(--surface)); }
+  .g3m-gr-cut { stroke: var(--bad); stroke-width: 3; stroke-dasharray: 6 4; }
+  .g3m-gr-lab { fill: var(--ink-2); font-size: 15px; font-weight: 700; }
+  .g3m-gr-axis { stroke: var(--ink); stroke-width: 2.5; }
+  .g3m-gr-tick { stroke: var(--ink-3); stroke-width: 1.5; }
+  .g3m-gr-num { fill: var(--ink-2); font-size: 12px; font-weight: 700; }
+  .g3m-gr-hop { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+  .g3m-gr-hopn { fill: var(--accent); font-size: 12px; font-weight: 700; }
+  .g3m-gr-math { margin: 0.5rem 0 0; text-align: center; font-size: var(--step-1); font-weight: 700; color: var(--accent); overflow-wrap: anywhere; }
+  .g3m-gr-say { min-height: 2.6em; margin: 0.3rem 0 0; text-align: center; font-weight: 600; }
+  @keyframes g3m-gr-turn { from { transform: rotate(-90deg) scale(0.8); opacity: 0.4; } }
+  @media (prefers-reduced-motion: reduce) { .g3m-gr-stage.is-turning svg { animation: none; } }
+</style>
+
+<script>
+  import { groupsSvg, arraySvg, jumpsSvg, repeatedAdd, groupsSay, share, shareSay, groupSay, takeAwaySay, splitSay } from './g3-groups.ts';
+
+  class G3Groups extends HTMLElement {
+    private mode = 'groups';
+    private view = 'groups';
+    private step = 0;
+
+    connectedCallback() {
+      this.mode = this.dataset.mode!;
+      this.view = this.dataset.view!;
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.view = b.dataset.view!;
+          this.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.draw();
+        }),
+      );
+      this.querySelectorAll('input').forEach((i) =>
+        i.addEventListener('input', () => {
+          this.step = 0;
+          this.draw();
+        }),
+      );
+      this.q('go')?.addEventListener('click', () => {
+        this.step++;
+        this.draw();
+      });
+      this.q('reset')?.addEventListener('click', () => {
+        this.step = 0;
+        this.draw();
+      });
+      this.q('turn')?.addEventListener('click', () => {
+        const [a, b] = [this.num('a'), this.num('b')];
+        if (b < 1) return;
+        (this.q('a') as HTMLInputElement).value = String(b);
+        (this.q('b') as HTMLInputElement).value = String(a);
+        const stage = this.q('svg');
+        stage.classList.remove('is-turning');
+        void stage.offsetWidth;
+        stage.classList.add('is-turning');
+        this.draw(`Turned! ${b} × ${a} = ${a * b}, the same as ${a} × ${b}.`);
+      });
+      this.draw();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-gr="${k}"]`) as HTMLElement;
+    }
+
+    private num(k: string) {
+      return Number((this.q(k) as HTMLInputElement).value);
+    }
+
+    private draw(note = '') {
+      const a = this.num('a');
+      let b = this.num('b');
+      this.q('a-out').textContent = String(a);
+      this.q('b-out').textContent = String(b);
+      const svg = this.q('svg');
+      const math = this.q('math');
+      const say = this.q('say');
+      const go = this.q('go') as HTMLButtonElement | null;
+      if (this.mode === 'groups') {
+        svg.innerHTML = this.view === 'groups' ? groupsSvg(a, b) : arraySvg(a, b, 0, this.view === 'area');
+        math.textContent = b === 0 ? `${a} × 0 = 0` : repeatedAdd(a, b);
+        say.textContent = note || (this.view === 'groups' ? groupsSay(a, b) : `${a} rows of ${b}. ${a} × ${b} = ${a * b}`);
+        (this.q('turn') as HTMLButtonElement).hidden = this.view === 'groups';
+      } else if (this.mode === 'share') {
+        if (b > a) b = a;
+        const { each, left } = share(a, b);
+        const r = Math.min(this.step, each);
+        svg.innerHTML = groupsSvg(b, each, Array(b).fill(r), a - r * b);
+        math.textContent = r === each ? (left ? `${a} ÷ ${b} → ${each} each, ${left} left over` : `${a} ÷ ${b} = ${each}`) : r === 0 ? `${a} ÷ ${b} = ?` : `Round ${r}: each group has ${r}`;
+        say.textContent = r === each ? shareSay(a, b) : 'Give one to each group, then do it again.';
+        if (go) go.disabled = r === each;
+      } else if (this.mode === 'group') {
+        const n = Math.floor(a / b);
+        const k = Math.min(this.step, n);
+        svg.innerHTML = groupsSvg(k, b, Array(k).fill(b), a - k * b);
+        math.textContent = k === n ? (a % b ? `${a} ÷ ${b} → ${n} groups, ${a % b} left over` : `${a} ÷ ${b} = ${n}`) : k === 0 ? `${a} ÷ ${b} = ?` : `${k} group${k === 1 ? '' : 's'} so far`;
+        say.textContent = k === n ? groupSay(a, b) : `Put ${b} in a group. How many groups can you make?`;
+        if (go) go.disabled = k === n;
+      } else if (this.mode === 'takeaway') {
+        const n = Math.floor(a / b);
+        const k = Math.min(this.step, n);
+        svg.innerHTML = jumpsSvg(a, b, k);
+        math.textContent = k === 0 ? `${a} ÷ ${b} = ?` : `${a}` + ` − ${b}`.repeat(k) + ` = ${a - k * b}`;
+        say.textContent = k === n ? takeAwaySay(a, b) : `Jump back ${b}. Count your jumps.`;
+        if (go) go.disabled = k === n;
+      } else {
+        const kIn = this.q('k') as HTMLInputElement;
+        kIn.max = String(b - 1);
+        if (Number(kIn.value) > b - 1) kIn.value = String(b - 1);
+        const k = Number(kIn.value);
+        this.q('k-out').textContent = String(k);
+        svg.innerHTML = arraySvg(a, b, k);
+        math.textContent = splitSay(a, b, k);
+        say.textContent = 'Two smaller facts make the big one.';
+      }
+    }
+  }
+  customElements.define('g3-groups', G3Groups);
+</script>

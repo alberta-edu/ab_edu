@@ -1,0 +1,362 @@
+---
+// Perimeter and estimating length (MAT3-OI5-GQ1-LO1: K2.1, U2.1, S2.1, S2.2, K3.1, K3.2, U3.1, S3.1-S3.3).
+// walk: a ladybug walks around a polygon, adding the sides; Unroll lays the sides in one straight
+//   line, the same length as before.
+// missing: the perimeter is known but one side isn't. Unroll the sides under the perimeter to see
+//   the gap.
+// estimate: guess a length, then lay fingernails (cm) or metre sticks (m) along it.
+import { FIGS, ESTIMATES } from './g3-length.ts';
+
+interface Props {
+  mode?: 'walk' | 'missing' | 'estimate';
+  /** walk: the shapes to choose from. */
+  figs?: string[];
+  /** walk: which buttons to show. */
+  actions?: ('walk' | 'unroll')[];
+  /** missing: a shape, its perimeter and which side is hidden. */
+  puzzles?: { fig: string; p: number; hide: number }[];
+  /** estimate: the things to choose from. */
+  items?: string[];
+}
+const {
+  mode = 'walk',
+  figs = ['rect', 'tri', 'hex'],
+  actions = ['walk', 'unroll'],
+  puzzles = [{ fig: 'tri', p: 12, hide: 2 }],
+  items = ['crayon', 'marker'],
+} = Astro.props;
+const flist = figs.map((id) => FIGS.find((f) => f.id === id)!);
+const elist = items.map((id) => ESTIMATES.find((e) => e.id === id)!);
+const pname = (z: { fig: string; p: number }) => `${FIGS.find((f) => f.id === z.fig)!.name}, ${z.p} ${FIGS.find((f) => f.id === z.fig)!.unit}`;
+---
+<g3-perimeter data-mode={mode} data-figs={JSON.stringify(figs)} data-puzzles={JSON.stringify(puzzles)} data-items={JSON.stringify(items)}>
+  {mode === 'walk' && flist.length > 1 && (
+    <div class="control-row g3m-pm-row">
+      <div class="seg" role="group" aria-label="Choose a shape">
+        {flist.map((f, i) => <button type="button" data-fig={f.id} aria-pressed={String(i === 0)}>{f.name}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'missing' && puzzles.length > 1 && (
+    <div class="control-row g3m-pm-row">
+      <div class="seg" role="group" aria-label="Choose a puzzle">
+        {puzzles.map((z, i) => <button type="button" data-puzzle={i} aria-pressed={String(i === 0)}>{pname(z)}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'estimate' && (
+    <div class="control-row g3m-pm-row">
+      <div class="seg" role="group" aria-label="What to estimate">
+        {elist.map((e, i) => <button type="button" data-item={e.id} aria-pressed={String(i === 0)}>{e.icon} {e.name}</button>)}
+      </div>
+    </div>
+  )}
+  <svg class="g3m-pm-svg" viewBox="0 0 360 270" role="img" aria-label="A shape with its side lengths" data-pm="svg"></svg>
+  <p class="g3m-pm-say" data-pm="say" aria-live="polite"></p>
+  <div class="control-row g3m-pm-row">
+    {mode === 'walk' && actions.includes('walk') && <button type="button" class="btn btn--primary btn--small" data-pm="walk">🐞 Walk around</button>}
+    {mode !== 'estimate' && (mode === 'missing' || actions.includes('unroll')) && <button type="button" class="btn btn--primary btn--small" data-pm="unroll">Unroll the sides</button>}
+    {mode === 'estimate' && (
+      <>
+        <span class="control">Your guess
+          <button type="button" class="g3m-pm-step" data-pm="minus" aria-label="Guess less">−</button>
+          <output data-pm="guess">3</output> <span data-pm="unit">cm</span>
+          <button type="button" class="g3m-pm-step" data-pm="plus" aria-label="Guess more">+</button>
+        </span>
+        <button type="button" class="btn btn--primary btn--small" data-pm="check">Check it</button>
+      </>
+    )}
+    <button type="button" class="btn btn--ghost btn--small" data-pm="reset">Start over</button>
+  </div>
+</g3-perimeter>
+
+<style is:global>
+  g3-perimeter { display: block; }
+  .g3m-pm-row { justify-content: center; }
+  .g3m-pm-svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.4rem auto 0; font-family: var(--font); overflow: visible; }
+  .g3m-pm-fill { fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); transition: opacity 0.4s; }
+  .g3m-pm-ghost { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 5 5; }
+  .g3m-pm-side { stroke-width: 6; stroke-linecap: round; }
+  .g3m-pm-side.is-0 { stroke: var(--accent); }
+  .g3m-pm-side.is-1 { stroke: var(--bad); }
+  .g3m-pm-side.is-2 { stroke: var(--ok); }
+  .g3m-pm-side.is-hidden { stroke: var(--ink-3); stroke-dasharray: 6 6; }
+  .g3m-pm-side.is-lit { stroke-width: 9; }
+  .g3m-pm-len { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g3m-pm-q { fill: var(--bad); font-size: 18px; font-weight: 700; }
+  .g3m-pm-bug { font-size: 22px; }
+  .g3m-pm-ruler { fill: color-mix(in srgb, var(--sun) 40%, var(--surface)); stroke: var(--ink-2); stroke-width: 1.5; }
+  .g3m-pm-ptext { fill: var(--accent); font-size: 16px; font-weight: 700; }
+  .g3m-pm-obj { fill: color-mix(in srgb, var(--accent) 22%, var(--surface)); stroke: var(--ink); stroke-width: 2; }
+  .g3m-pm-icon { font-size: 30px; }
+  .g3m-pm-nail { fill: #f2b8c6; stroke: var(--ink-2); stroke-width: 1; }
+  .g3m-pm-stick { fill: var(--sun); stroke: var(--ink); stroke-width: 1; }
+  .g3m-pm-count { fill: var(--ink); font-size: 12px; font-weight: 700; }
+  .g3m-pm-step { width: 2.3rem; height: 2.3rem; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface-2); color: var(--ink); font: inherit; font-size: 1.2rem; font-weight: 700; cursor: pointer; }
+  .g3m-pm-row output { min-width: 2ch; text-align: center; font-size: 1.2rem; font-weight: 700; }
+  .g3m-pm-say { min-height: 2.6em; margin: 0.3rem 0 0; font-weight: 600; text-align: center; }
+</style>
+
+<script>
+  import { FIGS, ESTIMATES, walkSay, perimeter, unrollSide, estimateSay, type Fig, type Ref } from './g3-length.ts';
+
+  type P2 = [number, number];
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const f1 = (n: number) => n.toFixed(1);
+
+  function animate(ms: number, draw: (t: number) => void, done?: () => void) {
+    if (reduced()) {
+      draw(1);
+      done?.();
+      return;
+    }
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - t0) / ms);
+      draw(t);
+      if (t < 1) requestAnimationFrame(tick);
+      else done?.();
+    };
+    requestAnimationFrame(tick);
+  }
+
+  class G3Perimeter extends HTMLElement {
+    private fig!: Fig;
+    private hide = -1;
+    private p = 0;
+    private item!: Ref;
+    private guess = 3;
+    private busy = false;
+
+    connectedCallback() {
+      const mode = this.dataset.mode;
+      if (mode === 'walk') {
+        this.fig = FIGS.find((f) => f.id === JSON.parse(this.dataset.figs!)[0])!;
+        this.querySelectorAll<HTMLButtonElement>('[data-fig]').forEach((b) =>
+          b.addEventListener('click', () => {
+            if (this.busy) return;
+            this.querySelectorAll('[data-fig]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.fig = FIGS.find((f) => f.id === b.dataset.fig)!;
+            this.reset();
+          }),
+        );
+        this.q('walk')?.addEventListener('click', () => this.walk());
+      }
+      if (mode === 'missing') {
+        const puzzles: { fig: string; p: number; hide: number }[] = JSON.parse(this.dataset.puzzles!);
+        const load = (i: number) => {
+          this.fig = FIGS.find((f) => f.id === puzzles[i].fig)!;
+          this.p = puzzles[i].p;
+          this.hide = puzzles[i].hide;
+        };
+        load(0);
+        this.querySelectorAll<HTMLButtonElement>('[data-puzzle]').forEach((b) =>
+          b.addEventListener('click', () => {
+            if (this.busy) return;
+            this.querySelectorAll('[data-puzzle]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            load(Number(b.dataset.puzzle));
+            this.reset();
+          }),
+        );
+      }
+      if (mode !== 'estimate') this.q('unroll')?.addEventListener('click', () => this.unroll());
+      if (mode === 'estimate') {
+        this.item = ESTIMATES.find((e) => e.id === JSON.parse(this.dataset.items!)[0])!;
+        this.querySelectorAll<HTMLButtonElement>('[data-item]').forEach((b) =>
+          b.addEventListener('click', () => {
+            if (this.busy) return;
+            this.querySelectorAll('[data-item]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.item = ESTIMATES.find((e) => e.id === b.dataset.item)!;
+            this.reset();
+          }),
+        );
+        this.q('minus').addEventListener('click', () => this.setGuess(this.guess - 1));
+        this.q('plus').addEventListener('click', () => this.setGuess(this.guess + 1));
+        this.q('check').addEventListener('click', () => this.check());
+      }
+      this.q('reset').addEventListener('click', () => !this.busy && this.reset());
+      this.reset();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-pm="${k}"]`) as HTMLElement;
+    }
+
+    // ------------------------------------------------ shapes
+    private scale() {
+      // Shapes that never unroll can be drawn bigger; the rest must unroll into a 300-unit line.
+      if (this.dataset.mode === 'walk' && !this.q('unroll')) {
+        const dim = Math.max(...this.fig.pts.flatMap((p) => p));
+        return Math.min(28, 120 / dim);
+      }
+      return Math.min(24, 300 / perimeter(this.fig.sides));
+    }
+
+    private placed(): P2[] {
+      const s = this.scale();
+      const xs = this.fig.pts.map((p) => p[0] * s);
+      const w = Math.max(...xs) - Math.min(...xs);
+      const ox = 180 - w / 2 - Math.min(...xs);
+      return this.fig.pts.map((p) => [ox + p[0] * s, 40 + p[1] * s]);
+    }
+
+    private draw(sides: [P2, P2][], opts: { fill?: boolean; ghost?: boolean; labels?: boolean; lit?: number; bug?: P2; line?: boolean } = {}) {
+      const pts = this.placed();
+      const n = pts.length;
+      // Which way the corners go round, so each label can sit on the outside of its side.
+      const turn = Math.sign(pts.reduce((a, p, i) => a + p[0] * pts[(i + 1) % n][1] - pts[(i + 1) % n][0] * p[1], 0)) || 1;
+      const u = this.fig.unit;
+      let s = '';
+      if (opts.fill) s += `<polygon class="g3m-pm-fill" points="${pts.map((p) => p.map(f1).join(',')).join(' ')}"/>`;
+      if (opts.ghost) s += `<polygon class="g3m-pm-ghost" points="${pts.map((p) => p.map(f1).join(',')).join(' ')}"/>`;
+      if (opts.line) {
+        const total = this.p || perimeter(this.fig.sides);
+        const L = total * this.scale();
+        s += `<rect class="g3m-pm-ruler" x="${f1(30)}" y="232" width="${f1(L)}" height="14" rx="3"/><text class="g3m-pm-ptext" x="${f1(30 + L / 2)}" y="266" text-anchor="middle">${this.p ? `Perimeter: ${this.p} ${u}` : `${total} ${u}`}</text>`;
+      }
+      sides.forEach(([a, b], i) => {
+        const cls = i === this.hide ? 'is-hidden' : `is-${i % 3}`;
+        s += `<line class="g3m-pm-side ${cls}${opts.lit === i ? ' is-lit' : ''}" x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}"/>`;
+        if (opts.labels) {
+          const m: P2 = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+          const flat = Math.abs(a[1] - b[1]) < 0.5 && a[1] > 200;
+          const l = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+          const ux = (turn * (b[1] - a[1])) / l;
+          const uy = (turn * (a[0] - b[0])) / l;
+          // Labels beside a side start or end there, so they never sit on the line.
+          const across = Math.abs(b[1] - a[1]) < Math.abs(b[0] - a[0]) * 0.5;
+          const anchor = flat || across ? 'middle' : ux > 0 ? 'start' : 'end';
+          const o: P2 = flat ? [0, -16] : across ? [0, uy < 0 ? -11 : 14] : [ux * 10, uy * 10];
+          const t = i === this.hide ? '?' : `${this.fig.sides[i]}${flat ? '' : ` ${u}`}`;
+          s += `<text class="${i === this.hide ? 'g3m-pm-q' : 'g3m-pm-len'}" x="${f1(m[0] + o[0])}" y="${f1(m[1] + o[1] + 5)}" text-anchor="${anchor}">${t}</text>`;
+        }
+      });
+      if (opts.bug) s += `<text class="g3m-pm-bug" x="${f1(opts.bug[0])}" y="${f1(opts.bug[1] + 8)}" text-anchor="middle">🐞</text>`;
+      this.q('svg').innerHTML = s;
+    }
+
+    private shapeSides(): [P2, P2][] {
+      const pts = this.placed();
+      return pts.map((p, i) => [p, pts[(i + 1) % pts.length]] as [P2, P2]);
+    }
+
+    private reset() {
+      const mode = this.dataset.mode;
+      if (mode === 'estimate') return this.drawEstimate(0);
+      // Room for the unrolled line only when the sides can unroll.
+      this.q('svg').setAttribute('viewBox', `0 0 360 ${mode === 'walk' && !this.q('unroll') ? 190 : 270}`);
+      this.draw(this.shapeSides(), { fill: true, labels: true, line: mode === 'missing' });
+      const u = this.fig.unit;
+      this.q('say').textContent =
+        mode === 'missing'
+          ? `The perimeter is ${this.p} ${u}. One side is missing. Unroll the sides to find it.`
+          : this.q('walk')
+            ? 'The perimeter is the distance all the way around. Send the ladybug around the edge.'
+            : 'What if the sides were laid in one straight line?';
+      this.q('svg').setAttribute('aria-label', `A ${this.fig.name.toLowerCase()} with sides ${this.fig.sides.map((x, i) => (i === this.hide ? 'unknown' : `${x} ${u}`)).join(', ')}.`);
+    }
+
+    private walk() {
+      if (this.busy) return;
+      this.busy = true;
+      const sides = this.shapeSides();
+      const k = sides.length;
+      const u = this.fig.unit;
+      let shown = -1;
+      animate(
+        1000 * k,
+        (t) => {
+          const at = Math.min(k - 0.0001, t * k);
+          const i = Math.floor(at);
+          const f = at - i;
+          const [a, b] = sides[i];
+          this.draw(sides, { fill: true, labels: true, lit: i, bug: [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f] });
+          if (i !== shown) {
+            shown = i;
+            this.q('say').textContent = walkSay(this.fig.sides, i, u);
+          }
+        },
+        () => {
+          this.busy = false;
+          this.draw(sides, { fill: true, labels: true, bug: sides[0][0] });
+          this.q('say').textContent = walkSay(this.fig.sides, k, u);
+        },
+      );
+    }
+
+    private unroll() {
+      if (this.busy) return;
+      this.busy = true;
+      const from = this.shapeSides();
+      const s = this.scale();
+      const starts: number[] = [];
+      let x = 30;
+      // The hidden side goes last, so the gap sits at the end of the line.
+      const order = this.fig.sides.map((_, i) => i).sort((a, b) => (a === this.hide ? 1 : b === this.hide ? -1 : a - b));
+      for (const i of order) {
+        starts[i] = x;
+        x += this.fig.sides[i] * s;
+      }
+      const at = (t: number) => from.map(([a, b], i) => unrollSide(a, b, starts[i], 224, this.fig.sides[i] * s, t));
+      const missing = this.dataset.mode === 'missing';
+      animate(
+        1400,
+        (t) => this.draw(at(t), { ghost: true, labels: t === 1, line: missing }),
+        () => {
+          this.busy = false;
+          this.draw(at(1), { ghost: true, labels: true, line: missing });
+          const u = this.fig.unit;
+          if (missing) {
+            const known = this.fig.sides.filter((_, i) => i !== this.hide);
+            const sum = perimeter(known);
+            this.q('say').textContent = `${known.join(' + ')} = ${sum} ${u}. The gap is ${this.p} − ${sum} = ${this.p - sum} ${u}. That is the missing side!`;
+          } else this.q('say').textContent = `In a line, the sides make ${perimeter(this.fig.sides)} ${u}. The same as walking around!`;
+        },
+      );
+    }
+
+    // ------------------------------------------------ estimate
+    private setGuess(g: number) {
+      this.guess = Math.max(1, Math.min(20, g));
+      this.q('guess').textContent = String(this.guess);
+    }
+
+    private drawEstimate(count: number) {
+      const e = this.item;
+      const L = 300;
+      const tile = L / e.n;
+      let s = `<text class="g3m-pm-icon" x="180" y="60" text-anchor="middle">${e.icon}</text>`;
+      s += `<rect class="g3m-pm-obj" x="30" y="90" width="${L}" height="40" rx="12"/><text class="g3m-pm-len" x="180" y="116" text-anchor="middle">${e.name}</text>`;
+      for (let i = 0; i < count; i++) {
+        const x = 30 + i * tile;
+        s +=
+          e.unit === 'cm'
+            ? `<rect class="g3m-pm-nail" x="${f1(x + 2)}" y="146" width="${f1(tile - 4)}" height="${f1(Math.min(30, tile * 1.2))}" rx="${f1(tile / 2.5)}"/>`
+            : `<rect class="g3m-pm-stick" x="${f1(x + 1)}" y="146" width="${f1(tile - 2)}" height="16" rx="2"/>`;
+        s += `<text class="g3m-pm-count" x="${f1(x + tile / 2)}" y="200" text-anchor="middle">${i + 1}</text>`;
+      }
+      this.q('svg').innerHTML = s;
+      this.q('unit').textContent = e.unit;
+      this.q('svg').setAttribute('aria-label', `A ${e.name.toLowerCase()}${count ? ` with ${count} ${e.referent}s laid along it` : ''}.`);
+      if (!count) this.q('say').textContent = e.unit === 'cm' ? 'Your little fingernail is about 1 cm wide. How many would fit along it?' : 'A metre stick is 1 m. How many would fit along it?';
+    }
+
+    private check() {
+      if (this.busy) return;
+      this.busy = true;
+      const e = this.item;
+      let c = 0;
+      const step = () => {
+        c++;
+        this.drawEstimate(c);
+        if (c < e.n) setTimeout(step, reduced() ? 0 : 350);
+        else {
+          this.busy = false;
+          this.q('say').textContent = estimateSay(e, this.guess);
+        }
+      };
+      step();
+    }
+  }
+  customElements.define('g3-perimeter', G3Perimeter);
+</script>

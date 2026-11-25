@@ -1,0 +1,161 @@
+---
+// Count Canadian money (MAT3-OI1-GQ1-LO1: K1.8, K1.9, S1.9-S1.11). Tap coins or bills into the tray,
+// then press Count: the biggest go first, and the running total pops up over each one. The total
+// shows the English and the French way of writing it.
+import { CENTS, DOLLARS, moneySvg, written, total } from './g3-money.ts';
+
+interface Props {
+  mode?: 'cents' | 'dollars';
+  start?: string[];
+}
+const { mode = 'cents', start = mode === 'cents' ? ['dime', 'quarter', 'nickel', 'quarter'] : ['toonie', 'b5', 'loonie', 'b10'] } = Astro.props;
+const kinds = mode === 'cents' ? CENTS : DOLLARS;
+const sum = total(start);
+const unit = mode;
+---
+<g3-coin-counter data-mode={mode} data-start={JSON.stringify(start)}>
+  <div class="g3m-mc-pick" role="group" aria-label="Add money to the tray">
+    {kinds.map((k) => (
+      <button type="button" class="g3m-mc-add" data-add={k.id} aria-label={`Add a ${k.name}`}>
+        <svg viewBox="0 0 76 48" aria-hidden="true" set:html={moneySvg(k.id, 38, 24)} />
+        <span>{k.name}</span>
+      </button>
+    ))}
+  </div>
+  <div class="g3m-mc-tray" data-mc="tray" aria-label="The tray. Tap a coin or bill to take it out."></div>
+  <div class="g3m-mc-total" aria-live="polite">
+    <span class="g3m-mc-lang"><small>English</small><strong data-mc="en">{written(sum, unit, 'en')}</strong></span>
+    <span class="g3m-mc-lang"><small>French</small><strong data-mc="fr">{written(sum, unit, 'fr')}</strong></span>
+  </div>
+  <p class="g3m-mc-say" data-mc="say">Tap money to add it. Tap it in the tray to take it out.</p>
+  <div class="control-row">
+    <button type="button" class="btn btn--primary btn--small" data-mc="count">Count it ▶</button>
+    <button type="button" class="btn btn--ghost btn--small" data-mc="clear">Empty the tray</button>
+  </div>
+</g3-coin-counter>
+
+<style is:global>
+  g3-coin-counter { display: block; }
+  .g3m-mc-pick { display: flex; flex-wrap: wrap; gap: 0.35rem; justify-content: center; }
+  .g3m-mc-add { display: grid; justify-items: center; gap: 0.1rem; padding: 0.3rem 0.35rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink-2); font: inherit; font-size: 0.72rem; font-weight: 700; cursor: pointer; }
+  .g3m-mc-add:hover { border-color: var(--accent); }
+  .g3m-mc-add svg { width: 3.6rem; height: auto; display: block; }
+  .g3m-mc-tray { margin: 0.7rem 0 0.4rem; min-height: 6rem; border-radius: var(--radius); background: color-mix(in srgb, var(--accent) 7%, var(--surface-2)); border: 2px dashed var(--line-strong); }
+  .g3m-mc-tray svg { display: block; width: 100%; height: auto; font-family: var(--font); }
+  .g3m-mc-item { cursor: pointer; }
+  .g3m-mc-item.is-new { animation: g3m-mc-drop 0.35s ease both; transform-box: fill-box; transform-origin: center; }
+  .g3m-mc-coin circle, .g3m-mc-coin polygon { stroke: #5d5d66; stroke-width: 1.5; }
+  .g3m-mc-quarter circle, .g3m-mc-dime circle, .g3m-mc-nickel circle { fill: #d9dbe0; }
+  .g3m-mc-loonie polygon { fill: #e2b33c; stroke: #8a6413; }
+  .g3m-mc-toonie > circle { fill: #d9dbe0; }
+  .g3m-mc-toonie .g3m-mc-core { fill: #e2b33c; stroke: #8a6413; }
+  .g3m-mc-coin text, .g3m-mc-bill text { font-size: 13px; font-weight: 700; fill: #1c1b24; font-family: var(--font); }
+  .g3m-mc-bill rect { stroke: rgb(0 0 0 / 35%); stroke-width: 1.5; }
+  .g3m-mc-bill-mark { fill: rgb(255 255 255 / 55%); }
+  .g3m-mc-b5 rect { fill: #8fb8e8; }
+  .g3m-mc-b10 rect { fill: #c3a4dc; }
+  .g3m-mc-b20 rect { fill: #9fd39a; }
+  .g3m-mc-b50 rect { fill: #ef9a8e; }
+  .g3m-mc-b100 rect { fill: #d8b48a; }
+  .g3m-mc-run { font-size: 15px; font-weight: 700; fill: var(--accent); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; animation: g3m-mc-pop 0.3s ease both; }
+  .g3m-mc-total { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; }
+  .g3m-mc-lang { display: grid; justify-items: center; min-width: 7rem; padding: 0.35rem 0.8rem; border-radius: var(--radius-sm); background: var(--surface-2); }
+  .g3m-mc-lang small { color: var(--ink-3); font-weight: 700; }
+  .g3m-mc-lang strong { font-size: var(--step-2); color: var(--accent); font-variant-numeric: tabular-nums; }
+  .g3m-mc-say { min-height: 2.6em; margin: 0.5rem 0 0; text-align: center; font-weight: 600; }
+  @keyframes g3m-mc-drop { from { opacity: 0; transform: translateY(-18px) scale(0.7); } }
+  @keyframes g3m-mc-pop { from { opacity: 0; transform: translateY(6px); } }
+  @media (prefers-reduced-motion: reduce) { .g3m-mc-item.is-new, .g3m-mc-run { animation: none; } }
+</style>
+
+<script>
+  import { byId, countUp, moneySvg, written, total } from './g3-money.ts';
+
+  const MAX_ITEMS = 12;
+
+  class G3CoinCounter extends HTMLElement {
+    private items: string[] = [];
+    private unit: 'cents' | 'dollars' = 'cents';
+    private timers: number[] = [];
+
+    connectedCallback() {
+      this.unit = this.dataset.mode as 'cents' | 'dollars';
+      this.items = JSON.parse(this.dataset.start!);
+      this.querySelectorAll<HTMLButtonElement>('[data-add]').forEach((b) =>
+        b.addEventListener('click', () => {
+          if (this.items.length >= MAX_ITEMS) {
+            this.q('say').textContent = 'The tray is full. Tap something to take it out.';
+            return;
+          }
+          this.stop();
+          this.items.push(b.dataset.add!);
+          this.draw(this.items.length - 1);
+          this.q('say').textContent = `You added a ${byId(b.dataset.add!).name}.`;
+        }),
+      );
+      this.q('tray').addEventListener('click', (e) => {
+        const g = (e.target as Element).closest<SVGGElement>('[data-i]');
+        if (!g) return;
+        this.stop();
+        this.items.splice(Number(g.dataset.i), 1);
+        this.draw();
+      });
+      this.q('count').addEventListener('click', () => this.count());
+      this.q('clear').addEventListener('click', () => {
+        this.stop();
+        this.items = [];
+        this.draw();
+      });
+      this.draw();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-mc="${k}"]`) as HTMLElement;
+    }
+
+    private layout(n: number) {
+      const bill = this.unit === 'dollars';
+      const perRow = bill ? 4 : 5;
+      const cw = bill ? 78 : 56;
+      const rows = Math.max(1, Math.ceil(n / perRow));
+      const W = perRow * cw + 16;
+      const H = rows * 62 + 18;
+      return { W, H, at: (i: number) => [8 + cw / 2 + (i % perRow) * cw, 40 + Math.floor(i / perRow) * 62] };
+    }
+
+    private stop() {
+      this.timers.forEach(clearTimeout);
+      this.timers = [];
+    }
+
+    private draw(newIndex = -1, labels: number[] = []) {
+      const { W, H, at } = this.layout(this.items.length);
+      const body = this.items
+        .map((id, i) => {
+          const [x, y] = at(i);
+          const run = labels[i] !== undefined ? `<text class="g3m-mc-run" x="${x}" y="${y - 26}" text-anchor="middle">${labels[i]}</text>` : '';
+          return `<g class="g3m-mc-item${i === newIndex ? ' is-new' : ''}" data-i="${i}" role="button" aria-label="Take out a ${byId(id).name}">${moneySvg(id, x, y)}${run}</g>`;
+        })
+        .join('');
+      this.q('tray').innerHTML = `<svg viewBox="0 0 ${W} ${H}">${body || `<text x="${W / 2}" y="${H / 2 + 5}" text-anchor="middle" class="g3m-mc-run" style="fill:var(--ink-3)">The tray is empty</text>`}</svg>`;
+      const sum = total(this.items);
+      this.q('en').textContent = written(sum, this.unit, 'en');
+      this.q('fr').textContent = written(sum, this.unit, 'fr');
+    }
+
+    private count() {
+      if (!this.items.length) return;
+      this.stop();
+      this.items.sort((a, b) => byId(b).value - byId(a).value);
+      const run = countUp(this.items);
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const show = (k: number) => {
+        this.draw(-1, run.slice(0, k + 1));
+        this.q('say').textContent = `Biggest first: ${run.slice(0, k + 1).join(', ')}${k === run.length - 1 ? ` … that makes ${written(run[k], this.unit, 'en')}!` : ' …'}`;
+      };
+      if (reduce) return show(run.length - 1);
+      run.forEach((_, k) => this.timers.push(window.setTimeout(() => show(k), k * 550)));
+    }
+  }
+  customElements.define('g3-coin-counter', G3CoinCounter);
+</script>

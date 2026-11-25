@@ -1,0 +1,69 @@
+---
+// Rounding on a number line (MAT3-OI1-GQ1-LO1: K1.5, S1.6; MAT3-OI1-GQ2-LO1: S1.5). The number sits
+// between two round numbers; past the halfway mark it hops up, before it, it hops down.
+import { roundSvg, roundSay, PLACE_NAME } from './g3-place.ts';
+
+interface Props {
+  value?: number;
+  to?: number;
+  places?: number[];
+}
+const { value = 4_368, to = 100, places = [10, 100, 1000, 10000] } = Astro.props;
+---
+<g3-round-line data-to={to}>
+  <div class="control-row">
+    <label class="control"><span>Number</span><input class="g3m-rl-in" type="number" inputmode="numeric" min="0" max="100000" value={value} data-rl="in" /></label>
+    <div class="seg" role="group" aria-label="Round to the nearest">
+      {places.map((p) => <button type="button" data-to={p} aria-pressed={String(p === to)}>{PLACE_NAME[p]}</button>)}
+    </div>
+  </div>
+  <div class="g3m-rl-stage" data-rl="svg" set:html={roundSvg(value, to)} />
+  <p class="g3m-rl-say" data-rl="say" aria-live="polite">{roundSay(value, to)}</p>
+</g3-round-line>
+
+<style is:global>
+  g3-round-line { display: block; }
+  .g3m-rl-in { width: 7.5rem; padding: 0.4rem 0.6rem; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--ink); font: inherit; font-size: var(--step-0); }
+  .g3m-rl-stage svg { display: block; width: 100%; max-width: 34rem; height: auto; margin-inline: auto; font-family: var(--font); }
+  .g3m-rl-axis { stroke: var(--ink); stroke-width: 3; }
+  .g3m-rl-tick { stroke: var(--ink-3); stroke-width: 1.5; }
+  .g3m-rl-half { stroke: var(--sun); stroke-width: 3; }
+  .g3m-rl-num { fill: var(--ink); font-size: 17px; font-weight: 700; }
+  .g3m-rl-small { fill: var(--ink-3); font-size: 13px; font-weight: 700; }
+  .g3m-rl-val { fill: var(--accent); font-size: 16px; font-weight: 700; }
+  .g3m-rl-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 3; }
+  .g3m-rl-hop { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-dasharray: 5 4; }
+  .g3m-rl-head { fill: var(--accent); }
+  .g3m-rl-say { min-height: 2.6em; margin: 0.4rem 0 0; font-weight: 600; }
+</style>
+
+<script>
+  import { roundSvg, roundSay } from './g3-place.ts';
+
+  class G3RoundLine extends HTMLElement {
+    connectedCallback() {
+      const input = this.querySelector<HTMLInputElement>('[data-rl="in"]')!;
+      let to = Number(this.dataset.to);
+      const draw = () => {
+        const n = Math.round(Number(input.value));
+        const say = this.querySelector('[data-rl="say"]')!;
+        if (!Number.isFinite(n) || n < 0 || n > 100000 || input.value === '') {
+          say.textContent = 'Type a number from 0 to 100 000.';
+          return;
+        }
+        // 100 000 rounds to itself at every place this chart offers.
+        this.querySelector('[data-rl="svg"]')!.innerHTML = roundSvg(n, to);
+        say.textContent = roundSay(n, to);
+      };
+      input.addEventListener('input', draw);
+      this.querySelectorAll<HTMLButtonElement>('[data-to]').forEach((b) =>
+        b.addEventListener('click', () => {
+          to = Number(b.dataset.to);
+          this.querySelectorAll('button[data-to]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          draw();
+        }),
+      );
+    }
+  }
+  customElements.define('g3-round-line', G3RoundLine);
+</script>

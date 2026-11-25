@@ -1,0 +1,146 @@
+---
+// Number sequences as a train of cars (MAT3-OI6-GQ1-LO1). Tap a car for its ordinal position.
+// A finite sequence ends (a countdown launches a rocket); an infinite one keeps adding cars. A
+// hidden car is a missing term to find, with multiplication for skip counting.
+import { ordinal, term, type Seq } from './g3-sequence.ts';
+
+interface Props {
+  seqs?: Seq[];
+}
+const { seqs = [{ label: 'Count by 5', start: 5, step: 5, n: 6 }] } = Astro.props;
+const first = seqs[0];
+---
+<g3-sequence data-seqs={JSON.stringify(seqs)}>
+  {seqs.length > 1 && (
+    <div class="control-row g3m-sq-row">
+      <div class="seg" role="group" aria-label="Choose a sequence">
+        {seqs.map((s, i) => <button type="button" data-seq={i} aria-pressed={String(i === 0)}>{s.label}</button>)}
+      </div>
+    </div>
+  )}
+  <ol class="g3m-sq-train" data-sq="train" aria-label="The terms of the sequence, in order">
+    {Array.from({ length: first.n }, (_, i) => (
+      <li><button type="button" class="g3m-sq-car" data-pos={i + 1}><span class="g3m-sq-num">{first.hide === i + 1 ? '?' : term(first, i + 1)}</span><span class="g3m-sq-ord">{ordinal(i + 1)}</span></button></li>
+    ))}
+  </ol>
+  <p class="g3m-sq-say" data-sq="say" aria-live="polite"></p>
+  <div class="control-row g3m-sq-row">
+    <button type="button" class="btn btn--primary btn--small" data-sq="more">Keep going ▶</button>
+    <button type="button" class="btn btn--small" data-sq="find" hidden>🔍 Find the missing term</button>
+    <button type="button" class="btn btn--ghost btn--small" data-sq="rule">Show the rule</button>
+  </div>
+  <div class="g3m-sq-rocket" data-sq="rocket" aria-hidden="true">🚀</div>
+</g3-sequence>
+
+<style is:global>
+  g3-sequence { display: block; position: relative; overflow: hidden; }
+  .g3m-sq-row { justify-content: center; }
+  .g3m-sq-train { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 0.5rem 0.25rem; list-style: none; margin: 0.8rem 0 0; padding: 0; }
+  .g3m-sq-train li { display: flex; align-items: center; gap: 0.25rem; }
+  .g3m-sq-car { display: grid; justify-items: center; min-width: 3.3rem; padding: 0.35rem 0.4rem 0.25rem; border: 2px solid var(--ink-2); border-radius: 0.7rem 0.7rem 0.4rem 0.4rem; background: color-mix(in srgb, var(--accent) 16%, var(--surface)); color: var(--ink); font: inherit; cursor: pointer; animation: g3m-sq-in 0.35s backwards; }
+  .g3m-sq-car.is-lit { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-4px); }
+  .g3m-sq-car.is-hidden .g3m-sq-num { color: var(--bad); }
+  .g3m-sq-car.is-found { border-color: var(--ok); background: var(--ok-soft); }
+  .g3m-sq-num { font-size: 1.35rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .g3m-sq-ord { font-size: 0.78rem; font-weight: 700; color: var(--ink-3); }
+  .g3m-sq-step { font-size: 0.78rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .g3m-sq-dots { font-size: 1.5rem; font-weight: 700; color: var(--ink-3); padding-inline: 0.3rem; }
+  .g3m-sq-say { min-height: 2.6em; margin: 0.5rem 0 0; font-weight: 600; text-align: center; }
+  .g3m-sq-rocket { position: absolute; left: 50%; bottom: -3rem; font-size: 2.6rem; pointer-events: none; visibility: hidden; }
+  .g3m-sq-rocket.is-go { visibility: visible; animation: g3m-sq-launch 1.8s ease-in forwards; }
+  @keyframes g3m-sq-in { from { opacity: 0; transform: scale(0.6); } }
+  @keyframes g3m-sq-launch { 0% { bottom: -3rem; } 20% { bottom: 1rem; transform: rotate(-45deg); } 100% { bottom: 120%; transform: rotate(-45deg); } }
+  @media (prefers-reduced-motion: reduce) { .g3m-sq-car { animation: none; } .g3m-sq-rocket.is-go { animation: none; bottom: 1rem; } }
+</style>
+
+<script>
+  import { ordinal, term, lastPos, ruleSay, findSay, tapSay, type Seq } from './g3-sequence.ts';
+
+  class G3Sequence extends HTMLElement {
+    private seqs: Seq[] = [];
+    private s!: Seq;
+    private shown = 0;
+    private rule = false;
+    private found = false;
+
+    connectedCallback() {
+      this.seqs = JSON.parse(this.dataset.seqs!);
+      this.querySelectorAll<HTMLButtonElement>('[data-seq]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-seq]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.load(Number(b.dataset.seq));
+        }),
+      );
+      this.q('train').addEventListener('click', (e) => {
+        const car = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-pos]');
+        if (!car) return;
+        const pos = Number(car.dataset.pos);
+        this.querySelectorAll('.g3m-sq-car').forEach((x) => x.classList.toggle('is-lit', x === car));
+        this.q('say').textContent = pos === this.s.hide && !this.found ? `The ${ordinal(pos)} term is missing. Can you find it?` : tapSay(this.s, pos);
+      });
+      this.q('more').addEventListener('click', () => this.more());
+      this.q('rule').addEventListener('click', () => {
+        this.rule = !this.rule;
+        this.q('rule').textContent = this.rule ? 'Hide the rule' : 'Show the rule';
+        this.draw();
+        if (this.rule) this.q('say').textContent = ruleSay(this.s.step);
+      });
+      this.q('find').addEventListener('click', () => {
+        this.found = true;
+        this.draw();
+        this.q('say').textContent = findSay(this.s, this.s.hide!);
+        (this.q('find') as HTMLButtonElement).disabled = true;
+      });
+      this.load(0);
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-sq="${k}"]`) as HTMLElement;
+    }
+
+    private load(i: number) {
+      this.s = this.seqs[i];
+      this.shown = this.s.n;
+      this.found = false;
+      this.q('rocket').classList.remove('is-go');
+      (this.q('more') as HTMLButtonElement).disabled = false;
+      this.q('more').hidden = !!this.s.hide;
+      this.q('find').hidden = !this.s.hide;
+      (this.q('find') as HTMLButtonElement).disabled = false;
+      this.draw();
+      this.q('say').textContent = this.s.hide ? 'One term is missing. Look at how the others change.' : this.s.finite ? 'A countdown. Press Keep going.' : 'Tap a car to hear its position. Press Keep going to add more.';
+    }
+
+    private draw() {
+      const s = this.s;
+      const items: string[] = [];
+      for (let p = 1; p <= this.shown; p++) {
+        const hidden = p === s.hide;
+        const num = hidden && !this.found ? '?' : String(term(s, p));
+        const cls = `g3m-sq-car${hidden ? (this.found ? ' is-found' : ' is-hidden') : ''}`;
+        const step = this.rule && p < this.shown ? `<span class="g3m-sq-step">${s.step >= 0 ? '+' : '−'}${Math.abs(s.step)}</span>` : '';
+        items.push(`<li><button type="button" class="${cls}" data-pos="${p}"><span class="g3m-sq-num">${num}</span><span class="g3m-sq-ord">${ordinal(p)}</span></button>${step}</li>`);
+      }
+      const end = this.shown >= lastPos(s);
+      if (!s.finite && !s.hide) items.push('<li><span class="g3m-sq-dots" aria-label="and so on">…</span></li>');
+      this.q('train').innerHTML = items.join('');
+      (this.q('more') as HTMLButtonElement).disabled = end;
+    }
+
+    private more() {
+      const s = this.s;
+      if (this.shown >= lastPos(s)) return;
+      this.shown++;
+      this.draw();
+      if (this.shown >= lastPos(s)) {
+        this.q('say').textContent = `${term(s, this.shown)}! The countdown ends. A finite sequence has a last term. Blast off!`;
+        this.q('rocket').classList.add('is-go');
+      } else if (this.shown >= 24) {
+        this.shown = 24;
+        this.q('say').textContent = 'We could keep going forever. This sequence never ends: it is infinite.';
+        (this.q('more') as HTMLButtonElement).disabled = true;
+      } else this.q('say').textContent = `The ${ordinal(this.shown)} term is ${term(s, this.shown)}.${s.finite ? '' : ' Is there a last one?'}`;
+    }
+  }
+  customElements.define('g3-sequence', G3Sequence);
+</script>

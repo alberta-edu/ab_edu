@@ -1,0 +1,105 @@
+---
+// The times table to 10 × 10 (MAT3-OI1-GQ3-LO1: K3.1, K3.2, U3.1, S3.1-S3.3; MAT3-OI6-GQ1-LO1:
+// S2.1). Tap a product to light up its row and column and see its fact family. Tap a row or
+// column number to read it as a skip-counting sequence.
+import { family, triangleSvg, rowSeq } from './g3-table.ts';
+
+interface Props {
+  pick?: [number, number];
+  row?: number;
+}
+const { pick = [3, 4], row } = Astro.props;
+const N = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+---
+<g3-times-table data-a={pick[0]} data-b={pick[1]} data-row={row ?? ''}>
+  <div class="g3m-tt-wrap">
+    <table class="g3m-tt" aria-label="Times table from 1 × 1 to 10 × 10">
+      <thead>
+        <tr><th scope="col">×</th>{N.map((c) => <th scope="col"><button type="button" data-col={c}>{c}</button></th>)}</tr>
+      </thead>
+      <tbody>
+        {N.map((r) => (
+          <tr>
+            <th scope="row"><button type="button" data-row={r}>{r}</button></th>
+            {N.map((c) => <td><button type="button" data-r={r} data-c={c} aria-label={`${r} × ${c}`}>{r * c}</button></td>)}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="g3m-tt-out" aria-live="polite" hidden={row ? true : undefined}>
+    <div class="g3m-tt-svg" data-tt="tri" set:html={triangleSvg(pick[0], pick[1])} />
+    <ul class="g3m-tt-fam" data-tt="fam">{family(pick[0], pick[1]).map((f) => <li>{f}</li>)}</ul>
+  </div>
+  <p class="g3m-tt-say" data-tt="say">{row ? `Row ${row}: ${rowSeq(row).join(', ')}` : 'Tap a number in the table, or a blue number on the edge.'}</p>
+</g3-times-table>
+
+<style is:global>
+  g3-times-table { display: block; }
+  .g3m-tt-wrap { overflow-x: auto; container-type: inline-size; }
+  .g3m-tt { border-collapse: separate; border-spacing: 2px; margin-inline: auto; font-variant-numeric: tabular-nums; }
+  .g3m-tt th, .g3m-tt td { padding: 0; }
+  .g3m-tt button { width: clamp(1.4rem, calc((100cqi - 26px) / 11), 2.4rem); height: clamp(1.5rem, calc((100cqi - 26px) / 11), 2.2rem); border: 0; border-radius: 0.35rem; background: var(--surface-2); color: var(--ink); font: inherit; font-size: clamp(0.62rem, calc((100cqi - 26px) / 26), 0.9rem); font-weight: 600; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+  .g3m-tt th button { background: var(--accent-soft); color: var(--accent); font-weight: 800; }
+  .g3m-tt thead th:first-child { font-weight: 800; color: var(--ink-3); }
+  .g3m-tt button.is-line { background: color-mix(in srgb, var(--sun) 35%, var(--surface)); }
+  .g3m-tt button.is-pick { background: var(--accent); color: var(--surface); transform: scale(1.12); }
+  .g3m-tt button.is-twin { background: color-mix(in srgb, var(--accent) 45%, var(--surface)); }
+  .g3m-tt-out[hidden] { display: none; }
+  .g3m-tt-out { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.4rem 1.4rem; margin-top: 0.7rem; }
+  .g3m-tt-svg svg { width: 8.5rem; height: auto; display: block; font-family: var(--font); }
+  .g3m-tt-tri { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
+  .g3m-tt-top { fill: var(--accent); font-size: 26px; font-weight: 800; }
+  .g3m-tt-low { fill: var(--ink); font-size: 22px; font-weight: 800; }
+  .g3m-tt-op { fill: var(--ink-3); font-size: 13px; font-weight: 700; }
+  .g3m-tt-fam { margin: 0; padding: 0; list-style: none; font-size: var(--step-1); font-weight: 700; line-height: 1.5; }
+  .g3m-tt-say { min-height: 2.6em; margin: 0.5rem 0 0; text-align: center; font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { .g3m-tt button { transition: none; } }
+</style>
+
+<script>
+  import { family, triangleSvg, rowSeq } from './g3-table.ts';
+
+  class G3TimesTable extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener('click', (e) => {
+        const b = (e.target as Element).closest<HTMLButtonElement>('button');
+        if (!b) return;
+        if (b.dataset.r) this.pick(Number(b.dataset.r), Number(b.dataset.c));
+        else if (b.dataset.row) this.line('r', Number(b.dataset.row));
+        else if (b.dataset.col) this.line('c', Number(b.dataset.col));
+      });
+      if (this.dataset.row) this.line('r', Number(this.dataset.row));
+      else this.pick(Number(this.dataset.a), Number(this.dataset.b));
+    }
+
+    private clear() {
+      this.querySelectorAll('.is-line, .is-pick, .is-twin').forEach((x) => x.classList.remove('is-line', 'is-pick', 'is-twin'));
+    }
+
+    private pick(a: number, b: number) {
+      this.clear();
+      this.querySelectorAll<HTMLElement>('[data-r]').forEach((x) => {
+        const r = Number(x.dataset.r);
+        const c = Number(x.dataset.c);
+        if ((r === a && c <= b) || (c === b && r <= a)) x.classList.add('is-line');
+        if (r === b && c === a) x.classList.add('is-twin');
+      });
+      this.querySelector(`[data-r="${a}"][data-c="${b}"]`)!.classList.add('is-pick');
+      (this.querySelector('.g3m-tt-out') as HTMLElement).hidden = false;
+      this.querySelector('[data-tt="tri"]')!.innerHTML = triangleSvg(a, b);
+      this.querySelector('[data-tt="fam"]')!.innerHTML = family(a, b).map((f) => `<li>${f}</li>`).join('');
+      this.querySelector('[data-tt="say"]')!.textContent =
+        a === b ? `${a} × ${a} sits on the diagonal. It has only two facts.` : `${a} × ${b} and ${b} × ${a} are twins: same product, mirror spots.`;
+    }
+
+    private line(kind: 'r' | 'c', n: number) {
+      this.clear();
+      this.querySelectorAll<HTMLElement>(`[data-${kind}="${n}"]`).forEach((x) => x.classList.add('is-line'));
+      // A skip-counting line has no fact family to show.
+      (this.querySelector('.g3m-tt-out') as HTMLElement).hidden = true;
+      this.querySelector('[data-tt="say"]')!.textContent = `${kind === 'r' ? 'Row' : 'Column'} ${n} skip counts by ${n}: ${rowSeq(n).join(', ')}`;
+    }
+  }
+  customElements.define('g3-times-table', G3TimesTable);
+</script>

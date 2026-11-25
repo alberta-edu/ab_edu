@@ -1,0 +1,213 @@
+id: naming-fractions
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [CLrkTvQMl0Oj1FGsDZHeJQ]
+order: 9
+title: Naming Fractions of One Whole
+shortTitle: Naming fractions
+summary: >-
+  Cut a whole into equal parts, name and write fractions up to twelfths, build them from unit
+  fractions, and find fractions of a group of things.
+
+bigIdea: |-
+  - A fraction counts **equal parts** of one whole.
+  - The **denominator** says how many equal parts. The **numerator** says how many we count.
+  - **3/8** is three **1/8** parts. **8/8** is one whole.
+
+lesson:
+  - title: Equal parts
+    blocks:
+      - type: visual
+        covers: [S1.1, U1.2, U1.3, K1.1]
+        component: g3-fraction
+        props: { mode: build, n: 1, d: 4 }
+        caption: |-
+          1. Tap the parts to shade them.
+          2. Press **+** for more equal parts. Watch each part get smaller.
+      - type: callout
+        variant: remember
+        covers: ['-Aw3R3Gn50ibzZJGbi-Sag#K1.3']
+        title: Remember from Grade 2
+        body: 'A **unit fraction** is one of the equal parts, like 1/4.'
+
+  - title: Top and bottom numbers
+    blocks:
+      - type: visual
+        covers: [K1.3, S1.3, S1.4, S1.5]
+        component: g3-fraction
+        props: { mode: build, n: 3, d: 8, view: circle }
+        caption: |-
+          1. The bottom number, the **denominator**, counts all the equal parts: 8.
+          2. The top number, the **numerator**, counts the shaded parts: 3.
+
+  - title: Built from unit fractions
+    blocks:
+      - type: visual
+        covers: [K1.2, S1.2, S1.4]
+        component: g3-fraction
+        props: { mode: build, n: 5, d: 6 }
+        caption: '**Five sixths** is five parts of 1/6. Watch the adding grow as you tap.'
+
+  - title: Fractions of a group
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1, S1.6]
+        component: g3-fraction
+        props: { mode: build, n: 2, d: 3, view: set, k: 4 }
+        caption: 12 things in **3 equal groups**. Shade 2 groups to show 2/3 of them.
+
+  - title: One whole
+    blocks:
+      - type: visual
+        covers: [K1.5, S1.5, S1.6]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'one', label: 'One whole', icon: '🍕' }
+            - { id: 'less', label: 'Less than one whole', icon: '🍰' }
+          cards:
+            - { text: '4/4', bin: 'one', why: 'All 4 of the 4 parts. The top and bottom match.' }
+            - { text: '3/4', bin: 'less', why: '3 of the 4 parts. One part is missing.' }
+            - { text: '12/12', bin: 'one', why: 'All 12 of the 12 parts.' }
+            - { text: 'two halves', bin: 'one', why: '2/2. Two halves make the whole thing.' }
+            - { text: '1/12', bin: 'less', why: 'Just one tiny part of 12.' }
+        caption: When the top and bottom numbers match, you have the whole thing.
+
+keyTerms:
+  - term: Fraction
+    covers: [U1.2, K1.3]
+    definition: 'A number that counts equal parts of one whole, like 3/8.'
+  - term: Numerator
+    covers: [K1.3, S1.3]
+    definition: 'The top number. It counts the parts we are talking about.'
+  - term: Denominator
+    covers: [K1.3, S1.3]
+    definition: 'The bottom number. It counts all the equal parts in the whole.'
+  - term: Unit fraction
+    covers: [U1.3, K1.2]
+    definition: 'One equal part of a whole, like 1/8. Its numerator is 1.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: notice
+    covers: [S1.3, S1.5]
+    type: fraction
+    figure: { kind: fraction-bars, n: 3, d: 5, wholes: 1 }
+    prompt: What fraction of the bar is shaded?
+    answer: 3/5
+    form: any
+    verify: 3/5
+    hints:
+      - How many equal parts are there in all? How many are shaded?
+    solution:
+      - 'There are **5** equal parts, and **3** are shaded.'
+      - 'So **3/5** is shaded.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S1.4, S1.5]
+    type: fraction
+    prompt: Write **five sixths** as a fraction.
+    answer: 5/6
+    form: any
+    verify: 5/6
+    hints:
+      - '"Sixths" tells you the bottom number.'
+    solution:
+      - 'Sixths means 6 equal parts, so the denominator is 6. Five of them: **5/6**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: model
+    covers: [K1.1, S1.1, S1.6]
+    type: fraction
+    prompt: Pia puts **10 stickers** in **5 equal rows**. She gives away **2 rows**. What fraction of the stickers did she give away?
+    answer: 2/5
+    form: any
+    verify: 2/5
+    hints:
+      - How many equal groups is the whole set cut into?
+      - How many of those groups did she give away?
+    solution:
+      - 'The whole set is **5 equal rows**. Each row is 1/5 of the stickers.'
+      - 'She gave away 2 rows: **2/5** of the stickers.'
+
+  - id: b2
+    level: 2
+    thinking: flaw
+    covers: [U1.3, K1.3]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 360 80" class="fig-svg" role="img" aria-label="A bar cut into 4 parts of different sizes. The smallest part is shaded."><rect x="10" y="10" width="50" height="60" style="fill:color-mix(in srgb, var(--accent) 70%, var(--surface));stroke:var(--ink);stroke-width:2"/><rect x="60" y="10" width="90" height="60" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/><rect x="150" y="10" width="80" height="60" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/><rect x="230" y="10" width="120" height="60" style="fill:var(--surface-2);stroke:var(--ink);stroke-width:2"/></svg>
+    prompt: Jo says **1/4** of this bar is shaded. Is he right?
+    choices: ['No. The parts are not equal.', 'Yes. 1 of the 4 parts is shaded.', 'No. It is 1/3.']
+    answer: 0
+    feedback:
+      '1': 'Look at the sizes of the parts. Are they all the same?'
+      '2': 'There are 4 parts, not 3. But check: are they equal?'
+    hints:
+      - Look at the size of each part. Are they the same?
+    solution:
+      - 'A fraction counts **equal** parts. These 4 parts are all different sizes.'
+      - 'The shaded part is smaller than a fourth, so Jo is not right.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [K1.2, K1.5, S1.2]
+    type: build
+    prompt: Write a fraction made of **4 unit fractions** that is **less than one whole**. Use a denominator of 12 or less.
+    fields:
+      - { name: n, label: 'Numerator' }
+      - { name: d, label: 'Denominator' }
+    rules:
+      - { test: 'n % 1 == 0 && d % 1 == 0 && d >= 2 && d <= 12', fail: 'Use a whole-number denominator from 2 to 12.' }
+      - { test: 'n == 4', fail: 'Four unit fractions, like four 1/5 parts. What is the numerator?' }
+      - { test: 'n < d', fail: 'That is one whole or more. Try more equal parts in the whole.' }
+    examples:
+      - { n: 4, d: 5 }
+      - { n: 4, d: 9 }
+      - { n: 4, d: 12 }
+    counterexamples:
+      - { n: 4, d: 4 }
+      - { n: 3, d: 8 }
+    hints:
+      - 4 unit fractions means the numerator is 4.
+      - For less than one whole, the whole needs more than 4 parts.
+    solution:
+      - 'Four parts gives a numerator of **4**.'
+      - 'The denominator must be more than 4: **4/5**, **4/9** and **4/12** all work.'
+      - '4/4 is one whole, so it is too big.'
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.1, U1.2, S1.6]
+    type: investigation
+    prompt: A pan of brownies is cut into **12 equal pieces**.
+    parts:
+      - type: fraction
+        prompt: '12 kids each take one piece. What fraction of the pan does each kid get?'
+        answer: 1/12
+        form: any
+        verify: 1 / (6 + 6)
+        hints:
+          - How many equal pieces make the whole pan?
+        solution:
+          - 'Each kid gets 1 of 12 equal pieces: **1/12** of the pan.'
+      - type: number
+        prompt: 'Only **6** kids share the same 12 pieces equally. How many pieces does each kid get?'
+        unit: pieces
+        answer: 2
+        verify: 12 / 6
+        hints:
+          - Share 12 pieces between 6 kids, one at a time.
+        solution:
+          - '12 pieces shared by 6 kids is **2 pieces** each. That is 2/12 of the pan.'
+    wrapUp: The pan stays one whole. Fewer kids sharing it means each one gets more of the pieces.

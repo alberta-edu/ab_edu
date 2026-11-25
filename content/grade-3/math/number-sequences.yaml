@@ -1,0 +1,210 @@
+id: number-sequences
+grade: 3
+subject: math
+organizingIdea: MAT-OI6
+outcomes: [MAT3-OI6-GQ1-LO1]
+order: 18
+title: Number Sequences and Skip Counting
+shortTitle: Number sequences
+summary: >-
+  Name terms by position with first, second and third, tell finite sequences from infinite ones,
+  skip count in the times table, and find missing terms.
+
+bigIdea: |-
+  - A **sequence** is a list of numbers in order. Each number is a **term**.
+  - A countdown is **finite**: it ends. Counting numbers are **infinite**: they never end.
+  - A rule tells how each term changes. Skip counting can use multiplication.
+
+lesson:
+  - title: First, second, third
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.2, U1.1]
+        component: g3-sequence
+        props:
+          seqs:
+            - { label: 'Count by 5', start: 5, step: 5, n: 6 }
+        caption: Tap a car. Its **position** is under it, like 3rd for third.
+      - type: callout
+        covers: [MAT2-OI6-GQ1-LO1#U1.1]
+        variant: remember
+        title: Remember from Grade 2
+        body: A pattern can **increase** or **decrease**.
+
+  - title: Countdown or forever?
+    blocks:
+      - type: visual
+        covers: [K1.2, K1.3, U1.2, S1.3]
+        component: g3-sequence
+        props:
+          seqs:
+            - { label: '🚀 Countdown', start: 10, step: -1, n: 4, finite: true }
+            - { label: '♾️ Counting numbers', start: 1, step: 1, n: 5 }
+        caption: Press **Keep going** on both. Which one ends?
+
+  - title: Even and odd
+    blocks:
+      - type: visual
+        covers: [S1.1]
+        component: g3-sequence
+        props:
+          seqs:
+            - { label: 'Even numbers', start: 2, step: 2, n: 5 }
+            - { label: 'Odd numbers', start: 1, step: 2, n: 5 }
+        caption: |-
+          - **Even** numbers end in 0, 2, 4, 6 or 8.
+          - **Odd** numbers end in 1, 3, 5, 7 or 9.
+
+  - title: Skip counting in the table
+    blocks:
+      - type: visual
+        covers: [S2.1]
+        component: g3-times-table
+        props: { row: 4 }
+        caption: Tap a row or column number. It is a skip-counting sequence.
+
+  - title: Missing terms
+    blocks:
+      - type: visual
+        covers: [S2.2, S2.3, K2.1, U2.1]
+        component: g3-sequence
+        props:
+          seqs:
+            - { label: 'Count by 5', start: 5, step: 5, n: 8, hide: 7 }
+            - { label: 'Count by 4', start: 4, step: 4, n: 7, hide: 6 }
+            - { label: 'Down from 50', start: 50, step: -5, n: 6, hide: 4 }
+        caption: Press **Show the rule** to see how each term changes. Then find the missing term.
+
+keyTerms:
+  - term: Sequence
+    covers: [U1.1]
+    definition: 'A list of numbers in a certain order.'
+  - term: Term
+    covers: [U1.1, K1.1]
+    definition: 'One number in a sequence. The 1st term comes first.'
+  - term: Finite
+    covers: [K1.2]
+    definition: 'Has an end, like a countdown.'
+  - term: Infinite
+    covers: [K1.3]
+    definition: 'Never ends, like the counting numbers.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K1.1, S1.2]
+    type: number
+    prompt: 'What is the **4th** term? 3, 6, 9, 12, 15'
+    answer: 12
+    verify: 4 * 3
+    hints:
+      - Point at each term and say 1st, 2nd, 3rd, …
+    solution:
+      - '1st is 3, 2nd is 6, 3rd is 9, 4th is **12**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K1.2, S1.3]
+    type: mc
+    prompt: Which sequence is **finite**?
+    choices: ['10, 9, 8, …, 1, 0', '1, 2, 3, 4, …', '2, 4, 6, 8, …']
+    answer: 0
+    feedback:
+      '1': 'The counting numbers never stop. There is always one more.'
+      '2': 'You can always add 2 more. Even numbers never end.'
+    hints:
+      - Which one has a last term?
+    solution:
+      - 'A countdown stops at 0. It has a last term, so it is **finite**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S2.2, S2.1]
+    type: number
+    prompt: 'Skip count by 6: 6, 12, 18, … What is the **9th** term?'
+    answer: 54
+    verify: 9 * 6
+    hints:
+      - The 1st term is 1 × 6. The 2nd term is 2 × 6. What is the 9th?
+    solution:
+      - 'Counting by 6 is the 6 row of the times table.'
+      - 'The 9th term is 9 × 6 = **54**.'
+
+  - id: b2
+    level: 2
+    thinking: pattern
+    covers: [S2.3, K2.1]
+    type: mc
+    prompt: 'How does this sequence change? 40, 36, 32, 28'
+    choices: ['Subtract 4 each time', 'Add 4 each time', 'Subtract 3 each time']
+    answer: 0
+    feedback:
+      '1': 'The numbers are getting smaller. Is that adding?'
+      '2': 'Check: 40 − 3 is 37, not 36.'
+    hints:
+      - Do the numbers get bigger or smaller? By how much?
+    solution:
+      - '40 − 4 = 36, 36 − 4 = 32, 32 − 4 = 28.'
+      - '**Subtract 4** each time.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [S1.1, S1.2, U1.2]
+    type: investigation
+    prompt: 'Mo writes the odd numbers in order: 1, 3, 5, 7, …'
+    parts:
+      - type: number
+        prompt: What is the **10th** term?
+        answer: 19
+        verify: 2 * 10 - 1
+        hints:
+          - Keep counting by 2 from 7. Count the terms as you go.
+        solution:
+          - '1, 3, 5, 7, 9, 11, 13, 15, 17, **19**: the 10th term is 19.'
+      - type: mc
+        prompt: Will **50** ever be in Mo’s sequence?
+        choices: ['No', 'Yes, if he keeps going']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'The sequence never ends, but does it land on every number? Look at the last digit of 50.'
+        hints:
+          - Is 50 odd or even?
+        solution:
+          - '50 ends in 0, so it is even.'
+          - 'Mo’s sequence goes on forever, but it jumps over every even number. **No**.'
+    wrapUp: An infinite sequence goes on forever, but it can still skip numbers.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.1, S2.2, K2.1]
+    type: build
+    prompt: Pick a number to skip count by. Your sequence must land on **24**, and its **4th** term must be **less than 20**.
+    fields:
+      - { name: k, label: 'Skip count by' }
+    rules:
+      - { test: 'k % 1 == 0 && k >= 2 && k <= 10', fail: 'Pick a whole number from 2 to 10.' }
+      - { test: '24 % k == 0', fail: 'Your sequence jumps over 24. Which rows of the times table have 24 in them?' }
+      - { test: '4 * k < 20', fail: 'It lands on 24, but the 4th term is too big. What is 4 × your number?' }
+    examples:
+      - { k: 2 }
+      - { k: 3 }
+      - { k: 4 }
+    counterexamples:
+      - { k: 6 }
+      - { k: 5 }
+      - { k: 8 }
+    hints:
+      - Which times-table rows have 24 in them?
+      - For each one, the 4th term is 4 × that number.
+    solution:
+      - '24 is in the 2, 3, 4, 6 and 8 rows.'
+      - 'The 4th term is 4 × your number: 8, 12, 16, 24 or 32. Less than 20 leaves **2, 3 or 4**.'

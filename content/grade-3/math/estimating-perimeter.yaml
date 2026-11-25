@@ -1,0 +1,207 @@
+id: estimating-perimeter
+grade: 3
+subject: math
+organizingIdea: MAT-OI5
+outcomes: [MAT3-OI5-GQ1-LO1]
+order: 16
+title: Estimating Length and Finding Perimeter
+shortTitle: Perimeter and estimating
+summary: >-
+  Walk around a polygon to find its perimeter, unroll the sides into one line, find a missing side,
+  and estimate lengths with a fingernail or a metre stick.
+
+bigIdea: |-
+  - The **perimeter** is the distance all the way around. Add up the sides.
+  - Laid in a line, the sides are just as long. Length doesn’t change when you move the pieces.
+  - A **referent**, like a fingernail for 1 cm, helps you estimate.
+
+lesson:
+  - title: Walk around the edge
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: g3-perimeter
+        props: { mode: walk, figs: [rect, tri, hex], actions: [walk] }
+        caption: Press **Walk around**. The ladybug adds each side as it goes.
+
+  - title: Unroll the sides
+    blocks:
+      - type: visual
+        covers: [U2.1, K2.1]
+        component: g3-perimeter
+        props: { mode: walk, figs: [tri, rect], actions: [unroll] }
+        caption: The sides slide into one straight line. Is the line longer, shorter or the same?
+
+  - title: The missing side
+    blocks:
+      - type: visual
+        covers: [S2.2]
+        component: g3-perimeter
+        props:
+          mode: missing
+          puzzles:
+            - { fig: tri, p: 12, hide: 2 }
+            - { fig: house, p: 16, hide: 2 }
+        caption: |-
+          1. Add the sides you know.
+          2. The rest of the perimeter is the missing side.
+
+  - title: Body benchmarks
+    blocks:
+      - type: compare
+        covers: [K3.1, K3.2, S3.1]
+        columns:
+          - { title: '💅 About 1 cm', body: 'The width of your little fingernail.' }
+          - { title: '🚪 About 1 m', body: 'From the floor up to a door handle.' }
+      - type: visual
+        covers: [S3.3, K3.2, U3.1]
+        component: g3-perimeter
+        props: { mode: estimate, items: [crayon, marker] }
+        caption: Make a guess. Then press **Check it** to lay fingernails along it.
+
+  - title: Estimate in metres
+    blocks:
+      - type: visual
+        covers: [S3.2, S3.3, U3.1]
+        component: g3-perimeter
+        props: { mode: estimate, items: [bed, canoe] }
+        caption: Picture metre sticks laid end to end. Close is good enough for an estimate.
+
+keyTerms:
+  - term: Perimeter
+    covers: [K2.1]
+    definition: 'The distance all the way around a shape. Add up all its sides.'
+  - term: Referent
+    covers: [K3.2, S3.1]
+    definition: 'Something you know the length of, like a fingernail for 1 cm.'
+  - term: Estimate
+    covers: [U3.1]
+    definition: 'A careful guess that is close enough when you don’t need an exact answer.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K2.1, S2.1]
+    type: number
+    figure: |-
+      <svg viewBox="0 0 300 180" class="fig-svg" role="img" aria-label="A rectangle 6 cm long and 4 cm wide."><rect class="fig-rect" x="60" y="30" width="180" height="120"/><text class="fig-label" x="150" y="22" text-anchor="middle">6 cm</text><text class="fig-label" x="250" y="96">4 cm</text></svg>
+    prompt: What is the **perimeter** of this rectangle?
+    unit: cm
+    answer: 20
+    verify: 6 + 4 + 6 + 4
+    hints:
+      - A rectangle has 4 sides. Only 2 are labelled. What are the other two?
+      - Add all 4 sides.
+    solution:
+      - 'The sides are 6, 4, 6 and 4 cm.'
+      - '6 + 4 + 6 + 4 = **20 cm**.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [S3.1, K3.2]
+    type: mc
+    prompt: Which is a good **referent** for 1 cm?
+    choices: ['Your little fingernail', 'Your arm', 'A door']
+    answer: 0
+    feedback:
+      '1': 'An arm is much longer than 1 cm. It is closer to half a metre.'
+      '2': 'A door is about 2 m tall. That is far more than 1 cm.'
+    hints:
+      - 1 cm is very small. Which one is tiny?
+    solution:
+      - 'Your little fingernail is about **1 cm** wide.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: backwards
+    covers: [S2.2, K2.1]
+    type: number
+    prompt: A triangle has a perimeter of **15 cm**. Two sides are **4 cm** and **5 cm**. How long is the third side?
+    unit: cm
+    answer: 6
+    verify: 15 - 4 - 5
+    hints:
+      - What do the two sides you know add up to?
+      - How much more makes 15?
+    solution:
+      - '4 + 5 = 9 cm.'
+      - '15 − 9 = **6 cm**. Check: 4 + 5 + 6 = 15.'
+
+  - id: b2
+    level: 2
+    thinking: estimate
+    covers: [S3.2, S3.3]
+    type: mc
+    prompt: Noah’s desk is about **1 m** long. The classroom wall is about as long as **8** desks in a row. About how long is the wall?
+    choices: ['About 8 m', 'About 8 cm', 'About 80 m']
+    answer: 0
+    feedback:
+      '1': 'Each desk is about 1 m, not 1 cm. Picture 8 desks.'
+      '2': '80 m would be 80 desks. There are only 8.'
+    hints:
+      - Each desk is a 1 m benchmark. How many are there?
+    solution:
+      - '8 desks of about 1 m each make about **8 m**.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: why
+    covers: [U2.1, K2.1, S2.1]
+    type: investigation
+    prompt: Ari bends a **24 cm** piece of wire into a square. Then she straightens it and bends it into a triangle.
+    parts:
+      - type: mc
+        prompt: Which shape has the bigger perimeter?
+        choices: ['They are the same', 'The square', 'The triangle']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'A square has more sides. But is there more wire?'
+          '2': 'The triangle looks pointy. Did any wire get added?'
+        hints:
+          - What is the perimeter made of?
+        solution:
+          - 'Both shapes use the whole wire, 24 cm.'
+          - 'So their perimeters are **the same**.'
+      - type: number
+        prompt: How long is each side of the **square**?
+        unit: cm
+        answer: 6
+        verify: 24 / 4
+        hints:
+          - The 4 sides of a square are equal, and they add up to 24 cm.
+        solution:
+          - '4 equal sides share 24 cm. 24 ÷ 4 = **6 cm**.'
+    wrapUp: Bending or moving the pieces doesn’t change the length. The perimeter stays 24 cm.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [S2.1, K2.1]
+    type: build
+    prompt: Design a **rectangle** for a garden with a perimeter of exactly **16 m**. Use whole metres.
+    fields:
+      - { name: l, label: 'Length', unit: m }
+      - { name: w, label: 'Width', unit: m }
+    rules:
+      - { test: 'l % 1 == 0 && w % 1 == 0 && l >= 1 && w >= 1', fail: 'Use whole metres, at least 1 m each.' }
+      - { test: 'l + w + l + w == 16', fail: 'Walk all the way around: length + width + length + width. Is it 16 m?' }
+    examples:
+      - { l: 5, w: 3 }
+      - { l: 6, w: 2 }
+      - { l: 4, w: 4 }
+    counterexamples:
+      - { l: 8, w: 8 }
+      - { l: 10, w: 6 }
+    hints:
+      - Going around means 2 lengths and 2 widths.
+      - One length and one width make half the way around. What is half of 16?
+    solution:
+      - 'One length and one width make half the way around: 8 m.'
+      - '**5 m by 3 m** works: 5 + 3 + 5 + 3 = 16.'
+      - '6 m by 2 m and 7 m by 1 m work too.'

@@ -1,0 +1,300 @@
+---
+// Angles (outcome Fw_y7H1B706duQqzDkWglA).
+// turn: turn an arm, a door or a clock hand around a vertex; the turn makes the angle.
+// compare: guess which angle is bigger, then lay A on B to check (direct comparison).
+// trace: A and B can't move, so trace A on clear paper and carry the copy to B (indirect).
+// right: check things against a paper corner, a referent for a right angle (90°).
+import { PAIRS, SPOTS } from './g3-angle.ts';
+
+interface Props {
+  mode?: 'turn' | 'compare' | 'trace' | 'right';
+  /** turn: the scenes to offer. */
+  scenes?: ('plain' | 'door' | 'clock')[];
+  /** trace: the two angles, in degrees. */
+  trace?: [number, number];
+  /** right: the things to check. */
+  spots?: string[];
+}
+const { mode = 'turn', scenes = ['plain', 'door', 'clock'], trace = [60, 75], spots = SPOTS.map((s) => s.id) } = Astro.props;
+const SCENE = { plain: 'Arms', door: '🚪 Door', clock: '🕒 Clock' };
+const slist = spots.map((id) => SPOTS.find((s) => s.id === id)!);
+---
+<g3-angle data-mode={mode} data-scenes={JSON.stringify(scenes)} data-trace={JSON.stringify(trace)} data-spots={JSON.stringify(spots)}>
+  {mode === 'turn' && scenes.length > 1 && (
+    <div class="control-row g3m-an-row">
+      <div class="seg" role="group" aria-label="Choose a scene">
+        {scenes.map((s, i) => <button type="button" data-scene={s} aria-pressed={String(i === 0)}>{SCENE[s]}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'compare' && (
+    <div class="control-row g3m-an-row">
+      <div class="seg" role="group" aria-label="Choose two angles">
+        {PAIRS.map((_, i) => <button type="button" data-pair={i} aria-pressed={String(i === 0)}>Pair {i + 1}</button>)}
+      </div>
+    </div>
+  )}
+  {mode === 'right' && (
+    <div class="g3m-an-spots" role="group" aria-label="Choose something to check">
+      {slist.map((s, i) => <button type="button" class="g3m-an-spot" data-spot={s.id} aria-pressed={String(i === 0)} aria-label={s.name}>{s.icon}</button>)}
+    </div>
+  )}
+  <svg class="g3m-an-svg" viewBox="0 0 360 240" role="img" aria-label="An angle" data-an="svg"></svg>
+  {(mode === 'compare' || mode === 'right') && (
+    <div class="g3m-an-guess" role="group" aria-label="Your guess">
+      <span>Your guess:</span>
+      {(mode === 'compare' ? [['a', 'A is bigger'], ['b', 'B is bigger'], ['same', 'Same']] : [['smaller', 'Smaller'], ['right', 'Right angle'], ['bigger', 'Bigger']]).map(([v, l]) => <button type="button" class="g3m-an-pick" data-guess={v}>{l}</button>)}
+    </div>
+  )}
+  <p class="g3m-an-say" data-an="say" aria-live="polite"></p>
+  <div class="control-row g3m-an-row">
+    {mode === 'turn' && (
+      <>
+        <label class="control"><span>Turn</span><input type="range" min="0" max="180" value="40" data-an="deg" aria-label="How far to turn" /></label>
+        <button type="button" class="btn btn--primary btn--small" data-an="play">▶ Watch it turn</button>
+      </>
+    )}
+    {mode === 'compare' && <button type="button" class="btn btn--primary btn--small" data-an="go">Lay A on B</button>}
+    {mode === 'trace' && <button type="button" class="btn btn--primary btn--small" data-an="go">✏️ Trace A</button>}
+    {mode === 'right' && <button type="button" class="btn btn--primary btn--small" data-an="go">📄 Check with a paper corner</button>}
+    {mode !== 'turn' && <button type="button" class="btn btn--ghost btn--small" data-an="reset">Start over</button>}
+  </div>
+</g3-angle>
+
+<style is:global>
+  g3-angle { display: block; }
+  .g3m-an-row { justify-content: center; }
+  .g3m-an-svg { display: block; width: 100%; max-width: 30rem; height: auto; margin: 0.4rem auto 0; font-family: var(--font); overflow: visible; }
+  .g3m-an-arm { stroke-width: 6; stroke-linecap: round; }
+  .g3m-an-arm.is-a { stroke: var(--accent); }
+  .g3m-an-arm.is-b { stroke: var(--bad); }
+  .g3m-an-arm.is-c { stroke: var(--ink-2); stroke-width: 3; stroke-dasharray: 6 5; }
+  .g3m-an-wedge { opacity: 0.35; }
+  .g3m-an-wedge.is-a { fill: var(--accent); }
+  .g3m-an-wedge.is-b { fill: var(--bad); }
+  .g3m-an-wedge.is-c { fill: none; }
+  .g3m-an-rt { fill: none; stroke: var(--ok); stroke-width: 3; }
+  .g3m-an-vx { fill: var(--ink); }
+  .g3m-an-label { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+  .g3m-an-big { fill: var(--ink); font-size: 22px; font-weight: 700; }
+  .g3m-an-wall { stroke: var(--ink-2); stroke-width: 10; stroke-linecap: butt; }
+  .g3m-an-door { stroke: #a0663a; stroke-width: 9; stroke-linecap: round; }
+  .g3m-an-face { fill: var(--surface); stroke: var(--ink); stroke-width: 3; }
+  .g3m-an-tick { stroke: var(--ink-2); stroke-width: 2; }
+  .g3m-an-move { transition: transform 1.1s ease-in-out, opacity 0.3s; }
+  .g3m-an-paper { fill: color-mix(in srgb, var(--surface) 40%, transparent); stroke: var(--ink-3); stroke-width: 1.5; stroke-dasharray: 3 3; }
+  .g3m-an-corner { fill: color-mix(in srgb, var(--sun) 65%, transparent); stroke: var(--ink-2); stroke-width: 1.5; }
+  .g3m-an-frame { fill: none; stroke: var(--ink-3); stroke-width: 2; rx: 8; }
+  .g3m-an-spots { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+  .g3m-an-spot { width: 3rem; height: 3rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); font-size: 1.6rem; cursor: pointer; }
+  .g3m-an-spot[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3m-an-guess { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.4rem; font-weight: 700; margin-top: 0.4rem; }
+  .g3m-an-pick { padding: 0.35rem 0.7rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+  .g3m-an-pick[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3m-an-pick.is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3m-an-pick.is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  .g3m-an-say { min-height: 2.6em; margin: 0.4rem 0 0; font-weight: 600; text-align: center; }
+  @media (prefers-reduced-motion: reduce) { .g3m-an-move { transition: none; } }
+</style>
+
+<script>
+  import { at, wedge, rightMark, angleSvg, vsRight, RIGHT_SAY, turnSay, PAIRS, compareSay, SPOTS, type P } from './g3-angle.ts';
+
+  const f = (n: number) => n.toFixed(1);
+  const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  class G3Angle extends HTMLElement {
+    private scene: 'plain' | 'door' | 'clock' = 'plain';
+    private pair = 0;
+    private guess = '';
+    private stage = 0;
+    private spot = SPOTS[0];
+
+    connectedCallback() {
+      const mode = this.dataset.mode;
+      if (mode === 'turn') this.setupTurn();
+      else {
+        this.querySelectorAll<HTMLButtonElement>('[data-guess]').forEach((b) =>
+          b.addEventListener('click', () => {
+            if (this.stage) return;
+            this.guess = b.dataset.guess!;
+            this.querySelectorAll('[data-guess]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          }),
+        );
+        this.q('go').addEventListener('click', () => this.go());
+        this.q('reset').addEventListener('click', () => this.reset());
+        this.querySelectorAll<HTMLButtonElement>('[data-pair]').forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll('[data-pair]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.pair = Number(b.dataset.pair);
+            this.reset();
+          }),
+        );
+        const ids: string[] = JSON.parse(this.dataset.spots!);
+        this.spot = SPOTS.find((s) => s.id === ids[0])!;
+        this.querySelectorAll<HTMLButtonElement>('[data-spot]').forEach((b) =>
+          b.addEventListener('click', () => {
+            this.querySelectorAll('[data-spot]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+            this.spot = SPOTS.find((s) => s.id === b.dataset.spot)!;
+            this.reset();
+          }),
+        );
+        this.reset();
+      }
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-an="${k}"]`) as HTMLElement;
+    }
+
+    // ------------------------------------------------ turn
+    private setupTurn() {
+      this.scene = JSON.parse(this.dataset.scenes!)[0];
+      const range = this.q('deg') as HTMLInputElement;
+      const draw = () => {
+        let d = Number(range.value);
+        if (Math.abs(d - 90) <= 3) d = 90;
+        this.drawTurn(d);
+      };
+      range.addEventListener('input', draw);
+      this.querySelectorAll<HTMLButtonElement>('[data-scene]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-scene]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.scene = b.dataset.scene as 'plain' | 'door' | 'clock';
+          draw();
+        }),
+      );
+      this.q('play').addEventListener('click', () => {
+        const end = 90;
+        if (reduced()) {
+          range.value = String(end);
+          return draw();
+        }
+        const t0 = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min(1, (now - t0) / 2000);
+          range.value = String(Math.round(end * t));
+          draw();
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+      draw();
+    }
+
+    private drawTurn(deg: number) {
+      let s = '';
+      if (this.scene === 'plain') {
+        const c: P = [110, 190];
+        s += angleSvg(c, 0, deg, [200, 170]);
+        const tip = at(c, 175, deg);
+        s += `<text class="g3m-an-label" x="${c[0] - 8}" y="${c[1] + 26}" text-anchor="middle">vertex</text><text class="g3m-an-label" x="${c[0] + 170}" y="${c[1] + 24}" text-anchor="middle">arm</text><text class="g3m-an-label" x="${f(tip[0] + (deg > 150 ? -10 : 14))}" y="${f(tip[1] - 6)}" text-anchor="middle">arm</text>`;
+      } else if (this.scene === 'door') {
+        const c: P = [90, 190];
+        s += `<line class="g3m-an-wall" x1="10" y1="${c[1]}" x2="${c[0] - 6}" y2="${c[1]}"/><line class="g3m-an-wall" x1="${c[0] + 196}" y1="${c[1]}" x2="350" y2="${c[1]}"/>`;
+        s += deg > 0 ? (Math.abs(deg - 90) < 0.5 ? `<path class="g3m-an-rt" d="${rightMark(c, 0, 20)}"/>` : `<path class="g3m-an-wedge is-a" d="${wedge(c, 60, 0, deg)}"/>`) : '';
+        s += `<line class="g3m-an-arm is-c" x1="${c[0]}" y1="${c[1]}" x2="${c[0] + 190}" y2="${c[1]}"/>`;
+        const e = at(c, 186, deg);
+        s += `<line class="g3m-an-door" x1="${c[0]}" y1="${c[1]}" x2="${f(e[0])}" y2="${f(e[1])}"/><circle class="g3m-an-vx" cx="${c[0]}" cy="${c[1]}" r="6"/>`;
+        s += `<text class="g3m-an-label" x="${c[0]}" y="${c[1] + 30}" text-anchor="middle">hinge: the vertex</text><text class="g3m-an-label" x="180" y="20" text-anchor="middle">A door from above</text>`;
+      } else {
+        const c: P = [180, 125];
+        s += `<circle class="g3m-an-face" cx="${c[0]}" cy="${c[1]}" r="105"/>`;
+        for (let h = 1; h <= 12; h++) {
+          const p = at(c, 86, 90 - h * 30);
+          const q = at(c, 98, 90 - h * 30);
+          s += `<line class="g3m-an-tick" x1="${f(p[0])}" y1="${f(p[1])}" x2="${f(q[0])}" y2="${f(q[1])}"/>`;
+        }
+        s += angleSvg(c, 90 - deg, deg, [80, 92]);
+        // The fixed hand points at 12; the moving hand turns clockwise.
+        s += `<text class="g3m-an-label" x="${c[0]}" y="${c[1] - 110}" text-anchor="middle">12</text>`;
+      }
+      this.q('svg').innerHTML = s;
+      this.q('svg').setAttribute('aria-label', `${this.scene === 'door' ? 'A door' : this.scene === 'clock' ? 'A clock hand' : 'An arm'} turned to make an angle.`);
+      this.q('say').textContent = turnSay(deg, this.scene);
+    }
+
+    // ------------------------------------------------ compare, trace, right
+    private reset() {
+      this.stage = 0;
+      this.guess = '';
+      this.querySelectorAll('[data-guess]').forEach((x) => {
+        x.setAttribute('aria-pressed', 'false');
+        x.classList.remove('is-right', 'is-wrong');
+      });
+      (this.q('go') as HTMLButtonElement).disabled = false;
+      const mode = this.dataset.mode;
+      if (mode === 'compare') {
+        const p = PAIRS[this.pair];
+        // Each label sits just past the tip of its turning arm, so it is clear which angle it names.
+        const tag = (c: P, len: number, deg: number, name: string) => {
+          const t = at(c, len + 16, deg);
+          return `<text class="g3m-an-big" x="${t[0].toFixed(1)}" y="${t[1].toFixed(1)}" text-anchor="middle" dominant-baseline="central">${name}</text>`;
+        };
+        this.q('svg').innerHTML = `<g>${angleSvg([195, 200], 0, p.b, [p.lb, p.lb], 'b')}${tag([195, 200], p.lb, p.b, 'B')}</g><g class="g3m-an-move" data-an="a">${angleSvg([25, 200], 0, p.a, [p.la, p.la])}${tag([25, 200], p.la, p.a, 'A')}</g>`;
+        this.q('svg').setAttribute('aria-label', 'Two angles, A and B, with arms of different lengths.');
+        this.q('say').textContent = 'Which angle opens wider? Guess, then lay A on top of B.';
+      }
+      if (mode === 'trace') {
+        const [a, b] = JSON.parse(this.dataset.trace!) as [number, number];
+        this.q('svg').innerHTML = `<rect class="g3m-an-frame" x="5" y="70" width="150" height="160"/><text class="g3m-an-label" x="80" y="62" text-anchor="middle">🖼️ A, on the wall</text>${angleSvg([30, 210], 0, a, [110, 110])}<rect class="g3m-an-frame" x="200" y="70" width="155" height="160"/><text class="g3m-an-label" x="278" y="62" text-anchor="middle">📕 B, in a book</text>${angleSvg([220, 210], 0, b, [120, 120], 'b')}<g class="g3m-an-move" data-an="paper"></g>`;
+        this.q('svg').setAttribute('aria-label', 'Angle A in a picture on the wall, and angle B in a book. They can’t be moved.');
+        this.q('go').textContent = '✏️ Trace A';
+        this.q('say').textContent = 'A is stuck on the wall and B is stuck in a book. How can you compare them?';
+      }
+      if (mode === 'right') {
+        const s = this.spot;
+        this.q('svg').innerHTML = `<text class="g3m-an-big" x="180" y="30" text-anchor="middle">${s.icon} ${s.name}</text>${angleSvg([110, 210], 0, s.deg, [190, 160], 'a', false)}<g class="g3m-an-move" data-an="corner" style="transform: translate(120px, -40px); opacity: 0"><path class="g3m-an-corner" d="M110,210 h90 v-90 h-90 Z"/></g>`;
+        this.q('svg').setAttribute('aria-label', `The angle of: ${s.name}.`);
+        this.q('say').textContent = 'Is it smaller than, the same as, or bigger than a right angle? Guess first.';
+      }
+    }
+
+    private go() {
+      const mode = this.dataset.mode;
+      const mark = (right: string) => {
+        if (!this.guess) return '';
+        const pick = this.querySelector(`[data-guess="${this.guess}"]`)!;
+        pick.classList.add(this.guess === right ? 'is-right' : 'is-wrong');
+        return this.guess === right ? ' Your guess was right! 🎉' : ' Look again at your guess.';
+      };
+      if (mode === 'compare') {
+        if (this.stage) return;
+        this.stage = 1;
+        (this.q('go') as HTMLButtonElement).disabled = true;
+        const p = PAIRS[this.pair];
+        (this.q('a') as unknown as SVGGElement).style.transform = 'translate(170px, 0px)';
+        setTimeout(() => (this.q('say').textContent = compareSay(p.a, p.b) + mark(p.a === p.b ? 'same' : p.a > p.b ? 'a' : 'b')), reduced() ? 0 : 1150);
+      }
+      if (mode === 'trace') {
+        const [a, b] = JSON.parse(this.dataset.trace!) as [number, number];
+        const paper = this.q('paper') as unknown as SVGGElement;
+        if (this.stage === 0) {
+          paper.innerHTML = `<rect class="g3m-an-paper" x="10" y="80" width="140" height="145"/>${angleSvg([30, 210], 0, a, [110, 110], 'c')}<text class="g3m-an-label" x="80" y="100" text-anchor="middle">tracing paper</text>`;
+          this.q('go').textContent = '➡ Carry it to B';
+          this.q('say').textContent = 'The tracing is a copy of A. The copy can move!';
+          this.stage = 1;
+        } else if (this.stage === 1) {
+          paper.style.transform = 'translate(190px, 0px)';
+          (this.q('go') as HTMLButtonElement).disabled = true;
+          this.stage = 2;
+          setTimeout(
+            () => (this.q('say').textContent = a === b ? 'The copy fits B exactly. A and B are the same size.' : a < b ? 'B opens past the copy of A. So B is bigger than A.' : 'The copy of A opens past B. So A is bigger than B.'),
+            reduced() ? 0 : 1150,
+          );
+        }
+      }
+      if (mode === 'right') {
+        if (this.stage) return;
+        this.stage = 1;
+        (this.q('go') as HTMLButtonElement).disabled = true;
+        const corner = this.q('corner') as unknown as SVGGElement;
+        corner.style.opacity = '1';
+        corner.style.transform = 'translate(0px, 0px)';
+        const v = vsRight(this.spot.deg);
+        setTimeout(() => (this.q('say').textContent = RIGHT_SAY[v] + mark(v)), reduced() ? 0 : 1150);
+      }
+    }
+  }
+  customElements.define('g3-angle', G3Angle);
+</script>

@@ -1,0 +1,218 @@
+id: compare-round-numbers
+grade: 3
+subject: math
+organizingIdea: MAT-OI1
+outcomes: [MAT3-OI1-GQ1-LO1]
+order: 2
+title: Comparing and Rounding Numbers
+shortTitle: Compare & round
+summary: >-
+  Compare and order numbers up to 100 000 place by place, write < and >, and round numbers when
+  "about how many" is enough.
+
+bigIdea: |-
+  - To compare, start at the **left**. The first place that is different decides.
+  - **>** means greater than. **<** means less than.
+  - **Round** when you only need about how many.
+
+lesson:
+  - title: Which is greater?
+    blocks:
+      - type: visual
+        covers: [S1.7, U1.3]
+        component: g3-compare
+        props:
+          pairs: [[45306, 45063], [9870, 10001], [70345, 70354]]
+        caption: |-
+          1. Guess the sign.
+          2. Press **Check** to look at one place at a time, from the left.
+          3. Stop at the first place that is different.
+
+  - title: The signs < and >
+    blocks:
+      - type: visual
+        covers: [K1.6, S1.8]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'lt', label: '<' }
+            - { id: 'eq', label: '=' }
+            - { id: 'gt', label: '>' }
+          cards:
+            - { text: '9 000 ☐ 900', bin: 'gt', why: '9 thousands is more than 9 hundreds.' }
+            - { text: '3 512 ☐ 3 521', bin: 'lt', why: 'Same thousands and hundreds. 1 ten is less than 2 tens.' }
+            - { text: '600 tens ☐ 6 000', bin: 'eq', why: '600 tens is 6 000. They are the same number.' }
+            - { text: '80 001 ☐ 79 999', bin: 'gt', why: '8 ten thousands is more than 7 ten thousands.' }
+        caption: Which sign goes in the box? The wide side faces the **greater** number.
+
+  - title: Rounding on a number line
+    blocks:
+      - type: visual
+        covers: [S1.6, K1.5]
+        component: g3-round-line
+        props: { value: 4368, to: 100 }
+        caption: Type a number and pick a place. Is the dot **before** or **past** the yellow halfway mark?
+
+  - title: When is "about" enough?
+    blocks:
+      - type: visual
+        covers: [K1.5]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'about', label: 'About is fine', icon: '👍' }
+            - { id: 'exact', label: 'Need it exact', icon: '🎯' }
+          cards:
+            - { text: 'People at a hockey game', bin: 'about', why: '"About 16 000 fans" tells the story well.' }
+            - { text: 'Your locker number', bin: 'exact', why: 'A locker number that is close is the wrong locker!' }
+            - { text: 'Ants in an anthill', bin: 'about', why: 'Nobody can count every ant. About is all we can know.' }
+            - { text: 'Tickets for each seat on a bus trip', bin: 'exact', why: 'Every person needs a ticket, so you need the exact count.' }
+        caption: Sort each card. When can you **round**?
+
+keyTerms:
+  - term: Greater than
+    covers: [K1.6]
+    definition: 'The sign >. 9 > 4 means 9 is greater than 4.'
+  - term: Less than
+    covers: [K1.6]
+    definition: 'The sign <. 4 < 9 means 4 is less than 9.'
+  - term: Round
+    covers: [K1.5]
+    definition: To change a number to a nearby, simpler number, when you don’t need the exact count.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.6, S1.8]
+    type: mc
+    fixedOrder: true
+    prompt: 'Which sign makes this true? \(70\,345 \;\square\; 70\,354\)'
+    choices: ['\(<\)', '\(>\)', '\(=\)']
+    answer: 0
+    feedback:
+      '1': 'Compare from the left. Which place is the first one that is different?'
+      '2': 'The digits are the same, but in different places. Is 4 tens the same as 5 tens?'
+    hints:
+      - Compare place by place, from the left.
+      - The first place that is different is the tens.
+    solution:
+      - 'Ten thousands, thousands and hundreds match: 7, 0 and 3.'
+      - 'Tens: 4 and 5. 4 tens is less, so \(70\,345 < 70\,354\).'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.6]
+    type: number
+    prompt: Round **27 815** to the nearest **thousand**.
+    answer: 28000
+    verify: 28 * 1000
+    hints:
+      - Which two thousands is 27 815 between?
+      - The halfway mark is 27 500. Is 27 815 before it or past it?
+    solution:
+      - '27 815 is between 27 000 and 28 000.'
+      - 'It is past the halfway mark, 27 500, so it rounds up to **28 000**.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K1.5, S1.6]
+    type: multi
+    prompt: 'A poster says, "**About 2 000** people came to the fair." It rounded to the nearest **thousand**. Which counts could be true? Choose **all** that work.'
+    choices: ['1 950', '2 438', '1 500', '2 501', '1 499', '2 899']
+    answer: [0, 1, 2]
+    feedback:
+      '3': '2 501 is past the halfway mark between 2 000 and 3 000. Which way does it round?'
+      '4': '1 499 is between 1 000 and 2 000. Is it past the halfway mark, 1 500?'
+      '5': '2 899 is between 2 000 and 3 000. Which one is it closer to?'
+    hints:
+      - Which two thousands is each number between?
+      - 'The halfway marks are 1 500 and 2 500.'
+    solution:
+      - 'A number rounds to 2 000 if it is from **1 500** up to **2 499**.'
+      - '1 950, 2 438 and 1 500 fit. 1 500 is exactly halfway, so it rounds up.'
+      - '1 499 rounds down to 1 000. 2 501 and 2 899 round up to 3 000.'
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.7, U1.3]
+    type: order
+    prompt: Five friends counted their steps for a week. Put the counts in order from **least** to **greatest**.
+    items: ['30 099', '30 909', '30 990', '39 009', '90 039']
+    hints:
+      - Look at the ten thousands first. Which number is the greatest?
+      - 'Four numbers start with 3. Compare their thousands, then their hundreds.'
+    solution:
+      - '90 039 has 9 ten thousands, so it is the greatest. 39 009 has 9 thousands.'
+      - 'The other three have 0 thousands. Compare hundreds: 30 099 is least.'
+      - '30 909 and 30 990: compare tens. 0 < 9.'
+      - 'Order: 30 099, 30 909, 30 990, 39 009, 90 039.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.7, S1.8, S1.6]
+    type: investigation
+    prompt: 'One digit fell off a sign: **4 ☐ 518**.'
+    parts:
+      - type: multi
+        prompt: 'The number is **greater than 46 900**. Which digits could be in the box?'
+        choices: ['5', '6', '7', '8', '9']
+        answer: [2, 3, 4]
+        feedback:
+          '0': '45 518 has 5 thousands. 46 900 has 6 thousands. Which is greater?'
+          '1': '46 518 and 46 900 have the same thousands. Compare the hundreds.'
+        hints:
+          - Put each digit in the box and compare with 46 900.
+        solution:
+          - '47 518, 48 518 and 49 518 are greater than 46 900.'
+          - '46 518 is less: same thousands, but 5 hundreds < 9 hundreds.'
+      - type: number
+        prompt: It also rounds to **48 000** (nearest thousand). Which digit is in the box?
+        answer: 7
+        verify: 48 - 41
+        hints:
+          - Round 47 518, 48 518 and 49 518 to the nearest thousand.
+        solution:
+          - '47 518 is past 47 500, so it rounds up to **48 000**.'
+          - '48 518 rounds to 49 000, and 49 518 rounds to 50 000. The digit is **7**.'
+    wrapUp: Each clue rules some numbers out. Two clues together can leave just one.
+
+  - id: d2
+    level: 3
+    thinking: design
+    covers: [K1.5, S1.6]
+    type: build
+    prompt: |-
+      A museum counted its visitors one day.
+      - The sign says **about 3 000** (nearest thousand).
+      - The newspaper says **about 2 500** (nearest hundred).
+
+      Find one exact count that fits both.
+    fields:
+      - { name: n, label: 'Visitors', unit: people }
+    rules:
+      - { test: 'n % 1 == 0 && n > 0', fail: 'People come in whole numbers. Try a whole number.' }
+      - { test: 'n >= 2450 && n < 2550', fail: 'Round your number to the nearest hundred. Do you get 2 500?' }
+      - { test: 'n >= 2500 && n < 3500', fail: 'That fits the newspaper. Now round it to the nearest thousand. Do you get 3 000?' }
+    examples:
+      - { n: 2500 }
+      - { n: 2531 }
+      - { n: 2549 }
+    counterexamples:
+      - { n: 2480 }
+      - { n: 2550 }
+      - { n: 3000 }
+    hints:
+      - Which numbers round to 2 500 to the nearest hundred? Find the smallest and the largest.
+      - Which of those round to 3 000 to the nearest thousand?
+    solution:
+      - 'To round to 2 500, a number must be from **2 450** to **2 549**.'
+      - 'To round to 3 000, it must be from **2 500** to **3 499**.'
+      - 'Both work from **2 500** to **2 549**, like 2 500, 2 531 or 2 549.'

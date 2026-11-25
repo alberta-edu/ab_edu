@@ -1,0 +1,283 @@
+---
+// Polygons and their properties (MAT3-OI3-GQ1-LO1).
+// props: pick a shape and see its sides counted, equal sides ticked, a paper corner tried in
+//   every corner, parallel sides marked, or whether it is regular.
+// sort: shapes sorted by a hidden rule. Guess the rule.
+// move: slide, turn or flip a shape on a grid. Every side keeps its length.
+import { SHAPES, SORTS, RULES, shapeById, shapeSvg, propertySay, type View } from './g3-shapes.ts';
+
+interface Props {
+  mode?: 'props' | 'sort' | 'move';
+  /** props: the shapes to choose from. move: the first one is moved. */
+  shapes?: string[];
+  /** props: the views to offer; the first is shown. */
+  views?: View[];
+  /** move: the moves to offer. */
+  moves?: ('slide' | 'turn' | 'flip')[];
+}
+const { mode = 'props', shapes = SHAPES.map((s) => s.id), views = ['sides'], moves = ['slide', 'turn', 'flip'] } = Astro.props;
+const list = shapes.map(shapeById);
+const U = 34;
+const VIEW_LABEL: Record<View, string> = { sides: 'Count the sides', equal: 'Equal sides', right: 'Right angles', parallel: 'Parallel sides', regular: 'Regular?' };
+const MOVE_LABEL = { slide: 'Slide ➡', turn: 'Turn ↻', flip: 'Flip ↔' };
+const thumb = (id: string) => `<svg viewBox="-12 -12 228 228" aria-hidden="true">${shapeSvg(shapeById(id).pts, 'plain', U)}</svg>`;
+---
+<g3-shapes data-mode={mode} data-shapes={JSON.stringify(shapes)} data-views={JSON.stringify(views)}>
+  {mode === 'props' && (
+    <>
+      <div class="g3m-sh-picker" role="group" aria-label="Choose a shape">
+        {list.map((s, i) => <button type="button" class="g3m-sh-chip" data-shape={s.id} aria-pressed={String(i === 0)} aria-label={s.name} set:html={thumb(s.id)} />)}
+      </div>
+      {views.length > 1 && (
+        <div class="seg" role="group" aria-label="What to look at">
+          {views.map((v, i) => <button type="button" data-view={v} aria-pressed={String(i === 0)}>{VIEW_LABEL[v]}</button>)}
+        </div>
+      )}
+      <p class="g3m-sh-name" data-sh="name">{list[0].name}</p>
+      <svg class="g3m-sh-stage" viewBox="-30 -30 264 264" role="img" aria-label={`A ${list[0].name.toLowerCase()}`} data-sh="svg" set:html={shapeSvg(list[0].pts, views[0], U)} />
+      <p class="g3m-sh-say" data-sh="say" aria-live="polite">{propertySay(list[0], views[0])}</p>
+      <div class="control-row g3m-sh-row"><button type="button" class="btn btn--small" data-sh="again">↺ Show me again</button></div>
+    </>
+  )}
+  {mode === 'sort' && (
+    <>
+      <div class="g3m-sh-bins" data-sh="bins" aria-live="polite"></div>
+      <p class="g3m-sh-ask">What is the rule for the ✓ box?</p>
+      <div class="g3m-sh-rules" role="group" aria-label="Guess the sorting rule">
+        {RULES.map((r) => <button type="button" class="btn btn--small" data-rule={r.id}>{r.label}</button>)}
+      </div>
+      <p class="g3m-sh-say" data-sh="say" aria-live="polite">Look at what the ✓ shapes have that the ✗ shapes don’t.</p>
+      <div class="control-row g3m-sh-row"><button type="button" class="btn btn--small" data-sh="next" hidden>Next puzzle ▶</button></div>
+    </>
+  )}
+  {mode === 'move' && (
+    <>
+      <div class="control-row g3m-sh-row">
+        {moves.map((m) => <button type="button" class="btn btn--primary btn--small" data-move={m}>{MOVE_LABEL[m]}</button>)}
+        <button type="button" class="btn btn--ghost btn--small" data-sh="reset">Start over</button>
+      </div>
+      <svg class="g3m-sh-stage g3m-sh-grid" viewBox="-10 -10 384 236" role="img" aria-label="A shape on a grid, with a dashed copy where it started." data-sh="svg"></svg>
+      <p class="g3m-sh-say" data-sh="say" aria-live="polite">Press a move. Watch the side lengths.</p>
+    </>
+  )}
+</g3-shapes>
+
+<style is:global>
+  g3-shapes { display: block; }
+  .g3m-sh-picker { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; margin-bottom: 0.6rem; }
+  .g3m-sh-chip { width: 3.4rem; height: 3.4rem; padding: 0.3rem; border: 2px solid var(--line-strong); border-radius: 0.7rem; background: var(--surface); cursor: pointer; }
+  .g3m-sh-chip[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); }
+  .g3m-sh-chip svg { width: 100%; height: 100%; display: block; }
+  .g3m-sh-name { margin: 0.6rem 0 0; text-align: center; font-size: var(--step-2); font-weight: 700; color: var(--accent); }
+  .g3m-sh-stage { display: block; width: 100%; max-width: 17rem; height: auto; margin: 0 auto; font-family: var(--font); overflow: visible; }
+  .g3m-sh-grid { max-width: 32rem; }
+  .g3m-sh-fill { fill: color-mix(in srgb, var(--accent) 18%, var(--surface)); }
+  .g3m-sh-side { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+  .g3m-sh-side.is-g0, .g3m-sh-tick.is-g0 { stroke: var(--accent); }
+  .g3m-sh-side.is-g1, .g3m-sh-tick.is-g1 { stroke: var(--bad); }
+  .g3m-sh-side.is-g2, .g3m-sh-tick.is-g2 { stroke: var(--ok); }
+  .g3m-sh-tick { stroke-width: 3; stroke-linecap: round; }
+  .g3m-sh-side.is-p0, .g3m-sh-chev.is-p0 { stroke: var(--accent); }
+  .g3m-sh-side.is-p1, .g3m-sh-chev.is-p1 { stroke: var(--bad); }
+  .g3m-sh-side.is-p2, .g3m-sh-chev.is-p2 { stroke: var(--ok); }
+  .g3m-sh-side.is-p3, .g3m-sh-chev.is-p3 { stroke: var(--sun); }
+  .g3m-sh-side.is-p0, .g3m-sh-side.is-p1, .g3m-sh-side.is-p2, .g3m-sh-side.is-p3 { stroke-width: 6; }
+  .g3m-sh-chev { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .g3m-sh-arc { fill: none; stroke-width: 3; }
+  .g3m-sh-arc.is-a0 { stroke: var(--ok); }
+  .g3m-sh-arc.is-a1 { stroke: var(--bad); }
+  .g3m-sh-arc.is-a2 { stroke: var(--sun); }
+  .g3m-sh-badge { fill: var(--sun); stroke: var(--ink); stroke-width: 1.5; }
+  .g3m-sh-badgetext { fill: #1d1d1d; font-size: 14px; font-weight: 700; }
+  .g3m-sh-paper { fill: color-mix(in srgb, var(--sun) 70%, transparent); stroke: var(--ink-2); stroke-width: 1; opacity: 0; }
+  .g3m-sh-rt { fill: none; stroke: var(--ok); stroke-width: 3; }
+  .g3m-sh-no { fill: var(--bad); font-size: 16px; font-weight: 700; }
+  .g3m-sh-len { fill: var(--ink); font-size: 15px; font-weight: 700; }
+  .g3m-sh-vx { fill: var(--ink-3); font-size: 14px; font-weight: 700; }
+  .g3m-sh-grid .g3m-sh-len { font-size: 19px; }
+  .g3m-sh-grid .g3m-sh-vx { font-size: 16px; }
+  .g3m-sh-ghost { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 5; }
+  .g3m-sh-gridline { stroke: var(--line); stroke-width: 1; }
+  .g3m-sh-say { min-height: 2.6em; margin: 0.4rem 0 0; font-weight: 600; text-align: center; }
+  .g3m-sh-row { justify-content: center; }
+  .g3m-sh-bins { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .g3m-sh-bin { border: 2px solid var(--line-strong); border-radius: var(--radius-sm); padding: 0.4rem; background: var(--surface-2); }
+  .g3m-sh-bin h4 { margin: 0 0 0.2rem; text-align: center; font-size: 1.3rem; }
+  .g3m-sh-bin div { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem; }
+  .g3m-sh-bin svg { width: 3.6rem; height: 3.6rem; }
+  .g3m-sh-bin.is-yes { border-color: var(--ok); }
+  .g3m-sh-ask { margin: 0.7rem 0 0.3rem; font-weight: 700; text-align: center; }
+  .g3m-sh-rules { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem; }
+  .g3m-sh-rules .is-right { border-color: var(--ok); background: var(--ok-soft); }
+  .g3m-sh-rules .is-wrong { border-color: var(--bad); background: var(--bad-soft); }
+  /* Marks pop in one after another. */
+  g3-shapes.is-playing .g3m-sh-pop { animation: g3m-sh-pop 0.4s backwards; animation-delay: calc(var(--i) * 0.6s + 0.2s); transform-box: fill-box; transform-origin: center; }
+  g3-shapes.is-playing .g3m-sh-count { animation: g3m-sh-flash 0.6s; animation-delay: calc(var(--i) * 0.6s + 0.2s); }
+  g3-shapes.is-playing .g3m-sh-paper { animation: g3m-sh-paper 0.7s; animation-delay: calc(var(--i) * 0.6s); }
+  @keyframes g3m-sh-pop { from { transform: scale(0); opacity: 0; } 70% { transform: scale(1.3); } to { transform: scale(1); opacity: 1; } }
+  @keyframes g3m-sh-flash { 0%, 100% { stroke: var(--ink); } 40% { stroke: var(--sun); stroke-width: 8; } }
+  @keyframes g3m-sh-paper { 0% { opacity: 0; } 20%, 70% { opacity: 1; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { g3-shapes.is-playing .g3m-sh-pop, g3-shapes.is-playing .g3m-sh-count, g3-shapes.is-playing .g3m-sh-paper { animation: none; } }
+</style>
+
+<script>
+  import { SORTS, RULES, shapeById, shapeSvg, propertySay, follows, sideLengths, rightAngles, moveAt, MOVE_SAY, type View, type Move, type Pt } from './g3-shapes.ts';
+
+  const U = 34;
+  const G = 26; // grid unit in move mode
+
+  class G3Shapes extends HTMLElement {
+    private shape = '';
+    private view: View = 'sides';
+    private sort = 0;
+    private pts: Pt[] = [];
+    private start: Pt[] = [];
+    private busy = false;
+
+    connectedCallback() {
+      const mode = this.dataset.mode;
+      const shapes: string[] = JSON.parse(this.dataset.shapes!);
+      this.shape = shapes[0];
+      this.view = JSON.parse(this.dataset.views!)[0];
+      if (mode === 'props') this.setupProps();
+      if (mode === 'sort') this.setupSort();
+      if (mode === 'move') this.setupMove();
+    }
+
+    private q(k: string) {
+      return this.querySelector(`[data-sh="${k}"]`) as HTMLElement;
+    }
+
+    private play() {
+      this.classList.remove('is-playing');
+      void this.offsetWidth;
+      this.classList.add('is-playing');
+    }
+
+    // ------------------------------------------------ props
+    private setupProps() {
+      this.querySelectorAll<HTMLButtonElement>('[data-shape]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-shape]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.shape = b.dataset.shape!;
+          this.drawProps();
+        }),
+      );
+      this.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+        b.addEventListener('click', () => {
+          this.querySelectorAll('[data-view]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+          this.view = b.dataset.view as View;
+          this.drawProps();
+        }),
+      );
+      this.q('again').addEventListener('click', () => this.play());
+      const io = new IntersectionObserver((es) => {
+        if (es.some((e) => e.isIntersecting)) {
+          this.play();
+          io.disconnect();
+        }
+      });
+      io.observe(this);
+    }
+
+    private drawProps() {
+      const s = shapeById(this.shape);
+      this.q('name').textContent = s.name;
+      this.q('svg').innerHTML = shapeSvg(s.pts, this.view, U);
+      this.q('svg').setAttribute('aria-label', `A ${s.name.toLowerCase()}`);
+      this.q('say').textContent = propertySay(s, this.view);
+      this.play();
+    }
+
+    // ------------------------------------------------ sort
+    private setupSort() {
+      this.querySelectorAll<HTMLButtonElement>('[data-rule]').forEach((b) => b.addEventListener('click', () => this.guess(b)));
+      this.q('next').addEventListener('click', () => {
+        this.sort = (this.sort + 1) % SORTS.length;
+        this.drawSort();
+      });
+      this.drawSort();
+    }
+
+    private drawSort(reveal = false) {
+      const p = SORTS[this.sort];
+      const mini = (id: string) => `<svg viewBox="-24 -24 252 252" role="img" aria-label="${shapeById(id).name}">${shapeSvg(shapeById(id).pts, reveal ? (p.rule === 'four' ? 'sides' : p.rule) : 'plain', U)}</svg>`;
+      const yes = p.shapes.filter((id) => follows(shapeById(id), p.rule));
+      const no = p.shapes.filter((id) => !follows(shapeById(id), p.rule));
+      this.q('bins').innerHTML = `<section class="g3m-sh-bin is-yes"><h4>✓</h4><div>${yes.map(mini).join('')}</div></section><section class="g3m-sh-bin"><h4>✗</h4><div>${no.map(mini).join('')}</div></section>`;
+      if (!reveal) {
+        this.querySelectorAll('[data-rule]').forEach((x) => x.classList.remove('is-right', 'is-wrong'));
+        this.q('say').textContent = 'Look at what the ✓ shapes have that the ✗ shapes don’t.';
+        this.q('next').hidden = true;
+      }
+    }
+
+    private guess(b: HTMLButtonElement) {
+      const p = SORTS[this.sort];
+      const r = b.dataset.rule as (typeof RULES)[number]['id'];
+      const fits = p.shapes.every((id) => follows(shapeById(id), r) === follows(shapeById(id), p.rule));
+      b.classList.add(fits ? 'is-right' : 'is-wrong');
+      if (fits) {
+        this.drawSort(true);
+        this.q('say').textContent = `Yes! 🎉 The rule is “${RULES.find((x) => x.id === r)!.label.toLowerCase()}”.`;
+        this.q('next').hidden = false;
+      } else {
+        const odd = p.shapes.find((id) => follows(shapeById(id), r) !== follows(shapeById(id), p.rule))!;
+        const s = shapeById(odd);
+        this.q('say').textContent = `Not that one. Look at the ${s.name.toLowerCase()} in the ${follows(s, p.rule) ? '✓' : '✗'} box.`;
+      }
+    }
+
+    // ------------------------------------------------ move
+    private setupMove() {
+      const s = shapeById(this.shape);
+      this.start = s.pts.map(([x, y]) => [x + 1, y + 1] as Pt);
+      this.pts = this.start;
+      this.querySelectorAll<HTMLButtonElement>('[data-move]').forEach((b) => b.addEventListener('click', () => this.move(b.dataset.move as Move)));
+      this.q('reset').addEventListener('click', () => {
+        this.pts = this.start;
+        this.drawMove(this.pts);
+        this.q('say').textContent = 'Press a move. Watch the side lengths.';
+      });
+      this.drawMove(this.pts);
+    }
+
+    private drawMove(pts: Pt[], labels = true) {
+      let grid = '';
+      for (let x = 0; x <= 14; x++) grid += `<line class="g3m-sh-gridline" x1="${x * G}" y1="0" x2="${x * G}" y2="${8 * G}"/>`;
+      for (let y = 0; y <= 8; y++) grid += `<line class="g3m-sh-gridline" x1="0" y1="${y * G}" x2="${14 * G}" y2="${y * G}"/>`;
+      const ghost = `<polygon class="g3m-sh-ghost" points="${this.start.map((p) => `${p[0] * G},${p[1] * G}`).join(' ')}"/>`;
+      this.q('svg').innerHTML = grid + ghost + shapeSvg(pts, 'plain', G, labels);
+    }
+
+    private move(m: Move) {
+      if (this.busy) return;
+      const from = this.pts;
+      const xs = from.map((p) => p[0]);
+      const dx = Math.max(...xs) + 5 <= 14 ? 5 : -5;
+      const end = moveAt(from, m, 1, dx);
+      const before = sideLengths(from).map((l) => Math.round(l * 10) / 10);
+      const finish = () => {
+        this.pts = end;
+        this.drawMove(end);
+        this.busy = false;
+        const after = sideLengths(end).map((l) => Math.round(l * 10) / 10);
+        const same = before.every((l, i) => l === after[i]);
+        const r = rightAngles(end).length;
+        this.q('say').textContent = `${MOVE_SAY[m]} ${same ? 'Sides: still' : 'Sides:'} ${after.join(', ')}.${r ? ` Right angles: still ${r}.` : ''}`;
+      };
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return finish();
+      this.busy = true;
+      const t0 = performance.now();
+      const tick = (now: number) => {
+        const t = Math.min(1, (now - t0) / 900);
+        const e = t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+        this.drawMove(moveAt(from, m, e, dx), false);
+        if (t < 1) requestAnimationFrame(tick);
+        else finish();
+      };
+      requestAnimationFrame(tick);
+    }
+  }
+  customElements.define('g3-shapes', G3Shapes);
+</script>

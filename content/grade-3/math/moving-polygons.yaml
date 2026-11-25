@@ -1,0 +1,205 @@
+id: moving-polygons
+grade: 3
+subject: math
+organizingIdea: MAT-OI3
+outcomes: [MAT3-OI3-GQ1-LO1]
+order: 13
+title: Sliding, Turning and Flipping Polygons
+shortTitle: Slides, turns and flips
+summary: >-
+  Translate, rotate and reflect polygons on a grid, and see that side lengths, right angles and
+  parallel sides stay exactly the same.
+
+bigIdea: |-
+  - A slide is a **translation**, a turn is a **rotation**, and a flip is a **reflection**.
+  - The shape moves, but every length between its corners stays the same.
+  - So its properties stay the same too.
+
+lesson:
+  - title: Slide it
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: g3-shapes
+        props: { mode: move, shapes: [tri-right], moves: [slide] }
+        caption: A slide is a **translation**. Every corner moves the same way, the same distance.
+      - type: callout
+        covers: [MAT2-OI3-GQ1-LO1#K2.1]
+        variant: remember
+        title: Remember from Grade 2
+        body: Shapes can **slide**, **turn** or **flip**.
+
+  - title: Turn it
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: g3-shapes
+        props: { mode: move, shapes: [tri-right], moves: [turn] }
+        caption: A turn is a **rotation**. The shape spins around a point.
+
+  - title: Flip it
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1]
+        component: g3-shapes
+        props: { mode: move, shapes: [hex-l], moves: [flip] }
+        caption: A flip is a **reflection**. The new shape is a mirror image.
+
+  - title: What stays the same?
+    blocks:
+      - type: visual
+        covers: [K2.2, U2.1, S2.1]
+        component: g3-shapes
+        props: { mode: move, shapes: [hex-l] }
+        caption: Try all three moves. Read the side lengths after each one.
+      - type: visual
+        covers: [U2.1, K2.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: 'same', label: 'Stays the same', icon: '🔒' }
+            - { id: 'change', label: 'Can change', icon: '🔄' }
+          cards:
+            - { text: 'The length of each side', bin: 'same', why: 'Moving a shape never stretches it.' }
+            - { text: 'Where the shape is', bin: 'change', why: 'A slide moves it to a new place.' }
+            - { text: 'How many right angles', bin: 'same', why: 'Corners keep their size.' }
+            - { text: 'Which way it faces', bin: 'change', why: 'A turn or a flip makes it face a new way.' }
+            - { text: 'Which sides are parallel', bin: 'same', why: 'Parallel sides stay parallel.' }
+
+keyTerms:
+  - term: Translation
+    covers: [K2.1]
+    definition: 'A slide. Every point moves the same way, the same distance.'
+  - term: Rotation
+    covers: [K2.1]
+    definition: 'A turn around a point.'
+  - term: Reflection
+    covers: [K2.1]
+    definition: 'A flip that makes a mirror image.'
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 300 200" class="fig-svg" role="img" aria-label="Triangle A on the left. A dashed line. Triangle B on the right is its mirror image."><polygon class="fig-rect" points="40,20 40,140 130,140"/><polygon class="fig-rect" points="250,20 250,140 160,140"/><line class="fig-arrow" x1="145" y1="5" x2="145" y2="160"/><text class="fig-label" x="70" y="190" text-anchor="middle">A</text><text class="fig-label" x="220" y="190" text-anchor="middle">B</text></svg>
+    prompt: Which move takes triangle **A** to triangle **B**?
+    choices: ['Reflection (flip)', 'Translation (slide)', 'Rotation (turn)']
+    answer: 0
+    feedback:
+      '1': 'A slide keeps a shape facing the same way. Does B face the same way as A?'
+      '2': 'Try turning A. Can a turn make it face the other way, like in a mirror?'
+    hints:
+      - Look at the dashed line. What would you see in a mirror there?
+    solution:
+      - 'B is a mirror image of A, across the dashed line.'
+      - That is a **reflection**, or flip.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [U2.1, S2.1]
+    type: number
+    prompt: A square has **4 right angles**. Mila turns it on the page. How many right angles does it have now?
+    unit: right angles
+    answer: 4
+    verify: '4'
+    hints:
+      - Does a turn bend the corners of a shape?
+    solution:
+      - 'A turn moves the square but never changes the size of its corners.'
+      - 'It still has **4** right angles.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [U2.1, K2.2, S2.1]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 440 150" class="fig-svg" role="img" aria-label="Shape A is an L. B is the L turned. C is the L flipped. D is an L with a longer foot."><polygon class="fig-rect" points="15,15 41,15 41,67 67,67 67,93 15,93"/><text class="fig-label" x="41" y="140" text-anchor="middle">A</text><polygon class="fig-rect" points="198,15 198,41 146,41 146,67 120,67 120,15"/><text class="fig-label" x="160" y="140" text-anchor="middle">B</text><polygon class="fig-rect" points="292,15 266,15 266,67 240,67 240,93 292,93"/><text class="fig-label" x="266" y="140" text-anchor="middle">C</text><polygon class="fig-rect" points="330,15 356,15 356,67 408,67 408,93 330,93"/><text class="fig-label" x="369" y="140" text-anchor="middle">D</text></svg>
+    prompt: Three of B, C and D are shape A after a move. Which one **can’t** be A moved?
+    choices: ['D', 'B', 'C']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': 'B is A turned on its side. Compare the lengths, not the way it faces.'
+      '2': 'C faces the other way, like A in a mirror. That is a flip.'
+    hints:
+      - A move can change which way a shape faces. What can it never change?
+      - Compare the length of each foot with A’s foot.
+    solution:
+      - 'B is A turned. C is A flipped.'
+      - '**D** has a longer foot. No move can stretch a side, so D is a new shape.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: Which one is a **translation**?
+    choices: ['A drawer sliding open', 'A door swinging open', 'Your hand in a mirror']
+    answer: 0
+    feedback:
+      '1': 'A door spins around its hinges. That is a turn, a rotation.'
+      '2': 'A mirror shows a flipped image. That is a reflection.'
+    hints:
+      - A translation is a slide. Which one moves straight, without turning?
+    solution:
+      - 'A drawer moves straight out without turning. It is a **slide**, a translation.'
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: decide
+    covers: [K2.1, S2.1, U2.1]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 380 200" class="fig-svg" role="img" aria-label="Triangle A with corners red, blue and green going around one way. Triangle B is the same size, lying on its side, also with red, blue and green corners."><polygon class="fig-rect" points="40,25 40,153 136,153"/><text class="fig-small" x="34.4" y="15" text-anchor="middle">red</text><text class="fig-small" x="30.4" y="170.8" text-anchor="middle">blue</text><text class="fig-small" x="149.3" y="166.9" text-anchor="middle">green</text><text class="fig-label" x="75" y="195" text-anchor="middle">A</text><polygon class="fig-rect" points="338,141 210,141 210,45"/><text class="fig-small" x="353" y="151.6" text-anchor="middle">red</text><text class="fig-small" x="197.2" y="155.6" text-anchor="middle">blue</text><text class="fig-small" x="201.1" y="36.7" text-anchor="middle">green</text><text class="fig-label" x="275" y="195" text-anchor="middle">B</text></svg>
+    prompt: Triangles **A** and **B** are the same size. Ella wants to move A so it lands exactly on B.
+    parts:
+      - type: mc
+        prompt: Will a **turn** alone do it?
+        choices: ['No', 'Yes']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Go around A: red, blue, green. Now go around B the same way. Do the colours come in the same order?'
+        hints:
+          - Cut out a paper triangle like A and try turning it.
+        solution:
+          - 'Going around A, the colours come in one order. Going around B the same way, they come in the opposite order.'
+          - 'Turning never changes that order. So a turn alone **can’t** do it.'
+      - type: mc
+        prompt: Which moves **can** do it?
+        choices: ['A flip, then a turn', 'Two slides', 'Two turns']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': 'Slides never change which way a shape faces. B faces a new way.'
+          '2': 'Two turns are still just turning. B is a mirror image of A.'
+        hints:
+          - Which move makes a mirror image?
+        solution:
+          - 'B is a mirror image of A, so it needs a **flip**.'
+          - 'Then a turn sets it on its side, just like B.'
+    wrapUp: A turn or a slide can’t make a mirror image. Only a flip can.
+
+  - id: d2
+    level: 3
+    thinking: why
+    covers: [K2.2, U2.1]
+    type: number
+    prompt: A hexagon has sides of 2, 3, 3, 2, 5 and 5 cm. Mo slides it, turns it, then flips it. A bug walks once around its edge. How far does the bug walk?
+    unit: cm
+    answer: 20
+    verify: 2 + 3 + 3 + 2 + 5 + 5
+    hints:
+      - Do the moves change any side?
+      - Add up all the sides.
+    solution:
+      - 'Slides, turns and flips never change a side, so the sides are still 2, 3, 3, 2, 5 and 5 cm.'
+      - '2 + 3 + 3 + 2 + 5 + 5 = **20 cm**. The moves were extra information!'
