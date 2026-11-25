@@ -1,0 +1,243 @@
+id: computational-thinking
+grade: 3
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI3-OI6-GQ1-LO1]
+order: 22
+title: Computational Thinking
+shortTitle: Computational thinking
+summary: >-
+  Fix a robot’s steps by working backward, break a big job into chunks, spot patterns and important
+  details, and see how people give instructions to apps and robots.
+
+bigIdea: |-
+  - **Computational thinking** is a way to solve problems. It takes creativity.
+  - Break a job into **chunks**, find **patterns**, pick the important **details** and write clear **instructions**.
+  - If something goes wrong, **work backward** to find the mistake.
+
+lesson:
+  - title: Help the robot
+    blocks:
+      - type: experiment
+        covers: [K1.1, S1.1, U1.1]
+        title: Get to the apple
+        question: The robot follows its steps in order. Will it reach the apple?
+        animation: g3s-scene
+        props: { scene: robot-path }
+        predict:
+          choices: ['🍎 Yes', '💥 No']
+          answer: 1
+        observe: |-
+          - The robot turned too soon and **bumped** the rock.
+          - Going back through the steps, from the last to the first, showed step 1 was wrong.
+          - With **Forward 4**, the robot reached the apple.
+        explain: |-
+          - A robot does exactly what the **instructions** say.
+          - **Working backward** helps you find the step that went wrong.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI6-GQ1-LO1#K2.7]
+        title: Remember from Grade 2
+        body: A **bug** is a mistake in a set of instructions. **Debugging** means finding it and fixing it.
+
+  - title: Break it into chunks
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.2]
+        component: g3s-play
+        props: { scene: big-job }
+        caption: Tap **Next chunk**. How does the big job get done?
+
+  - title: Patterns and details
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.2]
+        component: g3s-play
+        props: { scene: patterns-details }
+        caption: Tap each one. What repeats? What matters?
+
+  - title: Talking to computers
+    blocks:
+      - type: visual
+        covers: [K1.2]
+        component: g3s-play
+        props: { scene: talk-to-computers }
+        caption: Tap each one. How do people tell a computer what to do?
+      - type: callout
+        variant: tip
+        covers: [K1.2]
+        title: Clear steps
+        body: A computer can’t guess. Clear, careful steps help people tell it what to do.
+
+  - title: Which way of thinking?
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: chunk, label: Chunks, icon: '🧱' }
+            - { id: pattern, label: Pattern, icon: '🧩' }
+            - { id: back, label: Work backward, icon: '⏪' }
+          cards:
+            - { text: '🎉 Plan a party: first food, then games, then decorations', bin: chunk, why: 'One big plan is split into three smaller jobs.' }
+            - { text: '🎵 The chorus of a song comes back again and again', bin: pattern, why: 'The same part repeats. Learn it once, sing it every time.' }
+            - { text: '🔑 Lost your key? Go back to each place you went today', bin: back, why: 'You start at the end and go back, step by step.' }
+            - { text: '🧩 Do a jigsaw puzzle: the edges first, then the middle', bin: chunk, why: 'A big puzzle is split into two smaller parts.' }
+            - { text: '🧦 Fold every pair of socks the same way', bin: pattern, why: 'The same steps repeat for each pair.' }
+            - { text: '🍪 Flat cookies? Check the recipe from the last step back', bin: back, why: 'Checking from the end helps you find the step that went wrong.' }
+        caption: Which kind of **computational thinking** is each one?
+      - type: callout
+        variant: tip
+        covers: [U1.1]
+        title: Thinking up a way
+        body: Solving problems like this takes **creativity**. You might think up a way nobody tried before.
+
+keyTerms:
+  - term: Computational thinking
+    covers: [K1.1, U1.1]
+    definition: A way to solve problems, like breaking them into chunks and finding patterns.
+  - term: Instructions
+    covers: [S1.1]
+    definition: Steps, in order, that a person or a machine follows to do a job.
+  - term: Chunk
+    covers: [K1.1]
+    definition: A small part of a big job.
+  - term: Pattern
+    covers: [K1.1]
+    definition: Something that repeats, again and again.
+  - term: Work backward
+    covers: [K1.1]
+    definition: To go back through the steps, from the last to the first, to find a mistake.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1]
+    type: mc
+    prompt: Mia has to clean the whole classroom. She splits it into desks, floor and shelves. What is she doing?
+    choices: ['🧱 Breaking it into chunks', '⏪ Working backward', '🧩 Finding a pattern']
+    answer: 0
+    feedback:
+      '1': Did anything go wrong? You work backward to find a mistake.
+      '2': Is anything repeating? She made one job into three parts.
+    hints:
+      - One big job became three smaller jobs.
+    solution:
+      - Mia broke a big job into smaller **chunks**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.1]
+    type: mc
+    prompt: |-
+      “Come to my party on Saturday at 2 o’clock. I live at 5 Pine Road. My cat is orange.”
+
+      Which detail is NOT important for getting to the party?
+    choices: ['🐱 The cat is orange', '⏰ 2 o’clock', '📍 5 Pine Road']
+    answer: 0
+    feedback:
+      '1': Without the time, would you know when to come?
+      '2': Without the address, would you know where to go?
+    hints:
+      - Which detail would you still need if the cat were black?
+    solution:
+      - The time and the place are the **important details**.
+      - The cat’s colour doesn’t help you get there.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: pattern
+    covers: [K1.1, S1.2]
+    type: mc
+    prompt: |-
+      Leo plants a row of seeds:
+
+      dig, drop, cover, dig, drop, cover, dig, …
+
+      What comes next?
+    choices: ['Drop', 'Dig', 'Cover']
+    answer: 0
+    feedback:
+      '1': He just dug a hole. What goes in it?
+      '2': Can you cover a hole before a seed is in it?
+    hints:
+      - Which three steps repeat?
+    solution:
+      - The **pattern** is dig, drop, cover. After dig comes **drop**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K1.2, S1.1]
+    type: mc
+    prompt: A robot can carry books to the library. How can Dev tell it what to do?
+    choices: ['Give it clear steps', 'Wait for it to guess', 'Show it a picture of a book']
+    answer: 0
+    feedback:
+      '1': A robot can’t guess. What does it follow?
+      '2': A picture doesn’t say where to go. What does the robot need?
+    hints:
+      - Think of the robot and the apple.
+    solution:
+      - A robot follows **instructions**. Dev needs to give it clear steps.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: backwards
+    covers: [K1.1, S1.1]
+    type: investigation
+    prompt: |-
+      Ming wrote steps for buttered toast:
+
+      1. Spread butter on the bread.
+      2. Put the bread in the toaster.
+      3. Push the lever down.
+
+      Oh no! Butter melted all over the toaster.
+    parts:
+      - type: mc
+        prompt: Ming works backward. Steps 3 and 2 look fine. Which step is the bug?
+        choices: ['Step 1', 'Step 2', 'Step 3']
+        answer: 0
+        feedback:
+          '1': Toast does go in the toaster. Which step came too early?
+          '2': Pushing the lever makes the toast. Which step came too early?
+        hints:
+          - When should the butter go on?
+        solution:
+          - Step 1 is the **bug**. The butter went on too soon.
+      - type: mc
+        prompt: Where should “Spread butter on the bread” go?
+        choices: ['At the end', 'In the middle', 'Nowhere']
+        answer: 0
+        feedback:
+          '1': The bread still isn’t toasted in the middle. When is it toast?
+          '2': Ming wants buttered toast. Does she need the butter step?
+        hints:
+          - Butter goes on after the bread is toasted.
+        solution:
+          - Move it to the **end**, after the toast pops up.
+    wrapUp: Working backward from a mistake helps you find and fix the step that went wrong.
+
+  - id: d2
+    level: 3
+    thinking: breakdown
+    covers: [K1.1, S1.1]
+    type: order
+    prompt: Write steps so a robot can water a plant. Put them in order.
+    items:
+      - Roll to the sink.
+      - Fill the watering can.
+      - Roll to the plant.
+      - Pour the water.
+    hints:
+      - The robot needs water before it goes to the plant.
+    solution:
+      - The robot gets the water first, at the sink.
+      - Then it rolls to the plant and pours.
