@@ -88,7 +88,7 @@ const data = items.map((it) => {
       (this.part('back') as HTMLButtonElement).disabled = !on;
       const note = this.part('note');
       note.className = `g3e-sq__note${on ? ' is-done' : ''}`;
-      note.innerHTML = on ? `<strong>${it.from}</strong> → <strong>${it.to}</strong>. ${it.note}` : `Watch the letters in <strong>${it.from}</strong>. Which ones will drop out?`;
+      note.innerHTML = on ? `<strong>${it.from}</strong> → <strong>${it.to}</strong>${it.to.endsWith('.') ? '' : '.'} ${it.note}` : `Watch the letters in <strong>${it.from}</strong>. Which ones will drop out?`;
     }
   }
   customElements.define('g3e-squeeze', G3eSqueeze);
