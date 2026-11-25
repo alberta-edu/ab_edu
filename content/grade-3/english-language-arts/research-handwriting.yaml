@@ -1,0 +1,246 @@
+id: research-handwriting
+grade: 3
+subject: english-language-arts
+organizingIdea: LANENG-OI8
+outcomes: [LANENG3-OI8-GQ1-LO1]
+order: 20
+title: Research, Cursive and Keyboarding
+shortTitle: Research & handwriting
+summary: >-
+  Ask a question, find facts and sort them, share what you learn and list your sources. Then write in
+  cursive and type with your fingers on the home row.
+
+bigIdea: |-
+  - Research starts with a **question**. Then you find facts, sort them and share them.
+  - Always list your **sources**, the places your facts came from.
+  - **Printing**, **cursive** and **keyboarding** all get easier with practice.
+
+lesson:
+  - title: Ask a good question
+    blocks:
+      - type: visual
+        covers: [K3.1, U3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: focus, label: Focused, icon: 🎯 }
+            - { id: big, label: Too big, icon: 🌫️ }
+          cards:
+            - { text: What do beavers eat?, bin: focus, why: 'You know just what facts to look for.' }
+            - { text: Animals, bin: big, why: 'There are millions of animals. Where would you start?' }
+            - { text: How do beavers build a dam?, bin: focus, why: 'It asks one thing you can find out.' }
+            - { text: Everything about water, bin: big, why: 'That could fill a whole library!' }
+        caption: A good question tells you what to look for. Sort these research questions.
+      - type: callout
+        variant: tip
+        covers: [K3.2, S3.1]
+        title: Find, keep and share facts
+        body: |-
+          - **Find** facts in books, on websites, or by asking an expert.
+          - **Keep** notes in a notebook or on a tablet.
+          - **Share** them on paper or on a screen.
+
+  - title: Sort what you find
+    blocks:
+      - type: visual
+        covers: [K3.3, K3.4, S3.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: food, label: Food, icon: 🌿 }
+            - { id: home, label: Home, icon: 🏠 }
+            - { id: babies, label: Babies, icon: 🍼 }
+          cards:
+            - { text: Beavers eat bark and twigs., bin: food, why: 'Bark and twigs are food.' }
+            - { text: Beavers build lodges of sticks and mud., bin: home, why: 'A lodge is a beaver’s home.' }
+            - { text: Baby beavers are called kits., bin: babies, why: 'Kits are the babies.' }
+            - { text: Beavers eat water plants in summer., bin: food, why: 'Another fact about food.' }
+            - { text: Kits stay with their family for about two years., bin: babies, why: 'Another fact about babies.' }
+        caption: Each box is one branch of a **web**. Sort the beaver facts onto the right branch.
+      - type: callout
+        variant: tip
+        covers: [K3.4, K3.3]
+        title: One branch, one paragraph
+        body: When the web is full, each branch can become one paragraph of your report.
+
+  - title: Share it, list your sources
+    blocks:
+      - type: visual
+        covers: [K3.5, K3.6, S3.3, S3.4]
+        component: text-xray
+        props:
+          button: Show the parts
+          pages:
+            - label: My report
+              icon: 📄
+              parts:
+                - { style: title, text: 'Busy Beavers', tag: Title, job: 'Tells what the report is about.' }
+                - { style: heading, text: 'What beavers eat', tag: Heading, job: 'Tells what this part is about.' }
+                - { style: text, text: 'Beavers eat bark and twigs. In summer, they eat water plants too.', tag: Facts, job: 'Facts from the research, in my own words.' }
+                - { style: box, text: '🦫🌿 *A drawing of a beaver chewing a branch*', tag: Picture, job: 'Helps readers see the facts.' }
+                - { style: heading, text: 'My sources', tag: Sources, job: 'Lists where the facts came from.' }
+                - { style: text, text: "- *All About Beavers*, a library book\n- A talk with a park ranger", tag: Source list, job: 'Every place I found facts. This is **citing**.' }
+        caption: Tap **Show the parts**. Which part tells where the facts came from?
+      - type: callout
+        variant: tip
+        covers: [K3.5]
+        title: Many ways to share
+        body: Share research as a **report**, a **presentation** or a **poster**.
+
+  - title: Cursive writing
+    blocks:
+      - type: visual
+        covers: [K4.2, S4.2, K4.1, U4.1, S4.1]
+        component: handwriting-lab
+        props:
+          mode: cursive
+          word: title
+        caption: Watch *title* write itself in joined letters. Switch on the slant lines. Then try **Messy**. What changes?
+
+  - title: Keyboarding
+    blocks:
+      - type: visual
+        covers: [K4.3, S4.3, K4.1]
+        component: handwriting-lab
+        props:
+          mode: keys
+        caption: Tap a key to see which finger reaches it. Feel for the bumps on **F** and **J**.
+      - type: callout
+        variant: tip
+        covers: [K4.3, S4.3, U4.1]
+        title: Reach, tap, come home
+        body: |-
+          1. Rest your fingers on the home row.
+          2. Reach for a key and tap it.
+          3. Come back home.
+
+keyTerms:
+  - term: Research question
+    covers: [K3.1]
+    definition: A question that tells you what facts to look for.
+  - term: Source
+    covers: [K3.6, S3.4]
+    definition: Where facts come from, like a book, a website or a person.
+  - term: Web
+    covers: [K3.4]
+    definition: A graphic organizer with your topic in the middle and branches all around.
+  - term: Cursive
+    covers: [K4.1, K4.2]
+    definition: Handwriting with the letters joined together.
+  - term: Home row
+    covers: [K4.3]
+    definition: The middle row of keys, where your fingers rest.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: apply
+    covers: [K3.1]
+    type: mc
+    prompt: Which question would **focus** a research project best?
+    choices:
+      - How do owls hunt at night?
+      - Birds?
+      - Do you like owls?
+    answer: 0
+    feedback:
+      '1': There are thousands of birds. What would you look for?
+      '2': That asks what you think. Can facts answer it?
+    hints:
+      - Which question tells you just what facts to find?
+    solution:
+      - '*How do owls hunt at night?* is focused. You know exactly what to look for.'
+
+  - id: w2
+    level: 1
+    thinking: recall
+    covers: [K4.3]
+    type: mc
+    prompt: Which two keys have little **bumps**, to help your fingers find the home row?
+    choices:
+      - F and J
+      - A and Z
+      - Q and P
+    answer: 0
+    feedback:
+      '1': A is on the home row, but Z is not. Feel the keys under your pointer fingers.
+      '2': Q and P are on the top row.
+    hints:
+      - Your two pointer fingers rest on these keys.
+    solution:
+      - '**F** and **J** have bumps. Your pointer fingers can find them without looking.'
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: apply
+    covers: [K3.3, K3.4, S3.2]
+    type: mc
+    prompt: Kai’s beaver web has three branches, **Food**, **Home** and **Babies**. Which fact goes on the **Home** branch?
+    choices:
+      - Beavers build lodges in ponds.
+      - Beavers eat bark.
+      - Baby beavers are called kits.
+    answer: 0
+    feedback:
+      '1': Bark is something beavers eat. Which branch is that?
+      '2': Kits are babies. Which fact is about where beavers live?
+    hints:
+      - Which fact tells where beavers live?
+    solution:
+      - A lodge is a beaver’s **home**, so that fact goes on the Home branch.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K3.6, S3.4]
+    type: mc
+    prompt: Ana found her facts in the book *Frogs of Alberta*. **Why** should she list it at the end of her report?
+    choices:
+      - To show where her facts came from
+      - To make her report longer
+      - Because she likes the book
+    answer: 0
+    feedback:
+      '1': A longer report isn’t a better one. What does the list tell readers?
+      '2': She may like it! But why does a report list it?
+    hints:
+      - Whose facts are in her report?
+    solution:
+      - The facts came from the book. Listing it is **citing**. It is fair to the writer, and readers can check the facts.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S3.3, K3.5]
+    type: open
+    prompt: Plan a beaver **poster** for your Grade 1 reading buddies. Write one short fact from this lesson, and say what picture goes with it.
+    modelAnswer: |-
+      Fact: Baby beavers are called kits.
+      Picture: Two little kits swimming next to their mom.
+    rubric:
+      - The fact is true, and comes from the lesson.
+      - It is short, with words a Grade 1 child can read.
+      - The picture shows the fact.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K4.2, S4.2]
+    type: mc
+    prompt: Sam wrote *tile* in cursive. His letters lean the same way, but his tall *l* only reaches the **middle line**. What should he fix?
+    choices:
+      - Size
+      - Slant
+      - Keyboarding
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': His letters all lean the same way, so his slant is fine. Look at how tall the *l* is.
+      '2': Keyboarding is typing. Sam is writing by hand.
+    hints:
+      - How tall should a tall letter like *l* be?
+    solution:
+      - Tall letters like *l* reach the **top line**. Sam needs to work on **size**.
