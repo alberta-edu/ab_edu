@@ -1,0 +1,217 @@
+id: creativity-inventions
+grade: 3
+subject: science
+organizingIdea: SCI-OI6
+outcomes: [SCI3-OI6-GQ1-LO1]
+order: 23
+title: Creativity and Canadian Inventions
+shortTitle: Creativity and inventions
+summary: >-
+  Find two ways to get to school, turn one box into many ideas, see how inventors combine, change
+  and reapply ideas, and meet the Canadarm.
+
+bigIdea: |-
+  - There is often more than one way to get the same **outcome**.
+  - **Creativity** uses imagination. It can combine, change or reapply ideas to make something new.
+  - Canadians have made many creative **inventions**, like the **Canadarm**.
+
+lesson:
+  - title: Two ways to school
+    blocks:
+      - type: experiment
+        covers: [K2.1, U2.1, S2.1]
+        title: Ava’s way and Ben’s way
+        question: Ava and Ben write different steps to get from home to school. Who gets there?
+        animation: g3s-scene
+        props: { scene: two-ways }
+        predict:
+          choices: ['👧 Only Ava', '👦 Only Ben', '👧👦 Both']
+          answer: 2
+        observe: |-
+          - Ava went **up**, then **right**.
+          - Ben went **right**, then **up**.
+          - They both got to school.
+        explain: |-
+          - Two different sets of steps had the same **outcome**.
+          - Thinking up a different way is being **creative**.
+
+  - title: One box, many ideas
+    blocks:
+      - type: visual
+        covers: [K2.2, U2.1, U2.2]
+        component: g3s-play
+        props: { scene: box-ideas }
+        caption: Tap **Another idea**. What else could the box be?
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI6-GQ1-LO1#K1.1]
+        title: Remember from Grade 2
+        body: Creativity is making something new, like an idea, a tool or a game.
+
+  - title: New from old
+    blocks:
+      - type: visual
+        covers: [K2.4, U2.2, S2.3]
+        component: g3s-play
+        props: { scene: new-from-old }
+        caption: Tap each one. How did old ideas make something new?
+      - type: callout
+        variant: tip
+        covers: [U2.2]
+        title: Look closely
+        body: The burr idea came from **looking closely** and **making a connection**. Inventors notice things.
+
+  - title: A Canadian invention
+    blocks:
+      - type: visual
+        covers: [K2.5, S2.4, K2.3, S2.2]
+        component: g3s-play
+        props: { scene: canadarm }
+        caption: Tap **Next**. How did the Canadarm come to be?
+      - type: callout
+        variant: tip
+        covers: [K2.3, S2.5]
+        title: Creative jobs
+        body: Engineers and computer programmers use creativity every day, to build robots, apps and new machines.
+
+keyTerms:
+  - term: Outcome
+    covers: [K2.1]
+    definition: How something ends up, like arriving at school.
+  - term: Divergent thinking
+    covers: [K2.2]
+    definition: Thinking up lots of different ideas for the same thing.
+  - term: Creativity
+    covers: [K2.4, U2.2]
+    definition: Using imagination to make something new, often from ideas that already exist.
+  - term: Invention
+    covers: [K2.5]
+    definition: Something new that a person made for the first time.
+  - term: Engineer
+    covers: [S2.2]
+    definition: A person who designs and builds things, like machines, bridges and robots.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.2]
+    type: mc
+    prompt: Zoe thinks of 10 different things to do with a paper cup. What kind of thinking is this?
+    choices: ['💡 Divergent thinking', '⏪ Working backward', '🧱 Breaking into chunks']
+    answer: 0
+    feedback:
+      '1': Did anything go wrong that she needs to fix?
+      '2': Is she splitting one big job into parts?
+    hints:
+      - She thought of lots of different ideas.
+    solution:
+      - Thinking up many different ideas is **divergent thinking**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.4, S2.3]
+    type: mc
+    prompt: Someone put wheels on a backpack, so you can roll it. How was this new idea made?
+    choices: ['➕ Combine', '🔁 Reapply', '🤷 From nothing']
+    answer: 0
+    feedback:
+      '1': Reapply means using one idea in a new place. Were two things put together here?
+      '2': Backpacks and wheels were around already. What was done with them?
+    hints:
+      - How many old ideas are in it?
+    solution:
+      - A backpack and wheels were put together. That is **combining** ideas.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K2.1, U2.1]
+    type: mc
+    prompt: Sam takes the bus to school. Nia walks. Kai rides a bike. What is the same for all three?
+    choices: ['They all get to school', 'They all go the same way', 'They all take the same time']
+    answer: 0
+    feedback:
+      '1': A bus, a walk and a bike. Is that the same way?
+      '2': A bike is faster than walking. Is the time the same?
+    hints:
+      - Where do they all end up?
+    solution:
+      - They all get to school. That is the same **outcome**, reached in **different ways**.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K2.5, K2.4, S2.4]
+    type: mc
+    prompt: Why did engineers build the Canadarm with a shoulder, an elbow and a wrist?
+    choices: ['So it can bend and reach, like your arm', 'So it looks friendly', 'So it can feel cold']
+    answer: 0
+    feedback:
+      '1': Astronauts need it to work, not to look nice. What can your arm do?
+      '2': Joints don’t help you feel. What do they help your arm do?
+    hints:
+      - What do your own shoulder, elbow and wrist let you do?
+    solution:
+      - Joints let an arm **bend and reach**. The engineers reapplied the idea of a human arm.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: ways
+    covers: [K2.1, K2.2, S2.1, U2.1]
+    type: investigation
+    figure: |-
+      <svg viewBox="0 0 200 200" class="fig-svg" role="img" aria-label="A grid of 3 by 3 squares. The robot is in the bottom left square. The cookie is 2 squares up and 1 square right."><g fill="none" stroke="var(--line-strong)" stroke-width="2">
+      <rect x="10" y="10" width="180" height="180" rx="6"/><line x1="70" y1="10" x2="70" y2="190"/><line x1="130" y1="10" x2="130" y2="190"/><line x1="10" y1="70" x2="190" y2="70"/><line x1="10" y1="130" x2="190" y2="130"/></g>
+      <text x="40" y="172" font-size="38" text-anchor="middle">🤖</text><text x="100" y="52" font-size="38" text-anchor="middle">🍪</text></svg>
+    prompt: |-
+      Ella’s steps get the robot to the cookie: **Up 2, Right 1**.
+    parts:
+      - type: mc
+        prompt: Jay wants different steps that also work. Which ones?
+        choices: ['Right 1, Up 2', 'Up 1, Right 1', 'Right 2, Up 2']
+        answer: 0
+        feedback:
+          '1': Count the squares. Is the cookie only 1 up?
+          '2': Count the squares. Is the cookie 2 to the right?
+        hints:
+          - Try going right first. How far up is it then?
+        solution:
+          - '**Right 1, then Up 2** also reaches the cookie.'
+      - type: mc
+        prompt: Can you find a third way that also reaches the cookie?
+        choices: ['Up 1, Right 1, Up 1', 'Up 3, Right 1', 'Right 1, Up 1']
+        answer: 0
+        feedback:
+          '1': Count the squares. Is the cookie 3 up?
+          '2': Count the squares. Where does the robot stop after Up 1?
+        hints:
+          - Follow each one on the grid with your finger.
+        solution:
+          - '**Up 1, Right 1, Up 1** reaches the cookie too.'
+          - Three different ways, the **same outcome**.
+    wrapUp: Creative thinking can find more than one way to get the same outcome.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K2.4, U2.2]
+    type: mc
+    prompt: Max says, “Real inventors make things from nothing. Using an old idea is just copying.” What did Max miss?
+    choices:
+      - Creativity can combine, change or reapply old ideas.
+      - Max is right. Old ideas don’t count.
+      - Only grown-ups can be creative.
+    answer: 0
+    feedback:
+      '1': The sticky shoe straps came from burrs. Was that just copying?
+      '2': Kids think up new ideas all the time. Is that creative?
+    hints:
+      - Think of the pencil with an eraser, or the burrs on the dog.
+    solution:
+      - Most inventions start from ideas that already exist.
+      - Creativity **combines**, **changes** or **reapplies** them to make something new.

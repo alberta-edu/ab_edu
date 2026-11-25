@@ -1,0 +1,240 @@
+id: simple-machines
+grade: 3
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI3-OI2-GQ1-LO1]
+order: 11
+title: Simple Machines
+shortTitle: Simple machines
+summary: >-
+  Push a box up a ramp, lift a rock with a lever, and meet the antler wedge, paddle and ulu used
+  by First Nations, Métis and Inuit.
+
+bigIdea: |-
+  - **Simple machines**, like levers, wheels and ramps, make moving things **easier**.
+  - They can make the push you need **smaller**, or change its **direction**.
+  - First Nations, Métis and Inuit designed, and still use, simple machines like the **ulu**.
+
+lesson:
+  - title: Lift it or use a ramp?
+    blocks:
+      - type: experiment
+        covers: [K2.1, S2.1, U2.1]
+        title: Up onto the table
+        question: Lift a heavy box onto a table, or push it up a ramp. Which needs the smaller push?
+        animation: g3s-scene
+        props: { scene: ramp-lift }
+        predict:
+          choices: ['🛝 The ramp', '🙌 Lifting', 'The same']
+          answer: 0
+        observe: |-
+          - Lifting straight up took a **big** push.
+          - The ramp took a **smaller** push, and the box got just as high.
+        explain: |-
+          - A ramp is a **simple machine** called an **inclined plane**.
+          - Simple machines lower the **effort** needed to move things.
+
+  - title: Three simple machines
+    blocks:
+      - type: visual
+        covers: [K2.1, U2.1]
+        component: g3s-play
+        props: { scene: three-machines }
+        caption: Tap each machine. How does it make the job easier?
+
+  - title: Push down, lift up
+    blocks:
+      - type: experiment
+        covers: [U2.1, K2.1, S2.1]
+        title: The lever and the rock
+        question: A hand pushes the long end of the board **down**. Which way does the rock go?
+        animation: g3s-scene
+        props: { scene: lever-lift }
+        predict:
+          choices: ['⬆️ Up', '⬇️ Down', 'It stays still']
+          answer: 0
+        observe: |-
+          - The hand pushed **down**.
+          - The rock went **up**.
+        explain: |-
+          - A **lever** can change the **direction** of a force.
+          - Pushing on the long end makes a heavy load easier to lift.
+
+  - title: Tools from First Peoples
+    blocks:
+      - type: visual
+        covers: [K2.2, S2.4]
+        component: g3s-play
+        props: { scene: first-peoples-machines }
+        caption: Tap each tool. What job does it do?
+      - type: callout
+        variant: tip
+        covers: [K2.2]
+        title: A wedge is a ramp
+        body: A **wedge** is a kind of inclined plane. Its thin edge pushes things apart.
+
+  - title: Pick the machine
+    blocks:
+      - type: visual
+        covers: [K2.1, S2.1, S2.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: lever, label: Lever, icon: '⚖️' }
+            - { id: wheel, label: Wheel, icon: '🛞' }
+            - { id: ramp, label: Ramp, icon: '🛝' }
+          cards:
+            - { text: 'Get a wheelchair up to a door', bin: ramp, why: 'A ramp lets the wheelchair roll up with a smaller push than steps.' }
+            - { text: 'Move a big pile of dirt across the yard', bin: wheel, why: 'A wheelbarrow rolls on its wheel, so the dirt is easier to move.' }
+            - { text: 'Pry the lid off a paint can', bin: lever, why: 'Push down on the long handle, and the lid pops up.' }
+            - { text: 'Roll a heavy suitcase through the airport', bin: wheel, why: 'Wheels roll instead of sliding, so the suitcase is easier to pull.' }
+            - { text: 'Lift a big rock out of the garden', bin: lever, why: 'A long bar over a log lifts the rock when you push down.' }
+            - { text: 'Load a bike into a truck', bin: ramp, why: 'Pushing the bike up a ramp takes less effort than lifting it.' }
+        caption: Which simple machine makes each job easier?
+      - type: callout
+        variant: tip
+        covers: [S2.3]
+        title: Work safely
+        body: |-
+          - Ask a grown-up before you use tools.
+          - Keep fingers away from where a lever or wedge pinches.
+
+keyTerms:
+  - term: Simple machine
+    covers: [K2.1]
+    definition: A tool, like a lever, wheel or ramp, that makes moving things easier.
+  - term: Effort
+    covers: [K2.1]
+    definition: The push or pull you use to move something.
+  - term: Lever
+    covers: [K2.1, U2.1]
+    definition: A bar that turns on a point. Pushing one end moves a load on the other end.
+  - term: Inclined plane
+    covers: [K2.1]
+    definition: A ramp. It lets you move a load up with a smaller push than lifting.
+  - term: Ulu
+    covers: [K2.2]
+    definition: An Inuit knife with a curved blade, used to cut and scrape.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.1]
+    type: mc
+    prompt: What do simple machines do?
+    choices: ['Make moving things easier', 'Make things heavier', 'Make things move by themselves']
+    answer: 0
+    feedback:
+      '1': Did the ramp make the box heavier, or the push smaller?
+      '2': In the experiments, someone still had to push. Did anything move by itself?
+    hints:
+      - Think about the ramp and the box.
+    solution:
+      - Simple machines lower the **effort** needed. They make moving things **easier**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K2.2, S2.4]
+    type: mc
+    prompt: An Inuit cook needs to cut and scrape a fish. Which tool would she use?
+    choices: ['An ulu', 'A paddle', 'A wheel']
+    answer: 0
+    feedback:
+      '1': A paddle moves a canoe. Can it cut a fish?
+      '2': A wheel rolls. Can it scrape?
+    hints:
+      - Which tool has a thin, curved blade?
+    solution:
+      - The **ulu** has a curved blade with a thin edge. It cuts and scrapes.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [U2.1]
+    type: mc
+    prompt: A seesaw is a lever. Theo pushes his end **down**. Which way does his friend on the other end go?
+    choices: ['⬆️ Up', '⬇️ Down', 'Nowhere']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Think of the rock on the board. When the hand pushed down, did the rock go down too?
+      '2': A lever turns. If one end moves, does the other end move too?
+    hints:
+      - Remember the lever and the rock.
+    solution:
+      - A lever changes the direction of a force.
+      - Theo pushes **down**, so his friend goes **up**.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K2.1, S2.1]
+    type: mc
+    prompt: A library has three steps at its door. How can people in wheelchairs get in easily?
+    choices: ['Build a ramp', 'Add a taller step', 'Put in a heavier door']
+    answer: 0
+    feedback:
+      '1': Would a taller step make it easier or harder to roll in?
+      '2': Does a heavy door help a wheelchair go up?
+    hints:
+      - Which simple machine helps move a load up?
+    solution:
+      - A ramp is an **inclined plane**.
+      - A wheelchair can roll up it with a smaller push than going up steps.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [S2.2, K2.1]
+    type: investigation
+    prompt: |-
+      Ava wants to design a device. It must move a heavy bag of soil **across the yard** and then **up** into a tall garden box.
+    parts:
+      - type: mc
+        prompt: To move the bag across the yard, what should her cart have?
+        choices: ['Wheels', 'A flat bottom to slide on', 'A long rope only']
+        answer: 0
+        feedback:
+          '1': Sliding rubs on the ground. What rolls instead?
+          '2': She would still drag the bag. What would make it roll?
+        hints:
+          - Which simple machine rolls?
+        solution:
+          - '**Wheels** roll instead of sliding, so the cart is easier to move.'
+      - type: mc
+        prompt: To get the bag up into the tall box, what should she add?
+        choices: ['A ramp up to the box', 'A heavier bag', 'A smaller cart']
+        answer: 0
+        feedback:
+          '1': A heavier bag is harder to lift. What would make it easier?
+          '2': A smaller cart doesn’t help it go up. What does?
+        hints:
+          - Which simple machine helps move a load up?
+        solution:
+          - A **ramp** lets her push the cart up with a smaller push than lifting the bag.
+    wrapUp: Many devices use more than one simple machine. Ava’s uses wheels and an inclined plane.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [U2.1, K2.1]
+    type: mc
+    prompt: Leo says, “A ramp makes the box **lighter**. That’s why it is easier to push.” What did Leo miss?
+    choices:
+      - The box is just as heavy. The ramp makes the push smaller.
+      - The ramp makes the box heavier.
+      - Ramps only work for balls.
+    answer: 0
+    feedback:
+      '1': If the box got heavier, would it be easier to push?
+      '2': In the experiment, a box went up the ramp. Was it a ball?
+    hints:
+      - Is it the same box on the ramp and in your arms?
+    solution:
+      - The box is the same box, so it is **just as heavy**.
+      - The ramp changes the **push** needed. A smaller push moves it up.

@@ -1,0 +1,214 @@
+id: protecting-living-things
+grade: 3
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI3-OI4-GQ1-LO1]
+order: 21
+title: Depending On and Protecting Living Things
+shortTitle: Protecting living things
+summary: >-
+  Build an animal bridge over a highway in Banff, sort ways to protect wildlife, see how plants and
+  animals need each other, and learn from Blackfoot knowledge of the land.
+
+bigIdea: |-
+  - Plants and animals **depend** on each other for food and homes.
+  - Our actions can **protect** the plants and animals near us.
+  - First Nations, Métis and Inuit know a lot about plants and animals from long **relationships** with them.
+
+lesson:
+  - title: An animal bridge
+    blocks:
+      - type: experiment
+        covers: [K4.1, U4.1]
+        title: Crossing the highway
+        question: Elk and bears need to cross a busy highway in Banff National Park. What could help them cross safely?
+        animation: g3s-scene
+        props: { scene: wildlife-bridge }
+        predict:
+          choices: ['🌉 A bridge for animals', '🏃 Running fast', '📯 Honking horns']
+          answer: 0
+        observe: |-
+          - A grassy **bridge** was built over the highway.
+          - The animals walked across it, high above the cars.
+        explain: |-
+          - Banff has 44 **animal crossings**: 6 bridges and 38 tunnels under the road.
+          - Knowing where animals cross, and slowing down, protects them.
+
+  - title: Helping or harming?
+    blocks:
+      - type: visual
+        covers: [K4.1, S4.1, S4.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: help, label: Protects, icon: '💚' }
+            - { id: harm, label: Harms, icon: '⚠️' }
+          cards:
+            - { text: '🔭 Watching a deer from far away', bin: help, why: 'Staying back is respectful. It doesn’t scare or disturb the deer.' }
+            - { text: '🦆 Chasing ducks at the pond', bin: harm, why: 'Chasing scares animals and disturbs them.' }
+            - { text: '🚗 Slowing down at an animal crossing sign', bin: help, why: 'Drivers who watch for crossings keep animals safe.' }
+            - { text: '🎣 Keeping only the fish the rules allow', bin: help, why: 'Fishing rules make sure enough fish are left.' }
+            - { text: '🥚 Taking eggs home from a bird’s nest', bin: harm, why: 'The eggs will never hatch. Leave nests alone.' }
+            - { text: '📋 Counting birds for a bird count', bin: help, why: 'Counting tells scientists if an animal needs help.' }
+        caption: Does it **protect** or **harm** plants and animals?
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI4-GQ1-LO1#K1.1]
+        title: Remember from Grade 2
+        body: Making parks and protecting natural spaces helps plants and animals.
+
+  - title: We need each other
+    blocks:
+      - type: visual
+        covers: [K4.2, S4.3]
+        component: g3s-play
+        props: { scene: need-each-other }
+        caption: Tap each one. Who needs whom?
+
+  - title: Blackfoot knowledge
+    blocks:
+      - type: visual
+        covers: [K4.3, S4.4]
+        component: g3s-play
+        props: { scene: blackfoot-knowledge }
+        caption: Tap each one. What did the Blackfoot know about the buffalo and the land?
+      - type: callout
+        variant: tip
+        covers: [S4.4, U4.1]
+        title: Watching closely
+        body: Knowledge like this comes from watching plants and animals closely for a very long time.
+
+keyTerms:
+  - term: Depend
+    covers: [K4.2]
+    definition: To need something to survive, like food or a home.
+  - term: Animal crossing
+    covers: [K4.1]
+    definition: A safe place for animals to cross a road, like a bridge or tunnel just for them.
+  - term: Population
+    covers: [K4.1]
+    definition: How many of one kind of plant or animal live in a place.
+  - term: Migration
+    covers: [K4.3]
+    definition: When animals move from one place to another as the seasons change.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K4.1]
+    type: mc
+    prompt: You see a deer at the park. What is the best way to act?
+    choices: ['Watch quietly from far away', 'Chase it for a closer look', 'Feed it your snack']
+    answer: 0
+    feedback:
+      '1': Chasing scares wild animals. Is that respectful?
+      '2': People food can make wild animals sick. Is it safe to feed them?
+    hints:
+      - How can you watch without disturbing it?
+    solution:
+      - Watching from far away is **respectful**. It doesn’t disturb the deer.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K4.2, S4.3]
+    type: mc
+    prompt: A woodpecker makes its nest in a hole in a tree. How does it depend on the tree?
+    choices: ['For a home', 'For water', 'It doesn’t']
+    answer: 0
+    feedback:
+      '1': The woodpecker lives in the hole. Is it drinking there?
+      '2': Where would the woodpecker nest without the tree?
+    hints:
+      - Where does the woodpecker live?
+    solution:
+      - The tree gives the woodpecker a **habitat**, a home.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K4.2, S4.3]
+    type: mc
+    prompt: A bird eats berries, then drops the seeds far away. How does the plant depend on the bird?
+    choices: ['To spread its seeds', 'To give it shade', 'It doesn’t']
+    answer: 0
+    feedback:
+      '1': Does a little bird shade a plant?
+      '2': The seeds landed far away. What will grow there?
+    hints:
+      - What happens to the seeds the bird drops?
+    solution:
+      - The bird **spreads** the seeds. New plants grow far away.
+      - The bird depends on the plant for food, and the plant depends on the bird.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K4.1, U4.1]
+    type: mc
+    prompt: Every winter, people count the birds near their homes. Why does this help protect birds?
+    choices: ['It shows if birds need help', 'It makes more birds', 'It keeps birds warm']
+    answer: 0
+    feedback:
+      '1': Counting doesn’t make new birds. What can it tell us?
+      '2': Counting doesn’t warm anything. What can we learn from the numbers?
+    hints:
+      - What if the count goes down every year?
+    solution:
+      - Counting **populations** shows if there are fewer birds each year.
+      - Then people know the birds need help.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: perspective
+    covers: [K4.3, S4.4]
+    type: investigation
+    prompt: |-
+      Long ago, the Blackfoot watched the buffalo closely, season after season.
+    parts:
+      - type: mc
+        prompt: In winter, buffalo stayed in sheltered river valleys. Where would Blackfoot families camp in winter?
+        choices: ['In river valleys, near the buffalo', 'Far out on the open plains', 'On mountain tops']
+        answer: 0
+        feedback:
+          '1': The buffalo were in the valleys. Would families go far from them?
+          '2': Mountain tops are cold and windy. Where were the buffalo?
+        hints:
+          - The Blackfoot followed the buffalo.
+        solution:
+          - Families camped in sheltered **river valleys**, near the buffalo.
+      - type: mc
+        prompt: Which kind of knowledge is this?
+        choices: ['Migration and seasons', 'How to build a car', 'Rock layers']
+        answer: 0
+        feedback:
+          '1': Cars weren’t around long ago. What were they watching?
+          '2': They watched animals, not rocks. What did the buffalo do each season?
+        hints:
+          - The buffalo moved as the seasons changed.
+        solution:
+          - It is knowledge of **migration** and **seasonal patterns**.
+    wrapUp: Watching plants and animals closely over a long time builds deep knowledge.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [K4.1, S4.1, S4.2]
+    type: mc
+    prompt: Your class finds a nest of baby birds on a low branch. Which plan is best?
+    choices:
+      - Watch from far away and keep the nest a secret.
+      - Pick up a baby bird to look closely.
+      - Move the nest somewhere better.
+    answer: 0
+    feedback:
+      '1': Touching babies can scare the parents and hurt the babies. Is that safe?
+      '2': The parents know where the nest is. What if it moved?
+    hints:
+      - How can you disturb the birds the least?
+    solution:
+      - Watching from far away doesn’t **disturb** the birds. Keeping it a secret keeps them safe.

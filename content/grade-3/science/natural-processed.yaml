@@ -1,0 +1,235 @@
+id: natural-processed
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 1
+title: Natural and Processed Materials
+shortTitle: Natural and processed
+summary: >-
+  Sort natural and processed materials, trace paper, glass and plastic back to nature, and see how
+  First Nations, Métis and Inuit use materials from the land.
+
+bigIdea: |-
+  - **Natural** materials come from nature. **Processed** materials are made by people from natural ones.
+  - Processed materials are made for a **job**, like keeping rain out.
+  - First Nations, Métis and Inuit use natural materials with **respect**, in balance with the land.
+
+lesson:
+  - title: Natural or processed?
+    blocks:
+      - type: visual
+        covers: [K1.1, U1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: nat, label: Natural, icon: '🌿' }
+            - { id: pro, label: Processed, icon: '🏭' }
+          cards:
+            - { text: '🪨 A rock', bin: nat, why: 'Rocks come straight from the land, just as they are.' }
+            - { text: '🧱 A brick', bin: pro, why: 'People make bricks from clay and bake them. Bricks are not found in nature.' }
+            - { text: '🐚 A seashell', bin: nat, why: 'Shells are made by sea animals, not by people.' }
+            - { text: '🥤 A plastic cup', bin: pro, why: 'Plastic is made in factories. You can’t dig up a plastic cup.' }
+            - { text: '🪶 A feather', bin: nat, why: 'Feathers grow on birds.' }
+            - { text: '🪟 Window glass', bin: pro, why: 'Glass is made by people. It is not found in nature.' }
+        caption: Tap **Natural** or **Processed** for each card.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI1-GQ1-LO1#K3.1, SCI2-OI1-GQ1-LO1#K3.2]
+        title: Remember from Grade 2
+        body: Natural materials come from plants, animals, the land or the sky. Processed materials are made by people.
+
+  - title: Where did it come from?
+    blocks:
+      - type: visual
+        covers: [S1.1, K1.1, U1.1]
+        component: g3s-play
+        props: { scene: from-nature }
+        caption: Tap each **processed** material to see the **natural** material it started as.
+      - type: callout
+        variant: tip
+        covers: [K1.1]
+        title: Not found in nature
+        body: You will never find paper growing on a tree. People have to **change** the wood to make it.
+
+  - title: Made for a job
+    blocks:
+      - type: experiment
+        covers: [K1.2, U1.1]
+        title: The rainy-day test
+        question: A wool sweater and a plastic raincoat hang out in the rain. Which one stays dry inside?
+        animation: g3s-scene
+        props: { scene: rain-coats }
+        predict:
+          choices: ['🧶 The wool sweater', '🧥 The plastic raincoat', 'Both stay dry']
+          answer: 1
+        observe: |-
+          - The **wool** soaked up the rain and dripped.
+          - The drops **rolled off** the plastic raincoat.
+        explain: |-
+          - Each processed material is **designed** for a job.
+          - Wool is made to keep you **warm**. A plastic raincoat is made to keep rain **out**.
+
+  - title: Materials from the land
+    blocks:
+      - type: visual
+        covers: [K1.4, K1.3, U1.1]
+        component: g3s-play
+        props: { scene: land-materials }
+        caption: First Nations, Métis and Inuit use natural materials for homes, clothing, travel, medicine and ceremonies. Tap each one.
+
+  - title: In balance with the land
+    blocks:
+      - type: visual
+        covers: [U1.2, S1.2]
+        component: g3s-play
+        props: { scene: take-what-you-need }
+        caption: Tap **Take some**, then **Next summer**. Then try **Take it all**.
+      - type: callout
+        variant: tip
+        covers: [K1.3, U1.2]
+        title: Asking first
+        body: Blackfoot people have long asked plants, animals and rocks for **permission** before using them.
+      - type: callout
+        variant: remember
+        covers: [SCI2-OI4-GQ1-LO1#K4.2]
+        title: Remember from Grade 2
+        body: Taking only what is needed and using the whole plant or animal show care for the land.
+
+keyTerms:
+  - term: Natural material
+    covers: [U1.1]
+    definition: A material used the way it is found in nature, like wood, rock or snow.
+  - term: Processed material
+    covers: [K1.1]
+    definition: A material people make by changing a natural material. It is not found in nature.
+  - term: Purpose
+    covers: [K1.2]
+    definition: The job something is made to do.
+  - term: Balance
+    covers: [U1.2]
+    definition: Taking from the land in a way that leaves enough for plants, animals and people later.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1, U1.1]
+    type: mc
+    prompt: Which one is a **processed** material?
+    choices: ['🧱 Brick', '🪨 Rock', '🪶 Feather']
+    answer: 0
+    feedback:
+      '1': You can pick a rock up off the ground, just as it is. Did people make it?
+      '2': Feathers grow on birds. Did people make it?
+    hints:
+      - Which one could you never find lying in nature?
+    solution:
+      - Rocks and feathers come straight from nature.
+      - People make **bricks** by shaping clay and baking it. So a brick is processed.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [S1.1]
+    type: mc
+    prompt: Glass is a processed material. What natural material is it made from?
+    choices: ['🏖️ Sand', '🌳 Wood', '🐑 Wool']
+    answer: 0
+    feedback:
+      '1': Wood is changed into paper. What is melted to make glass?
+      '2': Wool is spun into yarn. What is melted to make glass?
+    hints:
+      - Tap **Glass** in the lesson picture again.
+    solution:
+      - Glass is made by melting **sand** in a very hot oven.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K1.2]
+    type: mc
+    prompt: Rubber boots are made of a processed material. What job was it made to do?
+    choices: ['Keep feet dry', 'Let light through', 'Keep feet cool']
+    answer: 0
+    feedback:
+      '1': Being see-through is a job for glass. Why would boots need that?
+      '2': Think about when you wear rubber boots. Is it on hot, sunny days?
+    hints:
+      - When do people wear rubber boots?
+    solution:
+      - People wear rubber boots in puddles, rain and mud.
+      - The rubber was made to keep water **out**, so feet stay **dry**.
+
+  - id: b2
+    level: 2
+    thinking: model
+    covers: [K1.4, K1.3]
+    type: mc
+    prompt: An Inuit family needs a winter shelter. All around them is snow. No trees grow there. What could they build?
+    choices: ['An igloo', 'A tipi', 'A log cabin']
+    answer: 0
+    feedback:
+      '1': A tipi needs long wooden poles. Are there trees nearby?
+      '2': A log cabin needs lots of trees. Are there any here?
+    hints:
+      - What material is all around them?
+      - Which shelter is made from that material?
+    solution:
+      - Tipis and log cabins need wood, and no trees grow here.
+      - An **igloo** is built from blocks of hard snow, which is all around.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: flaw
+    covers: [K1.1, U1.1, S1.1]
+    type: investigation
+    prompt: |-
+      Theo holds up a sheet of paper. “Paper comes from trees,” he says. “So paper is a **natural** material!”
+    parts:
+      - type: mc
+        prompt: Is Theo right?
+        choices: ['No, paper is processed', 'Yes, paper is natural']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Paper does start as trees. But could you find a sheet of paper growing in a forest?
+        hints:
+          - Did people change the wood to make paper?
+        solution:
+          - Paper **starts** as wood from trees, so Theo has that part right.
+          - But people mash and press the wood to make paper. Paper is not found in nature, so it is **processed**.
+      - type: multi
+        prompt: Theo’s idea fools lots of people. Which of these are **processed**, even though they start in nature? Pick **all** of them.
+        choices: ['🧣 Wool scarf', '🥤 Plastic cup', '🪟 Glass', '🌰 Acorn', '🐚 Shell']
+        answer: [0, 1, 2]
+        feedback:
+          '3': An acorn falls from an oak tree just as it is. Did people change it?
+          '4': A shell is found on the beach just as it is. Did people change it?
+        hints:
+          - For each one, ask, “Did people change it?”
+        solution:
+          - The scarf, the cup and the glass were all **changed** by people. They are processed.
+          - The acorn and the shell are just as nature made them. They are natural.
+    wrapUp: Everything starts in nature. A material is processed when people have **changed** it into something new.
+
+  - id: d2
+    level: 3
+    thinking: perspective
+    covers: [U1.2, S1.2]
+    type: mc
+    prompt: Kai finds a big patch of sweetgrass by a creek. Which plan lives in **balance** with the land?
+    choices: ['Pick some, leave the rest', 'Pick it all today', 'Dig it all up to plant at home']
+    answer: 0
+    feedback:
+      '1': Then nothing would be left to grow. What about next year?
+      '2': The patch by the creek would be gone. Is that taking only what is needed?
+    hints:
+      - Think about the sweetgrass patch next summer.
+      - Which plan leaves enough for later?
+    solution:
+      - Picking it all, or digging it all up, leaves nothing to grow back.
+      - Picking **some** and leaving the rest lets the patch keep growing. That is living in balance with the land.

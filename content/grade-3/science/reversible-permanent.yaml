@@ -1,0 +1,198 @@
+id: reversible-permanent
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 7
+title: Reversible and Permanent Changes
+shortTitle: Reversible or permanent
+summary: >-
+  Heat chocolate and an egg, then cool them, to see which change can be undone. Sort everyday
+  changes into reversible and permanent.
+
+bigIdea: |-
+  - A **reversible** change can be undone, like melting or freezing.
+  - A **permanent** change can’t be undone, like cooking an egg or baking a cake.
+  - Which one you get **depends on the material**.
+
+lesson:
+  - title: Can you undo it?
+    blocks:
+      - type: experiment
+        covers: [K6.1, K6.2, S6.2]
+        title: Heat it, then cool it
+        question: Chocolate and a raw egg are heated, then cooled. Which one goes back to being like it was?
+        animation: g3s-scene
+        props: { scene: undo-test }
+        predict:
+          choices: ['🍫 The chocolate', '🥚 The egg', 'Both', 'Neither']
+          answer: 0
+        observe: |-
+          - Heat **melted** the chocolate and **cooked** the egg.
+          - After cooling, the chocolate was **solid** again.
+          - The egg stayed **cooked**.
+        explain: |-
+          - Melting can be undone by cooling. It is **reversible**.
+          - Cooking an egg can’t be undone. It is **permanent**.
+      - type: callout
+        variant: tip
+        covers: [S6.2]
+        title: Stay safe
+        body: A grown-up does the heating. Never taste or touch what you are testing unless a grown-up says it is safe.
+
+  - title: Same heat, different change
+    blocks:
+      - type: visual
+        covers: [U6.1, S6.1, S6.2]
+        component: g3s-play
+        props: { scene: heat-test }
+        caption: Tap each material. Heating does something different to each one.
+
+  - title: Reversible or permanent?
+    blocks:
+      - type: visual
+        covers: [S6.1, K6.1, K6.2]
+        component: card-sort
+        props:
+          bins:
+            - { id: rev, label: Reversible, icon: '↩️' }
+            - { id: perm, label: Permanent, icon: '🚫' }
+          cards:
+            - { text: '🧊 Water freezing into ice', bin: rev, why: 'Warm the ice and it melts back into water.' }
+            - { text: '🎂 Baking a cake', bin: perm, why: 'You can’t turn a cake back into batter.' }
+            - { text: '🧈 Butter melting', bin: rev, why: 'Put it in the fridge and it is solid again.' }
+            - { text: '🍿 Popcorn popping', bin: perm, why: 'Popped corn can’t be un-popped.' }
+            - { text: '🖍️ A crayon melting', bin: rev, why: 'Let it cool and it is a solid crayon again.' }
+            - { text: '🍞 Bread toasting', bin: perm, why: 'Toast can’t be turned back into soft bread.' }
+        caption: Can each change be **undone**?
+
+keyTerms:
+  - term: Reversible change
+    covers: [K6.1]
+    definition: A change that can be undone, such as melting or freezing.
+  - term: Permanent change
+    covers: [K6.2]
+    definition: A change that can’t be undone, such as cooking an egg or baking a cake.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K6.2]
+    type: mc
+    prompt: Which change is **permanent**?
+    choices: ['🎂 Baking a cake', '🧊 Ice melting', '🧃 Juice freezing']
+    answer: 0
+    feedback:
+      '1': Can melted ice be frozen again?
+      '2': Can frozen juice be melted again?
+    hints:
+      - Which one can’t be undone?
+    solution:
+      - Melting and freezing can be undone.
+      - A cake can’t be turned back into batter, so **baking a cake** is permanent.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K6.1, S6.1]
+    type: mc
+    prompt: Ice cream melts on the counter. Can the change be undone?
+    choices: ['Yes, freeze it again', 'No, it is permanent']
+    fixedOrder: true
+    answer: 0
+    feedback:
+      '1': Melting is a change of state. What does the freezer do to a liquid?
+    hints:
+      - Is melting reversible or permanent?
+    solution:
+      - Melting is **reversible**. Put the ice cream in the freezer and it turns solid again.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [S6.1, K6.1, K6.2]
+    type: multi
+    prompt: Which of these changes can be **undone**? Pick **all** of them.
+    choices: ['🧈 Butter melting', '🍿 Popcorn popping', '💧 Water freezing', '🔥 Toast burning']
+    answer: [0, 2]
+    feedback:
+      '1': Can popped corn ever become a hard kernel again?
+      '3': Can burnt toast become soft bread again?
+    hints:
+      - For each one, ask, “Can I get back what I started with?”
+    solution:
+      - Butter can be cooled to solid again, and ice can be melted to water again. Those are **reversible**.
+      - Popping corn and burning toast are **permanent**.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [U6.1]
+    type: mc
+    prompt: Grandpa heats chocolate in one pot and pancake batter in a pan. When they cool, only the chocolate can change back. Why?
+    choices:
+      - It depends on the material being heated.
+      - The chocolate was not heated enough.
+      - Pancakes are made of liquids.
+    answer: 0
+    feedback:
+      '1': Chocolate melts even with a little heat. Is the amount of heat the difference?
+      '2': Batter starts as a liquid, and chocolate turns into one. Is that the difference?
+    hints:
+      - Both were heated. So what is different?
+    solution:
+      - Both got heat, but they are **different materials**.
+      - Chocolate just melts, which can be undone. Batter cooks into a pancake, which can’t.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: evidence
+    covers: [S6.2, U6.1, K6.1]
+    type: investigation
+    prompt: |-
+      Jay says, “Heating **always** makes a permanent change.” Lena wants to test his idea safely.
+    parts:
+      - type: mc
+        prompt: Which test could prove Jay **wrong**?
+        choices: ['Melt ice, then freeze it again', 'Cook an egg, then cool it', 'Toast bread, then cool it']
+        answer: 0
+        feedback:
+          '1': The egg stays cooked. Does that agree with Jay or prove him wrong?
+          '2': Toast stays toast. Does that agree with Jay or prove him wrong?
+        hints:
+          - To prove Jay wrong, you need a heating change that **can** be undone.
+        solution:
+          - Melted ice freezes back into ice. That heating change is **reversible**, so Jay is wrong.
+      - type: mc
+        prompt: So what decides if a heating change is permanent?
+        choices: ['The material being heated', 'How long you wait', 'The colour of the pot']
+        answer: 0
+        feedback:
+          '1': A cooked egg stays cooked even after a week. Is waiting the difference?
+          '2': Ice melts in any pot. Is the pot the difference?
+        hints:
+          - Ice and eggs got the same heat. What was different about them?
+        solution:
+          - It depends on the **material**. Ice melts and can freeze again. An egg cooks and can’t go back.
+    wrapUp: One example that doesn’t fit can show that an “always” idea is wrong.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K6.2, U6.1]
+    type: mc
+    prompt: Cooling undoes melting. What if you put a cooked egg in the freezer? Will it become raw again?
+    choices: ['No, it is a frozen cooked egg', 'Yes, cooling undoes any change', 'Yes, if you wait long enough']
+    answer: 0
+    feedback:
+      '1': Cooling undoes melting. Was the egg melted, or cooked?
+      '2': A cooked egg stays cooked no matter how long it sits. Can time undo it?
+    hints:
+      - Is cooking an egg reversible or permanent?
+    solution:
+      - Cooking an egg is a **permanent** change.
+      - Freezing would only make it a cold, hard, cooked egg. It can never be raw again.

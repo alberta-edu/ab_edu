@@ -1,0 +1,60 @@
+---
+// Grade 3 science experiments: one engine, many short scenes. `scene` names a file in
+// ./g3-scenes/, which holds the sprites and keyframes (see ../visuals/g3-sprites.ts). The page
+// loads only that scene's file. Press Run and the scene plays from start to finish.
+import '../visuals/g3-sprites.css';
+
+interface Props {
+  scene: string;
+}
+const { scene } = Astro.props;
+const files = import.meta.glob('./g3-scenes/*.ts');
+if (!files[`./g3-scenes/${scene}.ts`]) throw new Error(`g3-scene: no scene "${scene}" in src/components/experiments/g3-scenes/`);
+---
+<g3-scene data-scene={scene}>
+  <svg class="g3s-svg" viewBox="0 0 480 300" aria-hidden="true" data-g3="svg"></svg>
+  <p class="sr-only" aria-live="polite" data-g3="live"></p>
+</g3-scene>
+
+<style is:global>
+  g3-scene { display: block; }
+</style>
+
+<script>
+  import { tween, wait } from './anim.ts';
+  import { sceneSvg, type RunScene } from '../visuals/g3-sprites.ts';
+
+  const scenes = import.meta.glob<{ default: RunScene }>('./g3-scenes/*.ts');
+
+  class G3Scene extends HTMLElement {
+    private scene?: RunScene;
+    private loading?: Promise<RunScene>;
+
+    connectedCallback() {
+      this.load().then(() => this.draw(0));
+    }
+
+    private load() {
+      this.loading ??= scenes[`./g3-scenes/${this.dataset.scene}.ts`]().then((m) => {
+        this.scene = m.default;
+        this.querySelector('[data-g3="svg"]')!.setAttribute('viewBox', `0 0 ${m.default.w} ${m.default.h}`);
+        return m.default;
+      });
+      return this.loading;
+    }
+
+    private draw(t: number) {
+      if (this.scene) this.querySelector('[data-g3="svg"]')!.innerHTML = sceneSvg(this.scene, t);
+    }
+
+    async run() {
+      const sc = await this.load();
+      const live = this.querySelector('[data-g3="live"]')!;
+      live.textContent = '';
+      await tween(sc.ms, (t) => this.draw(t));
+      await wait(150);
+      live.textContent = sc.live;
+    }
+  }
+  customElements.define('g3-scene', G3Scene);
+</script>

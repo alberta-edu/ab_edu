@@ -1,0 +1,191 @@
+id: senses-stimuli
+grade: 3
+subject: science
+organizingIdea: SCI-OI4
+outcomes: [SCI3-OI4-GQ1-LO1]
+order: 20
+title: Sensing and Responding
+shortTitle: Sensing and responding
+summary: >-
+  Watch a bean plant bend toward a window, see how plants and animals respond to light, water and
+  warmth, and find out how animals sense food and danger.
+
+bigIdea: |-
+  - Plants and animals **sense** things around them, like light, water, food and warmth.
+  - They **respond**, or do something, to stay alive.
+  - Animals use their senses to find **food** and to notice **predators**.
+
+lesson:
+  - title: A plant on the windowsill
+    blocks:
+      - type: experiment
+        covers: [K3.1, U3.1, S3.1]
+        title: Which way will it grow?
+        question: A bean plant sits on a windowsill for a week. Which way will it grow?
+        animation: g3s-scene
+        props: { scene: plant-window }
+        predict:
+          choices: ['Toward the window', 'Away from the window', 'Straight up']
+          answer: 0
+        observe: |-
+          - Day by day, the plant **bent** toward the window.
+        explain: |-
+          - The plant sensed the **light** and grew toward it.
+          - Plants need light to live. Growing toward it helps them **survive**.
+
+  - title: Plants respond
+    blocks:
+      - type: visual
+        covers: [K3.1, U3.1, S3.1]
+        component: g3s-play
+        props: { scene: plants-respond }
+        caption: Tap each one. What does the plant sense?
+
+  - title: Animals respond
+    blocks:
+      - type: visual
+        covers: [K3.1, U3.1, S3.1]
+        component: g3s-play
+        props: { scene: animals-respond }
+        caption: Tap each one. What does the animal sense? What does it do?
+
+  - title: Food and danger
+    blocks:
+      - type: visual
+        covers: [K3.2, U3.1]
+        component: g3s-play
+        props: { scene: sense-signals }
+        caption: Tap each one. Which sense helps?
+
+keyTerms:
+  - term: Stimulus
+    covers: [K3.1]
+    definition: Something a plant or animal senses and responds to, like light or food.
+  - term: Respond
+    covers: [K3.1, U3.1]
+    definition: To do something because of what you sense.
+  - term: Predator
+    covers: [K3.2]
+    definition: An animal that hunts other animals for food.
+  - term: Survive
+    covers: [U3.1]
+    definition: To stay alive.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K3.1, U3.1]
+    type: mc
+    prompt: Why do plants and animals sense and respond to things around them?
+    choices: ['To survive', 'To get bigger ears', 'To make noise']
+    answer: 0
+    feedback:
+      '1': Plants don’t have ears at all. Why else might they respond?
+      '2': Plants don’t make noise. What do all living things need to do?
+    hints:
+      - Why did the bean plant grow toward the light?
+    solution:
+      - Sensing and responding helps plants and animals **survive**, or stay alive.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K3.1, S3.1]
+    type: mc
+    prompt: On a hot day, a snake moves from a sunny rock into the shade. What is it responding to?
+    choices: ['🌡️ Temperature', '🍓 Food', '🔊 Sound']
+    answer: 0
+    feedback:
+      '1': Is there food in the shade?
+      '2': Did the snake hear something?
+    hints:
+      - What is different in the shade?
+    solution:
+      - The shade is **cooler**. The snake is responding to the temperature.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: evidence
+    covers: [K3.2]
+    type: mc
+    prompt: A ground squirrel stands up, whistles, then dives into its burrow. What did it most likely sense?
+    choices: ['🦅 A hawk', '🌾 Some grass', '☀️ Warm sun']
+    answer: 0
+    feedback:
+      '1': Grass is food. Would the squirrel hide from food?
+      '2': Ground squirrels like warm sun. Would it run from it?
+    hints:
+      - Animals hide from danger.
+    solution:
+      - It hid fast, so it most likely sensed a **predator**, like a hawk.
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [K3.1, S3.1]
+    type: mc
+    prompt: Sowbugs live under rocks and logs. Why do they hurry away when you lift a rock?
+    choices: ['They move away from light', 'They are cold', 'They smell food']
+    answer: 0
+    feedback:
+      '1': Lifting the rock lets something in. Is it cold?
+      '2': Did lifting the rock add food?
+    hints:
+      - What comes in when you lift the rock?
+    solution:
+      - Lifting the rock lets **light** in. Sowbugs respond by moving back into the dark.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K3.2, U3.1]
+    type: investigation
+    prompt: |-
+      A deer is eating in a meadow. A wolf sneaks close.
+    parts:
+      - type: mc
+        prompt: The deer hears a twig snap. What will it most likely do?
+        choices: ['Run away', 'Lie down to sleep', 'Keep eating']
+        answer: 0
+        feedback:
+          '1': A wolf is near. Is it safe to sleep?
+          '2': The deer sensed danger. Will it ignore it?
+        hints:
+          - The wolf is a predator.
+        solution:
+          - The deer senses danger and **runs away**.
+      - type: mc
+        prompt: What if the deer did not hear or smell the wolf?
+        choices: ['It could get caught', 'It would be safer', 'Nothing would change']
+        answer: 0
+        feedback:
+          '1': Senses warn the deer. Is it safer without a warning?
+          '2': The deer would not know to run. Would that change anything?
+        hints:
+          - What do the deer’s senses help it do?
+        solution:
+          - Without its senses, the deer would not know to run. It could **get caught**.
+    wrapUp: Senses help animals survive by warning them of danger.
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K3.1, U3.1]
+    type: mc
+    prompt: Lily says, “Plants can’t sense anything. Only animals can.” What did she miss?
+    choices:
+      - Plants sense and respond to light, water and warmth.
+      - Plants have eyes.
+      - Animals can’t sense things either.
+    answer: 0
+    feedback:
+      '1': Plants don’t have eyes. How did the bean plant find the light?
+      '2': Animals smell, hear and see. Can they sense things?
+    hints:
+      - Think of the bean plant on the windowsill.
+    solution:
+      - Plants **sense** light, water and warmth, and respond by how they grow.

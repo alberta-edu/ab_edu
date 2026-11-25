@@ -1,0 +1,225 @@
+id: changing-state
+grade: 3
+subject: science
+organizingIdea: SCI-OI1
+outcomes: [SCI3-OI1-GQ1-LO1]
+order: 3
+title: Melting, Freezing, Evaporating and Condensing
+shortTitle: Changing state
+summary: >-
+  Heat ice and cool water to watch melting and freezing, see a puddle evaporate in the sun, and find
+  out where the drops on a cold glass come from.
+
+bigIdea: |-
+  - Matter can **change state** when it is heated or cooled.
+  - **Heating:** melting turns a solid into a liquid. Evaporation turns a liquid into a gas.
+  - **Cooling:** freezing turns a liquid into a solid. Condensation turns a gas into a liquid.
+
+lesson:
+  - title: Melting and freezing
+    blocks:
+      - type: visual
+        covers: [K2.3, K2.4, U2.1]
+        component: g3s-play
+        props: { scene: melt-freeze }
+        caption: Press **Next** to heat the ice, then cool it again.
+
+  - title: Where does a puddle go?
+    blocks:
+      - type: experiment
+        covers: [K2.5, U2.1, S2.1]
+        title: The puddle in the sun
+        question: After the rain, a puddle sits on a sunny sidewalk. What will it look like by 3:00?
+        animation: g3s-scene
+        props: { scene: puddle-sun }
+        predict:
+          choices: ['Gone', 'The same size', 'Bigger']
+          answer: 0
+        observe: |-
+          - The puddle got **smaller** all day, until it was **gone**.
+          - Wavy lines show water rising into the air.
+        explain: |-
+          - The sun **heated** the water.
+          - The liquid water changed into a **gas** called water vapour. This is **evaporation**.
+
+  - title: Drops from nowhere?
+    blocks:
+      - type: visual
+        covers: [K2.6, U2.1]
+        component: g3s-play
+        props: { scene: cold-glass }
+        caption: Tap **5 minutes later**. Where did the drops come from?
+      - type: callout
+        variant: mistake
+        covers: [K2.6]
+        title: The glass did not leak
+        body: The drops are on the **outside**. Water vapour from the air cooled on the glass, which is **condensation**.
+
+  - title: Heating and cooling every day
+    blocks:
+      - type: visual
+        covers: [S2.2, U2.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: hot, label: Heating, icon: '🔥' }
+            - { id: cold, label: Cooling, icon: '❄️' }
+          cards:
+            - { text: '🧈 Melting butter on toast', bin: hot, why: 'Warm toast heats the butter until it melts.' }
+            - { text: '🍭 Making popsicles', bin: cold, why: 'The freezer cools the juice until it freezes.' }
+            - { text: '💇 Drying hair with a hair dryer', bin: hot, why: 'Hot air helps the water in your hair evaporate.' }
+            - { text: '🥛 Keeping milk in the fridge', bin: cold, why: 'The fridge cools the milk to keep it fresh.' }
+            - { text: '🍝 Boiling water for pasta', bin: hot, why: 'The stove heats the water.' }
+            - { text: '🧊 Making ice cubes', bin: cold, why: 'The freezer cools water until it freezes into ice.' }
+        caption: Is each one **heating** or **cooling**?
+
+  - title: Four changes
+    blocks:
+      - type: figure
+        covers: [K2.3, K2.4, K2.5, K2.6, U2.1]
+        figure: |-
+          <svg viewBox="0 0 360 210" class="fig-svg" role="img" aria-label="Solid, liquid and gas in a row. Red heating arrows go right: melting from solid to liquid, evaporation from liquid to gas. Blue cooling arrows go left: condensation from gas to liquid, freezing from liquid to solid."><defs><marker id="g3sMarkHot" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#d23b2e"/></marker><marker id="g3sMarkCold" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#3b82c4"/></marker></defs><rect class="g3s-chip" x="15" y="78" width="90" height="54" rx="10"/><rect class="g3s-chip" x="135" y="78" width="90" height="54" rx="10"/><rect class="g3s-chip" x="255" y="78" width="90" height="54" rx="10"/><text class="fig-label" x="60" y="110" text-anchor="middle">🧊 Solid</text><text class="fig-label" x="180" y="110" text-anchor="middle">💧 Liquid</text><text class="fig-label" x="300" y="110" text-anchor="middle">💨 Gas</text><path class="g3s-hot-line" d="M68,74 Q120,30 168,74" marker-end="url(#g3sMarkHot)"/><path class="g3s-hot-line" d="M188,74 Q240,30 288,74" marker-end="url(#g3sMarkHot)"/><path class="g3s-cold-line" d="M292,136 Q240,180 192,136" marker-end="url(#g3sMarkCold)"/><path class="g3s-cold-line" d="M172,136 Q120,180 72,136" marker-end="url(#g3sMarkCold)"/><text class="fig-label" x="118" y="30" text-anchor="middle">Melting</text><text class="fig-label" x="240" y="30" text-anchor="middle">Evaporation</text><text class="fig-label" x="240" y="198" text-anchor="middle">Condensation</text><text class="fig-label" x="118" y="198" text-anchor="middle">Freezing</text></svg>
+        caption: Red arrows need **heating**. Blue arrows need **cooling**.
+
+keyTerms:
+  - term: Melting
+    covers: [K2.3]
+    definition: A change of state from solid to liquid.
+  - term: Freezing
+    covers: [K2.4]
+    definition: A change of state from liquid to solid.
+  - term: Evaporation
+    covers: [K2.5]
+    definition: A change of state from liquid to gas.
+  - term: Condensation
+    covers: [K2.6]
+    definition: A change of state from gas to liquid.
+  - term: Water vapour
+    covers: [K2.5, K2.6]
+    definition: Water as a gas. It is in the air, but you can’t see it.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K2.3]
+    type: mc
+    prompt: An ice cube turns into water. What is this change called?
+    choices: [Melting, Freezing, Condensation]
+    answer: 0
+    feedback:
+      '1': Freezing goes the other way, from liquid to solid. Which way is the ice going?
+      '2': Condensation turns a gas into a liquid. Is ice a gas?
+    hints:
+      - Ice is a solid. Water is a liquid.
+    solution:
+      - Solid ice changes into liquid water. That is **melting**.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [U2.1, K2.4]
+    type: mc
+    prompt: Mia wants to turn apple juice into popsicles. What must she do to the juice?
+    choices: ['❄️ Cool it', '🔥 Heat it', '🥄 Stir it']
+    answer: 0
+    feedback:
+      '1': Heating turns solids into liquids. Mia wants a solid.
+      '2': Stirring mixes the juice, but does it change its state?
+    hints:
+      - Juice is a liquid. A popsicle is a solid. Which change is that?
+    solution:
+      - Liquid to solid is **freezing**.
+      - Freezing needs **cooling**, so she puts the juice in the freezer.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [K2.6, S2.2]
+    type: mc
+    prompt: After a hot shower, the bathroom mirror is covered in tiny drops. Where did the drops come from?
+    choices:
+      - Water vapour in the air cooled on the mirror.
+      - Water leaked out from inside the mirror.
+      - The mirror melted a tiny bit in the heat.
+    answer: 0
+    feedback:
+      '1': A mirror is solid glass with nothing inside. Could water leak out of it?
+      '2': Glass melts only when it is very, very hot, much hotter than a shower.
+    hints:
+      - The hot shower put lots of water vapour into the air. What happens when it touches something cool?
+    solution:
+      - The hot shower filled the air with water vapour, a gas.
+      - When the vapour touched the cooler mirror, it changed back into liquid drops. That is **condensation**.
+
+  - id: b2
+    level: 2
+    thinking: why
+    covers: [K2.5, S2.2]
+    type: mc
+    prompt: Wet towels hang outside on a sunny day. By evening, they are dry. Where did the water go?
+    choices:
+      - Into the air, as a gas
+      - Deep inside the towels
+      - Into ice on the towels
+    answer: 0
+    feedback:
+      '1': If the water were still in the towels, would they feel dry?
+      '2': Ice forms when water is cooled. Was it cold outside?
+    hints:
+      - The sun heated the wet towels. Which change does heating cause in a liquid?
+    solution:
+      - The sun heated the water in the towels.
+      - It **evaporated**, changing from liquid into water vapour, a gas in the air.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [K2.5, K2.6, S2.1, U2.1]
+    type: investigation
+    prompt: |-
+      Ava heats a pot of water with a lid on. After a while she lifts the lid. The underside of the lid is covered in drops.
+    parts:
+      - type: mc
+        prompt: First, the hot water turned into a gas. What is that change?
+        choices: [Evaporation, Condensation, Melting]
+        answer: 0
+        feedback:
+          '1': Condensation goes from gas to liquid. Which way did the water go first?
+          '2': Melting starts with a solid. Was there any ice?
+        hints:
+          - Liquid to gas is which change?
+        solution:
+          - Heat turned liquid water into water vapour. That is **evaporation**.
+      - type: mc
+        prompt: Then the gas touched the cooler lid. Which change made the drops?
+        choices: [Condensation, Evaporation, Freezing]
+        answer: 0
+        feedback:
+          '1': Evaporation makes a gas. The drops are a liquid.
+          '2': Freezing makes a solid. Are the drops solid ice?
+        hints:
+          - Gas to liquid is which change?
+        solution:
+          - The water vapour cooled on the lid and turned back into liquid drops. That is **condensation**.
+    wrapUp: Heating made the water evaporate. Cooling made it condense. The same water changed state twice.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K2.3, K2.5, U2.1]
+    type: order
+    prompt: Jonah builds a snowman. Then a warm, sunny week comes. Put what happens in order.
+    items:
+      - A solid snowman
+      - A melted puddle of liquid water
+      - Water vapour in the air
+    hints:
+      - What does heat do to snow first?
+      - What does heat do to a puddle?
+    solution:
+      - The sun heats the snow, and it **melts** into a puddle of liquid water.
+      - The sun keeps heating the puddle, and it **evaporates** into water vapour, a gas.

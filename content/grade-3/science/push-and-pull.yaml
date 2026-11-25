@@ -1,0 +1,207 @@
+id: push-and-pull
+grade: 3
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI3-OI2-GQ1-LO1]
+order: 8
+title: Pushes and Pulls
+shortTitle: Pushes and pulls
+summary: >-
+  Find the pushes and pulls all around you, compare a weak kick with a strong one, and describe
+  which way each force comes from.
+
+bigIdea: |-
+  - A **force** is a push or a pull. It happens when one object acts on another.
+  - Forces can be **strong** or **weak**.
+  - Forces come from a **direction**: up, down, left, right, both sides or all around.
+
+lesson:
+  - title: Push or pull?
+    blocks:
+      - type: visual
+        covers: [K1.1, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: push, label: Push, icon: '👐' }
+            - { id: pull, label: Pull, icon: '🪢' }
+          cards:
+            - { text: '🛒 Moving a shopping cart forward', bin: push, why: 'Your hands push the cart away from you.' }
+            - { text: '🗄️ Opening a drawer', bin: pull, why: 'You pull the drawer toward you.' }
+            - { text: '⚽ Kicking a ball', bin: push, why: 'Your foot pushes the ball away.' }
+            - { text: '🐕 A dog tugging its leash', bin: pull, why: 'The dog pulls on the leash.' }
+            - { text: '🔔 Ringing a doorbell', bin: push, why: 'Your finger pushes the button.' }
+        caption: Forces are everywhere. Is each one a **push** or a **pull**?
+
+  - title: Strong or weak
+    blocks:
+      - type: experiment
+        covers: [K1.6, S1.3, S1.4, S1.2]
+        title: Two kicks
+        question: Two soccer balls get kicked. One kick is **weak**. One kick is **strong**. Which ball goes farther?
+        animation: g3s-scene
+        props: { scene: two-kicks }
+        predict:
+          choices: ['The weak kick', 'The strong kick', 'Both the same']
+          answer: 1
+        observe: |-
+          - The small arrow shows a **weak** push. That ball went a short way.
+          - The big arrow shows a **strong** push. That ball went far.
+        explain: |-
+          - A **stronger** force has a bigger effect.
+          - We draw a strong force with a **large** arrow and a weak force with a **small** one.
+
+  - title: Which way?
+    blocks:
+      - type: visual
+        covers: [K1.7, S1.2]
+        component: g3s-play
+        props: { scene: force-directions }
+        caption: Tap each direction. The arrow shows where the force comes from.
+
+  - title: Four ways to give a force
+    blocks:
+      - type: visual
+        covers: [K1.5, K1.1]
+        component: g3s-play
+        props: { scene: four-ways }
+        caption: Tap each way to use your hands.
+
+keyTerms:
+  - term: Force
+    covers: [K1.1]
+    definition: A push or a pull on an object, from another object.
+  - term: Strength
+    covers: [K1.6]
+    definition: How strong or weak, large or small, a force is.
+  - term: Direction
+    covers: [K1.7]
+    definition: The way a force comes from, such as from the left or upward.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.1, K1.5]
+    type: mc
+    prompt: You open the fridge door toward you. What kind of force is that?
+    choices: ['A pull', 'A push', 'A squeeze']
+    answer: 0
+    feedback:
+      '1': A push moves something away from you. Which way does the door move?
+      '2': A squeeze presses something from both sides. Is that what you do to the door?
+    hints:
+      - Does the door come toward you or go away from you?
+    solution:
+      - The door comes **toward** you, so it is a **pull**.
+
+  - id: w2
+    level: 1
+    thinking: notice
+    covers: [K1.7, S1.2]
+    type: mc
+    figure: |-
+      <svg viewBox="0 0 300 90" class="fig-svg" role="img" aria-label="A ball with an arrow pushing it from the left side."><polygon points="20,40 100,40 100,30 124,46 100,62 100,52 20,52" fill="var(--science)"/><text x="160" y="62" font-size="44" text-anchor="middle">⚽</text></svg>
+    prompt: Which direction is this force coming from?
+    choices: ['From the left', 'From the right', 'Downward']
+    answer: 0
+    feedback:
+      '1': Look at where the arrow starts. Is it on the right side of the ball?
+      '2': Downward would come from above. Where does the arrow start?
+    hints:
+      - Look where the arrow starts.
+    solution:
+      - The arrow starts on the left and points at the ball.
+      - The force comes **from the left**, so the ball will move to the right.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: connect
+    covers: [S1.3, K1.6, S1.4]
+    type: mc
+    prompt: Lily gives a swing a **gentle** push. Sam gives the same swing a **hard** push. Whose push sends it higher?
+    choices: ['Sam’s', 'Lily’s', 'Both the same']
+    answer: 0
+    feedback:
+      '1': A gentle push is a weak force. Does a weak force have a big effect or a small one?
+      '2': Their pushes were different. Would the swing do the same thing?
+    hints:
+      - Think about the two kicks.
+    solution:
+      - Sam’s hard push is the **stronger** force.
+      - A stronger force has a bigger effect, so the swing goes higher.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.1, K1.1]
+    type: multi
+    prompt: Where is there a **pull**? Pick **all** of them.
+    choices: ['🪁 A kite tugging on its string', '🧦 Putting on a sock', '🎳 A ball knocking over pins', '✏️ Pressing a pencil on paper']
+    answer: [0, 1]
+    feedback:
+      '2': The ball moves into the pins and away from where it started. Is that a pull?
+      '3': Pressing moves the pencil tip down, away from your hand. Is that a pull?
+    hints:
+      - A pull moves something toward the thing doing the pulling.
+    solution:
+      - The kite pulls on the string, and your hands pull the sock up your foot. Those are **pulls**.
+      - The ball pushes the pins, and you push the pencil down.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: breakdown
+    covers: [S1.4, S1.2, K1.6, K1.7]
+    type: investigation
+    prompt: |-
+      A big box sits on the floor. Ava pushes it **from the left**. Ben pushes it **from the right**, much harder.
+    parts:
+      - type: mc
+        prompt: Which way does the box move?
+        choices: ['To the left', 'To the right', 'It doesn’t move']
+        fixedOrder: true
+        answer: 0
+        feedback:
+          '1': Ava’s push would move it right. But whose push is stronger?
+          '2': Their pushes are not the same strength. Who wins?
+        hints:
+          - Whose push is stronger? Which way does that push send the box?
+        solution:
+          - Ben’s push from the right is **stronger**.
+          - A push from the right moves the box **to the left**.
+      - type: multi
+        prompt: Ava wants the box to move right instead. What could she do? Pick **all** that could work.
+        choices: ['Push much harder than Ben', 'Get a friend to push with her', 'Push from the top', 'Push more gently']
+        answer: [0, 1]
+        feedback:
+          '2': A push from the top is downward. Would that send the box right?
+          '3': A gentler push is weaker. Would that beat Ben?
+        hints:
+          - Her push from the left needs to become the stronger one.
+        solution:
+          - Pushing harder, or getting help, makes the push from the left **stronger** than Ben’s.
+          - Then the box moves to the right.
+    wrapUp: To predict a push, check two things. How **strong** is it, and which **direction** does it come from?
+
+  - id: d2
+    level: 3
+    thinking: flaw
+    covers: [K1.1, S1.1]
+    type: mc
+    prompt: Kai says, “Only people and animals can push or pull things.” Which example proves Kai wrong?
+    choices:
+      - A rolling bowling ball knocks down pins.
+      - A girl pulls her sister in a wagon.
+      - A horse pulls a cart down the road.
+    answer: 0
+    feedback:
+      '1': A girl is a person. Does this prove Kai wrong or agree with him?
+      '2': A horse is an animal. Does this prove Kai wrong or agree with him?
+    hints:
+      - Look for an object that is not alive giving a push.
+    solution:
+      - A force happens when **any** object acts on another object.
+      - The bowling ball is not alive, but it pushes the pins over. So Kai is wrong.

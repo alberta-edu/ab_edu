@@ -1,0 +1,221 @@
+id: living-things-change-land
+grade: 3
+subject: science
+organizingIdea: SCI-OI3
+outcomes: [SCI3-OI3-GQ1-LO1]
+order: 14
+title: People, Plants and Animals Change the Land
+shortTitle: Living things change land
+summary: >-
+  Watch beavers turn a meadow into a pond, see how people, pine beetles and ground squirrels change
+  the land, and follow wheat from an Alberta field to your table.
+
+bigIdea: |-
+  - **People**, **plants** and **animals** all change Earth’s surface.
+  - Farming changes the land, and it gives us food every day.
+  - We all share the job of **caring** for the land.
+
+lesson:
+  - title: Busy beavers
+    blocks:
+      - type: experiment
+        covers: [K3.2, S3.2, U3.1]
+        title: The beaver dam
+        question: A beaver family builds a dam across a stream in a meadow. What happens to the meadow?
+        animation: g3s-scene
+        props: { scene: beaver-dam }
+        predict:
+          choices: ['It becomes a pond', 'It dries up', 'Nothing changes']
+          answer: 0
+        observe: |-
+          - The beavers cut trees and built a **dam** across the stream.
+          - Water backed up behind the dam and flooded the meadow into a **pond**.
+        explain: |-
+          - Animals use resources, like trees, to meet their needs.
+          - Using them can change Earth’s surface.
+
+  - title: How people change the land
+    blocks:
+      - type: visual
+        covers: [K3.1, S3.1, U3.1]
+        component: g3s-play
+        props: { scene: people-change-land }
+        caption: Tap each one. How does it change the land?
+
+  - title: Plants and animals change it too
+    blocks:
+      - type: visual
+        covers: [K3.2, S3.2]
+        component: g3s-play
+        props: { scene: nature-changes-land }
+        caption: Tap each one. What changed the land?
+
+  - title: From the field to your table
+    blocks:
+      - type: visual
+        covers: [S3.4, K3.1]
+        component: g3s-play
+        props: { scene: farm-to-table }
+        caption: Step through an Alberta wheat field.
+
+  - title: Caring for the land
+    blocks:
+      - type: visual
+        covers: [S3.3, K3.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: help, label: Helps the land, icon: '💚' }
+            - { id: harm, label: Harms the land, icon: '⚠️' }
+          cards:
+            - { text: 'Planting trees on a bare hill', bin: help, why: 'Tree roots hold the soil, and the trees give animals homes.' }
+            - { text: 'Dumping garbage in a ditch', bin: harm, why: 'Garbage pollutes the soil and water.' }
+            - { text: 'Picking up litter on a trail', bin: help, why: 'Cleaning up is stewardship. It keeps the land healthy.' }
+            - { text: 'Driving over plants in a field', bin: harm, why: 'Tires crush plants and leave bare, muddy ruts.' }
+            - { text: 'Staying on the path in a park', bin: help, why: 'It keeps plants from being trampled.' }
+            - { text: 'Spilling oil on the ground', bin: harm, why: 'Oil pollutes the soil and can reach rivers.' }
+        caption: Does it **help** or **harm** the land?
+      - type: callout
+        variant: tip
+        covers: [S3.3]
+        title: We share the Earth
+        body: Everything people do changes the land. We all share the job of caring for it.
+
+keyTerms:
+  - term: Agriculture
+    covers: [K3.1]
+    definition: Farming. Growing crops and raising animals for food.
+  - term: Stewardship
+    covers: [K3.1, S3.3]
+    definition: Taking care of the land, water, plants and animals.
+  - term: Pollution
+    covers: [K3.1]
+    definition: Garbage, spills or other harmful things that make land, water or air dirty.
+  - term: Overpopulation
+    covers: [K3.2]
+    definition: When there are too many of one kind of plant or animal for a place.
+  - term: Burrow
+    covers: [K3.2]
+    definition: A hole or tunnel in the ground that an animal digs to live in.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K3.2]
+    type: mc
+    prompt: Which animal changes the land by digging tunnels?
+    choices: ['🐿️ Ground squirrel', '🦅 Eagle', '🐟 Fish']
+    answer: 0
+    feedback:
+      '1': Eagles fly and build nests in trees. Do they dig?
+      '2': Fish live in water. Can they dig tunnels in the prairie?
+    hints:
+      - Which animal lives in a burrow?
+    solution:
+      - Ground squirrels **burrow**. They dig tunnels and push up mounds of soil.
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K3.1, S3.1]
+    type: mc
+    prompt: A field is covered with new houses, roads and stores. Which human activity changed it?
+    choices: ['Building towns', 'Farming', 'Stewardship']
+    answer: 0
+    feedback:
+      '1': Farming plants crops. Are there crops here?
+      '2': Stewardship means caring for the land. Is that what happened?
+    hints:
+      - What was built on the field?
+    solution:
+      - Houses, roads and stores make a **town**.
+      - Building towns and cities changes Earth’s surface.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: notice
+    covers: [K3.2, S3.2]
+    type: mc
+    prompt: In the Rockies, whole patches of pine trees turn red and die. Tiny beetles live under their bark. What changed the forest?
+    choices: ['Mountain pine beetles', 'A flood', 'Beavers']
+    answer: 0
+    feedback:
+      '1': A flood brings water. Would it make pine trees turn red?
+      '2': Beavers cut trees down. Do they make them turn red?
+    hints:
+      - Look closely at the clue about the bark.
+    solution:
+      - '**Mountain pine beetles** live under pine bark. Too many of them kill the trees.'
+
+  - id: b2
+    level: 2
+    thinking: connect
+    covers: [S3.4]
+    type: mc
+    prompt: Ava eats toast for breakfast. How is her toast connected to the land?
+    choices: ['Wheat grew in a farm field', 'Bread grows on trees', 'It isn’t connected']
+    answer: 0
+    feedback:
+      '1': Have you seen a bread tree? What is bread made from?
+      '2': Bread is made from wheat. Where does wheat grow?
+    hints:
+      - What is bread made from? Where does it grow?
+    solution:
+      - Bread is made from **wheat**, a crop grown on farm fields like those in Alberta.
+      - Farming changes the land, and it feeds us every day.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: whatif
+    covers: [K3.2, U3.1]
+    type: investigation
+    prompt: |-
+      In a park, the number of deer grows and grows, year after year.
+    parts:
+      - type: mc
+        prompt: What will happen to the shrubs and young trees?
+        choices: ['Most get eaten', 'They grow taller', 'Nothing']
+        answer: 0
+        feedback:
+          '1': Deer eat leaves and twigs. With more deer, will plants grow taller?
+          '2': More deer means more hungry mouths. Will the plants be fine?
+        hints:
+          - What do deer eat?
+        solution:
+          - With **too many** deer, most of the plants get eaten.
+      - type: mc
+        prompt: With few plants left, what could heavy rain do to the soil on a hill?
+        choices: ['Wash it away', 'Turn it to rock', 'Make it deeper']
+        answer: 0
+        feedback:
+          '1': Can rain turn soil into rock?
+          '2': Think about water flowing over bare soil. Does it add soil or carry it away?
+        hints:
+          - Plant roots hold soil in place. What if the roots are gone?
+        solution:
+          - Plant roots hold soil. On bare ground, rain **washes the soil away**.
+    wrapUp: Overpopulation can change the land a lot. One change can lead to another.
+
+  - id: d2
+    level: 3
+    thinking: decide
+    covers: [S3.3, K3.1]
+    type: mc
+    prompt: A creek near school has trash in it and bare, muddy banks. Which plan shows **stewardship**?
+    choices:
+      - Pick up the trash and plant shrubs on the banks.
+      - Build a parking lot beside it.
+      - Leave it. It isn’t our job.
+    answer: 0
+    feedback:
+      '1': A parking lot covers more land. Would that help the creek?
+      '2': Everything people do changes the land. Whose job is it to care for it?
+    hints:
+      - Stewardship means taking care of the land.
+    solution:
+      - Picking up trash and planting shrubs **care** for the creek. That is stewardship.
+      - Shrub roots hold the muddy banks in place.

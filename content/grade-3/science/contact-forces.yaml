@@ -1,0 +1,213 @@
+id: contact-forces
+grade: 3
+subject: science
+organizingIdea: SCI-OI2
+outcomes: [SCI3-OI2-GQ1-LO1]
+order: 10
+title: Contact Forces
+shortTitle: Contact forces
+summary: >-
+  Meet four contact forces, slide a block on ice, wood and carpet to feel friction, and squeeze a
+  sponge and play dough to see forces change shape.
+
+bigIdea: |-
+  - **Contact forces** happen when objects touch.
+  - Four kinds are **applied**, **friction**, **tension** and **elastic** forces.
+  - Forces can change how an object **moves**, and its **shape** or **size**.
+
+lesson:
+  - title: Four contact forces
+    blocks:
+      - type: visual
+        covers: [K1.3, K1.4]
+        component: g3s-play
+        props: { scene: contact-kinds }
+        caption: Tap each kind. In every one, the objects are **touching**.
+
+  - title: Friction slows things down
+    blocks:
+      - type: experiment
+        covers: [K1.4, S1.5, U1.1]
+        title: Ice, wood or carpet?
+        question: The same push slides a block across ice, wood and carpet. Where does it slide farthest?
+        animation: g3s-scene
+        props: { scene: slide-surfaces }
+        predict:
+          choices: ['🧊 Ice', '🪵 Wood', '🟪 Carpet']
+          answer: 0
+        observe: |-
+          - On **ice**, the block slid farthest.
+          - On **carpet**, it stopped soonest.
+        explain: |-
+          - Rubbing surfaces make **friction**, a force that slows things down.
+          - Rough carpet makes **more** friction than smooth ice.
+
+  - title: Forces change shape
+    blocks:
+      - type: experiment
+        covers: [S1.6, K1.4, U1.1]
+        title: Squeeze and let go
+        question: A hand squeezes a sponge and a ball of play dough, then lets go. Which one goes back to its shape?
+        animation: g3s-scene
+        props: { scene: squeeze-test }
+        predict:
+          choices: ['🧽 The sponge', '🟠 The play dough', 'Both', 'Neither']
+          answer: 0
+        observe: |-
+          - Squeezing made both of them **flatter**.
+          - After letting go, the sponge **sprang back**. The play dough stayed flat.
+        explain: |-
+          - A squeezing force can change an object’s **shape** and **size**.
+          - A squeezed sponge pushes back with an **elastic** force. Play dough doesn’t.
+
+  - title: Which contact force?
+    blocks:
+      - type: visual
+        covers: [K1.4, S1.1]
+        component: card-sort
+        props:
+          bins:
+            - { id: app, label: Applied, icon: '🫷' }
+            - { id: fri, label: Friction, icon: '🧱' }
+            - { id: ten, label: Tension, icon: '🪢' }
+            - { id: ela, label: Elastic, icon: '🎯' }
+          cards:
+            - { text: 'Ropes hold up a swing seat.', bin: ten, why: 'The pulled ropes hold the swing. That is tension.' }
+            - { text: 'Bike brakes rub the wheel.', bin: fri, why: 'Rubbing surfaces make friction, which slows the wheel.' }
+            - { text: 'A trampoline bounces you up.', bin: ela, why: 'The stretched trampoline pushes back. That is an elastic force.' }
+            - { text: 'You push a door open.', bin: app, why: 'Your hand pushes the door. That is an applied force.' }
+            - { text: 'A stretched slingshot fires a pebble.', bin: ela, why: 'The stretched band pulls back. That is an elastic force.' }
+            - { text: 'A dog pulls its leash tight.', bin: ten, why: 'The tight leash pulls on the collar. That is tension.' }
+        caption: Sort each force into its kind.
+
+keyTerms:
+  - term: Contact force
+    covers: [K1.3]
+    definition: A force between objects that are touching.
+  - term: Friction
+    covers: [K1.4]
+    definition: A force from surfaces rubbing or sliding against each other. It slows things down.
+  - term: Tension
+    covers: [K1.4]
+    definition: The pull from a rope or string tied to an object.
+  - term: Elastic force
+    covers: [K1.4]
+    definition: The push or pull from something stretched or squeezed, like a spring.
+
+problems:
+  # ---------------------------------------------------------------- Level 1: Warm-up
+  - id: w1
+    level: 1
+    thinking: recall
+    covers: [K1.3]
+    type: mc
+    prompt: What do all **contact** forces need?
+    choices: ['The objects must touch', 'One object must be alive', 'The objects must be heavy']
+    answer: 0
+    feedback:
+      '1': A rope can pull a sled. Is a rope alive?
+      '2': You can push a feather. Is a feather heavy?
+    hints:
+      - Think about the word **contact**.
+    solution:
+      - '**Contact** means touching. Contact forces happen when objects touch.'
+
+  - id: w2
+    level: 1
+    thinking: apply
+    covers: [K1.4]
+    type: mc
+    prompt: A tow truck’s cable pulls a car. Which contact force is it?
+    choices: [Tension, Friction, Elastic]
+    answer: 0
+    feedback:
+      '1': Friction comes from rubbing. Is the cable rubbing or pulling?
+      '2': An elastic force comes from something stretchy springing back. Is the cable springing back?
+    hints:
+      - The cable is like a rope. What force does a pulled rope give?
+    solution:
+      - A pulled rope, string or cable gives **tension**.
+
+  # ---------------------------------------------------------------- Level 2: Build
+  - id: b1
+    level: 2
+    thinking: why
+    covers: [K1.4, S1.5]
+    type: mc
+    prompt: Ben’s sled slides fast on icy snow. On a gravel path, it hardly moves. Why?
+    choices: ['Gravel makes more friction', 'Gravel makes less friction', 'The sled is heavier on gravel']
+    answer: 0
+    feedback:
+      '1': If gravel made less friction, would the sled slide faster or slower?
+      '2': It is the same sled. Did it get heavier?
+    hints:
+      - Which surface is rougher?
+    solution:
+      - Rough gravel rubs against the sled much more than smooth ice.
+      - More rubbing means **more friction**, so the sled slows and stops.
+
+  - id: b2
+    level: 2
+    thinking: notice
+    covers: [S1.6]
+    type: multi
+    prompt: In which of these does a force change the object’s **shape** or **size**? Pick **all** of them.
+    choices: ['Pressing a thumb into clay', 'Stretching a hair elastic', 'Sliding a book across a table', 'Bending a straw']
+    answer: [0, 1, 3]
+    feedback:
+      '2': The book moves, but does its shape change?
+    hints:
+      - For each one, ask, “Does it look different afterward, or just sit in a new spot?”
+    solution:
+      - Pressing, stretching and bending all change the object’s shape or size.
+      - Sliding the book only changes **where** it is.
+
+  # ---------------------------------------------------------------- Level 3: Deep Think
+  - id: d1
+    level: 3
+    thinking: design
+    covers: [K1.4, S1.5, S1.6, U1.1]
+    type: investigation
+    prompt: |-
+      Lucy’s toy car rolls down a ramp and across the floor. She wants it to **stop quickly**, then bump a wall gently.
+    parts:
+      - type: mc
+        prompt: What should she put on the floor at the bottom of the ramp?
+        choices: ['A strip of carpet', 'A sheet of smooth ice', 'Nothing, the bare floor']
+        answer: 0
+        feedback:
+          '1': Ice is very smooth. Would the car slow down quickly on it?
+          '2': The car already rolls far on the floor. What would slow it more?
+        hints:
+          - Which surface makes the most friction?
+        solution:
+          - Carpet is rough, so it makes **more friction** and stops the car sooner.
+      - type: mc
+        prompt: For a bumper on the wall that keeps its shape after every bump, which should she use?
+        choices: ['A sponge', 'A lump of play dough', 'A sheet of paper']
+        answer: 0
+        feedback:
+          '1': Play dough gets squashed. Does it spring back?
+          '2': Paper crumples when it is hit. Does it spring back?
+        hints:
+          - Which one springs back after it is squeezed?
+        solution:
+          - A **sponge** springs back with an elastic force, so it keeps its shape bump after bump.
+    wrapUp: Choosing materials is choosing forces. Rough surfaces add friction. Springy ones push back.
+
+  - id: d2
+    level: 3
+    thinking: whatif
+    covers: [K1.4, U1.1]
+    type: mc
+    prompt: What if the floor had **no friction** at all, like super-slippery ice? What would happen when you tried to walk?
+    choices: ['Your feet would slip', 'You would walk faster', 'Nothing would change']
+    answer: 0
+    feedback:
+      '1': To walk, your foot pushes back on the floor. Could it grip a super-slippery floor?
+      '2': Think about walking on ice. Is it the same as walking on a rug?
+    hints:
+      - Think about walking on very slippery ice.
+    solution:
+      - Friction lets your shoes **grip** the floor when you push off.
+      - With no friction at all, your feet would slip and you couldn’t walk.

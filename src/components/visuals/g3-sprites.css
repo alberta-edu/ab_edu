@@ -1,0 +1,76 @@
+/* Grade 3 science scenes (g3-sprites.ts): shared colours that follow the light and dark themes. */
+.g3s-svg { display: block; width: 100%; height: auto; font-family: var(--font); border-radius: var(--radius-sm); background: var(--surface-2); touch-action: manipulation; }
+.g3s-label { fill: var(--ink); }
+.g3s-soft { fill: var(--ink-3); }
+.g3s-chip { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+.g3s-hl { fill: color-mix(in srgb, var(--sun) 35%, transparent); stroke: var(--sun); stroke-width: 3; }
+.g3s-sky { fill: color-mix(in srgb, var(--math) 12%, var(--surface)); }
+.g3s-night { fill: color-mix(in srgb, #1b2a4a 70%, var(--surface)); }
+.g3s-ground { fill: color-mix(in srgb, #8b5a2b 45%, var(--surface)); }
+.g3s-grass { fill: color-mix(in srgb, #3f9a40 55%, var(--surface)); }
+.g3s-field { fill: color-mix(in srgb, #d9b44a 60%, var(--surface)); }
+.g3s-water { fill: color-mix(in srgb, #3b82c4 45%, var(--surface)); }
+.g3s-deep { fill: color-mix(in srgb, #2a5f99 60%, var(--surface)); }
+.g3s-ice { fill: color-mix(in srgb, #bfe3ff 80%, var(--surface)); stroke: #6aa9d8; stroke-width: 2; }
+.g3s-snow { fill: color-mix(in srgb, #ffffff 85%, var(--surface)); stroke: #c9d6e8; stroke-width: 1.5; }
+.g3s-steam { fill: color-mix(in srgb, var(--ink-3) 25%, transparent); }
+.g3s-cloud { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+.g3s-glass { fill: color-mix(in srgb, var(--surface) 40%, transparent); stroke: var(--ink-2); stroke-width: 3; stroke-linejoin: round; }
+.g3s-line { stroke: var(--ink-2); stroke-width: 3; stroke-linecap: round; fill: none; }
+.g3s-thin { stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 5; fill: none; }
+.g3s-wood { fill: #b07a43; stroke: #6b4423; stroke-width: 2; }
+.g3s-metal { fill: color-mix(in srgb, #8a94a3 70%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; }
+.g3s-rock { fill: color-mix(in srgb, #8a8478 70%, var(--surface)); stroke: var(--ink-3); stroke-width: 2; }
+.g3s-sand { fill: color-mix(in srgb, #e6c78a 75%, var(--surface)); }
+.g3s-mud { fill: color-mix(in srgb, #9a6b45 70%, var(--surface)); }
+.g3s-clay { fill: color-mix(in srgb, #c4785a 70%, var(--surface)); }
+.g3s-dark { fill: color-mix(in srgb, #4a3424 80%, var(--surface)); }
+.g3s-l1 { fill: color-mix(in srgb, #d8b27a 75%, var(--surface)); }
+.g3s-l2 { fill: color-mix(in srgb, #b98a5a 75%, var(--surface)); }
+.g3s-l3 { fill: color-mix(in srgb, #c9a68a 75%, var(--surface)); }
+.g3s-l4 { fill: color-mix(in srgb, #9c7a63 75%, var(--surface)); }
+.g3s-l5 { fill: color-mix(in srgb, #7f6a5c 75%, var(--surface)); }
+.g3s-fire { fill: #e5793a; }
+.g3s-hot { fill: #d23b2e; }
+.g3s-cold { fill: #3b82c4; }
+.g3s-ok { fill: var(--ok); }
+.g3s-bad { fill: var(--bad); }
+.g3s-push { fill: var(--science); }
+.g3s-pull { fill: var(--math); }
+.g3s-rub { fill: var(--bad); }
+.g3s-road { fill: color-mix(in srgb, var(--ink) 55%, var(--surface)); }
+.g3s-paint { fill: var(--surface); }
+.g3s-beam { fill: color-mix(in srgb, var(--sun) 30%, transparent); }
+.g3s-wool { fill: color-mix(in srgb, #c0504d 65%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; }
+.g3s-coat { fill: color-mix(in srgb, #f2c230 80%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; }
+.g3s-wet { fill: color-mix(in srgb, #2a4f80 55%, transparent); }
+.g3s-stroke { stroke: var(--ink-2); stroke-width: 2; }
+.g3s-hide { fill: color-mix(in srgb, #c9a26b 80%, var(--surface)); stroke: var(--ink-2); stroke-width: 2; }
+.g3s-gas { fill: color-mix(in srgb, #9b6bd6 40%, transparent); }
+.g3s-juice { fill: color-mix(in srgb, #f08c2a 70%, var(--surface)); }
+.g3s-box { fill: none; stroke: var(--ink-2); stroke-width: 3; stroke-linejoin: round; }
+.g3s-plate { fill: var(--surface); stroke: var(--line-strong); stroke-width: 2; }
+.g3s-vapour { fill: none; stroke: color-mix(in srgb, var(--ink-3) 70%, transparent); stroke-width: 3; stroke-linecap: round; }
+.g3s-pave { fill: color-mix(in srgb, #8a8f98 45%, var(--surface)); }
+.g3s-hot-line { fill: none; stroke: #d23b2e; stroke-width: 3; }
+.g3s-cold-line { fill: none; stroke: #3b82c4; stroke-width: 3; }
+.g3s-drop { fill: color-mix(in srgb, #2a6fb8 75%, var(--surface)); stroke: var(--surface); stroke-width: 1.5; }
+.g3s-merc { fill: #d23b2e; }
+.g3s-tube { fill: var(--surface); stroke: var(--ink-2); stroke-width: 2.5; }
+.g3s-salt { fill: #ffffff; stroke: #9aa3b0; stroke-width: 1.5; }
+.g3s-shine { fill: color-mix(in srgb, #c7ccd4 85%, var(--surface)); stroke: #7b8492; stroke-width: 2; }
+.g3s-river { fill: none; stroke: #3b82c4; stroke-width: 8; stroke-linecap: round; }
+.g3s-choc { fill: #6b3e26; stroke: #3e2212; stroke-width: 2; }
+.g3s-rawegg { fill: color-mix(in srgb, #bcd3e0 25%, transparent); stroke: #9fb3bf; stroke-width: 2; stroke-dasharray: 5 4; }
+.g3s-eggwhite { fill: #fbfaf5; stroke: #c9c2a8; stroke-width: 2; }
+.g3s-yolk { fill: #f2b51c; }
+.g3s-pan { fill: color-mix(in srgb, #3a3f47 80%, var(--surface)); }
+.g3s-bread { fill: #e9c88a; stroke: #b08440; stroke-width: 2; }
+.g3s-toast { fill: #a8692e; stroke: #6b3e15; stroke-width: 2; }
+.g3s-wax { fill: #f4e6c4; stroke: #c9b07a; stroke-width: 2; }
+.g3s-ghost { opacity: 0.35; }
+.g3s-carpet { fill: color-mix(in srgb, #8e5aa8 55%, var(--surface)); }
+.g3s-sponge { fill: #f4d03f; stroke: #b8962a; stroke-width: 2; }
+.g3s-tunnel { fill: none; stroke: color-mix(in srgb, #4a3424 80%, var(--surface)); stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.g3s-trail-a { fill: none; stroke: var(--science); stroke-width: 7; stroke-linecap: round; }
+.g3s-trail-b { fill: none; stroke: var(--math); stroke-width: 7; stroke-linecap: round; }
